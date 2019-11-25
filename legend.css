@@ -1,0 +1,15 @@
+.dygraph-legend {
+   background-color: transparent !important;
+   font-size: 12px !important;
+   position: fixed;
+   left: 30px;  
+}
+
+.dygraph-label.dygraph-title {
+   background-color: transparent !important;
+   font-size: 20px !important;
+}
+
+.dygraph-axis-label.dygraph-axis-label-x {
+font-color: white
+}
