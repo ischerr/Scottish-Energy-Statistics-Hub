@@ -81,7 +81,7 @@ EnConsumptionTgt <- function(input, output, session) {
     Data$Target <- NA
     EnConsumption <- Data
     
-    paste("Scotland,", "2005-07","-", max(EnConsumption$Year))
+    paste("Scotland,", "2005/07","-", max(EnConsumption$Year))
   })
   
   output$EnConsumptionTgtPlot <- renderPlotly  ({
