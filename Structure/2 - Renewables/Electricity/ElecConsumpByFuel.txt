@@ -1,0 +1,3 @@
+<p>It is possible to look at the fuel mix which makes up regional consumption via the National Grid&rsquo;s Carbon Intensity website. Data is available at a sub-regional basis starting from May 2018. The data presented here is from July 2018 - June 2019.</p>
+<p>It shows that an estimated four-fifths (80.0%) of the electricity that Scotland consumes comes from low carbon sources, with 53.2% from renewable sources. More than two-fifths (41.2%) of the electricity consumed in Scotland is derived from wind. <br />As with generation, consumption of electricity from low carbon (47.6%) and renewable (27.8%) sources are substantially lower across England and Wales. </p>
+<p>&nbsp;</p>

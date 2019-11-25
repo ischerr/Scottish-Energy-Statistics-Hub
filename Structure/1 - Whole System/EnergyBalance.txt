@@ -1,0 +1,7 @@
+<p>We can represent Scotland&rsquo;s entire energy system as an <strong>energy balance, </strong>represented as a <strong>Sankey </strong>diagram. This provides a global picture of energy in Scotland, showing the flow from <strong>inputs </strong>(indigenous production and imports), to <strong>transformation </strong>to <strong>outputs </strong>(exports, losses and consumption). The widths of the bands are proportional to the size of the flow they represent.</p>
+
+<p>It shows Scotland indigenously produces a vast amount of energy, and the majority of Scotland&rsquo;s energy is eventually exported.</p>
+
+<p>In <strong>2017</strong>, Scotland&rsquo;s total input to the energy system, or primary energy, was <strong>1,203 TWh</strong>, of which <strong>78.0%</strong> of this comes from <strong>indigenous production </strong>and <strong>22.0% </strong>from <strong>imports</strong>. <strong>Oil and gas </strong>make up the vast majority (<strong>92.8%</strong>) of this.</p>
+
+<p>In terms of <strong>outputs</strong>, <strong>77.9% </strong>of all primary energy is <strong>exported</strong>, <strong>8.7% </strong>is lost in <strong>transformation </strong>and <strong>13.4% </strong>is accounted for by end use <strong>consumption </strong>in Scotland.</p>
