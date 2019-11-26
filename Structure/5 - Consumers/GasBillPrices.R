@@ -6,38 +6,37 @@ require("DT")
 ###### UI Function ######
 
 source("Structure/Global.R")
-
-ElecBillPricesOutput <- function(id) {
+GasBillPricesOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
       tabPanel("Average Bill",
     fluidRow(column(8,
-                    h3("Average annual domestic standard electricity bills in Scotland (Current Prices)", style = "color: #68c3ea;  font-weight:bold"),
-                    h4(textOutput(ns('ElecBillPricesSubtitle')), style = "color: #68c3ea;")
+                    h3("Average annual domestic standard gas bills in Scotland (Current Prices)", style = "color: #68c3ea;  font-weight:bold"),
+                    h4(textOutput(ns('GasBillPricesSubtitle')), style = "color: #68c3ea;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('ElecBillPrices.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('GasBillPrices.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
-    #dygraphOutput(ns("ElecBillPricesPlot")),
-    plotlyOutput(ns("ElecBillPricesPlot"))%>% withSpinner(color="#68c3ea"),
+    #dygraphOutput(ns("GasBillPricesPlot")),
+    plotlyOutput(ns("GasBillPricesPlot"))%>% withSpinner(color="#68c3ea"),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Average Bill Time Series",
              fluidRow(column(8,
-                             h3("Average annual domestic standard electricity bills in Scotland (2010 \u00A3)", style = "color: #68c3ea;  font-weight:bold"),
-                             h4(textOutput(ns('AverageElecBillsSubtitle')), style = "color: #68c3ea;")
+                             h3("Average annual domestic standard gas bills in Scotland (2010 \u00A3)", style = "color: #68c3ea;  font-weight:bold"),
+                             h4(textOutput(ns('AverageGasBillsSubtitle')), style = "color: #68c3ea;")
              ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('AverageElecBills.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('AverageGasBills.png'), 'Download Graph', style="float:right")
              )),
              
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
-             #dygraphOutput(ns("ElecBillPricesPlot")),
-             plotlyOutput(ns("AverageElecBillsPlot"))%>% withSpinner(color="#68c3ea"),
+             #dygraphOutput(ns("GasBillPricesPlot")),
+             plotlyOutput(ns("AverageGasBillsPlot"))%>% withSpinner(color="#68c3ea"),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))
     ),
     fluidRow(
@@ -51,19 +50,19 @@ ElecBillPricesOutput <- function(id) {
     tabsetPanel(
       tabPanel("Average Bill",
     fluidRow(
-    column(10, h3("Data - Average Annual Electricity Bills (\u00A3)", style = "color: #68c3ea;  font-weight:bold")),
+    column(10, h3("Data - Average Annual gas Bills (\u00A3)", style = "color: #68c3ea;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("ElecBillPricesTable"))%>% withSpinner(color="#68c3ea"))),
+      column(12, dataTableOutput(ns("GasBillPricesTable"))%>% withSpinner(color="#68c3ea"))),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Time Series",
       fluidRow(
-        column(10, h3("Data - Electricity Bills Time Series (\u00A3)", style = "color: #68c3ea;  font-weight:bold")),
+        column(10, h3("Data - gas Bills Time Series (\u00A3)", style = "color: #68c3ea;  font-weight:bold")),
         column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
       ),
       fluidRow(
-        column(12, dataTableOutput(ns("AverageElecBillsTable"))%>% withSpinner(color="#68c3ea"))),
+        column(12, dataTableOutput(ns("AverageGasBillsTable"))%>% withSpinner(color="#68c3ea"))),
       tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))
     ),
     fluidRow(
@@ -89,28 +88,28 @@ ElecBillPricesOutput <- function(id) {
 
 
 ###### Server ######
-ElecBillPrices <- function(input, output, session) {
+GasBillPrices <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("ElecBillPrices.R")
+  print("GasBillPrices.R")
 
   
-  output$ElecBillPricesSubtitle <- renderText({
+  output$GasBillPricesSubtitle <- renderText({
     
     paste("Scotland, 2018")
   })
   
-  output$ElecBillPricesPlot <- renderPlotly  ({
+  output$GasBillPricesPlot <- renderPlotly  ({
     
     Data <-
       read_excel(
         "Structure/CurrentWorking.xlsx",
-        sheet = "Electricity bill prices", 
-        skip = 19, n_max = 5)
+        sheet = "Gas bill prices", 
+        skip = 18, n_max = 5)
     
     Data <- Data[1:4,c(1,3,5, 7)]
     
@@ -144,11 +143,11 @@ ElecBillPrices <- function(input, output, session) {
                 orientation = 'h',
                 marker = list(color = BarColours[2])
                 ) %>% 
-      add_trace(x = ~ `UK`, 
+      add_trace(x = ~ `Great Britain`, 
                 type = 'bar', 
-                name = 'UK',
+                name = 'Great Britain',
                 hoverinfo = "text",
-                text = paste0("UK: \u00A3",round(Data$`UK`, digits = 0)),
+                text = paste0("Great Britain: \u00A3",round(Data$`Great Britain`, digits = 0)),
                 orientation = 'h',
                 marker = list(color = BarColours[3])
       ) %>% 
@@ -188,22 +187,22 @@ ElecBillPrices <- function(input, output, session) {
     
   })
 
-  output$ElecBillPricesTable = renderDataTable({
+  output$GasBillPricesTable = renderDataTable({
     
     Data <-
       read_excel(
         "Structure/CurrentWorking.xlsx",
-        sheet = "Electricity bill prices", 
-        skip = 19, n_max = 5)
+        sheet = "Gas bill prices", 
+        skip = 18, n_max = 5)
     
     Data <- Data[1:4,c(1,3,5, 7)]
     
     names(Data)[1] <- "Payment Method"
     
-    ElecBillPrices <- Data
+    GasBillPrices <- Data
     
     datatable(
-      ElecBillPrices,
+      GasBillPrices,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -213,17 +212,17 @@ ElecBillPrices <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Average annual domestic standard electricity bills in Scotland (\u00A3)",
+        title = "Average annual domestic standard gas bills in Scotland (\u00A3)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Average annual domestic standard electricity bills in Scotland (\u00A3)",
+            title = "Average annual domestic standard gas bills in Scotland (\u00A3)",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Average annual domestic standard electricity bills in Scotland (\u00A3)")
+               title = "Average annual domestic standard gas bills in Scotland (\u00A3)")
         ),
         
         # customize the length menu
@@ -236,13 +235,13 @@ ElecBillPrices <- function(input, output, session) {
       formatCurrency(c(2:7), currency = "\u00A3", digits = 0)
   })
   
-  output$AverageElecBillsSubtitle <- renderText({
+  output$AverageGasBillsSubtitle <- renderText({
     
     Data <-
       read_excel(
         "Structure/CurrentWorking.xlsx",
-        sheet = "Electricity bill prices", col_names = FALSE, 
-        skip = 12,
+        sheet = "Gas bill prices", col_names = FALSE, 
+        skip = 13,
         n_max = 4)
     
     Data <- as_tibble(t(Data))
@@ -260,7 +259,7 @@ ElecBillPrices <- function(input, output, session) {
     paste("Scotland,", min(Data$Year),"-", max(Data$Year))
   })
   
-  output$AverageElecBillsPlot <- renderPlotly  ({
+  output$AverageGasBillsPlot <- renderPlotly  ({
     
     
     ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
@@ -270,8 +269,8 @@ ElecBillPrices <- function(input, output, session) {
     Data <-
       read_excel(
         "Structure/CurrentWorking.xlsx",
-        sheet = "Electricity bill prices", col_names = FALSE, 
-        skip = 12,
+        sheet = "Gas bill prices", col_names = FALSE, 
+        skip = 13,
         n_max = 4)
 
     Data <- as_tibble(t(Data))
@@ -292,42 +291,42 @@ ElecBillPrices <- function(input, output, session) {
     Data$Year <- dmy(Data$Year)
     
     p <-  plot_ly(Data, x = ~ Year ) %>%  
-      add_trace(y = ~ `Prepayment - Scotland`, 
+      add_trace(y = ~ `Prepayment`, 
                 name = "Prepayment",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "1",
                 text = paste0(
                   "Prepayment: \u00A3",
-                  format(round(Data$`Prepayment - Scotland`, digits = 0), big.mark = ","),
+                  format(round(Data$`Prepayment`, digits = 0), big.mark = ","),
                   "\nYear: ",
                   format(Data$Year, "%Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = LineColours[1], dash = "none")
       ) %>% 
-      add_trace(y = ~ `Standard Credit - Scotland`,
+      add_trace(y = ~ `Standard Credit`,
                 name = "Standard Credit",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "2",
                 text = paste0(
                   "Standard Credit: \u00A3",
-                  format(round(Data$`Standard Credit - Scotland`, digits = 0), big.mark = ","),
+                  format(round(Data$`Standard Credit`, digits = 0), big.mark = ","),
                   "\nYear: ",
                   format(Data$Year, "%Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = LineColours[2], dash = "none")
       ) %>% 
-      add_trace(y = ~ `Direct Debit - Scotland`, 
+      add_trace(y = ~ `Direct Debit`, 
                 name = "Direct Debit",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "3",
                 text = paste0(
                   "Direct Debit: \u00A3",
-                  format(round(Data$`Direct Debit - Scotland`, digits = 0), big.mark = ","),
+                  format(round(Data$`Direct Debit`, digits = 0), big.mark = ","),
                   "\nYear: ",
                   format(Data$Year, "%Y")
                 ),
@@ -335,16 +334,16 @@ ElecBillPrices <- function(input, output, session) {
                 line = list(width = 6, color = LineColours[3], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(Data[which(Data$`Prepayment - Scotland` != 0),], 1),
+        data = tail(Data[which(Data$`Prepayment` != 0),], 1),
         x = ~ Year,
-        y = ~ `Prepayment - Scotland`,
+        y = ~ `Prepayment`,
         name = "Prepayment",
         legendgroup = "1",
         text = paste0(
           "Prepayment: \u00A3",
-          format(tail(Data[which(Data$`Prepayment - Scotland` != 0),], 1)$`Prepayment - Scotland`, big.mark = ","),
+          format(tail(Data[which(Data$`Prepayment` != 0),], 1)$`Prepayment`, big.mark = ","),
           "\nYear: ",
-          format(tail(Data[which(Data$`Prepayment - Scotland` != 0),], 1)$Year, "%Y")
+          format(tail(Data[which(Data$`Prepayment` != 0),], 1)$Year, "%Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -354,16 +353,16 @@ ElecBillPrices <- function(input, output, session) {
                       color = LineColours[1])
       ) %>%
       add_trace(
-        data = tail(Data[which(Data$`Standard Credit - Scotland` != 0),], 1),
+        data = tail(Data[which(Data$`Standard Credit` != 0),], 1),
         x = ~ Year,
-        y = ~ `Standard Credit - Scotland`,
+        y = ~ `Standard Credit`,
         name = "Standard Credit",
         legendgroup = "2",
         text = paste0(
           "Standard Credit: \u00A3",
-          format(tail(Data[which(Data$`Standard Credit - Scotland` != 0),], 1)$`Standard Credit - Scotland`, big.mark = ","),
+          format(tail(Data[which(Data$`Standard Credit` != 0),], 1)$`Standard Credit`, big.mark = ","),
           "\nYear: ",
-          format(tail(Data[which(Data$`Standard Credit - Scotland` != 0),], 1)$Year, "%Y")
+          format(tail(Data[which(Data$`Standard Credit` != 0),], 1)$Year, "%Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -373,16 +372,16 @@ ElecBillPrices <- function(input, output, session) {
                       color = LineColours[2])
       ) %>% 
       add_trace(
-        data = tail(Data[which(Data$`Direct Debit - Scotland` != 0),], 1),
+        data = tail(Data[which(Data$`Direct Debit` != 0),], 1),
         x = ~ Year,
-        y = ~ `Direct Debit - Scotland`,
+        y = ~ `Direct Debit`,
         name = "Direct Debit",
         legendgroup = "3",
         text = paste0(
           "Direct Debit: \u00A3",
-          format(tail(Data[which(Data$`Direct Debit - Scotland` != 0),], 1)$`Direct Debit - Scotland`, big.mark = ","),
+          format(tail(Data[which(Data$`Direct Debit` != 0),], 1)$`Direct Debit`, big.mark = ","),
           "\nYear: ",
-          format(tail(Data[which(Data$`Direct Debit - Scotland` != 0),], 1)$Year, "%Y")
+          format(tail(Data[which(Data$`Direct Debit` != 0),], 1)$Year, "%Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -417,13 +416,13 @@ ElecBillPrices <- function(input, output, session) {
     
   })
   
-  output$AverageElecBillsTable = renderDataTable({
+  output$AverageGasBillsTable = renderDataTable({
     
     Data <-
       read_excel(
         "Structure/CurrentWorking.xlsx",
-        sheet = "Electricity bill prices", col_names = FALSE, 
-        skip = 12,
+        sheet = "Gas bill prices", col_names = FALSE, 
+        skip = 13,
         n_max = 4)
     
     Data <- as_tibble(t(Data))
@@ -438,10 +437,10 @@ ElecBillPrices <- function(input, output, session) {
     
     Data <- as_tibble(Data)
     
-    AverageElecBillsTech <- Data
+    AverageGasBillsTech <- Data
     
     datatable(
-      AverageElecBillsTech,
+      AverageGasBillsTech,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -453,17 +452,17 @@ ElecBillPrices <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Average annual domestic standard electricity bills in Scotland (2010 \u00A3)",
+        title = "Average annual domestic standard gas bills in Scotland (2010 \u00A3)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Average annual domestic standard electricity bills in Scotland (2010 \u00A3)",
+            title = "Average annual domestic standard gas bills in Scotland (2010 \u00A3)",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Average annual domestic standard electricity bills in Scotland (2010 \u00A3)")
+               title = "Average annual domestic standard gas bills in Scotland (2010 \u00A3)")
         ),
         
         # customize the length menu
@@ -479,18 +478,18 @@ ElecBillPrices <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/5 - Consumers/ElecBillPrices.txt")[2])
+                     paste(readtext("Structure/5 - Consumers/GasBillPrices.txt")[2])
                      
                    )))
   })
   
   
  observeEvent(input$ToggleTable1, {
-    toggle("ElecBillPricesTable")
+    toggle("GasBillPricesTable")
   })
   
   observeEvent(input$ToggleTable2, {
-    toggle("AverageElecBillsTable")
+    toggle("AverageGasBillsTable")
   })
 
   
@@ -499,41 +498,41 @@ ElecBillPrices <- function(input, output, session) {
   })
   
   
-  output$ElecBillPrices.png <- downloadHandler(
-    filename = "ElecBillPrices.png",
+  output$GasBillPrices.png <- downloadHandler(
+    filename = "GasBillPrices.png",
     content = function(file) {
 
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
-          sheet = "Electricity bill prices", skip = 19, n_max = 4, col_names = TRUE)[c(1,7,5,3)]
+                         sheet = "Gas bill prices", skip = 18, n_max = 4, col_names = TRUE)[c(1,7,5,3)]
       
       names(Data)[1:2] <- c("Country", "United Kingdom")
       
-      AvgElecBills <- Data
+      AvgGasBills <- Data
       
-      AvgElecBills <- arrange(AvgElecBills, -row_number())
+      AvgGasBills <- arrange(AvgGasBills, -row_number())
       
-      AvgElecBills$Country <-
-        factor(AvgElecBills$Country,
-               levels = unique(AvgElecBills$Country),
+      AvgGasBills$Country <-
+        factor(AvgGasBills$Country,
+               levels = unique(AvgGasBills$Country),
                ordered = TRUE)
       
-      AvgElecBills <- melt(AvgElecBills, id.vars = "Country")
+      AvgGasBills <- melt(AvgGasBills, id.vars = "Country")
       
       
-      AvgElecBills$variable <-
+      AvgGasBills$variable <-
         factor(
-          AvgElecBills$variable,
-          levels = unique(AvgElecBills$variable),
+          AvgGasBills$variable,
+          levels = unique(AvgGasBills$variable),
           ordered = TRUE
         )
       
-      AvgElecBills <- AvgElecBills %>%
+      AvgGasBills <- AvgGasBills %>%
         group_by(Country) %>%
         mutate(pos = cumsum(value) - value / 2) %>%
         mutate(top = sum(value))
       
       plottitle <-
-        "Average annual domestic standard electricity bills\n(current prices)"
+        "Average annual domestic standard Gas bills\n(current prices)"
       sourcecaption <- "Source: BEIS"
       
       ChartColours <- c("#68c3ea", "#FF8500")
@@ -542,7 +541,7 @@ ElecBillPrices <- function(input, output, session) {
         )
       
       
-      AvgElecBillsChart <- AvgElecBills %>%
+      AvgGasBillsChart <- AvgGasBills %>%
         ggplot(aes(x = Country, y = value, fill = variable), family = "Century Gothic") +
         scale_fill_manual(
           "variable",
@@ -579,34 +578,34 @@ ElecBillPrices <- function(input, output, session) {
                   size = 4) +
         annotate(
           "text",
-          x = AvgElecBills$Country,
-          y = -75,
-          label = ifelse(AvgElecBills$Country == "z", "", str_wrap(AvgElecBills$Country, width = 9)),
+          x = AvgGasBills$Country,
+          y = -65,
+          label = ifelse(AvgGasBills$Country == "z", "", str_wrap(AvgGasBills$Country, width = 9)),
           family = "Century Gothic",
           fontface = 2,
           colour =  ChartColours[1],
         )
       
-      AvgElecBillsChart
+      AvgGasBillsChart
       
       
-      AvgElecBillsChart <-
-        StackedBars(AvgElecBillsChart,
-                    AvgElecBills,
+      AvgGasBillsChart <-
+        StackedBars(AvgGasBillsChart,
+                    AvgGasBills,
                     plottitle,
                     sourcecaption,
                     ChartColours)
       
-      AvgElecBillsChart <- AvgElecBillsChart +
+      AvgGasBillsChart <- AvgGasBillsChart +
         labs(subtitle = "Scotland, 2018") +
-        ylim(-100, 800)+
+        ylim(-90, 740)+
         coord_flip()
       
-      AvgElecBillsChart
+      AvgGasBillsChart
       
       ggsave(
         file,
-        plot = AvgElecBillsChart,
+        plot = AvgGasBillsChart,
         width = 17.5,
         height = 12,
         units = "cm",
@@ -617,14 +616,14 @@ ElecBillPrices <- function(input, output, session) {
 
 
 
-output$AverageElecBills.png <- downloadHandler(
-  filename = "AverageElecBills.png",
+output$AverageGasBills.png <- downloadHandler(
+  filename = "AverageGasBills.png",
   content = function(file) {
     
     Data <-
       read_excel(
         "Structure/CurrentWorking.xlsx",
-        sheet = "Electricity bill prices", skip = 12, n_max = 4, col_names = FALSE)
+        sheet = "Gas bill prices", skip = 13, n_max = 4, col_names = FALSE)
     
     Data <- as_tibble(t(Data))
     
@@ -634,17 +633,17 @@ output$AverageElecBills.png <- downloadHandler(
     
     Data <- as_tibble(sapply( Data, as.numeric ))
     
-    ElecBills <- Data
+    GasBills <- Data
     
     ### variables
     ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
     sourcecaption = "Source: BEIS"
-    plottitle = "Average annual domestic standard electricity\nbills in Scotland (based on 2010 prices)"
+    plottitle = "Average annual domestic standard gas\nbills in Scotland (based on 2010 prices)"
     
-    #ElecBills$PrepaymentPercentage <- PercentLabel(ElecBills$Prepayment)
+    #GasBills$PrepaymentPercentage <- PercentLabel(GasBills$Prepayment)
     
     
-    ElecBillsChart <- ElecBills %>%
+    GasBillsChart <- GasBills %>%
       ggplot(aes(x = Year), family = "Century Gothic") +
       
       geom_line(
@@ -658,9 +657,9 @@ output$AverageElecBills.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year - 1.5,
+          x = Year - 1,
           y = Prepayment,
-          label = ifelse(Year == min(Year), paste0("\u00A3", round(Prepayment, digits = 0)), ""),
+          label = ifelse(Year == min(Year), paste0("\u00A3", Prepayment), ""),
           hjust = 0.5,
           vjust = -.8,
           colour = ChartColours[2],
@@ -670,18 +669,18 @@ output$AverageElecBills.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year + 1.6,
+          x = Year + 1.2,
           y = Prepayment,
-          label = ifelse(Year == max(Year), paste0("\u00A3", round(Prepayment, digits = 0)), ""),
+          label = ifelse(Year == max(Year), paste0("\u00A3", Prepayment), ""),
           hjust = 0.5,
-          vjust = 1,
+          vjust= 1,
           colour = ChartColours[2],
           fontface = 2
         ),
         family = "Century Gothic"
       ) +
       geom_point(
-        data = tail(ElecBills, 1),
+        data = tail(GasBills, 1),
         aes(
           x = Year,
           y = Prepayment,
@@ -697,7 +696,7 @@ output$AverageElecBills.png <- downloadHandler(
           y = mean(Prepayment),
           label = "Prepayment",
           hjust = 0.5,
-          vjust = -4.5,
+          vjust = -7.5,
           colour = ChartColours[2],
           fontface = 2
         ),
@@ -714,9 +713,9 @@ output$AverageElecBills.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year - 1.5,
+          x = Year - 1,
           y = `Standard Credit`,
-          label = ifelse(Year == min(Year), paste0("\u00A3", round(`Standard Credit`, digits = 0)), ""),
+          label = ifelse(Year == min(Year), paste0("\u00A3", `Standard Credit`), ""),
           hjust = 0.5,
           vjust = 1,
           colour = ChartColours[3],
@@ -726,9 +725,9 @@ output$AverageElecBills.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year + 1.6,
+          x = Year + 1.2,
           y = `Standard Credit`,
-          label = ifelse(Year == max(Year), paste0("\u00A3", round(`Standard Credit`, digits = 0)), ""),
+          label = ifelse(Year == max(Year), paste0("\u00A3", `Standard Credit`), ""),
           hjust = 0.5,
           colour = ChartColours[3],
           fontface = 2
@@ -736,7 +735,7 @@ output$AverageElecBills.png <- downloadHandler(
         family = "Century Gothic"
       ) +
       geom_point(
-        data = tail(ElecBills, 1),
+        data = tail(GasBills, 1),
         aes(
           x = Year,
           y = `Standard Credit`,
@@ -752,7 +751,7 @@ output$AverageElecBills.png <- downloadHandler(
           y = mean(`Standard Credit`),
           label = "Standard Credit",
           hjust = 0.5,
-          vjust = 8.3,
+          vjust = 8.5,
           colour = ChartColours[3],
           fontface = 2
         ),
@@ -769,9 +768,9 @@ output$AverageElecBills.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = 1994,
+          x = Year - 1,
           y = `Direct Debit`,
-          label = ifelse(Year == 1994, paste0("\u00A3", round(`Direct Debit`, digits = 0)), ""),
+          label = ifelse(Year == min(Year), paste0("\u00A3", `Direct Debit`), ""),
           hjust = 0.5,
           vjust = 2,
           colour = ChartColours[4],
@@ -781,9 +780,9 @@ output$AverageElecBills.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year + 1.6,
+          x = Year + 1.2,
           y = `Direct Debit`,
-          label = ifelse(Year == max(Year), paste0("\u00A3", round(`Direct Debit`, digits = 0)), ""),
+          label = ifelse(Year == max(Year), paste0("\u00A3", `Direct Debit`), ""),
           hjust = 0.5,
           vjust = 0,
           colour = ChartColours[4],
@@ -792,7 +791,7 @@ output$AverageElecBills.png <- downloadHandler(
         family = "Century Gothic"
       ) +
       geom_point(
-        data = tail(ElecBills, 1),
+        data = tail(GasBills, 1),
         aes(
           x = Year,
           y = `Direct Debit`,
@@ -805,10 +804,10 @@ output$AverageElecBills.png <- downloadHandler(
       geom_text(
         aes(
           x = mean(Year),
-          y = mean(`Direct Debit`, na.rm = TRUE),
+          y = mean(`Direct Debit`),
           label = "Direct Debit",
           hjust = 0.5,
-          vjust = 8.5,
+          vjust = 8.3,
           colour = ChartColours[4],
           fontface = 2
         ),
@@ -830,18 +829,18 @@ output$AverageElecBills.png <- downloadHandler(
       )
     
     
-    ElecBillsChart <-
-      LinePercentChart(ElecBillsChart,
-                       ElecBills,
+    GasBillsChart <-
+      LinePercentChart(GasBillsChart,
+                       GasBills,
                        plottitle,
                        sourcecaption,
                        ChartColours)
     
-    ElecBillsChart
+    GasBillsChart
     
     ggsave(
       file,
-      plot =  ElecBillsChart,
+      plot =  GasBillsChart,
       width = 14,
       height = 14,
       units = "cm",

@@ -215,6 +215,12 @@ server <- function(input, output, session) {
 
   callModule(ElecBillPrices, "ElecBillPrices")
   
+  callModule(GasBillPrices, "GasBillPrices")
+  
+  callModule(DualFuelBreakdown, "DualFuelBreakdown")
+  
+  callModule(EUBill, "EUBill")
+  
   callModule(TargetTracker, "TargetTracker", parent_session = session)
   
   
@@ -793,13 +799,14 @@ ui <- shinyUI(fluidPage(
                             value = "BillPayment",
                             BillPaymentsOutput("BillPayments")),
                    tabPanel(title = "Gas Bill Prices",
-                            value = "GasBillPrices"),
+                            value = "GasBillPrices",
+                            GasBillPricesOutput("GasBillPrices")),
                    tabPanel(title = "Dual Fuel Bill Breakdown",
-                            value = "DualFuelBreakdown"),
-                   tabPanel(title = "Average Bill",
-                            value = "AvgBill"),
+                            value = "DualFuelBreakdown",
+                            DualFuelBreakdownOutput("DualFuelBreakdown")),
                    tabPanel(title = "EU Bill Prices",
-                            value = "EUBill"),
+                            value = "EUBill",
+                            EUBillOutput("EUBill")),
                    tabPanel(title = "Electricity Customers on Non-home Supplier",
                             value = "ElecNonHome"),
                    tabPanel(title = "Gas Customers on Non-home Supplier",
