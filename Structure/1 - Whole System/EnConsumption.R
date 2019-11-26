@@ -7,37 +7,37 @@ require("DT")
 
 source("Structure/Global.R")
 
-EnConsSectorOutput <- function(id) {
+EnConsumptionOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
       tabPanel("Sector Consumption",
     fluidRow(column(8,
                     h3("Total final energy consumption by sector", style = "color: #1A5D38;  font-weight:bold"),
-                    h4(textOutput(ns('EnConsSectorSubtitle')), style = "color: #1A5D38;")
+                    h4(textOutput(ns('EnConsumptionSubtitle')), style = "color: #1A5D38;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('EnConsSector.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('EnConsumption.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
-    #dygraphOutput(ns("EnConsSectorPlot")),
-    plotlyOutput(ns("EnConsSectorPlot"), height = "450px")%>% withSpinner(color="#1A5D38"),
+    #dygraphOutput(ns("EnConsumptionPlot")),
+    plotlyOutput(ns("EnConsumptionPlot"), height = "450px")%>% withSpinner(color="#1A5D38"),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")),
     tabPanel("Domestic & Non-domestic",
              fluidRow(column(8,
                              h3("Total final energy consumption domestic and non-domestic", style = "color: #1A5D38;  font-weight:bold"),
-                             h4(textOutput(ns('EnConsSectorDomNonDomSubtitle')), style = "color: #1A5D38;")
+                             h4(textOutput(ns('EnConsumptionDomNonDomSubtitle')), style = "color: #1A5D38;")
              ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('EnConsSectorDomNonDom.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('EnConsumptionDomNonDom.png'), 'Download Graph', style="float:right")
              )),
              
              tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
-             #dygraphOutput(ns("EnConsSectorPlot")),
-             plotlyOutput(ns("EnConsSectorDomNonDomPlot"))%>% withSpinner(color="#1A5D38"),
+             #dygraphOutput(ns("EnConsumptionPlot")),
+             plotlyOutput(ns("EnConsumptionDomNonDomPlot"))%>% withSpinner(color="#1A5D38"),
              tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #1A5D38;  font-weight:bold")),
@@ -54,7 +54,7 @@ EnConsSectorOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("EnConsSectorTable"))%>% withSpinner(color="#1A5D38"))),
+      column(12, dataTableOutput(ns("EnConsumptionTable"))%>% withSpinner(color="#1A5D38"))),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")),
     tabPanel("Domestic and Non-domestic",
              fluidRow(
@@ -62,7 +62,7 @@ EnConsSectorOutput <- function(id) {
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
-               column(12, dataTableOutput(ns("EnConsSectorDomNonDomTable"))%>% withSpinner(color="#1A5D38"))),
+               column(12, dataTableOutput(ns("EnConsumptionDomNonDomTable"))%>% withSpinner(color="#1A5D38"))),
              tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"))),
     fluidRow(
       column(1,
@@ -87,11 +87,11 @@ EnConsSectorOutput <- function(id) {
 
 
 ###### Server ######
-EnConsSector <- function(input, output, session) {
-  # output$EnConsSectorPlot <- renderDygraph({
+EnConsumption <- function(input, output, session) {
+  # output$EnConsumptionPlot <- renderDygraph({
   #   RenEn <-
   #     read.csv(
-  #       "Structure/1 - Whole System/EnConsSector.csv",
+  #       "Structure/1 - Whole System/EnConsumption.csv",
   #       header = TRUE,
   #       sep = ",",
   #       na.strings = "-"
@@ -124,50 +124,50 @@ EnConsSector <- function(input, output, session) {
     source("Structure/PackageHeader.R")
   }
   
-  print("EnConsSector.R")
+  print("EnConsumption.R")
   
-  output$EnConsSectorSubtitle <- renderText({
+  output$EnConsumptionSubtitle <- renderText({
     
-    EnConsSector <- read_excel("Structure/CurrentWorking.xlsx",
+    EnConsumption <- read_excel("Structure/CurrentWorking.xlsx",
                           sheet = "Energy consump by sector", col_names = TRUE, 
                           skip = 17)
     
-    EnConsSector <- EnConsSector[2:6]
+    EnConsumption <- EnConsumption[2:6]
     
-    EnConsSector <- EnConsSector[complete.cases(EnConsSector),]
+    EnConsumption <- EnConsumption[complete.cases(EnConsumption),]
     
-    names(EnConsSector) <- c("Year", "Heat", "Transport", "Electricity", "Other")
+    names(EnConsumption) <- c("Year", "Heat", "Transport", "Electricity", "Other")
     
-    paste(max(as.numeric(EnConsSector$Year), na.rm = TRUE))
+    paste(max(as.numeric(EnConsumption$Year), na.rm = TRUE))
   })
  
-  output$EnConsSectorPlot <- renderPlotly  ({
+  output$EnConsumptionPlot <- renderPlotly  ({
     
-    EnConsSector <- read_excel("Structure/CurrentWorking.xlsx",
+    EnConsumption <- read_excel("Structure/CurrentWorking.xlsx",
                                sheet = "Energy consump by sector", col_names = TRUE, 
                                skip = 17)
     
-    EnConsSector <- EnConsSector[2:6]
+    EnConsumption <- EnConsumption[2:6]
     
-    EnConsSector <- EnConsSector[complete.cases(EnConsSector),]
+    EnConsumption <- EnConsumption[complete.cases(EnConsumption),]
     
-    names(EnConsSector) <- c("Year", "Heat", "Transport", "Electricity", "Other")
+    names(EnConsumption) <- c("Year", "Heat", "Transport", "Electricity", "Other")
     
     ChartYear <- 2017
     
     ChartColours <- c("#fc9272", "#2b8cbe", "#34d1a3", "#02818a")
     
-    EnConsSector <- melt(EnConsSector, id = "Year")
-    EnConsSector <- EnConsSector[which(EnConsSector$Year == ChartYear),]
+    EnConsumption <- melt(EnConsumption, id = "Year")
+    EnConsumption <- EnConsumption[which(EnConsumption$Year == ChartYear),]
     
     p <- plot_ly(
-      data = EnConsSector,
+      data = EnConsumption,
       labels = ~variable,
       type = 'pie',
       values = ~value,
       text = paste0(
-        EnConsSector$variable,
-        ": ", format(round(EnConsSector$value, 0), big.mark = ","), " GWh" 
+        EnConsumption$variable,
+        ": ", format(round(EnConsumption$value, 0), big.mark = ","), " GWh" 
       ),
       textposition = 'inside',
       textinfo = 'label+percent',
@@ -204,22 +204,22 @@ EnConsSector <- function(input, output, session) {
     
   })
   
-  output$EnConsSectorTable = renderDataTable({
+  output$EnConsumptionTable = renderDataTable({
     
-    EnConsSector <- read_excel("Structure/CurrentWorking.xlsx",
+    EnConsumption <- read_excel("Structure/CurrentWorking.xlsx",
                                sheet = "Energy consump by sector", col_names = TRUE, 
                                skip = 17)
     
-    EnConsSector <- EnConsSector[2:6]
+    EnConsumption <- EnConsumption[2:6]
     
-    EnConsSector <- EnConsSector[complete.cases(EnConsSector),]
+    EnConsumption <- EnConsumption[complete.cases(EnConsumption),]
     
-    names(EnConsSector) <- c("Year", "Heat", "Transport", "Electricity", "Other")
+    names(EnConsumption) <- c("Year", "Heat", "Transport", "Electricity", "Other")
     
-    EnConsSector$Total <- EnConsSector$Heat + EnConsSector$Transport + EnConsSector$Electricity + EnConsSector$Other
+    EnConsumption$Total <- EnConsumption$Heat + EnConsumption$Transport + EnConsumption$Electricity + EnConsumption$Other
     
     datatable(
-      EnConsSector,
+      EnConsumption,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -251,7 +251,7 @@ EnConsSector <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:ncol(EnConsSector), 0)
+      formatRound(2:ncol(EnConsumption), 0)
   })
   
   
@@ -259,17 +259,17 @@ EnConsSector <- function(input, output, session) {
     tagList(column(12,
                    
                    HTML(
-                     paste(readtext("Structure/1 - Whole System/EnConsSector.txt")[2])
+                     paste(readtext("Structure/1 - Whole System/EnConsumption.txt")[2])
                      
                    )))
   })
   
   observeEvent(input$ToggleTable, {
-    toggle("EnConsSectorTable")
+    toggle("EnConsumptionTable")
   })
   
   observeEvent(input$ToggleTable2, {
-    toggle("EnConsSectorDomNonDomTable")
+    toggle("EnConsumptionDomNonDomTable")
   })
   
   observeEvent(input$ToggleText, {
@@ -277,8 +277,8 @@ EnConsSector <- function(input, output, session) {
   })
   
   
-  output$EnConsSector.png <- downloadHandler(
-    filename = "EnConsSector.png",
+  output$EnConsumption.png <- downloadHandler(
+    filename = "EnConsumption.png",
     content = function(file) {
 
 writePNG(
@@ -289,33 +289,33 @@ file)
     }
   )
   
-  output$EnConsSectorDomNonDomPlot <- renderPlotly  ({
+  output$EnConsumptionDomNonDomPlot <- renderPlotly  ({
     
-    EnConsSectorDomNonDom <- read_excel("Structure/CurrentWorking.xlsx",
+    EnConsumptionDomNonDom <- read_excel("Structure/CurrentWorking.xlsx",
                                         sheet = "Energy consump by sector", col_names = TRUE, 
                                         skip = 17)
     
-    EnConsSectorDomNonDom <- EnConsSectorDomNonDom[c(2,14,15) ]
+    EnConsumptionDomNonDom <- EnConsumptionDomNonDom[c(2,14,15) ]
     
-    EnConsSectorDomNonDom <- EnConsSectorDomNonDom[complete.cases(EnConsSectorDomNonDom),]
+    EnConsumptionDomNonDom <- EnConsumptionDomNonDom[complete.cases(EnConsumptionDomNonDom),]
     
-    names(EnConsSectorDomNonDom) <- c("Year", "Domestic", "Non-domestic")
+    names(EnConsumptionDomNonDom) <- c("Year", "Domestic", "Non-domestic")
     
-    ChartYear <- max(EnConsSectorDomNonDom$Year)
+    ChartYear <- max(EnConsumptionDomNonDom$Year)
     
     ChartColours <- c("#34d1a3", "#2b8cbe")
     
-    EnConsSectorDomNonDom <- melt(EnConsSectorDomNonDom, id = "Year")
-    EnConsSectorDomNonDom <- EnConsSectorDomNonDom[which(EnConsSectorDomNonDom$Year == ChartYear),]
+    EnConsumptionDomNonDom <- melt(EnConsumptionDomNonDom, id = "Year")
+    EnConsumptionDomNonDom <- EnConsumptionDomNonDom[which(EnConsumptionDomNonDom$Year == ChartYear),]
     
     p <- plot_ly(
-      data = EnConsSectorDomNonDom,
+      data = EnConsumptionDomNonDom,
       labels = ~variable,
       type = 'pie',
       values = ~value,
       text = paste0(
-        EnConsSectorDomNonDom$variable,
-        ": ", format(round(EnConsSectorDomNonDom$value,0), big.mark = ","), " GWh" 
+        EnConsumptionDomNonDom$variable,
+        ": ", format(round(EnConsumptionDomNonDom$value,0), big.mark = ","), " GWh" 
       ),
       textposition = 'inside',
       textinfo = 'label+percent',
@@ -349,8 +349,8 @@ file)
 
   })
   
-  output$EnConsSectorDomNonDom.png <- downloadHandler(
-    filename = "EnConsSectorDomNonDom.png",
+  output$EnConsumptionDomNonDom.png <- downloadHandler(
+    filename = "EnConsumptionDomNonDom.png",
     content = function(file) {
       
       writePNG(
@@ -361,35 +361,35 @@ file)
     }
   )
   
-  output$EnConsSectorDomNonDomSubtitle <- renderText({
+  output$EnConsumptionDomNonDomSubtitle <- renderText({
     
-    EnConsSector <- read_excel("Structure/CurrentWorking.xlsx",
+    EnConsumption <- read_excel("Structure/CurrentWorking.xlsx",
                                sheet = "Energy consump by sector", col_names = TRUE, 
                                skip = 17)
     
-    EnConsSector <- EnConsSector[2:6]
+    EnConsumption <- EnConsumption[2:6]
     
-    EnConsSector <- EnConsSector[complete.cases(EnConsSector),]
+    EnConsumption <- EnConsumption[complete.cases(EnConsumption),]
     
-    names(EnConsSector) <- c("Year", "Heat", "Transport", "Electricity", "Other")
+    names(EnConsumption) <- c("Year", "Heat", "Transport", "Electricity", "Other")
     
-    paste(max(as.numeric(EnConsSector$Year), na.rm = TRUE))
+    paste(max(as.numeric(EnConsumption$Year), na.rm = TRUE))
   })
   
-  output$EnConsSectorDomNonDomTable = renderDataTable({
+  output$EnConsumptionDomNonDomTable = renderDataTable({
     
-    EnConsSectorDomNonDom <- read_excel("Structure/CurrentWorking.xlsx",
+    EnConsumptionDomNonDom <- read_excel("Structure/CurrentWorking.xlsx",
                                sheet = "Energy consump by sector", col_names = TRUE, 
                                skip = 17)
     
-    EnConsSectorDomNonDom <- EnConsSectorDomNonDom[c(2,10:15)]
+    EnConsumptionDomNonDom <- EnConsumptionDomNonDom[c(2,10:15)]
     
-    EnConsSectorDomNonDom <- EnConsSectorDomNonDom[complete.cases(EnConsSectorDomNonDom),]
+    EnConsumptionDomNonDom <- EnConsumptionDomNonDom[complete.cases(EnConsumptionDomNonDom),]
     
-    names(EnConsSectorDomNonDom) <- c("Year", "Heat - Domestic", "Heat - Non-Domestic ", "Electricity - Domestic", "Electricity - Non-Domestic ", "Total - Domestic", "Toal - Non-Domestic ")
+    names(EnConsumptionDomNonDom) <- c("Year", "Heat - Domestic", "Heat - Non-Domestic ", "Electricity - Domestic", "Electricity - Non-Domestic ", "Total - Domestic", "Toal - Non-Domestic ")
     
    datatable(
-      EnConsSectorDomNonDom,
+      EnConsumptionDomNonDom,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -421,7 +421,7 @@ file)
         pageLength = 10
       )
     ) %>%
-      formatRound(2:ncol(EnConsSectorDomNonDom), 0)
+      formatRound(2:ncol(EnConsumptionDomNonDom), 0)
   })
   
 }
