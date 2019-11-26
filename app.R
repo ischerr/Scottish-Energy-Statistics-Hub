@@ -212,6 +212,8 @@ server <- function(input, output, session) {
   callModule(LoftInsulation, "LoftInsulation")
   
   callModule(DomEPC, "DomEPC")
+
+  callModule(ElecBillPrices, "ElecBillPrices")
   
   callModule(TargetTracker, "TargetTracker", parent_session = session)
   
@@ -785,7 +787,8 @@ ui <- shinyUI(fluidPage(
       navlistPanel(id = "ConsumerEngagement",
                    widths = c(3, 8),
                    tabPanel(title = "Electricity Bill Prices",
-                            value = "ElecBillPrices"),
+                            value = "ElecBillPrices",
+                            ElecBillPricesOutput("ElecBillPrices")),
                    tabPanel(title = "Energy Bill Payment Methods",
                             value = "BillPayment",
                             BillPaymentsOutput("BillPayments")),
