@@ -122,6 +122,9 @@ DomesticRHI <- function(input, output, session) {
     
     Data$Tech <- str_wrap(Data$Tech, 16)
     
+    ChartColours <- c("#39ab2c", "#FF8500", "#FFFFFF")
+    LineColours <- c("#fc4e2a","#feb24c","#fed976","#addd8e","#41ab5d")
+    
     p <-  plot_ly(Data, 
                   y = ~Tech, 
                   x = ~ `Heat Paid For`, 
@@ -198,7 +201,8 @@ names(Data)[1] <- "Year"
     
     DomRHIInstallationsOutputTech <- Data[order(Data$Year),]
     
-    LineColours <- c("#39ab2c","#ef3b2c","#fb6a4a","#fc9272","#fcbba1")
+    ChartColours <- c("#39ab2c", "#FF8500", "#FFFFFF")
+    LineColours <- c("#fc4e2a","#feb24c","#fed976","#addd8e","#41ab5d")
     
     p <-  plot_ly(DomRHIInstallationsOutputTech, x = ~ Year ) %>%  
       add_trace(y = ~ `Total`,
@@ -391,7 +395,6 @@ names(Data)[1] <- "Year"
     
     
   })
-  
   
   output$DomesticRHITable = renderDataTable({
     
