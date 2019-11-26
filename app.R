@@ -26,7 +26,7 @@ library(ggflags)              # Expands ggplot with new geom for adding flags.
 library(countrycode)          # Enables conversion from Common country names to ISO codes.
 library(knitr)                # Used for sector definitions table
 library(kableExtra)           # Used for styling the sector definitions table
-library(extrafont)            # Extra fonts
+library(extrafont)            # Extra fonts Test 2
 library(readtext)
 library(htmlwidgets)
 library(readxl)
