@@ -219,11 +219,8 @@ server <- function(input, output, session) {
   
   callModule(DualFuelBreakdown, "DualFuelBreakdown")
   
-<<<<<<< HEAD
   callModule(EUBill, "EUBill")
   
-=======
->>>>>>> c02abd25b865bc86db8728bb87ac3295801d304e
   callModule(TargetTracker, "TargetTracker", parent_session = session)
   
   
@@ -807,11 +804,8 @@ ui <- shinyUI(fluidPage(
                    tabPanel(title = "Dual Fuel Bill Breakdown",
                             value = "DualFuelBreakdown",
                             DualFuelBreakdownOutput("DualFuelBreakdown")),
-<<<<<<< HEAD
-=======
                    tabPanel(title = "Average Bill",
                             value = "AvgBill"),
->>>>>>> c02abd25b865bc86db8728bb87ac3295801d304e
                    tabPanel(title = "EU Bill Prices",
                             value = "EUBill",
                             EUBillOutput("EUBill")),
