@@ -97,7 +97,7 @@ server <- function(input, output, session) {
   
   callModule(RenHeatTgt, "RenHeat")
   
-  callModule(EnConsumptionTgt, "EnConsumption")
+  callModule(EnConsumption, "EnConsumption")
   
   callModule(ElecGenLCFF, "ElecGenLCFF")
   
@@ -161,7 +161,7 @@ server <- function(input, output, session) {
   
   callModule(EnergyConsumptionEU, "EnergyConsumptionEU")
   
-  callModule(EnConsSector, "EnConsSector")
+  callModule(EnConsumptionTgt, "EnConsumptionTgt")
   
   callModule(EnConsLA, "EnConsLA")
   
@@ -581,9 +581,9 @@ ui <- shinyUI(fluidPage(
                  value = "EnProd",
                  EnProdOutput("EnProd")),
         ###### Tab - Energy Productivity #######
-        tabPanel(title = "Energy Consumption by Sector",
-                 value = "EnConsumption",
-                 EnConsSectorOutput("EnConsSector")),
+         tabPanel(title = "Energy Consumption by Sector",
+                  value = "EnConsumption",
+                  EnConsumptionOutput("EnConsumption")),
         ###### Tab - Energy Productivity #######
         tabPanel(title = "Energy Consumption by Local Authority",
                  value = "EnConsumptionLA",
@@ -727,7 +727,7 @@ ui <- shinyUI(fluidPage(
                    widths = c(3, 8),
                    tabPanel(title = "Energy Consumption Target",
                             value = "EnConsumptionTgt",
-                            EnConsumptionTgtOutput("EnConsumption")),
+                            EnConsumptionTgtOutput("EnConsumptionTgt")),
                    tabPanel(title = "Energy Consumption EU",
                             value = "EnConsumptionEU",
                             EnergyConsumptionEUOutput("EnergyConsumptionEU")),
