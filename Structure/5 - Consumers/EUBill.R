@@ -11,7 +11,7 @@ EUBillOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Total final energy consumption by consuming sector", style = "color: #68c3ea;  font-weight:bold"),
+                    h3("Total price (Pence per kWh) of Electricity Bills in EU 15, including breakdown.", style = "color: #68c3ea;  font-weight:bold"),
                     h4(textOutput(ns('EUBillSubtitle')), style = "color: #68c3ea;")
     ),
              column(
@@ -96,112 +96,63 @@ EUBill <- function(input, output, session) {
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Elec consump",
-      col_names = FALSE,
-      skip = 12
-    )
+      sheet = "Bill prices in EU",
+      col_names = TRUE,
+      skip = 14
+    )[c(1,3,4, 5)]
     
-    names(Data) <- unlist(Data[1,])
+    names(Data) <- c("Country", "PreTax", "Tax", "Total")
     
-    names(Data)[1] <- "Year"
+    Data[2:4] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    Data[1:4] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data <- Data[complete.cases(Data),]
     
-    Data[2,1] <- "Baseline\n2005/2007"
-    
-    Data[3,1] <- ""
-    
-    Data[nrow(Data),1] <- "% Change\nfrom baseline"
-    
-    Data$Year <- paste("<b>", Data$Year, "</b>")
-    
-    Data <- Data[-1,]
-    
-    Data$RowNumber <- as.numeric(rownames(Data))
-    
-    Data[is.na(Data)] <- 0
-    
-    DataTail <- tail(Data,1)
-    
-    DataLatest <- Data[nrow(Data)-1,]
+    Data$Country <- paste0("<b>", str_wrap(Data$Country, 5),"</b>") 
     
     ChartColours <- c("#68c3ea", "#FF8500")
     BarColours <- c("#00441b", "#238b45", "#66c2a4", "#ef3b2c")
     
-    p <- plot_ly(data = Data, y = ~ Year) %>%
+    p <- plot_ly(data = Data, y = ~ Country) %>%
       
       add_trace(
         data = Data,
-        x = ~ `Domestic`,
+        x = ~ `PreTax`,
         type = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "Domestic",
-        text = paste0("Domestic: ", format(round(Data$`Domestic`, digits = 0), big.mark = ","), " MW"),
+        name = "PreTax",
+        text = paste0("PreTax: \u00A3", format(round(Data$`PreTax`, digits = 2), big.mark = ","), ""),
         hoverinfo = 'text',
         marker = list(color = BarColours[1]),
         legendgroup = 2
       ) %>%
       add_trace(
         data = Data,
-        x = ~ `Non-domestic`,
+        x = ~ `Tax`,
         type = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "Non-domestic",
-        text = paste0("Non-domestic: ", format(round(Data$`Non-domestic`, digits = 0), big.mark = ","), " MW"),
+        name = "Tax",
+        text = paste0("Tax: \u00A3", format(round(Data$`Tax`, digits = 2), big.mark = ","), ""),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 3
       ) %>%
       add_trace(
         data = Data,
-        y = ~ Year,
-        x = ~ (Data$`Domestic` + Data$`Non-domestic`) + 0.1,
+        y = ~ Country,
+        x = ~ (Data$`PreTax` + Data$`Tax`) + 0.1,
         showlegend = FALSE,
         type = 'scatter',
         mode = 'text',
-        text = ifelse(Data$`Domestic` >0, paste("<b>",format(round((Data$`Domestic` + Data$`Non-domestic`), digits = 0), big.mark = ","),"MW</b>")," "),
+        text = ifelse(Data$`PreTax` >0, paste0("<b>\u00A3",format(round((Data$`PreTax` + Data$`Tax`), digits = 2), big.mark = ","),"</b>")," "),
         textposition = 'middle right',
         textfont = list(color = ChartColours[1]),
         hoverinfo = 'skip',
         marker = list(
           size = 0.00001
         )
-      )  %>% 
-      add_trace(
-        data = tail(Data,1),
-        y = ~Year,
-        x = mean(DataLatest$`Domestic`)/2,
-        showlegend = FALSE,
-        mode = 'text',
-        type = 'scatter',
-        hoverinfo = 'skip',
-        textfont = list(color = BarColours[1]),
-        text = paste0("<b>", percent(DataTail$`Domestic`, accuracy = 0.1), "</b>")
-      ) %>% 
-      add_trace(
-        data = tail(Data,1),
-        y = ~Year,
-        x =  mean(DataLatest$`Domestic`) + (mean(DataLatest$`Non-domestic`)/2),
-        showlegend = FALSE,
-        mode = 'text',
-        type = 'scatter',
-        hoverinfo = 'skip',
-        textfont = list(color = BarColours[3]),
-        text =  paste0("<b>", percent(DataTail$`Non-domestic`, accuracy = 0.1), "</b>")
-      ) %>% 
-      add_trace(
-        data = tail(Data,1),
-        y = ~Year,
-        x = mean(DataLatest$`Total`)+ 1500,
-        showlegend = FALSE,
-        mode = 'text',
-        type = 'scatter',
-        hoverinfo = 'skip',
-        textfont = list(color = ChartColours[1]),
-        text =  paste0("<b>", percent(DataTail$Total, accuracy = 0.1), "</b>")
-      ) %>% 
+      )  %>%
       layout(
         barmode = 'stack',
         legend = list(font = list(color = "#1A5D38"),
@@ -213,7 +164,7 @@ EUBill <- function(input, output, session) {
                      showgrid = FALSE,
                      type = "category",
                      autorange = "reversed",
-                     ticktext = as.list(Data$Year),
+                     ticktext = as.list(Data$Country),
                      tickmode = "array",
                      tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
         ),
@@ -224,7 +175,7 @@ EUBill <- function(input, output, session) {
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
           zerolinewidth = 2,
-          range = c(0,35000)
+          range = c(0,33)
         )
       ) %>% 
       config(displayModeBar = F)
@@ -331,7 +282,7 @@ EUBill <- function(input, output, session) {
       
       Data <- Data[complete.cases(Data),]
       
-      EUFlagLookup <- read_csv("J:/ENERGY BRANCH/Statistics/Energy Statistics Processing/Releases and Publications/Energy Statistics Database/Charts/Sections/EUFlagLookup.csv")
+      EUFlagLookup <- read_csv("Structure/EUFlagLookup.csv")
       
       EUFlagLookup <- EUFlagLookup %>% mutate(Countries = replace(Countries, Countries == "U.K.", "United Kingdom")) %>% mutate(Countries = replace(Countries, Countries == "EU (28)", "EU (15)"))
       
