@@ -225,6 +225,10 @@ server <- function(input, output, session) {
   
   callModule(GasNonHome, "GasNonHome")
   
+  callModule(FuelPoverty, "FuelPoverty")
+  
+  callModule(PrimaryHeating, "PrimaryHeating")
+  
   callModule(TargetTracker, "TargetTracker", parent_session = session)
   
   
@@ -818,9 +822,11 @@ ui <- shinyUI(fluidPage(
                             value = "GasNonHome",
                             GasNonHomeOutput("GasNonHome")),
                    tabPanel(title = "Fuel Poverty",
-                            value = "FuelPoverty"),
+                            value = "FuelPoverty",
+                            FuelPovertyOutput("FuelPoverty")),
                    tabPanel(title = "Primary Heating Fuel",
-                            value = "PrimaryHeating"),
+                            value = "PrimaryHeating",
+                            PrimaryHeatingOutput("PrimaryHeating")),
                    tabPanel(title = "Households not on the Gas Grid",
                             value = "NonGasGrid"),
                    tabPanel(title = "Energy Use Monitoring",

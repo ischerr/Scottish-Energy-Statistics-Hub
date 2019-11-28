@@ -165,7 +165,7 @@ ElecBillPrices <- function(input, output, session) {
                      tickformat = "",
                      tickprefix = "\u00A3",
                      showgrid = TRUE,
-                     range = c(-0.01, max(Data$`South Scotland`)+0.1),
+                     range = c(-0.01, 800),
                      x = 0.5
                      
                      ),
