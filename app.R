@@ -229,6 +229,10 @@ server <- function(input, output, session) {
   
   callModule(PrimaryHeating, "PrimaryHeating")
   
+  callModule(NonGasGrid, "NonGasGrid")
+  
+  callModule(EnergyUseMonitor, "EnergyUseMonitor")
+  
   callModule(TargetTracker, "TargetTracker", parent_session = session)
   
   
@@ -828,9 +832,11 @@ ui <- shinyUI(fluidPage(
                             value = "PrimaryHeating",
                             PrimaryHeatingOutput("PrimaryHeating")),
                    tabPanel(title = "Households not on the Gas Grid",
-                            value = "NonGasGrid"),
+                            value = "NonGasGrid",
+                            NonGasGridOutput("NonGasGrid")),
                    tabPanel(title = "Energy Use Monitoring",
-                            value = "EnergyUseMonitor"),
+                            value = "EnergyUseMonitor",
+                            EnergyUseMonitorOutput("EnergyUseMonitor")),
                    tabPanel(title = "Households with Energy Use Monitors",
                             value = "HHoldEnMonitor",
                             EnMonitorHHoldOutput("EnMonitorHHold")),
