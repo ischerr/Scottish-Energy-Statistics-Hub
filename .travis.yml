@@ -8,6 +8,7 @@ apt_packages:
   - libgdal-dev
   - libudunits2-dev
   - cargo
+  - libpoppler-cpp-dev
 cache:
   packages: true 
   
