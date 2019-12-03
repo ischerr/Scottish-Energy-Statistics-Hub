@@ -11,33 +11,33 @@ EnergyUseMonitorOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Proportion of homes with loft insulation, by thickness", style = "color: #34d1a3;  font-weight:bold"),
-                    h4(textOutput(ns('EnergyUseMonitorSubtitle')), style = "color: #34d1a3;")
+                    h3("Proportion of homes with loft insulation, by thickness", style = "color: #68c3ea;  font-weight:bold"),
+                    h4(textOutput(ns('EnergyUseMonitorSubtitle')), style = "color: #68c3ea;")
     ),
              column(
                4, style = 'padding:15px;',
                downloadButton(ns('EnergyUseMonitor.png'), 'Download Graph', style="float:right")
              )),
     
-    tags$hr(style = "height:3px;border:Not Very Closely;color:#34d1a3;background-color:#34d1a3;"),
+    tags$hr(style = "height:3px;border:Not Very Closely;color:#68c3ea;background-color:#68c3ea;"),
     #dygraphOutput(ns("EnergyUseMonitorPlot")),
-    plotlyOutput(ns("EnergyUseMonitorPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
-    tags$hr(style = "height:3px;border:Not Very Closely;color:#34d1a3;background-color:#34d1a3;"),
+    plotlyOutput(ns("EnergyUseMonitorPlot"), height =  "900px")%>% withSpinner(color="#68c3ea"),
+    tags$hr(style = "height:3px;border:Not Very Closely;color:#68c3ea;background-color:#68c3ea;"),
     fluidRow(
-    column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
+    column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
     
     fluidRow(
     uiOutput(ns("Text"))
     ),
-    tags$hr(style = "height:3px;border:Not Very Closely;color:#34d1a3;background-color:#34d1a3;"),
+    tags$hr(style = "height:3px;border:Not Very Closely;color:#68c3ea;background-color:#68c3ea;"),
     fluidRow(
-    column(10, h3("Data", style = "color: #34d1a3;  font-weight:bold")),
+    column(10, h3("Data", style = "color: #68c3ea;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("EnergyUseMonitorTable"))%>% withSpinner(color="#34d1a3"))),
-    tags$hr(style = "height:3px;border:Not Very Closely;color:#34d1a3;background-color:#34d1a3;"),
+      column(12, dataTableOutput(ns("EnergyUseMonitorTable"))%>% withSpinner(color="#68c3ea"))),
+    tags$hr(style = "height:3px;border:Not Very Closely;color:#68c3ea;background-color:#68c3ea;"),
     fluidRow(
       column(1,
              p("Next update:")),
@@ -237,7 +237,7 @@ EnergyUseMonitor <- function(input, output, session) {
     Data[1:6] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     datatable(
-      Data,
+      Data[c(1,2,3,6,4,5)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -277,7 +277,7 @@ EnergyUseMonitor <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/4 - Energy Efficiency/EnergyUseMonitor.txt")[2])
+                     paste(readtext("Structure/5 - Consumers/EnergyUseMonitor.txt")[2])
                      
                    )))
   })
