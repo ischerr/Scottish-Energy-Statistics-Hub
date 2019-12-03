@@ -1,0 +1,6 @@
+create_help_files       Create Directory of Help Files
+helper                  Augment a shiny.tag with a question mark helper
+                        button
+observe_helpers         Observe Helper Action Buttons
+shinyhelper             shinyhelper.
+shinyhelper_demo        Launch the Example App

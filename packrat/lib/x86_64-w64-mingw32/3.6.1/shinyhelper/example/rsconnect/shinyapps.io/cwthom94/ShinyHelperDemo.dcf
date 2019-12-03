@@ -1,0 +1,12 @@
+name: ShinyHelperDemo
+title: ShinyHelperDemo
+username:
+account: cwthom94
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 349063
+bundleId: 1436060
+url: https://cwthom94.shinyapps.io/ShinyHelperDemo/
+when: 1529355251.99085
+asMultiple: FALSE
+asStatic: FALSE

@@ -1,0 +1,27 @@
+Package: striprtf
+Type: Package
+Title: Extract Text from RTF File
+Version: 0.5.2
+Authors@R: c( person("Kota", "Mori", email = "kmori05@gmail.com", role
+    = c("aut", "cre")) )
+Description: Extracts plain text from RTF (Rich Text Format) file.
+License: MIT + file LICENSE
+LazyData: TRUE
+Depends: R (>= 3.0)
+Imports: magrittr, Rcpp, stringr, utils
+Suggests: testthat
+RoxygenNote: 6.0.1
+LinkingTo: Rcpp
+URL: https://github.com/kota7/striprtf
+BugReports: https://github.com/kota7/striprtf/issues
+NeedsCompilation: yes
+Packaged: 2019-01-03 06:30:53 UTC; kota
+Author: Kota Mori [aut, cre]
+Maintainer: Kota Mori <kmori05@gmail.com>
+Repository: CRAN
+Date/Publication: 2019-01-03 09:30:03 UTC
+Built: R 3.6.1; x86_64-w64-mingw32; 2019-11-29 01:02:31 UTC; windows
+Archs: i386, x64
+InstallAgent: packrat 0.5.0.25
+InstallSource: CRAN
+Hash: b3df257cd1d95c660d6a0242723169a3

@@ -1,0 +1,6 @@
+getNrOfSheetsInODS	get_num_sheet_in_ods
+get_num_sheet_in_ods	get_num_sheet_in_ods
+ods_sheets	ods_sheets
+read.ods	read_ods
+read_ods	read_ods
+write_ods	write_ods

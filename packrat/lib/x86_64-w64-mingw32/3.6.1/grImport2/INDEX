@@ -1,0 +1,37 @@
+PathClosePath-class     Class '"PathClosePath"'
+PathCurveTo-class       Class '"PathCurveTo"'
+PathData-class          Class '"PathData"'
+PathLineTo-class        Class '"PathLineTo"'
+PathMoveTo-class        Class '"PathMoveTo"'
+PathSegment-class       Class '"PathSegment"'
+Picture-class           Class "Picture"
+PictureClipPath-class   Class '"PictureClipPath"'
+PictureContent-class    Class '"PictureContent"'
+PictureDefinitions-class
+                        Class '"PictureDefinitions"'
+PictureFeColorMatrix-class
+                        Class '"PictureFeColorMatrix"'
+PictureFilter-class     Class '"PictureFilter"'
+PictureGradientStop-class
+                        Class '"PictureGradientStop"'
+PictureGroup-class      Class '"PictureGroup"'
+PictureImage-class      Class '"PictureImage"'
+PictureLinearGradient-class
+                        Class "PictureLinearGradient"
+PictureMask-class       Class '"PictureMask"'
+PicturePath-class       Class '"PicturePath"'
+PicturePattern-class    Class '"PicturePattern"'
+PictureRadialGradient-class
+                        Class "PictureRadialGradient"
+PictureRect-class       Class '"PictureRect"'
+PictureSummary-class    Class "PictureSummary"
+PictureSymbol-class     Class '"PictureSymbol"'
+applyTransform          Transform a Picture Object by a Transformation
+                        Matrix
+applyTransform,gpar,matrix-method
+                        Transform a grid 'gpar' object
+grid.picture            Draw a Picture Object.
+grid.symbols            Draw a Picture Object as Data Symbols
+grobify                 Convert a Picture Object into a grid grob
+moveTo                  Convenience Functions for Path Segments
+readPicture             Import a Cairo SVG image

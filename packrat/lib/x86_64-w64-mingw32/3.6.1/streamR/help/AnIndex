@@ -1,0 +1,9 @@
+streamR-package	streamR-package
+createOAuthToken	createOAuthToken
+example_tweets	example_tweets
+filterStream	filterStream
+parseTweets	parseTweets
+readTweets	readTweets
+sampleStream	sampleStream
+streamR	streamR-package
+userStream	userStream
