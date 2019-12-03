@@ -1,0 +1,31 @@
+dist: xenial
+sudo: false
+latex: false
+language: r
+r: release
+warnings_are_errors: false
+apt_packages:
+  - libgdal-dev
+  - libudunits2-dev
+cache:
+  packages: true 
+  
+git:
+  depth: false
+ 
+r_packages:
+  - gapminder
+  - ggthemes
+  - maps
+  - RColorBrewer
+  - rgeos
+  - rnaturalearth
+  - rnaturalearthdata
+  - rsconnect
+  - shiny
+  - shinyAce
+  - survminer
+  - survival
+  - tidyverse  
+script:
+  - R -f deploy.R
