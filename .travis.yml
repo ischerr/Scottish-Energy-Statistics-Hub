@@ -4,25 +4,14 @@ latex: false
 language: r
 r: release
 warnings_are_errors: false
-
-install:
-  - R -e "0" --args --bootstrap-packrat
-  - R -e "packrat::restore(restart = FALSE)"
-
 apt_packages:
   - libgdal-dev
   - libudunits2-dev
   - cargo
   - libpoppler-cpp-dev
-
-
 cache:
-  directories:
-    - $TRAVIS_BUILD_DIR/packrat/src
-    - $TRAVIS_BUILD_DIR/packrat/lib
-  packages: true
-
-
+  packages
+  
 git:
   depth: false
  
