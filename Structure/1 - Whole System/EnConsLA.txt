@@ -1,1 +1,1 @@
-<p>Energy consumption by Local Authority, testing change</p>
+<p>Energy consumption by Local Authority</p>
