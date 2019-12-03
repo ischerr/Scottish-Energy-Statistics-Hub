@@ -10,7 +10,7 @@ apt_packages:
   - cargo
   - libpoppler-cpp-dev
 cache:
-  packages: true 
+  packages
   
 git:
   depth: false
@@ -59,6 +59,8 @@ r_packages:
 - rgeos
 - shinyWidgets
 - readxl
+- lubridate
+- ggrepel
   
   
 r_github_packages: rensa/ggflags
