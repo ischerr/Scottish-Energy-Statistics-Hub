@@ -2,7 +2,7 @@ library(rsconnect)
 
 # Print a list of app dependencies. Libraries need to be loaded
 # before publishing so deployApp() knows what is necessary.
-source("./R/util.R")
+#source("./R/util.R")
 
 # Set the account info for deployment.
 setAccountInfo(name   = Sys.getenv("shinyapps_name"),
