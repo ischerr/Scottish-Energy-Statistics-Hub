@@ -1,2 +1,4 @@
 # SESH
-Energy Stats Hub
+Scottish Energy Statistics Hub
+
+THIS IS IN DEVELOPMENT AND FIGURES MAY NOT BE ACCURATE
