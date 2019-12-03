@@ -6,7 +6,6 @@ vcs.ignore.src: FALSE
 external.packages:
     gifski
     units
-    rgdal
 local.repos: 
 load.external.packages.on.startup: TRUE
 ignored.packages: 
