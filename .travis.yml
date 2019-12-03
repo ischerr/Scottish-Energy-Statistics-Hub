@@ -14,18 +14,49 @@ git:
   depth: false
  
 r_packages:
-  - gapminder
-  - ggthemes
-  - maps
-  - RColorBrewer
-  - rgeos
-  - rnaturalearth
-  - rnaturalearthdata
-  - rsconnect
-  - shiny
-  - shinyAce
-  - survminer
-  - survival
-  - tidyverse  
+- shiny
+- shinythemes
+-  shinyhelper
+- shinyEffects
+- shinyanimate
+- shinycssloaders
+- shinyjs
+- magrittr
+- data.table
+- DT
+- dygraphs
+- leaflet
+- RColorBrewer
+- rgdal
+- plyr
+- rmarkdown
+- knitr
+- networkD3
+- treemap
+- dplyr
+- ggplot2
+- leaflet.minicharts
+- plotly
+- ggsci
+- ggflags
+- countrycode
+- knitr
+- kableExtra
+- extrafont
+- readtext
+- htmlwidgets
+- readxl
+- gganimate
+- gifski
+- readr
+- maptools
+- tmaptools
+- tmap
+- sf
+- leaflet
+- rgeos
+- shinyWidgets
+- readxl
+  
 script:
   - R -f deploy.r
