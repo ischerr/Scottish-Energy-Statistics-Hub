@@ -1,0 +1,12 @@
+createOAuthToken        Create OAuth token without handshake.
+example_tweets          Ten sample tweets published by @twitterapi
+filterStream            Connect to Twitter Streaming API and return
+                        public statuses that match one or more filter
+                        predicates.
+parseTweets             Converts tweets in JSON format to data frame.
+readTweets              Converts tweets in JSON format to R list.
+sampleStream            Connect to Twitter Streaming API and return a
+                        small random sample of all public statuses.
+streamR-package         Access to Twitter Streaming APIs via R
+userStream              Connect to Twitter Streaming API and return
+                        messages for a single user.

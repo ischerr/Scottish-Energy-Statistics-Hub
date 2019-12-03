@@ -1,0 +1,7 @@
+looks_rtf	looks_rtf
+read_rtf	read_rtf
+rtf2text	striprtf-deprecated
+striprtf	striprtf-deprecated
+striprtf-deprecated	striprtf-deprecated
+strip_rtf	read_rtf
+unused_letters	unused_letters

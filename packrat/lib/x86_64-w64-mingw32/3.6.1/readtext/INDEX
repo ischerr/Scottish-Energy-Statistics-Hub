@@ -1,0 +1,11 @@
+as.character.readtext   return only the texts from a readtext object
+data_char_encodedtexts
+                        encoded texts for testing
+data_files_encodedtexts
+                        a .zip file of texts containing a variety of
+                        differently encoded texts
+encoding                detect the encoding of texts
+readtext                read a text file(s)
+readtext-package        Import and handling for plain and formatted
+                        text files
+readtext_options        Get or set package options for readtext

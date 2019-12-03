@@ -1,0 +1,4 @@
+addHoverAnim            Add animation on mouse hover for UI element.
+addScrollAnim           Add animation on scroll for UI element.
+startAnim               Start an animation
+withAnim                Set up Shiny app to use animation

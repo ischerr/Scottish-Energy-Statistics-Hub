@@ -1,0 +1,6 @@
+pdf_combine	qpdf
+pdf_compress	qpdf
+pdf_length	qpdf
+pdf_split	qpdf
+pdf_subset	qpdf
+qpdf	qpdf
