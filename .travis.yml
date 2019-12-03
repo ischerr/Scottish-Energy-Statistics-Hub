@@ -16,53 +16,7 @@ git:
   depth: false
  
 r_packages:
-- shiny
-- shinythemes
-- shinyhelper
-- shinyEffects
-- shinyanimate
-- shinycssloaders
-- shinyjs
-- magrittr
-- pdftools
-- readtext
-- data.table
-- DT
-- dygraphs
-- leaflet
-- RColorBrewer
-- rgdal
-- plyr
-- rmarkdown
-- knitr
-- networkD3
-- treemap
-- dplyr
-- ggplot2
-- leaflet.minicharts
-- plotly
-- ggsci
-- countrycode
-- knitr
-- kableExtra
-- extrafont
-- htmlwidgets
-- readxl
-- gganimate
-- gifski
-- readr
-- maptools
-- tmaptools
-- tmap
-- sf
-- leaflet
-- rgeos
-- shinyWidgets
-- readxl
-- lubridate
-- ggrepel
-  
-  
+ 
 r_github_packages: rensa/ggflags
 
 script:
