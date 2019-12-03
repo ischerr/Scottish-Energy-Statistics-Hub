@@ -28,4 +28,4 @@ r_packages:
   - survival
   - tidyverse  
 script:
-  - R -f deploy.R
+  - R -f deploy.r
