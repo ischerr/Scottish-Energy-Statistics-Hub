@@ -7,4 +7,4 @@ setAccountInfo(name   = Sys.getenv("shinyapps_name"),
                secret = Sys.getenv("shinyapps_secret"))
 
 # Deploy the application.
-deployApp(appName = "Reorganised")
+deployApp(appName = "Reorganised", lint = TRUE)
