@@ -11,7 +11,7 @@ EnergyUseMonitorOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Proportion of homes with loft insulation, by thickness", style = "color: #68c3ea;  font-weight:bold"),
+                    h3("Extend energy use is monitored", style = "color: #68c3ea;  font-weight:bold"),
                     h4(textOutput(ns('EnergyUseMonitorSubtitle')), style = "color: #68c3ea;")
     ),
              column(
@@ -75,10 +75,10 @@ EnergyUseMonitor <- function(input, output, session) {
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Loft insulation",
+      sheet = "Monitor energy use",
       col_names = FALSE,
-      skip = 12,
-      n_max = 5
+      skip = 13,
+      n_max = 6
     )
     
     Data <- as_tibble(t(Data))
@@ -87,7 +87,9 @@ EnergyUseMonitor <- function(input, output, session) {
     
     names(Data)[1] <- "Year"
     
-    Data[1:5] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data <- Data[-1,]
+    
+    Data[1:6] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
@@ -249,17 +251,17 @@ EnergyUseMonitor <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Energy Consumption",
+        title = "Proportion of People who monitor their Energy Use, by closeness",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Energy Consumption',
+            title = 'Proportion of People who monitor their Energy Use, by closeness',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Energy Consumption')
+               title = 'Proportion of People who monitor their Energy Use, by closeness')
         ),
         
         # customize the length menu
@@ -299,7 +301,7 @@ EnergyUseMonitor <- function(input, output, session) {
     content = function(file) {
 
 
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
+      Data <- read_excel("J:/ENERGY BRANCH/Statistics/Energy Statistics Processing/Releases and Publications/Energy Statistics Database/CurrentWorking.xlsx", 
                          sheet = "Energy monitoring devices", skip = 12, n_max = 2, col_names = FALSE)
       
       Data <- as_tibble(t(Data))
