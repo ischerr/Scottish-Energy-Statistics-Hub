@@ -1,4 +1,4 @@
-if (!require("pacman")) install.packages("pacman"); library(pacman)
+library(pacman)
 p_load("shiny")                # For the app iteslf.
 p_load("shinythemes")          # For the "cerulean" theme.
 p_load("shinyhelper")          # Used for help modal boxes.
