@@ -79,7 +79,7 @@ server <- function(input, output, session) {
   
   callModule(BillPayments, "BillPayments")
   
-  callModule(EnMonitorHHold, "EnMonitorHHold")
+  callModule(HHoldEnMonitor, "HHoldEnMonitor")
   
   callModule(ElecGen, "ElecGen")
   
@@ -797,9 +797,7 @@ ui <- shinyUI(fluidPage(
                             EnergyUseMonitorOutput("EnergyUseMonitor")),
                    tabPanel(title = "Households with Energy Use Monitors",
                             value = "HHoldEnMonitor",
-                            EnMonitorHHoldOutput("EnMonitorHHold")),
-                   tabPanel(title = "Restricted and Prepayment Meters",
-                            value = "RestrictedMeters"),
+                            HHoldEnMonitorOutput("HHoldEnMonitor")),
                    tabPanel(title = "Smart Meter Installations",
                             value = "SmartMeters"),
                    tabPanel(title = "Energy Supplier Switching",

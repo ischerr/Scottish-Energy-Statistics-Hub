@@ -7,7 +7,7 @@ require("DT")
 
 source("Structure/Global.R")
 
-EnMonitorHHoldOutput <- function(id) {
+HHoldEnMonitorOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
@@ -61,7 +61,7 @@ EnMonitorHHoldOutput <- function(id) {
 
 
 ###### Server ######
-EnMonitorHHold <- function(input, output, session) {
+HHoldEnMonitor <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
@@ -229,31 +229,15 @@ EnMonitorHHold <- function(input, output, session) {
   
   
   
- output$Text <- renderUI({
-   tagList(column(12,
-                                   tags$p(
-                                     HTML(
-                                       "<p>The Scottish Government has a target to generate the equivalent of&nbsp;<strong>100%</strong>&nbsp;of 
-                                       Scotland&rsquo;s own electricity demand from renewable sources by&nbsp;<strong>2020</strong>.&nbsp;&nbsp;
-                                       This does not mean that Scotland will be fully dependent on renewables generation, but rather that renewables
-                                       will form the key part of a wider, balanced electricity mix.</p>
-                                       
-<p>In&nbsp;<strong>2018</strong>, provisional figures indicate that the equivalent of&nbsp;<strong>73.9%&nbsp;</strong>of gross electricity consumption*
-was from renewable sources, rising from&nbsp;<strong>69.8%&nbsp;</strong>in&nbsp;<strong>2017</strong>.&nbsp;&nbsp;Much of this increase is due to&nbsp;
-<strong>wind</strong>; in the last year there was a&nbsp;<strong>0.97 GW increase&nbsp;</strong>in wind&nbsp;<strong>capacity</strong>, which contributed
-to around a&nbsp;<strong>2,100 GWh&nbsp;</strong>increase in electricity&nbsp;<strong>generation&nbsp;</strong>via wind.&nbsp;</p>
-
-<p>It is too early to say if Scotland is on track to meet the 100% target by 2020 as it will depend on how much renewable electricity generation
-increases and gross consumption decreases in the next few years.&nbsp;&nbsp;In order to meet the target, it is estimated that&nbsp;
-<strong>14-15 GW&nbsp;</strong>of installed&nbsp;<strong>renewable capacity&nbsp;</strong>is required.&nbsp;&nbsp;As of March 2019,
-Scotland has&nbsp;<strong>11.3 GW</strong>&nbsp;of installed&nbsp;<strong>capacity&nbsp;</strong>operational with&nbsp;<strong>12.9
-GW&nbsp;</strong>in the&nbsp;<strong>pipeline</strong>.&nbsp;&nbsp;How quickly these projects become operational and the extent to which
-gross consumption falls in the next two years will determine if the target is reached.&nbsp;</p>
-
-<p>* Gross electricity consumption refers to total electricity generation minus net exports</p>"
-                                     )
-                                   )))
- })
+  output$Text <- renderUI({
+    tagList(column(12,
+                   HTML(
+                     paste(readtext("Structure/5 - Consumers/HHoldEnMonitor.txt")[2])
+                     
+                   )))
+  })
+  
+  
   observeEvent(input$ToggleTable, {
     toggle("EnMonitorTable")
   })
