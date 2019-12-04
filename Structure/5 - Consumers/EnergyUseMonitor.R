@@ -301,7 +301,7 @@ EnergyUseMonitor <- function(input, output, session) {
     content = function(file) {
 
 
-      Data <- read_excel("J:/ENERGY BRANCH/Statistics/Energy Statistics Processing/Releases and Publications/Energy Statistics Database/CurrentWorking.xlsx", 
+      Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "Energy monitoring devices", skip = 12, n_max = 2, col_names = FALSE)
       
       Data <- as_tibble(t(Data))
