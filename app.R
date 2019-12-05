@@ -14,9 +14,9 @@ dir.create('~/.fonts')
 file.copy("www/GOTHIC.TTF", "~/.fonts")
 system('fc-cache -f ~/.fonts')
 
-
+# 
 # font_import(pattern="Cent",prompt=FALSE)
-# loadfonts()
+# loadfonts(device="win")
 
 
 ### Create List of Scripts, including filepath ###
@@ -196,6 +196,8 @@ server <- function(input, output, session) {
   callModule(EnSupplySwitch, "EnSupplySwitch")
   
   callModule(MaxSupplyPeakDemand, "MaxSupplyPeakDemand")
+  
+  callModule(GasSecurity, "GasSecurity")
   
   callModule(TargetTracker, "TargetTracker", parent_session = session)
   
@@ -836,7 +838,8 @@ ui <- shinyUI(fluidPage(
                             value = "ScotGenDemand", 
                             ScotOwnGenOutput("ScotOwnGen")),
                    tabPanel(title = "Gas Security",
-                            value = "GasSecurity"),
+                            value = "GasSecurity",
+                            GasSecurityOutput("GasSecurity")),
                    tabPanel(title = "Electricity Storage",
                             value = "ElecStorage")
     )),

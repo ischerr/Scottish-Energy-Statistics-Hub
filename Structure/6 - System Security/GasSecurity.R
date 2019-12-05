@@ -126,9 +126,7 @@ GasSecurity <- function(input, output, session) {
     if (exists("PackageHeader") == 0){
       source("Structure/PackageHeader.R")
     }
-    
-    print("Energy daily demand")
-    ###### Daily Demand  #####
+        ###### Daily Demand  #####
     
     # GasSecurity <-
     #   read_csv(
@@ -145,7 +143,8 @@ GasSecurity <- function(input, output, session) {
     GasSecurity <- Data
     
     ### variables
-    ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
+    ChartColours <- c("#5d8be1", "#238b45", "#a1d99b")
+    BarColours <- c("#e34a33","#a8ddb5", "#43a2ca")
     sourcecaption = "Source: University of Sheffield, National Grid, BEIS"
     plottitle = "Energy use in Scotland per day"
     
@@ -165,7 +164,7 @@ GasSecurity <- function(input, output, session) {
                   format(GasSecurity$Year, "%d/%m/%Y")
                 ),
                 hoverinfo = 'text',
-                line = list(width = 3, color = ChartColours[2], dash = "none")) %>% 
+                fillcolor = BarColours[1]) %>% 
       add_trace(y = ~NITransfer, 
                 name = "NITransfer",
                 type = 'scatter',
@@ -178,7 +177,7 @@ GasSecurity <- function(input, output, session) {
                   format(GasSecurity$Year, "%d/%m/%Y")
                 ),
                 hoverinfo = 'text',
-                line = list(width = 3, color = ChartColours[4], dash = "none")) %>% 
+                fillcolor = BarColours[2]) %>% 
       add_trace(y = ~EnglandTransfer, 
                 name = "EnglandTransfer",
                 type = 'scatter',
@@ -191,7 +190,7 @@ GasSecurity <- function(input, output, session) {
                   format(GasSecurity$Year, "%d/%m/%Y")
                 ),
                 hoverinfo = 'text',
-                line = list(width = 3, color = ChartColours[3], dash = "none")) %>% 
+                fillcolor = BarColours[3]) %>% 
       layout(
         barmode = 'stack',
         bargap = 0.66,
@@ -201,8 +200,8 @@ GasSecurity <- function(input, output, session) {
                           hovername = 'text'),
         hovername = 'text',
         xaxis = list(title = "",
-                     showgrid = FALSE,
-                     range = c(min(GasSecurity$Year)-100, max(GasSecurity$Year)+100)),
+                     showgrid = FALSE
+                     ),
         yaxis = list(
           title = "GWh",
           showgrid = TRUE,
@@ -260,9 +259,9 @@ GasSecurity <- function(input, output, session) {
     #   )
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "GasSecurityWorking")[c(1,5,7,6)]
+                       sheet = "GasSecurityWorking")[c(1,7,8,9)]
     
-    names(Data) <- c("Year", "Gas", "Transport", "Electricity")
+    names(Data) <- c("Year", "ScotDemand", "NITransfer", "EnglandTransfer")
     
     Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
     
@@ -277,37 +276,37 @@ GasSecurity <- function(input, output, session) {
     
     
     p <- plot_ly(GasSecurityRolling, x = ~Year) %>% 
-      add_trace(y = ~Gas, 
-                name = "Gas",
+      add_trace(y = ~ScotDemand, 
+                name = "ScotDemand",
                 type = 'scatter',
                 mode = 'lines',
                 text = paste0(
-                  "Gas: ",
-                  round(GasSecurityRolling$Gas, digits = 1),
+                  "ScotDemand: ",
+                  round(GasSecurityRolling$ScotDemand, digits = 1),
                   " GWh\nDate: ",
                   format(GasSecurityRolling$Year, "%d/%m/%Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 3, color = ChartColours[2], dash = "none")) %>% 
-      add_trace(y = ~Transport, 
-                name = "Transport",
+      add_trace(y = ~NITransfer, 
+                name = "NITransfer",
                 type = 'scatter',
                 mode = 'lines',
                 text = paste0(
-                  "Transport: ",
-                  round(GasSecurityRolling$Transport, digits = 1),
+                  "NITransfer: ",
+                  round(GasSecurityRolling$NITransfer, digits = 1),
                   " GWh\nYear: ",
                   format(GasSecurityRolling$Year, "%d/%m/%Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 3, color = ChartColours[4], dash = "none")) %>% 
-      add_trace(y = ~Electricity, 
-                name = "Electricity",
+      add_trace(y = ~EnglandTransfer, 
+                name = "EnglandTransfer",
                 type = 'scatter',
                 mode = 'lines',
                 text = paste0(
-                  "Electricity: ",
-                  round(GasSecurityRolling$Electricity, digits = 1),
+                  "EnglandTransfer: ",
+                  round(GasSecurityRolling$EnglandTransfer, digits = 1),
                   " GWh\nYear: ",
                   format(GasSecurityRolling$Year, "%d/%m/%Y")
                 ),
@@ -340,12 +339,83 @@ GasSecurity <- function(input, output, session) {
     
   })
   
+  output$GasSecurityProportionPlot <- renderPlotly  ({
+    
+    if (exists("PackageHeader") == 0){
+      source("Structure/PackageHeader.R")
+    }
+    
+    print("Energy daily demand")
+    ###### Daily Demand  #####
+    
+    # GasSecurityProportion <-
+    #   read_csv(
+    #     "J:/ENERGY BRANCH/Statistics/Energy Strategy - Stats Publication/2019/Graphs/Data/GasSecurityProportion.csv"
+    #   )
+    
+    Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                       sheet = "GasSecurityWorking")[c(1,10, 11)]
+    
+    names(Data) <- c("Year", "Fergus", "GBDemand")
+    
+    Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
+    
+    GasSecurityProportion <- Data[complete.cases(Data),]
+    
+    ### variables
+    ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
+    sourcecaption = "Source: University of Sheffield, National Grid, BEIS"
+    plottitle = "Energy use in Scotland per day"
+    
+    #GasSecurityProportion$GasPercentage <- PercentLabel(GasSecurityProportion$Gas)
+    
+    
+    p <- plot_ly(GasSecurityProportion, x = ~Year) %>% 
+      add_trace(y = ~ GasSecurityProportion$Fergus / GasSecurityProportion$GBDemand, 
+                name = "ScotDemand",
+                type = 'scatter',
+                mode = 'lines',
+                text = paste0(
+                  "ScotDemand: ",
+                  round(GasSecurityProportion$Fergus / GasSecurityProportion$GBDemand, digits = 1),
+                  " GWh\nDate: ",
+                  format(GasSecurityProportion$Year, "%d/%m/%Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 3, color = ChartColours[2], dash = "none")) %>% 
+      layout(
+        barmode = 'stack',
+        bargap = 0.66,
+        legend = list(font = list(color = "#5d8be1"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        xaxis = list(title = "",
+                     showgrid = FALSE,
+                     range = c(min(GasSecurityProportion$Year)-100, max(GasSecurityProportion$Year)+100)),
+        yaxis = list(
+          title = "GWh",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    p
+    
+    
+    
+  })
+  
   output$GasSecurityTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "GasSecurityWorking")[c(1,5,7,6)]
     
-    names(Data) <- c("Year", "Gas", "Transport", "Electricity")
+    names(Data) <- c("Year", "ScotDemand", "NITransfer", "EnglandTransfer")
     
     Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
     
@@ -439,80 +509,53 @@ GasSecurity <- function(input, output, session) {
       #     "J:/ENERGY BRANCH/Statistics/Energy Strategy - Stats Publication/2019/Graphs/Data/GasSecurity.csv"
       #   )
       
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "GasSecurityWorking")[c(1,2,4,3)]
+      GasDistribution <- read_excel("Structure/CurrentWorking.xlsx", 
+                         sheet = "GasSecurityWorking")[c(1,2,3,5,6,4)] 
       
-      names(Data) <- c("Year", "Gas", "Transport", "Electricity")
+      names(GasDistribution)[1] <- c("Year")
       
-      Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
+      GasDistribution$Year <-
+        ymd(GasDistribution$Year)
       
-      GasSecurity <- Data
+      
+      
+      GasDistributionMin <- head(GasDistribution, 1)
+      GasDistributionMax <- tail(GasDistribution, 1)
+      
+      GasDistribution <- melt(GasDistribution, id.vars = "Year")
+      
+      GasDistribution <- subset(GasDistribution, variable == "ScotDemand" | variable == "NITransfer" | variable == "EnglandTransfer")
+      
+      
+      GasDistribution <- GasDistribution %>% mutate(variable = factor(variable),
+                                                    variable = factor(variable, levels = rev(c("ScotDemand", "NITransfer", "EnglandTransfer"))))
+      
+      GasDistribution$value <- as.numeric(ifelse(GasDistribution$value <0, "0", GasDistribution$value))
       
       ### variables
-      ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
-      sourcecaption = "Source: University of Sheffield, National Grid, BEIS"
-      plottitle = "Energy use in Scotland per day"
+      ChartColours <- c("#5d8be1", "#238b45", "#a1d99b")
+      BarColours <- c("#e34a33","#a8ddb5", "#43a2ca")
+      sourcecaption = "Source: National Grid"
+      plottitle = "Gas distribution from St Fergus gas terminal"
       
-      #GasSecurity$GasPercentage <- PercentLabel(GasSecurity$Gas)
+      #GasDistribution$CavityPercentage <- PercentLabel(GasDistribution$Cavity)
       
       
-      GasSecurityChart <- GasSecurity %>%
-        ggplot(aes(x = Year), family = "Century Gothic") +
-        
-        geom_line(
-          aes(y = Gas,
-              label = Gas),
-          colour = ChartColours[2],
-          size = 1,
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = mean(GasSecurity$Year),
-          y = max(GasSecurity$Gas),
-          label = "Gas",
-          hjust = 0.5,
-          vjust = 1,
-          colour = ChartColours[2],
-          fontface = 2,
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = Electricity,
-              label = paste0(Electricity * 100, "%")),
-          colour = ChartColours[3],
-          size = 1,
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = mean(GasSecurity$Year),
-          y = mean(GasSecurity$Electricity),
-          label = "Electricity",
-          hjust = 0.5,
-          vjust = 4.5,
-          colour = ChartColours[3],
-          fontface = 2,
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = Transport,
-              label = paste0(Transport * 100, "%")),
-          colour = ChartColours[4],
-          size = 1,
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = mean(GasSecurity$Year),
-          y = mean(GasSecurity$Transport),
-          label = "Transport",
-          hjust = 0.5,
-          vjust = 6,
-          colour = ChartColours[4],
-          fontface = 2,
-          family = "Century Gothic"
-        ) +
+      GasDistributionChart <- GasDistribution %>%
+        ggplot(aes(
+          x = Year,
+          y = value,
+          group = variable,
+          fill = variable
+        ))+
+        scale_fill_manual(
+          "variable",
+          values = c(
+            "ScotDemand" = BarColours[1],
+            "NITransfer" = BarColours[2],
+            "EnglandTransfer" = BarColours[3]
+          ))+
+        geom_area(posistion = "fill") +
         geom_text(
           aes(
             x = Year,
@@ -523,80 +566,67 @@ GasSecurity <- function(input, output, session) {
               format(Year, format = "%b %Y"),
               ""
             ),
-            hjust = 0.5,
+            hjust = ifelse(Year == min(Year),0, 1),
             vjust = 1.5,
             fontface = 2
           ),
           colour = ChartColours[1],
           family = "Century Gothic"
         )+
-        annotate(
-          "segment",
-          x = GasSecurity$Year[which(GasSecurity$Gas == max(GasSecurity$Gas))]-2,
-          xend = GasSecurity$Year[which(GasSecurity$Gas == max(GasSecurity$Gas))] - 30,
-          y = max(GasSecurity$Gas),
-          yend = max(GasSecurity$Gas),
-          colour = "#3690c0"
-        ) +
-        annotate(
-          "text",
-          x = GasSecurity$Year[which(GasSecurity$Gas == max(GasSecurity$Gas))] - 35,
-          y = max(GasSecurity$Gas),
-          label = paste(round(max(GasSecurity$Gas), digits = 0), "GWh"),
-          hjust = 1,
-          fontface = 2,
-          size = 4,
-          colour = ChartColours[2],
-          family = "Century Gothic"
+        geom_text(
+          aes(
+            x = max(Year)+145,
+            y = 105,
+            label = "Scottish\nDemand",
+            fontface = 2
+          ),
+          colour = BarColours[1],
+          family = "Century Gothic",
+          size = 3
         )+
-        annotate(
-          "segment",
-          x = GasSecurity$Year[which(GasSecurity$Electricity == max(GasSecurity$Electricity[which(GasSecurity$Year > dmy("01/08/18"))]))]+2,
-          xend = GasSecurity$Year[which(GasSecurity$Electricity == max(GasSecurity$Electricity[which(GasSecurity$Year > dmy("01/08/18"))]))] + 30,
-          y = max(GasSecurity$Electricity[which(GasSecurity$Year > dmy("01/08/18"))]),
-          yend = max(GasSecurity$Electricity[which(GasSecurity$Year > dmy("01/08/18"))]),
-          colour = "#3690c0"
-        ) +
-        annotate(
-          "text",
-          x = GasSecurity$Year[which(GasSecurity$Electricity == max(GasSecurity$Electricity[which(GasSecurity$Year > dmy("01/08/18"))]))] + 35,
-          y = max(GasSecurity$Electricity[which(GasSecurity$Year > dmy("01/08/18"))]),
-          label = paste(round(max(GasSecurity$Electricity[which(GasSecurity$Year > dmy("01/08/18"))]), digits = 0), "GWh"),
-          hjust = 0,
-          fontface = 2,
-          size = 4,
-          colour = ChartColours[3],
-          family = "Century Gothic"
+        geom_text(
+          aes(
+            x = max(Year)+145,
+            y = 275,
+            label = "Transfers to\nN.I.",
+            fontface = 2
+          ),
+          colour = BarColours[2],
+          family = "Century Gothic",
+          size = 3
+        )+
+        geom_text(
+          aes(
+            x = max(Year)+145,
+            y = 520,
+            label = "Transfers to\nEngland",
+            fontface = 2
+          ),
+          colour = BarColours[3],
+          family = "Century Gothic",
+          size = 3
         )
       
       
-      GasSecurityChart
+      GasDistributionChart
       
-      GasSecurityChart <-
-        DailyChart(GasSecurityChart,
-                   GasSecurity,
+      
+      GasDistributionChart <-
+        DailyChart(GasDistributionChart,
+                   GasDistribution,
                    plottitle,
                    sourcecaption,
                    ChartColours)
       
-      GasSecurityChart <- GasSecurityChart +
-        coord_cartesian(xlim = c(min(GasSecurity$Year), max(GasSecurity$Year)+30)) +
-        ylim(-15, 352) +
-        geom_hline(
-          yintercept = 0,
-          color = "grey",
-          alpha = 0.7,
-          linetype = 2
-        )
       
+      GasDistributionChart <- GasDistributionChart+
+        coord_cartesian(xlim = c(min(GasDistribution$Year), max(GasDistribution$Year)+180)) 
       
-      GasSecurityChart
       
       ggsave(
-        file,
-        plot =  GasSecurityChart,
-        width = 30,
-        height = 12,
+        file,plot =  GasDistributionChart,
+        width = 14,
+        height = 14,
         units = "cm",
         dpi = 300
       )
