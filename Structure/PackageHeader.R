@@ -42,7 +42,8 @@ TargetChart <-
     
     ### Get Max Year with Actual Data ###
     dataMax <- data
-    dataMax[3] <- NULL # Remove Target Values
+    dataMax$Tgt <- NULL # Remove Target Values
+    dataMax$Target <- NULL
     dataMax <-
       dataMax[complete.cases(dataMax), ] #Keep Only Years with Actual Data
     dataMax <- tail(dataMax, 1) # Keep Most Recent Year
