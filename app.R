@@ -199,6 +199,8 @@ server <- function(input, output, session) {
   
   callModule(GasSecurity, "GasSecurity")
   
+  callModule(ElecStorage, "ElecStorage")
+  
   callModule(TargetTracker, "TargetTracker", parent_session = session)
   
   
@@ -841,7 +843,8 @@ ui <- shinyUI(fluidPage(
                             value = "GasSecurity",
                             GasSecurityOutput("GasSecurity")),
                    tabPanel(title = "Electricity Storage",
-                            value = "ElecStorage")
+                            value = "ElecStorage",
+                            ElecStorageOutput("ElecStorage"))
     )),
     ###### Section - System Security and Flexibility #######
     tabPanel(value = "OilGas",
