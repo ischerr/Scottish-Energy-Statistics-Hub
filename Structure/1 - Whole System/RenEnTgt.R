@@ -505,7 +505,7 @@ RenEnTgt <- function(input, output, session) {
       
       RenEnChart <-
         TargetChart(RenEn, plottitle, sourcecaption, ChartColours)
-      
+
       RenEnChart
       data <- RenEn
       dataMax <- data
