@@ -201,6 +201,8 @@ server <- function(input, output, session) {
   
   callModule(ElecStorage, "ElecStorage")
   
+  callModule(PrimaryOilGas, "PrimaryOilGas")
+  
   callModule(TargetTracker, "TargetTracker", parent_session = session)
   
   
@@ -852,7 +854,8 @@ ui <- shinyUI(fluidPage(
       navlistPanel(id = "OilGas",
                    widths = c(3, 8),
                    tabPanel(title = "Primary Energy - Oil and Gas",
-                            value = "PrimaryOilGas"),
+                            value = "PrimaryOilGas",
+                            PrimaryOilGasOutput("PrimaryOilGas")),
                    tabPanel(title = "Scottish Oil and Gas Production",
                             value = "ScotOilGas",
                             OilGasProdOutput("OilGasProd")),
