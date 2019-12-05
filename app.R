@@ -193,6 +193,8 @@ server <- function(input, output, session) {
   
   callModule(SmartMeters, "SmartMeters")
   
+  callModule(EnSupplySwitch, "EnSupplySwitch")
+  
   callModule(TargetTracker, "TargetTracker", parent_session = session)
   
   
@@ -804,7 +806,8 @@ ui <- shinyUI(fluidPage(
                             value = "SmartMeters",
                             SmartMetersOutput("SmartMeters")),
                    tabPanel(title = "Energy Supplier Switching",
-                            value = "EnSupplySwitch")
+                            value = "EnSupplySwitch",
+                            EnSupplySwitchOutput("EnSupplySwitch"))
     )),
     ###### Section - System Security and Flexibility #######
     tabPanel(

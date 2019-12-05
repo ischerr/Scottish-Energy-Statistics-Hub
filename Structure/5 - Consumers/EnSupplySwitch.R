@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-SmartMetersOutput <- function(id) {
+EnSupplySwitchOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Smart meter installations", style = "color: #68c3ea;  font-weight:bold"),
-                    h4(textOutput(ns('SmartMetersSubtitle')), style = "color: #68c3ea;")
+                    h3("Proportion of customers who have switched energy supplier by local authority", style = "color: #68c3ea;  font-weight:bold"),
+                    h4(textOutput(ns('EnSupplySwitchSubtitle')), style = "color: #68c3ea;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('SmartMeters.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('EnSupplySwitch.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
-    #dygraphOutput(ns("SmartMetersPlot")),
-    imageOutput(ns("SmartMetersPlot"), height = "500px")%>% withSpinner(color="#68c3ea"),
+    #dygraphOutput(ns("EnSupplySwitchPlot")),
+    imageOutput(ns("EnSupplySwitchPlot"), height = "500px")%>% withSpinner(color="#68c3ea"),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),
@@ -36,7 +36,7 @@ SmartMetersOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("SmartMetersTable"))%>% withSpinner(color="#68c3ea"))),
+      column(12, dataTableOutput(ns("EnSupplySwitchTable"))%>% withSpinner(color="#68c3ea"))),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     fluidRow(
       column(1,
@@ -61,11 +61,11 @@ SmartMetersOutput <- function(id) {
 
 
 ###### Server ######
-SmartMeters <- function(input, output, session) {
-  # output$SmartMetersPlot <- renderDygraph({
+EnSupplySwitch <- function(input, output, session) {
+  # output$EnSupplySwitchPlot <- renderDygraph({
   #   RenEn <-
   #     read.csv(
-  #       "Structure/2 - Renewables/Electricity/SmartMeters.csv",
+  #       "Structure/2 - Renewables/Electricity/EnSupplySwitch.csv",
   #       header = TRUE,
   #       sep = ",",
   #       na.strings = "-"
@@ -98,12 +98,12 @@ SmartMeters <- function(input, output, session) {
     source("Structure/PackageHeader.R")
   }
   
-  print("SmartMeters.R")
+  print("EnSupplySwitch.R")
   ###### Renewable Energy ###### ######
   
   ### From ESD ###
   
-  output$SmartMetersSubtitle <- renderText({
+  output$EnSupplySwitchSubtitle <- renderText({
     
     RenEn <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -122,16 +122,16 @@ SmartMeters <- function(input, output, session) {
     
     RenEn[which(RenEn$Year != max(RenEn$Year)),][2:4] <- 0
     
-    paste("Scotland,", min(RenEn$Year),"-", max(RenEn$Year))
+    paste("Scotland, 2018")
   })
   
-  output$SmartMetersPlot <- renderImage({
+  output$EnSupplySwitchPlot <- renderImage({
     
     # A temp file to save the output. It will be deleted after renderImage
     # sends it, because deleteFile=TRUE.
     outfile <- tempfile(fileext='.png')
    
-     writePNG(readPNG("Structure/5 - Consumers/SmartMetersOutput.png"),outfile) 
+     writePNG(readPNG("Structure/5 - Consumers/EnSupplySwitchOutput.png"),outfile) 
     
     # Generate a png
     
@@ -142,20 +142,16 @@ SmartMeters <- function(input, output, session) {
   }, deleteFile = TRUE)
   
   
-  output$SmartMetersTable = renderDataTable({
+  output$EnSupplySwitchTable = renderDataTable({
     
-    SmartMeters <- read_excel(
+    EnSupplySwitch <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Smart meter installations",
-      skip = 14
-    )
-    
-    names(SmartMeters) <- c("Date", "North Scotland - Installations (Cumulative)", "North Scotland - Proportion of smart meters", "South Scotland - Installations (Cumulative)", "South Scotland - Proportion of smart meters")
+      sheet = "Switching by LA",
+      skip = 13
+    )[2:4]
 
-    SmartMeters$Date <- format(SmartMeters$Date, "%b %Y")
-    
     datatable(
-      SmartMeters[nrow(SmartMeters):1,],
+      EnSupplySwitch,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -166,17 +162,17 @@ SmartMeters <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Proportion of domestic electricity customers on non-home supplier",
+        title = "Proportion of customers who have switched energy supplier by local authority",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Proportion of domestic electricity customers on non-home supplier',
+            title = 'Proportion of customers who have switched energy supplier by local authority',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Proportion of domestic electricity customers on non-home supplier')
+               title = 'Proportion of customers who have switched energy supplier by local authority')
         ),
         
         # customize the length menu
@@ -186,28 +182,28 @@ SmartMeters <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(c(3,5), 1) 
+      formatPercentage(c(3), 1) 
   })
   
-  output$SmartMetersTimeSeriesTable = renderDataTable({
+  output$EnSupplySwitchTimeSeriesTable = renderDataTable({
     
-    SmartMeters <- read_excel(
+    EnSupplySwitch <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Non-home supplier elec",
       skip = 13
     )
     
-    names(SmartMeters)[1] <- "Quarter"#
+    names(EnSupplySwitch)[1] <- "Quarter"#
     
-    SmartMeters <- SmartMeters[complete.cases(SmartMeters),]
+    EnSupplySwitch <- EnSupplySwitch[complete.cases(EnSupplySwitch),]
     
-    SmartMeters$Quarter <- as.Date(as.numeric(SmartMeters$Quarter), origin = "1899-12-30")
+    EnSupplySwitch$Quarter <- as.Date(as.numeric(EnSupplySwitch$Quarter), origin = "1899-12-30")
     
-    SmartMeters$Quarter <- as.character(as.yearqtr(SmartMeters$Quarter))
+    EnSupplySwitch$Quarter <- as.character(as.yearqtr(EnSupplySwitch$Quarter))
     
     
     datatable(
-      SmartMeters,
+      EnSupplySwitch,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -247,18 +243,18 @@ SmartMeters <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/5 - Consumers/SmartMeters.txt")[2])
+                     paste(readtext("Structure/5 - Consumers/EnSupplySwitch.txt")[2])
                      
                    )))
   })
   
   
   observeEvent(input$ToggleTable, {
-    toggle("SmartMetersTable")
+    toggle("EnSupplySwitchTable")
   })
   
   observeEvent(input$ToggleTable2, {
-    toggle("SmartMetersTimeSeriesTable")
+    toggle("EnSupplySwitchTimeSeriesTable")
   })
   
 
@@ -268,10 +264,10 @@ SmartMeters <- function(input, output, session) {
   })
   
   
-  output$SmartMeters.png <- downloadHandler(
-    filename = "SmartMeters.png",
+  output$EnSupplySwitch.png <- downloadHandler(
+    filename = "EnSupplySwitch.png",
     content = function(file) {
-      writePNG(readPNG("Structure/5 - Consumers/SmartMetersChart.png"), file) 
+      writePNG(readPNG("Structure/5 - Consumers/EnSupplySwitchChart.png"), file) 
     }
   )
 }
