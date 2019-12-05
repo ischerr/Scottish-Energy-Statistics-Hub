@@ -195,6 +195,8 @@ server <- function(input, output, session) {
   
   callModule(EnSupplySwitch, "EnSupplySwitch")
   
+  callModule(MaxSupplyPeakDemand, "MaxSupplyPeakDemand")
+  
   callModule(TargetTracker, "TargetTracker", parent_session = session)
   
   
@@ -819,7 +821,8 @@ ui <- shinyUI(fluidPage(
                             value = "DailyDemand",
                             DailyDemandOutput("DailyDemand")),
                    tabPanel(title = "Maximum Supply Capacity and Peak Electricity Demand",
-                            value = "MaxSupplyPeakDemand"),
+                            value = "MaxSupplyPeakDemand",
+                            MaxSupplyPeakDemandOutput("MaxSupplyPeakDemand")),
                    tabPanel(title = "Electricity Generation",
                             value = "ElecGeneration",
                             ElecGenOutput("ElecGen")),
