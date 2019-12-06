@@ -234,7 +234,9 @@ if(input$MainNav == "TargetTracker"){
   })
   
   observeEvent(input$GoToOtherTab, {
-    js$browseURL("https://www2.gov.scot/Topics/Statistics/Browse/Business/Energy")
+    updateTabsetPanel(session, "MainNav",
+                      selected = "TargetTracker"
+    )
   })
   
   
@@ -360,12 +362,12 @@ output$HomeTab <- renderUI({
            actionLink(
              "GoToOtherTab",
              label = div(
-               tags$h3("Scottish Energy Statistics Website", style = "color: black;"),
+               tags$h3("Target Tracker", style = "color: black;"),
                tags$p(
                  " ",
                  style = "color: black;"
                ),
-               img(src = "SES.svg", height = "55%"),
+               img(src = "TargetTracker.svg", height = "55%"),
                style = "border: solid 2px #3f3f3f; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px;",
                id = "SetEffects"
              )
@@ -777,9 +779,23 @@ ui <- shinyUI(fluidPage(
   style = "text-align: center; outline: 0px;"),
            wellPanel(
              fluidRow(
+               # FOOTER - WEBSITE
+               column(
+                 width = 3,
+                 icon("chart-bar", lib = "font-awesome"),
+                 strong("STATISTICS"),
+                 p(
+                   "Scottish Energy Statistics Website:"
+                 ),
+                 a(
+                   "Latest energy statistics for Scotland",
+                   href = "https://www2.gov.scot/Topics/Statistics/Browse/Business/Energy",
+                   ""
+                 )
+               ),
                # FOOTER - ABOUT
                column(
-                 width = 4,
+                 width = 3,
                  icon("info", lib = "font-awesome"),
                  strong("ABOUT"),
                  p(
@@ -791,9 +807,18 @@ ui <- shinyUI(fluidPage(
                    ""
                  )
                ),
-               # FOOTER - COPYRIGHT NOTICE
+               
+               # FOOTER - CONTACT DETAILS
                column(
-                 width = 4,
+                 width = 3,
+                 icon("at", lib = "font-awesome"),
+                 strong("CONTACT DETAILS"),
+                 p("Please send any feedback or questions to our email address."),
+                 HTML('<a href="mailto:energystatistics@gov.scot?">energystatistics@gov.scot</a>')
+               ),
+                              # FOOTER - COPYRIGHT NOTICE
+               column(
+                 width = 3,
                  icon("copyright", lib = "font-awesome"),
                  strong("COPYRIGHT NOTICE"),
                  p(
@@ -801,16 +826,7 @@ ui <- shinyUI(fluidPage(
                    a("Open Government Licence", href = "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"),
                    "."
                  )
-               ),
-               # FOOTER - CONTACT DETAILS
-               column(
-                 width = 4,
-                 icon("at", lib = "font-awesome"),
-                 strong("CONTACT DETAILS"),
-                 p("Please send any feedback or questions to our email address."),
-                 HTML('<a href="mailto:energystatistics@gov.scot?">energystatistics@gov.scot</a>')
-               ),
-               # FOOTER - EXTERNAL LINKS
+               ),# FOOTER - EXTERNAL LINKS
                
              )
            ),
