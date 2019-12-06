@@ -12,33 +12,33 @@ PrimaryOilGasOutput <- function(id) {
   tagList(
 
     fluidRow(column(8,
-                    h3("Distribution of primary energy (indigenous production and imports)", style = "color: #5d8be1;  font-weight:bold"),
-                    h4(textOutput(ns('PrimaryOilGasSubtitle')), style = "color: #5d8be1;")
+                    h3("Distribution of primary energy (indigenous production and imports)", style = "color: #126992;  font-weight:bold"),
+                    h4(textOutput(ns('PrimaryOilGasSubtitle')), style = "color: #126992;")
     ),
              column(
                4, style = 'padding:15px;',
                downloadButton(ns('PrimaryOilGas.png'), 'Download Graph', style="float:right")
              )),
     
-    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
+    tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
     #dygraphOutput(ns("PrimaryOilGasPlot")),
-    plotlyOutput(ns("PrimaryOilGasPlot"), height = "600px")%>% withSpinner(color="#5d8be1"),
-    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
+    plotlyOutput(ns("PrimaryOilGasPlot"), height = "600px")%>% withSpinner(color="#126992"),
+    tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
     fluidRow(
-    column(10,h3("Commentary", style = "color: #5d8be1;  font-weight:bold")),
+    column(10,h3("Commentary", style = "color: #126992;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
     
     fluidRow(
     uiOutput(ns("Text"))
     ),
-    tags$hr(style = "height:3px;border:none;color:;background-color:#5d8be1;"),
+    tags$hr(style = "height:3px;border:none;color:;background-color:#126992;"),
     fluidRow(
-    column(10, h3("Data", style = "color: #5d8be1;  font-weight:bold")),
+    column(10, h3("Data", style = "color: #126992;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("PrimaryOilGasTable"))%>% withSpinner(color="#5d8be1"))),
-    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
+      column(12, dataTableOutput(ns("PrimaryOilGasTable"))%>% withSpinner(color="#126992"))),
+    tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
     fluidRow(
       column(1,
              p("Next update:")),
@@ -211,7 +211,7 @@ PrimaryOilGas <- function(input, output, session) {
       layout(
         barmode = 'stack',
         bargap = 0.66,
-        legend = list(font = list(color = "#5d8be1"),
+        legend = list(font = list(color = "#126992"),
                       orientation = 'h'),
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),

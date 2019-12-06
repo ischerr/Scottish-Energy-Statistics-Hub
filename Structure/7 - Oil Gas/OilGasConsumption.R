@@ -1,0 +1,392 @@
+require(readxl)
+require(plotly)
+require(dygraphs)
+require(png)
+require("DT")
+###### UI Function ######
+
+source("Structure/Global.R")
+
+OilGasConsumptionOutput <- function(id) {
+  ns <- NS(id)
+  tagList(
+     fluidRow(column(8,
+                             h3("Oil and gas consumption", style = "color: #126992;  font-weight:bold"),
+                             h4(textOutput(ns('OilGasConsumptionSubtitle')), style = "color: #126992;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('OilGasConsumption.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
+             #dygraphOutput(ns("OilGasConsumptionPlot")),
+             plotlyOutput(ns("OilGasConsumptionPlot"), height = "600px")%>% withSpinner(color="#126992"),
+             tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
+    fluidRow(
+    column(10,h3("Commentary", style = "color: #126992;  font-weight:bold")),
+    column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
+    
+    fluidRow(
+    uiOutput(ns("Text"))
+    ),
+    tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
+  fluidRow(
+    column(10, h3("Data - Peak Demand", style = "color: #126992;  font-weight:bold")),
+    column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
+    ),
+    fluidRow(
+      column(12, dataTableOutput(ns("OilGasConsumptionTable"))%>% withSpinner(color="#126992"))),
+    tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
+    fluidRow(
+      column(1,
+             p("Next update:")),
+      column(2,
+             p("March 2019")),
+      column(1, align = "right",
+             p("Sources:")),
+      column(
+        8,
+        align = "right",
+        SourceLookup("BEISFinalConsump"),
+        SourceLookup("ETElecGen"),
+        SourceLookup("ESTDomRHIInstallations")
+        
+      )
+    )
+  )
+}
+
+
+
+
+###### Server ######
+OilGasConsumption <- function(input, output, session) {
+  
+  
+  if (exists("PackageHeader") == 0) {
+    source("Structure/PackageHeader.R")
+  }
+  
+  print("OilGasConsumption.R")
+
+  
+  output$OilGasConsumptionSubtitle <- renderText({
+    
+    paste("Scotland, 2017")
+
+      })
+  
+  output$OilGasConsumptionPlot <- renderPlotly  ({
+    
+    
+    ChartColours <- c("#126992", "#FF8500")
+    BarColours <- c("#034e7b", "#0570b0", "#969696", "#f46d43", "#d73027")
+    
+    Data <-
+      read_excel(
+        "Structure/CurrentWorking.xlsx",
+        sheet = "Oil and gas consumption", col_names = TRUE, 
+        skip = 12,
+        n_max = 8)
+    
+    Data <- Data[c(2,4,6,8),]
+    
+    names(Data)[1] <- c("Year")
+    
+    Data$YearFormat <- paste0("<b>",Data$Year, "</b>")
+    
+    p <-  plot_ly(Data, y = ~ YearFormat ) %>%  
+      add_trace(x = ~ `Petroleum products`, 
+                orientation = 'h',
+                name = "Petroleum products",
+                type = 'bar',
+                legendgroup = "1",
+                text = paste0(
+                  "Petroleum products: ", percent(Data$`Petroleum products`, 0.1),"\n",
+                  "Year: ", Data$Year, "\n"),
+                hoverinfo = 'text',
+                marker = list(color = BarColours[1])
+      ) %>% 
+      add_trace(x = ~ `Gas`, 
+                orientation = 'h',
+                name = "Gas",
+                type = 'bar',
+                legendgroup = "2",
+                text = paste0(
+                  "Gas: ", percent(Data$Gas, 0.1),"\n",
+                  "Year: ", Data$Year, "\n"),
+                hoverinfo = 'text',
+                marker = list(color = BarColours[2])
+      ) %>% 
+      add_trace(x = ~ `Other fuel`, 
+                orientation = 'h',
+                name = "Other fuel",
+                type = 'bar',
+                legendgroup = "3",
+                text = paste0(
+                  "Other fuel: ", percent(Data$`Other fuel`, 0.1),"\n",
+                  "Year: ", Data$Year, "\n"),
+                hoverinfo = 'text',
+                marker = list(color = BarColours[3])
+      ) %>% 
+      layout(
+        barmode = 'stack',
+        legend = list(font = list(color = "#126992"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        xaxis = list(title = "",
+                     zeroline = FALSE,
+                     tickformat = "%",
+                     showgrid = TRUE,
+                     x = 0.5
+                     
+        ),
+        yaxis = list(
+          title = "",
+          tickformat = "",
+          autorange = "reversed",
+          ticktext = as.list(Data$`Year`),
+          tickmode = "array",
+          tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16),
+          showgrid = FALSE,
+          zeroline = FALSE,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    
+    p
+    
+    
+    
+  })
+  
+  output$OilGasConsumptionTable = renderDataTable({
+    
+    Data <-
+      read_excel(
+        "Structure/CurrentWorking.xlsx",
+        sheet = "Oil and gas consumption", col_names = TRUE, 
+        skip = 12,
+        n_max = 8)
+    
+    Data <- Data[c(2,4,6,8),]
+    
+    names(Data)[1] <- c("Year")
+    
+    datatable(
+      Data,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "Outputs from oil and gas",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = "Outputs from oil and gas",
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = "Outputs from oil and gas")
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatPercentage(2:4, 1)
+  })
+  
+  output$Text <- renderUI({
+    tagList(column(12,
+                   HTML(
+                     paste(readtext("Structure/7 - Oil Gas/OilGasConsumption.txt")[2])
+                     
+                   )))
+  })
+  
+  
+ observeEvent(input$ToggleTable1, {
+    toggle("OilGasConsumptionTable")
+  })
+  
+  observeEvent(input$ToggleText, {
+    toggle("Text")
+  })
+  
+  output$OilGasConsumption.png <- downloadHandler(
+    filename = "OilGasConsumption.png",
+  content = function(file) {
+    
+    Data <-
+      read_excel(
+        "Structure/CurrentWorking.xlsx",
+        sheet = "Oil and gas consumption", skip = 12, col_names = TRUE)[c(2,4,6,8),]
+    
+    names(Data)[1] <- "Type"
+    
+    Data[2:4] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    OilGasConsump <- as_tibble(Data)
+    
+    OilGasConsump <- arrange(OilGasConsump,-row_number())
+    
+    OilGasConsump$Type <-
+      factor(OilGasConsump$Type,
+             levels = unique(OilGasConsump$Type),
+             ordered = TRUE)
+    
+    OilGasConsump <- melt(OilGasConsump, id.vars = "Type")
+    
+    
+    OilGasConsump$variable <-
+      factor(OilGasConsump$variable,
+             levels = rev(unique(OilGasConsump$variable)),
+             ordered = TRUE)
+    
+    OilGasConsump <- OilGasConsump %>%
+      group_by(Type) %>%
+      mutate(pos = cumsum(value) - value / 2) %>%
+      mutate(top = sum(value))
+    
+    plottitle <-
+      "Oil and gas consumption"
+    sourcecaption <- "Source: BEIS"
+    
+    ChartColours <- c("#126992", "#FF8500")
+    BarColours <-
+      c(
+        "#034e7b",
+        "#0570b0",
+        "#3690c0",
+        "#74a9cf",
+        "#a6bddb",
+        "#d0d1e6",
+        "#bdbdbd",
+        "#969696"
+      )
+    
+    
+    OilGasConsumpChart <- OilGasConsump %>%
+      ggplot(aes(x = Type, y = value, fill = variable), family = "Century Gothic") +
+      scale_fill_manual(
+        "variable",
+        values = c(
+          "Petroleum products" = BarColours[1],
+          "Gas" = BarColours[2],
+          "Other fuel" = BarColours[3]
+        )
+      ) +
+      geom_bar(stat = "identity", width = .8) +
+      geom_text(
+        aes(
+          y = pos,
+          label = percent(value),
+          
+          fontface = 2
+        ),
+        colour = "white",
+        family = "Century Gothic"
+      ) +
+      geom_text(
+        aes(
+          x = Type,
+          y = -0.01,
+          label = Type,
+          fontface = 2
+        ),
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        hjust = 1
+      ) +
+      geom_text(
+        aes(
+          x = 4.77,
+          y = .45/2,
+          label = "Petroleum\nproducts",
+          fontface = 2
+        ),
+        colour = BarColours[1],
+        family = "Century Gothic"
+      ) +
+      geom_text(
+        aes(
+          x = 4.7,
+          y = (.33/2)+.45,
+          label = "Gas",
+          fontface = 2
+        ),
+        colour = BarColours[2],
+        family = "Century Gothic"
+      ) +
+      geom_text(
+        aes(
+          x = 4.7,
+          y = (.22/2)+.33+.45,
+          label = "Other\nfuels",
+          fontface = 2
+        ),
+        colour = BarColours[3],
+        family = "Century Gothic"
+      )+
+      geom_text(
+        aes(
+          x = 5.05,
+          y = .5,
+          label = "",
+          fontface = 2
+        ),
+        colour = "black",
+        family = "Century Gothic"
+      )
+    
+    
+    
+    OilGasConsumpChart
+    
+    
+    OilGasConsumpChart <-
+      StackedBars(OilGasConsumpChart,
+                  OilGasConsump,
+                  plottitle,
+                  sourcecaption,
+                  ChartColours)
+    
+    OilGasConsumpChart <-
+      OilGasConsumpChart +
+      labs(subtitle = "Scotland, 2016") +
+      ylim(-.16,1) +
+      coord_flip()
+    
+    OilGasConsumpChart
+    
+    ggsave(
+      file,
+      plot = OilGasConsumpChart,
+      width = 17.5,
+      height = 12,
+      units = "cm",
+      dpi = 300
+    )
+    
+  }
+) 
+  
+  
+}
+    
+    

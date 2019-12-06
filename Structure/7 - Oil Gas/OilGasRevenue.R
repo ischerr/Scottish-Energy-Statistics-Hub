@@ -11,7 +11,7 @@ OilGasRevenueOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Oil and gas production", style = "color: #126992;  font-weight:bold"),
+                    h3("Oil and gas revenue", style = "color: #126992;  font-weight:bold"),
                     h4(textOutput(ns('OilGasRevenueSubtitle')), style = "color: #126992;")
     ),
              column(
