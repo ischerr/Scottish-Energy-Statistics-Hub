@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-EnComsumpSectorOutput <- function(id) {
+EnConsumptionSectorOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
                     h3("Total final energy consumption by consuming sector", style = "color: #34d1a3;  font-weight:bold"),
-                    h4(textOutput(ns('EnComsumpSectorSubtitle')), style = "color: #34d1a3;")
+                    h4(textOutput(ns('EnConsumptionSectorSubtitle')), style = "color: #34d1a3;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('EnComsumpSector.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('EnConsumptionSector.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
-    #dygraphOutput(ns("EnComsumpSectorPlot")),
-    plotlyOutput(ns("EnComsumpSectorPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
+    #dygraphOutput(ns("EnConsumptionSectorPlot")),
+    plotlyOutput(ns("EnConsumptionSectorPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
@@ -36,7 +36,7 @@ EnComsumpSectorOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("EnComsumpSectorTable"))%>% withSpinner(color="#34d1a3"))),
+      column(12, dataTableOutput(ns("EnConsumptionSectorTable"))%>% withSpinner(color="#34d1a3"))),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
       column(1,
@@ -61,17 +61,17 @@ EnComsumpSectorOutput <- function(id) {
 
 
 ###### Server ######
-EnComsumpSector <- function(input, output, session) {
+EnConsumptionSector <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("EnComsumpSector.R")
+  print("EnConsumptionSector.R")
 
   
-  output$EnComsumpSectorSubtitle <- renderText({
+  output$EnConsumptionSectorSubtitle <- renderText({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -92,7 +92,7 @@ EnComsumpSector <- function(input, output, session) {
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
-  output$EnComsumpSectorPlot <- renderPlotly  ({
+  output$EnConsumptionSectorPlot <- renderPlotly  ({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -264,7 +264,7 @@ EnComsumpSector <- function(input, output, session) {
   })
   
   
-  output$EnComsumpSectorTable = renderDataTable({
+  output$EnConsumptionSectorTable = renderDataTable({
     
     EnConsumption <- read_excel("Structure/CurrentWorking.xlsx", 
                                 sheet = "Energy consump sector", skip = 12, col_names = FALSE)
@@ -338,8 +338,8 @@ EnComsumpSector <- function(input, output, session) {
   })
   
   
-  output$EnComsumpSector.png <- downloadHandler(
-    filename = "EnComsumpSector.png",
+  output$EnConsumptionSector.png <- downloadHandler(
+    filename = "EnConsumptionSector.png",
     content = function(file) {
 
 

@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-HeatConsumpOutput <- function(id) {
+HeatConsumptionOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
                     h3("Nom-electrical heat demand by sector", style = "color: #34d1a3;  font-weight:bold"),
-                    h4(textOutput(ns('HeatConsumpSubtitle')), style = "color: #34d1a3;")
+                    h4(textOutput(ns('HeatConsumptionSubtitle')), style = "color: #34d1a3;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('HeatConsump.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('HeatConsumption.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
-    #dygraphOutput(ns("HeatConsumpPlot")),
-    plotlyOutput(ns("HeatConsumpPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
+    #dygraphOutput(ns("HeatConsumptionPlot")),
+    plotlyOutput(ns("HeatConsumptionPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
@@ -36,7 +36,7 @@ HeatConsumpOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("HeatConsumpTable"))%>% withSpinner(color="#34d1a3"))),
+      column(12, dataTableOutput(ns("HeatConsumptionTable"))%>% withSpinner(color="#34d1a3"))),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
       column(1,
@@ -61,17 +61,17 @@ HeatConsumpOutput <- function(id) {
 
 
 ###### Server ######
-HeatConsump <- function(input, output, session) {
+HeatConsumption <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("HeatConsump.R")
+  print("HeatConsumption.R")
 
   
-  output$HeatConsumpSubtitle <- renderText({
+  output$HeatConsumptionSubtitle <- renderText({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -92,7 +92,7 @@ HeatConsump <- function(input, output, session) {
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
-  output$HeatConsumpPlot <- renderPlotly  ({
+  output$HeatConsumptionPlot <- renderPlotly  ({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -242,7 +242,7 @@ HeatConsump <- function(input, output, session) {
   })
   
   
-  output$HeatConsumpTable = renderDataTable({
+  output$HeatConsumptionTable = renderDataTable({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -308,14 +308,14 @@ HeatConsump <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/4 - Energy Efficiency/HeatConsump.txt")[2])
+                     paste(readtext("Structure/4 - Energy Efficiency/HeatConsumption.txt")[2])
                      
                    )))
   })
  
  
   observeEvent(input$ToggleTable, {
-    toggle("HeatConsumpTable")
+    toggle("HeatConsumptionTable")
   })
   
 
@@ -325,8 +325,8 @@ HeatConsump <- function(input, output, session) {
   })
   
   
-  output$HeatConsump.png <- downloadHandler(
-    filename = "HeatConsump.png",
+  output$HeatConsumption.png <- downloadHandler(
+    filename = "HeatConsumption.png",
     content = function(file) {
 
 

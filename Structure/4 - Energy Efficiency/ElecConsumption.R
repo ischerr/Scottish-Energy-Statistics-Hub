@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-ElecConsumpOutput <- function(id) {
+ElecConsumptionOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
                     h3("Total final energy consumption by consuming sector", style = "color: #34d1a3;  font-weight:bold"),
-                    h4(textOutput(ns('ElecConsumpSubtitle')), style = "color: #34d1a3;")
+                    h4(textOutput(ns('ElecConsumptionSubtitle')), style = "color: #34d1a3;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('ElecConsump.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('ElecConsumption.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
-    #dygraphOutput(ns("ElecConsumpPlot")),
-    plotlyOutput(ns("ElecConsumpPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
+    #dygraphOutput(ns("ElecConsumptionPlot")),
+    plotlyOutput(ns("ElecConsumptionPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
@@ -36,7 +36,7 @@ ElecConsumpOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("ElecConsumpTable"))%>% withSpinner(color="#34d1a3"))),
+      column(12, dataTableOutput(ns("ElecConsumptionTable"))%>% withSpinner(color="#34d1a3"))),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
       column(1,
@@ -61,17 +61,17 @@ ElecConsumpOutput <- function(id) {
 
 
 ###### Server ######
-ElecConsump <- function(input, output, session) {
+ElecConsumption <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("ElecConsump.R")
+  print("ElecConsumption.R")
 
   
-  output$ElecConsumpSubtitle <- renderText({
+  output$ElecConsumptionSubtitle <- renderText({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -92,7 +92,7 @@ ElecConsump <- function(input, output, session) {
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
-  output$ElecConsumpPlot <- renderPlotly  ({
+  output$ElecConsumptionPlot <- renderPlotly  ({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -237,7 +237,7 @@ ElecConsump <- function(input, output, session) {
   })
   
   
-  output$ElecConsumpTable = renderDataTable({
+  output$ElecConsumptionTable = renderDataTable({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -302,14 +302,14 @@ ElecConsump <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/4 - Energy Efficiency/ElecConsump.txt")[2])
+                     paste(readtext("Structure/4 - Energy Efficiency/ElecConsumption.txt")[2])
                      
                    )))
   })
  
  
   observeEvent(input$ToggleTable, {
-    toggle("ElecConsumpTable")
+    toggle("ElecConsumptionTable")
   })
   
 
@@ -319,8 +319,8 @@ ElecConsump <- function(input, output, session) {
   })
   
   
-  output$ElecConsump.png <- downloadHandler(
-    filename = "ElecConsump.png",
+  output$ElecConsumption.png <- downloadHandler(
+    filename = "ElecConsumption.png",
     content = function(file) {
 
 
@@ -335,23 +335,23 @@ ElecConsump <- function(input, output, session) {
       
       Data$Year <- as.numeric(Data$Year)
       
-      ElecConsumption <- Data[c(1,3,2,4)]
+      ElecConsumptiontion <- Data[c(1,3,2,4)]
       
-      ElecConsumption <- ElecConsumption[order(-ElecConsumption$Year),]
+      ElecConsumptiontion <- ElecConsumptiontion[order(-ElecConsumptiontion$Year),]
       
-      ElecConsumption <- melt(ElecConsumption, id.vars = "Year")
+      ElecConsumptiontion <- melt(ElecConsumptiontion, id.vars = "Year")
       
-      ElecConsumptionMax <-
-        subset(ElecConsumption, Year == max(ElecConsumption$Year))
+      ElecConsumptiontionMax <-
+        subset(ElecConsumptiontion, Year == max(ElecConsumptiontion$Year))
       
-      ElecConsumption <-
-        subset(ElecConsumption,
-               Year < max(ElecConsumption$Year) & variable != "Total")
+      ElecConsumptiontion <-
+        subset(ElecConsumptiontion,
+               Year < max(ElecConsumptiontion$Year) & variable != "Total")
       
-      ElecConsumption$variable <-
-        factor(ElecConsumption$variable, levels = unique(ElecConsumption$variable))
+      ElecConsumptiontion$variable <-
+        factor(ElecConsumptiontion$variable, levels = unique(ElecConsumptiontion$variable))
       
-      ElecConsumption <- ElecConsumption %>%
+      ElecConsumptiontion <- ElecConsumptiontion %>%
         group_by(Year) %>%
         mutate(pos = cumsum(value) - value / 2) %>%
         mutate(top = sum(value))
@@ -364,16 +364,16 @@ ElecConsump <- function(input, output, session) {
       BarColours <- c("#00441b", "#238b45", "#66c2a4", "#ef3b2c")
       
       
-      ElecConsumptionChart <- ElecConsumption %>%
+      ElecConsumptiontionChart <- ElecConsumptiontion %>%
         ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
         scale_fill_manual("variable",
                           values = c("Domestic" = BarColours[1],
                                      "Non-domestic" = BarColours[3])) +
         geom_bar(stat = "identity", width = .8) +
         geom_text(
-          y = ElecConsumption$top,
-          label = ifelse(ElecConsumption$pos < 10000, paste0(format(
-            round(ElecConsumption$top, digits = 0), big.mark = ","
+          y = ElecConsumptiontion$top,
+          label = ifelse(ElecConsumptiontion$pos < 10000, paste0(format(
+            round(ElecConsumptiontion$top, digits = 0), big.mark = ","
           ), " GWh"), ""),
           hjust = -0.1,
           family = "Century Gothic",
@@ -383,11 +383,11 @@ ElecConsump <- function(input, output, session) {
         geom_text(
           y = -2500,
           label =   ifelse(
-            ElecConsumption$pos < 10000,
+            ElecConsumptiontion$pos < 10000,
             ifelse(
-              ElecConsumption$Year == 2003,
+              ElecConsumptiontion$Year == 2003,
               "2005/2007\n(baseline)",
-              ElecConsumption$Year
+              ElecConsumptiontion$Year
             ),
             ""
           ),
@@ -397,14 +397,14 @@ ElecConsump <- function(input, output, session) {
           color = ChartColours[1]
         ) +
         geom_text(
-          y = ElecConsumption$top - ElecConsumption$pos,
+          y = ElecConsumptiontion$top - ElecConsumptiontion$pos,
           label =   ifelse(
-            ElecConsumption$pos > 0,
+            ElecConsumptiontion$pos > 0,
             ifelse(
-              ElecConsumption$Year == 2003 |
-                ElecConsumption$Year ==  max(ElecConsumption$Year),
+              ElecConsumptiontion$Year == 2003 |
+                ElecConsumptiontion$Year ==  max(ElecConsumptiontion$Year),
               paste0(format(
-                round(ElecConsumption$value, digits = 0), big.mark = ","
+                round(ElecConsumptiontion$value, digits = 0), big.mark = ","
               ), " GWh"),
               ""
             ),
@@ -436,17 +436,17 @@ ElecConsump <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = max(ElecConsumption$Year) + 1.2,
+          x = max(ElecConsumptiontion$Year) + 1.2,
           y = as.numeric(subset(
-            ElecConsumption,
-            Year == max(ElecConsumption$Year) &
+            ElecConsumptiontion,
+            Year == max(ElecConsumptiontion$Year) &
               variable == "Domestic"
           )[1, 5]) - as.numeric(subset(
-            ElecConsumption,
-            Year == max(ElecConsumption$Year) & variable == "Domestic"
+            ElecConsumptiontion,
+            Year == max(ElecConsumptiontion$Year) & variable == "Domestic"
           )[1, 4]),
           label = percent((
-            subset(ElecConsumptionMax, variable == "Domestic")[1, 3]
+            subset(ElecConsumptiontionMax, variable == "Domestic")[1, 3]
           )),
           fontface = 2,
           color = BarColours[1],
@@ -454,22 +454,22 @@ ElecConsump <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = max(ElecConsumption$Year) + 1.2,
+          x = max(ElecConsumptiontion$Year) + 1.2,
           y = as.numeric(
             subset(
-              ElecConsumption,
-              Year == max(ElecConsumption$Year) &
+              ElecConsumptiontion,
+              Year == max(ElecConsumptiontion$Year) &
                 variable == "Non-domestic"
             )[1, 5]
           ) - as.numeric(
             subset(
-              ElecConsumption,
-              Year == max(ElecConsumption$Year) &
+              ElecConsumptiontion,
+              Year == max(ElecConsumptiontion$Year) &
                 variable == "Non-domestic"
             )[1, 4]
           ),
           label = percent((
-            subset(ElecConsumptionMax, variable == "Non-domestic")[1, 3]
+            subset(ElecConsumptiontionMax, variable == "Non-domestic")[1, 3]
           )),
           fontface = 2,
           color = BarColours[3],
@@ -477,13 +477,13 @@ ElecConsump <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = max(ElecConsumption$Year) + 1.2,
+          x = max(ElecConsumptiontion$Year) + 1.2,
           y = as.numeric(subset(
-            ElecConsumption,
-            Year == max(ElecConsumption$Year) & variable == "Domestic"
+            ElecConsumptiontion,
+            Year == max(ElecConsumptiontion$Year) & variable == "Domestic"
           )[1, 5]),
           label = percent((
-            subset(ElecConsumptionMax, variable == "Total")[1, 3]
+            subset(ElecConsumptiontionMax, variable == "Total")[1, 3]
           )),
           fontface = 2,
           color = ChartColours[1],
@@ -491,7 +491,7 @@ ElecConsump <- function(input, output, session) {
           hjust = -.75
         ) + annotate(
           "text",
-          x = max(ElecConsumption$Year) + 1.2,
+          x = max(ElecConsumptiontion$Year) + 1.2,
           y = -2500,
           label = "% Change\nfrom baseline",
           fontface = 2,
@@ -501,28 +501,28 @@ ElecConsump <- function(input, output, session) {
       
       
       
-      ElecConsumptionChart
+      ElecConsumptiontionChart
       
       
-      ElecConsumptionChart <-
-        BaselineChart(ElecConsumptionChart,
-                      ElecConsumption,
+      ElecConsumptiontionChart <-
+        BaselineChart(ElecConsumptiontionChart,
+                      ElecConsumptiontion,
                       plottitle,
                       sourcecaption,
                       ChartColours)
       
-      ElecConsumptionChart <-
-        ElecConsumptionChart +
+      ElecConsumptiontionChart <-
+        ElecConsumptiontionChart +
         coord_flip() +
-        labs(subtitle = paste("Scotland, 2005 -", max(ElecConsumption$Year))) +
-        ylim(-4000, max(ElecConsumption$top) + 4200) +
-        xlim(max(ElecConsumption$Year) + 1.2, 2002.5)
+        labs(subtitle = paste("Scotland, 2005 -", max(ElecConsumptiontion$Year))) +
+        ylim(-4000, max(ElecConsumptiontion$top) + 4200) +
+        xlim(max(ElecConsumptiontion$Year) + 1.2, 2002.5)
       
-      ElecConsumptionChart
+      ElecConsumptiontionChart
       
       ggsave(
         file,
-        plot = ElecConsumptionChart,
+        plot = ElecConsumptiontionChart,
         width = 17,
         height = 15.5,
         units = "cm",

@@ -7,23 +7,23 @@ require("DT")
 
 source("Structure/Global.R")
 
-EnergyBalanceOutput <- function(id) {
+EnBalanceOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
       tabPanel("Energy Balance",
     fluidRow(column(8,
                     h3("Share of renewable energy in gross final consumption", style = "color: #1A5D38;  font-weight:bold"),
-                    h4(textOutput(ns('EnergyBalanceSubtitle')), style = "color: #1A5D38;")
+                    h4(textOutput(ns('EnBalanceSubtitle')), style = "color: #1A5D38;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('EnergyBalance.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('EnBalance.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
-    #dygraphOutput(ns("EnergyBalancePlot")),
-    plotlyOutput(ns("EnergyBalancePlot"))%>% withSpinner(color="#1A5D38"),
+    #dygraphOutput(ns("EnBalancePlot")),
+    plotlyOutput(ns("EnBalancePlot"))%>% withSpinner(color="#1A5D38"),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")),
     tabPanel("Simplified flow",
              fluidRow(column(8,
@@ -36,7 +36,7 @@ EnergyBalanceOutput <- function(id) {
              )),
              
              tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
-             #dygraphOutput(ns("EnergyBalancePlot")),
+             #dygraphOutput(ns("EnBalancePlot")),
              
                fluidRow(
              plotlyOutput(ns("SimplifiedFlowPlot1"))%>% withSpinner(color="#1A5D38")),
@@ -56,23 +56,23 @@ EnergyBalanceOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     fluidRow(
     column(8, h3("Supply", style = "color: #1A5D38;  font-weight:bold")),
-    column(2, style = "padding:15px",  downloadButton(ns('EnergyBalanceData.xlsx'), 'Download Full Data', style="float:right")),
+    column(2, style = "padding:15px",  downloadButton(ns('EnBalanceData.xlsx'), 'Download Full Data', style="float:right")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, DTOutput(ns("EnergyBalanceTable1"))%>% withSpinner(color="#1A5D38"))),
+      column(12, DTOutput(ns("EnBalanceTable1"))%>% withSpinner(color="#1A5D38"))),
     fluidRow(
       column(10, h3("Demand", style = "color: #1A5D38;  font-weight:bold")),
       column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, DTOutput(ns("EnergyBalanceTable2"))%>% withSpinner(color="#1A5D38"))),
+      column(12, DTOutput(ns("EnBalanceTable2"))%>% withSpinner(color="#1A5D38"))),
     fluidRow(
       column(10, h3("Consumption", style = "color: #1A5D38;  font-weight:bold")),
       column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, DTOutput(ns("EnergyBalanceTable3"))%>% withSpinner(color="#1A5D38"))),
+      column(12, DTOutput(ns("EnBalanceTable3"))%>% withSpinner(color="#1A5D38"))),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     fluidRow(
       column(1,
@@ -97,20 +97,20 @@ EnergyBalanceOutput <- function(id) {
 
 
 ###### Server ######
-EnergyBalance <- function(input, output, session) {
-  # output$EnergyBalancePlot <- renderDygraph({
-  #   EnergyBalance <-
+EnBalance <- function(input, output, session) {
+  # output$EnBalancePlot <- renderDygraph({
+  #   EnBalance <-
   #     read.csv(
-  #       "Structure/1 - Whole System/EnergyBalance.csv",
+  #       "Structure/1 - Whole System/EnBalance.csv",
   #       header = TRUE,
   #       sep = ",",
   #       na.strings = "-"
   #     )
   #
-  #   YearLow <- as.numeric(min(EnergyBalance$Year))
-  #   YearHigh <- as.numeric(max(EnergyBalance$Year +1))
+  #   YearLow <- as.numeric(min(EnBalance$Year))
+  #   YearHigh <- as.numeric(max(EnBalance$Year +1))
   #
-  #   dygraph(EnergyBalance, main = "Renewable Energy Target") %>%
+  #   dygraph(EnBalance, main = "Renewable Energy Target") %>%
   #     dyAxis("y", label = "% Progress", valueRange = c(0,30)) %>%
   #     dyAxis("x", label = "Year", drawGrid = TRUE) %>%
   #     dyOptions(colors =  c("Green","Orange", "Blue")) %>%
@@ -134,39 +134,39 @@ EnergyBalance <- function(input, output, session) {
     source("Structure/PackageHeader.R")
   }
   
-  print("EnergyBalance.R")
+  print("EnBalance.R")
   ###### Renewable Energy ###### ######
   
   ### From ESD ###
   
-  output$EnergyBalanceSubtitle <- renderText({
+  output$EnBalanceSubtitle <- renderText({
     
-    EnergyBalance <- read_excel(
+    EnBalance <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Renewable energy target",
       col_names = FALSE,
       skip = 21,
       n_max = 23
     )
-    EnergyBalance <- as.data.frame(t(EnergyBalance))
-    EnergyBalance <- EnergyBalance[, c(1, 6, 12, 18, 23)]
-    EnergyBalance <- tail(EnergyBalance,-5)
-    names(EnergyBalance) <-
+    EnBalance <- as.data.frame(t(EnBalance))
+    EnBalance <- EnBalance[, c(1, 6, 12, 18, 23)]
+    EnBalance <- tail(EnBalance,-5)
+    names(EnBalance) <-
       c("Year", "Electricity", "Heat", "Transport", "Renewables")
-    EnergyBalance[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
+    EnBalance[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
       as.numeric(as.character(x)))
     
-    EnergyBalance[which(EnergyBalance$Year != max(EnergyBalance$Year)),][2:4] <- 0
+    EnBalance[which(EnBalance$Year != max(EnBalance$Year)),][2:4] <- 0
     
-    paste("Scotland,", min(EnergyBalance$Year),"-", max(EnergyBalance$Year))
+    paste("Scotland,", min(EnBalance$Year),"-", max(EnBalance$Year))
   })
   
-  output$EnergyBalancePlot <- renderPlotly  ({
+  output$EnBalancePlot <- renderPlotly  ({
     
-    EnergyLinks <- as.data.frame(read_excel("Structure/1 - Whole System/EnergyBalance.xlsx", 
+    EnergyLinks <- as.data.frame(read_excel("Structure/1 - Whole System/EnBalance.xlsx", 
                                             sheet = "links"))
     
-    EnergyNodes <- as.data.frame(read_excel("Structure/1 - Whole System/EnergyBalance.xlsx", 
+    EnergyNodes <- as.data.frame(read_excel("Structure/1 - Whole System/EnBalance.xlsx", 
                                             sheet = "nodes"))
     p <- plot_ly(
       type = "sankey",
@@ -211,21 +211,21 @@ EnergyBalance <- function(input, output, session) {
   })
   
   
-  output$EnergyBalanceTable1 = renderDT({
+  output$EnBalanceTable1 = renderDT({
     
-    EnergyBalance <- read_excel(
+    EnBalance <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Energy balance",
       skip = 29,
       n_max = 11
     )
-    names(EnergyBalance)[1] <- ""
+    names(EnBalance)[1] <- ""
     
-    EnergyBalance <- tail(EnergyBalance, -1)
+    EnBalance <- tail(EnBalance, -1)
     
-    EnergyBalance[2:10] %<>% lapply(function(x) as.numeric(as.character(x)))
+    EnBalance[2:10] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    EnergyBalance[1] <- c( 
+    EnBalance[1] <- c( 
                           "Indigenous Production", 
                           "Imports", "Rest of World", 
                           "Rest of UK", "Exports", 
@@ -237,7 +237,7 @@ EnergyBalance <- function(input, output, session) {
                           )
     
     datatable(
-      EnergyBalance,
+      EnBalance,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -272,21 +272,21 @@ EnergyBalance <- function(input, output, session) {
 
   })
   
-  output$EnergyBalanceTable2 = renderDT({
+  output$EnBalanceTable2 = renderDT({
     
-    EnergyBalance <- read_excel(
+    EnBalance <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Energy balance",
       skip = 29,
       n_max = 19
     )
-    names(EnergyBalance)[1] <- ""
+    names(EnBalance)[1] <- ""
     
-    EnergyBalance <- tail(EnergyBalance, -12)
+    EnBalance <- tail(EnBalance, -12)
     
-    EnergyBalance[2:10] %<>% lapply(function(x) as.numeric(as.character(x)))
+    EnBalance[2:10] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    EnergyBalance[1] <- c( 
+    EnBalance[1] <- c( 
       "Primary Demand",
       "Transfers",
       "Transformation",
@@ -297,7 +297,7 @@ EnergyBalance <- function(input, output, session) {
     )
     
     datatable(
-      EnergyBalance,
+      EnBalance,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -332,21 +332,21 @@ EnergyBalance <- function(input, output, session) {
     
   })
   
-  output$EnergyBalanceTable3 = renderDT({
+  output$EnBalanceTable3 = renderDT({
     
-    EnergyBalance <- read_excel(
+    EnBalance <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Energy balance",
       skip = 29,
       n_max = 25
     )
-    names(EnergyBalance)[1] <- ""
+    names(EnBalance)[1] <- ""
     
-    EnergyBalance <- tail(EnergyBalance, -19)
+    EnBalance <- tail(EnBalance, -19)
     
-    EnergyBalance[2:10] %<>% lapply(function(x) as.numeric(as.character(x)))
+    EnBalance[2:10] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    EnergyBalance[1] <- c( 
+    EnBalance[1] <- c( 
       "Final Consumption",
       "Non-Energy Use",
       "Industry",
@@ -356,7 +356,7 @@ EnergyBalance <- function(input, output, session) {
     )
     
     datatable(
-      EnergyBalance,
+      EnBalance,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -395,7 +395,7 @@ EnergyBalance <- function(input, output, session) {
     tagList(column(12,
                    
                    HTML(
-                     paste(readtext("Structure/1 - Whole System/EnergyBalance.txt")[2])
+                     paste(readtext("Structure/1 - Whole System/EnBalance.txt")[2])
                      
                    )))
   })
@@ -405,40 +405,40 @@ EnergyBalance <- function(input, output, session) {
   })
   
   
-  output$EnergyBalance.png <- downloadHandler(
-    filename = "EnergyBalance.png",
+  output$EnBalance.png <- downloadHandler(
+    filename = "EnBalance.png",
     content = function(file) {
-      writePNG(readPNG("Structure/1 - Whole System/EnergyBalance.png"), file) 
+      writePNG(readPNG("Structure/1 - Whole System/EnBalance.png"), file) 
     }
   )
     
   
-  output$EnergyBalanceData.xlsx <- downloadHandler(
-    filename = "EnergyBalanceData.xlsx",
+  output$EnBalanceData.xlsx <- downloadHandler(
+    filename = "EnBalanceData.xlsx",
     content <- function(file) {
-        file.copy("Structure/1 - Whole System/EnergyBalanceData.xlsx", file)
+        file.copy("Structure/1 - Whole System/EnBalanceData.xlsx", file)
       })  
   
       output$SimplifiedFlowSubtitle <- renderText({
       
-      EnergyBalance <- read_excel(
+      EnBalance <- read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Renewable energy target",
         col_names = FALSE,
         skip = 21,
         n_max = 23
       )
-      EnergyBalance <- as.data.frame(t(EnergyBalance))
-      EnergyBalance <- EnergyBalance[, c(1, 6, 12, 18, 23)]
-      EnergyBalance <- tail(EnergyBalance,-5)
-      names(EnergyBalance) <-
+      EnBalance <- as.data.frame(t(EnBalance))
+      EnBalance <- EnBalance[, c(1, 6, 12, 18, 23)]
+      EnBalance <- tail(EnBalance,-5)
+      names(EnBalance) <-
         c("Year", "Electricity", "Heat", "Transport", "Renewables")
-      EnergyBalance[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
+      EnBalance[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
         as.numeric(as.character(x)))
       
-      EnergyBalance[which(EnergyBalance$Year != max(EnergyBalance$Year)),][2:4] <- 0
+      EnBalance[which(EnBalance$Year != max(EnBalance$Year)),][2:4] <- 0
       
-      paste("Scotland,", min(EnergyBalance$Year),"-", max(EnergyBalance$Year))
+      paste("Scotland,", min(EnBalance$Year),"-", max(EnBalance$Year))
     })
     
     output$SimplifiedFlow.png <- downloadHandler(
@@ -639,14 +639,14 @@ EnergyBalance <- function(input, output, session) {
     })
     
     observeEvent(input$ToggleTable1, {
-      toggle("EnergyBalanceTable1")
+      toggle("EnBalanceTable1")
     })
     
     observeEvent(input$ToggleTable2, {
-      toggle("EnergyBalanceTable2")
+      toggle("EnBalanceTable2")
     })
     
     observeEvent(input$ToggleTable3, {
-      toggle("EnergyBalanceTable3")
+      toggle("EnBalanceTable3")
     })
 }

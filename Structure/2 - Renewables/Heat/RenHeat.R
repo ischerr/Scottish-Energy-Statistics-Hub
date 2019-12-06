@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-RenHeatTgtOutput <- function(id) {
+RenHeatOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
                     h3("Share of renewable Heat in gross final consumption", style = "color: #39ab2c;  font-weight:bold"),
-                    h4(textOutput(ns('RenHeatTgtSubtitle')), style = "color: #39ab2c;")
+                    h4(textOutput(ns('RenHeatSubtitle')), style = "color: #39ab2c;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('RenHeatTgt.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('RenHeat.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-    #dygraphOutput(ns("RenHeatTgtPlot")),
-    plotlyOutput(ns("RenHeatTgtPlot"))%>% withSpinner(color="#39ab2c"),
+    #dygraphOutput(ns("RenHeatPlot")),
+    plotlyOutput(ns("RenHeatPlot"))%>% withSpinner(color="#39ab2c"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
@@ -36,7 +36,7 @@ RenHeatTgtOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("RenHeatTgtTable"))%>% withSpinner(color="#39ab2c"))),
+      column(12, dataTableOutput(ns("RenHeatTable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
       column(1,
@@ -61,16 +61,16 @@ RenHeatTgtOutput <- function(id) {
 
 
 ###### Server ######
-RenHeatTgt <- function(input, output, session) {
+RenHeat <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("RenHeatTgt.R")
+  print("RenHeat.R")
   
-  output$RenHeatTgtSubtitle <- renderText({
+  output$RenHeatSubtitle <- renderText({
     
     RenHeat <- read_excel("Structure/CurrentWorking.xlsx", 
                           sheet = "Renewable heat", col_names = FALSE, 
@@ -86,7 +86,7 @@ RenHeatTgt <- function(input, output, session) {
     paste("Scotland,", min(RenHeat$Year),"-", max(RenHeat$Year[which(RenHeat$Renewables != 0)]))
   })
   
-  output$RenHeatTgtPlot <- renderPlotly  ({
+  output$RenHeatPlot <- renderPlotly  ({
     
     RenHeat <- read_excel("Structure/CurrentWorking.xlsx", 
                           sheet = "Renewable heat", col_names = FALSE, 
@@ -190,7 +190,7 @@ RenHeatTgt <- function(input, output, session) {
   })
   
   
-  output$RenHeatTgtTable = renderDataTable({
+  output$RenHeatTable = renderDataTable({
     
     RenHeat <- read_excel("Structure/CurrentWorking.xlsx", 
                           sheet = "Renewable heat", col_names = TRUE, 
@@ -246,13 +246,13 @@ RenHeatTgt <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/2 - Renewables/Heat/RenHeatTgt.txt")[2])
+                     paste(readtext("Structure/2 - Renewables/Heat/RenHeat.txt")[2])
                      
                    )))
   })
   
   observeEvent(input$ToggleTable, {
-    toggle("RenHeatTgtTable")
+    toggle("RenHeatTable")
   })
   
 
@@ -262,8 +262,8 @@ RenHeatTgt <- function(input, output, session) {
   })
   
   
-  output$RenHeatTgt.png <- downloadHandler(
-    filename = "RenHeatTgt.png",
+  output$RenHeat.png <- downloadHandler(
+    filename = "RenHeat.png",
     content = function(file) {
 
       RenHeat <- read_excel("Structure/CurrentWorking.xlsx", 

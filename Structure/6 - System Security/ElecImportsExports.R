@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-ImportsExportsOutput <- function(id) {
+ElecImportsExportsOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
                     h3("International sales from oil and gas supply chain", style = "color: #5d8be1;  font-weight:bold"),
-                    h4(textOutput(ns('ImportsExportsSubtitle')), style = "color: #5d8be1;")
+                    h4(textOutput(ns('ElecImportsExportsSubtitle')), style = "color: #5d8be1;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('ImportsExports.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('ElecImportsExports.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
-    #dygraphOutput(ns("ImportsExportsPlot")),
-    plotlyOutput(ns("ImportsExportsPlot"))%>% withSpinner(color="#5d8be1"),
+    #dygraphOutput(ns("ElecImportsExportsPlot")),
+    plotlyOutput(ns("ElecImportsExportsPlot"))%>% withSpinner(color="#5d8be1"),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #5d8be1;  font-weight:bold")),
@@ -36,7 +36,7 @@ ImportsExportsOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("ImportsExportsTable"))%>% withSpinner(color="#5d8be1"))),
+      column(12, dataTableOutput(ns("ElecImportsExportsTable"))%>% withSpinner(color="#5d8be1"))),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
       column(1,
@@ -61,17 +61,17 @@ ImportsExportsOutput <- function(id) {
 
 
 ###### Server ######
-ImportsExports <- function(input, output, session) {
+ElecImportsExports <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("ImportsExports.R")
+  print("ElecImportsExports.R")
 
   
-  output$ImportsExportsSubtitle <- renderText({
+  output$ElecImportsExportsSubtitle <- renderText({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Elec imports & exports", skip = 12)[c(10,15,16)]
@@ -82,13 +82,13 @@ ImportsExports <- function(input, output, session) {
     
     names(Data) <- c("Year", "Exports", "Imports")
     
-    ImportsExports <- as_tibble(Data)
+    ElecImportsExports <- as_tibble(Data)
     
     
-    paste("Scotland,", min(ImportsExports$Year),"-", max(ImportsExports$Year))
+    paste("Scotland,", min(ElecImportsExports$Year),"-", max(ElecImportsExports$Year))
   })
   
-  output$ImportsExportsPlot <- renderPlotly  ({
+  output$ElecImportsExportsPlot <- renderPlotly  ({
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
@@ -100,20 +100,20 @@ ImportsExports <- function(input, output, session) {
     
     names(Data) <- c("Year", "Exports", "Imports")
     
-    ImportsExports <- as_tibble(Data)
+    ElecImportsExports <- as_tibble(Data)
     
     ### variables
     ChartColours <- c("#5d8be1", "#225ea8", "#41b6c4", "#8da0cb")
     sourcecaption = "Source: BEIS"
     plottitle = "Electricity imports and exports"
     
-    ImportsExports$Year <- paste0("01/01/", ImportsExports$Year)
+    ElecImportsExports$Year <- paste0("01/01/", ElecImportsExports$Year)
     
-    ImportsExports$Year <- dmy(ImportsExports$Year)
+    ElecImportsExports$Year <- dmy(ElecImportsExports$Year)
     
     
-    p <-  plot_ly(ImportsExports,x = ~ Year ) %>% 
-      add_trace(data = ImportsExports,
+    p <-  plot_ly(ElecImportsExports,x = ~ Year ) %>% 
+      add_trace(data = ElecImportsExports,
                 x = ~ Year,
                 y = ~ Exports,
                 name = "Electricity Exports",
@@ -122,24 +122,24 @@ ImportsExports <- function(input, output, session) {
                 legendgroup = "1",
                 text = paste0(
                   "Electricity Exports: ",
-                  format(round(ImportsExports$Exports, digits = 0), big.mark = ","),
+                  format(round(ElecImportsExports$Exports, digits = 0), big.mark = ","),
                   " GWh\nYear: ",
-                  format(ImportsExports$Year, "%Y")
+                  format(ElecImportsExports$Year, "%Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = ChartColours[2], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(ImportsExports[which(ImportsExports$Exports > 0 | ImportsExports$Exports < 0),], 1),
+        data = tail(ElecImportsExports[which(ElecImportsExports$Exports > 0 | ElecImportsExports$Exports < 0),], 1),
         x = ~ Year,
         y = ~ `Exports`,
         legendgroup = "1",
         name = "Electricity Exports",
         text = paste0(
           "Electricity Exports: ",
-          format(round(ImportsExports[which(ImportsExports$Exports > 0 | ImportsExports$Exports < 0),][-1,]$Exports, digits = 0), big.mark = ","),
+          format(round(ElecImportsExports[which(ElecImportsExports$Exports > 0 | ElecImportsExports$Exports < 0),][-1,]$Exports, digits = 0), big.mark = ","),
           " GWh\nYear: ",
-          format(ImportsExports[which(ImportsExports$Exports > 0 | ImportsExports$Exports < 0),][-1,]$Year, "%Y")
+          format(ElecImportsExports[which(ElecImportsExports$Exports > 0 | ElecImportsExports$Exports < 0),][-1,]$Year, "%Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -148,7 +148,7 @@ ImportsExports <- function(input, output, session) {
         marker = list(size = 18, 
                       color = ChartColours[2])
       ) %>% 
-      add_trace(data = ImportsExports,
+      add_trace(data = ElecImportsExports,
                 x = ~ Year,
                 y = ~ Imports,
                 name = "Electricity Imports",
@@ -157,24 +157,24 @@ ImportsExports <- function(input, output, session) {
                 legendgroup = "2",
                 text = paste0(
                   "Electricity Imports: ",
-                  format(round(ImportsExports$Imports, digits = 0), big.mark = ","),
+                  format(round(ElecImportsExports$Imports, digits = 0), big.mark = ","),
                   " GWh\nYear: ",
-                  format(ImportsExports$Year, "%Y")
+                  format(ElecImportsExports$Year, "%Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = ChartColours[3], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(ImportsExports[which(ImportsExports$Imports > 0 | ImportsExports$Imports < 0),], 1),
+        data = tail(ElecImportsExports[which(ElecImportsExports$Imports > 0 | ElecImportsExports$Imports < 0),], 1),
         x = ~ Year,
         y = ~ `Imports`,
         legendgroup = "2",
         name = "Electricity Imports",
         text = paste0(
           "Electricity Imports: ",
-          format(round(ImportsExports[which(ImportsExports$Imports > 0 | ImportsExports$Imports < 0),][-1,]$Imports, digits = 0), big.mark = ","),
+          format(round(ElecImportsExports[which(ElecImportsExports$Imports > 0 | ElecImportsExports$Imports < 0),][-1,]$Imports, digits = 0), big.mark = ","),
           " GWh\nYear: ",
-          format(ImportsExports[which(ImportsExports$Imports > 0 | ImportsExports$Imports < 0),][-1,]$Year, "%Y")
+          format(ElecImportsExports[which(ElecImportsExports$Imports > 0 | ElecImportsExports$Imports < 0),][-1,]$Year, "%Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -183,21 +183,21 @@ ImportsExports <- function(input, output, session) {
         marker = list(size = 18, 
                       color = ChartColours[3])
       ) %>% 
-      add_annotations( x = tail(ImportsExports[which(ImportsExports$Imports > 0 | ImportsExports$Imports < 0),], 1)$Year,
-                       y = tail(ImportsExports[which(ImportsExports$Imports > 0 | ImportsExports$Imports < 0),], 1)$Exports-500,
+      add_annotations( x = tail(ElecImportsExports[which(ElecImportsExports$Imports > 0 | ElecImportsExports$Imports < 0),], 1)$Year,
+                       y = tail(ElecImportsExports[which(ElecImportsExports$Imports > 0 | ElecImportsExports$Imports < 0),], 1)$Exports-500,
                        xref = "x", yref = "y",
                        axref = "x", ayref = "y",
                        text = "",
                        showarrow = T,
-                       ax = tail(ImportsExports[which(ImportsExports$Imports > 0 | ImportsExports$Imports < 0),], 1)$Year,
-                       ay = tail(ImportsExports[which(ImportsExports$Imports > 0 | ImportsExports$Imports < 0),], 1)$Imports+500,
+                       ax = tail(ElecImportsExports[which(ElecImportsExports$Imports > 0 | ElecImportsExports$Imports < 0),], 1)$Year,
+                       ay = tail(ElecImportsExports[which(ElecImportsExports$Imports > 0 | ElecImportsExports$Imports < 0),], 1)$Imports+500,
                        arrowcolor = ChartColours[1]
                        ) %>% 
      add_annotations(
-       x = tail(ImportsExports[which(ImportsExports$Imports > 0 | ImportsExports$Imports < 0),], 1)$Year - 500,
-       y = ((tail(ImportsExports[which(ImportsExports$Imports > 0 | ImportsExports$Imports < 0),], 1)$Exports - tail(ImportsExports[which(ImportsExports$Imports > 0 | ImportsExports$Imports < 0),], 1)$Imports)/2)+tail(ImportsExports[which(ImportsExports$Imports > 0 | ImportsExports$Imports < 0),], 1)$Imports,
+       x = tail(ElecImportsExports[which(ElecImportsExports$Imports > 0 | ElecImportsExports$Imports < 0),], 1)$Year - 500,
+       y = ((tail(ElecImportsExports[which(ElecImportsExports$Imports > 0 | ElecImportsExports$Imports < 0),], 1)$Exports - tail(ElecImportsExports[which(ElecImportsExports$Imports > 0 | ElecImportsExports$Imports < 0),], 1)$Imports)/2)+tail(ElecImportsExports[which(ElecImportsExports$Imports > 0 | ElecImportsExports$Imports < 0),], 1)$Imports,
        text = paste("<b>Net Exports:\n", 
-                    format(round((tail(ImportsExports[which(ImportsExports$Imports > 0 | ImportsExports$Imports < 0),], 1)$Exports - tail(ImportsExports[which(ImportsExports$Imports > 0 | ImportsExports$Imports < 0),], 1)$Imports), digits = 0), big.mark = ","), "GWh</b>"
+                    format(round((tail(ElecImportsExports[which(ElecImportsExports$Imports > 0 | ElecImportsExports$Imports < 0),], 1)$Exports - tail(ElecImportsExports[which(ElecImportsExports$Imports > 0 | ElecImportsExports$Imports < 0),], 1)$Imports), digits = 0), big.mark = ","), "GWh</b>"
                     ),
        showarrow = FALSE,
        font = list(color = ChartColours[1],
@@ -214,7 +214,7 @@ ImportsExports <- function(input, output, session) {
 
         xaxis = list(title = "",
                      showgrid = FALSE,
-                     range = c(min(ImportsExports$Year)-100, max(ImportsExports$Year)+100)),
+                     range = c(min(ElecImportsExports$Year)-100, max(ElecImportsExports$Year)+100)),
         yaxis = list(
           title = "GWh",
           tickformat = "",
@@ -233,7 +233,7 @@ ImportsExports <- function(input, output, session) {
   })
   
   
-  output$ImportsExportsTable = renderDataTable({
+  output$ElecImportsExportsTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Elec imports & exports", col_names = FALSE, skip = 12)[10:17]
@@ -244,11 +244,11 @@ ImportsExports <- function(input, output, session) {
     Data <- Data[-1,]
     Data[1:8] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    ImportsExports <- as_tibble(Data)
+    ElecImportsExports <- as_tibble(Data)
     
     
     datatable(
-      ImportsExports[complete.cases(ImportsExports),],
+      ElecImportsExports[complete.cases(ElecImportsExports),],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -283,7 +283,7 @@ ImportsExports <- function(input, output, session) {
       formatRound(2:8, 0)
   })
   
-  output$ImportsExportsQuarterTable = renderDataTable({
+  output$ElecImportsExportsQuarterTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Elec imports & exports", col_names = FALSE, skip = 12)[1:8]
@@ -294,10 +294,10 @@ ImportsExports <- function(input, output, session) {
     Data <- Data[-1,]
     Data[2:8] %<>% lapply(function(x) as.numeric(as.character(x)))
 
-    ImportsExports <- as_tibble(Data)
+    ElecImportsExports <- as_tibble(Data)
     
     datatable(
-      ImportsExports,
+      ElecImportsExports,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -343,11 +343,11 @@ ImportsExports <- function(input, output, session) {
  })
  
   observeEvent(input$ToggleTable, {
-    toggle("ImportsExportsTable")
+    toggle("ElecImportsExportsTable")
   })
   
   observeEvent(input$ToggleTable2, {
-    toggle("ImportsExportsQuarterTable")
+    toggle("ElecImportsExportsQuarterTable")
   })
   
   observeEvent(input$ToggleText, {
@@ -355,8 +355,8 @@ ImportsExports <- function(input, output, session) {
   })
   
   
-  output$ImportsExports.png <- downloadHandler(
-    filename = "ImportsExports.png",
+  output$ElecImportsExports.png <- downloadHandler(
+    filename = "ElecImportsExports.png",
     content = function(file) {
 
 
@@ -369,17 +369,17 @@ ImportsExports <- function(input, output, session) {
       
       names(Data) <- c("Year", "Exports", "Imports")
       
-      ImportsExports <- as_tibble(Data)
+      ElecImportsExports <- as_tibble(Data)
       
       ### variables
       ChartColours <- c("#5d8be1", "#225ea8", "#41b6c4", "#8da0cb")
       sourcecaption = "Source: BEIS"
       plottitle = "Electricity imports and exports"
       
-      #ImportsExports$ExportsPercentage <- PercentLabel(ImportsExports$Exports)
+      #ElecImportsExports$ExportsPercentage <- PercentLabel(ElecImportsExports$Exports)
       
       
-      ImportsExportsChart <- ImportsExports %>%
+      ElecImportsExportsChart <- ElecImportsExports %>%
         ggplot(aes(x = Year), family = "Century Gothic") +
         
         geom_line(
@@ -417,7 +417,7 @@ ImportsExports <- function(input, output, session) {
           family = "Century Gothic"
         ) +
         geom_point(
-          data = tail(ImportsExports, 1),
+          data = tail(ElecImportsExports, 1),
           aes(
             x = Year,
             y = Exports,
@@ -475,7 +475,7 @@ ImportsExports <- function(input, output, session) {
           family = "Century Gothic"
         ) +
         geom_point(
-          data = tail(ImportsExports, 1),
+          data = tail(ElecImportsExports, 1),
           aes(
             x = Year,
             y = `Imports`,
@@ -521,10 +521,10 @@ ImportsExports <- function(input, output, session) {
         )+
         geom_segment(
           aes(
-            y = ImportsExports[which(ImportsExports$Year == max(ImportsExports$Year)),]$Exports - 300,
-            yend = ImportsExports[which(ImportsExports$Year == max(ImportsExports$Year)),]$Imports + 300,
-            x = ImportsExports[which(ImportsExports$Year == max(ImportsExports$Year)),]$Year,
-            xend = ImportsExports[which(ImportsExports$Year == max(ImportsExports$Year)),]$Year
+            y = ElecImportsExports[which(ElecImportsExports$Year == max(ElecImportsExports$Year)),]$Exports - 300,
+            yend = ElecImportsExports[which(ElecImportsExports$Year == max(ElecImportsExports$Year)),]$Imports + 300,
+            x = ElecImportsExports[which(ElecImportsExports$Year == max(ElecImportsExports$Year)),]$Year,
+            xend = ElecImportsExports[which(ElecImportsExports$Year == max(ElecImportsExports$Year)),]$Year
           ),
           arrow = arrow(length = unit(0.3, "cm"), 
                         ends = "both"),
@@ -533,10 +533,10 @@ ImportsExports <- function(input, output, session) {
         )+ 
         geom_text(
           aes(
-            x = ImportsExports[which(ImportsExports$Year == max(ImportsExports$Year)),]$Year - 2,
-            y = ((ImportsExports[which(ImportsExports$Year == max(ImportsExports$Year)),]$Exports - ImportsExports[which(ImportsExports$Year == max(ImportsExports$Year)),]$Imports)/2)+ImportsExports[which(ImportsExports$Year == max(ImportsExports$Year)),]$Imports,
+            x = ElecImportsExports[which(ElecImportsExports$Year == max(ElecImportsExports$Year)),]$Year - 2,
+            y = ((ElecImportsExports[which(ElecImportsExports$Year == max(ElecImportsExports$Year)),]$Exports - ElecImportsExports[which(ElecImportsExports$Year == max(ElecImportsExports$Year)),]$Imports)/2)+ElecImportsExports[which(ElecImportsExports$Year == max(ElecImportsExports$Year)),]$Imports,
             label = paste0("Net exports:\n",
-                           format(round(ImportsExports$Exports[which(ImportsExports$Year == max(ImportsExports$Year))]-ImportsExports$Imports[which(ImportsExports$Year == max(ImportsExports$Year))], digits = 0), big.mark = ","),
+                           format(round(ElecImportsExports$Exports[which(ElecImportsExports$Year == max(ElecImportsExports$Year))]-ElecImportsExports$Imports[which(ElecImportsExports$Year == max(ElecImportsExports$Year))], digits = 0), big.mark = ","),
                            " GWh")
           ),
           colour = ChartColours[1],
@@ -544,22 +544,22 @@ ImportsExports <- function(input, output, session) {
           fontface = 2
         )
       
-      ImportsExports[which((ImportsExports$Exports - ImportsExports$Imports) == max(ImportsExports$Exports - ImportsExports$Imports)),]$Exports
-      ImportsExportsChart <-
-        TimeChart(ImportsExportsChart,
-                  ImportsExports,
+      ElecImportsExports[which((ElecImportsExports$Exports - ElecImportsExports$Imports) == max(ElecImportsExports$Exports - ElecImportsExports$Imports)),]$Exports
+      ElecImportsExportsChart <-
+        TimeChart(ElecImportsExportsChart,
+                  ElecImportsExports,
                   plottitle,
                   sourcecaption,
                   ChartColours)
       
-      ImportsExportsChart <- ImportsExportsChart +
+      ElecImportsExportsChart <- ElecImportsExportsChart +
         xlim(1999,2019) +
-        labs(subtitle = paste("Scotland,", min(ImportsExports$Year), "-", max(ImportsExports$Year)))
+        labs(subtitle = paste("Scotland,", min(ElecImportsExports$Year), "-", max(ElecImportsExports$Year)))
       
-      ImportsExportsChart
+      ElecImportsExportsChart
       ggsave(
         file,
-        plot =  ImportsExportsChart,
+        plot =  ElecImportsExportsChart,
         width = 14,
         height = 14,
         units = "cm",

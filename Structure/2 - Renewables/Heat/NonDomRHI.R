@@ -7,23 +7,23 @@ require("DT")
 
 source("Structure/Global.R")
 
-NonDomesticRHIOutput <- function(id) {
+NonDomRHIOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
       tabPanel("Non-domestic RHI",
     fluidRow(column(8,
                     h3("Proportion on non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff", style = "color: #39ab2c;  font-weight:bold"),
-                    h4(textOutput(ns('NonDomesticRHISubtitle')), style = "color: #39ab2c;")
+                    h4(textOutput(ns('NonDomRHISubtitle')), style = "color: #39ab2c;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('NonDomesticRHI.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('NonDomRHI.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-    #dygraphOutput(ns("NonDomesticRHIPlot")),
-    plotlyOutput(ns("NonDomesticRHIPlot"))%>% withSpinner(color="#39ab2c"),
+    #dygraphOutput(ns("NonDomRHIPlot")),
+    plotlyOutput(ns("NonDomRHIPlot"))%>% withSpinner(color="#39ab2c"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Accredited Installations",
              fluidRow(column(8,
@@ -36,7 +36,7 @@ NonDomesticRHIOutput <- function(id) {
              )),
              
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-             #dygraphOutput(ns("NonDomesticRHIPlot")),
+             #dygraphOutput(ns("NonDomRHIPlot")),
              plotlyOutput(ns("NonDomRHIAccreditedInstallationsPlot"))%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Accreddited Capacity",
@@ -50,7 +50,7 @@ NonDomesticRHIOutput <- function(id) {
              )),
              
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-             #dygraphOutput(ns("NonDomesticRHIPlot")),
+             #dygraphOutput(ns("NonDomRHIPlot")),
              plotlyOutput(ns("NonDomRHInstallationCapacityPlot"))%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
     ),
@@ -69,7 +69,7 @@ NonDomesticRHIOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("NonDomesticRHITable"))%>% withSpinner(color="#39ab2c"))),
+      column(12, dataTableOutput(ns("NonDomRHITable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Output",
       fluidRow(
@@ -103,22 +103,22 @@ NonDomesticRHIOutput <- function(id) {
 
 
 ###### Server ######
-NonDomesticRHI <- function(input, output, session) {
+NonDomRHI <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("NonDomesticRHI.R")
+  print("NonDomRHI.R")
 
   
-  output$NonDomesticRHISubtitle <- renderText({
+  output$NonDomRHISubtitle <- renderText({
     
     paste("Scotland, Nov 2011 - June 2019")
   })
   
-  output$NonDomesticRHIPlot <- renderPlotly  ({
+  output$NonDomRHIPlot <- renderPlotly  ({
     
     ChartColours <- c("#39ab2c", "#FF8500")
     BarColours <-
@@ -391,7 +391,7 @@ names(Data)[1] <- "Year"
   })
   
 
-  output$NonDomesticRHITable = renderDataTable({
+  output$NonDomRHITable = renderDataTable({
     
     Data <-
       read_excel(
@@ -405,10 +405,10 @@ names(Data)[1] <- "Year"
     
     names(Data)[c(3,5,7)] <- "Proportion"
     
-    NonDomesticRHI <- Data
+    NonDomRHI <- Data
     
     datatable(
-      NonDomesticRHI,
+      NonDomRHI,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -501,13 +501,13 @@ names(Data)[1] <- "Year"
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/2 - Renewables/Heat/NonDomesticRHI.txt")[2])
+                     paste(readtext("Structure/2 - Renewables/Heat/NonDomRHI.txt")[2])
                      
                    )))
   })
   
  observeEvent(input$ToggleTable1, {
-    toggle("NonDomesticRHITable")
+    toggle("NonDomRHITable")
   })
   
   observeEvent(input$ToggleTable2, {
@@ -520,8 +520,8 @@ names(Data)[1] <- "Year"
   })
   
   
-  output$NonDomesticRHI.png <- downloadHandler(
-    filename = "NonDomesticRHI.png",
+  output$NonDomRHI.png <- downloadHandler(
+    filename = "NonDomRHI.png",
     content = function(file) {
 
       Data <-

@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-ElecGenOutput <- function(id) {
+ElecGenerationOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
                     h3("Electricity generated and consumed", style = "color: #5d8be1;  font-weight:bold"),
-                    h4(textOutput(ns('ElecGenSubtitle')), style = "color: #5d8be1;")
+                    h4(textOutput(ns('ElecGenerationSubtitle')), style = "color: #5d8be1;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('ElecGen.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('ElecGeneration.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
-    #dygraphOutput(ns("ElecGenPlot")),
-    plotlyOutput(ns("ElecGenPlot"))%>% withSpinner(color="#5d8be1"),
+    #dygraphOutput(ns("ElecGenerationPlot")),
+    plotlyOutput(ns("ElecGenerationPlot"))%>% withSpinner(color="#5d8be1"),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #5d8be1;  font-weight:bold")),
@@ -36,7 +36,7 @@ ElecGenOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("ElecGenTable"))%>% withSpinner(color="#5d8be1"))),
+      column(12, dataTableOutput(ns("ElecGenerationTable"))%>% withSpinner(color="#5d8be1"))),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
       column(1,
@@ -49,7 +49,7 @@ ElecGenOutput <- function(id) {
         8,
         align = "right",
         SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
+        SourceLookup("ETElecGeneration"),
         SourceLookup("ESTRenHeat")
         
       )
@@ -61,17 +61,17 @@ ElecGenOutput <- function(id) {
 
 
 ###### Server ######
-ElecGen <- function(input, output, session) {
+ElecGeneration <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("ElecGen.R")
+  print("ElecGeneration.R")
 
   
-  output$ElecGenSubtitle <- renderText({
+  output$ElecGenerationSubtitle <- renderText({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Elec generation", skip = 12)[c(1,2,5,6)]
@@ -82,13 +82,13 @@ ElecGen <- function(input, output, session) {
     
     names(Data) <- c("Year", "Generated", "Gross", "Total")
     
-    ElecGen <- as_tibble(Data)
+    ElecGeneration <- as_tibble(Data)
     
     
-    paste("Scotland,", min(ElecGen$Year),"-", max(ElecGen$Year))
+    paste("Scotland,", min(ElecGeneration$Year),"-", max(ElecGeneration$Year))
   })
   
-  output$ElecGenPlot <- renderPlotly  ({
+  output$ElecGenerationPlot <- renderPlotly  ({
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
@@ -100,20 +100,20 @@ ElecGen <- function(input, output, session) {
     
     names(Data) <- c("Year", "Generated", "Gross", "Total")
     
-    ElecGen <- as_tibble(Data)
+    ElecGeneration <- as_tibble(Data)
     
     ### variables
     ChartColours <- c("#5d8be1", "#1d91c0",  "#5d8be1", "#253494" )
     sourcecaption = "Source: BEIS"
     plottitle = "Electricity generated and consumed"
     
-    ElecGen$Year <- paste0("01/01/", ElecGen$Year)
+    ElecGeneration$Year <- paste0("01/01/", ElecGeneration$Year)
     
-    ElecGen$Year <- dmy(ElecGen$Year)
+    ElecGeneration$Year <- dmy(ElecGeneration$Year)
     
     
-    p <-  plot_ly(ElecGen,x = ~ Year ) %>% 
-      add_trace(data = ElecGen,
+    p <-  plot_ly(ElecGeneration,x = ~ Year ) %>% 
+      add_trace(data = ElecGeneration,
                 x = ~ Year,
                 y = ~ Generated,
                 name = "Electricity Generated",
@@ -122,24 +122,24 @@ ElecGen <- function(input, output, session) {
                 legendgroup = "1",
                 text = paste0(
                   "Electricity Generated: ",
-                  round(ElecGen$Generated, digits = 0),
+                  round(ElecGeneration$Generated, digits = 0),
                   " GWh\nYear: ",
-                  format(ElecGen$Year, "%Y")
+                  format(ElecGeneration$Year, "%Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = ChartColours[1], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(ElecGen[which(ElecGen$Generated > 0 | ElecGen$Generated < 0),], 1),
+        data = tail(ElecGeneration[which(ElecGeneration$Generated > 0 | ElecGeneration$Generated < 0),], 1),
         x = ~ Year,
         y = ~ `Generated`,
         legendgroup = "1",
         name = "Electricity Generated",
         text = paste0(
           "Electricity Generated: ",
-          round(ElecGen[which(ElecGen$Generated > 0 | ElecGen$Generated < 0),][-1,]$Generated, digits = 0),
+          round(ElecGeneration[which(ElecGeneration$Generated > 0 | ElecGeneration$Generated < 0),][-1,]$Generated, digits = 0),
           " GWh\nYear: ",
-          format(ElecGen[which(ElecGen$Generated > 0 | ElecGen$Generated < 0),][-1,]$Year, "%Y")
+          format(ElecGeneration[which(ElecGeneration$Generated > 0 | ElecGeneration$Generated < 0),][-1,]$Year, "%Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -148,7 +148,7 @@ ElecGen <- function(input, output, session) {
         marker = list(size = 18, 
                       color = ChartColours[1])
       ) %>% 
-      add_trace(data = ElecGen,
+      add_trace(data = ElecGeneration,
                 x = ~ Year,
                 y = ~ Gross,
                 name = "Gross electricity consumption",
@@ -157,24 +157,24 @@ ElecGen <- function(input, output, session) {
                 legendgroup = "2",
                 text = paste0(
                   "Gross electricity consumption: ",
-                  round(ElecGen$Gross, digits = 0),
+                  round(ElecGeneration$Gross, digits = 0),
                   " GWh\nYear: ",
-                  format(ElecGen$Year, "%Y")
+                  format(ElecGeneration$Year, "%Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = ChartColours[4], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(ElecGen[which(ElecGen$Gross > 0 | ElecGen$Gross < 0),], 1),
+        data = tail(ElecGeneration[which(ElecGeneration$Gross > 0 | ElecGeneration$Gross < 0),], 1),
         x = ~ Year,
         y = ~ `Gross`,
         legendgroup = "2",
         name = "Gross electricity consumption",
         text = paste0(
           "Gross electricity consumption: ",
-          round(ElecGen[which(ElecGen$Gross > 0 | ElecGen$Gross < 0),][-1,]$Gross, digits = 0),
+          round(ElecGeneration[which(ElecGeneration$Gross > 0 | ElecGeneration$Gross < 0),][-1,]$Gross, digits = 0),
           " GWh\nYear: ",
-          format(ElecGen[which(ElecGen$Gross > 0 | ElecGen$Gross < 0),][-1,]$Year, "%Y")
+          format(ElecGeneration[which(ElecGeneration$Gross > 0 | ElecGeneration$Gross < 0),][-1,]$Year, "%Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -183,7 +183,7 @@ ElecGen <- function(input, output, session) {
         marker = list(size = 18, 
                       color = ChartColours[4])
       ) %>% 
-      add_trace(data = ElecGen,
+      add_trace(data = ElecGeneration,
                 x = ~ Year,
                 y = ~ Total,
                 name = "Total electricity consumption",
@@ -192,24 +192,24 @@ ElecGen <- function(input, output, session) {
                 legendgroup = "3",
                 text = paste0(
                   "Total electricity consumption: ",
-                  round(ElecGen$Total, digits = 0),
+                  round(ElecGeneration$Total, digits = 0),
                   " GWh\nYear: ",
-                  format(ElecGen$Year, "%Y")
+                  format(ElecGeneration$Year, "%Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = ChartColours[2], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(ElecGen[which(ElecGen$Total > 0 | ElecGen$Total < 0),], 1),
+        data = tail(ElecGeneration[which(ElecGeneration$Total > 0 | ElecGeneration$Total < 0),], 1),
         x = ~ Year,
         y = ~ `Total`,
         legendgroup = "3",
         name = "Total electricity consumption",
         text = paste0(
           "Total electricity consumption: ",
-          round(ElecGen[which(ElecGen$Total > 0 | ElecGen$Total < 0),][-1,]$Total, digits = 0),
+          round(ElecGeneration[which(ElecGeneration$Total > 0 | ElecGeneration$Total < 0),][-1,]$Total, digits = 0),
           " GWh\nYear: ",
-          format(ElecGen[which(ElecGen$Total > 0 | ElecGen$Total < 0),][-1,]$Year, "%Y")
+          format(ElecGeneration[which(ElecGeneration$Total > 0 | ElecGeneration$Total < 0),][-1,]$Year, "%Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -229,7 +229,7 @@ ElecGen <- function(input, output, session) {
 
         xaxis = list(title = "",
                      showgrid = FALSE,
-                     range = c(min(ElecGen$Year)-100, max(ElecGen$Year)+100)),
+                     range = c(min(ElecGeneration$Year)-100, max(ElecGeneration$Year)+100)),
         yaxis = list(
           title = "GWh",
           tickformat = "",
@@ -248,17 +248,17 @@ ElecGen <- function(input, output, session) {
   })
   
   
-  output$ElecGenTable = renderDataTable({
+  output$ElecGenerationTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Elec generation", skip = 12)
     
     Data <- Data[complete.cases(Data),]
 
-    ElecGen <- as_tibble(Data)
+    ElecGeneration <- as_tibble(Data)
     
     datatable(
-      ElecGen,
+      ElecGeneration,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -293,7 +293,7 @@ ElecGen <- function(input, output, session) {
       formatRound(2:7, 0)
   })
   
-  output$ElecGenImpactTable = renderDataTable({
+  output$ElecGenerationImpactTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Wall insulation", skip = 20,  col_names = FALSE)
@@ -306,10 +306,10 @@ ElecGen <- function(input, output, session) {
     
     Data <- as_tibble(sapply( Data, as.numeric ))
     
-    ElecGen <- Data
+    ElecGeneration <- Data
     
     datatable(
-      ElecGen,
+      ElecGeneration,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -354,11 +354,11 @@ ElecGen <- function(input, output, session) {
                                    )))
  })
   observeEvent(input$ToggleTable, {
-    toggle("ElecGenTable")
+    toggle("ElecGenerationTable")
   })
   
   observeEvent(input$ToggleTable2, {
-    toggle("ElecGenImpactTable")
+    toggle("ElecGenerationImpactTable")
   })
   
   observeEvent(input$ToggleText, {
@@ -366,8 +366,8 @@ ElecGen <- function(input, output, session) {
   })
   
   
-  output$ElecGen.png <- downloadHandler(
-    filename = "ElecGen.png",
+  output$ElecGeneration.png <- downloadHandler(
+    filename = "ElecGeneration.png",
     content = function(file) {
 
 
@@ -380,17 +380,17 @@ ElecGen <- function(input, output, session) {
       
       names(Data) <- c("Year", "Generated", "Gross", "Total")
       
-      ElecGen <- as_tibble(Data)
+      ElecGeneration <- as_tibble(Data)
       
       ### variables
       ChartColours <- c("#5d8be1", "#1d91c0",  "#5d8be1", "#253494" )
       sourcecaption = "Source: BEIS"
       plottitle = "Electricity generated and consumed"
       
-      #ElecGen$TotalPercentage <- PercentLabel(ElecGen$Total)
+      #ElecGeneration$TotalPercentage <- PercentLabel(ElecGeneration$Total)
       
       
-      ElecGenChart <- ElecGen %>%
+      ElecGenerationChart <- ElecGeneration %>%
         ggplot(aes(x = Year), family = "Century Gothic") +
         
         geom_line(
@@ -402,8 +402,8 @@ ElecGen <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = mean(ElecGen$Year),
-          y = max(ElecGen$Total),
+          x = mean(ElecGeneration$Year),
+          y = max(ElecGeneration$Total),
           label = "Total electricity consumption",
           hjust = 0.5,
           vjust = 4,
@@ -420,8 +420,8 @@ ElecGen <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = mean(ElecGen$Year),
-          y = mean(ElecGen$Generated),
+          x = mean(ElecGeneration$Year),
+          y = mean(ElecGeneration$Generated),
           label = "Electricity generated",
           hjust = 0.5,
           vjust = -1.75,
@@ -438,8 +438,8 @@ ElecGen <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = mean(ElecGen$Year),
-          y = mean(ElecGen$Gross),
+          x = mean(ElecGeneration$Year),
+          y = mean(ElecGeneration$Gross),
           label = "Gross electricity consumption",
           hjust = 0.5,
           vjust = -1.5,
@@ -467,8 +467,8 @@ ElecGen <- function(input, output, session) {
         geom_text(
           aes(
             x = min(Year)-1,
-            y = ElecGen$Total[which(ElecGen$Year == min(ElecGen$Year))],
-            label = paste0(format(round(ElecGen$Total[which(ElecGen$Year == min(ElecGen$Year))], digits = 0), big.mark = ","), "\nGWh"),
+            y = ElecGeneration$Total[which(ElecGeneration$Year == min(ElecGeneration$Year))],
+            label = paste0(format(round(ElecGeneration$Total[which(ElecGeneration$Year == min(ElecGeneration$Year))], digits = 0), big.mark = ","), "\nGWh"),
             hjust = 0.5,
             fontface = 2
           ),
@@ -478,8 +478,8 @@ ElecGen <- function(input, output, session) {
         geom_text(
           aes(
             x = max(Year)+1,
-            y = ElecGen$Total[which(ElecGen$Year == max(ElecGen$Year))],
-            label = paste0(format(round(ElecGen$Total[which(ElecGen$Year == max(ElecGen$Year))], digits = 0), big.mark = ","), "\nGWh"),
+            y = ElecGeneration$Total[which(ElecGeneration$Year == max(ElecGeneration$Year))],
+            label = paste0(format(round(ElecGeneration$Total[which(ElecGeneration$Year == max(ElecGeneration$Year))], digits = 0), big.mark = ","), "\nGWh"),
             hjust = 0.5,
             fontface = 2
           ),
@@ -489,7 +489,7 @@ ElecGen <- function(input, output, session) {
         geom_point(
           aes(
             x = max(Year),
-            y = ElecGen$Total[which(ElecGen$Year == max(ElecGen$Year))]
+            y = ElecGeneration$Total[which(ElecGeneration$Year == max(ElecGeneration$Year))]
           ),
           colour = ChartColours[2],
           size = 4,
@@ -498,8 +498,8 @@ ElecGen <- function(input, output, session) {
         geom_text(
           aes(
             x = min(Year)-1,
-            y = ElecGen$Generated[which(ElecGen$Year == min(ElecGen$Year))],
-            label = paste0(format(round(ElecGen$Generated[which(ElecGen$Year == min(ElecGen$Year))], digits = 0), big.mark = ","), "\nGWh"),
+            y = ElecGeneration$Generated[which(ElecGeneration$Year == min(ElecGeneration$Year))],
+            label = paste0(format(round(ElecGeneration$Generated[which(ElecGeneration$Year == min(ElecGeneration$Year))], digits = 0), big.mark = ","), "\nGWh"),
             hjust = 0.5,
             fontface = 2
           ),
@@ -509,8 +509,8 @@ ElecGen <- function(input, output, session) {
         geom_text(
           aes(
             x = max(Year)+1,
-            y = ElecGen$Generated[which(ElecGen$Year == max(ElecGen$Year))],
-            label = paste0(format(round(ElecGen$Generated[which(ElecGen$Year == max(ElecGen$Year))], digits = 0), big.mark = ","), "\nGWh"),
+            y = ElecGeneration$Generated[which(ElecGeneration$Year == max(ElecGeneration$Year))],
+            label = paste0(format(round(ElecGeneration$Generated[which(ElecGeneration$Year == max(ElecGeneration$Year))], digits = 0), big.mark = ","), "\nGWh"),
             hjust = 0.5,
             fontface = 2
           ),
@@ -520,7 +520,7 @@ ElecGen <- function(input, output, session) {
         geom_point(
           aes(
             x = max(Year),
-            y = ElecGen$Generated[which(ElecGen$Year == max(ElecGen$Year))]
+            y = ElecGeneration$Generated[which(ElecGeneration$Year == max(ElecGeneration$Year))]
           ),
           colour = ChartColours[3],
           size = 4,
@@ -529,8 +529,8 @@ ElecGen <- function(input, output, session) {
         geom_text(
           aes(
             x = min(Year)-1,
-            y = ElecGen$Gross[which(ElecGen$Year == min(ElecGen$Year))],
-            label = paste0(format(round(ElecGen$Gross[which(ElecGen$Year == min(ElecGen$Year))], digits = 0), big.mark = ","), "\nGWh"),
+            y = ElecGeneration$Gross[which(ElecGeneration$Year == min(ElecGeneration$Year))],
+            label = paste0(format(round(ElecGeneration$Gross[which(ElecGeneration$Year == min(ElecGeneration$Year))], digits = 0), big.mark = ","), "\nGWh"),
             hjust = 0.5,
             fontface = 2
           ),
@@ -540,8 +540,8 @@ ElecGen <- function(input, output, session) {
         geom_text(
           aes(
             x = max(Year)+1,
-            y = ElecGen$Gross[which(ElecGen$Year == max(ElecGen$Year))],
-            label = paste0(format(round(ElecGen$Gross[which(ElecGen$Year == max(ElecGen$Year))], digits = 0), big.mark = ","), "\nGWh"),
+            y = ElecGeneration$Gross[which(ElecGeneration$Year == max(ElecGeneration$Year))],
+            label = paste0(format(round(ElecGeneration$Gross[which(ElecGeneration$Year == max(ElecGeneration$Year))], digits = 0), big.mark = ","), "\nGWh"),
             hjust = 0.5,
             vjust = 0,
             fontface = 2
@@ -552,7 +552,7 @@ ElecGen <- function(input, output, session) {
         geom_point(
           aes(
             x = max(Year),
-            y = ElecGen$Gross[which(ElecGen$Year == max(ElecGen$Year))]
+            y = ElecGeneration$Gross[which(ElecGeneration$Year == max(ElecGeneration$Year))]
           ),
           colour = ChartColours[4],
           family = "Century Gothic",
@@ -560,30 +560,30 @@ ElecGen <- function(input, output, session) {
         )
       
       
-      ElecGenChart
+      ElecGenerationChart
       
-      ElecGenChart <-
-        LinePercentChart(ElecGenChart,
-                         ElecGen,
+      ElecGenerationChart <-
+        LinePercentChart(ElecGenerationChart,
+                         ElecGeneration,
                          plottitle,
                          sourcecaption,
                          ChartColours)
       
-      ElecGenChart <- ElecGenChart +
+      ElecGenerationChart <- ElecGenerationChart +
         geom_hline(
           yintercept = 0,
           color = "grey",
           alpha = 0.7,
           linetype = 2
         )+
-        ylim(-1000, max(ElecGen$Generated))
+        ylim(-1000, max(ElecGeneration$Generated))
       
       
-      ElecGenChart
+      ElecGenerationChart
       
       ggsave(
         file,
-        plot =  ElecGenChart,
+        plot =  ElecGenerationChart,
         width = 18,
         height = 12,
         units = "cm",

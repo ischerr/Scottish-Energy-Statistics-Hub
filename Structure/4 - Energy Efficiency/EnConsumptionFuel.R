@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-EnConsumpFuelOutput <- function(id) {
+EnConsumptionFuelOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
                     h3("Final energy consumption by fuel type", style = "color: #34d1a3;  font-weight:bold"),
-                    h4(textOutput(ns('EnConsumpFuelSubtitle')), style = "color: #34d1a3;")
+                    h4(textOutput(ns('EnConsumptionFuelSubtitle')), style = "color: #34d1a3;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('EnConsumpFuel.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('EnConsumptionFuel.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
-    #dygraphOutput(ns("EnConsumpFuelPlot")),
-    plotlyOutput(ns("EnConsumpFuelPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
+    #dygraphOutput(ns("EnConsumptionFuelPlot")),
+    plotlyOutput(ns("EnConsumptionFuelPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
@@ -36,7 +36,7 @@ EnConsumpFuelOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("EnConsumpFuelTable"))%>% withSpinner(color="#34d1a3"))),
+      column(12, dataTableOutput(ns("EnConsumptionFuelTable"))%>% withSpinner(color="#34d1a3"))),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
       column(1,
@@ -61,17 +61,17 @@ EnConsumpFuelOutput <- function(id) {
 
 
 ###### Server ######
-EnConsumpFuel <- function(input, output, session) {
+EnConsumptionFuel <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("EnConsumpFuel.R")
+  print("EnConsumptionFuel.R")
 
   
-  output$EnConsumpFuelSubtitle <- renderText({
+  output$EnConsumptionFuelSubtitle <- renderText({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -92,7 +92,7 @@ EnConsumpFuel <- function(input, output, session) {
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
-  output$EnConsumpFuelPlot <- renderPlotly  ({
+  output$EnConsumptionFuelPlot <- renderPlotly  ({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -299,7 +299,7 @@ EnConsumpFuel <- function(input, output, session) {
   })
   
   
-  output$EnConsumpFuelTable = renderDataTable({
+  output$EnConsumptionFuelTable = renderDataTable({
     
     
     Data <- read_excel(
@@ -370,14 +370,14 @@ EnConsumpFuel <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/4 - Energy Efficiency/EnConsumpFuel.txt")[2])
+                     paste(readtext("Structure/4 - Energy Efficiency/EnConsumptionFuel.txt")[2])
                      
                    )))
   })
  
  
   observeEvent(input$ToggleTable, {
-    toggle("EnConsumpFuelTable")
+    toggle("EnConsumptionFuelTable")
   })
   
 
@@ -387,8 +387,8 @@ EnConsumpFuel <- function(input, output, session) {
   })
   
   
-  output$EnConsumpFuel.png <- downloadHandler(
-    filename = "EnConsumpFuel.png",
+  output$EnConsumptionFuel.png <- downloadHandler(
+    filename = "EnConsumptionFuel.png",
     content = function(file) {
 
 

@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-RenElecTgtOutput <- function(id) {
+RenElecTargetOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
                     h3("Share of renewable electricity in gross final consumption", style = "color: #39ab2c;  font-weight:bold"),
-                    h4(textOutput(ns('RenElecTgtSubtitle')), style = "color: #39ab2c;")
+                    h4(textOutput(ns('RenElecTargetSubtitle')), style = "color: #39ab2c;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('RenElecTgt.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('RenElecTarget.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-    #dygraphOutput(ns("RenElecTgtPlot")),
-    plotlyOutput(ns("RenElecTgtPlot"))%>% withSpinner(color="#39ab2c"),
+    #dygraphOutput(ns("RenElecTargetPlot")),
+    plotlyOutput(ns("RenElecTargetPlot"))%>% withSpinner(color="#39ab2c"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
@@ -36,7 +36,7 @@ RenElecTgtOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("RenElecTgtTable"))%>% withSpinner(color="#39ab2c"))),
+      column(12, dataTableOutput(ns("RenElecTargetTable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
       column(1,
@@ -61,17 +61,17 @@ RenElecTgtOutput <- function(id) {
 
 
 ###### Server ######
-RenElecTgt <- function(input, output, session) {
+RenElecTarget <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("RenElecTgt.R")
+  print("RenElecTarget.R")
 
   
-  output$RenElecTgtSubtitle <- renderText({
+  output$RenElecTargetSubtitle <- renderText({
     
     RenElec <- read_excel("Structure/CurrentWorking.xlsx", 
                           sheet = "Renewable elec target", col_names = FALSE, 
@@ -85,7 +85,7 @@ RenElecTgt <- function(input, output, session) {
     paste("Scotland,", min(RenElec$Year),"-", max(RenElec$Year))
   })
   
-  output$RenElecTgtPlot <- renderPlotly  ({
+  output$RenElecTargetPlot <- renderPlotly  ({
     
     RenElec <- read_excel("Structure/CurrentWorking.xlsx", 
                           sheet = "Renewable elec target", col_names = FALSE, 
@@ -186,7 +186,7 @@ RenElecTgt <- function(input, output, session) {
   })
   
   
-  output$RenElecTgtTable = renderDataTable({
+  output$RenElecTargetTable = renderDataTable({
     
     RenElec <- read_excel("Structure/CurrentWorking.xlsx", 
                           sheet = "Renewable elec target", col_names = FALSE, 
@@ -240,14 +240,14 @@ RenElecTgt <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/2 - Renewables/Electricity/RenElecTgt.txt")[2])
+                     paste(readtext("Structure/2 - Renewables/Electricity/RenElecTarget.txt")[2])
                      
                    )))
   })
   
   
   observeEvent(input$ToggleTable, {
-    toggle("RenElecTgtTable")
+    toggle("RenElecTargetTable")
   })
   
 
@@ -257,8 +257,8 @@ RenElecTgt <- function(input, output, session) {
   })
   
   
-  output$RenElecTgt.png <- downloadHandler(
-    filename = "RenElecTgt.png",
+  output$RenElecTarget.png <- downloadHandler(
+    filename = "RenElecTarget.png",
     content = function(file) {
 
       RenElec <- read_excel("Structure/CurrentWorking.xlsx", 

@@ -7,14 +7,14 @@ require("DT")
 
 source("Structure/Global.R")
 
-RenElecCapOutput <- function(id) {
+RenElecCapacityOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
       tabPanel("Installed capacity",
     fluidRow(column(8,
                     h3("Operational renewable capacity", style = "color: #39ab2c;  font-weight:bold"),
-                    h4(textOutput(ns('RenElecCapSubtitle')), style = "color: #39ab2c;")
+                    h4(textOutput(ns('RenElecCapacitySubtitle')), style = "color: #39ab2c;")
     ),
              column(
                4, style = 'padding:15px;',
@@ -22,8 +22,8 @@ RenElecCapOutput <- function(id) {
              )),
     
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-    #dygraphOutput(ns("RenElecCapPlot")),
-    plotlyOutput(ns("RenElecCapPlot"))%>% withSpinner(color="#39ab2c"),
+    #dygraphOutput(ns("RenElecCapacityPlot")),
+    plotlyOutput(ns("RenElecCapacityPlot"))%>% withSpinner(color="#39ab2c"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Pipeline renewable capacity by plannng stage",
              fluidRow(column(8,
@@ -36,7 +36,7 @@ RenElecCapOutput <- function(id) {
              )),
              
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-             #dygraphOutput(ns("RenElecCapPlot")),
+             #dygraphOutput(ns("RenElecCapacityPlot")),
              plotlyOutput(ns("RenElecPipelineCapPlot"), height = "200px")%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
@@ -54,7 +54,7 @@ RenElecCapOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("RenElecCapTable"))%>% withSpinner(color="#39ab2c"))),
+      column(12, dataTableOutput(ns("RenElecCapacityTable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Pipeline Capacity",
              fluidRow(
@@ -84,19 +84,19 @@ RenElecCapOutput <- function(id) {
 }
 
 ###### Server ######
-RenElecCap <- function(input, output, session) {
+RenElecCapacity <- function(input, output, session) {
 
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("RenElecCap.R")
+  print("RenElecCapacity.R")
   ###### Renewable Energy ###### ######
   
   ### From ESD ###
   
-  output$RenElecCapSubtitle <- renderText({
+  output$RenElecCapacitySubtitle <- renderText({
     
     Data <-
       read_excel(
@@ -113,7 +113,7 @@ RenElecCap <- function(input, output, session) {
     paste(min(Data$Year),"-", max(Data$Year))
   })
 
-  output$RenElecCapPlot <- renderPlotly  ({
+  output$RenElecCapacityPlot <- renderPlotly  ({
     
     Data <-
       read_excel(
@@ -200,20 +200,20 @@ RenElecCap <- function(input, output, session) {
   })
   
   
-  output$RenElecCapTable = renderDataTable({
+  output$RenElecCapacityTable = renderDataTable({
     
-    RenElecCap <- read_excel("Structure/CurrentWorking.xlsx",
+    RenElecCapacity <- read_excel("Structure/CurrentWorking.xlsx",
                           sheet = "Renewable elec capacity", col_names = TRUE, 
                           skip = 15)
     
-    RenElecCap <- RenElecCap[c(2,4)]
+    RenElecCapacity <- RenElecCapacity[c(2,4)]
     
     
     
-    names(RenElecCap)[1] <- c("Quarter")
+    names(RenElecCapacity)[1] <- c("Quarter")
     
     datatable(
-      RenElecCap,
+      RenElecCapacity,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -224,7 +224,7 @@ RenElecCap <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        order = list(list(ncol(RenElecCap)-2, 'desc')),
+        order = list(list(ncol(RenElecCapacity)-2, 'desc')),
         title = "Operational Capacity",
         dom = 'ltBp',
         buttons = list(
@@ -245,20 +245,20 @@ RenElecCap <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:ncol(RenElecCap), 1)
+      formatRound(2:ncol(RenElecCapacity), 1)
   })
   
   
   output$RenElecPipelineCapTable = renderDataTable({
     
-    RenElecCap <- read_excel("Structure/CurrentWorking.xlsx",
+    RenElecCapacity <- read_excel("Structure/CurrentWorking.xlsx",
                              sheet = "Renewable elec pipeline", col_names = TRUE, 
                              skip = 29,)
     
-    names(RenElecCap)[1] <- "Quarter"
+    names(RenElecCapacity)[1] <- "Quarter"
     
     datatable(
-      RenElecCap,
+      RenElecCapacity,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -289,20 +289,20 @@ RenElecCap <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:ncol(RenElecCap), 1)
+      formatRound(2:ncol(RenElecCapacity), 1)
   })
   
  output$Text <- renderUI({
    tagList(column(12,
                   HTML(
-                    paste(readtext("Structure/2 - Renewables/Electricity/RenElecCap.txt")[2])
+                    paste(readtext("Structure/2 - Renewables/Electricity/RenElecCapacity.txt")[2])
                     
                   )))
  })
  
  
   observeEvent(input$ToggleTable, {
-    toggle("RenElecCapTable")
+    toggle("RenElecCapacityTable")
   })
   
   observeEvent(input$ToggleTable2, {

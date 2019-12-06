@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-EnergyConsumptionEUOutput <- function(id) {
+EnConsumptionEUOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
                     h3("Renewable electricity as a percentage of gross consumption across the EU", style = "color: #34d1a3;  font-weight:bold"),
-                    h4(textOutput(ns('EnergyConsumptionEUSubtitle')), style = "color: #34d1a3;")
+                    h4(textOutput(ns('EnConsumptionEUSubtitle')), style = "color: #34d1a3;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('EnergyConsumptionEU.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('EnConsumptionEU.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
-    #dygraphOutput(ns("EnergyConsumptionEUPlot")),
-    plotlyOutput(ns("EnergyConsumptionEUPlot"), height = "700px")%>% withSpinner(color="#34d1a3"),
+    #dygraphOutput(ns("EnConsumptionEUPlot")),
+    plotlyOutput(ns("EnConsumptionEUPlot"), height = "700px")%>% withSpinner(color="#34d1a3"),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
@@ -36,7 +36,7 @@ EnergyConsumptionEUOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("EnergyConsumptionEUTable"))%>% withSpinner(color="#34d1a3"))),
+      column(12, dataTableOutput(ns("EnConsumptionEUTable"))%>% withSpinner(color="#34d1a3"))),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
       column(1,
@@ -61,82 +61,82 @@ EnergyConsumptionEUOutput <- function(id) {
 
 
 ###### Server ######
-EnergyConsumptionEU <- function(input, output, session) {
+EnConsumptionEU <- function(input, output, session) {
 
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("EnergyConsumptionEU.R")
+  print("EnConsumptionEU.R")
   ###### Renewable Energy ###### ######
   
   ### From ESD ###
   
-  output$EnergyConsumptionEUSubtitle <- renderText({
+  output$EnConsumptionEUSubtitle <- renderText({
     
-    EnergyConsumptionEU <- read_excel("Structure/CurrentWorking.xlsx",
+    EnConsumptionEU <- read_excel("Structure/CurrentWorking.xlsx",
                           sheet = "Energy consump EU", col_names = TRUE, 
                           skip = 18, n_max = 30)
     
-    EnergyConsumptionEU <- EnergyConsumptionEU[,c(1:ncol(EnergyConsumptionEU)-1)]
+    EnConsumptionEU <- EnConsumptionEU[,c(1:ncol(EnConsumptionEU)-1)]
     
     
     
-    names(EnergyConsumptionEU)[1] <- c("Countries")
+    names(EnConsumptionEU)[1] <- c("Countries")
     
-    EnergyConsumptionEU <- EnergyConsumptionEU %>% mutate(Countries = replace(Countries, Countries == "United Kingdom", "U.K."))
+    EnConsumptionEU <- EnConsumptionEU %>% mutate(Countries = replace(Countries, Countries == "United Kingdom", "U.K."))
     
-    EnergyConsumptionEU <- EnergyConsumptionEU %>% mutate(Countries = replace(Countries, Countries == "SCOTLAND", "Scotland"))
+    EnConsumptionEU <- EnConsumptionEU %>% mutate(Countries = replace(Countries, Countries == "SCOTLAND", "Scotland"))
     
-    EnergyConsumptionEU[2:ncol(EnergyConsumptionEU)] %<>% lapply(function(x) as.numeric(as.character(x)))
+    EnConsumptionEU[2:ncol(EnConsumptionEU)] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    paste(max(as.numeric(names(EnergyConsumptionEU)), na.rm = TRUE))
+    paste(max(as.numeric(names(EnConsumptionEU)), na.rm = TRUE))
   })
   
  
-  output$EnergyConsumptionEUPlot <- renderPlotly  ({
+  output$EnConsumptionEUPlot <- renderPlotly  ({
     
     ChartColours <- c("#34d1a3", "#fc9272", "#99d8c9")
     
-    EnergyConsumptionEU <- read_excel("Structure/CurrentWorking.xlsx",
+    EnConsumptionEU <- read_excel("Structure/CurrentWorking.xlsx",
                                       sheet = "Energy consump EU", col_names = TRUE, 
                                       skip = 18, n_max = 30)
     
-    EnergyConsumptionEU <- EnergyConsumptionEU[,c(1,ncol(EnergyConsumptionEU)-1)]
+    EnConsumptionEU <- EnConsumptionEU[,c(1,ncol(EnConsumptionEU)-1)]
     
-    names(EnergyConsumptionEU) <- c("Countries", "Renewables")
+    names(EnConsumptionEU) <- c("Countries", "Renewables")
     
-    EnergyConsumptionEU <- EnergyConsumptionEU %>% mutate(Countries = replace(Countries, Countries == "United Kingdom", "U.K."))
+    EnConsumptionEU <- EnConsumptionEU %>% mutate(Countries = replace(Countries, Countries == "United Kingdom", "U.K."))
     
-    EnergyConsumptionEU <- merge(EnergyConsumptionEU, EUFlagLookup)
+    EnConsumptionEU <- merge(EnConsumptionEU, EUFlagLookup)
     
-    EnergyConsumptionEU$Group <- ifelse(EnergyConsumptionEU$Renewables > 0 & EnergyConsumptionEU$Countries %in% c("SCOTLAND", "U.K.", "EU (28)"), ChartColours[2],
-                            ifelse(EnergyConsumptionEU$Renewables <= 0 & EnergyConsumptionEU$Countries %in% c("SCOTLAND", "U.K.", "EU (28)"), ChartColours[1],
-                                   ifelse(EnergyConsumptionEU$Renewables > 0 & EnergyConsumptionEU$Renewables %in% c(min(EnergyConsumptionEU$Renewables), max(EnergyConsumptionEU$Renewables)), ChartColours[2],
-                                          ifelse(EnergyConsumptionEU$Renewables <= 0 & EnergyConsumptionEU$Renewables %in% c(min(EnergyConsumptionEU$Renewables), max(EnergyConsumptionEU$Renewables)), ChartColours[1],      
-                                                 ifelse(EnergyConsumptionEU$Renewables <= 0 , ChartColours[3],  
+    EnConsumptionEU$Group <- ifelse(EnConsumptionEU$Renewables > 0 & EnConsumptionEU$Countries %in% c("SCOTLAND", "U.K.", "EU (28)"), ChartColours[2],
+                            ifelse(EnConsumptionEU$Renewables <= 0 & EnConsumptionEU$Countries %in% c("SCOTLAND", "U.K.", "EU (28)"), ChartColours[1],
+                                   ifelse(EnConsumptionEU$Renewables > 0 & EnConsumptionEU$Renewables %in% c(min(EnConsumptionEU$Renewables), max(EnConsumptionEU$Renewables)), ChartColours[2],
+                                          ifelse(EnConsumptionEU$Renewables <= 0 & EnConsumptionEU$Renewables %in% c(min(EnConsumptionEU$Renewables), max(EnConsumptionEU$Renewables)), ChartColours[1],      
+                                                 ifelse(EnConsumptionEU$Renewables <= 0 , ChartColours[3],  
                                                         ChartColours[2])))))
     
-    EnergyConsumptionEU$Countries <- paste0("<b>", EnergyConsumptionEU$Countries, "</b>")
+    EnConsumptionEU$Countries <- paste0("<b>", EnConsumptionEU$Countries, "</b>")
     
-    #EnergyConsumptionEU <- EnergyConsumptionEU[order(-EnergyConsumptionEU$Renewables),]
+    #EnConsumptionEU <- EnConsumptionEU[order(-EnConsumptionEU$Renewables),]
     
     p <- plot_ly(
-      data = EnergyConsumptionEU,
+      data = EnConsumptionEU,
       y = ~Countries,
       x = ~Renewables,
       text = paste0(
         "Share of Renewable Energy: ",
-        percent(EnergyConsumptionEU$Renewables, accuracy = 0.1),
+        percent(EnConsumptionEU$Renewables, accuracy = 0.1),
         "\nCountry: ",
-        EnergyConsumptionEU$Countries
+        EnConsumptionEU$Countries
       ),
       name = "EU Renewable Energy",
       type = "bar",
       hoverinfo = "text",
       orientation = 'h',
-      marker = list(color =  as.list(EnergyConsumptionEU$Group))
+      marker = list(color =  as.list(EnConsumptionEU$Group))
     )  %>% 
       add_trace(
         x = 0.15,
@@ -178,7 +178,7 @@ EnergyConsumptionEU <- function(input, output, session) {
         yaxis = list(title = "",
                      showgrid = FALSE,
                      categoryorder = "array",
-                     categoryarray = EnergyConsumptionEU[order(-EnergyConsumptionEU$Renewables),]$Countries),
+                     categoryarray = EnConsumptionEU[order(-EnConsumptionEU$Renewables),]$Countries),
         xaxis = list(
           title = "",
           tickformat = "%",
@@ -199,26 +199,26 @@ EnergyConsumptionEU <- function(input, output, session) {
   })
   
   
-  output$EnergyConsumptionEUTable = renderDataTable({
+  output$EnConsumptionEUTable = renderDataTable({
     
-    EnergyConsumptionEU <- read_excel("Structure/CurrentWorking.xlsx",
+    EnConsumptionEU <- read_excel("Structure/CurrentWorking.xlsx",
                           sheet = "Energy consump EU", col_names = TRUE, 
                           skip = 18, n_max = 30)
     
-    EnergyConsumptionEU <- EnergyConsumptionEU[,c(1:ncol(EnergyConsumptionEU))]
+    EnConsumptionEU <- EnConsumptionEU[,c(1:ncol(EnConsumptionEU))]
     
     
     
-    names(EnergyConsumptionEU)[1] <- c("Countries")
+    names(EnConsumptionEU)[1] <- c("Countries")
     
-    EnergyConsumptionEU <- EnergyConsumptionEU %>% mutate(Countries = replace(Countries, Countries == "United Kingdom", "U.K."))
+    EnConsumptionEU <- EnConsumptionEU %>% mutate(Countries = replace(Countries, Countries == "United Kingdom", "U.K."))
     
-    EnergyConsumptionEU <- EnergyConsumptionEU %>% mutate(Countries = replace(Countries, Countries == "SCOTLAND", "Scotland"))
+    EnConsumptionEU <- EnConsumptionEU %>% mutate(Countries = replace(Countries, Countries == "SCOTLAND", "Scotland"))
     
-    EnergyConsumptionEU[2:ncol(EnergyConsumptionEU)] %<>% lapply(function(x) as.numeric(as.character(x)))
+    EnConsumptionEU[2:ncol(EnConsumptionEU)] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     datatable(
-      EnergyConsumptionEU,
+      EnConsumptionEU,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -229,7 +229,7 @@ EnergyConsumptionEU <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        order = list(list(ncol(EnergyConsumptionEU)-2, 'desc')),
+        order = list(list(ncol(EnConsumptionEU)-2, 'desc')),
         title = "Change in final energy consumption in EU countries",
         dom = 'ltBp',
         buttons = list(
@@ -250,7 +250,7 @@ EnergyConsumptionEU <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:ncol(EnergyConsumptionEU), 1)
+      formatPercentage(2:ncol(EnConsumptionEU), 1)
   })
   
   
@@ -258,14 +258,14 @@ EnergyConsumptionEU <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/4 - Energy Efficiency/EnergyConsumptionEU.txt")[2])
+                     paste(readtext("Structure/4 - Energy Efficiency/EnConsumptionEU.txt")[2])
                      
                    )))
   })
  
  
   observeEvent(input$ToggleTable, {
-    toggle("EnergyConsumptionEUTable")
+    toggle("EnConsumptionEUTable")
   })
   
 
@@ -275,8 +275,8 @@ EnergyConsumptionEU <- function(input, output, session) {
   })
   
   
-  output$EnergyConsumptionEU.png <- downloadHandler(
-    filename = "EnergyConsumptionEU.png",
+  output$EnConsumptionEU.png <- downloadHandler(
+    filename = "EnConsumptionEU.png",
     content = function(file) {
 
       ### Load Packages and Functions

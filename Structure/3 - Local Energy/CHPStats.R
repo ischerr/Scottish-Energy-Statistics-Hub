@@ -7,7 +7,7 @@ require("DT")
 
 source("Structure/Global.R")
 
-CHPOutput <- function(id) {
+CHPStatsOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
@@ -76,7 +76,7 @@ CHPOutput <- function(id) {
 
 
 ###### Server ######
-CHP <- function(input, output, session) {
+CHPStats <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {

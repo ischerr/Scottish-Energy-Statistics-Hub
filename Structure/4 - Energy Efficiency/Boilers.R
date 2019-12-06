@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-BoilerImprovementsOutput <- function(id) {
+BoilersOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
                     h3("Proportion of homes with boiler improvements", style = "color: #34d1a3;  font-weight:bold"),
-                    h4(textOutput(ns('BoilerImprovementsSubtitle')), style = "color: #34d1a3;")
+                    h4(textOutput(ns('BoilersSubtitle')), style = "color: #34d1a3;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('BoilerImprovements.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('Boilers.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
-    #dygraphOutput(ns("BoilerImprovementsPlot")),
-    plotlyOutput(ns("BoilerImprovementsPlot"))%>% withSpinner(color="#34d1a3"),
+    #dygraphOutput(ns("BoilersPlot")),
+    plotlyOutput(ns("BoilersPlot"))%>% withSpinner(color="#34d1a3"),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
@@ -38,7 +38,7 @@ BoilerImprovementsOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("BoilerImprovementsTable"))%>% withSpinner(color="#34d1a3"))),
+      column(12, dataTableOutput(ns("BoilersTable"))%>% withSpinner(color="#34d1a3"))),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
     tabPanel("Impact of Measures",
              fluidRow(
@@ -46,7 +46,7 @@ BoilerImprovementsOutput <- function(id) {
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
-               column(12, dataTableOutput(ns("BoilerImprovementsImpactTable"))%>% withSpinner(color="#34d1a3"))),
+               column(12, dataTableOutput(ns("BoilersImpactTable"))%>% withSpinner(color="#34d1a3"))),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
       column(1,
@@ -71,7 +71,7 @@ BoilerImprovementsOutput <- function(id) {
 
 
 ###### Server ######
-BoilerImprovements <- function(input, output, session) {
+Boilers <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
@@ -81,7 +81,7 @@ BoilerImprovements <- function(input, output, session) {
   print("Boilers.R")
 
   
-  output$BoilerImprovementsSubtitle <- renderText({
+  output$BoilersSubtitle <- renderText({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Boilers", skip = 13, col_names = FALSE)
@@ -96,12 +96,12 @@ BoilerImprovements <- function(input, output, session) {
     
     Data <- subset(Data, Data$Year >= 2009)
     
-    BoilerImprovements <- Data
+    Boilers <- Data
     
-    paste("Scotland,", min(BoilerImprovements$Year),"-", max(BoilerImprovements$Year))
+    paste("Scotland,", min(Boilers$Year),"-", max(Boilers$Year))
   })
   
-  output$BoilerImprovementsPlot <- renderPlotly  ({
+  output$BoilersPlot <- renderPlotly  ({
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
@@ -117,20 +117,20 @@ BoilerImprovements <- function(input, output, session) {
     
     Data <- subset(Data, Data$Year >= 2009)
     
-    BoilerImprovements <- Data
+    Boilers <- Data
     
     ### variables
     ChartColours <- c("#34d1a3", "#0868ac", "#4eb3d3", "#a8ddb5")
     sourcecaption = "Source: SG"
     plottitle = "Proportion of homes with boiler improvements"
     
-    BoilerImprovements$Year <- paste0("01/01/", BoilerImprovements$Year)
+    Boilers$Year <- paste0("01/01/", Boilers$Year)
     
-    BoilerImprovements$Year <- dmy(BoilerImprovements$Year)
+    Boilers$Year <- dmy(Boilers$Year)
     
     
-    p <-  plot_ly(BoilerImprovements,x = ~ Year ) %>% 
-      add_trace(data = BoilerImprovements,
+    p <-  plot_ly(Boilers,x = ~ Year ) %>% 
+      add_trace(data = Boilers,
                 x = ~ Year,
                 y = ~ `New Boilers (post-1998)`,
                 name = "New Boilers (post-1998)",
@@ -139,24 +139,24 @@ BoilerImprovements <- function(input, output, session) {
                 legendgroup = "1",
                 text = paste0(
                   "New Boilers (post-1998): ",
-                  percent(BoilerImprovements$`New Boilers (post-1998)`, accuracy = 0.1),
+                  percent(Boilers$`New Boilers (post-1998)`, accuracy = 0.1),
                   "\nYear: ",
-                  format(BoilerImprovements$Year, "%Y")
+                  format(Boilers$Year, "%Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = ChartColours[1], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(BoilerImprovements[which(BoilerImprovements$`New Boilers (post-1998)` > 0 | BoilerImprovements$`New Boilers (post-1998)` < 0),], 1),
+        data = tail(Boilers[which(Boilers$`New Boilers (post-1998)` > 0 | Boilers$`New Boilers (post-1998)` < 0),], 1),
         x = ~ Year,
         y = ~ `New Boilers (post-1998)`,
         legendgroup = "1",
         name = "New Boilers (post-1998)",
         text = paste0(
           "New Boilers (post-1998): ",
-          percent(BoilerImprovements[which(BoilerImprovements$`New Boilers (post-1998)` > 0 | BoilerImprovements$`New Boilers (post-1998)` < 0),][-1,]$`New Boilers (post-1998)`, accuracy = 0.1),
+          percent(Boilers[which(Boilers$`New Boilers (post-1998)` > 0 | Boilers$`New Boilers (post-1998)` < 0),][-1,]$`New Boilers (post-1998)`, accuracy = 0.1),
           "\nYear: ",
-          format(BoilerImprovements[which(BoilerImprovements$`New Boilers (post-1998)` > 0 | BoilerImprovements$`New Boilers (post-1998)` < 0),][-1,]$Year, "%Y")
+          format(Boilers[which(Boilers$`New Boilers (post-1998)` > 0 | Boilers$`New Boilers (post-1998)` < 0),][-1,]$Year, "%Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -165,7 +165,7 @@ BoilerImprovements <- function(input, output, session) {
         marker = list(size = 18, 
                       color = ChartColours[1])
       ) %>% 
-      add_trace(data = BoilerImprovements,
+      add_trace(data = Boilers,
                 x = ~ Year,
                 y = ~ `Condensing Boilers`,
                 name = "Condensing Boilers",
@@ -174,24 +174,24 @@ BoilerImprovements <- function(input, output, session) {
                 legendgroup = "2",
                 text = paste0(
                   "Condensing Boilers: ",
-                  percent(BoilerImprovements$`Condensing Boilers`, accuracy = 0.1),
+                  percent(Boilers$`Condensing Boilers`, accuracy = 0.1),
                   "\nYear: ",
-                  format(BoilerImprovements$Year, "%Y")
+                  format(Boilers$Year, "%Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = ChartColours[2], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(BoilerImprovements[which(BoilerImprovements$`Condensing Boilers` > 0 | BoilerImprovements$`Condensing Boilers` < 0),], 1),
+        data = tail(Boilers[which(Boilers$`Condensing Boilers` > 0 | Boilers$`Condensing Boilers` < 0),], 1),
         x = ~ Year,
         y = ~ `Condensing Boilers`,
         legendgroup = "2",
         name = "Condensing Boilers",
         text = paste0(
           "Condensing Boilers: ",
-          percent(BoilerImprovements[which(BoilerImprovements$`Condensing Boilers` > 0 | BoilerImprovements$`Condensing Boilers` < 0),][-1,]$`Condensing Boilers`, accuracy = 0.1),
+          percent(Boilers[which(Boilers$`Condensing Boilers` > 0 | Boilers$`Condensing Boilers` < 0),][-1,]$`Condensing Boilers`, accuracy = 0.1),
           "\nYear: ",
-          format(BoilerImprovements[which(BoilerImprovements$`Condensing Boilers` > 0 | BoilerImprovements$`Condensing Boilers` < 0),][-1,]$Year, "%Y")
+          format(Boilers[which(Boilers$`Condensing Boilers` > 0 | Boilers$`Condensing Boilers` < 0),][-1,]$Year, "%Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -200,7 +200,7 @@ BoilerImprovements <- function(input, output, session) {
         marker = list(size = 18, 
                       color = ChartColours[2])
       ) %>% 
-      add_trace(data = BoilerImprovements,
+      add_trace(data = Boilers,
                 x = ~ Year,
                 y = ~ `Standards Compliant Boilers`,
                 name = "Standards Compliant Boilers",
@@ -209,24 +209,24 @@ BoilerImprovements <- function(input, output, session) {
                 legendgroup = "3",
                 text = paste0(
                   "Standards Compliant Boilers: ",
-                  percent(BoilerImprovements$`Standards Compliant Boilers`, accuracy = 0.1),
+                  percent(Boilers$`Standards Compliant Boilers`, accuracy = 0.1),
                   "\nYear: ",
-                  format(BoilerImprovements$Year, "%Y")
+                  format(Boilers$Year, "%Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = ChartColours[3], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(BoilerImprovements[which(BoilerImprovements$`Standards Compliant Boilers` > 0 | BoilerImprovements$`Standards Compliant Boilers` < 0),], 1),
+        data = tail(Boilers[which(Boilers$`Standards Compliant Boilers` > 0 | Boilers$`Standards Compliant Boilers` < 0),], 1),
         x = ~ Year,
         y = ~ `Standards Compliant Boilers`,
         legendgroup = "3",
         name = "Standards Compliant Boilers",
         text = paste0(
           "Standards Compliant Boilers: ",
-          percent(BoilerImprovements[which(BoilerImprovements$`Standards Compliant Boilers` > 0 | BoilerImprovements$`Standards Compliant Boilers` < 0),][-1,]$`Standards Compliant Boilers`, accuracy = 0.1),
+          percent(Boilers[which(Boilers$`Standards Compliant Boilers` > 0 | Boilers$`Standards Compliant Boilers` < 0),][-1,]$`Standards Compliant Boilers`, accuracy = 0.1),
           "\nYear: ",
-          format(BoilerImprovements[which(BoilerImprovements$`Standards Compliant Boilers` > 0 | BoilerImprovements$`Standards Compliant Boilers` < 0),][-1,]$Year, "%Y")
+          format(Boilers[which(Boilers$`Standards Compliant Boilers` > 0 | Boilers$`Standards Compliant Boilers` < 0),][-1,]$Year, "%Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -246,7 +246,7 @@ BoilerImprovements <- function(input, output, session) {
 
         xaxis = list(title = "",
                      showgrid = FALSE,
-                     range = c(min(BoilerImprovements$Year)-100, max(BoilerImprovements$Year)+100)),
+                     range = c(min(Boilers$Year)-100, max(Boilers$Year)+100)),
         yaxis = list(
           title = "",
           tickformat = "%",
@@ -265,7 +265,7 @@ BoilerImprovements <- function(input, output, session) {
   })
   
   
-  output$BoilerImprovementsTable = renderDataTable({
+  output$BoilersTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Boilers", skip = 13, col_names = FALSE)
@@ -280,10 +280,10 @@ BoilerImprovements <- function(input, output, session) {
     
     Data <- subset(Data, Data$Year >= 2009)
     
-    BoilerImprovements <- Data
+    Boilers <- Data
     
     datatable(
-      BoilerImprovements,
+      Boilers,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -318,7 +318,7 @@ BoilerImprovements <- function(input, output, session) {
       formatPercentage(2:4, 1)
   })
   
-  output$BoilerImprovementsImpactTable = renderDataTable({
+  output$BoilersImpactTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Boilers", skip = 23, col_names = FALSE)
@@ -331,10 +331,10 @@ BoilerImprovements <- function(input, output, session) {
     
     Data <- Data[-1,]
     
-    BoilerImprovements <- as_tibble(sapply( Data, as.numeric ))
+    Boilers <- as_tibble(sapply( Data, as.numeric ))
     
     datatable(
-      BoilerImprovements,
+      Boilers,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -380,11 +380,11 @@ BoilerImprovements <- function(input, output, session) {
  
  
   observeEvent(input$ToggleTable, {
-    toggle("BoilerImprovementsTable")
+    toggle("BoilersTable")
   })
   
   observeEvent(input$ToggleTable2, {
-    toggle("BoilerImprovementsImpactTable")
+    toggle("BoilersImpactTable")
   })
   
   observeEvent(input$ToggleText, {
@@ -392,8 +392,8 @@ BoilerImprovements <- function(input, output, session) {
   })
   
   
-  output$BoilerImprovements.png <- downloadHandler(
-    filename = "BoilerImprovements.png",
+  output$Boilers.png <- downloadHandler(
+    filename = "Boilers.png",
     content = function(file) {
 
 

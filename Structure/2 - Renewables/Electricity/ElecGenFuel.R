@@ -7,7 +7,7 @@ require("DT")
 
 source("Structure/Global.R")
 
-ElecGenByFuelOutput <- function(id) {
+ElecGenFuelOutput <- function(id) {
   ns <- NS(id)
   tagList(tabsetPanel(
     tabPanel("Charts",
@@ -18,12 +18,12 @@ ElecGenByFuelOutput <- function(id) {
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('ElecGenByFuel.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('ElecGenFuel.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-    #dygraphOutput(ns("ElecGenByFuelPlot")),
-    plotlyOutput(ns("ElecGenByFuelPlot"))%>% withSpinner(color="#39ab2c"),
+    #dygraphOutput(ns("ElecGenFuelPlot")),
+    plotlyOutput(ns("ElecGenFuelPlot"))%>% withSpinner(color="#39ab2c"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Animation",
              imageOutput(ns("ElecGenAnimation"), height = "675px")%>% withSpinner(color="#39ab2c"))),
@@ -42,7 +42,7 @@ ElecGenByFuelOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("ElecGenByFuelTable"))%>% withSpinner(color="#39ab2c"))),
+      column(12, dataTableOutput(ns("ElecGenFuelTable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("England & Wales",
                fluidRow(
@@ -50,7 +50,7 @@ ElecGenByFuelOutput <- function(id) {
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
-                 column(12, dataTableOutput(ns("ElecGenByFuelEWTable"))%>% withSpinner(color="#39ab2c"))),
+                 column(12, dataTableOutput(ns("ElecGenFuelEWTable"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
       column(1,
@@ -75,18 +75,18 @@ ElecGenByFuelOutput <- function(id) {
 
 
 ###### Server ######
-ElecGenByFuel <- function(input, output, session) {
+ElecGenFuel <- function(input, output, session) {
 
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("ElecGenByFuel.R")
+  print("ElecGenFuel.R")
   
 
 
-  output$ElecGenByFuelSubtitle <- renderText({
+  output$ElecGenFuelSubtitle <- renderText({
     
     EURenElec <- read_excel("Structure/CurrentWorking.xlsx",
                           sheet = "Wind and hydro gen EU", col_names = TRUE, 
@@ -107,7 +107,7 @@ ElecGenByFuel <- function(input, output, session) {
     paste(max(as.numeric(names(EURenElec)), na.rm = TRUE))
   })
   
-  output$ElecGenByFuelPlot <- renderPlotly  ({
+  output$ElecGenFuelPlot <- renderPlotly  ({
     
     DataScot <-
       read_excel(
@@ -672,7 +672,7 @@ ElecGenByFuel <- function(input, output, session) {
     p
   })
   
-  output$ElecGenByFuelTable = renderDataTable({
+  output$ElecGenFuelTable = renderDataTable({
     
     DataScot <-
       read_excel(
@@ -737,7 +737,7 @@ ElecGenByFuel <- function(input, output, session) {
       formatStyle(c(9, 15), fontStyle = "italic")
   })
   
-  output$ElecGenByFuelEWTable = renderDataTable({
+  output$ElecGenFuelEWTable = renderDataTable({
     
     DataEW <-
       read_excel(
@@ -804,8 +804,8 @@ ElecGenByFuel <- function(input, output, session) {
       formatStyle(c(9, 15), fontStyle = "italic")
   })
   
-  output$ElecGenByFuel.png <- downloadHandler(
-    filename = "ElecGenByFuel.png",
+  output$ElecGenFuel.png <- downloadHandler(
+    filename = "ElecGenFuel.png",
     content = function(file) {
       
       ### Load Packages and Functions
@@ -1402,17 +1402,17 @@ ElecGenByFuel <- function(input, output, session) {
   output$Text <- renderUI({
    tagList(column(12,
                   HTML(
-                    paste(readtext("Structure/2 - Renewables/Electricity/ElecGenByFuel.txt")[2])
+                    paste(readtext("Structure/2 - Renewables/Electricity/ElecGenFuel.txt")[2])
                     
                   )))
  })
  
   observeEvent(input$ToggleTable, {
-    toggle("ElecGenByFuelTable")
+    toggle("ElecGenFuelTable")
   })
   
   observeEvent(input$ToggleTable2, {
-    toggle("ElecGenByFuelEWTable")
+    toggle("ElecGenFuelEWTable")
   })
 
   observeEvent(input$ToggleText, {

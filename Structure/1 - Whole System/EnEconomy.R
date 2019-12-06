@@ -7,7 +7,7 @@ require("DT")
 
 source("Structure/Global.R")
 
-EnergyEconomyOutput <- function(id) {
+EnEconomyOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
@@ -128,7 +128,7 @@ EnergyEconomyOutput <- function(id) {
 
 
 ###### Server ######
-EnergyEconomy <- function(input, output, session) {
+EnEconomy <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {

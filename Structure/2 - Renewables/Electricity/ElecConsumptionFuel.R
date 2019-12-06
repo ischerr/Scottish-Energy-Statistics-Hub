@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-ElecConsumpByFuelOutput <- function(id) {
+ElecConsumptionFuelOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
                     h3("Proportion of electricity consumption by fuel", style = "color: #39ab2c;  font-weight:bold"),
-                    h4(textOutput(ns('ElecConsumpByFuelSubtitle')), style = "color: #39ab2c;")
+                    h4(textOutput(ns('ElecConsumptionFuelSubtitle')), style = "color: #39ab2c;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('ElecConsumpByFuel.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('ElecConsumptionFuel.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-    #dygraphOutput(ns("ElecConsumpByFuelPlot")),
-    plotlyOutput(ns("ElecConsumpByFuelPlot"))%>% withSpinner(color="#39ab2c"),
+    #dygraphOutput(ns("ElecConsumptionFuelPlot")),
+    plotlyOutput(ns("ElecConsumptionFuelPlot"))%>% withSpinner(color="#39ab2c"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
@@ -38,7 +38,7 @@ ElecConsumpByFuelOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("ElecConsumpByFuelTable"))%>% withSpinner(color="#39ab2c"))),
+      column(12, dataTableOutput(ns("ElecConsumptionFuelTable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("England & Wales",
                fluidRow(
@@ -46,7 +46,7 @@ ElecConsumpByFuelOutput <- function(id) {
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
-                 column(12, dataTableOutput(ns("ElecConsumpByFuelEWTable"))%>% withSpinner(color="#39ab2c"))),
+                 column(12, dataTableOutput(ns("ElecConsumptionFuelEWTable"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
       column(1,
@@ -71,19 +71,19 @@ ElecConsumpByFuelOutput <- function(id) {
 
 
 ###### Server ######
-ElecConsumpByFuel <- function(input, output, session) {
+ElecConsumptionFuel <- function(input, output, session) {
 
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("ElecConsumpByFuel.R")
+  print("ElecConsumptionFuel.R")
   ###### Renewable Energy ###### ######
   
   ### From ESD ###
   
-  output$ElecConsumpByFuelSubtitle <- renderText({
+  output$ElecConsumptionFuelSubtitle <- renderText({
     
     Time <-
       read_excel(
@@ -99,7 +99,7 @@ ElecConsumpByFuel <- function(input, output, session) {
     Time
   })
   
-  output$ElecConsumpByFuelPlot <- renderPlotly  ({
+  output$ElecConsumptionFuelPlot <- renderPlotly  ({
     
 
     
@@ -532,7 +532,7 @@ ElecConsumpByFuel <- function(input, output, session) {
     
   })
   
-  output$ElecConsumpByFuelTable = renderDataTable({
+  output$ElecConsumptionFuelTable = renderDataTable({
     
     DataScot <-
       read_excel(
@@ -596,7 +596,7 @@ ElecConsumpByFuel <- function(input, output, session) {
       formatPercentage(2:ncol(DataScot), 1) 
   })
   
-  output$ElecConsumpByFuelEWTable = renderDataTable({
+  output$ElecConsumptionFuelEWTable = renderDataTable({
     
     DataEW <-
       read_excel(
@@ -661,8 +661,8 @@ ElecConsumpByFuel <- function(input, output, session) {
   
   })
   
-  output$ElecConsumpByFuel.png <- downloadHandler(
-    filename = "ElecConsumpByFuel.png",
+  output$ElecConsumptionFuel.png <- downloadHandler(
+    filename = "ElecConsumptionFuel.png",
     content = function(file) {
       
       
@@ -1026,17 +1026,17 @@ ElecConsumpByFuel <- function(input, output, session) {
   output$Text <- renderUI({
    tagList(column(12,
                   HTML(
-                    paste(readtext("Structure/2 - Renewables/Electricity/ElecConsumpByFuel.txt")[2])
+                    paste(readtext("Structure/2 - Renewables/Electricity/ElecConsumptionFuel.txt")[2])
                     
                   )))
  })
  
   observeEvent(input$ToggleTable, {
-    toggle("ElecConsumpByFuelTable")
+    toggle("ElecConsumptionFuelTable")
   })
   
   observeEvent(input$ToggleTable2, {
-    toggle("ElecConsumpByFuelEWTable")
+    toggle("ElecConsumptionFuelEWTable")
   })
 
   observeEvent(input$ToggleText, {

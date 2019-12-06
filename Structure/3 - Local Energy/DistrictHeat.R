@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-HeatNetworkOutput <- function(id) {
+DistrictHeatOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
                     h3("District heat networks", style = "color: #a3d65c;  font-weight:bold"),
-                    h4(textOutput(ns('HeatNetworkSubtitle')), style = "color: #a3d65c;")
+                    h4(textOutput(ns('DistrictHeatSubtitle')), style = "color: #a3d65c;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('HeatNetwork.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('DistrictHeat.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
-    #dygraphOutput(ns("HeatNetworkPlot")),
-    plotlyOutput(ns("HeatNetworkPlot"))%>% withSpinner(color="#a3d65c"),
+    #dygraphOutput(ns("DistrictHeatPlot")),
+    plotlyOutput(ns("DistrictHeatPlot"))%>% withSpinner(color="#a3d65c"),
     tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #a3d65c;  font-weight:bold")),
@@ -36,7 +36,7 @@ HeatNetworkOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("HeatNetworkTable"))%>% withSpinner(color="#a3d65c"))),
+      column(12, dataTableOutput(ns("DistrictHeatTable"))%>% withSpinner(color="#a3d65c"))),
     tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
     fluidRow(
       column(1,
@@ -61,20 +61,20 @@ HeatNetworkOutput <- function(id) {
 
 
 ###### Server ######
-HeatNetwork <- function(input, output, session) {
+DistrictHeat <- function(input, output, session) {
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("HeatNetwork.R")
+  print("DistrictHeat.R")
   ###### Renewable Energy ###### ######
   
   ### From ESD ###
   
-  output$HeatNetworkSubtitle <- renderText({
+  output$DistrictHeatSubtitle <- renderText({
     
-    HeatNetwork <- read_excel(
+    DistrictHeat <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Heat networks",
       col_names = FALSE,
@@ -82,22 +82,22 @@ HeatNetwork <- function(input, output, session) {
       n_max = 4
     )
     
-    HeatNetworkYear <- tail(HeatNetwork, 2)[1,1]
+    DistrictHeatYear <- tail(DistrictHeat, 2)[1,1]
     
-    HeatNetwork <- as_tibble(t(HeatNetwork))
+    DistrictHeat <- as_tibble(t(DistrictHeat))
     
-    HeatNetwork <- HeatNetwork[c(1, ncol(HeatNetwork) -1, ncol(HeatNetwork))]
+    DistrictHeat <- DistrictHeat[c(1, ncol(DistrictHeat) -1, ncol(DistrictHeat))]
     
-    HeatNetwork <- HeatNetwork[complete.cases(HeatNetwork),]
+    DistrictHeat <- DistrictHeat[complete.cases(DistrictHeat),]
     
-    names(HeatNetwork) <- c("Type", "Latest", "Ambition")
+    names(DistrictHeat) <- c("Type", "Latest", "Ambition")
     
-    paste("Scotland,", HeatNetworkYear)
+    paste("Scotland,", DistrictHeatYear)
   })
   
-  output$HeatNetworkPlot <- renderPlotly  ({
+  output$DistrictHeatPlot <- renderPlotly  ({
     
-    HeatNetwork <- read_excel(
+    DistrictHeat <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Heat networks",
       col_names = FALSE,
@@ -105,39 +105,39 @@ HeatNetwork <- function(input, output, session) {
       n_max = 4
     )
     
-    HeatNetworkYear <- tail(HeatNetwork, 2)[1,1]
+    DistrictHeatYear <- tail(DistrictHeat, 2)[1,1]
     
-    HeatNetwork <- as_tibble(t(HeatNetwork))
+    DistrictHeat <- as_tibble(t(DistrictHeat))
     
-    HeatNetwork <- HeatNetwork[c(1, ncol(HeatNetwork) -1, ncol(HeatNetwork))]
+    DistrictHeat <- DistrictHeat[c(1, ncol(DistrictHeat) -1, ncol(DistrictHeat))]
     
-    HeatNetwork <- HeatNetwork[complete.cases(HeatNetwork),]
+    DistrictHeat <- DistrictHeat[complete.cases(DistrictHeat),]
     
-    names(HeatNetwork) <- c("Type", "Latest", "Ambition")
+    names(DistrictHeat) <- c("Type", "Latest", "Ambition")
     
-    HeatNetwork$Ambition <- as.numeric(HeatNetwork$Ambition) - as.numeric(HeatNetwork$Latest)
+    DistrictHeat$Ambition <- as.numeric(DistrictHeat$Ambition) - as.numeric(DistrictHeat$Latest)
     
-    HeatNetwork$Latest <- as.numeric(HeatNetwork$Latest)
+    DistrictHeat$Latest <- as.numeric(DistrictHeat$Latest)
     
-    HeatNetwork$LatestProp <- HeatNetwork$Latest / (HeatNetwork$Latest + HeatNetwork$Ambition)
+    DistrictHeat$LatestProp <- DistrictHeat$Latest / (DistrictHeat$Latest + DistrictHeat$Ambition)
     
-    HeatNetwork$AmbitionProp <- HeatNetwork$Ambition / (HeatNetwork$Latest + HeatNetwork$Ambition)
+    DistrictHeat$AmbitionProp <- DistrictHeat$Ambition / (DistrictHeat$Latest + DistrictHeat$Ambition)
     
-    HeatNetwork$Type <- str_wrap(paste0("<b>",HeatNetwork$Type,"</b>"), 28)
+    DistrictHeat$Type <- str_wrap(paste0("<b>",DistrictHeat$Type,"</b>"), 28)
     
-    p <-  plot_ly(HeatNetwork, 
+    p <-  plot_ly(DistrictHeat, 
                   y = ~Type, 
                   x = ~ `LatestProp`, 
                   type = 'bar', 
                   name = 'Latest',
                   hoverinfo = "text",
-                  text = paste0("Latest: ", format(HeatNetwork$Latest, big.mark = ","), "\nProportion: ", percent(HeatNetwork$LatestProp, accuracy = 0.1)),
+                  text = paste0("Latest: ", format(DistrictHeat$Latest, big.mark = ","), "\nProportion: ", percent(DistrictHeat$LatestProp, accuracy = 0.1)),
                   orientation = 'h',
                   marker = list(color = "#31a354")
     )%>%
       add_trace(x = ~ `AmbitionProp`,
                 name = 'Ambition',
-                text = paste0("Overall Ambition: ", format((HeatNetwork$Ambition + HeatNetwork$Latest) , big.mark = ","), "\n"),
+                text = paste0("Overall Ambition: ", format((DistrictHeat$Ambition + DistrictHeat$Latest) , big.mark = ","), "\n"),
                 marker = list(color = "#addd8e")
       ) %>% 
       layout(
@@ -170,9 +170,9 @@ HeatNetwork <- function(input, output, session) {
   })
   
   
-  output$HeatNetworkTable = renderDataTable({
+  output$DistrictHeatTable = renderDataTable({
     
-    HeatNetwork <- read_excel(
+    DistrictHeat <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Heat networks",
       col_names = FALSE,
@@ -180,16 +180,16 @@ HeatNetwork <- function(input, output, session) {
       n_max = 4
     )
 
-    HeatNetwork <- HeatNetwork[c(1,2,4)]
+    DistrictHeat <- DistrictHeat[c(1,2,4)]
     
-    names(HeatNetwork) <- unlist(HeatNetwork[1,])
+    names(DistrictHeat) <- unlist(DistrictHeat[1,])
     
-    names(HeatNetwork)[1] <- "Year"
+    names(DistrictHeat)[1] <- "Year"
     
-    HeatNetwork <- HeatNetwork [-1,]
+    DistrictHeat <- DistrictHeat [-1,]
     
     datatable(
-      HeatNetwork,
+      DistrictHeat,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -228,7 +228,7 @@ HeatNetwork <- function(input, output, session) {
     tagList(column(12,
                    
                    HTML(
-                     paste(readtext("Structure/3 - Local Energy/HeatNetworks.txt")[2])
+                     paste(readtext("Structure/3 - Local Energy/DistrictHeats.txt")[2])
                      
                    )))
   })
@@ -238,8 +238,8 @@ HeatNetwork <- function(input, output, session) {
   })
   
   
-  output$HeatNetwork.png <- downloadHandler(
-    filename = "HeatNetwork.png",
+  output$DistrictHeat.png <- downloadHandler(
+    filename = "DistrictHeat.png",
     content = function(file) {
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "Heat networks", skip = 11, col_names = FALSE, n_max = 5)
@@ -255,54 +255,54 @@ HeatNetwork <- function(input, output, session) {
       
       Data$Ambition <- Data$Ambition - Data$Current
       
-      DistrictHeatNetworks <- Data
+      DistrictDistrictHeats <- Data
       
-      DistrictHeatNetworksProportions <- DistrictHeatNetworks
+      DistrictDistrictHeatsProportions <- DistrictDistrictHeats
       
-      DistrictHeatNetworksProportions$Total <- DistrictHeatNetworksProportions$Current+DistrictHeatNetworksProportions$Ambition
+      DistrictDistrictHeatsProportions$Total <- DistrictDistrictHeatsProportions$Current+DistrictDistrictHeatsProportions$Ambition
       
-      DistrictHeatNetworksProportions$Current <- DistrictHeatNetworksProportions$Current/DistrictHeatNetworksProportions$Total
+      DistrictDistrictHeatsProportions$Current <- DistrictDistrictHeatsProportions$Current/DistrictDistrictHeatsProportions$Total
       
-      DistrictHeatNetworksProportions$Ambition <- DistrictHeatNetworksProportions$Ambition/DistrictHeatNetworksProportions$Total
+      DistrictDistrictHeatsProportions$Ambition <- DistrictDistrictHeatsProportions$Ambition/DistrictDistrictHeatsProportions$Total
       
-      DistrictHeatNetworksProportions$Total <- NULL
+      DistrictDistrictHeatsProportions$Total <- NULL
       
-      DistrictHeatNetworksProportions <- arrange(DistrictHeatNetworksProportions,-row_number())
+      DistrictDistrictHeatsProportions <- arrange(DistrictDistrictHeatsProportions,-row_number())
       
-      DistrictHeatNetworksProportions$Type <-
-        factor(DistrictHeatNetworksProportions$Type,
-               levels = unique(DistrictHeatNetworksProportions$Type),
+      DistrictDistrictHeatsProportions$Type <-
+        factor(DistrictDistrictHeatsProportions$Type,
+               levels = unique(DistrictDistrictHeatsProportions$Type),
                ordered = TRUE)
       
-      DistrictHeatNetworksProportions <- melt(DistrictHeatNetworksProportions, id.vars = "Type")
+      DistrictDistrictHeatsProportions <- melt(DistrictDistrictHeatsProportions, id.vars = "Type")
       
       
-      DistrictHeatNetworksProportions$variable <-
-        factor(DistrictHeatNetworksProportions$variable,
-               levels = rev(unique(DistrictHeatNetworksProportions$variable)),
+      DistrictDistrictHeatsProportions$variable <-
+        factor(DistrictDistrictHeatsProportions$variable,
+               levels = rev(unique(DistrictDistrictHeatsProportions$variable)),
                ordered = TRUE)
       
-      DistrictHeatNetworksProportions <- DistrictHeatNetworksProportions %>%
+      DistrictDistrictHeatsProportions <- DistrictDistrictHeatsProportions %>%
         group_by(Type) %>%
         mutate(pos = cumsum(value) - value / 2) %>%
         mutate(top = sum(value))
       
-      DistrictHeatNetworks <- arrange(DistrictHeatNetworks,-row_number())
+      DistrictDistrictHeats <- arrange(DistrictDistrictHeats,-row_number())
       
-      DistrictHeatNetworks$Type <-
-        factor(DistrictHeatNetworks$Type,
-               levels = unique(DistrictHeatNetworks$Type),
+      DistrictDistrictHeats$Type <-
+        factor(DistrictDistrictHeats$Type,
+               levels = unique(DistrictDistrictHeats$Type),
                ordered = TRUE)
       
-      DistrictHeatNetworks <- melt(DistrictHeatNetworks, id.vars = "Type")
+      DistrictDistrictHeats <- melt(DistrictDistrictHeats, id.vars = "Type")
       
       
-      DistrictHeatNetworks$variable <-
-        factor(DistrictHeatNetworks$variable,
-               levels = rev(unique(DistrictHeatNetworks$variable)),
+      DistrictDistrictHeats$variable <-
+        factor(DistrictDistrictHeats$variable,
+               levels = rev(unique(DistrictDistrictHeats$variable)),
                ordered = TRUE)
       
-      DistrictHeatNetworks <- DistrictHeatNetworks %>%
+      DistrictDistrictHeats <- DistrictDistrictHeats %>%
         group_by(Type) %>%
         mutate(pos = cumsum(value) - value / 2) %>%
         mutate(top = sum(value))
@@ -326,7 +326,7 @@ HeatNetwork <- function(input, output, session) {
         )
       
       
-      DistrictHeatNetworksProportionsChart <- DistrictHeatNetworksProportions %>%
+      DistrictDistrictHeatsProportionsChart <- DistrictDistrictHeatsProportions %>%
         ggplot(aes(x = Type, y = value, fill = variable), family = "Century Gothic") +
         scale_fill_manual(
           "variable",
@@ -339,7 +339,7 @@ HeatNetwork <- function(input, output, session) {
         geom_text(
           aes(
             y = pos,
-            label = ifelse(variable == "Current", format(DistrictHeatNetworks$value, big.mark = ","), ""),
+            label = ifelse(variable == "Current", format(DistrictDistrictHeats$value, big.mark = ","), ""),
             fontface = 2
           ),
           colour = "white",
@@ -348,7 +348,7 @@ HeatNetwork <- function(input, output, session) {
         geom_text(
           aes(
             y = 1.15,
-            label = ifelse(variable == "Current", paste0("2020 Ambition:\n",format(DistrictHeatNetworks$top, big.mark = ",")), ""),
+            label = ifelse(variable == "Current", paste0("2020 Ambition:\n",format(DistrictDistrictHeats$top, big.mark = ",")), ""),
             fontface = 2
           ),
           colour = ChartColours[1],
@@ -357,34 +357,34 @@ HeatNetwork <- function(input, output, session) {
         geom_text(
           aes(
             y = -.15,
-            label = ifelse(variable == "Current", str_wrap(as.character(DistrictHeatNetworks$Type), width = 15), ""),
+            label = ifelse(variable == "Current", str_wrap(as.character(DistrictDistrictHeats$Type), width = 15), ""),
             fontface = 2
           ),
           colour = ChartColours[1],
           family = "Century Gothic"
         )
       
-      DistrictHeatNetworksProportionsChart
+      DistrictDistrictHeatsProportionsChart
       
       
-      DistrictHeatNetworksProportionsChart <-
-        StackedBars(DistrictHeatNetworksProportionsChart,
-                    DistrictHeatNetworksProportions,
+      DistrictDistrictHeatsProportionsChart <-
+        StackedBars(DistrictDistrictHeatsProportionsChart,
+                    DistrictDistrictHeatsProportions,
                     plottitle,
                     sourcecaption,
                     ChartColours)
       
-      DistrictHeatNetworksProportionsChart <-
-        DistrictHeatNetworksProportionsChart +
+      DistrictDistrictHeatsProportionsChart <-
+        DistrictDistrictHeatsProportionsChart +
         labs(subtitle = "Scotland, 2018") +
         ylim(-.25,1.22)+
         coord_flip()
       
-      DistrictHeatNetworksProportionsChart
+      DistrictDistrictHeatsProportionsChart
       
       ggsave(
         file,
-        plot = DistrictHeatNetworksProportionsChart,
+        plot = DistrictDistrictHeatsProportionsChart,
         width = 17.5,
         height = 12,
         units = "cm",
