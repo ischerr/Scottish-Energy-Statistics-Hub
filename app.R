@@ -203,6 +203,12 @@ server <- function(input, output, session) {
   
   callModule(PrimaryOilGas, "PrimaryOilGas")
   
+  callModule(OilGasOutputs, "OilGasOutputs")
+  
+  callModule(OilGasConsumption, "OilGasConsumption")
+  
+  callModule(OilGasEmployment, "OilGasEmployment")
+  
   callModule(TargetTracker, "TargetTracker", parent_session = session)
   
   
@@ -860,9 +866,11 @@ ui <- shinyUI(fluidPage(
                             value = "ScotOilGas",
                             OilGasProdOutput("OilGasProd")),
                    tabPanel(title = "Oil and Gas Outputs",
-                            value = "OilGasOutputs"),
+                            value = "OilGasOutputs",
+                            OilGasOutputsOutput("OilGasOutputs")),
                    tabPanel(title = "Oil and Gas Consumption",
-                            value = "OilGasConsumption"),
+                            value = "OilGasConsumption",
+                            OilGasConsumptionOutput("OilGasConsumption")),
                    tabPanel(title = "Oil and Gas Exports",
                             value = "OilGasExports",
                             OilGasExportsOutput("OilGasExports")),
@@ -873,7 +881,8 @@ ui <- shinyUI(fluidPage(
                             value = "OilGasGVA",
                             OilGasGVAOutput("OilGasGVA")),
                    tabPanel(title = "Oil and Gas Employment",
-                            value = "OilGasEmployment"),
+                            value = "OilGasEmployment",
+                            OilGasEmploymentOutput("OilGasEmployment")),
                    tabPanel(title = "Coal Production",
                             value = "CoalProd",
                             CoalProdOutput("CoalProd"))
