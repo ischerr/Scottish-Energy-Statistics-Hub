@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-NonDomEPCOutput <- function(id) {
+NonDomEPCsOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
                     h3("Average energy efficiency levels of non-domestic properties, by type", style = "color: #34d1a3;  font-weight:bold"),
-                    h4(textOutput(ns('NonDomEPCSubtitle')), style = "color: #34d1a3;")
+                    h4(textOutput(ns('NonDomEPCsSubtitle')), style = "color: #34d1a3;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('NonDomEPC.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('NonDomEPCs.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
-    #dygraphOutput(ns("NonDomEPCPlot")),
-    plotlyOutput(ns("NonDomEPCPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
+    #dygraphOutput(ns("NonDomEPCsPlot")),
+    plotlyOutput(ns("NonDomEPCsPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
@@ -36,7 +36,7 @@ NonDomEPCOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("NonDomEPCTable"))%>% withSpinner(color="#34d1a3"))),
+      column(12, dataTableOutput(ns("NonDomEPCsTable"))%>% withSpinner(color="#34d1a3"))),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
       column(1,
@@ -61,17 +61,17 @@ NonDomEPCOutput <- function(id) {
 
 
 ###### Server ######
-NonDomEPC <- function(input, output, session) {
+NonDomEPCs <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("NonDomEPC.R")
+  print("NonDomEPCs.R")
 
   
-  output$NonDomEPCSubtitle <- renderText({
+  output$NonDomEPCsSubtitle <- renderText({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -92,7 +92,7 @@ NonDomEPC <- function(input, output, session) {
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
-  output$NonDomEPCPlot <- renderPlotly  ({
+  output$NonDomEPCsPlot <- renderPlotly  ({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -264,7 +264,7 @@ NonDomEPC <- function(input, output, session) {
   })
   
   
-  output$NonDomEPCTable = renderDataTable({
+  output$NonDomEPCsTable = renderDataTable({
     
     
     Data <- read_excel(
@@ -325,14 +325,14 @@ NonDomEPC <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/4 - Energy Efficiency/NonDomEPC.txt")[2])
+                     paste(readtext("Structure/4 - Energy Efficiency/NonDomEPCs.txt")[2])
                      
                    )))
   })
  
  
   observeEvent(input$ToggleTable, {
-    toggle("NonDomEPCTable")
+    toggle("NonDomEPCsTable")
   })
   
 
@@ -342,8 +342,8 @@ NonDomEPC <- function(input, output, session) {
   })
   
   
-  output$NonDomEPC.png <- downloadHandler(
-    filename = "NonDomEPC.png",
+  output$NonDomEPCs.png <- downloadHandler(
+    filename = "NonDomEPCs.png",
     content = function(file) {
 
 

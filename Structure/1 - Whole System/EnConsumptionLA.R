@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-EnConsLAOutput <- function(id) {
+EnConsumptionLAOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
                     h3("Share of renewable energy in gross final consumption", style = "color: #1A5D38;  font-weight:bold"),
-                    h4(textOutput(ns('EnConsLASubtitle')), style = "color: #1A5D38;")
+                    h4(textOutput(ns('EnConsumptionLASubtitle')), style = "color: #1A5D38;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('EnConsLA.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('EnConsumptionLA.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
-    #dygraphOutput(ns("EnConsLAPlot")),
-    imageOutput(ns("EnConsLAPlot"), height = "700px")%>% withSpinner(color="#1A5D38"),
+    #dygraphOutput(ns("EnConsumptionLAPlot")),
+    imageOutput(ns("EnConsumptionLAPlot"), height = "700px")%>% withSpinner(color="#1A5D38"),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #1A5D38;  font-weight:bold")),
@@ -36,7 +36,7 @@ EnConsLAOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("EnConsLATable"))%>% withSpinner(color="#1A5D38"))),
+      column(12, dataTableOutput(ns("EnConsumptionLATable"))%>% withSpinner(color="#1A5D38"))),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     fluidRow(
       column(1,
@@ -61,11 +61,11 @@ EnConsLAOutput <- function(id) {
 
 
 ###### Server ######
-EnConsLA <- function(input, output, session) {
-  # output$EnConsLAPlot <- renderDygraph({
+EnConsumptionLA <- function(input, output, session) {
+  # output$EnConsumptionLAPlot <- renderDygraph({
   #   RenEn <-
   #     read.csv(
-  #       "Structure/1 - Whole System/EnConsLA.csv",
+  #       "Structure/1 - Whole System/EnConsumptionLA.csv",
   #       header = TRUE,
   #       sep = ",",
   #       na.strings = "-"
@@ -98,12 +98,12 @@ EnConsLA <- function(input, output, session) {
     source("Structure/PackageHeader.R")
   }
   
-  print("EnConsLA.R")
+  print("EnConsumptionLA.R")
   ###### Renewable Energy ###### ######
   
   ### From ESD ###
   
-  output$EnConsLASubtitle <- renderText({
+  output$EnConsumptionLASubtitle <- renderText({
     
     RenEn <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -125,7 +125,7 @@ EnConsLA <- function(input, output, session) {
     paste("Scotland,", min(RenEn$Year),"-", max(RenEn$Year))
   })
   
-  output$EnConsLAPlot <- renderImage({
+  output$EnConsumptionLAPlot <- renderImage({
     
     # A temp file to save the output. It will be deleted after renderImage
     # sends it, because deleteFile=TRUE.
@@ -142,18 +142,18 @@ EnConsLA <- function(input, output, session) {
   }, deleteFile = TRUE)
   
   
-  output$EnConsLATable = renderDataTable({
+  output$EnConsumptionLATable = renderDataTable({
     
-    EnConsLA <- read_excel(
+    EnConsumptionLA <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Energy consump by LA",
       skip = 13,
       n_max = 33
     )
 
-    names(EnConsLA)[1:2] <- c("Geography Code", "Local Authority")
+    names(EnConsumptionLA)[1:2] <- c("Geography Code", "Local Authority")
     datatable(
-      EnConsLA[c(2,1,3:6)],
+      EnConsumptionLA[c(2,1,3:6)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -193,13 +193,13 @@ EnConsLA <- function(input, output, session) {
     tagList(column(12,
                    
                    HTML(
-                     paste(readtext("Structure/1 - Whole System/EnConsLA.txt")[2])
+                     paste(readtext("Structure/1 - Whole System/EnConsumptionLA.txt")[2])
                      
                    )))
   })
   
   observeEvent(input$ToggleTable, {
-    toggle("EnConsLATable")
+    toggle("EnConsumptionLATable")
   })
   
 
@@ -209,8 +209,8 @@ EnConsLA <- function(input, output, session) {
   })
   
   
-  output$EnConsLA.png <- downloadHandler(
-    filename = "EnConsLA.png",
+  output$EnConsumptionLA.png <- downloadHandler(
+    filename = "EnConsumptionLA.png",
     content = function(file) {
       writePNG(readPNG("Structure/1 - Whole System/LAConsumptionMapChart.png"), file) 
     }

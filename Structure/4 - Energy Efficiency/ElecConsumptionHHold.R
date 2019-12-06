@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-ElecConsumpHholdOutput <- function(id) {
+ElecConsumptionHHoldOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
                     h3("Average domestic electricity consumption", style = "color: #34d1a3;  font-weight:bold"),
-                    h4(textOutput(ns('ElecConsumpHholdSubtitle')), style = "color: #34d1a3;")
+                    h4(textOutput(ns('ElecConsumptionHHoldSubtitle')), style = "color: #34d1a3;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('ElecConsumpHhold.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('ElecConsumptionHHold.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
-    #dygraphOutput(ns("ElecConsumpHholdPlot")),
-    plotlyOutput(ns("ElecConsumpHholdPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
+    #dygraphOutput(ns("ElecConsumptionHHoldPlot")),
+    plotlyOutput(ns("ElecConsumptionHHoldPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
@@ -36,7 +36,7 @@ ElecConsumpHholdOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("ElecConsumpHholdTable"))%>% withSpinner(color="#34d1a3"))),
+      column(12, dataTableOutput(ns("ElecConsumptionHHoldTable"))%>% withSpinner(color="#34d1a3"))),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
       column(1,
@@ -61,17 +61,17 @@ ElecConsumpHholdOutput <- function(id) {
 
 
 ###### Server ######
-ElecConsumpHhold <- function(input, output, session) {
+ElecConsumptionHHold <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("ElecConsumpHhold.R")
+  print("ElecConsumptionHHold.R")
 
   
-  output$ElecConsumpHholdSubtitle <- renderText({
+  output$ElecConsumptionHHoldSubtitle <- renderText({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -92,7 +92,7 @@ ElecConsumpHhold <- function(input, output, session) {
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
-  output$ElecConsumpHholdPlot <- renderPlotly  ({
+  output$ElecConsumptionHHoldPlot <- renderPlotly  ({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -201,7 +201,7 @@ ElecConsumpHhold <- function(input, output, session) {
   })
   
   
-  output$ElecConsumpHholdTable = renderDataTable({
+  output$ElecConsumptionHHoldTable = renderDataTable({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -265,14 +265,14 @@ ElecConsumpHhold <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/4 - Energy Efficiency/ElecConsumpHHold.txt")[2])
+                     paste(readtext("Structure/4 - Energy Efficiency/ElecConsumptionHHold.txt")[2])
                      
                    )))
   })
  
  
   observeEvent(input$ToggleTable, {
-    toggle("ElecConsumpHholdTable")
+    toggle("ElecConsumptionHHoldTable")
   })
   
 
@@ -282,8 +282,8 @@ ElecConsumpHhold <- function(input, output, session) {
   })
   
   
-  output$ElecConsumpHhold.png <- downloadHandler(
-    filename = "ElecConsumpHhold.png",
+  output$ElecConsumptionHHold.png <- downloadHandler(
+    filename = "ElecConsumptionHHold.png",
     content = function(file) {
 
 
@@ -302,29 +302,29 @@ ElecConsumpHhold <- function(input, output, session) {
       
       Data$Year <- as.numeric(Data$Year)
       
-      ElecConsumpHHold <- Data
+      ElecConsumptionHHold <- Data
       
-      ElecConsumpHHold <-
-        ElecConsumpHHold[order(-ElecConsumpHHold$Year),]
+      ElecConsumptionHHold <-
+        ElecConsumptionHHold[order(-ElecConsumptionHHold$Year),]
       
-      ElecConsumpHHold <-
-        melt(ElecConsumpHHold, id.vars = "Year")
+      ElecConsumptionHHold <-
+        melt(ElecConsumptionHHold, id.vars = "Year")
       
       FinalConsumptionMax <-
-        subset(ElecConsumpHHold,
-               Year == max(ElecConsumpHHold$Year))
+        subset(ElecConsumptionHHold,
+               Year == max(ElecConsumptionHHold$Year))
       
-      ElecConsumpHHold <-
+      ElecConsumptionHHold <-
         subset(
-          ElecConsumpHHold,
-          Year < max(ElecConsumpHHold$Year) & variable != "Total"
+          ElecConsumptionHHold,
+          Year < max(ElecConsumptionHHold$Year) & variable != "Total"
         )
       
-      ElecConsumpHHold$variable <-
-        factor(ElecConsumpHHold$variable,
-               levels = unique(ElecConsumpHHold$variable))
+      ElecConsumptionHHold$variable <-
+        factor(ElecConsumptionHHold$variable,
+               levels = unique(ElecConsumptionHHold$variable))
       
-      ElecConsumpHHold <- ElecConsumpHHold %>%
+      ElecConsumptionHHold <- ElecConsumptionHHold %>%
         group_by(Year) %>%
         mutate(pos = cumsum(value) - value / 2) %>%
         mutate(top = sum(value))
@@ -337,7 +337,7 @@ ElecConsumpHhold <- function(input, output, session) {
       BarColours <- c("#00441b", "#238b45","#41ae76", "#66c2a4","#66c2a4", "#99d8c9", "ffffff")
       
       
-      ElecConsumpHHoldChart <- ElecConsumpHHold %>%
+      ElecConsumptionHHoldChart <- ElecConsumptionHHold %>%
         ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
         scale_fill_manual(
           "variable",
@@ -352,11 +352,11 @@ ElecConsumpHhold <- function(input, output, session) {
         ) +
         geom_bar(stat = "identity", width = .8) +
         geom_text(
-          y = ElecConsumpHHold$top/2,
+          y = ElecConsumptionHHold$top/2,
           label = ifelse(
-            ElecConsumpHHold$value < 7000,
+            ElecConsumptionHHold$value < 7000,
             paste0(format(
-              round(ElecConsumpHHold$top, digits = 0), big.mark = ","
+              round(ElecConsumptionHHold$top, digits = 0), big.mark = ","
             ), " kWh"),
             ""
           ),
@@ -367,11 +367,11 @@ ElecConsumpHhold <- function(input, output, session) {
         geom_text(
           y = -750,
           label =   ifelse(
-            ElecConsumpHHold$value < 7000,
+            ElecConsumptionHHold$value < 7000,
             ifelse(
-              ElecConsumpHHold$Year == 2003,
+              ElecConsumptionHHold$Year == 2003,
               "2005/2007\n(baseline)",
-              ElecConsumpHHold$Year
+              ElecConsumptionHHold$Year
             ),
             ""
           ),
@@ -382,17 +382,17 @@ ElecConsumpHhold <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = max(ElecConsumpHHold$Year) + 1.2,
+          x = max(ElecConsumptionHHold$Year) + 1.2,
           y = as.numeric(
             subset(
-              ElecConsumpHHold,
-              Year == max(ElecConsumpHHold$Year) &
+              ElecConsumptionHHold,
+              Year == max(ElecConsumptionHHold$Year) &
                 variable == "Consumption"
             )[1, 5]
           ) - as.numeric(
             subset(
-              ElecConsumpHHold,
-              Year == max(ElecConsumpHHold$Year) &
+              ElecConsumptionHHold,
+              Year == max(ElecConsumptionHHold$Year) &
                 variable == "Consumption"
             )[1, 4]
           ),
@@ -405,11 +405,11 @@ ElecConsumpHhold <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = max(ElecConsumpHHold$Year) + 1.2,
+          x = max(ElecConsumptionHHold$Year) + 1.2,
           y = as.numeric(
             subset(
-              ElecConsumpHHold,
-              Year == max(ElecConsumpHHold$Year) &
+              ElecConsumptionHHold,
+              Year == max(ElecConsumptionHHold$Year) &
                 variable == "Gas"
             )[1, 5]
           ),
@@ -422,7 +422,7 @@ ElecConsumpHhold <- function(input, output, session) {
           hjust = -.75
         ) + annotate(
           "text",
-          x = max(ElecConsumpHHold$Year) + 1.2,
+          x = max(ElecConsumptionHHold$Year) + 1.2,
           y = -700,
           label = "% Change\nfrom baseline",
           fontface = 2,
@@ -432,30 +432,30 @@ ElecConsumpHhold <- function(input, output, session) {
       
       
       
-      ElecConsumpHHoldChart
+      ElecConsumptionHHoldChart
       
       
-      ElecConsumpHHoldChart <-
+      ElecConsumptionHHoldChart <-
         BaselineChart(
-          ElecConsumpHHoldChart,
-          ElecConsumpHHold,
+          ElecConsumptionHHoldChart,
+          ElecConsumptionHHold,
           plottitle,
           sourcecaption,
           ChartColours
         )
       
-      ElecConsumpHHoldChart <-
-        ElecConsumpHHoldChart +
+      ElecConsumptionHHoldChart <-
+        ElecConsumptionHHoldChart +
         coord_flip() +
-        labs(subtitle = paste("Scotland, 2005 -", max(ElecConsumpHHold$Year))) +
-        ylim(-1000, max(ElecConsumpHHold$top)) +
-        xlim(max(ElecConsumpHHold$Year) + 1.2, 2002)
+        labs(subtitle = paste("Scotland, 2005 -", max(ElecConsumptionHHold$Year))) +
+        ylim(-1000, max(ElecConsumptionHHold$top)) +
+        xlim(max(ElecConsumptionHHold$Year) + 1.2, 2002)
       
-      ElecConsumpHHoldChart
+      ElecConsumptionHHoldChart
       
       ggsave(
         file,
-        plot = ElecConsumpHHoldChart,
+        plot = ElecConsumptionHHoldChart,
         width = 17,
         height = 15.5,
         units = "cm",

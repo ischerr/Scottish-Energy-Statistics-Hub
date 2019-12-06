@@ -43,172 +43,6 @@ server <- function(input, output, session) {
   
   rv = reactiveValues()
   
-  callModule(RenEnTgt, "RenEn")
-  
-  callModule(EnProd, "EnProd")
-  
-  callModule(EnergyEconomy, "EnergyEconomy")
-  
-  callModule(DailyDemand, "DailyDemand")
-  
-  callModule(RenElecTgt, "RenElec")
-  
-  callModule(RenHeatTgt, "RenHeat")
-  
-  callModule(EnConsumption, "EnConsumption")
-  
-  callModule(ElecGenLCFF, "ElecGenLCFF")
-  
-  callModule(ScotRenGen, "ScotRenGen")
-  
-  callModule(RenHeatTech, "RenHeatTech")
-  
-  callModule(Biofuels, "Biofuels")
-  
-  callModule(SupplyEmissions, "SupplyEmissions")
-  
-  callModule(AdjustedEmissions, "AdjustedEmissions")
-  
-  callModule(EmissionsDisplaced, "EmissionsDisplaced")
-  
-  callModule(GridEmissions, "GridEmissions")
-  
-  callModule(WallInsulation, "WallInsulation")
-  
-  callModule(BoilerImprovements, "BoilerImprovements")
-  
-  callModule(BillPayments, "BillPayments")
-  
-  callModule(HHoldEnMonitor, "HHoldEnMonitor")
-  
-  callModule(ElecGen, "ElecGen")
-  
-  callModule(PeakDay, "PeakDay")
-  
-  callModule(ImportsExports, "ImportsExports")
-  
-  callModule(ScotOwnGen, "ScotOwnGen")
-  
-  callModule(OilGasProd, "OilGasProd")
-  
-  callModule(OilGasExports, "OilGasExports")
-  
-  callModule(OilGasRevenue, "OilGasRevenue")
-  
-  callModule(OilGasGVA, "OilGasGVA")
-  
-  callModule(CoalProd, "CoalProd")
-  
-  callModule(RenEnEU, "RenEnEU")
-  
-  callModule(RenElecEU, "RenElecEU")
-  
-  callModule(EUWindHydro, "EUWindHydro")
-  
-  callModule(ElecGenByFuel, "ElecGenByFuel")
-  
-  callModule(ElecConsumpByFuel, "ElecConsumpByFuel")
-  
-  callModule(RenElecFuel, "RenElecFuel")
-  
-  callModule(RenElecCap, "RenElecCap")
-  
-  callModule(RenElecPipeline, "RenElecPipeline")
-  
-  callModule(RenHeatEU, "RenHeatEU")
-  
-  callModule(EnergyConsumptionEU, "EnergyConsumptionEU")
-  
-  callModule(EnConsumptionTgt, "EnConsumptionTgt")
-  
-  callModule(EnConsLA, "EnConsLA")
-  
-  callModule(EnergyBalance, "EnergyBalance")
-  
-  callModule(ElecLA, "ElecLA")
-  
-  callModule(DomesticRHI, "DomesticRHI")
-  
-  callModule(NonDomesticRHI, "NonDomesticRHI")
-  
-  callModule(ULEVs, "ULEVs")
-  
-  callModule(GHGEmissions, "GHGEmissions")
-  
-  callModule(LowCarbonEconomy, "LowCarbonEconomy")
-  
-  callModule(CommunityRenewables, "CommunityRenewables")
-  
-  callModule(CHP, "CHP")
-  
-  callModule(HeatNetwork, "HeatNetwork")
-  
-  callModule(EnComsumpSector, "EnComsumpSector")
-  
-  callModule(EnConsumpFuel, "EnConsumpFuel")
-  
-  callModule(ElecConsump, "ElecConsump")
-  
-  callModule(ElecConsumpHhold, "ElecConsumpHhold")
-  
-  callModule(ElecConsumptionLA, "ElecConsumptionLA")
-  
-  callModule(HeatConsump, "HeatConsump")
-  
-  callModule(GasConsump, "GasConsump")
-  
-  callModule(GasConsumpHhold, "GasConsumpHhold")
-  
-  callModule(GasConsumptionLA, "GasConsumptionLA")
-  
-  callModule(HouseholdEnergyConsumption, "HouseholdEnergyConsumption")
-  
-  callModule(TransportConsumpFuel, "TransportConsumpFuel")
-  
-  callModule(NonDomEPC, "NonDomEPC")
-  
-  callModule(LoftInsulation, "LoftInsulation")
-  
-  callModule(DomEPC, "DomEPC")
-
-  callModule(ElecBillPrices, "ElecBillPrices")
-  
-  callModule(GasBillPrices, "GasBillPrices")
-  
-  callModule(DualFuelBreakdown, "DualFuelBreakdown")
-  
-  callModule(EUBill, "EUBill")
-  
-  callModule(ElecNonHome, "ElecNonHome")
-  
-  callModule(GasNonHome, "GasNonHome")
-  
-  callModule(FuelPoverty, "FuelPoverty")
-  
-  callModule(PrimaryHeating, "PrimaryHeating")
-  
-  callModule(NonGasGrid, "NonGasGrid")
-  
-  callModule(EnergyUseMonitor, "EnergyUseMonitor")
-  
-  callModule(SmartMeters, "SmartMeters")
-  
-  callModule(EnSupplySwitch, "EnSupplySwitch")
-  
-  callModule(MaxSupplyPeakDemand, "MaxSupplyPeakDemand")
-  
-  callModule(GasSecurity, "GasSecurity")
-  
-  callModule(ElecStorage, "ElecStorage")
-  
-  callModule(PrimaryOilGas, "PrimaryOilGas")
-  
-  callModule(OilGasOutputs, "OilGasOutputs")
-  
-  callModule(OilGasConsumption, "OilGasConsumption")
-  
-  callModule(OilGasEmployment, "OilGasEmployment")
-  
   callModule(TargetTracker, "TargetTracker", parent_session = session)
   
   
@@ -252,26 +86,45 @@ observe({
 
   if(input$MainNav == "WholeSystem"){
     
-  updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$WholeSystem), mode = "push")}
+  updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$WholeSystem), mode = "push")
+    
+    callModule(match.fun(input$WholeSystem), input$WholeSystem)
+    
+    }
   
   
   if(input$MainNav == "RenLowCarbon"){
     
     if(input$RenLowCarbon == "RenElec"){
       
-        updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$RenLowCarbon,"&Chart=",input$RenElec), mode = "push")}
+        updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$RenLowCarbon,"&Chart=",input$RenElec), mode = "push")
+      
+      callModule(match.fun(input$RenElec), input$RenElec)
+                 }
     
     if(input$RenLowCarbon == "RenHeat"){
 
-        updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$RenLowCarbon,"&Chart=",input$RenHeat), mode = "push")}
+        updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$RenLowCarbon,"&Chart=",input$RenHeat), mode = "push")
+      
+      callModule(match.fun(input$RenHeat), input$RenHeat)
+      
+      }
     
     if(input$RenLowCarbon == "RenTransport"){
       
-        updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$RenLowCarbon,"&Chart=",input$RenTransport), mode = "push")}
+        updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$RenLowCarbon,"&Chart=",input$RenTransport), mode = "push")
+      
+      callModule(match.fun(input$RenTransport), input$RenTransport)
+      
+      }
     
     if(input$RenLowCarbon == "Emissions"){
 
-        updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$RenLowCarbon,"&Chart=",input$Emissions), mode = "push")}
+        updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$RenLowCarbon,"&Chart=",input$Emissions), mode = "push")
+      
+      callModule(match.fun(input$Emissions), input$Emissions)
+      
+      }
   
   
   }
@@ -279,26 +132,46 @@ observe({
   
   if(input$MainNav == "LocalEnergy"){
 
-      updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$LocalEnergy), mode = "push")}
+      updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$LocalEnergy), mode = "push")
+    
+    callModule(match.fun(input$LocalEnergy), input$LocalEnergy)
+    
+    }
   
   
   if(input$MainNav == "EnergyEfficiency"){
 
-      updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$EnergyEfficiency), mode = "push")}
+      updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$EnergyEfficiency), mode = "push")
+    
+    callModule(match.fun(input$EnergyEfficiency), input$EnergyEfficiency)
+    
+    }
   
   
   if(input$MainNav == "ConsumerEngagement"){
 
-      updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$ConsumerEngagement), mode = "push")}
+      updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$ConsumerEngagement), mode = "push")
+    
+    callModule(match.fun(input$ConsumerEngagement), input$ConsumerEngagement)
+    
+    }
   
   
   if(input$MainNav == "SystemSecurity"){
 
-      updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$SystemSecurity), mode = "push")}
+      updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$SystemSecurity), mode = "push")
+    
+    callModule(match.fun(input$SystemSecurity), input$SystemSecurity)
+    
+    }
   
   if(input$MainNav == "OilGas"){
    
-      updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$OilGas), mode = "push")}
+      updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$OilGas), mode = "push")
+    
+    callModule(match.fun(input$OilGas), input$OilGas)
+    
+    }
   
     
 
@@ -565,7 +438,7 @@ ui <- shinyUI(fluidPage(
         ###### Tab - Total Energy #######
         tabPanel(title = "Renewable Energy Target",
                  value = "RenEnTgt",
-                 RenEnTgtOutput("RenEn")),
+                 RenEnTgtOutput("RenEnTgt")),
         ###### Tab - Energy Productivity #######
         tabPanel(title = "Renewable Energy EU",
                  value = "RenEnEU",
@@ -581,15 +454,15 @@ ui <- shinyUI(fluidPage(
         ###### Tab - Energy Productivity #######
         tabPanel(title = "Energy Consumption by Local Authority",
                  value = "EnConsumptionLA",
-                  EnConsLAOutput("EnConsLA")),
+                 EnConsumptionLAOutput("EnConsumptionLA")),
         ###### Tab - Energy Productivity #######
         tabPanel(title = "Energy Balance",
                  value = "EnBalance",
-                 EnergyBalanceOutput("EnergyBalance")),
+                 EnBalanceOutput("EnBalance")),
         ###### Tab - Energy Productivity #######
         tabPanel(title = "Energy Economy",
                  value = "EnEconomy",
-                 EnergyEconomyOutput("EnergyEconomy"))
+                 EnEconomyOutput("EnEconomy"))
       )
     ),
     ###### Section - Renewables and Low Carbon #######
@@ -605,7 +478,7 @@ ui <- shinyUI(fluidPage(
         ###### Tab - Daily Demmand #######
         tabPanel(title ="Renewable Electricity Target", 
                  value = "RenElecTarget",
-                 RenElecTgtOutput("RenElec")),
+                 RenElecTargetOutput("RenElecTarget")),
         tabPanel(title ="Renewable Electricity EU", 
                  value = "RenElecEU",
                  RenElecEUOutput("RenElecEU")),
@@ -614,10 +487,10 @@ ui <- shinyUI(fluidPage(
                  ElecGenLCFFOutput("ElecGenLCFF")),
         tabPanel(title ="Electricity Generation by Fuel", 
                  value = "ElecGenFuel",
-                 ElecGenByFuelOutput("ElecGenByFuel")),
+                 ElecGenFuelOutput("ElecGenFuel")),
         tabPanel(title ="Electricity Consumption by Fuel", 
                  value = "ElecConsumptionFuel",
-                 ElecConsumpByFuelOutput("ElecConsumpByFuel")),
+                 ElecConsumptionFuelOutput("ElecConsumptionFuel")),
         tabPanel(title ="Renewable Electricity by Fuel", 
                  value = "RenElecFuel",
                  RenElecFuelOutput("RenElecFuel")),
@@ -626,13 +499,13 @@ ui <- shinyUI(fluidPage(
                  ScotRenGenOutput("ScotRenGen")),
         tabPanel(title ="Renewable Electricity by Local Authority", 
                  value = "RenElecLA",
-                 ElecLAOutput("ElecLA")),
+                 RenElecLAOutput("RenElecLA")),
         tabPanel(title ="Wind and Hydro Generation - EU", 
                  value = "WindHydroEU",
-                 EUWindHydroOutput("EUWindHydro")),
+                 WindHydroEUOutput("WindHydroEU")),
         tabPanel(title ="Renewable Electricity Capacity", 
                  value = "RenElecCapacity",
-                 RenElecCapOutput("RenElecCap")),
+                 RenElecCapacityOutput("RenElecCapacity")),
         tabPanel(title ="Renewable Electricity Pipeline", 
                  value = "RenElecPipeline",
                  RenElecPipelineOutput("RenElecPipeline"))
@@ -644,7 +517,7 @@ ui <- shinyUI(fluidPage(
           widths = c(3, 8),
           tabPanel(title ="Renewable Heat Target", 
                    value = "RenHeat",
-                   RenHeatTgtOutput("RenHeat")),
+                   RenHeatOutput("RenHeat")),
           tabPanel(title ="Renewable Heat EU", 
                    value = "RenHeatEU",
                    RenHeatEUOutput("RenHeatEU")),
@@ -656,7 +529,7 @@ ui <- shinyUI(fluidPage(
                    DomesticRHIOutput("DomesticRHI")),
           tabPanel(title ="Non-domestic RHI", 
                    value = "NonDomRHI",
-                   NonDomesticRHIOutput("NonDomesticRHI"))
+                   NonDomRHIOutput("NonDomRHI"))
       )),
       tabPanel(
         value = "RenTransport",
@@ -681,13 +554,13 @@ ui <- shinyUI(fluidPage(
                               GHGEmissionsOutput("GHGEmissions")),
                      tabPanel(title ="Energy Supply Emissions", 
                               value = "EnSupplyEmissions",
-                              SupplyEmissionsOutput("SupplyEmissions")),
+                              EnSupplyEmissionsOutput("EnSupplyEmissions")),
                      tabPanel(title ="Adjusted Emissions", 
                               value = "AdjustedEmissions",
                               AdjustedEmissionsOutput("AdjustedEmissions")),
                      tabPanel(title ="Emissions displaced by Renewables", 
                               value = "DisplacedEmissions",
-                              EmissionsDisplacedOutput("EmissionsDisplaced")),
+                              DisplacedEmissionsOutput("DisplacedEmissions")),
                      tabPanel(title ="Grid Emissions", 
                               value = "GridEmissions",
                               GridEmissionsOutput("GridEmissions")),
@@ -705,13 +578,13 @@ ui <- shinyUI(fluidPage(
                    widths = c(3, 8),
                    tabPanel(title = "Community and Locally Owned Renewables",
                             value = "LocalRenewables",
-                            CommunityRenewablesOutput("CommunityRenewables")),
+                            LocalRenewablesOutput("LocalRenewables")),
                    tabPanel(title = "CHPStats",
                             value = "CHPStats",
-                            CHPOutput("CHP")),
+                            CHPStatsOutput("CHPStats")),
                    tabPanel(title = "District Heat Networks",
                             value = "DistrictHeat",
-                            HeatNetworkOutput("HeatNetwork"))
+                            DistrictHeatOutput("DistrictHeat"))
     )),
     ###### Section - Energy Efficiency #######
     tabPanel(
@@ -724,43 +597,43 @@ ui <- shinyUI(fluidPage(
                             EnConsumptionTgtOutput("EnConsumptionTgt")),
                    tabPanel(title = "Energy Consumption EU",
                             value = "EnConsumptionEU",
-                            EnergyConsumptionEUOutput("EnergyConsumptionEU")),
+                            EnConsumptionEUOutput("EnConsumptionEU")),
                    tabPanel(title = "Energy Consumption by Sector",
                             value = "EnConsumptionSector",
-                            EnComsumpSectorOutput("EnComsumpSector")),
+                            EnConsumptionSectorOutput("EnConsumptionSector")),
                    tabPanel(title = "Energy Consumption by Fuel",
                             value = "EnConsumptionFuel",
-                            EnConsumpFuelOutput("EnConsumpFuel")),
+                            EnConsumptionFuelOutput("EnConsumptionFuel")),
                    tabPanel(title = "Electricity Consumption ",
                             value = "ElecConsumption",
-                            ElecConsumpOutput("ElecConsump")),
+                            ElecConsumptionOutput("ElecConsumption")),
                    tabPanel(title = "Electricty Consumption - Households",
-                            value = "EnConsumptionHHold",
-                            ElecConsumpHholdOutput("ElecConsumpHhold")),
+                            value = "ElecConsumptionHHold",
+                            ElecConsumptionHHoldOutput("ElecConsumptionHHold")),
                    tabPanel(title = "Electricity Consumption - Local Authorities",
-                            value = "EConsumptionLA",
+                            value = "ElecConsumptionLA",
                             ElecConsumptionLAOutput("ElecConsumptionLA")),
                    tabPanel(title = "Heat Consumption",
                             value = "HeatConsumption",
-                            HeatConsumpOutput("HeatConsump")),
+                            HeatConsumptionOutput("HeatConsumption")),
                    tabPanel(title = "Gas Consumption",
                             value = "GasConsumption",
-                            GasConsumpOutput("GasConsump")),
+                            GasConsumptionOutput("GasConsumption")),
                    tabPanel(title = "GasConsumption - Households",
                             value = "GasConsumptionHHold",
-                            GasConsumpHholdOutput("GasConsumpHhold")),
+                            GasConsumptionHHoldOutput("GasConsumptionHHold")),
                    tabPanel(title = "Gas Consumption - LA",
                             value = "GasConsumptionLA",
                             GasConsumptionLAOutput("GasConsumptionLA")),
                    tabPanel(title = "Household Energy Consumption",
                             value = "HHoldEnConsumption",
-                            HouseholdEnergyConsumptionOutput("HouseholdEnergyConsumption")),
+                            HHoldEnConsumptionOutput("HHoldEnConsumption")),
                    tabPanel(title = "Transport Energy Consumption",
                             value = "TransportEnConsumption",
-                            TransportConsumpFuelOutput("TransportConsumpFuel")),
+                            TransportEnConsumptionOutput("TransportEnConsumption")),
                    tabPanel(title = "Domestic EPCs",
                             value = "DomEPCs",
-                            DomEPCOutput("DomEPC")),
+                            DomEPCsOutput("DomEPCs")),
                    tabPanel(title = "Wall Insulation",
                             value = "WallInsulation",
                             WallInsulationOutput("WallInsulation")),
@@ -769,10 +642,10 @@ ui <- shinyUI(fluidPage(
                             LoftInsulationOutput("LoftInsulation")),
                    tabPanel(title = "Boilers",
                             value = "Boilers",
-                            BoilerImprovementsOutput("BoilerImprovements")),
+                            BoilersOutput("Boilers")),
                    tabPanel(title = "Non-domestic EPCs",
                             value = "NonDomEPCs",
-                            NonDomEPCOutput("NonDomEPC"))
+                            NonDomEPCsOutput("NonDomEPCs"))
     )),
     ###### Section - Consumer Engagement and Protection #######
     tabPanel(
@@ -784,7 +657,7 @@ ui <- shinyUI(fluidPage(
                             value = "ElecBillPrices",
                             ElecBillPricesOutput("ElecBillPrices")),
                    tabPanel(title = "Energy Bill Payment Methods",
-                            value = "BillPayment",
+                            value = "BillPayments",
                             BillPaymentsOutput("BillPayments")),
                    tabPanel(title = "Gas Bill Prices",
                             value = "GasBillPrices",
@@ -837,16 +710,16 @@ ui <- shinyUI(fluidPage(
                             MaxSupplyPeakDemandOutput("MaxSupplyPeakDemand")),
                    tabPanel(title = "Electricity Generation",
                             value = "ElecGeneration",
-                            ElecGenOutput("ElecGen")),
+                            ElecGenerationOutput("ElecGeneration")),
                    tabPanel(title = "Peak Electricity and Gas Demand days",
                             value = "PeakElecGas",
-                            PeakDayOutput("PeakDay")),
+                            PeakElecGasOutput("PeakElecGas")),
                    tabPanel(title = "Electricity Imports and Exports",
                             value = "ElecImportsExports",
-                            ImportsExportsOutput("ImportsExports")),
+                            ElecImportsExportsOutput("ElecImportsExports")),
                    tabPanel(title = "Scottish Generation Meeting Demand",
                             value = "ScotGenDemand", 
-                            ScotOwnGenOutput("ScotOwnGen")),
+                            ScotGenDemandOutput("ScotGenDemand")),
                    tabPanel(title = "Gas Security",
                             value = "GasSecurity",
                             GasSecurityOutput("GasSecurity")),
@@ -863,7 +736,7 @@ ui <- shinyUI(fluidPage(
                             value = "PrimaryOilGas",
                             PrimaryOilGasOutput("PrimaryOilGas")),
                    tabPanel(title = "Scottish Oil and Gas Production",
-                            value = "ScotOilGas",
+                            value = "OilGasProd",
                             OilGasProdOutput("OilGasProd")),
                    tabPanel(title = "Oil and Gas Outputs",
                             value = "OilGasOutputs",

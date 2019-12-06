@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-ElecLAOutput <- function(id) {
+RenElecLAOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
                     h3("Share of renewable energy in gross final consumption", style = "color: #39ab2c;  font-weight:bold"),
-                    h4(textOutput(ns('ElecLASubtitle')), style = "color: #39ab2c;")
+                    h4(textOutput(ns('RenElecLASubtitle')), style = "color: #39ab2c;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('ElecLA.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('RenElecLA.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-    #dygraphOutput(ns("ElecLAPlot")),
-    imageOutput(ns("ElecLAPlot"), height = "700px")%>% withSpinner(color="#39ab2c"),
+    #dygraphOutput(ns("RenElecLAPlot")),
+    imageOutput(ns("RenElecLAPlot"), height = "700px")%>% withSpinner(color="#39ab2c"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
@@ -36,7 +36,7 @@ ElecLAOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("ElecLATable"))%>% withSpinner(color="#39ab2c"))),
+      column(12, dataTableOutput(ns("RenElecLATable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
       column(1,
@@ -61,11 +61,11 @@ ElecLAOutput <- function(id) {
 
 
 ###### Server ######
-ElecLA <- function(input, output, session) {
-  # output$ElecLAPlot <- renderDygraph({
+RenElecLA <- function(input, output, session) {
+  # output$RenElecLAPlot <- renderDygraph({
   #   RenEn <-
   #     read.csv(
-  #       "Structure/2 - Renewables/Electricity/ElecLA.csv",
+  #       "Structure/2 - Renewables/Electricity/RenElecLA.csv",
   #       header = TRUE,
   #       sep = ",",
   #       na.strings = "-"
@@ -98,12 +98,12 @@ ElecLA <- function(input, output, session) {
     source("Structure/PackageHeader.R")
   }
   
-  print("ElecLA.R")
+  print("RenElecLA.R")
   ###### Renewable Energy ###### ######
   
   ### From ESD ###
   
-  output$ElecLASubtitle <- renderText({
+  output$RenElecLASubtitle <- renderText({
     
     RenEn <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -125,13 +125,13 @@ ElecLA <- function(input, output, session) {
     paste("Scotland,", min(RenEn$Year),"-", max(RenEn$Year))
   })
   
-  output$ElecLAPlot <- renderImage({
+  output$RenElecLAPlot <- renderImage({
     
     # A temp file to save the output. It will be deleted after renderImage
     # sends it, because deleteFile=TRUE.
     outfile <- tempfile(fileext='.png')
    
-     writePNG(readPNG("Structure/2 - Renewables/Electricity/ElecLAOutput.png"),outfile) 
+     writePNG(readPNG("Structure/2 - Renewables/Electricity/RenElecLAOutput.png"),outfile) 
     
     # Generate a png
     
@@ -142,18 +142,18 @@ ElecLA <- function(input, output, session) {
   }, deleteFile = TRUE)
   
   
-  output$ElecLATable = renderDataTable({
+  output$RenElecLATable = renderDataTable({
     
-    ElecLA <- read_excel(
+    RenElecLA <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Energy consump by LA",
       skip = 13,
       n_max = 33
     )
 
-    names(ElecLA)[1:2] <- c("Geography Code", "Local Authority")
+    names(RenElecLA)[1:2] <- c("Geography Code", "Local Authority")
     datatable(
-      ElecLA[c(2,1,3:6)],
+      RenElecLA[c(2,1,3:6)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -193,14 +193,14 @@ ElecLA <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/2 - Renewables/Electricity/ElecLA.txt")[2])
+                     paste(readtext("Structure/2 - Renewables/Electricity/RenElecLA.txt")[2])
                      
                    )))
   })
   
   
   observeEvent(input$ToggleTable, {
-    toggle("ElecLATable")
+    toggle("RenElecLATable")
   })
   
 
@@ -210,10 +210,10 @@ ElecLA <- function(input, output, session) {
   })
   
   
-  output$ElecLA.png <- downloadHandler(
-    filename = "ElecLA.png",
+  output$RenElecLA.png <- downloadHandler(
+    filename = "RenElecLA.png",
     content = function(file) {
-      writePNG(readPNG("Structure/2 - Renewables/Electricity/ElecLAChart.png"), file) 
+      writePNG(readPNG("Structure/2 - Renewables/Electricity/RenElecLAChart.png"), file) 
     }
   )
 }

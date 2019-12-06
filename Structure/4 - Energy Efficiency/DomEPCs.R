@@ -7,7 +7,7 @@ require("DT")
 
 source("Structure/Global.R")
 
-DomEPCOutput <- function(id) {
+DomEPCsOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
@@ -109,14 +109,14 @@ DomEPCOutput <- function(id) {
 
 
 ###### Server ######
-DomEPC <- function(input, output, session) {
+DomEPCs <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("DomEPC.R")
+  print("DomEPCs.R")
 
   
   output$StockEPCSubtitle <- renderText({
@@ -788,7 +788,7 @@ DomEPC <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/4 - Energy Efficiency/DomEPC.txt")[2])
+                     paste(readtext("Structure/4 - Energy Efficiency/DomEPCs.txt")[2])
                      
                    )))
   })

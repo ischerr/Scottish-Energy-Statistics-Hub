@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-HouseholdEnergyConsumptionOutput <- function(id) {
+HHoldEnConsumptionOutput <- function(id) {
   ns <- NS(id)
   tagList(
    fluidRow(column(8,
                     h3("Average household energy consumption by end use", style = "color: #34d1a3;  font-weight:bold"),
-                    h4(textOutput(ns('HouseholdEnergyConsumptionSubtitle')), style = "color: #34d1a3;")
+                    h4(textOutput(ns('HHoldEnConsumptionSubtitle')), style = "color: #34d1a3;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('HouseholdEnergyConsumption.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('HHoldEnConsumption.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
-    #dygraphOutput(ns("HouseholdEnergyConsumptionPlot")),
-    plotlyOutput(ns("HouseholdEnergyConsumptionPlot"), height = "450px")%>% withSpinner(color="#34d1a3"),
+    #dygraphOutput(ns("HHoldEnConsumptionPlot")),
+    plotlyOutput(ns("HHoldEnConsumptionPlot"), height = "450px")%>% withSpinner(color="#34d1a3"),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
@@ -36,7 +36,7 @@ HouseholdEnergyConsumptionOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("HouseholdEnergyConsumptionTable"))%>% withSpinner(color="#34d1a3"))),
+      column(12, dataTableOutput(ns("HHoldEnConsumptionTable"))%>% withSpinner(color="#34d1a3"))),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
       column(1,
@@ -61,11 +61,11 @@ HouseholdEnergyConsumptionOutput <- function(id) {
 
 
 ###### Server ######
-HouseholdEnergyConsumption <- function(input, output, session) {
-  # output$HouseholdEnergyConsumptionPlot <- renderDygraph({
+HHoldEnConsumption <- function(input, output, session) {
+  # output$HHoldEnConsumptionPlot <- renderDygraph({
   #   RenEn <-
   #     read.csv(
-  #       "Structure/1 - Whole System/HouseholdEnergyConsumption.csv",
+  #       "Structure/1 - Whole System/HHoldEnConsumption.csv",
   #       header = TRUE,
   #       sep = ",",
   #       na.strings = "-"
@@ -98,49 +98,49 @@ HouseholdEnergyConsumption <- function(input, output, session) {
     source("Structure/PackageHeader.R")
   }
   
-  print("HouseholdEnergyConsumption.R")
+  print("HHoldEnConsumption.R")
   
-  output$HouseholdEnergyConsumptionSubtitle <- renderText({
+  output$HHoldEnConsumptionSubtitle <- renderText({
     
-    HouseholdEnergyConsumption <- read_excel("Structure/CurrentWorking.xlsx",
+    HHoldEnConsumption <- read_excel("Structure/CurrentWorking.xlsx",
                           sheet = "Energy consump by sector", col_names = TRUE, 
                           skip = 17)
     
-    HouseholdEnergyConsumption <- HouseholdEnergyConsumption[2:6]
+    HHoldEnConsumption <- HHoldEnConsumption[2:6]
     
-    HouseholdEnergyConsumption <- HouseholdEnergyConsumption[complete.cases(HouseholdEnergyConsumption),]
+    HHoldEnConsumption <- HHoldEnConsumption[complete.cases(HHoldEnConsumption),]
     
-    names(HouseholdEnergyConsumption) <- c("Year", "Heat", "Transport", "Electricity", "Other")
+    names(HHoldEnConsumption) <- c("Year", "Heat", "Transport", "Electricity", "Other")
     
-    paste(max(as.numeric(HouseholdEnergyConsumption$Year), na.rm = TRUE))
+    paste(max(as.numeric(HHoldEnConsumption$Year), na.rm = TRUE))
   })
  
-  output$HouseholdEnergyConsumptionPlot <- renderPlotly  ({
+  output$HHoldEnConsumptionPlot <- renderPlotly  ({
     
-    HouseholdEnergyConsumption <- read_excel("Structure/CurrentWorking.xlsx",
+    HHoldEnConsumption <- read_excel("Structure/CurrentWorking.xlsx",
                                sheet = "Household energy consump", col_names = TRUE, 
                                skip = 14)
     
-    HouseholdEnergyConsumption <- HouseholdEnergyConsumption[-1,]
+    HHoldEnConsumption <- HHoldEnConsumption[-1,]
 
-    HouseholdEnergyConsumption <- HouseholdEnergyConsumption[1:5]
+    HHoldEnConsumption <- HHoldEnConsumption[1:5]
     
-    names(HouseholdEnergyConsumption)[1] <- "Measure"
+    names(HHoldEnConsumption)[1] <- "Measure"
     
-    HouseholdEnergyConsumption <- melt(HouseholdEnergyConsumption)
+    HHoldEnConsumption <- melt(HHoldEnConsumption)
     
     ChartColours <- c("#34d1a3", "#FF8500")
     BarColours <- c("#bd0026", "#f03b20", "#fd8d3c","#feb24c")
     
     
     p <- plot_ly(
-      data = HouseholdEnergyConsumption,
+      data = HHoldEnConsumption,
       labels = ~variable,
       type = 'pie',
       values = ~value,
       text = paste0(
-        HouseholdEnergyConsumption$variable,
-        ": ", format(round(HouseholdEnergyConsumption$value, 0), big.mark = ","), " GWh" 
+        HHoldEnConsumption$variable,
+        ": ", format(round(HHoldEnConsumption$value, 0), big.mark = ","), " GWh" 
       ),
       textposition = 'inside',
       textinfo = 'label+percent',
@@ -177,28 +177,28 @@ HouseholdEnergyConsumption <- function(input, output, session) {
     
   })
   
-  output$HouseholdEnergyConsumptionTable = renderDataTable({
+  output$HHoldEnConsumptionTable = renderDataTable({
     
-    HouseholdEnergyConsumption <- read_excel("Structure/CurrentWorking.xlsx",
+    HHoldEnConsumption <- read_excel("Structure/CurrentWorking.xlsx",
                                              sheet = "Household energy consump", col_names = FALSE, 
                                              skip = 14)
     
-    HouseholdEnergyConsumption <- as_tibble(t(HouseholdEnergyConsumption))
+    HHoldEnConsumption <- as_tibble(t(HHoldEnConsumption))
     
 
 
 
-    names(HouseholdEnergyConsumption) <- unlist(HouseholdEnergyConsumption[1,])
+    names(HHoldEnConsumption) <- unlist(HHoldEnConsumption[1,])
     
-    HouseholdEnergyConsumption <- tail(HouseholdEnergyConsumption, -1)
+    HHoldEnConsumption <- tail(HHoldEnConsumption, -1)
     
-    names(HouseholdEnergyConsumption)[1] <- "End Use"
+    names(HHoldEnConsumption)[1] <- "End Use"
     
-        HouseholdEnergyConsumption[2:3]%<>% lapply(function(x)
+        HHoldEnConsumption[2:3]%<>% lapply(function(x)
       as.numeric(as.character(x)))
     
         datatable(
-      HouseholdEnergyConsumption,
+      HHoldEnConsumption,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -230,7 +230,7 @@ HouseholdEnergyConsumption <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:ncol(HouseholdEnergyConsumption), 0) %>% 
+      formatRound(2:ncol(HHoldEnConsumption), 0) %>% 
       formatPercentage(2,1)
   })
   
@@ -239,14 +239,14 @@ HouseholdEnergyConsumption <- function(input, output, session) {
     tagList(column(12,
                    
                    HTML(
-                     paste(readtext("Structure/4 - Energy Efficiency/HouseholdEnergyConsumption.txt")[2])
+                     paste(readtext("Structure/4 - Energy Efficiency/HHoldEnConsumption.txt")[2])
                      
                    )))
   })
   
   
   observeEvent(input$ToggleTable, {
-    toggle("HouseholdEnergyConsumptionTable")
+    toggle("HHoldEnConsumptionTable")
   })
 
   
@@ -255,8 +255,8 @@ HouseholdEnergyConsumption <- function(input, output, session) {
   })
   
   
-  output$HouseholdEnergyConsumption.png <- downloadHandler(
-    filename = "HouseholdEnergyConsumption.png",
+  output$HHoldEnConsumption.png <- downloadHandler(
+    filename = "HHoldEnConsumption.png",
     content = function(file) {
 
 writePNG(

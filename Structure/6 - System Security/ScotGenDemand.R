@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-ScotOwnGenOutput <- function(id) {
+ScotGenDemandOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
                     h3("Electricity generated and consumed", style = "color: #5d8be1;  font-weight:bold"),
-                    h4(textOutput(ns('ScotOwnGenSubtitle')), style = "color: #5d8be1;")
+                    h4(textOutput(ns('ScotGenDemandSubtitle')), style = "color: #5d8be1;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('ScotOwnGen.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('ScotGenDemand.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
-    #dygraphOutput(ns("ScotOwnGenPlot")),
-    plotlyOutput(ns("ScotOwnGenPlot"))%>% withSpinner(color="#5d8be1"),
+    #dygraphOutput(ns("ScotGenDemandPlot")),
+    plotlyOutput(ns("ScotGenDemandPlot"))%>% withSpinner(color="#5d8be1"),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #5d8be1;  font-weight:bold")),
@@ -36,7 +36,7 @@ ScotOwnGenOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("ScotOwnGenTable"))%>% withSpinner(color="#5d8be1"))),
+      column(12, dataTableOutput(ns("ScotGenDemandTable"))%>% withSpinner(color="#5d8be1"))),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
       column(1,
@@ -61,7 +61,7 @@ ScotOwnGenOutput <- function(id) {
 
 
 ###### Server ######
-ScotOwnGen <- function(input, output, session) {
+ScotGenDemand <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
@@ -71,39 +71,39 @@ ScotOwnGen <- function(input, output, session) {
   print("ScottishOwnGen.R")
 
   
-  output$ScotOwnGenSubtitle <- renderText({
+  output$ScotGenDemandSubtitle <- renderText({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Scottish generation", skip = 14)
     
     names(Data) <- c("Year", "ScotlandOnly", "ScotGenNonWind", "Renewables", "LowCarbon")
-    ScotOwnGen <- Data
+    ScotGenDemand <- Data
     
     
-    paste("Scotland,", min(ScotOwnGen$Year),"-", max(ScotOwnGen$Year))
+    paste("Scotland,", min(ScotGenDemand$Year),"-", max(ScotGenDemand$Year))
   })
   
-  output$ScotOwnGenPlot <- renderPlotly  ({
+  output$ScotGenDemandPlot <- renderPlotly  ({
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Scottish generation", skip = 14)
     
     names(Data) <- c("Year", "ScotlandOnly", "ScotGenNonWind", "Renewables", "LowCarbon")
-    ScotOwnGen <- Data
+    ScotGenDemand <- Data
     
     ### variables
     ChartColours <- c("#5d8be1",  "#fdb462", "#fc8d62", "#66c2a5","#8da0cb")
     sourcecaption = "Source: Elexon, National Grid"
     plottitle = "Proportion of time Scotland is capable of meeting\ndemand from Scottish generation"
     
-    ScotOwnGen$Year <- paste0("01/01/", ScotOwnGen$Year)
+    ScotGenDemand$Year <- paste0("01/01/", ScotGenDemand$Year)
     
-    ScotOwnGen$Year <- dmy(ScotOwnGen$Year)
+    ScotGenDemand$Year <- dmy(ScotGenDemand$Year)
     
     
-    p <-  plot_ly(ScotOwnGen,x = ~ Year ) %>% 
-      add_trace(data = ScotOwnGen,
+    p <-  plot_ly(ScotGenDemand,x = ~ Year ) %>% 
+      add_trace(data = ScotGenDemand,
                 x = ~ Year,
                 y = ~ ScotlandOnly,
                 name = "All Scottish Generation",
@@ -112,24 +112,24 @@ ScotOwnGen <- function(input, output, session) {
                 legendgroup = "1",
                 text = paste0(
                   "All Scottish Generation: ",
-                  percent(ScotOwnGen$ScotlandOnly, accuracy = 0.1),
+                  percent(ScotGenDemand$ScotlandOnly, accuracy = 0.1),
                   "\nYear: ",
-                  format(ScotOwnGen$Year, "%Y")
+                  format(ScotGenDemand$Year, "%Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = ChartColours[2], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(ScotOwnGen[which(ScotOwnGen$ScotlandOnly > 0 | ScotOwnGen$ScotlandOnly < 0),], 1),
+        data = tail(ScotGenDemand[which(ScotGenDemand$ScotlandOnly > 0 | ScotGenDemand$ScotlandOnly < 0),], 1),
         x = ~ Year,
         y = ~ ScotlandOnly,
         legendgroup = "1",
         name = "All Scottish Generation",
         text = paste0(
           "All Scottish Generation: ",
-          percent(ScotOwnGen[which(ScotOwnGen$ScotlandOnly > 0 | ScotOwnGen$ScotlandOnly < 0),][-1,]$ScotlandOnly, accuracy = 0.1),
+          percent(ScotGenDemand[which(ScotGenDemand$ScotlandOnly > 0 | ScotGenDemand$ScotlandOnly < 0),][-1,]$ScotlandOnly, accuracy = 0.1),
           "\nYear: ",
-          format(ScotOwnGen[which(ScotOwnGen$ScotlandOnly > 0 | ScotOwnGen$ScotlandOnly < 0),][-1,]$Year, "%Y")
+          format(ScotGenDemand[which(ScotGenDemand$ScotlandOnly > 0 | ScotGenDemand$ScotlandOnly < 0),][-1,]$Year, "%Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -138,7 +138,7 @@ ScotOwnGen <- function(input, output, session) {
         marker = list(size = 18, 
                       color = ChartColours[2])
       ) %>% 
-      add_trace(data = ScotOwnGen,
+      add_trace(data = ScotGenDemand,
                 x = ~ Year,
                 y = ~ ScotGenNonWind,
                 name = "Scottish Generation - Excluding Wind",
@@ -147,24 +147,24 @@ ScotOwnGen <- function(input, output, session) {
                 legendgroup = "2",
                 text = paste0(
                   "Scottish Generation - Excluding Wind: ",
-                  percent(ScotOwnGen$ScotGenNonWind, accuracy = 0.1),
+                  percent(ScotGenDemand$ScotGenNonWind, accuracy = 0.1),
                   "\nYear: ",
-                  format(ScotOwnGen$Year, "%Y")
+                  format(ScotGenDemand$Year, "%Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = ChartColours[3], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(ScotOwnGen[which(ScotOwnGen$ScotGenNonWind > 0 | ScotOwnGen$ScotGenNonWind < 0),], 1),
+        data = tail(ScotGenDemand[which(ScotGenDemand$ScotGenNonWind > 0 | ScotGenDemand$ScotGenNonWind < 0),], 1),
         x = ~ Year,
         y = ~ ScotGenNonWind,
         legendgroup = "2",
         name = "Scottish Generation - Excluding Wind",
         text = paste0(
           "Scottish Generation - Excluding Wind: ",
-          percent(ScotOwnGen[which(ScotOwnGen$ScotGenNonWind > 0 | ScotOwnGen$ScotGenNonWind < 0),][-1,]$ScotGenNonWind, accuracy = 0.1),
+          percent(ScotGenDemand[which(ScotGenDemand$ScotGenNonWind > 0 | ScotGenDemand$ScotGenNonWind < 0),][-1,]$ScotGenNonWind, accuracy = 0.1),
           "\nYear: ",
-          format(ScotOwnGen[which(ScotOwnGen$ScotGenNonWind > 0 | ScotOwnGen$ScotGenNonWind < 0),][-1,]$Year, "%Y")
+          format(ScotGenDemand[which(ScotGenDemand$ScotGenNonWind > 0 | ScotGenDemand$ScotGenNonWind < 0),][-1,]$Year, "%Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -173,7 +173,7 @@ ScotOwnGen <- function(input, output, session) {
         marker = list(size = 18, 
                       color = ChartColours[3])
       ) %>% 
-      add_trace(data = ScotOwnGen,
+      add_trace(data = ScotGenDemand,
                 x = ~ Year,
                 y = ~ Renewables,
                 name = "Scottish Renewable Generation Only",
@@ -182,24 +182,24 @@ ScotOwnGen <- function(input, output, session) {
                 legendgroup = "3",
                 text = paste0(
                   "Scottish Renewable Generation Only: ",
-                  percent(ScotOwnGen$Renewables, accuracy = 0.1),
+                  percent(ScotGenDemand$Renewables, accuracy = 0.1),
                   "\nYear: ",
-                  format(ScotOwnGen$Year, "%Y")
+                  format(ScotGenDemand$Year, "%Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = ChartColours[4], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(ScotOwnGen[which(ScotOwnGen$Renewables > 0 | ScotOwnGen$Renewables < 0),], 1),
+        data = tail(ScotGenDemand[which(ScotGenDemand$Renewables > 0 | ScotGenDemand$Renewables < 0),], 1),
         x = ~ Year,
         y = ~ Renewables,
         legendgroup = "3",
         name = "Scottish Renewable Generation Only",
         text = paste0(
           "Scottish Renewable Generation Only: ",
-          percent(ScotOwnGen[which(ScotOwnGen$Renewables > 0 | ScotOwnGen$Renewables < 0),][-1,]$Renewables, accuracy = 0.1),
+          percent(ScotGenDemand[which(ScotGenDemand$Renewables > 0 | ScotGenDemand$Renewables < 0),][-1,]$Renewables, accuracy = 0.1),
           "\nYear: ",
-          format(ScotOwnGen[which(ScotOwnGen$Renewables > 0 | ScotOwnGen$Renewables < 0),][-1,]$Year, "%Y")
+          format(ScotGenDemand[which(ScotGenDemand$Renewables > 0 | ScotGenDemand$Renewables < 0),][-1,]$Year, "%Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -208,7 +208,7 @@ ScotOwnGen <- function(input, output, session) {
         marker = list(size = 18, 
                       color = ChartColours[4])
       ) %>% 
-      add_trace(data = ScotOwnGen,
+      add_trace(data = ScotGenDemand,
                 x = ~ Year,
                 y = ~ LowCarbon,
                 name = "Scottish Low Carbon Generation",
@@ -217,24 +217,24 @@ ScotOwnGen <- function(input, output, session) {
                 legendgroup = "4",
                 text = paste0(
                   "Scottish Low Carbon Generation: ",
-                  percent(ScotOwnGen$LowCarbon, accuracy = 0.1),
+                  percent(ScotGenDemand$LowCarbon, accuracy = 0.1),
                   "\nYear: ",
-                  format(ScotOwnGen$Year, "%Y")
+                  format(ScotGenDemand$Year, "%Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = ChartColours[5], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(ScotOwnGen[which(ScotOwnGen$LowCarbon > 0 | ScotOwnGen$LowCarbon < 0),], 1),
+        data = tail(ScotGenDemand[which(ScotGenDemand$LowCarbon > 0 | ScotGenDemand$LowCarbon < 0),], 1),
         x = ~ Year,
         y = ~ LowCarbon,
         legendgroup = "4",
         name = "Scottish Low Carbon Generation",
         text = paste0(
           "Scottish Low Carbon Generation: ",
-          percent(ScotOwnGen[which(ScotOwnGen$LowCarbon > 0 | ScotOwnGen$LowCarbon < 0),][-1,]$LowCarbon, accuracy = 0.1),
+          percent(ScotGenDemand[which(ScotGenDemand$LowCarbon > 0 | ScotGenDemand$LowCarbon < 0),][-1,]$LowCarbon, accuracy = 0.1),
           "\nYear: ",
-          format(ScotOwnGen[which(ScotOwnGen$LowCarbon > 0 | ScotOwnGen$LowCarbon < 0),][-1,]$Year, "%Y")
+          format(ScotGenDemand[which(ScotGenDemand$LowCarbon > 0 | ScotGenDemand$LowCarbon < 0),][-1,]$Year, "%Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -254,7 +254,7 @@ ScotOwnGen <- function(input, output, session) {
 
         xaxis = list(title = "",
                      showgrid = FALSE,
-                     range = c(min(ScotOwnGen$Year)-100, max(ScotOwnGen$Year)+100)),
+                     range = c(min(ScotGenDemand$Year)-100, max(ScotGenDemand$Year)+100)),
         yaxis = list(
           title = "GWh",
           tickformat = "",
@@ -273,16 +273,16 @@ ScotOwnGen <- function(input, output, session) {
   })
   
   
-  output$ScotOwnGenTable = renderDataTable({
+  output$ScotGenDemandTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Scottish generation", skip = 14)
     
     names(Data) <- c("Year", "All Scottish Generation", "Scottish Generation Excluding Wind", "Scottish Renewable Generation Only", "Scottish Low Carbon Generation")
-    ScotOwnGeneration <- Data
+    ScotGenDemanderation <- Data
     
     datatable(
-      ScotOwnGeneration,
+      ScotGenDemanderation,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -329,7 +329,7 @@ ScotOwnGen <- function(input, output, session) {
  
  
   observeEvent(input$ToggleTable, {
-    toggle("ScotOwnGenTable")
+    toggle("ScotGenDemandTable")
   })
   
   
@@ -338,8 +338,8 @@ ScotOwnGen <- function(input, output, session) {
   })
   
   
-  output$ScotOwnGen.png <- downloadHandler(
-    filename = "ScotOwnGen.png",
+  output$ScotGenDemand.png <- downloadHandler(
+    filename = "ScotGenDemand.png",
     content = function(file) {
 
 
@@ -347,17 +347,17 @@ ScotOwnGen <- function(input, output, session) {
                          sheet = "Scottish generation", skip = 14)
       
       names(Data) <- c("Year", "ScotlandOnly", "ScotGenNonWind", "Renewables", "LowCarbon")
-      ScotOwnGeneration <- Data
+      ScotGenDemanderation <- Data
       
       ### variables
       ChartColours <- c("#5d8be1",  "#fdb462", "#fc8d62", "#66c2a5","#8da0cb")
       sourcecaption = "Source: Elexon, National Grid"
       plottitle = "Proportion of time Scotland is capable of meeting\ndemand from Scottish generation"
       
-      #ScotOwnGeneration$`ScotlandOnly`Percentage <- PercentLabel(ScotOwnGeneration$`ScotlandOnly`)
+      #ScotGenDemanderation$`ScotlandOnly`Percentage <- PercentLabel(ScotGenDemanderation$`ScotlandOnly`)
       
       
-      ScotOwnGenerationChart <- ScotOwnGeneration %>%
+      ScotGenDemanderationChart <- ScotGenDemanderation %>%
         ggplot(aes(x = Year), family = "Century Gothic") +
         
         geom_line(
@@ -392,7 +392,7 @@ ScotOwnGen <- function(input, output, session) {
           family = "Century Gothic"
         ) +
         geom_point(
-          data = tail(ScotOwnGeneration, 1),
+          data = tail(ScotGenDemanderation, 1),
           aes(x = Year,
               y = `ScotlandOnly`,
               show_guide = FALSE),
@@ -402,8 +402,8 @@ ScotOwnGen <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = mean(ScotOwnGeneration$Year),
-          y = mean(ScotOwnGeneration$`ScotlandOnly`),
+          x = mean(ScotGenDemanderation$Year),
+          y = mean(ScotGenDemanderation$`ScotlandOnly`),
           label = "All generation",
           hjust = 0.5,
           vjust = -1,
@@ -442,7 +442,7 @@ ScotOwnGen <- function(input, output, session) {
           family = "Century Gothic"
         ) +
         geom_point(
-          data = tail(ScotOwnGeneration, 1),
+          data = tail(ScotGenDemanderation, 1),
           aes(x = Year,
               y = `ScotGenNonWind`,
               show_guide = FALSE),
@@ -452,8 +452,8 @@ ScotOwnGen <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = mean(ScotOwnGeneration$Year),
-          y = mean(ScotOwnGeneration$`ScotGenNonWind`),
+          x = mean(ScotGenDemanderation$Year),
+          y = mean(ScotGenDemanderation$`ScotGenNonWind`),
           label = "Excluding wind",
           hjust = 0.5,
           vjust = 0.7,
@@ -492,7 +492,7 @@ ScotOwnGen <- function(input, output, session) {
           family = "Century Gothic"
         ) +
         geom_point(
-          data = tail(ScotOwnGeneration, 1),
+          data = tail(ScotGenDemanderation, 1),
           aes(x = Year,
               y = `Renewables`,
               
@@ -503,8 +503,8 @@ ScotOwnGen <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = mean(ScotOwnGeneration$Year),
-          y = mean(ScotOwnGeneration$`Renewables`),
+          x = mean(ScotGenDemanderation$Year),
+          y = mean(ScotGenDemanderation$`Renewables`),
           label = "Renewables only",
           hjust = 0.5,
           vjust = -4,
@@ -543,7 +543,7 @@ ScotOwnGen <- function(input, output, session) {
           family = "Century Gothic"
         ) +
         geom_point(
-          data = tail(ScotOwnGeneration, 1),
+          data = tail(ScotGenDemanderation, 1),
           aes(x = Year,
               y = `LowCarbon`,
               show_guide = FALSE),
@@ -553,8 +553,8 @@ ScotOwnGen <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = mean(ScotOwnGeneration$Year),
-          y = mean(ScotOwnGeneration$`LowCarbon`),
+          x = mean(ScotGenDemanderation$Year),
+          y = mean(ScotGenDemanderation$`LowCarbon`),
           label = "Low carbon\n generation",
           hjust = 0.5,
           vjust = 0,
@@ -580,23 +580,23 @@ ScotOwnGen <- function(input, output, session) {
           family = "Century Gothic"
         )
       
-      ScotOwnGenerationChart
+      ScotGenDemanderationChart
       
-      ScotOwnGenerationChart <-
-        StackedArea(ScotOwnGenerationChart,
-                    ScotOwnGeneration,
+      ScotGenDemanderationChart <-
+        StackedArea(ScotGenDemanderationChart,
+                    ScotGenDemanderation,
                     plottitle,
                     sourcecaption,
                     ChartColours)
       
-      ScotOwnGenerationChart <- ScotOwnGenerationChart +
+      ScotGenDemanderationChart <- ScotGenDemanderationChart +
         ylim(-.03,1.06)
       
-      ScotOwnGenerationChart
+      ScotGenDemanderationChart
       
       ggsave(
         file,
-        plot =  ScotOwnGenerationChart,
+        plot =  ScotGenDemanderationChart,
         width = 18,
         height = 10,
         units = "cm",

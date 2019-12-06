@@ -7,7 +7,7 @@ require("DT")
 
 source("Structure/Global.R")
 
-EUWindHydroOutput <- function(id) {
+WindHydroEUOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
@@ -87,14 +87,14 @@ EUWindHydroOutput <- function(id) {
 
 
 ###### Server ######
-EUWindHydro <- function(input, output, session) {
+WindHydroEU <- function(input, output, session) {
 
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("EUWindHydro.R")
+  print("WindHydroEU.R")
   ###### Renewable Energy ###### ######
   
   ### From ESD ###
@@ -746,7 +746,7 @@ EUWindHydro <- function(input, output, session) {
   output$Text <- renderUI({
    tagList(column(12,
                   HTML(
-                    paste(readtext("Structure/2 - Renewables/Electricity/EUWindHydro.txt")[2])
+                    paste(readtext("Structure/2 - Renewables/Electricity/WindHydroEU.txt")[2])
                     
                   )))
  })

@@ -7,37 +7,37 @@ require("DT")
 
 source("Structure/Global.R")
 
-PeakDayOutput <- function(id) {
+PeakElecGasOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
       tabPanel("Electricity",
     fluidRow(column(8,
                     h3("Electricity demand on day of peak electricity demand", style = "color: #5d8be1;  font-weight:bold"),
-                    h4(textOutput(ns('ElecPeakDaySubtitle')), style = "color: #5d8be1;")
+                    h4(textOutput(ns('ElecPeakElecGasSubtitle')), style = "color: #5d8be1;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('ElecPeakDay.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('ElecPeakElecGas.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
-    #dygraphOutput(ns("ElecPeakDayPlot")),
-    plotlyOutput(ns("ElecPeakDayPlot"))%>% withSpinner(color="#5d8be1"),
+    #dygraphOutput(ns("ElecPeakElecGasPlot")),
+    plotlyOutput(ns("ElecPeakElecGasPlot"))%>% withSpinner(color="#5d8be1"),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
     tabPanel("Gas",
              fluidRow(column(8,
                              h3("Gas demand on day of peak gas demand", style = "color: #5d8be1;  font-weight:bold"),
-                             h4(textOutput(ns('GasPeakDaySubtitle')), style = "color: #5d8be1;")
+                             h4(textOutput(ns('GasPeakElecGasSubtitle')), style = "color: #5d8be1;")
              ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('GasPeakDay.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('GasPeakElecGas.png'), 'Download Graph', style="float:right")
              )),
              
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
-             #dygraphOutput(ns("ElecPeakDayPlot")),
-             plotlyOutput(ns("GasPeakDayPlot"))%>% withSpinner(color="#5d8be1"),
+             #dygraphOutput(ns("ElecPeakElecGasPlot")),
+             plotlyOutput(ns("GasPeakElecGasPlot"))%>% withSpinner(color="#5d8be1"),
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #5d8be1;  font-weight:bold")),
@@ -54,7 +54,7 @@ PeakDayOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("ElecPeakDayTable"))%>% withSpinner(color="#5d8be1"))),
+      column(12, dataTableOutput(ns("ElecPeakElecGasTable"))%>% withSpinner(color="#5d8be1"))),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
     tabPanel("Gas",
              fluidRow(
@@ -62,7 +62,7 @@ PeakDayOutput <- function(id) {
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
-               column(12, dataTableOutput(ns("GasPeakDayTable"))%>% withSpinner(color="#5d8be1"))),
+               column(12, dataTableOutput(ns("GasPeakElecGasTable"))%>% withSpinner(color="#5d8be1"))),
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"))),
     fluidRow(
       column(1,
@@ -87,17 +87,17 @@ PeakDayOutput <- function(id) {
 
 
 ###### Server ######
-PeakDay <- function(input, output, session) {
+PeakElecGas <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("PeakDay.R")
+  print("PeakElecGas.R")
 
   
-  output$ElecPeakDaySubtitle <- renderText({
+  output$ElecPeakElecGasSubtitle <- renderText({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Peak elec and gas day", skip = 15, col_names = FALSE)
@@ -108,7 +108,7 @@ PeakDay <- function(input, output, session) {
     paste("Scotland:", Date)
   })
   
-  output$ElecPeakDayPlot <- renderPlotly  ({
+  output$ElecPeakElecGasPlot <- renderPlotly  ({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Peak elec and gas day", skip = 15, col_names = FALSE)
@@ -133,15 +133,15 @@ PeakDay <- function(input, output, session) {
     
     Data$Year <- ymd_hms(Data$Year)
     
-    ElecPeakDay <- Data[,2:3]
+    ElecPeakElecGas <- Data[,2:3]
     
     
     ### variables
     ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
     
     
-    p <-  plot_ly(ElecPeakDay,x = ~ Year ) %>% 
-      add_trace(data = ElecPeakDay,
+    p <-  plot_ly(ElecPeakElecGas,x = ~ Year ) %>% 
+      add_trace(data = ElecPeakElecGas,
                 x = ~ Year,
                 y = ~ Demand,
                 name = "Demand",
@@ -150,9 +150,9 @@ PeakDay <- function(input, output, session) {
                 legendgroup = "1",
                 text = paste0(
                   "Demand: ",
-                  round(ElecPeakDay$Demand, digits = 0),
+                  round(ElecPeakElecGas$Demand, digits = 0),
                   " MW\nTime: ",
-                  format(ElecPeakDay$Year, "%H:%M:%S")
+                  format(ElecPeakElecGas$Year, "%H:%M:%S")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = ChartColours[1], dash = "none")
@@ -169,7 +169,7 @@ PeakDay <- function(input, output, session) {
 
         xaxis = list(title = "",
                      showgrid = FALSE,
-                     range = c(min(ElecPeakDay$Year)-100, max(ElecPeakDay$Year)+100)),
+                     range = c(min(ElecPeakElecGas$Year)-100, max(ElecPeakElecGas$Year)+100)),
         yaxis = list(
           title = "MW",
           tickformat = "",
@@ -187,7 +187,7 @@ PeakDay <- function(input, output, session) {
     
   })
   
-  output$ElecPeakDayTable = renderDataTable({
+  output$ElecPeakElecGasTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Peak elec and gas day", skip = 15, col_names = FALSE)
@@ -212,10 +212,10 @@ PeakDay <- function(input, output, session) {
     
     names(Data) <- c("rn", "Time", "Demand (MW)")
     
-    ElecPeakDay <- Data[,2:3]
+    ElecPeakElecGas <- Data[,2:3]
     
     datatable(
-      ElecPeakDay,
+      ElecPeakElecGas,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -260,11 +260,11 @@ PeakDay <- function(input, output, session) {
                                    )))
  })
   observeEvent(input$ToggleTable, {
-    toggle("ElecPeakDayTable")
+    toggle("ElecPeakElecGasTable")
   })
   
   observeEvent(input$ToggleTable2, {
-    toggle("GasPeakDayTable")
+    toggle("GasPeakElecGasTable")
   })
   
   observeEvent(input$ToggleText, {
@@ -272,8 +272,8 @@ PeakDay <- function(input, output, session) {
   })
   
   
-  output$ElecPeakDay.png <- downloadHandler(
-    filename = "ElecPeakDay.png",
+  output$ElecPeakElecGas.png <- downloadHandler(
+    filename = "ElecPeakElecGas.png",
     content = function(file) {
 
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
@@ -299,19 +299,19 @@ PeakDay <- function(input, output, session) {
       
       Data$Year <- ymd_hms(Data$Year)
       
-      ElecPeakDay <- Data[,2:3]
+      ElecPeakElecGas <- Data[,2:3]
       
       
       ### variables
       ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
       sourcecaption = "Source: BEIS"
       plottitle = paste("Electricity demand :", format(min(
-        ElecPeakDay$Year), format = "%d/%m/%Y"))
+        ElecPeakElecGas$Year), format = "%d/%m/%Y"))
       
-      #ElecPeakDay$TotalPercentage <- PercentLabel(ElecPeakDay$Total)
+      #ElecPeakElecGas$TotalPercentage <- PercentLabel(ElecPeakElecGas$Total)
       
       
-      ElecPeakDayChart <- ElecPeakDay %>%
+      ElecPeakElecGasChart <- ElecPeakElecGas %>%
         ggplot(aes(x = Year), family = "Century Gothic") +
         
         geom_line(
@@ -335,72 +335,72 @@ PeakDay <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = ElecPeakDay$Year[11],
-          y = ElecPeakDay$Demand[11] - 200,
-          label = paste(round(ElecPeakDay$Demand[11], digits = 0), "kWh"),
+          x = ElecPeakElecGas$Year[11],
+          y = ElecPeakElecGas$Demand[11] - 200,
+          label = paste(round(ElecPeakElecGas$Demand[11], digits = 0), "kWh"),
           family = "Century Gothic",
           colour = "#034e7b",
           fontface = 2
         ) +
         annotate(
           "segment",
-          x = ElecPeakDay$Year[11],
-          xend = ElecPeakDay$Year[11],
-          y = ElecPeakDay$Demand[11] - 150,
-          yend = ElecPeakDay$Demand[11] - 50,
+          x = ElecPeakElecGas$Year[11],
+          xend = ElecPeakElecGas$Year[11],
+          y = ElecPeakElecGas$Demand[11] - 150,
+          yend = ElecPeakElecGas$Demand[11] - 50,
           colour = "#034e7b"
         ) +
         annotate(
           "text",
-          x = ElecPeakDay$Year[16],
-          y = ElecPeakDay$Demand[16]+ 400,
-          label = paste(round(ElecPeakDay$Demand[16], digits = 0), "kWh"),
+          x = ElecPeakElecGas$Year[16],
+          y = ElecPeakElecGas$Demand[16]+ 400,
+          label = paste(round(ElecPeakElecGas$Demand[16], digits = 0), "kWh"),
           family = "Century Gothic",
           colour = "#3690c0",
           fontface = 2
         ) +
         annotate(
           "segment",
-          x = ElecPeakDay$Year[16],
-          xend = ElecPeakDay$Year[16],
-          y = ElecPeakDay$Demand[16]+50,
-          yend = ElecPeakDay$Demand[16] + 350,
+          x = ElecPeakElecGas$Year[16],
+          xend = ElecPeakElecGas$Year[16],
+          y = ElecPeakElecGas$Demand[16]+50,
+          yend = ElecPeakElecGas$Demand[16] + 350,
           colour = "#3690c0"
         ) +
         annotate(
           "text",
-          x = ElecPeakDay$Year[36],
-          y = ElecPeakDay$Demand[36] + 200,
-          label = paste(round(ElecPeakDay$Demand[36], digits = 0), "kWh"),
+          x = ElecPeakElecGas$Year[36],
+          y = ElecPeakElecGas$Demand[36] + 200,
+          label = paste(round(ElecPeakElecGas$Demand[36], digits = 0), "kWh"),
           family = "Century Gothic",
           colour = "#3690c0",
           fontface = 2
         ) +
         annotate(
           "segment",
-          x = ElecPeakDay$Year[36],
-          xend = ElecPeakDay$Year[36],
-          y = ElecPeakDay$Demand[36]+50,
-          yend = ElecPeakDay$Demand[36] + 150,
+          x = ElecPeakElecGas$Year[36],
+          xend = ElecPeakElecGas$Year[36],
+          y = ElecPeakElecGas$Demand[36]+50,
+          yend = ElecPeakElecGas$Demand[36] + 150,
           colour = "#3690c0"
         )
       
-      ElecPeakDayChart
+      ElecPeakElecGasChart
       
-      ElecPeakDayChart <-
+      ElecPeakElecGasChart <-
         DailyChart(
-          ElecPeakDayChart,
-          ElecPeakDay,
+          ElecPeakElecGasChart,
+          ElecPeakElecGas,
           plottitle,
           sourcecaption,
           ChartColours
         )
       
       
-      ElecPeakDayChart <- ElecPeakDayChart +
+      ElecPeakElecGasChart <- ElecPeakElecGasChart +
         coord_cartesian(xlim = c(
-          min(ElecPeakDay$Year) - 3000,
-          max(ElecPeakDay$Year) + 3000
+          min(ElecPeakElecGas$Year) - 3000,
+          max(ElecPeakElecGas$Year) + 3000
         )) +
         ylim(-150, 5600) +
         labs(subtitle = "Scotland") +
@@ -411,11 +411,11 @@ PeakDay <- function(input, output, session) {
           linetype = 2
         )
       
-      ElecPeakDayChart
+      ElecPeakElecGasChart
       
       ggsave(
         file,
-        plot =  ElecPeakDayChart,
+        plot =  ElecPeakElecGasChart,
         width = 11,
         height = 11,
         units = "cm",
@@ -425,7 +425,7 @@ PeakDay <- function(input, output, session) {
     }
   )
   
-  output$GasPeakDaySubtitle <- renderText({
+  output$GasPeakElecGasSubtitle <- renderText({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Peak elec and gas day", skip = 15, col_names = FALSE)
@@ -436,7 +436,7 @@ PeakDay <- function(input, output, session) {
     paste("Scotland:", Date)
   })
   
-  output$GasPeakDayPlot <- renderPlotly  ({
+  output$GasPeakElecGasPlot <- renderPlotly  ({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Peak elec and gas day", skip = 15, col_names = FALSE)
@@ -461,15 +461,15 @@ PeakDay <- function(input, output, session) {
     
     Data$Year <- ymd_hms(Data$Year)
     
-    GasPeakDay <- Data[,2:3][complete.cases(Data)]
+    GasPeakElecGas <- Data[,2:3][complete.cases(Data)]
     
     
     ### variables
     ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
     
     
-    p <-  plot_ly(GasPeakDay,x = ~ Year ) %>% 
-      add_trace(data = GasPeakDay,
+    p <-  plot_ly(GasPeakElecGas,x = ~ Year ) %>% 
+      add_trace(data = GasPeakElecGas,
                 x = ~ Year,
                 y = ~ Demand,
                 name = "Demand",
@@ -478,9 +478,9 @@ PeakDay <- function(input, output, session) {
                 legendgroup = "1",
                 text = paste0(
                   "Demand: ",
-                  round(GasPeakDay$Demand, digits = 0),
+                  round(GasPeakElecGas$Demand, digits = 0),
                   " MW\nTime: ",
-                  format(GasPeakDay$Year, "%H:%M:%S")
+                  format(GasPeakElecGas$Year, "%H:%M:%S")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = ChartColours[1], dash = "none")
@@ -497,7 +497,7 @@ PeakDay <- function(input, output, session) {
         
         xaxis = list(title = "",
                      showgrid = FALSE,
-                     range = c(min(GasPeakDay$Year)-100, max(GasPeakDay$Year)+100)),
+                     range = c(min(GasPeakElecGas$Year)-100, max(GasPeakElecGas$Year)+100)),
         yaxis = list(
           title = "MW",
           tickformat = "",
@@ -515,7 +515,7 @@ PeakDay <- function(input, output, session) {
     
   })
   
-  output$GasPeakDayTable = renderDataTable({
+  output$GasPeakElecGasTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Peak elec and gas day", skip = 15, col_names = FALSE)
@@ -540,12 +540,12 @@ PeakDay <- function(input, output, session) {
     
     Data$Year <- ymd_hms(Data$Year)
     
-    GasPeakDay <- Data[,2:3][complete.cases(Data)]
+    GasPeakElecGas <- Data[,2:3][complete.cases(Data)]
     
-    names(GasPeakDay) <- c("Time", "Demand")
+    names(GasPeakElecGas) <- c("Time", "Demand")
     
     datatable(
-      GasPeakDay,
+      GasPeakElecGas,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -581,8 +581,8 @@ PeakDay <- function(input, output, session) {
       formatDate(1, "toLocaleTimeString")
   })
   
-  output$GasPeakDay.png <- downloadHandler(
-    filename = "GasPeakDay.png",
+  output$GasPeakElecGas.png <- downloadHandler(
+    filename = "GasPeakElecGas.png",
     content = function(file) {
       
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
@@ -608,19 +608,19 @@ PeakDay <- function(input, output, session) {
       
       Data$Year <- ymd_hms(Data$Year)
       
-      GasPeakDay <- Data[,2:3][complete.cases(Data)]
+      GasPeakElecGas <- Data[,2:3][complete.cases(Data)]
       
       
       ### variables
       ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
       sourcecaption = "Source: BEIS"
       plottitle = paste("Gas demand :", format(min(
-        GasPeakDay$Year), format = "%d/%m/%Y"))
+        GasPeakElecGas$Year), format = "%d/%m/%Y"))
       
-      #GasPeakDay$TotalPercentage <- PercentLabel(GasPeakDay$Total)
+      #GasPeakElecGas$TotalPercentage <- PercentLabel(GasPeakElecGas$Total)
       
       
-      GasPeakDayChart <- GasPeakDay %>%
+      GasPeakElecGasChart <- GasPeakElecGas %>%
         ggplot(aes(x = Year), family = "Century Gothic") +
         
         geom_line(
@@ -644,72 +644,72 @@ PeakDay <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = GasPeakDay$Year[1],
-          y = GasPeakDay$Demand[1] - 400,
-          label = paste(format(round(GasPeakDay$Demand[1], digits = 0), big.mark = ","), "kWh"),
+          x = GasPeakElecGas$Year[1],
+          y = GasPeakElecGas$Demand[1] - 400,
+          label = paste(format(round(GasPeakElecGas$Demand[1], digits = 0), big.mark = ","), "kWh"),
           family = "Century Gothic",
           colour = "#034e7b",
           fontface = 2
         ) +
         annotate(
           "segment",
-          x = GasPeakDay$Year[1],
-          xend = GasPeakDay$Year[1],
-          y = GasPeakDay$Demand[1] - 350,
-          yend = GasPeakDay$Demand[1] - 150,
+          x = GasPeakElecGas$Year[1],
+          xend = GasPeakElecGas$Year[1],
+          y = GasPeakElecGas$Demand[1] - 350,
+          yend = GasPeakElecGas$Demand[1] - 150,
           colour = "#034e7b"
         ) +
         annotate(
           "text",
-          x = GasPeakDay$Year[3],
-          y = GasPeakDay$Demand[3]+ 600,
-          label = paste(format(round(GasPeakDay$Demand[3], digits = 0), big.mark = ","), "kWh"),
+          x = GasPeakElecGas$Year[3],
+          y = GasPeakElecGas$Demand[3]+ 600,
+          label = paste(format(round(GasPeakElecGas$Demand[3], digits = 0), big.mark = ","), "kWh"),
           family = "Century Gothic",
           colour = "#3690c0",
           fontface = 2
         ) +
         annotate(
           "segment",
-          x = GasPeakDay$Year[3],
-          xend = GasPeakDay$Year[3],
-          y = GasPeakDay$Demand[3]+50,
-          yend = GasPeakDay$Demand[3] + 350,
+          x = GasPeakElecGas$Year[3],
+          xend = GasPeakElecGas$Year[3],
+          y = GasPeakElecGas$Demand[3]+50,
+          yend = GasPeakElecGas$Demand[3] + 350,
           colour = "#3690c0"
         ) +
         annotate(
           "text",
-          x = GasPeakDay$Year[13],
-          y = GasPeakDay$Demand[13] + 400,
-          label = paste(format(round(GasPeakDay$Demand[13], digits = 0), big.mark = ","), "kWh"),
+          x = GasPeakElecGas$Year[13],
+          y = GasPeakElecGas$Demand[13] + 400,
+          label = paste(format(round(GasPeakElecGas$Demand[13], digits = 0), big.mark = ","), "kWh"),
           family = "Century Gothic",
           colour = "#3690c0",
           fontface = 2
         ) +
         annotate(
           "segment",
-          x = GasPeakDay$Year[13],
-          xend = GasPeakDay$Year[13],
-          y = GasPeakDay$Demand[13]+150,
-          yend = GasPeakDay$Demand[13] + 350,
+          x = GasPeakElecGas$Year[13],
+          xend = GasPeakElecGas$Year[13],
+          y = GasPeakElecGas$Demand[13]+150,
+          yend = GasPeakElecGas$Demand[13] + 350,
           colour = "#3690c0"
         )
       
-      GasPeakDayChart
+      GasPeakElecGasChart
       
-      GasPeakDayChart <-
+      GasPeakElecGasChart <-
         DailyChart(
-          GasPeakDayChart,
-          GasPeakDay,
+          GasPeakElecGasChart,
+          GasPeakElecGas,
           plottitle,
           sourcecaption,
           ChartColours
         )
       
       
-      GasPeakDayChart <- GasPeakDayChart +
+      GasPeakElecGasChart <- GasPeakElecGasChart +
         coord_cartesian(xlim = c(
-          min(GasPeakDay$Year) - 6000,
-          max(GasPeakDay$Year) + 3000
+          min(GasPeakElecGas$Year) - 6000,
+          max(GasPeakElecGas$Year) + 3000
         )) +
         ylim(-200, 16000) +
         labs(subtitle = "Scotland") +
@@ -720,11 +720,11 @@ PeakDay <- function(input, output, session) {
           linetype = 2
         )
       
-      GasPeakDayChart
+      GasPeakElecGasChart
       
       ggsave(
         file,
-        plot =  GasPeakDayChart,
+        plot =  GasPeakElecGasChart,
         width = 11,
         height = 11,
         units = "cm",

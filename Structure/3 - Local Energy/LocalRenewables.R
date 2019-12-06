@@ -7,7 +7,7 @@ require("DT")
 
 source("Structure/Global.R")
 
-CommunityRenewablesOutput <- function(id) {
+LocalRenewablesOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
@@ -201,7 +201,7 @@ CommunityRenewablesOutput <- function(id) {
 
 
 ###### Server ######
-CommunityRenewables <- function(input, output, session) {
+LocalRenewables <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
@@ -1497,7 +1497,7 @@ CommunityRenewables <- function(input, output, session) {
     tagList(column(12,
                    
                    HTML(
-                     paste(readtext("Structure/3 - Local Energy/CommunityRenewables.txt")[2])
+                     paste(readtext("Structure/3 - Local Energy/LocalRenewables.txt")[2])
                      
                    )))
   })

@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-EmissionsDisplacedOutput <- function(id) {
+DisplacedEmissionsOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
                     h3("Estimated million tonnes of CO2 emissions displaced by renewables", style = "color: #39ab2c;  font-weight:bold"),
-                    h4(textOutput(ns('EmissionsDisplacedSubtitle')), style = "color: #39ab2c;")
+                    h4(textOutput(ns('DisplacedEmissionsSubtitle')), style = "color: #39ab2c;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('EmissionsDisplaced.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('DisplacedEmissions.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-    #dygraphOutput(ns("EmissionsDisplacedPlot")),
-    plotlyOutput(ns("EmissionsDisplacedPlot"))%>% withSpinner(color="#39ab2c"),
+    #dygraphOutput(ns("DisplacedEmissionsPlot")),
+    plotlyOutput(ns("DisplacedEmissionsPlot"))%>% withSpinner(color="#39ab2c"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
@@ -36,7 +36,7 @@ EmissionsDisplacedOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("EmissionsDisplacedTable"))%>% withSpinner(color="#39ab2c"))),
+      column(12, dataTableOutput(ns("DisplacedEmissionsTable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
       column(1,
@@ -61,7 +61,7 @@ EmissionsDisplacedOutput <- function(id) {
 
 
 ###### Server ######
-EmissionsDisplaced <- function(input, output, session) {
+DisplacedEmissions <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
@@ -71,7 +71,7 @@ EmissionsDisplaced <- function(input, output, session) {
   
   print("missions displaced renewables.R")
   
-  output$EmissionsDisplacedSubtitle <- renderText({
+  output$DisplacedEmissionsSubtitle <- renderText({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Emissions displaced renewables", skip = 15, col_names = FALSE)
@@ -92,7 +92,7 @@ EmissionsDisplaced <- function(input, output, session) {
     paste("Scotland,", min(Displacement$Year),"-", max(Displacement$Year))
   })
   
-  output$EmissionsDisplacedPlot <- renderPlotly  ({
+  output$DisplacedEmissionsPlot <- renderPlotly  ({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Emissions displaced renewables", skip = 15, col_names = FALSE)
@@ -121,7 +121,7 @@ EmissionsDisplaced <- function(input, output, session) {
     
     p <-  plot_ly(Displacement,x = ~ Year ) %>% 
       add_trace(y = ~ Renewables,
-                name = "EmissionsDisplaced",
+                name = "DisplacedEmissions",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "1",
@@ -137,7 +137,7 @@ EmissionsDisplaced <- function(input, output, session) {
         data = tail(Displacement[which(Displacement$Renewables > 0 | Displacement$Renewables < 0),], 1),
         x = ~ Year,
         y = ~ `Renewables`,
-        name = "EmissionsDisplaced",
+        name = "DisplacedEmissions",
         legendgroup = "1",
         text = paste0(
           round(Displacement[which(Displacement$Renewables > 0 | Displacement$Renewables < 0),][-1,]$Renewables, digits = 1),
@@ -180,7 +180,7 @@ EmissionsDisplaced <- function(input, output, session) {
   })
   
   
-  output$EmissionsDisplacedTable = renderDataTable({
+  output$DisplacedEmissionsTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Emissions displaced renewables", skip = 15, col_names = FALSE)
@@ -240,7 +240,7 @@ EmissionsDisplaced <- function(input, output, session) {
   })
   
   observeEvent(input$ToggleTable, {
-    toggle("EmissionsDisplacedTable")
+    toggle("DisplacedEmissionsTable")
   })
   
 
@@ -250,11 +250,11 @@ EmissionsDisplaced <- function(input, output, session) {
   })
   
   
-  output$EmissionsDisplaced.png <- downloadHandler(
-    filename = "EmissionsDisplaced.png",
+  output$DisplacedEmissions.png <- downloadHandler(
+    filename = "DisplacedEmissions.png",
     content = function(file) {
 
-      EmissionsDisplaced <- read_excel("Structure/CurrentWorking.xlsx", 
+      DisplacedEmissions <- read_excel("Structure/CurrentWorking.xlsx", 
                              sheet = "Emissions displaced renewables", skip = 15, col_names = FALSE)
       
       Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
