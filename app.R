@@ -43,9 +43,6 @@ server <- function(input, output, session) {
   
   rv = reactiveValues()
   
-  callModule(TargetTracker, "TargetTracker", parent_session = session)
-  
-  
 #Create a reactive value so the URL code only runs once, when the app first loads. This prevents the app from looping if navigated too quickly  
 rv$URLLoaded <- 0
   
@@ -177,7 +174,10 @@ observe({
 
 if(input$MainNav == "TargetTracker"){
   
-  updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$TargetTracker), mode = "push")}
+  updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$TargetTracker), mode = "push")
+  
+  callModule(match.fun(input$MainNav), input$MainNav)
+  }
 
 }
 )
