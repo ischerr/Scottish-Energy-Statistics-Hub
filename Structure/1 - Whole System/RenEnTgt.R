@@ -62,47 +62,13 @@ RenEnTgtOutput <- function(id) {
 
 ###### Server ######
 RenEnTgt <- function(input, output, session) {
-  # output$RenEnTgtPlot <- renderDygraph({
-  #   RenEn <-
-  #     read.csv(
-  #       "Structure/1 - Whole System/RenEnTgt.csv",
-  #       header = TRUE,
-  #       sep = ",",
-  #       na.strings = "-"
-  #     )
-  #
-  #   YearLow <- as.numeric(min(RenEn$Year))
-  #   YearHigh <- as.numeric(max(RenEn$Year +1))
-  #
-  #   dygraph(RenEn, main = "Renewable Energy Target") %>%
-  #     dyAxis("y", label = "% Progress", valueRange = c(0,30)) %>%
-  #     dyAxis("x", label = "Year", drawGrid = TRUE) %>%
-  #     dyOptions(colors =  c("Green","Orange", "Blue")) %>%
-  #     dyLegend(width = 170 ,
-  #              labelsSeparateLines = TRUE ,
-  #              show = "always") %>%
-  #     dyOptions(
-  #       stackedGraph = TRUE,
-  #       axisLineColor = "white",
-  #       gridLineColor = "white",
-  #       includeZero = TRUE,
-  #       fillAlpha = .65
-  #     ) %>%
-  #     #    dyRangeSelector() %>%
-  #     dyCSS("Structure/1 - Whole System/legend.css")
-  #
-  # })
-  
-  
+ 
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
   print("RenEnTgt.R")
-  ###### Renewable Energy ###### ######
-  
-  ### From ESD ###
-  
+
   output$RenEnTgtSubtitle <- renderText({
     
     RenEn <- read_excel(
@@ -453,6 +419,10 @@ RenEnTgt <- function(input, output, session) {
   
   observeEvent(input$ToggleText, {
     toggle("Text")
+  })
+  
+  observeEvent(input$ToggleTable, {
+    toggle("RenEnTgtTable")
   })
   
   

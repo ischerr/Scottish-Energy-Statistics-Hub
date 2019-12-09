@@ -439,7 +439,7 @@ ElecGenFuel <- function(input, output, session) {
                                                          ElecGenFuel$Coal[1] +
                                                          ElecGenFuel$Other[1] +
                                                          ElecGenFuel$`Pumped Hydro`[1]+
-                                                         ElecGenFuel$Nuclear[1])),
+                                                         ElecGenFuel$Nuclear[1]), 0.1),
         "</b>"),
         textposistion = 'center',
         textfont = list(color = BarColours[2])
@@ -479,7 +479,7 @@ ElecGenFuel <- function(input, output, session) {
                                                               ElecGenFuel$Coal[2] +
                                                               ElecGenFuel$Other[2] +
                                                               ElecGenFuel$`Pumped Hydro`[2]+
-                                                              ElecGenFuel$Nuclear[2])), "</b>"),
+                                                              ElecGenFuel$Nuclear[2]), 0.1), "</b>"),
         textposistion = 'center',
         textfont = list(color = BarColours[2])
         
@@ -519,7 +519,7 @@ ElecGenFuel <- function(input, output, session) {
                                                               ElecGenFuel$Coal[1] +
                                                               ElecGenFuel$Other[1] +
                                                               ElecGenFuel$`Pumped Hydro`[1]
-                                                              )), "</b>"),
+                                                              ), 0.1), "</b>"),
         textposistion = 'center',
         textfont = list(color = BarColours[5])
         
@@ -559,7 +559,7 @@ ElecGenFuel <- function(input, output, session) {
                                                               ElecGenFuel$Coal[2] +
                                                               ElecGenFuel$Other[2] +
                                                               ElecGenFuel$`Pumped Hydro`[2]
-                                                              )), "</b>"),
+                                                              ), 0.1), "</b>"),
         textposistion = 'center',
         textfont = list(color = BarColours[5])
         
@@ -597,7 +597,7 @@ ElecGenFuel <- function(input, output, session) {
         text = paste0("<b>", "Fossil:\n ", percent((
           ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
         )[1]
-        ) , "</b>"),
+        , 0.1) , "</b>"),
         textposistion = 'center',
         textfont = list(color = BarColours[8])
         
@@ -635,7 +635,7 @@ ElecGenFuel <- function(input, output, session) {
         text = paste0("<b>", "Fossil:\n ", percent((
           ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
         )[2]
-        ) , "</b>"),
+        , 0.1) , "</b>"),
         textposistion = 'center',
         textfont = list(color = BarColours[8])
         
@@ -651,7 +651,7 @@ ElecGenFuel <- function(input, output, session) {
         yaxis = list(
           title = "",
           showgrid = FALSE,
-          ticktext = list("England and Wales", "Scotland"),
+          ticktext = list("<b>England\nand Wales</b>", "<b>Scotland</b>"),
           tickvals = list(1, 2),
           tickmode = "array"
         ),
@@ -1000,7 +1000,7 @@ ElecGenFuel <- function(input, output, session) {
         geom_bar(stat = "identity", width = .4) +
         geom_text(aes(
           y = pos,
-          label = ifelse(value > 0.03, percent(value), " "),
+          label = ifelse(value > 0.03, percent(value, 0.1), " "),
           
           fontface = 2
         ),
@@ -1050,7 +1050,7 @@ ElecGenFuel <- function(input, output, session) {
                             ElecGenFuel$variable != "Biofuels" &
                             ElecGenFuel$variable != "Coal Renewables" &
                             ElecGenFuel$Sector == "Scotland"
-                        )]))),
+                        )]), 0.1)),
           colour =  BarColours[3],
           family = "Century Gothic",
           fontface = 2
@@ -1101,7 +1101,7 @@ ElecGenFuel <- function(input, output, session) {
                             ElecGenFuel$variable != "Nuclear" &
                             ElecGenFuel$variable != "Other" &
                             ElecGenFuel$Sector == "Scotland"
-                        )]))),
+                        )]), 0.1)),
           colour =  BarColours[8],
           family = "Century Gothic",
           fontface = 2
@@ -1140,7 +1140,7 @@ ElecGenFuel <- function(input, output, session) {
                             ElecGenFuel$variable != "Coal Renewables" &
                             ElecGenFuel$variable != "Nuclear" &
                             ElecGenFuel$Sector == "Scotland"
-                        )]))),
+                        )]), 0.1)),
           colour =  BarColours[5],
           family = "Century Gothic",
           fontface = 2
@@ -1180,7 +1180,7 @@ ElecGenFuel <- function(input, output, session) {
                             ElecGenFuel$variable != "Biofuels" &
                             ElecGenFuel$variable != "Coal Renewables" &
                             ElecGenFuel$Sector == "England and Wales"
-                        )]))),
+                        )]), 0.1)),
           colour =  BarColours[3],
           family = "Century Gothic",
           fontface = 2
@@ -1225,7 +1225,7 @@ ElecGenFuel <- function(input, output, session) {
                             ElecGenFuel$variable != "Nuclear" &
                             ElecGenFuel$variable != "Other" &
                             ElecGenFuel$Sector == "England and Wales"
-                        )]))),
+                        )]), 0.1)),
           colour =  BarColours[8],
           family = "Century Gothic",
           fontface = 2
@@ -1264,7 +1264,7 @@ ElecGenFuel <- function(input, output, session) {
                             ElecGenFuel$variable != "Coal Renewables" &
                             ElecGenFuel$variable != "Nuclear" &
                             ElecGenFuel$Sector == "England and Wales"
-                        )]))),
+                        )]), 0.1)),
           colour =  BarColours[5],
           family = "Century Gothic",
           fontface = 2

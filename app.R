@@ -414,23 +414,7 @@ ui <- shinyUI(fluidPage(
       title = tags$div(img(src = "HomeIcon.svg", height = "30px",   display= "block"), " Home", style = "font-family: 'Century Gothic'; font-weight: 400 "),
       uiOutput("HomeTab")%>% withSpinner(color="#3f3f3f")
       ),
-      # fluidRow(
-      #   h4("Instructions"),
-      #   p(
-      #     "The various charts and graphs relating to Scottish energy statistics can be explored under the 'Charts' tab.
-      #                 The sources of the data are provided."
-      #   ),
-      #   p(
-      #     "Note that it is possible to zoom in on the charts. A chart can be reset by double clicking on it. Maximise
-      #                 the browser window to get the best experience."
-      #   ),
-      #   h4("Questions and Comments"),
-      #   p(
-      #     "We welcome any feedback on this Shiny App. For questions and feedback please get in touch at the following
-      #                 email address:"
-      #   ),
-      #   p("Email - energystatistics@gov.scot")
-      # ),
+
     tabPanel(
       ###### Section - Whole System View of Energy #######
       value = "WholeSystem",

@@ -18,7 +18,7 @@ RenElecEUOutput <- function(id) {
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('RenElecEU.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('RenElecEU.png'), 'Download Graph (2017)', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
@@ -263,6 +263,8 @@ RenElecEU <- function(input, output, session) {
                     
                   )))
  })
+ 
+ 
   observeEvent(input$ToggleTable, {
     toggle("RenElecEUTable")
   })
@@ -333,7 +335,7 @@ RenElecEU <- function(input, output, session) {
           label = ifelse(
             EUElec$Group == "B" |
               EUElec$Group == "C" ,
-            scales::percent(EUElec$Renewables) ,
+            scales::percent(EUElec$Renewables, 0.1) ,
             ""
           ),
           fontface = 2,
@@ -638,7 +640,7 @@ RenElecEU <- function(input, output, session) {
                                      
                                      geom_line(
                                        aes(y = `Scotland`,
-                                           label = percent(`Scotland`)),
+                                           label = percent(`Scotland`, 0.1)),
                                        colour = ChartColours[2],
                                        size = 1.5,
                                        family = "Century Gothic"
