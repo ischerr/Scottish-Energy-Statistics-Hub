@@ -391,8 +391,6 @@ EnEconomy <- function(input, output, session) {
     
   })
   
-  
-  
   output$EnergySectorGVASubtitle <- renderText({
     EnergySectorGVA <- read_excel("Structure/CurrentWorking.xlsx", 
                                   sheet = "Energy economy", col_names = FALSE, 
@@ -502,7 +500,6 @@ EnEconomy <- function(input, output, session) {
     
     
   })
-  
   
   output$EnergySectorGVA.png <- downloadHandler(
     filename = "EnergySectorGVA.png",
@@ -626,8 +623,6 @@ EnEconomy <- function(input, output, session) {
       )
     }
   )
-  
-
   
   output$EnergySectorExportsSubtitle <- renderText({
     EnergySectorExports <- read_excel("Structure/CurrentWorking.xlsx", 

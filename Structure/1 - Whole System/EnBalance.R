@@ -13,7 +13,7 @@ EnBalanceOutput <- function(id) {
     tabsetPanel(
       tabPanel("Energy Balance",
     fluidRow(column(8,
-                    h3("Share of renewable energy in gross final consumption", style = "color: #1A5D38;  font-weight:bold"),
+                    h3("Scottish energy balance", style = "color: #1A5D38;  font-weight:bold"),
                     h4(textOutput(ns('EnBalanceSubtitle')), style = "color: #1A5D38;")
     ),
              column(
@@ -25,9 +25,9 @@ EnBalanceOutput <- function(id) {
     #dygraphOutput(ns("EnBalancePlot")),
     plotlyOutput(ns("EnBalancePlot"))%>% withSpinner(color="#1A5D38"),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")),
-    tabPanel("Simplified flow",
+    tabPanel("Simplified flow chart",
              fluidRow(column(8,
-                             h3("Share of renewable energy in gross final consumption", style = "color: #1A5D38;  font-weight:bold"),
+                             h3("Simplified energy flow chart", style = "color: #1A5D38;  font-weight:bold"),
                              h4(textOutput(ns('SimplifiedFlowSubtitle')), style = "color: #1A5D38;")
              ),
              column(
@@ -141,24 +141,7 @@ EnBalance <- function(input, output, session) {
   
   output$EnBalanceSubtitle <- renderText({
     
-    EnBalance <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Renewable energy target",
-      col_names = FALSE,
-      skip = 21,
-      n_max = 23
-    )
-    EnBalance <- as.data.frame(t(EnBalance))
-    EnBalance <- EnBalance[, c(1, 6, 12, 18, 23)]
-    EnBalance <- tail(EnBalance,-5)
-    names(EnBalance) <-
-      c("Year", "Electricity", "Heat", "Transport", "Renewables")
-    EnBalance[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    EnBalance[which(EnBalance$Year != max(EnBalance$Year)),][2:4] <- 0
-    
-    paste("Scotland,", min(EnBalance$Year),"-", max(EnBalance$Year))
+    paste("Scotland, 2017")
   })
   
   output$EnBalancePlot <- renderPlotly  ({
@@ -419,26 +402,9 @@ EnBalance <- function(input, output, session) {
         file.copy("Structure/1 - Whole System/EnBalanceData.xlsx", file)
       })  
   
-      output$SimplifiedFlowSubtitle <- renderText({
+  output$SimplifiedFlowSubtitle <- renderText({
       
-      EnBalance <- read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Renewable energy target",
-        col_names = FALSE,
-        skip = 21,
-        n_max = 23
-      )
-      EnBalance <- as.data.frame(t(EnBalance))
-      EnBalance <- EnBalance[, c(1, 6, 12, 18, 23)]
-      EnBalance <- tail(EnBalance,-5)
-      names(EnBalance) <-
-        c("Year", "Electricity", "Heat", "Transport", "Renewables")
-      EnBalance[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
-        as.numeric(as.character(x)))
-      
-      EnBalance[which(EnBalance$Year != max(EnBalance$Year)),][2:4] <- 0
-      
-      paste("Scotland,", min(EnBalance$Year),"-", max(EnBalance$Year))
+      paste("Scotland, 2017")
     })
     
     output$SimplifiedFlow.png <- downloadHandler(

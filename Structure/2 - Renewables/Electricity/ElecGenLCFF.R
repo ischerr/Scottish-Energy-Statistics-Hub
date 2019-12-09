@@ -3,7 +3,7 @@ require(plotly)
 require(dygraphs)
 require(png)
 require("DT")
-###### UI Function ######
+###### UI Function ######percent
 
 source("Structure/Global.R")
 
@@ -603,7 +603,7 @@ ElecGenLCFF <- function(input, output, session) {
           aes(
             y = `Low Carbon`,
             colour = ChartColours[2],
-            label = percent(`Low Carbon`)
+            label = percent(`Low Carbon`, 0.1)
           ),
           size = 1.5,
           family = "Century Gothic"
@@ -612,7 +612,7 @@ ElecGenLCFF <- function(input, output, session) {
           aes(
             x = Year,
             y = `Low Carbon`,
-            label = ifelse(Year == min(Year), percent(`Low Carbon`), ""),
+            label = ifelse(Year == min(Year), percent(`Low Carbon`, 0.1), ""),
             hjust = 0.5,
             vjust = -.8,
             colour = ChartColours[2],
@@ -624,7 +624,7 @@ ElecGenLCFF <- function(input, output, session) {
           aes(
             x = Year,
             y = `Low Carbon`,
-            label = ifelse(Year == max(Year), percent(`Low Carbon`), ""),
+            label = ifelse(Year == max(Year), percent(`Low Carbon`, 0.1), ""),
             hjust = 0.5,
             vjust = 2,
             colour = ChartColours[2],
@@ -668,7 +668,7 @@ ElecGenLCFF <- function(input, output, session) {
           aes(
             x = Year,
             y = `Fossil Fuels`,
-            label = ifelse(Year == 2010, percent(`Fossil Fuels`), ""),
+            label = ifelse(Year == 2010, percent(`Fossil Fuels`, 0.1), ""),
             hjust = 0.5,
             vjust = 3.5,
             colour = ChartColours[3],
@@ -680,7 +680,7 @@ ElecGenLCFF <- function(input, output, session) {
           aes(
             x = Year,
             y = `Low Carbon`,
-            label = ifelse(Year == 2010, percent(`Low Carbon`), ""),
+            label = ifelse(Year == 2010, percent(`Low Carbon`, 0.1), ""),
             hjust = 0.5,
             vjust = -2.5,
             colour = ChartColours[2],
@@ -692,7 +692,7 @@ ElecGenLCFF <- function(input, output, session) {
           aes(
             x = Year,
             y = `Fossil Fuels`,
-            label = ifelse(Year == min(Year), percent(`Fossil Fuels`), ""),
+            label = ifelse(Year == min(Year), percent(`Fossil Fuels`, 0.1), ""),
             hjust = 0.5,
             vjust = 2,
             colour = ChartColours[3],
@@ -704,7 +704,7 @@ ElecGenLCFF <- function(input, output, session) {
           aes(
             x = Year,
             y = `Fossil Fuels`,
-            label = ifelse(Year == max(Year), percent(`Fossil Fuels`), ""),
+            label = ifelse(Year == max(Year), percent(`Fossil Fuels`, 0.1), ""),
             hjust = 0.5,
             vjust = 2,
             colour = ChartColours[3],
@@ -816,7 +816,7 @@ output$ElecGenRN.png <- downloadHandler(
         aes(
           y = Renewables,
           colour = ChartColours[2],
-          label = percent(Renewables)
+          label = percent(Renewables, 0.1)
         ),
         size = 1.5,
         family = "Century Gothic"
@@ -825,7 +825,7 @@ output$ElecGenRN.png <- downloadHandler(
         aes(
           x = Year,
           y = Renewables,
-          label = ifelse(Year == min(Year), percent(Renewables), ""),
+          label = ifelse(Year == min(Year), percent(Renewables, 0.1), ""),
           hjust = 0.5,
           vjust = -.8,
           colour = ChartColours[2],
@@ -838,7 +838,7 @@ output$ElecGenRN.png <- downloadHandler(
         aes(
           x = Year,
           y = Renewables,
-          label = ifelse(Year == max(Year), percent(Renewables), ""),
+          label = ifelse(Year == max(Year), percent(Renewables, 0.1), ""),
           hjust = 1.3,
           vjust = .5,
           colour = ChartColours[2],
@@ -882,7 +882,7 @@ output$ElecGenRN.png <- downloadHandler(
         aes(
           x = Year,
           y = Nuclear,
-          label = ifelse(Year == min(Year), percent(Nuclear), ""),
+          label = ifelse(Year == min(Year), percent(Nuclear, 0.1), ""),
           hjust = 0.5,
           vjust = -.3,
           colour = ChartColours[3],
@@ -894,7 +894,7 @@ output$ElecGenRN.png <- downloadHandler(
         aes(
           x = Year,
           y = Nuclear,
-          label = ifelse(Year == max(Year), percent(Nuclear), ""),
+          label = ifelse(Year == max(Year), percent(Nuclear, 0.1), ""),
           hjust = 0.5,
           vjust = 2,
           colour = ChartColours[3],

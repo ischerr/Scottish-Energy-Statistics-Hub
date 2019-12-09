@@ -25,9 +25,9 @@ RenEnEUOutput <- function(id) {
     #dygraphOutput(ns("RenEnEUPlot")),
     plotlyOutput(ns("RenEnEUPlot"), height = "600px")%>% withSpinner(color="#1A5D38"),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")),
-    tabPanel("EU Renewable Energy Trend",
+    tabPanel("Trend",
              fluidRow(column(8,
-                             h3("Share of renewable energy in gross final energy consumption across the EU", style = "color: #1A5D38;  font-weight:bold"),
+                             h3("Trend of renewable energy share in gross final energy consumption", style = "color: #1A5D38;  font-weight:bold"),
                              h4(textOutput(ns('RenEnEUTrendSubtitle')), style = "color: #1A5D38;")
              ),
              column(
@@ -78,38 +78,7 @@ RenEnEUOutput <- function(id) {
 
 ###### Server ######
 RenEnEU <- function(input, output, session) {
-  # output$RenEnEUPlot <- renderDygraph({
-  #   RenEn <-
-  #     read.csv(
-  #       "Structure/1 - Whole System/RenEnEU.csv",
-  #       header = TRUE,
-  #       sep = ",",
-  #       na.strings = "-"
-  #     )
-  #
-  #   YearLow <- as.numeric(min(RenEn$Year))
-  #   YearHigh <- as.numeric(max(RenEn$Year +1))
-  #
-  #   dygraph(RenEn, main = "Renewable Energy Target") %>%
-  #     dyAxis("y", label = "% Progress", valueRange = c(0,30)) %>%
-  #     dyAxis("x", label = "Year", drawGrid = TRUE) %>%
-  #     dyOptions(colors =  c("Green","Orange", "Blue")) %>%
-  #     dyLegend(width = 170 ,
-  #              labelsSeparateLines = TRUE ,
-  #              show = "always") %>%
-  #     dyOptions(
-  #       stackedGraph = TRUE,
-  #       axisLineColor = "white",
-  #       gridLineColor = "white",
-  #       includeZero = TRUE,
-  #       fillAlpha = .65
-  #     ) %>%
-  #     #    dyRangeSelector() %>%
-  #     dyCSS("Structure/1 - Whole System/legend.css")
-  #
-  # })
-  
-  
+
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
@@ -232,7 +201,6 @@ RenEnEU <- function(input, output, session) {
     
   })
   
-  
   output$RenEnEUTable = renderDataTable({
     
     EURenEn <- read_excel("Structure/CurrentWorking.xlsx",
@@ -287,25 +255,21 @@ RenEnEU <- function(input, output, session) {
       formatPercentage(2:ncol(EURenEn), 1)
   })
   
-  
-  
- output$Text <- renderUI({
+  output$Text <- renderUI({
    tagList(column(12,
                   HTML(
                     paste(readtext("Structure/1 - Whole System/RenEnEU.txt")[2])
                     
                   )))
  })
+ 
   observeEvent(input$ToggleTable, {
     toggle("RenEnEUTable")
   })
-  
 
-  
   observeEvent(input$ToggleText, {
     toggle("Text")
   })
-  
   
   output$RenEnEU.png <- downloadHandler(
     filename = "RenEnEU.png",
@@ -366,7 +330,7 @@ RenEnEU <- function(input, output, session) {
           label = ifelse(
             EURenEn$Group == "B" |
               EURenEn$Group == "C" ,
-            scales::percent(EURenEn$Renewables) ,
+            scales::percent(EURenEn$Renewables, 0.1) ,
             ""
           ),
           fontface = 2,
