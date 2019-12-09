@@ -4,4 +4,6 @@
 
 Scottish Energy Statistics Hub
 
+84 Pages (Including Homepage and Target Tracker)
+
 THIS IS IN DEVELOPMENT AND FIGURES MAY NOT BE ACCURATE OR UP TO DATE
