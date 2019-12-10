@@ -296,17 +296,17 @@ EnConsumptionSector <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Energy Consumption",
+        title = "Energy Consumption by sector",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Energy Consumption',
+            title = 'Energy Consumption by sector',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Energy Consumption')
+               title = 'Energy Consumption by sector')
         ),
         
         # customize the length menu
@@ -326,7 +326,7 @@ EnConsumptionSector <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/4 - Energy Efficiency/EnConsumpSector.txt")[2])
+                     paste(readtext("Structure/4 - Energy Efficiency/EnConsumptionSector.txt")[2])
                      
                    )))
   })

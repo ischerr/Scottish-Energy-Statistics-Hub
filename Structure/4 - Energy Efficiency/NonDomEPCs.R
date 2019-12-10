@@ -73,23 +73,7 @@ NonDomEPCs <- function(input, output, session) {
   
   output$NonDomEPCsSubtitle <- renderText({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump sector",
-      col_names = FALSE,
-      skip = 12,
-      n_max = 7
-    )
-    
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- unlist(Data[1,])
-    
-    names(Data)[1] <- "Year"
-    
-    Data[1:7] %<>% lapply(function(x) as.numeric(as.character(x)))
-    
-    paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
+    paste("Scotland, 2017")
   })
   
   output$NonDomEPCsPlot <- renderPlotly  ({
@@ -297,17 +281,17 @@ NonDomEPCs <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(8, 'desc')),
-        title = "Energy Consumption",
+        title = "Average energy efficiency levels of non-domestic properties, by type",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Energy Consumption',
+            title = 'Average energy efficiency levels of non-domestic properties, by type',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Energy Consumption')
+               title = 'Average energy efficiency levels of non-domestic properties, by type')
         ),
         
         # customize the length menu

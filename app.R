@@ -43,6 +43,8 @@ server <- function(input, output, session) {
   
   rv = reactiveValues()
   
+  callModule(TargetTracker, "TargetTracker", parent_session = session)
+  
 #Create a reactive value so the URL code only runs once, when the app first loads. This prevents the app from looping if navigated too quickly  
 rv$URLLoaded <- 0
   
@@ -69,6 +71,8 @@ observe({
   
   updateTabsetPanel(session, query4,
                     selected = query5)
+  
+  
   
   #Set that the load tab from URL code has ran, so it does not run again.
   rv$URLLoaded <- 1
@@ -172,12 +176,7 @@ observe({
   
     
 
-if(input$MainNav == "TargetTracker"){
-  
-  updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$TargetTracker), mode = "push")
-  
-  callModule(match.fun(input$MainNav), input$MainNav)
-  }
+
 
 }
 )
@@ -581,9 +580,6 @@ ui <- shinyUI(fluidPage(
                    tabPanel(title = "Energy Consumption Target",
                             value = "EnConsumptionTgt",
                             EnConsumptionTgtOutput("EnConsumptionTgt")),
-                   tabPanel(title = "Energy Consumption EU",
-                            value = "EnConsumptionEU",
-                            EnConsumptionEUOutput("EnConsumptionEU")),
                    tabPanel(title = "Energy Consumption by Sector",
                             value = "EnConsumptionSector",
                             EnConsumptionSectorOutput("EnConsumptionSector")),
