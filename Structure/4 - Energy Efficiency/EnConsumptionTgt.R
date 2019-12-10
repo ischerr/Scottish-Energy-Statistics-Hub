@@ -11,7 +11,7 @@ EnConsumptionTgtOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Share of renewable electricity in gross final consumption", style = "color: #34d1a3;  font-weight:bold"),
+                    h3("Final energy consumption against 2005-07 baseline", style = "color: #34d1a3;  font-weight:bold"),
                     h4(textOutput(ns('EnConsumptionTgtSubtitle')), style = "color: #34d1a3;")
     ),
              column(
@@ -226,17 +226,17 @@ EnConsumptionTgt <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Energy Consumption",
+        title = "Final Energy Consumption",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Energy Consumption',
+            title = 'Final Energy Consumption',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Energy Consumption')
+               title = 'Final Energy Consumption')
         ),
         
         # customize the length menu

@@ -210,17 +210,17 @@ HHoldEnConsumption <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(1, 'asc')),
-        title = "Total final energy consumption by sector (GWh)",
+        title = "Average household energy consumption by end use",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Total final energy consumption by sector (GWh)',
+            title = 'Average household energy consumption by end use',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Total final energy consumption by sector (GWh)')
+               title = 'Average household energy consumption by end use')
         ),
         
         # customize the length menu
@@ -261,7 +261,7 @@ HHoldEnConsumption <- function(input, output, session) {
 
 writePNG(
   readPNG(
-  "Structure/4 - Energy Efficiency/HHoldEnergyConsumptionChart.png"
+  "Structure/4 - Energy Efficiency/HHoldEnConsumptionChart.png"
 ),
 file)
     }
