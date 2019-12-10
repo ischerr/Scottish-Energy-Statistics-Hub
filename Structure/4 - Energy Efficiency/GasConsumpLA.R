@@ -168,17 +168,17 @@ GasConsumptionLA <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(1, 'asc')),
-        title = "Total final energy consumption by consuming sector (GWh), by local authority in Scotland",
+        title = "Average annual household consumption of gas by local authority",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Total final energy consumption by consuming sector (GWh), by local authority in Scotland',
+            title = 'Average annual household consumption of gas by local authority',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Total final energy consumption by consuming sector (GWh), by local authority in Scotland')
+               title = 'Average annual household consumption of gas by local authority')
         ),
         
         # customize the length menu

@@ -301,7 +301,6 @@ DomEPCs <- function(input, output, session) {
     
   })
   
-  
   output$StockEPCTable = renderDataTable({
     
     
@@ -331,17 +330,17 @@ DomEPCs <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Energy Consumption",
+        title = "Distribution of Scottish Housing Stock by EPC Band",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Energy Consumption',
+            title = 'Distribution of Scottish Housing Stock by EPC Band',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Energy Consumption')
+               title = 'Distribution of Scottish Housing Stock by EPC Band')
         ),
         
         # customize the length menu
@@ -353,7 +352,6 @@ DomEPCs <- function(input, output, session) {
     ) %>%
       formatPercentage(2:9, 1)
   })
-  
   
   output$EPCProportionsSubtitle <- renderText({
     
@@ -526,17 +524,17 @@ DomEPCs <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Energy Consumption",
+        title = "Proportion of properties rated EPC band C or above, Scotland",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Energy Consumption',
+            title = 'Proportion of properties rated EPC band C or above, Scotland',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Energy Consumption')
+               title = 'Proportion of properties rated EPC band C or above, Scotland')
         ),
         
         # customize the length menu
@@ -729,7 +727,6 @@ DomEPCs <- function(input, output, session) {
     
   })
   
-  
   output$EPCTenureTable = renderDataTable({
     
     
@@ -761,17 +758,17 @@ DomEPCs <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(8, 'desc')),
-        title = "Energy Consumption",
+        title = "Distribution of Scottish Housing Stock by EPC Band and Housing Tenure",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Energy Consumption',
+            title = 'Distribution of Scottish Housing Stock by EPC Band and Housing Tenure',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Energy Consumption')
+               title = 'Distribution of Scottish Housing Stock by EPC Band and Housing Tenure')
         ),
         
         # customize the length menu
@@ -784,7 +781,6 @@ DomEPCs <- function(input, output, session) {
       formatPercentage(2:9, 1)
   })
   
-  
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
@@ -792,7 +788,6 @@ DomEPCs <- function(input, output, session) {
                      
                    )))
   })
- 
  
   observeEvent(input$ToggleTable, {
     toggle("StockEPCTable")
@@ -805,8 +800,6 @@ DomEPCs <- function(input, output, session) {
   observeEvent(input$ToggleTable3, {
     toggle("EPCTenureTable")
   })
-  
-
   
   observeEvent(input$ToggleText, {
     toggle("Text")
@@ -987,8 +980,7 @@ DomEPCs <- function(input, output, session) {
     
   }
 )
-
-
+  
   output$StockEPC.png <- downloadHandler(
   filename = "StockEPC.png",
   content = function(file) {

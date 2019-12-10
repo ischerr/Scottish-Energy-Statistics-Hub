@@ -11,7 +11,7 @@ TransportEnConsumptionOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Final energy consumption by fuel type", style = "color: #34d1a3;  font-weight:bold"),
+                    h3("Road and rail energy consumption", style = "color: #34d1a3;  font-weight:bold"),
                     h4(textOutput(ns('TransportEnConsumptionSubtitle')), style = "color: #34d1a3;")
     ),
              column(
@@ -302,17 +302,17 @@ TransportEnConsumption <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Energy Consumption",
+        title = "Road and rail energy consumption",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Energy Consumption',
+            title = 'Road and rail energy consumption',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Energy Consumption')
+               title = 'Road and rail energy consumption')
         ),
         
         # customize the length menu
@@ -399,7 +399,7 @@ TransportEnConsumption <- function(input, output, session) {
         mutate(top = sum(value))
       
       plottitle <-
-        "Final energy consumption by fuel type"
+        "Road and rail energy consumption"
       sourcecaption <- "Source: BEIS"
       
       ChartColours <- c("#34d1a3", "#FF8500")

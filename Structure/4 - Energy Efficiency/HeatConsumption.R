@@ -279,17 +279,17 @@ HeatConsumption <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Energy Consumption",
+        title = "Non-electrical heat demand by sector",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Energy Consumption',
+            title = 'Non-electrical heat demand by sector',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Energy Consumption')
+               title = 'Non-electrical heat demand by sector')
         ),
         
         # customize the length menu
