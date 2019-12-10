@@ -11,7 +11,7 @@ RenElecLAOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Share of renewable energy in gross final consumption", style = "color: #39ab2c;  font-weight:bold"),
+                    h3("Renewable electricity generation by local authority as a proportion of total electricity generation", style = "color: #39ab2c;  font-weight:bold"),
                     h4(textOutput(ns('RenElecLASubtitle')), style = "color: #39ab2c;")
     ),
              column(
@@ -62,37 +62,7 @@ RenElecLAOutput <- function(id) {
 
 ###### Server ######
 RenElecLA <- function(input, output, session) {
-  # output$RenElecLAPlot <- renderDygraph({
-  #   RenEn <-
-  #     read.csv(
-  #       "Structure/2 - Renewables/Electricity/RenElecLA.csv",
-  #       header = TRUE,
-  #       sep = ",",
-  #       na.strings = "-"
-  #     )
-  #
-  #   YearLow <- as.numeric(min(RenEn$Year))
-  #   YearHigh <- as.numeric(max(RenEn$Year +1))
-  #
-  #   dygraph(RenEn, main = "Renewable Energy Target") %>%
-  #     dyAxis("y", label = "% Progress", valueRange = c(0,30)) %>%
-  #     dyAxis("x", label = "Year", drawGrid = TRUE) %>%
-  #     dyOptions(colors =  c("Green","Orange", "Blue")) %>%
-  #     dyLegend(width = 170 ,
-  #              labelsSeparateLines = TRUE ,
-  #              show = "always") %>%
-  #     dyOptions(
-  #       stackedGraph = TRUE,
-  #       axisLineColor = "white",
-  #       gridLineColor = "white",
-  #       includeZero = TRUE,
-  #       fillAlpha = .65
-  #     ) %>%
-  #     #    dyRangeSelector() %>%
-  #     dyCSS("Structure/2 - Renewables/Electricity/legend.css")
-  #
-  # })
-  
+
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
@@ -105,24 +75,8 @@ RenElecLA <- function(input, output, session) {
   
   output$RenElecLASubtitle <- renderText({
     
-    RenEn <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Renewable energy target",
-      col_names = FALSE,
-      skip = 21,
-      n_max = 23
-    )
-    RenEn <- as.data.frame(t(RenEn))
-    RenEn <- RenEn[, c(1, 6, 12, 18, 23)]
-    RenEn <- tail(RenEn,-5)
-    names(RenEn) <-
-      c("Year", "Electricity", "Heat", "Transport", "Renewables")
-    RenEn[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
-      as.numeric(as.character(x)))
+        paste("Scotland, 2018")
     
-    RenEn[which(RenEn$Year != max(RenEn$Year)),][2:4] <- 0
-    
-    paste("Scotland,", min(RenEn$Year),"-", max(RenEn$Year))
   })
   
   output$RenElecLAPlot <- renderImage({

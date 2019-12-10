@@ -11,7 +11,7 @@ RenElecPipelineOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Operational renewable capacity", style = "color: #39ab2c;  font-weight:bold"),
+                    h3("Pipeline renewable capacity by technology", style = "color: #39ab2c;  font-weight:bold"),
                     h4(textOutput(ns('RenElecPipelineSubtitle')), style = "color: #39ab2c;")
     ),
              column(

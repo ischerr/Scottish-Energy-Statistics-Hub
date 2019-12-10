@@ -11,9 +11,9 @@ DomesticRHIOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("Capacity",
+      tabPanel("Heat & Payments",
     fluidRow(column(8,
-                    h3("Renewable heat capacity by technology type", style = "color: #39ab2c;  font-weight:bold"),
+                    h3("Percentage of domestic RHI heat generated and installations receiving payment by technology", style = "color: #39ab2c;  font-weight:bold"),
                     h4(textOutput(ns('DomesticRHISubtitle')), style = "color: #39ab2c;")
     ),
              column(
@@ -25,9 +25,9 @@ DomesticRHIOutput <- function(id) {
     #dygraphOutput(ns("DomesticRHIPlot")),
     plotlyOutput(ns("DomesticRHIPlot"))%>% withSpinner(color="#39ab2c"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Output",
+    tabPanel("Installations",
              fluidRow(column(8,
-                             h3("Renewable heat output by technology type", style = "color: #39ab2c;  font-weight:bold"),
+                             h3("Domestic RHI - Accreddited Installations", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('DomRHIInstallationsOutputSubtitle')), style = "color: #39ab2c;")
              ),
              column(
@@ -49,18 +49,26 @@ DomesticRHIOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     tabsetPanel(
-      tabPanel("Capacity",
+      tabPanel("Installations by Tech",
     fluidRow(
-    column(10, h3("Data - Capacity (GW)", style = "color: #39ab2c;  font-weight:bold")),
+    column(10, h3("Data - Domestic RHI heat generated and number of installations receiving payment by technology", style = "color: #39ab2c;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("DomesticRHITable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Output",
+    tabPanel("Cumulative Installations",
+             fluidRow(
+               column(10, h3("Data - Cumulative number of domestic RHI applications and accredited applications", style = "color: #39ab2c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("CumulativeInstallationsOutputTable"))%>% withSpinner(color="#39ab2c"))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Local Authority Installations",
       fluidRow(
-        column(10, h3("Data - Output (GWh)", style = "color: #39ab2c;  font-weight:bold")),
-        column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+        column(10, h3("Data - Number of accredited installations by Local Authority", style = "color: #39ab2c;  font-weight:bold")),
+        column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
       ),
       fluidRow(
         column(12, dataTableOutput(ns("DomRHIInstallationsOutputTable"))%>% withSpinner(color="#39ab2c"))),
@@ -202,7 +210,7 @@ names(Data)[1] <- "Year"
     DomRHIInstallationsOutputTech <- Data[order(Data$Year),]
     
     ChartColours <- c("#39ab2c", "#FF8500", "#FFFFFF")
-    LineColours <- c("#fc4e2a","#feb24c","#fed976","#addd8e","#41ab5d")
+    LineColours <- c("#39ab2c", "#ef3b2c","#fc9272","#fb6a4a","#fcbaa0")
     
     p <-  plot_ly(DomRHIInstallationsOutputTech, x = ~ Year ) %>%  
       add_trace(y = ~ `Total`,
@@ -245,7 +253,7 @@ names(Data)[1] <- "Year"
                   format(DomRHIInstallationsOutputTech$Year, "%Y")
                 ),
                 hoverinfo = 'text',
-                line = list(width = 6, color = LineColours[3], dash = "none")
+                line = list(width = 6, color = LineColours[4], dash = "none")
       ) %>% 
       add_trace(y = ~ `Biomass`,
                 name = "Biomass",
@@ -259,7 +267,7 @@ names(Data)[1] <- "Year"
                   format(DomRHIInstallationsOutputTech$Year, "%Y")
                 ),
                 hoverinfo = 'text',
-                line = list(width = 6, color = LineColours[4], dash = "none")
+                line = list(width = 6, color = LineColours[3], dash = "none")
       ) %>% 
       add_trace(y = ~ `Solar Thermal`,
                 name = "Solar Thermal",
@@ -330,7 +338,7 @@ names(Data)[1] <- "Year"
         type = "scatter",
         mode = 'markers',
         marker = list(size = 18, 
-                      color = LineColours[3])
+                      color = LineColours[4])
       ) %>% 
       add_trace(
         data = tail(DomRHIInstallationsOutputTech[which(DomRHIInstallationsOutputTech$`Biomass` != 0),], 1),
@@ -349,7 +357,7 @@ names(Data)[1] <- "Year"
         type = "scatter",
         mode = 'markers',
         marker = list(size = 18, 
-                      color = LineColours[4])
+                      color = LineColours[3])
       ) %>% 
       add_trace(
         data = tail(DomRHIInstallationsOutputTech[which(DomRHIInstallationsOutputTech$`Solar Thermal` != 0),], 1),
@@ -401,16 +409,10 @@ names(Data)[1] <- "Year"
     Data <-
       read_excel(
         "Structure/CurrentWorking.xlsx",
-        sheet = "Renewable heat by tech type", col_names = FALSE, 
-        skip = 13, n_max = 7)
+        sheet = "Domestic RHI", 
+        skip = 13, n_max = 5)
     
-    Data <- as.data.frame(t(Data))
-    names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar", "Total")
-    Data %<>% lapply(function(x) as.numeric(as.character(x)))
-    Data <- as_tibble(Data)
-    Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
-    Data <- Data[complete.cases(Data),]
-    Data <- arrange(Data, -row_number())
+    names(Data) <- c("Technology", "Heat paid for under the domestic scheme - MWh", "Heat paid for under the domestic scheme - %", "Number of installations receiving payment - MWh", "Number of installations receiving payment - %")
     
     DomesticRHI <- Data
     
@@ -427,17 +429,17 @@ names(Data)[1] <- "Year"
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Renewable heat capacity by technology type (GW)",
+        title = "Domestic RHI heat generated and number of installations receiving payment by technology, Scotland",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Renewable heat capacity by technology type (GW)",
+            title = "Domestic RHI heat generated and number of installations receiving payment by technology, Scotland",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Renewable heat capacity by technology type (GW)")
+               title = "Domestic RHI heat generated and number of installations receiving payment by technology, Scotland")
         ),
         
         # customize the length menu
@@ -447,7 +449,58 @@ names(Data)[1] <- "Year"
         pageLength = 10
       )
     ) %>%
-      formatRound(c(2:7), 3)
+      formatRound(c(2,4), 0) %>% 
+      formatPercentage(c(3,5), 1)
+  })
+  
+  output$CumulativeInstallationsOutputTable = renderDataTable({
+    
+    Data <-
+      read_excel(
+        "Structure/CurrentWorking.xlsx",
+        sheet = "Domestic RHI", 
+        skip = 59)
+    
+    names(Data) <- c("Date", "Air Source - Applications", "Air Source - Accredited Applications",
+                    "Ground Source - Applications", "Ground Source - Accredited Applications",
+                     "Biomass - Applications", "Biomass - Accredited Applications",
+                     "Solar Thermal - Applications", "Solar Thermal - Accredited Applications",
+                     "Total - Applications", "Total - Accredited Applications")
+    
+    Data$Date <- format(Data$Date, "%b %Y")
+
+    datatable(
+      Data,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "Cumulative number of domestic RHI applications and accredited applications, Scotland",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = "Cumulative number of domestic RHI applications and accredited applications, Scotland",
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = "Cumulative number of domestic RHI applications and accredited applications, Scotland")
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(c(2:11), 0)
   })
   
   output$DomRHIInstallationsOutputTable = renderDataTable({
@@ -455,19 +508,12 @@ names(Data)[1] <- "Year"
     Data <-
       read_excel(
         "Structure/CurrentWorking.xlsx",
-        sheet = "Renewable heat by tech type", col_names = FALSE, 
-        skip = 13, n_max = 7)
+        sheet = "Domestic RHI", col_names = T, 
+        skip = 22, n_max = 34)
     
-    Data <- as.data.frame(t(Data))
-    names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar", "Total")
-    Data %<>% lapply(function(x) as.numeric(as.character(x)))
-    Data <- as_tibble(Data)
-    Data <- arrange(Data, -row_number())
-    Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
-    Data <- Data[complete.cases(Data),]
-    Data <- arrange(Data, -row_number())
+names(Data)[1] <- "LA Code"
     
-    DomRHIInstallationsOutputTech <- Data
+    DomRHIInstallationsOutputTech <- Data[c(2,1,3)]
     
     datatable(
       DomRHIInstallationsOutputTech,
@@ -480,19 +526,17 @@ names(Data)[1] <- "Year"
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        ordering = TRUE,
-        order = list(list(0, 'desc')),
-        title = "Renewable heat output by technology type (GWh)",
+        title = "Number of accredited installations by Local Authority",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Renewable heat output by technology type (GWh)",
+            title = "Number of accredited installations by Local Authority",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Renewable heat output by technology type (GWh)")
+               title = "Number of accredited installations by Local Authority")
         ),
         
         # customize the length menu
@@ -502,7 +546,7 @@ names(Data)[1] <- "Year"
         pageLength = 10
       )
     ) %>%
-      formatRound(c(2:7), 0)
+      formatRound(c(3), 0)
   })
   
   output$Text <- renderUI({
@@ -518,6 +562,10 @@ names(Data)[1] <- "Year"
   })
   
   observeEvent(input$ToggleTable2, {
+    toggle("CumulativeInstallationsOutputTable")
+  })
+  
+  observeEvent(input$ToggleTable3, {
     toggle("DomRHIInstallationsOutputTable")
   })
 
@@ -534,271 +582,119 @@ names(Data)[1] <- "Year"
       Data <-
         read_excel(
           "Structure/CurrentWorking.xlsx",
-          sheet = "Renewable heat by tech type", col_names = FALSE, 
-          skip = 13, n_max = 6)
-      
-      Data <- as.data.frame(t(Data))
-      names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar")
-      Data %<>% lapply(function(x) as.numeric(as.character(x)))
-      Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
-      Data <- Data[complete.cases(Data),]
-      
-      DomRHIInstallationsCapTech <- Data
-      
-      plottitle <- "Renewable heat capacity by technology type"
-      sourcecaption <- "Source: BEIS"
-      ChartColours <- c("#39ab2c", "#FF8500", "#FFFFFF")
-      LineColours <- c("#fc4e2a","#feb24c","#fed976","#addd8e","#41ab5d")
-      
-      DomRHIInstallationsCapTechChart <-
-        DomRHIInstallationsCapTech %>%  ggplot(aes(x = Year), family = "Century Gothic") +
-        
-        ### Line of Values
-        geom_line(
-          aes(y = Biomass,
-              label = Biomass),
-          colour = LineColours[1],
-          size = 1.5,
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year-.1,
-            y = Biomass,
-            label = ifelse(Year == min(Year), paste(round(Biomass, digits = 3), "GW"), ""),
-            hjust = 1,
-            
-            fontface = 2
-          ),
-          colour = LineColours[1],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year+.8,
-            y = Biomass,
-            label = ifelse(Year == max(Year), paste0("Biomass\n",round(Biomass, digits = 3), " GW"), ""),
-            fontface = 2
-          ),
-          colour = LineColours[1],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(DomRHIInstallationsCapTech, 1),
-          aes(
-            x = Year,
-            y = Biomass,
-            label = Biomass,
-            show_guide = FALSE
-          ), 
-          colour = LineColours[1],
-          size = 4,
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = CHP,
-              
-              label = CHP),
-          size = 1.5,
-          colour = LineColours[2],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year-.1,
-            y = CHP,
-            label = ifelse(Year == min(Year), paste(round(CHP, digits = 3),"GW"), ""),
-            hjust = 1,
-            
-            fontface = 2
-          ),
-          colour = LineColours[2],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year+.8,
-            y = CHP,
-            label = ifelse(Year == max(Year), paste0("Biomass CHP\n",round(CHP, digits = 3), " GW"), ""),
-            fontface = 2
-          ),
-          colour = LineColours[2],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(DomRHIInstallationsCapTech, 1),
-          aes(
-            x = Year,
-            y = CHP,
-            label = CHP,
-            show_guide = FALSE
-          ),
-          colour = LineColours[2],
-          size = 4,
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = Waste,
-              label = Waste),
-          size = 1.5,
-          colour = LineColours[3],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year-.1,
-            y = Waste,
-            label = ifelse(Year == min(Year), paste(sprintf("%.3f", round(Waste, digits = 3)),"GW"), ""),
-            hjust = 1,
-            fontface = 2
-          ),
-          colour = LineColours[3],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year+.8,
-            y = Waste,
-            label = ifelse(Year == max(Year), paste0("Waste\n",round(Waste, digits = 3), " GW"), ""),
-            fontface = 2
-          ),
-          colour = LineColours[3],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(DomRHIInstallationsCapTech, 1),
-          aes(
-            x = Year,
-            y = Waste,
-            label = Waste,
-            show_guide = FALSE
-          ),
-          colour = LineColours[3],
-          size = 4,
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = Pumps,
-              label = Pumps),
-          size = 1.5,
-          colour = LineColours[4],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year-.1,
-            y = Pumps,
-            label = ifelse(Year == min(Year), paste(round(Pumps, digits = 3), "GW"), ""),
-            hjust = 1,
-            vjust= -1.5,
-            fontface = 2
-          ),
-          colour = LineColours[4],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year+.8,
-            y = Pumps,
-            label = ifelse(Year == max(Year), paste0("Heat pumps\n", round(Pumps, digits = 3)," GW"), ""),
-            vjust = 0,
-            fontface = 2
-          ),
-          colour = LineColours[4],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(DomRHIInstallationsCapTech, 1),
-          aes(
-            x = Year,
-            y = Pumps,
-            label = Pumps,
-            show_guide = FALSE
-          ),
-          colour = LineColours[4],
-          size = 4,
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = Solar,
-              label = Solar),
-          size = 1.5,
-          colour = LineColours[5],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year-.1,
-            y = Solar,
-            label = ifelse(Year == min(Year), paste(round(Solar, digits = 3),"GW"), ""),
-            hjust = 1,
-            vjust = -.8,
-            fontface = 2
-          ),
-          colour = LineColours[5],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year+.8,
-            y = Solar,
-            label = ifelse(Year == max(Year), paste0("Solar thermal\n",round(Solar, digits = 3)," GW"), ""),
-            fontface = 2
-          ),
-          colour = LineColours[5],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(DomRHIInstallationsCapTech, 1),
-          aes(
-            x = Year,
-            y = Solar,
-            label = Solar,
-            show_guide = FALSE
-          ),
-          colour = LineColours[5],
-          size = 4,
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year,
-            y = 0,
-            label = ifelse(Year == max(Year) |
-                             Year == min(Year), Year, ""),
-            hjust = 0.5,
-            vjust = 1.5,
-            fontface = 2
-          ),
-          colour = ChartColours[1],
-          family = "Century Gothic"
-        )
-      
-      
-      DomRHIInstallationsCapTechChart
-      
-      DomRHIInstallationsCapTechChart <-
-        LinePercentChart(DomRHIInstallationsCapTechChart,
-                         DomRHIInstallationsCapTech,
-                         plottitle,
-                         sourcecaption,
-                         ChartColours)
-      
-      
-      DomRHIInstallationsCapTechChart
-
-      
-      DomRHIInstallationsCapTechChart <- DomRHIInstallationsCapTechChart +
-        ylim(-.008, max(DomRHIInstallationsCapTech$Biomass))+
-        xlim(min(DomRHIInstallationsCapTech$Year-.8), max(DomRHIInstallationsCapTech$Year+1.1))
-      ggsave(
-       file,
-       plot = DomRHIInstallationsCapTechChart,
-        width = 16,
-        height = 16,
-        units = "cm",
-        dpi = 300
-      )
+          sheet = "Domestic RHI", col_names = FALSE, 
+                             skip = 14, n_max = 4)
+          
+          Data <- Data[c(1,5,3)]
+          
+          Data <- as.data.frame(Data)
+          
+          names(Data) <- c("Tech", "Installations receiving payment", "Heat paid for")
+          
+          DomesticRHI <- Data
+          
+          DomesticRHI <- arrange(DomesticRHI, -row_number())
+          
+          DomesticRHI$Tech <-
+            factor(DomesticRHI$Tech,
+                   levels = unique(DomesticRHI$Tech),
+                   ordered = TRUE)
+          
+          DomesticRHI <- melt(DomesticRHI, id.vars = "Tech")
+          
+          
+          DomesticRHI$variable <-
+            factor(
+              DomesticRHI$variable,
+              levels = unique(DomesticRHI$variable),
+              ordered = TRUE
+            )
+          
+          DomesticRHI <- DomesticRHI %>%
+            group_by(Tech) %>%
+            mutate(pos = cumsum(value) - value / 2) %>%
+            mutate(top = sum(value))
+          
+          plottitle <-
+            "Percentage of domestic RHI heat generated and\ninstallations receiving payment by technology"
+          sourcecaption <- "Source: BEIS"
+          
+          ChartColours <- c("#39ab2c", "#FF8500")
+          BarColours <-
+            c(
+              "#31a354",
+              "#addd8e"
+            )
+          
+          
+          DomesticRHIChart <- DomesticRHI %>%
+            ggplot(aes(x = Tech, y = value, fill = variable), family = "Century Gothic") +
+            scale_fill_manual(
+              "variable",
+              values = c(
+                "Heat paid for" = BarColours[1],
+                "Installations receiving payment" = BarColours[2]
+              )
+            ) +
+            geom_bar(position = "dodge",
+                     stat = "identity",
+                     width = .8) +
+            geom_text(position = position_dodge(width = .8),
+                      aes(
+                        y = value + .01,
+                        fill = variable,
+                        label = percent(value, accuracy = 1),
+                        hjust = 0
+                      ),
+                      fontface = 2,
+                      colour =  ChartColours[1],
+                      family = "Century Gothic") +
+            geom_text(position = position_dodge(width = .8),
+                      aes(
+                        y = .01,
+                        fill = variable,
+                        label = ifelse(Tech == max(Tech), as.character(variable), ""),
+                        hjust = 0
+                      ),
+                      fontface = 2,
+                      colour =  "white",
+                      family = "Century Gothic") +
+            annotate(
+              "text",
+              x = DomesticRHI$Tech,
+              y = -.1,
+              label = ifelse(DomesticRHI$Tech == "z", "", str_wrap(DomesticRHI$Tech, width = 13)),
+              family = "Century Gothic",
+              fontface = 2,
+              colour =  ChartColours[1]
+            )
+          
+          DomesticRHIChart
+          
+          
+          DomesticRHIChart <-
+            StackedBars(DomesticRHIChart,
+                        DomesticRHI,
+                        plottitle,
+                        sourcecaption,
+                        ChartColours)
+          
+          DomesticRHIChart <-
+            DomesticRHIChart +
+            labs(subtitle = "Scotland, Apr 2014 - June 2019") +
+            ylim(-.15, .67)+
+            coord_flip()
+          
+          DomesticRHIChart
+          
+          ggsave(
+            file,
+            plot = DomesticRHIChart,
+            width = 17.5,
+            height = 12,
+            units = "cm",
+            dpi = 300
+          )
     }
   )
 
@@ -808,239 +704,299 @@ output$DomRHIInstallationsOutput.png <- downloadHandler(
   filename = "DomRHIInstallationsOutput.png",
   content = function(file) {
     
-    Data <-
+    RHIDom <-
       read_excel(
         "Structure/CurrentWorking.xlsx",
-        sheet = "Renewable heat by tech type", col_names = FALSE, 
-        skip = 13, n_max = 6)
+        sheet = "Domestic RHI", skip = 58)
     
-    Data <- as.data.frame(t(Data))
-    names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar")
-    Data %<>% lapply(function(x) as.numeric(as.character(x)))
-    Data <- as_tibble(Data)
-    Data <- arrange(Data, -row_number())
-    Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
-    Data <- Data[complete.cases(Data),]
-    Data <- arrange(Data, -row_number())
+    RHIDom[c(2,4,6,8,10)] <- RHIDom[c(3,5,7,9,11)]
     
-    DomRHIInstallationsOutputTech <- Data
+    RHIDom <- RHIDom[c(1,2,4,6,8,10)]
     
-    plottitle <- "Renewable heat output by technology type"
-    sourcecaption <- "Source: BEIS"
+    RHIDom <- tail(RHIDom, -1)
+    
+    
+    names(RHIDom) <- c( "Year", "Air Source heat pump", "Ground Source heat pump", "Biomass", "Solar Thermal", "Total")
+    
+    RHIDom$Year <- ymd(RHIDom$Year)
+    
+    RHIDom[2:6] %<>% lapply(function(x) as.numeric(as.character(x)))
+    RHIDom <- as.data.frame(RHIDom)
+    
+    RHIDom <- RHIDom[order(RHIDom$Year),]
+    
+    ### variables
     ChartColours <- c("#39ab2c", "#FF8500", "#FFFFFF")
-    LineColours <- c("#fc4e2a","#feb24c","#fed976","#addd8e","#41ab5d")
+    LineColours <- c("#39ab2c", "#ef3b2c","#fc9272","#fb6a4a","#fcbaa0")
+    sourcecaption = "Source: SG"
+    plottitle = "Domestic RHI - Accreddited Installations"
     
-    DomRHIInstallationsOutputTechChart <-
-      DomRHIInstallationsOutputTech %>%  ggplot(aes(x = Year), family = "Century Gothic") +
-      
-      ### Line of Values
+    #RHIDom$OilPercentage <- PercentLabel(RHIDom$Oil)
+    
+    
+    RHIDomChart <- RHIDom %>%
+      ggplot(aes(x = Year), family = "Century Gothic") +
       geom_line(
-        aes(y = Biomass,
-            label = Biomass),
-        colour = LineColours[1],
-        size = 1.5,
-        family = "Century Gothic"
-      ) +
-      geom_text(
         aes(
-          x = Year-.1,
-          y = Biomass,
-          label = ifelse(Year == min(Year), paste(format(round(Biomass, digits = 0), big.mark = ","), "GWh"), ""),
-          hjust = 1,
-          vjust= 0,
-          fontface = 2
+          y = `Air Source heat pump`,
+          label = percent(`Air Source heat pump`)
         ),
-        colour = LineColours[1],
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = Year+.8,
-          y = Biomass,
-          label = ifelse(Year == max(Year), paste0("Biomass\n",format(round(Biomass, digits = 0), big.mark = ","), " GWh"), ""),
-          fontface = 2
-        ),
-        colour = LineColours[1],
-        family = "Century Gothic"
-      ) +
-      geom_point(
-        data = tail(DomRHIInstallationsOutputTech, 1),
-        aes(
-          x = Year,
-          y = Biomass,
-          label = Biomass,
-          show_guide = FALSE
-        ), 
-        colour = LineColours[1],
-        size = 4,
-        family = "Century Gothic"
-      ) +
-      geom_line(
-        aes(y = CHP,
-            
-            label = CHP),
-        size = 1.5,
         colour = LineColours[2],
+        size = 1.5,
         family = "Century Gothic"
-      ) +
+      )+ 
       geom_text(
         aes(
-          x = Year-.1,
-          y = CHP,
-          label = ifelse(Year == min(Year), paste(round(CHP, digits = 0),"GWh"), ""),
-          hjust = 1,
+          x = Year-88,
+          y = `Air Source heat pump`,
+          label = ifelse(Year == min(Year), format(`Air Source heat pump`, big.mark = ","), ""),
+          hjust = 0.5,
           vjust = 1,
           fontface = 2
-        ),
-        colour = LineColours[2],
+        ),colour = LineColours[2],
         family = "Century Gothic"
       ) +
       geom_text(
         aes(
-          x = Year+.8,
-          y = CHP,
-          label = ifelse(Year == max(Year), paste0("Biomass CHP\n",round(CHP, digits = 0), " GWh"), ""),
-          fontface = 2,
-        ),
-        colour = LineColours[2],
+          x = Year+101,
+          y = `Air Source heat pump`,
+          label = ifelse(Year == max(Year), format(`Air Source heat pump`, big.mark = ","), ""),
+          hjust = 0.5,
+          fontface = 2
+        ),colour = LineColours[2],
         family = "Century Gothic"
       ) +
       geom_point(
-        data = tail(DomRHIInstallationsOutputTech, 1),
+        data = tail(RHIDom, 1),
         aes(
           x = Year,
-          y = CHP,
-          label = CHP,
+          y = `Air Source heat pump`,
           show_guide = FALSE
-        ),
-        colour = LineColours[2],
+        ),colour = LineColours[2],
         size = 4,
         family = "Century Gothic"
       ) +
-      geom_line(
-        aes(y = Waste,
-            label = Waste),
-        size = 1.5,
-        colour = LineColours[3],
-        family = "Century Gothic"
-      ) +
       geom_text(
         aes(
-          x = Year-.1,
-          y = Waste,
-          label = ifelse(Year == min(Year), paste(round(Waste, digits = 0),"GWh"), ""),
-          hjust = 1,
-          vjust = -.9,
+          x = mean(Year)-3,
+          y = mean(`Air Source heat pump`,),
+          label = "Air Source heat pump",
+          hjust = 0.5,
+          vjust = -2.5,
+          
           fontface = 2
-        ),
-        colour = LineColours[3],
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = Year+.8,
-          y = Waste,
-          label = ifelse(Year == max(Year), paste0("Waste\n",round(Waste, digits = 0), " GWh"), ""),
-          fontface = 2,
-          vjust =-.3
-        ),
-        colour = LineColours[3],
-        family = "Century Gothic"
-      ) +
-      geom_point(
-        data = tail(DomRHIInstallationsOutputTech, 1),
-        aes(
-          x = Year,
-          y = Waste,
-          label = Waste,
-          show_guide = FALSE
-        ),
-        colour = LineColours[3],
-        size = 4,
+        ),colour = LineColours[2],
         family = "Century Gothic"
       ) +
       geom_line(
-        aes(y = Pumps,
-            label = Pumps),
+        aes(
+          y = `Ground Source heat pump`,
+          label = percent(`Ground Source heat pump`)
+        ),
+        colour = LineColours[4],
         size = 1.5,
-        colour = LineColours[4],
         family = "Century Gothic"
-      ) +
+      )+ 
       geom_text(
         aes(
-          x = Year-.1,
-          y = Pumps,
-          label = ifelse(Year == min(Year), paste(round(Pumps, digits = 0), "GWh"), ""),
-          hjust = 1,
-          vjust= 0,
+          x = Year-88,
+          y = `Ground Source heat pump`,
+          label = ifelse(Year == min(Year), format(`Ground Source heat pump`, big.mark = ","), ""),
+          hjust = 0.5,
+          vjust = 1,
           fontface = 2
-        ),
-        colour = LineColours[4],
+        ),colour = LineColours[4],
         family = "Century Gothic"
       ) +
       geom_text(
         aes(
-          x = Year+.8,
-          y = Pumps,
-          label = ifelse(Year == max(Year), paste0("Heat pumps\n", round(Pumps, digits = 0)," GWh"), ""),
-          vjust = .5,
-          fontface = 2
-        ),
-        colour = LineColours[4],
-        family = "Century Gothic"
-      ) +
-      geom_point(
-        data = tail(DomRHIInstallationsOutputTech, 1),
-        aes(
-          x = Year,
-          y = Pumps,
-          label = Pumps,
-          show_guide = FALSE
-        ),
-        colour = LineColours[4],
-        size = 4,
-        family = "Century Gothic"
-      ) +
-      geom_line(
-        aes(y = Solar,
-            label = Solar),
-        size = 1.5,
-        colour = LineColours[5],
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = Year-.1,
-          y = Solar,
-          label = ifelse(Year == min(Year), paste(round(Solar, digits = 0),"GWh"), ""),
-          hjust = 1,
+          x = Year+101,
+          y = `Ground Source heat pump`,
+          label = ifelse(Year == max(Year), format(`Ground Source heat pump`, big.mark = ","), ""),
+          hjust = 0.5,
           vjust = 0,
           fontface = 2
-        ),
-        colour = LineColours[5],
+        ),colour = LineColours[4],
+        family = "Century Gothic"
+      ) +
+      geom_point(
+        data = tail(RHIDom, 1),
+        aes(
+          x = Year,
+          y = `Ground Source heat pump`,
+          show_guide = FALSE
+        ),colour = LineColours[4],
+        size = 4,
         family = "Century Gothic"
       ) +
       geom_text(
         aes(
-          x = Year+.8,
-          y = Solar,
-          label = ifelse(Year == max(Year), paste0("Solar thermal\n",format(round(Solar, digits = 0), big.mark = ",")," GWh"), ""),
-          fontface = 2,
-          vjust = 0
+          x = mean(Year)-3,
+          y = mean(`Ground Source heat pump`,),
+          label = "Ground Source heat pump",
+          hjust = 0.5,
+          vjust = 1.6,
+          
+          fontface = 2
+        ),colour = LineColours[4],
+        family = "Century Gothic"
+      ) +
+      geom_line(
+        aes(
+          y = `Biomass`,
+          label = percent(`Biomass`)
         ),
-        colour = LineColours[5],
+        colour = LineColours[3],
+        size = 1.5,
+        family = "Century Gothic"
+      )+ 
+      geom_text(
+        aes(
+          x = Year-88,
+          y = `Biomass`,
+          label = ifelse(Year == min(Year), format(`Biomass`, big.mark = ","), ""),
+          hjust = 0.5,
+          vjust = 0,
+          fontface = 2
+        ),colour = LineColours[3],
+        family = "Century Gothic"
+      ) +
+      geom_text(
+        aes(
+          x = Year+101,
+          y = `Biomass`,
+          label = ifelse(Year == max(Year), format(`Biomass`, big.mark = ","), ""),
+          hjust = 0.5,
+          
+          fontface = 2
+        ),colour = LineColours[3],
         family = "Century Gothic"
       ) +
       geom_point(
-        data = tail(DomRHIInstallationsOutputTech, 1),
+        data = tail(RHIDom, 1),
         aes(
           x = Year,
-          y = Solar,
-          label = Solar,
+          y = `Biomass`,
           show_guide = FALSE
+        ),colour = LineColours[3],
+        size = 4,
+        family = "Century Gothic"
+      ) +
+      geom_text(
+        aes(
+          x = mean(Year)-3,
+          y = mean(`Biomass`,),
+          label = "Biomass",
+          hjust = 0.5,
+          vjust = 1,
+          
+          fontface = 2
+        ),colour = LineColours[3],
+        family = "Century Gothic"
+      ) +
+      geom_line(
+        aes(
+          y = `Solar Thermal`,
+          label = percent(`Solar Thermal`)
         ),
         colour = LineColours[5],
+        size = 1.5,
+        family = "Century Gothic"
+      )+ 
+      geom_text(
+        aes(
+          x = Year-88,
+          y = `Solar Thermal`,
+          label = ifelse(Year == min(Year), format(`Solar Thermal`, big.mark = ","), ""),
+          hjust = 0.5,
+          vjust = -0.1,
+          fontface = 2
+        ),colour = LineColours[5],
+        family = "Century Gothic"
+      ) +
+      geom_text(
+        aes(
+          x = Year+101,
+          y = `Solar Thermal`,
+          label = ifelse(Year == max(Year), format(`Solar Thermal`, big.mark = ","), ""),
+          hjust = 0.5,
+          vjust = 1.1,
+          fontface = 2
+        ),colour = LineColours[5],
+        family = "Century Gothic"
+      ) +
+      geom_point(
+        data = tail(RHIDom, 1),
+        aes(
+          x = Year,
+          y = `Solar Thermal`,
+          show_guide = FALSE
+        ),colour = LineColours[5],
         size = 4,
+        family = "Century Gothic"
+      ) +
+      geom_text(
+        aes(
+          x = mean(Year)-3,
+          y = mean(`Solar Thermal`),
+          label = "Solar Thermal",
+          hjust = 0.5,
+          vjust = -1,
+          
+          fontface = 2
+        ),colour = LineColours[5],
+        family = "Century Gothic"
+      ) +
+      geom_line(
+        aes(
+          y = `Total`,
+          label = percent(`Total`)
+        ),
+        colour = LineColours[1],
+        size = 1.5,
+        family = "Century Gothic"
+      )+ 
+      geom_text(
+        aes(
+          x = Year - 88,
+          y = `Total`,
+          label = ifelse(Year == min(Year), format(`Total`, big.mark = ","), ""),
+          hjust = 0.5,
+          fontface = 2
+        ),colour = LineColours[1],
+        family = "Century Gothic"
+      ) +
+      geom_text(
+        aes(
+          x = Year + 101,
+          y = `Total`,
+          label = ifelse(Year == max(Year), format(`Total`, big.mark = ","), ""),
+          hjust = 0.5,
+          
+          fontface = 2
+        ),colour = LineColours[1],
+        family = "Century Gothic"
+      ) +
+      geom_point(
+        data = tail(RHIDom, 1),
+        aes(
+          x = Year,
+          y = `Total`,
+          show_guide = FALSE
+        ),colour = LineColours[1],
+        size = 4,
+        family = "Century Gothic"
+      ) +
+      geom_text(
+        aes(
+          x = mean(Year)-3,
+          y = mean(`Total`),
+          label = "Total",
+          hjust = 0.5,
+          vjust = 1,
+          
+          fontface = 2
+        ),colour = LineColours[1],
         family = "Century Gothic"
       ) +
       geom_text(
@@ -1048,40 +1004,46 @@ output$DomRHIInstallationsOutput.png <- downloadHandler(
           x = Year,
           y = 0,
           label = ifelse(Year == max(Year) |
-                           Year == min(Year), Year, ""),
+                           Year == min(Year), format(Year, format = "%b %Y"), ""),
           hjust = 0.5,
           vjust = 1.5,
           fontface = 2
         ),
-        colour = ChartColours[1],
+        colour = LineColours[1],
         family = "Century Gothic"
+      )+
+      geom_hline(
+        yintercept = 0,
+        color = "grey",
+        alpha = 0.7,
+        linetype = 2
       )
     
     
-    DomRHIInstallationsOutputTechChart
+    RHIDomChart <-
+      DailyChart(RHIDomChart,
+                 RHIDom,
+                 plottitle,
+                 sourcecaption,
+                 ChartColours)
     
-    DomRHIInstallationsOutputTechChart <-
-      LinePercentChart(DomRHIInstallationsOutputTechChart,
-                       DomRHIInstallationsOutputTech,
-                       plottitle,
-                       sourcecaption,
-                       ChartColours)
+    RHIDomChart <- RHIDomChart+
+      coord_cartesian(xlim = c(min(RHIDom$Year)-75, max(RHIDom$Year)+110)) +
+      ylim(-50,max(RHIDom$Total))
     
     
-    DomRHIInstallationsOutputTechChart
-
+    RHIDomChart
     
-    DomRHIInstallationsOutputTechChart <- DomRHIInstallationsOutputTechChart +
-      ylim(-.008, max(DomRHIInstallationsOutputTech$Biomass))+
-      xlim(min(DomRHIInstallationsOutputTech$Year-.8), max(DomRHIInstallationsOutputTech$Year+1.1))
+    
     ggsave(
       file,
-      plot = DomRHIInstallationsOutputTechChart,
-      width = 16,
-      height = 16,
+      plot = RHIDomChart,
+      width = 15.5,
+      height = 15,
       units = "cm",
       dpi = 300
     )
+    
     
   }
 )
