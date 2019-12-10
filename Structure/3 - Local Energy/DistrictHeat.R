@@ -133,12 +133,12 @@ DistrictHeat <- function(input, output, session) {
                   hoverinfo = "text",
                   text = paste0("Latest: ", format(DistrictHeat$Latest, big.mark = ","), "\nProportion: ", percent(DistrictHeat$LatestProp, accuracy = 0.1)),
                   orientation = 'h',
-                  marker = list(color = "#31a354")
+                  marker = list(color = "#a3d65c")
     )%>%
       add_trace(x = ~ `AmbitionProp`,
                 name = 'Ambition',
                 text = paste0("Overall Ambition: ", format((DistrictHeat$Ambition + DistrictHeat$Latest) , big.mark = ","), "\n"),
-                marker = list(color = "#addd8e")
+                marker = list(color = "#ccebc5")
       ) %>% 
       layout(
         barmode = 'stack',
@@ -228,7 +228,7 @@ DistrictHeat <- function(input, output, session) {
     tagList(column(12,
                    
                    HTML(
-                     paste(readtext("Structure/3 - Local Energy/DistrictHeats.txt")[2])
+                     paste(readtext("Structure/3 - Local Energy/DistrictHeat.txt")[2])
                      
                    )))
   })

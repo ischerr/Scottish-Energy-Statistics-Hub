@@ -234,7 +234,7 @@ DisplacedEmissions <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/2 - Renewables/Emissions/Emissions displaced renewables.txt")[2])
+                     paste(readtext("Structure/2 - Renewables/Emissions/DisplacedEmissions.txt")[2])
                      
                    )))
   })
@@ -254,7 +254,7 @@ DisplacedEmissions <- function(input, output, session) {
     filename = "DisplacedEmissions.png",
     content = function(file) {
 
-      DisplacedEmissions <- read_excel("Structure/CurrentWorking.xlsx", 
+      Data <- read_excel("Structure/CurrentWorking.xlsx", 
                              sheet = "Emissions displaced renewables", skip = 15, col_names = FALSE)
       
       Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)

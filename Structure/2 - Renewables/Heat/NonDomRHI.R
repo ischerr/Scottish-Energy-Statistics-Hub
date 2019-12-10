@@ -63,17 +63,17 @@ NonDomRHIOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     tabsetPanel(
-      tabPanel("Capacity",
+      tabPanel("Heat Generated, Installed Capacity & Installations Paid ",
     fluidRow(
-    column(10, h3("Data - Capacity (GW)", style = "color: #39ab2c;  font-weight:bold")),
+    column(10, h3("Data - Heat generated, installed capacity and number of installations receiving payment", style = "color: #39ab2c;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("NonDomRHITable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Output",
+    tabPanel("Applications",
       fluidRow(
-        column(10, h3("Data - Output (GWh)", style = "color: #39ab2c;  font-weight:bold")),
+        column(10, h3("Data - Cumulative number and capacity  of applications", style = "color: #39ab2c;  font-weight:bold")),
         column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
       ),
       fluidRow(
@@ -419,17 +419,17 @@ names(Data)[1] <- "Year"
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Renewable heat capacity by technology type (GW)",
-        NonDom = 'ltBp',
+        title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland",
+        dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Renewable heat capacity by technology type (GW)",
+            title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Renewable heat capacity by technology type (GW)")
+               title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland")
         ),
         
         # customize the length menu
@@ -475,17 +475,17 @@ names(Data)[1] <- "Year"
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Renewable heat output by technology type (GWh)",
-        NonDom = 'ltBp',
+        title = "Cumulative number and capacity  of non-domestic RHI applications and accredited applications, Scotland",
+        dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Renewable heat output by technology type (GWh)",
+            title = "Cumulative number and capacity  of non-domestic RHI applications and accredited applications, Scotland",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Renewable heat output by technology type (GWh)")
+               title = "Cumulative number and capacity  of non-domestic RHI applications and accredited applications, Scotland")
         ),
         
         # customize the length menu
@@ -506,7 +506,7 @@ names(Data)[1] <- "Year"
                    )))
   })
   
- observeEvent(input$ToggleTable1, {
+  observeEvent(input$ToggleTable1, {
     toggle("NonDomRHITable")
   })
   
