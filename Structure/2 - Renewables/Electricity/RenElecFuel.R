@@ -13,7 +13,7 @@ RenElecFuelOutput <- function(id) {
     tabsetPanel(
       tabPanel("Installed capacity",
     fluidRow(column(8,
-                    h3("Renewable electricity as a percentage of gross consumption across the EU", style = "color: #39ab2c;  font-weight:bold"),
+                    h3("Installed capacity of sites generating electricity from renewable sources", style = "color: #39ab2c;  font-weight:bold"),
                     h4(textOutput(ns('RenElecFuelSubtitle')), style = "color: #39ab2c;")
     ),
              column(
@@ -27,7 +27,7 @@ RenElecFuelOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Electricity generated",
              fluidRow(column(8,
-                             h3("Gen of renewable electricity share in gross final energy consumption", style = "color: #39ab2c;  font-weight:bold"),
+                             h3("Electricity generated from renewable sources", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('RenElecFuelGenSubtitle')), style = "color: #39ab2c;")
              ),
              column(
@@ -184,6 +184,8 @@ RenElecFuel <- function(input, output, session) {
         "#4eb3d3",
         "#2b8cbe"
       )
+    
+    RenElecCapFuel$Year <- paste0("<b>", RenElecCapFuel$Year, "</b>")
     
     p <- plot_ly(
       data = RenElecCapFuel,
@@ -818,6 +820,8 @@ RenElecFuel <- function(input, output, session) {
         "#4eb3d3",
         "#2b8cbe"
       )
+    
+    RenElecGenFuel$Year <- paste0("<b>", RenElecGenFuel$Year, "</b>")
     
     p <- plot_ly(
       data = RenElecGenFuel,

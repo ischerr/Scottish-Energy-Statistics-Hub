@@ -13,7 +13,7 @@ RenElecCapacityOutput <- function(id) {
     tabsetPanel(
       tabPanel("Installed capacity",
     fluidRow(column(8,
-                    h3("Operational renewable capacity", style = "color: #39ab2c;  font-weight:bold"),
+                    h3("Operational renewable capacity by planning stage", style = "color: #39ab2c;  font-weight:bold"),
                     h4(textOutput(ns('RenElecCapacitySubtitle')), style = "color: #39ab2c;")
     ),
              column(
@@ -448,16 +448,6 @@ RenElecCapacity <- function(input, output, session) {
     
     RenElecPipelineCap <- as_tibble(Data)
     
-    # 
-    # Data <- as.data.frame(t(Data))
-    # 
-    # names(Data) <-  as.character(unlist(Data[1,]))
-    # names(Data)[1] <- "Type"
-    # Data <- tail(Data,-1)
-    # Data %<>% lapply(function(x) as.numeric(as.character(x)))
-    # Data <- as.data.frame(Data)
-    
-    
     RenElecPipelineCap <- arrange(RenElecPipelineCap,-row_number())
     
     ChartColours <- c("#39ab2c", "#FF8500")
@@ -473,6 +463,8 @@ RenElecCapacity <- function(input, output, session) {
         "#969696"
       )
     
+    
+    RenElecPipelineCap$Type <- paste0("<b>", RenElecPipelineCap$Type, "</b>"  )
     
       p <- plot_ly(data = RenElecPipelineCap, y = ~ Type) %>%
 

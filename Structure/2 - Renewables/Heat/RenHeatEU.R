@@ -334,7 +334,7 @@ RenHeatEU <- function(input, output, session) {
           label = ifelse(
             EUHeat$Group == "B" |
               EUHeat$Group == "C" ,
-            scales::percent(EUHeat$Renewables) ,
+            scales::percent(EUHeat$Renewables, 0.1) ,
             ""
           ),
           fontface = 2,
@@ -638,7 +638,7 @@ RenHeatEU <- function(input, output, session) {
                                      
                                      geom_line(
                                        aes(y = `Scotland`,
-                                           label = percent(`Scotland`)),
+                                           label = percent(`Scotland`, 0.1)),
                                        colour = ChartColours[2],
                                        size = 1.5,
                                        family = "Century Gothic"
