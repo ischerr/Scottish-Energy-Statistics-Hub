@@ -281,7 +281,7 @@ Biofuels <- function(input, output, session) {
           aes(
             y = Renewables,
             colour = ChartColours[1],
-            label = percent(Renewables)
+            label = percent(Renewables, 0.01)
           ),
           size = 1.5,
           family = "Century Gothic"
@@ -290,7 +290,7 @@ Biofuels <- function(input, output, session) {
           aes(
             x = Year,
             y = Renewables,
-            label = ifelse(Year == min(Year), percent(Renewables), ""),
+            label = ifelse(Year == min(Year), percent(Renewables, 0.01), ""),
             hjust = 0.5,
             vjust = -1,
             colour = ChartColours[1],
@@ -302,7 +302,7 @@ Biofuels <- function(input, output, session) {
           aes(
             x = Year,
             y = Renewables,
-            label = ifelse(Year == max(Year), percent(Renewables), ""),
+            label = ifelse(Year == max(Year), percent(Renewables, 0.01), ""),
             hjust = 0.5,
             vjust = -1.5,
             colour = ChartColours[1],
@@ -316,7 +316,7 @@ Biofuels <- function(input, output, session) {
             x = Year,
             y = Renewables,
             colour = ChartColours[1],
-            label = percent(Renewables),
+            label = percent(Renewables, 0.01),
             show_guide = FALSE
           ),
           size = 4,

@@ -148,7 +148,7 @@ LowCarbonEconomy <- function(input, output, session) {
       paste("Scotland,", max(LowCarbonEconomy$Year))
     })
   
-  output$LowCarbonEconomyPlot <- renderPlotly  ({
+    output$LowCarbonEconomyPlot <- renderPlotly  ({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Low carbon economy", skip = 15, col_names = FALSE)
@@ -199,7 +199,7 @@ LowCarbonEconomy <- function(input, output, session) {
     p
   })
   
-  output$LowCarbonEconomyTurnoverPlot <- renderPlotly  ({
+    output$LowCarbonEconomyTurnoverPlot <- renderPlotly  ({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Low carbon economy", skip = 15, col_names = FALSE)
@@ -254,7 +254,7 @@ LowCarbonEconomy <- function(input, output, session) {
   })
   
   
-  output$LowCarbonEconomyTable = renderDataTable({
+    output$LowCarbonEconomyTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Low carbon economy", skip = 15, col_names = FALSE)
@@ -295,17 +295,17 @@ LowCarbonEconomy <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Million tonnes of CO2 emissions displaced by renewables",
+        title = "Full time equivalent jobs directly supported by the LCRE sector",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Million tonnes of CO2 emissions displaced by renewables',
+            title = 'Full time equivalent jobs directly supported by the LCRE sector',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Million tonnes of CO2 emissions displaced by renewables')
+               title = 'Full time equivalent jobs directly supported by the LCRE sector')
         ),
         
         # customize the length menu
@@ -318,7 +318,7 @@ LowCarbonEconomy <- function(input, output, session) {
       formatRound(2:5, 0)
   })
   
-  output$LowCarbonEconomyTurnoverTable = renderDataTable({
+    output$LowCarbonEconomyTurnoverTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Low carbon economy", skip = 15, col_names = FALSE)
@@ -359,17 +359,17 @@ LowCarbonEconomy <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Direct and Indirect Low Carbon and Renewable Energy Economy Activity - \u00A3bn",
+        title = "Turnover directly supported by the LCRE sector (\u00A3bn)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Direct and Indirect Low Carbon and Renewable Energy Economy Activity - \u00A3bn',
+            title = 'Turnover directly supported by the LCRE sector (\u00A3bn)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Direct and Indirect Low Carbon and Renewable Energy Economy Activity - \u00A3bn')
+               title = 'Turnover directly supported by the LCRE sector (\u00A3bn)')
         ),
         
         # customize the length menu

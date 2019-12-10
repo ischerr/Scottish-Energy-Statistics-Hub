@@ -311,17 +311,17 @@ CHPStats <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Number of Ultra Low Emission Vehicles (CHP) licenced at end of year/quarter",
+        title = "CHP statistics by installation size, Scotland",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Number of Ultra Low Emission Vehicles (CHP) licenced at end of year/quarter",
+            title = "CHP statistics by installation size, Scotland",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Number of Ultra Low Emission Vehicles (CHP) licenced at end of year/quarter")
+               title = "CHP statistics by installation size, Scotland")
         ),
         
         # customize the length menu

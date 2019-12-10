@@ -11,83 +11,83 @@ LocalRenewablesOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("Energy Sector Employment",
+      tabPanel("Community owned renewable capacity",
                fluidRow(
                  column(
                    8,
-                   h3("Employment in the energy sector", style = "color: #a3d65c;  font-weight:bold"),
-                   h4(textOutput(ns('EnSectorEmploymentSubtitle')), style = "color: #a3d65c;")
+                   h3("Community and locally owned renewable energy capacity in different stages of development", style = "color: #a3d65c;  font-weight:bold"),
+                   h4(textOutput(ns('CommunityCapacitySubtitle')), style = "color: #a3d65c;")
                  ),
                  column(
                    4,
                    style = 'padding:15px;',
-                   downloadButton(ns('EnSectorEmployment.png'), 'Download Graph', style =
+                   downloadButton(ns('CommunityCapacity.png'), 'Download Graph', style =
                                     "float:right")
                  )
                ),
                
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
-               plotlyOutput(ns("EnSectorEmploymentPlot"))%>% withSpinner(color="#a3d65c"),
+               plotlyOutput(ns("CommunityCapacityPlot"))%>% withSpinner(color="#a3d65c"),
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
-      tabPanel("Turnover associated with the energy sector",
+      tabPanel("Operating community renewable capacity",
                fluidRow(
                  column(
                    8,
-                   h3("Energy Sector Turnover", style = "color: #a3d65c;  font-weight:bold"),
-                   h4(textOutput(ns('EnSectorTurnoverSubtitle')), style = "color: #a3d65c;")
+                   h3("Capacity of operating locally owned renewable energy initiatives", style = "color: #a3d65c;  font-weight:bold"),
+                   h4(textOutput(ns('CommunityOperatingCapacitySubtitle')), style = "color: #a3d65c;")
                  ),
                  column(
                    4,
                    style = 'padding:15px;',
-                   downloadButton(ns('EnSectorTurnover.png'), 'Download Graph', style =
+                   downloadButton(ns('CommunityOperatingCapacity.png'), 'Download Graph', style =
                                     "float:right")
                  )
                ),
                
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
-               plotlyOutput(ns("EnSectorTurnoverPlot"))%>% withSpinner(color="#a3d65c"),
+               plotlyOutput(ns("CommunityOperatingCapacityPlot"))%>% withSpinner(color="#a3d65c"),
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
-      tabPanel("GVA associated with the energy sector",
+      tabPanel("Operating capacity by technology",
                fluidRow(
                  column(
                    8,
-                   h3("Energy Sector GVA", style = "color: #a3d65c;  font-weight:bold"),
-                   h4(textOutput(ns('EnSectorGVASubtitle')), style = "color: #a3d65c;")
+                   h3("Capacity of operational community and locally owned renewable installations by technology", style = "color: #a3d65c;  font-weight:bold"),
+                   h4(textOutput(ns('CommunityOperatingTechSubtitle')), style = "color: #a3d65c;")
                  ),
                  column(
                    4,
                    style = 'padding:15px;',
-                   downloadButton(ns('EnSectorGVA.png'), 'Download Graph', style =
+                   downloadButton(ns('CommunityOperatingTech.png'), 'Download Graph', style =
                                     "float:right")
                  )
                ),
                
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
-               plotlyOutput(ns("EnSectorGVAPlot"))%>% withSpinner(color="#a3d65c"),
+               plotlyOutput(ns("CommunityOperatingTechPlot"))%>% withSpinner(color="#a3d65c"),
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
-      tabPanel("Exports associated with the energy sector",
+      tabPanel("Operating capacity by output",
                fluidRow(
                  column(
                    8,
-                   h3("Energy Sector Exports", style = "color: #a3d65c;  font-weight:bold"),
-                   h4(textOutput(ns('EnSectorExportsSubtitle')))
+                   h3("Capacity of operational community and locally owned renewable installations by type of output", style = "color: #a3d65c;  font-weight:bold"),
+                   h4(textOutput(ns('CommunityOperatingOutputTypeSubtitle')))
                  ),
                  column(
                    4,
                    style = 'padding:15px;',
-                   downloadButton(ns('EnSectorExports.png'), 'Download Graph', style =
+                   downloadButton(ns('CommunityOperatingOutputType.png'), 'Download Graph', style =
                                     "float:right")
                  )
                ),
                
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
-               plotlyOutput(ns("EnSectorExportsPlot"))%>% withSpinner(color="#a3d65c"),
+               plotlyOutput(ns("CommunityOperatingOutputTypePlot"))%>% withSpinner(color="#a3d65c"),
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
-      tabPanel("Ownership",
+      tabPanel("Operating capacity by ownership",
                fluidRow(
                  column(
                    8,
-                   h3("Ownership", style = "color: #a3d65c;  font-weight:bold"),
+                   h3("Capacity of operational community and locally owned renewable installations by ownership category", style = "color: #a3d65c;  font-weight:bold"),
                    h4(textOutput(ns('EnSectorOwnershipSubtitle')))
                  ),
                  column(
@@ -121,7 +121,7 @@ LocalRenewablesOutput <- function(id) {
       )
     ),
     fluidRow(column(12, dataTableOutput(
-      ns("EnSectorEmploymentTable")
+      ns("CommunityCapacityTable")
     )%>% withSpinner(color="#a3d65c"))),
     tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
     tabPanel("Initiatives",
@@ -134,7 +134,7 @@ LocalRenewablesOutput <- function(id) {
                )
              ),
              fluidRow(column(12, dataTableOutput(
-               ns("EnSectorTurnoverTable")
+               ns("CommunityOperatingCapacityTable")
              )%>% withSpinner(color="#a3d65c"))),
              tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
     tabPanel("Tech",
@@ -147,7 +147,7 @@ LocalRenewablesOutput <- function(id) {
                )
              ),
              fluidRow(column(12, dataTableOutput(
-               ns("EnSectorGVATable")
+               ns("CommunityOperatingTechTable")
              )%>% withSpinner(color="#a3d65c"))),
              tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
     tabPanel("Outputs",
@@ -160,7 +160,7 @@ LocalRenewablesOutput <- function(id) {
                )
              ),
              fluidRow(column(12, dataTableOutput(
-               ns("EnSectorExportsTable")
+               ns("CommunityOperatingOutputTypeTable")
              )%>% withSpinner(color="#a3d65c"))),
              tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
     tabPanel("Owner",
@@ -212,14 +212,14 @@ LocalRenewables <- function(input, output, session) {
   print("EnEconomy.R")
   ###### Energy Sector Emplyment ######
   
-  output$EnSectorEmploymentSubtitle <- renderText({
+  output$CommunityCapacitySubtitle <- renderText({
       
       paste("Scotland, 2018")
   })
   
-  output$EnSectorEmploymentPlot <- renderPlotly  ({
+  output$CommunityCapacityPlot <- renderPlotly  ({
     
-    EnSectorEmployment <-
+    CommunityCapacity <-
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Comm & locally owned ren",
@@ -228,84 +228,84 @@ LocalRenewables <- function(input, output, session) {
         n_max = 6
       )
     
-    EnSectorEmployment <- EnSectorEmployment[2:3]
+    CommunityCapacity <- CommunityCapacity[2:3]
     
-    EnSectorEmployment <- as_tibble(t(EnSectorEmployment))
+    CommunityCapacity <- as_tibble(t(CommunityCapacity))
     
-    names(EnSectorEmployment) <- unlist(EnSectorEmployment[1,])
+    names(CommunityCapacity) <- unlist(CommunityCapacity[1,])
     
-    EnSectorEmployment <- EnSectorEmployment[-1,]
+    CommunityCapacity <- CommunityCapacity[-1,]
     
-    names(EnSectorEmployment)[1:2] <- c("Type", "Operating")
+    names(CommunityCapacity)[1:2] <- c("Type", "Operating")
     
-    EnSectorEmployment[1,1] <- 1
+    CommunityCapacity[1,1] <- 1
     
-    EnSectorEmployment %<>% lapply(function(x)
+    CommunityCapacity %<>% lapply(function(x)
       as.numeric(as.character(x)))
     
-    EnSectorEmployment <- as_tibble(EnSectorEmployment)
+    CommunityCapacity <- as_tibble(CommunityCapacity)
     
     ChartColours <- c("#a3d65c", "#FF8500")
     BarColours <- c("#005a32", "#238b45", "#41ab5d", "#74c476",  "#a1d99b")
     
     p <-
-      plot_ly(data = EnSectorEmployment, y = ~Type) %>%
+      plot_ly(data = CommunityCapacity, y = ~Type) %>%
       add_trace(
-        data = EnSectorEmployment,
+        data = CommunityCapacity,
         x = ~ Operating,
         type = 'bar',
         width = 0.3,
         orientation = 'h',
         name = "Operating",
-        text = paste0("Operating: ", EnSectorEmployment$Operating, " MW"),
+        text = paste0("Operating: ", CommunityCapacity$Operating, " MW"),
         hoverinfo = 'text',
         marker = list(color = BarColours[1]),
         legendgroup = 1
       ) %>%
       add_trace(
-        data = EnSectorEmployment,
+        data = CommunityCapacity,
         x = ~ `Under construction`,
         type = 'bar',
         width = 0.3,
         orientation = 'h',
         name = "Under Construction",
-        text = paste0("Under Construction: ", EnSectorEmployment$`Under construction`, " MW"),
+        text = paste0("Under Construction: ", CommunityCapacity$`Under construction`, " MW"),
         hoverinfo = 'text',
         marker = list(color = BarColours[2]),
         legendgroup = 2
       ) %>%
       add_trace(
-        data = EnSectorEmployment,
+        data = CommunityCapacity,
         x = ~ `Consented not built`,
         type = 'bar',
         width = 0.3,
         orientation = 'h',
         name = "Consented not built",
-        text = paste0("Consented not built: ", EnSectorEmployment$`Consented not built`, " MW"),
+        text = paste0("Consented not built: ", CommunityCapacity$`Consented not built`, " MW"),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 3
       ) %>%
       add_trace(
-        data = EnSectorEmployment,
+        data = CommunityCapacity,
         x = ~ `In planning`,
         type = 'bar',
         width = 0.3,
         orientation = 'h',
         name = "In planning",
-        text = paste0("In planning: ", EnSectorEmployment$`In planning`, " MW"),
+        text = paste0("In planning: ", CommunityCapacity$`In planning`, " MW"),
         hoverinfo = 'text',
         marker = list(color = BarColours[4]),
         legendgroup = 4
       ) %>%
       add_trace(
-        data = EnSectorEmployment,
+        data = CommunityCapacity,
         x = ~ `In scoping`,
         type = 'bar',
         width = 0.3,
         orientation = 'h',
         name = "In scoping",
-        text = paste0("In scoping: ", EnSectorEmployment$`In scoping`, " MW"),
+        text = paste0("In scoping: ", CommunityCapacity$`In scoping`, " MW"),
         hoverinfo = 'text',
         marker = list(color = BarColours[5]),
         legendgroup = 5
@@ -365,8 +365,8 @@ LocalRenewables <- function(input, output, session) {
     
   })
   
-  output$EnSectorEmployment.png <- downloadHandler(
-    filename = "EnSectorEmployment.png",
+  output$CommunityCapacity.png <- downloadHandler(
+    filename = "CommunityCapacity.png",
     content = function(file) {
       
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
@@ -478,19 +478,19 @@ LocalRenewables <- function(input, output, session) {
     }
   )
   
-  output$EnSectorEmploymentTable = renderDataTable({
-    EnSectorExports <- read_excel("Structure/CurrentWorking.xlsx", 
+  output$CommunityCapacityTable = renderDataTable({
+    CommunityOperatingOutputType <- read_excel("Structure/CurrentWorking.xlsx", 
                                  sheet = "Comm & locally owned ren", col_names = TRUE, 
                                  skip = 12, n_max = 5)
     
-    EnSectorExports <- EnSectorExports[2:3]
+    CommunityOperatingOutputType <- CommunityOperatingOutputType[2:3]
   
-    names(EnSectorExports) <- c("Stage", "Capacity (MW)")
+    names(CommunityOperatingOutputType) <- c("Stage", "Capacity (MW)")
     
-    EnSectorExports[1,1] <- "Operating"
+    CommunityOperatingOutputType[1,1] <- "Operating"
     
         datatable(
-      EnSectorExports,
+      CommunityOperatingOutputType,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -526,12 +526,12 @@ LocalRenewables <- function(input, output, session) {
   })
   
   observeEvent(input$ToggleTable, {
-    toggle("EnSectorEmploymentTable")
+    toggle("CommunityCapacityTable")
   })
   
-  output$EnSectorTurnoverSubtitle <- renderText({
+  output$CommunityOperatingCapacitySubtitle <- renderText({
     
-    EnSectorExports <- read_excel(
+    CommunityOperatingOutputType <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Comm & locally owned ren",
       col_names = TRUE,
@@ -539,23 +539,23 @@ LocalRenewables <- function(input, output, session) {
       n_max = 15
     )
     
-    EnSectorExports <-
-      EnSectorExports[12:14]
+    CommunityOperatingOutputType <-
+      CommunityOperatingOutputType[12:14]
     
-    names(EnSectorExports) <-
+    names(CommunityOperatingOutputType) <-
       c("Date", "Capacity", "Number of Installations")
     
-    EnSectorExports$`Number of Installations` <- NULL
+    CommunityOperatingOutputType$`Number of Installations` <- NULL
     
-    EnSectorExports$Target <- NA
+    CommunityOperatingOutputType$Target <- NA
     
-    EnSectorExports$Date <- format(EnSectorExports$Date, format = "%Y")
+    CommunityOperatingOutputType$Date <- format(CommunityOperatingOutputType$Date, format = "%Y")
     
-    paste("Scotland,", min(EnSectorExports$Date[which(EnSectorExports$Capacity != 0)], na.rm = TRUE), "-", max(EnSectorExports$Date[which(EnSectorExports$Capacity != 0)], na.rm = TRUE))
+    paste("Scotland,", min(CommunityOperatingOutputType$Date[which(CommunityOperatingOutputType$Capacity != 0)], na.rm = TRUE), "-", max(CommunityOperatingOutputType$Date[which(CommunityOperatingOutputType$Capacity != 0)], na.rm = TRUE))
    })
   
-  output$EnSectorTurnoverPlot <- renderPlotly  ({
-    EnSectorExports <- read_excel(
+  output$CommunityOperatingCapacityPlot <- renderPlotly  ({
+    CommunityOperatingOutputType <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Comm & locally owned ren",
       col_names = TRUE,
@@ -563,23 +563,23 @@ LocalRenewables <- function(input, output, session) {
       n_max = 15
     )
     
-    EnSectorExports <-
-      EnSectorExports[12:14]
+    CommunityOperatingOutputType <-
+      CommunityOperatingOutputType[12:14]
     
-    names(EnSectorExports) <-
+    names(CommunityOperatingOutputType) <-
       c("Date", "Capacity", "Number of Installations")
     
-    EnSectorExports$`Number of Installations` <- NULL
+    CommunityOperatingOutputType$`Number of Installations` <- NULL
     
-    EnSectorExports$Target <- NA
+    CommunityOperatingOutputType$Target <- NA
     
    RenEn2 <- data.frame(Date = ymd("2020-01-01"), `Capacity` = NA, Target = 1000)
    
-   EnSectorExports <- rbind(EnSectorExports, RenEn2)
+   CommunityOperatingOutputType <- rbind(CommunityOperatingOutputType, RenEn2)
    
    ChartColours <- c("#a3d65c", "#FF8500")
     
-    p <-  plot_ly(EnSectorExports, x = ~ Date) %>%
+    p <-  plot_ly(CommunityOperatingOutputType, x = ~ Date) %>%
       add_trace(
         y = ~ Capacity,
         name = "Capacity",
@@ -588,9 +588,9 @@ LocalRenewables <- function(input, output, session) {
         legendgroup = "1",
         text = paste0(
           "Progress: ",
-          EnSectorExports$Capacity,
+          CommunityOperatingOutputType$Capacity,
           " MW\nDate: ",
-          format(EnSectorExports$Date, "%Y")
+          format(CommunityOperatingOutputType$Date, "%Y")
         ),
         hoverinfo = 'text',
         line = list(
@@ -600,18 +600,18 @@ LocalRenewables <- function(input, output, session) {
         )
       ) %>%
       add_trace(
-        data = tail(EnSectorExports[which(EnSectorExports$Capacity > 0 |
-                                           EnSectorExports$Capacity < 0), ], 1),
+        data = tail(CommunityOperatingOutputType[which(CommunityOperatingOutputType$Capacity > 0 |
+                                           CommunityOperatingOutputType$Capacity < 0), ], 1),
         x = ~ Date,
         y = ~ `Capacity`,
         name = "Renewable Electricity",
         text = paste0(
           "Progress: ",
-          EnSectorExports[which(EnSectorExports$Capacity > 0 |
-                                  EnSectorExports$Capacity < 0), ][-1, ]$Capacity,
+          CommunityOperatingOutputType[which(CommunityOperatingOutputType$Capacity > 0 |
+                                  CommunityOperatingOutputType$Capacity < 0), ][-1, ]$Capacity,
           " MW\nDate: ",
-          format(EnSectorExports[which(EnSectorExports$Capacity > 0 |
-                                 EnSectorExports$Capacity < 0), ][-1, ]$Date, "%Y")
+          format(CommunityOperatingOutputType[which(CommunityOperatingOutputType$Capacity > 0 |
+                                 CommunityOperatingOutputType$Capacity < 0), ][-1, ]$Date, "%Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -621,16 +621,16 @@ LocalRenewables <- function(input, output, session) {
                       color = ChartColours[1])
       ) %>%
       add_trace(
-        data = EnSectorExports,
+        data = CommunityOperatingOutputType,
         x = ~ Date,
         y = ~ Target,
         name = "Target",
         legendgroup = "2",
         text = paste0(
           "Target: ",
-          EnSectorExports$Target,
+          CommunityOperatingOutputType$Target,
           " MW\nDate: ",
-          format(EnSectorExports$Date, "%Y")
+          format(CommunityOperatingOutputType$Date, "%Y")
         ),
         hoverinfo = 'text',
         mode = 'markers',
@@ -651,7 +651,7 @@ LocalRenewables <- function(input, output, session) {
         xaxis = list(
           title = "",
           showgrid = FALSE,
-          range = c(min(EnSectorExports$Date) - 100, max(EnSectorExports$Date) +
+          range = c(min(CommunityOperatingOutputType$Date) - 100, max(CommunityOperatingOutputType$Date) +
                       100)
         ),
         yaxis = list(
@@ -669,8 +669,8 @@ LocalRenewables <- function(input, output, session) {
     
   })
   
-  output$EnSectorTurnover.png <- downloadHandler(
-    filename = "EnSectorTurnover.png",
+  output$CommunityOperatingCapacity.png <- downloadHandler(
+    filename = "CommunityOperatingCapacity.png",
     content = function(file) {
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                                         sheet = "Comm & locally owned ren", skip = 12, n_max = 15)[12:14]
@@ -813,19 +813,19 @@ LocalRenewables <- function(input, output, session) {
     }
   )
   
-  output$EnSectorTurnoverTable = renderDataTable({
-    EnSectorExports <- read_excel("Structure/CurrentWorking.xlsx", 
+  output$CommunityOperatingCapacityTable = renderDataTable({
+    CommunityOperatingOutputType <- read_excel("Structure/CurrentWorking.xlsx", 
                                  sheet = "Comm & locally owned ren", col_names = TRUE, 
                                  skip = 12, n_max = 5)
     
-    EnSectorExports <- EnSectorExports[12:14]
+    CommunityOperatingOutputType <- CommunityOperatingOutputType[12:14]
     
-    names(EnSectorExports) <- c("Date", "Capacity (MW)", "Number of Installations")
+    names(CommunityOperatingOutputType) <- c("Date", "Capacity (MW)", "Number of Installations")
     
-    EnSectorExports$Date <- format(EnSectorExports$Date, "%b %Y")
+    CommunityOperatingOutputType$Date <- format(CommunityOperatingOutputType$Date, "%b %Y")
     
     datatable(
-      EnSectorExports,
+      CommunityOperatingOutputType,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -861,57 +861,57 @@ LocalRenewables <- function(input, output, session) {
   })
   
   observeEvent(input$ToggleTable2, {
-    toggle("EnSectorTurnoverTable")
+    toggle("CommunityOperatingCapacityTable")
   })
   
-  output$EnSectorGVASubtitle <- renderText({
-    EnSectorGVA <- read_excel("Structure/CurrentWorking.xlsx", 
+  output$CommunityOperatingTechSubtitle <- renderText({
+    CommunityOperatingTech <- read_excel("Structure/CurrentWorking.xlsx", 
                                   sheet = "Energy economy", col_names = FALSE, 
                                   skip = 12, n_max = 9)
     
-    EnSectorGVA <- as.data.frame(t(EnSectorGVA))
+    CommunityOperatingTech <- as.data.frame(t(CommunityOperatingTech))
     
-    EnSectorGVA <- tail(EnSectorGVA[c(1,6)],-1)
-    EnSectorGVA %<>% lapply(function(x) as.numeric(as.character(x)))
-    EnSectorGVA <- as.data.frame(EnSectorGVA)
-    names(EnSectorGVA) <- c("Year", "GVA")
+    CommunityOperatingTech <- tail(CommunityOperatingTech[c(1,6)],-1)
+    CommunityOperatingTech %<>% lapply(function(x) as.numeric(as.character(x)))
+    CommunityOperatingTech <- as.data.frame(CommunityOperatingTech)
+    names(CommunityOperatingTech) <- c("Year", "GVA")
     
-    EnSectorGVA <- EnSectorGVA[which(EnSectorGVA$Year >= 2008),]
+    CommunityOperatingTech <- CommunityOperatingTech[which(CommunityOperatingTech$Year >= 2008),]
     
-    EnSectorGVA$Year <- as.numeric(substr(EnSectorGVA$Year, 1,4))
+    CommunityOperatingTech$Year <- as.numeric(substr(CommunityOperatingTech$Year, 1,4))
     
-    EnSectorGVA$GVA <- EnSectorGVA$GVA /1000
+    CommunityOperatingTech$GVA <- CommunityOperatingTech$GVA /1000
     
-    paste("Scotland,", min(EnSectorGVA$Year),"-", max(EnSectorGVA$Year))
+    paste("Scotland,", min(CommunityOperatingTech$Year),"-", max(CommunityOperatingTech$Year))
   })
   
-  output$EnSectorGVAPlot <- renderPlotly  ({
+  output$CommunityOperatingTechPlot <- renderPlotly  ({
     
-    EnSectorGVA <- read_excel("Structure/CurrentWorking.xlsx", 
+    CommunityOperatingTech <- read_excel("Structure/CurrentWorking.xlsx", 
                                   sheet = "Comm & locally owned ren", col_names = TRUE, 
                                   skip = 40, n_max = 8)
     
-    EnSectorGVA <- EnSectorGVA[1:2]
+    CommunityOperatingTech <- CommunityOperatingTech[1:2]
     
-    names(EnSectorGVA) <- c("Tech", "Capacity")
+    names(CommunityOperatingTech) <- c("Tech", "Capacity")
     
-    EnSectorGVA$Capacity <- as.numeric(EnSectorGVA$Capacity)
+    CommunityOperatingTech$Capacity <- as.numeric(CommunityOperatingTech$Capacity)
     
-    EnSectorGVA[is.na( EnSectorGVA)] <- 0.99
+    CommunityOperatingTech[is.na( CommunityOperatingTech)] <- 0.99
         
-    EnSectorGVA$Tech <- paste0("<b>", EnSectorGVA$Tech, "</b>")
+    CommunityOperatingTech$Tech <- paste0("<b>", CommunityOperatingTech$Tech, "</b>")
     
-    EnSectorGVA$Tech <- factor(EnSectorGVA$Tech, levels = c(as.character(EnSectorGVA$Tech)))
+    CommunityOperatingTech$Tech <- factor(CommunityOperatingTech$Tech, levels = c(as.character(CommunityOperatingTech$Tech)))
   
     ChartColours <- c("#a3d65c", "#FF8500")
     
     p <- plot_ly(
-      data = EnSectorGVA,
+      data = CommunityOperatingTech,
       y = ~Tech,
       x = ~Capacity,
-      text = paste0(EnSectorGVA$Tech,
+      text = paste0(CommunityOperatingTech$Tech,
         "\nCapacity: ",
-        ifelse(EnSectorGVA$Capacity <1, "<1", EnSectorGVA$Capacity), " MW"
+        ifelse(CommunityOperatingTech$Capacity <1, "<1", CommunityOperatingTech$Capacity), " MW"
       ),
       name = "Capacity",
       type = "bar",
@@ -945,8 +945,8 @@ LocalRenewables <- function(input, output, session) {
     
   })
   
-  output$EnSectorGVA.png <- downloadHandler(
-    filename = "EnSectorGVA.png",
+  output$CommunityOperatingTech.png <- downloadHandler(
+    filename = "CommunityOperatingTech.png",
     content = function(file) {
       
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
@@ -1030,19 +1030,19 @@ LocalRenewables <- function(input, output, session) {
     }
   )
   
-  output$EnSectorGVATable = renderDataTable({
-    EnSectorExports <- read_excel("Structure/CurrentWorking.xlsx", 
+  output$CommunityOperatingTechTable = renderDataTable({
+    CommunityOperatingOutputType <- read_excel("Structure/CurrentWorking.xlsx", 
                                  sheet = "Comm & locally owned ren", col_names = TRUE, 
                                  skip = 40, n_max = 9)
     
-    EnSectorExports <- EnSectorExports[1:5]
+    CommunityOperatingOutputType <- CommunityOperatingOutputType[1:5]
     
-    EnSectorExports[9,1] <- "Total"
+    CommunityOperatingOutputType[9,1] <- "Total"
     
-    names(EnSectorExports) <- c("Tech", "Capacity (MW)", "%", "Number of Installations", "%")
+    names(CommunityOperatingOutputType) <- c("Tech", "Capacity (MW)", "%", "Number of Installations", "%")
     
       datatable(
-      EnSectorExports,
+      CommunityOperatingOutputType,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -1079,55 +1079,55 @@ LocalRenewables <- function(input, output, session) {
   })
   
   observeEvent(input$ToggleTable3, {
-    toggle("EnSectorGVATable")
+    toggle("CommunityOperatingTechTable")
   })
   
-  output$EnSectorExportsSubtitle <- renderText({
-    EnSectorExports <- read_excel("Structure/CurrentWorking.xlsx", 
+  output$CommunityOperatingOutputTypeSubtitle <- renderText({
+    CommunityOperatingOutputType <- read_excel("Structure/CurrentWorking.xlsx", 
                                sheet = "Energy economy", col_names = FALSE, 
                                skip = 12, n_max = 9)
     
-    EnSectorExports <- as.data.frame(t(EnSectorExports))
+    CommunityOperatingOutputType <- as.data.frame(t(CommunityOperatingOutputType))
     
-    EnSectorExports <- tail(EnSectorExports[c(1,6)],-1)
-    EnSectorExports %<>% lapply(function(x) as.numeric(as.character(x)))
-    EnSectorExports <- as.data.frame(EnSectorExports)
-    names(EnSectorExports) <- c("Year", "GVA")
+    CommunityOperatingOutputType <- tail(CommunityOperatingOutputType[c(1,6)],-1)
+    CommunityOperatingOutputType %<>% lapply(function(x) as.numeric(as.character(x)))
+    CommunityOperatingOutputType <- as.data.frame(CommunityOperatingOutputType)
+    names(CommunityOperatingOutputType) <- c("Year", "GVA")
     
-    EnSectorExports <- EnSectorExports[which(EnSectorExports$Year >= 2008),]
+    CommunityOperatingOutputType <- CommunityOperatingOutputType[which(CommunityOperatingOutputType$Year >= 2008),]
     
-    EnSectorExports$Year <- as.numeric(substr(EnSectorExports$Year, 1,4))
+    CommunityOperatingOutputType$Year <- as.numeric(substr(CommunityOperatingOutputType$Year, 1,4))
     
-    EnSectorExports$GVA <- EnSectorExports$GVA /1000
+    CommunityOperatingOutputType$GVA <- CommunityOperatingOutputType$GVA /1000
     
-    paste("Scotland,", min(EnSectorExports$Year),"-", max(EnSectorExports$Year))
+    paste("Scotland,", min(CommunityOperatingOutputType$Year),"-", max(CommunityOperatingOutputType$Year))
   })
   
-  output$EnSectorExportsPlot <- renderPlotly  ({
+  output$CommunityOperatingOutputTypePlot <- renderPlotly  ({
     
-    EnSectorExports <- read_excel("Structure/CurrentWorking.xlsx", 
+    CommunityOperatingOutputType <- read_excel("Structure/CurrentWorking.xlsx", 
                                sheet = "Comm & locally owned ren", col_names = TRUE, 
                                skip = 47, n_max = 4)
     
-    EnSectorExports <- EnSectorExports[11:13]
+    CommunityOperatingOutputType <- CommunityOperatingOutputType[11:13]
     
-    names(EnSectorExports) <- c("Type", "Capacity", "%")
+    names(CommunityOperatingOutputType) <- c("Type", "Capacity", "%")
     
-    EnSectorExports$Capacity <- as.numeric(EnSectorExports$Capacity)
+    CommunityOperatingOutputType$Capacity <- as.numeric(CommunityOperatingOutputType$Capacity)
     
-    EnSectorExports[is.na( EnSectorExports)] <- 0.99
+    CommunityOperatingOutputType[is.na( CommunityOperatingOutputType)] <- 0.99
     
-    EnSectorExports$Type <- paste0("<b>", str_wrap(EnSectorExports$Type, 16), "</b>")
+    CommunityOperatingOutputType$Type <- paste0("<b>", str_wrap(CommunityOperatingOutputType$Type, 16), "</b>")
     
     ChartColours <- c("#a3d65c", "#FF8500")
     
     p <- plot_ly(
-      data = EnSectorExports,
+      data = CommunityOperatingOutputType,
       y = ~Type,
       x = ~Capacity,
-      text = paste0(EnSectorExports$Type,
+      text = paste0(CommunityOperatingOutputType$Type,
                     "\nCapacity: ",
-                    ifelse(EnSectorExports$Capacity <1, "<1", EnSectorExports$Capacity), " MW"
+                    ifelse(CommunityOperatingOutputType$Capacity <1, "<1", CommunityOperatingOutputType$Capacity), " MW"
       ),
       name = "Capacity",
       type = "bar",
@@ -1144,7 +1144,7 @@ LocalRenewables <- function(input, output, session) {
         hovername = 'text',
         yaxis = list(title = "",
                      autorange = "reversed",
-                     ticktext = as.list(EnSectorExports$Type),
+                     ticktext = as.list(CommunityOperatingOutputType$Type),
                      tickmode = "array",
                      tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16),
                      showgrid = FALSE),
@@ -1165,8 +1165,8 @@ LocalRenewables <- function(input, output, session) {
     
   })
   
-  output$EnSectorExports.png <- downloadHandler(
-    filename = "EnSectorExports.png",
+  output$CommunityOperatingOutputType.png <- downloadHandler(
+    filename = "CommunityOperatingOutputType.png",
     content = function(file) {
       
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
@@ -1245,19 +1245,19 @@ LocalRenewables <- function(input, output, session) {
     }
   )
   
-  output$EnSectorExportsTable = renderDataTable({
-    EnSectorExports <- read_excel("Structure/CurrentWorking.xlsx", 
+  output$CommunityOperatingOutputTypeTable = renderDataTable({
+    CommunityOperatingOutputType <- read_excel("Structure/CurrentWorking.xlsx", 
                                  sheet = "Comm & locally owned ren", col_names = TRUE, 
                                  skip = 47, n_max = 5)
     
-    EnSectorExports <- EnSectorExports[11:13]
+    CommunityOperatingOutputType <- CommunityOperatingOutputType[11:13]
     
-    EnSectorExports[5,1] <- "Total"
+    CommunityOperatingOutputType[5,1] <- "Total"
     
-    names(EnSectorExports) <- c("Output", "Capacity (MW)", "%")
+    names(CommunityOperatingOutputType) <- c("Output", "Capacity (MW)", "%")
     
     datatable(
-      EnSectorExports,
+      CommunityOperatingOutputType,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -1294,7 +1294,7 @@ LocalRenewables <- function(input, output, session) {
   })
   
   observeEvent(input$ToggleTable4, {
-    toggle("EnSectorExportsTable")
+    toggle("CommunityOperatingOutputTypeTable")
   })
   
   output$EnSectorOwnershipSubtitle <- renderText({
@@ -1463,17 +1463,17 @@ LocalRenewables <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Estimated capacity of operational community and locally owned renewable installations by type of Owner",
+        title = "Estimated capacity of operational community and locally owned renewable installations by ownership",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Estimated capacity of operational community and locally owned renewable installations by type of Owner',
+            title = 'Estimated capacity of operational community and locally owned renewable installations by ownership',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Estimated capacity of operational community and locally owned renewable installations by type of Owner')
+               title = 'Estimated capacity of operational community and locally owned renewable installations by ownership')
         ),
         
         # customize the length menu
