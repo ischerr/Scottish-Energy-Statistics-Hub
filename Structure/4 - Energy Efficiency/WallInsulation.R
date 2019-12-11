@@ -418,7 +418,7 @@ WallInsulation <- function(input, output, session) {
           aes(
             y = Cavity,
             colour = ChartColours[2],
-            label = percent(Cavity)
+            label = percent(Cavity, 0.1)
           ),
           size = 1.5,
           family = "Century Gothic",

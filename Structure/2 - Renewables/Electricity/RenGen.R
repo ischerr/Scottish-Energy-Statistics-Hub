@@ -358,7 +358,7 @@ ScotRenGen <- function(input, output, session) {
         
         geom_line(
           aes(y = `Renewables`,
-              label = percent(`Renewables`)),
+              label = percent(`Renewables`, 0.1)),
           colour = ChartColours[1],
           size = 1.5,
           family = "Century Gothic"
@@ -459,7 +459,7 @@ ScotRenGen <- function(input, output, session) {
         ) +
         geom_line(
           aes(y = `Hydro`,
-              label = percent(`Hydro`)),
+              label = percent(`Hydro`, 0.1)),
           colour = ChartColours[5],
           size = 1.5,
           family = "Century Gothic"
