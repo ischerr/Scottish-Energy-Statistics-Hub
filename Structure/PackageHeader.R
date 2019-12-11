@@ -37,7 +37,7 @@ TargetChart <-
     data$Percentage <-
       percent(data$Renewables, accuracy = 0.1) # Create Percentage Output for Labels
     data$Target <-
-      percent(data$Tgt) # Create Percentage Output for Labels
+      percent(data$Tgt, 0.1) # Create Percentage Output for Labels
     
     
     ### Get Max Year with Actual Data ###
