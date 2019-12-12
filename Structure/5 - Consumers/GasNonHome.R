@@ -230,17 +230,17 @@ GasNonHome <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Proportion of domestic gas customers on non-home supplier",
+        title = "Proportion of domestic gas customers on non-home supplier - Time series",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Proportion of domestic gas customers on non-home supplier',
+            title = 'Proportion of domestic gas customers on non-home supplier - Time series',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Proportion of domestic gas customers on non-home supplier')
+               title = 'Proportion of domestic gas customers on non-home supplier - Time series')
         ),
         
         # customize the length menu
@@ -282,7 +282,7 @@ GasNonHome <- function(input, output, session) {
   output$GasNonHome.png <- downloadHandler(
     filename = "GasNonHome.png",
     content = function(file) {
-      writePNG(readPNG("Structure/4 - Energy Efficiency/GasNonHomeChart.png"), file) 
+      writePNG(readPNG("Structure/5 - Consumers/GasNonHomeChart.png"), file) 
     }
   )
 }

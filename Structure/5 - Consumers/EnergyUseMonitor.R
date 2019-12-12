@@ -302,101 +302,152 @@ EnergyUseMonitor <- function(input, output, session) {
 
 
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Energy monitoring devices", skip = 12, n_max = 2, col_names = FALSE)
+                         sheet = "Monitor energy use", skip = 13, n_max = 6, col_names = FALSE)
       
       Data <- as_tibble(t(Data))
       
-      Data <- tail(Data, -1)
+      Data[1,1] <- "Year"
       
-      names(Data) <- c("Year", "Proportion")
+      names(Data) <- as.character(unlist(Data[1,]))
+      
+      Data <- Data[-1,]
       
       Data <- as_tibble(sapply( Data, as.numeric ))
       
-      EnergyMonitorDevices <- Data
+      EnergyUseMonitor <- Data[c(1,5,4,6,3,2)]
       
-      ### variables
-      ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
-      sourcecaption = "Source: SG"
-      plottitle = "Proportion of households with energy use\nmonitoring devices"
+      EnergyUseMonitor <-
+        EnergyUseMonitor[order(EnergyUseMonitor$Year),]
       
-      #EnergyMonitorDevices$ProportionPercentage <- PercentLabel(EnergyMonitorDevices$Proportion)
+      EnergyUseMonitor <- melt(EnergyUseMonitor, id.vars = "Year")
       
       
-      EnergyMonitorDevicesChart <- EnergyMonitorDevices %>%
-        ggplot(aes(x = Year), family = "Century Gothic") +
-        
-        geom_line(
-          aes(y = Proportion,
-              label = percent(Proportion)),
-          colour = ChartColours[1],
-          size = 1.5,
-          family = "Century Gothic"
+      EnergyUseMonitor$variable <-
+        factor(EnergyUseMonitor$variable,
+               levels = unique(EnergyUseMonitor$variable))
+      
+      EnergyUseMonitor <- EnergyUseMonitor %>%
+        group_by(Year) %>%
+        mutate(pos = cumsum(value) - value / 2) %>%
+        mutate(top = sum(value))
+      
+      plottitle <-
+        "Extent energy use is monitored"
+      sourcecaption <- "Source: SG"
+      
+      ChartColours <- c("#68c3ea", "#FF8500")
+      BarColours <- c("#1a9850", "#a6d96a", "#969696", "#f46d43", "#d73027")
+      
+      
+      EnergyUseMonitorChart <- EnergyUseMonitor %>%
+        ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
+        scale_fill_manual(
+          "variable",
+          values = c(
+            "Very Closely" = BarColours[1],
+            "Fairly Closely" = BarColours[2],
+            "Don't Know" = BarColours[3],
+            "Not Very Closely" = BarColours[4],
+            "Not at All" = BarColours[5]
+          )
         ) +
+        geom_bar(stat = "identity", width = .8) +
         geom_text(
           aes(
-            x = Year - .25,
-            y = Proportion,
-            label = ifelse(Year == min(Year), percent(Proportion, accuracy = 1), ""),
-            hjust = 0.5,
-            fontface = 2
+            y = 0 - .04,
+            label = ifelse(variable == "Very Closely", Year, ""),
+            color = ChartColours[2]
           ),
+          fontface = 2,
           colour = ChartColours[1],
           family = "Century Gothic"
         ) +
         geom_text(
-          aes(
-            x = Year + .5,
-            y = Proportion,
-            label = ifelse(Year == max(Year), percent(Proportion, accuracy = 1), ""),
-            hjust = 0.5,
-            
-            fontface = 2
-          ),
-          colour = ChartColours[1],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(EnergyMonitorDevices, 1),
-          aes(x = Year,
-              y = Proportion,
-              show_guide = FALSE),
-          colour = ChartColours[1],
-          size = 4,
-          family = "Century Gothic"
+          aes(x = 2007,
+              y = 0.5/5,
+              label = "Very Closely"),
+          fontface = 2,
+          colour = BarColours[1],
+          family = "Century Gothic",
+          hjust = 0.5
         ) +
         geom_text(
-          aes(
-            x = Year,
-            y = 0,
-            label = ifelse(
-              Year == max(Year) |
-                Year == min(Year),
-              Year, ""
+          aes(x = 2007,
+              y = 1.5/5,
+              label = "Fairly Closely"),
+          fontface = 2,
+          colour = BarColours[2],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 2007,
+              y = 2.5/5,
+              label = "Don't Know"),
+          fontface = 2,
+          colour = BarColours[3],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 2007,
+              y = 3.5/5,
+              label = "Not Very Closely"),
+          fontface = 2,
+          colour = BarColours[4],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 2007,
+              y = 4.5/5,
+              label = "Not at all"),
+          fontface = 2,
+          colour = BarColours[5],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          y = EnergyUseMonitor$top - EnergyUseMonitor$pos,
+          label =
+            ifelse(
+              EnergyUseMonitor$Year == min(EnergyUseMonitor$Year) |
+                EnergyUseMonitor$Year ==  max(EnergyUseMonitor$Year),
+              percent(EnergyUseMonitor$value, 0.1),
+              ""
             ),
-            hjust = 0.5,
-            vjust = 1.5,
-            fontface = 2
-          ),
-          colour = ChartColours[1],
-          family = "Century Gothic"
+          hjust = ifelse(EnergyUseMonitor$value > .05, .5,-0.1),
+          family = "Century Gothic",
+          fontface = 2,
+          color = ifelse(EnergyUseMonitor$value > .05, "white", BarColours[4])
         )
       
-      EnergyMonitorDevicesChart
       
-      EnergyMonitorDevicesChart <-
-        StackedArea(EnergyMonitorDevicesChart,
-                    EnergyMonitorDevices,
-                    plottitle,
-                    sourcecaption,
-                    ChartColours)
+      EnergyUseMonitorChart
       
-      EnergyMonitorDevicesChart
+      
+      EnergyUseMonitorChart <-
+        BaselineChart(
+          EnergyUseMonitorChart,
+          EnergyUseMonitor,
+          plottitle,
+          sourcecaption,
+          ChartColours
+        )
+      
+      EnergyUseMonitorChart <-
+        EnergyUseMonitorChart +
+        xlim(max(EnergyUseMonitor$Year) + .5,
+             min(EnergyUseMonitor$Year) - 1.1) +
+        coord_flip()
+      
+      EnergyUseMonitorChart
       
       ggsave(
         file,
-        plot =  EnergyMonitorDevicesChart,
-        width = 14,
-        height = 14,
+        plot = EnergyUseMonitorChart,
+        width = 20,
+        height = 13,
         units = "cm",
         dpi = 300
       )

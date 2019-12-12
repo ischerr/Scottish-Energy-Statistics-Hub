@@ -283,17 +283,17 @@ DualFuelBreakdown <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Energy Consumption",
+        title = "Breakdown of a dual fuel bill",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Energy Consumption',
+            title = 'Breakdown of a dual fuel bill',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Energy Consumption')
+               title = 'Breakdown of a dual fuel bill')
         ),
         
         # customize the length menu
@@ -466,7 +466,7 @@ DualFuelBreakdown <- function(input, output, session) {
             ifelse(
               DualFuelBreakdown$Year == min(DualFuelBreakdown$Year) |
                 DualFuelBreakdown$Year ==  max(DualFuelBreakdown$Year),
-              ifelse(DualFuelBreakdown$value > .03, percent(DualFuelBreakdown$value), "") ,
+              ifelse(DualFuelBreakdown$value > .03, percent(DualFuelBreakdown$value, 0.1), "") ,
               ""
             ),
           family = "Century Gothic",

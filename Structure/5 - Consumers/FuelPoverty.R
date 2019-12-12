@@ -112,22 +112,6 @@ FuelPoverty <- function(input, output, session) {
   
   output$FuelPovertyProportionSubtitle <- renderText({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump sector",
-      col_names = FALSE,
-      skip = 12,
-      n_max = 7
-    )
-    
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- unlist(Data[1,])
-    
-    names(Data)[1] <- "Year"
-    
-    Data[1:7] %<>% lapply(function(x) as.numeric(as.character(x)))
-    
     paste("Scotland, 2017")
   })
   
@@ -398,21 +382,20 @@ FuelPoverty <- function(input, output, session) {
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump sector",
-      col_names = FALSE,
-      skip = 12,
-      n_max = 7
+      sheet = "Fuel poverty",
+      col_names = TRUE,
+      skip = 13
     )
     
-    Data <- as_tibble(t(Data))
+    Data <- Data[c(1,4,5)]
     
-    names(Data) <- unlist(Data[1,])
+    Data <- Data[complete.cases(Data),]
     
-    names(Data)[1] <- "Year"
+    Data[2,1] <- "Oct-11" 
     
-    Data[1:7] %<>% lapply(function(x) as.numeric(as.character(x)))
+    names(Data) <- c("Year", "Total Fuel Poverty", "Extreme Fuel Poverty")
     
-    paste("Scotland, 2017")
+    paste("Scotland,", min(as.numeric(Data$Year), na.rm = TRUE ), "-", max(as.numeric(Data$Year), na.rm = TRUE))
   })
   
   output$ExtremeFuelPovertyPlot <- renderPlotly  ({
@@ -524,17 +507,17 @@ FuelPoverty <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Energy Consumption",
+        title = "Fuel poverty and extreme fuel poverty rates",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Energy Consumption',
+            title = 'Fuel poverty and extreme fuel poverty rates',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Energy Consumption')
+               title = 'Fuel poverty and extreme fuel poverty rates')
         ),
         
         # customize the length menu
@@ -729,17 +712,17 @@ FuelPoverty <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Energy Consumption",
+        title = "EPC Band (SAP 2012) distribution for fuel poor households (new definition)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Energy Consumption',
+            title = 'EPC Band (SAP 2012) distribution for fuel poor households (new definition)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Energy Consumption')
+               title = 'EPC Band (SAP 2012) distribution for fuel poor households (new definition)')
         ),
         
         # customize the length menu

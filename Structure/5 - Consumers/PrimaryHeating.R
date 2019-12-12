@@ -131,7 +131,7 @@ PrimaryHeating <- function(input, output, session) {
     PrimaryHeating <- read_excel("Structure/CurrentWorking.xlsx",
                                sheet = "Primary heating fuel",
                                col_names = FALSE,
-                               skip = 12,
+                               skip = 15,
                                n_max = 4)
     
     PrimaryHeating <- as_tibble(t(PrimaryHeating))
@@ -205,7 +205,7 @@ PrimaryHeating <- function(input, output, session) {
     PrimaryHeating <- read_excel("Structure/CurrentWorking.xlsx",
                                  sheet = "Primary heating fuel",
                                  col_names = FALSE,
-                                 skip = 12,
+                                 skip = 15,
                                    n_max = 9)
     
     PrimaryHeating <- as_tibble(t(PrimaryHeating))
@@ -293,7 +293,7 @@ file)
     
     PrimaryHeatingLA <- read_excel("Structure/CurrentWorking.xlsx",
                                sheet = "Primary heating fuel", col_names = TRUE, 
-                               skip = 12, n_max = 33)[8:13]
+                               skip = 15, n_max = 33)[8:13]
     
     names(PrimaryHeatingLA)[1] <- c("Local Authority")
     
@@ -308,17 +308,17 @@ file)
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Total final energy consumption by sector, domestic and non-domestic (GWh)",
+        title = "Primary heating fuel by Local Authority",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Total final energy consumption by sector, domestic and non-domestic (GWh)',
+            title = 'Primary heating fuel by Local Authority',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Total final energy consumption by sector, domestic and non-domestic (GWh)')
+               title = 'Primary heating fuel by Local Authority')
         ),
         
         # customize the length menu
