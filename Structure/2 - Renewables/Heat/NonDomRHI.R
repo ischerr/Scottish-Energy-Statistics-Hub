@@ -27,7 +27,7 @@ NonDomRHIOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Accredited Installations",
              fluidRow(column(8,
-                             h3("Non-domestic RHI - Accreddited Installations", style = "color: #39ab2c;  font-weight:bold"),
+                             h3("Non-domestic RHI - Accredited Installations", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('NonDomRHIAccreditedInstallationsSubtitle')), style = "color: #39ab2c;")
              ),
              column(
@@ -39,7 +39,7 @@ NonDomRHIOutput <- function(id) {
              #dygraphOutput(ns("NonDomRHIPlot")),
              plotlyOutput(ns("NonDomRHIAccreditedInstallationsPlot"))%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Accreddited Capacity",
+    tabPanel("Accredited Capacity",
              fluidRow(column(8,
                              h3("Non-domestic RHI - Accredited Installation Capacity", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('NonDomRHInstallationCapacitySubtitle')), style = "color: #39ab2c;")
@@ -674,7 +674,7 @@ output$NonDomRHIAccreditedInstallations.png <- downloadHandler(
     ### variables
     ChartColours <- c("#39ab2c","#ef3b2c","#fb6a4a","#fc9272","#fcbba1")
     sourcecaption = "Source: SG"
-    plottitle = "Non-domestic RHI - Accreddited Installations"
+    plottitle = "Non-domestic RHI - Accredited Installations"
     
     #RHINonDom$OilPercentage <- PercentLabel(RHINonDom$Oil)
     
@@ -797,7 +797,7 @@ output$NonDomRHIInstallationCap.png <- downloadHandler(
     ### variables
     ChartColours <- c("#39ab2c","#ef3b2c","#fb6a4a","#fc9272","#fcbba1")
     sourcecaption = "Source: SG"
-    plottitle = "Non-domestic RHI - Accreddited Installation\nCapacity"
+    plottitle = "Non-domestic RHI - Accredited Installation\nCapacity"
     
     #RHINonDomCap$OilPercentage <- PercentLabel(RHINonDomCap$Oil)
     
