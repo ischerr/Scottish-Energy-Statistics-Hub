@@ -27,7 +27,7 @@ DomesticRHIOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Installations",
              fluidRow(column(8,
-                             h3("Domestic RHI - Accreddited Installations", style = "color: #39ab2c;  font-weight:bold"),
+                             h3("Domestic RHI - accredited Installations", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('DomRHIInstallationsOutputSubtitle')), style = "color: #39ab2c;")
              ),
              column(
@@ -729,7 +729,7 @@ output$DomRHIInstallationsOutput.png <- downloadHandler(
     ChartColours <- c("#39ab2c", "#FF8500", "#FFFFFF")
     LineColours <- c("#39ab2c", "#ef3b2c","#fc9272","#fb6a4a","#fcbaa0")
     sourcecaption = "Source: SG"
-    plottitle = "Domestic RHI - Accreddited Installations"
+    plottitle = "Domestic RHI - Accredited Installations"
     
     #RHIDom$OilPercentage <- PercentLabel(RHIDom$Oil)
     
