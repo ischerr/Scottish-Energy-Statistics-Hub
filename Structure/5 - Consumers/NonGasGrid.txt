@@ -1,1 +1,1 @@
-<p>Elec Non Home</p>
+<p>Non Gas Grid</p>

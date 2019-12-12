@@ -27,7 +27,7 @@ EUBillOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Gas",
              fluidRow(column(8,
-                             h3("Total price (Pence per kWh) of Gastricity Bills in EU 15, including breakdown.", style = "color: #68c3ea;  font-weight:bold"),
+                             h3("Total price (Pence per kWh) of gas Bills in EU 15, including breakdown.", style = "color: #68c3ea;  font-weight:bold"),
                              h4(textOutput(ns('EUBillGasSubtitle')), style = "color: #68c3ea;")
              ),
              column(
@@ -243,17 +243,17 @@ EUBill <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Energy Consumption",
+        title = "Total price (Pence per kWh) of Electricity Bills in EU 15, including breakdown",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Energy Consumption',
+            title = 'Total price (Pence per kWh) of Electricity Bills in EU 15, including breakdown',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Energy Consumption')
+               title = 'Total price (Pence per kWh) of Electricity Bills in EU 15, including breakdown')
         ),
         
         # customize the length menu
@@ -564,17 +564,17 @@ EUBill <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Energy Consumption",
+        title = "Total price (Pence per kWh) of gas Bills in EU 15, including breakdown",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Energy Consumption',
+            title = 'Total price (Pence per kWh) of gas Bills in EU 15, including breakdown',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Energy Consumption')
+               title = 'Total price (Pence per kWh) of gas Bills in EU 15, including breakdown')
         ),
         
         # customize the length menu

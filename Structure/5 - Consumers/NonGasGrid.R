@@ -105,25 +105,9 @@ NonGasGrid <- function(input, output, session) {
   
   output$NonGasGridSubtitle <- renderText({
     
-    RenEn <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Renewable energy target",
-      col_names = FALSE,
-      skip = 21,
-      n_max = 23
-    )
-    RenEn <- as.data.frame(t(RenEn))
-    RenEn <- RenEn[, c(1, 6, 12, 18, 23)]
-    RenEn <- tail(RenEn,-5)
-    names(RenEn) <-
-      c("Year", "Electricity", "Heat", "Transport", "Renewables")
-    RenEn[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    RenEn[which(RenEn$Year != max(RenEn$Year)),][2:4] <- 0
-    
-    paste("Scotland,", min(RenEn$Year),"-", max(RenEn$Year))
-  })
+    paste("Scotland, 2017")
+  
+    })
   
   output$NonGasGridPlot <- renderImage({
     
@@ -162,17 +146,17 @@ NonGasGrid <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Proportion of domestic electricity customers on non-home supplier",
+        title = "Proportion of households not on the gas grid by local authority (estimates)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Proportion of domestic electricity customers on non-home supplier',
+            title = 'Proportion of households not on the gas grid by local authority (estimates)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Proportion of domestic electricity customers on non-home supplier')
+               title = 'Proportion of households not on the gas grid by local authority (estimates)')
         ),
         
         # customize the length menu

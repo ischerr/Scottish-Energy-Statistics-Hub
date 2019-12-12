@@ -232,17 +232,17 @@ ElecNonHome <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Proportion of domestic electricity customers on non-home supplier",
+        title = "Proportion of domestic electricity customers on non-home supplier - Time Series",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Proportion of domestic electricity customers on non-home supplier',
+            title = 'Proportion of domestic electricity customers on non-home supplier -  Time Series',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Proportion of domestic electricity customers on non-home supplier')
+               title = 'Proportion of domestic electricity customers on non-home supplier -  Time Series')
         ),
         
         # customize the length menu
@@ -284,7 +284,7 @@ ElecNonHome <- function(input, output, session) {
   output$ElecNonHome.png <- downloadHandler(
     filename = "ElecNonHome.png",
     content = function(file) {
-      writePNG(readPNG("Structure/4 - Energy Efficiency/ElecNonHomeChart.png"), file) 
+      writePNG(readPNG("Structure/5 - Consumers/ElecNonHomeChart.png"), file) 
     }
   )
 }

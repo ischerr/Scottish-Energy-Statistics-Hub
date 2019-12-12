@@ -540,9 +540,11 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         "Structure/CurrentWorking.xlsx",
         sheet = "Elec capacity and peak demand", skip = 14)
     
-    Data <- subset(Data, nchar(Data$Year) == 7)[2:4]
+    Data <- subset(Data, nchar(Data$Year) == 7)[2:6]
     
-    Data[2:3] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data[2:5] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data <- Data[which(Data[5] < 1),]
     
     PeakDemandCap <- Data
     
