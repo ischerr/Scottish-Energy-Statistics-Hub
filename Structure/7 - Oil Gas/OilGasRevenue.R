@@ -196,17 +196,17 @@ OilGasRevenue <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Scottish offshore oil and gas exports (\u00A3 billion)",
+        title = "Oil and gas revenue (\u00A3 billion)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Scottish offshore oil and gas exports (\u00A3 billion)',
+            title = 'Oil and gas revenue (\u00A3 billion)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Scottish offshore oil and gas exports (\u00A3 billion)')
+               title = 'Oil and gas revenue (\u00A3 billion)')
         ),
         
         # customize the length menu
@@ -271,7 +271,7 @@ OilGasRevenue <- function(input, output, session) {
           aes(
             y = Revenue,
             colour = ChartColours[2],
-            label = percent(Revenue)
+            label = percent(Revenue, 0.1)
           ),
           size = 1.5,
           family = "Century Gothic"

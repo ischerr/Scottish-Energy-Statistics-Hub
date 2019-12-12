@@ -227,17 +227,17 @@ OilGasProd <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Proportion of time Scotland is capable of meeting demand from Scottish generation",
+        title = "Oil and gas production",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Proportion of time Scotland is capable of meeting demand from Scottish generation',
+            title = 'Oil and gas production',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Proportion of time Scotland is capable of meeting demand from Scottish generation')
+               title = 'Oil and gas production')
         ),
         
         # customize the length menu

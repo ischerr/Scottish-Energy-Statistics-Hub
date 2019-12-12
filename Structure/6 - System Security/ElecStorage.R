@@ -89,11 +89,11 @@ ElecStorage <- function(input, output, session) {
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Electricity storage", col_names = TRUE,
-                       skip = 16, n_max = 10)[1:6]
+                       skip = 16, n_max = 10)[1:5]
     
     Data <- Data[complete.cases(Data),]
     
-    Data[2:6]%<>% lapply(function(x)
+    Data[2:5]%<>% lapply(function(x)
       as.numeric(as.character(x)))
     
     ElecStorage <- as_tibble(Data)
@@ -134,18 +134,6 @@ ElecStorage <- function(input, output, session) {
     
     
     p <- plot_ly(data = ElecStorage, y = ~ Type) %>%
-      add_trace(
-        data = ElecStorage,
-        x = ~ `Operational`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "Operational",
-        text = paste0("Operational: ", format(round(ElecStorage$`Operational`, digits = 0), big.mark = ","), " MW"),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[1]),
-        legendgroup = 1
-      ) %>%
       add_trace(
         data = ElecStorage,
         x = ~ `Under construction`,
@@ -243,11 +231,11 @@ ElecStorage <- function(input, output, session) {
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Electricity storage", col_names = TRUE,
-                       skip = 16, n_max = 10)[1:6]
+                       skip = 16, n_max = 10)[1:5]
     
     Data <- Data[complete.cases(Data),]
     
-    Data[2:6]%<>% lapply(function(x)
+    Data[2:5]%<>% lapply(function(x)
       as.numeric(as.character(x)))
     
     ElecStorage <- as_tibble(Data)
@@ -267,17 +255,17 @@ ElecStorage <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(ncol(ElecStorage)-1, 'desc')),
-        title = "Pipeline renewable capacity by technology",
+        title = "Pipeline storage capacity",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Pipeline renewable capacity by technology',
+            title = 'Pipeline storage capacity',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Pipeline renewable capacity by technology')
+               title = 'Pipeline storage capacity')
         ),
         
         # customize the length menu

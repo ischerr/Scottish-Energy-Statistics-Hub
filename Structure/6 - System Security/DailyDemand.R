@@ -393,24 +393,14 @@ DailyDemand <- function(input, output, session) {
       formatRound(2:5, 1) 
   })
   
- output$Text <- renderUI({
-   tagList(column(12,
-                  tags$p(
-                    HTML(
-                      "<p>For energy supplies to remain secure, the system must be able to meet&nbsp;<strong>demand&nbsp;</strong>at&nbsp;<strong>peak times</strong>.
-                      &nbsp;&nbsp;Hence&nbsp;<strong>seasonality&nbsp;</strong>is key as demand is&nbsp;<strong>higher&nbsp;</strong>in the&nbsp;
-                      <strong>winter&nbsp;</strong>than the&nbsp;<strong>summer</strong>.&nbsp;&nbsp;The chart below illustrates this, showing Scotland&rsquo;s 
-                      energy use on a daily basis from 2013.&nbsp;&nbsp;It shows that&nbsp;<strong>seasonal variations&nbsp;</strong>in the demand for&nbsp;
-                      <strong>electricity&nbsp;</strong>are much&nbsp;<strong>smaller&nbsp;</strong>than they are for&nbsp;<strong>gas</strong>.</p>
-                      <p>During the winter of 2018/19&nbsp;<strong>the peak daily demand</strong>&nbsp;for gas was&nbsp;<strong>344 GWh&nbsp;</strong>
-                      (on 31st January 2019). This was almost&nbsp;<strong>six times greater&nbsp;</strong>than the minimum gas demand in summer 2018 
-                      (<strong>58 GWh&nbsp;</strong>on 28th July 2018).</p><p>In 2018/19,&nbsp;<strong>peak electricity daily demand&nbsp;</strong>
-                      (<strong>100 GWh&nbsp;</strong>on the 1st February 2019) was&nbsp;<strong>double&nbsp;</strong>that of&nbsp;<strong>minimum&nbsp;</strong>
-                      demand (<strong>51 GWh</strong>&nbsp;on the 20th May 2018).&nbsp;&nbsp;</p>
-"
-                    )
-                  )))
- })
+  output$Text <- renderUI({
+    tagList(column(12,
+                   
+                   HTML(
+                     paste(readtext("Structure/6 - System Security/DailyDemand.txt")[2])
+                     
+                   )))
+  })
  
  
   observeEvent(input$ToggleTable, {

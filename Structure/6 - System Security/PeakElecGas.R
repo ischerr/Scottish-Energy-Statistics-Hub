@@ -251,14 +251,15 @@ PeakElecGas <- function(input, output, session) {
       formatDate(1, "toLocaleTimeString")
   })
   
- output$Text <- renderUI({
-   tagList(column(12,
-                                   tags$p(
-                                     HTML(
-                                       "<p>Electricity generated and consumed</p>"
-                                     )
-                                   )))
- })
+  output$Text <- renderUI({
+    tagList(column(12,
+                   
+                   HTML(
+                     paste(readtext("Structure/6 - System Security/PeakElecGas.txt")[2])
+                     
+                   )))
+  })
+ 
   observeEvent(input$ToggleTable, {
     toggle("ElecPeakElecGasTable")
   })

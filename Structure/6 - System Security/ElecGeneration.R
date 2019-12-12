@@ -270,17 +270,17 @@ ElecGeneration <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Proportion of eligible homes with Wall Insulation",
+        title = "Electricity generated and consumed",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Proportion of eligible homes with Wall Insulation',
+            title = 'Electricity generated and consumed',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Proportion of eligible homes with Wall Insulation')
+               title = 'Electricity generated and consumed')
         ),
         
         # customize the length menu
@@ -345,14 +345,15 @@ ElecGeneration <- function(input, output, session) {
       formatRound(c(2,4), 0)
   })
   
- output$Text <- renderUI({
-   tagList(column(12,
-                                   tags$p(
-                                     HTML(
-                                       "<p>Electricity generated and consumed</p>"
-                                     )
-                                   )))
- })
+  output$Text <- renderUI({
+    tagList(column(12,
+                   
+                   HTML(
+                     paste(readtext("Structure/6 - System Security/ElecGeneration.txt")[2])
+                     
+                   )))
+  })
+  
   observeEvent(input$ToggleTable, {
     toggle("ElecGenerationTable")
   })

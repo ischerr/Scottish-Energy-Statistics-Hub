@@ -349,7 +349,7 @@ OilGasExports <- function(input, output, session) {
           aes(
             y = rUK,
             colour = ChartColours[2],
-            label = percent(rUK)
+            label = percent(rUK, 0.1)
           ),
           size = 1.5,
           family = "Century Gothic"
@@ -358,7 +358,7 @@ OilGasExports <- function(input, output, session) {
           aes(
             y = rWorld,
             colour = ChartColours[3],
-            label = percent(rUK)
+            label = percent(rUK, 0.1)
           ),
           size = 1.5,
           family = "Century Gothic"
@@ -367,7 +367,7 @@ OilGasExports <- function(input, output, session) {
           aes(
             y = Total,
             colour = ChartColours[1],
-            label = percent(rUK)
+            label = percent(rUK, 0.1)
           ),
           size = 1.5,
           family = "Century Gothic"

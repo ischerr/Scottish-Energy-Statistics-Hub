@@ -48,7 +48,7 @@ OilGasEmploymentOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
   fluidRow(
-    column(10, h3("Data - Peak Demand", style = "color: #126992;  font-weight:bold")),
+    column(10, h3("Data", style = "color: #126992;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -198,17 +198,17 @@ OilGasEmployment <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Outputs from oil and gas",
+        title = "Scottish Oil and gas employment",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Outputs from oil and gas",
+            title = "Scottish Oil and gas employment",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Outputs from oil and gas")
+               title = "Scottish Oil and gas employment")
         ),
         
         # customize the length menu

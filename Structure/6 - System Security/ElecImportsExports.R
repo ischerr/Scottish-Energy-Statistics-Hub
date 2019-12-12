@@ -11,7 +11,7 @@ ElecImportsExportsOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("International sales from oil and gas supply chain", style = "color: #5d8be1;  font-weight:bold"),
+                    h3("Electricity imports and exports", style = "color: #5d8be1;  font-weight:bold"),
                     h4(textOutput(ns('ElecImportsExportsSubtitle')), style = "color: #5d8be1;")
     ),
              column(
@@ -333,14 +333,14 @@ ElecImportsExports <- function(input, output, session) {
   })
   
   
- output$Text <- renderUI({
-   tagList(column(12,
-                                   tags$p(
-                                     HTML(
-                                       "<p>Electricity generated and consumed</p>"
-                                     )
-                                   )))
- })
+  output$Text <- renderUI({
+    tagList(column(12,
+                   
+                   HTML(
+                     paste(readtext("Structure/6 - System Security/ElecImportsExports.txt")[2])
+                     
+                   )))
+  })
  
   observeEvent(input$ToggleTable, {
     toggle("ElecImportsExportsTable")
