@@ -1,1 +1,1 @@
-<p>Max Supply Peak Demand</p>
+MaxSupplyPeakDemand

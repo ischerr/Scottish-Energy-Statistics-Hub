@@ -310,7 +310,7 @@ CoalProd <- function(input, output, session) {
           aes(
             y = Prod,
             colour = ChartColours[2],
-            label = percent(Prod)
+            label = percent(Prod, 0.1)
           ),
           size = 1.5,
           family = "Century Gothic"

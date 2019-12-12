@@ -32,7 +32,7 @@ OilGasOutputsOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
   fluidRow(
-    column(10, h3("Data - Peak Demand", style = "color: #126992;  font-weight:bold")),
+    column(10, h3("Data", style = "color: #126992;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -294,7 +294,7 @@ OilGasOutputs <- function(input, output, session) {
           ifelse(
             OilGasOutputs$Year == min(OilGasOutputs$Year) |
               OilGasOutputs$Year ==  max(OilGasOutputs$Year),
-            percent(OilGasOutputs$value),
+            percent(OilGasOutputs$value, 0.1),
             ""
           ),
         hjust = ifelse(OilGasOutputs$value > .05, .5,-0.1),

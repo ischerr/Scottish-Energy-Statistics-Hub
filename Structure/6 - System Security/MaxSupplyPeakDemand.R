@@ -129,6 +129,8 @@ MaxSupplyPeakDemand <- function(input, output, session) {
     
     Data[2:5] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data <- Data[which(Data[5] < 1),]
+    
     Data$`Peak electricity demand date` <- as.Date(Data$`Peak electricity demand date`,  origin = "1899-12-30")
     
     Data$Year <- paste0("<b>", Data$Year, "</b>")
@@ -219,17 +221,17 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Average annual domestic standard electricity bills in Scotland (\u00A3)",
+        title = "Installed supply capacity and peak electricity demand",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Average annual domestic standard electricity bills in Scotland (\u00A3)",
+            title = "Installed supply capacity and peak electricity demand",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Average annual domestic standard electricity bills in Scotland (\u00A3)")
+               title = "Installed supply capacity and peak electricity demand")
         ),
         
         # customize the length menu
@@ -480,17 +482,17 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Average annual domestic standard electricity bills in Scotland (2010 \u00A3)",
+        title = "Maximum supply capacity by source",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Average annual domestic standard electricity bills in Scotland (2010 \u00A3)",
+            title = "Maximum supply capacity by source",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Average annual domestic standard electricity bills in Scotland (2010 \u00A3)")
+               title = "Maximum supply capacity by source")
         ),
         
         # customize the length menu
@@ -506,6 +508,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
   
   output$Text <- renderUI({
     tagList(column(12,
+                   
                    HTML(
                      paste(readtext("Structure/6 - System Security/MaxSupplyPeakDemand.txt")[2])
                      
@@ -526,10 +529,6 @@ MaxSupplyPeakDemand <- function(input, output, session) {
     toggle("Text")
   })
   
-  
-
-
-
 
   output$MaxSupplyPeakDemand.png <- downloadHandler(
     filename = "MaxSupplyPeakDemand.png",
@@ -546,7 +545,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
     
     Data <- Data[which(Data[5] < 1),]
     
-    PeakDemandCap <- Data
+    PeakDemandCap <- Data[1:3]
     
     PeakDemandCap <- arrange(PeakDemandCap, -row_number())
     
@@ -962,7 +961,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         MaxSupplyChart +
         labs(subtitle = paste(max(MaxSupply$Year), "-", min(MaxSupply$Year))) +
         coord_flip() +
-        ylim(-450, 12950)
+        ylim(-650, 12950)
       
       MaxSupplyChart
       

@@ -11,7 +11,7 @@ ScotGenDemandOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Electricity generated and consumed", style = "color: #5d8be1;  font-weight:bold"),
+                    h3("Proportion of time Scotland is capable of meeting demand from Scottish generation", style = "color: #5d8be1;  font-weight:bold"),
                     h4(textOutput(ns('ScotGenDemandSubtitle')), style = "color: #5d8be1;")
     ),
              column(
@@ -322,7 +322,7 @@ ScotGenDemand <- function(input, output, session) {
    tagList(column(12,
                                    
                                      HTML(
-                                       paste(readtext("Structure/6 - System Security/ScottishOwnGen.txt")[2])
+                                       paste(readtext("Structure/6 - System Security/ScotGenDemand.txt")[2])
                                      
                                    )))
  })

@@ -32,7 +32,7 @@ OilGasConsumptionOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
   fluidRow(
-    column(10, h3("Data - Peak Demand", style = "color: #126992;  font-weight:bold")),
+    column(10, h3("Data", style = "color: #126992;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -188,17 +188,17 @@ OilGasConsumption <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Outputs from oil and gas",
+        title = "Oil and gas consumption",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Outputs from oil and gas",
+            title = "Oil and gas consumption",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Outputs from oil and gas")
+               title = "Oil and gas consumption")
         ),
         
         # customize the length menu
@@ -295,7 +295,7 @@ OilGasConsumption <- function(input, output, session) {
       geom_text(
         aes(
           y = pos,
-          label = percent(value),
+          label = percent(value, 0.1),
           
           fontface = 2
         ),

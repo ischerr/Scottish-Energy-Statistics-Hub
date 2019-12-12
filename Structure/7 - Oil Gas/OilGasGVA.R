@@ -213,17 +213,17 @@ OilGasGVA <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Scottish offshore oil and gas exports (\u00A3 billion)",
+        title = "GVA associated with oil and gas production (\u00A3 billion)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Scottish offshore oil and gas exports (\u00A3 billion)',
+            title = 'GVA associated with oil and gas production (\u00A3 billion)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Scottish offshore oil and gas exports (\u00A3 billion)')
+               title = 'GVA associated with oil and gas production (\u00A3 billion)')
         ),
         
         # customize the length menu
@@ -292,7 +292,7 @@ OilGasGVA <- function(input, output, session) {
           aes(
             y = GVA,
             colour = ChartColours[2],
-            label = percent(GVA)
+            label = percent(GVA, 0.1)
           ),
           size = 1.5,
           family = "Century Gothic"
