@@ -827,7 +827,7 @@ output$ElecGenRN.png <- downloadHandler(
           y = Renewables,
           label = ifelse(Year == min(Year), percent(Renewables, 0.1), ""),
           hjust = 0.5,
-          vjust = -.8,
+          vjust = 1.1,
           colour = ChartColours[2],
           fontface = 2
         ),
@@ -862,8 +862,8 @@ output$ElecGenRN.png <- downloadHandler(
           x = mean(Year),
           y = mean(Renewables),
           label = "Renewables",
-          hjust = .7,
-          vjust = -0.7,
+          hjust = 0,
+          vjust = 3,
           colour = ChartColours[2],
           fontface = 2
         ),
@@ -918,8 +918,8 @@ output$ElecGenRN.png <- downloadHandler(
           x = mean(Year),
           y = mean(Nuclear),
           label = "Nuclear",
-          hjust = 0.7,
-          vjust = -1,
+          hjust = 0.5,
+          vjust = -2,
           colour = ChartColours[3],
           fontface = 2
         ),

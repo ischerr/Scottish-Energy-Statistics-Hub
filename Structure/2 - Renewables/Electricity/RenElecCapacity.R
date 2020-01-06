@@ -759,7 +759,7 @@ RenElecCapacity <- function(input, output, session) {
       
       PipelineTotalChart <-
         PipelineTotalChart +
-        labs(subtitle = "Scotland, June 2019") +
+        labs(subtitle = "Scotland, September 2019") +
         ylim(-2, max(PipelineTotal$top)+1.700)+
         coord_flip()
       

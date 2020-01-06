@@ -89,7 +89,7 @@ ElecStorage <- function(input, output, session) {
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Electricity storage", col_names = TRUE,
-                       skip = 16, n_max = 10)[1:5]
+                       skip = 16, n_max = 10)[6:10]
     
     Data <- Data[complete.cases(Data),]
     
@@ -231,7 +231,7 @@ ElecStorage <- function(input, output, session) {
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Electricity storage", col_names = TRUE,
-                       skip = 16, n_max = 10)[1:5]
+                       skip = 16, n_max = 10)[6:10]
     
     Data <- Data[complete.cases(Data),]
     
@@ -303,7 +303,7 @@ ElecStorage <- function(input, output, session) {
 
       ### Load Packages and Functions
       Data <- read_excel("Structure/CurrentWorking.xlsx",
-                          sheet = "Electricity storage", skip = 16)[1:5]
+                          sheet = "Electricity storage", skip = 16)[6:10]
       
       names(Data)[1] <- "Type"
       

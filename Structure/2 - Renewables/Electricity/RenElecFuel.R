@@ -37,7 +37,7 @@ RenElecFuelOutput <- function(id) {
              
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
              #dygraphOutput(ns("RenElecFuelPlot")),
-             plotlyOutput(ns("RenElecFuelGenPlot"))%>% withSpinner(color="#39ab2c"),
+             plotlyOutput(ns("RenElecFuelGenPlot"), height = "600px")%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),

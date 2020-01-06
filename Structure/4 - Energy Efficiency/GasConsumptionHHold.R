@@ -109,8 +109,6 @@ GasConsumptionHHold <- function(input, output, session) {
     
     Data[2,1] <- " "
     
-    Data <- head(Data, -3)
-    
     Data[nrow(Data),1] <- "% Change\nfrom baseline"
     
     Data$Year <- paste("<b>", Data$Year, "</b>")
