@@ -90,7 +90,7 @@ TargetChart <-
           label = min(Year),
           colour = "Renewables",
           hjust = 0.5,
-          vjust = ifelse(max(data$Tgt, na.rm = TRUE) > 0, 1.5, -0.2),
+          vjust = ifelse(max(data$Tgt, na.rm = TRUE) > 0, 1.5, -4.5),
           fontface = 2
         ),
         family = "Century Gothic"
@@ -103,7 +103,7 @@ TargetChart <-
           label = dataMax$Year,
           colour = "Renewables",
           hjust = 0.5,
-          vjust = ifelse(max(data$Tgt, na.rm = TRUE) > 0, 1.5, -0.2),
+          vjust = ifelse(max(data$Tgt, na.rm = TRUE) > 0, 1.5, -4.5),
           fontface = 2
         ),
         
@@ -117,7 +117,7 @@ TargetChart <-
           # Labels only years with a Target Value
           colour = "Target",
           hjust = 0.5,
-          vjust = ifelse(Tgt > 0, 1.5, -0.2),
+          vjust = ifelse(Tgt > 0, 1.5, -4.5),
           fontface = 2
         ),
         

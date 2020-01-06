@@ -74,8 +74,8 @@ RenHeat <- function(input, output, session) {
     
     RenHeat <- read_excel("Structure/CurrentWorking.xlsx", 
                           sheet = "Renewable heat", col_names = FALSE, 
-                          skip = 17, n_max = 15)
-    RenHeat <- head(RenHeat[c(1,4)], -2)
+                          skip = 17)
+    RenHeat <- RenHeat[c(1,4)]
     
     names(RenHeat) <- c("Year", "Renewables")
     RenHeat$Year <- substr(RenHeat$Year,1,4)
@@ -90,8 +90,8 @@ RenHeat <- function(input, output, session) {
     
     RenHeat <- read_excel("Structure/CurrentWorking.xlsx", 
                           sheet = "Renewable heat", col_names = FALSE, 
-                          skip = 17, n_max = 15)
-    RenHeat <- head(RenHeat[c(1,4)], -2)
+                          skip = 17)
+    RenHeat <- RenHeat[c(1,4)]
     
     names(RenHeat) <- c("Year", "Renewables")
     RenHeat$Year <- substr(RenHeat$Year,1,4)
@@ -195,7 +195,6 @@ RenHeat <- function(input, output, session) {
     RenHeat <- read_excel("Structure/CurrentWorking.xlsx", 
                           sheet = "Renewable heat", col_names = TRUE, 
                           skip = 16)
-    RenHeat <- head(RenHeat, -1)
 
     RenHeat %<>% lapply(function(x) as.numeric(as.character(x)))
    

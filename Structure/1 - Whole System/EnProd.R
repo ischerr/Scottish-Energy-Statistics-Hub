@@ -484,8 +484,10 @@ EnProd <- function(input, output, session) {
       sourcecaption = "Source: BEIS, SG"
       plottitle = "Energy productivity target progress"
       
+      EnProdTargetChart <- copy(TargetChart)
+      
       EnProdChart <-
-        TargetChart(EnProd, plottitle, sourcecaption, ChartColours)
+        EnProdTargetChart(EnProd, plottitle, sourcecaption, ChartColours)
       
       EnProdChart <- EnProdChart +
         xlim(min(EnProd$Year -1), max(EnProd$Year +1))
@@ -570,7 +572,7 @@ EnProd <- function(input, output, session) {
             y = Renewables,
             label = ifelse(Year == max(Year), percent(Renewables, accuracy = 0.1), ""),
             hjust = 0.5,
-            vjust = 1.5,
+            vjust = - 0.8,
             colour = ChartColours[1],
             fontface = 2
           ),
@@ -628,7 +630,7 @@ EnProd <- function(input, output, session) {
             y = Renewables,
             label = ifelse(Year == 2015, percent(Renewables, accuracy = 0.1), ""), ### NEEDS AUTOMATED
             hjust = 0.5,
-            vjust = 2,
+            vjust = -0.8,
             colour = ChartColours[1],
             fontface = 2
           ),

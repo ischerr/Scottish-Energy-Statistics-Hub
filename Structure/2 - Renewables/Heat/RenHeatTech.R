@@ -844,7 +844,8 @@ RenHeatTech <- function(input, output, session) {
             x = Year+.8,
             y = Waste,
             label = ifelse(Year == max(Year), paste0("Waste\n",round(Waste, digits = 3), " GW"), ""),
-            fontface = 2
+            fontface = 2,
+            vjust = 0.25
           ),
           colour = LineColours[3],
           family = "Century Gothic"
@@ -885,7 +886,7 @@ RenHeatTech <- function(input, output, session) {
             x = Year+.8,
             y = Pumps,
             label = ifelse(Year == max(Year), paste0("Heat pumps\n", round(Pumps, digits = 3)," GW"), ""),
-            vjust = 0,
+            vjust = -0.2,
             fontface = 2
           ),
           colour = LineColours[4],
@@ -927,7 +928,8 @@ RenHeatTech <- function(input, output, session) {
             x = Year+.8,
             y = Solar,
             label = ifelse(Year == max(Year), paste0("Solar thermal\n",round(Solar, digits = 3)," GW"), ""),
-            fontface = 2
+            fontface = 2,
+            vjust = 0.3
           ),
           colour = LineColours[5],
           family = "Century Gothic"
@@ -1257,7 +1259,7 @@ output$RenHeatOutput.png <- downloadHandler(
     
     RenHeatOutputTechChart <- RenHeatOutputTechChart +
       ylim(-.008, max(RenHeatOutputTech$Biomass))+
-      xlim(min(RenHeatOutputTech$Year-.8), max(RenHeatOutputTech$Year+1.1))
+      xlim(min(RenHeatOutputTech$Year-0.9), max(RenHeatOutputTech$Year+1.15))
     ggsave(
       file,
       plot = RenHeatOutputTechChart,

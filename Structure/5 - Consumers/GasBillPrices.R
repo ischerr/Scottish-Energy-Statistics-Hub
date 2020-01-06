@@ -281,7 +281,7 @@ GasBillPrices <- function(input, output, session) {
     
     Data <- Data[-1,]
     
-    Data %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data %<>% lapply(function(x) round(as.numeric(as.character(x))))
     
     Data <- as_tibble(Data)
     
@@ -633,6 +633,8 @@ output$AverageGasBills.png <- downloadHandler(
     
     Data <- as_tibble(sapply( Data, as.numeric ))
     
+    Data <- as_tibble(sapply( Data, round ))
+    
     GasBills <- Data
     
     ### variables
@@ -673,7 +675,7 @@ output$AverageGasBills.png <- downloadHandler(
           y = Prepayment,
           label = ifelse(Year == max(Year), paste0("\u00A3", Prepayment), ""),
           hjust = 0.5,
-          vjust= 1,
+          vjust= 0.5,
           colour = ChartColours[2],
           fontface = 2
         ),
@@ -729,6 +731,7 @@ output$AverageGasBills.png <- downloadHandler(
           y = `Standard Credit`,
           label = ifelse(Year == max(Year), paste0("\u00A3", `Standard Credit`), ""),
           hjust = 0.5,
+          vjust = 0,
           colour = ChartColours[3],
           fontface = 2
         ),
@@ -784,7 +787,7 @@ output$AverageGasBills.png <- downloadHandler(
           y = `Direct Debit`,
           label = ifelse(Year == max(Year), paste0("\u00A3", `Direct Debit`), ""),
           hjust = 0.5,
-          vjust = 0,
+          vjust = 0.5,
           colour = ChartColours[4],
           fontface = 2
         ),
