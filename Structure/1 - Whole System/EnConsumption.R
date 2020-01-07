@@ -160,6 +160,8 @@ EnConsumption <- function(input, output, session) {
     EnConsumption <- melt(EnConsumption, id = "Year")
     EnConsumption <- EnConsumption[which(EnConsumption$Year == ChartYear),]
     
+    EnConsumption$variable <- paste0("<b>", EnConsumption$variable, "</b>")
+    
     p <- plot_ly(
       data = EnConsumption,
       labels = ~variable,
@@ -169,7 +171,7 @@ EnConsumption <- function(input, output, session) {
         EnConsumption$variable,
         ": ", format(round(EnConsumption$value, 0), big.mark = ","), " GWh" 
       ),
-      textposition = 'inside',
+      textposition = 'outside',
       textinfo = 'label+percent',
       insidetextfont = list(color = '#FFFFFF'),
       hoverinfo = 'text',
@@ -307,6 +309,8 @@ file)
     
     EnConsumptionDomNonDom <- melt(EnConsumptionDomNonDom, id = "Year")
     EnConsumptionDomNonDom <- EnConsumptionDomNonDom[which(EnConsumptionDomNonDom$Year == ChartYear),]
+    
+    EnConsumptionDomNonDom$variable <- paste0("<b>", EnConsumptionDomNonDom$variable, "</b>")
     
     p <- plot_ly(
       data = EnConsumptionDomNonDom,

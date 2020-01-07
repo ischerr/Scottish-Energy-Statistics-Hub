@@ -23,7 +23,8 @@ EnBalanceOutput <- function(id) {
     
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     #dygraphOutput(ns("EnBalancePlot")),
-    plotlyOutput(ns("EnBalancePlot"))%>% withSpinner(color="#1A5D38"),
+    plotlyOutput(ns("EnBalancePlot"), height = "900px")%>% withSpinner(color="#1A5D38"),
+    p("* TTL = Transfers, Transformation and Losses"),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")),
     tabPanel("Simplified flow chart",
              fluidRow(column(8,
@@ -151,6 +152,8 @@ EnBalance <- function(input, output, session) {
     
     EnergyNodes <- as.data.frame(read_excel("Structure/1 - Whole System/EnBalance.xlsx", 
                                             sheet = "nodes"))
+  
+    
     p <- plot_ly(
       type = "sankey",
       domain = list(
@@ -159,7 +162,7 @@ EnBalance <- function(input, output, session) {
       ),
       orientation = "h",
       valueformat = ".0f",
-      valuesuffix = "ktoe",
+      valuesuffix = " ktoe",
       
       node = list(
         label = EnergyNodes$Name,
