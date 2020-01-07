@@ -31,18 +31,16 @@ RenEnTgtOutput <- function(id) {
       uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
-    fluidRow(
-      column(10, h3("Data - Overview", style = "color: #1A5D38;  font-weight:bold")),
-      column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
-    ),
-    fluidRow(
-      column(12, dataTableOutput(ns("RenEnTgtTable"))%>% withSpinner(color="#1A5D38"))),
-    
-    tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
-    
-    
-    h3("Summaries", style = "color: #1A5D38;  font-weight:bold"),
     tabsetPanel(
+      
+      tabPanel("Total",
+               fluidRow(
+                 column(10, h3("Total Summary", style = "color: #1A5D38;  font-weight:bold")),
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
+               ),
+               fluidRow(
+                 column(12, dataTableOutput(ns("TotalTargetTable"))%>% withSpinner(color="#1A5D38")))
+      ),
       tabPanel("Electricity",
                fluidRow(
                  column(10, h3("Electricity Summary", style = "color: #1A5D38;  font-weight:bold")),
@@ -68,16 +66,8 @@ RenEnTgtOutput <- function(id) {
                ),
                fluidRow(
                  column(12, dataTableOutput(ns("TransportTargetTable"))%>% withSpinner(color="#1A5D38")))
-      ),
-      
-      tabPanel("Total",
-               fluidRow(
-                 column(10, h3("Total Summary", style = "color: #1A5D38;  font-weight:bold")),
-                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
-               ),
-               fluidRow(
-                 column(12, dataTableOutput(ns("TotalTargetTable"))%>% withSpinner(color="#1A5D38")))
       )),
+
     
     
     
@@ -295,68 +285,68 @@ RenEnTgt <- function(input, output, session) {
   })
   
   
-  output$RenEnTgtTable = renderDataTable({
-    
-    RenEn <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Renewable energy target",
-      col_names = FALSE,
-      skip = 21,
-      n_max = 23
-    )
-    RenEn <- as.data.frame(t(RenEn))
-    RenEn <- RenEn[, c(1, 6, 12, 18, 23)]
-    RenEn <- tail(RenEn,-5)
-    names(RenEn) <-
-      c("Year", "Electricity", "Heat", "Transport", "Renewables")
-    RenEn[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    RenEnTgts <-
-      read_csv("Structure/1 - Whole System/Renewable energy target.csv")
-    RenEn <- bind_rows(RenEn, RenEnTgts)
-    
-    RenEn <-
-      RenEn[, c(1, 5, 6, 2, 3, 4)] %>% distinct(Year, .keep_all =  TRUE) %>% arrange(Year)
-    
-    RenEnTgt <- RenEn[c(1, 2, 4:6)]
-    
-    RenEnTgt <- RenEnTgt[complete.cases(RenEnTgt), ]
-    
-    datatable(
-      RenEnTgt,
-      extensions = 'Buttons',
-      
-      rownames = FALSE,
-      options = list(
-        paging = TRUE,
-        pageLength = -1,
-        searching = TRUE,
-        fixedColumns = FALSE,
-        autoWidth = TRUE,
-        ordering = TRUE,
-        order = list(list(0, 'desc')),
-        title = "Renewable Energy",
-        dom = 'ltBp',
-        buttons = list(
-          list(extend = 'copy'),
-          list(
-            extend = 'excel',
-            title = 'Renewable Energy',
-            header = TRUE
-          ),
-          list(extend = 'csv',
-               title = 'Renewable Energy')
-        ),
-        
-        # customize the length menu
-        lengthMenu = list( c(10, 20, -1) # declare values
-                           , c(10, 20, "All") # declare titles
-        ), # end of lengthMenu customization
-        pageLength = 10
-      )
-    ) %>%
-      formatPercentage(2:5, 1)
-  })
+  # output$RenEnTgtTable = renderDataTable({
+  #   
+  #   RenEn <- read_excel(
+  #     "Structure/CurrentWorking.xlsx",
+  #     sheet = "Renewable energy target",
+  #     col_names = FALSE,
+  #     skip = 21,
+  #     n_max = 23
+  #   )
+  #   RenEn <- as.data.frame(t(RenEn))
+  #   RenEn <- RenEn[, c(1, 6, 12, 18, 23)]
+  #   RenEn <- tail(RenEn,-5)
+  #   names(RenEn) <-
+  #     c("Year", "Electricity", "Heat", "Transport", "Renewables")
+  #   RenEn[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
+  #     as.numeric(as.character(x)))
+  #   RenEnTgts <-
+  #     read_csv("Structure/1 - Whole System/Renewable energy target.csv")
+  #   RenEn <- bind_rows(RenEn, RenEnTgts)
+  #   
+  #   RenEn <-
+  #     RenEn[, c(1, 5, 6, 2, 3, 4)] %>% distinct(Year, .keep_all =  TRUE) %>% arrange(Year)
+  #   
+  #   RenEnTgt <- RenEn[c(1, 2, 4:6)]
+  #   
+  #   RenEnTgt <- RenEnTgt[complete.cases(RenEnTgt), ]
+  #   
+  #   datatable(
+  #     RenEnTgt,
+  #     extensions = 'Buttons',
+  #     
+  #     rownames = FALSE,
+  #     options = list(
+  #       paging = TRUE,
+  #       pageLength = -1,
+  #       searching = TRUE,
+  #       fixedColumns = FALSE,
+  #       autoWidth = TRUE,
+  #       ordering = TRUE,
+  #       order = list(list(0, 'desc')),
+  #       title = "Renewable Energy",
+  #       dom = 'ltBp',
+  #       buttons = list(
+  #         list(extend = 'copy'),
+  #         list(
+  #           extend = 'excel',
+  #           title = 'Renewable Energy',
+  #           header = TRUE
+  #         ),
+  #         list(extend = 'csv',
+  #              title = 'Renewable Energy')
+  #       ),
+  #       
+  #       # customize the length menu
+  #       lengthMenu = list( c(10, 20, -1) # declare values
+  #                          , c(10, 20, "All") # declare titles
+  #       ), # end of lengthMenu customization
+  #       pageLength = 10
+  #     )
+  #   ) %>%
+  #     formatPercentage(2:5, 1)
+  # })
   
   
   output$Text <- renderUI({
@@ -372,9 +362,9 @@ RenEnTgt <- function(input, output, session) {
     toggle("Text")
   })
   
-  observeEvent(input$ToggleTable, {
-    toggle("RenEnTgtTable")
-  })
+  # observeEvent(input$ToggleTable, {
+  #   toggle("RenEnTgtTable")
+  # })
   
   
   output$RenEnTgt.png <- downloadHandler(
@@ -544,12 +534,72 @@ RenEnTgt <- function(input, output, session) {
   
   Overview <- Overview[-1,]
   
-  Overview %<>% lapply(function(x)
-    as.numeric(as.character(x)))
-  
   names(Overview)[1] <- "Year"
   
   Overview[c(2,7,8,13,14,19,20)] <- NULL
+  
+  Overview <- Overview[complete.cases(Overview),]
+  
+    Overview %<>% lapply(function(x)
+    as.numeric(as.character(x)))
+    
+  output$TotalTargetTable = renderDataTable({ 
+    
+    TotalTarget <- Overview[c(1, 14, 15, 16, 5, 9, 13)]
+    
+    names(TotalTarget) <- c(
+      "Year",
+      "Total Renewable Energy (GWh)",
+      "Total Energy Consumption (GWh)",
+      "Total Renewable Energy - % of total energy consumption",
+      "Renewable Electricity - % of total energy consumption",
+      "Renewable Heat - % of all total consumption",
+      "Renewable Transport - % of total energy consumption"
+    )
+    
+    TotalTarget <- as_tibble(TotalTarget)
+    
+    datatable(
+      TotalTarget,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Total Renewables Summary',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Total Renewables Summary')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(2:ncol(TotalTarget), 0) %>% 
+      formatPercentage(c(4:7), 1) %>% 
+      formatStyle(c(5:7), fontStyle = "italic") %>% 
+      formatStyle(c(4), fontWeight = "bold")
+    
+  })
+  
+  observeEvent(input$ToggleTable5, {
+    toggle("TotalTargetTable")
+  })
   
   
   output$ElectricityTargetTable = renderDataTable({ 
@@ -714,62 +764,6 @@ RenEnTgt <- function(input, output, session) {
     toggle("TransportTargetTable")
   })
   
-  output$TotalTargetTable = renderDataTable({ 
-    
-    TotalTarget <- as_tibble(Overview[c(1, 14:16)])
-    
-    names(TotalTarget) <- c(
-      "Year",
-      "Total Renewable Energy (GWh)",
-      "Total Energy Consumption (GWh)",
-      "% of all energy consumption"
-    )
-    
-    
-    
-    
-    
-    
-    
-    datatable(
-      TotalTarget,
-      extensions = 'Buttons',
-      
-      rownames = FALSE,
-      options = list(
-        paging = TRUE,
-        pageLength = -1,
-        searching = TRUE,
-        fixedColumns = FALSE,
-        autoWidth = TRUE,
-        ordering = TRUE,
-        dom = 'ltBp',
-        buttons = list(
-          list(extend = 'copy'),
-          list(
-            extend = 'excel',
-            title = 'Total Renewables Summary',
-            header = TRUE
-          ),
-          list(extend = 'csv',
-               title = 'Total Renewables Summary')
-        ),
-        
-        # customize the length menu
-        lengthMenu = list( c(10, 20, -1) # declare values
-                           , c(10, 20, "All") # declare titles
-        ), # end of lengthMenu customization
-        pageLength = 10
-      )
-    ) %>%
-      formatRound(2:ncol(TotalTarget), 0) %>% 
-      formatPercentage(c(4), 1) %>% 
-      formatStyle(c(4), fontStyle = "italic")
-    
-  })
-  
-  observeEvent(input$ToggleTable5, {
-    toggle("TotalTargetTable")
-  })
+
   
 }
