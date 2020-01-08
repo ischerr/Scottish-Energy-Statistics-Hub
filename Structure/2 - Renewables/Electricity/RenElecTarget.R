@@ -103,8 +103,52 @@ RenElecTarget <- function(input, output, session) {
     
     RenElec$Year <- paste0("01/01/", RenElec$Year)
     
-    RenElec$Year <- dmy(RenElec$Year)
+
+    RenElecBar <- read_excel("Structure/CurrentWorking.xlsx", 
+                             sheet = "Renewable elec by fuel", col_names = TRUE, 
+                             skip = 12)
     
+    RenElecBar <- arrange(RenElecBar, -row_number())
+    
+    RenElecBar <- distinct(RenElecBar, Year, .keep_all = TRUE)
+    
+    RenElecBar$Year <- paste0("01/01/", RenElecBar$Year)
+    
+    RenElecBar <- RenElecBar[which(RenElecBar$Year == max(RenElec[which(RenElec$Renewables >0),]$Year)),]
+    
+    names(RenElecBar)[2:3] <- c("Onshore", "Offshore")
+    
+    RenElecBar[2:10] %<>% lapply(function(x)
+      as.numeric(as.character(x)))
+    
+    RenElecBar$Other <- RenElecBar$Total - RenElecBar$Onshore -RenElecBar$Offshore - RenElecBar$Hydro
+    
+    RenElecBar <- as_tibble(RenElecBar[c(1,2,3,4,11,10)])
+    
+    RenElecFigure <- RenElec[which(RenElec$Year == max(RenElec[which(RenElec$Renewables > 0 ),]$Year)),]$Renewables
+    
+    RenElecBar$Onshore <- RenElecBar$Onshore / RenElecBar$Total * RenElecFigure
+    
+    RenElecBar$Offshore <-  RenElecBar$Offshore / RenElecBar$Total * RenElecFigure
+    
+    RenElecBar$Hydro <-  RenElecBar$Hydro / RenElecBar$Total * RenElecFigure
+    
+    RenElecBar$Other <- RenElecBar$Other / RenElecBar$Total * RenElecFigure
+    
+    RenElecBar$Total <- NULL
+    
+   RenElec<- merge(RenElec, RenElecBar, all = TRUE)
+   
+   RenElec[16,1] <- "01/01/2019"
+   
+   RenElec$Year <- dmy(RenElec$Year)
+   
+   RenElec <- arrange(RenElec, Year)
+   
+   BarColours <- c("#c7e9b4",
+                   "#41b6c4",
+                   "#225ea8",
+                   "#253494")
     
     p <-  plot_ly(RenElec,x = ~ Year ) %>% 
       add_trace(y = ~ Renewables,
@@ -156,11 +200,71 @@ RenElecTarget <- function(input, output, session) {
         marker = list(size = 25,
                       symbol = "diamond",
                       color = ChartColours[2])
-      ) %>% 
+      ) %>%
+      add_trace(x = ~Year, 
+                type = 'bar', 
+                y = ~Onshore, 
+                width = 2592000000*3, #Milliseconds in a month multiplied by desired month width
+                name = "Onshore", 
+                legendgroup = "3",
+                text = paste0(
+                  "Onshore: ",
+                  percent(RenElec$Onshore, accuracy = 0.1),
+                  "\nYear: ",
+                  format(RenElec$Year, "%Y")
+                ),
+                marker = list(color = BarColours[4]),
+                hoverinfo = "text")   %>% 
+      
+      add_trace(x = ~Year, 
+                type = 'bar', 
+                y = ~Offshore, 
+                width = 2592000000*3, #Milliseconds in a month multiplied by desired month width
+                name = "Offshore", 
+                legendgroup = "4",
+                text = paste0(
+                  "Offshore: ",
+                  percent(RenElec$Offshore, accuracy = 0.1),
+                  "\nYear: ",
+                  format(RenElec$Year, "%Y")
+                ),
+                marker = list(color = BarColours[3]),
+                hoverinfo = "text")   %>% 
+      
+      add_trace(x = ~Year, 
+                type = 'bar', 
+                y = ~Hydro,  
+                width = 2592000000*3, #Milliseconds in a month multiplied by desired month width
+                name = "Hydro", 
+                legendgroup = "5",
+                text = paste0(
+                  "Hydro: ",
+                  percent(RenElec$Hydro, accuracy = 0.1),
+                  "\nYear: ",
+                  format(RenElec$Year, "%Y")
+                ),
+                marker = list(color = BarColours[2]),
+                hoverinfo = "text")   %>% 
+      
+      add_trace(x = ~Year, 
+                type = 'bar', 
+                y = ~Other,  
+                width = 2592000000*3, #Milliseconds in a month multiplied by desired month width
+                name = "Other", 
+                legendgroup = "6",
+                text = paste0(
+                  "Other: ",
+                  percent(RenElec$Other, accuracy = 0.1),
+                  "\nYear: ",
+                  format(RenElec$Year, "%Y")
+                ),
+                marker = list(color = BarColours[1]),
+                hoverinfo = "text")   %>% 
+
       layout(
         barmode = 'stack',
-        bargap = 0.66,
-        legend = list(font = list(color = "#39ab2c"),
+        bargap = 0,
+        legend = list(font = list(color = "#1A5D38"),
                       orientation = 'h'),
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
@@ -283,20 +387,42 @@ RenElecTarget <- function(input, output, session) {
       
       
       
-      RenElec
+      RenElecBar <- read_excel("Structure/CurrentWorking.xlsx", 
+                               sheet = "Renewable elec by fuel", col_names = TRUE, 
+                               skip = 12)
       
+      RenElecBar <- arrange(RenElecBar, -row_number())
       
+      RenElecBar <- distinct(RenElecBar, Year, .keep_all = TRUE)
       
+      RenElecBar <- RenElecBar[which(RenElecBar$Year == max(RenElec[which(RenElec$Renewables >0),]$Year)),]
       
+      names(RenElecBar)[2:3] <- c("Onshore", "Offshore")
       
+      RenElecBar %<>% lapply(function(x)
+        as.numeric(as.character(x)))
       
+      RenElecBar$Other <- RenElecBar$Total - RenElecBar$Onshore -RenElecBar$Offshore - RenElecBar$Hydro
       
+      RenElecBar <- as_tibble(RenElecBar[c(1,2,3,4,11,10)])
       
+      RenElecFigure <- RenElec[which(RenElec$Year == max(RenElec[which(RenElec$Renewables > 0 ),]$Year)),]$Renewables
       
+      RenElecBar$Onshore <- RenElecBar$Onshore / RenElecBar$Total * RenElecFigure
       
+      RenElecBar$Offshore <-  RenElecBar$Offshore / RenElecBar$Total * RenElecFigure
       
+      RenElecBar$Hydro <-  RenElecBar$Hydro / RenElecBar$Total * RenElecFigure
       
+      RenElecBar$Other <- RenElecBar$Other / RenElecBar$Total * RenElecFigure
       
+      RenElecBar$Total <- NULL
+      
+      dataMax <- RenElecBar
+      
+      dataMax$Renewables <- RenElecFigure
+      
+      RenElecBar <- melt(RenElecBar, id = "Year")
       
       BarColours <- c("#c7e9b4",
                       "#41b6c4",
@@ -305,11 +431,11 @@ RenElecTarget <- function(input, output, session) {
       
       RenElecChart <- RenElecChart +
         geom_bar(
-          data = dataBar,
+          data = RenElecBar,
           aes(
-            x = dataBar$Year,
-            y = dataBar$value,
-            fill = forcats::fct_rev(dataBar$variable)
+            x = RenElecBar$Year,
+            y = RenElecBar$value,
+            fill = forcats::fct_rev(RenElecBar$variable)
           ),
           stat = "identity",
           width = 0.3
@@ -320,7 +446,7 @@ RenElecTarget <- function(input, output, session) {
             as.numeric(dataMax$Other[1]) * 100, digits = 1
           ), "%"),
           aes(
-            x = mean(dataBar$Year) + 1,
+            x = mean(RenElecBar$Year) + 1,
             y = dataMax$Onshore+dataMax$Offshore+dataMax$Hydro+(dataMax$Other*.5),
             hjust = 0
           ),
@@ -331,7 +457,7 @@ RenElecTarget <- function(input, output, session) {
           label = paste0("Hydro: ", round(as.numeric(dataMax$Hydro[1]) *
                                             100, digits = 1), "%"),
           aes(
-            x = mean(dataBar$Year) + 1,
+            x = mean(RenElecBar$Year) + 1,
             y = dataMax$Onshore+dataMax$Offshore+(dataMax$Hydro*.5),
             hjust = 0
           ),
@@ -345,7 +471,7 @@ RenElecTarget <- function(input, output, session) {
             "%"
           ),
           aes(
-            x = mean(dataBar$Year) + 1,
+            x = mean(RenElecBar$Year) + 1,
             y = dataMax$Onshore + (.5*dataMax$Offshore),
             hjust = 0
           ),
@@ -359,7 +485,7 @@ RenElecTarget <- function(input, output, session) {
             "%"
           ),
           aes(
-            x = mean(dataBar$Year) + 1,
+            x = mean(RenElecBar$Year) + 1,
             y = dataMax$Onshore*.5,
             hjust = 0
           ),
