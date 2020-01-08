@@ -17,7 +17,7 @@ git:
  
 r_packages:
  
-r_github_packages: rensa/ggflags
+r_github_packages: rensa/ggflags, rstudio/DT
 
 script:
   - R -f deploy.r
