@@ -63,7 +63,7 @@ EnBalanceOutput <- function(id) {
     fluidRow(
       column(12, DTOutput(ns("EnBalanceTable1"))%>% withSpinner(color="#1A5D38"))),
     fluidRow(
-      column(10, h3("Demand", style = "color: #1A5D38;  font-weight:bold")),
+      column(10, h3("Transfers and Transformation", style = "color: #1A5D38;  font-weight:bold")),
       column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
