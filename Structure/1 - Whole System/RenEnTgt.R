@@ -562,7 +562,6 @@ RenEnTgt <- function(input, output, session) {
     datatable(
       TotalTarget,
       extensions = 'Buttons',
-      
       rownames = FALSE,
       options = list(
         paging = TRUE,
