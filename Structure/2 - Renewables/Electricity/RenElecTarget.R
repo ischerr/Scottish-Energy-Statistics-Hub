@@ -280,6 +280,114 @@ RenElecTarget <- function(input, output, session) {
       
       RenElecChart
       
+      
+      
+      
+      RenElec
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      BarColours <- c("#c7e9b4",
+                      "#41b6c4",
+                      "#225ea8",
+                      "#253494")
+      
+      RenElecChart <- RenElecChart +
+        geom_bar(
+          data = dataBar,
+          aes(
+            x = dataBar$Year,
+            y = dataBar$value,
+            fill = forcats::fct_rev(dataBar$variable)
+          ),
+          stat = "identity",
+          width = 0.3
+        ) +
+        scale_fill_manual(values = BarColours) +
+        geom_text(
+          label = paste0("Other: ", round(
+            as.numeric(dataMax$Other[1]) * 100, digits = 1
+          ), "%"),
+          aes(
+            x = mean(dataBar$Year) + 1,
+            y = dataMax$Onshore+dataMax$Offshore+dataMax$Hydro+(dataMax$Other*.5),
+            hjust = 0
+          ),
+          colour = BarColours[1],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          label = paste0("Hydro: ", round(as.numeric(dataMax$Hydro[1]) *
+                                            100, digits = 1), "%"),
+          aes(
+            x = mean(dataBar$Year) + 1,
+            y = dataMax$Onshore+dataMax$Offshore+(dataMax$Hydro*.5),
+            hjust = 0
+          ),
+          colour = BarColours[2],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          label = paste0(
+            "Offshore Wind: ",
+            round(as.numeric(dataMax$Offshore[1]) * 100, digits = 1),
+            "%"
+          ),
+          aes(
+            x = mean(dataBar$Year) + 1,
+            y = dataMax$Onshore + (.5*dataMax$Offshore),
+            hjust = 0
+          ),
+          colour = BarColours[3],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          label = paste0(
+            "Onshore Wind: ",
+            round(as.numeric(dataMax$Onshore[1]) * 100, digits = 1),
+            "%"
+          ),
+          aes(
+            x = mean(dataBar$Year) + 1,
+            y = dataMax$Onshore*.5,
+            hjust = 0
+          ),
+          colour = BarColours[4],
+          family = "Century Gothic"
+        )+
+        geom_point(
+          data = dataMax,
+          aes(
+            x = dataMax$Year,
+            y = Renewables,
+            colour = "Renewables",
+            show_guide = FALSE,
+            size = 4
+          )
+        ) +
+        geom_line(
+          aes(
+            y = Renewables,
+            colour = "Renewables",
+            label = Percentage
+          ),
+          size = 1.5,
+          family = "Century Gothic"
+        ) +
+        xlim(2004,2027)+
+        ylim(-0.1, 1)
+      
       ggsave(
         file,
         plot = RenElecChart,
