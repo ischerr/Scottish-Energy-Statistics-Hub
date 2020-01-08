@@ -12,7 +12,37 @@ EnBalanceOutput <- function(id) {
   tagList(
     tabsetPanel(
       tabPanel("Energy Balance",
+               fluidRow(column(8,
+                               h3("Scottish energy balance", style = "color: #1A5D38;  font-weight:bold"),
+                               h4(textOutput(ns('EnBalanceSubtitle')), style = "color: #1A5D38;")
+               ),
                column(
+                 4, style = 'padding:15px;',
+                 downloadButton(ns('EnBalance.png'), 'Download Graph', style="float:right")
+               )),
+               
+               tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
+               #dygraphOutput(ns("EnBalancePlot")),
+               plotlyOutput(ns("EnBalancePlot"), height = "900px")%>% withSpinner(color="#1A5D38"),
+               p("* TTL = Transfers, Transformation and Losses"),
+               tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")),
+      tabPanel("Simplified flow chart",
+               fluidRow(column(8,
+                               h3("Simplified energy flow chart", style = "color: #1A5D38;  font-weight:bold"),
+                               h4(textOutput(ns('SimplifiedFlowSubtitle')), style = "color: #1A5D38;")
+               ),
+               column(
+                 4, style = 'padding:15px;',
+                 downloadButton(ns('SimplifiedFlow.png'), 'Download Graph', style="float:right")
+               )),
+               
+               tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
+               #dygraphOutput(ns("EnBalancePlot")),
+               
+               fluidRow(
+                 plotlyOutput(ns("SimplifiedFlowPlot1"))%>% withSpinner(color="#1A5D38")),
+               fluidRow(
+                 plotlyOutput(ns("SimplifiedFlowPlot2"))%>% withSpinner(color="#1A5D38")),
                fluidRow(
                  plotlyOutput(ns("SimplifiedFlowPlot3"))%>% withSpinner(color="#1A5D38"))
                ,
@@ -290,7 +320,7 @@ EnBalance <- function(input, output, session) {
       formatRound(2:10, 0) %>% 
       formatStyle(1,
                   target = 'row',
-                  backgroundColor = styleEqual(c('Final Consumption'), c('#bdbdbd'))
+                  backgroundColor = styleEqual(c('Primary Demand'), c('#bdbdbd'))
       )
     
   })
@@ -353,7 +383,7 @@ EnBalance <- function(input, output, session) {
       formatRound(2:10, 0) %>% 
       formatStyle(1,
                   target = 'row',
-                  backgroundColor = styleEqual(c('Primary Demand'), c('#bdbdbd'))
+                  backgroundColor = styleEqual(c('Final Consumption'), c('#bdbdbd'))
       )
     
   })
