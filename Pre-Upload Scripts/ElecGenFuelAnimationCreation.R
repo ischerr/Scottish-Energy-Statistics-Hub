@@ -52,8 +52,10 @@ DataScot$Total <- NULL
 
 DataScot$`Other Renewables` <-
   (
-    DataScot$`Wave / tidal` + DataScot$`Landfill Gas` + DataScot$`Sewage Gas` + DataScot$`Solar PV`
+    DataScot$`Wave / tidal`
   )
+
+DataScot$Biofuels <- DataScot$`Landfill Gas` + DataScot$`Sewage Gas` + DataScot$`Other biofuels and co-firing`
 
 DataScot$`Wave / tidal` <- NULL
 
@@ -61,11 +63,11 @@ DataScot$`Landfill Gas` <- NULL
 
 DataScot$`Sewage Gas` <- NULL
 
-DataScot$`Solar PV` <- NULL
+DataScot$`Other biofuels and co-firing` <- NULL
 
 names(DataScot)[1] <- "Year"
 
-names(DataScot)[4] <- "Biofuels"
+names(DataScot)[4] <- "Solar"
 
 names(DataScot)[5] <- "Pumped Hydro"
 
@@ -80,6 +82,7 @@ DataScot <-
     "Wind",
     "Hydro",
     "Biofuels",
+    "Solar",
     "Other Renewables",
     "Nuclear",
     "Pumped Hydro",
@@ -116,14 +119,17 @@ DataEW <- as_tibble(DataEW)
 for(i in 2:16){
   DataEW[i] <- DataEW[i] / DataEW[16]
 }
+
 DataEW$Renewables <- NULL
 
 DataEW$Total <- NULL
 
 DataEW$`Other Renewables` <-
   (
-    DataEW$`Wave / tidal` + DataEW$`Landfill Gas` + DataEW$`Sewage Gas` + DataEW$`Solar PV`
+    DataEW$`Wave / tidal`
   )
+
+DataEW$Biofuels <- DataEW$`Landfill Gas` + DataEW$`Sewage Gas` + DataEW$`Other biofuels and co-firing`
 
 DataEW$`Wave / tidal` <- NULL
 
@@ -131,11 +137,11 @@ DataEW$`Landfill Gas` <- NULL
 
 DataEW$`Sewage Gas` <- NULL
 
-DataEW$`Solar PV` <- NULL
+DataEW$`Other biofuels and co-firing` <- NULL
 
 names(DataEW)[1] <- "Year"
 
-names(DataEW)[4] <- "Biofuels"
+names(DataEW)[4] <- "Solar"
 
 names(DataEW)[5] <- "Pumped Hydro"
 
@@ -150,6 +156,7 @@ DataEW <-
     "Wind",
     "Hydro",
     "Biofuels",
+    "Solar",
     "Other Renewables",
     "Nuclear",
     "Pumped Hydro",
@@ -179,10 +186,10 @@ ElecGenFuel <- ElecGenFuel %>%
   mutate(pos = cumsum(value) - value / 2) %>%
   mutate(top = sum(value)) %>% 
   mutate(RenLineX = Sector + 0.23) %>% 
-  mutate(RenLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Biofuels", "Other Renewables"))])) %>% 
+  mutate(RenLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Biofuels", "Solar", "Other Renewables"))])) %>% 
   mutate(RenText = 1 - sum(value[which(variable %in% c("Coal", "Oil", "Gas", "Other", "Pumped Hydro", "Nuclear"))])) %>% 
   mutate(LCLineX = Sector - 0.23) %>% 
-  mutate(LCLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Biofuels", "Other Renewables", "Nuclear"))])) %>% 
+  mutate(LCLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Biofuels",  "Solar", "Other Renewables", "Nuclear"))])) %>% 
   mutate(LCText = 1 - sum(value[which(variable %in% c("Coal", "Oil", "Gas", "Other", "Pumped Hydro"))])) %>% 
   mutate(FossilLineX = Sector - 0.23) %>% 
   mutate(FossilLineY = sum(value[which(variable %in% c("Coal", "Oil", "Gas"))])) %>% 
@@ -197,10 +204,11 @@ sourcecaption <- "Source: BEIS"
 ChartColours <- c("#39ab2c", "#FF8500")
 BarColours <-
   c(
-    "#006d2c",
+    "#005a32",
     "#238b45",
     "#41ab5d",
     "#74c476",
+    "#a1d99b",
     "#6baed6",
     "#969696",
     "#fdae6b",
@@ -209,7 +217,7 @@ BarColours <-
     "#696969"
   )
 
-ElecGenFuelChart <- ElecGenFuelChart[which(ElecGenFuel$Year > 2016)]
+#ElecGenFuelChart <- ElecGenFuelChart[which(ElecGenFuel$Year > 2016)]
 
 ElecGenFuelChart <- ElecGenFuel %>%
   ggplot(aes(x = Sector, y = value, fill = variable), family = "Century Gothic") +
@@ -219,13 +227,14 @@ ElecGenFuelChart <- ElecGenFuel %>%
       "Wind" = BarColours[1],
       "Hydro" = BarColours[2],
       "Biofuels" = BarColours[3],
-      "Other Renewables" = BarColours[4],
-      "Nuclear" = BarColours[5],
-      "Pumped Hydro" = BarColours[6],
-      "Coal" = BarColours[7],
-      "Oil" = BarColours[8],
-      "Gas" = BarColours[9],
-      "Other" = BarColours[10]
+      "Solar" = BarColours[4],
+      "Other Renewables" = BarColours[5],
+      "Nuclear" = BarColours[6],
+      "Pumped Hydro" = BarColours[7],
+      "Coal" = BarColours[8],
+      "Oil" = BarColours[9],
+      "Gas" = BarColours[10],
+      "Other" = BarColours[11]
     )
   ) +
   geom_bar(stat = "identity", width = .4) +
@@ -297,16 +306,16 @@ geom_segment(mapping = aes(
     xend = LCLineX,
     y = LCLineY,
     yend = LCLineY - LCLineY),
-    colour =  BarColours[5],
+    colour =  BarColours[6],
     size = 1.5
   ) +
   
   geom_text(aes(
-    x =  LCLineX - 0.1,
+    x =  LCLineX - 0.121,
     y = LCLineY * 0.5,
     label = paste("Low Carbon:", percent(LCText, accuracy = .1))),
     size = 8,
-    colour = BarColours[5],
+    colour = BarColours[6],
     family = "Century Gothic",
     fontface = 2
   ) +
@@ -316,22 +325,22 @@ geom_segment(mapping = aes(
     xend = FossilLineX,
     y = top,
     yend = top - FossilLineY),
-    colour =  BarColours[8],
+    colour =  BarColours[9],
     size = 1.5
   ) +
   
   geom_text(aes(
-    x =  FossilLineX - 0.1,
+    x =  FossilLineX - 0.121,
     y = top - (FossilLineY * 0.5),
     label = paste("Fossil Fuels:", percent(FossilText, accuracy = .1))),
     size = 8,
-    colour = BarColours[8],
+    colour = BarColours[9],
     family = "Century Gothic",
     fontface = 2
   ) +
   geom_text(aes(
     x = 2.375,
-    y = ((0 / 9) * 1.1) - 0.1,
+    y = ((0 / 10) *1.15) - 0.121,
     label = "Wind"
   ),
   colour =  BarColours[1],
@@ -340,7 +349,7 @@ geom_segment(mapping = aes(
   geom_text(
     aes(
       x = 2.375,
-      y = ((1 / 9) * 1.1) - 0.1,
+      y = ((1 / 10) *1.15) - 0.121,
       label = "Hydro"
     ),
     colour =  BarColours[2],
@@ -350,8 +359,8 @@ geom_segment(mapping = aes(
   geom_text(
     aes(
       x = 2.375,
-      y = ((2 / 9) * 1.1) - 0.1,
-      label = "Biofuels"
+      y = ((2 / 10) *1.15) - 0.121,
+      label = "Bioenergy\n& wastes"
     ),
     colour =  BarColours[3],
     size = 7,
@@ -360,18 +369,18 @@ geom_segment(mapping = aes(
   geom_text(
     aes(
       x = 2.375,
-      y = ((3 / 9) * 1.1) - 0.1,
-      label = "Other\nRenewables"
+      y = ((3 / 10) *1.15) - 0.121,
+      label = "Solar\nPV"
     ),
-    colour =  BarColours[4],
+    colour =  BarColours[3],
     size = 7,
     family = "Century Gothic"
   ) +
   geom_text(
     aes(
       x = 2.375,
-      y = ((4 / 9) * 1.1) - 0.1,
-      label = "Nuclear"
+      y = ((4 / 10) *1.15) - 0.121,
+      label = "Other\nRenewables"
     ),
     colour =  BarColours[5],
     size = 7,
@@ -380,8 +389,8 @@ geom_segment(mapping = aes(
   geom_text(
     aes(
       x = 2.375,
-      y = ((5 / 9) * 1.1) - 0.1,
-      label = "Pumped\nHydro"
+      y = ((5 / 10) *1.15) - 0.121,
+      label = "Nuclear"
     ),
     colour =  BarColours[6],
     size = 7,
@@ -390,37 +399,47 @@ geom_segment(mapping = aes(
   geom_text(
     aes(
       x = 2.375,
-      y = ((6 / 9) * 1.1) - 0.1,
-      label = "Other"
+      y = ((6 / 10) *1.15) - 0.121,
+      label = "Pumped\nHydro"
     ),
-    colour =  BarColours[10],
+    colour =  BarColours[7],
     size = 7,
     family = "Century Gothic"
   ) +
   geom_text(
     aes(
       x = 2.375,
-      y = ((7 / 9) * 1.1) - 0.1,
+      y = ((7 / 10) *1.15) - 0.121,
+      label = "Other"
+    ),
+    colour =  BarColours[11],
+    size = 7,
+    family = "Century Gothic"
+  ) +
+  geom_text(
+    aes(
+      x = 2.375,
+      y = ((8 / 10) *1.15) - 0.121,
       label = "Coal"
     ),
-    colour =  BarColours[7],
+    colour =  BarColours[8],
     size = 7,
     family = "Century Gothic"
   ) +
   geom_text(aes(
     x = 2.375,
-    y = ((8 / 9) * 1.1) - 0.1,
+    y = ((9 / 10) *1.15) - 0.121,
     label = "Oil"
   ),
-  colour =  BarColours[8],
+  colour =  BarColours[9],
   size = 7,
   family = "Century Gothic") +
   geom_text(aes(
     x = 2.375,
-    y = ((9 / 9) * 1.1) - 0.1,
+    y = ((10 / 10) *1.15) - 0.121,
     label = "Gas"
   ),
-  colour =  BarColours[9],
+  colour =  BarColours[10],
   size = 7,
   family = "Century Gothic") +
   geom_text(aes(x = 2.8,
@@ -532,3 +551,4 @@ geom_segment(mapping = aes(
 animate(ElecGenFuelChart, height = (650), width = (1200), end_pause = 20)
 
 anim_save("Structure/2 - Renewables/Electricity/ElecGenAnimation.gif")
+
