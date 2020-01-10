@@ -252,9 +252,9 @@ ScotRenGen <- function(input, output, session) {
     Data %<>% lapply(function(x) as.numeric(as.character(x)))
     ScotRenGen <- as_tibble(Data)
     
-    names(ScotRenGen) <- c("Year", "Renewables - Scotland", "Renewables - UK", "Renewables - Scottish proportion of UK Total", 
-                           "Wind - Scotland", "Wind - UK", "Wind - Scottish proportion of UK Total",
-                           "Hydro - Scotland", "Hydro - UK", "Hydro - Scottish proportion of UK Total")
+    names(ScotRenGen) <- c("Year", "Renewables - Scotland (GWh)", "Renewables - UK (GWh)", "Renewables - Scottish proportion of UK Total", 
+                           "Wind - Scotland (GWh)", "Wind - UK (GWh)", "Wind - Scottish proportion of UK Total",
+                           "Hydro - Scotland (GWh)", "Hydro - UK (GWh)", "Hydro - Scottish proportion of UK Total")
     
     sketch = htmltools::withTags(table(
       class = 'display',
