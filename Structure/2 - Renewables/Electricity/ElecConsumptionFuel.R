@@ -94,7 +94,7 @@ ElecConsumptionFuel <- function(input, output, session) {
         n_max = 1
       )
     
-    Time <- paste0(Time[1, ncol(Time)-4], " - ", Time[1, ncol(Time)-1])
+    Time <- paste0(Time[1, ncol(Time)-3], " - ", Time[1, ncol(Time)])
     
     Time
   })
@@ -548,17 +548,14 @@ ElecConsumptionFuel <- function(input, output, session) {
     DataScot <- setDT(DataScot, keep.rownames = FALSE)
     
     names(DataScot) <- as.character(unlist(DataScot[1, ]))
-    
-    DataScot <- tail(DataScot,-1)
-    
-    DataScot <- head(DataScot,-1)
-    
+
     DataScot[,2:10] %<>% lapply(function(x)
       as.numeric(as.character(x)))
     
-    names(DataScot)[1] <- "Quarter"
+    names(DataScot)[1] <- "Rolling 4 Quarters - Ending"
     
     DataScot <- as_tibble(DataScot)
+    DataScot <- DataScot[complete.cases(DataScot),]
     
     datatable(
       DataScot,
@@ -613,16 +610,14 @@ ElecConsumptionFuel <- function(input, output, session) {
     
     names(DataEW) <- as.character(unlist(DataEW[1, ]))
     
-    DataEW <- tail(DataEW,-1)
-    
-    DataEW <- head(DataEW,-1)
-    
     DataEW[,2:10] %<>% lapply(function(x)
       as.numeric(as.character(x)))
     
-    names(DataEW)[1] <- "Quarter"
+    names(DataEW)[1] <- "Rolling 4 Quarters - Ending"
     
     DataEW <- as_tibble(DataEW)
+    
+    DataEW <- DataEW[complete.cases(DataEW),]
     
     datatable(
       DataEW,
@@ -675,7 +670,7 @@ ElecConsumptionFuel <- function(input, output, session) {
           n_max = 1
         )
       
-      Time <- paste0(Time[1, ncol(Time)-4], " - ", Time[1, ncol(Time)-1])
+      Time <- paste0(Time[1, ncol(Time)-3], " - ", Time[1, ncol(Time)])
       
       ### Load Packages and Functions
       
