@@ -246,7 +246,10 @@ WindHydroEU <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:ncol(EUWind), 0)
+      formatRound(2:ncol(EUWind), 0) %>% 
+      formatStyle(1,
+                  target = 'row',
+                  backgroundColor = styleEqual(c('Scotland'), c('#bdbdbd')))
   })
   
   output$EUWind.png <- downloadHandler(
@@ -568,7 +571,10 @@ WindHydroEU <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:ncol(EUHydro), 0)
+      formatRound(2:ncol(EUHydro), 0) %>% 
+      formatStyle(1,
+                  target = 'row',
+                  backgroundColor = styleEqual(c('Scotland'), c('#bdbdbd')))
   })
   
   output$EUHydro.png <- downloadHandler(
