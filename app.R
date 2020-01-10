@@ -119,11 +119,11 @@ observe({
       
       }
     
-    if(input$RenLowCarbon == "Emissions"){
+    if(input$RenLowCarbon == "LowCarbonEconomy"){
 
-        updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$RenLowCarbon,"&Chart=",input$Emissions), mode = "push")
+        updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$RenLowCarbon,"&Chart=",input$LowCarbonEconomy), mode = "push")
       
-      callModule(match.fun(input$Emissions), input$Emissions)
+      callModule(match.fun(input$LowCarbonEconomy), input$LowCarbonEconomy)
       
       }
   
@@ -493,7 +493,13 @@ ui <- shinyUI(fluidPage(
                  RenElecCapacityOutput("RenElecCapacity")),
         tabPanel(title ="Renewable Electricity Pipeline", 
                  value = "RenElecPipeline",
-                 RenElecPipelineOutput("RenElecPipeline"))
+                 RenElecPipelineOutput("RenElecPipeline")),
+        tabPanel(title ="Emissions displaced by Renewables", 
+                 value = "DisplacedEmissions",
+                 DisplacedEmissionsOutput("DisplacedEmissions")),
+        tabPanel(title ="Grid Emissions", 
+                 value = "GridEmissions",
+                 GridEmissionsOutput("GridEmissions"))
         )),
       tabPanel(
         value = "RenHeat",
@@ -530,25 +536,10 @@ ui <- shinyUI(fluidPage(
         )
       ),
       tabPanel(
-        value = "Emissions",
-        title = "Emissions",
-        navlistPanel(id = "Emissions",
+        value = "LowCarbonEconomy",
+        title = "Low Carbon Economy",
+        navlistPanel(id = "LowCarbonEconomy",
                      widths = c(3, 8),
-                     tabPanel(title ="Scottish Greenhouse Gas Emissions", 
-                              value = "GHGEmissions",
-                              GHGEmissionsOutput("GHGEmissions")),
-                     tabPanel(title ="Energy Supply Emissions", 
-                              value = "EnSupplyEmissions",
-                              EnSupplyEmissionsOutput("EnSupplyEmissions")),
-                     tabPanel(title ="Adjusted Emissions", 
-                              value = "AdjustedEmissions",
-                              AdjustedEmissionsOutput("AdjustedEmissions")),
-                     tabPanel(title ="Emissions displaced by Renewables", 
-                              value = "DisplacedEmissions",
-                              DisplacedEmissionsOutput("DisplacedEmissions")),
-                     tabPanel(title ="Grid Emissions", 
-                              value = "GridEmissions",
-                              GridEmissionsOutput("GridEmissions")),
                      tabPanel(title ="Low Carbon Economy", 
                               value = "LowCarbonEconomy",
                               LowCarbonEconomyOutput("LowCarbonEconomy"))
