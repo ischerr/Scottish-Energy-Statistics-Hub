@@ -23,7 +23,7 @@ RenElecFuelOutput <- function(id) {
     
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     #dygraphOutput(ns("RenElecFuelPlot")),
-    plotlyOutput(ns("RenElecFuelPlot"), height = "600px")%>% withSpinner(color="#39ab2c"),
+    plotlyOutput(ns("RenElecFuelPlot"), height = "900px")%>% withSpinner(color="#39ab2c"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Electricity generated",
              fluidRow(column(8,
@@ -37,7 +37,7 @@ RenElecFuelOutput <- function(id) {
              
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
              #dygraphOutput(ns("RenElecFuelPlot")),
-             plotlyOutput(ns("RenElecFuelGenPlot"), height = "600px")%>% withSpinner(color="#39ab2c"),
+             plotlyOutput(ns("RenElecFuelGenPlot"), height = "900px")%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
@@ -330,7 +330,7 @@ RenElecFuel <- function(input, output, session) {
         showlegend = FALSE,
         type = 'scatter',
         mode = 'text',
-        text = paste("<b>",format(round(RenElecCapFuel$Total, digits = 0), big.mark = ","),"GWh</b>"),
+        text = paste("<b>",format(round(RenElecCapFuel$Total, digits = 0), big.mark = ","),"MWe</b>"),
         textposition = 'middle right',
         textfont = list(color = ChartColours[1]),
         hoverinfo = 'skip',
@@ -397,7 +397,7 @@ RenElecFuel <- function(input, output, session) {
     
     
     datatable(
-      RenElecCapFuel,
+      RenElecCapFuel[c(1,9:2,10)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -462,7 +462,7 @@ RenElecFuel <- function(input, output, session) {
     RenElecGenFuel$Total <- RenElecGenFuel$`Other bioenergy` + RenElecGenFuel$`Sewage gas` + RenElecGenFuel$`Wave and tidal` + RenElecGenFuel$`Landfill gas` + RenElecGenFuel$`Solar PV` + RenElecGenFuel$Hydro + RenElecGenFuel$`Offshore Wind` + RenElecGenFuel$`Onshore Wind`
     
     datatable(
-      RenElecGenFuel,
+      RenElecGenFuel[c(1,9:2,10)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -612,7 +612,7 @@ RenElecFuel <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 2009,
+            x = 1999,
             y = 12350 * (.5 / 8),
             label = "Onshore\nWind"
           ),
@@ -624,7 +624,7 @@ RenElecFuel <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 2009,
+            x = 1999,
             y = 12350 * (1.5 / 8),
             label = "Offshore\nWind"
           ),
@@ -636,7 +636,7 @@ RenElecFuel <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 2009,
+            x = 1999,
             y = 12350 * (2.5 / 8),
             label = "Hydro"
           ),
@@ -648,7 +648,7 @@ RenElecFuel <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 2009,
+            x = 1999,
             y = 12350 * (3.5 / 8),
             label = "Solar PV"
           ),
@@ -660,7 +660,7 @@ RenElecFuel <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 2009,
+            x = 1999,
             y = 12350 * (4.5 / 8),
             label = "Landfill\ngas"
           ),
@@ -672,7 +672,7 @@ RenElecFuel <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 2009,
+            x = 1999,
             y = 12350 * (5.5 / 8),
             label = "Wave\nand Tidal"
           ),
@@ -684,7 +684,7 @@ RenElecFuel <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 2009,
+            x = 1999,
             y = 12350 * (6.5 / 8),
             label = "Sewage\nGas"
           ),
@@ -696,7 +696,7 @@ RenElecFuel <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 2009,
+            x = 1999,
             y = 12350 * (7.5 / 8),
             label = "Other\nBioenergy"
           ),
@@ -707,7 +707,7 @@ RenElecFuel <- function(input, output, session) {
           size = 3
         ) +
         geom_text(
-          aes(x = 2009.5,
+          aes(x = 1998,
               y = 12350 * (8 / 8),
               label = " "),
           fontface = 2,
@@ -793,7 +793,7 @@ RenElecFuel <- function(input, output, session) {
     
     Data <- distinct(Data, Year, .keep_all = TRUE)
     
-    Data <- head(Data, -2)
+    Data <- head(Data, -1)
     
     Data<-Data[dim(Data)[1]:1,]
     
@@ -1022,7 +1022,7 @@ RenElecFuel <- function(input, output, session) {
       
       Data <- distinct(Data, Year, .keep_all = TRUE)
       
-      Data <- head(Data, -2)
+      Data <- head(Data, -1)
       
       Data<-Data[dim(Data)[1]:1,]
       
@@ -1097,7 +1097,7 @@ RenElecFuel <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 2010,
+           x = 1999,
             y = 31000 * (.5 / 8),
             label = "Onshore\nWind"
           ),
@@ -1109,7 +1109,7 @@ RenElecFuel <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 2010,
+           x = 1999,
             y = 31000 * (1.5 / 8),
             label = "Offshore\nWind"
           ),
@@ -1121,7 +1121,7 @@ RenElecFuel <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 2010,
+           x = 1999,
             y = 31000 * (2.5 / 8),
             label = "Hydro"
           ),
@@ -1133,7 +1133,7 @@ RenElecFuel <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 2010,
+           x = 1999,
             y = 31000 * (3.5 / 8),
             label = "Solar PV"
           ),
@@ -1145,7 +1145,7 @@ RenElecFuel <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 2010,
+           x = 1999,
             y = 31000 * (4.5 / 8),
             label = "Landfill\ngas"
           ),
@@ -1157,7 +1157,7 @@ RenElecFuel <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 2010,
+           x = 1999,
             y = 31000 * (5.5 / 8),
             label = "Wave\nand Tidal"
           ),
@@ -1169,7 +1169,7 @@ RenElecFuel <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 2010,
+           x = 1999,
             y = 31000 * (6.5 / 8),
             label = "Sewage\nGas"
           ),
@@ -1181,7 +1181,7 @@ RenElecFuel <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 2010,
+           x = 1999,
             y = 31000 * (7.5 / 8),
             label = "Other\nBioenergy"
           ),
