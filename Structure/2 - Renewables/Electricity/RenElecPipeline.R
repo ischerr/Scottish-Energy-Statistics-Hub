@@ -11,9 +11,9 @@ RenElecPipelineOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("Pipeline renewable capacity by plannng stage",
+      tabPanel("Pipeline renewable capacity",
                fluidRow(column(8,
-                               h3("Pipeline renewable capacity", style = "color: #39ab2c;  font-weight:bold"),
+                               h3("Pipeline renewable capacity by planing stage", style = "color: #39ab2c;  font-weight:bold"),
                                h4(textOutput(ns('RenElecPipelineCapSubtitle')), style = "color: #39ab2c;")
                ),
                column(
@@ -25,7 +25,7 @@ RenElecPipelineOutput <- function(id) {
                #dygraphOutput(ns("RenElecCapacityPlot")),
                plotlyOutput(ns("RenElecPipelineCapPlot"), height = "200px")%>% withSpinner(color="#39ab2c"),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-      tabPanel("2",
+      tabPanel("Pipeline capacity tech",
     fluidRow(column(8,
                     h3("Pipeline renewable capacity by technology", style = "color: #39ab2c;  font-weight:bold"),
                     h4(textOutput(ns('RenElecPipelineSubtitle')), style = "color: #39ab2c;")
@@ -48,17 +48,25 @@ RenElecPipelineOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     tabsetPanel(
-      tabPanel("Operational Capacity",
+      tabPanel("Pipeline Capacity",
                fluidRow(
-    column(10, h3("Data", style = "color: #39ab2c;  font-weight:bold")),
+    column(10, h3("Data - Pipeline Capacity (MW)", style = "color: #39ab2c;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("RenElecPipelineTable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Pipeline Capacity",
+    tabPanel("LA Pipeline Capacity",
              fluidRow(
-               column(10, h3("Data", style = "color: #39ab2c;  font-weight:bold")),
+               column(10, h3("Data - Pipeline Capacity by Local Authority", style = "color: #39ab2c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("RenElecPipelineLATable"))%>% withSpinner(color="#39ab2c"))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Pipeline Projects",
+             fluidRow(
+               column(10, h3("Data - Pipeline Projects by Tech", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -66,7 +74,7 @@ RenElecPipelineOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Pipeline Capacity Time Series",
              fluidRow(
-               column(10, h3("Data", style = "color: #39ab2c;  font-weight:bold")),
+               column(10, h3("Data - Pipeline Capacity Time Series (GW)", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -132,23 +140,14 @@ RenElecPipeline <- function(input, output, session) {
     RenElecPipeline$Total <- RenElecPipeline$`Under Construction` + RenElecPipeline$`Awaiting Construction` + RenElecPipeline$`In Planning`
     
     names(RenElecPipeline)[1] <- "Type"
-    
-    # 
-    # Data <- as.data.frame(t(Data))
-    # 
-    # names(Data) <-  as.character(unlist(Data[1,]))
-    # names(Data)[1] <- "Type"
-    # Data <- tail(Data,-1)
-    # Data %<>% lapply(function(x) as.numeric(as.character(x)))
-    # Data <- as.data.frame(Data)
-    
+
     RenElecPipeline <- RenElecPipeline[which(RenElecPipeline$Total > 0),]
     
     RenElecPipeline <- arrange(RenElecPipeline, RenElecPipeline$Total)
     
-    rownames(RenElecPipeline) <- NULL
+    RenElecPipeline$Type <- paste0("<b>", RenElecPipeline$Type, "</b>")
     
-    #RenElecPipeline$Type <- as.numeric(rownames(RenElecPipeline))
+    rownames(RenElecPipeline) <- NULL
     
     ChartColours <- c("#39ab2c", "#FF8500")
     BarColours <-
@@ -308,12 +307,68 @@ RenElecPipeline <- function(input, output, session) {
       formatRound(2:ncol(RenElecPipeline), 0)
   })
   
+  output$RenElecPipelineLATable = renderDataTable({
+    
+    RenElecPipeline <- read_excel("Structure/CurrentWorking.xlsx",
+                                  sheet = "Table 2.3", col_names = TRUE, skip = 4
+    )[1:4]
+    
+    names(RenElecPipeline) <- c("Local Authority", "In Planning", "Awaiting Construction", "Under Construction")
+    
+    RenElecPipeline <- RenElecPipeline[complete.cases(RenElecPipeline),]
+    
+    LALookup <- read_excel("Structure/LALookup.xlsx", 
+                           sheet = "LA to Code")
+    
+    names(LALookup) <- c("Local Authority", "LA Code")
+    
+    RenElecPipeline <- merge(RenElecPipeline, LALookup, all.x = TRUE)
+    
+    RenElecPipeline$Total <- RenElecPipeline$`In Planning` + RenElecPipeline$`Awaiting Construction` + RenElecPipeline$`Under Construction`
+    
+    RenElecPipeline <- RenElecPipeline[c(1:22,24:31,33,34,23,32),c(1,5,2,3,4,6)]
+    
+    datatable(
+      RenElecPipeline,
+      extensions = 'Buttons',
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        title = "Pipeline renewable capacity by planning stage and local authority (MW)",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Pipeline renewable capacity by planning stage and local authority (MW)',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Pipeline renewable capacity by planning stage and local authority (MW)')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(3:ncol(RenElecPipeline), 0)
+    
+  })
+  
   output$RenElecPipelineCapTable = renderDataTable({
     
     RenElecPipeline <- read_excel("Structure/CurrentWorking.xlsx",
                                   sheet = "Renewable elec pipeline", col_names = TRUE, 
                                   skip = 16,
-                                  n_max = 10)
+                                  n_max = 11)
     
     RenElecPipeline <- RenElecPipeline[c(7:9)]
     
@@ -370,6 +425,10 @@ RenElecPipeline <- function(input, output, session) {
     toggle("RenElecPipelineTable")
   })
   
+  observeEvent(input$ToggleTable4, {
+    toggle("RenElecPipelineLATable")
+  })
+  
   observeEvent(input$ToggleTable2, {
     toggle("RenElecPipelineCapTable")
   })
@@ -378,10 +437,23 @@ RenElecPipeline <- function(input, output, session) {
     toggle("Text")
   })
   
-  
+        Time <- read_excel("Structure/CurrentWorking.xlsx", 
+                         sheet = "Renewable elec pipeline", col_names = TRUE,
+                         skip = 29, n_max = 1)
+      Quarter <- substr(Time[1,1], 8,8)
+      
+      Quarter <- as.numeric(Quarter)*3
+      
+      Year <- substr(Time[1,1], 1,4)
+      
+      Subtitle <- paste("Scotland,", month.name[Quarter], Year)
+      
+      
   output$RenElecPipeline.png <- downloadHandler(
     filename = "RenElecPipeline.png",
     content = function(file) {
+      
+
 
       ### Load Packages and Functions
       Data2 <- read_excel("Structure/CurrentWorking.xlsx",
@@ -506,48 +578,7 @@ RenElecPipeline <- function(input, output, session) {
           colour = BarColours[4],
           family = "Century Gothic"
         )
-      # geom_text(
-      #   aes(
-      #     x = 4.77,
-      #     y = .45/2,
-      #     label = "Petroleum\nproducts",
-      #     fontface = 2
-      #   ),
-      #   colour = BarColours[1],
-      #   family = "Century Gothic"
-      # ) +
-      # geom_text(
-      #   aes(
-      #     x = 4.7,
-      #     y = (.33/2)+.45,
-      #     label = "Gas",
-      #     fontface = 2
-      #   ),
-      #   colour = BarColours[2],
-      #   family = "Century Gothic"
-      # ) +
-      # geom_text(
-      #   aes(
-      #     x = 4.7,
-      #     y = (.22/2)+.33+.45,
-      #     label = "Other\nfuels",
-      #     fontface = 2
-      #   ),
-      #   colour = BarColours[3],
-      #   family = "Century Gothic"
-      # )+
-      # geom_text(
-      #   aes(
-      #     x = 5.05,
-      #     y = .5,
-      #     label = "",
-      #     fontface = 2
-      #   ),
-      #   colour = "black",
-      #   family = "Century Gothic"
-      # )
-      
-      
+
       
       RenElecCapTechChart
       
@@ -561,7 +592,7 @@ RenElecPipeline <- function(input, output, session) {
       
       RenElecCapTechChart <-
         RenElecCapTechChart +
-        labs(subtitle = "Scotland, June 2019") +
+        labs(subtitle = Subtitle) +
         ylim(-4000, max(RenElecCapTech$top)+1800)+
         coord_flip()
       
@@ -1032,7 +1063,7 @@ RenElecPipeline <- function(input, output, session) {
       
       PipelineTotalChart <-
         PipelineTotalChart +
-        labs(subtitle = "Scotland, September 2019") +
+        labs(subtitle = Subtitle) +
         ylim(-2, max(PipelineTotal$top)+1.700)+
         coord_flip()
       
