@@ -610,10 +610,6 @@ RenElecPipeline <- function(input, output, session) {
   )
   
   
-  observeEvent(input$ToggleTable2, {
-    toggle("RenElecPipelineCapTable")
-  })
-  
   observeEvent(input$ToggleTable3, {
     toggle("RenElecPipelineTimeTable")
   })
