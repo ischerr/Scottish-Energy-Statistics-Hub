@@ -159,12 +159,12 @@ RenHeatTech <- function(input, output, session) {
                 line = list(width = 6, color = LineColours[1], dash = "none")
       ) %>% 
       add_trace(y = ~ CHP,
-                name = "CHP",
+                name = "Biomass CHP",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "2",
                 text = paste0(
-                  "CHP: ",
+                  "Biomass CHP: ",
                   round(RenHeatCapTech$CHP, digits = 3),
                   " GW\nYear: ",
                   format(RenHeatCapTech$Year, "%Y")
@@ -173,12 +173,12 @@ RenHeatTech <- function(input, output, session) {
                 line = list(width = 6, color = LineColours[2], dash = "none")
       ) %>% 
       add_trace(y = ~ Waste,
-                name = "Waste",
+                name = "Energy from waste",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "3",
                 text = paste0(
-                  "Waste: ",
+                  "Energy from waste: ",
                   round(RenHeatCapTech$Waste, digits = 3),
                   " GW\nYear: ",
                   format(RenHeatCapTech$Year, "%Y")
@@ -187,12 +187,12 @@ RenHeatTech <- function(input, output, session) {
                 line = list(width = 6, color = LineColours[3], dash = "none")
       ) %>% 
       add_trace(y = ~ Pumps,
-                name = "Pumps",
+                name = "Heat pumps",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "4",
                 text = paste0(
-                  "Pumps: ",
+                  "Heat pumps: ",
                   round(RenHeatCapTech$Pumps, digits = 3),
                   " GW\nYear: ",
                   format(RenHeatCapTech$Year, "%Y")
@@ -201,12 +201,12 @@ RenHeatTech <- function(input, output, session) {
                 line = list(width = 6, color = LineColours[4], dash = "none")
       ) %>% 
       add_trace(y = ~ Solar,
-                name = "Solar",
+                name = "Solar thermal",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "5",
                 text = paste0(
-                  "Solar: ",
+                  "Solar thermal: ",
                   round(RenHeatCapTech$Solar, digits = 3),
                   " GW\nYear: ",
                   format(RenHeatCapTech$Year, "%Y")
@@ -237,10 +237,10 @@ RenHeatTech <- function(input, output, session) {
         data = tail(RenHeatCapTech[which(RenHeatCapTech$`CHP` != 0),], 1),
         x = ~ Year,
         y = ~ `CHP`,
-        name = "CHP",
+        name = "Biomass CHP",
         legendgroup = "2",
         text = paste0(
-          "CHP: ",
+          "Biomass CHP: ",
           round(tail(RenHeatCapTech[which(RenHeatCapTech$`CHP` != 0),], 1)$CHP, digits = 3),
           " GW\nYear: ",
           format(tail(RenHeatCapTech[which(RenHeatCapTech$`CHP` != 0),], 1)$Year, "%Y")
@@ -256,10 +256,10 @@ RenHeatTech <- function(input, output, session) {
         data = tail(RenHeatCapTech[which(RenHeatCapTech$`Waste` != 0),], 1),
         x = ~ Year,
         y = ~ `Waste`,
-        name = "Waste",
+        name = "Energy from waste",
         legendgroup = "3",
         text = paste0(
-          "Waste: ",
+          "Energy from waste: ",
           round(tail(RenHeatCapTech[which(RenHeatCapTech$`Waste` != 0),], 1)$Waste, digits = 3),
           " GW\nYear: ",
           format(tail(RenHeatCapTech[which(RenHeatCapTech$`Waste` != 0),], 1)$Year, "%Y")
@@ -275,10 +275,10 @@ RenHeatTech <- function(input, output, session) {
         data = tail(RenHeatCapTech[which(RenHeatCapTech$`Pumps` != 0),], 1),
         x = ~ Year,
         y = ~ `Pumps`,
-        name = "Pumps",
+        name = "Heat pumps",
         legendgroup = "4",
         text = paste0(
-          "Pumps: ",
+          "Heat pumps: ",
           round(tail(RenHeatCapTech[which(RenHeatCapTech$`Pumps` != 0),], 1)$Pumps, digits = 3),
           " GW\nYear: ",
           format(tail(RenHeatCapTech[which(RenHeatCapTech$`Pumps` != 0),], 1)$Year, "%Y")
@@ -294,10 +294,10 @@ RenHeatTech <- function(input, output, session) {
         data = tail(RenHeatCapTech[which(RenHeatCapTech$`Solar` != 0),], 1),
         x = ~ Year,
         y = ~ `Solar`,
-        name = "Solar",
+        name = "Solar thermal",
         legendgroup = "5",
         text = paste0(
-          "Solar: ",
+          "Solar thermal: ",
           round(tail(RenHeatCapTech[which(RenHeatCapTech$`Solar` != 0),], 1)$Solar, digits = 3),
           " GW\nYear: ",
           format(tail(RenHeatCapTech[which(RenHeatCapTech$`Solar` != 0),], 1)$Year, "%Y")
@@ -402,12 +402,12 @@ RenHeatTech <- function(input, output, session) {
                 line = list(width = 6, color = LineColours[1], dash = "none")
       ) %>% 
       add_trace(y = ~ CHP,
-                name = "CHP",
+                name = "Biomass CHP",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "2",
                 text = paste0(
-                  "CHP: ",
+                  "Biomass CHP: ",
                   format(round(RenHeatOutputTech$CHP, digits = 0), big.mark = ","),
                   " GWh\nYear: ",
                   format(RenHeatOutputTech$Year, "%Y")
@@ -416,12 +416,12 @@ RenHeatTech <- function(input, output, session) {
                 line = list(width = 6, color = LineColours[2], dash = "none")
       ) %>% 
       add_trace(y = ~ Waste,
-                name = "Waste",
+                name = "Energy from waste",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "3",
                 text = paste0(
-                  "Waste: ",
+                  "Energy from waste: ",
                   format(round(RenHeatOutputTech$Waste, digits = 0), big.mark = ","),
                   " GWh\nYear: ",
                   format(RenHeatOutputTech$Year, "%Y")
@@ -430,12 +430,12 @@ RenHeatTech <- function(input, output, session) {
                 line = list(width = 6, color = LineColours[3], dash = "none")
       ) %>% 
       add_trace(y = ~ Pumps,
-                name = "Pumps",
+                name = "Heat pumps",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "4",
                 text = paste0(
-                  "Pumps: ",
+                  "Heat pumps: ",
                   format(round(RenHeatOutputTech$Pumps, digits = 0), big.mark = ","),
                   " GWh\nYear: ",
                   format(RenHeatOutputTech$Year, "%Y")
@@ -444,12 +444,12 @@ RenHeatTech <- function(input, output, session) {
                 line = list(width = 6, color = LineColours[4], dash = "none")
       ) %>% 
       add_trace(y = ~ Solar,
-                name = "Solar",
+                name = "Solar thermal",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "5",
                 text = paste0(
-                  "Solar: ",
+                  "Solar thermal: ",
                   format(round(RenHeatOutputTech$Solar, digits = 0), big.mark = ","),
                   " GWh\nYear: ",
                   format(RenHeatOutputTech$Year, "%Y")
@@ -480,10 +480,10 @@ RenHeatTech <- function(input, output, session) {
         data = tail(RenHeatOutputTech[which(RenHeatOutputTech$`CHP` != 0),], 1),
         x = ~ Year,
         y = ~ `CHP`,
-        name = "CHP",
+        name = "Biomass CHP",
         legendgroup = "2",
         text = paste0(
-          "CHP: ",
+          "Biomass CHP: ",
           format(tail(RenHeatOutputTech[which(RenHeatOutputTech$`CHP` != 0),], 1)$CHP, big.mark = ","),
           " GWh\nYear: ",
           format(tail(RenHeatOutputTech[which(RenHeatOutputTech$`CHP` != 0),], 1)$Year, "%Y")
@@ -499,10 +499,10 @@ RenHeatTech <- function(input, output, session) {
         data = tail(RenHeatOutputTech[which(RenHeatOutputTech$`Waste` != 0),], 1),
         x = ~ Year,
         y = ~ `Waste`,
-        name = "Waste",
+        name = "Energy from waste",
         legendgroup = "3",
         text = paste0(
-          "Waste: ",
+          "Energy from waste: ",
           format(tail(RenHeatOutputTech[which(RenHeatOutputTech$`Waste` != 0),], 1)$Waste, big.mark = ","),
           " GWh\nYear: ",
           format(tail(RenHeatOutputTech[which(RenHeatOutputTech$`Waste` != 0),], 1)$Year, "%Y")
@@ -518,10 +518,10 @@ RenHeatTech <- function(input, output, session) {
         data = tail(RenHeatOutputTech[which(RenHeatOutputTech$`Pumps` != 0),], 1),
         x = ~ Year,
         y = ~ `Pumps`,
-        name = "Pumps",
+        name = "Heat pumps",
         legendgroup = "4",
         text = paste0(
-          "Pumps: ",
+          "Heat pumps: ",
           format(tail(RenHeatOutputTech[which(RenHeatOutputTech$`Pumps` != 0),], 1)$Pumps, big.mark = ","),
           " GWh\nYear: ",
           format(tail(RenHeatOutputTech[which(RenHeatOutputTech$`Pumps` != 0),], 1)$Year, "%Y")
@@ -537,10 +537,10 @@ RenHeatTech <- function(input, output, session) {
         data = tail(RenHeatOutputTech[which(RenHeatOutputTech$`Solar` != 0),], 1),
         x = ~ Year,
         y = ~ `Solar`,
-        name = "Solar",
+        name = "Solar thermal",
         legendgroup = "5",
         text = paste0(
-          "Solar: ",
+          "Solar thermal: ",
           format(tail(RenHeatOutputTech[which(RenHeatOutputTech$`Solar` != 0),], 1)$Solar, big.mark = ","),
           " GWh\nYear: ",
           format(tail(RenHeatOutputTech[which(RenHeatOutputTech$`Solar` != 0),], 1)$Year, "%Y")
@@ -589,7 +589,7 @@ RenHeatTech <- function(input, output, session) {
         skip = 13, n_max = 7)
     
     Data <- as.data.frame(t(Data))
-    names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar", "Total")
+    names(Data) <- c("Year", "Biomass", "Biomass CHP", "Energy from waste", "Heat pumps", "Solar thermal", "Total")
     Data %<>% lapply(function(x) as.numeric(as.character(x)))
     Data <- as_tibble(Data)
     Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
@@ -643,7 +643,7 @@ RenHeatTech <- function(input, output, session) {
         skip = 13, n_max = 7)
     
     Data <- as.data.frame(t(Data))
-    names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar", "Total")
+    names(Data) <- c("Year", "Biomass", "Biomass CHP", "Energy from waste", "Heat pumps", "Solar thermal", "Total")
     Data %<>% lapply(function(x) as.numeric(as.character(x)))
     Data <- as_tibble(Data)
     Data <- arrange(Data, -row_number())
