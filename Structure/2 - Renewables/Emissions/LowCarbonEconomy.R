@@ -50,7 +50,7 @@ LowCarbonEconomyOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     tabsetPanel(
-      tabPanel("Employment",
+      tabPanel("Employment - Overview",
     fluidRow(
     column(10, h3("Data - Employment", style = "color: #39ab2c;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
@@ -59,13 +59,31 @@ LowCarbonEconomyOutput <- function(id) {
       column(12, dataTableOutput(ns("LowCarbonEconomyTable"))%>% withSpinner(color="#39ab2c"))),
     p("*Blank cells have been suppressed for disclosure control"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Turnover",
+    tabPanel("Employment - Direct Activity",
              fluidRow(
-               column(10, h3("Data - Turnover - \u00A3bn", style = "color: #39ab2c;  font-weight:bold")),
+               column(10, h3("Data - Full time equivalent jobs directly supported by the LCRE sector", style = "color: #39ab2c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("LowCarbonEconomyDirectEmploymentTable"))%>% withSpinner(color="#39ab2c"))),
+             p("*Blank cells have been suppressed for disclosure control"),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Turnover - Overview",
+             fluidRow(
+               column(10, h3("Data - Turnover (\u00A3000s)", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("LowCarbonEconomyTurnoverTable"))%>% withSpinner(color="#39ab2c"))),
+             p("*Blank cells have been suppressed for disclosure control"),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Turnover - Direct Activity",
+             fluidRow(
+               column(10, h3("Data - Turnover directly supported by the LCRE sector (\u00A3000s)", style = "color: #39ab2c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("LowCarbonEconomyDirectTurnoverTable"))%>% withSpinner(color="#39ab2c"))),
              p("*Blank cells have been suppressed for disclosure control"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
@@ -253,11 +271,128 @@ LowCarbonEconomy <- function(input, output, session) {
     
   })
   
-  
     output$LowCarbonEconomyTable = renderDataTable({
     
+      Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                         sheet = "Low carbon economy", skip = 15, col_names = FALSE)
+      
+      Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
+      
+      Data <- fill(Data, 1)
+      
+      names(Data) <- unlist(Data[1,])
+      
+      names(Data)[1:2] <- c("Year","Category")
+      
+      Data = Data[-1, ]
+      
+      Data <- Data[c(1,2,5,6,7,8)]
+      
+      Data <- Data[which(Data$Category == "Employees  (FTE)"),]
+      
+      Data$Category <- NULL
+      
+      datatable(
+        Data,
+        extensions = 'Buttons',
+        # container = sketch,
+        rownames = FALSE,
+        options = list(
+          paging = TRUE,
+          pageLength = -1,
+          searching = TRUE,
+          fixedColumns = FALSE,
+          autoWidth = TRUE,
+          ordering = TRUE,
+          title = "Full time equivalent jobs supported by the LCRE sector",
+          dom = 'ltBp',
+          buttons = list(
+            list(extend = 'copy'),
+            list(
+              extend = 'excel',
+              title = 'Full time equivalent jobs supported by the LCRE sector',
+              header = TRUE
+            ),
+            list(extend = 'csv',
+                 title = 'Full time equivalent jobs supported by the LCRE sector')
+          ),
+          
+          # customize the length menu
+          lengthMenu = list( c(10, 20, -1) # declare values
+                             , c(10, 20, "All") # declare titles
+          ), # end of lengthMenu customization
+          pageLength = -1
+        )
+      ) %>%
+        formatRound(2:4, 0) %>% 
+        formatPercentage(5, 1) %>% 
+        formatStyle(c(5), fontStyle = "italic") %>% 
+        formatStyle(c(4), fontWeight = "bold")
+  })
+  
+    output$LowCarbonEconomyTurnoverTable = renderDataTable({
+    
+      Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                         sheet = "Low carbon economy", skip = 15, col_names = FALSE)
+      
+      Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
+      
+      Data <- fill(Data, 1)
+      
+      names(Data) <- unlist(Data[1,])
+      
+      names(Data)[1:2] <- c("Year","Category")
+      
+      Data = Data[-1, ]
+      
+      Data <- Data[c(1,2,5,6,7,8)]
+      
+      Data <- Data[which(substr(Data$Category, 1,8) == "Turnover"),]
+      
+      Data$Category <- NULL
+      
+      datatable(
+        Data,
+        extensions = 'Buttons',
+        # container = sketch,
+        rownames = FALSE,
+        options = list(
+          paging = TRUE,
+          pageLength = -1,
+          searching = TRUE,
+          fixedColumns = FALSE,
+          autoWidth = TRUE,
+          ordering = TRUE,
+          title = "Turnover supported by the LCRE sector (u00A3000s)",
+          dom = 'ltBp',
+          buttons = list(
+            list(extend = 'copy'),
+            list(
+              extend = 'excel',
+              title = 'Turnover supported by the LCRE sector (u00A3000s)',
+              header = TRUE
+            ),
+            list(extend = 'csv',
+                 title = 'Turnover supported by the LCRE sector (u00A3000s)')
+          ),
+          
+          # customize the length menu
+          lengthMenu = list( c(10, 20, -1) # declare values
+                             , c(10, 20, "All") # declare titles
+          ), # end of lengthMenu customization
+          pageLength = -1
+        )
+      ) %>%
+        formatRound(2:4, 0) %>% 
+        formatPercentage(5, 1) %>% 
+        formatStyle(c(5), fontStyle = "italic") %>% 
+        formatStyle(c(4), fontWeight = "bold")
+  })
+    
+    output$LowCarbonEconomyDirectEmploymentTable = renderDataTable({
+      
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Low carbon economy", skip = 15, col_names = FALSE)
+            sheet = "Low carbon economy", skip = 15, col_names = FALSE)
     
     Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
     
@@ -275,73 +410,7 @@ LowCarbonEconomy <- function(input, output, session) {
     
     Data <- Data[complete.cases(Data),]
     
-    Data[2:5] %<>% lapply(function(x) as.numeric(as.character(x)))
-    
-    Data <- Data[-4, ]
-    
-    Data[Data == 0] <- NA
-    
-    LowCarbonEconomy <- Data
-    
-    datatable(
-      LowCarbonEconomy,
-      extensions = 'Buttons',
-     # container = sketch,
-      rownames = FALSE,
-      options = list(
-        paging = TRUE,
-        pageLength = -1,
-        searching = TRUE,
-        fixedColumns = FALSE,
-        autoWidth = TRUE,
-        ordering = TRUE,
-        title = "Full time equivalent jobs directly supported by the LCRE sector",
-        dom = 'ltBp',
-        buttons = list(
-          list(extend = 'copy'),
-          list(
-            extend = 'excel',
-            title = 'Full time equivalent jobs directly supported by the LCRE sector',
-            header = TRUE
-          ),
-          list(extend = 'csv',
-               title = 'Full time equivalent jobs directly supported by the LCRE sector')
-        ),
-        
-        # customize the length menu
-        lengthMenu = list( c(10, 20, -1) # declare values
-                           , c(10, 20, "All") # declare titles
-        ), # end of lengthMenu customization
-        pageLength = -1
-      )
-    ) %>%
-      formatRound(2:5, 0)
-  })
-  
-    output$LowCarbonEconomyTurnoverTable = renderDataTable({
-    
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Low carbon economy", skip = 15, col_names = FALSE)
-    
-    Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
-    
-    Data <- fill(Data, 1)
-    
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- unlist(Data[1,])
-    
-    names(Data)[1] <- c("Category")
-    
-    Data = Data[-1, ]
-    
-    Data <- Data[c(1,3,5,7,9)]
-    
-    Data <- Data[complete.cases(Data),]
-    
-    Data[2:5] %<>% lapply(function(x) as.numeric(as.character(x))/1000000)
-    
-    Data <- Data[-4, ]
+    Data <- Data[-(1:4), ]
     
     Data[Data == 0] <- NA
     
@@ -359,17 +428,17 @@ LowCarbonEconomy <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Turnover directly supported by the LCRE sector (\u00A3bn)",
+        title = "Turnover directly supported by the LCRE sector (\u00A3000s)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Turnover directly supported by the LCRE sector (\u00A3bn)',
+            title = 'Turnover directly supported by the LCRE sector (\u00A3000s)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Turnover directly supported by the LCRE sector (\u00A3bn)')
+               title = 'Turnover directly supported by the LCRE sector (\u00A3000s)')
         ),
         
         # customize the length menu
@@ -379,12 +448,91 @@ LowCarbonEconomy <- function(input, output, session) {
         pageLength = -1
       )
     ) %>%
-      formatRound(2:5, 3)
-  })
+      formatRound(2:5, 0) %>% 
+      formatStyle(1,
+                  target = 'row',
+                  backgroundColor = styleEqual(c('Renewable sector', 'Low carbon'), c('#969696', '#969696' ))
+      )  %>% 
+      formatStyle(1,
+                  target = 'row',
+                  backgroundColor = styleEqual(c('Low carbon electricity', 'Low carbon heat', 'Energy from waste and biomass', 'Energy efficient products', 'Low carbon services'), c('#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd'))
+      )
+    })
+    
+    output$LowCarbonEconomyDirectTurnoverTable = renderDataTable({
+      
+      Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                         sheet = "Low carbon economy", skip = 15, col_names = FALSE)
+      
+      Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
+      
+      Data <- fill(Data, 1)
+      
+      Data <- as_tibble(t(Data))
+      
+      names(Data) <- unlist(Data[1,])
+      
+      names(Data)[1] <- c("Category")
+      
+      Data = Data[-1, ]
+      
+      Data <- Data[c(1,3,5,7,9)]
+      
+      Data <- Data[complete.cases(Data),]
+      
+      Data <- Data[-(1:4), ]
+      
+      Data[Data == 0] <- NA
+      
+      LowCarbonEconomy <- Data
+      
+      datatable(
+        LowCarbonEconomy,
+        extensions = 'Buttons',
+        # container = sketch,
+        rownames = FALSE,
+        options = list(
+          paging = TRUE,
+          pageLength = -1,
+          searching = TRUE,
+          fixedColumns = FALSE,
+          autoWidth = TRUE,
+          ordering = TRUE,
+          title = "Turnover directly supported by the LCRE sector (\u00A3000s)",
+          dom = 'ltBp',
+          buttons = list(
+            list(extend = 'copy'),
+            list(
+              extend = 'excel',
+              title = 'Turnover directly supported by the LCRE sector (\u00A3000s)',
+              header = TRUE
+            ),
+            list(extend = 'csv',
+                 title = 'Turnover directly supported by the LCRE sector (\u00A3000s)')
+          ),
+          
+          # customize the length menu
+          lengthMenu = list( c(10, 20, -1) # declare values
+                             , c(10, 20, "All") # declare titles
+          ), # end of lengthMenu customization
+          pageLength = -1
+        )
+      ) %>%
+        formatRound(2:5, 0) %>% 
+        formatStyle(1,
+                    target = 'row',
+                    backgroundColor = styleEqual(c('Renewable sector', 'Low carbon'), c('#969696', '#969696' ))
+        )  %>% 
+        formatStyle(1,
+                    target = 'row',
+                    backgroundColor = styleEqual(c('Low carbon electricity', 'Low carbon heat', 'Energy from waste and biomass', 'Energy efficient products', 'Low carbon services'), c('#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd'))
+        )
+    })
+    
+    
+    
   
-  
-  
-  output$Text <- renderUI({
+    output$Text <- renderUI({
     tagList(column(12,
                    HTML(
                      paste(readtext("Structure/2 - Renewables/Emissions/LowCarbonEconomy.txt")[2])
@@ -392,33 +540,37 @@ LowCarbonEconomy <- function(input, output, session) {
                    )))
   })
   
-  
-  observeEvent(input$ToggleTable, {
+    observeEvent(input$ToggleTable, {
     toggle("LowCarbonEconomyTable")
   })
   
-  observeEvent(input$ToggleTable2, {
+    observeEvent(input$ToggleTable2, {
     toggle("LowCarbonEconomyTurnoverTable")
   })
+    
+    observeEvent(input$ToggleTable3, {
+      toggle("LowCarbonEconomyDirectEmploymentTable")
+    })
+    
+    observeEvent(input$ToggleTable4, {
+      toggle("LowCarbonEconomyDirectTurnoverTable")
+    })
   
-  observeEvent(input$ToggleText, {
+    observeEvent(input$ToggleText, {
     toggle("Text")
   })
   
-  
-  output$LowCarbonEconomy.png <- downloadHandler(
+    output$LowCarbonEconomy.png <- downloadHandler(
     filename = "LowCarbonEconomy.png",
     content = function(file) {
       writePNG(readPNG("Structure/2 - Renewables/Emissions/LCREJobs.png"), file) 
     }
-  )
-  
-  output$LowCarbonEconomyTurnover.png <- downloadHandler(
+    )
+    
+    output$LowCarbonEconomyTurnover.png <- downloadHandler(
     filename = "LowCarbonEconomyTurnover.png",
     content = function(file) {
       writePNG(readPNG("Structure/2 - Renewables/Emissions/LCRETurnover.png"), file) 
     }
-      
-    
-  )
+    )
 }

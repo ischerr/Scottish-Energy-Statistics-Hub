@@ -57,9 +57,9 @@ ULEVsOutput <- function(id) {
     fluidRow(
       column(12, dataTableOutput(ns("ULEVsTable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Registrations",
+    tabPanel("First Time Registrations",
       fluidRow(
-        column(10, h3("Data - First time registrations", style = "color: #39ab2c;  font-weight:bold")),
+        column(10, h3("Data - All ULEVs registered for the first time in Scotland", style = "color: #39ab2c;  font-weight:bold")),
         column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
       ),
       fluidRow(
@@ -234,7 +234,7 @@ ULEVs <- function(input, output, session) {
                   "Proportion: ",
                   percent(ULEVRegOutput$Proportion, accuracy = 0.1),
                   "\nYear: ",
-                  format(ULEVRegOutput$Year, "%Y")
+                  format(ULEVRegOutput$Year, "%Y Q%q")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = LineColours[1], dash = "none")
@@ -249,7 +249,7 @@ ULEVs <- function(input, output, session) {
           "Proportion: ",
           percent(tail(ULEVRegOutput[which(ULEVRegOutput$`Proportion` != 0),], 1)$`Proportion`, accuracy = 0.1),
           "\nYear: ",
-          format(tail(ULEVRegOutput[which(ULEVRegOutput$`Proportion` != 0),], 1)$Year, "%Y")
+          format(tail(ULEVRegOutput[which(ULEVRegOutput$`Proportion` != 0),], 1)$Year, "%Y Q%q")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -294,7 +294,7 @@ ULEVs <- function(input, output, session) {
         sheet = "ULEVs", col_names = TRUE, 
         skip = 14)
     
-    Data <- Data[c(1:7)]
+    Data <- Data[c(1:4,6:7)]
     
     ULEVs <- Data
     
@@ -331,8 +331,8 @@ ULEVs <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(c(2:7), 0) %>% 
-      formatPercentage(7,2)
+      formatRound(c(2:6), 0) %>% 
+      formatPercentage(6,2)
   })
   
   output$ULEVRegOutputTable = renderDataTable({
