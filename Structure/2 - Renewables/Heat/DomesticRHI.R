@@ -49,6 +49,14 @@ DomesticRHIOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     tabsetPanel(
+      tabPanel("Cumulative Installations",
+               fluidRow(
+                 column(10, h3("Data - Cumulative number of domestic RHI applications and accredited applications", style = "color: #39ab2c;  font-weight:bold")),
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+               ),
+               fluidRow(
+                 column(12, dataTableOutput(ns("CumulativeInstallationsOutputTable"))%>% withSpinner(color="#39ab2c"))),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Installations by Tech",
     fluidRow(
     column(10, h3("Data - Domestic RHI heat generated and number of installations receiving payment by technology", style = "color: #39ab2c;  font-weight:bold")),
@@ -57,14 +65,6 @@ DomesticRHIOutput <- function(id) {
     fluidRow(
       column(12, dataTableOutput(ns("DomesticRHITable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Cumulative Installations",
-             fluidRow(
-               column(10, h3("Data - Cumulative number of domestic RHI applications and accredited applications", style = "color: #39ab2c;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
-             ),
-             fluidRow(
-               column(12, dataTableOutput(ns("CumulativeInstallationsOutputTable"))%>% withSpinner(color="#39ab2c"))),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Local Authority Installations",
       fluidRow(
         column(10, h3("Data - Number of accredited installations by Local Authority", style = "color: #39ab2c;  font-weight:bold")),

@@ -200,7 +200,8 @@ RenHeat <- function(input, output, session) {
    
     RenHeat <- as_tibble(RenHeat)
      RenHeat$Year <- as.character(RenHeat$Year)
-    RenHeat[1,1] <- "2008/09"
+    RenHeat[1,1] <- "2008"
+    names(RenHeat)[5] <- "Renewable Heat Capacity (GW)"
     
     datatable(
       RenHeat,

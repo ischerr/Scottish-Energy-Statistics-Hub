@@ -11,7 +11,35 @@ NonDomRHIOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("Non-domestic RHI",
+      tabPanel("Accredited Installations",
+               fluidRow(column(8,
+                               h3("Non-domestic RHI - Accredited Installations", style = "color: #39ab2c;  font-weight:bold"),
+                               h4(textOutput(ns('NonDomRHIAccreditedInstallationsSubtitle')), style = "color: #39ab2c;")
+               ),
+               column(
+                 4, style = 'padding:15px;',
+                 downloadButton(ns('NonDomRHIAccreditedInstallations.png'), 'Download Graph', style="float:right")
+               )),
+               
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+               #dygraphOutput(ns("NonDomRHIPlot")),
+               plotlyOutput(ns("NonDomRHIAccreditedInstallationsPlot"))%>% withSpinner(color="#39ab2c"),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+      tabPanel("Accredited Capacity",
+               fluidRow(column(8,
+                               h3("Non-domestic RHI - Accredited Installation Capacity", style = "color: #39ab2c;  font-weight:bold"),
+                               h4(textOutput(ns('NonDomRHInstallationCapacitySubtitle')), style = "color: #39ab2c;")
+               ),
+               column(
+                 4, style = 'padding:15px;',
+                 downloadButton(ns('NonDomRHIInstallationCap.png'), 'Download Graph', style="float:right")
+               )),
+               
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+               #dygraphOutput(ns("NonDomRHIPlot")),
+               plotlyOutput(ns("NonDomRHInstallationCapacityPlot"))%>% withSpinner(color="#39ab2c"),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+      tabPanel("Tech type",
     fluidRow(column(8,
                     h3("Proportion on non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff", style = "color: #39ab2c;  font-weight:bold"),
                     h4(textOutput(ns('NonDomRHISubtitle')), style = "color: #39ab2c;")
@@ -24,35 +52,7 @@ NonDomRHIOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     #dygraphOutput(ns("NonDomRHIPlot")),
     plotlyOutput(ns("NonDomRHIPlot"))%>% withSpinner(color="#39ab2c"),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Accredited Installations",
-             fluidRow(column(8,
-                             h3("Non-domestic RHI - Accredited Installations", style = "color: #39ab2c;  font-weight:bold"),
-                             h4(textOutput(ns('NonDomRHIAccreditedInstallationsSubtitle')), style = "color: #39ab2c;")
-             ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('NonDomRHIAccreditedInstallations.png'), 'Download Graph', style="float:right")
-             )),
-             
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-             #dygraphOutput(ns("NonDomRHIPlot")),
-             plotlyOutput(ns("NonDomRHIAccreditedInstallationsPlot"))%>% withSpinner(color="#39ab2c"),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Accredited Capacity",
-             fluidRow(column(8,
-                             h3("Non-domestic RHI - Accredited Installation Capacity", style = "color: #39ab2c;  font-weight:bold"),
-                             h4(textOutput(ns('NonDomRHInstallationCapacitySubtitle')), style = "color: #39ab2c;")
-             ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('NonDomRHIInstallationCap.png'), 'Download Graph', style="float:right")
-             )),
-             
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-             #dygraphOutput(ns("NonDomRHIPlot")),
-             plotlyOutput(ns("NonDomRHInstallationCapacityPlot"))%>% withSpinner(color="#39ab2c"),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
+    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
     ),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
@@ -63,6 +63,24 @@ NonDomRHIOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     tabsetPanel(
+      tabPanel("Applications",
+               fluidRow(
+                 column(10, h3("Data - Cumulative number and capacity  of applications", style = "color: #39ab2c;  font-weight:bold")),
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+               ),
+               fluidRow(
+                 column(12, dataTableOutput(ns("NonDomRHIAccreditedInstallationsTable"))%>% withSpinner(color="#39ab2c"))),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+      
+      tabPanel("LA Installations",
+               fluidRow(
+                 column(10, h3("Data - Number of accredited installations by Local Authority", style = "color: #39ab2c;  font-weight:bold")),
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
+               ),
+               fluidRow(
+                 column(12, dataTableOutput(ns("NonDomRHILATable"))%>% withSpinner(color="#39ab2c"))),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+      
       tabPanel("Heat Generated, Installed Capacity & Installations Paid ",
     fluidRow(
     column(10, h3("Data - Heat generated, installed capacity and number of installations receiving payment", style = "color: #39ab2c;  font-weight:bold")),
@@ -70,15 +88,8 @@ NonDomRHIOutput <- function(id) {
     ),
     fluidRow(
       column(12, dataTableOutput(ns("NonDomRHITable"))%>% withSpinner(color="#39ab2c"))),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Applications",
-      fluidRow(
-        column(10, h3("Data - Cumulative number and capacity  of applications", style = "color: #39ab2c;  font-weight:bold")),
-        column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
-      ),
-      fluidRow(
-        column(12, dataTableOutput(ns("NonDomRHIAccreditedInstallationsTable"))%>% withSpinner(color="#39ab2c"))),
-      tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
+    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
+
     ),
     fluidRow(
       column(1,
@@ -390,7 +401,6 @@ names(Data)[1] <- "Year"
     
   })
   
-
   output$NonDomRHITable = renderDataTable({
     
     Data <-
@@ -498,6 +508,55 @@ names(Data)[1] <- "Year"
       formatRound(c(2:7), 0)
   })
   
+  output$NonDomRHILATable = renderDataTable({
+    
+    Data <-
+      read_excel(
+        "Structure/CurrentWorking.xlsx",
+        sheet = "Non-domestic RHI", 
+        skip = 34, n_max = 34)
+    
+    Data <- Data[c(2,1,3,4)]
+    
+    names(Data)[c(2,4)] <- c("LA Code", "Capacity (MW)")
+    
+    datatable(
+      Data,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        title = "Number of accredited installations by Local Authority",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = "Number of accredited installations by Local Authority",
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = "Number of accredited installations by Local Authority")
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(c(3:4), 1)
+  
+  })
+  
+  
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
@@ -514,6 +573,9 @@ names(Data)[1] <- "Year"
     toggle("NonDomRHIAccreditedInstallationsTable")
   })
 
+  observeEvent(input$ToggleTable3, {
+    toggle("NonDomRHILATable")
+  })
   
   observeEvent(input$ToggleText, {
     toggle("Text")
