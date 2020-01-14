@@ -284,71 +284,6 @@ RenEnTgt <- function(input, output, session) {
     
   })
   
-  
-  # output$RenEnTgtTable = renderDataTable({
-  #   
-  #   RenEn <- read_excel(
-  #     "Structure/CurrentWorking.xlsx",
-  #     sheet = "Renewable energy target",
-  #     col_names = FALSE,
-  #     skip = 21,
-  #     n_max = 23
-  #   )
-  #   RenEn <- as.data.frame(t(RenEn))
-  #   RenEn <- RenEn[, c(1, 6, 12, 18, 23)]
-  #   RenEn <- tail(RenEn,-5)
-  #   names(RenEn) <-
-  #     c("Year", "Electricity", "Heat", "Transport", "Renewables")
-  #   RenEn[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
-  #     as.numeric(as.character(x)))
-  #   RenEnTgts <-
-  #     read_csv("Structure/1 - Whole System/Renewable energy target.csv")
-  #   RenEn <- bind_rows(RenEn, RenEnTgts)
-  #   
-  #   RenEn <-
-  #     RenEn[, c(1, 5, 6, 2, 3, 4)] %>% distinct(Year, .keep_all =  TRUE) %>% arrange(Year)
-  #   
-  #   RenEnTgt <- RenEn[c(1, 2, 4:6)]
-  #   
-  #   RenEnTgt <- RenEnTgt[complete.cases(RenEnTgt), ]
-  #   
-  #   datatable(
-  #     RenEnTgt,
-  #     extensions = 'Buttons',
-  #     
-  #     rownames = FALSE,
-  #     options = list(
-  #       paging = TRUE,
-  #       pageLength = -1,
-  #       searching = TRUE,
-  #       fixedColumns = FALSE,
-  #       autoWidth = TRUE,
-  #       ordering = TRUE,
-  #       order = list(list(0, 'desc')),
-  #       title = "Renewable Energy",
-  #       dom = 'ltBp',
-  #       buttons = list(
-  #         list(extend = 'copy'),
-  #         list(
-  #           extend = 'excel',
-  #           title = 'Renewable Energy',
-  #           header = TRUE
-  #         ),
-  #         list(extend = 'csv',
-  #              title = 'Renewable Energy')
-  #       ),
-  #       
-  #       # customize the length menu
-  #       lengthMenu = list( c(10, 20, -1) # declare values
-  #                          , c(10, 20, "All") # declare titles
-  #       ), # end of lengthMenu customization
-  #       pageLength = 10
-  #     )
-  #   ) %>%
-  #     formatPercentage(2:5, 1)
-  # })
-  
-  
   output$Text <- renderUI({
     tagList(column(12,
                    
@@ -362,29 +297,10 @@ RenEnTgt <- function(input, output, session) {
     toggle("Text")
   })
   
-  # observeEvent(input$ToggleTable, {
-  #   toggle("RenEnTgtTable")
-  # })
-  
-  
   output$RenEnTgt.png <- downloadHandler(
     filename = "RenEnTgt.png",
     content = function(file) {
-      ### Load Packages and Functions
-      ###
-      
-      
-      # RenEn2 <-
-      #   read.csv(
-      #     "J:/ENERGY BRANCH/Statistics/Energy Strategy - Stats Publication/2019/Graphs/Datae/RenEnTgt.csv",
-      #     header = TRUE,
-      #     sep = ",",
-      #     na.strings = "-"
-      #   )
-      
-      ### variables
-      
-      
+
       RenEn <- read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Renewable energy target",
@@ -516,8 +432,6 @@ RenEnTgt <- function(input, output, session) {
       )
     }
   )
-  
-  
   ### Summary Tables ###
   
   Overview <- read_excel(

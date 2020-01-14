@@ -22,6 +22,7 @@ BiofuelsOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     #dygraphOutput(ns("BiofuelsPlot")),
     plotlyOutput(ns("BiofuelsPlot"))%>% withSpinner(color="#39ab2c"),
+    p("*A Scotland only figure is not available."),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
@@ -86,7 +87,7 @@ Biofuels <- function(input, output, session) {
     
     Biofuels <- as_tibble(Data)
     
-    paste("Scotland,", min(Biofuels$Year),"-", max(Biofuels$Year[which(Biofuels$Renewables != 0)]))
+    paste("United Kingdom*,", min(Biofuels$Year),"-", max(Biofuels$Year[which(Biofuels$Renewables != 0)]))
   })
   
   output$BiofuelsPlot <- renderPlotly  ({
