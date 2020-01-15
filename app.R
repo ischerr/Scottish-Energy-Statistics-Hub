@@ -141,10 +141,21 @@ observe({
   
   
   if(input$MainNav == "EnergyEfficiency"){
-
-      updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$EnergyEfficiency), mode = "push")
     
-    callModule(match.fun(input$EnergyEfficiency), input$EnergyEfficiency)
+    if(input$EnergyEfficiency == "DemandReduction"){
+      
+      updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$EnergyEfficiency,"&Chart=",input$DemandReduction), mode = "push")
+      
+      callModule(match.fun(input$DemandReduction), input$DemandReduction)
+    }
+    
+    if(input$EnergyEfficiency == "EfficiencyMeasures"){
+      
+      updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$EnergyEfficiency,"&Chart=",input$EfficiencyMeasures), mode = "push")
+      
+      callModule(match.fun(input$EfficiencyMeasures), input$EfficiencyMeasures)
+      
+    }
     
     }
   
@@ -563,7 +574,11 @@ ui <- shinyUI(fluidPage(
     tabPanel(
       value = "EnergyEfficiency",
       title = tags$div(img(src = "EEIcon.svg", height = "30px",   display= "block"), " Energy Efficiency" , style = "font-family: 'Century Gothic'; font-weight: 400 "),
-      navlistPanel(id = "EnergyEfficiency",
+      tabsetPanel(id = "EnergyEfficiency",
+                  tabPanel(
+                    value = "DemandReduction",
+                    title = "Demand Reduction",
+                    navlistPanel(id = "DemandReduction",
                    widths = c(3, 8),
                    tabPanel(title = "Energy Consumption Target",
                             value = "EnConsumptionTgt",
@@ -600,7 +615,13 @@ ui <- shinyUI(fluidPage(
                             HHoldEnConsumptionOutput("HHoldEnConsumption")),
                    tabPanel(title = "Transport Energy Consumption",
                             value = "TransportEnConsumption",
-                            TransportEnConsumptionOutput("TransportEnConsumption")),
+                            TransportEnConsumptionOutput("TransportEnConsumption"))
+                   )),
+                   tabPanel(
+                     value = "EfficiencyMeasures",
+                     title = "Energy Efficiency Measures",
+                     navlistPanel(id = "EfficiencyMeasures",
+                                  widths = c(3, 8),
                    tabPanel(title = "Domestic EPCs",
                             value = "DomEPCs",
                             DomEPCsOutput("DomEPCs")),
@@ -616,6 +637,7 @@ ui <- shinyUI(fluidPage(
                    tabPanel(title = "Non-domestic EPCs",
                             value = "NonDomEPCs",
                             NonDomEPCsOutput("NonDomEPCs"))
+    ))
     )),
     ###### Section - Consumer Engagement and Protection #######
     tabPanel(
