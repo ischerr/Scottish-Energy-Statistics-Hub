@@ -552,7 +552,7 @@ ui <- shinyUI(fluidPage(
                    tabPanel(title = "Community and Locally Owned Renewables",
                             value = "LocalRenewables",
                             LocalRenewablesOutput("LocalRenewables")),
-                   tabPanel(title = "CHPStats",
+                   tabPanel(title = "Combined heat and power",
                             value = "CHPStats",
                             CHPStatsOutput("CHPStats")),
                    tabPanel(title = "District Heat Networks",
