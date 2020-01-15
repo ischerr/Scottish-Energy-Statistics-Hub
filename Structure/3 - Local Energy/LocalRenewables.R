@@ -11,24 +11,7 @@ LocalRenewablesOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("Community owned renewable capacity",
-               fluidRow(
-                 column(
-                   8,
-                   h3("Community and locally owned renewable energy capacity in different stages of development", style = "color: #a3d65c;  font-weight:bold"),
-                   h4(textOutput(ns('CommunityCapacitySubtitle')), style = "color: #a3d65c;")
-                 ),
-                 column(
-                   4,
-                   style = 'padding:15px;',
-                   downloadButton(ns('CommunityCapacity.png'), 'Download Graph', style =
-                                    "float:right")
-                 )
-               ),
-               
-               tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
-               plotlyOutput(ns("CommunityCapacityPlot"))%>% withSpinner(color="#a3d65c"),
-               tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
+      
       tabPanel("Operating community renewable capacity",
                fluidRow(
                  column(
@@ -47,6 +30,26 @@ LocalRenewablesOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
                plotlyOutput(ns("CommunityOperatingCapacityPlot"))%>% withSpinner(color="#a3d65c"),
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
+      
+      tabPanel("Community owned renewable capacity",
+               fluidRow(
+                 column(
+                   8,
+                   h3("Community and locally owned renewable energy capacity in different stages of development", style = "color: #a3d65c;  font-weight:bold"),
+                   h4(textOutput(ns('CommunityCapacitySubtitle')), style = "color: #a3d65c;")
+                 ),
+                 column(
+                   4,
+                   style = 'padding:15px;',
+                   downloadButton(ns('CommunityCapacity.png'), 'Download Graph', style =
+                                    "float:right")
+                 )
+               ),
+               
+               tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
+               plotlyOutput(ns("CommunityCapacityPlot"))%>% withSpinner(color="#a3d65c"),
+               tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
+      
       tabPanel("Operating capacity by technology",
                fluidRow(
                  column(
@@ -65,6 +68,7 @@ LocalRenewablesOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
                plotlyOutput(ns("CommunityOperatingTechPlot"))%>% withSpinner(color="#a3d65c"),
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
+      
       tabPanel("Operating capacity by output",
                fluidRow(
                  column(
@@ -83,6 +87,7 @@ LocalRenewablesOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
                plotlyOutput(ns("CommunityOperatingOutputTypePlot"))%>% withSpinner(color="#a3d65c"),
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
+      
       tabPanel("Operating capacity by ownership",
                fluidRow(
                  column(
@@ -102,6 +107,7 @@ LocalRenewablesOutput <- function(id) {
                plotlyOutput(ns("EnSectorOwnershipPlot"))%>% withSpinner(color="#a3d65c"),
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"))
     ),
+    
     fluidRow(
       column(10,h3("Commentary", style = "color: #a3d65c;  font-weight:bold")),
       column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
@@ -111,9 +117,23 @@ LocalRenewablesOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
     tabsetPanel(
-      tabPanel("Stages",
+      tabPanel("Time series",
+               fluidRow(
+                 column(10, h3("Data - Capacity of operating locally owned renewable energy initiatives time series", style = "color: #a3d65c;  font-weight:bold")),
+                 column(
+                   2,
+                   style = "padding:15px",
+                   actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; ")
+                 )
+               ),
+               fluidRow(column(12, dataTableOutput(
+                 ns("CommunityOperatingCapacityTable")
+               )%>% withSpinner(color="#a3d65c"))),
+               tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
+      
+      tabPanel("Pipeline",
     fluidRow(
-      column(10, h3("Data - Stages", style = "color: #a3d65c;  font-weight:bold")),
+      column(10, h3("Data - Community and locally owned renewable energy capacity by stage of development", style = "color: #a3d65c;  font-weight:bold")),
       column(
         2,
         style = "padding:15px",
@@ -124,22 +144,10 @@ LocalRenewablesOutput <- function(id) {
       ns("CommunityCapacityTable")
     )%>% withSpinner(color="#a3d65c"))),
     tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
-    tabPanel("Initiatives",
+    
+    tabPanel("By Technology",
              fluidRow(
-               column(10, h3("Data - Initiatives", style = "color: #a3d65c;  font-weight:bold")),
-               column(
-                 2,
-                 style = "padding:15px",
-                 actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; ")
-               )
-             ),
-             fluidRow(column(12, dataTableOutput(
-               ns("CommunityOperatingCapacityTable")
-             )%>% withSpinner(color="#a3d65c"))),
-             tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
-    tabPanel("Tech",
-             fluidRow(
-               column(10, h3("Data - Tech", style = "color: #a3d65c;  font-weight:bold")),
+               column(10, h3("Data - Capacity of operational community and locally owned renewable installations by technology", style = "color: #a3d65c;  font-weight:bold")),
                column(
                  2,
                  style = "padding:15px",
@@ -150,9 +158,10 @@ LocalRenewablesOutput <- function(id) {
                ns("CommunityOperatingTechTable")
              )%>% withSpinner(color="#a3d65c"))),
              tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
-    tabPanel("Outputs",
+    
+    tabPanel("By output",
              fluidRow(
-               column(10, h3("Data - Outputs", style = "color: #a3d65c;  font-weight:bold")),
+               column(10, h3("Data - Estimated capacity of operational community and locally owned renewable installations by type of output", style = "color: #a3d65c;  font-weight:bold")),
                column(
                  2,
                  style = "padding:15px",
@@ -163,9 +172,10 @@ LocalRenewablesOutput <- function(id) {
                ns("CommunityOperatingOutputTypeTable")
              )%>% withSpinner(color="#a3d65c"))),
              tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
-    tabPanel("Owner",
+    
+    tabPanel("By ownership category",
              fluidRow(
-               column(10, h3("Data - Owner", style = "color: #a3d65c;  font-weight:bold")),
+               column(10, h3("Data - Estimated capacity of operational community and locally owned renewable installations by ownership category", style = "color: #a3d65c;  font-weight:bold")),
                column(
                  2,
                  style = "padding:15px",
@@ -573,7 +583,7 @@ LocalRenewables <- function(input, output, session) {
     
     CommunityOperatingOutputType$Target <- NA
     
-   RenEn2 <- data.frame(Date = ymd("2020-01-01"), `Capacity` = NA, Target = 1000)
+   RenEn2 <- data.frame(Date = c(ymd("2020-01-01"), ymd("2030-01-01") ), `Capacity` = NA, Target = c(1000,2000))
    
    CommunityOperatingOutputType <- rbind(CommunityOperatingOutputType, RenEn2)
    
@@ -816,11 +826,13 @@ LocalRenewables <- function(input, output, session) {
   output$CommunityOperatingCapacityTable = renderDataTable({
     CommunityOperatingOutputType <- read_excel("Structure/CurrentWorking.xlsx", 
                                  sheet = "Comm & locally owned ren", col_names = TRUE, 
-                                 skip = 12, n_max = 5)
+                                 skip = 12, n_max = 15)
     
     CommunityOperatingOutputType <- CommunityOperatingOutputType[12:14]
     
     names(CommunityOperatingOutputType) <- c("Date", "Capacity (MW)", "Number of Installations")
+    
+    CommunityOperatingOutputType <- CommunityOperatingOutputType[complete.cases(CommunityOperatingOutputType),]
     
     CommunityOperatingOutputType$Date <- format(CommunityOperatingOutputType$Date, "%b %Y")
     

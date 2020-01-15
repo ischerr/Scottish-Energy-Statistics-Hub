@@ -31,13 +31,66 @@ DistrictHeatOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
+    tabsetPanel(
+      tabPanel("District Heat Networks",
     fluidRow(
-    column(10, h3("Data", style = "color: #a3d65c;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+    column(10, h3("Data - District Heat Networks", style = "color: #a3d65c;  font-weight:bold")),
+    column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("DistrictHeatTable"))%>% withSpinner(color="#a3d65c"))),
-    tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
+    tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
+    tabPanel("Sectors",
+             fluidRow(
+               column(10, h3("Data - Sectors of Scottish heat networks by network type and total capacity, generation and supply", style = "color: #a3d65c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("DistrictHeatSectorTable"))%>% withSpinner(color="#a3d65c"))),
+             tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
+    tabPanel("Network type",
+             fluidRow(
+               column(10, h3("Data - Scottish heat networks by network type and total capacity, generation and supply", style = "color: #a3d65c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("DistrictHeatNetworkTypeTable"))%>% withSpinner(color="#a3d65c"))),
+             tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
+    tabPanel("Tech",
+             fluidRow(
+               column(10, h3("Data - Scottish heat networks by technology and fuel type", style = "color: #a3d65c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("DistrictHeatNetworkTechTable"))%>% withSpinner(color="#a3d65c"))),
+             tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
+    tabPanel("Customers",
+             fluidRow(
+               column(10, h3("Data - Scottish heat network customers by technology and fuel type", style = "color: #a3d65c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("DistrictHeatNetworkCustomersTable"))%>% withSpinner(color="#a3d65c"))),
+             tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
+    tabPanel("Buildings",
+             fluidRow(
+               column(10, h3("Data - Scottish heat network customers by technology and fuel type", style = "color: #a3d65c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable6"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("DistrictHeatNetworkBuildingsTable"))%>% withSpinner(color="#a3d65c"))),
+             tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
+    tabPanel("Heat supplied",
+             fluidRow(
+               column(10, h3("Data - Scottish heat network customers by technology and fuel type", style = "color: #a3d65c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable7"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("DistrictHeatNetworkHeatTable"))%>% withSpinner(color="#a3d65c"))),
+             tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"))
+    
+    
+    ),
     fluidRow(
       column(1,
              p("Next update:")),
@@ -200,7 +253,6 @@ DistrictHeat <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        order = list(list(0, 'desc')),
         title = "Heat Networks",
         dom = 'ltBp',
         buttons = list(
@@ -222,6 +274,322 @@ DistrictHeat <- function(input, output, session) {
       )
     ) %>% 
       formatRound(2:3, 0)
+  })
+  
+  observeEvent(input$ToggleTable1, {
+    toggle("DistrictHeatTable")
+  })
+  
+  output$DistrictHeatSectorTable = renderDataTable({
+    
+    DistrictHeat <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Heat networks",
+      col_names = TRUE,
+      skip = 18,
+      n_max = 4
+    )
+    
+    names(DistrictHeat) <- c("Sector", "Network Type - District", "Network Type - Communal", "Network Type - Total", "Customers - Domestic", "Customers - Non-domestic", "Customers - Total", "Heat - Capacity (GW)", "Heat - Generation (GWh)", "Heat - Supplied (GWh)")
+    
+    datatable(
+      DistrictHeat,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        title = "Sectors of Scottish heat networks by network type and total capacity, generation and supply",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Sectors of Scottish heat networks by network type and total capacity, generation and supply',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Sectors of Scottish heat networks by network type and total capacity, generation and supply')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>% 
+      formatRound(2:10, 0) %>% 
+      formatRound(8,2) %>% 
+      formatStyle(c(4,7), fontWeight = "bold")
+  })
+  
+  observeEvent(input$ToggleTable2, {
+    toggle("DistrictHeatSectorTable")
+  })
+  
+  output$DistrictHeatNetworkTypeTable = renderDataTable({
+    
+    DistrictHeat <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Heat networks",
+      col_names = TRUE,
+      skip = 26,
+      n_max = 3
+    )
+    
+    datatable(
+      DistrictHeat,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        title = "Scottish heat networks by network type and total capacity, generation and supply",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Scottish heat networks by network type and total capacity, generation and supply',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Scottish heat networks by network type and total capacity, generation and supply')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>% 
+      formatRound(2:10, 0) %>% 
+      formatRound(5,2) %>% 
+      formatStyle(c(4), fontWeight = "bold")
+    
+  })
+  
+  observeEvent(input$ToggleTable3, {
+    toggle("DistrictHeatNetworkTypeTable")
+  })
+  
+  output$DistrictHeatNetworkTechTable = renderDataTable({
+    
+    DistrictHeat <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Heat networks",
+      col_names = TRUE,
+      skip = 34,
+      n_max = 4
+    )
+    
+    datatable(
+      DistrictHeat,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        title = "Scottish heat networks by technology and fuel type",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Scottish heat networks by technology and fuel type',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Scottish heat networks by technology and fuel type')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>% 
+      formatRound(2:10, 0) %>% 
+      formatStyle(c(8), fontWeight = "bold")
+    
+  })
+  
+  observeEvent(input$ToggleTable4, {
+    toggle("DistrictHeatNetworkTechTable")
+  })
+  
+  output$DistrictHeatNetworkCustomersTable = renderDataTable({
+    
+    DistrictHeat <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Heat networks",
+      col_names = TRUE,
+      skip = 44,
+      n_max = 4
+    )
+    
+    datatable(
+      DistrictHeat,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        title = "Scottish heat network customers by technology and fuel type",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Scottish heat network customers by technology and fuel type',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Scottish heat network customers by technology and fuel type')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>% 
+      formatRound(2:10, 0) %>% 
+      formatStyle(c(8), fontWeight = "bold")
+    
+  })
+  
+  observeEvent(input$ToggleTable5, {
+    toggle("DistrictHeatNetworkCustomersTable")
+  })
+  
+  output$DistrictHeatNetworkBuildingsTable = renderDataTable({
+    
+    DistrictHeat <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Heat networks",
+      col_names = TRUE,
+      skip = 54,
+      n_max = 4
+    )
+    
+    datatable(
+      DistrictHeat,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        title = "Buildings connected to Scottish heat networks by technology and fuel type",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Buildings connected to Scottish heat networks by technology and fuel type',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Buildings connected to Scottish heat networks by technology and fuel type')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>% 
+      formatRound(2:10, 0) %>% 
+      formatStyle(c(8), fontWeight = "bold")
+    
+    
+  })
+  
+  observeEvent(input$ToggleTable6, {
+    toggle("DistrictHeatNetworkBuildingsTable")
+  })
+  
+  output$DistrictHeatNetworkHeatTable = renderDataTable({
+    
+    DistrictHeat <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Heat networks",
+      col_names = TRUE,
+      skip = 64,
+      n_max = 4
+    )
+    
+    datatable(
+      DistrictHeat,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        title = "Heat supplied (GWh) by Scottish heat networks by technology and fuel type",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Heat supplied (GWh) by Scottish heat networks by technology and fuel type',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Heat supplied (GWh) by Scottish heat networks by technology and fuel type')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>% 
+      formatRound(2:10, 0) %>% 
+      formatStyle(c(8), fontWeight = "bold")
+    
+    
+    
+  })
+  
+  observeEvent(input$ToggleTable7, {
+    toggle("DistrictHeatNetworkHeatTable")
   })
   
   output$Text <- renderUI({
