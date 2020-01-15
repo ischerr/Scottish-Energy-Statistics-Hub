@@ -32,7 +32,7 @@ GasConsumptionHHoldOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
-    column(10, h3("Data", style = "color: #34d1a3;  font-weight:bold")),
+    column(10, h3("Data - Average domestic gas consumption per consumer (kWh)", style = "color: #34d1a3;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -133,7 +133,7 @@ GasConsumptionHHold <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Consumption",
-        text = paste0("Consumption: ", format(round(Data$`Consumption`, digits = 0), big.mark = ","), " MW"),
+        text = paste0("Consumption: ", format(round(Data$`Consumption`, digits = 0), big.mark = ","), " kWh"),
         hoverinfo = 'text',
         marker = list(color = ChartColours[1]),
         legendgroup = 2
@@ -145,7 +145,7 @@ GasConsumptionHHold <- function(input, output, session) {
         showlegend = FALSE,
         type = 'scatter',
         mode = 'text',
-        text = ifelse(Data$`Consumption` >0, paste("<b>",format(round((Data$`Consumption`), digits = 0), big.mark = ","),"MW</b>")," "),
+        text = ifelse(Data$`Consumption` >0, paste("<b>",format(round((Data$`Consumption`), digits = 0), big.mark = ","),"kWh</b>")," "),
         textposition = 'middle right',
         textfont = list(color = ChartColours[1]),
         hoverinfo = 'skip',
@@ -230,17 +230,17 @@ GasConsumptionHHold <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Average domestic gas consumption",
+        title = "Average domestic gas consumption per consumer (kWh)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Average domestic gas consumption',
+            title = 'Average domestic gas consumption per consumer (kWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Average domestic gas consumption')
+               title = 'Average domestic gas consumption per consumer (kWh)')
         ),
         
         # customize the length menu

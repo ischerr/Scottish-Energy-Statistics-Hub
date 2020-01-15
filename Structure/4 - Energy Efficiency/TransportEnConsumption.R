@@ -265,29 +265,18 @@ TransportEnConsumption <- function(input, output, session) {
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump fuel type",
-      col_names = FALSE,
-      skip = 12,
-      n_max = 8
+      sheet = "Transport energy consump",
+      col_names = TRUE,
+      skip = 16
     )
     
-    Data <- as_tibble(t(Data))
+    Data <- Data[complete.cases(Data),]
     
-    names(Data) <- unlist(Data[1,])
+    Data <- head(Data,-1)
     
-    names(Data)[1] <- "Year"
+    names(Data)[c(1,12,13)] <- c("Year", "Rail", "Total Transport Consumption")
     
-    Data[1:8] %<>% lapply(function(x) as.numeric(as.character(x)))
-    
-    Data[2,1] <- " Baseline\n2005/2007"
-    
-    Data[3,1] <- " "
-    
-    Data[nrow(Data),1] <- "% Change\nfrom baseline"
-    
-    Data <- Data[-1,]
-    
-    Data <- head(Data, -1)
+    Data <- Data[seq(dim(Data)[1],1),]
     
     datatable(
       Data,
@@ -301,18 +290,17 @@ TransportEnConsumption <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        order = list(list(0, 'desc')),
-        title = "Road and rail energy consumption",
+        title = "Road and rail energy consumption (GWh)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Road and rail energy consumption',
+            title = 'Road and rail energy consumption (GWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Road and rail energy consumption')
+               title = 'Road and rail energy consumption (GWh)')
         ),
         
         # customize the length menu
@@ -322,8 +310,8 @@ TransportEnConsumption <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:8, 0)%>% 
-      formatStyle(c(8), fontWeight = 'bold')
+      formatRound(2:13, 0)%>% 
+      formatStyle(c(11,13), fontWeight = 'bold')
   })
   
   

@@ -168,17 +168,17 @@ GasConsumptionLA <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(1, 'asc')),
-        title = "Average annual household consumption of gas by local authority",
+        title = "Average annual household consumption of gas by local authority (kWh)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Average annual household consumption of gas by local authority',
+            title = 'Average annual household consumption of gas by local authority (kWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Average annual household consumption of gas by local authority')
+               title = 'Average annual household consumption of gas by local authority (kWh)')
         ),
         
         # customize the length menu

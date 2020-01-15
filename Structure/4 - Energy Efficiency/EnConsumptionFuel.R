@@ -32,7 +32,7 @@ EnConsumptionFuelOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
-    column(10, h3("Data", style = "color: #34d1a3;  font-weight:bold")),
+    column(10, h3("Data - Final energy consumption by fuel type (GWh)", style = "color: #34d1a3;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -139,7 +139,7 @@ EnConsumptionFuel <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Petroleum products",
-        text = paste0("Petroleum products: ", format(round(Data$`Petroleum products`, digits = 0), big.mark = ","), " MW"),
+        text = paste0("Petroleum products: ", format(round(Data$`Petroleum products`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[1]),
         legendgroup = 2
@@ -151,7 +151,7 @@ EnConsumptionFuel <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Gas",
-        text = paste0("Gas: ", format(round(Data$`Gas`, digits = 0), big.mark = ","), " MW"),
+        text = paste0("Gas: ", format(round(Data$`Gas`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[2]),
         legendgroup = 3
@@ -164,7 +164,7 @@ EnConsumptionFuel <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Electricity",
-        text = paste0("Electricity: ", format(round(Data$`Electricity`, digits = 0), big.mark = ","), " MW"),
+        text = paste0("Electricity: ", format(round(Data$`Electricity`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 4
@@ -176,7 +176,7 @@ EnConsumptionFuel <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Bioenergy & wastes",
-        text = paste0("Bioenergy & wastes: ", format(round(Data$`Bioenergy & wastes`, digits = 0), big.mark = ","), " MW"),
+        text = paste0("Bioenergy & wastes: ", format(round(Data$`Bioenergy & wastes`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[4]),
         legendgroup = 5
@@ -188,7 +188,7 @@ EnConsumptionFuel <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Coal",
-        text = paste0("Coal: ", format(round(Data$`Coal`, digits = 0), big.mark = ","), " MW"),
+        text = paste0("Coal: ", format(round(Data$`Coal`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[5]),
         legendgroup = 6
@@ -200,7 +200,7 @@ EnConsumptionFuel <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Manufactured fuels",
-        text = paste0("Manufactured fuels: ", format(round(Data$`Manufactured fuels`, digits = 0), big.mark = ","), " MW"),
+        text = paste0("Manufactured fuels: ", format(round(Data$`Manufactured fuels`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[6]),
         legendgroup = 7
@@ -212,7 +212,7 @@ EnConsumptionFuel <- function(input, output, session) {
         showlegend = FALSE,
         type = 'scatter',
         mode = 'text',
-        text = ifelse(Data$`Petroleum products` >0, paste("<b>",format(round((Data$`Petroleum products` + Data$Gas + Data$Electricity + Data$`Bioenergy & wastes` + Data$`Coal` + Data$`Manufactured fuels`), digits = 0), big.mark = ","),"MW</b>")," "),
+        text = ifelse(Data$`Petroleum products` >0, paste("<b>",format(round((Data$`Petroleum products` + Data$Gas + Data$Electricity + Data$`Bioenergy & wastes` + Data$`Coal` + Data$`Manufactured fuels`), digits = 0), big.mark = ","),"GWh</b>")," "),
         textposition = 'middle right',
         textfont = list(color = ChartColours[1]),
         hoverinfo = 'skip',
@@ -256,7 +256,7 @@ EnConsumptionFuel <- function(input, output, session) {
       add_trace(
         data = tail(Data,1),
         y = ~Year,
-        x = mean(DataLatest$`Total`)+ 10000,
+        x = mean(DataLatest$`Total`)+ 25000,
         showlegend = FALSE,
         mode = 'text',
         type = 'scatter',
@@ -281,7 +281,7 @@ EnConsumptionFuel <- function(input, output, session) {
         ),
         xaxis = list(
           title = "",
-          tickformat = "",
+          tickformat = ",d",
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
@@ -341,17 +341,17 @@ EnConsumptionFuel <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Energy Consumption by fuel type",
+        title = "Final energy consumption by fuel type (GWh)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Energy Consumption by fuel type',
+            title = 'Final energy consumption by fuel type (GWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Energy Consumption by fuel type')
+               title = 'Final energy consumption by fuel type (GWh)')
         ),
         
         # customize the length menu
@@ -709,7 +709,7 @@ EnConsumptionFuel <- function(input, output, session) {
         FinalConsumptionFuelChart +
         coord_flip() +
         labs(subtitle = paste("Scotland, 2005 -", max(FinalConsumptionFuel$Year))) +
-        ylim(-25000, max(FinalConsumptionFuel$top) + 25000) +
+        ylim(-25000, max(FinalConsumptionFuel$top) + 20000) +
         xlim(max(FinalConsumptionFuel$Year) + 1.2, 2002)
       
       FinalConsumptionFuelChart
