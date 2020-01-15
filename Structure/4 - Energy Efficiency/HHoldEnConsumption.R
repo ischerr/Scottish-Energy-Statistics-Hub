@@ -11,7 +11,7 @@ HHoldEnConsumptionOutput <- function(id) {
   ns <- NS(id)
   tagList(
    fluidRow(column(8,
-                    h3("Average household energy consumption by end use", style = "color: #34d1a3;  font-weight:bold"),
+                    h3("End use of energy consumption", style = "color: #34d1a3;  font-weight:bold"),
                     h4(textOutput(ns('HHoldEnConsumptionSubtitle')), style = "color: #34d1a3;")
     ),
              column(
@@ -32,7 +32,7 @@ HHoldEnConsumptionOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
    fluidRow(
-    column(10, h3("Data - Sector Consumption", style = "color: #34d1a3;  font-weight:bold")),
+    column(10, h3("Data - End use of energy consumption", style = "color: #34d1a3;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -129,6 +129,8 @@ HHoldEnConsumption <- function(input, output, session) {
     
     HHoldEnConsumption <- melt(HHoldEnConsumption)
     
+    HHoldEnConsumption$variable <- paste0("<b>", HHoldEnConsumption$variable, "</b>")
+    
     ChartColours <- c("#34d1a3", "#FF8500")
     BarColours <- c("#bd0026", "#f03b20", "#fd8d3c","#feb24c")
     
@@ -138,11 +140,11 @@ HHoldEnConsumption <- function(input, output, session) {
       labels = ~variable,
       type = 'pie',
       values = ~value,
-      text = paste0(
+      text = paste0("<p>",
         HHoldEnConsumption$variable,
-        ": ", format(round(HHoldEnConsumption$value, 0), big.mark = ","), " GWh" 
+        ": ", format(round(HHoldEnConsumption$value, 0), big.mark = ","), " GWh", "</p>" 
       ),
-      textposition = 'inside',
+      textposition = 'outside',
       textinfo = 'label+percent',
       insidetextfont = list(color = '#FFFFFF'),
       hoverinfo = 'text',
@@ -151,7 +153,7 @@ HHoldEnConsumption <- function(input, output, session) {
     )  %>% 
       layout(
         barmode = 'stack',
-        legend = list(font = list(color = "#34d1a3"),
+        legend = list(font = list(color = "black"),
                       orientation = 'h'),
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
@@ -209,18 +211,17 @@ HHoldEnConsumption <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        order = list(list(1, 'asc')),
-        title = "Average household energy consumption by end use",
+        title = "End use of energy consumption",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Average household energy consumption by end use',
+            title = 'End use of energy consumption',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Average household energy consumption by end use')
+               title = 'End use of energy consumption')
         ),
         
         # customize the length menu

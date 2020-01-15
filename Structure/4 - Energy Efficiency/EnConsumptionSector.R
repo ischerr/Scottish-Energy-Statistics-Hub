@@ -32,7 +32,7 @@ EnConsumptionSectorOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
-    column(10, h3("Data", style = "color: #34d1a3;  font-weight:bold")),
+    column(10, h3("Data - Total final energy consumption by consuming sector (GWh)", style = "color: #34d1a3;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -140,7 +140,7 @@ EnConsumptionSector <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Industry & Commercial",
-        text = paste0("Industry & Commercial: ", format(round(Data$`Industry & Commercial`, digits = 0), big.mark = ","), " MW"),
+        text = paste0("Industry & Commercial: ", format(round(Data$`Industry & Commercial`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[1]),
         legendgroup = 2
@@ -152,7 +152,7 @@ EnConsumptionSector <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Domestic",
-        text = paste0("Domestic: ", format(round(Data$`Domestic`, digits = 0), big.mark = ","), " MW"),
+        text = paste0("Domestic: ", format(round(Data$`Domestic`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[2]),
         legendgroup = 3
@@ -165,7 +165,7 @@ EnConsumptionSector <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Transport",
-        text = paste0("Transport: ", format(round(Data$`Transport`, digits = 0), big.mark = ","), " MW"),
+        text = paste0("Transport: ", format(round(Data$`Transport`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 4
@@ -177,7 +177,7 @@ EnConsumptionSector <- function(input, output, session) {
         showlegend = FALSE,
         type = 'scatter',
         mode = 'text',
-        text = ifelse(Data$`Industry & Commercial` >0, paste("<b>",format(round((Data$`Industry & Commercial` + Data$`Domestic` + Data$`Transport`), digits = 0), big.mark = ","),"MW</b>")," "),
+        text = ifelse(Data$`Industry & Commercial` >0, paste("<b>",format(round((Data$`Industry & Commercial` + Data$`Domestic` + Data$`Transport`), digits = 0), big.mark = ","),"GWh</b>")," "),
         textposition = 'middle right',
         textfont = list(color = ChartColours[1]),
         hoverinfo = 'skip',
@@ -246,7 +246,7 @@ EnConsumptionSector <- function(input, output, session) {
         ),
         xaxis = list(
           title = "",
-          tickformat = "",
+          tickformat = ",d",
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
@@ -296,17 +296,17 @@ EnConsumptionSector <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Energy Consumption by sector",
+        title = "Total final energy consumption by consuming sector (GWh)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Energy Consumption by sector',
+            title = 'Total final energy consumption by consuming sector (GWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Energy Consumption by sector')
+               title = 'Total final energy consumption by consuming sector (GWh)')
         ),
         
         # customize the length menu
@@ -360,7 +360,7 @@ EnConsumptionSector <- function(input, output, session) {
       Data$Year <- as.numeric(Data$Year)
       Data[nrow(Data),1] <- max(Data$Year + 1, na.rm =  TRUE)
       Data <- Data[which(Data$Year> 0),]
-      #Data <- Data[complete.cases(Data),]
+   
       
       Data <- as_tibble(sapply( Data, as.numeric ))
       

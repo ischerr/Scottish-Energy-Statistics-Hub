@@ -32,7 +32,7 @@ ElecConsumptionLAOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
-    column(10, h3("Data", style = "color: #34d1a3;  font-weight:bold")),
+    column(10, h3("Data - Total final energy consumption by consuming sector (GWh), by local authority in Scotland", style = "color: #34d1a3;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
