@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-EnConsumptionFuelOutput <- function(id) {
+TransportEnConsumptionOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Final energy consumption by fuel type", style = "color: #34d1a3;  font-weight:bold"),
-                    h4(textOutput(ns('EnConsumptionFuelSubtitle')), style = "color: #34d1a3;")
+                    h3("Road and rail energy consumption", style = "color: #34d1a3;  font-weight:bold"),
+                    h4(textOutput(ns('TransportEnConsumptionSubtitle')), style = "color: #34d1a3;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('EnConsumptionFuel.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('TransportEnConsumption.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
-    #dygraphOutput(ns("EnConsumptionFuelPlot")),
-    plotlyOutput(ns("EnConsumptionFuelPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
+    #dygraphOutput(ns("TransportEnConsumptionPlot")),
+    plotlyOutput(ns("TransportEnConsumptionPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
@@ -32,11 +32,11 @@ EnConsumptionFuelOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
-    column(10, h3("Data - Final energy consumption by fuel type (GWh)", style = "color: #34d1a3;  font-weight:bold")),
+    column(10, h3("Data", style = "color: #34d1a3;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("EnConsumptionFuelTable"))%>% withSpinner(color="#34d1a3"))),
+      column(12, dataTableOutput(ns("TransportEnConsumptionTable"))%>% withSpinner(color="#34d1a3"))),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
       column(1,
@@ -61,17 +61,17 @@ EnConsumptionFuelOutput <- function(id) {
 
 
 ###### Server ######
-EnConsumptionFuel <- function(input, output, session) {
+TransportEnConsumption <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("EnConsumptionFuel.R")
+  print("TransportEnConsumption.R")
 
   
-  output$EnConsumptionFuelSubtitle <- renderText({
+  output$TransportEnConsumptionSubtitle <- renderText({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -92,27 +92,24 @@ EnConsumptionFuel <- function(input, output, session) {
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
-  output$EnConsumptionFuelPlot <- renderPlotly  ({
+  output$TransportEnConsumptionPlot <- renderPlotly  ({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump fuel type",
+      sheet = "Transport energy consump",
       col_names = FALSE,
-      skip = 12,
-      n_max = 8
-    )
+      skip = 16
+    )[c(1,6,10,12,13)]
     
-    Data <- as_tibble(t(Data))
+    names(Data) <- c("Year", "Road - Personal", "Road - Freight", "Rail", "Total")
     
-    names(Data) <- unlist(Data[1,])
-    
-    names(Data)[1] <- "Year"
-    
-    Data[1:8] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data[1:5] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     Data[2,1] <- "Baseline\n2005/2007"
     
     Data[3,1] <- " "
+    
+    Data<- head(Data, -3)
     
     Data[nrow(Data),1] <- "% Change\nfrom baseline"
     
@@ -134,24 +131,24 @@ EnConsumptionFuel <- function(input, output, session) {
       
       add_trace(
         data = Data,
-        x = ~ `Petroleum products`,
+        x = ~ `Road - Personal`,
         type = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "Petroleum products",
-        text = paste0("Petroleum products: ", format(round(Data$`Petroleum products`, digits = 0), big.mark = ","), " GWh"),
+        name = "Road - Personal",
+        text = paste0("Road - Personal: ", format(round(Data$`Road - Personal`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[1]),
         legendgroup = 2
       ) %>%
       add_trace(
         data = Data,
-        x = ~ `Gas`,
+        x = ~ `Road - Freight`,
         type = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "Gas",
-        text = paste0("Gas: ", format(round(Data$`Gas`, digits = 0), big.mark = ","), " GWh"),
+        name = "Road - Freight",
+        text = paste0("Road - Freight: ", format(round(Data$`Road - Freight`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[2]),
         legendgroup = 3
@@ -159,60 +156,24 @@ EnConsumptionFuel <- function(input, output, session) {
       
       add_trace(
         data = Data,
-        x = ~ `Electricity`,
+        x = ~ `Rail`,
         type = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "Electricity",
-        text = paste0("Electricity: ", format(round(Data$`Electricity`, digits = 0), big.mark = ","), " GWh"),
+        name = "Rail",
+        text = paste0("Rail: ", format(round(Data$`Rail`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 4
       ) %>%
       add_trace(
         data = Data,
-        x = ~ `Bioenergy & wastes`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "Bioenergy & wastes",
-        text = paste0("Bioenergy & wastes: ", format(round(Data$`Bioenergy & wastes`, digits = 0), big.mark = ","), " GWh"),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[4]),
-        legendgroup = 5
-      ) %>%
-      add_trace(
-        data = Data,
-        x = ~ `Coal`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "Coal",
-        text = paste0("Coal: ", format(round(Data$`Coal`, digits = 0), big.mark = ","), " GWh"),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[5]),
-        legendgroup = 6
-      ) %>%
-      add_trace(
-        data = Data,
-        x = ~ `Manufactured fuels`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "Manufactured fuels",
-        text = paste0("Manufactured fuels: ", format(round(Data$`Manufactured fuels`, digits = 0), big.mark = ","), " GWh"),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[6]),
-        legendgroup = 7
-      ) %>%
-      add_trace(
-        data = Data,
         y = ~ Year,
-        x = ~ (Data$`Petroleum products` + Data$Gas + Data$Electricity + Data$`Bioenergy & wastes` + Data$`Coal` + Data$`Manufactured fuels`) + 0.1,
+        x = ~ (Data$`Road - Personal` + Data$`Road - Freight` + Data$`Rail`) + 0.1,
         showlegend = FALSE,
         type = 'scatter',
         mode = 'text',
-        text = ifelse(Data$`Petroleum products` >0, paste("<b>",format(round((Data$`Petroleum products` + Data$Gas + Data$Electricity + Data$`Bioenergy & wastes` + Data$`Coal` + Data$`Manufactured fuels`), digits = 0), big.mark = ","),"GWh</b>")," "),
+        text = ifelse(Data$`Road - Personal` >0, paste("<b>",format(round((Data$`Road - Personal` + Data$`Road - Freight` + Data$`Rail`), digits = 0), big.mark = ","),"GWh</b>")," "),
         textposition = 'middle right',
         textfont = list(color = ChartColours[1]),
         hoverinfo = 'skip',
@@ -223,40 +184,40 @@ EnConsumptionFuel <- function(input, output, session) {
       add_trace(
         data = tail(Data,1),
         y = ~Year,
-        x = mean(DataLatest$`Petroleum products`)/2,
+        x = mean(DataLatest$`Road - Personal`)/2,
         showlegend = FALSE,
         mode = 'text',
         type = 'scatter',
         hoverinfo = 'skip',
         textfont = list(color = BarColours[1]),
-        text = paste0("<b>", percent(DataTail$`Petroleum products`, accuracy = 0.1), "</b>")
+        text = paste0("<b>", percent(DataTail$`Road - Personal`, accuracy = 0.1), "</b>")
       ) %>% 
       add_trace(
         data = tail(Data,1),
         y = ~Year,
-        x =  mean(DataLatest$`Petroleum products`) + (mean(DataLatest$`Gas`)/2),
+        x =  mean(DataLatest$`Road - Personal`) + (mean(DataLatest$`Road - Freight`)/2),
         showlegend = FALSE,
         mode = 'text',
         type = 'scatter',
         hoverinfo = 'skip',
         textfont = list(color = BarColours[2]),
-        text =  paste0("<b>", percent(DataTail$`Gas`, accuracy = 0.1), "</b>")
+        text =  paste0("<b>", percent(DataTail$`Road - Freight`, accuracy = 0.1), "</b>")
       ) %>% 
       add_trace(
         data = tail(Data,1),
         y = ~Year,
-        x = mean(DataLatest$`Petroleum products`) + mean(DataLatest$`Gas`) + (mean(DataLatest$`Electricity`)/2),
+        x = mean(DataLatest$`Road - Personal`) + mean(DataLatest$`Road - Freight`) + (mean(DataLatest$`Rail`)/2),
         showlegend = FALSE,
         mode = 'text',
         type = 'scatter',
         hoverinfo = 'skip',
         textfont = list(color = BarColours[3]),
-        text =  paste0("<b>", percent(DataTail$Electricity, accuracy = 0.1), "</b>")
+        text =  paste0("<b>", percent(DataTail$`Rail`, accuracy = 0.1), "</b>")
       ) %>% 
       add_trace(
         data = tail(Data,1),
         y = ~Year,
-        x = mean(DataLatest$`Total`)+ 25000,
+        x = mean(DataLatest$`Total`)+ 5000,
         showlegend = FALSE,
         mode = 'text',
         type = 'scatter',
@@ -281,12 +242,12 @@ EnConsumptionFuel <- function(input, output, session) {
         ),
         xaxis = list(
           title = "",
-          tickformat = ",d",
+          tickformat = "",
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
           zerolinewidth = 2,
-          range = c(0,220000)
+          range = c(0,50000)
         )
       ) %>% 
       config(displayModeBar = F)
@@ -299,34 +260,23 @@ EnConsumptionFuel <- function(input, output, session) {
   })
   
   
-  output$EnConsumptionFuelTable = renderDataTable({
+  output$TransportEnConsumptionTable = renderDataTable({
     
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump fuel type",
-      col_names = FALSE,
-      skip = 12,
-      n_max = 8
+      sheet = "Transport energy consump",
+      col_names = TRUE,
+      skip = 16
     )
     
-    Data <- as_tibble(t(Data))
+    Data <- Data[complete.cases(Data),]
     
-    names(Data) <- unlist(Data[1,])
+    Data <- head(Data,-1)
     
-    names(Data)[1] <- "Year"
+    names(Data)[c(1,12,13)] <- c("Year", "Rail", "Total Transport Consumption")
     
-    Data[1:8] %<>% lapply(function(x) as.numeric(as.character(x)))
-    
-    Data[2,1] <- " Baseline\n2005/2007"
-    
-    Data[3,1] <- " "
-    
-    Data[nrow(Data),1] <- "% Change\nfrom baseline"
-    
-    Data <- Data[-1,]
-    
-    Data <- head(Data, -1)
+    Data <- Data[seq(dim(Data)[1],1),]
     
     datatable(
       Data,
@@ -340,18 +290,17 @@ EnConsumptionFuel <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        order = list(list(0, 'desc')),
-        title = "Final energy consumption by fuel type (GWh)",
+        title = "Road and rail energy consumption (GWh)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Final energy consumption by fuel type (GWh)',
+            title = 'Road and rail energy consumption (GWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Final energy consumption by fuel type (GWh)')
+               title = 'Road and rail energy consumption (GWh)')
         ),
         
         # customize the length menu
@@ -361,8 +310,8 @@ EnConsumptionFuel <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:8, 0)%>% 
-      formatStyle(c(8), fontWeight = 'bold')
+      formatRound(2:13, 0)%>% 
+      formatStyle(c(11,13), fontWeight = 'bold')
   })
   
   
@@ -370,14 +319,14 @@ EnConsumptionFuel <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/4 - Energy Efficiency/EnConsumptionFuel.txt")[2])
+                     paste(readtext("Structure/4 - Energy Efficiency/Demand Reduction/TransportEnConsumption.txt")[2])
                      
                    )))
   })
  
  
   observeEvent(input$ToggleTable, {
-    toggle("EnConsumptionFuelTable")
+    toggle("TransportEnConsumptionTable")
   })
   
 
@@ -387,8 +336,8 @@ EnConsumptionFuel <- function(input, output, session) {
   })
   
   
-  output$EnConsumptionFuel.png <- downloadHandler(
-    filename = "EnConsumptionFuel.png",
+  output$TransportEnConsumption.png <- downloadHandler(
+    filename = "TransportEnConsumption.png",
     content = function(file) {
 
 
@@ -438,7 +387,7 @@ EnConsumptionFuel <- function(input, output, session) {
         mutate(top = sum(value))
       
       plottitle <-
-        "Final energy consumption by fuel type"
+        "Road and rail energy consumption"
       sourcecaption <- "Source: BEIS"
       
       ChartColours <- c("#34d1a3", "#FF8500")
@@ -709,7 +658,7 @@ EnConsumptionFuel <- function(input, output, session) {
         FinalConsumptionFuelChart +
         coord_flip() +
         labs(subtitle = paste("Scotland, 2005 -", max(FinalConsumptionFuel$Year))) +
-        ylim(-25000, max(FinalConsumptionFuel$top) + 20000) +
+        ylim(-25000, max(FinalConsumptionFuel$top) + 25000) +
         xlim(max(FinalConsumptionFuel$Year) + 1.2, 2002)
       
       FinalConsumptionFuelChart

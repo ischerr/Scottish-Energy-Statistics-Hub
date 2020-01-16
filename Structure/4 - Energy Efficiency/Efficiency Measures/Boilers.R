@@ -272,11 +272,11 @@ Boilers <- function(input, output, session) {
     
     Data <- as_tibble(t(Data))
     
-    Data <- Data[c(1,4,5,6)]
+    Data <- Data[c(1,2,3,4,5,6)]
     
     Data <- as_tibble(sapply( Data, as.numeric ))
     
-    names(Data) <- c("Year", "New Boilers (post-1998)", "Condensing Boilers", "Standards Compliant Boilers")
+    names(Data) <- c("Year", "Proportion of homes using a gas or oil boiler for heating" ,"...of which...","New Boilers (post-1998)", "Condensing Boilers", "Standards Compliant Boilers")
     
     Data <- subset(Data, Data$Year >= 2009)
     
@@ -315,7 +315,7 @@ Boilers <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:4, 1)
+      formatPercentage(2:6, 0)
   })
   
   output$BoilersImpactTable = renderDataTable({
@@ -373,7 +373,7 @@ Boilers <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/4 - Energy Efficiency/Boilers.txt")[2])
+                     paste(readtext("Structure/4 - Energy Efficiency/Efficiency Measures/Boilers.txt")[2])
                      
                    )))
   })

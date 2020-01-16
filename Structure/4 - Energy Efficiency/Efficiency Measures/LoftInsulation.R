@@ -31,13 +31,23 @@ LoftInsulationOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+    tabsetPanel(
+      tabPanel("Loft insulation thickness",
     fluidRow(
-    column(10, h3("Data", style = "color: #34d1a3;  font-weight:bold")),
+    column(10, h3("Data - Proportion of homes with loft insulation, by thickness", style = "color: #34d1a3;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("LoftInsulationTable"))%>% withSpinner(color="#34d1a3"))),
-    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("Impact of measures",
+             fluidRow(
+               column(10, h3("Data - Impact of measures", style = "color: #34d1a3;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("LoftInsulationImpactTable"))%>% withSpinner(color="#34d1a3"))),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
       column(1,
              p("Next update:")),
@@ -262,7 +272,7 @@ LoftInsulation <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/4 - Energy Efficiency/LoftInsulation.txt")[2])
+                     paste(readtext("Structure/4 - Energy Efficiency/Efficiency Measures/LoftInsulation.txt")[2])
                      
                    )))
   })
@@ -272,7 +282,63 @@ LoftInsulation <- function(input, output, session) {
     toggle("LoftInsulationTable")
   })
   
-
+  output$LoftInsulationImpactTable = renderDataTable({
+    
+    Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                       sheet = "Loft insulation", skip = 22,  col_names = FALSE)
+    
+    Data <- as_tibble(t(Data))
+    
+    names(Data) <- unlist(Data[1,])
+    
+    Data <- tail(Data, -1)
+    
+    names(Data)[1] <- "Year"
+    
+    Data <- as_tibble(sapply( Data, as.numeric ))
+    
+    LoftInsulation <- Data
+    
+    datatable(
+      LoftInsulation,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        order = list(list(0, 'desc')),
+        title = "Impact of Measures - Wall Insulation",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Impact of Measures - Wall Insulation',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Impact of Measures - Wall Insulation')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatPercentage(c(3), 1) %>% 
+      formatRound(c(2), 0)
+  })
+  
+  observeEvent(input$ToggleTable2, {
+    toggle("LoftInsulationImpactTable")
+  })
   
   observeEvent(input$ToggleText, {
     toggle("Text")
