@@ -131,7 +131,7 @@ ElecConsumptionLA <- function(input, output, session) {
     # sends it, because deleteFile=TRUE.
     outfile <- tempfile(fileext='.png')
    
-     writePNG(readPNG("Structure/4 - Energy Efficiency/ElecConsumptionLAOutput.png"),outfile) 
+     writePNG(readPNG("Structure/4 - Energy Efficiency/Demand Reduction/ElecConsumptionLAOutput.png"),outfile) 
     
     # Generate a png
     
@@ -193,7 +193,7 @@ ElecConsumptionLA <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/4 - Energy Efficiency/ElecConsumptionLA.txt")[2])
+                     paste(readtext("Structure/4 - Energy Efficiency/Demand Reduction/ElecConsumptionLA.txt")[2])
                      
                    )))
   })
@@ -213,7 +213,7 @@ ElecConsumptionLA <- function(input, output, session) {
   output$ElecConsumptionLA.png <- downloadHandler(
     filename = "ElecConsumptionLA.png",
     content = function(file) {
-      writePNG(readPNG("Structure/4 - Energy Efficiency/ElecConsumptionLAChart.png"), file) 
+      writePNG(readPNG("Structure/4 - Energy Efficiency/Demand Reduction/ElecConsumptionLAChart.png"), file) 
     }
   )
 }
