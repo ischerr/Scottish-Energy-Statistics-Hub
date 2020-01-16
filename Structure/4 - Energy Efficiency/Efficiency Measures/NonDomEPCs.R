@@ -280,7 +280,6 @@ NonDomEPCs <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        order = list(list(8, 'desc')),
         title = "Average energy efficiency levels of non-domestic properties, by type",
         dom = 'ltBp',
         buttons = list(
@@ -309,7 +308,7 @@ NonDomEPCs <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/4 - Energy Efficiency/NonDomEPCs.txt")[2])
+                     paste(readtext("Structure/4 - Energy Efficiency/Efficiency Measures/NonDomEPCs.txt")[2])
                      
                    )))
   })

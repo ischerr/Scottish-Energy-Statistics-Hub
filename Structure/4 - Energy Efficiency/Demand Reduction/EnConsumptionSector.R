@@ -326,7 +326,7 @@ EnConsumptionSector <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/4 - Energy Efficiency/EnConsumptionSector.txt")[2])
+                     paste(readtext("Structure/4 - Energy Efficiency/Demand Reduction/EnConsumptionSector.txt")[2])
                      
                    )))
   })

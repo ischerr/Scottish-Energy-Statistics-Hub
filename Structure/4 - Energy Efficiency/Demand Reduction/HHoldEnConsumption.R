@@ -240,7 +240,7 @@ HHoldEnConsumption <- function(input, output, session) {
     tagList(column(12,
                    
                    HTML(
-                     paste(readtext("Structure/4 - Energy Efficiency/HHoldEnConsumption.txt")[2])
+                     paste(readtext("Structure/4 - Energy Efficiency/Demand Reduction/HHoldEnConsumption.txt")[2])
                      
                    )))
   })
@@ -262,7 +262,7 @@ HHoldEnConsumption <- function(input, output, session) {
 
 writePNG(
   readPNG(
-  "Structure/4 - Energy Efficiency/HHoldEnConsumptionChart.png"
+  "Structure/4 - Energy Efficiency/Demand Reduction/HHoldEnConsumptionChart.png"
 ),
 file)
     }
