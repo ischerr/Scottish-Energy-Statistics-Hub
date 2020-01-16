@@ -309,7 +309,7 @@ NonDomEPCs <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/4 - Energy Efficiency/NonDomEPCs.txt")[2])
+                     paste(readtext("Structure/4 - Energy Efficiency/Efficiency Measures/NonDomEPCs.txt")[2])
                      
                    )))
   })
