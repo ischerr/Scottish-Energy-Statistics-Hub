@@ -50,7 +50,7 @@ BillPaymentsOutput <- function(id) {
     tabsetPanel(
       tabPanel("Electricity",
     fluidRow(
-    column(10, h3("Data - Electricity", style = "color: #68c3ea;  font-weight:bold")),
+    column(10, h3("Data - Proportion of payment methods used for electricity bills", style = "color: #68c3ea;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -58,7 +58,7 @@ BillPaymentsOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Gas",
              fluidRow(
-               column(10, h3("Data - Gas", style = "color: #68c3ea;  font-weight:bold")),
+               column(10, h3("Data - Proportion of payment methods used for gas bills", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
