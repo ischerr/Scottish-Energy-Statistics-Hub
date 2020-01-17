@@ -10,20 +10,6 @@ GasBillPricesOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("Average Bill",
-    fluidRow(column(8,
-                    h3("Average annual domestic standard gas bills in Scotland (Current Prices)", style = "color: #68c3ea;  font-weight:bold"),
-                    h4(textOutput(ns('GasBillPricesSubtitle')), style = "color: #68c3ea;")
-    ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('GasBillPrices.png'), 'Download Graph', style="float:right")
-             )),
-    
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
-    #dygraphOutput(ns("GasBillPricesPlot")),
-    plotlyOutput(ns("GasBillPricesPlot"))%>% withSpinner(color="#68c3ea"),
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Average Bill Time Series",
              fluidRow(column(8,
                              h3("Average annual domestic standard gas bills in Scotland (2010 \u00A3)", style = "color: #68c3ea;  font-weight:bold"),
@@ -37,7 +23,21 @@ GasBillPricesOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
              #dygraphOutput(ns("GasBillPricesPlot")),
              plotlyOutput(ns("AverageGasBillsPlot"))%>% withSpinner(color="#68c3ea"),
-             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Average Bill",
+    fluidRow(column(8,
+                    h3("Average annual domestic standard gas bills in Scotland (Current Prices)", style = "color: #68c3ea;  font-weight:bold"),
+                    h4(textOutput(ns('GasBillPricesSubtitle')), style = "color: #68c3ea;")
+    ),
+    column(
+      4, style = 'padding:15px;',
+      downloadButton(ns('GasBillPrices.png'), 'Download Graph', style="float:right")
+    )),
+    
+    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+    #dygraphOutput(ns("GasBillPricesPlot")),
+    plotlyOutput(ns("GasBillPricesPlot"))%>% withSpinner(color="#68c3ea"),
+    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))
     ),
     fluidRow(
     column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),
@@ -48,22 +48,23 @@ GasBillPricesOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     tabsetPanel(
-      tabPanel("Average Bill",
-    fluidRow(
-    column(10, h3("Data - Average Annual gas Bills (\u00A3)", style = "color: #68c3ea;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
-    ),
-    fluidRow(
-      column(12, dataTableOutput(ns("GasBillPricesTable"))%>% withSpinner(color="#68c3ea"))),
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+      
     tabPanel("Time Series",
       fluidRow(
-        column(10, h3("Data - gas Bills Time Series (\u00A3)", style = "color: #68c3ea;  font-weight:bold")),
+        column(10, h3("Data - gas Bills Time Series (2010 \u00A3)", style = "color: #68c3ea;  font-weight:bold")),
         column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
       ),
       fluidRow(
         column(12, dataTableOutput(ns("AverageGasBillsTable"))%>% withSpinner(color="#68c3ea"))),
-      tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))
+      tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Average Bill",
+             fluidRow(
+               column(10, h3("Data - Average Annual gas Bills (Current Prices)", style = "color: #68c3ea;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("GasBillPricesTable"))%>% withSpinner(color="#68c3ea"))),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))
     ),
     fluidRow(
       column(1,
@@ -401,7 +402,9 @@ GasBillPrices <- function(input, output, session) {
         xaxis = list(title = "",
                      showgrid = FALSE),
         yaxis = list(
-          title = "GWh",
+          title = "",
+          tickformat = "",
+          tickprefix = "\u00A3",
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
