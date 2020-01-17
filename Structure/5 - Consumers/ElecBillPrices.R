@@ -11,20 +11,6 @@ ElecBillPricesOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("Average Bill",
-    fluidRow(column(8,
-                    h3("Average annual domestic standard electricity bills in Scotland (Current Prices)", style = "color: #68c3ea;  font-weight:bold"),
-                    h4(textOutput(ns('ElecBillPricesSubtitle')), style = "color: #68c3ea;")
-    ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('ElecBillPrices.png'), 'Download Graph', style="float:right")
-             )),
-    
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
-    #dygraphOutput(ns("ElecBillPricesPlot")),
-    plotlyOutput(ns("ElecBillPricesPlot"))%>% withSpinner(color="#68c3ea"),
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Average Bill Time Series",
              fluidRow(column(8,
                              h3("Average annual domestic standard electricity bills in Scotland (2010 \u00A3)", style = "color: #68c3ea;  font-weight:bold"),
@@ -38,6 +24,20 @@ ElecBillPricesOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
              #dygraphOutput(ns("ElecBillPricesPlot")),
              plotlyOutput(ns("AverageElecBillsPlot"))%>% withSpinner(color="#68c3ea"),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Average Bill",
+             fluidRow(column(8,
+                             h3("Average annual domestic standard electricity bills in Scotland (Current Prices)", style = "color: #68c3ea;  font-weight:bold"),
+                             h4(textOutput(ns('ElecBillPricesSubtitle')), style = "color: #68c3ea;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('ElecBillPrices.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+             #dygraphOutput(ns("ElecBillPricesPlot")),
+             plotlyOutput(ns("ElecBillPricesPlot"))%>% withSpinner(color="#68c3ea"),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))
     ),
     fluidRow(
@@ -49,22 +49,23 @@ ElecBillPricesOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     tabsetPanel(
-      tabPanel("Average Bill",
-    fluidRow(
-    column(10, h3("Data - Average Annual Electricity Bills (\u00A3)", style = "color: #68c3ea;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
-    ),
-    fluidRow(
-      column(12, dataTableOutput(ns("ElecBillPricesTable"))%>% withSpinner(color="#68c3ea"))),
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+      
     tabPanel("Time Series",
       fluidRow(
-        column(10, h3("Data - Electricity Bills Time Series (\u00A3)", style = "color: #68c3ea;  font-weight:bold")),
+        column(10, h3("Data - Electricity Bills Time Series (2010 \u00A3)", style = "color: #68c3ea;  font-weight:bold")),
         column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
       ),
       fluidRow(
         column(12, dataTableOutput(ns("AverageElecBillsTable"))%>% withSpinner(color="#68c3ea"))),
-      tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))
+      tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Average Bill",
+             fluidRow(
+               column(10, h3("Data - Average Annual Electricity Bills (Current Prices)", style = "color: #68c3ea;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("ElecBillPricesTable"))%>% withSpinner(color="#68c3ea"))),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))
     ),
     fluidRow(
       column(1,
@@ -402,7 +403,9 @@ ElecBillPrices <- function(input, output, session) {
         xaxis = list(title = "",
                      showgrid = FALSE),
         yaxis = list(
-          title = "GWh",
+          title = "",
+          tickformat = "",
+          tickprefix = "\u00A3",
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
