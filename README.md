@@ -1,4 +1,4 @@
-# SESH - [![Build Status](https://travis-ci.org/ischerr/SESH.svg?branch=master)](https://travis-ci.org/ischerr/SESH)   
+# Scottish Energy Stastics Hub - [![Build Status](https://travis-ci.org/ischerr/SESH.svg?branch=master)](https://travis-ci.org/ischerr/SESH)   
 
 
 
