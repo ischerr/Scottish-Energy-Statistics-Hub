@@ -150,6 +150,8 @@ PrimaryHeating <- function(input, output, session) {
     
     PrimaryHeating$value <- as.numeric(PrimaryHeating$value)
     
+    PrimaryHeating$variable <- paste0("<b>", PrimaryHeating$variable, "</b>")
+    
     ChartColours <- c("#68c3ea", "#FF8500")
     BarColours <- c(
       "#bd0026",
@@ -168,7 +170,7 @@ PrimaryHeating <- function(input, output, session) {
       text = paste0(
         PrimaryHeating$variable,
         ": ", percent(PrimaryHeating$value, 1)),
-      textposition = 'inside',
+      textposition = 'outside',
       textinfo = 'label+percent',
       insidetextfont = list(color = '#FFFFFF'),
       hoverinfo = 'text',
