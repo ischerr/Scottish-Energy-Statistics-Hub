@@ -12,7 +12,7 @@ FuelPovertyOutput <- function(id) {
   tagList(
     tabsetPanel(
       
-      tabPanel("Extreme Fuel Poverty",
+      tabPanel("Time series",
                fluidRow(column(8,
                                h3("Rates of fuel poverty and extreme fuel poverty", style = "color: #68c3ea;  font-weight:bold"),
                                h4(textOutput(ns('ExtremeFuelPovertySubtitle')), style = "color: #68c3ea;")
@@ -26,7 +26,20 @@ FuelPovertyOutput <- function(id) {
                #dygraphOutput(ns("ExtremeFuelPovertyPlot")),
                plotlyOutput(ns("ExtremeFuelPovertyPlot"), height =  "900px")%>% withSpinner(color="#68c3ea"),
                tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-      
+      tabPanel("EPC",
+               fluidRow(column(8,
+                               h3("EPC Band (SAP 2012) distribution for fuel poor households (new definition)", style = "color: #68c3ea;  font-weight:bold"),
+                               h4(textOutput(ns('FuelPovertySAPSubtitle')), style = "color: #68c3ea;")
+               ),
+               column(
+                 4, style = 'padding:15px;',
+                 downloadButton(ns('FuelPovertySAP.png'), 'Download Graph', style="float:right")
+               )),
+               
+               tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+               #dygraphOutput(ns("FuelPovertySAPPlot")),
+               plotlyOutput(ns("FuelPovertySAPPlot"), height =  "900px")%>% withSpinner(color="#68c3ea"),
+               tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
       tabPanel("Proportions",
     fluidRow(column(8,
                     h3("Proportion of homes in fuel poverty by primary heating fuel and EPC band", style = "color: #68c3ea;  font-weight:bold"),
@@ -42,6 +55,7 @@ FuelPovertyOutput <- function(id) {
     plotlyOutput(ns("FuelPovertyProportionPlot"), height =  "900px")%>% withSpinner(color="#68c3ea"),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     
+    
     fluidRow(
     column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
@@ -51,30 +65,30 @@ FuelPovertyOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     tabsetPanel(
-      tabPanel("Fuel & EPC band",
+      tabPanel("Fuel Poverty Rates",
                fluidRow(
-                 column(10, h3("Data - Fuel & EPC band", style = "color: #68c3ea;  font-weight:bold")),
+                 column(10, h3("Data - Fuel poverty and extreme fuel poverty rates", style = "color: #68c3ea;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
                  column(12, dataTableOutput(ns("ExtremeFuelPovertyTable"))%>% withSpinner(color="#68c3ea"))),
                tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-      tabPanel("Fuel Poverty Rates",
-    fluidRow(
-    column(8, h3("Data - Fuel Poverty Rates", style = "color: #68c3ea;  font-weight:bold")),
-    column(2, style = "padding:15px",  downloadButton(ns('FuelPovertyProportionData.xlsx'), 'Download Data', style="float:right")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
-    ),
-    fluidRow(
-      column(12, dataTableOutput(ns("FuelPovertyProportionTable"))%>% withSpinner(color="#68c3ea"))),
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("EPC Bands",
              fluidRow(
-               column(10, h3("Data - Gas", style = "color: #68c3ea;  font-weight:bold")),
+               column(10, h3("Data - EPC Band (SAP 2012) distribution for fuel poor households (new definition)", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("FuelPovertySAPTable"))%>% withSpinner(color="#68c3ea"))),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Proportion by Fuel and EPC band",
+             fluidRow(
+               column(8, h3("Data - Proportion of homes in fuel poverty by primary heating fuel and EPC band", style = "color: #68c3ea;  font-weight:bold")),
+               column(2, style = "padding:15px",  downloadButton(ns('FuelPovertyProportionData.xlsx'), 'Download Data', style="float:right")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("FuelPovertyProportionTable"))%>% withSpinner(color="#68c3ea"))),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     
     fluidRow(
@@ -191,7 +205,7 @@ FuelPoverty <- function(input, output, session) {
         ),
         xaxis = list(
           title = "",
-          tickformat = "",
+          tickformat = "%",
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
@@ -212,24 +226,24 @@ FuelPoverty <- function(input, output, session) {
       col_names = TRUE,
       skip = 13,
       n_max = 11
-    )[7:13]
+    )[c(7:9,11:12)]
     
-    names(Data) <- c("Type", "2017 - 000s", "2017 - %", "2017 - Sample", "2016 - 000s", "2016 - %", "2016 - Sample")
+    names(Data) <- c("Type", "2017 - 000s", "2017 - %",  "2016 - 000s", "2016 - %")
     
-    Data[2,1] <- paste0("<em>", Data[2,1], "</em>")
+    Data[2,1] <- paste0("<b>", Data[2,1], "</b>")
     
-    Data[7,1] <- paste0("<em>", Data[7,1], "</em>")
+    Data[7,1] <- paste0("<b>", Data[7,1], "</b>")
     
     sketch = htmltools::withTags(table(
       class = 'display',
       thead(
         tr(
           th(rowspan = 2, 'Type'),
-          th(colspan = 3, '2017'),
-          th(colspan = 3, '2016')
+          th(colspan = 2, '2017'),
+          th(colspan = 2, '2016')
         ),
         tr(
-          lapply(rep(c('000s', '%', "Sample"), 2), th)
+          lapply(rep(c('000s', '%'), 2), th)
         )
       )
     ))
@@ -248,17 +262,17 @@ FuelPoverty <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Aggregate Energy Balance (thousand tonnes of oil equivalent)",
+        title = "Proportion of homes in fuel poverty by primary heating fuel and EPC band",
         dom = '',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Aggregate Energy Balance (thousand tonnes of oil equivalent)',
+            title = 'Proportion of homes in fuel poverty by primary heating fuel and EPC band',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Aggregate Energy Balance (thousand tonnes of oil equivalent)')
+               title = 'Proportion of homes in fuel poverty by primary heating fuel and EPC band')
         ),
         
         # customize the length menu
@@ -268,7 +282,7 @@ FuelPoverty <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%     
-      formatPercentage(c(3,6), 0) 
+      formatPercentage(c(3,5), 0) 
   })
 
   output$FuelPovertyProportion.png <- downloadHandler(
@@ -698,6 +712,11 @@ FuelPoverty <- function(input, output, session) {
     names(Data) <- substr(names(Data), 1, 4)
     
     names(Data)[1] <- "EPC Band"
+    
+    Data  <-  Data[-1,]
+    
+    Data[1,1] <- "A-B"
+    
     Data[2:5] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     datatable(
@@ -758,5 +777,415 @@ FuelPoverty <- function(input, output, session) {
       content <- function(file) {
         file.copy("Structure/5 - Consumers/Fuel Poverty.xlsx", file)
       })  
+    
+    output$FuelPovertySAPPlot <- renderPlotly  ({
+      
+      Data <- read_excel(
+        "Structure/CurrentWorking.xlsx",
+        sheet = "Fuel poverty",
+        col_names = FALSE,
+        skip = 12,
+        n_max = 8
+      )[16:20]
+      
+      Data <- as_tibble(t(Data))
+      
+      names(Data) <- unlist(Data[1,])
+      
+      names(Data)[1] <- "Year"
+      
+      Data  <-  Data[-1,]
+      
+      Data[2:8] %<>% lapply(function(x) as.numeric(as.character(x)))
+      
+      Data[is.na(Data)] <- 0
+      
+      Data <- as_tibble(Data)
+      
+      Data$`C or Better` <- Data$A + Data$B + Data$C
+      
+      ChartColours <- c("#68c3ea", "#FF8500")
+      
+      BarColours <-
+        c("#006837",
+          "#1a9850",
+          "#66bd63",
+          "#fee08b",
+          "#fdae61",
+          "#f46d43",
+          "#d73027")
+      
+      Data$Year <- paste0("<b>",Data$Year,"</b>")
+      
+      p <- plot_ly(data = Data, y = ~ `Year`) %>%
+        
+        add_trace(
+          data = Data,
+          x = ~ `A`,
+          type = 'bar',
+          width = 0.7,
+          orientation = 'h',
+          name = "A",
+          text = paste0("A: ", percent(Data$`A`, accuracy = 0.1)),
+          hoverinfo = 'text',
+          marker = list(color = BarColours[1]),
+          legendgroup = 1
+        ) %>%
+        add_trace(
+          data = Data,
+          x = ~ `B`,
+          type = 'bar',
+          width = 0.7,
+          orientation = 'h',
+          name = "B",
+          text = paste0("B: ", percent(Data$`B`, accuracy = 0.1)),
+          hoverinfo = 'text',
+          marker = list(color = BarColours[2]),
+          legendgroup = 2
+        ) %>%
+        add_trace(
+          data = Data,
+          x = ~ `C`,
+          type = 'bar',
+          width = 0.7,
+          orientation = 'h',
+          name = "C",
+          text = paste0("C: ", percent(Data$`C`, accuracy = 0.1)),
+          hoverinfo = 'text',
+          marker = list(color = BarColours[3]),
+          legendgroup = 3
+        ) %>%
+        add_trace(
+          data = Data,
+          x = ~ `D`,
+          type = 'bar',
+          width = 0.7,
+          orientation = 'h',
+          name = "D",
+          text = paste0("D: ", percent(Data$`D`, accuracy = 0.1)),
+          hoverinfo = 'text',
+          marker = list(color = BarColours[4]),
+          legendgroup = 4
+        ) %>%
+        add_trace(
+          data = Data,
+          x = ~ `E`,
+          type = 'bar',
+          width = 0.7,
+          orientation = 'h',
+          name = "E",
+          text = paste0("E: ", percent(Data$`E`, accuracy = 0.1)),
+          hoverinfo = 'text',
+          marker = list(color = BarColours[5]),
+          legendgroup = 5
+        ) %>%
+        add_trace(
+          data = Data,
+          x = ~ `F`,
+          type = 'bar',
+          width = 0.7,
+          orientation = 'h',
+          name = "F",
+          text = paste0("F: ", percent(Data$`F`, accuracy = 0.1)),
+          hoverinfo = 'text',
+          marker = list(color = BarColours[6]),
+          legendgroup = 6
+        ) %>%
+        add_trace(
+          data = Data,
+          x = ~ `G`,
+          type = 'bar',
+          width = 0.7,
+          orientation = 'h',
+          name = "G",
+          text = paste0("G: ", percent(Data$`G`, accuracy = 0.1)),
+          hoverinfo = 'text',
+          marker = list(color = BarColours[7]),
+          legendgroup = 7
+        ) %>%
+        
+        add_trace(
+          data = Data,
+          x = ~ 1.1 ,
+          showlegend = TRUE,
+          name = 'C or better',
+          mode = 'text',
+          type = 'scatter',
+          hoverinfo = 'skip',
+          textfont = list(color = BarColours[2]),
+          text =  paste0("<b>", ifelse(Data$`C or Better` > 0, percent(Data$`C or Better`, accuracy = 0.1), " "), "</b>"),
+          legendgroup = 8
+        ) %>%
+        layout(
+          barmode = 'stack',
+          legend = list(font = list(color = "#1A5D38"),
+                        orientation = 'h'),
+          hoverlabel = list(font = list(color = "white"),
+                            hovername = 'text'),
+          hovername = 'text',
+          yaxis = list(title = "",
+                       showgrid = FALSE,
+                       type = "category",
+                       autorange = "reversed",
+                       ticktext = as.list(Data$`Year`),
+                       tickmode = "array",
+                       tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
+          ),
+          xaxis = list(
+            title = "",
+            tickformat = "%",
+            showgrid = TRUE,
+            zeroline = TRUE,
+            zerolinecolor = ChartColours[1],
+            zerolinewidth = 2
+          )
+        ) %>% 
+        config(displayModeBar = F)
+      
+      p
+      
+      
+    })
+    
+    output$FuelPovertySAP.png <- downloadHandler(
+      filename = "FuelPovertySAP.png",
+      content = function(file) {
+        
+        
+        Data <- read_excel(
+          "Structure/CurrentWorking.xlsx",
+          sheet = "Fuel poverty",
+          col_names = FALSE,
+          skip = 12,
+          n_max = 8
+        )[16:20]
+        
+        Data <- as_tibble(t(Data))
+        
+        names(Data) <- unlist(Data[1,])
+        
+        names(Data)[1] <- "Year"
+        
+        Data  <-  Data[-1,]
+        
+        Data[2:8] %<>% lapply(function(x) as.numeric(as.character(x)))
+        
+        Data[is.na(Data)] <- 0
+        
+        Data <- as_tibble(Data)
+        
+        Data$`Total` <- Data$A + Data$B + Data$C
+        
+        DomesticEPC <- as_tibble(Data)
+        
+        DomesticEPC <-
+          DomesticEPC[c(1, ncol(DomesticEPC):2)]
+        
+        DomesticEPC <-
+          arrange(DomesticEPC,-row_number())
+        
+        DomesticEPC$Year <-
+          factor(DomesticEPC$Year,
+                 levels = unique(DomesticEPC$Year))
+        
+        DomesticEPC <-
+          melt(DomesticEPC, id.vars = "Year")
+        
+        
+        DomesticEPC$variable <-
+          factor(DomesticEPC$variable,
+                 levels = unique(DomesticEPC$variable))
+        
+        DomesticEPC <- DomesticEPC %>%
+          group_by(Year) %>%
+          mutate(pos = cumsum(value) - value / 2) %>%
+          mutate(top = sum(value))
+        
+        plottitle <-
+          "EPC Band (SAP 2012) distribution for fuel poor households (new definition)"
+        sourcecaption <- "Source: SG"
+        
+        ChartColours <- c("#34d1a3", "#FF8500")
+        BarColours <-
+          c("#006837",
+            "#1a9850",
+            "#66bd63",
+            "#fee08b",
+            "#fdae61",
+            "#f46d43",
+            "#d73027")
+        
+        
+        DomesticEPCChart <- DomesticEPC %>%
+          ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
+          scale_fill_manual(
+            "variable",
+            values = c(
+              "A or better" = BarColours[1],
+              "B" = BarColours[2],
+              "C" = BarColours[3],
+              "D" = BarColours[4],
+              "E" = BarColours[5],
+              "F" = BarColours[6],
+              "G" = BarColours[7],
+              "Total" = "White"
+            )
+          ) +
+          geom_bar(stat = "identity", width = .8) +
+          annotate(
+            "text",
+            x = DomesticEPC$Year,
+            y = -.15,
+            label = ifelse(
+              DomesticEPC$Year == "z",
+              "",
+              str_wrap(DomesticEPC$Year, width = 8)
+            ),
+            family = "Century Gothic",
+            fontface = 2,
+            colour = ChartColours[1]
+          ) +
+          geom_text(
+            aes(x = 4.7,
+                y = .5 * (1 / 6),
+                label = "B"),
+            fontface = 2,
+            colour = BarColours[2],
+            family = "Century Gothic",
+            hjust = 0.5
+          ) +
+          geom_text(
+            aes(x = 4.7,
+                y = 1.5 * (1 / 6),
+                label = "C"),
+            fontface = 2,
+            colour = BarColours[3],
+            family = "Century Gothic",
+            hjust = 0.5
+          ) +
+          geom_text(
+            aes(x = 4.7,
+                y = 2.5 * (1 / 6),
+                label = "D"),
+            fontface = 2,
+            colour = BarColours[4],
+            family = "Century Gothic",
+            hjust = 0.5
+          ) +
+          geom_text(
+            aes(x = 4.7,
+                y = 3.5 * (1 / 6),
+                label = "E"),
+            fontface = 2,
+            colour = BarColours[5],
+            family = "Century Gothic",
+            hjust = 0.5
+          ) +
+          geom_text(
+            aes(x = 4.7,
+                y = 4.5 * (1 / 6),
+                label = "F"),
+            fontface = 2,
+            colour = BarColours[6],
+            family = "Century Gothic",
+            hjust = 0.5
+          ) +
+          geom_text(
+            aes(x = 4.7,
+                y = 5.5 * (1 / 6),
+                label = "G"),
+            fontface = 2,
+            colour = BarColours[7],
+            family = "Century Gothic",
+            hjust = 0.5
+          ) +
+          annotate(
+            "text",
+            x = DomesticEPC$Year,
+            y = 1.1,
+            label = ifelse(
+              DomesticEPC$Year == "z",
+              "",
+              percent(DomesticEPC$value[which(DomesticEPC$variable == "Total")])
+            ),
+            family = "Century Gothic",
+            fontface = 2,
+            colour = ChartColours[1]
+          ) +
+          geom_text(
+            aes(x = 4.7,
+                y = 1.1,
+                label = "C\nor better"),
+            fontface = 2,
+            colour = ChartColours[1],
+            family = "Century Gothic",
+            hjust = 0.5
+          )+
+          geom_text(
+            aes(x = 5.1,
+                y = 1.05,
+                label = " "),
+            fontface = 2,
+            colour = ChartColours[1],
+            family = "Century Gothic",
+            hjust = 0.5
+          )
+        
+        DomesticEPCChart
+        
+        
+        DomesticEPCChart <-
+          StackedBars(
+            DomesticEPCChart,
+            DomesticEPC,
+            plottitle,
+            sourcecaption,
+            ChartColours
+          )
+        
+        DomesticEPCChart <-
+          DomesticEPCChart +
+          coord_flip() +
+          labs(subtitle = paste("Scotland",
+                                min(as.numeric(as.character(DomesticEPC$Year))),
+                                "-",
+                                max(as.numeric(as.character(DomesticEPC$Year)))
+          )) +
+          ylim(-.2, 1.13)
+        
+        DomesticEPCChart
+        
+        
+        ggsave(
+          file,
+          plot = DomesticEPCChart,
+          width = 17,
+          height = 15.5,
+          units = "cm",
+          dpi = 300
+        )
+        
+        
+      })
+    
+    output$FuelPovertySAPSubtitle <- renderText({
+      
+      Data <- read_excel(
+        "Structure/CurrentWorking.xlsx",
+        sheet = "Fuel poverty",
+        col_names = FALSE,
+        skip = 12,
+        n_max = 8
+      )[16:20]
+      
+      Data <- as_tibble(t(Data))
+      
+      names(Data) <- unlist(Data[1,])
+      
+      names(Data)[1] <- "Year"
+      
+      paste("Scotland,", min(as.numeric(Data$Year), na.rm = TRUE ), "-", max(as.numeric(Data$Year), na.rm = TRUE))
+    })
 
 }
+
