@@ -95,7 +95,7 @@ DualFuelBreakdown <- function(input, output, session) {
     
     Data <- Data[complete.cases(Data),]
     
-    paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
+    paste("United Kingdom,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
   output$DualFuelBreakdownPlot <- renderPlotly  ({
