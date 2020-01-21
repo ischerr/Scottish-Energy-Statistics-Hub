@@ -31,13 +31,23 @@ ElecImportsExportsOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
+    tabsetPanel(
+      tabPanel("Annual",
     fluidRow(
-    column(10, h3("Data", style = "color: #5d8be1;  font-weight:bold")),
+    column(10, h3("Data - Electricity imports and exports (GWh)", style = "color: #5d8be1;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("ElecImportsExportsTable"))%>% withSpinner(color="#5d8be1"))),
-    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
+    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
+    tabPanel("Quarterly",
+             fluidRow(
+               column(10, h3("Data - Electricity imports and exports (GWh)", style = "color: #5d8be1;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("ElecImportsExportsQuarterTable"))%>% withSpinner(color="#5d8be1"))),
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"))),
     fluidRow(
       column(1,
              p("Next update:")),
@@ -244,7 +254,7 @@ ElecImportsExports <- function(input, output, session) {
     Data <- Data[-1,]
     Data[1:8] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    ElecImportsExports <- as_tibble(Data)
+    ElecImportsExports <- as_tibble(Data[c(1,6:8,2:5)])
     
     
     datatable(
@@ -294,7 +304,7 @@ ElecImportsExports <- function(input, output, session) {
     Data <- Data[-1,]
     Data[2:8] %<>% lapply(function(x) as.numeric(as.character(x)))
 
-    ElecImportsExports <- as_tibble(Data)
+    ElecImportsExports <- as_tibble(Data[c(1,6:8,2:5)])
     
     datatable(
       ElecImportsExports,

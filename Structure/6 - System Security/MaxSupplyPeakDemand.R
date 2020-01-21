@@ -38,6 +38,15 @@ MaxSupplyPeakDemandOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
              #dygraphOutput(ns("MaxSupplyPeakDemandPlot")),
              plotlyOutput(ns("MaxSupplyCapacityPlot"), height = "600px")%>% withSpinner(color="#5d8be1"),
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
+    tabPanel("Scottish Generation",
+             fluidRow(column(8,
+                             h3("Maximum supply capacity by source", style = "color: #5d8be1;  font-weight:bold"),
+                             h4(textOutput(ns('MaxSupplyScotGenSubtitle')), style = "color: #5d8be1;")
+             )),
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
+             #dygraphOutput(ns("MaxSupplyPeakDemandPlot")),
+             plotlyOutput(ns("MaxSupplyScotGenPlot"), height = "600px")%>% withSpinner(color="#5d8be1"),
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"))
     ),
     fluidRow(
@@ -49,17 +58,17 @@ MaxSupplyPeakDemandOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     tabsetPanel(
-      tabPanel("Peak Demand",
+      tabPanel("Capacity and Demand",
     fluidRow(
-    column(10, h3("Data - Peak Demand", style = "color: #5d8be1;  font-weight:bold")),
+    column(10, h3("Data - Capacity and Demand", style = "color: #5d8be1;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("MaxSupplyPeakDemandTable"))%>% withSpinner(color="#5d8be1"))),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
-    tabPanel("Demand",
+    tabPanel("Breakdown",
       fluidRow(
-        column(10, h3("Data - Demand", style = "color: #5d8be1;  font-weight:bold")),
+        column(10, h3("Data - Maximum supply capacity breakdown", style = "color: #5d8be1;  font-weight:bold")),
         column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
       ),
       fluidRow(
@@ -209,6 +218,8 @@ MaxSupplyPeakDemand <- function(input, output, session) {
     Data[2:5] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     Data$`Peak electricity demand date` <- as.Date(Data$`Peak electricity demand date`,  origin = "1899-12-30")
+    
+    Data <- Data[!duplicated(Data$Year),]
     
     datatable(
       Data,
@@ -975,6 +986,138 @@ MaxSupplyPeakDemand <- function(input, output, session) {
       )
     }
   )
+  
+  output$MaxSupplyScotGenSubtitle <- renderText({
+    
+    Data <-
+      read_excel(
+        "Structure/CurrentWorking.xlsx",
+        sheet = "Elec capacity and peak demand", col_names = TRUE, 
+        skip = 37)[c(1:11)]
+    
+    names(Data)[1:2] <- c("Year", "Period")
+    
+    Data <- Data[which(Data$Year >= 2010),]
+    
+    Data[3:11] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data <- as_tibble(Data)
+    
+    paste("Scotland,", min(Data$Period),"-", max(Data$Period))
+  })
+  
+  output$MaxSupplyScotGenPlot <- renderPlotly  ({
+    
+    
+    ChartColours <- c("#5d8be1", "#FF8500")
+    BarColours <-
+      c(
+        "#034e7b",
+        "#0570b0",
+        "#3690c0",
+        "#74a9cf",
+        "#a6bddb",
+        "#d0d1e6",
+        "#bdbdbd",
+        "#969696"
+      )
+    
+    Data <-
+      read_excel(
+        "Structure/CurrentWorking.xlsx",
+        sheet = "Elec capacity and peak demand", col_names = TRUE, 
+        skip = 37)[c(1:11)]
+    
+    names(Data)[1:2] <- c("Year", "Period")
+    
+    Data <- Data[which(Data$Year >= 2010),]
+    
+    Data[3:11] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data <- as_tibble(Data)
+    
+    Data$YearFormat <- paste0("<b>",Data$Period, "</b>")
+    
+    Data$ScottishGeneration <- Data$CCGT + Data$Coal + Data$Nuclear + Data$`Large Hydro` + Data$`Pumped Storage` + Data$Diesel
+    
+    Data$ScottishImports <- Data$`Moyle Interconnector` + Data$`Secure import capability of GB Transmission Network into Scotland`
+    
+    p <-  plot_ly(Data, y = ~ YearFormat ) %>%  
+      add_trace(x = ~ `ScottishGeneration`, 
+                orientation = 'h',
+                name = "Scottish Generation",
+                type = 'bar',
+                legendgroup = "1",
+                text = paste0(
+                  "Total Scottish generation: ", format(Data$ScottishGeneration, big.mark = ",")," MW\n",
+                  "Year: ", Data$Year
+                ),
+                hoverinfo = 'text',
+                marker = list(color = BarColours[3])
+      ) %>% 
+      add_trace(x = ~ `ScottishImports`, 
+                orientation = 'h',
+                name = "Scottish Imports",
+                type = 'bar',
+                legendgroup = "2",
+                text = paste0(
+                  "Scottish Imports: ", format(Data$ScottishImports, big.mark = ",")," MW\n",
+                  "Year: ", Data$Year, "\n"
+                ),
+                hoverinfo = 'text',
+                marker = list(color = BarColours[7])
+      ) %>% 
+      add_trace(
+        data = Data,
+        y = ~ YearFormat,
+        x = ~ (Data$`Total maximum supply capacity`)*1.01,
+        name = "Total maximum supply capacity",
+        legendgroup = 9,
+        type = 'scatter',
+        mode = 'text',
+        text = ifelse(Data$`Total maximum supply capacity` >0, paste0("<b>",format(round((Data$`Total maximum supply capacity`), digits = 0), big.mark = ",")," MW</b>")," "),
+        textposition = 'middle right',
+        textfont = list(color = ChartColours[1]),
+        hoverinfo = 'skip',
+        marker = list(
+          size = 0.00001
+        )
+      )  %>%
+      layout(
+        barmode = 'stack',
+        legend = list(font = list(color = "#5d8be1"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        xaxis = list(title = "",
+                     zeroline = FALSE,
+                     tickformat = "",
+                     ticksuffix = " MW",
+                     showgrid = TRUE,
+                     x = 0.5,
+                     range = c(0, max(Data$`Total maximum supply capacity`) * 1.135)
+                     
+        ),
+        yaxis = list(
+          title = "",
+          tickformat = "",
+          autorange = "reversed",
+          ticktext = as.list(Data$`Year`),
+          tickmode = "array",
+          tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16),
+          showgrid = FALSE,
+          zeroline = FALSE,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    p
+    
+    
+    
+    
+  })
   
   
 }
