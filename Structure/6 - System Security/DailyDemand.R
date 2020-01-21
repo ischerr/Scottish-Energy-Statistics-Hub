@@ -3,6 +3,7 @@ require(plotly)
 require(dygraphs)
 require(png)
 require("DT")
+
 ###### UI Function ######
 
 source("Structure/Global.R")
@@ -192,6 +193,7 @@ DailyDemand <- function(input, output, session) {
       layout(
         barmode = 'stack',
         bargap = 0.66,
+        
         legend = list(font = list(color = "#5d8be1"),
                       orientation = 'h'),
         hoverlabel = list(font = list(color = "white"),
@@ -199,7 +201,31 @@ DailyDemand <- function(input, output, session) {
         hovername = 'text',
         xaxis = list(title = "",
                      showgrid = FALSE,
-                     range = c(min(DailyDemand$Year)-100, max(DailyDemand$Year)+100)),
+                       rangeselector = list(
+                         buttons = list(
+                           list(
+                             count = 3,
+                             label = "3 mo",
+                             step = "month",
+                             stepmode = "backward"),
+                           list(
+                             count = 6,
+                             label = "6 mo",
+                             step = "month",
+                             stepmode = "backward"),
+                           list(
+                             count = 1,
+                             label = "1 yr",
+                             step = "year",
+                             stepmode = "backward"),
+                           list(
+                             count = 1,
+                             label = "YTD",
+                             step = "year",
+                             stepmode = "todate"),
+                           list(step = "all"))),
+                       
+                       rangeslider = list(type = "date")),
         yaxis = list(
           title = "GWh",
           showgrid = TRUE,
@@ -319,8 +345,7 @@ DailyDemand <- function(input, output, session) {
                           hovername = 'text'),
         hovername = 'text',
         xaxis = list(title = "",
-                     showgrid = FALSE,
-                     range = c(min(DailyDemandRolling$Year)-100, max(DailyDemandRolling$Year)+100)),
+                     showgrid = FALSE),
         yaxis = list(
           title = "GWh",
           showgrid = TRUE,
