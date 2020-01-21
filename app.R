@@ -706,12 +706,12 @@ ui <- shinyUI(fluidPage(
                    tabPanel(title = "Scottish Generation Meeting Demand",
                             value = "ScotGenDemand", 
                             ScotGenDemandOutput("ScotGenDemand")),
-                   tabPanel(title = "Gas Security",
-                            value = "GasSecurity",
-                            GasSecurityOutput("GasSecurity")),
                    tabPanel(title = "Electricity Storage",
                             value = "ElecStorage",
-                            ElecStorageOutput("ElecStorage"))
+                            ElecStorageOutput("ElecStorage")),
+                   tabPanel(title = "Gas Security",
+                            value = "GasSecurity",
+                            GasSecurityOutput("GasSecurity"))
     )),
     ###### Section - System Security and Flexibility #######
     tabPanel(value = "OilGas",

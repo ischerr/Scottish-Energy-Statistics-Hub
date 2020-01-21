@@ -32,7 +32,7 @@ ElecGenerationOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
                fluidRow(
-    column(10, h3("Data", style = "color: #5d8be1;  font-weight:bold")),
+    column(10, h3("Data - Electricity generated, consumed and exported (GWh)", style = "color: #5d8be1;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -255,7 +255,7 @@ ElecGeneration <- function(input, output, session) {
     
     Data <- Data[complete.cases(Data),]
 
-    ElecGeneration <- as_tibble(Data)
+    ElecGeneration <- as_tibble(Data[c(1,2,4:7)])
     
     datatable(
       ElecGeneration,
@@ -270,17 +270,17 @@ ElecGeneration <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Electricity generated and consumed",
+        title = "Electricity generated, consumed and exported (GWh)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Electricity generated and consumed',
+            title = 'Electricity generated, consumed and exported (GWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Electricity generated and consumed')
+               title = 'Electricity generated, consumed and exported (GWh)')
         ),
         
         # customize the length menu

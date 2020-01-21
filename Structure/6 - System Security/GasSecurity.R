@@ -67,7 +67,7 @@ GasSecurityOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:;background-color:#5d8be1;"),
     fluidRow(
-    column(10, h3("Data - 12 month rolling average.", style = "color: #5d8be1;  font-weight:bold")),
+    column(10, h3("Data - 12 month rolling average (GWh)", style = "color: #5d8be1;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -211,8 +211,32 @@ GasSecurity <- function(input, output, session) {
                           hovername = 'text'),
         hovername = 'text',
         xaxis = list(title = "",
-                     showgrid = FALSE
-                     ),
+                     showgrid = FALSE,
+                     rangeselector = list(
+                       buttons = list(
+                         list(
+                           count = 3,
+                           label = "3 mo",
+                           step = "month",
+                           stepmode = "backward"),
+                         list(
+                           count = 6,
+                           label = "6 mo",
+                           step = "month",
+                           stepmode = "backward"),
+                         list(
+                           count = 1,
+                           label = "1 yr",
+                           step = "year",
+                           stepmode = "backward"),
+                         list(
+                           count = 1,
+                           label = "YTD",
+                           step = "year",
+                           stepmode = "todate"),
+                         list(step = "all"))),
+                     
+                     rangeslider = list(type = "date")),
         yaxis = list(
           title = "GWh",
           showgrid = TRUE,

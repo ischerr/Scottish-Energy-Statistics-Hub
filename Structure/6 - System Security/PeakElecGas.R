@@ -543,7 +543,7 @@ PeakElecGas <- function(input, output, session) {
     
     GasPeakElecGas <- Data[,2:3][complete.cases(Data)]
     
-    names(GasPeakElecGas) <- c("Time", "Demand")
+    names(GasPeakElecGas) <- c("Time", "Demand (MW)")
     
     datatable(
       GasPeakElecGas,
