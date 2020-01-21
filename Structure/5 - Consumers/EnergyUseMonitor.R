@@ -183,7 +183,18 @@ EnergyUseMonitor <- function(input, output, session) {
         marker = list(color = BarColours[5]),
         legendgroup = 5
       ) %>%
-      
+      add_trace(
+        data = Data,
+        x = ~ 1.1 ,
+        showlegend = TRUE,
+        name = 'Total closely',
+        mode = 'text',
+        type = 'scatter',
+        hoverinfo = 'skip',
+        textfont = list(color = ChartColours[1]),
+        text =  paste0("<b>", percent(Data$`Very Closely` + Data$`Fairly Closely`, 0.1), "</b>"),
+        legendgroup = 8
+      ) %>%
       layout(
         barmode = 'stack',
         legend = list(font = list(color = "#1A5D38"),
@@ -319,6 +330,10 @@ EnergyUseMonitor <- function(input, output, session) {
       EnergyUseMonitor <-
         EnergyUseMonitor[order(EnergyUseMonitor$Year),]
       
+      EnergyUseMonitor$Total <- EnergyUseMonitor$`Very Closely` + EnergyUseMonitor$`Fairly Closely`
+      
+      EnergyUseMonitor <- EnergyUseMonitor[c(1,7,2:6)]
+      
       EnergyUseMonitor <- melt(EnergyUseMonitor, id.vars = "Year")
       
       
@@ -348,7 +363,8 @@ EnergyUseMonitor <- function(input, output, session) {
             "Fairly Closely" = BarColours[2],
             "Don't Know" = BarColours[3],
             "Not Very Closely" = BarColours[4],
-            "Not at All" = BarColours[5]
+            "Not at All" = BarColours[5],
+            "Total" = "White"
           )
         ) +
         geom_bar(stat = "identity", width = .8) +
@@ -365,7 +381,7 @@ EnergyUseMonitor <- function(input, output, session) {
         geom_text(
           aes(x = 2007,
               y = 0.5/5,
-              label = "Very Closely"),
+              label = "Very\nClosely"),
           fontface = 2,
           colour = BarColours[1],
           family = "Century Gothic",
@@ -374,7 +390,7 @@ EnergyUseMonitor <- function(input, output, session) {
         geom_text(
           aes(x = 2007,
               y = 1.5/5,
-              label = "Fairly Closely"),
+              label = "Fairly\nClosely"),
           fontface = 2,
           colour = BarColours[2],
           family = "Century Gothic",
@@ -383,7 +399,7 @@ EnergyUseMonitor <- function(input, output, session) {
         geom_text(
           aes(x = 2007,
               y = 2.5/5,
-              label = "Don't Know"),
+              label = "Don't\nKnow"),
           fontface = 2,
           colour = BarColours[3],
           family = "Century Gothic",
@@ -392,7 +408,7 @@ EnergyUseMonitor <- function(input, output, session) {
         geom_text(
           aes(x = 2007,
               y = 3.5/5,
-              label = "Not Very Closely"),
+              label = "Not Very\nClosely"),
           fontface = 2,
           colour = BarColours[4],
           family = "Century Gothic",
@@ -401,11 +417,33 @@ EnergyUseMonitor <- function(input, output, session) {
         geom_text(
           aes(x = 2007,
               y = 4.5/5,
-              label = "Not at all"),
+              label = "Not\nat all"),
           fontface = 2,
           colour = BarColours[5],
           family = "Century Gothic",
           hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 2007,
+              y = 5.5/5,
+              label = "Total\nclosely"),
+          fontface = 2,
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        annotate(
+          "text",
+          x = EnergyUseMonitor$Year,
+          y = 1.1,
+          label = ifelse(
+            EnergyUseMonitor$Year == "z",
+            "",
+            percent(EnergyUseMonitor$value[which(EnergyUseMonitor$variable == "Total")], accuracy = 0.1)
+          ),
+          family = "Century Gothic",
+          fontface = 2,
+          colour = ChartColours[1]
         ) +
         geom_text(
           y = EnergyUseMonitor$top - EnergyUseMonitor$pos,
@@ -438,7 +476,8 @@ EnergyUseMonitor <- function(input, output, session) {
       EnergyUseMonitorChart <-
         EnergyUseMonitorChart +
         xlim(max(EnergyUseMonitor$Year) + .5,
-             min(EnergyUseMonitor$Year) - 1.1) +
+             min(EnergyUseMonitor$Year) - 1.1)+
+        ylim(-.04, 1.13) +
         coord_flip()
       
       EnergyUseMonitorChart

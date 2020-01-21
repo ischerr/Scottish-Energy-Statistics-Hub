@@ -1277,15 +1277,6 @@ DomEPCs <- function(input, output, session) {
                              fontface = 2,
                              colour = ChartColours[1]
                            ) +
-                           # geom_text(
-                           #   aes(x = 3.7,
-                           #       y = 0.5 * (1 / 7),
-                           #       label = "A"),
-                           #   fontface = 2,
-                           #   colour = BarColours[1],
-                           #   family = "Century Gothic",
-                           #   hjust = 0.5
-                           # ) +
                            geom_text(
                              aes(x = 3.7,
                                  y = .5 * (1 / 6),

@@ -32,7 +32,7 @@ EnSupplySwitchOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     fluidRow(
-    column(10, h3("Data", style = "color: #68c3ea;  font-weight:bold")),
+    column(10, h3("Data - Proportion of customers who have switched energy supplier by local authority 2018", style = "color: #68c3ea;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -162,17 +162,17 @@ EnSupplySwitch <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Proportion of customers who have switched energy supplier by local authority",
+        title = "Proportion of customers who have switched energy supplier by local authority, 2018",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Proportion of customers who have switched energy supplier by local authority',
+            title = 'Proportion of customers who have switched energy supplier by local authority, 2018',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Proportion of customers who have switched energy supplier by local authority')
+               title = 'Proportion of customers who have switched energy supplier by local authority, 2018')
         ),
         
         # customize the length menu
