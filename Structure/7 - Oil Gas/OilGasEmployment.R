@@ -47,13 +47,23 @@ OilGasEmploymentOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
+    tabsetPanel(
+      tabPanel("Employment",
   fluidRow(
-    column(10, h3("Data", style = "color: #126992;  font-weight:bold")),
+    column(10, h3("Data - Scottish Oil and gas employment", style = "color: #126992;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("OilGasEmploymentTable"))%>% withSpinner(color="#126992"))),
-    tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
+    tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;")),
+  tabPanel("Proportions",
+           fluidRow(
+             column(10, h3("Data - Scottish Oil and gas employment", style = "color: #126992;  font-weight:bold")),
+             column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+           ),
+           fluidRow(
+             column(12, dataTableOutput(ns("OilGasEmploymentUKTable"))%>% withSpinner(color="#126992"))),
+           tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"))),
     fluidRow(
       column(1,
              p("Next update:")),
@@ -148,7 +158,7 @@ OilGasEmployment <- function(input, output, session) {
         ),
         yaxis = list(
           title = "",
-          tickformat = "",
+          tickformat = ",d",
           autorange = "reversed",
           ticktext = as.list(Data$`Year`),
           tickmode = "array",
@@ -187,8 +197,10 @@ OilGasEmployment <- function(input, output, session) {
     
     Data[nrow(Data),1] <- Data[nrow(Data)-1,1] + 1
     
+    names(Data) <- c("Year", "UK - Direct", "UK - Indirect", "UK - Induced", "UK - Total", "Total employment - Scotland only")
+    
     datatable(
-      Data,
+      Data[c(1,6,2:5)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -223,7 +235,7 @@ OilGasEmployment <- function(input, output, session) {
   
   output$OilGasEmploymentRegionSubtitle <- renderText({
     
-    paste("Scotland, 2018")
+    paste("2018")
     
   })
   
@@ -248,8 +260,8 @@ OilGasEmployment <- function(input, output, session) {
                 type = 'bar',
                 legendgroup = "1",
                 text = paste0(
-                  "Renewables: ", percent(OilGasEmployment$`Renewables`, 0.1),"\n",
-                  "Year: ", OilGasEmployment$Region, "\n"),
+                  percent(OilGasEmployment$`Renewables`, 0.1),"\n",
+                  OilGasEmployment$Region, "\n"),
                 hoverinfo = 'text',
                 marker = list(color = BarColours[1])
       ) %>% 
@@ -509,7 +521,49 @@ OilGasEmployment <- function(input, output, session) {
     }
   ) 
   
+  output$OilGasEmploymentUKTable = renderDataTable({
+    
+    OilGasEmployment <- read_excel("Structure/7 - Oil Gas/RegionalOilGasEmployment.xlsx")
+    
+    names(OilGasEmployment) <- c("Region", "Renewables")
+    
+    datatable(
+      OilGasEmployment,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "Scottish Oil and gas employment",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = "Scottish Oil and gas employment",
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = "Scottish Oil and gas employment")
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatPercentage(2, 0)
+  })
   
+  observeEvent(input$ToggleTable2, {
+    toggle("OilGasEmploymentUKTable")
+  })
 }
     
     

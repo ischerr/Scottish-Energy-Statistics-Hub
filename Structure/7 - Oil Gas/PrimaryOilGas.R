@@ -32,13 +32,23 @@ PrimaryOilGasOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:;background-color:#126992;"),
+    tabsetPanel(
+      tabPanel("Primary Energy",
     fluidRow(
-    column(10, h3("Data", style = "color: #126992;  font-weight:bold")),
+    column(10, h3("Data - Distribution of primary energy - indigenous production and imports (TWh)", style = "color: #126992;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("PrimaryOilGasTable"))%>% withSpinner(color="#126992"))),
-    tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
+    tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;")),
+    tabPanel("Proportion",
+             fluidRow(
+               column(10, h3("Data - Oil and gas by indigenous production and imports", style = "color: #126992;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("PrimaryOilGasImportsTable"))%>% withSpinner(color="#126992"))),
+             tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"))),
     fluidRow(
       column(1,
              p("Next update:")),
@@ -260,17 +270,17 @@ PrimaryOilGas <- function(input, output, session) {
         fixedColumns = FALSE,
         columnDefs = list(list(visible=FALSE, targets=c(4))),
         autoWidth = TRUE,
-        title = "Distribution of primary energy (indigenous production and imports)",
+        title = "Distribution of primary energy - indigenous production and imports (TWh)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Distribution of primary energy (indigenous production and imports)',
+            title = 'Distribution of primary energy - indigenous production and imports (TWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Distribution of primary energy (indigenous production and imports)')
+               title = 'Distribution of primary energy - indigenous production and imports (TWh)')
         ),
         
         # customize the length menu
@@ -559,5 +569,66 @@ PrimaryOilGas <- function(input, output, session) {
       )
     }
 )
+  
+  
+  output$PrimaryOilGasImportsTable = renderDataTable({
+    
+    Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                       sheet = "Primary energy oil and gas",
+                       skip = 13)[1:7]
+    
+    Data %<>% lapply(function(x)
+      as.numeric(as.character(x)))
+    
+    Data <- as_tibble(Data)
+    
+    Data <- arrange(Data, -row_number())
+    
+    Data <- Data[!duplicated(Data$Year), ]
+    
+    names(Data) <- c("Year",  "Oil/petroleum - Indigenous production", "Oil/petroleum - Imports",
+                              "Gas - Indigenous production", "Gas - Imports",
+                              "Total - Indigenous production", "Total - Imports")
+    
+    PrimaryOilGas <- Data[complete.cases(Data),]
+    
+    datatable(
+      PrimaryOilGas,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = 10,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        columnDefs = list(list(visible=FALSE, targets=c(4))),
+        autoWidth = TRUE,
+        title = "Oil and gas by indigenous production and imports",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Oil and gas by indigenous production and imports',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Oil and gas by indigenous production and imports')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatPercentage(2:9, 1) 
+  })
+  
+  observeEvent(input$ToggleTable, {
+    toggle("PrimaryOilGasImportsTable")
+  })
 
 }

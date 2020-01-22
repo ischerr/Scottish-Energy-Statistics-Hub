@@ -31,13 +31,23 @@ OilGasConsumptionOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
+    tabsetPanel(
+      tabPanel("Scotland",
   fluidRow(
-    column(10, h3("Data", style = "color: #126992;  font-weight:bold")),
+    column(10, h3("Data - Scottish Oil and gas consumption", style = "color: #126992;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("OilGasConsumptionTable"))%>% withSpinner(color="#126992"))),
-    tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
+    tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;")),
+  tabPanel("UK",
+           fluidRow(
+             column(10, h3("Data - UK Oil and gas consumption", style = "color: #126992;  font-weight:bold")),
+             column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+           ),
+           fluidRow(
+             column(12, dataTableOutput(ns("OilGasConsumptionUKTable"))%>% withSpinner(color="#126992"))),
+           tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"))),
     fluidRow(
       column(1,
              p("Next update:")),
@@ -90,43 +100,48 @@ OilGasConsumption <- function(input, output, session) {
         skip = 12,
         n_max = 8)
     
-    Data <- Data[c(2,4,6,8),]
+    Data <- Data[c(1,3,5,7),]
     
     names(Data)[1] <- c("Year")
     
     Data$YearFormat <- paste0("<b>",Data$Year, "</b>")
     
+    Data$Total <- Data$`Petroleum products` + Data$Gas + Data$`Other fuel`
+    
     p <-  plot_ly(Data, y = ~ YearFormat ) %>%  
-      add_trace(x = ~ `Petroleum products`, 
+      add_trace(x = ~ `Petroleum products` / Total, 
                 orientation = 'h',
                 name = "Petroleum products",
                 type = 'bar',
                 legendgroup = "1",
                 text = paste0(
-                  "Petroleum products: ", percent(Data$`Petroleum products`, 0.1),"\n",
-                  "Year: ", Data$Year, "\n"),
+                  "Petroleum products: ", format(round(Data$`Petroleum products`,0), big.mark = ",") ," GWh\n",
+                  "Proportion: ", percent(Data$`Petroleum products`/ Data$Total, 0.1), "\n" ,
+                  "Year: ", Data$Year),
                 hoverinfo = 'text',
                 marker = list(color = BarColours[1])
       ) %>% 
-      add_trace(x = ~ `Gas`, 
+      add_trace(x = ~ `Gas` / Data$Total, 
                 orientation = 'h',
                 name = "Gas",
                 type = 'bar',
                 legendgroup = "2",
                 text = paste0(
-                  "Gas: ", percent(Data$Gas, 0.1),"\n",
-                  "Year: ", Data$Year, "\n"),
+                  "Gas: ", format(round(Data$`Gas`,0), big.mark = ",") ," GWh\n",
+                  "Proportion: ", percent(Data$`Gas`/ Data$Total, 0.1), "\n",
+                  "Year: ", Data$Year),
                 hoverinfo = 'text',
                 marker = list(color = BarColours[2])
       ) %>% 
-      add_trace(x = ~ `Other fuel`, 
+      add_trace(x = ~ `Other fuel` / Data$Total, 
                 orientation = 'h',
                 name = "Other fuel",
                 type = 'bar',
                 legendgroup = "3",
                 text = paste0(
-                  "Other fuel: ", percent(Data$`Other fuel`, 0.1),"\n",
-                  "Year: ", Data$Year, "\n"),
+                  "Other fuel: ", format(round(Data$`Other fuel`,0), big.mark = ",") ," GWh\n",
+                  "Proportion: ", percent(Data$`Other fuel`/ Data$Total, 0.1), "\n",
+                  "Year: ", Data$Year),
                 hoverinfo = 'text',
                 marker = list(color = BarColours[3])
       ) %>% 
@@ -173,12 +188,20 @@ OilGasConsumption <- function(input, output, session) {
         skip = 12,
         n_max = 8)
     
-    Data <- Data[c(2,4,6,8),]
+    Data <- Data[c(1,3,5,7),]
     
     names(Data)[1] <- c("Year")
     
+    Data$`Petroleum proportion` <- Data$`Petroleum products` / (Data$`Petroleum products`+ Data$Gas + Data$`Other fuel`)
+    
+    Data$`Gas proportion` <- Data$`Gas` / (Data$`Petroleum products`+ Data$Gas + Data$`Other fuel`)
+    
+    Data$`Other proportion` <- Data$`Other fuel` / (Data$`Petroleum products`+ Data$Gas + Data$`Other fuel`)
+    
+    names(Data)[c(2:4)] <- c("Petroleum products (GWh)", "Gas (GWh)", "Other fuel (GWh)" )
+    
     datatable(
-      Data,
+      Data[c(1,2,5,3,6,4,7)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -188,17 +211,17 @@ OilGasConsumption <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Oil and gas consumption",
+        title = "Oil and gas consumption - Scotland",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Oil and gas consumption",
+            title = "Oil and gas consumption - Scotland",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Oil and gas consumption")
+               title = "Oil and gas consumption - Scotland")
         ),
         
         # customize the length menu
@@ -208,7 +231,8 @@ OilGasConsumption <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:4, 1)
+      formatRound(2:7, 0) %>% 
+      formatPercentage(c(3,5,7), 1)
   })
   
   output$Text <- renderUI({
@@ -386,6 +410,65 @@ OilGasConsumption <- function(input, output, session) {
   }
 ) 
   
+  output$OilGasConsumptionUKTable = renderDataTable({
+    
+    Data <-
+      read_excel(
+        "Structure/CurrentWorking.xlsx",
+        sheet = "Oil and gas consumption", col_names = TRUE, 
+        skip = 23,
+        n_max = 8)
+    
+    Data <- Data[c(1,3,5,7),]
+    
+    names(Data)[1] <- c("Year")
+    
+    Data$`Petroleum proportion` <- Data$`Petroleum products` / (Data$`Petroleum products`+ Data$Gas + Data$`Other fuel`)
+    
+    Data$`Gas proportion` <- Data$`Gas` / (Data$`Petroleum products`+ Data$Gas + Data$`Other fuel`)
+    
+    Data$`Other proportion` <- Data$`Other fuel` / (Data$`Petroleum products`+ Data$Gas + Data$`Other fuel`)
+    
+    names(Data)[c(2:4)] <- c("Petroleum products (GWh)", "Gas (GWh)", "Other fuel (GWh)" )
+    
+    datatable(
+      Data[c(1,2,5,3,6,4,7)],
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "Oil and gas consumption - UK",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = "Oil and gas consumption - UK",
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = "Oil and gas consumption - UK")
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(2:7, 0) %>% 
+      formatPercentage(c(3,5,7), 1)
+  })
+  
+  observeEvent(input$ToggleTable2, {
+    toggle("OilGasConsumptionUKTable")
+  })
   
 }
     
