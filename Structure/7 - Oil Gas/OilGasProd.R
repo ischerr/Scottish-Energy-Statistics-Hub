@@ -188,7 +188,7 @@ OilGasProd <- function(input, output, session) {
                      showgrid = FALSE,
                      range = c(min(OilGasProd$Year)-100, max(OilGasProd$Year)+100)),
         yaxis = list(
-          title = "GWh",
+          title = "mtoe",
           tickformat = "",
           showgrid = TRUE,
           zeroline = TRUE,

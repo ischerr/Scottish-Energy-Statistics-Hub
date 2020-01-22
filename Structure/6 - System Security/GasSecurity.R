@@ -336,7 +336,7 @@ GasSecurity <- function(input, output, session) {
                   format(GasSecurityRolling$Year, "%d/%m/%Y")
                 ),
                 hoverinfo = 'text',
-                line = list(width = 3, color = ChartColours[2], dash = "none")
+                line = list(width = 3, color = ChartColours[1], dash = "none")
       )     %>% 
       layout(
         barmode = 'stack',

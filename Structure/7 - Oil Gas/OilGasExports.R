@@ -11,7 +11,7 @@ OilGasExportsOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Oil and gas Exports", style = "color: #126992;  font-weight:bold"),
+                    h3("International sales from oil and gas supply chain", style = "color: #126992;  font-weight:bold"),
                     h4(textOutput(ns('OilGasExportsSubtitle')), style = "color: #;")
     ),
              column(
@@ -32,7 +32,7 @@ OilGasExportsOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
                fluidRow(
-    column(10, h3("Data", style = "color: #126992;  font-weight:bold")),
+    column(10, h3("Data - International sales from oil and gas supply chain", style = "color: #126992;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -231,7 +231,7 @@ OilGasExports <- function(input, output, session) {
                      showgrid = FALSE,
                      range = c(min(OilGasExports$Year)-100, max(OilGasExports$Year)+100)),
         yaxis = list(
-          title = "GWh",
+          title = "\u00A3 Billion",
           tickformat = "",
           showgrid = TRUE,
           zeroline = TRUE,
@@ -276,17 +276,17 @@ OilGasExports <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Scottish offshore oil and gas exports (\u00A3billion)",
+        title = "International sales from oil and gas supply chain (\u00A3billion)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Scottish offshore oil and gas exports (\u00A3billion)',
+            title = 'International sales from oil and gas supply chain (\u00A3billion)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Scottish offshore oil and gas exports (\u00A3billion)')
+               title = 'International sales from oil and gas supply chain (\u00A3billion)')
         ),
         
         # customize the length menu

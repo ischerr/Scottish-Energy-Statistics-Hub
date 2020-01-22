@@ -32,7 +32,7 @@ OilGasOutputsOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
   fluidRow(
-    column(10, h3("Data", style = "color: #126992;  font-weight:bold")),
+    column(10, h3("Data - Outputs from oil and gas", style = "color: #126992;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -103,11 +103,11 @@ OilGasOutputs <- function(input, output, session) {
     p <-  plot_ly(Data, y = ~ YearFormat ) %>%  
       add_trace(x = ~ `Domestic`, 
                 orientation = 'h',
-                name = "Consumed domestic",
+                name = "Consumed domestically",
                 type = 'bar',
                 legendgroup = "1",
                 text = paste0(
-                  "Domestic: ", percent(Data$Domestic, 0.1),"\n",
+                  "Consumed domestically: ", percent(Data$Domestic, 0.1),"\n",
                   "Year: ", Data$Year, "\n"),
                 hoverinfo = 'text',
                 marker = list(color = BarColours[1])
@@ -176,7 +176,7 @@ OilGasOutputs <- function(input, output, session) {
         sheet = "Outputs from oil & gas", col_names = TRUE, 
         skip = 11)
     
-    names(Data) <- c("Year", "Domestic", "Exports", "Transformation")
+    names(Data) <- c("Year", "Consumed domestically", "Exports", "Transformation and losses")
     
     datatable(
       Data,

@@ -2,8 +2,6 @@ source("packages.R")
 
 
 
-#loadfonts(device = "win")
-
 js_code <- "
 shinyjs.browseURL = function(url) {
   window.open(url,'_blank');
@@ -13,11 +11,6 @@ shinyjs.browseURL = function(url) {
 dir.create('~/.fonts')
 file.copy("www/GOTHIC.TTF", "~/.fonts")
 system('fc-cache -f ~/.fonts')
-
-# 
-# font_import(pattern="Cent",prompt=FALSE)
-# loadfonts(device="win")
-
 
 ### Create List of Scripts, including filepath ###
   SourceList <-
@@ -191,19 +184,7 @@ observe({
 
 }
 )
-    
 
-  
-  # SourceList <-
-  #   list.files(
-  #     "Structure",
-  #     full.names = TRUE,
-  #     recursive = TRUE,
-  #     pattern = "\\.R$"
-  #   )
-  # 
-  # sapply(SourceList, source)
-  
   observeEvent(input$GoToTotalEnergyTab, {
     updateTabsetPanel(session, "MainNav",
                       selected = "WholeSystem")
