@@ -10,8 +10,10 @@ source("Structure/Global.R")
 RestrictedPPMOutput <- function(id) {
   ns <- NS(id)
   tagList(
+    tabsetPanel(
+    tabPanel("Restricted",
     fluidRow(column(8,
-                    h3("Proportion of households not on the gas grid by local authority (estimates)", style = "color: #68c3ea;  font-weight:bold"),
+                    h3("Restricted meters by local authority", style = "color: #68c3ea;  font-weight:bold"),
                     h4(textOutput(ns('RestrictedMeterSubtitle')), style = "color: #68c3ea;")
     ),
              column(
@@ -22,7 +24,21 @@ RestrictedPPMOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     #dygraphOutput(ns("RestrictedMeterPlot")),
     imageOutput(ns("RestrictedMeterPlot"), height = "700px")%>% withSpinner(color="#68c3ea"),
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Prepayment",
+             fluidRow(column(8,
+                             h3("Prepayment meters by local authority", style = "color: #68c3ea;  font-weight:bold"),
+                             h4(textOutput(ns('PPMMeterSubtitle')), style = "color: #68c3ea;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('PPMMeter.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+             #dygraphOutput(ns("PPMMeterPlot")),
+             imageOutput(ns("PPMMeterPlot"), height = "700px")%>% withSpinner(color="#68c3ea"),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
@@ -227,6 +243,35 @@ RestrictedPPM <- function(input, output, session) {
     filename = "RestrictedMeter.png",
     content = function(file) {
       writePNG(readPNG("Structure/5 - Consumers/RestrictedMeterChart.png"), file) 
+    }
+  )
+  
+  output$PPMMeterSubtitle <- renderText({
+    
+    paste("Scotland, 2017")
+    
+  })
+  
+  output$PPMMeterPlot <- renderImage({
+    
+    # A temp file to save the output. It will be deleted after renderImage
+    # sends it, because deleteFile=TRUE.
+    outfile <- tempfile(fileext='.png')
+    
+    writePNG(readPNG("Structure/5 - Consumers/PPMMeterOutput.png"),outfile) 
+    
+    # Generate a png
+    
+    
+    # Return a list
+    list(src = outfile,
+         alt = "This is alternate text")
+  }, deleteFile = TRUE)
+  
+  output$PPMMeter.png <- downloadHandler(
+    filename = "PPMMeter.png",
+    content = function(file) {
+      writePNG(readPNG("Structure/5 - Consumers/PPMMeterChart.png"), file) 
     }
   )
 }
