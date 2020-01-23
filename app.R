@@ -623,7 +623,7 @@ ui <- shinyUI(fluidPage(
                             BoilersOutput("Boilers")),
                    tabPanel(title = "ECO Measures",
                             value = "ECOMeasures",
-                            EPCMeasuresOutput("ECOMeasures")),
+                            ECOMeasuresOutput("ECOMeasures")),
                    tabPanel(title = "Non-domestic EPCs",
                             value = "NonDomEPCs",
                             NonDomEPCsOutput("NonDomEPCs"))
