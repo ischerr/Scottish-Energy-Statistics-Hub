@@ -11,7 +11,7 @@ HouseholdIntensityOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Average domestic electricity consumption", style = "color: #34d1a3;  font-weight:bold"),
+                    h3("Average household energy intensity", style = "color: #34d1a3;  font-weight:bold"),
                     h4(textOutput(ns('HouseholdIntensitySubtitle')), style = "color: #34d1a3;")
     ),
              column(
@@ -21,7 +21,7 @@ HouseholdIntensityOutput <- function(id) {
     
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     #dygraphOutput(ns("HouseholdIntensityPlot")),
-    plotlyOutput(ns("HouseholdIntensityPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
+    plotlyOutput(ns("HouseholdIntensityPlot"))%>% withSpinner(color="#34d1a3"),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
@@ -32,7 +32,7 @@ HouseholdIntensityOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
-    column(10, h3("Data - Average domestic electricity consumption (kWh)", style = "color: #34d1a3;  font-weight:bold")),
+    column(10, h3("Data - Average household energy intensity", style = "color: #34d1a3;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -70,129 +70,95 @@ HouseholdIntensity <- function(input, output, session) {
   
   print("HouseholdIntensity.R")
 
+  Data <- read_excel(
+    "Structure/CurrentWorking.xlsx",
+    sheet = "Household energy intensity",
+    col_names = FALSE,
+    skip = 15
+  )
+  
+  Data <- as_tibble(t(Data))
+  
+  names(Data) <- unlist(Data[1,])
+  
+  Data <- Data[-1,]
+  
+  names(Data)[1] <- "Year"
+  
+  Data %<>% lapply(function(x) as.numeric(as.character(x)))
+  
+  Data <- as_tibble(Data)
   
   output$HouseholdIntensitySubtitle <- renderText({
-    
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump sector",
-      col_names = FALSE,
-      skip = 12,
-      n_max = 7
-    )
-    
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- unlist(Data[1,])
-    
-    names(Data)[1] <- "Year"
-    
-    Data[1:7] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
   output$HouseholdIntensityPlot <- renderPlotly  ({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Elec consump household",
-      col_names = FALSE,
-      skip = 13
-    )
-    
-    names(Data) <- c("Year", "Consumption")
-    
-    Data[1:2] %<>% lapply(function(x) as.numeric(as.character(x)))
-    
-    Data[1,1] <- "Baseline\n2005/2007"
-    
-    Data[2,1] <- " "
-    
-    Data <- head(Data, -3)
-    
-    Data[nrow(Data),1] <- "% Change\nfrom baseline"
-    
-    Data$Year <- paste("<b>", Data$Year, "</b>")
-    
-    Data$RowNumber <- as.numeric(rownames(Data))
-    
-    Data[is.na(Data)] <- 0
-    
-    DataTail <- tail(Data,1)
-    
-    DataLatest <- Data[nrow(Data)-1,]
-    
+
     ChartColours <- c("#34d1a3", "#FF8500")
     BarColours <- c("#00441b", "#238b45", "#66c2a4", "#ef3b2c")
     
-    p <- plot_ly(data = Data, y = ~ Year) %>%
-      
-      add_trace(
-        data = Data,
-        x = ~ `Consumption`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "Consumption",
-        text = paste0("Consumption: ", format(round(Data$`Consumption`, digits = 0), big.mark = ","), " kWh"),
-        hoverinfo = 'text',
-        marker = list(color = ChartColours[1]),
-        legendgroup = 2
-      ) %>%
-      add_trace(
-        data = Data,
-        y = ~ Year,
-        x = ~ Data$`Consumption` + 0.1,
-        showlegend = FALSE,
-        type = 'scatter',
-        mode = 'text',
-        text = ifelse(Data$`Consumption` >0, paste("<b>",format(round((Data$`Consumption`), digits = 0), big.mark = ","),"kWh</b>")," "),
-        textposition = 'middle right',
-        textfont = list(color = ChartColours[1]),
-        hoverinfo = 'skip',
-        marker = list(
-          size = 0.00001
-        )
+    
+    p <-  plot_ly(Data,x = ~ Year ) %>% 
+      add_trace(data = Data,
+                x = ~ Year,
+                y = ~ `Energy intensity (kWh / households)`,
+                name = "Energy intensity (kWh / households)",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "1",
+                text = paste0(
+                  "Energy intensity (kWh / households): ",
+                  format(round(Data$`Energy intensity (kWh / households)`, digits = 0), big.mark = ","),
+                  "\nYear: ",
+                  paste(Data$Year)
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[1], dash = "none")
       )  %>% 
       add_trace(
-        data = tail(Data,1),
-        y = ~Year,
-        x = mean(DataLatest$`Consumption`)/2,
-        showlegend = FALSE,
-        mode = 'text',
-        type = 'scatter',
-        hoverinfo = 'skip',
-        textfont = list(color = ChartColours[1]),
-        text = paste0("<b>", percent(DataTail$`Consumption`, accuracy = 0.1), "</b>")
-      ) %>% 
+        data = tail(Data[which(Data$`Energy intensity (kWh / households)` > 0 | Data$`Energy intensity (kWh / households)` < 0),], 1),
+        x = ~ Year,
+        y = ~ `Energy intensity (kWh / households)`,
+        legendgroup = "1",
+        name = "Total",
+        text = paste0(
+          "Energy intensity (kWh / households): ",
+          format(round(Data[which(Data$`Energy intensity (kWh / households)` > 0 | Data$`Energy intensity (kWh / households)` < 0),][-1,]$`Energy intensity (kWh / households)`, digits = 0), big.mark = ","),
+          "\nYear: ",
+          paste(Data[which(Data$`Energy intensity (kWh / households)` > 0 | Data$`Energy intensity (kWh / households)` < 0),][-1,]$Year)
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[1])
+      )  %>%  
       layout(
         barmode = 'stack',
-        legend = list(font = list(color = "#1A5D38"),
+        bargap = 0.66,
+        legend = list(font = list(color = "#126992"),
                       orientation = 'h'),
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
         hovername = 'text',
-        yaxis = list(title = "",
-                     showgrid = FALSE,
-                     type = "category",
-                     autorange = "reversed",
-                     ticktext = as.list(Data$Year),
-                     tickmode = "array",
-                     tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
-        ),
-        xaxis = list(
-          title = "",
-          tickformat = "",
+        
+        xaxis = list(title = "",
+                     showgrid = FALSE),
+        yaxis = list(
+          title = "kWh / households)",
+          tickformat = ",n",
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
           zerolinewidth = 2,
-          range = c(0,6500)
+          rangemode = "tozero"
         )
       ) %>% 
       config(displayModeBar = F)
-    
     p
     
     
@@ -202,26 +168,6 @@ HouseholdIntensity <- function(input, output, session) {
   
   
   output$HouseholdIntensityTable = renderDataTable({
-    
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Elec consump household",
-      col_names = FALSE,
-      skip = 13
-    )
-    
-    names(Data) <- c("Year", "Consumption")
-    
-    Data[1:2] %<>% lapply(function(x) as.numeric(as.character(x)))
-    
-    Data[1,1] <- " Baseline\n2005/2007"
-    
-    
-    Data <- head(Data, -3)
-    
-    Data[nrow(Data),1] <- "% Change\nfrom baseline"
-    
-    Data <- head(Data, -1)
     
     datatable(
       Data,
@@ -236,17 +182,17 @@ HouseholdIntensity <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Average domestic electricity consumption (kWh)",
+        title = "Average household energy intensity",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Average domestic electricity consumption (kWh)',
+            title = 'Average household energy intensity',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Average domestic electricity consumption (kWh)')
+               title = 'Average household energy intensity')
         ),
         
         # customize the length menu
@@ -256,8 +202,8 @@ HouseholdIntensity <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2, 0)%>% 
-      formatStyle(c(2), fontWeight = 'bold')
+      formatRound(2:4, 0)%>%
+      formatPercentage(5:6, 1)
   })
   
   
@@ -287,177 +233,93 @@ HouseholdIntensity <- function(input, output, session) {
     content = function(file) {
 
 
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Elec consump household", skip = 12, col_names = TRUE)
-      
-      Data[1,1] <- 2003
-      
-      names(Data) <- c("Year", "Consumption")
-      
-      Data <- Data[complete.cases(Data),]
-      
-      Data[nrow(Data),1] <- max(as.numeric(Data$Year),na.rm = TRUE)+1
-      
-      Data$Total <- Data$Consumption
-      
-      Data$Year <- as.numeric(Data$Year)
-      
-      HouseholdIntensity <- Data
-      
-      HouseholdIntensity <-
-        HouseholdIntensity[order(-HouseholdIntensity$Year),]
-      
-      HouseholdIntensity <-
-        melt(HouseholdIntensity, id.vars = "Year")
-      
-      FinalConsumptionMax <-
-        subset(HouseholdIntensity,
-               Year == max(HouseholdIntensity$Year))
-      
-      HouseholdIntensity <-
-        subset(
-          HouseholdIntensity,
-          Year < max(HouseholdIntensity$Year) & variable != "Total"
-        )
-      
-      HouseholdIntensity$variable <-
-        factor(HouseholdIntensity$variable,
-               levels = unique(HouseholdIntensity$variable))
-      
-      HouseholdIntensity <- HouseholdIntensity %>%
-        group_by(Year) %>%
-        mutate(pos = cumsum(value) - value / 2) %>%
-        mutate(top = sum(value))
-      
       plottitle <-
-        "Average domestic electricity consumption"
+        "Average household energy intensity\n(kWh / households)"
       sourcecaption <- "Source: BEIS"
       
       ChartColours <- c("#34d1a3", "#FF8500")
       BarColours <- c("#00441b", "#238b45","#41ae76", "#66c2a4","#66c2a4", "#99d8c9", "ffffff")
-      
-      
+
+      HouseholdIntensity <- Data
       HouseholdIntensityChart <- HouseholdIntensity %>%
-        ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
-        scale_fill_manual(
-          "variable",
-          values = c(
-            "Consumption" = ChartColours[1],
-            "Gas" = BarColours[2],
-            "Electricity" = BarColours[3],
-            "Bioenergy & wastes" = BarColours[4],
-            "Coal" = BarColours[5],
-            "Manufactured fuels" = BarColours[6]
-          )
-        ) +
-        geom_bar(stat = "identity", width = .8) +
-        geom_text(
-          y = HouseholdIntensity$top/2,
-          label = ifelse(
-            HouseholdIntensity$value < 7000,
-            paste0(format(
-              round(HouseholdIntensity$top, digits = 0), big.mark = ","
-            ), " kWh"),
-            ""
+        ggplot(aes(x = Year), family = "Century Gothic") +
+        
+        geom_line(
+          aes(
+            y = `Energy intensity (kWh / households)`,
+            colour = ChartColours[2],
+            label = `Energy intensity (kWh / households)`
           ),
-          family = "Century Gothic",
-          fontface = 2,
-          color = "white"
-        ) +
-        geom_text(
-          y = -750,
-          label =   ifelse(
-            HouseholdIntensity$value < 7000,
-            ifelse(
-              HouseholdIntensity$Year == 2003,
-              "2005/2007\n(baseline)",
-              HouseholdIntensity$Year
-            ),
-            ""
-          ),
-          hjust = .5,
-          family = "Century Gothic",
-          fontface = 2,
-          color = ChartColours[1]
-        ) +
-        annotate(
-          "text",
-          x = max(HouseholdIntensity$Year) + 1.2,
-          y = as.numeric(
-            subset(
-              HouseholdIntensity,
-              Year == max(HouseholdIntensity$Year) &
-                variable == "Consumption"
-            )[1, 5]
-          ) - as.numeric(
-            subset(
-              HouseholdIntensity,
-              Year == max(HouseholdIntensity$Year) &
-                variable == "Consumption"
-            )[1, 4]
-          ),
-          label = percent((
-            subset(FinalConsumptionMax, variable == "Consumption")[1, 3]
-          ), accuracy = .1),
-          fontface = 2,
-          color = ChartColours[1],
+          size = 1.5,
           family = "Century Gothic"
         ) +
-        annotate(
-          "text",
-          x = max(HouseholdIntensity$Year) + 1.2,
-          y = as.numeric(
-            subset(
-              HouseholdIntensity,
-              Year == max(HouseholdIntensity$Year) &
-                variable == "Gas"
-            )[1, 5]
+        geom_text(
+          aes(
+            x = Year,
+            y = `Energy intensity (kWh / households)`,
+            label = ifelse(Year == min(Year), paste0(format(round(`Energy intensity (kWh / households)`, digits = 0),big.mark = ",")), ""),
+            hjust = 0.5,
+            vjust = 2.2,
+            colour = ChartColours[2],
+            fontface = 2
           ),
-          label = percent((
-            subset(FinalConsumptionMax, variable == "Total")[1, 3]
-          ), accuracy  = .1),
-          fontface = 2,
-          color = ChartColours[1],
-          family = "Century Gothic",
-          hjust = -.75
-        ) + annotate(
-          "text",
-          x = max(HouseholdIntensity$Year) + 1.2,
-          y = -700,
-          label = "% Change\nfrom baseline",
-          fontface = 2,
-          color = ChartColours[1],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = `Energy intensity (kWh / households)`,
+            label = ifelse(Year == max(Year), paste0(format(round(`Energy intensity (kWh / households)`, digits = 0),big.mark = ",")), ""),
+            hjust = 0.5,
+            vjust = -1,
+            colour = ChartColours[2],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(HouseholdIntensity, 1),
+          aes(
+            x = Year,
+            y = `Energy intensity (kWh / households)`,
+            colour = ChartColours[2],
+            show_guide = FALSE
+          ),
+          size = 4,
+          family = "Century Gothic"
+        ) +
+         geom_text(
+          aes(
+            x = Year,
+            y = 0,
+            label = ifelse(Year == max(Year) |
+                             Year == min(Year), paste0(Year), ""),
+            hjust = 0.5,
+            vjust = 1.5,
+            fontface = 2
+          ),
+          colour = ChartColours[1],
           family = "Century Gothic"
         )
       
       
-      
-      HouseholdIntensityChart
-      
-      
       HouseholdIntensityChart <-
-        BaselineChart(
-          HouseholdIntensityChart,
-          HouseholdIntensity,
-          plottitle,
-          sourcecaption,
-          ChartColours
-        )
+        LinePercentChart(HouseholdIntensityChart,
+                         HouseholdIntensity,
+                         plottitle,
+                         sourcecaption,
+                         ChartColours)
       
-      HouseholdIntensityChart <-
-        HouseholdIntensityChart +
-        coord_flip() +
-        labs(subtitle = paste("Scotland, 2005 -", max(HouseholdIntensity$Year))) +
-        ylim(-1000, max(HouseholdIntensity$top)) +
-        xlim(max(HouseholdIntensity$Year) + 1.2, 2002)
+      HouseholdIntensityChart <- HouseholdIntensityChart +
+        labs(subtitle = paste0("Scotland, ",min(HouseholdIntensity$Year),  " - ", max(HouseholdIntensity$Year)))
       
       HouseholdIntensityChart
       
       ggsave(
         file,
-        plot = HouseholdIntensityChart,
-        width = 17,
-        height = 15.5,
+        plot =  HouseholdIntensityChart,
+        width = 14,
+        height = 16,
         units = "cm",
         dpi = 300
       )
