@@ -31,13 +31,23 @@ RestrictedPPMOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+    tabsetPanel(
+      tabPanel("Restricted",
     fluidRow(
-    column(10, h3("Data", style = "color: #68c3ea;  font-weight:bold")),
+    column(10, h3("Data - Restricted meters by Local Authority", style = "color: #68c3ea;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("RestrictedMeterTable"))%>% withSpinner(color="#68c3ea"))),
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Prepayment",
+             fluidRow(
+               column(10, h3("Data - Prepayment meters by Local Authority", style = "color: #68c3ea;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("PrepaymentMeterTable"))%>% withSpinner(color="#68c3ea"))),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     fluidRow(
       column(1,
              p("Next update:")),
@@ -99,12 +109,14 @@ RestrictedPPM <- function(input, output, session) {
     
     RestrictedMeter <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Non-gas grid by LA",
-      skip = 13
-    )[c(2,5)]
+      sheet = "Restricted and PPM",
+      skip = 15
+    )[c(1,2,4,5)]
+    
+    names(RestrictedMeter) <- c("LA Code", "Local Authority", "Restricted meters (Economy 7/10)", "Proportion of total meters")
 
     datatable(
-      RestrictedMeter,
+      RestrictedMeter[c(2,1,3,4)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -115,17 +127,17 @@ RestrictedPPM <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Proportion of households not on the gas grid by local authority (estimates)",
+        title = "Restricted meters by Local Authority",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Proportion of households not on the gas grid by local authority (estimates)',
+            title = 'Restricted meters by Local Authority',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Proportion of households not on the gas grid by local authority (estimates)')
+               title = 'Restricted meters by Local Authority')
         ),
         
         # customize the length menu
@@ -135,29 +147,22 @@ RestrictedPPM <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2, 1) %>% 
-      formatRound(2:3, 0)
+      formatPercentage(4, 1) %>% 
+      formatRound(3, 0)
   })
   
-  output$RestrictedMeterTimeSeriesTable = renderDataTable({
+  output$PrepaymentMeterTable = renderDataTable({
     
     RestrictedMeter <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Non-home supplier elec",
-      skip = 13
-    )
+      sheet = "Restricted and PPM",
+      skip = 15
+    )[c(1,2,6,7)]
     
-    names(RestrictedMeter)[1] <- "Quarter"#
-    
-    RestrictedMeter <- RestrictedMeter[complete.cases(RestrictedMeter),]
-    
-    RestrictedMeter$Quarter <- as.Date(as.numeric(RestrictedMeter$Quarter), origin = "1899-12-30")
-    
-    RestrictedMeter$Quarter <- as.character(as.yearqtr(RestrictedMeter$Quarter))
-    
+    names(RestrictedMeter) <- c("LA Code", "Local Authority", "Pre-payment Meters", "Proportion of total meters")
     
     datatable(
-      RestrictedMeter,
+      RestrictedMeter[c(2,1,3,4)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -168,18 +173,17 @@ RestrictedPPM <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        order = list(list(0, 'desc')),
-        title = "Proportion of households not on the gas grid by local authority (estimates), Scotland, 2017",
+        title = "Restricted meters by Local Authority",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Proportion of households not on the gas grid by local authority (estimates), Scotland, 2017',
+            title = 'Restricted meters by Local Authority',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Proportion of households not on the gas grid by local authority (estimates), Scotland, 2017')
+               title = 'Restricted meters by Local Authority')
         ),
         
         # customize the length menu
@@ -189,7 +193,8 @@ RestrictedPPM <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:9, 1)
+      formatPercentage(4, 1) %>% 
+      formatRound(3, 0)
   })
   
   
@@ -208,7 +213,7 @@ RestrictedPPM <- function(input, output, session) {
   })
   
   observeEvent(input$ToggleTable2, {
-    toggle("RestrictedMeterTimeSeriesTable")
+    toggle("PrepaymentMeterTable")
   })
   
 
