@@ -1,1 +1,1 @@
-<p>Renewable heat by Tech Type</p>
+<p>As in 2017, the majority of both <strong>capacity</strong> and <strong>output</strong> of renewable heat in <strong>2018</strong> came from <strong>biomass</strong> primary combustion and biomass combined heat and power (CHP). Together, these technologies account for three quarters (<strong>3,845 GWh</strong>) of all renewable heat output. <strong>Energy from waste</strong> makes up <strong>19.6%</strong> of output and <strong>heat pumps 6.5%</strong>.</p>
