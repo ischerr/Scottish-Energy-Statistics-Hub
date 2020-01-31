@@ -1,1 +1,4 @@
 <p>As in 2017, the majority of both <strong>capacity</strong> and <strong>output</strong> of renewable heat in <strong>2018</strong> came from <strong>biomass</strong> primary combustion and biomass combined heat and power (CHP). Together, these technologies account for three quarters (<strong>3,845 GWh</strong>) of all renewable heat output. <strong>Energy from waste</strong> makes up <strong>19.6%</strong> of output and <strong>heat pumps 6.5%</strong>.</p>
+
+<p>**MOVE TO RENEWABLE HEAT BY SIZE TAB</p>
+<p>Almost half (46.8%, 2,450 GWh) of renewable heat output comes from 100 large installations of over 1 MW. There are seven installations that generated more than 100 GWh in 2018; together these sites provided 30% (1,571 GWh) of the total renewable heat output in Scotland in 2018.</p>
