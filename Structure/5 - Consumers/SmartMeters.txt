@@ -1,1 +1,2 @@
-<p>Smart Meters</p>
+<p>The UK Government required supply companies to offer <strong>smart meters </strong>to their customers to enable them to monitor their energy usage. Data from Electralink suggests that as of the end of <strong>2019</strong>, over <strong>1.05 million </strong>smart meters were installed in Scotland, representing <strong>37.6%</strong> of all meters in Scotland. This is up from <strong>10.4%</strong> at the end of <strong>2016</strong>.</p>
+<p>Greater progress has been made in the smart meter rollout in South Scotland compared to North Scotland &ndash; <strong>41.8%</strong> of all <strong>South Scotland</strong> meters have been installed compared to <strong>26.8%</strong> in <strong>North Scotland</strong>.</p>
