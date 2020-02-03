@@ -372,7 +372,7 @@ geom_segment(mapping = aes(
       y = ((3 / 10) *1.15) - 0.121,
       label = "Solar\nPV"
     ),
-    colour =  BarColours[3],
+    colour =  BarColours[4],
     size = 7,
     family = "Century Gothic"
   ) +

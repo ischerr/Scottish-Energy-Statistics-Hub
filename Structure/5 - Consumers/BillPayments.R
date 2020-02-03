@@ -560,15 +560,13 @@ BillPayments <- function(input, output, session) {
   })
   
   
- output$Text <- renderUI({
-   tagList(column(12,
-                                   tags$p(
-                                     HTML(
-                                       "<p>The way in which customers&nbsp;<strong>pay&nbsp;</strong>their energy bills may be able to tell us something about engagement and vulnerability of customers.&nbsp;&nbsp;The&nbsp;<strong>majority&nbsp;</strong>of customers in Scotland pay by&nbsp;<strong>direct debit&nbsp;</strong>for electricity and gas, and this has gradually risen from&nbsp;<strong>44%</strong>&nbsp;in&nbsp;<strong>September 2005&nbsp;</strong>to&nbsp;<strong>62%</strong>&nbsp;in&nbsp;<strong>March 2019</strong>&nbsp;for standard&nbsp;<strong>electricity</strong>, and from&nbsp;<strong>47%</strong>&nbsp;to&nbsp;<strong>63%</strong>&nbsp;for&nbsp;<strong>gas</strong>.&nbsp;&nbsp;Customers paying by&nbsp;<strong>credit,&nbsp;</strong>that is paying on receipt of their bill,<strong>&nbsp;</strong>has declined in the same period, from&nbsp;<strong>36%</strong>&nbsp;to&nbsp;<strong>19%</strong>&nbsp;for&nbsp;<strong>electricity&nbsp;</strong>and&nbsp;<strong>44%</strong>&nbsp;to&nbsp;<strong>19%</strong>&nbsp;for&nbsp;<strong>gas</strong>.</p>
-<p><strong>Prepayment&nbsp;</strong>requires the customer to make an advance payment before the fuel can be used.&nbsp;&nbsp;Prepayment customers tend to be more likely to be in&nbsp;<strong>vulnerable&nbsp;</strong>circumstances than customers who pay for their energy through other means.&nbsp;&nbsp;The proportion of Scottish&nbsp;<strong>prepayment&nbsp;</strong>customers for electricity, has&nbsp;<strong>stabilised&nbsp;</strong>at approximately&nbsp;<strong>20%</strong>&nbsp;since 2005, suggesting that prepayment customers do not tend to move to other payment methods.&nbsp;&nbsp;For&nbsp;<strong>gas&nbsp;</strong>it has doubled from&nbsp;<strong>9%</strong>&nbsp;in&nbsp;<strong>September 2005&nbsp;</strong>to&nbsp;<strong>17%</strong>&nbsp;in&nbsp;<strong>March 2019</strong>.&nbsp;&nbsp;The overall trend for gas indicates that credit customers have been&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;moving to direct debit and prepayment.</p>"
-                                     )
-                                   )))
- })
+  output$Text <- renderUI({
+    tagList(column(12,
+                   HTML(
+                     paste(readtext("Structure/5 - Consumers/BillPayments.txt")[2])
+                     
+                   )))
+  })
  
   observeEvent(input$ToggleTable, {
     toggle("ElecPaymentsTable")
