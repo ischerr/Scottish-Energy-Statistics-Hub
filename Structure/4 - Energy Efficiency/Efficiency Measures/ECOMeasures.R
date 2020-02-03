@@ -14,44 +14,44 @@ ECOMeasuresOutput <- function(id) {
       tabPanel("Housing Stock EPC",
     fluidRow(column(8,
                     h3("Distribution of Scottish housing stock by EPC band", style = "color: #34d1a3;  font-weight:bold"),
-                    h4(textOutput(ns('StockEPCSubtitle')), style = "color: #34d1a3;")
+                    h4(textOutput(ns('ECOMeasuresSubtitle')), style = "color: #34d1a3;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('StockEPC.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('ECOMeasures.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
-    #dygraphOutput(ns("StockEPCPlot")),
-    plotlyOutput(ns("StockEPCPlot"))%>% withSpinner(color="#34d1a3"),
+    #dygraphOutput(ns("ECOMeasuresPlot")),
+    plotlyOutput(ns("ECOMeasuresPlot"))%>% withSpinner(color="#34d1a3"),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
     tabPanel("Properties above Band C",
              fluidRow(column(8,
                              h3("Proportion of properties rated EPC band C or above", style = "color: #34d1a3;  font-weight:bold"),
-                             h4(textOutput(ns('EPCProportionsSubtitle')), style = "color: #34d1a3;")
+                             h4(textOutput(ns('ECOObligationSubtitle')), style = "color: #34d1a3;")
              ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('EPCProportions.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('ECOObligation.png'), 'Download Graph', style="float:right")
              )),
              
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
-             #dygraphOutput(ns("StockEPCPlot")),
-             plotlyOutput(ns("EPCProportionsPlot"))%>% withSpinner(color="#34d1a3"),
+             #dygraphOutput(ns("ECOMeasuresPlot")),
+             plotlyOutput(ns("ECOObligationPlot"))%>% withSpinner(color="#34d1a3"),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
     tabPanel("Housing Tenure EPC",
              fluidRow(column(8,
                              h3("Distribution of Scottish housing stock by EPC band and housing tenure", style = "color: #34d1a3;  font-weight:bold"),
-                             h4(textOutput(ns('EPCTenureSubtitle')), style = "color: #34d1a3;")
+                             h4(textOutput(ns('ECOGreenDealSubtitle')), style = "color: #34d1a3;")
              ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('EPCTenure.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('ECOGreenDeal.png'), 'Download Graph', style="float:right")
              )),
              
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
-             #dygraphOutput(ns("StockEPCPlot")),
-             plotlyOutput(ns("EPCTenurePlot"))%>% withSpinner(color="#34d1a3"),
+             #dygraphOutput(ns("ECOMeasuresPlot")),
+             plotlyOutput(ns("ECOGreenDealPlot"))%>% withSpinner(color="#34d1a3"),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
@@ -68,7 +68,7 @@ ECOMeasuresOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("StockEPCTable"))%>% withSpinner(color="#34d1a3"))),
+      column(12, dataTableOutput(ns("ECOMeasuresTable"))%>% withSpinner(color="#34d1a3"))),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
     tabPanel("Properties above EPC C",
              fluidRow(
@@ -76,7 +76,7 @@ ECOMeasuresOutput <- function(id) {
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
-               column(12, dataTableOutput(ns("EPCProportionsTable"))%>% withSpinner(color="#34d1a3"))),
+               column(12, dataTableOutput(ns("ECOObligationTable"))%>% withSpinner(color="#34d1a3"))),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
     tabPanel("Housing tenure EPC",
              fluidRow(
@@ -84,7 +84,7 @@ ECOMeasuresOutput <- function(id) {
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
-               column(12, dataTableOutput(ns("EPCTenureTable"))%>% withSpinner(color="#34d1a3"))),
+               column(12, dataTableOutput(ns("ECOGreenDealTable"))%>% withSpinner(color="#34d1a3"))),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
       column(1,
@@ -119,7 +119,7 @@ ECOMeasures <- function(input, output, session) {
   print("ECOMeasures.R")
 
   
-  output$StockEPCSubtitle <- renderText({
+  output$ECOMeasuresSubtitle <- renderText({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -140,10 +140,10 @@ ECOMeasures <- function(input, output, session) {
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
-  output$StockEPCPlot <- renderPlotly  ({
+  output$ECOMeasuresPlot <- renderPlotly  ({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[1:8]
+                       sheet = "ECO", skip = 12,  col_names = FALSE)[1:8]
     
     names(Data) <- unlist(Data[1,])
     
@@ -301,21 +301,21 @@ ECOMeasures <- function(input, output, session) {
     
   })
   
-  output$StockEPCTable = renderDataTable({
+  output$ECOMeasuresTable = renderDataTable({
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[1:8]
+                       sheet = "ECO", skip = 12, n_max = 3,  col_names = FALSE)
+    
+    Data <- as_tibble(t(Data))
     
     names(Data) <- unlist(Data[1,])
     
-    names(Data)[1] <- "Year"
+    names(Data)[1] <- "Quarter"
     
-    Data <- as_tibble(sapply( Data, as.numeric ))
+    Data[2:3] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     Data <- Data[complete.cases(Data),]
-    
-    Data$`C or Better` <- Data$A + Data$B + Data$C
     
     datatable(
       Data,
@@ -328,19 +328,17 @@ ECOMeasures <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        ordering = TRUE,
-        order = list(list(0, 'desc')),
-        title = "Distribution of Scottish Housing Stock by EPC Band",
+        title = "ECO Measures",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Distribution of Scottish Housing Stock by EPC Band',
+            title = 'ECO Measures',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Distribution of Scottish Housing Stock by EPC Band')
+               title = 'ECO Measures')
         ),
         
         # customize the length menu
@@ -350,10 +348,10 @@ ECOMeasures <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:9, 1)
+      formatRound(2:3, 0)
   })
   
-  output$EPCProportionsSubtitle <- renderText({
+  output$ECOObligationSubtitle <- renderText({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -374,10 +372,10 @@ ECOMeasures <- function(input, output, session) {
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
-  output$EPCProportionsPlot <- renderPlotly  ({
+  output$ECOObligationPlot <- renderPlotly  ({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[10:12]
+                       sheet = "ECO", skip = 12,  col_names = FALSE)[10:12]
     
     Data <- tail(Data, -1)
     
@@ -496,11 +494,11 @@ ECOMeasures <- function(input, output, session) {
     
   })
 
-  output$EPCProportionsTable = renderDataTable({
+  output$ECOObligationTable = renderDataTable({
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[10:12]
+                       sheet = "ECO", skip = 12,  col_names = FALSE)[10:12]
     
     Data <- tail(Data, -1)
     
@@ -547,7 +545,7 @@ ECOMeasures <- function(input, output, session) {
       formatPercentage(2:9, 1)
   })
   
-  output$EPCTenureSubtitle <- renderText({
+  output$ECOGreenDealSubtitle <- renderText({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -568,10 +566,10 @@ ECOMeasures <- function(input, output, session) {
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
-  output$EPCTenurePlot <- renderPlotly  ({
+  output$ECOGreenDealPlot <- renderPlotly  ({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[16:23]
+                       sheet = "ECO", skip = 12,  col_names = FALSE)[16:23]
     
     names(Data) <- unlist(Data[1,])
     
@@ -727,11 +725,11 @@ ECOMeasures <- function(input, output, session) {
     
   })
   
-  output$EPCTenureTable = renderDataTable({
+  output$ECOGreenDealTable = renderDataTable({
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[16:23]
+                       sheet = "ECO", skip = 12,  col_names = FALSE)[16:23]
     
     names(Data) <- unlist(Data[1,])
     
@@ -790,28 +788,28 @@ ECOMeasures <- function(input, output, session) {
   })
  
   observeEvent(input$ToggleTable, {
-    toggle("StockEPCTable")
+    toggle("ECOMeasuresTable")
   })
   
   observeEvent(input$ToggleTable2, {
-    toggle("EPCProportionsTable")
+    toggle("ECOObligationTable")
   })
   
   observeEvent(input$ToggleTable3, {
-    toggle("EPCTenureTable")
+    toggle("ECOGreenDealTable")
   })
   
   observeEvent(input$ToggleText, {
     toggle("Text")
   })
   
-  output$EPCProportions.png <- downloadHandler(
-  filename = "EPCProportions.png",
+  output$ECOObligation.png <- downloadHandler(
+  filename = "ECOObligation.png",
   content = function(file) {
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 13, col_names = TRUE)[10:12]
+                       sheet = "ECO", skip = 13, col_names = TRUE)[10:12]
     
     names(Data) <- c("Year", "SAP 2012", "SAP 2009")
     
@@ -981,40 +979,40 @@ ECOMeasures <- function(input, output, session) {
   }
 )
   
-  output$StockEPC.png <- downloadHandler(
-  filename = "StockEPC.png",
+  output$ECOMeasures.png <- downloadHandler(
+  filename = "ECOMeasures.png",
   content = function(file) {
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 12, col_names = TRUE)[1:8]
+                       sheet = "ECO", skip = 12, col_names = TRUE)[1:8]
     
     names(Data) <- c("Type", "A or better", "B", "C", "D", "E", "F", "G")
     
     Data <- Data[complete.cases(Data),]
     
     Data$Total <- Data$`A or better` + Data$B + Data$C
-    HousingStockEPC <- Data
+    ECOMeasures <- Data
     
-    HousingStockEPC <-
-      HousingStockEPC[c(1, ncol(HousingStockEPC):2)]
+    ECOMeasures <-
+      ECOMeasures[c(1, ncol(ECOMeasures):2)]
     
-    HousingStockEPC <-
-      arrange(HousingStockEPC,-row_number())
+    ECOMeasures <-
+      arrange(ECOMeasures,-row_number())
     
-    HousingStockEPC$Type <-
-      factor(HousingStockEPC$Type,
-             levels = unique(HousingStockEPC$Type))
+    ECOMeasures$Type <-
+      factor(ECOMeasures$Type,
+             levels = unique(ECOMeasures$Type))
     
-    HousingStockEPC <-
-      melt(HousingStockEPC, id.vars = "Type")
+    ECOMeasures <-
+      melt(ECOMeasures, id.vars = "Type")
     
     
-    HousingStockEPC$variable <-
-      factor(HousingStockEPC$variable,
-             levels = unique(HousingStockEPC$variable))
+    ECOMeasures$variable <-
+      factor(ECOMeasures$variable,
+             levels = unique(ECOMeasures$variable))
     
-    HousingStockEPC <- HousingStockEPC %>%
+    ECOMeasures <- ECOMeasures %>%
       group_by(Type) %>%
       mutate(pos = cumsum(value) - value / 2) %>%
       mutate(top = sum(value))
@@ -1034,7 +1032,7 @@ ECOMeasures <- function(input, output, session) {
         "#d73027")
     
     
-    HousingStockEPCChart <- HousingStockEPC %>%
+    ECOMeasuresChart <- ECOMeasures %>%
       ggplot(aes(x = Type, y = value, fill = variable), family = "Century Gothic") +
       scale_fill_manual(
         "variable",
@@ -1052,12 +1050,12 @@ ECOMeasures <- function(input, output, session) {
       geom_bar(stat = "identity", width = .8) +
       annotate(
         "text",
-        x = HousingStockEPC$Type,
+        x = ECOMeasures$Type,
         y = -.15,
         label = ifelse(
-          HousingStockEPC$Type == "z",
+          ECOMeasures$Type == "z",
           "",
-          str_wrap(HousingStockEPC$Type, width = 8)
+          str_wrap(ECOMeasures$Type, width = 8)
         ),
         family = "Century Gothic",
         fontface = 2,
@@ -1128,12 +1126,12 @@ ECOMeasures <- function(input, output, session) {
       ) +
       annotate(
         "text",
-        x = HousingStockEPC$Type,
+        x = ECOMeasures$Type,
         y = 1.1,
         label = ifelse(
-          HousingStockEPC$Type == "z",
+          ECOMeasures$Type == "z",
           "",
-          percent(HousingStockEPC$value[which(HousingStockEPC$variable == "Total")], accuracy = 0.1)
+          percent(ECOMeasures$value[which(ECOMeasures$variable == "Total")], accuracy = 0.1)
         ),
         family = "Century Gothic",
         fontface = 2,
@@ -1158,29 +1156,29 @@ ECOMeasures <- function(input, output, session) {
         hjust = 0.5
       )
     
-    HousingStockEPCChart
+    ECOMeasuresChart
     
     
-    HousingStockEPCChart <-
+    ECOMeasuresChart <-
       StackedBars(
-        HousingStockEPCChart,
-        HousingStockEPC,
+        ECOMeasuresChart,
+        ECOMeasures,
         plottitle,
         sourcecaption,
         ChartColours
       )
     
-    HousingStockEPCChart <-
-      HousingStockEPCChart +
+    ECOMeasuresChart <-
+      ECOMeasuresChart +
       coord_flip() +
       labs(subtitle = "Scotland, 2014 - 2017") +
       ylim(-.2, 1.13)
     
-    HousingStockEPCChart
+    ECOMeasuresChart
     
     ggsave(
       file,
-      plot = HousingStockEPCChart,
+      plot = ECOMeasuresChart,
       width = 14.5,
       height = 8,
       units = "cm",
@@ -1191,13 +1189,13 @@ ECOMeasures <- function(input, output, session) {
   }
 )
   
-  output$EPCTenure.png <- downloadHandler(
-    filename = "EPCTenure.png",
+  output$ECOGreenDeal.png <- downloadHandler(
+    filename = "ECOGreenDeal.png",
     content = function(file) {
 
 
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Domestic EPCs", skip = 12)[16:23]
+                         sheet = "ECO", skip = 12)[16:23]
                          Data <- Data[complete.cases(Data),]
                          
                          names(Data) <- c("Type", "A or better", "B", "C", "D", "E", "F", "G")
@@ -1208,27 +1206,27 @@ ECOMeasures <- function(input, output, session) {
                          
                          Data$`A or better` <- 0
                          
-                         DomesticEPC <- as_tibble(Data)
+                         ECO <- as_tibble(Data)
                          
-                         DomesticEPC <-
-                           DomesticEPC[c(1, ncol(DomesticEPC):2)]
+                         ECO <-
+                           ECO[c(1, ncol(ECO):2)]
                          
-                         DomesticEPC <-
-                           arrange(DomesticEPC,-row_number())
+                         ECO <-
+                           arrange(ECO,-row_number())
                          
-                         DomesticEPC$Type <-
-                           factor(DomesticEPC$Type,
-                                  levels = unique(DomesticEPC$Type))
+                         ECO$Type <-
+                           factor(ECO$Type,
+                                  levels = unique(ECO$Type))
                          
-                         DomesticEPC <-
-                           melt(DomesticEPC, id.vars = "Type")
+                         ECO <-
+                           melt(ECO, id.vars = "Type")
                          
                          
-                         DomesticEPC$variable <-
-                           factor(DomesticEPC$variable,
-                                  levels = unique(DomesticEPC$variable))
+                         ECO$variable <-
+                           factor(ECO$variable,
+                                  levels = unique(ECO$variable))
                          
-                         DomesticEPC <- DomesticEPC %>%
+                         ECO <- ECO %>%
                            group_by(Type) %>%
                            mutate(pos = cumsum(value) - value / 2) %>%
                            mutate(top = sum(value))
@@ -1248,7 +1246,7 @@ ECOMeasures <- function(input, output, session) {
                              "#d73027")
                          
                          
-                         DomesticEPCChart <- DomesticEPC %>%
+                         ECOChart <- ECO %>%
                            ggplot(aes(x = Type, y = value, fill = variable), family = "Century Gothic") +
                            scale_fill_manual(
                              "variable",
@@ -1266,12 +1264,12 @@ ECOMeasures <- function(input, output, session) {
                            geom_bar(stat = "identity", width = .8) +
                            annotate(
                              "text",
-                             x = DomesticEPC$Type,
+                             x = ECO$Type,
                              y = -.15,
                              label = ifelse(
-                               DomesticEPC$Type == "z",
+                               ECO$Type == "z",
                                "",
-                               str_wrap(DomesticEPC$Type, width = 8)
+                               str_wrap(ECO$Type, width = 8)
                              ),
                              family = "Century Gothic",
                              fontface = 2,
@@ -1333,12 +1331,12 @@ ECOMeasures <- function(input, output, session) {
                            ) +
                            annotate(
                              "text",
-                             x = DomesticEPC$Type,
+                             x = ECO$Type,
                              y = 1.1,
                              label = ifelse(
-                               DomesticEPC$Type == "z",
+                               ECO$Type == "z",
                                "",
-                               percent(DomesticEPC$value[which(DomesticEPC$variable == "Total")])
+                               percent(ECO$value[which(ECO$variable == "Total")])
                              ),
                              family = "Century Gothic",
                              fontface = 2,
@@ -1363,29 +1361,29 @@ ECOMeasures <- function(input, output, session) {
                              hjust = 0.5
                            )
                          
-                         DomesticEPCChart
+                         ECOChart
                          
                          
-                         DomesticEPCChart <-
+                         ECOChart <-
                            StackedBars(
-                             DomesticEPCChart,
-                             DomesticEPC,
+                             ECOChart,
+                             ECO,
                              plottitle,
                              sourcecaption,
                              ChartColours
                            )
                          
-                         DomesticEPCChart <-
-                           DomesticEPCChart +
+                         ECOChart <-
+                           ECOChart +
                            coord_flip() +
                            labs(subtitle = "Scotland, 2017") +
                            ylim(-.2, 1.13)
                          
-                         DomesticEPCChart
+                         ECOChart
                          
                          ggsave(
                            file,
-                           plot = DomesticEPCChart,
+                           plot = ECOChart,
                            width = 14.5,
                            height = 8,
                            units = "cm",
