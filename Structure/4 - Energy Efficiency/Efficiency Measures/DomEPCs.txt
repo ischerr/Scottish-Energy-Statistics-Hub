@@ -7,6 +7,7 @@
 <li><u>SAP 2009:</u> This allows for comparisons over a longer period. Almost half of dwellings (<strong>49%</strong>) were rated <strong>C or better</strong> under this measure, doubling from <strong>24%</strong> in <strong>2010</strong>. This shows how the energy efficiency of dwellings in Scotland is improving.</li>
 </ul>
 <p>By way of comparison, <strong>34%</strong> of dwellings in <strong>England</strong> have an <strong>EPC</strong> rating of <strong>C</strong> or better according to the <strong>2018</strong> <a href="https://www.gov.uk/government/collections/english-housing-survey#2018-to-2019">English Housing Survey</a>. This is based on SAP 2012. RdSAP changed to version 9.93 halfway through data collection.</p>
+
 <p>The Energy Efficient Scotland Routemap sets further aims for energy efficiency of domestic properties based on housing <strong>tenure</strong>, which are as follows:</p>
 <p><strong><u>Maximise </u></strong><u>the number of <strong>social rented </strong>homes achieving <strong>EPC B </strong>by <strong>2032</strong></u></p>
 <p>Social rented dwellings are among the most energy efficient in the Scottish stock, likely to be a result of the characteristics of social sector dwellings &ndash; in particular a greater proportion of newer flats which tend to retain heat better than older dwellings and houses &ndash; and the improvements mandated under the Scottish Housing Quality Standard (SHQS).</p>
