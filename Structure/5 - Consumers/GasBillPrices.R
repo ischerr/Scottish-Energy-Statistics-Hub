@@ -101,7 +101,7 @@ GasBillPrices <- function(input, output, session) {
   
   output$GasBillPricesSubtitle <- renderText({
     
-    paste("Scotland, 2018")
+    paste("Scotland, 2019")
   })
   
   output$GasBillPricesPlot <- renderPlotly  ({

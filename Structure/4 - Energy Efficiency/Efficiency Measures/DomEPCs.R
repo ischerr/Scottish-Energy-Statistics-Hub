@@ -123,27 +123,18 @@ DomEPCs <- function(input, output, session) {
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump sector",
+      sheet = "Domestic EPCs",
       col_names = FALSE,
-      skip = 12,
-      n_max = 7
+      skip = 12
     )
     
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- unlist(Data[1,])
-    
-    names(Data)[1] <- "Year"
-    
-    Data[1:7] %<>% lapply(function(x) as.numeric(as.character(x)))
-    
-    paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
+    paste("Scotland,", min(Data[2], na.rm = TRUE))#,"-", max(Data[2], na.rm = TRUE))
   })
   
   output$StockEPCPlot <- renderPlotly  ({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[1:8]
+                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[2:9]
     
     names(Data) <- unlist(Data[1,])
     
@@ -377,7 +368,7 @@ DomEPCs <- function(input, output, session) {
   output$EPCProportionsPlot <- renderPlotly  ({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[10:12]
+                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[12:14]
     
     Data <- tail(Data, -1)
     
@@ -402,12 +393,12 @@ DomEPCs <- function(input, output, session) {
       add_trace(data = EPC,
                 x = ~ Year,
                 y = ~ `SAP 2012`,
-                name = "SAP 2012",
+                name = "SAP 2012 rdSAP v9.92",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "1",
                 text = paste0(
-                  "SAP 2012: ",
+                  "SAP 2012 rdSAP v9.92: ",
                   percent(EPC$`SAP 2012`, accuracy = 0.1),
                   "\nYear: ",
                   format(EPC$Year, "%Y")
@@ -420,9 +411,9 @@ DomEPCs <- function(input, output, session) {
         x = ~ Year,
         y = ~ `SAP 2012`,
         legendgroup = "1",
-        name = "SAP 2012",
+        name = "SAP 2012 rdSAP v9.92",
         text = paste0(
-          "SAP 2012: ",
+          "SAP 2012 rdSAP v9.92: ",
           percent(EPC[which(EPC$`SAP 2012` > 0 | EPC$`SAP 2012` < 0),][-1,]$`SAP 2012`, accuracy = 0.1),
           "\nYear: ",
           format(EPC[which(EPC$`SAP 2012` > 0 | EPC$`SAP 2012` < 0),][-1,]$Year, "%Y")
@@ -571,13 +562,13 @@ DomEPCs <- function(input, output, session) {
   output$EPCTenurePlot <- renderPlotly  ({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[16:23]
+                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[17:23]
     
     names(Data) <- unlist(Data[1,])
     
     names(Data)[1] <- "Year"
     
-    Data[2:8] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data[2:7] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     Data <- Data[2:4,]
     
@@ -662,29 +653,16 @@ DomEPCs <- function(input, output, session) {
       ) %>%
       add_trace(
         data = Data,
-        x = ~ `F`,
+        x = ~ `F & G`,
         type = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "F",
-        text = paste0("F: ", percent(Data$`F`, accuracy = 0.1)),
+        name = "F & G",
+        text = paste0("F & G: ", percent(Data$`F & G`, accuracy = 0.1)),
         hoverinfo = 'text',
         marker = list(color = BarColours[6]),
         legendgroup = 6
       ) %>%
-      add_trace(
-        data = Data,
-        x = ~ `G`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "G",
-        text = paste0("G: ", percent(Data$`G`, accuracy = 0.1)),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[7]),
-        legendgroup = 7
-      ) %>%
-      
       add_trace(
         data = Data,
         x = ~ 1.1 ,
@@ -811,7 +789,7 @@ DomEPCs <- function(input, output, session) {
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 13, col_names = TRUE)[10:12]
+                       sheet = "Domestic EPCs", skip = 13, col_names = TRUE)[12:14]
     
     names(Data) <- c("Year", "SAP 2012", "SAP 2009")
     
@@ -876,8 +854,7 @@ DomEPCs <- function(input, output, session) {
         aes(
           x = mean(Year[which(EPCProportion$`SAP 2012` > 0)]),
           y = mean(`SAP 2012`, na.rm = TRUE),
-          label = "SAP 2012",
-          hjust = .7,
+          label = "SAP 2012\nRdSAP v9.92",
           vjust = 3,
           colour = ChartColours[2],
           fontface = 2
@@ -897,7 +874,7 @@ DomEPCs <- function(input, output, session) {
         aes(
           x = Year,
           y = `SAP 2009`,
-          label = ifelse(Year == min(Year), percent(`SAP 2009`, accuracy = 0.1), ""),
+          label = ifelse(Year == min(Year), percent(`SAP 2009`, accuracy = 1), ""),
           hjust = 0.5,
           vjust = -1.6,
           colour = ChartColours[3],
@@ -909,7 +886,7 @@ DomEPCs <- function(input, output, session) {
         aes(
           x = Year,
           y = `SAP 2009`,
-          label = ifelse(Year == max(Year), percent(`SAP 2009`, accuracy = 0.1), ""),
+          label = ifelse(Year == max(Year), percent(`SAP 2009`, accuracy = 1), ""),
           hjust = 0.5,
           vjust = 2,
           colour = ChartColours[3],
@@ -987,14 +964,18 @@ DomEPCs <- function(input, output, session) {
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 12, col_names = TRUE)[1:8]
+                       sheet = "Domestic EPCs", skip = 12, col_names = TRUE)[1:9]
     
-    names(Data) <- c("Type", "A or better", "B", "C", "D", "E", "F", "G")
+    names(Data) <- c("Chart","Type", "A or better", "B", "C", "D", "E", "F", "G")
     
     Data <- Data[complete.cases(Data),]
     
+    Data$Chart <- NULL
+    
+    Data %<>% lapply(function(x) as.numeric(as.character(x)))
+    
     Data$Total <- Data$`A or better` + Data$B + Data$C
-    HousingStockEPC <- Data
+    HousingStockEPC <- as_tibble(Data)
     
     HousingStockEPC <-
       HousingStockEPC[c(1, ncol(HousingStockEPC):2)]
@@ -1020,7 +1001,7 @@ DomEPCs <- function(input, output, session) {
       mutate(top = sum(value))
     
     plottitle <-
-      "Distribution of housing stock by EPC band"
+      "Distribution of Housing Stock by EPC Band"
     sourcecaption <- "Source: SG"
     
     ChartColours <- c("#34d1a3", "#FF8500")
@@ -1073,7 +1054,7 @@ DomEPCs <- function(input, output, session) {
       #   hjust = 0.5
       # ) +
       geom_text(
-        aes(x = 4.7,
+        aes(x = 1.7,
             y = .5 * (1 / 6),
             label = "B"),
         fontface = 2,
@@ -1082,7 +1063,7 @@ DomEPCs <- function(input, output, session) {
         hjust = 0.5
       ) +
       geom_text(
-        aes(x = 4.7,
+        aes(x = 1.7,
             y = 1.5 * (1 / 6),
             label = "C"),
         fontface = 2,
@@ -1091,7 +1072,7 @@ DomEPCs <- function(input, output, session) {
         hjust = 0.5
       ) +
       geom_text(
-        aes(x = 4.7,
+        aes(x = 1.7,
             y = 2.5 * (1 / 6),
             label = "D"),
         fontface = 2,
@@ -1100,7 +1081,7 @@ DomEPCs <- function(input, output, session) {
         hjust = 0.5
       ) +
       geom_text(
-        aes(x = 4.7,
+        aes(x = 1.7,
             y = 3.5 * (1 / 6),
             label = "E"),
         fontface = 2,
@@ -1109,7 +1090,7 @@ DomEPCs <- function(input, output, session) {
         hjust = 0.5
       ) +
       geom_text(
-        aes(x = 4.7,
+        aes(x = 1.7,
             y = 4.5 * (1 / 6),
             label = "F"),
         fontface = 2,
@@ -1118,7 +1099,7 @@ DomEPCs <- function(input, output, session) {
         hjust = 0.5
       ) +
       geom_text(
-        aes(x = 4.7,
+        aes(x = 1.7,
             y = 5.5 * (1 / 6),
             label = "G"),
         fontface = 2,
@@ -1140,7 +1121,7 @@ DomEPCs <- function(input, output, session) {
         colour = ChartColours[1]
       ) +
       geom_text(
-        aes(x = 4.7,
+        aes(x = 1.7,
             y = 1.1,
             label = "C\nor better"),
         fontface = 2,
@@ -1149,7 +1130,7 @@ DomEPCs <- function(input, output, session) {
         hjust = 0.5
       )+
       geom_text(
-        aes(x = 5.1,
+        aes(x = 2.1,
             y = 1.05,
             label = " "),
         fontface = 2,
@@ -1173,7 +1154,7 @@ DomEPCs <- function(input, output, session) {
     HousingStockEPCChart <-
       HousingStockEPCChart +
       coord_flip() +
-      labs(subtitle = "Scotland, 2014 - 2017") +
+      labs(subtitle = paste0("Scotland, ", min(as.numeric(as.character(HousingStockEPC$Type))))) +
       ylim(-.2, 1.13)
     
     HousingStockEPCChart
@@ -1182,7 +1163,7 @@ DomEPCs <- function(input, output, session) {
       file,
       plot = HousingStockEPCChart,
       width = 14.5,
-      height = 8,
+      height = 6,
       units = "cm",
       dpi = 300
     )
@@ -1197,191 +1178,190 @@ DomEPCs <- function(input, output, session) {
 
 
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Domestic EPCs", skip = 12)[16:23]
-                         Data <- Data[complete.cases(Data),]
-                         
-                         names(Data) <- c("Type", "A or better", "B", "C", "D", "E", "F", "G")
-                         
-                         Data[2:8] %<>% lapply(function(x) as.numeric(as.character(x)))
-                         
-                         Data$Total <- Data$B + Data$C
-                         
-                         Data$`A or better` <- 0
-                         
-                         DomesticEPC <- as_tibble(Data)
-                         
-                         DomesticEPC <-
-                           DomesticEPC[c(1, ncol(DomesticEPC):2)]
-                         
-                         DomesticEPC <-
-                           arrange(DomesticEPC,-row_number())
-                         
-                         DomesticEPC$Type <-
-                           factor(DomesticEPC$Type,
-                                  levels = unique(DomesticEPC$Type))
-                         
-                         DomesticEPC <-
-                           melt(DomesticEPC, id.vars = "Type")
-                         
-                         
-                         DomesticEPC$variable <-
-                           factor(DomesticEPC$variable,
-                                  levels = unique(DomesticEPC$variable))
-                         
-                         DomesticEPC <- DomesticEPC %>%
-                           group_by(Type) %>%
-                           mutate(pos = cumsum(value) - value / 2) %>%
-                           mutate(top = sum(value))
-                         
-                         plottitle <-
-                           "Domestic EPC by housing tenure"
-                         sourcecaption <- "Source: SG"
-                         
-                         ChartColours <- c("#34d1a3", "#FF8500")
-                         BarColours <-
-                           c("#006837",
-                             "#1a9850",
-                             "#66bd63",
-                             "#fee08b",
-                             "#fdae61",
-                             "#f46d43",
-                             "#d73027")
-                         
-                         
-                         DomesticEPCChart <- DomesticEPC %>%
-                           ggplot(aes(x = Type, y = value, fill = variable), family = "Century Gothic") +
-                           scale_fill_manual(
-                             "variable",
-                             values = c(
-                               "A or better" = BarColours[1],
-                               "B" = BarColours[2],
-                               "C" = BarColours[3],
-                               "D" = BarColours[4],
-                               "E" = BarColours[5],
-                               "F" = BarColours[6],
-                               "G" = BarColours[7],
-                               "Total" = "White"
-                             )
-                           ) +
-                           geom_bar(stat = "identity", width = .8) +
-                           annotate(
-                             "text",
-                             x = DomesticEPC$Type,
-                             y = -.15,
-                             label = ifelse(
-                               DomesticEPC$Type == "z",
-                               "",
-                               str_wrap(DomesticEPC$Type, width = 8)
-                             ),
-                             family = "Century Gothic",
-                             fontface = 2,
-                             colour = ChartColours[1]
-                           ) +
-                           geom_text(
-                             aes(x = 3.7,
-                                 y = .5 * (1 / 6),
-                                 label = "B"),
-                             fontface = 2,
-                             colour = BarColours[2],
-                             family = "Century Gothic",
-                             hjust = 0.5
-                           ) +
-                           geom_text(
-                             aes(x = 3.7,
-                                 y = 1.5 * (1 / 6),
-                                 label = "C"),
-                             fontface = 2,
-                             colour = BarColours[3],
-                             family = "Century Gothic",
-                             hjust = 0.5
-                           ) +
-                           geom_text(
-                             aes(x = 3.7,
-                                 y = 2.5 * (1 / 6),
-                                 label = "D"),
-                             fontface = 2,
-                             colour = BarColours[4],
-                             family = "Century Gothic",
-                             hjust = 0.5
-                           ) +
-                           geom_text(
-                             aes(x = 3.7,
-                                 y = 3.5 * (1 / 6),
-                                 label = "E"),
-                             fontface = 2,
-                             colour = BarColours[5],
-                             family = "Century Gothic",
-                             hjust = 0.5
-                           ) +
-                           geom_text(
-                             aes(x = 3.7,
-                                 y = 4.5 * (1 / 6),
-                                 label = "F"),
-                             fontface = 2,
-                             colour = BarColours[6],
-                             family = "Century Gothic",
-                             hjust = 0.5
-                           ) +
-                           geom_text(
-                             aes(x = 3.7,
-                                 y = 5.5 * (1 / 6),
-                                 label = "G"),
-                             fontface = 2,
-                             colour = BarColours[7],
-                             family = "Century Gothic",
-                             hjust = 0.5
-                           ) +
-                           annotate(
-                             "text",
-                             x = DomesticEPC$Type,
-                             y = 1.1,
-                             label = ifelse(
-                               DomesticEPC$Type == "z",
-                               "",
-                               percent(DomesticEPC$value[which(DomesticEPC$variable == "Total")])
-                             ),
-                             family = "Century Gothic",
-                             fontface = 2,
-                             colour = ChartColours[1]
-                           ) +
-                           geom_text(
-                             aes(x = 3.7,
-                                 y = 1.1,
-                                 label = "C\nor better"),
-                             fontface = 2,
-                             colour = ChartColours[1],
-                             family = "Century Gothic",
-                             hjust = 0.5
-                           )+
-                           geom_text(
-                             aes(x = 4.1,
-                                 y = 1.05,
-                                 label = " "),
-                             fontface = 2,
-                             colour = ChartColours[1],
-                             family = "Century Gothic",
-                             hjust = 0.5
-                           )
-                         
-                         DomesticEPCChart
-                         
-                         
-                         DomesticEPCChart <-
-                           StackedBars(
-                             DomesticEPCChart,
-                             DomesticEPC,
-                             plottitle,
-                             sourcecaption,
-                             ChartColours
-                           )
-                         
-                         DomesticEPCChart <-
-                           DomesticEPCChart +
-                           coord_flip() +
-                           labs(subtitle = "Scotland, 2017") +
-                           ylim(-.2, 1.13)
-                         
-                         DomesticEPCChart
+                         sheet = "Domestic EPCs", skip = 12)[17:23]
+      Data <- Data[complete.cases(Data),]
+      
+      names(Data) <- c("Type", "A or better", "B", "C", "D", "E", "F & G")
+      
+      Data[2:7] %<>% lapply(function(x) as.numeric(as.character(x)))
+      
+      Data$Total <- Data$B + Data$C
+      
+      Data$`A or better` <- 0
+      
+      DomesticEPC <- as_tibble(Data)
+      
+      DomesticEPC <-
+        DomesticEPC[c(1, ncol(DomesticEPC):2)]
+      
+      DomesticEPC <-
+        arrange(DomesticEPC,-row_number())
+      
+      DomesticEPC$Type <-
+        factor(DomesticEPC$Type,
+               levels = unique(DomesticEPC$Type))
+      
+      DomesticEPC <-
+        melt(DomesticEPC, id.vars = "Type")
+      
+      
+      DomesticEPC$variable <-
+        factor(DomesticEPC$variable,
+               levels = unique(DomesticEPC$variable))
+      
+      DomesticEPC <- DomesticEPC %>%
+        group_by(Type) %>%
+        mutate(pos = cumsum(value) - value / 2) %>%
+        mutate(top = sum(value))
+      
+      plottitle <-
+        "Domestic EPC by housing tenure"
+      sourcecaption <- "Source: SG"
+      
+      ChartColours <- c("#34d1a3", "#FF8500")
+      BarColours <-
+        c("#006837",
+          "#1a9850",
+          "#66bd63",
+          "#fee08b",
+          "#fdae61",
+          "#f46d43",
+          "#d73027")
+      
+      
+      DomesticEPCChart <- DomesticEPC %>%
+        ggplot(aes(x = Type, y = value, fill = variable), family = "Century Gothic") +
+        scale_fill_manual(
+          "variable",
+          values = c(
+            "A or better" = BarColours[1],
+            "B" = BarColours[2],
+            "C" = BarColours[3],
+            "D" = BarColours[4],
+            "E" = BarColours[5],
+            "F & G" = BarColours[6],
+            "Total" = "White"
+          )
+        ) +
+        geom_bar(stat = "identity", width = .8) +
+        annotate(
+          "text",
+          x = DomesticEPC$Type,
+          y = -.15,
+          label = ifelse(
+            DomesticEPC$Type == "z",
+            "",
+            str_wrap(DomesticEPC$Type, width = 8)
+          ),
+          family = "Century Gothic",
+          fontface = 2,
+          colour = ChartColours[1]
+        ) +
+        # geom_text(
+        #   aes(x = 3.7,
+        #       y = 0.5 * (1 / 7),
+        #       label = "A"),
+        #   fontface = 2,
+        #   colour = BarColours[1],
+        #   family = "Century Gothic",
+        #   hjust = 0.5
+        # ) +
+        geom_text(
+          aes(x = 3.7,
+              y = .5 * (1 / 5),
+              label = "B"),
+          fontface = 2,
+          colour = BarColours[2],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 3.7,
+              y = 1.5 * (1 / 5),
+              label = "C"),
+          fontface = 2,
+          colour = BarColours[3],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 3.7,
+              y = 2.5 * (1 / 5),
+              label = "D"),
+          fontface = 2,
+          colour = BarColours[4],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 3.7,
+              y = 3.5 * (1 / 5),
+              label = "E"),
+          fontface = 2,
+          colour = BarColours[5],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 3.7,
+              y = 4.5 * (1 / 5),
+              label = "F & G"),
+          fontface = 2,
+          colour = BarColours[6],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        annotate(
+          "text",
+          x = DomesticEPC$Type,
+          y = 1.1,
+          label = ifelse(
+            DomesticEPC$Type == "z",
+            "",
+            percent(DomesticEPC$value[which(DomesticEPC$variable == "Total")])
+          ),
+          family = "Century Gothic",
+          fontface = 2,
+          colour = ChartColours[1]
+        ) +
+        geom_text(
+          aes(x = 3.7,
+              y = 1.1,
+              label = "C\nor better"),
+          fontface = 2,
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          hjust = 0.5
+        )+
+        geom_text(
+          aes(x = 4.1,
+              y = 1.05,
+              label = " "),
+          fontface = 2,
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          hjust = 0.5
+        )
+      
+      DomesticEPCChart
+      
+      
+      DomesticEPCChart <-
+        StackedBars(
+          DomesticEPCChart,
+          DomesticEPC,
+          plottitle,
+          sourcecaption,
+          ChartColours
+        )
+      
+      DomesticEPCChart <-
+        DomesticEPCChart +
+        coord_flip() +
+        labs(subtitle = "Scotland, 2018") +
+        ylim(-.2, 1.13)
+      
+      DomesticEPCChart
                          
                          ggsave(
                            file,

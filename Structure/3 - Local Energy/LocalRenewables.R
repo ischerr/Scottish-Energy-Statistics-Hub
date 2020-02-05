@@ -74,7 +74,7 @@ LocalRenewablesOutput <- function(id) {
                  column(
                    8,
                    h3("Capacity of operational community and locally owned renewable installations by type of output", style = "color: #a3d65c;  font-weight:bold"),
-                   h4(textOutput(ns('CommunityOperatingOutputTypeSubtitle')))
+                   h4(textOutput(ns('CommunityOperatingOutputTypeSubtitle')), style = "color: #a3d65c;")
                  ),
                  column(
                    4,
@@ -93,7 +93,7 @@ LocalRenewablesOutput <- function(id) {
                  column(
                    8,
                    h3("Capacity of operational community and locally owned renewable installations by ownership category", style = "color: #a3d65c;  font-weight:bold"),
-                   h4(textOutput(ns('EnSectorOwnershipSubtitle')))
+                   h4(textOutput(ns('EnSectorOwnershipSubtitle')), style = "color: #a3d65c;")
                  ),
                  column(
                    4,
@@ -220,11 +220,13 @@ LocalRenewables <- function(input, output, session) {
   
   
   print("EnEconomy.R")
+  
+  QuarterSubtitle <- "Scotland, June 2019"
   ###### Energy Sector Emplyment ######
   
   output$CommunityCapacitySubtitle <- renderText({
       
-      paste("Scotland, 2018")
+      paste("Scotland, 2019")
   })
   
   output$CommunityCapacityPlot <- renderPlotly  ({
@@ -234,8 +236,8 @@ LocalRenewables <- function(input, output, session) {
         "Structure/CurrentWorking.xlsx",
         sheet = "Comm & locally owned ren",
         col_names = FALSE,
-        skip = 12,
-        n_max = 6
+        skip = 13,
+        n_max = 7
       )
     
     CommunityCapacity <- CommunityCapacity[2:3]
@@ -246,9 +248,9 @@ LocalRenewables <- function(input, output, session) {
     
     CommunityCapacity <- CommunityCapacity[-1,]
     
-    names(CommunityCapacity)[1:2] <- c("Type", "Operating")
+    names(CommunityCapacity)[1] <- c("Operating")
     
-    CommunityCapacity[1,1] <- 1
+    CommunityCapacity$Type <- 1
     
     CommunityCapacity %<>% lapply(function(x)
       as.numeric(as.character(x)))
@@ -256,7 +258,7 @@ LocalRenewables <- function(input, output, session) {
     CommunityCapacity <- as_tibble(CommunityCapacity)
     
     ChartColours <- c("#a3d65c", "#FF8500")
-    BarColours <- c("#005a32", "#238b45", "#41ab5d", "#74c476",  "#a1d99b")
+    BarColours <- c("#005a32", "#238b45", "#41ab5d", "#74c476", "#a1d99b", "#d9d9d9", "#737373" )
     
     p <-
       plot_ly(data = CommunityCapacity, y = ~Type) %>%
@@ -320,6 +322,30 @@ LocalRenewables <- function(input, output, session) {
         marker = list(color = BarColours[5]),
         legendgroup = 5
       ) %>%
+      add_trace(
+        data = CommunityCapacity,
+        x = ~ `Shared ownership under discussion`,
+        type = 'bar',
+        width = 0.3,
+        orientation = 'h',
+        name = "Shared ownership under discussion",
+        text = paste0("Shared ownership under discussion: ", CommunityCapacity$`Shared ownership under discussion`, " MW"),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[6]),
+        legendgroup = 6
+      ) %>%
+      add_trace(
+        data = CommunityCapacity,
+        x = ~ `Unknown`,
+        type = 'bar',
+        width = 0.3,
+        orientation = 'h',
+        name = "Unknown",
+        text = paste0("Unknown: ", CommunityCapacity$`Unknown`, " MW"),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[7]),
+        legendgroup = 7
+      ) %>%
       add_annotations(
         ax = 1000,
         x = 1000,
@@ -380,9 +406,11 @@ LocalRenewables <- function(input, output, session) {
     content = function(file) {
       
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Comm & locally owned ren", skip = 12, n_max = 5)[1:3]
+                         sheet = "Comm & locally owned ren", skip = 12, n_max = 7)[1:3]
       
       names(Data) <- c("Year", "Phase", "Capacity")
+      
+      Data[6,2] <- "Shared ownership"
       
       Data <- Data[order(-as.numeric(row.names(Data))),]
       
@@ -400,7 +428,8 @@ LocalRenewables <- function(input, output, session) {
       sourcecaption <- "Source: EST"
       
       ChartColours <- c("#a3d65c", "#FF8500")
-      BarColours <- c("#a1d99b", "#74c476", "#41ab5d", "#238b45", "#005a32")
+      BarColours <- c("#737373", "#d9d9d9", "#a1d99b", "#74c476", "#41ab5d", "#238b45", "#005a32" )
+      
       
       
       CommunityCapacityChart <-
@@ -408,11 +437,13 @@ LocalRenewables <- function(input, output, session) {
         scale_fill_manual(
           "Phase",
           values = c(
-            "Operating*" = BarColours[5],
-            "Under construction" = BarColours[4],
-            "Consented not built" = BarColours[3],
-            "In planning" = BarColours[2],
-            "In scoping" = BarColours[1]
+            "Operating*" = BarColours[7],
+            "Under construction" = BarColours[6],
+            "Consented not built" = BarColours[5],
+            "In planning" = BarColours[4],
+            "In scoping" = BarColours[3],
+            "Shared ownership" = BarColours[2],
+            "Unknown" = BarColours[1]
           )
         ) +
         geom_bar(stat = "identity", width = 1) +
@@ -421,14 +452,14 @@ LocalRenewables <- function(input, output, session) {
           y = 1000,
           yend = 1000,
           color = "#fc9272",
-          x = CommunityCapacity$Year - 1,
-          xend = CommunityCapacity$Year + .5,
+          x = CommunityCapacity$Year - 0.5,
+          xend = CommunityCapacity$Year + 2.2,
           size = 1,
           linetype = 3
         ) +
         annotate(
           "text",
-          x = CommunityCapacity$Year - 1.5,
+          x = CommunityCapacity$Year + 3,
           y = 1000,
           label = "2020\ntarget",
           hjust = 0.5,
@@ -439,19 +470,18 @@ LocalRenewables <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = mean(CommunityCapacity$Year),
+          x = ifelse(row_number(CommunityCapacity$Phase) %% 2 == 0, mean(CommunityCapacity$Year) - 1.5, mean(CommunityCapacity$Year) + 1.5),
           y = sum(CommunityCapacity$Capacity) - CommunityCapacity$pos,
           label = ifelse(
             row_number(CommunityCapacity$Phase) %% 2 == 0,
-            paste0(CommunityCapacity$Capacity, " MW\n", CommunityCapacity$Phase),
+            paste0(CommunityCapacity$Capacity, " MW\n", str_wrap(CommunityCapacity$Phase,11)),
             paste0(
-              CommunityCapacity$Phase,
+              str_wrap(CommunityCapacity$Phase,11),
               "\n",
               CommunityCapacity$Capacity,
               " MW"
             )
           ),
-          vjust = ifelse(row_number(CommunityCapacity$Phase) %% 2 == 0, 1.5, -.6),
           fontface = 2,
           color = BarColours[row_number(CommunityCapacity$Phase)],
           family = "Century Gothic"
@@ -480,8 +510,8 @@ LocalRenewables <- function(input, output, session) {
       ggsave(
         file,
         plot = CommunityCapacityChart,
-        width = 15,
-        height = 7,
+        width = 20,
+        height = 10,
         units = "cm",
         dpi = 300
       )
@@ -491,7 +521,7 @@ LocalRenewables <- function(input, output, session) {
   output$CommunityCapacityTable = renderDataTable({
     CommunityOperatingOutputType <- read_excel("Structure/CurrentWorking.xlsx", 
                                  sheet = "Comm & locally owned ren", col_names = TRUE, 
-                                 skip = 12, n_max = 5)
+                                 skip = 12, n_max = 7)
     
     CommunityOperatingOutputType <- CommunityOperatingOutputType[2:3]
   
@@ -683,13 +713,17 @@ LocalRenewables <- function(input, output, session) {
     filename = "CommunityOperatingCapacity.png",
     content = function(file) {
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                                        sheet = "Comm & locally owned ren", skip = 12, n_max = 15)[12:14]
+                         sheet = "Comm & locally owned ren", skip = 12, n_max = 15)[12:13]
       
-      names(Data) <- c("Year", "Renewables", "Target")
+      names(Data) <- c("Year", "Renewables")
       
       Data$Year <- as.numeric(substr(Data$Year,1,4))
       
       Data <- Data[complete.cases(Data$Year),]
+      
+      Data2 <- data.frame(Year = c(2020, 2030 ), `Renewables` = NA, Target = c(1000,2000))
+      
+      Data <- rbind.fill(Data, Data2)
       
       ComCapOperating <- Data
       
@@ -760,7 +794,7 @@ LocalRenewables <- function(input, output, session) {
           aes(
             x = Year,
             y = Target,
-            label = ifelse(Year == max(Year[which(Target > 0)]), paste0("Target:\n", Target, " MW"), ""),
+            label = ifelse(Year == Year[which(Target > 0)], paste0("Target:\n", Target, " MW"), ""),
             vjust = 1.3,
             colour = ChartColours[2],
             fontface = 2
@@ -768,7 +802,7 @@ LocalRenewables <- function(input, output, session) {
           family = "Century Gothic"
         ) +
         geom_point(
-          data = tail(ComCapOperating[which(ComCapOperating$Target > 0),], 1),
+          data = ComCapOperating[which(ComCapOperating$Target > 0),],
           aes(
             x = Year,
             y = Target,
@@ -784,7 +818,8 @@ LocalRenewables <- function(input, output, session) {
           aes(
             x = Year,
             y = 0,
-            label = ifelse(Year == max(Year[which(Target > 0)]), Year, ""),
+            label = ifelse(Year == Year[which(Target > 0)] |
+                             Year == min(Year), Year, ""),
             hjust = 0.5,
             vjust = 1.5,
             colour = ChartColours[2],
@@ -806,9 +841,9 @@ LocalRenewables <- function(input, output, session) {
       #  ylim(-15,700)
       
       ComCapOperatingChart <- ComCapOperatingChart +
-        ylim(0,1000)+
-        xlim(min(ComCapOperating$Year),max(ComCapOperating$Year)+0.5)+
-        labs(subtitle = paste0("Scotland, ", min(ComCapOperating$Year), " - ", max(ComCapOperating$Year[which(ComCapOperating$Renewables >0)])))
+        ylim(0,2001)+
+        xlim(min(ComCapOperating$Year),max(ComCapOperating$Year)+1) + 
+        labs(subtitle = paste0("Scotland, ", min(ComCapOperating$Year), " - ",  max(ComCapOperating[which(ComCapOperating$Renewables > 0),]$Year)))
       
       ComCapOperatingChart
       
@@ -877,31 +912,14 @@ LocalRenewables <- function(input, output, session) {
   })
   
   output$CommunityOperatingTechSubtitle <- renderText({
-    CommunityOperatingTech <- read_excel("Structure/CurrentWorking.xlsx", 
-                                  sheet = "Energy economy", col_names = FALSE, 
-                                  skip = 12, n_max = 9)
-    
-    CommunityOperatingTech <- as.data.frame(t(CommunityOperatingTech))
-    
-    CommunityOperatingTech <- tail(CommunityOperatingTech[c(1,6)],-1)
-    CommunityOperatingTech %<>% lapply(function(x) as.numeric(as.character(x)))
-    CommunityOperatingTech <- as.data.frame(CommunityOperatingTech)
-    names(CommunityOperatingTech) <- c("Year", "GVA")
-    
-    CommunityOperatingTech <- CommunityOperatingTech[which(CommunityOperatingTech$Year >= 2008),]
-    
-    CommunityOperatingTech$Year <- as.numeric(substr(CommunityOperatingTech$Year, 1,4))
-    
-    CommunityOperatingTech$GVA <- CommunityOperatingTech$GVA /1000
-    
-    paste("Scotland,", min(CommunityOperatingTech$Year),"-", max(CommunityOperatingTech$Year))
+    paste(QuarterSubtitle)
   })
   
   output$CommunityOperatingTechPlot <- renderPlotly  ({
     
     CommunityOperatingTech <- read_excel("Structure/CurrentWorking.xlsx", 
                                   sheet = "Comm & locally owned ren", col_names = TRUE, 
-                                  skip = 40, n_max = 8)
+                                  skip = 41, n_max = 8)
     
     CommunityOperatingTech <- CommunityOperatingTech[1:2]
     
@@ -962,7 +980,7 @@ LocalRenewables <- function(input, output, session) {
     content = function(file) {
       
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Comm & locally owned ren", skip = 40, n_max = 8)[1:2]
+                         sheet = "Comm & locally owned ren", skip = 41, n_max = 8)[1:2]
       
       names(Data) <- c("Tech", "Capacity")
       
@@ -1025,9 +1043,9 @@ LocalRenewables <- function(input, output, session) {
       ComCapTechChart <-
         ComCapTechChart +
         coord_flip() +
-        ylim(-50, max(ComCapTech$Capacity))+
+        ylim(-85, max(ComCapTech$Capacity))+
         scale_x_discrete(limits = rev(levels(ComCapTech$Tech)))+ 
-        labs (subtitle = "Scotland, June 2018")
+        labs (subtitle = "Scotland, June 2019")
       
       ComCapTechChart
       
@@ -1045,7 +1063,7 @@ LocalRenewables <- function(input, output, session) {
   output$CommunityOperatingTechTable = renderDataTable({
     CommunityOperatingOutputType <- read_excel("Structure/CurrentWorking.xlsx", 
                                  sheet = "Comm & locally owned ren", col_names = TRUE, 
-                                 skip = 40, n_max = 9)
+                                 skip = 41, n_max = 9)
     
     CommunityOperatingOutputType <- CommunityOperatingOutputType[1:5]
     
@@ -1095,31 +1113,14 @@ LocalRenewables <- function(input, output, session) {
   })
   
   output$CommunityOperatingOutputTypeSubtitle <- renderText({
-    CommunityOperatingOutputType <- read_excel("Structure/CurrentWorking.xlsx", 
-                               sheet = "Energy economy", col_names = FALSE, 
-                               skip = 12, n_max = 9)
-    
-    CommunityOperatingOutputType <- as.data.frame(t(CommunityOperatingOutputType))
-    
-    CommunityOperatingOutputType <- tail(CommunityOperatingOutputType[c(1,6)],-1)
-    CommunityOperatingOutputType %<>% lapply(function(x) as.numeric(as.character(x)))
-    CommunityOperatingOutputType <- as.data.frame(CommunityOperatingOutputType)
-    names(CommunityOperatingOutputType) <- c("Year", "GVA")
-    
-    CommunityOperatingOutputType <- CommunityOperatingOutputType[which(CommunityOperatingOutputType$Year >= 2008),]
-    
-    CommunityOperatingOutputType$Year <- as.numeric(substr(CommunityOperatingOutputType$Year, 1,4))
-    
-    CommunityOperatingOutputType$GVA <- CommunityOperatingOutputType$GVA /1000
-    
-    paste("Scotland,", min(CommunityOperatingOutputType$Year),"-", max(CommunityOperatingOutputType$Year))
+    paste(QuarterSubtitle)
   })
   
   output$CommunityOperatingOutputTypePlot <- renderPlotly  ({
     
     CommunityOperatingOutputType <- read_excel("Structure/CurrentWorking.xlsx", 
                                sheet = "Comm & locally owned ren", col_names = TRUE, 
-                               skip = 47, n_max = 4)
+                               skip = 46, n_max = 4)
     
     CommunityOperatingOutputType <- CommunityOperatingOutputType[11:13]
     
@@ -1182,7 +1183,7 @@ LocalRenewables <- function(input, output, session) {
     content = function(file) {
       
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Comm & locally owned ren", skip = 47, n_max = 4)[11:12]
+                         sheet = "Comm & locally owned ren", skip = 46, n_max = 4)[11:12]
       
       names(Data) <- c("Tech", "Capacity")
       
@@ -1195,7 +1196,7 @@ LocalRenewables <- function(input, output, session) {
       
       
       plottitle <-
-        "Capacity of operational community and locally\nowned renewable installations by type of output"
+        "Capacity of operational community and locally\nowned renewable installations by type of output\n(MW)"
       sourcecaption <- "Source: EST"
       
       ChartColours <- c("#a3d65c", "#FF8500")
@@ -1240,9 +1241,9 @@ LocalRenewables <- function(input, output, session) {
       ComCapTypeChart <-
         ComCapTypeChart +
         coord_flip() +
-        ylim(-175, max(ComCapType$Capacity))+
+        ylim(-125, max(ComCapType$Capacity))+
         scale_x_discrete(limits = rev(levels(ComCapType$Tech)))+ 
-        labs (subtitle = "Scotland, June 2018")
+        labs (subtitle = "Scotland, June 2019")
       
       ComCapTypeChart
       
@@ -1260,7 +1261,7 @@ LocalRenewables <- function(input, output, session) {
   output$CommunityOperatingOutputTypeTable = renderDataTable({
     CommunityOperatingOutputType <- read_excel("Structure/CurrentWorking.xlsx", 
                                  sheet = "Comm & locally owned ren", col_names = TRUE, 
-                                 skip = 47, n_max = 5)
+                                 skip = 46, n_max = 5)
     
     CommunityOperatingOutputType <- CommunityOperatingOutputType[11:13]
     
@@ -1312,14 +1313,14 @@ LocalRenewables <- function(input, output, session) {
   output$EnSectorOwnershipSubtitle <- renderText({
 
     
-    paste("Scotland,")
+    paste(QuarterSubtitle)
   })
   
   output$EnSectorOwnershipPlot <- renderPlotly  ({
     
     EnSectorOwnership <- read_excel("Structure/CurrentWorking.xlsx", 
                                  sheet = "Comm & locally owned ren", col_names = TRUE, 
-                                 skip = 75, n_max = 6)
+                                 skip = 76, n_max = 6)
     
  
     
@@ -1380,7 +1381,7 @@ LocalRenewables <- function(input, output, session) {
     content = function(file) {
       
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Comm & locally owned ren", skip = 75, n_max = 6)[1:2]
+                         sheet = "Comm & locally owned ren", skip = 76, n_max = 6)[1:2]
       
       names(Data) <- c("Tech", "Capacity")
       
@@ -1437,9 +1438,9 @@ LocalRenewables <- function(input, output, session) {
       ComCapOwnershipChart <-
         ComCapOwnershipChart +
         coord_flip() +
-        ylim(-90, max(ComCapOwnership$Capacity))+
+        ylim(-92, max(ComCapOwnership$Capacity))+
         scale_x_discrete(limits = rev(levels(ComCapOwnership$Tech)))+ 
-        labs (subtitle = "Scotland, June 2018")
+        labs (subtitle = "Scotland, June 2019")
       
       ComCapOwnershipChart
       
@@ -1457,7 +1458,7 @@ LocalRenewables <- function(input, output, session) {
   output$EnSectorOwnershipTable = renderDataTable({
     EnSectorOwnership <- read_excel("Structure/CurrentWorking.xlsx", 
                                  sheet = "Comm & locally owned ren", col_names = TRUE, 
-                                 skip = 75, n_max = 7)
+                                 skip = 76, n_max = 7)
     
     EnSectorOwnership[7,1] <- "Total"
     
