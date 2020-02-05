@@ -118,78 +118,49 @@ LowCarbonEconomy <- function(input, output, session) {
 
   print("LowCarbonEconomy.R")
   
+  Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                     sheet = "Low carbon economy", skip = 15, n_max = 12,col_names = FALSE)
+  
+  Data <- as_tibble(t(Data))
+  
+  Data <- fill(Data, 1)
+  
+  Data <- Data[c(1,2,5,10,11)]
+  
+  names(Data) <- c("Measure", "Year", "Direct", "Renewable", "Low Carbon")
+  
+  Data[2:5] %<>% lapply(function(x)
+    as.numeric(as.character(x)))
+  
+  Data <- as_tibble(Data)
+  
+  Year <- max(Data$Year, na.rm = TRUE)
+  
+  Data <- Data[which(Data$Year == Year),]
+  
+  
     output$LowCarbonEconomySubtitle <- renderText({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Low carbon economy", skip = 15, col_names = FALSE)
+
+  
     
-    Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
-    
-    Data <- fill(Data, 1)
-    
-    names(Data) <- unlist(Data[1,])
-    
-    names(Data)[1:2] <- c("Year", "Type")
-    
-    Data = Data[-1, ]
-    
-    Data <- as_tibble(Data[c(1,2,5,6,7)])
-    
-    LowCarbonEconomy <- Data
-    
-    ### variables
-    
-    paste("Scotland,", max(LowCarbonEconomy$Year))
+    paste("Scotland,", max(Year))
   })
     
     output$LowCarbonEconomyTurnoverSubtitle <- renderText({
       
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Low carbon economy", skip = 15, col_names = FALSE)
-      
-      Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
-      
-      Data <- fill(Data, 1)
-      
-      names(Data) <- unlist(Data[1,])
-      
-      names(Data)[1:2] <- c("Year", "Type")
-      
-      Data = Data[-1, ]
-      
-      Data <- as_tibble(Data[c(1,2,5,12,13)])
-      
-      LowCarbonEconomy <- Data
-      
-      ### variables
-      
-      paste("Scotland,", max(LowCarbonEconomy$Year))
+    paste("Scotland,", max(Year))
     })
   
     output$LowCarbonEconomyPlot <- renderPlotly  ({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Low carbon economy", skip = 15, col_names = FALSE)
+    LowCarbonEconomy <- Data[which(Data$Measure == "Employees  (FTE)"),]
     
-    Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
+    LowCarbonEmployment <- LowCarbonEconomy$Direct
     
-    Data <- fill(Data, 1)
-    
-    names(Data) <- unlist(Data[1,])
-    
-    names(Data)[1:2] <- c("Year", "Type")
-    
-    Data = Data[-1, ]
-    
-    Data <- as_tibble(Data[c(1,2,12,13)])
-    
-    LowCarbonEconomy <- Data
-    
-    LowCarbonEconomy <- melt(LowCarbonEconomy, id = c("Year", "Type"))
+    LowCarbonEconomy <- melt(LowCarbonEconomy[c(2,4,5)], id = c("Year"))
     
     LowCarbonEconomy$value <- as.numeric(LowCarbonEconomy$value)
-    
-    LowCarbonEconomy <- LowCarbonEconomy[which(LowCarbonEconomy$Year == max(LowCarbonEconomy$Year) & LowCarbonEconomy$Type == "Employees  (FTE)"),]
     
     p <- plot_ly() %>% 
       add_pie(data = LowCarbonEconomy,
@@ -206,7 +177,7 @@ LowCarbonEconomy <- function(input, output, session) {
               sort = T) %>% 
       layout(
         title = list(
-          text = paste("<b>Total Employees</b>:",format(round(sum(LowCarbonEconomy$value), digits = 0), big.mark = ",")),
+          text = paste("<b>Total Employees</b>:",format(round(LowCarbonEmployment, digits = 0), big.mark = ",")),
           font = list(
             color = "#262626"
           )
@@ -218,32 +189,19 @@ LowCarbonEconomy <- function(input, output, session) {
   })
   
     output$LowCarbonEconomyTurnoverPlot <- renderPlotly  ({
+      
+      
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Low carbon economy", skip = 15, col_names = FALSE)
+    LowCarbonTurnover <- Data[which(Data$Measure == "Turnover (\u00A3000s)"),]
     
-    Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
+    LowCarbonDirectTurnover <- LowCarbonTurnover$Direct /1000000
     
-    Data <- fill(Data, 1)
+    LowCarbonTurnover <- melt(LowCarbonTurnover[c(2,4,5)], id = c("Year"))
     
-    names(Data) <- unlist(Data[1,])
-    
-    names(Data)[1:2] <- c("Year", "Type")
-    
-    Data = Data[-1, ]
-    
-    Data <- as_tibble(Data[c(1,2,12,13)])
-    
-    LowCarbonEconomy <- Data
-    
-    LowCarbonEconomy <- melt(LowCarbonEconomy, id = c("Year", "Type"))
-    
-    LowCarbonEconomy$value <- as.numeric(LowCarbonEconomy$value)
-    
-    LowCarbonEconomy <- LowCarbonEconomy[which(LowCarbonEconomy$Year == max(LowCarbonEconomy$Year) & LowCarbonEconomy$Type == "Turnover (\u00A3000s)"),]
+    LowCarbonTurnover$value <- as.numeric(LowCarbonTurnover$value) /1000000 
     
     p <- plot_ly() %>% 
-      add_pie(data = LowCarbonEconomy,
+      add_pie(data = LowCarbonTurnover,
               labels = ~variable,
               values = ~value,
               hole = .5,
@@ -253,11 +211,11 @@ LowCarbonEconomy <- function(input, output, session) {
               hoverinfo = 'text',
               marker = list(colors = c("#1a5d38",  "#2b8cbe", "#31859c","#77933c", "#4f6228", "#184d0f"),
                             line = list(color = '#FFFFFF', width = 2)),
-              text = paste0(LowCarbonEconomy$variable,": \u00A3", format(round(LowCarbonEconomy$value/1000000, digits = 2), big.mark = ","), " bn\n", percent((LowCarbonEconomy$value)/ sum(LowCarbonEconomy$value))),
+              text = paste0(LowCarbonTurnover$variable,": \u00A3", format(round(LowCarbonTurnover$value, digits = 2), big.mark = ","), " bn\n", percent((LowCarbonTurnover$value)/ sum(LowCarbonTurnover$value))),
               sort = T) %>% 
       layout(
         title = list(
-          text = paste0("<b>Total Turnover</b>: \u00A3",format(round(sum(LowCarbonEconomy$value/1000000), digits = 2), big.mark = ","), "bn"),
+          text = paste0("<b>Total Turnover</b>: \u00A3",format(round(LowCarbonDirectTurnover, digits = 2), big.mark = ","), " bn"),
           font = list(
             color = "#262626"
           )
@@ -563,14 +521,14 @@ LowCarbonEconomy <- function(input, output, session) {
     output$LowCarbonEconomy.png <- downloadHandler(
     filename = "LowCarbonEconomy.png",
     content = function(file) {
-      writePNG(readPNG("Structure/2 - Renewables/Emissions/LCREJobs.png"), file) 
+      writePNG(readPNG("Structure/2 - Renewables/Economy/LCREJobs.png"), file) 
     }
     )
     
     output$LowCarbonEconomyTurnover.png <- downloadHandler(
     filename = "LowCarbonEconomyTurnover.png",
     content = function(file) {
-      writePNG(readPNG("Structure/2 - Renewables/Emissions/LCRETurnover.png"), file) 
+      writePNG(readPNG("Structure/2 - Renewables/Economy/LCRETurnover.png"), file) 
     }
     )
 }

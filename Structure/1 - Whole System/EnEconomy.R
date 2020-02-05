@@ -333,6 +333,10 @@ EnEconomy <- function(input, output, session) {
     
     EnergySectorTurnover$Year <- dmy(EnergySectorTurnover$Year)
     
+    EnergySectorTurnover[EnergySectorTurnover == 0] <- NA
+    
+    EnergySectorTurnover <- EnergySectorTurnover[complete.cases(EnergySectorTurnover),]
+    
     p <-  plot_ly(
       EnergySectorTurnover,
       x = ~ Year,
@@ -443,6 +447,10 @@ EnEconomy <- function(input, output, session) {
     
     EnergySectorGVA$Year <- dmy(EnergySectorGVA$Year)
     
+    EnergySectorGVA[EnergySectorGVA == 0] <- NA
+    
+    EnergySectorGVA <- EnergySectorGVA[complete.cases(EnergySectorGVA),]
+    
     p <-  plot_ly(
       EnergySectorGVA,
       x = ~ Year,
@@ -527,6 +535,10 @@ EnEconomy <- function(input, output, session) {
       plottitle = "GVA associated with the energy sector"
       
       #EnergySectorGVA$OilPercentage <- PercentLabel(EnergySectorGVA$Oil)
+      
+      EnergySectorGVA[EnergySectorGVA == 0] <- NA
+      
+      EnergySectorGVA <- EnergySectorGVA[complete.cases(EnergySectorGVA),]
       
       
       EnergySectorGVAChart <- EnergySectorGVA %>%
@@ -667,6 +679,10 @@ EnEconomy <- function(input, output, session) {
       paste0("01/01/", EnergySectorExports$Year)
     
     EnergySectorExports$Year <- dmy(EnergySectorExports$Year)
+    
+    EnergySectorExports[EnergySectorExports == 0] <- NA
+    
+    EnergySectorExports <- EnergySectorExports[complete.cases(EnergySectorExports),]
     
     p <-
       plot_ly(
@@ -919,7 +935,6 @@ EnEconomy <- function(input, output, session) {
       sourcecaption = "Source: Scottish Government"
       plottitle = "Employment in the energy sector"  
       
-      
       EnergySectorEmploymentChart <- EnergySectorEmployment %>%
         ggplot(aes(x = Year), family = "Century Gothic") +
         
@@ -1115,6 +1130,9 @@ EnEconomy <- function(input, output, session) {
       
       #EnergySectorTurnover$OilPercentage <- PercentLabel(EnergySectorTurnover$Oil)
       
+      EnergySectorTurnover[EnergySectorTurnover == 0] <- NA
+      
+      EnergySectorTurnover <- EnergySectorTurnover[complete.cases(EnergySectorTurnover),]
       
       EnergySectorTurnoverChart <- EnergySectorTurnover %>%
         ggplot(aes(x = Year), family = "Century Gothic") +
@@ -1242,6 +1260,9 @@ EnEconomy <- function(input, output, session) {
       
       #EnergySectorExports$OilPercentage <- PercentLabel(EnergySectorExports$Oil)
       
+      EnergySectorExports[EnergySectorExports == 0] <- NA
+      
+      EnergySectorExports <- EnergySectorExports[complete.cases(EnergySectorExports),]
       
       EnergySectorExportsChart <- EnergySectorExports %>%
         ggplot(aes(x = Year), family = "Century Gothic") +
