@@ -535,7 +535,7 @@ LowCarbonEconomy <- function(input, output, session) {
     output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/2 - Renewables/Emissions/LowCarbonEconomy.txt")[2])
+                     paste(readtext("Structure/2 - Renewables/Economy/LowCarbonEconomy.txt")[2])
                      
                    )))
   })
