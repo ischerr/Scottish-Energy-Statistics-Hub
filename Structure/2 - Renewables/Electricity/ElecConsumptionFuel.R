@@ -94,7 +94,7 @@ ElecConsumptionFuel <- function(input, output, session) {
         n_max = 1
       )
     
-    Time <- paste0(Time[1, ncol(Time)-3], " - ", Time[1, ncol(Time)])
+    Time <- paste0(Time[1, ncol(Time)-4], " - ", Time[1, ncol(Time)-1])
     
     Time
   })
@@ -670,7 +670,7 @@ ElecConsumptionFuel <- function(input, output, session) {
           n_max = 1
         )
       
-      Time <- paste0(Time[1, ncol(Time)-3], " - ", Time[1, ncol(Time)])
+      Time <- paste0(Time[1, ncol(Time)-4], " - ", Time[1, ncol(Time)-1])
       
       ### Load Packages and Functions
       
