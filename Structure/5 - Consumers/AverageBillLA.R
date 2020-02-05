@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-AverageBillLAOutput <- function(id) {
+AverageBillLALAOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Proportion of households not on the gas grid by local authority (estimates)", style = "color: #68c3ea;  font-weight:bold"),
-                    h4(textOutput(ns('TotalBillSubtitle')), style = "color: #68c3ea;")
+                    h3("Average annual energy bill prices", style = "color: #68c3ea;  font-weight:bold"),
+                    h4(textOutput(ns('AverageBillLASubtitle')), style = "color: #68c3ea;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('TotalBill.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('AverageBillLA.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
-    #dygraphOutput(ns("TotalBillPlot")),
-    imageOutput(ns("TotalBillPlot"), height = "700px")%>% withSpinner(color="#68c3ea"),
+    #dygraphOutput(ns("AverageBillLAPlot")),
+    imageOutput(ns("AverageBillLAPlot"), height = "700px")%>% withSpinner(color="#68c3ea"),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),
@@ -36,7 +36,7 @@ AverageBillLAOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("TotalBillTable"))%>% withSpinner(color="#68c3ea"))),
+      column(12, dataTableOutput(ns("AverageBillLATable"))%>% withSpinner(color="#68c3ea"))),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     fluidRow(
       column(1,
@@ -61,30 +61,30 @@ AverageBillLAOutput <- function(id) {
 
 
 ###### Server ######
-AverageBillLA <- function(input, output, session) {
+AverageBillLALA <- function(input, output, session) {
 
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("AverageBillLA.R")
+  print("AverageBillLALA.R")
   ###### Renewable Energy ###### ######
   
   ### From ESD ###
   
-  output$TotalBillSubtitle <- renderText({
+  output$AverageBillLASubtitle <- renderText({
     
     paste("Scotland, 2017")
   
     })
   
-  output$TotalBillPlot <- renderImage({
+  output$AverageBillLAPlot <- renderImage({
     
     # A temp file to save the output. It will be deleted after renderImage
     # sends it, because deleteFile=TRUE.
     outfile <- tempfile(fileext='.png')
    
-     writePNG(readPNG("Structure/5 - Consumers/TotalBillOutput.png"),outfile) 
+     writePNG(readPNG("Structure/5 - Consumers/AverageBillLAOutput.png"),outfile) 
     
     # Generate a png
     
@@ -95,16 +95,16 @@ AverageBillLA <- function(input, output, session) {
   }, deleteFile = TRUE)
   
   
-  output$TotalBillTable = renderDataTable({
+  output$AverageBillLATable = renderDataTable({
     
-    TotalBill <- read_excel(
+    AverageBillLA <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Non-gas grid by LA",
       skip = 13
     )[c(2,5)]
 
     datatable(
-      TotalBill,
+      AverageBillLA,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -139,25 +139,25 @@ AverageBillLA <- function(input, output, session) {
       formatRound(2:3, 0)
   })
   
-  output$TotalBillTimeSeriesTable = renderDataTable({
+  output$AverageBillLATimeSeriesTable = renderDataTable({
     
-    TotalBill <- read_excel(
+    AverageBillLA <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Non-home supplier elec",
       skip = 13
     )
     
-    names(TotalBill)[1] <- "Quarter"#
+    names(AverageBillLA)[1] <- "Quarter"#
     
-    TotalBill <- TotalBill[complete.cases(TotalBill),]
+    AverageBillLA <- AverageBillLA[complete.cases(AverageBillLA),]
     
-    TotalBill$Quarter <- as.Date(as.numeric(TotalBill$Quarter), origin = "1899-12-30")
+    AverageBillLA$Quarter <- as.Date(as.numeric(AverageBillLA$Quarter), origin = "1899-12-30")
     
-    TotalBill$Quarter <- as.character(as.yearqtr(TotalBill$Quarter))
+    AverageBillLA$Quarter <- as.character(as.yearqtr(AverageBillLA$Quarter))
     
     
     datatable(
-      TotalBill,
+      AverageBillLA,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -204,11 +204,11 @@ AverageBillLA <- function(input, output, session) {
   
   
   observeEvent(input$ToggleTable, {
-    toggle("TotalBillTable")
+    toggle("AverageBillLATable")
   })
   
   observeEvent(input$ToggleTable2, {
-    toggle("TotalBillTimeSeriesTable")
+    toggle("AverageBillLATimeSeriesTable")
   })
   
 
@@ -218,10 +218,10 @@ AverageBillLA <- function(input, output, session) {
   })
   
   
-  output$TotalBill.png <- downloadHandler(
-    filename = "TotalBill.png",
+  output$AverageBillLA.png <- downloadHandler(
+    filename = "AverageBillLA.png",
     content = function(file) {
-      writePNG(readPNG("Structure/5 - Consumers/TotalBillChart.png"), file) 
+      writePNG(readPNG("Structure/5 - Consumers/AverageBillLAChart.png"), file) 
     }
   )
 }

@@ -126,7 +126,7 @@ FuelPoverty <- function(input, output, session) {
   
   output$FuelPovertyProportionSubtitle <- renderText({
     
-    paste("Scotland, 2017")
+    paste("Scotland, 2018")
   })
   
   output$FuelPovertyProportionPlot <- renderPlotly  ({
@@ -161,7 +161,7 @@ FuelPoverty <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Proportion",
-        text = paste0(Data$Type, ": ", format(percent(Data$`Proportion`, accuracy = 0.1), big.mark = ",")),
+        text = paste0(Data$Type, ": ", format(percent(Data$`Proportion`, accuracy = 1), big.mark = ",")),
         hoverinfo = 'text',
         marker = list(color = BarColours[2]),
         legendgroup = 2
@@ -331,7 +331,7 @@ FuelPoverty <- function(input, output, session) {
         geom_text(
           aes(
             y = Percent + .07,
-            label = ifelse(Type != "y" & Type != "z", percent(Percent), "")
+            label = ifelse(Type != "y" & Type != "z", percent(Percent, 1), "")
           ),
           hjust = 1,
           family = "Century Gothic",
@@ -375,7 +375,7 @@ FuelPoverty <- function(input, output, session) {
       FuelPovertyBandsChart <- FuelPovertyBandsChart +
         coord_flip() +
         ylim(-.055, max(FuelPovertyBands$Percent))+
-        labs(subtitle = "Scotland, 2017")
+        labs(subtitle = "Scotland, 2018")
       
       FuelPovertyBandsChart
       
@@ -612,7 +612,7 @@ FuelPoverty <- function(input, output, session) {
           y = FuelPoverty$top - FuelPoverty$pos,
           label = ifelse(
             FuelPoverty$variable == "Extreme Fuel Poverty",
-            percent(FuelPoverty$value),
+            percent(FuelPoverty$value, 0.1),
             ""
           ),
           family = "Century Gothic",
@@ -623,7 +623,7 @@ FuelPoverty <- function(input, output, session) {
           "text",
           x = FuelPoverty$Type,
           y = FuelPoverty$top,
-          label = percent(FuelPoverty$top),
+          label = percent(FuelPoverty$top, 0.1),
           family = "Century Gothic",
           fontface = 2,
           colour = ChartColours[1],
@@ -1106,7 +1106,7 @@ FuelPoverty <- function(input, output, session) {
             label = ifelse(
               DomesticEPC$Year == "z",
               "",
-              percent(DomesticEPC$value[which(DomesticEPC$variable == "Total")])
+              percent(DomesticEPC$value[which(DomesticEPC$variable == "Total")], 0.1)
             ),
             family = "Century Gothic",
             fontface = 2,

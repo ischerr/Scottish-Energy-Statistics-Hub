@@ -102,7 +102,7 @@ ElecBillPrices <- function(input, output, session) {
   
   output$ElecBillPricesSubtitle <- renderText({
     
-    paste("Scotland, 2018")
+    paste("Scotland, 2019")
   })
   
   output$ElecBillPricesPlot <- renderPlotly  ({
@@ -258,7 +258,7 @@ ElecBillPrices <- function(input, output, session) {
     
     Data <- as_tibble(Data)
     
-    paste("Scotland,", min(Data$Year),"-", max(Data$Year))
+    paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
   output$AverageElecBillsPlot <- renderPlotly  ({

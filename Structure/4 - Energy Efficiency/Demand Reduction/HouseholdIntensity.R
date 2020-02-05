@@ -74,7 +74,8 @@ HouseholdIntensity <- function(input, output, session) {
     "Structure/CurrentWorking.xlsx",
     sheet = "Household energy intensity",
     col_names = FALSE,
-    skip = 15
+    skip = 15,
+    n_max = 7
   )
   
   Data <- as_tibble(t(Data))
@@ -88,6 +89,10 @@ HouseholdIntensity <- function(input, output, session) {
   Data %<>% lapply(function(x) as.numeric(as.character(x)))
   
   Data <- as_tibble(Data)
+  
+  Data <- Data[c(1,5)]
+  
+  Data <- Data[complete.cases(Data),]
   
   output$HouseholdIntensitySubtitle <- renderText({
     
