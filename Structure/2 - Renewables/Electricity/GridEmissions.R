@@ -231,7 +231,7 @@ GridEmissions <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/2 - Renewables/Emissions/GridEmissions.txt")[2])
+                     paste(readtext("Structure/2 - Renewables/Electricity/GridEmissions.txt")[2])
                      
                    )))
   })
