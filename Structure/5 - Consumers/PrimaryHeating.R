@@ -342,7 +342,7 @@ file)
                                        sheet = "Primary heating fuel",
                                        col_names = FALSE,
                                        skip = 15,
-                                       n_max = 6)[15:16]
+                                       n_max = 6)[16:17]
     
     PrimaryHeatingNonDom <- as_tibble(t(PrimaryHeatingNonDom))
     
@@ -421,7 +421,7 @@ file)
                                        sheet = "Primary heating fuel",
                                        col_names = TRUE,
                                        skip = 15,
-                                       n_max = 5)[15:16]
+                                       n_max = 5)[16:17]
     
     names(PrimaryHeatingNonDom) <- c("Primary heating fuel", "Proportion")
     
