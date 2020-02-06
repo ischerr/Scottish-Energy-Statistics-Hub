@@ -10,6 +10,8 @@ source("Structure/Global.R")
 GasConsumptionOutput <- function(id) {
   ns <- NS(id)
   tagList(
+    tabsetPanel(
+      tabPanel("Trend",
     fluidRow(column(8,
                     h3("Total gas consumption by sector", style = "color: #34d1a3;  font-weight:bold"),
                     h4(textOutput(ns('GasConsumptionSubtitle')), style = "color: #34d1a3;")
@@ -22,7 +24,37 @@ GasConsumptionOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     #dygraphOutput(ns("GasConsumptionPlot")),
     plotlyOutput(ns("GasConsumptionPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
-    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("Households",
+             fluidRow(column(8,
+                             h3("Average domestic gas consumption", style = "color: #34d1a3;  font-weight:bold"),
+                             h4(textOutput(ns('GasConsumptionHHoldSubtitle')), style = "color: #34d1a3;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('GasConsumptionHHold.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+             #dygraphOutput(ns("GasConsumptionHHoldPlot")),
+             plotlyOutput(ns("GasConsumptionHHoldPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")
+    ),
+    tabPanel("LA",
+             fluidRow(column(8,
+                             h3("Average annual household consumption of gas by local authority", style = "color: #34d1a3;  font-weight:bold"),
+                             h4(textOutput(ns('GasConsumptionLASubtitle')), style = "color: #34d1a3;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('GasConsumptionLA.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+             #dygraphOutput(ns("GasConsumptionLAPlot")),
+             imageOutput(ns("GasConsumptionLAPlot"), height = "700px")%>% withSpinner(color="#34d1a3"),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")
+             )),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
@@ -31,13 +63,33 @@ GasConsumptionOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+    tabsetPanel(
+      tabPanel("Trend",
     fluidRow(
     column(10, h3("Data - Total gas consumption by sector (GWh)", style = "color: #34d1a3;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("GasConsumptionTable"))%>% withSpinner(color="#34d1a3"))),
-    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("Households",
+             fluidRow(
+               column(10, h3("Data - Average domestic gas consumption per consumer (kWh)", style = "color: #34d1a3;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("GasConsumptionHHoldTable"))%>% withSpinner(color="#34d1a3"))),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")        
+    ),
+    tabPanel("LA",
+             fluidRow(
+               column(10, h3("Data", style = "color: #34d1a3;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("GasConsumptionLATable"))%>% withSpinner(color="#34d1a3"))),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")       
+    )),
     fluidRow(
       column(1,
              p("Next update:")),
@@ -535,4 +587,477 @@ GasConsumption <- function(input, output, session) {
       
     }
   )
+  
+  output$GasConsumptionHHoldSubtitle <- renderText({
+    
+    Data <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Energy consump sector",
+      col_names = FALSE,
+      skip = 12,
+      n_max = 7
+    )
+    
+    Data <- as_tibble(t(Data))
+    
+    names(Data) <- unlist(Data[1,])
+    
+    names(Data)[1] <- "Year"
+    
+    Data[1:7] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
+  })
+  
+  output$GasConsumptionHHoldPlot <- renderPlotly  ({
+    
+    Data <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Gas consump by household",
+      col_names = FALSE,
+      skip = 13
+    )
+    
+    names(Data) <- c("Year", "Consumption")
+    
+    Data[1:2] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data[1,1] <- "Baseline\n2005/2007"
+    
+    Data[2,1] <- " "
+    
+    Data[nrow(Data),1] <- "% Change\nfrom baseline"
+    
+    Data$Year <- paste("<b>", Data$Year, "</b>")
+    
+    Data$RowNumber <- as.numeric(rownames(Data))
+    
+    Data[is.na(Data)] <- 0
+    
+    DataTail <- tail(Data,1)
+    
+    DataLatest <- Data[nrow(Data)-1,]
+    
+    ChartColours <- c("#34d1a3", "#FF8500")
+    BarColours <- c("#00441b", "#238b45", "#66c2a4", "#ef3b2c")
+    
+    p <- plot_ly(data = Data, y = ~ Year) %>%
+      
+      add_trace(
+        data = Data,
+        x = ~ `Consumption`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Consumption",
+        text = paste0("Consumption: ", format(round(Data$`Consumption`, digits = 0), big.mark = ","), " kWh"),
+        hoverinfo = 'text',
+        marker = list(color = ChartColours[1]),
+        legendgroup = 2
+      ) %>%
+      add_trace(
+        data = Data,
+        y = ~ Year,
+        x = ~ Data$`Consumption` + 0.1,
+        showlegend = FALSE,
+        type = 'scatter',
+        mode = 'text',
+        text = ifelse(Data$`Consumption` >0, paste("<b>",format(round((Data$`Consumption`), digits = 0), big.mark = ","),"kWh</b>")," "),
+        textposition = 'middle right',
+        textfont = list(color = ChartColours[1]),
+        hoverinfo = 'skip',
+        marker = list(
+          size = 0.00001
+        )
+      )  %>% 
+      add_trace(
+        data = tail(Data,1),
+        y = ~Year,
+        x = mean(DataLatest$`Consumption`)/2,
+        showlegend = FALSE,
+        mode = 'text',
+        type = 'scatter',
+        hoverinfo = 'skip',
+        textfont = list(color = ChartColours[1]),
+        text = paste0("<b>", percent(DataTail$`Consumption`, accuracy = 0.1), "</b>")
+      ) %>% 
+      layout(
+        barmode = 'stack',
+        legend = list(font = list(color = "#1A5D38"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        yaxis = list(title = "",
+                     showgrid = FALSE,
+                     type = "category",
+                     autorange = "reversed",
+                     ticktext = as.list(Data$Year),
+                     tickmode = "array",
+                     tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
+        ),
+        xaxis = list(
+          title = "",
+          tickformat = "",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          range = c(0,24000)
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    
+    p
+    
+    
+    
+    
+  })
+  
+  output$GasConsumptionHHoldTable = renderDataTable({
+    
+    Data <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Gas consump by household",
+      col_names = FALSE,
+      skip = 13
+    )
+    
+    names(Data) <- c("Year", "Consumption")
+    
+    Data[1:2] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data[1,1] <- "Baseline\n2005/2007"
+    
+    
+    Data[nrow(Data),1] <- "% Change\nfrom baseline"
+    
+    datatable(
+      Data,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        order = list(list(0, 'desc')),
+        title = "Average domestic gas consumption per consumer (kWh)",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Average domestic gas consumption per consumer (kWh)',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Average domestic gas consumption per consumer (kWh)')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(2, 0)%>% 
+      formatStyle(c(2), fontWeight = 'bold')
+  })
+  
+  observeEvent(input$ToggleTable2, {
+    toggle("GasConsumptionHHoldTable")
+  })
+  
+  output$GasConsumptionHHold.png <- downloadHandler(
+    filename = "GasConsumptionHHold.png",
+    content = function(file) {
+      
+      
+      Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                         sheet = "Gas consump by household", skip = 13, col_names = FALSE)
+      
+      Data[1,1] <- 2003
+      
+      names(Data) <- c("Year", "Consumption")
+      
+      Data <- Data[complete.cases(Data),]
+      
+      Data[nrow(Data),1] <- max(as.numeric(Data$Year),na.rm = TRUE)+1
+      
+      Data$Total <- Data$Consumption
+      
+      Data$Year <- as.numeric(Data$Year)
+      
+      GasConsumptionHHold <- Data
+      
+      
+      GasConsumptionHHold <-
+        GasConsumptionHHold[order(-GasConsumptionHHold$Year),]
+      
+      GasConsumptionHHold <-
+        melt(GasConsumptionHHold, id.vars = "Year")
+      
+      FinalConsumptionMax <-
+        subset(GasConsumptionHHold,
+               Year == max(GasConsumptionHHold$Year))
+      
+      GasConsumptionHHold <-
+        subset(
+          GasConsumptionHHold,
+          Year < max(GasConsumptionHHold$Year) & variable != "Total"
+        )
+      
+      GasConsumptionHHold$variable <-
+        factor(GasConsumptionHHold$variable,
+               levels = unique(GasConsumptionHHold$variable))
+      
+      GasConsumptionHHold <- GasConsumptionHHold %>%
+        group_by(Year) %>%
+        mutate(pos = cumsum(value) - value / 2) %>%
+        mutate(top = sum(value))
+      
+      plottitle <-
+        "Average domestic gas consumption"
+      sourcecaption <- "Source: BEIS"
+      
+      ChartColours <- c("#34d1a3", "#FF8500")
+      BarColours <- c("#00441b", "#238b45","#41ae76", "#66c2a4","#66c2a4", "#99d8c9", "ffffff")
+      
+      
+      GasConsumptionHHoldChart <- GasConsumptionHHold %>%
+        ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
+        scale_fill_manual(
+          "variable",
+          values = c(
+            "Consumption" = ChartColours[1],
+            "Gas" = BarColours[2],
+            "Gastricity" = BarColours[3],
+            "Bioenergy & wastes" = BarColours[4],
+            "Coal" = BarColours[5],
+            "Manufactured fuels" = BarColours[6]
+          )
+        ) +
+        geom_bar(stat = "identity", width = .8) +
+        geom_text(
+          y = GasConsumptionHHold$top/2,
+          label = ifelse(
+            GasConsumptionHHold$value > 7000,
+            paste0(format(
+              round(GasConsumptionHHold$top, digits = 0), big.mark = ","
+            ), " kWh"),
+            ""
+          ),
+          family = "Century Gothic",
+          fontface = 2,
+          color = "white"
+        ) +
+        geom_text(
+          y = -1750,
+          label =   ifelse(
+            GasConsumptionHHold$value > 7000,
+            ifelse(
+              GasConsumptionHHold$Year == 2003,
+              "2005/2007\n(baseline)",
+              GasConsumptionHHold$Year
+            ),
+            ""
+          ),
+          hjust = .5,
+          family = "Century Gothic",
+          fontface = 2,
+          color = ChartColours[1]
+        ) +
+        annotate(
+          "text",
+          x = max(GasConsumptionHHold$Year) + 1.2,
+          y = as.numeric(
+            subset(
+              GasConsumptionHHold,
+              Year == max(GasConsumptionHHold$Year) &
+                variable == "Consumption"
+            )[1, 5]
+          ) - as.numeric(
+            subset(
+              GasConsumptionHHold,
+              Year == max(GasConsumptionHHold$Year) &
+                variable == "Consumption"
+            )[1, 4]
+          ),
+          label = percent((
+            subset(FinalConsumptionMax, variable == "Consumption")[1, 3]
+          ), accuracy = .1),
+          fontface = 2,
+          color = ChartColours[1],
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = max(GasConsumptionHHold$Year) + 1.2,
+          y = as.numeric(
+            subset(
+              GasConsumptionHHold,
+              Year == max(GasConsumptionHHold$Year) &
+                variable == "Gas"
+            )[1, 5]
+          ),
+          label = percent((
+            subset(FinalConsumptionMax, variable == "Total")[1, 3]
+          ), accuracy  = .1),
+          fontface = 2,
+          color = ChartColours[1],
+          family = "Century Gothic",
+          hjust = -.75
+        ) + annotate(
+          "text",
+          x = max(GasConsumptionHHold$Year) + 1.2,
+          y = -1750,
+          label = "% Change\nfrom baseline",
+          fontface = 2,
+          color = ChartColours[1],
+          family = "Century Gothic"
+        )
+      
+      
+      
+      GasConsumptionHHoldChart
+      
+      
+      GasConsumptionHHoldChart <-
+        BaselineChart(
+          GasConsumptionHHoldChart,
+          GasConsumptionHHold,
+          plottitle,
+          sourcecaption,
+          ChartColours
+        )
+      
+      GasConsumptionHHoldChart <-
+        GasConsumptionHHoldChart +
+        coord_flip() +
+        labs(subtitle = paste("Scotland, 2005 -", max(GasConsumptionHHold$Year))) +
+        ylim(-3100, max(GasConsumptionHHold$top)) +
+        xlim(max(GasConsumptionHHold$Year) + 1.2, 2002)
+      
+      GasConsumptionHHoldChart
+      
+      ggsave(
+        file,
+        plot = GasConsumptionHHoldChart,
+        width = 17,
+        height = 15.5,
+        units = "cm",
+        dpi = 300
+      )
+      
+      
+    }
+  )
+  
+  
+  output$GasConsumptionLASubtitle <- renderText({
+    
+    RenEn <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Renewable energy target",
+      col_names = FALSE,
+      skip = 21,
+      n_max = 23
+    )
+    RenEn <- as.data.frame(t(RenEn))
+    RenEn <- RenEn[, c(1, 6, 12, 18, 23)]
+    RenEn <- tail(RenEn,-5)
+    names(RenEn) <-
+      c("Year", "Electricity", "Heat", "Transport", "Renewables")
+    RenEn[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
+      as.numeric(as.character(x)))
+    
+    RenEn[which(RenEn$Year != max(RenEn$Year)),][2:4] <- 0
+    
+    paste("Scotland,", min(RenEn$Year),"-", max(RenEn$Year))
+  })
+  
+  output$GasConsumptionLAPlot <- renderImage({
+    
+    # A temp file to save the output. It will be deleted after renderImage
+    # sends it, because deleteFile=TRUE.
+    outfile <- tempfile(fileext='.png')
+    
+    writePNG(readPNG("Structure/4 - Energy Efficiency/Demand Reduction/GasConsumptionLAOutput.png"),outfile) 
+    
+    # Generate a png
+    
+    
+    # Return a list
+    list(src = outfile,
+         alt = "This is alternate text")
+  }, deleteFile = TRUE)
+  
+  output$GasConsumptionLATable = renderDataTable({
+    
+    GasConsumptionLA <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Gas consump hhold LA",
+      skip = 12,
+      n_max = 34
+    )
+    
+    names(GasConsumptionLA)[1:2] <- c("Geography Code", "Local Authority")
+    
+    GasConsumptionLA <- GasConsumptionLA[1:3]
+    
+    GasConsumptionLA <- GasConsumptionLA[complete.cases(GasConsumptionLA),]
+    
+    datatable(
+      GasConsumptionLA,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        order = list(list(1, 'asc')),
+        title = "Average annual household consumption of gas by local authority (kWh)",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Average annual household consumption of gas by local authority (kWh)',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Average annual household consumption of gas by local authority (kWh)')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(3, 0)
+  })
+  
+  observeEvent(input$ToggleTable3, {
+    toggle("GasConsumptionLATable")
+  })
+  
+  output$GasConsumptionLA.png <- downloadHandler(
+    filename = "GasConsumptionLA.png",
+    content = function(file) {
+      writePNG(readPNG("Structure/4 - Energy Efficiency/Demand Reduction/GasConsumptionLAChart.png"), file) 
+    }
+  )
+  
 }
