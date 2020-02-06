@@ -75,7 +75,7 @@ RenElecTarget <- function(input, output, session) {
     
     RenElec <- read_excel("Structure/CurrentWorking.xlsx", 
                           sheet = "Renewable elec target", col_names = FALSE, 
-                          skip = 15, n_max = 15)
+                          skip = 15)
     RenElec <- tail(RenElec[c(1,4)], -1)
     
     names(RenElec) <- c("Year", "Renewables")
@@ -89,7 +89,7 @@ RenElecTarget <- function(input, output, session) {
     
     RenElec <- read_excel("Structure/CurrentWorking.xlsx", 
                           sheet = "Renewable elec target", col_names = FALSE, 
-                          skip = 15, n_max = 15)
+                          skip = 15)
     RenElec <- tail(RenElec[c(1,4)], -1)
     
     names(RenElec) <- c("Year", "Renewables")
@@ -138,8 +138,6 @@ RenElecTarget <- function(input, output, session) {
     RenElecBar$Total <- NULL
     
    RenElec<- merge(RenElec, RenElecBar, all = TRUE)
-   
-   RenElec[16,1] <- "01/01/2019"
    
    RenElec$Year <- dmy(RenElec$Year)
    
@@ -367,7 +365,7 @@ RenElecTarget <- function(input, output, session) {
 
       RenElec <- read_excel("Structure/CurrentWorking.xlsx", 
                             sheet = "Renewable elec target", col_names = FALSE, 
-                            skip = 15, n_max = 15)
+                            skip = 15)
       RenElec <- tail(RenElec[c(1,4)], -1)
       
       names(RenElec) <- c("Year", "Renewables")
@@ -511,8 +509,8 @@ RenElecTarget <- function(input, output, session) {
           size = 1.5,
           family = "Century Gothic"
         ) +
-        xlim(2004,2027)+
-        ylim(-0.1, 1)
+        xlim(1999,2027)+
+        ylim(-0.01, 1)
       
       ggsave(
         file,

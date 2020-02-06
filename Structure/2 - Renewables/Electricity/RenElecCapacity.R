@@ -802,8 +802,12 @@ RenElecCapacity <- function(input, output, session) {
     Data %<>% lapply(function(x)
       as.numeric(as.character(x)))
     
+  
+    
     RenElecCapFuel <- as_tibble(Data)
     
+    RenElecCapFuel[is.na(RenElecCapFuel)] <- 0
+      
     RenElecCapFuel <- RenElecCapFuel[c(1, (ncol(RenElecCapFuel) - 1):2)]
     
     RenElecCapFuel <- arrange(RenElecCapFuel,-row_number())
@@ -1105,6 +1109,8 @@ RenElecCapacity <- function(input, output, session) {
         as.numeric(as.character(x)))
       
       RenElecCapFuel <- as_tibble(Data)
+      
+      RenElecCapFuel[is.na(RenElecCapFuel)] <- 0
       
       RenElecCapFuel <- RenElecCapFuel[c(1, (ncol(RenElecCapFuel) - 1):2)]
       
