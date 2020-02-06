@@ -314,7 +314,7 @@ WallInsulation <- function(input, output, session) {
   output$WallInsulationImpactTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Wall insulation", skip = 20,  col_names = FALSE)
+                       sheet = "Wall insulation", skip = 29,  col_names = FALSE)
     
     Data <- as_tibble(t(Data))[c(1:3,7:8)]
     
