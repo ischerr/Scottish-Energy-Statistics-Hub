@@ -135,8 +135,7 @@ NonGasGrid <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2, 1) %>% 
-      formatRound(2:3, 0)
+      formatPercentage(2, 1)
   })
   
   output$NonGasGridTimeSeriesTable = renderDataTable({
