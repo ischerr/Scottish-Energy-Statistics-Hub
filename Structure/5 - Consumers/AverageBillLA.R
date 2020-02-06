@@ -7,7 +7,7 @@ require("DT")
 
 source("Structure/Global.R")
 
-AverageBillLALAOutput <- function(id) {
+AverageBillLAOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
@@ -61,13 +61,13 @@ AverageBillLALAOutput <- function(id) {
 
 
 ###### Server ######
-AverageBillLALA <- function(input, output, session) {
+AverageBillLA <- function(input, output, session) {
 
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("AverageBillLALA.R")
+  print("AverageBillLA.R")
   ###### Renewable Energy ###### ######
   
   ### From ESD ###
