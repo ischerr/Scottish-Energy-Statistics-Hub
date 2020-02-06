@@ -123,48 +123,48 @@ ECOMeasures <- function(input, output, session) {
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump sector",
+      sheet = "ECO",
       col_names = FALSE,
       skip = 12,
       n_max = 7
     )
     
-    Data <- as_tibble(t(Data))
+    Data <- as_tibble(t(Data))[1:3]
     
     names(Data) <- unlist(Data[1,])
     
     names(Data)[1] <- "Year"
     
-    Data[1:7] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data[2:3] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
+    Data <- head(Data, -2)
+    
+    Data <- Data[complete.cases(Data),]
+    
+    paste("Scotland,", Data[1,1], "-", Data[nrow(Data),1])
   })
   
   output$ECOMeasuresPlot <- renderPlotly  ({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "ECO", skip = 12,  col_names = FALSE)[1:8]
+    Data <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "ECO",
+      col_names = FALSE,
+      skip = 12,
+      n_max = 7
+    )
+    
+    Data <- as_tibble(t(Data))[1:3]
     
     names(Data) <- unlist(Data[1,])
     
     names(Data)[1] <- "Year"
     
-    Data <- as_tibble(sapply( Data, as.numeric ))
+    Data[2:3] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data <- head(Data, -2)
     
     Data <- Data[complete.cases(Data),]
-    
-    Data$`C or Better` <- Data$A + Data$B + Data$C
-    
-    ChartColours <- c("#34d1a3", "#FF8500")
-    
-    BarColours <-
-      c("#006837",
-        "#1a9850",
-        "#66bd63",
-        "#fee08b",
-        "#fdae61",
-        "#f46d43",
-        "#d73027")
     
     Data$Year <- paste0("<b>",Data$Year,"</b>")
     
