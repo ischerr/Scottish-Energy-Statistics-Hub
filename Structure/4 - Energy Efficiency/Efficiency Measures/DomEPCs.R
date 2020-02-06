@@ -296,7 +296,7 @@ DomEPCs <- function(input, output, session) {
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[1:8]
+                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[2:9]
     
     names(Data) <- unlist(Data[1,])
     
@@ -491,7 +491,7 @@ DomEPCs <- function(input, output, session) {
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[10:12]
+                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[12:14]
     
     Data <- tail(Data, -1)
     
@@ -709,13 +709,13 @@ DomEPCs <- function(input, output, session) {
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[16:23]
+                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[17:23]
     
     names(Data) <- unlist(Data[1,])
     
     names(Data)[1] <- "Housing Tenure"
     
-    Data[2:8] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data[2:7] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     Data <- Data[2:4,]
     
@@ -735,7 +735,7 @@ DomEPCs <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        order = list(list(8, 'desc')),
+        order = list(list(7, 'desc')),
         title = "Distribution of Scottish Housing Stock by EPC Band and Housing Tenure",
         dom = 'ltBp',
         buttons = list(
@@ -756,7 +756,7 @@ DomEPCs <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:9, 1)
+      formatPercentage(2:9, 0)
   })
   
   output$Text <- renderUI({
