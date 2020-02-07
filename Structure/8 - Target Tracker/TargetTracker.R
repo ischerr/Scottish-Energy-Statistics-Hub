@@ -55,20 +55,6 @@ TargetTrackerOutput <- function(id) {
     #################################################################################
     
     fluidRow(column(8,
-                    h3("Emissions", style = "color: #ff6600;  font-weight:bold"),
-                    h4("Reduction in adjusted emissions (based on EU-ETS) against 1990 baseline (MtCO2e)", style = "color: #ff6600;")
-    ),
-    column(
-      4, style = 'margin-top: 10px;',
-      actionButton(ns('EmissionsLink'), 'More Information', style="float:right")
-    )),
-    #dygraphOutput(ns("TargetTrackerPlot")),
-    plotlyOutput(ns("EmissionsPlot"), height = "75px")%>% withSpinner(color="#ff6600"),
-    tags$hr(style = "height:3px;border:none;color:#ff6600;background-color:#ff6600;"),
-    
-    #################################################################################
-    
-    fluidRow(column(8,
                     h3("Grid Intensity", style = "color: #ff6600;  font-weight:bold"),
                     h4("Amount of CO2 for each kWh of electricity generated (gCO2e/kWh)", style = "color: #ff6600;")
     ),
@@ -223,8 +209,8 @@ TargetTracker <- function(input, output, session, parent_session) {
     
     start = 0
     target = .5
-    current = .208
-    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2017")
+    current = .209
+    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2018")
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2030")
     Colour = "#4d4d4d"
     
@@ -251,7 +237,7 @@ TargetTracker <- function(input, output, session, parent_session) {
     
     start = 0
     target = 1
-    current = .766
+    current = .762
     CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2018")
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2020")
     Colour = "#31a354"
@@ -324,9 +310,9 @@ TargetTracker <- function(input, output, session, parent_session) {
                       selected = "RenLowCarbon")
     
     updateNavbarPage(parent_session, inputId = "RenLowCarbon",
-                     selected = "Emissions")
+                     selected = "RenElec")
     
-    updateTabsetPanel(parent_session, "Emissions",
+    updateTabsetPanel(parent_session, "RenElec",
                       selected = "GridEmissions")
     
     print("Hi")
@@ -338,8 +324,8 @@ TargetTracker <- function(input, output, session, parent_session) {
     
     start = 0
     target = .11
-    current = .055
-    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2017")
+    current = .063
+    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2018")
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2020")
     Colour = "#ff6600"
     
@@ -367,8 +353,8 @@ TargetTracker <- function(input, output, session, parent_session) {
     
     start = 0
     target = .12
-    current = .118
-    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2017")
+    current = .121
+    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2018")
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2020")
     Colour = "#297fff"
     
@@ -398,8 +384,8 @@ TargetTracker <- function(input, output, session, parent_session) {
     
     start = 0
     target = .3
-    current = -.0015
-    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2017")
+    current = .003
+    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2018")
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2030")
     Colour = "#800008"
     
