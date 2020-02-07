@@ -116,6 +116,14 @@ RenElecCapacityOutput <- function(id) {
                  fluidRow(
                    column(12, dataTableOutput(ns("RenElecFuelCapTable"))%>% withSpinner(color="#39ab2c"))),
                  tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+        tabPanel("Quarter Cap",
+                 fluidRow(
+                   column(10, h3("Data - QTR Cap (MW)", style = "color: #39ab2c;  font-weight:bold")),
+                   column(2, style = "padding:15px",  actionButton(ns("ToggleTable6"), "Show/Hide Table", style = "float:right; "))
+                 ),
+                 fluidRow(
+                   column(12, dataTableOutput(ns("RenElecQuarterTable"))%>% withSpinner(color="#39ab2c"))),
+                 tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
         tabPanel("Total Cap",
     fluidRow(
                column(10, h3("Data - Operational renewable capacity by technology (MW)", style = "color: #39ab2c;  font-weight:bold")),
@@ -855,7 +863,7 @@ RenElecCapacity <- function(input, output, session) {
       text = paste0(
         "Onshore Wind: ",
         format(round(RenElecCapFuel$`Onshore Wind`, digits = 0),big.mark = ","),
-        " MWe\nYear: ",
+        " MW\nYear: ",
         RenElecCapFuel$Year
       ),
       name = "Onshore Wind",
@@ -872,7 +880,7 @@ RenElecCapacity <- function(input, output, session) {
         text = paste0(
           "Offshore Wind: ",
           format(round(RenElecCapFuel$`Offshore Wind`, digits = 0),big.mark = ","),
-          " MWe\nYear: ",
+          " MW\nYear: ",
           RenElecCapFuel$Year
         ),
         name = "Offshore Wind",
@@ -889,7 +897,7 @@ RenElecCapacity <- function(input, output, session) {
         text = paste0(
           "Hydro: ",
           format(round(RenElecCapFuel$`Hydro`, digits = 0),big.mark = ","),
-          " MWe\nYear: ",
+          " MW\nYear: ",
           RenElecCapFuel$Year
         ),
         name = "Hydro",
@@ -906,7 +914,7 @@ RenElecCapacity <- function(input, output, session) {
         text = paste0(
           "Solar PV: ",
           format(round(RenElecCapFuel$`Solar PV`, digits = 0),big.mark = ","),
-          " MWe\nYear: ",
+          " MW\nYear: ",
           RenElecCapFuel$Year
         ),
         name = "Solar PV",
@@ -923,7 +931,7 @@ RenElecCapacity <- function(input, output, session) {
         text = paste0(
           "Landfill gas: ",
           format(round(RenElecCapFuel$`Landfill gas`, digits = 0),big.mark = ","),
-          " MWe\nYear: ",
+          " MW\nYear: ",
           RenElecCapFuel$Year
         ),
         name = "Landfill gas",
@@ -940,7 +948,7 @@ RenElecCapacity <- function(input, output, session) {
         text = paste0(
           "Wave and tidal: ",
           format(round(RenElecCapFuel$`Wave and tidal`, digits = 0),big.mark = ","),
-          " MWe\nYear: ",
+          " MW\nYear: ",
           RenElecCapFuel$Year
         ),
         name = "Wave and tidal",
@@ -957,7 +965,7 @@ RenElecCapacity <- function(input, output, session) {
         text = paste0(
           "Sewage gas: ",
           format(round(RenElecCapFuel$`Sewage gas`, digits = 0),big.mark = ","),
-          " MWe\nYear: ",
+          " MW\nYear: ",
           RenElecCapFuel$Year
         ),
         name = "Sewage gas",
@@ -974,7 +982,7 @@ RenElecCapacity <- function(input, output, session) {
         text = paste0(
           "Other bioenergy: ",
           format(round(RenElecCapFuel$`Other bioenergy`, digits = 0),big.mark = ","),
-          " MWe\nYear: ",
+          " MW\nYear: ",
           RenElecCapFuel$Year
         ),
         name = "Other bioenergy",
@@ -990,7 +998,7 @@ RenElecCapacity <- function(input, output, session) {
         showlegend = FALSE,
         type = 'scatter',
         mode = 'text',
-        text = paste("<b>",format(round(RenElecCapFuel$Total, digits = 0), big.mark = ","),"MWe</b>"),
+        text = paste("<b>",format(round(RenElecCapFuel$Total, digits = 0), big.mark = ","),"MW</b>"),
         textposition = 'middle right',
         textfont = list(color = ChartColours[1]),
         hoverinfo = 'skip',
@@ -1321,7 +1329,7 @@ RenElecCapacity <- function(input, output, session) {
             y = RenElecCapFuel$top,
             label = paste(format(
               round(RenElecCapFuel$top, digits = 0), big.mark = ","
-            ), "MWe")
+            ), "MW")
           ),
           fontface = 2,
           colour =  ChartColours[1],
@@ -2382,7 +2390,7 @@ RenElecCapacity <- function(input, output, session) {
       text = paste0(
         "Q1: ",
         format(round(Subset$`Q1`, digits = 0),big.mark = ","),
-        " MWe\nYear: ",
+        " MW\nYear: ",
         Subset$Year
       ),
       name = "Q1",
@@ -2399,7 +2407,7 @@ RenElecCapacity <- function(input, output, session) {
         text = paste0(
           "Q2: ",
           format(round(Subset$`Q2`, digits = 0),big.mark = ","),
-          " MWe\nYear: ",
+          " MW\nYear: ",
           Subset$Year
         ),
         name = "Q2",
@@ -2416,7 +2424,7 @@ RenElecCapacity <- function(input, output, session) {
         text = paste0(
           "Q3: ",
           format(round(Subset$`Q3`, digits = 0),big.mark = ","),
-          " MWe\nYear: ",
+          " MW\nYear: ",
           Subset$Year
         ),
         name = "Q3",
@@ -2433,7 +2441,7 @@ RenElecCapacity <- function(input, output, session) {
         text = paste0(
           "Q4: ",
           format(round(Subset$`Q4`, digits = 0),big.mark = ","),
-          " MWe\nYear: ",
+          " MW\nYear: ",
           Subset$Year
         ),
         name = "Q4",
@@ -2449,7 +2457,7 @@ RenElecCapacity <- function(input, output, session) {
         showlegend = FALSE,
         type = 'scatter',
         mode = 'text',
-        text = paste("<b>",format(round(Subset$Total, digits = 0), big.mark = ","),"MWe</b>"),
+        text = paste("<b>",format(round(Subset$Total, digits = 0), big.mark = ","),"MW</b>"),
         textposition = 'middle right',
         textfont = list(color = ChartColours[1]),
         hoverinfo = 'skip',
@@ -2598,7 +2606,7 @@ RenElecCapacity <- function(input, output, session) {
             y = Subset$top,
             label = paste(format(
               round(Subset$top, digits = 0), big.mark = ","
-            ), "MWe")
+            ), "MW")
           ),
           fontface = 2,
           colour =  ChartColours[1],
@@ -2635,4 +2643,65 @@ RenElecCapacity <- function(input, output, session) {
       )
     }
   )
+  
+  output$RenElecQuarterTable = renderDataTable({
+    
+    Data <- read_excel("Structure/CurrentWorking.xlsx",
+                       sheet = "R - QTRCapacity",
+                       col_names = FALSE
+    )
+    
+    Data <- as_tibble(t(Data))
+    
+    names(Data) <- unlist(Data[1,])
+    
+    names(Data)[1] <- "Year & Quarter"
+    
+    Data <- Data[-1,]
+    
+    Data[2:14] %<>% lapply(function(x)
+      as.numeric(as.character(x)))
+    
+    Data <- as_tibble(Data)
+    
+    datatable(
+      Data,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        title = "QTR Data",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'QTR Data',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'QTR Data')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(2:ncol(Data), 1)
+  })
+  
+  observeEvent(input$ToggleTable6, {
+    toggle("RenElecQuarterTable")
+  })
+  
+  
 }
