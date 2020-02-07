@@ -630,3 +630,4 @@ EnBalance <- function(input, output, session) {
     toggle("EnBalanceTable3")
   })
 }
+                                                                                                                                                     
