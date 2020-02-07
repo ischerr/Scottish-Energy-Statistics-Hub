@@ -290,7 +290,7 @@ file)
     
     PrimaryHeatingLA <- read_excel("Structure/CurrentWorking.xlsx",
                                sheet = "Primary heating fuel", col_names = TRUE, 
-                               skip = 15, n_max = 33)[8:13]
+                               skip = 15, n_max = 33)[9:14]
     
     names(PrimaryHeatingLA)[1] <- c("Local Authority")
     
@@ -333,7 +333,7 @@ file)
     PrimaryHeatingNonDom <- read_excel("Structure/CurrentWorking.xlsx",
                                        sheet = "Primary heating fuel", col_names = FALSE, 
                                        skip = 14)
-    paste0("Scotland,", unlist(strsplit(as.character(PrimaryHeatingNonDom[1,15]), ","))[3])
+    paste0("Scotland,", unlist(strsplit(as.character(PrimaryHeatingNonDom[1,16]), ","))[3])
   })
   
   output$PrimaryHeatingNonDomPlot <- renderPlotly  ({
