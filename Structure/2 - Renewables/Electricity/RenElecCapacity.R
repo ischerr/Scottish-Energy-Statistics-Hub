@@ -11,9 +11,23 @@ RenElecCapacityOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("Installed capacity by fuel",
+      tabPanel("Quarterly operational capacity",
                fluidRow(column(8,
-                               h3("Installed capacity of sites generating electricity from renewable sources", style = "color: #39ab2c;  font-weight:bold"),
+                               h3("Operational renewable capacity", style = "color: #39ab2c;  font-weight:bold"),
+                               h4(textOutput(ns('RenElecCapacitySubtitle')), style = "color: #39ab2c;")
+               ),
+               column(
+                 4, style = 'padding:15px;',
+                 downloadButton(ns('RenElecOperational.png'), 'Download Graph', style="float:right")
+               )),
+               
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+               #dygraphOutput(ns("RenElecCapacityPlot")),
+               plotlyOutput(ns("RenElecCapacityPlot"))%>% withSpinner(color="#39ab2c"),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+      tabPanel("Annual operational capacity by fuel",
+               fluidRow(column(8,
+                               h3("Annual operational capacity of sites generating electricity from renewable sources", style = "color: #39ab2c;  font-weight:bold"),
                                h4(textOutput(ns('RenElecFuelSubtitle')), style = "color: #39ab2c;")
                ),
                column(
@@ -25,41 +39,9 @@ RenElecCapacityOutput <- function(id) {
                #dygraphOutput(ns("RenElecFuelPlot")),
                plotlyOutput(ns("RenElecFuelPlot"), height = "900px")%>% withSpinner(color="#39ab2c"),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-      
-      
-      tabPanel("Quarter",
-               fluidRow(column(8,
-                               h3("Quarter", style = "color: #39ab2c;  font-weight:bold"),
-                               h4(textOutput(ns('RenElecQuarterCapacitySubtitle')), style = "color: #39ab2c;")
-               ),
-               column(
-                 4, style = 'padding:15px;',
-                 downloadButton(ns('RenElecQuarterCapacity.png'), 'Download Graph', style="float:right")
-               )),
-               
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-               #dygraphOutput(ns("RenElecFuelPlot")),
-               plotlyOutput(ns("RenElecQuarterCapacityPlot"), height = "900px")%>% withSpinner(color="#39ab2c"),
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-      
-      
-      tabPanel("Total Installed capacity",
-    fluidRow(column(8,
-                    h3("Operational renewable capacity by planning stage", style = "color: #39ab2c;  font-weight:bold"),
-                    h4(textOutput(ns('RenElecCapacitySubtitle')), style = "color: #39ab2c;")
-    ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('RenElecOperational.png'), 'Download Graph', style="float:right")
-             )),
-    
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-    #dygraphOutput(ns("RenElecCapacityPlot")),
-    plotlyOutput(ns("RenElecCapacityPlot"))%>% withSpinner(color="#39ab2c"),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Technology Breakdown",
+    tabPanel("Operational capacity tech",
              fluidRow(column(8,
-                             h3("Pipeline renewable capacity by plannng stage", style = "color: #39ab2c;  font-weight:bold"),
+                             h3("Operational renewable capacity by technology", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('RenElecBreakdownCapSubtitle')), style = "color: #39ab2c;")
              ),
              column(
@@ -73,7 +55,7 @@ RenElecCapacityOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Pipeline renewable capacity",
              fluidRow(column(8,
-                             h3("Pipeline renewable capacity by planing stage", style = "color: #39ab2c;  font-weight:bold"),
+                             h3("Pipeline renewable capacity by planning stage", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('RenElecPipelineCapSubtitle')), style = "color: #39ab2c;")
              ),
              column(
@@ -108,7 +90,15 @@ RenElecCapacityOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     tabsetPanel(
-        tabPanel("Installed Capacity",
+      tabPanel("Quarterly Operational Capacity",
+               fluidRow(
+                 column(10, h3("Data - Operational renewable capacity by technology (MW)", style = "color: #39ab2c;  font-weight:bold")),
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+               ),
+               fluidRow(
+                 column(12, dataTableOutput(ns("RenElecBreakdownCapTable"))%>% withSpinner(color="#39ab2c"))),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+        tabPanel("Annual Operational Capacity",
                  fluidRow(
                    column(10, h3("Data", style = "color: #39ab2c;  font-weight:bold")),
                    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
@@ -116,22 +106,6 @@ RenElecCapacityOutput <- function(id) {
                  fluidRow(
                    column(12, dataTableOutput(ns("RenElecFuelCapTable"))%>% withSpinner(color="#39ab2c"))),
                  tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-        tabPanel("Quarter Cap",
-                 fluidRow(
-                   column(10, h3("Data - QTR Cap (MW)", style = "color: #39ab2c;  font-weight:bold")),
-                   column(2, style = "padding:15px",  actionButton(ns("ToggleTable6"), "Show/Hide Table", style = "float:right; "))
-                 ),
-                 fluidRow(
-                   column(12, dataTableOutput(ns("RenElecQuarterTable"))%>% withSpinner(color="#39ab2c"))),
-                 tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-        tabPanel("Total Cap",
-    fluidRow(
-               column(10, h3("Data - Operational renewable capacity by technology (MW)", style = "color: #39ab2c;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
-             ),
-             fluidRow(
-               column(12, dataTableOutput(ns("RenElecBreakdownCapTable"))%>% withSpinner(color="#39ab2c"))),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Pipeline Capacity",
              fluidRow(
                column(10, h3("Data - Pipeline Capacity (MW)", style = "color: #39ab2c;  font-weight:bold")),
@@ -2318,390 +2292,5 @@ RenElecCapacity <- function(input, output, session) {
     ) %>%
       formatRound(2:ncol(RenElecCapacity), 1)
   })
-  
-  
-  
-  Data <- read_excel("Structure/CurrentWorking.xlsx",
-                     sheet = "R - QTRCapacity",
-                     col_names = FALSE
-  )
-  
-  Data <- as_tibble(t(Data))
-  
-  names(Data) <- unlist(Data[1,])
-  
-  names(Data)[1] <- "Year"
-  
-  Data <- Data[-1,]
-  
-  Data[2:14] %<>% lapply(function(x)
-    as.numeric(as.character(x)))
-  
-  Data <- as_tibble(Data)
-  
-  Data$Quarter <- paste0("Q",substr(Data$Year,8,8))
-  
-  Data$Year <- as.numeric(substr(Data$Year,1,4))
-  
-  names(Data) <- c("Year", "Q1","Q2", "Shoreline wave / tidal", "Solar photovoltaics", "Small scale Q3", "Large scale Q3", "Landfill gas", "Sewage sludge digestion", "Energy from waste", "Animal Biomass (non-AD)", "Anaerobic Digestion", "Plant Biomass", "Total", "Quarter")
-  
-  Data <- melt(Data, id.vars = c("Year", "Quarter"))
-  
-  Subset <- Data[which(Data$variable == "Total"),]
-  
-  Subset <- dcast(Subset, Year ~ Quarter)
-  
-  Subset <- Subset[which(Subset$Year >= min(Subset[complete.cases(Subset),]$Year)),]
-  
-  Subset[is.na(Subset)] <- 0
-  
-  Subset$Total <- Subset$Q1 + Subset$Q2 + Subset$Q3 + Subset$Q4
-  
-  Subset <- Subset[order(-Subset$Year),]
-  
-  row.names(Subset) <- NULL
-  
-  output$RenElecQuarterCapacitySubtitle <- renderText({
-    
-    paste("Scotland,", min(Subset$Year), " - " ,max(Subset$Year))
-  })
-  
-  output$RenElecQuarterCapacityPlot = renderPlotly({
-    ChartColours <- c("#39ab2c", "#FF8500")
-    BarColours <-
-      c(
-        "#004529",
-        "#006837",
-        "#238443",
-        "#41ab5d",
-        "#78c679",
-        "#7bccc4",
-        "#4eb3d3",
-        "#2b8cbe"
-      )
-    
-    Subset$Year <- paste0("<b>", Subset$Year, "</b>")
-    
-    p <- plot_ly(
-      data = Subset,
-      y = ~Year,
-      x = ~`Q1`,
-      legendgroup = 1,
-      text = paste0(
-        "Q1: ",
-        format(round(Subset$`Q1`, digits = 0),big.mark = ","),
-        " MW\nYear: ",
-        Subset$Year
-      ),
-      name = "Q1",
-      type = "bar",
-      hoverinfo = "text",
-      orientation = 'h',
-      marker = list(color =  BarColours[1])
-    ) %>% 
-      add_trace(
-        data = Subset,
-        y = ~Year,
-        x = ~`Q2`,
-        legendgroup = 2,
-        text = paste0(
-          "Q2: ",
-          format(round(Subset$`Q2`, digits = 0),big.mark = ","),
-          " MW\nYear: ",
-          Subset$Year
-        ),
-        name = "Q2",
-        type = "bar",
-        hoverinfo = "text",
-        orientation = 'h',
-        marker = list(color =  BarColours[2])
-      )  %>% 
-      add_trace(
-        data = Subset,
-        y = ~Year,
-        x = ~`Q3`,
-        legendgroup = 3,
-        text = paste0(
-          "Q3: ",
-          format(round(Subset$`Q3`, digits = 0),big.mark = ","),
-          " MW\nYear: ",
-          Subset$Year
-        ),
-        name = "Q3",
-        type = "bar",
-        hoverinfo = "text",
-        orientation = 'h',
-        marker = list(color =  BarColours[3])
-      )  %>% 
-      add_trace(
-        data = Subset,
-        y = ~Year,
-        x = ~`Q4`,
-        legendgroup = 4,
-        text = paste0(
-          "Q4: ",
-          format(round(Subset$`Q4`, digits = 0),big.mark = ","),
-          " MW\nYear: ",
-          Subset$Year
-        ),
-        name = "Q4",
-        type = "bar",
-        hoverinfo = "text",
-        orientation = 'h',
-        marker = list(color =  BarColours[4])
-      )  %>% 
-      add_trace(
-        data = Subset,
-        y = ~Year,
-        x = ~Total + 100,
-        showlegend = FALSE,
-        type = 'scatter',
-        mode = 'text',
-        text = paste("<b>",format(round(Subset$Total, digits = 0), big.mark = ","),"MW</b>"),
-        textposition = 'middle right',
-        textfont = list(color = ChartColours[1]),
-        hoverinfo = 'skip',
-        marker = list(
-          size = 0.00001
-        )
-      ) %>% 
-      layout(
-        barmode = 'stack',
-        legend = list(font = list(color = "#39ab2c"),
-                      orientation = 'h'),
-        hoverlabel = list(font = list(color = "white"),
-                          hovername = 'text'),
-        hovername = 'text',
-        yaxis = list(title = "",
-                     showgrid = FALSE,
-                     autorange = 'reversed',
-                     dtick = 1),
-        xaxis = list(
-          title = "",
-          tickformat = "",
-          showgrid = TRUE,
-          zeroline = TRUE,
-          range = c(0, max(Subset$Total)*1.15),
-          zerolinecolor = ChartColours[1],
-          zerolinewidth = 2,
-          rangemode = "tozero"
-        )
-      ) %>% 
-      config(displayModeBar = F)
-    
-    p
-  })
-  
-  output$RenElecQuarterCapacity.png <- downloadHandler(
-    filename = "RenElecQuarterCapacity.png",
-    content = function(file) {
-      
-      ### Load Packages and Functions
-      
-      if (exists("PackageHeader") == 0){
-        source("Structure/PackageHeader.R")
-      }
-      
-      Subset$Total <- NULL
-      
-      Subset <- melt(Subset, id.vars = "Year")
-      
-      Subset$variable <-
-        factor(Subset$variable,
-               levels = rev(unique(Subset$variable)),
-               ordered = TRUE)
-      
-      Subset <- Subset %>%
-        group_by(Year) %>%
-        mutate(pos = cumsum(value) - value / 2) %>%
-        mutate(top = sum(value))
-      
-      plottitle <-
-        "Quarterly Renewable Capacity - Total"
-      sourcecaption <- "Source: BEIS"
-      
-      ChartColours <- c("#39ab2c", "#FF8500")
-      BarColours <-
-        c(
-          "#004529",
-          "#006837",
-          "#238443",
-          "#41ab5d",
-          "#78c679",
-          "#7bccc4",
-          "#4eb3d3",
-          "#2b8cbe"
-        )
-      
-      
-      SubsetChart <- Subset %>%
-        ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
-        scale_fill_manual(
-          "variable",
-          values = c(
-            "Q1" = BarColours[1],
-            "Q2" = BarColours[2],
-            "Q3" = BarColours[3],
-            "Q4" = BarColours[4]
-          )
-        ) +
-        geom_bar(stat = "identity", width = .8) +
-        annotate(
-          "text",
-          x = Subset$Year,
-          y = -.01,
-          label = ifelse(Subset$Year == "z", "", str_wrap(Subset$Year, width = 20)),
-          family = "Century Gothic",
-          fontface = 2,
-          colour =  ChartColours[1],
-          hjust = 1.05
-        ) +
-        geom_text(
-          aes(
-            x = 2010,
-            y = max(Subset$top) * (0.1/ 3),
-            label = "Q1"
-          ),
-          fontface = 2,
-          colour =  BarColours[1],
-          family = "Century Gothic",
-          hjust = 0.5
-        ) +
-        geom_text(
-          aes(
-            x = 2010,
-            y = max(Subset$top) * (1 / 3),
-            label = "Q2"
-          ),
-          fontface = 2,
-          colour =  BarColours[2],
-          family = "Century Gothic",
-          hjust = 0.5
-        ) +
-        geom_text(
-          aes(
-            x = 2010,
-            y = max(Subset$top) * (2 / 3),
-            label = "Q3"
-          ),
-          fontface = 2,
-          colour =  BarColours[3],
-          family = "Century Gothic",
-          hjust = 0.5
-        ) +
-        geom_text(
-          aes(
-            x = 2010,
-            y = max(Subset$top) * (3 / 3),
-            label = "Q4"
-          ),
-          fontface = 2,
-          colour =  BarColours[4],
-          family = "Century Gothic",
-          hjust = 0.5
-        ) +
-        geom_text(
-          aes(
-            x = Subset$Year ,
-            y = Subset$top,
-            label = paste(format(
-              round(Subset$top, digits = 0), big.mark = ","
-            ), "MW")
-          ),
-          fontface = 2,
-          colour =  ChartColours[1],
-          family = "Century Gothic",
-          hjust = -0.1
-          
-        ) 
-      SubsetChart
-      
-      
-      SubsetChart <-
-        StackedBars(SubsetChart,
-                    SubsetFuel,
-                    plottitle,
-                    sourcecaption,
-                    ChartColours)
-      
-      SubsetChart <-
-        SubsetChart +
-        labs(subtitle = paste("Scotland,", min(Subset$Year), "-", max(Subset$Year))) +
-        coord_flip() +
-        xlim(max(Subset$Year+.5),min(Subset$Year-1)) +
-        ylim(-max(Subset$top*0.05),max(Subset$top)*1.2)
-      
-      SubsetChart
-      
-      ggsave(
-        file,
-        plot = SubsetChart,
-        width = 14,
-        height = 16,
-        units = "cm",
-        dpi = 300
-      )
-    }
-  )
-  
-  output$RenElecQuarterTable = renderDataTable({
-    
-    Data <- read_excel("Structure/CurrentWorking.xlsx",
-                       sheet = "R - QTRCapacity",
-                       col_names = FALSE
-    )
-    
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- unlist(Data[1,])
-    
-    names(Data)[1] <- "Year & Quarter"
-    
-    Data <- Data[-1,]
-    
-    Data[2:14] %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    Data <- as_tibble(Data)
-    
-    datatable(
-      Data,
-      extensions = 'Buttons',
-      
-      rownames = FALSE,
-      options = list(
-        paging = TRUE,
-        pageLength = -1,
-        searching = TRUE,
-        fixedColumns = FALSE,
-        autoWidth = TRUE,
-        ordering = TRUE,
-        title = "QTR Data",
-        dom = 'ltBp',
-        buttons = list(
-          list(extend = 'copy'),
-          list(
-            extend = 'excel',
-            title = 'QTR Data',
-            header = TRUE
-          ),
-          list(extend = 'csv',
-               title = 'QTR Data')
-        ),
-        
-        # customize the length menu
-        lengthMenu = list( c(10, 20, -1) # declare values
-                           , c(10, 20, "All") # declare titles
-        ), # end of lengthMenu customization
-        pageLength = 10
-      )
-    ) %>%
-      formatRound(2:ncol(Data), 1)
-  })
-  
-  observeEvent(input$ToggleTable6, {
-    toggle("RenElecQuarterTable")
-  })
-  
   
 }
