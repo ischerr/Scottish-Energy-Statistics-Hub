@@ -237,7 +237,7 @@ output$HomeTab <- renderUI({
     fluidRow(
   h1("Scottish Energy Statistics"),
   h3(paste(input$MainTab)),
-  HTML("<h2>The Scottish Energy Statistics Hub is still any development. If you notice any errors, please email:  <a href='mailto:energystatistics@gov.scot?'>energystatistics@gov.scot</a></h2>"),
+  HTML("<h2>The Scottish Energy Statistics Hub is still in development. If you notice any errors, please email:  <a href='mailto:energystatistics@gov.scot?'>energystatistics@gov.scot</a></h2>"),
   p(
     "This database brings together energy statistics from a range of data sources including Scottish
                       Government, Eurostat and the Department for Business, Energy and Industrial Strategy (BEIS) of the
