@@ -32,7 +32,7 @@ ECOMeasuresOutput <- function(id) {
              ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('ECOObligation.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('ECODelivered.png'), 'Download Graph', style="float:right")
              )),
              
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
@@ -701,34 +701,52 @@ ECOMeasures <- function(input, output, session) {
     toggle("Text")
   })
   
-  output$ECOObligation.png <- downloadHandler(
-  filename = "ECOObligation.png",
+  output$ECODelivered.png <- downloadHandler(
+  filename = "ECODelivered.png",
   content = function(file) {
     
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "ECO", skip = 13, col_names = TRUE)[10:12]
+    Data <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "ECO",
+      col_names = FALSE,
+      skip = 12,
+      n_max = 7
+    )
     
-    names(Data) <- c("Year", "SAP 2012", "SAP 2009")
+    Data <- as_tibble(t(Data))[1:3]
     
-    EPCProportion <- Data[which(Data$Year > 0),]
-    ### variables
-    ChartColours <- c("#34d1a3", "#0868ac", "#4eb3d3", "#a8ddb5")
-    sourcecaption = "Source: SG"
-    plottitle = "Proportion of domestic properties rated\nEPC band C or above"
+    names(Data) <- unlist(Data[1,])
     
-    #EPCProportion$`Low Carbon`Percentage <- PercentLabel(EPCProportion$`Low Carbon`)
+    names(Data)[1] <- "Year"
     
-    EPCProportion$`SAP 2012`
+    Data[2:3] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    EPCProportionChart <- EPCProportion %>%
+    Data <- head(Data, -1)
+    
+    Data <- Data[complete.cases(Data),]
+    
+    #Data$Year <- paste0("<b>",Data$Year,"</b>")
+    
+    Data$Year <- paste(substr(Data$Year, 1,3), substr(Data$Year,11,14))
+    
+    Data$Year <-  as.yearmon(Data$Year, format = "%b %Y")
+    
+    Data$Year <- as.yearqtr(Data$Year)
+    
+    ChartColours <- c("#34d1a3", "#FF8500")
+    
+  sourcecaption <- "BEIS"
+  plottitle = "Total number of ECO measures delivered"
+    
+    DataChart <- Data %>%
       ggplot(aes(x = Year), family = "Century Gothic") +
       
       geom_line(
         aes(
-          y = `SAP 2012`,
+          y = `Total number of ECO measures delivered`,
           colour = ChartColours[2],
-          label = percent(`SAP 2012`)
+          label = percent(`Total number of ECO measures delivered`)
         ),
         size = 1.5,
         family = "Century Gothic"
@@ -736,10 +754,10 @@ ECOMeasures <- function(input, output, session) {
       geom_text(
         aes(
           x = Year,
-          y = `SAP 2012`,
-          label = ifelse(Year == min(Year[which(EPCProportion$`SAP 2012` > 0)]), percent(`SAP 2012`, accuracy = 0.1), ""),
+          y = `Total number of ECO measures delivered`,
+          label = ifelse(Year == min(Year[which(Data$`Total number of ECO measures delivered` > 0)]), format(`Total number of ECO measures delivered`, big.mark = ","), ""),
           hjust = 0.5,
-          vjust = -1,
+          vjust = -.8,
           colour = ChartColours[2],
           fontface = 2
         ),
@@ -748,103 +766,34 @@ ECOMeasures <- function(input, output, session) {
       geom_text(
         aes(
           x = Year,
-          y = `SAP 2012`,
-          label = ifelse(Year == max(Year), percent(`SAP 2012`, accuracy = 0.1), ""),
+          y = `Total number of ECO measures delivered`,
+          label = ifelse(Year == max(Year), format(`Total number of ECO measures delivered`, big.mark = ","), ""),
           hjust = .5,
-          vjust = 2,
+          vjust = 1.5,
           colour = ChartColours[2],
           fontface = 2
         ),
         family = "Century Gothic"
       ) +
       geom_point(
-        data = tail(EPCProportion, 1),
+        data = tail(Data, 1),
         aes(
           x = Year,
-          y = `SAP 2012`,
+          y = `Total number of ECO measures delivered`,
           colour = ChartColours[2],
           show_guide = FALSE
         ),
         size = 4,
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = mean(Year[which(EPCProportion$`SAP 2012` > 0)]),
-          y = mean(`SAP 2012`, na.rm = TRUE),
-          label = "SAP 2012",
-          hjust = .7,
-          vjust = 3,
-          colour = ChartColours[2],
-          fontface = 2
-        ),
-        family = "Century Gothic"
-      ) +
-      geom_line(
-        aes(
-          y = `SAP 2009`,
-          colour = ChartColours[3],
-          label = paste0(`SAP 2009` * 100, "%")
-        ),
-        size = 1.5,
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = Year,
-          y = `SAP 2009`,
-          label = ifelse(Year == min(Year), percent(`SAP 2009`, accuracy = 0.1), ""),
-          hjust = 0.5,
-          vjust = -1.6,
-          colour = ChartColours[3],
-          fontface = 2
-        ),
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = Year,
-          y = `SAP 2009`,
-          label = ifelse(Year == max(Year), percent(`SAP 2009`, accuracy = 0.1), ""),
-          hjust = 0.5,
-          vjust = 2,
-          colour = ChartColours[3],
-          fontface = 2
-        ),
-        family = "Century Gothic"
-      ) +
-      geom_point(
-        data = tail(EPCProportion, 1),
-        aes(
-          x = Year,
-          y = `SAP 2009`,
-          colour = ChartColours[3],
-          show_guide = FALSE
-        ),
-        size = 4,
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = mean(Year[which(EPCProportion$`SAP 2009` > 0)]),
-          y = mean(`SAP 2009`, na.rm = TRUE),
-          label = "SAP 2009",
-          hjust = 0.5,
-          vjust = -3.8,
-          colour = ChartColours[3],
-          fontface = 2
-        ),
         family = "Century Gothic"
       ) +
       annotate(
         "text",
-        x = EPCProportion$Year,
+        x = Data$Year,
         y = 0,
         label = ifelse(
-          EPCProportion$Year == max(EPCProportion$Year) |
-            EPCProportion$Year == min(EPCProportion$Year[which(EPCProportion$`SAP 2012` > 0)]) |
-            EPCProportion$Year == min(EPCProportion$Year[which(EPCProportion$`SAP 2009` > 0)]),
-          EPCProportion$Year,
+          Data$Year == max(Data$Year) |
+            Data$Year == min(Data$Year[which(Data$`Total number of ECO measures delivered` > 0)]),
+          format(Data$Year, "%Y Q%q"),
           ""
         ),
         hjust = 0.5,
@@ -855,18 +804,18 @@ ECOMeasures <- function(input, output, session) {
       )
     
     
-    EPCProportionChart <-
-      LinePercentChart(EPCProportionChart,
-                       EPCProportion,
+    DataChart <-
+      StackedArea(DataChart,
+                       Data,
                        plottitle,
                        sourcecaption,
                        ChartColours)
     
-    EPCProportionChart
+    DataChart
     
     ggsave(
       file,
-      plot =  EPCProportionChart,
+      plot =  DataChart,
       width = 14,
       height = 14,
       units = "cm",
@@ -882,203 +831,118 @@ ECOMeasures <- function(input, output, session) {
   content = function(file) {
     
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "ECO", skip = 12, col_names = TRUE)[1:8]
+    Data <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "ECO",
+      col_names = FALSE,
+      skip = 12,
+      n_max = 7
+    )
     
-    names(Data) <- c("Type", "A or better", "B", "C", "D", "E", "F", "G")
+    Data <- as_tibble(t(Data))[1:3]
+    
+    names(Data) <- unlist(Data[1,])
+    
+    names(Data)[1] <- "Year"
+    
+    Data[2:3] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data <- head(Data, -1)
     
     Data <- Data[complete.cases(Data),]
     
-    Data$Total <- Data$`A or better` + Data$B + Data$C
-    ECOMeasures <- Data
+    #Data$Year <- paste0("<b>",Data$Year,"</b>")
     
-    ECOMeasures <-
-      ECOMeasures[c(1, ncol(ECOMeasures):2)]
+    Data$Year <- paste(substr(Data$Year, 1,3), substr(Data$Year,11,14))
     
-    ECOMeasures <-
-      arrange(ECOMeasures,-row_number())
+    Data$Year <-  as.yearmon(Data$Year, format = "%b %Y")
     
-    ECOMeasures$Type <-
-      factor(ECOMeasures$Type,
-             levels = unique(ECOMeasures$Type))
-    
-    ECOMeasures <-
-      melt(ECOMeasures, id.vars = "Type")
-    
-    
-    ECOMeasures$variable <-
-      factor(ECOMeasures$variable,
-             levels = unique(ECOMeasures$variable))
-    
-    ECOMeasures <- ECOMeasures %>%
-      group_by(Type) %>%
-      mutate(pos = cumsum(value) - value / 2) %>%
-      mutate(top = sum(value))
-    
-    plottitle <-
-      "Distribution of housing stock by EPC band"
-    sourcecaption <- "Source: SG"
+    Data$Year <- as.yearqtr(Data$Year)
     
     ChartColours <- c("#34d1a3", "#FF8500")
-    BarColours <-
-      c("#006837",
-        "#1a9850",
-        "#66bd63",
-        "#fee08b",
-        "#fdae61",
-        "#f46d43",
-        "#d73027")
     
+    sourcecaption <- "BEIS"
+    plottitle = "Total number of ECO measures delivered"
     
-    ECOMeasuresChart <- ECOMeasures %>%
-      ggplot(aes(x = Type, y = value, fill = variable), family = "Century Gothic") +
-      scale_fill_manual(
-        "variable",
-        values = c(
-          "A or better" = BarColours[1],
-          "B" = BarColours[2],
-          "C" = BarColours[3],
-          "D" = BarColours[4],
-          "E" = BarColours[5],
-          "F" = BarColours[6],
-          "G" = BarColours[7],
-          "Total" = "White"
-        )
-      ) +
-      geom_bar(stat = "identity", width = .8) +
-      annotate(
-        "text",
-        x = ECOMeasures$Type,
-        y = -.15,
-        label = ifelse(
-          ECOMeasures$Type == "z",
-          "",
-          str_wrap(ECOMeasures$Type, width = 8)
+    DataChart <- Data %>%
+      ggplot(aes(x = Year), family = "Century Gothic") +
+      
+      geom_line(
+        aes(
+          y = `Total number of ECO measures delivered`,
+          colour = ChartColours[2],
+          label = percent(`Total number of ECO measures delivered`)
         ),
-        family = "Century Gothic",
-        fontface = 2,
-        colour = ChartColours[1]
-      ) +
-      # geom_text(
-      #   aes(x = 3.7,
-      #       y = 0.5 * (1 / 7),
-      #       label = "A"),
-      #   fontface = 2,
-      #   colour = BarColours[1],
-      #   family = "Century Gothic",
-      #   hjust = 0.5
-      # ) +
-      geom_text(
-        aes(x = 4.7,
-            y = .5 * (1 / 6),
-            label = "B"),
-        fontface = 2,
-        colour = BarColours[2],
-        family = "Century Gothic",
-        hjust = 0.5
+        size = 1.5,
+        family = "Century Gothic"
       ) +
       geom_text(
-        aes(x = 4.7,
-            y = 1.5 * (1 / 6),
-            label = "C"),
-        fontface = 2,
-        colour = BarColours[3],
-        family = "Century Gothic",
-        hjust = 0.5
+        aes(
+          x = Year,
+          y = `Total number of ECO measures delivered`,
+          label = ifelse(Year == min(Year[which(Data$`Total number of ECO measures delivered` > 0)]), format(`Total number of ECO measures delivered`, big.mark = ","), ""),
+          hjust = 0.5,
+          vjust = -.8,
+          colour = ChartColours[2],
+          fontface = 2
+        ),
+        family = "Century Gothic"
       ) +
       geom_text(
-        aes(x = 4.7,
-            y = 2.5 * (1 / 6),
-            label = "D"),
-        fontface = 2,
-        colour = BarColours[4],
-        family = "Century Gothic",
-        hjust = 0.5
+        aes(
+          x = Year,
+          y = `Total number of ECO measures delivered`,
+          label = ifelse(Year == max(Year), format(`Total number of ECO measures delivered`, big.mark = ","), ""),
+          hjust = .5,
+          vjust = 1.5,
+          colour = ChartColours[2],
+          fontface = 2
+        ),
+        family = "Century Gothic"
       ) +
-      geom_text(
-        aes(x = 4.7,
-            y = 3.5 * (1 / 6),
-            label = "E"),
-        fontface = 2,
-        colour = BarColours[5],
-        family = "Century Gothic",
-        hjust = 0.5
-      ) +
-      geom_text(
-        aes(x = 4.7,
-            y = 4.5 * (1 / 6),
-            label = "F"),
-        fontface = 2,
-        colour = BarColours[6],
-        family = "Century Gothic",
-        hjust = 0.5
-      ) +
-      geom_text(
-        aes(x = 4.7,
-            y = 5.5 * (1 / 6),
-            label = "G"),
-        fontface = 2,
-        colour = BarColours[7],
-        family = "Century Gothic",
-        hjust = 0.5
+      geom_point(
+        data = tail(Data, 1),
+        aes(
+          x = Year,
+          y = `Total number of ECO measures delivered`,
+          colour = ChartColours[2],
+          show_guide = FALSE
+        ),
+        size = 4,
+        family = "Century Gothic"
       ) +
       annotate(
         "text",
-        x = ECOMeasures$Type,
-        y = 1.1,
+        x = Data$Year,
+        y = 0,
         label = ifelse(
-          ECOMeasures$Type == "z",
-          "",
-          percent(ECOMeasures$value[which(ECOMeasures$variable == "Total")], accuracy = 0.1)
+          Data$Year == max(Data$Year) |
+            Data$Year == min(Data$Year[which(Data$`Total number of ECO measures delivered` > 0)]),
+          format(Data$Year, "%Y Q%q"),
+          ""
         ),
-        family = "Century Gothic",
-        fontface = 2,
-        colour = ChartColours[1]
-      ) +
-      geom_text(
-        aes(x = 4.7,
-            y = 1.1,
-            label = "C\nor better"),
-        fontface = 2,
+        hjust = 0.5,
+        vjust = 1.5,
         colour = ChartColours[1],
-        family = "Century Gothic",
-        hjust = 0.5
-      )+
-      geom_text(
-        aes(x = 5.1,
-            y = 1.05,
-            label = " "),
         fontface = 2,
-        colour = ChartColours[1],
-        family = "Century Gothic",
-        hjust = 0.5
+        family = "Century Gothic"
       )
     
-    ECOMeasuresChart
     
+    DataChart <-
+      StackedArea(DataChart,
+                  Data,
+                  plottitle,
+                  sourcecaption,
+                  ChartColours)
     
-    ECOMeasuresChart <-
-      StackedBars(
-        ECOMeasuresChart,
-        ECOMeasures,
-        plottitle,
-        sourcecaption,
-        ChartColours
-      )
-    
-    ECOMeasuresChart <-
-      ECOMeasuresChart +
-      coord_flip() +
-      labs(subtitle = "Scotland, 2014 - 2017") +
-      ylim(-.2, 1.13)
-    
-    ECOMeasuresChart
+    DataChart
     
     ggsave(
       file,
-      plot = ECOMeasuresChart,
-      width = 14.5,
-      height = 8,
+      plot =  DataChart,
+      width = 14,
+      height = 14,
       units = "cm",
       dpi = 300
     )
