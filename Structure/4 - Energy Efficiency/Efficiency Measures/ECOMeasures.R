@@ -11,9 +11,9 @@ ECOMeasuresOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("Housing Stock EPC",
+      tabPanel("ECO measures delivered",
     fluidRow(column(8,
-                    h3("Distribution of Scottish housing stock by EPC band", style = "color: #34d1a3;  font-weight:bold"),
+                    h3("Total number of ECO measures delivered", style = "color: #34d1a3;  font-weight:bold"),
                     h4(textOutput(ns('ECOMeasuresSubtitle')), style = "color: #34d1a3;")
     ),
              column(
@@ -25,9 +25,9 @@ ECOMeasuresOutput <- function(id) {
     #dygraphOutput(ns("ECOMeasuresPlot")),
     plotlyOutput(ns("ECOMeasuresPlot"))%>% withSpinner(color="#34d1a3"),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
-    tabPanel("Properties above Band C",
+    tabPanel("Households in receipt of ECO measures",
              fluidRow(column(8,
-                             h3("Proportion of properties rated EPC band C or above", style = "color: #34d1a3;  font-weight:bold"),
+                             h3("Households in receipt of ECO measures", style = "color: #34d1a3;  font-weight:bold"),
                              h4(textOutput(ns('ECOObligationSubtitle')), style = "color: #34d1a3;")
              ),
              column(
@@ -38,20 +38,6 @@ ECOMeasuresOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
              #dygraphOutput(ns("ECOMeasuresPlot")),
              plotlyOutput(ns("ECOObligationPlot"))%>% withSpinner(color="#34d1a3"),
-             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
-    tabPanel("Housing Tenure EPC",
-             fluidRow(column(8,
-                             h3("Distribution of Scottish housing stock by EPC band and housing tenure", style = "color: #34d1a3;  font-weight:bold"),
-                             h4(textOutput(ns('ECOGreenDealSubtitle')), style = "color: #34d1a3;")
-             ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('ECOGreenDeal.png'), 'Download Graph', style="float:right")
-             )),
-             
-             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
-             #dygraphOutput(ns("ECOMeasuresPlot")),
-             plotlyOutput(ns("ECOGreenDealPlot"))%>% withSpinner(color="#34d1a3"),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
@@ -62,30 +48,14 @@ ECOMeasuresOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     tabsetPanel(
-      tabPanel("Housing stock EPC",
+      tabPanel("ECO measures",
     fluidRow(
-    column(10, h3("Data - housing stock by EPC", style = "color: #34d1a3;  font-weight:bold")),
+    column(10, h3("Data - ECO measures", style = "color: #34d1a3;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("ECOMeasuresTable"))%>% withSpinner(color="#34d1a3"))),
-    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
-    tabPanel("Properties above EPC C",
-             fluidRow(
-               column(10, h3("Data - properties above EPC band C", style = "color: #34d1a3;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
-             ),
-             fluidRow(
-               column(12, dataTableOutput(ns("ECOObligationTable"))%>% withSpinner(color="#34d1a3"))),
-             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
-    tabPanel("Housing tenure EPC",
-             fluidRow(
-               column(10, h3("Data - Housing tenure by EPC", style = "color: #34d1a3;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
-             ),
-             fluidRow(
-               column(12, dataTableOutput(ns("ECOGreenDealTable"))%>% withSpinner(color="#34d1a3"))),
-             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
+    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
       column(1,
              p("Next update:")),
@@ -137,11 +107,19 @@ ECOMeasures <- function(input, output, session) {
     
     Data[2:3] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    Data <- head(Data, -2)
+    Data <- head(Data, -1)
     
     Data <- Data[complete.cases(Data),]
     
-    paste("Scotland,", Data[1,1], "-", Data[nrow(Data),1])
+    #Data$Year <- paste0("<b>",Data$Year,"</b>")
+    
+    Data$Year <- paste(substr(Data$Year, 1,3), substr(Data$Year,11,14))
+    
+    Data$Year <-  as.yearmon(Data$Year, format = "%b %Y")
+    
+    Data$Year <- as.yearqtr(Data$Year)
+    
+    paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
   output$ECOMeasuresPlot <- renderPlotly  ({
@@ -162,142 +140,79 @@ ECOMeasures <- function(input, output, session) {
     
     Data[2:3] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    Data <- head(Data, -2)
+    Data <- head(Data, -1)
     
     Data <- Data[complete.cases(Data),]
     
-    Data$Year <- paste0("<b>",Data$Year,"</b>")
+    #Data$Year <- paste0("<b>",Data$Year,"</b>")
     
-    p <- plot_ly(data = Data, y = ~ `Year`) %>%
-      
+    Data$Year <- paste(substr(Data$Year, 1,3), substr(Data$Year,11,14))
+    
+    Data$Year <-  as.yearmon(Data$Year, format = "%b %Y")
+    
+    Data$Year <- as.yearqtr(Data$Year)
+    
+    ChartColours <- c("#34d1a3", "#FF8500")
+    
+    p <-  plot_ly(Data,x = ~ Year ) %>% 
+      add_trace(data = Data,
+                x = ~ Year,
+                y = ~ `Total number of ECO measures delivered`,
+                name = "Total number of ECO measures delivered",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "1",
+                text = paste0(
+                  "Total number of ECO measures delivered: ",
+                  format(Data$`Total number of ECO measures delivered`, big.mark = ","),
+                  "\nYear: ",
+                  Data$Year
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[1], dash = "none")
+      ) %>% 
       add_trace(
-        data = Data,
-        x = ~ `A`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "A",
-        text = paste0("A: ", percent(Data$`A`, accuracy = 0.1)),
+        data = tail(Data[which(Data$`Total number of ECO measures delivered` > 0 | Data$`Total number of ECO measures delivered` < 0),], 1),
+        x = ~ Year,
+        y = ~ `Total number of ECO measures delivered`,
+        legendgroup = "1",
+        name = "Total number of ECO measures delivered",
+        text = paste0(
+          "Total number of ECO measures delivered: ",
+          format(Data[which(Data$`Total number of ECO measures delivered` > 0 | Data$`Total number of ECO measures delivered` < 0),][-1,]$`Total number of ECO measures delivered`, big.mark = ","),
+          "\nYear: ",
+          Data[which(Data$`Total number of ECO measures delivered` > 0 | Data$`Total number of ECO measures delivered` < 0),][-1,]$Year
+        ),
         hoverinfo = 'text',
-        marker = list(color = BarColours[1]),
-        legendgroup = 1
-      ) %>%
-      add_trace(
-        data = Data,
-        x = ~ `B`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "B",
-        text = paste0("B: ", percent(Data$`B`, accuracy = 0.1)),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[2]),
-        legendgroup = 2
-      ) %>%
-      add_trace(
-        data = Data,
-        x = ~ `C`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "C",
-        text = paste0("C: ", percent(Data$`C`, accuracy = 0.1)),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[3]),
-        legendgroup = 3
-      ) %>%
-      add_trace(
-        data = Data,
-        x = ~ `D`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "D",
-        text = paste0("D: ", percent(Data$`D`, accuracy = 0.1)),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[4]),
-        legendgroup = 4
-      ) %>%
-      add_trace(
-        data = Data,
-        x = ~ `E`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "E",
-        text = paste0("E: ", percent(Data$`E`, accuracy = 0.1)),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[5]),
-        legendgroup = 5
-      ) %>%
-      add_trace(
-        data = Data,
-        x = ~ `F`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "F",
-        text = paste0("F: ", percent(Data$`F`, accuracy = 0.1)),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[6]),
-        legendgroup = 6
-      ) %>%
-      add_trace(
-        data = Data,
-        x = ~ `G`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "G",
-        text = paste0("G: ", percent(Data$`G`, accuracy = 0.1)),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[7]),
-        legendgroup = 7
-      ) %>%
-      
-      add_trace(
-        data = Data,
-        x = ~ 1.1 ,
-        showlegend = TRUE,
-        name = 'C or better',
-        mode = 'text',
-        type = 'scatter',
-        hoverinfo = 'skip',
-        textfont = list(color = BarColours[2]),
-        text =  paste0("<b>", ifelse(Data$`C or Better` > 0, percent(Data$`C or Better`, accuracy = 0.1), " "), "</b>"),
-        legendgroup = 8
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[1])
       ) %>%
       layout(
         barmode = 'stack',
-        legend = list(font = list(color = "#1A5D38"),
+        bargap = 0.66,
+        legend = list(font = list(color = "#34d1a3"),
                       orientation = 'h'),
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
         hovername = 'text',
-        yaxis = list(title = "",
-                     showgrid = FALSE,
-                     type = "category",
-                     autorange = "reversed",
-                     ticktext = as.list(Data$`Year`),
-                     tickmode = "array",
-                     tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
+        
+        xaxis = list(title = "",
+                     showgrid = FALSE
         ),
-        xaxis = list(
+        yaxis = list(
           title = "",
-          tickformat = "%",
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
-          zerolinewidth = 2
+          zerolinewidth = 2,
+          rangemode = "tozero"
         )
       ) %>% 
       config(displayModeBar = F)
-    
     p
-    
-    
-    
-    
     
   })
   
@@ -355,75 +270,95 @@ ECOMeasures <- function(input, output, session) {
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump sector",
+      sheet = "ECO",
       col_names = FALSE,
       skip = 12,
       n_max = 7
     )
     
-    Data <- as_tibble(t(Data))
+    Data <- as_tibble(t(Data))[1:3]
     
     names(Data) <- unlist(Data[1,])
     
     names(Data)[1] <- "Year"
     
-    Data[1:7] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data[2:3] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data <- head(Data, -1)
+    
+    Data <- Data[complete.cases(Data),]
+    
+    #Data$Year <- paste0("<b>",Data$Year,"</b>")
+    
+    Data$Year <- paste(substr(Data$Year, 1,3), substr(Data$Year,11,14))
+    
+    Data$Year <-  as.yearmon(Data$Year, format = "%b %Y")
+    
+    Data$Year <- as.yearqtr(Data$Year)
     
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
   output$ECOObligationPlot <- renderPlotly  ({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "ECO", skip = 12,  col_names = FALSE)[10:12]
+    Data <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "ECO",
+      col_names = FALSE,
+      skip = 12,
+      n_max = 7
+    )
     
-    Data <- tail(Data, -1)
+    Data <- as_tibble(t(Data))[1:3]
     
-    names(Data) <- c("Year", "SAP 2012", "SAP 2009")
+    names(Data) <- unlist(Data[1,])
     
-    Data <- Data[which(Data$Year > 0),]
+    names(Data)[1] <- "Year"
     
     Data[2:3] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    EPC <- Data
+    Data <- head(Data, -1)
     
-    ### variables
-    ChartColours <- c("#34d1a3", "#8da0cb", "#fc8d62", "#34d1a3")
+    Data <- Data[complete.cases(Data),]
     
-    EPC$Year <- paste0("01/01/", EPC$Year)
+    #Data$Year <- paste0("<b>",Data$Year,"</b>")
     
-    EPC$Year <- dmy(EPC$Year)
+    Data$Year <- paste(substr(Data$Year, 1,3), substr(Data$Year,11,14))
     
+    Data$Year <-  as.yearmon(Data$Year, format = "%b %Y")
     
+    Data$Year <- as.yearqtr(Data$Year)
     
-    p <-  plot_ly(EPC,x = ~ Year ) %>% 
-      add_trace(data = EPC,
+    ChartColours <- c("#34d1a3", "#FF8500")
+    
+    p <-  plot_ly(Data,x = ~ Year ) %>% 
+      add_trace(data = Data,
                 x = ~ Year,
-                y = ~ `SAP 2012`,
-                name = "SAP 2012",
+                y = ~ `Households in receipt of ECO measures`,
+                name = "Households in receipt of ECO measures",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "1",
                 text = paste0(
-                  "SAP 2012: ",
-                  percent(EPC$`SAP 2012`, accuracy = 0.1),
+                  "Households in receipt of ECO measures: ",
+                  format(Data$`Households in receipt of ECO measures`, big.mark = ","), 
                   "\nYear: ",
-                  format(EPC$Year, "%Y")
+                  Data$Year
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = ChartColours[1], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(EPC[which(EPC$`SAP 2012` > 0 | EPC$`SAP 2012` < 0),], 1),
+        data = tail(Data[which(Data$`Households in receipt of ECO measures` > 0 | Data$`Households in receipt of ECO measures` < 0),], 1),
         x = ~ Year,
-        y = ~ `SAP 2012`,
+        y = ~ `Households in receipt of ECO measures`,
         legendgroup = "1",
-        name = "SAP 2012",
+        name = "Households in receipt of ECO measures",
         text = paste0(
-          "SAP 2012: ",
-          percent(EPC[which(EPC$`SAP 2012` > 0 | EPC$`SAP 2012` < 0),][-1,]$`SAP 2012`, accuracy = 0.1),
+          "Households in receipt of ECO measures: ",
+          format(Data[which(Data$`Households in receipt of ECO measures` > 0 | Data$`Households in receipt of ECO measures` < 0),][-1,]$`Households in receipt of ECO measures`, big.mark = ","), 
           "\nYear: ",
-          format(EPC[which(EPC$`SAP 2012` > 0 | EPC$`SAP 2012` < 0),][-1,]$Year, "%Y")
+          Data[which(Data$`Households in receipt of ECO measures` > 0 | Data$`Households in receipt of ECO measures` < 0),][-1,]$Year
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -431,42 +366,7 @@ ECOMeasures <- function(input, output, session) {
         mode = 'markers',
         marker = list(size = 18, 
                       color = ChartColours[1])
-      ) %>% 
-      add_trace(data = EPC,
-                x = ~ Year,
-                y = ~ `SAP 2009`,
-                name = "SAP 2009",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "2",
-                text = paste0(
-                  "SAP 2009: ",
-                  percent(EPC$`SAP 2009`, accuracy = 0.1),
-                  "\nYear: ",
-                  format(EPC$Year, "%Y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 6, color = ChartColours[2], dash = "dash")
-      ) %>% 
-      add_trace(
-        data = tail(EPC[which(EPC$`SAP 2009` > 0 | EPC$`SAP 2009` < 0),], 1),
-        x = ~ Year,
-        y = ~ `SAP 2009`,
-        legendgroup = "2",
-        name = "SAP 2009",
-        text = paste0(
-          "SAP 2009: ",
-          percent(EPC[which(EPC$`SAP 2009` > 0 | EPC$`SAP 2009` < 0),][-1,]$`SAP 2009`, accuracy = 0.1),
-          "\nYear: ",
-          format(EPC[which(EPC$`SAP 2009` > 0 | EPC$`SAP 2009` < 0),][-1,]$Year, "%Y")
-        ),
-        hoverinfo = 'text',
-        showlegend = FALSE ,
-        type = "scatter",
-        mode = 'markers',
-        marker = list(size = 18, 
-                      color = ChartColours[2])
-      ) %>% 
+      ) %>%
       layout(
         barmode = 'stack',
         bargap = 0.66,
@@ -477,11 +377,10 @@ ECOMeasures <- function(input, output, session) {
         hovername = 'text',
         
         xaxis = list(title = "",
-                     showgrid = FALSE,
-                     range = c(min(EPC$Year)-100, max(EPC$Year)+100)),
+                     showgrid = FALSE
+        ),
         yaxis = list(
           title = "",
-          tickformat = "%",
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
@@ -491,7 +390,6 @@ ECOMeasures <- function(input, output, session) {
       ) %>% 
       config(displayModeBar = F)
     p
-    
   })
 
   output$ECOObligationTable = renderDataTable({
