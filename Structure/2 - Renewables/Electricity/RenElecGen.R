@@ -143,9 +143,9 @@ RenElecGenOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("BEISRenElec"),
+        SourceLookup("EURORenEn"),
+        SourceLookup("BEISSubNatEnergy")
         
       )
     )
@@ -1230,7 +1230,7 @@ RenElecGen <- function(input, output, session) {
     
     EURenElec <- read_excel("Structure/CurrentWorking.xlsx",
                             sheet = "Wind and hydro gen EU", col_names = TRUE, 
-                            skip = 18, n_max = 30)
+                            skip = 15, n_max = 30)
     
     EURenElec <- EURenElec[,c(1:ncol(EURenElec))]
     
@@ -1253,7 +1253,7 @@ RenElecGen <- function(input, output, session) {
     
     EUWind <- read_excel("Structure/CurrentWorking.xlsx",
                          sheet = "Wind and hydro gen EU", col_names = FALSE, 
-                         skip = 19, n_max = 30)
+                         skip = 16, n_max = 30)
     
     EUWind <- EUWind[,c(1,ncol(EUWind))]
     
@@ -1326,7 +1326,7 @@ RenElecGen <- function(input, output, session) {
     
     EUWind <- read_excel("Structure/CurrentWorking.xlsx",
                          sheet = "Wind and hydro gen EU", col_names = TRUE, 
-                         skip = 18, n_max = 30)
+                         skip = 15, n_max = 30)
     
     EUWind <- EUWind[,c(1:ncol(EUWind))]
     
@@ -1391,7 +1391,7 @@ RenElecGen <- function(input, output, session) {
       
       EUWind <- read_excel("Structure/CurrentWorking.xlsx",
                            sheet = "Wind and hydro gen EU", col_names = FALSE, 
-                           skip = 20, n_max = 26)
+                           skip = 17, n_max = 26)
       
       EUWind <- EUWind[,c(1,ncol(EUWind))]
       
@@ -1431,7 +1431,7 @@ RenElecGen <- function(input, output, session) {
         )) +
         #scale_country()+
         #scale_size(range = c(15,30), guide = FALSE)+
-        ylim(-.3, 1.08) +
+        ylim(-.3, 1.10) +
         geom_bar(stat = "identity") +
         coord_flip() +
         scale_fill_manual("Group",
@@ -1555,7 +1555,7 @@ RenElecGen <- function(input, output, session) {
     
     EUHydro <- read_excel("Structure/CurrentWorking.xlsx",
                           sheet = "Wind and hydro gen EU", col_names = TRUE, 
-                          skip = 51, n_max = 30)
+                          skip = 48, n_max = 30)
     
     EUHydro <- EUHydro[,c(1:ncol(EUHydro))]
     
@@ -1578,7 +1578,7 @@ RenElecGen <- function(input, output, session) {
     
     EUHydro <- read_excel("Structure/CurrentWorking.xlsx",
                           sheet = "Wind and hydro gen EU", col_names = FALSE, 
-                          skip = 52, n_max = 28)
+                          skip = 49, n_max = 28)
     
     EUHydro <- EUHydro[,c(1,ncol(EUHydro))]
     
@@ -1651,7 +1651,7 @@ RenElecGen <- function(input, output, session) {
     
     EUHydro <- read_excel("Structure/CurrentWorking.xlsx",
                           sheet = "Wind and hydro gen EU", col_names = TRUE, 
-                          skip = 51, n_max = 30)
+                          skip = 48, n_max = 30)
     
     EUHydro <- EUHydro[,c(1:ncol(EUHydro))]
     
@@ -1716,7 +1716,7 @@ RenElecGen <- function(input, output, session) {
       
       EUHydro <- read_excel("Structure/CurrentWorking.xlsx",
                             sheet = "Wind and hydro gen EU", col_names = FALSE, 
-                            skip = 53, n_max = 23)
+                            skip = 50, n_max = 23)
       
       EUHydro <- EUHydro[,c(1,ncol(EUHydro))]
       

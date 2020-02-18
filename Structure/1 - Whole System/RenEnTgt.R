@@ -82,10 +82,15 @@ RenEnTgtOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
-        
+        SourceLookup("BEISRenElec"),
+        SourceLookup("BEISElecGen"),
+        SourceLookup("BEISSubNatEnergy"),
+        SourceLookup("ESTRenHeat"),
+        SourceLookup("BEISUKConsump"),
+        SourceLookup("HMRCOils"),
+        SourceLookup("BEISSubNatElec"),
+        SourceLookup("BEISSubNatGas"),
+        SourceLookup("BEISLocalRoad")
       )
     )
   )
@@ -109,7 +114,7 @@ RenEnTgt <- function(input, output, session) {
       "Structure/CurrentWorking.xlsx",
       sheet = "Renewable energy target",
       col_names = FALSE,
-      skip = 21,
+      skip = 36,
       n_max = 23
     )
     RenEn <- as.data.frame(t(RenEn))
@@ -131,7 +136,7 @@ RenEnTgt <- function(input, output, session) {
       "Structure/CurrentWorking.xlsx",
       sheet = "Renewable energy target",
       col_names = FALSE,
-      skip = 21,
+      skip = 36,
       n_max = 23
     )
     RenEn <- as.data.frame(t(RenEn))
@@ -305,7 +310,7 @@ RenEnTgt <- function(input, output, session) {
         "Structure/CurrentWorking.xlsx",
         sheet = "Renewable energy target",
         col_names = FALSE,
-        skip = 21,
+        skip = 36,
         n_max = 23
       )
       RenEn <- as.data.frame(t(RenEn))
@@ -438,7 +443,7 @@ RenEnTgt <- function(input, output, session) {
     "Structure/CurrentWorking.xlsx",
     sheet = "Renewable energy target",
     col_names = FALSE,
-    skip = 21,
+    skip = 36,
     n_max = 23
   )
   

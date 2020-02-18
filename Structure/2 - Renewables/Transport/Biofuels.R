@@ -49,9 +49,7 @@ BiofuelsOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("HMRCOils")
         
       )
     )
@@ -75,7 +73,7 @@ Biofuels <- function(input, output, session) {
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                            sheet = "Biofuels in transport", col_names = FALSE, 
-                           skip = 15, n_max = 15)
+                           skip = 12, n_max = 15)
     
     Data <- as.data.frame(t(Data))
     
@@ -94,7 +92,7 @@ Biofuels <- function(input, output, session) {
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Biofuels in transport", col_names = FALSE, 
-                       skip = 15, n_max = 15)
+                       skip = 12, n_max = 15)
     
     Data <- as.data.frame(t(Data))
     
@@ -182,7 +180,7 @@ Biofuels <- function(input, output, session) {
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Biofuels in transport", col_names = FALSE, 
-                       skip = 15, n_max = 15)
+                       skip = 12, n_max = 15)
     
     Data <- as.data.frame(t(Data))
     
@@ -258,7 +256,7 @@ Biofuels <- function(input, output, session) {
 
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                              sheet = "Biofuels in transport", col_names = FALSE, 
-                             skip = 15, n_max = 15)
+                             skip = 12, n_max = 15)
       
       Data <- as.data.frame(t(Data))
       
