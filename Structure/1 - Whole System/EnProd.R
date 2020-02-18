@@ -66,9 +66,12 @@ EnProdOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("SGQNAS"),
+        SourceLookup("BEISSubNatEnergy"),
+        SourceLookup("BEISSubNatElec"),
+        SourceLookup("BEISSubNatGas"),
+        SourceLookup("BEISLocalRoad")
+        
         
       )
     )
@@ -126,7 +129,7 @@ EnProd <- function(input, output, session) {
     EnProd <- read_excel(
       "Structure/CurrentWorking.xlsx", 
       sheet = "Energy productivity", col_names = FALSE, 
-      skip = 16, n_max = 4)
+      skip = 26, n_max = 4)
     
     EnProd <- as.data.frame(t(EnProd))
     
@@ -233,7 +236,7 @@ EnProd <- function(input, output, session) {
     EnProd <- read_excel(
       "Structure/CurrentWorking.xlsx", 
       sheet = "Energy productivity", col_names = FALSE, 
-      skip = 16, n_max = 4)
+      skip = 26, n_max = 4)
     
     EnProd <- as.data.frame(t(EnProd))
     
@@ -256,7 +259,7 @@ EnProd <- function(input, output, session) {
     EnProdHist <- read_excel(
       "Structure/CurrentWorking.xlsx", 
       sheet = "Energy productivity", col_names = FALSE, 
-      skip = 16, n_max = 4)
+      skip = 26, n_max = 4)
     
     
     EnProdHist <- as.data.frame(t(EnProdHist))
@@ -346,7 +349,7 @@ EnProd <- function(input, output, session) {
     EnProdHist <- read_excel(
       "Structure/CurrentWorking.xlsx", 
       sheet = "Energy productivity", col_names = FALSE, 
-      skip = 16, n_max = 4)
+      skip = 26, n_max = 4)
     
     
     EnProdHist <- as.data.frame(t(EnProdHist))
@@ -368,7 +371,7 @@ EnProd <- function(input, output, session) {
     EnProdData <- read_excel(
       "Structure/CurrentWorking.xlsx", 
       sheet = "Energy productivity", col_names = FALSE, 
-      skip = 16, n_max = 10)
+      skip = 26, n_max = 10)
     
     
     EnProdData <- as.data.frame(t(EnProdData))
@@ -448,24 +451,11 @@ EnProd <- function(input, output, session) {
   output$EnProd.png <- downloadHandler(
     filename = "EnProd.png",
     content = function(file) {
-      ### Load Packages and Functions
-      ###
-      
-      
-      # RenEn2 <-
-      #   read.csv(
-      #     "J:/ENERGY BRANCH/Statistics/Energy Strategy - Stats Publication/2019/Graphs/Datae/RenEnTgt.csv",
-      #     header = TRUE,
-      #     sep = ",",
-      #     na.strings = "-"
-      #   )
-      
-      ### variables
-      
+
       EnProd <- read_excel(
         "Structure/CurrentWorking.xlsx", 
         sheet = "Energy productivity", col_names = FALSE, 
-        skip = 16, n_max = 4)
+        skip = 26, n_max = 4)
       
       EnProd <- as.data.frame(t(EnProd))
       
@@ -506,24 +496,11 @@ EnProd <- function(input, output, session) {
   output$EnProdHist.png <- downloadHandler(
     filename = "EnProdHist.png",
     content = function(file) {
-      ### Load Packages and Functions
-      ###
-      
-      
-      # RenEn2 <-
-      #   read.csv(
-      #     "J:/ENERGY BRANCH/Statistics/Energy Strategy - Stats Publication/2019/Graphs/Datae/RenEnTgt.csv",
-      #     header = TRUE,
-      #     sep = ",",
-      #     na.strings = "-"
-      #   )
-      
-      ### variables
       
       EnProdHist <- read_excel(
         "Structure/CurrentWorking.xlsx", 
         sheet = "Energy productivity", col_names = FALSE, 
-        skip = 16, n_max = 4)
+        skip = 26, n_max = 4)
       
       
       EnProdHist <- as.data.frame(t(EnProdHist))

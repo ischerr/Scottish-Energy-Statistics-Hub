@@ -100,9 +100,7 @@ ElecConsumptionOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("BEISSubNatElec")
         
       )
     )
@@ -127,20 +125,12 @@ ElecConsumption <- function(input, output, session) {
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump sector",
-      col_names = FALSE,
+      sheet = "Elec consump",
       skip = 12,
-      n_max = 7
+      col_names = TRUE
     )
     
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- unlist(Data[1,])
-    
-    names(Data)[1] <- "Year"
-    
-    Data[1:7] %<>% lapply(function(x) as.numeric(as.character(x)))
-    
+    Data$Year <- as.numeric(Data$Year)
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
@@ -589,19 +579,12 @@ ElecConsumption <- function(input, output, session) {
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump sector",
-      col_names = FALSE,
-      skip = 12,
-      n_max = 7
+      sheet = "Elec consump household",
+      col_names = TRUE,
+      skip = 12
     )
     
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- unlist(Data[1,])
-    
-    names(Data)[1] <- "Year"
-    
-    Data[1:7] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data$Year <- as.numeric(Data$Year)
     
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
@@ -963,24 +946,16 @@ ElecConsumption <- function(input, output, session) {
   
   output$ElecConsumptionLASubtitle <- renderText({
     
-    RenEn <- read_excel(
+    Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Renewable energy target",
-      col_names = FALSE,
-      skip = 21,
-      n_max = 23
+      sheet = "Elec consump household",
+      col_names = TRUE,
+      skip = 12
     )
-    RenEn <- as.data.frame(t(RenEn))
-    RenEn <- RenEn[, c(1, 6, 12, 18, 23)]
-    RenEn <- tail(RenEn,-5)
-    names(RenEn) <-
-      c("Year", "Electricity", "Heat", "Transport", "Renewables")
-    RenEn[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
-      as.numeric(as.character(x)))
     
-    RenEn[which(RenEn$Year != max(RenEn$Year)),][2:4] <- 0
+    Data$Year <- as.numeric(Data$Year)
     
-    paste("Scotland,", min(RenEn$Year),"-", max(RenEn$Year))
+    paste("Scotland,", max(Data$Year, na.rm = TRUE))
   })
   
   output$ElecConsumptionLAPlot <- renderImage({
@@ -1020,8 +995,6 @@ ElecConsumption <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        ordering = TRUE,
-        order = list(list(1, 'asc')),
         title = "Total final energy consumption by consuming sector (GWh), by local authority in Scotland",
         dom = 'ltBp',
         buttons = list(

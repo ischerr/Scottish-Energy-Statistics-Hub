@@ -48,9 +48,10 @@ EnConsumptionTgtOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("BEISSubNatEnergy"),
+        SourceLookup("BEISSubNatElec"),
+        SourceLookup("BEISSubNatGas"),
+        SourceLookup("BEISLocalRoad")
         
       )
     )
@@ -74,7 +75,7 @@ EnConsumptionTgt <- function(input, output, session) {
   output$EnConsumptionTgtSubtitle <- renderText({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Energy consumption target", skip = 15, col_names = TRUE)[c(1,4)]
+                       sheet = "Energy consumption target", skip = 22, col_names = TRUE)[c(1,4)]
     
     Data[1,1] <- 2007
     
@@ -87,7 +88,7 @@ EnConsumptionTgt <- function(input, output, session) {
   output$EnConsumptionTgtPlot <- renderPlotly  ({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Energy consumption target", skip = 15, col_names = TRUE)[c(1,4)]
+                       sheet = "Energy consumption target", skip = 22, col_names = TRUE)[c(1,4)]
     
     Data[1,1] <- 2007
     
@@ -205,7 +206,7 @@ EnConsumptionTgt <- function(input, output, session) {
     
     EnConsumption <- read_excel("Structure/CurrentWorking.xlsx", 
                           sheet = "Energy consumption target", col_names = FALSE, 
-                          skip = 15)[1:4]
+                          skip = 22)[1:4]
     EnConsumption <- tail(EnConsumption, -1)
     
     names(EnConsumption) <- c("Year","Change in Consumption from Baseline (GWh)", "Total Energy Consumption (GWh)", "% Progress")
@@ -277,7 +278,7 @@ EnConsumptionTgt <- function(input, output, session) {
 
 
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Energy consumption target", skip = 15, col_names = TRUE)[c(1,4)]
+                         sheet = "Energy consumption target", skip = 22, col_names = TRUE)[c(1,4)]
       
       Data[1,1] <- 2007
       

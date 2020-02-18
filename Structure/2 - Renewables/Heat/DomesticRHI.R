@@ -84,9 +84,7 @@ DomesticRHIOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTDomRHIInstallations")
+        SourceLookup("BEISRHI")
         
       )
     )
@@ -118,7 +116,7 @@ DomesticRHI <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Domestic RHI", 
-        skip = 13, n_max = 5)
+        skip = 14, n_max = 5)
     
     Data <- Data[1:4,c(1,3,5)]
     
@@ -186,7 +184,7 @@ DomesticRHI <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Domestic RHI", col_names = FALSE, 
-        skip = 58)
+        skip = 61)
   Data <- Data[complete.cases(Data),]
      
 names(Data)[1] <- "Year"
@@ -200,7 +198,7 @@ names(Data)[1] <- "Year"
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Domestic RHI", col_names = FALSE, 
-        skip = 58)
+        skip = 61)
     Data <- Data[complete.cases(Data),][c(1,3,5,7,9,11)]
     
     names(Data) <- c("Year", "Air Source", "Ground Source", "Biomass", "Solar Thermal", "Total")
@@ -410,7 +408,7 @@ names(Data)[1] <- "Year"
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Domestic RHI", 
-        skip = 13, n_max = 5)
+        skip = 14, n_max = 5)
     
     names(Data) <- c("Technology", "Heat paid for under the domestic scheme - MWh", "Heat paid for under the domestic scheme - %", "Number of installations receiving payment - MWh", "Number of installations receiving payment - %")
     
@@ -427,8 +425,6 @@ names(Data)[1] <- "Year"
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        ordering = TRUE,
-        order = list(list(0, 'desc')),
         title = "Domestic RHI heat generated and number of installations receiving payment by technology, Scotland",
         dom = 'ltBp',
         buttons = list(
@@ -459,7 +455,7 @@ names(Data)[1] <- "Year"
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Domestic RHI", 
-        skip = 59)
+        skip = 60)
     
     names(Data) <- c("Date", "Air Source - Applications", "Air Source - Accredited Applications",
                     "Ground Source - Applications", "Ground Source - Accredited Applications",
@@ -509,7 +505,7 @@ names(Data)[1] <- "Year"
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Domestic RHI", col_names = T, 
-        skip = 22, n_max = 34)
+        skip = 23, n_max = 34)
     
 names(Data)[1] <- "LA Code"
     
@@ -583,7 +579,7 @@ names(Data)[1] <- "LA Code"
         read_excel(
           "Structure/CurrentWorking.xlsx",
           sheet = "Domestic RHI", col_names = FALSE, 
-                             skip = 14, n_max = 4)
+                             skip = 15, n_max = 4)
           
           Data <- Data[c(1,5,3)]
           
@@ -707,15 +703,12 @@ output$DomRHIInstallationsOutput.png <- downloadHandler(
     RHIDom <-
       read_excel(
         "Structure/CurrentWorking.xlsx",
-        sheet = "Domestic RHI", skip = 58)
+        sheet = "Domestic RHI", skip = 60)
     
     RHIDom[c(2,4,6,8,10)] <- RHIDom[c(3,5,7,9,11)]
     
     RHIDom <- RHIDom[c(1,2,4,6,8,10)]
-    
-    RHIDom <- tail(RHIDom, -1)
-    
-    
+  
     names(RHIDom) <- c( "Year", "Air Source heat pump", "Ground Source heat pump", "Biomass", "Solar Thermal", "Total")
     
     RHIDom$Year <- ymd(RHIDom$Year)

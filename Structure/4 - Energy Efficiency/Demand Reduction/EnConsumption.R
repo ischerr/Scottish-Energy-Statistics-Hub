@@ -76,9 +76,8 @@ EnergyConsumptionOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("BEISSubNatEnergy"),
+        SourceLookup("BEISDUKESBalance")
         
       )
     )
@@ -105,7 +104,7 @@ EnergyConsumption <- function(input, output, session) {
       "Structure/CurrentWorking.xlsx",
       sheet = "Energy consump sector",
       col_names = FALSE,
-      skip = 12,
+      skip = 16,
       n_max = 7
     )
     
@@ -126,7 +125,7 @@ EnergyConsumption <- function(input, output, session) {
       "Structure/CurrentWorking.xlsx",
       sheet = "Energy consump sector",
       col_names = FALSE,
-      skip = 12,
+      skip = 16,
       n_max = 7
     )
     
@@ -295,7 +294,7 @@ EnergyConsumption <- function(input, output, session) {
   output$EnConsumptionSectorTable = renderDataTable({
     
     EnConsumption <- read_excel("Structure/CurrentWorking.xlsx", 
-                                sheet = "Energy consump sector", skip = 12, col_names = FALSE)
+                                sheet = "Energy consump sector", skip = 16, col_names = FALSE)
     EnConsumption <- head(EnConsumption, -1)
     
     EnConsumption <- as_tibble(t(EnConsumption))
@@ -372,7 +371,7 @@ EnergyConsumption <- function(input, output, session) {
 
 
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Energy consump sector", skip = 12, col_names = FALSE)
+                         sheet = "Energy consump sector", skip = 16, col_names = FALSE)
       
       Data <- as_tibble(t(Data))
       
@@ -664,7 +663,7 @@ EnergyConsumption <- function(input, output, session) {
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump sector",
+      sheet = "Energy consump fuel type",
       col_names = FALSE,
       skip = 12,
       n_max = 7

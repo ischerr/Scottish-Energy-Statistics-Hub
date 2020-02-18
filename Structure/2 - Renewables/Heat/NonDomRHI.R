@@ -101,9 +101,7 @@ NonDomRHIOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTNonDomRHIInstallations")
+        SourceLookup("BEISRHI")
         
       )
     )
@@ -143,7 +141,7 @@ NonDomRHI <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Non-domestic RHI", 
-        skip = 12, n_max = 5)
+        skip = 13, n_max = 5)
     
     Data <- Data[3:5,c(1,4,6,8)]
     
@@ -221,7 +219,7 @@ NonDomRHI <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Non-domestic RHI", col_names = TRUE, 
-        skip = 71)
+        skip = 72)
   Data <- Data[complete.cases(Data),]
      
 names(Data)[1] <- "Year"
@@ -237,7 +235,7 @@ names(Data)[1] <- "Year"
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Non-domestic RHI", col_names = TRUE, 
-        skip = 71)
+        skip = 72)
     Data <- Data[complete.cases(Data),]
     
     names(Data)[1] <- "Year"
@@ -314,7 +312,7 @@ names(Data)[1] <- "Year"
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Non-domestic RHI", col_names = TRUE, 
-        skip = 71)
+        skip = 72)
     Data <- Data[complete.cases(Data),]
     
     names(Data)[1] <- "Year"
@@ -328,7 +326,7 @@ names(Data)[1] <- "Year"
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Non-domestic RHI", col_names = TRUE, 
-        skip = 71)
+        skip = 72)
     Data <- Data[complete.cases(Data),]
     
     names(Data)[1] <- "Year"
@@ -407,7 +405,7 @@ names(Data)[1] <- "Year"
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Non-domestic RHI", 
-        skip = 12, n_max = 15)
+        skip = 13, n_max = 15)
     
     Data <- tail(Data, 13)
     
@@ -458,17 +456,14 @@ names(Data)[1] <- "Year"
     Data <-
       read_excel(
         "Structure/CurrentWorking.xlsx",
-        sheet = "Renewable heat by tech type", col_names = FALSE, 
-        skip = 13, n_max = 7)
+        sheet = "Non-domestic RHI", 
+        skip = 72)
+
+    names(Data)[1] <- c("Date")
     
-    Data <- as.data.frame(t(Data))
-    names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar", "Total")
-    Data %<>% lapply(function(x) as.numeric(as.character(x)))
     Data <- as_tibble(Data)
-    Data <- arrange(Data, -row_number())
-    Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
-    Data <- Data[complete.cases(Data),]
-    Data <- arrange(Data, -row_number())
+    
+    Data$Date <- format(Data$Date, "%b %Y")
     
     NonDomRHIAccreditedInstallationsTech <- Data
     
@@ -483,8 +478,6 @@ names(Data)[1] <- "Year"
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        ordering = TRUE,
-        order = list(list(0, 'desc')),
         title = "Cumulative number and capacity  of non-domestic RHI applications and accredited applications, Scotland",
         dom = 'ltBp',
         buttons = list(
@@ -514,7 +507,7 @@ names(Data)[1] <- "Year"
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Non-domestic RHI", 
-        skip = 34, n_max = 34)
+        skip = 35, n_max = 34)
     
     Data <- Data[c(2,1,3,4)]
     
@@ -590,7 +583,7 @@ names(Data)[1] <- "Year"
         read_excel(
           "Structure/CurrentWorking.xlsx",
           sheet = "Non-domestic RHI", col_names = FALSE, 
-          skip = 14, n_max = 4)
+          skip = 15, n_max = 4)
       Data <- Data[c(1,8,6,4)]
       
       names(Data) <- c("Tech", "Capacity", "No. of Installations", "Heat generated")
@@ -717,7 +710,7 @@ output$NonDomRHIAccreditedInstallations.png <- downloadHandler(
     RHINonDom <-
       read_excel(
         "Structure/CurrentWorking.xlsx",
-        sheet = "Non-domestic RHI", skip = 71)
+        sheet = "Non-domestic RHI", skip = 72)
     
     
     RHINonDom <- RHINonDom[c(1,3,5)]
@@ -838,7 +831,7 @@ output$NonDomRHIInstallationCap.png <- downloadHandler(
     RHINonDomCap <-
       read_excel(
         "Structure/CurrentWorking.xlsx",
-        sheet = "Non-domestic RHI", skip = 71)
+        sheet = "Non-domestic RHI", skip = 72)
     
     
     

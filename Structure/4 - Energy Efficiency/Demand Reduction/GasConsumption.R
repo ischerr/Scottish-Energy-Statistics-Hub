@@ -100,9 +100,9 @@ GasConsumptionOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("BEISGasCustomers"),
+        SourceLookup("BEISUKConsump"),
+        SourceLookup("BEISSubNatGas")
         
       )
     )
@@ -129,7 +129,7 @@ GasConsumption <- function(input, output, session) {
       "Structure/CurrentWorking.xlsx",
       sheet = "Gas consump",
       col_names = FALSE,
-      skip = 12
+      skip = 16
     )
     
     names(Data) <- unlist(Data[1,])
@@ -147,7 +147,7 @@ GasConsumption <- function(input, output, session) {
       "Structure/CurrentWorking.xlsx",
       sheet = "Gas consump",
       col_names = FALSE,
-      skip = 12
+      skip = 16
     )
     
     names(Data) <- unlist(Data[1,])
@@ -292,7 +292,7 @@ GasConsumption <- function(input, output, session) {
       "Structure/CurrentWorking.xlsx",
       sheet = "Gas consump",
       col_names = FALSE,
-      skip = 12
+      skip = 16
     )
     
     names(Data) <- unlist(Data[1,])
@@ -375,7 +375,7 @@ GasConsumption <- function(input, output, session) {
 
 
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Gas consump", skip = 13, col_names = FALSE)[c(1,3,2,6)]
+                         sheet = "Gas consump", skip = 17, col_names = FALSE)[c(1,3,2,6)]
       
       Data[1,1] <- 2003
       
@@ -592,19 +592,16 @@ GasConsumption <- function(input, output, session) {
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump sector",
+      sheet = "Gas consump by household",
       col_names = FALSE,
-      skip = 12,
-      n_max = 7
+      skip = 12
     )
-    
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- unlist(Data[1,])
+
+        names(Data) <- unlist(Data[1,])
     
     names(Data)[1] <- "Year"
     
-    Data[1:7] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data %<>% lapply(function(x) as.numeric(as.character(x)))
     
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
@@ -962,24 +959,20 @@ GasConsumption <- function(input, output, session) {
   
   output$GasConsumptionLASubtitle <- renderText({
     
-    RenEn <- read_excel(
+    Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Renewable energy target",
+      sheet = "Gas consump by household",
       col_names = FALSE,
-      skip = 21,
-      n_max = 23
+      skip = 12
     )
-    RenEn <- as.data.frame(t(RenEn))
-    RenEn <- RenEn[, c(1, 6, 12, 18, 23)]
-    RenEn <- tail(RenEn,-5)
-    names(RenEn) <-
-      c("Year", "Electricity", "Heat", "Transport", "Renewables")
-    RenEn[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
-      as.numeric(as.character(x)))
     
-    RenEn[which(RenEn$Year != max(RenEn$Year)),][2:4] <- 0
+    names(Data) <- unlist(Data[1,])
     
-    paste("Scotland,", min(RenEn$Year),"-", max(RenEn$Year))
+    names(Data)[1] <- "Year"
+    
+    Data %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    paste("Scotland,", max(Data$Year, na.rm = TRUE))
   })
   
   output$GasConsumptionLAPlot <- renderImage({
