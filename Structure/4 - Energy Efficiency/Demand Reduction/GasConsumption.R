@@ -977,8 +977,6 @@ GasConsumption <- function(input, output, session) {
   
   output$GasConsumptionLAPlot <- renderImage({
     
-    # A temp file to save the output. It will be deleted after renderImage
-    # sends it, because deleteFile=TRUE.
     outfile <- tempfile(fileext='.png')
     
     writePNG(readPNG("Structure/4 - Energy Efficiency/Demand Reduction/GasConsumptionLAOutput.png"),outfile) 
