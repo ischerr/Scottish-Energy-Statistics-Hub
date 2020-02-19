@@ -1,13 +1,11 @@
 source("packages.R")
 
-
-
 js_code <- "
 shinyjs.browseURL = function(url) {
   window.open(url,'_blank');
 }
 "
-# 
+
 dir.create('~/.fonts')
 file.copy("www/GOTHIC.TTF", "~/.fonts")
 system('fc-cache -f ~/.fonts')
@@ -21,13 +19,10 @@ system('fc-cache -f ~/.fonts')
       pattern = "\\.R$"
     )
 
-
-
-
 ### Pass Each list item to Source() command ###
   sapply(SourceList, source)
 
-
+  
   
 server <- function(input, output, session) {
   
@@ -39,6 +34,8 @@ server <- function(input, output, session) {
 #Create a reactive value so the URL code only runs once, when the app first loads. This prevents the app from looping if navigated too quickly  
 rv$URLLoaded <- 0
   
+
+###Parse URL to switch to appropriate tab
 observe({
   
   
