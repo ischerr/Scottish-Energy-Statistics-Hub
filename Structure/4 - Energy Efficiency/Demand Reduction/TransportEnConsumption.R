@@ -48,9 +48,7 @@ TransportEnConsumptionOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("BEISLocalRoad")
         
       )
     )
@@ -75,19 +73,16 @@ TransportEnConsumption <- function(input, output, session) {
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump sector",
-      col_names = FALSE,
-      skip = 12,
-      n_max = 7
+      sheet = "Transport energy consump",
+      col_names = TRUE,
+      skip = 14
     )
     
-    Data <- as_tibble(t(Data))
+    Data <- Data[complete.cases(Data),]
     
-    names(Data) <- unlist(Data[1,])
+    Data <- head(Data,-1)
     
-    names(Data)[1] <- "Year"
-    
-    Data[1:7] %<>% lapply(function(x) as.numeric(as.character(x)))
+    names(Data)[c(1,12,13)] <- c("Year", "Rail", "Total Transport Consumption")
     
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
@@ -98,7 +93,7 @@ TransportEnConsumption <- function(input, output, session) {
       "Structure/CurrentWorking.xlsx",
       sheet = "Transport energy consump",
       col_names = FALSE,
-      skip = 16
+      skip = 14
     )[c(1,6,10,12,13)]
     
     names(Data) <- c("Year", "Road - Personal", "Road - Freight", "Rail", "Total")
@@ -267,7 +262,7 @@ TransportEnConsumption <- function(input, output, session) {
       "Structure/CurrentWorking.xlsx",
       sheet = "Transport energy consump",
       col_names = TRUE,
-      skip = 16
+      skip = 14
     )
     
     Data <- Data[complete.cases(Data),]

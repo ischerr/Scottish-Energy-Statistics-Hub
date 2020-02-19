@@ -48,10 +48,9 @@ HHoldEnConsumptionOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
-        
+        SourceLookup("SGSHCS"),
+        SourceLookup("BEISSubNatEnergy"),
+        SourceLookup("BEISUKConsump")
       )
     )
   )
@@ -102,24 +101,16 @@ HHoldEnConsumption <- function(input, output, session) {
   
   output$HHoldEnConsumptionSubtitle <- renderText({
     
-    HHoldEnConsumption <- read_excel("Structure/CurrentWorking.xlsx",
-                          sheet = "Energy consump by sector", col_names = TRUE, 
-                          skip = 17)
+
+      paste("Scotland, 2018")
     
-    HHoldEnConsumption <- HHoldEnConsumption[2:6]
-    
-    HHoldEnConsumption <- HHoldEnConsumption[complete.cases(HHoldEnConsumption),]
-    
-    names(HHoldEnConsumption) <- c("Year", "Heat", "Transport", "Electricity", "Other")
-    
-    paste(max(as.numeric(HHoldEnConsumption$Year), na.rm = TRUE))
   })
  
   output$HHoldEnConsumptionPlot <- renderPlotly  ({
     
     HHoldEnConsumption <- read_excel("Structure/CurrentWorking.xlsx",
                                sheet = "Household energy consump", col_names = TRUE, 
-                               skip = 14)
+                               skip = 20)
     
     HHoldEnConsumption <- HHoldEnConsumption[-1,]
 
@@ -183,7 +174,7 @@ HHoldEnConsumption <- function(input, output, session) {
     
     HHoldEnConsumption <- read_excel("Structure/CurrentWorking.xlsx",
                                              sheet = "Household energy consump", col_names = FALSE, 
-                                             skip = 14)
+                                             skip = 20)
     
     HHoldEnConsumption <- as_tibble(t(HHoldEnConsumption))
     
