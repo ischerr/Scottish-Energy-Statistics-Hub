@@ -48,9 +48,7 @@ SmartMetersOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("ElectralinkMeters")
         
       )
     )
@@ -62,38 +60,7 @@ SmartMetersOutput <- function(id) {
 
 ###### Server ######
 SmartMeters <- function(input, output, session) {
-  # output$SmartMetersPlot <- renderDygraph({
-  #   RenEn <-
-  #     read.csv(
-  #       "Structure/2 - Renewables/Electricity/SmartMeters.csv",
-  #       header = TRUE,
-  #       sep = ",",
-  #       na.strings = "-"
-  #     )
-  #
-  #   YearLow <- as.numeric(min(RenEn$Year))
-  #   YearHigh <- as.numeric(max(RenEn$Year +1))
-  #
-  #   dygraph(RenEn, main = "Renewable Energy Target") %>%
-  #     dyAxis("y", label = "% Progress", valueRange = c(0,30)) %>%
-  #     dyAxis("x", label = "Year", drawGrid = TRUE) %>%
-  #     dyOptions(colors =  c("Green","Orange", "Blue")) %>%
-  #     dyLegend(width = 170 ,
-  #              labelsSeparateLines = TRUE ,
-  #              show = "always") %>%
-  #     dyOptions(
-  #       stackedGraph = TRUE,
-  #       axisLineColor = "white",
-  #       gridLineColor = "white",
-  #       includeZero = TRUE,
-  #       fillAlpha = .65
-  #     ) %>%
-  #     #    dyRangeSelector() %>%
-  #     dyCSS("Structure/2 - Renewables/Electricity/legend.css")
-  #
-  # })
-  
-  
+
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }

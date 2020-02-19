@@ -85,9 +85,11 @@ EnBalanceOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("SGSNAP"),
+        SourceLookup("BEISElecGen"),
+        SourceLookup("BEISSubNatEnergy"),
+        SourceLookup("BEISRenElec"),
+        SourceLookup("HMRCTrade")
         
       )
     )

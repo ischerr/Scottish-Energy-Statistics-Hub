@@ -48,9 +48,11 @@ AverageBillLAOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("BEISUnitElec"),
+        SourceLookup("BEISSubNatElec"),
+        SourceLookup("BEISUnitGas"),
+        SourceLookup("BEISSubNatGas")
+
         
       )
     )
@@ -99,10 +101,12 @@ AverageBillLA <- function(input, output, session) {
     
     AverageBillLA <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Non-gas grid by LA",
-      skip = 13
-    )[c(2,5)]
+      sheet = "Average Bill",
+      skip = 22
+    )[c(2,1,4,5,6)]
 
+    names(AverageBillLA) <- c("Local Authority", "Code", "Average Electricity Bill", "Average Gas Bill", "Average Total Bill")
+    
     datatable(
       AverageBillLA,
       extensions = 'Buttons',
@@ -115,17 +119,17 @@ AverageBillLA <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Proportion of households not on the gas grid by local authority (estimates)",
+        title = "Average annual energy bill prices (\u00A3)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Proportion of households not on the gas grid by local authority (estimates)',
+            title = 'Average annual energy bill prices (\u00A3)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Proportion of households not on the gas grid by local authority (estimates)')
+               title = 'Average annual energy bill prices (\u00A3)')
         ),
         
         # customize the length menu
@@ -136,7 +140,7 @@ AverageBillLA <- function(input, output, session) {
       )
     ) %>%
       formatPercentage(2, 1) %>% 
-      formatRound(2:3, 0)
+      formatCurrency(3:5, currency = "\u00A3")
   })
   
   output$AverageBillLATimeSeriesTable = renderDataTable({

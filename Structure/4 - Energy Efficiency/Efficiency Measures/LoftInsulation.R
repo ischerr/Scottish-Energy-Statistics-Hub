@@ -48,9 +48,9 @@ LoftInsulationOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("SGSHCS"),
+        SourceLookup("BEISNEED"),
+        SourceLookup("BEISHHoldEE")
         
       )
     )
@@ -77,7 +77,7 @@ LoftInsulation <- function(input, output, session) {
       "Structure/CurrentWorking.xlsx",
       sheet = "Loft insulation",
       col_names = FALSE,
-      skip = 12,
+      skip = 19,
       n_max = 5
     )
     
@@ -98,7 +98,7 @@ LoftInsulation <- function(input, output, session) {
       "Structure/CurrentWorking.xlsx",
       sheet = "Loft insulation",
       col_names = FALSE,
-      skip = 12,
+      skip = 19,
       n_max = 5
     )
     
@@ -219,7 +219,7 @@ LoftInsulation <- function(input, output, session) {
       "Structure/CurrentWorking.xlsx",
       sheet = "Loft insulation",
       col_names = FALSE,
-      skip = 12,
+      skip = 19,
       n_max = 5
     )
     
@@ -299,7 +299,7 @@ LoftInsulation <- function(input, output, session) {
 
 
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Loft insulation", skip = 12, n_max = 5, col_names = FALSE)
+                         sheet = "Loft insulation", skip = 19, n_max = 5, col_names = FALSE)
       
       Data <- as_tibble(t(Data))
       

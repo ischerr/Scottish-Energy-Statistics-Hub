@@ -8,3 +8,13 @@ setAccountInfo(name   = Sys.getenv("shinyapps_name"),
 
 # Deploy the application.
 deployApp(appName = "Reorganised", lint = TRUE)
+
+
+setAccountInfo(name   = Sys.getenv("shinyapps_name2"),
+               token  = Sys.getenv("shinyapps_token2"),
+               secret = Sys.getenv("shinyapps_secret2"))
+
+deployApp(appName = "Energy", lint = TRUE)
+
+deployApp(appName = "sg-scottish-energy-statistics", lint = TRUE)
+

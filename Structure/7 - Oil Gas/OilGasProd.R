@@ -48,9 +48,7 @@ OilGasProdOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        p("Energy Balance")
         
       )
     )

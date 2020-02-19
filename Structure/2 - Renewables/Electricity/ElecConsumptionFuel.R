@@ -58,9 +58,7 @@ ElecConsumptionFuelOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("NGCarbonAPI")
         
       )
     )

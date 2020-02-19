@@ -76,9 +76,8 @@ ULEVsOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTULEVReg")
+        SourceLookup("DFTLicenced"),
+        SourceLookup("DFTULEVs")
         
       )
     )
@@ -105,7 +104,7 @@ ULEVs <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "ULEVs", 
-        skip = 13)
+        skip = 17)
     
     Data <- Data[c(1,3,4,2)]
     
@@ -120,7 +119,7 @@ ULEVs <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "ULEVs", 
-        skip = 13)
+        skip = 17)
     
     Data <- Data[c(1,3,4,2)]
     
@@ -193,7 +192,7 @@ ULEVs <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "ULEVs", 
-        skip = 13)
+        skip = 17)
     
     Data <- Data[c(1,3,4,2)]
     
@@ -210,7 +209,7 @@ ULEVs <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "ULEVs", col_names = TRUE, 
-        skip = 14)
+        skip = 18)
     
     Data <- Data[c(1,12)]
     
@@ -292,7 +291,7 @@ ULEVs <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "ULEVs", col_names = TRUE, 
-        skip = 14)
+        skip = 17)
     
     Data <- Data[c(1:4,6:7)]
     
@@ -341,7 +340,7 @@ ULEVs <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "ULEVs", col_names = TRUE, 
-        skip = 14)
+        skip = 17)
     
     Data <- Data[c(1,10:12)]
     
@@ -412,7 +411,7 @@ ULEVs <- function(input, output, session) {
 
       ElecVehicles <- read_excel("Structure/CurrentWorking.xlsx", 
                                  sheet = "ULEVs", col_names = TRUE, 
-                                 skip = 14)[c(1,3,4)]
+                                 skip = 17)[c(1,3,4)]
       
       ElecVehicles$Year <-
         as.yearqtr(ElecVehicles$Year, format = "%Y Q%q")
@@ -608,7 +607,7 @@ output$ULEVRegOutput.png <- downloadHandler(
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "ULEVs", col_names = TRUE, 
-        skip = 14)[c(1,10,12)]
+        skip = 18)[c(1,10,12)]
     
     names(ElecVehiclesRegistrations) <- c("Year", "Registrations", "Proportion")
     
