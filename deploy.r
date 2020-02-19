@@ -20,5 +20,7 @@ deployApp(appName = "Energy",
           account = Sys.getenv("shinyapps_name2"),
           lint = TRUE)
 
-deployApp(appName = "sg-scottish-energy-statistics", lint = TRUE)
+deployApp(appName = "sg-scottish-energy-statistics",
+          account = Sys.getenv("shinyapps_name2"),
+          lint = TRUE)
 
