@@ -74,9 +74,8 @@ RestrictedPPMOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("BEISElecPPM"),
+        SourceLookup("BEISElecMeter")
         
       )
     )

@@ -48,9 +48,7 @@ NonGasGridOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("BEISNonGasGrid")
         
       )
     )
@@ -74,7 +72,7 @@ NonGasGrid <- function(input, output, session) {
   
   output$NonGasGridSubtitle <- renderText({
     
-    paste("Scotland, 2017")
+    paste("Scotland, 2018")
   
     })
   
