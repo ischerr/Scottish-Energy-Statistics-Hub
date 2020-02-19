@@ -131,9 +131,9 @@ HHoldEnConsumption <- function(input, output, session) {
       labels = ~variable,
       type = 'pie',
       values = ~value,
-      text = paste0("<p>",
+      text = paste0(
         HHoldEnConsumption$variable,
-        ": ", format(round(HHoldEnConsumption$value, 0), big.mark = ","), " GWh", "</p>" 
+        ": ", format(round(HHoldEnConsumption$value, 0), big.mark = ","), " GWh"
       ),
       textposition = 'outside',
       textinfo = 'label+percent',
