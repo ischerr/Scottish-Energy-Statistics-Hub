@@ -90,9 +90,8 @@ EnergyNonHomeOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("BEISQuarterlyElecCustomers"),
+        SourceLookup("BEISQuarterlyGasCustomers")
         
       )
     )
@@ -147,24 +146,21 @@ EnergyNonHome <- function(input, output, session) {
   
   output$ElecNonHomeSubtitle <- renderText({
     
-    RenEn <- read_excel(
+    ElecNonHome <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Renewable energy target",
-      col_names = FALSE,
-      skip = 21,
-      n_max = 23
+      sheet = "Non-home supplier elec",
+      skip = 21
     )
-    RenEn <- as.data.frame(t(RenEn))
-    RenEn <- RenEn[, c(1, 6, 12, 18, 23)]
-    RenEn <- tail(RenEn,-5)
-    names(RenEn) <-
-      c("Year", "Electricity", "Heat", "Transport", "Renewables")
-    RenEn[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
-      as.numeric(as.character(x)))
     
-    RenEn[which(RenEn$Year != max(RenEn$Year)),][2:4] <- 0
+    names(ElecNonHome)[1] <- "Quarter"#
     
-    paste("Scotland,", min(RenEn$Year),"-", max(RenEn$Year))
+    ElecNonHome <- ElecNonHome[complete.cases(ElecNonHome),]
+    
+    ElecNonHome$Quarter <- as.Date(as.numeric(ElecNonHome$Quarter), origin = "1899-12-30")
+    
+    ElecNonHome$Quarter <- as.character(as.yearqtr(ElecNonHome$Quarter))
+    
+    paste("Scotland,", min(ElecNonHome$Quarter),"-", max(ElecNonHome$Quarter))
   })
   
   output$ElecNonHomePlot <- renderImage({
@@ -325,24 +321,19 @@ EnergyNonHome <- function(input, output, session) {
   
   output$GasNonHomeSubtitle <- renderText({
     
-    RenEn <- read_excel(
+    GasNonHome <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Renewable energy target",
-      col_names = FALSE,
-      skip = 21,
-      n_max = 23
+      sheet = "Non-home supplier gas",
+      skip = 21
     )
-    RenEn <- as.data.frame(t(RenEn))
-    RenEn <- RenEn[, c(1, 6, 12, 18, 23)]
-    RenEn <- tail(RenEn,-5)
-    names(RenEn) <-
-      c("Year", "gas", "Heat", "Transport", "Renewables")
-    RenEn[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
-      as.numeric(as.character(x)))
     
-    RenEn[which(RenEn$Year != max(RenEn$Year)),][2:4] <- 0
+    names(GasNonHome)[1] <- "Quarter"#
     
-    paste("Scotland,", min(RenEn$Year),"-", max(RenEn$Year))
+    GasNonHome <- GasNonHome[complete.cases(GasNonHome),]
+    
+    GasNonHome$Quarter <- as.character(as.yearqtr(GasNonHome$Quarter))
+    
+    paste("Scotland,", min(GasNonHome$Quarter),"-", max(GasNonHome$Quarter))
   })
   
   output$GasNonHomePlot <- renderImage({

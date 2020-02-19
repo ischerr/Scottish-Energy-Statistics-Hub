@@ -28,7 +28,7 @@ ElecStorageOutput <- function(id) {
                ),
       tabPanel("Pipeline",
                fluidRow(column(8,
-                               h3("Energy storage by planning stage", style = "color: #5d8be1;  font-weight:bold"),
+                               h3("Pipeline storage capacity by planning stage", style = "color: #5d8be1;  font-weight:bold"),
                                h4(textOutput(ns('ElecStorageSubtitle')), style = "color: #5d8be1;")
                ),
                column(
@@ -82,9 +82,7 @@ ElecStorageOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("BEISREPD")
         
       )
     )
@@ -122,7 +120,7 @@ ElecStorage <- function(input, output, session) {
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Electricity storage", col_names = TRUE,
-                       skip = 16, n_max = 10)[6:10]
+                       skip = 14, n_max = 10)[6:10]
     
     Data <- Data[complete.cases(Data),]
     
@@ -133,15 +131,6 @@ ElecStorage <- function(input, output, session) {
     
     names(ElecStorage)[1] <- "Type"
     
-    # 
-    # Data <- as.data.frame(t(Data))
-    # 
-    # names(Data) <-  as.character(unlist(Data[1,]))
-    # names(Data)[1] <- "Type"
-    # Data <- tail(Data,-1)
-    # Data %<>% lapply(function(x) as.numeric(as.character(x)))
-    # Data <- as.data.frame(Data)
-    
     ElecStorage <- ElecStorage[which(ElecStorage$Total > 0),]
     
     ElecStorage <- arrange(ElecStorage, ElecStorage$Total)
@@ -150,7 +139,6 @@ ElecStorage <- function(input, output, session) {
     
     
     ElecStorage$Type <- paste0("<b>", str_wrap(ElecStorage$Type, 6), "</b>")
-    #ElecStorage$Type <- as.numeric(rownames(ElecStorage))
     
     ChartColours <- c("#5d8be1", "#FF8500")
     BarColours <-
@@ -254,7 +242,7 @@ ElecStorage <- function(input, output, session) {
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Electricity storage", col_names = TRUE,
-                       skip = 16, n_max = 10)[6:10]
+                       skip = 14, n_max = 10)[6:10]
     
     Data <- Data[complete.cases(Data),]
     
@@ -326,13 +314,13 @@ ElecStorage <- function(input, output, session) {
 
       ### Load Packages and Functions
       Data <- read_excel("Structure/CurrentWorking.xlsx",
-                          sheet = "Electricity storage", skip = 16)[6:10]
+                          sheet = "Electricity storage", skip = 14)[6:9]
       
       names(Data)[1] <- "Type"
       
       Data <- Data[complete.cases(Data),]
       
-      Data[2:5] %<>% lapply(function(x) as.numeric(as.character(x)))
+      Data[2:4] %<>% lapply(function(x) as.numeric(as.character(x)))
       
       EnergyStorageTech <- Data
       
@@ -357,7 +345,7 @@ ElecStorage <- function(input, output, session) {
         mutate(top = sum(value))
       
       plottitle <-
-        "Energy storage by planning stage"
+        "Pipeline storage capacity by planning stage"
       sourcecaption <- "Source: BEIS"
       
       ChartColours <- c("#5d8be1", "#FF8500")
@@ -410,17 +398,7 @@ ElecStorage <- function(input, output, session) {
         geom_text(
           aes(
             x = 3.8,
-            y = (.5/4) *4500,
-            label = "Operational",
-            fontface = 2
-          ),
-          colour = BarColours[1],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = 3.8,
-            y = (1.5/4) *4500,
+            y = ((.5/3) *4000) - 500,
             label = "Under\nconstruction",
             fontface = 2
           ),
@@ -430,7 +408,7 @@ ElecStorage <- function(input, output, session) {
         geom_text(
           aes(
             x = 3.8,
-            y = (2.5/4) *4500,
+            y = ((1.5/3) *4000)-500,
             label = "Awaiting\nconstruction",
             fontface = 2
           ),
@@ -440,7 +418,7 @@ ElecStorage <- function(input, output, session) {
         geom_text(
           aes(
             x = 3.8,
-            y = (3.5/4) *4500,
+            y = ((2.5/3) *4000)-500,
             label = "Application\nsubmitted",
             fontface = 2
           ),
@@ -450,7 +428,7 @@ ElecStorage <- function(input, output, session) {
         geom_text(
           aes(
             x = 4,
-            y = (3.5/4) *4500,
+            y = (3.5/3) *4500,
             label = " ",
             fontface = 2
           ),
@@ -517,7 +495,7 @@ ElecStorage <- function(input, output, session) {
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Electricity storage", col_names = TRUE,
-                       skip = 16, n_max = 10)[1:2]
+                       skip = 14, n_max = 10)[1:2]
     
     Data <- Data[complete.cases(Data),]
     
@@ -614,7 +592,7 @@ ElecStorage <- function(input, output, session) {
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Electricity storage", col_names = TRUE,
-                       skip = 16, n_max = 10)[1:2]
+                       skip = 14, n_max = 10)[1:2]
     
     Data <- Data[complete.cases(Data),]
     
@@ -671,7 +649,7 @@ ElecStorage <- function(input, output, session) {
       
       ### Load Packages and Functions
       Data <- read_excel("Structure/CurrentWorking.xlsx",
-                         sheet = "Electricity storage", skip = 16)[1:2]
+                         sheet = "Electricity storage", skip = 14)[1:2]
       
       names(Data)[1] <- "Type"
       
@@ -702,7 +680,7 @@ ElecStorage <- function(input, output, session) {
         mutate(top = sum(value))
       
       plottitle <-
-        "Energy storage by planning stage"
+        "Pipeline storage capacity by planning stage"
       sourcecaption <- "Source: BEIS"
       
       ChartColours <- c("#5d8be1", "#FF8500")
