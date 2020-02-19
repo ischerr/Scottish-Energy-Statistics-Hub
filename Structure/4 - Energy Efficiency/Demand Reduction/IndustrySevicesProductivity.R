@@ -102,10 +102,10 @@ IndustrySevicesProductivityOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
-        
+        SourceLookup("BEISSubNatEnergy"),
+        SourceLookup("BEISDUKESBalance"),
+        SourceLookup("SGEmissions"),
+        SourceLookup("SGQNASSector")
       )
     )
   )
@@ -515,7 +515,7 @@ IndustrySevicesProductivity <- function(input, output, session) {
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Industry services productivity", skip = 21,  col_names = FALSE, n_max = 7)
+                       sheet = "Industry services productivity", skip = 22,  col_names = FALSE, n_max = 7)
     
     Data <- as_tibble(t(Data))[c(1:4,6:7)]
     
@@ -564,7 +564,7 @@ IndustrySevicesProductivity <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(1:6, 0) %>% 
+      formatRound(2:6, 0) %>% 
       formatRound(4,1) %>% 
       formatRound(5,2)
   })
@@ -946,7 +946,7 @@ IndustrySevicesProductivity <- function(input, output, session) {
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Industry services productivity", skip = 30,  col_names = FALSE, n_max = 7)
+                       sheet = "Industry services productivity", skip = 31,  col_names = FALSE, n_max = 7)
     
     Data <- as_tibble(t(Data))[c(1:4,6:7)]
     
@@ -995,7 +995,7 @@ IndustrySevicesProductivity <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(1:6, 0) %>% 
+      formatRound(2:6, 0) %>% 
       formatRound(4,1) %>% 
       formatRound(5,2)
   })  

@@ -379,7 +379,7 @@ ui <- shinyUI(fluidPage(
   includeCSS("style.css"),
   useShinyjs(),
   extendShinyjs(text = js_code, functions = 'browseURL'),
-  title = "SESHon",
+  title = "Scottish Energy Statistics Hub",
   tags$head(tags$link(rel = "shortcut icon", href = "https://www.gov.scot/favicon.ico")),
   #' tags$head(HTML("<meta charset='utf-8'>
   #'   <title>Emoji</title>

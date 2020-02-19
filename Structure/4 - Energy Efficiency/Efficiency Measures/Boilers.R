@@ -58,9 +58,8 @@ BoilersOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("SGSHCS"),
+        SourceLookup("BEISNEED")
         
       )
     )
@@ -84,7 +83,7 @@ Boilers <- function(input, output, session) {
   output$BoilersSubtitle <- renderText({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Boilers", skip = 13, col_names = FALSE)
+                       sheet = "Boilers", skip = 17, col_names = FALSE)
     
     Data <- as_tibble(t(Data))
     
@@ -105,7 +104,7 @@ Boilers <- function(input, output, session) {
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Boilers", skip = 13, col_names = FALSE)
+                       sheet = "Boilers", skip = 17, col_names = FALSE)
     
     Data <- as_tibble(t(Data))
     
@@ -268,7 +267,7 @@ Boilers <- function(input, output, session) {
   output$BoilersTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Boilers", skip = 13, col_names = FALSE)
+                       sheet = "Boilers", skip = 17, col_names = FALSE)
     
     Data <- as_tibble(t(Data))
     
@@ -321,7 +320,7 @@ Boilers <- function(input, output, session) {
   output$BoilersImpactTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Boilers", skip = 23, col_names = FALSE)
+                       sheet = "Boilers", skip = 27, col_names = FALSE)
     
     Data <- as_tibble(t(Data))
     
@@ -398,7 +397,7 @@ Boilers <- function(input, output, session) {
 
 
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Boilers", skip = 13, col_names = FALSE)
+                         sheet = "Boilers", skip = 17, col_names = FALSE)
       
       Data <- as_tibble(t(Data))
       

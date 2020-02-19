@@ -96,9 +96,7 @@ DomEPCsOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("SGSHCS")
         
       )
     )
@@ -346,21 +344,14 @@ DomEPCs <- function(input, output, session) {
   
   output$EPCProportionsSubtitle <- renderText({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump sector",
-      col_names = FALSE,
-      skip = 12,
-      n_max = 7
-    )
+    Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[12:14]
     
-    Data <- as_tibble(t(Data))
+    Data <- tail(Data, -1)
     
-    names(Data) <- unlist(Data[1,])
+    names(Data) <- c("Year", "SAP 2012", "SAP 2009")
     
-    names(Data)[1] <- "Year"
-    
-    Data[1:7] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data <- Data[which(Data$Year > 0),]
     
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
@@ -495,13 +486,12 @@ DomEPCs <- function(input, output, session) {
     
     Data <- tail(Data, -1)
     
-    names(Data) <- c("Year", "SAP 2012", "SAP 2009")
+    names(Data) <- c("Year", "SAP 2012 RdSAP v9.92", "SAP 2009")
     
     Data <- Data[which(Data$Year > 0),]
     
     Data[2:3] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    Data <- Data[-1,]
     datatable(
       Data,
       extensions = 'Buttons',
@@ -540,23 +530,16 @@ DomEPCs <- function(input, output, session) {
   
   output$EPCTenureSubtitle <- renderText({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump sector",
-      col_names = FALSE,
-      skip = 12,
-      n_max = 7
-    )
+    Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[12:14]
     
-    Data <- as_tibble(t(Data))
+    Data <- tail(Data, -1)
     
-    names(Data) <- unlist(Data[1,])
+    names(Data) <- c("Year", "SAP 2012", "SAP 2009")
     
-    names(Data)[1] <- "Year"
+    Data <- Data[which(Data$Year > 0),]
     
-    Data[1:7] %<>% lapply(function(x) as.numeric(as.character(x)))
-    
-    paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
+    paste("Scotland,", max(Data$Year, na.rm = TRUE))
   })
   
   output$EPCTenurePlot <- renderPlotly  ({
