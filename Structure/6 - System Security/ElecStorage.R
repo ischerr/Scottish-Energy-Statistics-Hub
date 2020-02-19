@@ -106,7 +106,7 @@ ElecStorage <- function(input, output, session) {
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Renewable elec pipeline", col_names = TRUE,
-                       skip = 29, n_max = 1)
+                       skip = 26, n_max = 1)
     Quarter <- substr(Data[1,1], 8,8)
     
     Quarter <- as.numeric(Quarter)*3
@@ -481,7 +481,7 @@ ElecStorage <- function(input, output, session) {
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Renewable elec pipeline", col_names = TRUE,
-                       skip = 29, n_max = 1)
+                       skip = 26, n_max = 1)
     Quarter <- substr(Data[1,1], 8,8)
     
     Quarter <- as.numeric(Quarter)*3
