@@ -48,10 +48,10 @@ RenHeatOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
-        
+        SourceLookup("BEISSubNatEnergy"),
+        SourceLookup("ESTRenHeat"),
+        SourceLookup("BEISUKConsump")
+      
       )
     )
   )
@@ -74,7 +74,7 @@ RenHeat <- function(input, output, session) {
     
     RenHeat <- read_excel("Structure/CurrentWorking.xlsx", 
                           sheet = "Renewable heat", col_names = FALSE, 
-                          skip = 17)
+                          skip = 20)
     RenHeat <- RenHeat[c(1,4)]
     
     names(RenHeat) <- c("Year", "Renewables")
@@ -90,7 +90,7 @@ RenHeat <- function(input, output, session) {
     
     RenHeat <- read_excel("Structure/CurrentWorking.xlsx", 
                           sheet = "Renewable heat", col_names = FALSE, 
-                          skip = 17)
+                          skip = 19)
     RenHeat <- RenHeat[c(1,4)]
     
     names(RenHeat) <- c("Year", "Renewables")
@@ -194,7 +194,7 @@ RenHeat <- function(input, output, session) {
     
     RenHeat <- read_excel("Structure/CurrentWorking.xlsx", 
                           sheet = "Renewable heat", col_names = TRUE, 
-                          skip = 16)
+                          skip = 19)
 
     RenHeat %<>% lapply(function(x) as.numeric(as.character(x)))
    
@@ -268,7 +268,7 @@ RenHeat <- function(input, output, session) {
 
       RenHeat <- read_excel("Structure/CurrentWorking.xlsx", 
                             sheet = "Renewable heat", col_names = FALSE, 
-                            skip = 17)
+                            skip = 20)
       
   RenHeat <- RenHeat[c(1,4)]
   

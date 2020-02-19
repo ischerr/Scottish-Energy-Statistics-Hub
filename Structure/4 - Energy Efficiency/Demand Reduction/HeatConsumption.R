@@ -11,7 +11,7 @@ HeatConsumptionOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Nom-electrical heat demand by sector", style = "color: #34d1a3;  font-weight:bold"),
+                    h3("Non-electrical heat demand by sector", style = "color: #34d1a3;  font-weight:bold"),
                     h4(textOutput(ns('HeatConsumptionSubtitle')), style = "color: #34d1a3;")
     ),
              column(
@@ -48,9 +48,8 @@ HeatConsumptionOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("BEISSubNatEnergy"),
+        SourceLookup("BEISUKConsump")
         
       )
     )
@@ -77,7 +76,7 @@ HeatConsumption <- function(input, output, session) {
       "Structure/CurrentWorking.xlsx",
       sheet = "Heat consump",
       col_names = FALSE,
-      skip = 12,
+      skip = 16,
       n_max = 3
     )
     
@@ -98,7 +97,7 @@ HeatConsumption <- function(input, output, session) {
       "Structure/CurrentWorking.xlsx",
       sheet = "Heat consump",
       col_names = FALSE,
-      skip = 12,
+      skip = 16,
       n_max = 4
     )
     
@@ -248,7 +247,7 @@ HeatConsumption <- function(input, output, session) {
       "Structure/CurrentWorking.xlsx",
       sheet = "Heat consump",
       col_names = FALSE,
-      skip = 12,
+      skip = 16,
       n_max = 3
     )
     
@@ -331,7 +330,7 @@ HeatConsumption <- function(input, output, session) {
 
 
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Heat consump", skip = 12, col_names = FALSE)
+                         sheet = "Heat consump", skip = 16, col_names = FALSE)
       
       Data <- head(Data, 4)
       

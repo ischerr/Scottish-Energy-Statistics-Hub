@@ -148,9 +148,8 @@ RenElecCapacityOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("BEISREPD"),
+        SourceLookup("BEISRenElec")
         
       )
     )
@@ -1344,7 +1343,7 @@ RenElecCapacity <- function(input, output, session) {
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Renewable elec pipeline", col_names = TRUE,
-                       skip = 29, n_max = 1)
+                       skip = 26, n_max = 1)
     Quarter <- substr(Data[1,1], 8,8)
     
     Quarter <- as.numeric(Quarter)*3
@@ -1358,7 +1357,7 @@ RenElecCapacity <- function(input, output, session) {
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Renewable elec pipeline", col_names = TRUE,
-                       skip = 16, n_max = 10)[1:6]
+                       skip = 13, n_max = 10)[1:6]
     
     Data[2:5]%<>% lapply(function(x)
       as.numeric(as.character(x)))
@@ -1489,7 +1488,7 @@ RenElecCapacity <- function(input, output, session) {
     
     RenElecPipeline <- read_excel("Structure/CurrentWorking.xlsx",
                                   sheet = "Renewable elec pipeline", col_names = TRUE, 
-                                  skip = 16,
+                                  skip = 13,
                                   n_max = 11)
     
     RenElecPipeline <- RenElecPipeline[c(1:5)]
@@ -1594,7 +1593,7 @@ RenElecCapacity <- function(input, output, session) {
     
     RenElecPipeline <- read_excel("Structure/CurrentWorking.xlsx",
                                   sheet = "Renewable elec pipeline", col_names = TRUE, 
-                                  skip = 16,
+                                  skip = 13,
                                   n_max = 11)
     
     RenElecPipeline <- RenElecPipeline[c(7:9)]
@@ -1655,7 +1654,7 @@ RenElecCapacity <- function(input, output, session) {
   ######
   Time <- read_excel("Structure/CurrentWorking.xlsx", 
                      sheet = "Renewable elec pipeline", col_names = TRUE,
-                     skip = 29, n_max = 1)
+                     skip = 26, n_max = 1)
   Quarter <- substr(Time[1,1], 8,8)
   
   Quarter <- as.numeric(Quarter)*3
@@ -1674,7 +1673,7 @@ RenElecCapacity <- function(input, output, session) {
       ### Load Packages and Functions
       Data2 <- read_excel("Structure/CurrentWorking.xlsx",
                           sheet = "Renewable elec pipeline", col_names = TRUE, 
-                          skip = 16, n_max = 10)[1:5]
+                          skip = 13, n_max = 10)[1:5]
       
       names(Data2)[1] <- "Type"
       
@@ -1839,7 +1838,7 @@ RenElecCapacity <- function(input, output, session) {
         "Structure/CurrentWorking.xlsx",
         sheet = "Renewable elec capacity",
         col_names = TRUE,
-        skip = 15
+        skip = 13
       )
       
       
@@ -1955,7 +1954,7 @@ RenElecCapacity <- function(input, output, session) {
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Renewable elec pipeline", col_names = TRUE,
-                       skip = 29, n_max = 1)
+                       skip = 26, n_max = 1)
     
     names(Data)[1] <- c("Type")
     
@@ -2069,7 +2068,7 @@ RenElecCapacity <- function(input, output, session) {
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Renewable elec pipeline", col_names = TRUE,
-                       skip = 29, n_max = 1)
+                       skip = 26, n_max = 1)
     Quarter <- substr(Data[1,1], 8,8)
     
     Quarter <- as.numeric(Quarter)*3
@@ -2085,7 +2084,7 @@ RenElecCapacity <- function(input, output, session) {
       
       Data2 <- read_excel("Structure/CurrentWorking.xlsx", 
                           sheet = "Renewable elec pipeline", col_names = TRUE,
-                          skip = 15, n_max = 13)
+                          skip = 13, n_max = 13)
       
       Data2 <- Data2[c(1,4,3,2)]
       
@@ -2254,7 +2253,7 @@ RenElecCapacity <- function(input, output, session) {
     
     RenElecCapacity <- read_excel("Structure/CurrentWorking.xlsx",
                                   sheet = "Renewable elec pipeline", col_names = TRUE, 
-                                  skip = 29,)
+                                  skip = 26,)
     
     names(RenElecCapacity)[1] <- "Quarter"
     

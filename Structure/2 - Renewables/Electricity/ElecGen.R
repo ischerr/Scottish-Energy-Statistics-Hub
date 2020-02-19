@@ -109,9 +109,8 @@ ElecGenOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("BEISRenElec"),
+        SourceLookup("BEISElecGen")
         
       )
     )
@@ -449,7 +448,7 @@ ElecGen <- function(input, output, session) {
         sheet = "Elec gen low carbon and fossil",
         col_names = FALSE,
         skip = 28,
-        n_max = 14
+        n_max = 10
       )
     
     Data[1,1] <- "Year"
@@ -515,7 +514,7 @@ ElecGen <- function(input, output, session) {
         sheet = "Elec gen low carbon and fossil",
         col_names = FALSE,
         skip = 16,
-        n_max = 11
+        n_max = 10
       )
     
     Data[1,1] <- "Year"
@@ -1621,7 +1620,7 @@ output$ElecGenFuelTable = renderDataTable({
       sheet = "Elec gen by fuel",
       col_names = FALSE,
       skip = 15,
-      n_max = 15
+      n_max = 16
     )
   
   DataScot <- as.data.frame(t(DataScot))
@@ -1675,7 +1674,7 @@ output$ElecGenFuelTable = renderDataTable({
     )
   ) %>%
     formatRound(2:ncol(DataScot), 0) %>% 
-    formatStyle(c(9, 15), fontStyle = "italic")
+    formatStyle(c(9, 16), fontStyle = "italic")
 })
 
 output$ElecGenFuelEWTable = renderDataTable({
@@ -1685,8 +1684,8 @@ output$ElecGenFuelEWTable = renderDataTable({
       "Structure/CurrentWorking.xlsx",
       sheet = "Elec gen by fuel",
       col_names = FALSE,
-      skip = 33,
-      n_max = 15
+      skip = 35,
+      n_max = 16
     )
   
   DataEW <- as.data.frame(t(DataEW))
@@ -1742,7 +1741,7 @@ output$ElecGenFuelEWTable = renderDataTable({
     )
   ) %>%
     formatRound(2:ncol(DataEW), 0) %>% 
-    formatStyle(c(9, 15), fontStyle = "italic")
+    formatStyle(c(9, 16), fontStyle = "italic")
 })
 
 DataScot <-

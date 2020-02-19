@@ -48,9 +48,11 @@ HouseholdIntensityOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("BEISSubNatEnergy"),
+        SourceLookup("BEISUKConsump"),
+        SourceLookup("SGEmissions"),
+        SourceLookup("NRSHouseholds")
+
         
       )
     )
@@ -74,7 +76,7 @@ HouseholdIntensity <- function(input, output, session) {
     "Structure/CurrentWorking.xlsx",
     sheet = "Household energy intensity",
     col_names = FALSE,
-    skip = 15,
+    skip = 22,
     n_max = 7
   )
   

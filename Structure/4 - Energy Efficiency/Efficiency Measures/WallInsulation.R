@@ -58,9 +58,9 @@ WallInsulationOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("SGSHCS"),
+        SourceLookup("BEISNEED"),
+        SourceLookup("BEISHHoldEE")
         
       )
     )
@@ -84,7 +84,7 @@ WallInsulation <- function(input, output, session) {
   output$WallInsulationSubtitle <- renderText({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Wall insulation", skip = 12,  col_names = FALSE)
+                       sheet = "Wall insulation", skip = 19,  col_names = FALSE)
     
     Data <- as_tibble(t(Data))[1:4]
     
@@ -104,7 +104,7 @@ WallInsulation <- function(input, output, session) {
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Wall insulation", skip = 12,  col_names = FALSE)
+                       sheet = "Wall insulation", skip = 19,  col_names = FALSE)
     
     Data <- as_tibble(t(Data))[1:4]
     
@@ -263,7 +263,7 @@ WallInsulation <- function(input, output, session) {
   output$WallInsulationTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Wall insulation", skip = 12,  col_names = FALSE)
+                       sheet = "Wall insulation", skip = 19,  col_names = FALSE)
     
     Data <- as_tibble(t(Data))[1:4]
     
@@ -314,7 +314,7 @@ WallInsulation <- function(input, output, session) {
   output$WallInsulationImpactTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Wall insulation", skip = 29,  col_names = FALSE)
+                       sheet = "Wall insulation", skip = 36,  col_names = FALSE)
     
     Data <- as_tibble(t(Data))[c(1:3,7:8)]
     
@@ -390,7 +390,7 @@ WallInsulation <- function(input, output, session) {
 
 
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Wall insulation", skip = 12,  col_names = FALSE)
+                         sheet = "Wall insulation", skip = 19,  col_names = FALSE)
       
       Data <- as_tibble(t(Data))[1:4]
       

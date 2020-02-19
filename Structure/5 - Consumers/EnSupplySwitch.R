@@ -48,9 +48,7 @@ EnSupplySwitchOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("CASEnSwitch")
         
       )
     )
@@ -104,23 +102,6 @@ EnSupplySwitch <- function(input, output, session) {
   ### From ESD ###
   
   output$EnSupplySwitchSubtitle <- renderText({
-    
-    RenEn <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Renewable energy target",
-      col_names = FALSE,
-      skip = 21,
-      n_max = 23
-    )
-    RenEn <- as.data.frame(t(RenEn))
-    RenEn <- RenEn[, c(1, 6, 12, 18, 23)]
-    RenEn <- tail(RenEn,-5)
-    names(RenEn) <-
-      c("Year", "Electricity", "Heat", "Transport", "Renewables")
-    RenEn[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    RenEn[which(RenEn$Year != max(RenEn$Year)),][2:4] <- 0
     
     paste("Scotland, 2018")
   })
