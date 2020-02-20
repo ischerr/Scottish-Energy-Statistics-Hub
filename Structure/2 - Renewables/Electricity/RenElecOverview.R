@@ -132,7 +132,7 @@ RenElecOverview <- function(input, output, session) {
   RenElecGenFuel %<>% lapply(function(x)
     as.numeric(as.character(x)))
   
-  RenElecGenFuel <- as_tibble(Data)
+  RenElecGenFuel <- as_tibble(RenElecGenFuel)
   
   RenElecGenFuel[is.na(RenElecGenFuel)] <- 0
   
