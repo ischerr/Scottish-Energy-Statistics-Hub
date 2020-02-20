@@ -22,8 +22,7 @@ r_github_packages:
 - rstudio/DT
 
 script:
-  - R -f testdeploy.r
-  - if [ "$TRAVIS_BRANCH" = "master" ]; then R -f deploy.r
+  - R deploy.r
 
 notifications:
   email:
@@ -31,4 +30,9 @@ notifications:
       - energystatistics@gov.scot
     on_success: change # default: change
     on_failure: always # default: always
+
+# safelist
+branches:
+  only:
+  - master
 
