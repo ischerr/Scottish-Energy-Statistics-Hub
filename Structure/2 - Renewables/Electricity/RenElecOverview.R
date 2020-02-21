@@ -24,8 +24,12 @@ RenElecOverviewOutput <- function(id) {
                  plotlyOutput(ns("OnshoreWindGenPiePlot"))%>% withSpinner(color="#39ab2c")),
                  column(6,
                  plotlyOutput(ns("OnshoreWindCapPiePlot"))%>% withSpinner(color="#39ab2c"))),
+               fluidRow(column(6,
+                               plotlyOutput(ns("OnshoreWindPipePiePlot"))%>% withSpinner(color="#39ab2c")),
+                        column(6,
+                               plotlyOutput(ns("OnshoreWindEmployeesPiePlot"))%>% withSpinner(color="#39ab2c"))),
                fluidRow(column(3),column(6,
-                 plotlyOutput(ns("OnshoreWindPipePiePlot"))%>% withSpinner(color="#39ab2c"))),
+                 plotlyOutput(ns("OnshoreWindTurnoverPiePlot"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Offshore Wind",
                fluidRow(column(8,
@@ -40,8 +44,12 @@ RenElecOverviewOutput <- function(id) {
                                plotlyOutput(ns("OffshoreWindGenPiePlot"))%>% withSpinner(color="#39ab2c")),
                         column(6,
                                plotlyOutput(ns("OffshoreWindCapPiePlot"))%>% withSpinner(color="#39ab2c"))),
+               fluidRow(column(6,
+                               plotlyOutput(ns("OffshoreWindPipePiePlot"))%>% withSpinner(color="#39ab2c")),
+                        column(6,
+                               plotlyOutput(ns("OffshoreWindEmployeesPiePlot"))%>% withSpinner(color="#39ab2c"))),
                fluidRow(column(3),column(6,
-                                         plotlyOutput(ns("OffshoreWindPipePiePlot"))%>% withSpinner(color="#39ab2c"))),
+                                         plotlyOutput(ns("OffshoreWindTurnoverPiePlot"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Hydro",
                fluidRow(column(8,
@@ -56,8 +64,12 @@ RenElecOverviewOutput <- function(id) {
                                plotlyOutput(ns("HydroGenPiePlot"))%>% withSpinner(color="#39ab2c")),
                         column(6,
                                plotlyOutput(ns("HydroCapPiePlot"))%>% withSpinner(color="#39ab2c"))),
+               fluidRow(column(6,
+                               plotlyOutput(ns("HydroPipePiePlot"))%>% withSpinner(color="#39ab2c")),
+                        column(6,
+                               plotlyOutput(ns("HydroEmployeesPiePlot"))%>% withSpinner(color="#39ab2c"))),
                fluidRow(column(3),column(6,
-                                         plotlyOutput(ns("HydroPipePiePlot"))%>% withSpinner(color="#39ab2c"))),
+                                         plotlyOutput(ns("HydroTurnoverPiePlot"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Solar PV",
                fluidRow(column(8,
@@ -72,8 +84,12 @@ RenElecOverviewOutput <- function(id) {
                                plotlyOutput(ns("SolarPVGenPiePlot"))%>% withSpinner(color="#39ab2c")),
                         column(6,
                                plotlyOutput(ns("SolarPVCapPiePlot"))%>% withSpinner(color="#39ab2c"))),
+               fluidRow(column(6,
+                               plotlyOutput(ns("SolarPipePiePlot"))%>% withSpinner(color="#39ab2c")),
+                        column(6,
+                               plotlyOutput(ns("SolarEmployeesPiePlot"))%>% withSpinner(color="#39ab2c"))),
                fluidRow(column(3),column(6,
-                                         plotlyOutput(ns("SolarPVPipePiePlot"))%>% withSpinner(color="#39ab2c"))),
+                                         plotlyOutput(ns("SolarTurnoverPiePlot"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Bioenergy",
                fluidRow(column(8,
@@ -119,9 +135,11 @@ RenElecOverviewOutput <- function(id) {
     tabsetPanel(
       tabPanel("Quarterly Electrical Generation",
                fluidRow(
-                 column(10, h3("Data - Quarterly electrical generation", style = "color: #39ab2c;  font-weight:bold")),
-                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
+                 column(10, h3("Data - Latest Figures", style = "color: #39ab2c;  font-weight:bold")),
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
                ),
+               fluidRow(
+                 column(12, dataTableOutput(ns("RenOverviewTable"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
    
     ),
@@ -172,6 +190,8 @@ RenElecOverview <- function(input, output, session) {
     toggle("Text")
   })
   
+  
+  ###### Data Processing ######
   RenElecGenFuel <- read_excel("Structure/CurrentWorking.xlsx", 
                                sheet = "Renewable elec by fuel",
                                col_names = TRUE,
@@ -184,7 +204,7 @@ RenElecOverview <- function(input, output, session) {
   
   RenElecGenFuel <- distinct(RenElecGenFuel, Year, .keep_all = TRUE)
   
-  RenElecGenFuel <- head(RenElecGenFuel, -2)
+  RenElecGenFuel <- head(RenElecGenFuel, -1)
   
   RenElecGenFuel<-RenElecGenFuel[dim(RenElecGenFuel)[1]:1,]
   
@@ -251,11 +271,55 @@ RenElecOverview <- function(input, output, session) {
   RenElecPipeline$Bioenergy <- RenElecPipeline$`Biomass (co-firing)` + RenElecPipeline$`Energy from waste` + RenElecPipeline$`Anaerobic Digestion` + RenElecPipeline$`Landfill Gas`
   
   
+  RenEmployees <- read_excel("Structure/2 - Renewables/Economy/EconomyTables.xlsx", 
+                             sheet = "Employees", col_names = TRUE)
   
   
+  for (i in 2:6){
+    RenEmployees[2,i] <- percent(as.numeric(RenEmployees[2,i]),0.1)
+  }
+  
+  names(RenEmployees)[1] <- " "
+  
+  RenEmployees <- RenEmployees[c(1,ncol(RenEmployees))]
+  
+  RenEmployees[1,1] <- "Other"
+  
+  RenEmployees <- RenEmployees[c(9,10,12,11,1),]
+  
+  names(RenEmployees) <- c("variable", "value")
+  
+  RenEmployees$value <- as.numeric(RenEmployees$value)
+  
+  RenEmployees$variable[RenEmployees$variable == "Hydropower"] <- "Hydro"
+  
+  RenEmployees$variable[RenEmployees$variable == "Solar photovoltaic"] <- "Solar PV"
+  
+  RenTurnover <- read_excel("Structure/2 - Renewables/Economy/EconomyTables.xlsx", 
+                            sheet = "Turnover", col_names = TRUE)
   
   
+  for (i in 2:6){
+    RenTurnover[2,i] <- percent(as.numeric(RenTurnover[2,i]),0.1)
+  }
   
+  names(RenTurnover)[1] <- " "
+  
+  RenTurnover <- RenTurnover[c(1,ncol(RenTurnover))]
+  
+  RenTurnover[1,1] <- "Other"
+  
+  RenTurnover <- RenTurnover[c(9,10,12,11,1),]
+  
+  names(RenTurnover) <- c("variable", "value")
+  
+  RenTurnover$value <- as.numeric(RenTurnover$value)
+  
+  RenTurnover$variable[RenTurnover$variable == "Hydropower"] <- "Hydro"
+  
+  RenTurnover$variable[RenTurnover$variable == "Solar photovoltaic"] <- "Solar PV"
+  
+  ##### Outputs
   output$OnshoreWindGenPiePlot <- renderPlotly  ({
     OnshoreWindGenPie <- as_tibble(cbind(RenElecGenFuel$Year,RenElecGenFuel$`Onshore Wind`, (RenElecGenFuel$Total - RenElecGenFuel$`Onshore Wind`)))
     
@@ -292,7 +356,7 @@ RenElecOverview <- function(input, output, session) {
     
   })
   output$OnshoreWindCapPiePlot <- renderPlotly  ({
-    OnshoreWindCapPie <- as_tibble(cbind(RenElecCapFuel$Year,RenElecCapFuel$`Onshore Wind`, (RenElecGenFuel$Total - RenElecCapFuel$`Onshore Wind`)))
+    OnshoreWindCapPie <- as_tibble(cbind(RenElecCapFuel$Year,RenElecCapFuel$`Onshore Wind`, (RenElecCapFuel$Total - RenElecCapFuel$`Onshore Wind`)))
     
     names(OnshoreWindCapPie) <- c("Year", "Onshore Wind", "Other")
     
@@ -311,11 +375,11 @@ RenElecOverview <- function(input, output, session) {
               hoverinfo = 'text',
               marker = list(colors = c("#1a5d38",  "#d9d9d9", "#31859c","#77933c", "#4f6228", "#184d0f"),
                             line = list(color = '#FFFFFF', width = 2)),
-              text = paste0(OnshoreWindCapPie$variable,": ", format(round(OnshoreWindCapPie$value, digits = 0), big.mark = ","), " GWh\n", percent((OnshoreWindCapPie$value)/ sum(OnshoreWindCapPie$value))),
+              text = paste0(OnshoreWindCapPie$variable,": ", format(round(OnshoreWindCapPie$value, digits = 0), big.mark = ","), " MW\n", percent((OnshoreWindCapPie$value)/ sum(OnshoreWindCapPie$value))),
               sort = T) %>% 
       layout(
         title = list(
-          text = paste("<b>Onshore Wind Capacity</b>:",format(round(OnshoreWindCapPie[which(OnshoreWindCapPie$variable == "Onshore Wind"),]$value, digits = 0), big.mark = ","), "GWh"),
+          text = paste("<b>Onshore Wind Capacity</b>:",format(round(OnshoreWindCapPie[which(OnshoreWindCapPie$variable == "Onshore Wind"),]$value, digits = 0), big.mark = ","), "MW"),
           font = list(
             color = "#262626"
           )
@@ -357,6 +421,74 @@ RenElecOverview <- function(input, output, session) {
       )
     p
   })
+  output$OnshoreWindEmployeesPiePlot <- renderPlotly  ({
+    OnshoreWindEmployees <- RenEmployees[which(RenEmployees$variable == "Other" | RenEmployees$variable == "Onshore wind"),]
+    
+    OnshoreWindEmployees[2,2] <- OnshoreWindEmployees[2,2] - OnshoreWindEmployees[1,2]
+    
+    OnshoreWindEmployees
+    
+    
+    p <- plot_ly() %>% 
+      add_pie(data = OnshoreWindEmployees,
+              labels = ~variable,
+              values = ~value,
+              sort = FALSE,
+              hole = 0.5,
+              textposition = "inside",
+              textinfo = 'none',
+              hoverinfo = 'text',
+              marker = list(colors = c("#1a5d38",  "#d9d9d9", "#31859c","#77933c", "#4f6228", "#184d0f"),
+                            line = list(color = '#FFFFFF', width = 2)),
+              text = paste0(OnshoreWindEmployees$variable,": ", format(round(OnshoreWindEmployees$value, digits = 0), big.mark = ","), " (FTE)\n", percent((OnshoreWindEmployees$value)/ sum(OnshoreWindEmployees$value))),
+              sort = T) %>% 
+      layout(
+        title = list(
+          text = paste("<b>Onshore Wind Employees</b>:",format(round(OnshoreWindEmployees[which(OnshoreWindEmployees$variable == "Onshore wind"),]$value, digits = 0), big.mark = ","), "(FTE)"),
+          font = list(
+            color = "#262626"
+          )
+        ),
+        legend = list(font = list(color = "#1A5D38"),
+                      orientation = 'h')
+      )
+    p
+    
+  })
+  output$OnshoreWindTurnoverPiePlot <- renderPlotly  ({
+    OnshoreWindTurnover <- RenTurnover[which(RenTurnover$variable == "Other" | RenTurnover$variable == "Onshore wind"),]
+    
+    OnshoreWindTurnover[2,2] <- OnshoreWindTurnover[2,2] - OnshoreWindTurnover[1,2]
+    
+    OnshoreWindTurnover
+    
+    
+    p <- plot_ly() %>% 
+      add_pie(data = OnshoreWindTurnover,
+              labels = ~variable,
+              values = ~value,
+              sort = FALSE,
+              hole = 0.5,
+              textposition = "inside",
+              textinfo = 'none',
+              hoverinfo = 'text',
+              marker = list(colors = c("#1a5d38",  "#d9d9d9", "#31859c","#77933c", "#4f6228", "#184d0f"),
+                            line = list(color = '#FFFFFF', width = 2)),
+              text = paste0(OnshoreWindTurnover$variable,": ", format(round(OnshoreWindTurnover$value, digits = 0), big.mark = ","), " (\u00A3000s)\n", percent((OnshoreWindTurnover$value)/ sum(OnshoreWindTurnover$value))),
+              sort = T) %>% 
+      layout(
+        title = list(
+          text = paste("<b>Onshore Wind Turnover</b>:",format(round(OnshoreWindTurnover[which(OnshoreWindTurnover$variable == "Onshore wind"),]$value, digits = 0), big.mark = ","), "(\u00A3000s)"),
+          font = list(
+            color = "#262626"
+          )
+        ),
+        legend = list(font = list(color = "#1A5D38"),
+                      orientation = 'h')
+      )
+    p
+  })
+  
   
   output$OffshoreWindGenPiePlot <- renderPlotly  ({
     OffshoreWindGenPie <- as_tibble(cbind(RenElecGenFuel$Year,RenElecGenFuel$`Offshore Wind`, (RenElecGenFuel$Total - RenElecGenFuel$`Offshore Wind`)))
@@ -393,7 +525,7 @@ RenElecOverview <- function(input, output, session) {
     p
   })
   output$OffshoreWindCapPiePlot <- renderPlotly  ({
-    OffshoreWindCapPie <- as_tibble(cbind(RenElecGenFuel$Year,RenElecGenFuel$`Offshore Wind`, (RenElecGenFuel$Total - RenElecGenFuel$`Offshore Wind`)))
+    OffshoreWindCapPie <- as_tibble(cbind(RenElecCapFuel$Year,RenElecCapFuel$`Offshore Wind`, (RenElecCapFuel$Total - RenElecCapFuel$`Offshore Wind`)))
     
     names(OffshoreWindCapPie) <- c("Year", "Offshore Wind", "Other")
     
@@ -412,11 +544,11 @@ RenElecOverview <- function(input, output, session) {
               hoverinfo = 'text',
               marker = list(colors = c("#1a5d38",  "#d9d9d9", "#31859c","#77933c", "#4f6228", "#184d0f"),
                             line = list(color = '#FFFFFF', width = 2)),
-              text = paste0(OffshoreWindCapPie$variable,": ", format(round(OffshoreWindCapPie$value, digits = 0), big.mark = ","), " GWh\n", percent((OffshoreWindCapPie$value)/ sum(OffshoreWindCapPie$value))),
+              text = paste0(OffshoreWindCapPie$variable,": ", format(round(OffshoreWindCapPie$value, digits = 0), big.mark = ","), " MW\n", percent((OffshoreWindCapPie$value)/ sum(OffshoreWindCapPie$value))),
               sort = T) %>% 
       layout(
         title = list(
-          text = paste("<b>Offshore Wind Capacity</b>:",format(round(OffshoreWindCapPie[which(OffshoreWindCapPie$variable == "Offshore Wind"),]$value, digits = 0), big.mark = ","), "GWh"),
+          text = paste("<b>Offshore Wind Capacity</b>:",format(round(OffshoreWindCapPie[which(OffshoreWindCapPie$variable == "Offshore Wind"),]$value, digits = 0), big.mark = ","), "MW"),
           font = list(
             color = "#262626"
           )
@@ -458,6 +590,72 @@ RenElecOverview <- function(input, output, session) {
       )
     p
   })
+  output$OffshoreWindEmployeesPiePlot <- renderPlotly  ({
+    OffshoreWindEmployees <- RenEmployees[which(RenEmployees$variable == "Other" | RenEmployees$variable == "Offshore wind"),]
+    
+    OffshoreWindEmployees[2,2] <- OffshoreWindEmployees[2,2] - OffshoreWindEmployees[1,2]
+    
+    OffshoreWindEmployees
+    
+    
+    p <- plot_ly() %>% 
+      add_pie(data = OffshoreWindEmployees,
+              labels = ~variable,
+              values = ~value,
+              sort = FALSE,
+              hole = 0.5,
+              textposition = "inside",
+              textinfo = 'none',
+              hoverinfo = 'text',
+              marker = list(colors = c("#1a5d38",  "#d9d9d9", "#31859c","#77933c", "#4f6228", "#184d0f"),
+                            line = list(color = '#FFFFFF', width = 2)),
+              text = paste0(OffshoreWindEmployees$variable,": ", format(round(OffshoreWindEmployees$value, digits = 0), big.mark = ","), " (FTE)\n", percent((OffshoreWindEmployees$value)/ sum(OffshoreWindEmployees$value))),
+              sort = T) %>% 
+      layout(
+        title = list(
+          text = paste("<b>Offshore Wind Employees</b>:",format(round(OffshoreWindEmployees[which(OffshoreWindEmployees$variable == "Offshore wind"),]$value, digits = 0), big.mark = ","), "(FTE)"),
+          font = list(
+            color = "#262626"
+          )
+        ),
+        legend = list(font = list(color = "#1A5D38"),
+                      orientation = 'h')
+      )
+    p
+  })
+  output$OffshoreWindTurnoverPiePlot <- renderPlotly  ({
+    OffshoreWindTurnover <- RenTurnover[which(RenTurnover$variable == "Other" | RenTurnover$variable == "Offshore wind"),]
+    
+    OffshoreWindTurnover[2,2] <- OffshoreWindTurnover[2,2] - OffshoreWindTurnover[1,2]
+    
+    OffshoreWindTurnover
+    
+    
+    p <- plot_ly() %>% 
+      add_pie(data = OffshoreWindTurnover,
+              labels = ~variable,
+              values = ~value,
+              sort = FALSE,
+              hole = 0.5,
+              textposition = "inside",
+              textinfo = 'none',
+              hoverinfo = 'text',
+              marker = list(colors = c("#1a5d38",  "#d9d9d9", "#31859c","#77933c", "#4f6228", "#184d0f"),
+                            line = list(color = '#FFFFFF', width = 2)),
+              text = paste0(OffshoreWindTurnover$variable,": ", format(round(OffshoreWindTurnover$value, digits = 0), big.mark = ","), " (\u00A3000s)\n", percent((OffshoreWindTurnover$value)/ sum(OffshoreWindTurnover$value))),
+              sort = T) %>% 
+      layout(
+        title = list(
+          text = paste("<b>Offshore Wind Turnover</b>:",format(round(OffshoreWindTurnover[which(OffshoreWindTurnover$variable == "Offshore wind"),]$value, digits = 0), big.mark = ","), "(\u00A3000s)"),
+          font = list(
+            color = "#262626"
+          )
+        ),
+        legend = list(font = list(color = "#1A5D38"),
+                      orientation = 'h')
+      )
+    p
+    })
   
   output$HydroGenPiePlot <- renderPlotly  ({
     HydroGenPie <- as_tibble(cbind(RenElecGenFuel$Year,RenElecGenFuel$`Hydro`, (RenElecGenFuel$Total - RenElecGenFuel$`Hydro`)))
@@ -494,7 +692,7 @@ RenElecOverview <- function(input, output, session) {
     p
   })
   output$HydroCapPiePlot <- renderPlotly  ({
-    HydroCapPie <- as_tibble(cbind(RenElecGenFuel$Year,RenElecGenFuel$`Hydro`, (RenElecGenFuel$Total - RenElecGenFuel$`Hydro`)))
+    HydroCapPie <- as_tibble(cbind(RenElecCapFuel$Year,RenElecCapFuel$`Hydro`, (RenElecCapFuel$Total - RenElecCapFuel$`Hydro`)))
     
     names(HydroCapPie) <- c("Year", "Hydro", "Other")
     
@@ -513,11 +711,11 @@ RenElecOverview <- function(input, output, session) {
               hoverinfo = 'text',
               marker = list(colors = c("#1a5d38",  "#d9d9d9", "#31859c","#77933c", "#4f6228", "#184d0f"),
                             line = list(color = '#FFFFFF', width = 2)),
-              text = paste0(HydroCapPie$variable,": ", format(round(HydroCapPie$value, digits = 0), big.mark = ","), " GWh\n", percent((HydroCapPie$value)/ sum(HydroCapPie$value))),
+              text = paste0(HydroCapPie$variable,": ", format(round(HydroCapPie$value, digits = 0), big.mark = ","), " MW\n", percent((HydroCapPie$value)/ sum(HydroCapPie$value))),
               sort = T) %>% 
       layout(
         title = list(
-          text = paste("<b>Hydro Capacity</b>:",format(round(HydroCapPie[which(HydroCapPie$variable == "Hydro"),]$value, digits = 0), big.mark = ","), "GWh"),
+          text = paste("<b>Hydro Capacity</b>:",format(round(HydroCapPie[which(HydroCapPie$variable == "Hydro"),]$value, digits = 0), big.mark = ","), "MW"),
           font = list(
             color = "#262626"
           )
@@ -550,6 +748,72 @@ RenElecOverview <- function(input, output, session) {
       layout(
         title = list(
           text = paste("<b>Hydro Pipeline Capacity</b>:",format(round(HydroPipePie[which(HydroPipePie$variable == "Hydro"),]$value, digits = 0), big.mark = ","), "MW"),
+          font = list(
+            color = "#262626"
+          )
+        ),
+        legend = list(font = list(color = "#1A5D38"),
+                      orientation = 'h')
+      )
+    p
+  })
+  output$HydroEmployeesPiePlot <- renderPlotly  ({
+    HydroEmployees <- RenEmployees[which(RenEmployees$variable == "Other" | RenEmployees$variable == "Hydro"),]
+    
+    HydroEmployees[2,2] <- HydroEmployees[2,2] - HydroEmployees[1,2]
+    
+    HydroEmployees
+    
+    
+    p <- plot_ly() %>% 
+      add_pie(data = HydroEmployees,
+              labels = ~variable,
+              values = ~value,
+              sort = FALSE,
+              hole = 0.5,
+              textposition = "inside",
+              textinfo = 'none',
+              hoverinfo = 'text',
+              marker = list(colors = c("#1a5d38",  "#d9d9d9", "#31859c","#77933c", "#4f6228", "#184d0f"),
+                            line = list(color = '#FFFFFF', width = 2)),
+              text = paste0(HydroEmployees$variable,": ", format(round(HydroEmployees$value, digits = 0), big.mark = ","), " (FTE)\n", percent((HydroEmployees$value)/ sum(HydroEmployees$value))),
+              sort = T) %>% 
+      layout(
+        title = list(
+          text = paste("<b>Hydro Employees</b>:",format(round(HydroEmployees[which(HydroEmployees$variable == "Hydro"),]$value, digits = 0), big.mark = ","), "(FTE)"),
+          font = list(
+            color = "#262626"
+          )
+        ),
+        legend = list(font = list(color = "#1A5D38"),
+                      orientation = 'h')
+      )
+    p
+  })
+  output$HydroTurnoverPiePlot <- renderPlotly  ({
+    HydroTurnover <- RenTurnover[which(RenTurnover$variable == "Other" | RenTurnover$variable == "Hydro"),]
+    
+    HydroTurnover[2,2] <- HydroTurnover[2,2] - HydroTurnover[1,2]
+    
+    HydroTurnover
+    
+    
+    p <- plot_ly() %>% 
+      add_pie(data = HydroTurnover,
+              labels = ~variable,
+              values = ~value,
+              sort = FALSE,
+              hole = 0.5,
+              textposition = "inside",
+              textinfo = 'none',
+              hoverinfo = 'text',
+              marker = list(colors = c("#1a5d38",  "#d9d9d9", "#31859c","#77933c", "#4f6228", "#184d0f"),
+                            line = list(color = '#FFFFFF', width = 2)),
+              text = paste0(HydroTurnover$variable,": ", format(round(HydroTurnover$value, digits = 0), big.mark = ","), " (\u00A3000s)\n", percent((HydroTurnover$value)/ sum(HydroTurnover$value))),
+              sort = T) %>% 
+      layout(
+        title = list(
+          text = paste("<b>Hydro Turnover</b>:",format(round(HydroTurnover[which(HydroTurnover$variable == "Hydro"),]$value, digits = 0), big.mark = ","), "(\u00A3000s)"),
           font = list(
             color = "#262626"
           )
@@ -596,7 +860,7 @@ RenElecOverview <- function(input, output, session) {
     
   })
   output$SolarPVCapPiePlot <- renderPlotly  ({
-    SolarPVCapPie <- as_tibble(cbind(RenElecGenFuel$Year,RenElecGenFuel$`Solar PV`, (RenElecGenFuel$Total - RenElecGenFuel$`Solar PV`)))
+    SolarPVCapPie <- as_tibble(cbind(RenElecCapFuel$Year,RenElecCapFuel$`Solar PV`, (RenElecCapFuel$Total - RenElecCapFuel$`Solar PV`)))
     
     names(SolarPVCapPie) <- c("Year", "Solar PV", "Other")
     
@@ -615,11 +879,11 @@ RenElecOverview <- function(input, output, session) {
               hoverinfo = 'text',
               marker = list(colors = c("#1a5d38",  "#d9d9d9", "#31859c","#77933c", "#4f6228", "#184d0f"),
                             line = list(color = '#FFFFFF', width = 2)),
-              text = paste0(SolarPVCapPie$variable,": ", format(round(SolarPVCapPie$value, digits = 0), big.mark = ","), " GWh\n", percent((SolarPVCapPie$value)/ sum(SolarPVCapPie$value))),
+              text = paste0(SolarPVCapPie$variable,": ", format(round(SolarPVCapPie$value, digits = 0), big.mark = ","), " MW\n", percent((SolarPVCapPie$value)/ sum(SolarPVCapPie$value))),
               sort = T) %>% 
       layout(
         title = list(
-          text = paste("<b>Solar PV Capacity</b>:",format(round(SolarPVCapPie[which(SolarPVCapPie$variable == "Solar PV"),]$value, digits = 0), big.mark = ","), "GWh"),
+          text = paste("<b>Solar PV Capacity</b>:",format(round(SolarPVCapPie[which(SolarPVCapPie$variable == "Solar PV"),]$value, digits = 0), big.mark = ","), "MW"),
           font = list(
             color = "#262626"
           )
@@ -652,6 +916,74 @@ RenElecOverview <- function(input, output, session) {
       layout(
         title = list(
           text = paste("<b>Solar PV Pipeline Capacity</b>:",format(round(SolarPipePie[which(SolarPipePie$variable == "Solar PV"),]$value, digits = 0), big.mark = ","), "MW"),
+          font = list(
+            color = "#262626"
+          )
+        ),
+        legend = list(font = list(color = "#1A5D38"),
+                      orientation = 'h')
+      )
+    p
+  })
+  output$SolarEmployeesPiePlot <- renderPlotly  ({
+    SolarPVEmployees <- RenEmployees[which(RenEmployees$variable == "Other" | RenEmployees$variable == "Solar PV"),]
+    
+    SolarPVEmployees[2,2] <- SolarPVEmployees[2,2] - SolarPVEmployees[1,2]
+    
+    SolarPVEmployees
+    
+    
+    p <- plot_ly() %>% 
+      add_pie(data = SolarPVEmployees,
+              labels = ~variable,
+              values = ~value,
+              sort = FALSE,
+              hole = 0.5,
+              textposition = "inside",
+              textinfo = 'none',
+              hoverinfo = 'text',
+              marker = list(colors = c("#1a5d38",  "#d9d9d9", "#31859c","#77933c", "#4f6228", "#184d0f"),
+                            line = list(color = '#FFFFFF', width = 2)),
+              text = paste0(SolarPVEmployees$variable,": ", format(round(SolarPVEmployees$value, digits = 0), big.mark = ","), " (FTE)\n", percent((SolarPVEmployees$value)/ sum(SolarPVEmployees$value))),
+              sort = T) %>% 
+      layout(
+        title = list(
+          text = paste("<b>Solar PV Employees</b>:",format(round(SolarPVEmployees[which(SolarPVEmployees$variable == "Solar PV"),]$value, digits = 0), big.mark = ","), "(FTE)"),
+          font = list(
+            color = "#262626"
+          )
+        ),
+        legend = list(font = list(color = "#1A5D38"),
+                      orientation = 'h')
+      )
+    p
+  })
+  output$SolarTurnoverPiePlot <- renderPlotly  ({
+    
+    
+    SolarPVTurnover <- RenTurnover[which(RenTurnover$variable == "Other" | RenTurnover$variable == "Solar PV"),]
+    
+    SolarPVTurnover[2,2] <- SolarPVTurnover[2,2] - SolarPVTurnover[1,2]
+    
+    SolarPVTurnover
+    
+    
+    p <- plot_ly() %>% 
+      add_pie(data = SolarPVTurnover,
+              labels = ~variable,
+              values = ~value,
+              sort = FALSE,
+              hole = 0.5,
+              textposition = "inside",
+              textinfo = 'none',
+              hoverinfo = 'text',
+              marker = list(colors = c("#1a5d38",  "#d9d9d9", "#31859c","#77933c", "#4f6228", "#184d0f"),
+                            line = list(color = '#FFFFFF', width = 2)),
+              text = paste0(SolarPVTurnover$variable,": ", format(round(SolarPVTurnover$value, digits = 0), big.mark = ","), " (\u00A3000s)\n", percent((SolarPVTurnover$value)/ sum(SolarPVTurnover$value))),
+              sort = T) %>% 
+      layout(
+        title = list(
+          text = paste("<b>Solar PV Turnover</b>:",format(round(SolarPVTurnover[which(SolarPVTurnover$variable == "Solar PV"),]$value, digits = 0), big.mark = ","), "(\u00A3000s)"),
           font = list(
             color = "#262626"
           )
@@ -697,7 +1029,7 @@ RenElecOverview <- function(input, output, session) {
     p
   })
   output$BioenergyCapPiePlot <- renderPlotly  ({
-    BioenergyCapPie <- as_tibble(cbind(RenElecGenFuel$Year,RenElecGenFuel$`Bioenergy`, (RenElecGenFuel$Total - RenElecGenFuel$`Bioenergy`)))
+    BioenergyCapPie <- as_tibble(cbind(RenElecCapFuel$Year,RenElecCapFuel$`Bioenergy`, (RenElecCapFuel$Total - RenElecCapFuel$`Bioenergy`)))
     
     names(BioenergyCapPie) <- c("Year", "Bioenergy", "Other")
     
@@ -716,11 +1048,11 @@ RenElecOverview <- function(input, output, session) {
               hoverinfo = 'text',
               marker = list(colors = c("#1a5d38",  "#d9d9d9", "#31859c","#77933c", "#4f6228", "#184d0f"),
                             line = list(color = '#FFFFFF', width = 2)),
-              text = paste0(BioenergyCapPie$variable,": ", format(round(BioenergyCapPie$value, digits = 0), big.mark = ","), " GWh\n", percent((BioenergyCapPie$value)/ sum(BioenergyCapPie$value))),
+              text = paste0(BioenergyCapPie$variable,": ", format(round(BioenergyCapPie$value, digits = 0), big.mark = ","), " MW\n", percent((BioenergyCapPie$value)/ sum(BioenergyCapPie$value))),
               sort = T) %>% 
       layout(
         title = list(
-          text = paste("<b>Bioenergy Capacity</b>:",format(round(BioenergyCapPie[which(BioenergyCapPie$variable == "Bioenergy"),]$value, digits = 0), big.mark = ","), "GWh"),
+          text = paste("<b>Bioenergy Capacity</b>:",format(round(BioenergyCapPie[which(BioenergyCapPie$variable == "Bioenergy"),]$value, digits = 0), big.mark = ","), "MW"),
           font = list(
             color = "#262626"
           )
@@ -798,7 +1130,7 @@ RenElecOverview <- function(input, output, session) {
     p
   })
   output$WaveTidalCapPiePlot <- renderPlotly  ({
-    WaveTidalCapPie <- as_tibble(cbind(RenElecGenFuel$Year,RenElecGenFuel$`Wave and tidal`, (RenElecGenFuel$Total - RenElecGenFuel$`Wave and tidal`)))
+    WaveTidalCapPie <- as_tibble(cbind(RenElecCapFuel$Year,RenElecCapFuel$`Wave and tidal`, (RenElecCapFuel$Total - RenElecCapFuel$`Wave and tidal`)))
     
     names(WaveTidalCapPie) <- c("Year", "Wave and tidal", "Other")
     
@@ -817,11 +1149,11 @@ RenElecOverview <- function(input, output, session) {
               hoverinfo = 'text',
               marker = list(colors = c("#1a5d38",  "#d9d9d9", "#31859c","#77933c", "#4f6228", "#184d0f"),
                             line = list(color = '#FFFFFF', width = 2)),
-              text = paste0(WaveTidalCapPie$variable,": ", format(round(WaveTidalCapPie$value, digits = 0), big.mark = ","), " GWh\n", percent((WaveTidalCapPie$value)/ sum(WaveTidalCapPie$value))),
+              text = paste0(WaveTidalCapPie$variable,": ", format(round(WaveTidalCapPie$value, digits = 0), big.mark = ","), " MW\n", percent((WaveTidalCapPie$value)/ sum(WaveTidalCapPie$value))),
               sort = T) %>% 
       layout(
         title = list(
-          text = paste("<b>Wave and tidal Capacity</b>:",format(round(WaveTidalCapPie[which(WaveTidalCapPie$variable == "Wave and tidal"),]$value, digits = 0), big.mark = ","), "GWh"),
+          text = paste("<b>Wave and tidal Capacity</b>:",format(round(WaveTidalCapPie[which(WaveTidalCapPie$variable == "Wave and tidal"),]$value, digits = 0), big.mark = ","), "MW"),
           font = list(
             color = "#262626"
           )
@@ -862,6 +1194,96 @@ RenElecOverview <- function(input, output, session) {
                       orientation = 'h')
       )
     p
+  })
+  
+  output$RenOverviewTable = renderDataTable({
+    OnshoreWindTable <- as_tibble(cbind("Onshore Wind",
+                                        RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Onshore Wind`,
+                                        RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Onshore Wind`,
+                                        RenElecPipeline$`Wind Onshore`,
+                                        RenEmployees[which(RenEmployees$variable == "Onshore wind"),]$value,
+                                        RenTurnover[which(RenTurnover$variable == "Onshore wind"),]$value
+    ))
+    names(OnshoreWindTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3000s)")
+    
+    
+    OffshoreWindTable <- as_tibble(cbind("Offshore Wind",
+                                         RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Offshore Wind`,
+                                         RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Offshore Wind`,
+                                         RenElecPipeline$`Wind Offshore`,
+                                         RenEmployees[which(RenEmployees$variable == "Offshore wind"),]$value,
+                                         RenTurnover[which(RenTurnover$variable == "Offshore wind"),]$value
+    ))
+    names(OffshoreWindTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3000s)")
+    
+    HydroTable <- as_tibble(cbind("Hydro",
+                                  RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Hydro`,
+                                  RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Hydro`,
+                                  RenElecPipeline$`Hydro`,
+                                  RenEmployees[which(RenEmployees$variable == "Hydro"),]$value,
+                                  RenTurnover[which(RenTurnover$variable == "Hydro"),]$value
+    ))
+    names(HydroTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3000s)")
+    
+    SolarPVTable <- as_tibble(cbind("SolarPV",
+                                    RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Solar PV`,
+                                    RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Solar PV`,
+                                    RenElecPipeline$`Solar Photovoltaics`,
+                                    RenEmployees[which(RenEmployees$variable == "Solar PV"),]$value,
+                                    RenTurnover[which(RenTurnover$variable == "Solar PV"),]$value
+    ))
+    names(SolarPVTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3000s)")
+    
+    BioenergyTable <- as_tibble(cbind("Bioenergy",
+                                      RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Bioenergy`,
+                                      RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Bioenergy`,
+                                      RenElecPipeline$`Bioenergy`
+    ))
+    names(BioenergyTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)")
+    
+    
+    WaveTidalTable <- as_tibble(cbind("Wave and Tidal",
+                                      RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Wave and tidal`,
+                                      RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Wave and tidal`,
+                                      RenElecPipeline$`Shoreline wave / tidal`
+    ))
+    names(WaveTidalTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)")
+    
+    TechTable <- rbind.fill(OnshoreWindTable, OffshoreWindTable, HydroTable, SolarPVTable, BioenergyTable, WaveTidalTable)
+    
+    
+    datatable(
+      TechTable,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "Onshore Wind",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Onshore Wind',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Onshore Wind')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(2:ncol(RenElecGenFuel), 0)
   })
   
 }
