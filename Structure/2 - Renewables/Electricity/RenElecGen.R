@@ -207,7 +207,7 @@ RenElecGen <- function(input, output, session) {
     
     Data <- distinct(Data, Year, .keep_all = TRUE)
     
-    Data <- head(Data, -2)
+    Data <- head(Data, -1)
     
     Data<-Data[dim(Data)[1]:1,]
     

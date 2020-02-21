@@ -265,8 +265,6 @@ LowCarbonEconomy <- function(input, output, session) {
   
     output$LowCarbonEconomyTurnoverPlot <- renderPlotly  ({
       
-      
-    
     LowCarbonTurnover <- Data[which(Data$Measure == "Turnover (\u00A3000s)"),]
     
     LowCarbonDirectTurnover <- LowCarbonTurnover$Direct /1000000
