@@ -7,7 +7,7 @@ require("DT")
 
 source("Structure/Global.R")
 
-RenElecOverviewOutput <- function(id) {
+RenElecSourcesOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
@@ -20,124 +20,25 @@ RenElecOverviewOutput <- function(id) {
                
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
                #dygraphOutput(ns("RenElecFuelPlot")),
-               fluidRow(column(6,
-                 plotlyOutput(ns("OnshoreWindGenPiePlot"))%>% withSpinner(color="#39ab2c")),
-                 column(6,
-                 plotlyOutput(ns("OnshoreWindCapPiePlot"))%>% withSpinner(color="#39ab2c"))),
-               fluidRow(column(6,
-                               plotlyOutput(ns("OnshoreWindPipePiePlot"))%>% withSpinner(color="#39ab2c")),
-                        column(6,
-                               plotlyOutput(ns("OnshoreWindEmployeesPiePlot"))%>% withSpinner(color="#39ab2c"))),
-               fluidRow(column(3),column(6,
-                 plotlyOutput(ns("OnshoreWindTurnoverPiePlot"))%>% withSpinner(color="#39ab2c"))),
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-      tabPanel("Offshore Wind",
-               fluidRow(column(8,
-                               h3("Offshore Wind", style = "color: #39ab2c;  font-weight:bold"),
-                               h4("Scotland, 2018", style = "color: #39ab2c;")
-               )
-               ),
                
+                 plotlyOutput(ns("OnshoreWindGenPiePlot"))%>% withSpinner(color="#39ab2c"),
+                 
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-               #dygraphOutput(ns("RenElecFuelPlot")),
-               fluidRow(column(6,
-                               plotlyOutput(ns("OffshoreWindGenPiePlot"))%>% withSpinner(color="#39ab2c")),
-                        column(6,
-                               plotlyOutput(ns("OffshoreWindCapPiePlot"))%>% withSpinner(color="#39ab2c"))),
-               fluidRow(column(6,
-                               plotlyOutput(ns("OffshoreWindPipePiePlot"))%>% withSpinner(color="#39ab2c")),
-                        column(6,
-                               plotlyOutput(ns("OffshoreWindEmployeesPiePlot"))%>% withSpinner(color="#39ab2c"))),
-               fluidRow(column(3),column(6,
-                                         plotlyOutput(ns("OffshoreWindTurnoverPiePlot"))%>% withSpinner(color="#39ab2c"))),
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-      tabPanel("Hydro",
-               fluidRow(column(8,
-                               h3("Hydro", style = "color: #39ab2c;  font-weight:bold"),
-                               h4("Scotland, 2018", style = "color: #39ab2c;")
-               )
-               ),
-               
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-               #dygraphOutput(ns("RenElecFuelPlot")),
-               fluidRow(column(6,
-                               plotlyOutput(ns("HydroGenPiePlot"))%>% withSpinner(color="#39ab2c")),
-                        column(6,
-                               plotlyOutput(ns("HydroCapPiePlot"))%>% withSpinner(color="#39ab2c"))),
-               fluidRow(column(6,
-                               plotlyOutput(ns("HydroPipePiePlot"))%>% withSpinner(color="#39ab2c")),
-                        column(6,
-                               plotlyOutput(ns("HydroEmployeesPiePlot"))%>% withSpinner(color="#39ab2c"))),
-               fluidRow(column(3),column(6,
-                                         plotlyOutput(ns("HydroTurnoverPiePlot"))%>% withSpinner(color="#39ab2c"))),
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-      tabPanel("Solar PV",
-               fluidRow(column(8,
-                               h3("Solar PV", style = "color: #39ab2c;  font-weight:bold"),
-                               h4("Scotland, 2018", style = "color: #39ab2c;")
-               )
-               ),
-               
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-               #dygraphOutput(ns("RenElecFuelPlot")),
-               fluidRow(column(6,
-                               plotlyOutput(ns("SolarPVGenPiePlot"))%>% withSpinner(color="#39ab2c")),
-                        column(6,
-                               plotlyOutput(ns("SolarPVCapPiePlot"))%>% withSpinner(color="#39ab2c"))),
-               fluidRow(column(6,
-                               plotlyOutput(ns("SolarPipePiePlot"))%>% withSpinner(color="#39ab2c")),
-                        column(6,
-                               plotlyOutput(ns("SolarEmployeesPiePlot"))%>% withSpinner(color="#39ab2c"))),
-               fluidRow(column(3),column(6,
-                                         plotlyOutput(ns("SolarTurnoverPiePlot"))%>% withSpinner(color="#39ab2c"))),
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-      tabPanel("Bioenergy",
-               fluidRow(column(8,
-                               h3("Bioenergy", style = "color: #39ab2c;  font-weight:bold"),
-                               h4("Scotland, 2018", style = "color: #39ab2c;")
-               )
-               ),
-               
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-               #dygraphOutput(ns("RenElecFuelPlot")),
-               fluidRow(column(6,
-                               plotlyOutput(ns("BioenergyGenPiePlot"))%>% withSpinner(color="#39ab2c")),
-                        column(6,
-                               plotlyOutput(ns("BioenergyCapPiePlot"))%>% withSpinner(color="#39ab2c"))),
-               fluidRow(column(3),column(6,
-                                         plotlyOutput(ns("BioenergyPipePiePlot"))%>% withSpinner(color="#39ab2c"))),
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-      tabPanel("Wave and Tidal",
-               fluidRow(column(8,
-                               h3("Wave and Tidal", style = "color: #39ab2c;  font-weight:bold"),
-                               h4("Scotland, 2018", style = "color: #39ab2c;")
-               )
-               ),
-               
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-               #dygraphOutput(ns("RenElecFuelPlot")),
-               fluidRow(column(6,
-                               plotlyOutput(ns("WaveTidalGenPiePlot"))%>% withSpinner(color="#39ab2c")),
-                        column(6,
-                               plotlyOutput(ns("WaveTidalCapPiePlot"))%>% withSpinner(color="#39ab2c"))),
-               fluidRow(column(3),column(6,
-                                         plotlyOutput(ns("WaveTidalPipePiePlot"))%>% withSpinner(color="#39ab2c"))),
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
-    ),
-    fluidRow(
-    column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
-    column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
-    
-    fluidRow(
-    uiOutput(ns("Text"))
-    ),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+      fluidRow(
+        column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
+        column(2,style = "padding:15px",actionButton(ns("ToggleText1"), "Show/Hide Text", style = "float:right; "))),
+      
+      fluidRow(
+        uiOutput(ns("TextOnshore"))
+      ),
+      tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
+
                fluidRow(
                  column(10, h3("Data - Latest Figures", style = "color: #39ab2c;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
-                 column(12, dataTableOutput(ns("RenOverviewTable"))%>% withSpinner(color="#39ab2c"))),
+                 column(12, dataTableOutput(ns("RenSourcesTable"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
       column(1,
@@ -162,7 +63,7 @@ RenElecOverviewOutput <- function(id) {
 
 
 ###### Server ######
-RenElecOverview <- function(input, output, session) {
+RenElecSources <- function(input, output, session) {
 
   
   if (exists("PackageHeader") == 0) {
@@ -173,17 +74,17 @@ RenElecOverview <- function(input, output, session) {
 
 ######
 
- output$Text <- renderUI({
+ output$TextOnshore <- renderUI({
    tagList(column(12,
                   HTML(
-                    paste(readtext("Structure/2 - Renewables/Electricity/RenElecOverview.txt")[2])
+                    paste(readtext("Structure/2 - Renewables/Electricity/RenElecSourcesOnshore.txt")[2])
                     
                   )))
  })
 
   
-  observeEvent(input$ToggleText, {
-    toggle("Text")
+  observeEvent(input$ToggleText1, {
+    toggle("TextOnshore")
   })
   
   
@@ -315,39 +216,144 @@ RenElecOverview <- function(input, output, session) {
   
   RenTurnover$variable[RenTurnover$variable == "Solar photovoltaic"] <- "Solar PV"
   
+  OnshoreWindTable <- as_tibble(cbind("Onshore Wind",
+                                      RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Onshore Wind`,
+                                      RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Onshore Wind`,
+                                      RenElecPipeline$`Wind Onshore`,
+                                      RenEmployees[which(RenEmployees$variable == "Onshore wind"),]$value,
+                                      RenTurnover[which(RenTurnover$variable == "Onshore wind"),]$value
+  ))
+  names(OnshoreWindTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3000s)")
+  
+  
+  OffshoreWindTable <- as_tibble(cbind("Offshore Wind",
+                                       RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Offshore Wind`,
+                                       RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Offshore Wind`,
+                                       RenElecPipeline$`Wind Offshore`,
+                                       RenEmployees[which(RenEmployees$variable == "Offshore wind"),]$value,
+                                       RenTurnover[which(RenTurnover$variable == "Offshore wind"),]$value
+  ))
+  names(OffshoreWindTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3000s)")
+  
+  HydroTable <- as_tibble(cbind("Hydro",
+                                RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Hydro`,
+                                RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Hydro`,
+                                RenElecPipeline$`Hydro`,
+                                RenEmployees[which(RenEmployees$variable == "Hydro"),]$value,
+                                RenTurnover[which(RenTurnover$variable == "Hydro"),]$value
+  ))
+  names(HydroTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3000s)")
+  
+  SolarPVTable <- as_tibble(cbind("SolarPV",
+                                  RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Solar PV`,
+                                  RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Solar PV`,
+                                  RenElecPipeline$`Solar Photovoltaics`,
+                                  RenEmployees[which(RenEmployees$variable == "Solar PV"),]$value,
+                                  RenTurnover[which(RenTurnover$variable == "Solar PV"),]$value
+  ))
+  names(SolarPVTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3000s)")
+  
+  BioenergyTable <- as_tibble(cbind("Bioenergy",
+                                    RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Bioenergy`,
+                                    RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Bioenergy`,
+                                    RenElecPipeline$`Bioenergy`
+  ))
+  names(BioenergyTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)")
+  
+  
+  WaveTidalTable <- as_tibble(cbind("Wave and Tidal",
+                                    RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Wave and tidal`,
+                                    RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Wave and tidal`,
+                                    RenElecPipeline$`Shoreline wave / tidal`
+  ))
+  names(WaveTidalTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)")
+  
+  TotalTable <- as_tibble(cbind("Total",
+                                RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Total`,
+                                RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Total`,
+                                RenElecPipeline$`Total`,
+                                RenEmployees[which(RenEmployees$variable == "Other"),]$value,
+                                RenTurnover[which(RenTurnover$variable == "Other"),]$value
+  ))
+  names(TotalTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3000s)")
+  
+  TechTable <- rbind.fill(OnshoreWindTable, OffshoreWindTable, HydroTable, SolarPVTable, BioenergyTable, WaveTidalTable, TotalTable)
+  
+  Stacked <- as_tibble(t(TechTable), rownames = "rowname")
+  
+  Stacked <- Stacked[-1,]
+  
+  names(Stacked) <- c("Tech", "Onshore Wind", "Offshore Wind", "Hydro", "Solar PV", "Bioenergy", "Wave and Tidal", "Total")
+  
+  Stacked[2:8] %<>% lapply(function(x)
+    as.numeric(as.character(x)))
+  
+  Stacked <- as_tibble(Stacked)
+  
+  Stacked$Tech <- str_wrap(paste0("<b>", Stacked$Tech, "</b>"), 14)
+  
+  Stacked$Tech <- factor(Stacked$Tech, levels = unique(Stacked$Tech)[order(row.names(Stacked), decreasing = FALSE)])
+  
   ##### Outputs
   output$OnshoreWindGenPiePlot <- renderPlotly  ({
-    OnshoreWindGenPie <- as_tibble(cbind(RenElecGenFuel$Year,RenElecGenFuel$`Onshore Wind`, (RenElecGenFuel$Total - RenElecGenFuel$`Onshore Wind`)))
-    
-    names(OnshoreWindGenPie) <- c("Year", "Onshore Wind", "Other")
-    
-    OnshoreWindGenPie <- melt(OnshoreWindGenPie, id = "Year")
-    
-    OnshoreWindGenPie <- OnshoreWindGenPie[which(OnshoreWindGenPie$Year == max(OnshoreWindGenPie$Year)),]
-    
-    p <- plot_ly() %>% 
-      add_pie(data = OnshoreWindGenPie,
-              labels = ~variable,
-              values = ~value,
-              sort = FALSE,
-              hole = 0.5,
-              textposition = "inside",
-              textinfo = 'none',
-              hoverinfo = 'text',
-              marker = list(colors = c("#1a5d38",  "#d9d9d9", "#31859c","#77933c", "#4f6228", "#184d0f"),
-                            line = list(color = '#FFFFFF', width = 2)),
-              text = paste0(OnshoreWindGenPie$variable,": ", format(round(OnshoreWindGenPie$value, digits = 0), big.mark = ","), " GWh\n", percent((OnshoreWindGenPie$value)/ sum(OnshoreWindGenPie$value))),
-              sort = T) %>% 
-      layout(
-        title = list(
-          text = paste("<b>Onshore Wind Generation</b>:",format(round(OnshoreWindGenPie[which(OnshoreWindGenPie$variable == "Onshore Wind"),]$value, digits = 0), big.mark = ","), "GWh"),
-          font = list(
-            color = "#262626"
-          )
+    p <- plot_ly(
+      data = Stacked,
+      y = ~Tech,
+      x = ~(`Onshore Wind`/ Total),
+      legendgroup = 1,
+      text = paste0(
+        "Wind: ",
+        format(round(Stacked$`Onshore Wind`, digits = 0),big.mark = ","),
+        " GWh\nYear: ",
+        Stacked$Tech
+      ),
+      name = "Onshore Wind",
+      type = "bar",
+      hoverinfo = "text",
+      orientation = 'h',
+      marker = list(color =  BarColours[1])
+    ) %>%
+      add_trace(
+        data = Stacked,
+        y = ~Tech,
+        x = ~((Total -`Onshore Wind`)/ Total),
+        legendgroup = 2,
+        text = paste0(
+          "Other: ",
+          format(round(Stacked$Total - Stacked$`Onshore Wind`, digits = 0),big.mark = ","),
+          " GWh\nYear: ",
+          Stacked$Tech
         ),
-        legend = list(font = list(color = "#1A5D38"),
-                      orientation = 'h')
-      )
+        name = "Other",
+        type = "bar",
+        hoverinfo = "text",
+        orientation = 'h',
+        marker = list(color =  BarColours[2])
+      ) %>%
+      layout(
+        barmode = 'stack',
+        legend = list(font = list(color = "#a3d65c"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        xaxis = list(title = "",
+                     zeroline = FALSE,
+                     tickformat = "%",
+                     showgrid = TRUE,
+                     x = 0.5
+                     
+        ),
+        yaxis = list(
+          title = "",
+          tickformat = "%",
+          autorange = "reversed",
+          showgrid = FALSE,
+          zeroline = FALSE,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
     p
     
   })
@@ -1192,60 +1198,8 @@ RenElecOverview <- function(input, output, session) {
     p
   })
   
-  output$RenOverviewTable = renderDataTable({
-    OnshoreWindTable <- as_tibble(cbind("Onshore Wind",
-                                        RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Onshore Wind`,
-                                        RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Onshore Wind`,
-                                        RenElecPipeline$`Wind Onshore`,
-                                        RenEmployees[which(RenEmployees$variable == "Onshore wind"),]$value,
-                                        RenTurnover[which(RenTurnover$variable == "Onshore wind"),]$value
-    ))
-    names(OnshoreWindTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3000s)")
-    
-    
-    OffshoreWindTable <- as_tibble(cbind("Offshore Wind",
-                                         RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Offshore Wind`,
-                                         RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Offshore Wind`,
-                                         RenElecPipeline$`Wind Offshore`,
-                                         RenEmployees[which(RenEmployees$variable == "Offshore wind"),]$value,
-                                         RenTurnover[which(RenTurnover$variable == "Offshore wind"),]$value
-    ))
-    names(OffshoreWindTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3000s)")
-    
-    HydroTable <- as_tibble(cbind("Hydro",
-                                  RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Hydro`,
-                                  RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Hydro`,
-                                  RenElecPipeline$`Hydro`,
-                                  RenEmployees[which(RenEmployees$variable == "Hydro"),]$value,
-                                  RenTurnover[which(RenTurnover$variable == "Hydro"),]$value
-    ))
-    names(HydroTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3000s)")
-    
-    SolarPVTable <- as_tibble(cbind("SolarPV",
-                                    RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Solar PV`,
-                                    RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Solar PV`,
-                                    RenElecPipeline$`Solar Photovoltaics`,
-                                    RenEmployees[which(RenEmployees$variable == "Solar PV"),]$value,
-                                    RenTurnover[which(RenTurnover$variable == "Solar PV"),]$value
-    ))
-    names(SolarPVTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3000s)")
-    
-    BioenergyTable <- as_tibble(cbind("Bioenergy",
-                                      RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Bioenergy`,
-                                      RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Bioenergy`,
-                                      RenElecPipeline$`Bioenergy`
-    ))
-    names(BioenergyTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)")
-    
-    
-    WaveTidalTable <- as_tibble(cbind("Wave and Tidal",
-                                      RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Wave and tidal`,
-                                      RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Wave and tidal`,
-                                      RenElecPipeline$`Shoreline wave / tidal`
-    ))
-    names(WaveTidalTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)")
-    
-    TechTable <- rbind.fill(OnshoreWindTable, OffshoreWindTable, HydroTable, SolarPVTable, BioenergyTable, WaveTidalTable)
+  output$RenSourcesTable = renderDataTable({
+
     
     
     datatable(
