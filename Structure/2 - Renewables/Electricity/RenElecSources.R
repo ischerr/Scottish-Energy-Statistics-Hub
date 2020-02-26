@@ -315,8 +315,6 @@ RenElecSources <- function(input, output, session) {
         " ",
         Stacked$Unit,
         "\n",
-        Stacked$Tech,
-        "\n",
         percent(Stacked$`Onshore Wind` / Stacked$Total, 0.1)
       ),
       name = "Onshore Wind",
@@ -335,8 +333,6 @@ RenElecSources <- function(input, output, session) {
           format(round(Stacked$Total - Stacked$`Onshore Wind`, digits = 0),big.mark = ",", trim = TRUE),
           " ",
           Stacked$Unit,
-          "\n",
-         Stacked$Tech,
           "\n",
            percent(( Stacked$Total - Stacked$`Onshore Wind`) / Stacked$Total, 0.1)
         ),
