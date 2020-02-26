@@ -177,7 +177,7 @@ observe({
     
     updateQueryString(paste0("?Section=",input$MainNav), mode = "push")
     
-    callModule(match.fun(input$MainNav), input$MainNav)
+    callModule(match.fun(input$MainNav), input$MainNav, parent_session = session)
     
   }
   
