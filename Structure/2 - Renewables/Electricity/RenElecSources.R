@@ -14,7 +14,7 @@ RenElecSourcesOutput <- function(id) {
       tabPanel("Onshore Wind",
                fluidRow(column(8,
                                h3("Onshore Wind", style = "color: #39ab2c;  font-weight:bold"),
-                               h4("Scotland, 2018", style = "color: #39ab2c;")
+                               h4("Scotland, Latest Figures", style = "color: #39ab2c;")
                )
                ),
                
@@ -290,9 +290,17 @@ RenElecSources <- function(input, output, session) {
   
   Stacked <- as_tibble(Stacked)
   
-  Stacked$Tech <- str_wrap(paste0("<b>", Stacked$Tech, "</b>"), 14)
+  Stacked[1,1] <- paste0("<b>", Stacked[1,1], "</b>" , "\n2000")
+  Stacked[2,1] <- paste0("<b>", Stacked[2,1], "</b>" , "\n2000 Q1")
+  Stacked[3,1] <- paste0("<b>", Stacked[3,1], "</b>" , "\n2000 Q1")
+  Stacked[4,1] <- paste0("<b>", Stacked[4,1], "</b>" , "\n2000")
+  Stacked[5,1] <- paste0("<b>", Stacked[5,1], "</b>" , "\n2000")
   
-  Stacked$Tech <- factor(Stacked$Tech, levels = unique(Stacked$Tech)[order(row.names(Stacked), decreasing = FALSE)])
+  Stacked$Unit <- c("GWh", "MW", "MW", "FTE", "(£000s)")
+  
+  #Stacked$Tech <- factor(Stacked$Tech, levels = unique(Stacked$Tech)[order(row.names(Stacked), decreasing = FALSE)])
+  
+  BarColours <- c("#39ab2c", "#d9d9d9")
   
   ##### Outputs
   output$OnshoreWindGenPiePlot <- renderPlotly  ({
@@ -302,10 +310,14 @@ RenElecSources <- function(input, output, session) {
       x = ~(`Onshore Wind`/ Total),
       legendgroup = 1,
       text = paste0(
-        "Wind: ",
-        format(round(Stacked$`Onshore Wind`, digits = 0),big.mark = ","),
-        " GWh\nYear: ",
-        Stacked$Tech
+        "<b>Onshore Wind</b>\n",
+        format(round(Stacked$`Onshore Wind`, digits = 0),big.mark = ",", trim = TRUE),
+        " ",
+        Stacked$Unit,
+        "\n",
+        Stacked$Tech,
+        "\n",
+        percent(Stacked$`Onshore Wind` / Stacked$Total, 0.1)
       ),
       name = "Onshore Wind",
       type = "bar",
@@ -319,12 +331,16 @@ RenElecSources <- function(input, output, session) {
         x = ~((Total -`Onshore Wind`)/ Total),
         legendgroup = 2,
         text = paste0(
-          "Other: ",
-          format(round(Stacked$Total - Stacked$`Onshore Wind`, digits = 0),big.mark = ","),
-          " GWh\nYear: ",
-          Stacked$Tech
+          "<b>Other Renewables</b>\n ",
+          format(round(Stacked$Total - Stacked$`Onshore Wind`, digits = 0),big.mark = ",", trim = TRUE),
+          " ",
+          Stacked$Unit,
+          "\n",
+         Stacked$Tech,
+          "\n",
+           percent(( Stacked$Total - Stacked$`Onshore Wind`) / Stacked$Total, 0.1)
         ),
-        name = "Other",
+        name = "Other Renewables",
         type = "bar",
         hoverinfo = "text",
         orientation = 'h',
@@ -340,17 +356,18 @@ RenElecSources <- function(input, output, session) {
         xaxis = list(title = "",
                      zeroline = FALSE,
                      tickformat = "%",
+                     showticklabels = FALSE,
                      showgrid = TRUE,
                      x = 0.5
                      
         ),
-        yaxis = list(
-          title = "",
-          tickformat = "%",
-          autorange = "reversed",
-          showgrid = FALSE,
-          zeroline = FALSE,
-          rangemode = "tozero"
+        yaxis = list(title = "",
+                     showgrid = FALSE,
+                     type = "category",
+                     autorange = "reversed",
+                     ticktext = as.list(Data$Country),
+                     tickmode = "array",
+                     tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
         )
       ) %>% 
       config(displayModeBar = F)
