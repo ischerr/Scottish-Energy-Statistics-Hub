@@ -151,8 +151,8 @@ RenElecSourcesOutput <- function(id) {
         8,
         align = "right",
         SourceLookup("BEISRenElec"),
-        SourceLookup("EURORenEn"),
-        SourceLookup("BEISSubNatEnergy")
+        SourceLookup("BEISREPD"),
+        SourceLookup("ONSLowCarbon")
         
       )
     )
@@ -407,7 +407,7 @@ RenElecSources <- function(input, output, session) {
       text = paste0(
         "<b>Onshore Wind</b>\n",
         Stacked$Prefix,
-        ifelse(Stacked$`Onshore Wind` > 100,
+        ifelse(Stacked$`Onshore Wind` > 3,
           format(round(Stacked$`Onshore Wind`, digits = 0),big.mark = ",", trim = TRUE),
           format(round(Stacked$`Onshore Wind`, digits = 2),big.mark = ",", trim = TRUE)),
         " ",
@@ -429,7 +429,7 @@ RenElecSources <- function(input, output, session) {
         text = paste0(
           "<b>Other Renewables</b>\n ",
           Stacked$Prefix,
-          ifelse(Stacked$`Onshore Wind` > 100,
+          ifelse(Stacked$`Onshore Wind` > 3,
                  format(round(Stacked$Total - Stacked$`Onshore Wind`, digits = 0),big.mark = ",", trim = TRUE),
                  format(round(Stacked$Total - Stacked$`Onshore Wind`, digits = 2),big.mark = ",", trim = TRUE)),
           " ",
@@ -519,7 +519,7 @@ RenElecSources <- function(input, output, session) {
             "",
             paste0(
               OnshoreWindSources$Prefix,
-              ifelse(OnshoreWindSources$value > 100,
+              ifelse(OnshoreWindSources$value > 3,
                      format(round(OnshoreWindSources$`value`, digits = 0),big.mark = ",", trim = TRUE),
                      format(round(OnshoreWindSources$`value`, digits = 2),big.mark = ",", trim = TRUE)),
               " ",
@@ -528,6 +528,7 @@ RenElecSources <- function(input, output, session) {
           ),
           fontface = 2,
           hjust = 0,
+          family = "Century Gothic",
           colour = ChartColours[1]
         ) +
         annotate(
@@ -639,7 +640,7 @@ RenElecSources <- function(input, output, session) {
       text = paste0(
         "<b>Offshore Wind</b>\n",
         Stacked$Prefix,
-        ifelse(Stacked$`Offshore Wind` > 100,
+        ifelse(Stacked$`Offshore Wind` > 3,
                format(round(Stacked$`Offshore Wind`, digits = 0),big.mark = ",", trim = TRUE),
                format(round(Stacked$`Offshore Wind`, digits = 2),big.mark = ",", trim = TRUE)),
         " ",
@@ -661,7 +662,7 @@ RenElecSources <- function(input, output, session) {
         text = paste0(
           "<b>Other Renewables</b>\n ",
           Stacked$Prefix,
-          ifelse(Stacked$`Offshore Wind` > 100,
+          ifelse(Stacked$`Offshore Wind` > 3,
                  format(round(Stacked$Total - Stacked$`Offshore Wind`, digits = 0),big.mark = ",", trim = TRUE),
                  format(round(Stacked$Total - Stacked$`Offshore Wind`, digits = 2),big.mark = ",", trim = TRUE)),
           " ",
@@ -750,7 +751,7 @@ RenElecSources <- function(input, output, session) {
             "",
             paste0(
               OffshoreWindSources$Prefix,
-              ifelse(OffshoreWindSources$value > 100,
+              ifelse(OffshoreWindSources$value > 3,
                      format(round(OffshoreWindSources$`value`, digits = 0),big.mark = ",", trim = TRUE),
                      format(round(OffshoreWindSources$`value`, digits = 2),big.mark = ",", trim = TRUE)),
               " ",
@@ -759,6 +760,7 @@ RenElecSources <- function(input, output, session) {
           ),
           fontface = 2,
           hjust = 0,
+          family = "Century Gothic",
           colour = ChartColours[1]
         ) +
         annotate(
@@ -869,7 +871,7 @@ RenElecSources <- function(input, output, session) {
       text = paste0(
         "<b>Hydro</b>\n",
         Stacked$Prefix,
-        ifelse(Stacked$`Hydro` > 100,
+        ifelse(Stacked$`Hydro` > 3,
                format(round(Stacked$`Hydro`, digits = 0),big.mark = ",", trim = TRUE),
                format(round(Stacked$`Hydro`, digits = 2),big.mark = ",", trim = TRUE)),
         " ",
@@ -891,7 +893,7 @@ RenElecSources <- function(input, output, session) {
         text = paste0(
           "<b>Other Renewables</b>\n ",
           Stacked$Prefix,
-          ifelse(Stacked$`Hydro` > 100,
+          ifelse(Stacked$`Hydro` > 3,
                  format(round(Stacked$Total - Stacked$`Hydro`, digits = 0),big.mark = ",", trim = TRUE),
                  format(round(Stacked$Total - Stacked$`Hydro`, digits = 2),big.mark = ",", trim = TRUE)),
           " ",
@@ -980,7 +982,7 @@ RenElecSources <- function(input, output, session) {
             "",
             paste0(
               HydroSources$Prefix,
-              ifelse(HydroSources$value > 100,
+              ifelse(HydroSources$value > 3,
                      format(round(HydroSources$`value`, digits = 0),big.mark = ",", trim = TRUE),
                      format(round(HydroSources$`value`, digits = 2),big.mark = ",", trim = TRUE)),
               " ",
@@ -989,6 +991,7 @@ RenElecSources <- function(input, output, session) {
           ),
           fontface = 2,
           hjust = 0,
+          family = "Century Gothic",
           colour = ChartColours[1]
         ) +
         annotate(
@@ -1097,7 +1100,7 @@ RenElecSources <- function(input, output, session) {
       text = paste0(
         "<b>Solar PV</b>\n",
         Stacked$Prefix,
-        ifelse(Stacked$`Solar PV` > 100,
+        ifelse(Stacked$`Solar PV` > 3,
                format(round(Stacked$`Solar PV`, digits = 0),big.mark = ",", trim = TRUE),
                format(round(Stacked$`Solar PV`, digits = 2),big.mark = ",", trim = TRUE)),
         " ",
@@ -1109,6 +1112,7 @@ RenElecSources <- function(input, output, session) {
       type = "bar",
       hoverinfo = "text",
       orientation = 'h',
+      family = "Century Gothic",
       marker = list(color =  BarColours[1])
     ) %>%
       add_trace(
@@ -1119,7 +1123,7 @@ RenElecSources <- function(input, output, session) {
         text = paste0(
           "<b>Other Renewables</b>\n ",
           Stacked$Prefix,
-          ifelse(Stacked$`Solar PV` > 100,
+          ifelse(Stacked$`Solar PV` > 3,
                  format(round(Stacked$Total - Stacked$`Solar PV`, digits = 0),big.mark = ",", trim = TRUE),
                  format(round(Stacked$Total - Stacked$`Solar PV`, digits = 2),big.mark = ",", trim = TRUE)),
           " ",
@@ -1208,7 +1212,7 @@ RenElecSources <- function(input, output, session) {
             "",
             paste0(
               SolarSources$Prefix,
-              ifelse(SolarSources$value > 100,
+              ifelse(SolarSources$value > 3,
                      format(round(SolarSources$`value`, digits = 0),big.mark = ",", trim = TRUE),
                      format(round(SolarSources$`value`, digits = 2),big.mark = ",", trim = TRUE)),
               " ",
@@ -1327,7 +1331,7 @@ RenElecSources <- function(input, output, session) {
       text = paste0(
         "<b>Bioenergy</b>\n",
         Stacked$Prefix,
-        ifelse(Stacked$`Bioenergy` > 100,
+        ifelse(Stacked$`Bioenergy` > 3,
                format(round(Stacked$`Bioenergy`, digits = 0),big.mark = ",", trim = TRUE),
                format(round(Stacked$`Bioenergy`, digits = 2),big.mark = ",", trim = TRUE)),
         " ",
@@ -1339,6 +1343,7 @@ RenElecSources <- function(input, output, session) {
       type = "bar",
       hoverinfo = "text",
       orientation = 'h',
+      
       marker = list(color =  BarColours[1])
     ) %>%
       add_trace(
@@ -1349,7 +1354,7 @@ RenElecSources <- function(input, output, session) {
         text = paste0(
           "<b>Other Renewables</b>\n ",
           Stacked$Prefix,
-          ifelse(Stacked$`Bioenergy` > 100,
+          ifelse(Stacked$`Bioenergy` > 3,
                  format(round(Stacked$Total - Stacked$`Bioenergy`, digits = 0),big.mark = ",", trim = TRUE),
                  format(round(Stacked$Total - Stacked$`Bioenergy`, digits = 2),big.mark = ",", trim = TRUE)),
           " ",
@@ -1441,7 +1446,7 @@ RenElecSources <- function(input, output, session) {
             "",
             paste0(
               BioenergySources$Prefix,
-              ifelse(BioenergySources$value > 100,
+              ifelse(BioenergySources$value > 3,
                      format(round(BioenergySources$`value`, digits = 0),big.mark = ",", trim = TRUE),
                      format(round(BioenergySources$`value`, digits = 2),big.mark = ",", trim = TRUE)),
               " ",
@@ -1450,6 +1455,7 @@ RenElecSources <- function(input, output, session) {
           ),
           fontface = 2,
           hjust = 0,
+          family = "Century Gothic",
           colour = ChartColours[1]
         ) +
         annotate(
@@ -1559,7 +1565,7 @@ RenElecSources <- function(input, output, session) {
       text = paste0(
         "<b>Wave and Tidal</b>\n",
         Stacked$Prefix,
-        ifelse(Stacked$`Wave and Tidal` > 100,
+        ifelse(Stacked$`Wave and Tidal` > 3,
                format(round(Stacked$`Wave and Tidal`, digits = 0),big.mark = ",", trim = TRUE),
                format(round(Stacked$`Wave and Tidal`, digits = 2),big.mark = ",", trim = TRUE)),
         " ",
@@ -1581,7 +1587,7 @@ RenElecSources <- function(input, output, session) {
         text = paste0(
           "<b>Other Renewables</b>\n ",
           Stacked$Prefix,
-          ifelse(Stacked$`Wave and Tidal` > 100,
+          ifelse(Stacked$`Wave and Tidal` > 3,
                  format(round(Stacked$Total - Stacked$`Wave and Tidal`, digits = 0),big.mark = ",", trim = TRUE),
                  format(round(Stacked$Total - Stacked$`Wave and Tidal`, digits = 2),big.mark = ",", trim = TRUE)),
           " ",
@@ -1657,7 +1663,7 @@ RenElecSources <- function(input, output, session) {
       WaveTidalSources <- WaveTidalSources[complete.cases(WaveTidalSources),]
       
       plottitle <-
-        "WaveTidal"
+        "Wave and Tidal"
       sourcecaption <- "Source: BEIS"
       
       WaveTidalSourcesChart <- WaveTidalSources %>%
@@ -1673,7 +1679,7 @@ RenElecSources <- function(input, output, session) {
             "",
             paste0(
               WaveTidalSources$Prefix,
-              ifelse(WaveTidalSources$value > 100,
+              ifelse(WaveTidalSources$value > 3,
                      format(round(WaveTidalSources$`value`, digits = 0),big.mark = ",", trim = TRUE),
                      format(round(WaveTidalSources$`value`, digits = 2),big.mark = ",", trim = TRUE)),
               " ",
@@ -1681,6 +1687,7 @@ RenElecSources <- function(input, output, session) {
             )
           ),
           fontface = 2,
+          family = "Century Gothic",
           hjust = 0,
           colour = ChartColours[1]
         ) +
@@ -1709,7 +1716,7 @@ RenElecSources <- function(input, output, session) {
           "text",
           x = 3.7,
           y = 0,
-          label = "WaveTidal",
+          label = "Wave and Tidal",
           family = "Century Gothic",
           colour =  ChartColours[1],
           hjust = 0,

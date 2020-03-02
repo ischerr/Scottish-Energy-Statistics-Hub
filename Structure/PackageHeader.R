@@ -173,7 +173,7 @@ TargetChart <-
       labs(y = "Percentage", caption = sourcecaption) +
       labs(
         title = plottitle,
-        face = "bold",
+        face = 2,
         subtitle = paste("Scotland,", min(data$Year), "-", dataMax$Year)
       ) +
       ### Theme Options ###
@@ -208,7 +208,7 @@ TargetChart <-
         ,
         title = element_text(colour = ChartColours[1], size = 14)
         ,
-        plot.title = ggplot2::element_text(face = "bold")
+        plot.title = ggplot2::element_text(face = 2)
       ) +
       
       ### 0 Axis
@@ -390,7 +390,7 @@ TargetChart2 <-
       labs(y = "Percentage", caption = sourcecaption) +
       labs(
         title = plottitle,
-        face = "bold",
+        face = 2,
         subtitle = paste("Scotland,", min(data$Year), "-", dataMax$Year)
       ) +
       ### Theme Options ###
@@ -425,7 +425,7 @@ TargetChart2 <-
         ,
         title = element_text(colour = ChartColours[1], size = 14)
         ,
-        plot.title = ggplot2::element_text(face = "bold")
+        plot.title = ggplot2::element_text(face = 2)
       ) +
       
       ### 0 Axis
@@ -481,7 +481,7 @@ LinePercentChart <-
       labs(caption = sourcecaption) +
       labs(
         title = plottitle,
-        face = "bold",
+        face = 2,
         subtitle = paste("Scotland,", min(data$Year), "-", max(data$Year))
       ) +
       
@@ -517,7 +517,7 @@ LinePercentChart <-
         ,
         title = element_text(colour = ChartColours[1], size = 14)
         ,
-        plot.title = ggplot2::element_text(face = "bold")
+        plot.title = ggplot2::element_text(face = 2)
       ) +
       
       ### 0 Axis
@@ -568,7 +568,7 @@ StackedArea <-
       labs(caption = sourcecaption) +
       labs(
         title = plottitle,
-        face = "bold",
+        face = 2,
         subtitle = paste("Scotland,", min(data$Year), "-", max(data$Year))
       )       +
       
@@ -604,7 +604,7 @@ StackedArea <-
         ,
         title = element_text(colour = ChartColours[1], size = 14)
         ,
-        plot.title = ggplot2::element_text(face = "bold")
+        plot.title = ggplot2::element_text(face = 2)
       ) +
       
       ### 0 Axis
@@ -655,7 +655,7 @@ HorizontalChart <-
       labs(caption = sourcecaption) +
       labs(
         title = plottitle,
-        face = "bold",
+        face = 2,
         subtitle = paste("Scotland,", min(data$Year), "-", max(data$Year))
       ) +
       
@@ -691,7 +691,7 @@ HorizontalChart <-
         ,
         title = element_text(colour = ChartColours[1], size = 14)
         ,
-        plot.title = ggplot2::element_text(face = "bold")
+        plot.title = ggplot2::element_text(face = 2)
       ) +
       #geom_hline(yintercept=.52, color = ChartColours[2], alpha = 0.7)+
       
@@ -731,7 +731,7 @@ PieChart <-
       ### Label Plot
       labs(caption = sourcecaption) +
       labs(title = plottitle,
-           face = "bold") +
+           face = 2) +
       
       ### Theme Options ###
       
@@ -765,7 +765,7 @@ PieChart <-
         ,
         title = element_text(colour = ChartColours[1], size = 14)
         ,
-        plot.title = ggplot2::element_text(face = "bold")
+        plot.title = ggplot2::element_text(face = 2)
       )
     #geom_hline(yintercept=.52, color = ChartColours[2], alpha = 0.7)+
     
@@ -787,7 +787,7 @@ BaselineChart <-
       labs(caption = sourcecaption) +
       labs(
         title = plottitle,
-        face = "bold",
+        face = 2,
         subtitle = paste("Scotland,", min(data$Year), "-", max(data$Year))
       ) +
       
@@ -823,7 +823,7 @@ BaselineChart <-
         ,
         title = element_text(colour = ChartColours[1], size = 14)
         ,
-        plot.title = ggplot2::element_text(face = "bold")
+        plot.title = ggplot2::element_text(face = 2)
       ) +
       #geom_hline(yintercept=.52, color = ChartColours[2], alpha = 0.7)+
       
@@ -863,7 +863,7 @@ StackedBars <-
       ### Label Plot
       labs(caption = sourcecaption) +
       labs(title = plottitle,
-           face = "bold") +
+           face = 2) +
       
       ### Theme Options ###
       
@@ -897,7 +897,7 @@ StackedBars <-
         ,
         title = element_text(colour = ChartColours[1], size = 14)
         ,
-        plot.title = ggplot2::element_text(face = "bold")
+        plot.title = ggplot2::element_text(face = 2)
       ) +
       #geom_hline(yintercept=.52, color = ChartColours[2], alpha = 0.7)+
       
@@ -936,7 +936,7 @@ DailyChart <-
       labs(caption = sourcecaption) +
       labs(
         title = plottitle,
-        face = "bold",
+        face = 2,
         subtitle = paste(
           "Scotland,",
           format(min(data$Year), format = "%b %Y"),
@@ -977,7 +977,7 @@ DailyChart <-
         ,
         title = element_text(colour = ChartColours[1], size = 14)
         ,
-        plot.title = ggplot2::element_text(face = "bold")
+        plot.title = ggplot2::element_text(face = 2)
       ) +
       
       
@@ -1016,7 +1016,7 @@ TimeChart <-
       labs(caption = sourcecaption) +
       labs(
         title = plottitle,
-        face = "bold"
+        face = 2
       ) +
       
       ### Theme Options ###
@@ -1051,7 +1051,7 @@ TimeChart <-
         ,
         title = element_text(colour = ChartColours[1], size = 14)
         ,
-        plot.title = ggplot2::element_text(face = "bold")
+        plot.title = ggplot2::element_text(face = 2)
       )+
       
       
