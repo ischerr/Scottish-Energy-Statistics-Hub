@@ -611,7 +611,7 @@ ui <- shinyUI(fluidPage(
                    tabPanel(title = "Dual Fuel Bill Breakdown",
                             value = "DualFuelBreakdown",
                             DualFuelBreakdownOutput("DualFuelBreakdown")),
-                   tabPanel(title = "Average Bill",
+                   tabPanel(title = "Average Bill by local authority",
                             value = "AverageBillLA",
                             AverageBillLAOutput("AverageBillLA")),
                    tabPanel(title = "Energy Customers on Non-home Supplier",
