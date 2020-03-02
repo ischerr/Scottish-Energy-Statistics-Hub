@@ -21,7 +21,7 @@ EnSupplySwitchOutput <- function(id) {
     
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     #dygraphOutput(ns("EnSupplySwitchPlot")),
-    imageOutput(ns("EnSupplySwitchPlot"), height = "500px")%>% withSpinner(color="#68c3ea"),
+    plotlyOutput(ns("EnSupplySwitchPlot"), height = "500px")%>% withSpinner(color="#68c3ea"),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),
@@ -98,6 +98,13 @@ EnSupplySwitch <- function(input, output, session) {
   
   print("EnSupplySwitch.R")
   ###### Renewable Energy ###### ######
+
+
+  Data <- read_csv("Processed Data/Output/Consumers/MarketSwitching.csv")
+  
+  names(Data)[1] <- "Year"
+  
+  MarketSwitch <- Data  
   
   ### From ESD ###
   
@@ -106,21 +113,178 @@ EnSupplySwitch <- function(input, output, session) {
     paste("Scotland, 2018")
   })
   
-  output$EnSupplySwitchPlot <- renderImage({
+  output$EnSupplySwitchPlot <- renderPlotly({
     
-    # A temp file to save the output. It will be deleted after renderImage
-    # sends it, because deleteFile=TRUE.
-    outfile <- tempfile(fileext='.png')
-   
-     writePNG(readPNG("Structure/5 - Consumers/EnSupplySwitchOutput.png"),outfile) 
-    
-    # Generate a png
+    ChartColours <- c("#4292c6", "#7bccc4", "#08519c", "#ef3b2c")
+    sourcecaption = "Source: BEIS"
+    plottitle = "Proportion of payment methods used\nfor electricity bills"
     
     
-    # Return a list
-    list(src = outfile,
-         alt = "This is alternate text")
-  }, deleteFile = TRUE)
+    
+    p <-  plot_ly(data = MarketSwitch,
+                  x = ~ Year ) %>% 
+      add_trace(y = ~ `North Scotland`,
+                name = "North Scotland",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "1",
+                text = paste0(
+                  "North Scotland: ",
+                  percent(MarketSwitch$`North Scotland`, accuracy = 0.1),
+                  "\nYear: ",
+                  format(MarketSwitch$Year, "%B %Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[2], dash = "dash")
+      ) %>% 
+      add_trace(
+        data = tail(MarketSwitch[which(MarketSwitch$`North Scotland` > 0 | MarketSwitch$`North Scotland` < 0),], 1),
+        x = ~ Year,
+        y = ~ `North Scotland`,
+        name = "North Scotland",
+        text = paste0(
+          "North Scotland: ",
+          percent(MarketSwitch[which(MarketSwitch$`North Scotland` > 0 | MarketSwitch$`North Scotland` < 0),][-1,]$`North Scotland`, accuracy = 0.1),
+          "\nYear: ",
+          format(MarketSwitch[which(MarketSwitch$`North Scotland` > 0 | MarketSwitch$`North Scotland` < 0),][-1,]$Year, "%B %Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        legendgroup = "1",
+        marker = list(size = 18, 
+                      color = ChartColours[2])
+      ) %>% 
+      add_trace(data = MarketSwitch,
+                x = ~ Year,
+                y = ~ `South Scotland`,
+                name = "South Scotland",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "2",
+                text = paste0(
+                  "South Scotland: ",
+                  percent(MarketSwitch$`South Scotland`, accuracy = 0.1),
+                  "\nYear: ",
+                  format(MarketSwitch$Year, "%B %Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[3], dash = "dash")
+      ) %>% 
+      add_trace(
+        data = tail(MarketSwitch[which(MarketSwitch$`South Scotland` > 0 | MarketSwitch$`South Scotland` < 0),], 1),
+        x = ~ Year,
+        y = ~ `South Scotland`,
+        name = "South Scotland",
+        legendgroup = "2",
+        text = paste0(
+          "South Scotland: ",
+          percent(MarketSwitch[which(MarketSwitch$`South Scotland` > 0 | MarketSwitch$`South Scotland` < 0),][-1,]$`South Scotland`, accuracy = 0.1),
+          "\nYear: ",
+          format(MarketSwitch[which(MarketSwitch$`South Scotland` > 0 | MarketSwitch$`South Scotland` < 0),][-1,]$Year, "%B %Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[3])
+      ) %>% 
+      add_trace(data = MarketSwitch,
+                x = ~ Year,
+                y = ~ `Whole Scotland`,
+                name = "Whole Scotland",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "3",
+                text = paste0(
+                  "Whole Scotland: ",
+                  percent(MarketSwitch$`Whole Scotland`, accuracy = 0.1),
+                  "\nYear: ",
+                  format(MarketSwitch$Year, "%B %Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[1], dash = "none")
+      ) %>% 
+      add_trace(
+        data = tail(MarketSwitch[which(MarketSwitch$`Whole Scotland` > 0 | MarketSwitch$`Whole Scotland` < 0),], 1),
+        x = ~ Year,
+        y = ~ `Whole Scotland`,
+        name = "Whole Scotland",
+        legendgroup = "3",
+        text = paste0(
+          "Whole Scotland: ",
+          percent(MarketSwitch[which(MarketSwitch$`Whole Scotland` > 0 | MarketSwitch$`Whole Scotland` < 0),][-1,]$`Whole Scotland`, accuracy = 0.1),
+          "\nYear: ",
+          format(MarketSwitch[which(MarketSwitch$`Whole Scotland` > 0 | MarketSwitch$`Whole Scotland` < 0),][-1,]$Year, "%B %Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[1])
+      ) %>% 
+      add_trace(data = MarketSwitch,
+                x = ~ Year,
+                y = ~ `GB`,
+                name = "GB",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "4",
+                text = paste0(
+                  "GB: ",
+                  percent(MarketSwitch$`GB`, accuracy = 0.1),
+                  "\nYear: ",
+                  format(MarketSwitch$Year, "%B %Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[4], dash = "none")
+      ) %>% 
+      add_trace(
+        data = tail(MarketSwitch[which(MarketSwitch$`GB` > 0 | MarketSwitch$`GB` < 0),], 1),
+        x = ~ Year,
+        y = ~ `GB`,
+        name = "GB",
+        legendgroup = "4",
+        text = paste0(
+          "GB: ",
+          percent(MarketSwitch[which(MarketSwitch$`GB` > 0 | MarketSwitch$`GB` < 0),][-1,]$`GB`, accuracy = 0.1),
+          "\nYear: ",
+          format(MarketSwitch[which(MarketSwitch$`GB` > 0 | MarketSwitch$`GB` < 0),][-1,]$Year, "%B %Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[4])
+      ) %>% 
+      layout(
+        barmode = 'stack',
+        bargap = 0.66,
+        legend = list(font = list(color = "#68c3ea"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        xaxis = list(title = "",
+                     showgrid = FALSE
+                     ),
+        yaxis = list(
+          title = "",
+          tickformat = "%",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    p
+  })
   
   
   output$EnSupplySwitchTable = renderDataTable({
