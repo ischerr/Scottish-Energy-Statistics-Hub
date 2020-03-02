@@ -22,7 +22,7 @@ r_github_packages:
 - rstudio/DT
 
 script:
-  - R -f deploy.r
+  - R deploy.r
 
 notifications:
   email:
@@ -35,3 +35,4 @@ notifications:
 branches:
   only:
   - master
+
