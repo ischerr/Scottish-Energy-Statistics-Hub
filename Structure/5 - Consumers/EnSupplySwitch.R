@@ -11,7 +11,7 @@ EnSupplySwitchOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Proportion of customers who have switched energy supplier by local authority", style = "color: #68c3ea;  font-weight:bold"),
+                    h3("Proportion of customers who have switched energy supplier (gas and electricity combined, rolling 12 months)", style = "color: #68c3ea;  font-weight:bold"),
                     h4(textOutput(ns('EnSupplySwitchSubtitle')), style = "color: #68c3ea;")
     ),
              column(
@@ -32,7 +32,7 @@ EnSupplySwitchOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     fluidRow(
-    column(10, h3("Data - Proportion of customers who have switched energy supplier by local authority 2018", style = "color: #68c3ea;  font-weight:bold")),
+    column(10, h3("Data - Proportion of customers who have switched energy supplier (gas and electricity combined, rolling 12 months)", style = "color: #68c3ea;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -108,7 +108,7 @@ EnSupplySwitch <- function(input, output, session) {
   
   ChartColours <- c("#4292c6", "#7bccc4", "#08519c", "#ef3b2c")
   sourcecaption = "Source: BEIS"
-  plottitle = "Proportion of payment methods used\nfor electricity bills"
+  plottitle = "Proportion of customers who have switched energy supplier\n(gas and electricity combined, rolling 12 months)"
   
   ### From ESD ###
   
@@ -363,7 +363,7 @@ EnSupplySwitch <- function(input, output, session) {
       
       ChartColours <- c("#4292c6", "#7bccc4", "#08519c", "#ef3b2c")
       sourcecaption = "Source: BEIS"
-      plottitle = "Proportion of payment methods used\nfor electricity bills"
+      plottitle = "Proportion of customers who have switched\nenergy supplier(gas and electricity\ncombined, rolling 12 months)"
       
       ChartWidth <- (max(MarketSwitch$Year) - min(MarketSwitch$Year))
       
