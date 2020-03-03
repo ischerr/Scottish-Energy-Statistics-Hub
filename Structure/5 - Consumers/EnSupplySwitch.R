@@ -114,7 +114,7 @@ EnSupplySwitch <- function(input, output, session) {
   
   output$EnSupplySwitchSubtitle <- renderText({
     
-    paste("Scotland, 2018")
+    paste("Scotland,", format(min(MarketSwitch$Year), "%B %Y"),"-",format(max(MarketSwitch$Year), "%B %Y"))
   })
   
   output$EnSupplySwitchPlot <- renderPlotly({
