@@ -425,7 +425,8 @@ EnSupplySwitch <- function(input, output, session) {
               label = percent(`North Scotland`)),
           colour = ChartColours[2],
           size = 1.5,
-          family = "Century Gothic"
+          family = "Century Gothic",
+          linetype = "dashed"
         ) +
         geom_text(
           aes(
@@ -475,7 +476,8 @@ EnSupplySwitch <- function(input, output, session) {
               label = paste0(`South Scotland` * 100, "%")),
           colour = ChartColours[3],
           size = 1.5,
-          family = "Century Gothic"
+          family = "Century Gothic",
+          linetype = "dashed"
         ) +
         geom_text(
           aes(
