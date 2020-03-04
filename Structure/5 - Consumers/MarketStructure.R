@@ -138,8 +138,8 @@ MarketStructure <- function(input, output, session) {
         Region = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "Large",
-        text = paste0("Large: ", percent(MarketStructure$`Large`, 0.1)),
+        name = "Large Suppliers",
+        text = paste0("Large Suppliers: ", percent(MarketStructure$`Large`, 0.1)),
         hoverinfo = 'text',
         marker = list(color = BarColours[2]),
         legendgroup = 2
@@ -150,8 +150,8 @@ MarketStructure <- function(input, output, session) {
         Region = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "Medium",
-        text = paste0("Medium: ", percent(MarketStructure$`Medium`, 0.1)),
+        name = "Medium Suppliers",
+        text = paste0("Medium Suppliers: ", percent(MarketStructure$`Medium`, 0.1)),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 3
@@ -163,8 +163,8 @@ MarketStructure <- function(input, output, session) {
         Region = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "Small",
-        text = paste0("Small: ", percent(MarketStructure$`Small`,0.1)),
+        name = "Small Suppliers",
+        text = paste0("Small Suppliers: ", percent(MarketStructure$`Small`,0.1)),
         hoverinfo = 'text',
         marker = list(color = BarColours[4]),
         legendgroup = 4
