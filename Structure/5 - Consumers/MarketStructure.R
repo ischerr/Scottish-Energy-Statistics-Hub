@@ -11,7 +11,7 @@ MarketStructureOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Proportion of customers who have switched energy supplier (gas and electricity combined, rolling 12 months)", style = "color: #68c3ea;  font-weight:bold"),
+                    h3("Market shares, combined electricity and gas", style = "color: #68c3ea;  font-weight:bold"),
                     h4(textOutput(ns('MarketStructureSubtitle')), style = "color: #68c3ea;")
     ),
              column(
@@ -32,7 +32,7 @@ MarketStructureOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     fluidRow(
-    column(10, h3("Data - Proportion of customers who have switched energy supplier (gas and electricity combined, rolling 12 months)", style = "color: #68c3ea;  font-weight:bold")),
+    column(10, h3("Data - Market shares, combined electricity and gas", style = "color: #68c3ea;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -100,205 +100,111 @@ MarketStructure <- function(input, output, session) {
   ###### Renewable Energy ###### ######
 
 
-  Data <- read_csv("Processed Data/Output/Consumers/MarketSwitching.csv")
-  
-  names(Data)[1] <- "Year"
-  
-  MarketSwitch <- Data  
+  MarketStructure <- read_csv("Processed Data/Output/Consumers/MarketShare.csv")
   
   ChartColours <- c("#4292c6", "#7bccc4", "#08519c", "#ef3b2c")
   sourcecaption = "Source: BEIS"
-  plottitle = "Proportion of customers who have switched energy supplier\n(gas and electricity combined, rolling 12 months)"
+  plottitle = "Market Shares, combined electricity and gas"
   
   ### From ESD ###
   
   output$MarketStructureSubtitle <- renderText({
     
-    paste("Scotland,", format(min(MarketSwitch$Year), "%B %Y"),"-",format(max(MarketSwitch$Year), "%B %Y"))
+    paste("Scotland, December 2019")
   })
   
   output$MarketStructurePlot <- renderPlotly({
     
-
+    MarketStructure$Region <- paste0("<b>", str_wrap(MarketStructure$Region, 6), "</b>")
+    
+    ChartColours <- c("#5d8be1", "#FF8500")
+    BarColours <-
+      c(
+        "#31a354",
+        "#0868ac",
+        "#43a2ca",
+        "#7bccc4",
+        "#a6bddb",
+        "#d0d1e6",
+        "#bdbdbd",
+        "#969696"
+      )
     
     
-    
-    p <-  plot_ly(data = MarketSwitch,
-                  x = ~ Year ) %>% 
-      add_trace(y = ~ `North Scotland`,
-                name = "North Scotland",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "1",
-                text = paste0(
-                  "North Scotland: ",
-                  percent(MarketSwitch$`North Scotland`, accuracy = 0.1),
-                  "\nYear: ",
-                  format(MarketSwitch$Year, "%B %Y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 6, color = ChartColours[2], dash = "dash")
-      ) %>% 
+    p <- plot_ly(data = MarketStructure, y = ~ Region) %>%
       add_trace(
-        data = tail(MarketSwitch[which(MarketSwitch$`North Scotland` > 0 | MarketSwitch$`North Scotland` < 0),], 1),
-        x = ~ Year,
-        y = ~ `North Scotland`,
-        name = "North Scotland",
-        text = paste0(
-          "North Scotland: ",
-          percent(MarketSwitch[which(MarketSwitch$`North Scotland` > 0 | MarketSwitch$`North Scotland` < 0),][-1,]$`North Scotland`, accuracy = 0.1),
-          "\nYear: ",
-          format(MarketSwitch[which(MarketSwitch$`North Scotland` > 0 | MarketSwitch$`North Scotland` < 0),][-1,]$Year, "%B %Y")
-        ),
+        data = MarketStructure,
+        x = ~ `Large`,
+        Region = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Large",
+        text = paste0("Large: ", percent(MarketStructure$`Large`, 0.1)),
         hoverinfo = 'text',
-        showlegend = FALSE ,
-        type = "scatter",
-        mode = 'markers',
-        legendgroup = "1",
-        marker = list(size = 18, 
-                      color = ChartColours[2])
-      ) %>% 
-      add_trace(data = MarketSwitch,
-                x = ~ Year,
-                y = ~ `South Scotland`,
-                name = "South Scotland",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "2",
-                text = paste0(
-                  "South Scotland: ",
-                  percent(MarketSwitch$`South Scotland`, accuracy = 0.1),
-                  "\nYear: ",
-                  format(MarketSwitch$Year, "%B %Y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 6, color = ChartColours[3], dash = "dash")
-      ) %>% 
+        marker = list(color = BarColours[2]),
+        legendgroup = 2
+      ) %>%
       add_trace(
-        data = tail(MarketSwitch[which(MarketSwitch$`South Scotland` > 0 | MarketSwitch$`South Scotland` < 0),], 1),
-        x = ~ Year,
-        y = ~ `South Scotland`,
-        name = "South Scotland",
-        legendgroup = "2",
-        text = paste0(
-          "South Scotland: ",
-          percent(MarketSwitch[which(MarketSwitch$`South Scotland` > 0 | MarketSwitch$`South Scotland` < 0),][-1,]$`South Scotland`, accuracy = 0.1),
-          "\nYear: ",
-          format(MarketSwitch[which(MarketSwitch$`South Scotland` > 0 | MarketSwitch$`South Scotland` < 0),][-1,]$Year, "%B %Y")
-        ),
+        data = MarketStructure,
+        x = ~ `Medium`,
+        Region = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Medium",
+        text = paste0("Medium: ", percent(MarketStructure$`Medium`, 0.1)),
         hoverinfo = 'text',
-        showlegend = FALSE ,
-        type = "scatter",
-        mode = 'markers',
-        marker = list(size = 18, 
-                      color = ChartColours[3])
-      ) %>% 
-      add_trace(data = MarketSwitch,
-                x = ~ Year,
-                y = ~ `Whole Scotland`,
-                name = "Whole Scotland",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "3",
-                text = paste0(
-                  "Whole Scotland: ",
-                  percent(MarketSwitch$`Whole Scotland`, accuracy = 0.1),
-                  "\nYear: ",
-                  format(MarketSwitch$Year, "%B %Y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 6, color = ChartColours[1], dash = "none")
-      ) %>% 
+        marker = list(color = BarColours[3]),
+        legendgroup = 3
+      ) %>%
+      
       add_trace(
-        data = tail(MarketSwitch[which(MarketSwitch$`Whole Scotland` > 0 | MarketSwitch$`Whole Scotland` < 0),], 1),
-        x = ~ Year,
-        y = ~ `Whole Scotland`,
-        name = "Whole Scotland",
-        legendgroup = "3",
-        text = paste0(
-          "Whole Scotland: ",
-          percent(MarketSwitch[which(MarketSwitch$`Whole Scotland` > 0 | MarketSwitch$`Whole Scotland` < 0),][-1,]$`Whole Scotland`, accuracy = 0.1),
-          "\nYear: ",
-          format(MarketSwitch[which(MarketSwitch$`Whole Scotland` > 0 | MarketSwitch$`Whole Scotland` < 0),][-1,]$Year, "%B %Y")
-        ),
+        data = MarketStructure,
+        x = ~ `Small`,
+        Region = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Small",
+        text = paste0("Small: ", percent(MarketStructure$`Small`,0.1)),
         hoverinfo = 'text',
-        showlegend = FALSE ,
-        type = "scatter",
-        mode = 'markers',
-        marker = list(size = 18, 
-                      color = ChartColours[1])
-      ) %>% 
-      add_trace(data = MarketSwitch,
-                x = ~ Year,
-                y = ~ `GB`,
-                name = "GB",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "4",
-                text = paste0(
-                  "GB: ",
-                  percent(MarketSwitch$`GB`, accuracy = 0.1),
-                  "\nYear: ",
-                  format(MarketSwitch$Year, "%B %Y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 6, color = ChartColours[4], dash = "none")
-      ) %>% 
-      add_trace(
-        data = tail(MarketSwitch[which(MarketSwitch$`GB` > 0 | MarketSwitch$`GB` < 0),], 1),
-        x = ~ Year,
-        y = ~ `GB`,
-        name = "GB",
-        legendgroup = "4",
-        text = paste0(
-          "GB: ",
-          percent(MarketSwitch[which(MarketSwitch$`GB` > 0 | MarketSwitch$`GB` < 0),][-1,]$`GB`, accuracy = 0.1),
-          "\nYear: ",
-          format(MarketSwitch[which(MarketSwitch$`GB` > 0 | MarketSwitch$`GB` < 0),][-1,]$Year, "%B %Y")
-        ),
-        hoverinfo = 'text',
-        showlegend = FALSE ,
-        type = "scatter",
-        mode = 'markers',
-        marker = list(size = 18, 
-                      color = ChartColours[4])
-      ) %>% 
+        marker = list(color = BarColours[4]),
+        legendgroup = 4
+      ) %>%
       layout(
         barmode = 'stack',
-        bargap = 0.66,
-        legend = list(font = list(color = "#68c3ea"),
+        legend = list(font = list(color = "#1A5D38"),
                       orientation = 'h'),
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
         hovername = 'text',
-        xaxis = list(title = "",
-                     showgrid = FALSE
-                     ),
         yaxis = list(
           title = "",
+          showgrid = FALSE,
+          autorange = "reversed"
+          
+        ),
+        xaxis = list(
+          title = "",
           tickformat = "%",
-          showgrid = TRUE,
-          zeroline = TRUE,
+          showgrid = FALSE,
+          showticklabels = FALSE,
+          zeroline = FALSE,
           zerolinecolor = ChartColours[1],
           zerolinewidth = 2,
           rangemode = "tozero"
         )
-      ) %>% 
+      ) %>%
       config(displayModeBar = F)
+    
     p
+    
   })
   
   
   output$MarketStructureTable = renderDataTable({
     
-  MarketSwitchTable <- MarketSwitch  
-    
-  names(MarketSwitchTable)[1] <- "Month"
-  
-  MarketSwitchTable$Month <- as.character(format(MarketSwitchTable$Month, "%B %Y"))
 
     datatable(
-      MarketSwitchTable,
+      MarketStructure,
       extensions = 'Buttons',
       
       rownames = FALSE,
