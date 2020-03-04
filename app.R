@@ -637,7 +637,11 @@ ui <- shinyUI(fluidPage(
                             EnSupplySwitchOutput("EnSupplySwitch")),
                     tabPanel(title = "Vulnerability",
                             value = "Vulnerability",
-                            VulnerabilityOutput("Vulnerability"))
+                            VulnerabilityOutput("Vulnerability")),
+                   tabPanel(title = "MarketStructure",
+                            value = "MarketStructure",
+                            MarketStructureOutput("MarketStructure"))
+                   
     )),
     ###### Section - System Security and Flexibility #######
     tabPanel(
