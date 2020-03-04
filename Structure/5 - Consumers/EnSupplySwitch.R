@@ -363,7 +363,7 @@ EnSupplySwitch <- function(input, output, session) {
       
       ChartColours <- c("#4292c6", "#7bccc4", "#08519c", "#ef3b2c")
       sourcecaption = "Source: BEIS"
-      plottitle = "Proportion of customers who have switched\nenergy supplier(gas and electricity\ncombined, rolling 12 months)"
+      plottitle = "Proportion of customers who have switched\nenergy supplier (gas and electricity\ncombined, rolling 12 months)"
       
       ChartWidth <- (max(MarketSwitch$Year) - min(MarketSwitch$Year))
       
