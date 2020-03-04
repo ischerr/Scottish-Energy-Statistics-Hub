@@ -634,7 +634,10 @@ ui <- shinyUI(fluidPage(
                             SmartMetersOutput("SmartMeters")),
                    tabPanel(title = "Energy Supplier Switching",
                             value = "EnSupplySwitch",
-                            EnSupplySwitchOutput("EnSupplySwitch"))
+                            EnSupplySwitchOutput("EnSupplySwitch")),
+                    tabPanel(title = "Vulnerability",
+                            value = "Vulnerability",
+                            VulnerabilityOutput("Vulnerability"))
     )),
     ###### Section - System Security and Flexibility #######
     tabPanel(
