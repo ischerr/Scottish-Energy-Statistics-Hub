@@ -403,9 +403,11 @@ FuelPoverty <- function(input, output, session) {
     
     Data <- Data[complete.cases(Data),]
     
-    Data[2,1] <- "Oct-11" 
+    Data[2,1] <- "2011" 
     
     names(Data) <- c("Year", "Total Fuel Poverty", "Extreme Fuel Poverty")
+    
+    Data <- Data[which(Data$Year >= 2012),]
     
     paste("Scotland,", min(as.numeric(Data$Year), na.rm = TRUE ), "-", max(as.numeric(Data$Year), na.rm = TRUE))
   })
@@ -423,9 +425,11 @@ FuelPoverty <- function(input, output, session) {
     
     Data <- Data[complete.cases(Data),]
     
-    Data[2,1] <- "Oct-11" 
+    Data[2,1] <- "2011" 
     
     names(Data) <- c("Year", "Total Fuel Poverty", "Extreme Fuel Poverty")
+    
+    Data <- Data[which(Data$Year >= 2012),]
     
     Data[2:3] %<>% lapply(function(x) as.numeric(as.character(x)))
     
@@ -503,7 +507,9 @@ FuelPoverty <- function(input, output, session) {
     
     Data[2:5] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    Data[9,1] <- "Oct-11"
+    Data[9,1] <- "2011"
+    
+    Data <- Data[which(Data$Year >= 2012),]
     
     Data <- Data[seq(dim(Data)[1],1),]
     
@@ -552,9 +558,11 @@ FuelPoverty <- function(input, output, session) {
       
       Data <- Data[complete.cases(Data),]
       
-      Data[2,1] <- "Oct-11"
+      Data[2,1] <- "2011"
       
       names(Data) <- c("Type", "Extreme Fuel Poverty", "Fuel Poverty")
+      
+      Data <- Data[which(Data$Type >= 2012),]
       
       FuelPoverty <- Data
       
@@ -629,8 +637,8 @@ FuelPoverty <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 8.7,
-          y = (FuelPoverty$value[which(FuelPoverty$variable == "Extreme Fuel Poverty" & FuelPoverty$Type == "2011")]) / 2,
+          x = 7.7,
+          y = (FuelPoverty$value[which(FuelPoverty$variable == "Extreme Fuel Poverty" & FuelPoverty$Type == "2012")]) / 2,
           label = "Extreme",
           family = "Century Gothic",
           fontface = 2,
@@ -638,7 +646,7 @@ FuelPoverty <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 8.7,
+          x = 7.7,
           y = mean(FuelPoverty$top),
           label = "Total",
           family = "Century Gothic",
@@ -648,7 +656,7 @@ FuelPoverty <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 9,
+          x = 8,
           y = 0,
           label = " ",
           family = "Century Gothic",
