@@ -713,7 +713,7 @@ FuelPoverty <- function(input, output, session) {
       col_names = TRUE,
       skip = 12,
       n_max = 7
-    )[16:20]
+    )[16:21]
     
     names(Data) <- substr(names(Data), 1, 4)
     
@@ -792,7 +792,7 @@ FuelPoverty <- function(input, output, session) {
         col_names = FALSE,
         skip = 12,
         n_max = 8
-      )[16:20]
+      )[16:21]
       
       Data <- as_tibble(t(Data))
       
@@ -964,7 +964,10 @@ FuelPoverty <- function(input, output, session) {
           col_names = FALSE,
           skip = 12,
           n_max = 8
-        )[16:20]
+        )
+        Data <- Data[16:ncol(Data)]
+        
+        length <- ncol(Data) - 1
         
         Data <- as_tibble(t(Data))
         
@@ -1008,7 +1011,7 @@ FuelPoverty <- function(input, output, session) {
           mutate(top = sum(value))
         
         plottitle <-
-          "EPC Band (SAP 2012) distribution for fuel poor households (new definition)"
+          "EPC Band (SAP 2012) distribution for fuel poor households\n(new definition)"
         sourcecaption <- "Source: SG"
         
         ChartColours <- c("#34d1a3", "#FF8500")
@@ -1052,7 +1055,7 @@ FuelPoverty <- function(input, output, session) {
             colour = ChartColours[1]
           ) +
           geom_text(
-            aes(x = 4.7,
+            aes(x = length + 0.7,
                 y = .5 * (1 / 6),
                 label = "B"),
             fontface = 2,
@@ -1061,7 +1064,7 @@ FuelPoverty <- function(input, output, session) {
             hjust = 0.5
           ) +
           geom_text(
-            aes(x = 4.7,
+            aes(x = length + 0.7,
                 y = 1.5 * (1 / 6),
                 label = "C"),
             fontface = 2,
@@ -1070,7 +1073,7 @@ FuelPoverty <- function(input, output, session) {
             hjust = 0.5
           ) +
           geom_text(
-            aes(x = 4.7,
+            aes(x = length + 0.7,
                 y = 2.5 * (1 / 6),
                 label = "D"),
             fontface = 2,
@@ -1079,7 +1082,7 @@ FuelPoverty <- function(input, output, session) {
             hjust = 0.5
           ) +
           geom_text(
-            aes(x = 4.7,
+            aes(x = length + 0.7,
                 y = 3.5 * (1 / 6),
                 label = "E"),
             fontface = 2,
@@ -1088,7 +1091,7 @@ FuelPoverty <- function(input, output, session) {
             hjust = 0.5
           ) +
           geom_text(
-            aes(x = 4.7,
+            aes(x = length + 0.7,
                 y = 4.5 * (1 / 6),
                 label = "F"),
             fontface = 2,
@@ -1097,7 +1100,7 @@ FuelPoverty <- function(input, output, session) {
             hjust = 0.5
           ) +
           geom_text(
-            aes(x = 4.7,
+            aes(x = length + 0.7,
                 y = 5.5 * (1 / 6),
                 label = "G"),
             fontface = 2,
@@ -1119,7 +1122,7 @@ FuelPoverty <- function(input, output, session) {
             colour = ChartColours[1]
           ) +
           geom_text(
-            aes(x = 4.7,
+            aes(x = length + 0.7,
                 y = 1.1,
                 label = "C\nor better"),
             fontface = 2,
@@ -1128,7 +1131,7 @@ FuelPoverty <- function(input, output, session) {
             hjust = 0.5
           )+
           geom_text(
-            aes(x = 5.1,
+            aes(x = length + 1.1,
                 y = 1.05,
                 label = " "),
             fontface = 2,
