@@ -635,7 +635,7 @@ ui <- shinyUI(fluidPage(
                    tabPanel(title = "Energy Supplier Switching",
                             value = "EnSupplySwitch",
                             EnSupplySwitchOutput("EnSupplySwitch")),
-                    tabPanel(title = "Vulnerabe Consumers",
+                    tabPanel(title = "Vulnerable Consumers",
                             value = "Vulnerability",
                             VulnerabilityOutput("Vulnerability")),
                    tabPanel(title = "Market Structure",

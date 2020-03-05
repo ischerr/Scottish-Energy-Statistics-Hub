@@ -60,37 +60,7 @@ MarketStructureOutput <- function(id) {
 
 ###### Server ######
 MarketStructure <- function(input, output, session) {
-  # output$MarketStructurePlot <- renderDygraph({
-  #   RenEn <-
-  #     read.csv(
-  #       "Structure/2 - Renewables/Electricity/MarketStructure.csv",
-  #       header = TRUE,
-  #       sep = ",",
-  #       na.strings = "-"
-  #     )
-  #
-  #   YearLow <- as.numeric(min(RenEn$Year))
-  #   YearHigh <- as.numeric(max(RenEn$Year +1))
-  #
-  #   dygraph(RenEn, main = "Renewable Energy Target") %>%
-  #     dyAxis("y", label = "% Progress", valueRange = c(0,30)) %>%
-  #     dyAxis("x", label = "Year", drawGrid = TRUE) %>%
-  #     dyOptions(colors =  c("Green","Orange", "Blue")) %>%
-  #     dyLegend(width = 170 ,
-  #              labelsSeparateLines = TRUE ,
-  #              show = "always") %>%
-  #     dyOptions(
-  #       stackedGraph = TRUE,
-  #       axisLineColor = "white",
-  #       gridLineColor = "white",
-  #       includeZero = TRUE,
-  #       fillAlpha = .65
-  #     ) %>%
-  #     #    dyRangeSelector() %>%
-  #     dyCSS("Structure/2 - Renewables/Electricity/legend.css")
-  #
-  # })
-  
+
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
@@ -261,262 +231,135 @@ MarketStructure <- function(input, output, session) {
     filename = "MarketStructure.png",
     content = function(file) {
       
-      Data <- read_csv("Processed Data/Output/Consumers/MarketSwitching.csv")
+      MarketStructureStatic <- MarketStructure
       
-      names(Data)[1] <- "Year"
+      plottitle = "Market Shares, combined electricity and gas"
       
-      MarketSwitch <- Data  
+      MarketStructureStatic <- arrange(MarketStructureStatic,row_number())
       
-      ChartColours <- c("#4292c6", "#7bccc4", "#08519c", "#ef3b2c")
-      sourcecaption = "Source: BEIS"
-      plottitle = "Proportion of customers who have switched\nenergy supplier (gas and electricity\ncombined, rolling 12 months)"
+      MarketStructureStatic$Region <-
+        factor(MarketStructureStatic$Region,
+               levels = unique(MarketStructureStatic$Region),
+               ordered = TRUE)
       
-      ChartWidth <- (max(MarketSwitch$Year) - min(MarketSwitch$Year))
+      MarketStructureStatic <- melt(MarketStructureStatic, id.vars = "Region")
       
-      MarketSwitch$Year <- as.Date(MarketSwitch$Year, format = "%d/%m/%Y")  
       
-      MarketSwitchChart <- MarketSwitch %>%
-        ggplot(aes(x = Year), family = "Century Gothic") +
-        geom_line(
-          aes(y = `GB`,
-              label = paste0(`GB` * 100, "%")),
-          colour = ChartColours[4],
-          size = 1.5,
-          family = "Century Gothic"
+      MarketStructureStatic$variable <-
+        factor(MarketStructureStatic$variable,
+               levels = rev(unique(MarketStructureStatic$variable)),
+               ordered = TRUE)
+      
+      MarketStructureStatic <- MarketStructureStatic %>%
+        group_by(Region) %>%
+        mutate(pos = cumsum(value) - value / 2) %>%
+        mutate(top = sum(value))
+      
+      sourcecaption <- "Source: BEIS"
+      
+      ChartColours <- c("#5d8be1", "#FF8500")
+      BarColours <-
+        c(
+          "#31a354",
+          "#0868ac",
+          "#43a2ca",
+          "#7bccc4",
+          "#a6bddb",
+          "#d0d1e6",
+          "#bdbdbd",
+          "#969696"
+        )
+      
+      
+      MarketStructureStaticChart <- MarketStructureStatic %>%
+        ggplot(aes(x = Region, y = value, fill = variable), family = "Century Gothic") +
+        scale_fill_manual(
+          "variable",
+          values = c(
+            "Large" = BarColours[2],
+            "Medium" = BarColours[3],
+            "Small" = BarColours[4]
+          )
         ) +
+        geom_bar(stat = "identity", width = .8) +
         geom_text(
           aes(
-            x = Year - ChartWidth*0.055,
-            y = `GB`,
-            label = ifelse(Year == min(Year), percent(`GB`, accuracy = .1), ""),
-            hjust = 0.5,
+            x = Region,
+            y = -0.08,
+            label = str_wrap(Region, 10),
             fontface = 2
           ),
-          colour = ChartColours[4],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year + ChartWidth*0.070,
-            y = `GB`,
-            label = ifelse(Year == max(Year), percent(`GB`,  accuracy = .1), ""),
-            hjust = 0.5,
-            fontface = 2
-          ),
-          colour = ChartColours[4],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(MarketSwitch, 1),
-          aes(x = Year,
-              y = `GB`,
-              show_guide = FALSE),
-          size = 4,
-          colour = ChartColours[4],
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = mean(MarketSwitch$Year),
-          y = mean(MarketSwitch$`GB`),
-          label = "GB",
-          hjust = 0.5,
-          vjust = 1.65,
-          colour = ChartColours[4],
-          fontface = 2,
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = `North Scotland`,
-              label = percent(`North Scotland`)),
-          colour = ChartColours[2],
-          size = 1.5,
+          colour = ChartColours[1],
           family = "Century Gothic",
-          linetype = "dashed"
         ) +
         geom_text(
           aes(
-            x = Year - ChartWidth*0.055,
-            y = `North Scotland`,
-            label = ifelse(Year == min(Year), percent(`North Scotland`, accuracy = .1), ""),
-            hjust = 0.5,
+            x = 2.5,
+            y = ((0/3) *1),
+            label = "Large Suppliers",
             fontface = 2
           ),
-          colour = ChartColours[2],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year + ChartWidth*0.070,
-            y = `North Scotland`,
-            label = ifelse(Year == max(Year), percent(`North Scotland`, accuracy = .1), ""),
-            hjust = 0.5,
-            vjust = .5,
-            fontface = 2
-          ),
-          colour = ChartColours[2],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(MarketSwitch, 1),
-          aes(x = Year,
-              y = `North Scotland`,
-              show_guide = FALSE),
-          colour = ChartColours[2],
-          size = 4,
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = mean(MarketSwitch$Year),
-          y = mean(MarketSwitch$`North Scotland`),
-          label = "North Scotland",
-          hjust = 0.5,
-          vjust = 4,
-          colour = ChartColours[2],
-          fontface = 2,
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = `South Scotland`,
-              label = paste0(`South Scotland` * 100, "%")),
-          colour = ChartColours[3],
-          size = 1.5,
-          family = "Century Gothic",
-          linetype = "dashed"
-        ) +
-        geom_text(
-          aes(
-            x = Year - ChartWidth*0.055,
-            y = `South Scotland`,
-            label = ifelse(Year == min(Year), percent(`South Scotland`, accuracy = .1), ""),
-            hjust = 0.5,
-            fontface = 2
-          ),
-          colour = ChartColours[3],
+          colour = BarColours[2],
+          hjust = 0,
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
-            x = Year + ChartWidth*0.070,
-            y = `South Scotland`,
-            label = ifelse(Year == max(Year), percent(`South Scotland`, accuracy = .1), ""),
-            hjust = 0.5,
-            vjust = .5,
+            x = 2.5,
+            y = ((1.5/3) *1),
+            label = "Medium Suppliers",
             fontface = 2
           ),
-          colour = ChartColours[3],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(MarketSwitch, 1),
-          aes(x = Year,
-              y = `South Scotland`,
-              show_guide = FALSE),
-          colour = ChartColours[3],
-          size = 4,
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = mean(MarketSwitch$Year),
-          y = mean(MarketSwitch$`South Scotland`),
-          label = "South Scotland",
-          hjust = 0.5,
-          vjust = -1.2,
-          colour = ChartColours[3],
-          fontface = 2,
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = `Whole Scotland`,
-              label = paste0(`Whole Scotland` * 100, "%")),
-          colour = ChartColours[1],
-          size = 1.5,
+          colour = BarColours[3],
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
-            x = Year - ChartWidth*0.055,
-            y = `Whole Scotland`,
-            label = ifelse(Year == min(Year), percent(`Whole Scotland`, accuracy = .1), ""),
-            hjust = 0.5,
+            x = 2.5,
+            y = ((3/3) *1),
+            label = "Small Suppliers",
             fontface = 2
           ),
-          colour = ChartColours[1],
+          colour = BarColours[4],
+          hjust = 1,
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
-            x = Year + ChartWidth*0.070,
-            y = `Whole Scotland`,
-            label = ifelse(Year == max(Year), percent(`Whole Scotland`,  accuracy = .1), ""),
-            hjust = 0.5,
-            vjust = 1.4,
+            x = Region,
+            y = pos,
+            label = ifelse(value > 0, percent(value, 0.1),""),
             fontface = 2
           ),
-          colour = ChartColours[1],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(MarketSwitch, 1),
-          aes(x = Year,
-              y = `Whole Scotland`,
-              
-              show_guide = FALSE),
-          size = 4,
-          colour = ChartColours[1],
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = mean(MarketSwitch$Year),
-          y = mean(MarketSwitch$`Whole Scotland`),
-          label = "Whole Scotland",
-          hjust = 0.5,
-          vjust = 3,
-          colour = ChartColours[1],
-          fontface = 2,
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year,
-            y = 0,
-            label = ifelse(
-              Year == max(Year) |
-                Year == min(Year),
-              format(Year, format = "%B %Y"),
-              ""
-            ),
-            hjust = 0.5,
-            vjust = 1.5,
-            fontface = 2
-          ),
-          colour = ChartColours[1],
+          colour = "white",
           family = "Century Gothic"
         )
       
-      MarketSwitchChart
       
-      MarketSwitchChart <-
-        DailyChart(MarketSwitchChart,
-                   MarketSwitch,
-                   plottitle,
-                   sourcecaption,
-                   ChartColours)
+      MarketStructureStaticChart
       
       
-      MarketSwitchChart <- MarketSwitchChart +
-        coord_cartesian(xlim = c(min(MarketSwitch$Year)-(max(MarketSwitch$Year) - min(MarketSwitch$Year))*0.05, max(MarketSwitch$Year)+(max(MarketSwitch$Year) - min(MarketSwitch$Year))*0.1))
+      MarketStructureStaticChart <-
+        StackedBars(MarketStructureStaticChart,
+                    MarketStructureStatic,
+                    plottitle,
+                    sourcecaption,
+                    ChartColours)
       
-      MarketSwitchChart
+      MarketStructureStaticChart <-
+        MarketStructureStaticChart +
+        labs(subtitle = "Scotland, December 2019") +
+        ylim(-0.1,1) +
+        scale_x_discrete(limits = rev(levels(MarketStructureStatic$Region)))+
+        coord_flip()
+      
+      MarketStructureStaticChart
       
       ggsave(
         file,
-        plot =  MarketSwitchChart,
-        width = 14,
-        height = 14,
+        plot = MarketStructureStaticChart,
+        width = 19,
+        height = 12,
         units = "cm",
         dpi = 300
       )
