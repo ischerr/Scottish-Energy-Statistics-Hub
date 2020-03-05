@@ -48,7 +48,8 @@ MarketStructureOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("CASEnSwitch")
+        SourceLookup("Xoserve"),
+        SourceLookup("Ofgem")
         
       )
     )
@@ -73,7 +74,7 @@ MarketStructure <- function(input, output, session) {
   MarketStructure <- read_csv("Processed Data/Output/Consumers/MarketShare.csv")
   
   ChartColours <- c("#4292c6", "#7bccc4", "#08519c", "#ef3b2c")
-  sourcecaption = "Source: BEIS"
+  sourcecaption = "Source: Xoserve, Ofgem"
   plottitle = "Market Shares, combined electricity and gas"
   
   ### From ESD ###
@@ -255,7 +256,7 @@ MarketStructure <- function(input, output, session) {
         mutate(pos = cumsum(value) - value / 2) %>%
         mutate(top = sum(value))
       
-      sourcecaption <- "Source: BEIS"
+      sourcecaption <- "Source: Xoserve, Ofgem"
       
       ChartColours <- c("#5d8be1", "#FF8500")
       BarColours <-

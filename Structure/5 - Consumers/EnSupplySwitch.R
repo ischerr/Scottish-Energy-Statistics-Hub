@@ -48,8 +48,8 @@ EnSupplySwitchOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("CASEnSwitch")
-        
+        SourceLookup("Xoserve"),
+        SourceLookup("Ofgem")
       )
     )
   )
@@ -107,7 +107,7 @@ EnSupplySwitch <- function(input, output, session) {
   MarketSwitch <- Data  
   
   ChartColours <- c("#4292c6", "#7bccc4", "#08519c", "#ef3b2c")
-  sourcecaption = "Source: BEIS"
+  sourcecaption = "Source: Xoserve, Ofgem"
   plottitle = "Proportion of customers who have switched energy supplier\n(gas and electricity combined, rolling 12 months)"
   
   ### From ESD ###
@@ -362,7 +362,7 @@ EnSupplySwitch <- function(input, output, session) {
       MarketSwitch <- Data  
       
       ChartColours <- c("#4292c6", "#7bccc4", "#08519c", "#ef3b2c")
-      sourcecaption = "Source: BEIS"
+      sourcecaption = "Source: Xoserve, Ofgem"
       plottitle = "Proportion of customers who have switched\nenergy supplier (gas and electricity\ncombined, rolling 12 months)"
       
       ChartWidth <- (max(MarketSwitch$Year) - min(MarketSwitch$Year))
