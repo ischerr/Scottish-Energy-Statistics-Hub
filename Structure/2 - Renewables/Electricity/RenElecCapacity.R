@@ -744,7 +744,7 @@ RenElecCapacity <- function(input, output, session) {
       PipelineTotalChart <-
         PipelineTotalChart +
         labs(subtitle = paste("Scotland,", PipelineTotal$Date)) +
-        ylim(-3000, max(PipelineTotal$top)+1700)+
+        ylim(-3500, max(PipelineTotal$top)+1700)+
         coord_flip()
       
       PipelineTotalChart
@@ -2233,7 +2233,7 @@ RenElecCapacity <- function(input, output, session) {
       PipelineTotalChart <-
         PipelineTotalChart +
         labs(subtitle = Subtitle) +
-        ylim(-2, max(PipelineTotal$top)+1.700)+
+        ylim(-1, max(PipelineTotal$top)+1.700)+
         coord_flip()
       
       PipelineTotalChart

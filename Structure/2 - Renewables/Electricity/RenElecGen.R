@@ -41,7 +41,7 @@ RenElecGenOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Scottish Proportion",
              fluidRow(column(8,
-                             h3("Renewable generation as proportion of U.K.", style = "color: #39ab2c;  font-weight:bold"),
+                             h3("Renewable generation as proportion of UK", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('ScotRenGenSubtitle')), style = "color: #39ab2c;")
              ),
              column(
@@ -551,7 +551,7 @@ RenElecGen <- function(input, output, session) {
         mutate(top = sum(value))
       
       plottitle <-
-        "Electricity generated from renewable sources"
+        "Electricity generated from renewable\nsources"
       sourcecaption <- "Source: BEIS"
       
       ChartColours <- c("#39ab2c", "#FF8500")
@@ -797,7 +797,7 @@ RenElecGen <- function(input, output, session) {
     
     ChartColours <- c("#39ab2c",  "#fdb462", "#34d1a3", "#66c2a5","#8da0cb")
     sourcecaption = "Source: BEIS"
-    plottitle = "Renewable generation as proportion of U.K."
+    plottitle = "Renewable generation as proportion of UK"
     
     ScotRenGen$Year <- paste0("01/01/", ScotRenGen$Year)
     
@@ -1025,7 +1025,7 @@ RenElecGen <- function(input, output, session) {
       ### variables
       ChartColours <- c("#39ab2c",  "#fdb462", "#34d1a3", "#66c2a5","#8da0cb")
       sourcecaption = "Source: BEIS"
-      plottitle = "Renewable generation as proportion of U.K."
+      plottitle = "Renewable generation as proportion of UK"
       
       #ScotRenGen$`Renewables`Percentage <- PercentLabel(ScotRenGen$`Renewables`)
       
@@ -2080,7 +2080,7 @@ RenElecGen <- function(input, output, session) {
         mutate(top = sum(value))
       
       plottitle <-
-        "Quarterly Renewable Generation - Total"
+        "Quarterly Electricity generated from\nrenewable sources"
       sourceGention <- "Source: BEIS"
       
       ChartColours <- c("#39ab2c", "#FF8500")
@@ -2192,7 +2192,7 @@ RenElecGen <- function(input, output, session) {
         labs(subtitle = paste("Scotland,", min(Subset$Year), "-", max(Subset$Year))) +
         coord_flip() +
         xlim(max(Subset$Year+.5),min(Subset$Year-1)) +
-        ylim(-max(Subset$top*0.05),max(Subset$top)*1.2)
+        ylim(-max(Subset$top*0.05),max(Subset$top)*1.25)
       
       SubsetChart
       

@@ -681,7 +681,7 @@ ElecGen <- function(input, output, session) {
             y = mean(`Low Carbon`),
             label = "Low Carbon",
             hjust = 0.5,
-            vjust = -1,
+            vjust = -1.5,
             colour = ChartColours[2],
             fontface = 2
           ),
@@ -738,7 +738,7 @@ ElecGen <- function(input, output, session) {
             y = `Fossil Fuels`,
             label = ifelse(Year == max(Year), percent(`Fossil Fuels`, 0.1), ""),
             hjust = 0.5,
-            vjust = 2,
+            vjust = -1,
             colour = ChartColours[3],
             fontface = 2
           ),
@@ -796,7 +796,7 @@ ElecGen <- function(input, output, session) {
       ggsave(
         file,
         plot =  ElecFuelLowCarbonChart,
-        width = 14,
+        width = 16,
         height = 16,
         units = "cm",
         dpi = 300
@@ -859,7 +859,7 @@ output$ElecGenRN.png <- downloadHandler(
           y = Renewables,
           label = ifelse(Year == min(Year), percent(Renewables, 0.1), ""),
           hjust = 0.5,
-          vjust = 1.1,
+          vjust = 1.3,
           colour = ChartColours[2],
           fontface = 2
         ),
@@ -916,7 +916,7 @@ output$ElecGenRN.png <- downloadHandler(
           y = Nuclear,
           label = ifelse(Year == min(Year), percent(Nuclear, 0.1), ""),
           hjust = 0.5,
-          vjust = -.3,
+          vjust = -1,
           colour = ChartColours[3],
           fontface = 2
         ),
