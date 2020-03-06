@@ -22,9 +22,6 @@ library(magrittr)
 library(tidyr)
 
 
-#font_import()
-#loadfonts(device = "win")
-
 ##########################################################################################################
 
 TargetChart <-
