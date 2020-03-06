@@ -534,7 +534,7 @@ ULEVs <- function(input, output, session) {
           ),
           label = "Other ULEVs",
           hjust = .5,
-          vjust = 5.5,
+          vjust = 6.1,
           colour = "white",
           fontface = 2,
           family = "Century Gothic"
@@ -624,7 +624,7 @@ output$ULEVRegOutput.png <- downloadHandler(
         ChartColours <- c("#39ab2c", "#238b45", "#a1d99b")
         LineColours <- c("#39ab2c", "#238b45", "#a1d99b")
         sourcecaption = "Source: DfT"
-        plottitle = "Proportion of ULEVs registered for the first time"
+        plottitle = "Proportion of ULEVs registered for\nthe first time"
         
         #ElecVehiclesProportion$CavityPercentage <- PercentLabel(ElecVehiclesProportion$Cavity)
         

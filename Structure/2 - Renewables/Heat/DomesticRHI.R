@@ -726,6 +726,7 @@ output$DomRHIInstallationsOutput.png <- downloadHandler(
     
     #RHIDom$OilPercentage <- PercentLabel(RHIDom$Oil)
     
+    RHIWidth <- max(RHIDom$Year) - min(RHIDom$Year)
     
     RHIDomChart <- RHIDom %>%
       ggplot(aes(x = Year), family = "Century Gothic") +
@@ -740,7 +741,7 @@ output$DomRHIInstallationsOutput.png <- downloadHandler(
       )+ 
       geom_text(
         aes(
-          x = Year-88,
+          x = Year - (RHIWidth*0.07),
           y = `Air Source heat pump`,
           label = ifelse(Year == min(Year), format(`Air Source heat pump`, big.mark = ","), ""),
           hjust = 0.5,
@@ -751,7 +752,7 @@ output$DomRHIInstallationsOutput.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year+101,
+          x = Year + (RHIWidth*0.07),
           y = `Air Source heat pump`,
           label = ifelse(Year == max(Year), format(`Air Source heat pump`, big.mark = ","), ""),
           hjust = 0.5,
@@ -792,7 +793,7 @@ output$DomRHIInstallationsOutput.png <- downloadHandler(
       )+ 
       geom_text(
         aes(
-          x = Year-88,
+          x = Year - (RHIWidth*0.07),
           y = `Ground Source heat pump`,
           label = ifelse(Year == min(Year), format(`Ground Source heat pump`, big.mark = ","), ""),
           hjust = 0.5,
@@ -803,7 +804,7 @@ output$DomRHIInstallationsOutput.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year+101,
+          x = Year + (RHIWidth*0.07),
           y = `Ground Source heat pump`,
           label = ifelse(Year == max(Year), format(`Ground Source heat pump`, big.mark = ","), ""),
           hjust = 0.5,
@@ -845,7 +846,7 @@ output$DomRHIInstallationsOutput.png <- downloadHandler(
       )+ 
       geom_text(
         aes(
-          x = Year-88,
+          x = Year - (RHIWidth*0.07),
           y = `Biomass`,
           label = ifelse(Year == min(Year), format(`Biomass`, big.mark = ","), ""),
           hjust = 0.5,
@@ -856,7 +857,7 @@ output$DomRHIInstallationsOutput.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year+101,
+          x = Year + (RHIWidth*0.07),
           y = `Biomass`,
           label = ifelse(Year == max(Year), format(`Biomass`, big.mark = ","), ""),
           hjust = 0.5,
@@ -898,7 +899,7 @@ output$DomRHIInstallationsOutput.png <- downloadHandler(
       )+ 
       geom_text(
         aes(
-          x = Year-88,
+          x = Year - (RHIWidth*0.07),
           y = `Solar Thermal`,
           label = ifelse(Year == min(Year), format(`Solar Thermal`, big.mark = ","), ""),
           hjust = 0.5,
@@ -909,7 +910,7 @@ output$DomRHIInstallationsOutput.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year+101,
+          x = Year + (RHIWidth*0.07),
           y = `Solar Thermal`,
           label = ifelse(Year == max(Year), format(`Solar Thermal`, big.mark = ","), ""),
           hjust = 0.5,
@@ -951,7 +952,7 @@ output$DomRHIInstallationsOutput.png <- downloadHandler(
       )+ 
       geom_text(
         aes(
-          x = Year - 88,
+          x = Year  - (RHIWidth*0.07),
           y = `Total`,
           label = ifelse(Year == min(Year), format(`Total`, big.mark = ","), ""),
           hjust = 0.5,
@@ -961,7 +962,7 @@ output$DomRHIInstallationsOutput.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year + 101,
+          x = Year  + (RHIWidth*0.07),
           y = `Total`,
           label = ifelse(Year == max(Year), format(`Total`, big.mark = ","), ""),
           hjust = 0.5,
@@ -1021,7 +1022,7 @@ output$DomRHIInstallationsOutput.png <- downloadHandler(
                  ChartColours)
     
     RHIDomChart <- RHIDomChart+
-      coord_cartesian(xlim = c(min(RHIDom$Year)-75, max(RHIDom$Year)+110)) +
+      coord_cartesian(xlim = c(min(RHIDom$Year) - (RHIWidth*0.09), max(RHIDom$Year)+ (RHIWidth*0.09))) +
       ylim(-50,max(RHIDom$Total))
     
     

@@ -269,7 +269,7 @@ DisplacedEmissions <- function(input, output, session) {
       Displacement$Renewables <-
         round(Displacement$Renewables, digits = 1)
       
-      plottitle <- "Estimated million tonnes of CO2 emissions\ndisplaced by renewables"
+      plottitle <- "Estimated million tonnes of CO2 emissions displaced by renewables"
       sourcecaption <- "Source: BEIS"
       ChartColours <- c("#39ab2c", "#FF8500")
       

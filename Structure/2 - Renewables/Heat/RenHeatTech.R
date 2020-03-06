@@ -974,7 +974,7 @@ RenHeatTech <- function(input, output, session) {
       
       RenHeatCapTechChart <- RenHeatCapTechChart +
         ylim(-.008, max(RenHeatCapTech$Biomass))+
-        xlim(min(RenHeatCapTech$Year-.8), max(RenHeatCapTech$Year+1.1))
+        xlim(min(RenHeatCapTech$Year-1.2), max(RenHeatCapTech$Year+1.4))
       ggsave(
        file,
        plot = RenHeatCapTechChart,
@@ -1257,7 +1257,7 @@ output$RenHeatOutput.png <- downloadHandler(
     
     RenHeatOutputTechChart <- RenHeatOutputTechChart +
       ylim(-.008, max(RenHeatOutputTech$Biomass))+
-      xlim(min(RenHeatOutputTech$Year-0.9), max(RenHeatOutputTech$Year+1.15))
+      xlim(min(RenHeatOutputTech$Year-1.2), max(RenHeatOutputTech$Year+1.4))
     ggsave(
       file,
       plot = RenHeatOutputTechChart,

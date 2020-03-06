@@ -339,8 +339,8 @@ GridEmissions <- function(input, output, session) {
       
       
       GridEmissionsChart <- GridEmissionsChart +
-        xlim(min(GridEmissions$Year)-1,max(GridEmissions$Year)+1)+
-        ylim(-15,max(GridEmissions$Renewables)+20)
+        xlim(min(GridEmissions$Year)-1.5,max(GridEmissions$Year)+1.5)+
+        ylim(-17,max(GridEmissions$Renewables)+22)
       
       GridEmissionsChart
       

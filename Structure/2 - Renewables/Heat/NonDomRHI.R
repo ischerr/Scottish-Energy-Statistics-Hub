@@ -616,7 +616,7 @@ names(Data)[1] <- "Year"
         mutate(top = sum(value))
       
       plottitle <-
-        "Proportion on non-domestic RHI heat generated, installed capacity\nand number of installations receiving payment by tariff"
+        "Proportion of non-domestic RHI heat generated, installed\ncapacity and number of installations receiving payment,\nby tariff"
       sourcecaption <- "Source: BEIS"
       
       ChartColours <- c("#39ab2c", "#FF8500")
