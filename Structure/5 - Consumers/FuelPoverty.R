@@ -514,7 +514,7 @@ FuelPoverty <- function(input, output, session) {
     Data <- Data[seq(dim(Data)[1],1),]
     
     datatable(
-      Data[c(1,4,5,2,3)],
+      Data[c(1,4,5)],
       extensions = 'Buttons',
       
       rownames = FALSE,
