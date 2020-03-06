@@ -192,7 +192,7 @@ EnEconomy <- function(input, output, session) {
       EnergySectorEmployment[which(EnergySectorEmployment$Year >= 2009), ]
     ### variables
     ChartColours <- c("#1a5d38", "#41ab5d", "#1a5d38")
-    sourcecaption = "Source: Scottish Government"
+    sourcecaption = "Source: SG"
     plottitle = "Employment in the energy sector"  
     
     
