@@ -308,7 +308,7 @@ OilGasProd <- function(input, output, session) {
             y = Oil,
             label = ifelse(Year == min(Year), paste0(round(`Oil`, digits = 1), " mtoe"), ""),
             hjust = 0.5,
-            vjust = 2.2,
+            vjust = 2.4,
             colour = ChartColours[2],
             fontface = 2
           ),

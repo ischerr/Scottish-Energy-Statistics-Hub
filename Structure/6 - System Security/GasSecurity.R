@@ -655,8 +655,8 @@ GasSecurity <- function(input, output, session) {
       
       ggsave(
         file,plot =  GasDistributionChart,
-        width = 14,
-        height = 14,
+        width = 20,
+        height = 18,
         units = "cm",
         dpi = 300
       )
@@ -678,6 +678,8 @@ output$GasSecurityRolling.png <- downloadHandler(
     Data <- subset(Data, Data$Year <= floor_date(max(Data$Year), unit = "month") - days(1))
     
     GasSecurityRolling <- Data
+    
+    length <- max(GasSecurityRolling$Year) - min(GasSecurityRolling$Year)
     
     ### variables
     ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
@@ -763,11 +765,11 @@ output$GasSecurityRolling.png <- downloadHandler(
       )+
       geom_text(
         aes(
-          x = min(Year)-52,
+          x = min(Year),
           y = GasSecurityRolling$Scotland[which(GasSecurityRolling$Year == min(GasSecurityRolling$Year))],
           label = paste0(round(GasSecurityRolling$Scotland[which(GasSecurityRolling$Year == min(GasSecurityRolling$Year))], digits = 0), "\nGWh"),
           hjust = 0.5,
-          vjust = 1.2,
+          vjust = 1.5,
           fontface = 2
         ),
         colour = ChartColours[2],
@@ -779,6 +781,7 @@ output$GasSecurityRolling.png <- downloadHandler(
           y = GasSecurityRolling$Scotland[which(GasSecurityRolling$Year == max(GasSecurityRolling$Year))],
           label = paste0(round(GasSecurityRolling$Scotland[which(GasSecurityRolling$Year == max(GasSecurityRolling$Year))], digits = 0), "\nGWh"),
           hjust = 0.5,
+          vjust = -.5,
           fontface = 2
         ),
         colour = ChartColours[2],
@@ -790,7 +793,7 @@ output$GasSecurityRolling.png <- downloadHandler(
           y = GasSecurityRolling$NI[which(GasSecurityRolling$Year == min(GasSecurityRolling$Year))],
           label = paste0(round(GasSecurityRolling$NI[which(GasSecurityRolling$Year == min(GasSecurityRolling$Year))], digits = 0), "\nGWh"),
           hjust = 0.5,
-          vjust = 0.3,
+          vjust = -.2,
           fontface = 2
         ),
         colour = ChartColours[3],
@@ -802,6 +805,7 @@ output$GasSecurityRolling.png <- downloadHandler(
           y = GasSecurityRolling$NI[which(GasSecurityRolling$Year == max(GasSecurityRolling$Year))],
           label = paste0(round(GasSecurityRolling$NI[which(GasSecurityRolling$Year == max(GasSecurityRolling$Year))], digits = 0), "\nGWh"),
           hjust = 0.5,
+          vjust = 1.2,
           fontface = 2
         ),
         colour = ChartColours[3],
@@ -813,7 +817,7 @@ output$GasSecurityRolling.png <- downloadHandler(
           y = GasSecurityRolling$England[which(GasSecurityRolling$Year == min(GasSecurityRolling$Year))],
           label = paste0(round(GasSecurityRolling$England[which(GasSecurityRolling$Year == min(GasSecurityRolling$Year))], digits = 0), "\nGWh"),
           hjust = 0.5,
-          vjust = 0,
+          vjust = -1,
           fontface = 2
         ),
         colour = ChartColours[4],
@@ -825,6 +829,7 @@ output$GasSecurityRolling.png <- downloadHandler(
           y = GasSecurityRolling$England[which(GasSecurityRolling$Year == max(GasSecurityRolling$Year))],
           label = paste0(round(GasSecurityRolling$England[which(GasSecurityRolling$Year == max(GasSecurityRolling$Year))], digits = 0), "\nGWh"),
           hjust = 0.5,
+          vjust = -1,
           fontface = 2
         ),
         colour = ChartColours[4],
@@ -855,7 +860,7 @@ output$GasSecurityRolling.png <- downloadHandler(
     ggsave(
       file,
       plot =  GasSecurityRollingChart,
-      width = 18,
+      width = 20.5,
       height = 18,
       units = "cm",
       dpi = 300
@@ -966,8 +971,8 @@ output$GasSecurityProportion.png <- downloadHandler(
     ggsave(
       file,
       plot =  GasSecurityRollingChart,
-      width = 14,
-      height = 14,
+      width = 20,
+      height = 18,
       units = "cm",
       dpi = 300
     )

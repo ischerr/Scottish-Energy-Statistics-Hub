@@ -349,7 +349,7 @@ PrimaryOilGas <- function(input, output, session) {
       ChartColours <- c("#126992", "#238b45", "#a1d99b")
       BarColours <- c("#d7301f","#ef6548", "#fc8d59", "#fdbb84", "#a8ddb5", "#4eb3d3")
       sourcecaption = "Source: BEIS, SG, HMRC"
-      plottitle = "Distribution of primary energy (indigenous production and imports)"
+      plottitle = "Distribution of primary energy (indigenous production\nand imports)"
       
       #PrimaryEnergy$CavityPercentage <- PercentLabel(PrimaryEnergy$Cavity)
       
@@ -561,7 +561,7 @@ PrimaryOilGas <- function(input, output, session) {
         file,
         plot =  PrimaryEnergyChart,
         width = 20,
-        height = 14,
+        height = 16,
         units = "cm",
         dpi = 300
       )

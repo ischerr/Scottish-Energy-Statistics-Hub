@@ -657,8 +657,8 @@ MaxSupplyPeakDemand <- function(input, output, session) {
     ggsave(
       file,
       plot = PeakDemandCapChart,
-      width = 17.5,
-      height = 12,
+      width = 20,
+      height = 16,
       units = "cm",
       dpi = 300
     )
@@ -977,8 +977,8 @@ MaxSupplyPeakDemand <- function(input, output, session) {
       ggsave(
         file,
         plot = MaxSupplyChart,
-        width = 16,
-        height = 12,
+        width = 20,
+        height = 14,
         units = "cm",
         dpi = 300
       )

@@ -699,7 +699,7 @@ output$AverageGasBills.png <- downloadHandler(
           y = mean(Prepayment),
           label = "Prepayment",
           hjust = 0.5,
-          vjust = -7.5,
+          vjust = -8.5,
           colour = ChartColours[2],
           fontface = 2
         ),
@@ -845,8 +845,8 @@ output$AverageGasBills.png <- downloadHandler(
     ggsave(
       file,
       plot =  GasBillsChart,
-      width = 14,
-      height = 14,
+      width = 18,
+      height = 18,
       units = "cm",
       dpi = 300
     )

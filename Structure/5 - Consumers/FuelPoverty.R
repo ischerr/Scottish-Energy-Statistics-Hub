@@ -306,7 +306,7 @@ FuelPoverty <- function(input, output, session) {
                levels = unique(FuelPovertyBands$Type))
       
       plottitle <-
-        "Proportion of homes in fuel poverty by primary heating\nfuel and EPC band"
+        "Proportion of homes in fuel poverty by primary\nheating fuel and EPC band"
       sourcecaption <- "Source: SG"
       
       ChartColours <- c("#68c3ea", "#FF8500")
@@ -1011,7 +1011,7 @@ FuelPoverty <- function(input, output, session) {
           mutate(top = sum(value))
         
         plottitle <-
-          "EPC Band (SAP 2012) distribution for fuel poor households\n(new definition)"
+          "EPC Band (SAP 2012) distribution for fuel poor\nhouseholds (new definition)"
         sourcecaption <- "Source: SG"
         
         ChartColours <- c("#34d1a3", "#FF8500")
@@ -1168,7 +1168,7 @@ FuelPoverty <- function(input, output, session) {
         ggsave(
           file,
           plot = DomesticEPCChart,
-          width = 17,
+          width = 19,
           height = 15.5,
           units = "cm",
           dpi = 300

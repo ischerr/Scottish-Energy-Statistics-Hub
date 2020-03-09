@@ -424,7 +424,7 @@ OilGasEmployment <- function(input, output, session) {
         OilGasEmployment %>%  ggplot(aes(x = Region, y = Renewables)) +
         #scale_country()+
         #scale_size(range = c(15,30), guide = FALSE)+
-        ylim(-.18, .50) +
+        ylim(-.18, .45) +
         geom_bar(stat = "identity", fill = ChartColours[1]) +
         coord_flip() +
         geom_text(
@@ -510,7 +510,7 @@ OilGasEmployment <- function(input, output, session) {
       ggsave(
         file,
         plot =  OilGasEmploymentChart,
-        width = 14,
+        width = 16,
         height = 16,
         units = "cm",
         dpi = 300

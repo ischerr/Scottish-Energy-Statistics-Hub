@@ -501,7 +501,7 @@ DailyDemand <- function(input, output, session) {
           y = mean(DailyDemand$Electricity),
           label = "Electricity",
           hjust = 0.5,
-          vjust = 4.5,
+          vjust = 5.5,
           colour = ChartColours[3],
           fontface = 2,
           family = "Century Gothic"
@@ -519,7 +519,7 @@ DailyDemand <- function(input, output, session) {
           y = mean(DailyDemand$Transport),
           label = "Transport",
           hjust = 0.5,
-          vjust = 6,
+          vjust = 8,
           colour = ChartColours[4],
           fontface = 2,
           family = "Century Gothic"

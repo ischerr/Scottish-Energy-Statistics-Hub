@@ -843,7 +843,7 @@ output$AverageElecBills.png <- downloadHandler(
     ggsave(
       file,
       plot =  ElecBillsChart,
-      width = 27,
+      width = 18,
       height = 18,
       units = "cm",
       dpi = 300
