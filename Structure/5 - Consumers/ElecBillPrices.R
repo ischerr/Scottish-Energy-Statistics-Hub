@@ -753,7 +753,7 @@ output$AverageElecBills.png <- downloadHandler(
           y = mean(`Standard Credit`),
           label = "Standard Credit",
           hjust = 0.5,
-          vjust = 8.3,
+          vjust = 10.3,
           colour = ChartColours[3],
           fontface = 2
         ),
@@ -809,7 +809,7 @@ output$AverageElecBills.png <- downloadHandler(
           y = mean(`Direct Debit`, na.rm = TRUE),
           label = "Direct Debit",
           hjust = 0.5,
-          vjust = 8.5,
+          vjust = 10.5,
           colour = ChartColours[4],
           fontface = 2
         ),
@@ -843,8 +843,8 @@ output$AverageElecBills.png <- downloadHandler(
     ggsave(
       file,
       plot =  ElecBillsChart,
-      width = 14,
-      height = 14,
+      width = 27,
+      height = 18,
       units = "cm",
       dpi = 300
     )

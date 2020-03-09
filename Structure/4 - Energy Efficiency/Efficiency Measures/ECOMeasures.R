@@ -814,8 +814,8 @@ ECOMeasures <- function(input, output, session) {
     ggsave(
       file,
       plot =  DataChart,
-      width = 14,
-      height = 14,
+      width = 18,
+      height = 18,
       units = "cm",
       dpi = 300
     )
@@ -862,6 +862,8 @@ ECOMeasures <- function(input, output, session) {
     sourcecaption <- "BEIS"
     plottitle = "Total number of ECO measures delivered"
     
+    length <- max(Data$Year) - min(Data$Year)
+    
     DataChart <- Data %>%
       ggplot(aes(x = Year), family = "Century Gothic") +
       
@@ -880,7 +882,7 @@ ECOMeasures <- function(input, output, session) {
           y = `Total number of ECO measures delivered`,
           label = ifelse(Year == min(Year[which(Data$`Total number of ECO measures delivered` > 0)]), format(`Total number of ECO measures delivered`, big.mark = ","), ""),
           hjust = 0.5,
-          vjust = -.8,
+          vjust = -1.75,
           colour = ChartColours[2],
           fontface = 2
         ),
@@ -892,7 +894,7 @@ ECOMeasures <- function(input, output, session) {
           y = `Total number of ECO measures delivered`,
           label = ifelse(Year == max(Year), format(`Total number of ECO measures delivered`, big.mark = ","), ""),
           hjust = .5,
-          vjust = 1.5,
+          vjust = 2,
           colour = ChartColours[2],
           fontface = 2
         ),
@@ -934,13 +936,13 @@ ECOMeasures <- function(input, output, session) {
                   sourcecaption,
                   ChartColours)
     
-    DataChart
+  
     
     ggsave(
       file,
       plot =  DataChart,
-      width = 14,
-      height = 14,
+      width = 18,
+      height = 18,
       units = "cm",
       dpi = 300
     )

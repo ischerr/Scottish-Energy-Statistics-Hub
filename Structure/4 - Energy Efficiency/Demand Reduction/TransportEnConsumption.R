@@ -336,10 +336,16 @@ TransportEnConsumption <- function(input, output, session) {
     content = function(file) {
 
 
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Energy consump fuel type", skip = 12, col_names = FALSE)
+      Data <- read_excel(
+        "Structure/CurrentWorking.xlsx",
+        sheet = "Transport energy consump",
+        col_names = FALSE,
+        skip = 14
+      )[c(1,6,10,12,13)]
       
-      Data <- as_tibble(t(Data))
+      names(Data) <- c("Year", "Road - Personal", "Road - Freight", "Rail", "Total")
+      
+      
       
       names(Data) <- as.character(unlist(Data[1,]))
       
@@ -661,8 +667,8 @@ TransportEnConsumption <- function(input, output, session) {
       ggsave(
         file,
         plot = FinalConsumptionFuelChart,
-        width = 17,
-        height = 15.5,
+        width = 20,
+        height = 17.5,
         units = "cm",
         dpi = 300
       )

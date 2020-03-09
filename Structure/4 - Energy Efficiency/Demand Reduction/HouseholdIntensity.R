@@ -156,7 +156,7 @@ HouseholdIntensity <- function(input, output, session) {
         xaxis = list(title = "",
                      showgrid = FALSE),
         yaxis = list(
-          title = "kWh / households)",
+          title = "(kWh / households)",
           tickformat = ",n",
           showgrid = TRUE,
           zeroline = TRUE,

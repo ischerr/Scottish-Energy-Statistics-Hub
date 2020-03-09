@@ -256,21 +256,23 @@ IndustrySevicesProductivity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year-.1,
+            x = Year,
             y = GVA,
             label = ifelse(Year == min(Year), paste(round(GVA, digits = 2),"\n\u00A3GVA m per GWh"), ""),
             colour = ChartColours[1],
-            fontface = 2
+            fontface = 2,
+            vjust = 1.25
           ),
           family = "Century Gothic"
         )+
         geom_text(
           aes(
-            x = Year+.1,
+            x = Year,
             y = GVA,
             label = ifelse(Year == max(Year), paste(round(GVA, digits = 2),"\n\u00A3GVA m per GWh"), ""),
             colour = ChartColours[1],
-            fontface = 2
+            fontface = 2, 
+            vjust = 1.25
           ),
           family = "Century Gothic"
         ) +
@@ -426,6 +428,8 @@ IndustrySevicesProductivity <- function(input, output, session) {
       sourcecaption <- "Source: BEIS"
       ChartColours <- c("#34d1a3", "#FF8500")
       
+      length <- max(IndustryEmissionsIntensity$Year) - min(IndustryEmissionsIntensity$Year)
+      
       IndustryEmissionsIntensityChart <-
         IndustryEmissionsIntensity %>%  ggplot(aes(x = Year), family = "Century Gothic") +
         
@@ -439,21 +443,23 @@ IndustrySevicesProductivity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year-4,
+            x = Year,
             y = GVA,
             label = ifelse(Year == min(Year), paste(round(GVA, digits = 2),"\ntCO2e/\u00A3mGVA"), ""),
             colour = ChartColours[1],
-            fontface = 2
+            fontface = 2,
+            vjust = 2
           ),
           family = "Century Gothic"
         )+
         geom_text(
           aes(
-            x = Year+4.5,
+            x = Year,
             y = GVA,
             label = ifelse(Year == max(Year), paste(round(GVA, digits = 2),"\ntCO2e/\u00A3mGVA"), ""),
             colour = ChartColours[1],
-            fontface = 2
+            fontface = 2,
+            vjust = -1
           ),
           family = "Century Gothic"
         ) +
@@ -493,7 +499,7 @@ IndustrySevicesProductivity <- function(input, output, session) {
       
       
       IndustryEmissionsIntensityChart <- IndustryEmissionsIntensityChart +
-        xlim(min(IndustryEmissionsIntensity$Year)-7,max(IndustryEmissionsIntensity$Year)+7) +
+        xlim(min(IndustryEmissionsIntensity$Year)-(length*0.2),max(IndustryEmissionsIntensity$Year)+(length*0.2)) +
         ylim(-10,max(IndustryEmissionsIntensity$GVA + 20))
       
       IndustryEmissionsIntensityChart
@@ -684,21 +690,23 @@ IndustrySevicesProductivity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year-.1,
+            x = Year,
             y = GVA,
             label = ifelse(Year == min(Year), paste(round(GVA, digits = 2),"\n\u00A3GVA m per GWh"), ""),
             colour = ChartColours[1],
-            fontface = 2
+            fontface = 2,
+            vjust = 1.2
           ),
           family = "Century Gothic"
         )+
         geom_text(
           aes(
-            x = Year+.1,
+            x = Year,
             y = GVA,
             label = ifelse(Year == max(Year), paste(round(GVA, digits = 2),"\n\u00A3GVA m per GWh"), ""),
             colour = ChartColours[1],
-            fontface = 2
+            fontface = 2,
+            vjust = 1.2
           ),
           family = "Century Gothic"
         ) +
@@ -738,7 +746,7 @@ IndustrySevicesProductivity <- function(input, output, session) {
       
       
       ServicesProductivityChart <- ServicesProductivityChart +
-        xlim(min(ServicesProductivity$Year)-.3,max(ServicesProductivity$Year)+.3) +
+        xlim(min(ServicesProductivity$Year)-.2,max(ServicesProductivity$Year)+.2) +
         ylim(-0.01,max(ServicesProductivity$GVA + 0.05))
       
       ServicesProductivityChart
@@ -869,21 +877,23 @@ IndustrySevicesProductivity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year-4,
+            x = Year,
             y = GVA,
             label = ifelse(Year == min(Year), paste(round(GVA, digits = 2),"\ntCO2e/\u00A3mGVA"), ""),
             colour = ChartColours[1],
-            fontface = 2
+            fontface = 2,
+            vjust = -0.5
           ),
           family = "Century Gothic"
         )+
         geom_text(
           aes(
-            x = Year+4.5,
+            x = Year,
             y = GVA,
             label = ifelse(Year == max(Year), paste(round(GVA, digits = 2),"\ntCO2e/\u00A3mGVA"), ""),
             colour = ChartColours[1],
-            fontface = 2
+            fontface = 2,
+            vjust = 1.5
           ),
           family = "Century Gothic"
         ) +
@@ -923,8 +933,8 @@ IndustrySevicesProductivity <- function(input, output, session) {
       
       
       ServicesEmissionsIntensityChart <- ServicesEmissionsIntensityChart +
-        xlim(min(ServicesEmissionsIntensity$Year)-7,max(ServicesEmissionsIntensity$Year)+7) +
-        ylim(-1,max(ServicesEmissionsIntensity$GVA + 2))
+        xlim(min(ServicesEmissionsIntensity$Year)-3,max(ServicesEmissionsIntensity$Year)+3) +
+        ylim(-1,max(ServicesEmissionsIntensity$GVA + 6))
       
       ServicesEmissionsIntensityChart
       

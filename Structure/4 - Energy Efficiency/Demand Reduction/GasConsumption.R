@@ -578,8 +578,8 @@ GasConsumption <- function(input, output, session) {
       ggsave(
         file,
         plot = GasConsumptiontionChart,
-        width = 17,
-        height = 15.5,
+        width = 20,
+        height = 17.5,
         units = "cm",
         dpi = 300
       )
@@ -946,8 +946,8 @@ GasConsumption <- function(input, output, session) {
       ggsave(
         file,
         plot = GasConsumptionHHoldChart,
-        width = 17,
-        height = 15.5,
+        width = 20,
+        height = 17.5,
         units = "cm",
         dpi = 300
       )

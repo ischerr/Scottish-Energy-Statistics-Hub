@@ -779,8 +779,19 @@ LocalRenewables <- function(input, output, session) {
           aes(
             x = Year,
             y = 0,
-            label = ifelse(Year == max(Year[which(Renewables > 0)]) |
-                             Year == min(Year), Year, ""),
+            label = ifelse(Year == max(Year[which(Renewables > 0)]), Year, ""),
+            hjust = 0.75,
+            vjust = 1.5,
+            colour = ChartColours[1],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) + 
+        geom_text(
+          aes(
+            x = Year,
+            y = 0,
+            label = ifelse(Year == min(Year), Year, ""),
             hjust = 0.5,
             vjust = 1.5,
             colour = ChartColours[1],
@@ -816,8 +827,7 @@ LocalRenewables <- function(input, output, session) {
           aes(
             x = Year,
             y = 0,
-            label = ifelse(Year == Year[which(Target > 0)] |
-                             Year == min(Year), Year, ""),
+            label = ifelse(Year == Year[which(Target > 0)], Year, ""),
             hjust = 0.5,
             vjust = 1.5,
             colour = ChartColours[2],
@@ -848,7 +858,7 @@ LocalRenewables <- function(input, output, session) {
       ggsave(
         file,
         plot = ComCapOperatingChart,
-        width = 11,
+        width = 15,
         height = 15,
         units = "cm",
         dpi = 300
@@ -1194,7 +1204,7 @@ LocalRenewables <- function(input, output, session) {
       
       
       plottitle <-
-        "Capacity of operational community and locally\nowned renewable installations by type of output\n(MW)"
+        "Capacity of operational community and\nlocally owned renewable installations\nby type of output (MW)"
       sourcecaption <- "Source: EST"
       
       ChartColours <- c("#a3d65c", "#FF8500")
@@ -1445,7 +1455,7 @@ LocalRenewables <- function(input, output, session) {
       ggsave(
         file, 
         plot = ComCapOwnershipChart,
-        width = 17,
+        width = 19,
         height = 8.5,
         units = "cm",
         dpi = 300

@@ -533,8 +533,8 @@ HeatConsumption <- function(input, output, session) {
       ggsave(
         file,
         plot = HeatDemandChart,
-        width = 17,
-        height = 15.5,
+        width = 20,
+        height = 17.5,
         units = "cm",
         dpi = 300
       )

@@ -637,7 +637,7 @@ EnergyConsumption <- function(input, output, session) {
         FinalConsumptionSectorsChart +
         coord_flip() +
         labs(subtitle = paste("Scotland, 2005 -", max(FinalConsumptionSectors$Year))) +
-        ylim(-26000, max(FinalConsumptionSectors$top) + 25000) +
+        ylim(-26500, max(FinalConsumptionSectors$top) + 25000) +
         xlim(max(FinalConsumptionSectors$Year) + 1.2, 2002)
       
       FinalConsumptionSectorsChart
@@ -645,8 +645,8 @@ EnergyConsumption <- function(input, output, session) {
       ggsave(
         file,
         plot = FinalConsumptionSectorsChart,
-        width = 17,
-        height = 15.5,
+        width = 20,
+        height = 17.5,
         units = "cm",
         dpi = 300
       )
@@ -1081,7 +1081,7 @@ EnergyConsumption <- function(input, output, session) {
         annotate(
           "text",
           x = 2002,
-          y = (.5/6)*170535,
+          y = (.5/6)*max(FinalConsumptionFuel$top),
           label = "Petroleum\nProducts",
           fontface = 2,
           color = BarColours[1],
@@ -1090,7 +1090,7 @@ EnergyConsumption <- function(input, output, session) {
         annotate(
           "text",
           x = 2002,
-          y = (1.5/6)*165580,
+          y = (1.5/6)*max(FinalConsumptionFuel$top),
           label = "Gas",
           fontface = 2,
           color = BarColours[2],
@@ -1099,7 +1099,7 @@ EnergyConsumption <- function(input, output, session) {
         annotate(
           "text",
           x = 2002,
-          y = (2.5/6)*165580,
+          y = (2.5/6)*max(FinalConsumptionFuel$top),
           label = "Electricity",
           fontface = 2,
           color = BarColours[3],
@@ -1108,7 +1108,7 @@ EnergyConsumption <- function(input, output, session) {
         annotate(
           "text",
           x = 2002,
-          y = (3.5/6)*165580,
+          y = (3.5/6)*max(FinalConsumptionFuel$top),
           label = "Bioenergy\n& wastes",
           fontface = 2,
           color = BarColours[4],
@@ -1117,7 +1117,7 @@ EnergyConsumption <- function(input, output, session) {
         annotate(
           "text",
           x = 2002,
-          y = (4.5/6)*165580,
+          y = (4.5/6)*max(FinalConsumptionFuel$top),
           label = "Coal",
           fontface = 2,
           color = BarColours[5],
@@ -1126,7 +1126,7 @@ EnergyConsumption <- function(input, output, session) {
         annotate(
           "text",
           x = 2002,
-          y = (5.5/6)*165580,
+          y = (5.5/6)*max(FinalConsumptionFuel$top),
           label = "Manufactured\nFuels",
           fontface = 2,
           color = BarColours[6],
@@ -1135,7 +1135,7 @@ EnergyConsumption <- function(input, output, session) {
         annotate(
           "text",
           x = 2002,
-          y = (6.5/6)*165580,
+          y = (6.5/6)*max(FinalConsumptionFuel$top),
           label = "Total",
           fontface = 2,
           color = ChartColours[1],
@@ -1279,7 +1279,7 @@ EnergyConsumption <- function(input, output, session) {
         FinalConsumptionFuelChart +
         coord_flip() +
         labs(subtitle = paste("Scotland, 2005 -", max(FinalConsumptionFuel$Year))) +
-        ylim(-25000, max(FinalConsumptionFuel$top) + 20000) +
+        ylim(-max(FinalConsumptionFuel$top * 0.16), max(FinalConsumptionFuel$top * 1.16)) +
         xlim(max(FinalConsumptionFuel$Year) + 1.2, 2002)
       
       FinalConsumptionFuelChart
@@ -1287,8 +1287,8 @@ EnergyConsumption <- function(input, output, session) {
       ggsave(
         file,
         plot = FinalConsumptionFuelChart,
-        width = 17,
-        height = 15.5,
+        width = 20,
+        height = 17.5,
         units = "cm",
         dpi = 300
       )

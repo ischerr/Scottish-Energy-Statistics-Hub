@@ -565,8 +565,8 @@ ElecConsumption <- function(input, output, session) {
       ggsave(
         file,
         plot = ElecConsumptiontionChart,
-        width = 17,
-        height = 15.5,
+        width = 20,
+        height = 17.5,
         units = "cm",
         dpi = 300
       )
@@ -934,8 +934,8 @@ ElecConsumption <- function(input, output, session) {
       ggsave(
         file,
         plot = ElecConsumptionHHoldChart,
-        width = 17,
-        height = 15.5,
+        width = 20,
+        height = 17.5,
         units = "cm",
         dpi = 300
       )

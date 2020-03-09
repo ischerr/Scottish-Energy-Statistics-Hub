@@ -722,7 +722,7 @@ DistrictHeat <- function(input, output, session) {
         )+
         geom_text(
           aes(
-            y = -.15,
+            y = -.18,
             label = ifelse(variable == "Current", str_wrap(as.character(DistrictDistrictHeats$Type), width = 15), ""),
             fontface = 2
           ),
@@ -743,7 +743,7 @@ DistrictHeat <- function(input, output, session) {
       DistrictDistrictHeatsProportionsChart <-
         DistrictDistrictHeatsProportionsChart +
         labs(subtitle = "Scotland, 2018") +
-        ylim(-.25,1.22)+
+        ylim(-.3,1.22)+
         coord_flip()
       
       DistrictDistrictHeatsProportionsChart
