@@ -239,6 +239,8 @@ IndustrySevicesProductivity <- function(input, output, session) {
       
       names(IndustryProductivity) <- c("Year", "GVA")
       
+      length <- max(IndustryProductivity$Year) - min(IndustryProductivity$Year)
+      
       plottitle <- "Industrial energy productivity"
       sourcecaption <- "Source: BEIS"
       ChartColours <- c("#34d1a3", "#FF8500")
@@ -312,7 +314,7 @@ IndustrySevicesProductivity <- function(input, output, session) {
       
       
       IndustryProductivityChart <- IndustryProductivityChart +
-        xlim(min(IndustryProductivity$Year)-.3,max(IndustryProductivity$Year)+.3) +
+        xlim(min(IndustryProductivity$Year)-length*0.2,max(IndustryProductivity$Year)+length*0.2) +
         ylim(-0.01,max(IndustryProductivity$GVA + 0.05))
       
       IndustryProductivityChart
@@ -673,6 +675,8 @@ IndustrySevicesProductivity <- function(input, output, session) {
       
       names(ServicesProductivity) <- c("Year", "GVA")
       
+      length <- max(ServicesProductivity$Year) - min(ServicesProductivity$Year)
+      
       plottitle <- "Services energy productivity"
       sourcecaption <- "Source: BEIS"
       ChartColours <- c("#34d1a3", "#FF8500")
@@ -746,7 +750,7 @@ IndustrySevicesProductivity <- function(input, output, session) {
       
       
       ServicesProductivityChart <- ServicesProductivityChart +
-        xlim(min(ServicesProductivity$Year)-.2,max(ServicesProductivity$Year)+.2) +
+        xlim(min(ServicesProductivity$Year)-length*0.2,max(ServicesProductivity$Year)+length*0.2) +
         ylim(-0.01,max(ServicesProductivity$GVA + 0.05))
       
       ServicesProductivityChart
