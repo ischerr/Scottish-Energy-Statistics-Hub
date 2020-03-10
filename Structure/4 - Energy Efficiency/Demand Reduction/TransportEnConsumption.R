@@ -344,11 +344,7 @@ TransportEnConsumption <- function(input, output, session) {
       )[c(1,6,10,12,13)]
       
       names(Data) <- c("Year", "Road - Personal", "Road - Freight", "Rail", "Total")
-      
-      
-      
-      names(Data) <- as.character(unlist(Data[1,]))
-      
+  
       names(Data)[1] <- "Year"
       Data <- tail(Data, -1)
       
@@ -360,7 +356,7 @@ TransportEnConsumption <- function(input, output, session) {
       
       Data <- as_tibble(sapply( Data, as.numeric ))
       
-      FinalConsumptionFuel <- Data[c(1,7:2,8)]
+      FinalConsumptionFuel <- Data[c(1,4:2,5)]
       
       FinalConsumptionFuel <-
         FinalConsumptionFuel[order(-FinalConsumptionFuel$Year),]
@@ -400,17 +396,14 @@ TransportEnConsumption <- function(input, output, session) {
         scale_fill_manual(
           "variable",
           values = c(
-            "Petroleum products" = BarColours[1],
-            "Gas" = BarColours[2],
-            "Electricity" = BarColours[3],
-            "Bioenergy & wastes" = BarColours[4],
-            "Coal" = BarColours[5],
-            "Manufactured fuels" = BarColours[6]
+            "Road - Personal" = BarColours[1],
+            "Road - Freight" = BarColours[2],
+            "Rail" = BarColours[3]
           )
         ) +
         geom_bar(stat = "identity", width = .8) +
         geom_text(
-          y = FinalConsumptionFuel$top,
+          y = FinalConsumptionFuel$top *1.05,
           label = ifelse(
             FinalConsumptionFuel$value < 7000,
             paste0(format(
@@ -424,7 +417,7 @@ TransportEnConsumption <- function(input, output, session) {
           color = ChartColours[1]
         ) +
         geom_text(
-          y = -17500,
+          y = -(max(FinalConsumptionFuel$top)*0.1),
           label =   ifelse(
             FinalConsumptionFuel$value < 7000,
             ifelse(
@@ -461,8 +454,8 @@ TransportEnConsumption <- function(input, output, session) {
         annotate(
           "text",
           x = 2002,
-          y = (.5/6)*170535,
-          label = "Petroleum\nProducts",
+          y = (.5/3)*max(FinalConsumptionFuel$top),
+          label = "Road - Personal",
           fontface = 2,
           color = BarColours[1],
           family = "Century Gothic"
@@ -470,8 +463,8 @@ TransportEnConsumption <- function(input, output, session) {
         annotate(
           "text",
           x = 2002,
-          y = (1.5/6)*165580,
-          label = "Gas",
+          y = (1.5/3)*max(FinalConsumptionFuel$top),
+          label = "Road - Freight",
           fontface = 2,
           color = BarColours[2],
           family = "Century Gothic"
@@ -479,8 +472,8 @@ TransportEnConsumption <- function(input, output, session) {
         annotate(
           "text",
           x = 2002,
-          y = (2.5/6)*165580,
-          label = "Electricity",
+          y = (2.5/3)*max(FinalConsumptionFuel$top),
+          label = "Rail",
           fontface = 2,
           color = BarColours[3],
           family = "Century Gothic"
@@ -488,34 +481,7 @@ TransportEnConsumption <- function(input, output, session) {
         annotate(
           "text",
           x = 2002,
-          y = (3.5/6)*165580,
-          label = "Bioenergy\n& wastes",
-          fontface = 2,
-          color = BarColours[4],
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = 2002,
-          y = (4.5/6)*165580,
-          label = "Coal",
-          fontface = 2,
-          color = BarColours[5],
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = 2002,
-          y = (5.5/6)*165580,
-          label = "Manufactured\nFuels",
-          fontface = 2,
-          color = BarColours[6],
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = 2002,
-          y = (6.5/6)*165580,
+          y = (3.3/3)*max(FinalConsumptionFuel$top),
           label = "Total",
           fontface = 2,
           color = ChartColours[1],
@@ -529,17 +495,17 @@ TransportEnConsumption <- function(input, output, session) {
             subset(
               FinalConsumptionFuel,
               Year == max(FinalConsumptionFuel$Year) &
-                variable == "Petroleum products"
+                variable == "Road - Personal"
             )[1, 5]
           ) - as.numeric(
             subset(
               FinalConsumptionFuel,
               Year == max(FinalConsumptionFuel$Year) &
-                variable == "Petroleum products"
+                variable == "Road - Personal"
             )[1, 4]
           ),
           label = percent((
-            subset(FinalConsumptionMax, variable == "Petroleum products")[1, 3]
+            subset(FinalConsumptionMax, variable == "Road - Personal")[1, 3]
           ), accuracy = .1),
           fontface = 2,
           color = BarColours[1],
@@ -552,17 +518,17 @@ TransportEnConsumption <- function(input, output, session) {
             subset(
               FinalConsumptionFuel,
               Year == max(FinalConsumptionFuel$Year) &
-                variable == "Gas"
+                variable == "Road - Freight"
             )[1, 5]
           ) - as.numeric(
             subset(
               FinalConsumptionFuel,
               Year == max(FinalConsumptionFuel$Year) &
-                variable == "Gas"
+                variable == "Road - Freight"
             )[1, 4]
           ),
           label = percent((
-            subset(FinalConsumptionMax, variable == "Gas")[1, 3]
+            subset(FinalConsumptionMax, variable == "Road - Freight")[1, 3]
           ), accuracy = .1),
           fontface = 2,
           color = BarColours[2],
@@ -575,17 +541,17 @@ TransportEnConsumption <- function(input, output, session) {
             subset(
               FinalConsumptionFuel,
               Year == max(FinalConsumptionFuel$Year) &
-                variable == "Electricity"
+                variable == "Rail"
             )[1, 5]
           ) - as.numeric(
             subset(
               FinalConsumptionFuel,
               Year == max(FinalConsumptionFuel$Year) &
-                variable == "Electricity"
+                variable == "Rail"
             )[1, 4]
           ),
           label = percent((
-            subset(FinalConsumptionMax, variable == "Electricity")[1, 3]
+            subset(FinalConsumptionMax, variable == "Rail")[1, 3]
           ), accuracy = .1),
           fontface = 2,
           color = BarColours[3],
@@ -594,47 +560,17 @@ TransportEnConsumption <- function(input, output, session) {
         annotate(
           "text",
           x = max(FinalConsumptionFuel$Year) + 1.2,
-          y = as.numeric(
-            subset(
-              FinalConsumptionFuel,
-              Year == max(FinalConsumptionFuel$Year) &
-                variable == "Bioenergy & Wastes"
-            )[1, 5]
-          ) - as.numeric(
-            subset(
-              FinalConsumptionFuel,
-              Year == max(FinalConsumptionFuel$Year) &
-                variable == "Bioenergy & Wastes"
-            )[1, 4]
-          ),
-          label = paste0("+",percent((
-            subset(FinalConsumptionMax, variable == "Bioenergy & Wastes")[1, 3]
-          ), accuracy = .1)),
+          y = mean(FinalConsumptionFuel$top)*1.15,
+          label = percent((mean(FinalConsumptionFuel[which(FinalConsumptionFuel$Year == max(FinalConsumptionFuel$Year)),]$top) / 
+                             mean(FinalConsumptionFuel[which(FinalConsumptionFuel$Year == min(FinalConsumptionFuel$Year)),]$top))-1, 0.1),
           fontface = 2,
-          color = BarColours[4],
+          color = ChartColours[1],
           family = "Century Gothic"
         ) +
         annotate(
           "text",
           x = max(FinalConsumptionFuel$Year) + 1.2,
-          y = as.numeric(
-            subset(
-              FinalConsumptionFuel,
-              Year == max(FinalConsumptionFuel$Year) &
-                variable == "Gas"
-            )[1, 5]
-          ),
-          label = percent((
-            subset(FinalConsumptionMax, variable == "Total")[1, 3]
-          ), accuracy  = .1),
-          fontface = 2,
-          color = ChartColours[1],
-          family = "Century Gothic",
-          hjust = -.75
-        ) + annotate(
-          "text",
-          x = max(FinalConsumptionFuel$Year) + 1.2,
-          y = -17500,
+          y = -(max(FinalConsumptionFuel$top)*0.1),
           label = "% Change\nfrom baseline",
           fontface = 2,
           color = ChartColours[1],
@@ -659,7 +595,7 @@ TransportEnConsumption <- function(input, output, session) {
         FinalConsumptionFuelChart +
         coord_flip() +
         labs(subtitle = paste("Scotland, 2005 -", max(FinalConsumptionFuel$Year))) +
-        ylim(-25000, max(FinalConsumptionFuel$top) + 25000) +
+        ylim(-(max(FinalConsumptionFuel$top)*0.14), max(FinalConsumptionFuel$top)*1.2) +
         xlim(max(FinalConsumptionFuel$Year) + 1.2, 2002)
       
       FinalConsumptionFuelChart
@@ -672,6 +608,7 @@ TransportEnConsumption <- function(input, output, session) {
         units = "cm",
         dpi = 300
       )
+      
       
       
     }
