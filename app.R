@@ -558,7 +558,7 @@ ui <- shinyUI(fluidPage(
                    tabPanel(title = "Household Energy Consumption",
                             value = "HHoldEnConsumption",
                             HHoldEnConsumptionOutput("HHoldEnConsumption")),
-                   tabPanel(title = "Household energy intensity",
+                   tabPanel(title = "Household Energy Intensity",
                             value = "HouseholdIntensity",
                             HouseholdIntensityOutput("HouseholdIntensity")),
                    tabPanel(title = "Energy productivity of industry and sevices",
