@@ -1,4 +1,4 @@
-dist: bionic
+os: windows
 
 sudo: false
 
@@ -6,7 +6,7 @@ latex: false
 
 language: r
 
-r: release
+r: 3.6.1
 
 warnings_are_errors: false
 
