@@ -1,4 +1,4 @@
-os: windows
+dist: bionic
 
 sudo: false
 
