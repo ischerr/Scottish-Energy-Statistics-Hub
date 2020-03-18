@@ -33,7 +33,7 @@ EnEconomyOutput <- function(id) {
                fluidRow(
                  column(
                    8,
-                   h3("Energy Sector Turnover", style = "color: #1A5D38;  font-weight:bold"),
+                   h3("Energy sector turnover", style = "color: #1A5D38;  font-weight:bold"),
                    h4(textOutput(ns('EnergySectorTurnoverSubtitle')), style = "color: #1A5D38;")
                  ),
                  column(
@@ -51,7 +51,7 @@ EnEconomyOutput <- function(id) {
                fluidRow(
                  column(
                    8,
-                   h3("Energy Sector GVA", style = "color: #1A5D38;  font-weight:bold"),
+                   h3("Energy sector GVA", style = "color: #1A5D38;  font-weight:bold"),
                    h4(textOutput(ns('EnergySectorGVASubtitle')), style = "color: #1A5D38;")
                  ),
                  column(
@@ -69,7 +69,7 @@ EnEconomyOutput <- function(id) {
                fluidRow(
                  column(
                    8,
-                   h3("Energy Sector Exports", style = "color: #1A5D38;  font-weight:bold"),
+                   h3("Energy sector exports", style = "color: #1A5D38;  font-weight:bold"),
                    h4(textOutput(ns('EnergySectorExportsSubtitle')))
                  ),
                  column(
@@ -687,12 +687,12 @@ EnEconomy <- function(input, output, session) {
         EnergySectorExports,
         x = ~ Year,
         y = ~ `Exports`,
-        name = "Total Exports",
+        name = "Total exports",
         legendgroup = "1",
         type = 'scatter',
         mode = 'lines',
         text = paste0(
-          "Total Exports: \u00A3",
+          "Total exports: \u00A3",
           round(EnergySectorExports$`Exports`, digits = 3),
           " billion\nYear: ",
           format(EnergySectorExports$Year, "%Y")
@@ -752,7 +752,7 @@ EnEconomy <- function(input, output, session) {
         name = "Exports",
         legendgroup = "1",
         text = paste0(
-          "Total Exports: \u00A3",
+          "Total exports: \u00A3",
           round(EnergySectorExports$`Exports`, digits = 3),
           " billion\nYear: ",
           format(EnergySectorExports$Year, "%Y")
@@ -842,7 +842,7 @@ EnEconomy <- function(input, output, session) {
     
     EnergySectorExports[EnergySectorExports == 0] <- NA
     
-    names(EnergySectorExports) <- c("Year", "Employment - Excluding additional units registered for PAYE only", "Employment - Including additional PAYE only units", "Turnover (\u00A3b)", "GVA (\u00A3b)", "Total Exports (\u00A3b)", "Exports to rest of the U.K. (\u00A3b)", "Exports to rest of the World (\u00A3b)")
+    names(EnergySectorExports) <- c("Year", "Employment - Excluding additional units registered for PAYE only", "Employment - Including additional PAYE only units", "Turnover (\u00A3b)", "GVA (\u00A3b)", "Total exports (\u00A3b)", "Exports to rest of the U.K. (\u00A3b)", "Exports to rest of the World (\u00A3b)")
     
     datatable(
       EnergySectorExports,

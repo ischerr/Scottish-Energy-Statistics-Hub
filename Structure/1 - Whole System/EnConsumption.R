@@ -138,7 +138,7 @@ EnConsumption <- function(input, output, session) {
       values = ~value,
       text = paste0(
         EnConsumption$variable,
-        ": ", format(round(EnConsumption$value, 1), big.mark = ","), " GWh" 
+        ": ", format(round(EnConsumption$value, 0), big.mark = ","), " GWh" 
       ),
       textposition = 'outside',
       textinfo = 'label+percent',
