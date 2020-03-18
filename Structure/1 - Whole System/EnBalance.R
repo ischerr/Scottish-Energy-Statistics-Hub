@@ -11,7 +11,7 @@ EnBalanceOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("Energy Balance",
+      tabPanel("Balance",
                fluidRow(column(8,
                                h3("Scottish energy balance", style = "color: #1A5D38;  font-weight:bold"),
                                h4(textOutput(ns('EnBalanceSubtitle')), style = "color: #1A5D38;")
@@ -56,20 +56,20 @@ EnBalanceOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     fluidRow(
-      column(8, h3("Supply", style = "color: #1A5D38;  font-weight:bold")),
+      column(8, h3("Data - Supply (ktoe)", style = "color: #1A5D38;  font-weight:bold")),
       column(2, style = "padding:15px",  downloadButton(ns('EnBalanceData.xlsx'), 'Download Full Data', style="float:right")),
       column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, DTOutput(ns("EnBalanceTable1"))%>% withSpinner(color="#1A5D38"))),
     fluidRow(
-      column(10, h3("Transfers and Transformation", style = "color: #1A5D38;  font-weight:bold")),
+      column(10, h3("Data - Transfers and Transformation (ktoe)", style = "color: #1A5D38;  font-weight:bold")),
       column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, DTOutput(ns("EnBalanceTable2"))%>% withSpinner(color="#1A5D38"))),
     fluidRow(
-      column(10, h3("Consumption", style = "color: #1A5D38;  font-weight:bold")),
+      column(10, h3("Data - Consumption (ktoe)", style = "color: #1A5D38;  font-weight:bold")),
       column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -85,11 +85,12 @@ EnBalanceOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("SGSNAP"),
         SourceLookup("BEISElecGen"),
         SourceLookup("BEISSubNatEnergy"),
-        SourceLookup("BEISRenElec"),
-        SourceLookup("HMRCTrade")
+        SourceLookup("HMRCTrade"),
+        SourceLookup("BEISDUKESBalance"),
+        SourceLookup("SGCommodityBalance"),
+        SourceLookup("BEISImportExport")
         
       )
     )
@@ -101,38 +102,7 @@ EnBalanceOutput <- function(id) {
 
 ###### Server ######
 EnBalance <- function(input, output, session) {
-  # output$EnBalancePlot <- renderDygraph({
-  #   EnBalance <-
-  #     read.csv(
-  #       "Structure/1 - Whole System/EnBalance.csv",
-  #       header = TRUE,
-  #       sep = ",",
-  #       na.strings = "-"
-  #     )
-  #
-  #   YearLow <- as.numeric(min(EnBalance$Year))
-  #   YearHigh <- as.numeric(max(EnBalance$Year +1))
-  #
-  #   dygraph(EnBalance, main = "Renewable Energy Target") %>%
-  #     dyAxis("y", label = "% Progress", valueRange = c(0,30)) %>%
-  #     dyAxis("x", label = "Year", drawGrid = TRUE) %>%
-  #     dyOptions(colors =  c("Green","Orange", "Blue")) %>%
-  #     dyLegend(width = 170 ,
-  #              labelsSeparateLines = TRUE ,
-  #              show = "always") %>%
-  #     dyOptions(
-  #       stackedGraph = TRUE,
-  #       axisLineColor = "white",
-  #       gridLineColor = "white",
-  #       includeZero = TRUE,
-  #       fillAlpha = .65
-  #     ) %>%
-  #     #    dyRangeSelector() %>%
-  #     dyCSS("Structure/1 - Whole System/legend.css")
-  #
-  # })
-  
-  
+
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
@@ -214,14 +184,14 @@ EnBalance <- function(input, output, session) {
     EnBalance[2:10] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     EnBalance[1] <- c( 
-      "Indigenous Production", 
-      "Imports", "...Rest of World", 
+      "Indigenous production", 
+      "Imports", "...Rest of world", 
       "...Rest of UK", "Exports", 
-      "...Rest of World", 
+      "...Rest of world", 
       "...Rest of UK", 
-      "Marine Bunkers", 
-      "Stock Change", 
-      "Primary Supply"
+      "Marine bunkers", 
+      "Stock change", 
+      "Primary supply"
     )
     
     datatable(
@@ -236,17 +206,17 @@ EnBalance <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Aggregate Energy Balance (thousand tonnes of oil equivalent)",
+        title = "Aggregate energy balance (thousand tonnes of oil equivalent)",
         dom = '',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Aggregate Energy Balance (thousand tonnes of oil equivalent)',
+            title = 'Aggregate energy balance (thousand tonnes of oil equivalent)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Aggregate Energy Balance (thousand tonnes of oil equivalent)')
+               title = 'Aggregate energy balance (thousand tonnes of oil equivalent)')
         ),
         
         # customize the length menu
@@ -299,17 +269,17 @@ EnBalance <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Aggregate Energy Balance (thousand tonnes of oil equivalent)",
+        title = "Aggregate energy balance (thousand tonnes of oil equivalent)",
         dom = '',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Aggregate Energy Balance (thousand tonnes of oil equivalent)',
+            title = 'Aggregate energy balance (thousand tonnes of oil equivalent)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Aggregate Energy Balance (thousand tonnes of oil equivalent)')
+               title = 'Aggregate energy balance (thousand tonnes of oil equivalent)')
         ),
         
         # customize the length menu
@@ -362,17 +332,17 @@ EnBalance <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Aggregate Energy Balance (thousand tonnes of oil equivalent)",
+        title = "Aggregate energy balance (thousand tonnes of oil equivalent)",
         dom = '',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Aggregate Energy Balance (thousand tonnes of oil equivalent)',
+            title = 'Aggregate energy balance (thousand tonnes of oil equivalent)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Aggregate Energy Balance (thousand tonnes of oil equivalent)')
+               title = 'Aggregate energy balance (thousand tonnes of oil equivalent)')
         ),
         
         # customize the length menu

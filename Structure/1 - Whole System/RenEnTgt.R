@@ -87,7 +87,7 @@ RenEnTgtOutput <- function(id) {
         SourceLookup("BEISSubNatEnergy"),
         SourceLookup("ESTRenHeat"),
         SourceLookup("BEISUKConsump"),
-        SourceLookup("HMRCOils"),
+        SourceLookup("DFTRenewable"),
         SourceLookup("BEISSubNatElec"),
         SourceLookup("BEISSubNatGas"),
         SourceLookup("BEISLocalRoad")
@@ -332,7 +332,7 @@ RenEnTgt <- function(input, output, session) {
       RenEnTgt <- RenEnTgt[complete.cases(RenEnTgt), ]
       
       ChartColours <- c("#1a5d38", "#FF8500")
-      sourcecaption = "Source: BEIS, Energy Saving Trust, HMRC"
+      sourcecaption = "Source: BEIS, Energy Saving Trust, DfT"
       plottitle = "Share of renewable energy in\ngross final energy consumption"
       
       RenEnChart <-
@@ -478,6 +478,13 @@ RenEnTgt <- function(input, output, session) {
     
     TotalTarget <- as_tibble(TotalTarget)
     
+    TotalTarget$`Total Renewable Energy (GWh)` <- round(TotalTarget$`Total Renewable Energy (GWh)`,0)
+    TotalTarget$`Total Energy Consumption (GWh)` <- round(TotalTarget$`Total Energy Consumption (GWh)`,0)
+    TotalTarget$`Total Renewable Energy - % of total energy consumption` <- round(TotalTarget$`Total Renewable Energy - % of total energy consumption`,3)
+    TotalTarget$`Renewable Electricity - % of total energy consumption` <- round(TotalTarget$`Renewable Electricity - % of total energy consumption`,3)
+    TotalTarget$`Renewable Heat - % of all total consumption` <- round(TotalTarget$`Renewable Heat - % of all total consumption`,3)
+    TotalTarget$`Renewable Transport - % of total energy consumption` <- round(TotalTarget$`Renewable Transport - % of total energy consumption`,3)
+    
     datatable(
       TotalTarget,
       extensions = 'Buttons',
@@ -489,6 +496,7 @@ RenEnTgt <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
+        order = list(list(0, 'desc')),
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
@@ -534,6 +542,11 @@ RenEnTgt <- function(input, output, session) {
       "% of all energy consumption"
     )
     
+    ElectricityTarget$`Renewable Generation (GWh)` <- round(ElectricityTarget$`Renewable Generation (GWh)`, 0)
+    ElectricityTarget$`Gross Consumption (GWh)` <- round(ElectricityTarget$`Gross Consumption (GWh)`, 0)
+    ElectricityTarget$`Renewable % of consumption` <- round(ElectricityTarget$`Renewable % of consumption`, 3)
+    ElectricityTarget$`% of all energy consumption` <- round(ElectricityTarget$`% of all energy consumption`, 3)
+    
     datatable(
       ElectricityTarget,
       extensions = 'Buttons',
@@ -546,6 +559,7 @@ RenEnTgt <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
+        order = list(list(0, 'desc')),
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
@@ -588,6 +602,11 @@ RenEnTgt <- function(input, output, session) {
       "% of all energy consumption"
     )
     
+    HeatTarget$`Renewable Heat (GWh)` <- round(HeatTarget$`Renewable Heat (GWh)`, 0)
+    HeatTarget$`Heat Demand (non-electrical, GWh)` <- round(HeatTarget$`Heat Demand (non-electrical, GWh)`, 0)
+    HeatTarget$`% Renewable Heat` <- round(HeatTarget$`% Renewable Heat`, 3)
+    HeatTarget$`% of all energy consumption` <- round(HeatTarget$`% of all energy consumption`, 3)
+    
     datatable(
       HeatTarget,
       extensions = 'Buttons',
@@ -600,6 +619,7 @@ RenEnTgt <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
+        order = list(list(0, 'desc')),
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
@@ -641,6 +661,11 @@ RenEnTgt <- function(input, output, session) {
       "% of all energy consumption"
     )
     
+    TransportTarget$`Biofuels in Scotland estimate (GWh)` <- round(TransportTarget$`Biofuels in Scotland estimate (GWh)`, 0)
+    TransportTarget$`Petroleum used for Transport (GWh)` <- round(TransportTarget$`Petroleum used for Transport (GWh)`, 0)
+    TransportTarget$`UK % of biofuels` <- round(TransportTarget$`UK % of biofuels`, 3)
+    TransportTarget$`% of all energy consumption` <- round(TransportTarget$`% of all energy consumption`, 3)
+    
     datatable(
       TransportTarget,
       extensions = 'Buttons',
@@ -653,6 +678,7 @@ RenEnTgt <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
+        order = list(list(0, 'desc')),
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),

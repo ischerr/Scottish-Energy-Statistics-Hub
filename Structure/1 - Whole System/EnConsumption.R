@@ -50,7 +50,7 @@ EnConsumptionOutput <- function(id) {
     tabsetPanel(
       tabPanel("Consumption by Sector",
                fluidRow(
-    column(10, h3("Data - Sector Consumption", style = "color: #1A5D38;  font-weight:bold")),
+    column(10, h3("Data - Sector Consumption (GWh)", style = "color: #1A5D38;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -58,7 +58,7 @@ EnConsumptionOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")),
     tabPanel("Domestic and Non-domestic",
              fluidRow(
-               column(10, h3("Data - Domestic & Non Domestic", style = "color: #1A5D38;  font-weight:bold")),
+               column(10, h3("Data - Domestic & Non Domestic (GWh)", style = "color: #1A5D38;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -138,7 +138,7 @@ EnConsumption <- function(input, output, session) {
       values = ~value,
       text = paste0(
         EnConsumption$variable,
-        ": ", format(round(EnConsumption$value, 0), big.mark = ","), " GWh" 
+        ": ", format(round(EnConsumption$value, 1), big.mark = ","), " GWh" 
       ),
       textposition = 'outside',
       textinfo = 'label+percent',
@@ -185,7 +185,7 @@ EnConsumption <- function(input, output, session) {
     
     EnConsumption <- EnConsumption[complete.cases(EnConsumption),]
     
-    names(EnConsumption) <- c("Year", "Heat", "Transport", "Electricity", "Other")
+    names(EnConsumption) <- c("Year", "Heat", "Transport", "Gross electricity consumption", "Other")
     
     EnConsumption$Total <- EnConsumption$Heat + EnConsumption$Transport + EnConsumption$Electricity + EnConsumption$Other
     
@@ -288,7 +288,7 @@ file)
       values = ~value,
       text = paste0(
         EnConsumptionDomNonDom$variable,
-        ": ", format(round(EnConsumptionDomNonDom$value,0), big.mark = ","), " GWh" 
+        ": ", format(round(EnConsumptionDomNonDom$value,1), big.mark = ","), " GWh" 
       ),
       textposition = 'inside',
       textinfo = 'label+percent',
