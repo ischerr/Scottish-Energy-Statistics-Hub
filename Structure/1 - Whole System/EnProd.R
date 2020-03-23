@@ -83,37 +83,7 @@ EnProdOutput <- function(id) {
 
 ###### Server ######
 EnProd <- function(input, output, session) {
-  # output$RenEnTgtPlot <- renderDygraph({
-  #   RenEn <-
-  #     read.csv(
-  #       "Structure/1 - Whole System/RenEnTgt.csv",
-  #       header = TRUE,
-  #       sep = ",",
-  #       na.strings = "-"
-  #     )
-  #
-  #   YearLow <- as.numeric(min(RenEn$Year))
-  #   YearHigh <- as.numeric(max(RenEn$Year +1))
-  #
-  #   dygraph(RenEn, main = "Renewable Energy Target") %>%
-  #     dyAxis("y", label = "% Progress", valueRange = c(0,30)) %>%
-  #     dyAxis("x", label = "Year", drawGrid = TRUE) %>%
-  #     dyOptions(colors =  c("Green","Orange", "Blue")) %>%
-  #     dyLegend(width = 170 ,
-  #              labelsSeparateLines = TRUE ,
-  #              show = "always") %>%
-  #     dyOptions(
-  #       stackedGraph = TRUE,
-  #       axisLineColor = "white",
-  #       gridLineColor = "white",
-  #       includeZero = TRUE,
-  #       fillAlpha = .65
-  #     ) %>%
-  #     #    dyRangeSelector() %>%
-  #     dyCSS("Structure/1 - Whole System/legend.css")
-  #
-  # })
-  
+
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
@@ -385,6 +355,8 @@ EnProd <- function(input, output, session) {
     names(EnProdData)[1] <- "Year"
     
     EnProdData %<>% lapply(function(x) as.numeric(as.character(x)))
+    EnProdData[2:4] %<>% lapply(function(x) round(x,3))
+    EnProdData[5:6] %<>% lapply(function(x) round(x,0))
     
     EnProdData <- as_tibble(EnProdData)
     
