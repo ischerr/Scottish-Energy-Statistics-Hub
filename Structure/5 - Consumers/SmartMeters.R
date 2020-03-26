@@ -21,7 +21,7 @@ SmartMetersOutput <- function(id) {
     
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     #dygraphOutput(ns("SmartMetersPlot")),
-    imageOutput(ns("SmartMetersPlot"), height = "600px")%>% withSpinner(color="#68c3ea"),
+    imageOutput(ns("SmartMetersPlot"), height = "500px")%>% withSpinner(color="#68c3ea"),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),
