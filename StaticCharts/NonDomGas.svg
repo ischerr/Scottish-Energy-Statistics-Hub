@@ -15,7 +15,7 @@
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
    width="399.43701"
    height="419.77661"
-   inkscape:export-filename="C:\Users\ische\OneDrive\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\5 - Consumers\ElecNonHomeChart.png"
+   inkscape:export-filename="C:\Users\ische\OneDrive\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\5 - Consumers\GasNonHomeChart.png"
    inkscape:export-xdpi="300"
    inkscape:export-ydpi="300">
   <metadata
@@ -189,7 +189,10 @@
        id="flowPara4851">Proportion of domestic gas customers on non-home supplier</flowPara></flowRoot>  <g
      id="layer1"
      inkscape:label="Layer 1"
-     transform="matrix(2.0564364,0,0,2.0564364,-3.4642665,18.77906)">
+     transform="matrix(2.0564364,0,0,2.0564364,-3.4642665,18.77906)"
+     inkscape:export-filename="C:\Users\ische\OneDrive\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\5 - Consumers\GasNonHomeOutput.png"
+     inkscape:export-xdpi="198.823"
+     inkscape:export-ydpi="198.823">
     <g
        inkscape:export-ydpi="195.7464"
        inkscape:export-xdpi="195.7464"
