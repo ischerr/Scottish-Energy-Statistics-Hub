@@ -354,10 +354,6 @@ EnProd <- function(input, output, session) {
     
     names(EnProdData)[1] <- "Year"
     
-    EnProdData %<>% lapply(function(x) as.numeric(as.character(x)))
-    EnProdData[2:4] %<>% lapply(function(x) round(x,3))
-    EnProdData[5:6] %<>% lapply(function(x) round(x,0))
-    
     EnProdData <- as_tibble(EnProdData)
     
     

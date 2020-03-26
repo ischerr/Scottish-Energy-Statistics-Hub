@@ -170,6 +170,8 @@ EnConsumption <- function(input, output, session) {
     
     p
     
+    #orca(p, "StaticCharts/EnConsumptionSectorPie.svg")
+    
     
     
     
@@ -187,7 +189,9 @@ EnConsumption <- function(input, output, session) {
     
     names(EnConsumption) <- c("Year", "Heat", "Transport", "Gross electricity consumption", "Other")
     
-    EnConsumption$Total <- EnConsumption$Heat + EnConsumption$Transport + EnConsumption$Electricity + EnConsumption$Other
+    EnConsumption$Total <- EnConsumption$Heat + EnConsumption$Transport + EnConsumption$`Gross electricity consumption` + EnConsumption$Other
+    
+
     
     datatable(
       EnConsumption,
@@ -319,6 +323,8 @@ file)
       config(displayModeBar = F)
     
     p
+    
+    #orca(p, "StaticCharts/EnConsumptionPie.svg") # Run Manually from Code
 
   })
   
@@ -361,6 +367,7 @@ file)
     
     names(EnConsumptionDomNonDom) <- c("Year", "Heat - Domestic", "Heat - Non-Domestic ", "Electricity - Domestic", "Electricity - Non-Domestic ", "Total - Domestic", "Toal - Non-Domestic ")
     
+    
    datatable(
       EnConsumptionDomNonDom,
       extensions = 'Buttons',
@@ -397,5 +404,6 @@ file)
       formatRound(2:ncol(EnConsumptionDomNonDom), 0)
   })
   
+
 }
 

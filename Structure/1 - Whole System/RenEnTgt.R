@@ -478,13 +478,6 @@ RenEnTgt <- function(input, output, session) {
     
     TotalTarget <- as_tibble(TotalTarget)
     
-    TotalTarget$`Total Renewable Energy (GWh)` <- round(TotalTarget$`Total Renewable Energy (GWh)`,0)
-    TotalTarget$`Total Energy Consumption (GWh)` <- round(TotalTarget$`Total Energy Consumption (GWh)`,0)
-    TotalTarget$`Total Renewable Energy - % of total energy consumption` <- round(TotalTarget$`Total Renewable Energy - % of total energy consumption`,3)
-    TotalTarget$`Renewable Electricity - % of total energy consumption` <- round(TotalTarget$`Renewable Electricity - % of total energy consumption`,3)
-    TotalTarget$`Renewable Heat - % of all total consumption` <- round(TotalTarget$`Renewable Heat - % of all total consumption`,3)
-    TotalTarget$`Renewable Transport - % of total energy consumption` <- round(TotalTarget$`Renewable Transport - % of total energy consumption`,3)
-    
     datatable(
       TotalTarget,
       extensions = 'Buttons',
@@ -542,11 +535,6 @@ RenEnTgt <- function(input, output, session) {
       "% of all energy consumption"
     )
     
-    ElectricityTarget$`Renewable Generation (GWh)` <- round(ElectricityTarget$`Renewable Generation (GWh)`, 0)
-    ElectricityTarget$`Gross Consumption (GWh)` <- round(ElectricityTarget$`Gross Consumption (GWh)`, 0)
-    ElectricityTarget$`Renewable % of consumption` <- round(ElectricityTarget$`Renewable % of consumption`, 3)
-    ElectricityTarget$`% of all energy consumption` <- round(ElectricityTarget$`% of all energy consumption`, 3)
-    
     datatable(
       ElectricityTarget,
       extensions = 'Buttons',
@@ -602,11 +590,7 @@ RenEnTgt <- function(input, output, session) {
       "% of all energy consumption"
     )
     
-    HeatTarget$`Renewable Heat (GWh)` <- round(HeatTarget$`Renewable Heat (GWh)`, 0)
-    HeatTarget$`Heat Demand (non-electrical, GWh)` <- round(HeatTarget$`Heat Demand (non-electrical, GWh)`, 0)
-    HeatTarget$`% Renewable Heat` <- round(HeatTarget$`% Renewable Heat`, 3)
-    HeatTarget$`% of all energy consumption` <- round(HeatTarget$`% of all energy consumption`, 3)
-    
+  
     datatable(
       HeatTarget,
       extensions = 'Buttons',
@@ -660,11 +644,6 @@ RenEnTgt <- function(input, output, session) {
       "UK % of biofuels",
       "% of all energy consumption"
     )
-    
-    TransportTarget$`Biofuels in Scotland estimate (GWh)` <- round(TransportTarget$`Biofuels in Scotland estimate (GWh)`, 0)
-    TransportTarget$`Petroleum used for Transport (GWh)` <- round(TransportTarget$`Petroleum used for Transport (GWh)`, 0)
-    TransportTarget$`UK % of biofuels` <- round(TransportTarget$`UK % of biofuels`, 3)
-    TransportTarget$`% of all energy consumption` <- round(TransportTarget$`% of all energy consumption`, 3)
     
     datatable(
       TransportTarget,
