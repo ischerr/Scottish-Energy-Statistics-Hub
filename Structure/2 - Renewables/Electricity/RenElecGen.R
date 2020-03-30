@@ -13,7 +13,7 @@ RenElecGenOutput <- function(id) {
     tabsetPanel(
       tabPanel("Electricity generated quarterly",
                fluidRow(column(8,
-                               h3("Quarterly Electricity generated from renewable sources", style = "color: #39ab2c;  font-weight:bold"),
+                               h3("Quarterly electricity generated from renewable sources", style = "color: #39ab2c;  font-weight:bold"),
                                h4(textOutput(ns('RenElecQuarterGenerationSubtitle')), style = "color: #39ab2c;")
                ),
                column(
@@ -92,23 +92,23 @@ RenElecGenOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     tabsetPanel(
-      tabPanel("Quarterly Electrical Generation",
+      tabPanel("Quarterly electricity generation",
                fluidRow(
-                 column(10, h3("Data - Quarterly electrical generation", style = "color: #39ab2c;  font-weight:bold")),
+                 column(10, h3("Data - Quarterly electricity generation (GWh)", style = "color: #39ab2c;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
                  column(12, dataTableOutput(ns("RenElecQuarterTable"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Electricity Generated",
+    tabPanel("Annual electricity generation",
              fluidRow(
-               column(10, h3("Data", style = "color: #39ab2c;  font-weight:bold")),
+               column(10, h3("Data - Annual electricity generation (GWh)", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("RenElecFuelGenTable"))%>% withSpinner(color="#39ab2c"))),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Data - Scottish Proportion",
+    tabPanel("Scottish proportion",
              fluidRow(
                column(10, h3("Data", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
@@ -118,7 +118,7 @@ RenElecGenOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Wind",
              fluidRow(
-               column(10, h3("Data", style = "color: #39ab2c;  font-weight:bold")),
+               column(10, h3("Data - Wind generation (GWh)", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -126,7 +126,7 @@ RenElecGenOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Hydro",
              fluidRow(
-               column(10, h3("Data", style = "color: #39ab2c;  font-weight:bold")),
+               column(10, h3("Data - Hydro generation (GWh)", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -1906,7 +1906,7 @@ RenElecGen <- function(input, output, session) {
   
   Data$Year <- as.numeric(substr(Data$Year,1,4))
   
-  names(Data) <- c("Year", "Onshore Wind", "Offshore Wind", "Shoreline wave / tidal", "Solar PV", "Hydro", "Landfill gas", "Sewage sludge digestion", "Other biomass (inc. co-firing)", "Total" , "Quarter")
+  names(Data) <- c("Year", "Onshore wind", "Offshore wind", "Shoreline wave / tidal", "Solar PV", "Hydro", "Landfill gas", "Sewage sludge digestion", "Other biomass (inc. co-firing)", "Total" , "Quarter")
   
   Data <- melt(Data, id.vars = c("Year", "Quarter"))
   
@@ -2020,7 +2020,10 @@ RenElecGen <- function(input, output, session) {
         showlegend = FALSE,
         type = 'scatter',
         mode = 'text',
-        text = paste("<b>",format(round(Subset$Total, digits = 0), big.mark = ","),"GWh</b>"),
+        text = ifelse(Subset$Q4 <= 0,
+                      paste("<b>",format(round(Subset$Total, digits = 0), big.mark = ","),"GWh\n Year to date</b>"),
+          paste("<b>",format(round(Subset$Total, digits = 0), big.mark = ","),"GWh</b>")
+          ),
         textposition = 'middle right',
         textfont = list(color = ChartColours[1]),
         hoverinfo = 'skip',
@@ -2080,7 +2083,7 @@ RenElecGen <- function(input, output, session) {
         mutate(top = sum(value))
       
       plottitle <-
-        "Quarterly Electricity generated from\nrenewable sources"
+        "Quarterly electricity generated from\nrenewable sources"
       sourceGention <- "Source: BEIS"
       
       ChartColours <- c("#39ab2c", "#FF8500")
@@ -2227,7 +2230,7 @@ RenElecGen <- function(input, output, session) {
     
     Data <- as_tibble(Data)
     
-    names(Data) <- c("Quarter", "Onshore Wind", "Offshore Wind", "Shoreline wave / tidal", "Solar PV", "Hydro", "Landfill gas", "Sewage sludge digestion", "Other biomass (inc. co-firing)", "Total")
+    names(Data) <- c("Quarter", "Onshore wind", "Offshore wind", "Shoreline wave / tidal", "Solar PV", "Hydro", "Landfill gas", "Sewage sludge digestion", "Other biomass (inc. co-firing)", "Total")
     
     Data$Quarter <- paste0(substr(Data$Quarter,1,4), " Q", substr(Data$Quarter,8,8))
     

@@ -81,24 +81,7 @@ ElecGenOutput <- function(id) {
                ),
                fluidRow(
                  column(12, dataTableOutput(ns("ElecGenFuelEWTable"))%>% withSpinner(color="#39ab2c"))),
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-      tabPanel("Fuels",
-    fluidRow(
-    column(10, h3("Data - Fuels (GWh)", style = "color: #39ab2c;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
-    ),
-    fluidRow(
-      column(12, dataTableOutput(ns("ElecGenFuel2Table"))%>% withSpinner(color="#39ab2c"))),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Fuel Proportion",
-      fluidRow(
-        column(10, h3("Data - Fuel Proportion", style = "color: #39ab2c;  font-weight:bold")),
-        column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
-      ),
-      fluidRow(
-        column(12, dataTableOutput(ns("ElecGenLCFFTable"))%>% withSpinner(color="#39ab2c"))),
-      tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
-    ),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
       column(1,
              p("Next update:")),
@@ -1640,6 +1623,14 @@ output$ElecGenFuelTable = renderDataTable({
   
   DataScot <- as_tibble(DataScot)
   
+  YearList <- as.list(DataScot$Year[which(DataScot$Year >= 2009)])
+  
+  DataScot$`Low Carbon` <- DataScot$Renewables + DataScot$Nuclear
+  
+  DataScot$`Fossil Fuels` <- DataScot$Gas + DataScot$Coal + DataScot$Oil
+  
+  DataScot <- DataScot[c(1,2,3,4,5,6,7,8,9,11,17,10,15,12,13,14,18,16)]
+  
   datatable(
     DataScot,
     extensions = 'Buttons',
@@ -1674,7 +1665,8 @@ output$ElecGenFuelTable = renderDataTable({
     )
   ) %>%
     formatRound(2:ncol(DataScot), 0) %>% 
-    formatStyle(c(9, 16), fontStyle = "italic")
+    formatStyle(c(9, 11, 17, 18), fontStyle = "italic") %>% 
+    formatStyle(18, fontWeight = "bold")
 })
 
 output$ElecGenFuelEWTable = renderDataTable({
@@ -1706,6 +1698,12 @@ output$ElecGenFuelEWTable = renderDataTable({
   DataEW <- as_tibble(DataEW)
   
   YearList <- as.list(DataEW$Year[which(DataEW$Year >= 2009)])
+  
+  DataEW$`Low Carbon` <- DataEW$Renewables + DataEW$Nuclear
+  
+  DataEW$`Fossil Fuels` <- DataEW$Gas + DataEW$Coal + DataEW$Oil
+  
+  DataEW <- DataEW[c(1,2,3,4,5,6,7,8,9,11,17,10,15,12,13,14,18,16)]
   
   datatable(
     DataEW,
@@ -1741,7 +1739,8 @@ output$ElecGenFuelEWTable = renderDataTable({
     )
   ) %>%
     formatRound(2:ncol(DataEW), 0) %>% 
-    formatStyle(c(9, 16), fontStyle = "italic")
+    formatStyle(c(9, 11, 17, 18), fontStyle = "italic") %>% 
+    formatStyle(18, fontWeight = "bold")
 })
 
 DataScot <-

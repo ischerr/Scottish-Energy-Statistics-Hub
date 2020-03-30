@@ -477,7 +477,7 @@ EnBalance <- function(input, output, session) {
               sort = T) %>% 
       layout(
         title = list(
-          text = paste("<b>Indigenous Production & Imports</b>:", format(round(sum(Pie2$Value), digits = 0), big.mark = ","), "ktoe"),
+          text = paste("<b>Indigenous production & imports</b>:", format(round(sum(Pie2$Value), digits = 0), big.mark = ","), "ktoe"),
           font = list(
             color = "#1A5D38"
           )
@@ -539,7 +539,7 @@ EnBalance <- function(input, output, session) {
               sort = T) %>% 
       layout(
         title = list(
-          text = paste("<b>Exports and Losses</b>:",format(round(Pie2$Value[1], digits = 0), big.mark = ","), "ktoe"),
+          text = paste("<b>Exports and losses</b>:",format(round(Pie2$Value[1], digits = 0), big.mark = ","), "ktoe"),
           font = list(
             color = "#262626"
           )
@@ -601,7 +601,7 @@ EnBalance <- function(input, output, session) {
               sort = T) %>% 
       layout(
         title = list(
-          text = paste("<b>Final Consumption</b>:", format(round(Pie2$Value[2], digits = 0), big.mark = ","), "ktoe"),
+          text = paste("<b>Final consumption</b>:", format(round(Pie2$Value[2], digits = 0), big.mark = ","), "ktoe"),
           font = list(
             color = "#6f8a91"
           )

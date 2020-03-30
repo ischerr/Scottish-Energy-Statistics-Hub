@@ -71,9 +71,9 @@ RenElecSourcesOutput <- function(id) {
                  uiOutput(ns("TextHydro"))
                ),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Solar",
+    tabPanel("Solar PV",
              fluidRow(column(8,
-                             h3("Solar", style = "color: #39ab2c;  font-weight:bold"),
+                             h3("Solar PV", style = "color: #39ab2c;  font-weight:bold"),
                              h4("Scotland, Latest Figures", style = "color: #39ab2c;")
              ),
              column(
@@ -333,7 +333,7 @@ RenElecSources <- function(input, output, session) {
   ))
   names(HydroTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3bn)")
   
-  SolarPVTable <- as_tibble(cbind("SolarPV",
+  SolarPVTable <- as_tibble(cbind("Solar PV",
                                   RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Solar PV`,
                                   RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Solar PV`,
                                   RenElecPipeline$`Solar Photovoltaics`,
@@ -504,7 +504,7 @@ RenElecSources <- function(input, output, session) {
       
       plottitle <-
         "Onshore Wind"
-      sourcecaption <- "Source: BEIS"
+      sourcecaption <- "Source: ONS, BEIS"
       
       OnshoreWindSourcesChart <- OnshoreWindSources %>%
         ggplot(aes(x = Tech, y = (value/top), fill = variable), family = "Century Gothic") +
@@ -736,7 +736,7 @@ RenElecSources <- function(input, output, session) {
       
       plottitle <-
         "Offshore Wind"
-      sourcecaption <- "Source: BEIS"
+      sourcecaption <- "Source: ONS, BEIS"
       
       OffshoreWindSourcesChart <- OffshoreWindSources %>%
         ggplot(aes(x = Tech, y = (value/top), fill = variable), family = "Century Gothic") +
@@ -967,7 +967,7 @@ RenElecSources <- function(input, output, session) {
       
       plottitle <-
         "Hydro"
-      sourcecaption <- "Source: BEIS"
+      sourcecaption <- "Source: ONS, BEIS"
       
       HydroSourcesChart <- HydroSources %>%
         ggplot(aes(x = Tech, y = (value/top), fill = variable), family = "Century Gothic") +
@@ -1196,8 +1196,8 @@ RenElecSources <- function(input, output, session) {
                ordered = TRUE)
       
       plottitle <-
-        "Solar"
-      sourcecaption <- "Source: BEIS"
+        "Solar PV"
+      sourcecaption <- "Source: ONS, BEIS"
       
       SolarSourcesChart <- SolarSources %>%
         ggplot(aes(x = Tech, y = (value/top), fill = variable), family = "Century Gothic") +
@@ -1804,17 +1804,17 @@ RenElecSources <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Onshore Wind",
+        title = "Renewable Sources",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Onshore Wind',
+            title = 'Renewable Sources',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Onshore Wind')
+               title = 'Renewable Sources')
         ),
         
         # customize the length menu

@@ -90,7 +90,7 @@ RenElecCapacityOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     tabsetPanel(
-      tabPanel("Quarterly Operational Capacity",
+      tabPanel("Quarterly operational capacity",
                fluidRow(
                  column(10, h3("Data - Operational renewable capacity by technology (MW)", style = "color: #39ab2c;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
@@ -98,41 +98,25 @@ RenElecCapacityOutput <- function(id) {
                fluidRow(
                  column(12, dataTableOutput(ns("RenElecBreakdownCapTable"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-        tabPanel("Annual Operational Capacity",
-                 fluidRow(
-                   column(10, h3("Data", style = "color: #39ab2c;  font-weight:bold")),
-                   column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
-                 ),
-                 fluidRow(
-                   column(12, dataTableOutput(ns("RenElecFuelCapTable"))%>% withSpinner(color="#39ab2c"))),
-                 tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Pipeline Capacity",
+    tabPanel("Pipeline capacity",
              fluidRow(
-               column(10, h3("Data - Pipeline Capacity (MW)", style = "color: #39ab2c;  font-weight:bold")),
+               column(10, h3("Data - Pipeline capacity (MW)", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("RenElecPipelineTable"))%>% withSpinner(color="#39ab2c"))),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("LA Pipeline Capacity",
+    tabPanel("LA pipeline capacity",
              fluidRow(
-               column(10, h3("Data - Pipeline Capacity by Local Authority", style = "color: #39ab2c;  font-weight:bold")),
+               column(10, h3("Data - Pipeline capacity by local authority  (MW)", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable6"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("RenElecPipelineLATable"))%>% withSpinner(color="#39ab2c"))),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Pipeline Projects",
+    tabPanel("Pipeline capacity time series",
              fluidRow(
-               column(10, h3("Data - Pipeline Projects by Tech", style = "color: #39ab2c;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
-             ),
-             fluidRow(
-               column(12, dataTableOutput(ns("RenElecPipelineCapTable"))%>% withSpinner(color="#39ab2c"))),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Pipeline Capacity Time Series",
-             fluidRow(
-               column(10, h3("Data - Pipeline Capacity Time Series (GW)", style = "color: #39ab2c;  font-weight:bold")),
+               column(10, h3("Data - Pipeline capacity time series (GW)", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -484,7 +468,7 @@ RenElecCapacity <- function(input, output, session) {
     
     Data <- as_tibble(t(Data))
     
-    names(Data) <- c("Date", "Wind Onshore", "Wind Offshore", "Shoreline wave / tidal", "Solar Photovoltaics", "Small Hydro", "Large Hydro", "Landfill Gas", "Sewage", "Waste", "Animal Biomass", "Anaerobic Digestion", "Plant", "Total")
+    names(Data) <- c("Date", "Wind Onshore", "Wind Offshore", "Shoreline wave / tidal", "Solar Photovoltaics", "Small Hydro", "Large Hydro", "Landfill Gas", "Sewage", "Energy from waste", "Animal Biomass", "Anaerobic Digestion", "Plant", "Total")
     
     Data <- Data[2,]
     
@@ -637,7 +621,7 @@ RenElecCapacity <- function(input, output, session) {
       
       Data <- as_tibble(t(Data))
       
-      names(Data) <- c("Date", "Wind Onshore", "Wind Offshore", "Shoreline wave / tidal", "Solar Photovoltaics", "Small Hydro", "Large Hydro", "Landfill Gas", "Sewage", "Waste", "Animal Biomass", "Anaerobic Digestion", "Plant", "Total")
+      names(Data) <- c("Date", "Wind Onshore", "Wind Offshore", "Shoreline wave / tidal", "Solar Photovoltaics", "Small Hydro", "Large Hydro", "Landfill Gas", "Sewage", "Energy from waste", "Animal Biomass", "Anaerobic Digestion", "Plant", "Total")
       
       Data <- Data[2,]
       
@@ -1491,11 +1475,9 @@ RenElecCapacity <- function(input, output, session) {
                                   skip = 13,
                                   n_max = 11)
     
-    RenElecPipeline <- RenElecPipeline[c(1:5)]
+    RenElecPipeline <- RenElecPipeline[c(1:5,8:9)]
     
-    
-    
-    names(RenElecPipeline)[1] <- c("Type")
+    names(RenElecPipeline)[1] <- "Tech"
     
     datatable(
       RenElecPipeline,
@@ -1510,17 +1492,17 @@ RenElecCapacity <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(ncol(RenElecPipeline)-1, 'desc')),
-        title = "Pipeline renewable capacity by technology",
+        title = "Pipeline renewable capacity by technology  (MW)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Pipeline renewable capacity by technology',
+            title = 'Pipeline renewable capacity by technology  (MW)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Pipeline renewable capacity by technology')
+               title = 'Pipeline renewable capacity by technology  (MW)')
         ),
         
         # customize the length menu
@@ -2269,17 +2251,17 @@ RenElecCapacity <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Pipeline Capacity Time Series",
+        title = "Pipeline Capacity Time Series (MW)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Pipeline Capacity Time Series',
+            title = 'Pipeline Capacity Time Series (MW)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Pipeline Capacity Time Series')
+               title = 'Pipeline Capacity Time Series (MW)')
         ),
         
         # customize the length menu
