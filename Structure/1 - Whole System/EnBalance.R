@@ -55,6 +55,8 @@ EnBalanceOutput <- function(id) {
       uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
+    tabsetPanel(
+      tabPanel("Energy balance data",
     fluidRow(
       column(8, h3("Data - Supply (ktoe)", style = "color: #1A5D38;  font-weight:bold")),
       column(2, style = "padding:15px",  downloadButton(ns('EnBalanceData.xlsx'), 'Download Full Data', style="float:right")),
@@ -73,7 +75,17 @@ EnBalanceOutput <- function(id) {
       column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, DTOutput(ns("EnBalanceTable3"))%>% withSpinner(color="#1A5D38"))),
+      column(12, DTOutput(ns("EnBalanceTable3"))%>% withSpinner(color="#1A5D38")))),
+    tabPanel("Energy flow data",
+             
+             fluidRow(
+               column(10, h3("Data - Energy Flow", style = "color: #1A5D38;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, DTOutput(ns("EnFlowTable1"))%>% withSpinner(color="#1A5D38"))),
+             
+             )),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     fluidRow(
       column(1,
@@ -601,5 +613,115 @@ EnBalance <- function(input, output, session) {
   observeEvent(input$ToggleTable3, {
     toggle("EnBalanceTable3")
   })
+  
+  output$EnFlowTable1 = renderDT({
+    
+    EnBalance <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "PieChart Working",
+      skip = 1,
+      n_max = 6
+    )[12:13]
+    
+    names(EnBalance) <- c("Fuel", "Percentage")
+    
+    EnBalance$Percentage <- EnBalance$Percentage/ sum(EnBalance$Percentage)
+    
+    datatable(
+      EnBalance,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        title = "Indigenous Production & Imports - Fuel Proportions",
+        dom = '',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Indigenous Production & Imports - Fuel Proportions',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Indigenous Production & Imports - Fuel Proportions')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%     
+      formatPercentage(2, 1)
+      
+    
+  })
+  
+  observeEvent(input$ToggleTable4, {
+    toggle("EnFlowTable1")
+  })
+  
+  output$EnFlowTable2 = renderDT({
+    
+    EnBalance <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "PieChart Working",
+      skip = 1,
+      n_max = 2
+    )[15:16]
+    
+    names(EnBalance) <- c("Output", "Percentage")
+    
+    EnBalance$Percentage <- EnBalance$Percentage/ sum(EnBalance$Percentage)
+    
+    datatable(
+      EnBalance,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        title = "Indigenous Production & Imports - Outputs",
+        dom = '',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Indigenous Production & Imports - Outputs',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Indigenous Production & Imports - Outputs')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%     
+      formatPercentage(2, 1)
+    
+    
+  })
+  
+  observeEvent(input$ToggleTable5, {
+    toggle("EnFlowTable1")
+  })
+  
+  
 }
                                                                                                                                                      

@@ -1001,19 +1001,24 @@ EnergyConsumption <- function(input, output, session) {
          alt = "This is alternate text")
   }, deleteFile = TRUE)
   
+  EnConsumptionLA <- read_csv("Processed Data/Output/Consumption/CorrectedFinalConsumptionbyLA.csv")
+  
+  Year <- 2017
   
   output$EnConsumptionLATable = renderDataTable({
     
-    EnConsumptionLA <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump by LA",
-      skip = 13,
-      n_max = 33
-    )
+    unique(EnConsumptionLA$Year)
     
-    names(EnConsumptionLA)[1:2] <- c("Geography Code", "Local Authority")
+    EnConsumptionLATable <- EnConsumptionLA[which(EnConsumptionLA$Year == Year),]
+    
+    EnConsumptionLATable <- EnConsumptionLATable[c(3,1,26,27,28,25)]
+    
+    names(EnConsumptionLATable) <- c("Local Authority", "Geography Code", "Industry & Commercial", "Domestic", "Transport", "Total consumption")
+    
+    EnConsumptionLATable[order(substr(EnConsumptionLATable$`Geography Code`,1,3), EnConsumptionLATable$`Local Authority`),]
+    
     datatable(
-      EnConsumptionLA[c(2,1,3:6)],
+      EnConsumptionLATable,
       extensions = 'Buttons',
       
       rownames = FALSE,

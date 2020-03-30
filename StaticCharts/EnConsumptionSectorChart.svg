@@ -26,7 +26,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -43,13 +43,13 @@
      inkscape:window-height="2066"
      id="namedview76"
      showgrid="false"
-     inkscape:zoom="3.7916762"
-     inkscape:cx="99.534015"
-     inkscape:cy="222.51602"
+     inkscape:zoom="2.68112"
+     inkscape:cx="120.17469"
+     inkscape:cy="99.121495"
      inkscape:window-x="-11"
      inkscape:window-y="-11"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g943"
+     inkscape:current-layer="g1306"
      fit-margin-top="5"
      fit-margin-left="5"
      fit-margin-right="5"
@@ -268,17 +268,16 @@
             <text
                data-notex="1"
                class="slicetext"
-               transform="translate(600.40009,230.1204)"
-               x="0"
-               y="0"
+               x="600.40009"
+               y="230.12041"
                style="font-size:12px;font-family:'Open Sans', verdana, arial, sans-serif;text-anchor:middle;white-space:pre;fill:#ffffff;fill-opacity:1"
                id="text895">
               <tspan
                  style="fill:#ffffff"
                  class="line"
-                 dy="0em"
-                 x="0"
-                 y="0"
+                 dy="0"
+                 x="600.40009"
+                 y="230.12041"
                  id="tspan891">
                 <tspan
                    style="font-weight:bold;fill:#ffffff"
@@ -287,10 +286,10 @@
               <tspan
                  style="fill:#ffffff"
                  class="line"
-                 dy="1.3em"
-                 x="0"
-                 y="0"
-                 id="tspan893">51.6%</tspan>
+                 dy="15.599999"
+                 x="600.40009"
+                 y="230.12041"
+                 id="tspan893">51.4%</tspan>
             </text>
           </g>
           <path
@@ -378,7 +377,7 @@
              style="fill:#02818a;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
              id="path929" />
           <g
-             style="fill:#02818a;fill-opacity:1"
+             style="fill:#02808a;fill-opacity:1"
              transform="matrix(1.2376399,0,0,1.2376399,-49.842907,-95.073019)"
              class="slicetext"
              id="g939">
@@ -388,26 +387,45 @@
                transform="translate(314.84688,429.90866)"
                x="0"
                y="0"
-               style="font-size:12px;font-family:'Open Sans', verdana, arial, sans-serif;text-anchor:middle;white-space:pre;fill:#02818a;fill-opacity:1"
+               style="font-size:12px;font-family:'Open Sans', verdana, arial, sans-serif;text-anchor:middle;white-space:pre;fill:#02808a;fill-opacity:1"
                id="text937">
               <tspan
-                 style="fill:#02818a;fill-opacity:1"
+                 style="fill:#02808a;fill-opacity:1"
                  class="line"
                  dy="0em"
                  x="0"
                  y="0"
                  id="tspan933">
                 <tspan
-                   style="font-weight:bold;fill:#02818a;fill-opacity:1"
+                   style="font-weight:bold;fill:#02808a;fill-opacity:1"
                    id="tspan931">Other</tspan>
               </tspan>
               <tspan
-                 style="fill:#02818a;fill-opacity:1"
+                 style="fill:#02808a;fill-opacity:1"
                  class="line"
-                 dy="1.3em"
                  x="0"
                  y="0"
-                 id="tspan935">1.96%</tspan>
+                 id="tspan935" />
+            </text>
+          </g>
+          <g
+             style="opacity:1;fill:#02818a;fill-opacity:1;stroke-linejoin:round"
+             transform="matrix(1.2376399,0,0,1.2376399,388.94016,-49.743972)"
+             class="slicetext"
+             id="g939-2">
+            <text
+               data-notex="1"
+               class="slicetext"
+               x="-39.524086"
+               y="408.68973"
+               style="font-size:12px;font-family:'Open Sans', verdana, arial, sans-serif;text-anchor:middle;white-space:pre;fill:#02818a;fill-opacity:1"
+               id="text937-9">
+              <tspan
+                 style="fill:#02818a;fill-opacity:1"
+                 class="line"
+                 x="-39.524086"
+                 y="408.68973"
+                 id="tspan935-3">2.2%</tspan>
             </text>
           </g>
         </g>
