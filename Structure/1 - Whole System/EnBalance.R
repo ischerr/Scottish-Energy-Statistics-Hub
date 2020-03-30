@@ -263,8 +263,8 @@ EnBalance <- function(input, output, session) {
       "Primary Demand",
       "Transfers",
       "Transformation",
-      "...Electricity Generation",
-      "...Petroleum Refineries",
+      "...Electricity generation",
+      "...Petroleum refineries",
       "...Manufactured fuel & other",
       "Energy industry use and distribution"
     )
@@ -325,7 +325,7 @@ EnBalance <- function(input, output, session) {
     
     EnBalance[1] <- c( 
       "Final Consumption",
-      "Non-Energy Use",
+      "Non-energy Use",
       "Industry",
       "Domestic",
       "Transport",
