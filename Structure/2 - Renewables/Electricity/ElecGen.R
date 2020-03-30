@@ -68,7 +68,7 @@ ElecGenOutput <- function(id) {
     tabsetPanel(
       tabPanel("Scotland",
                fluidRow(
-                 column(10, h3("Data - Scotland", style = "color: #39ab2c;  font-weight:bold")),
+                 column(10, h3("Data - Scotland (GWh)", style = "color: #39ab2c;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
@@ -76,7 +76,7 @@ ElecGenOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("England & Wales",
                fluidRow(
-                 column(10, h3("Data - England & Wales", style = "color: #39ab2c;  font-weight:bold")),
+                 column(10, h3("Data - England & Wales (GWh)", style = "color: #39ab2c;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
@@ -467,7 +467,7 @@ ElecGen <- function(input, output, session) {
     ### variables
     ChartColours <- c("#39ab2c", "#1a9850", "#f46d43", "#39ab2c")
     sourcecaption = "Source: BEIS"
-    plottitle = "Electricity generation -\nlow carbon versus fossil fuels"
+    plottitle = "Electricity generation -\nlow carbon versus fossil fuels (GWh)"
     
     datatable(
       ElecFuelLowCarbon,
@@ -482,17 +482,17 @@ ElecGen <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Electricity generation - Fuel proportion",
+        title = "Electricity generation - Fuel proportion (%)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Electricity generation - Fuels proportion",
+            title = "Electricity generation - Fuels proportion (%)",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Electricity generation - Fuels proportion")
+               title = "Electricity generation - Fuels proportion (%)")
         ),
         
         # customize the length menu
@@ -533,7 +533,7 @@ ElecGen <- function(input, output, session) {
     ### variables
     ChartColours <- c("#39ab2c", "#1a9850", "#f46d43", "#39ab2c")
     sourcecaption = "Source: BEIS"
-    plottitle = "Electricity generation -\nlow carbon versus fossil fuels"
+    plottitle = "Electricity generation -\nlow carbon versus fossil fuels (GWh)"
     
     datatable(
       ElecFuelLowCarbon,
@@ -1653,17 +1653,17 @@ output$ElecGenFuelTable = renderDataTable({
       autoWidth = TRUE,
       ordering = TRUE,
       order = list(list(0 , 'desc')),
-      title = "Electricity Generation - Scotland",
+      title = "Electricity Generation - Scotland (GWh)",
       dom = 'ltBp',
       buttons = list(
         list(extend = 'copy'),
         list(
           extend = 'excel',
-          title = 'Electricity Generation - Scotland',
+          title = 'Electricity Generation - Scotland (GWh)',
           header = TRUE
         ),
         list(extend = 'csv',
-             title = 'Electricity Generation - Scotland')
+             title = 'Electricity Generation - Scotland (GWh)')
       ),
       
       # customize the length menu
@@ -1720,17 +1720,17 @@ output$ElecGenFuelEWTable = renderDataTable({
       autoWidth = TRUE,
       ordering = TRUE,
       order = list(list(0 , 'desc')),
-      title = "Electricity Generation - England and Wales",
+      title = "Electricity Generation - England and Wales (GWh)",
       dom = 'ltBp',
       buttons = list(
         list(extend = 'copy'),
         list(
           extend = 'excel',
-          title = 'Electricity Generation - England and Wales',
+          title = 'Electricity Generation - England and Wales (GWh)',
           header = TRUE
         ),
         list(extend = 'csv',
-             title = 'Electricity Generation - England and Wales')
+             title = 'Electricity Generation - England and Wales (GWh)')
       ),
       
       # customize the length menu
