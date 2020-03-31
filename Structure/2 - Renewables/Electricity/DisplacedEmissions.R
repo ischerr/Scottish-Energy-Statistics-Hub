@@ -186,12 +186,35 @@ DisplacedEmissions <- function(input, output, session) {
     
     Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
     
-    names(Data) <- c("Year", "CO2 emissions displaced")
+    names(Data) <- c("Year", "Million tonnes of CO2 emissions displaced by renewables")
     Data = Data[-1, ]
     
     Data <- as_tibble(sapply( Data, as.numeric ))
     
     Displacement <- Data
+    
+    RenFuel <- read_excel("Structure/CurrentWorking.xlsx", 
+                          sheet = "Fuel Readable", skip = 1)[c(1,3)]
+    
+    names(RenFuel) <- c("Year", "Renewables")
+    
+    Emissions <- read_excel("Structure/CurrentWorking.xlsx", 
+                            sheet = "R - DUKES Emissions", col_names = FALSE)
+    
+    Emissions <- as_tibble(t(Emissions))[c(1,4)]
+    
+    names(Emissions) <- c("Year", "Emissions")
+    
+    Emissions$Year <- as.numeric(Emissions$Year)
+    
+    Emissions$Emissions <- as.numeric(Emissions$Emissions)
+    
+    Displacement <- merge(Displacement, RenFuel)
+    
+    Displacement <- merge(Displacement, Emissions)
+    
+    names(Displacement) <- c("Year", "Million tonnes of CO2 emissions displaced by renewables", "Renewable electricity generated (GWh)", " Estimated carbon dioxide emissions per GWh of electricity
+supplied - All fossil fuels (tonnes of CO2 per GWh)")
     
     datatable(
       Displacement,
@@ -226,7 +249,8 @@ DisplacedEmissions <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2, 1) 
+      formatRound(2, 1) %>% 
+      formatRound(3:4, 0)
   })
   
   

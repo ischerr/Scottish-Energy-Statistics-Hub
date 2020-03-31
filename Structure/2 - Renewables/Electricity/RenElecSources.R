@@ -1220,6 +1220,7 @@ RenElecSources <- function(input, output, session) {
             )
           ),
           fontface = 2,
+          family = "Century Gothic",
           hjust = 0,
           colour = ChartColours[1]
         ) +
@@ -1791,10 +1792,10 @@ RenElecSources <- function(input, output, session) {
   
   output$RenSourcesTable = renderDataTable({
     
-    
+    TechTableOutput <- head(TechTable, -1)
     
     datatable(
-      TechTable,
+      TechTableOutput,
       extensions = 'Buttons',
       
       rownames = FALSE,

@@ -105,7 +105,7 @@ GridEmissions <- function(input, output, session) {
     GridEmissions <- Data
     
     plottitle <- "Average greenhouse gas emissions per kilowatt hour of electricity"
-    sourcecaption <- "Source: BEIS"
+    sourcecaption <- "Source: BEIS, SG"
     ChartColours <- c("#39ab2c", "#FF8500")
     
     GridEmissions$Year <- paste0("01/01/", GridEmissions$Year)
@@ -190,6 +190,26 @@ GridEmissions <- function(input, output, session) {
     
     GridEmissions <- Data
     
+    EnSupplyEmissions <- read_excel("Structure/CurrentWorking.xlsx", 
+                                    sheet = "R - ElecProductionEmissions", col_names = FALSE)
+    
+    EnSupplyEmissions <- as_tibble(t(EnSupplyEmissions))
+    
+    names(EnSupplyEmissions) <- c("Year", "Emissions")
+    
+    EnSupplyEmissions$Year <- as.numeric(EnSupplyEmissions$Year)
+    
+    EnSupplyEmissions$Emissions <- as.numeric(EnSupplyEmissions$Emissions)
+    
+    ElecGeneration <- read_excel("Structure/CurrentWorking.xlsx", 
+                                 sheet = "Elec generation", skip = 12)[1:2]
+    
+    GridEmissions <- merge(GridEmissions, ElecGeneration)
+    
+    GridEmissions <- merge(GridEmissions, EnSupplyEmissions)
+    
+    names(GridEmissions) <- c("Year", "Grid emissions (gCO2e/kWh)", "Electricity generated (GWh)", "Energy supply emissions (MtCO2e)")
+    
     datatable(
       GridEmissions,
       extensions = 'Buttons',
@@ -223,7 +243,8 @@ GridEmissions <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2, 1) 
+      formatRound(2:4, 1) %>% 
+      formatRound(3,0)
   })
   
   
@@ -268,7 +289,7 @@ GridEmissions <- function(input, output, session) {
         round(GridEmissions$Renewables, digits = 1)
       
       plottitle <- "Average greenhouse gas emissions per kilowatt hour of electricity"
-      sourcecaption <- "Source: BEIS"
+      sourcecaption <- "Source: BEIS, SG"
       ChartColours <- c("#39ab2c", "#FF8500")
       
       GridEmissionsChart <-
