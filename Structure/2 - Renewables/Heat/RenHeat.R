@@ -11,7 +11,7 @@ RenHeatOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Share of renewable Heat in gross final consumption", style = "color: #39ab2c;  font-weight:bold"),
+                    h3("Share of renewable heat in gross final consumption", style = "color: #39ab2c;  font-weight:bold"),
                     h4(textOutput(ns('RenHeatSubtitle')), style = "color: #39ab2c;")
     ),
              column(

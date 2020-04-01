@@ -106,7 +106,7 @@ RenHeatTech <- function(input, output, session) {
         skip = 13, n_max = 6)
     
     Data <- as.data.frame(t(Data))
-    names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar")
+    names(Data) <- c("Year", "Biomass", "CHP", "Energy from waste", "Pumps", "Solar")
     Data %<>% lapply(function(x) as.numeric(as.character(x)))
     Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
     Data <- Data[complete.cases(Data),]
@@ -133,7 +133,7 @@ RenHeatTech <- function(input, output, session) {
     RenHeatCapTech <- Data
     
     plottitle <- "Renewable heat statistics by technology type"
-    sourcecaption <- "Source: BEIS"
+    sourcecaption <- "Source: EST"
     ChartColours <- c("#39ab2c", "#FF8500", "#FFFFFF")
     LineColours <- c("#fc4e2a","#feb24c","#fed976","#addd8e","#41ab5d")
     
@@ -376,7 +376,7 @@ RenHeatTech <- function(input, output, session) {
     RenHeatOutputTech <- Data
     
     plottitle <- "Renewable heat output by technology type"
-    sourcecaption <- "Source: BEIS"
+    sourcecaption <- "Source: EST"
     ChartColours <- c("#39ab2c", "#FF8500", "#FFFFFF")
     LineColours <- c("#fc4e2a","#feb24c","#fed976","#addd8e","#41ab5d")
     
@@ -728,7 +728,7 @@ RenHeatTech <- function(input, output, session) {
       RenHeatCapTech <- Data
       
       plottitle <- "Renewable heat capacity by technology type"
-      sourcecaption <- "Source: BEIS"
+      sourcecaption <- "Source: EST"
       ChartColours <- c("#39ab2c", "#FF8500", "#FFFFFF")
       LineColours <- c("#fc4e2a","#feb24c","#fed976","#addd8e","#41ab5d")
       
@@ -1010,7 +1010,7 @@ output$RenHeatOutput.png <- downloadHandler(
     RenHeatOutputTech <- Data
     
     plottitle <- "Renewable heat output by technology type"
-    sourcecaption <- "Source: BEIS"
+    sourcecaption <- "Source: EST"
     ChartColours <- c("#39ab2c", "#FF8500", "#FFFFFF")
     LineColours <- c("#fc4e2a","#feb24c","#fed976","#addd8e","#41ab5d")
     
@@ -1124,7 +1124,7 @@ output$RenHeatOutput.png <- downloadHandler(
         aes(
           x = Year+.8,
           y = Waste,
-          label = ifelse(Year == max(Year), paste0("Waste\n",round(Waste, digits = 0), " GWh"), ""),
+          label = ifelse(Year == max(Year), paste0("Energy from waste\n",round(Waste, digits = 0), " GWh"), ""),
           fontface = 2,
           vjust =-.3
         ),

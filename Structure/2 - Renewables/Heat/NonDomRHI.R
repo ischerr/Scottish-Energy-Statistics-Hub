@@ -13,7 +13,7 @@ NonDomRHIOutput <- function(id) {
     tabsetPanel(
       tabPanel("Accredited Installations",
                fluidRow(column(8,
-                               h3("Non-domestic RHI - Accredited Installations", style = "color: #39ab2c;  font-weight:bold"),
+                               h3("Non-domestic RHI - accredited installations", style = "color: #39ab2c;  font-weight:bold"),
                                h4(textOutput(ns('NonDomRHIAccreditedInstallationsSubtitle')), style = "color: #39ab2c;")
                ),
                column(
@@ -27,7 +27,7 @@ NonDomRHIOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Accredited Capacity",
                fluidRow(column(8,
-                               h3("Non-domestic RHI - Accredited Installation Capacity", style = "color: #39ab2c;  font-weight:bold"),
+                               h3("Non-domestic RHI - accredited installation capacity", style = "color: #39ab2c;  font-weight:bold"),
                                h4(textOutput(ns('NonDomRHInstallationCapacitySubtitle')), style = "color: #39ab2c;")
                ),
                column(
@@ -74,16 +74,16 @@ NonDomRHIOutput <- function(id) {
       
       tabPanel("LA Installations",
                fluidRow(
-                 column(10, h3("Data - Number of accredited installations by Local Authority", style = "color: #39ab2c;  font-weight:bold")),
+                 column(10, h3(paste("Data - Number of accredited installations by Local Authority,", format(max(SubtitleYear$Year), "%b %Y")), style = "color: #39ab2c;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
                  column(12, dataTableOutput(ns("NonDomRHILATable"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       
-      tabPanel("Heat Generated, Installed Capacity & Installations Paid ",
+      tabPanel("Heat generated, installed capacity & installations paid ",
     fluidRow(
-    column(10, h3("Data - Heat generated, installed capacity and number of installations receiving payment", style = "color: #39ab2c;  font-weight:bold")),
+    column(10, h3("Data - Heat generated, installed capacity and number of installations receiving payment, Nov 2011 - June 2019", style = "color: #39ab2c;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -145,9 +145,9 @@ NonDomRHI <- function(input, output, session) {
     
     Data <- Data[3:5,c(1,4,6,8)]
     
-    names(Data) <- c("Tech", "Heat generated", "No. of Installations", "Capacity")
+    names(Data) <- c("Tech", "Heat generated", "No. of installations", "Capacity")
     
-    Data2 <- data.frame("Other", 1 - sum(Data$`Heat generated`), 1 - sum(Data$`No. of Installations`), 1 - sum(Data$Capacity))
+    Data2 <- data.frame("Other", 1 - sum(Data$`Heat generated`), 1 - sum(Data$`No. of installations`), 1 - sum(Data$Capacity))
     
     names(Data2) <- names(Data)
     
@@ -169,9 +169,9 @@ NonDomRHI <- function(input, output, session) {
                   orientation = 'h',
                   marker = list(color = "#31a354")
                   )%>%
-      add_trace(x = ~`No. of Installations`, 
-                name = 'No. of Installations',
-                text = paste0("No. of Installations: ",percent(Data$`No. of Installations`, accuracy = .1)),
+      add_trace(x = ~`No. of installations`, 
+                name = 'No. of installations',
+                text = paste0("No. of installations: ",percent(Data$`No. of installations`, accuracy = .1)),
                 marker = list(color = "#78c679")
                 ) %>% 
       add_trace(x = ~`Capacity`, 
@@ -191,7 +191,7 @@ NonDomRHI <- function(input, output, session) {
                      zeroline = FALSE,
                      tickformat = "%",
                      showgrid = TRUE,
-                     range = c(-0.01, max(Data$`No. of Installations`)+0.1),
+                     range = c(-0.01, max(Data$`No. of installations`)+0.1),
                      x = 0.5
                      
                      ),
@@ -213,18 +213,20 @@ NonDomRHI <- function(input, output, session) {
     
   })
   
+  SubtitleYear <-
+    read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Non-domestic RHI", col_names = TRUE, 
+      skip = 72)
+  SubtitleYear <- SubtitleYear[complete.cases(SubtitleYear),]
+  
+  names(SubtitleYear)[1] <- "Year"
+  
   output$NonDomRHIAccreditedInstallationsSubtitle <- renderText({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Non-domestic RHI", col_names = TRUE, 
-        skip = 72)
-  Data <- Data[complete.cases(Data),]
-     
-names(Data)[1] <- "Year"
+    
 
-    paste("Scotland,", format(min(Data$Year), "%b %Y"),"-", format(max(Data$Year), "%b %Y"))
+    paste("Scotland,", format(min(SubtitleYear$Year), "%b %Y"),"-", format(max(SubtitleYear$Year), "%b %Y"))
   })
   
   output$NonDomRHIAccreditedInstallationsPlot <- renderPlotly  ({
@@ -427,17 +429,17 @@ names(Data)[1] <- "Year"
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland",
+        title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - June 2019",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland",
+            title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - June 2019",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland")
+               title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - June 2019")
         ),
         
         # customize the length menu
@@ -468,7 +470,7 @@ names(Data)[1] <- "Year"
     NonDomRHIAccreditedInstallationsTech <- Data
     
     datatable(
-      NonDomRHIAccreditedInstallationsTech,
+      NonDomRHIAccreditedInstallationsTech[c(1,3,5)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -498,7 +500,7 @@ names(Data)[1] <- "Year"
         pageLength = 10
       )
     ) %>%
-      formatRound(c(2:7), 0)
+      formatRound(c(2:3), 0)
   })
   
   output$NonDomRHILATable = renderDataTable({
@@ -525,17 +527,17 @@ names(Data)[1] <- "Year"
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Number of accredited installations by Local Authority",
+        title = paste("Number of accredited installations by Local Authority,", format(max(SubtitleYear$Year), "%b %Y")),
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Number of accredited installations by Local Authority",
+            title = paste("Number of accredited installations by Local Authority,", format(max(SubtitleYear$Year), "%b %Y")),
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Number of accredited installations by Local Authority")
+               title = paste("Number of accredited installations by Local Authority,", format(max(SubtitleYear$Year), "%b %Y")))
         ),
         
         # customize the length menu
@@ -586,7 +588,7 @@ names(Data)[1] <- "Year"
           skip = 15, n_max = 4)
       Data <- Data[c(1,8,6,4)]
       
-      names(Data) <- c("Tech", "Capacity", "No. of Installations", "Heat generated")
+      names(Data) <- c("Tech", "Capacity", "No. of installations", "Heat generated")
       
       Data <- rbind(Data, c("Other", (1-colSums(Data[2])),(1-colSums(Data[3])),(1-colSums(Data[4]))))
       
@@ -634,7 +636,7 @@ names(Data)[1] <- "Year"
           "variable",
           values = c(
             "Heat generated" = BarColours[1],
-            "No. of Installations" = BarColours[2],
+            "No. of installations" = BarColours[2],
             "Capacity" = BarColours[3]
           )
         ) +
@@ -728,7 +730,7 @@ output$NonDomRHIAccreditedInstallations.png <- downloadHandler(
     
     ### variables
     ChartColours <- c("#39ab2c","#ef3b2c","#fb6a4a","#fc9272","#fcbba1")
-    sourcecaption = "Source: SG"
+    sourcecaption = "Source: BEIS"
     plottitle = "Non-domestic RHI - Accredited Installations"
     
     #RHINonDom$OilPercentage <- PercentLabel(RHINonDom$Oil)
@@ -851,7 +853,7 @@ output$NonDomRHIInstallationCap.png <- downloadHandler(
     
     ### variables
     ChartColours <- c("#39ab2c","#ef3b2c","#fb6a4a","#fc9272","#fcbba1")
-    sourcecaption = "Source: SG"
+    sourcecaption = "Source: BEIS"
     plottitle = "Non-domestic RHI - Accredited Installation\nCapacity"
     
     #RHINonDomCap$OilPercentage <- PercentLabel(RHINonDomCap$Oil)
