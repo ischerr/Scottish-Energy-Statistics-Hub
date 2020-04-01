@@ -87,7 +87,7 @@ LowCarbonEconomyOutput <- function(id) {
         fluidRow(
           column(
             10,
-            h3("Data - Employees", style = "color: #39ab2c;  font-weight:bold")
+            h3("Data - Employees directly supported by the LCRE sector", style = "color: #39ab2c;  font-weight:bold")
           ),
           column(
             2,
@@ -99,7 +99,7 @@ LowCarbonEconomyOutput <- function(id) {
           12, dataTableOutput(ns("LowCarbonEconomyEmployeesTable")) %>% withSpinner(color =
                                                                                       "#39ab2c")
         )),
-        p("*Blank cells have been suppressed for disclosure control"),
+        p("*Cells marked 'c' have been suppressed for disclosure control"),
         tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")
       ),
       tabPanel(
@@ -107,7 +107,7 @@ LowCarbonEconomyOutput <- function(id) {
         fluidRow(
           column(
             10,
-            h3("Data - Turnover", style = "color: #39ab2c;  font-weight:bold")
+            h3("Data - Turnover directly supported by the LCRE sector (\u00A3)", style = "color: #39ab2c;  font-weight:bold")
           ),
           column(
             2,
@@ -119,7 +119,7 @@ LowCarbonEconomyOutput <- function(id) {
           12, dataTableOutput(ns("LowCarbonEconomyTurnoverTable")) %>% withSpinner(color =
                                                                                      "#39ab2c")
         )),
-        p("*Blank cells have been suppressed for disclosure control"),
+        p("*Cells marked 'c' have been suppressed for disclosure control"),
         tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")
       ),
       tabPanel(
@@ -127,7 +127,7 @@ LowCarbonEconomyOutput <- function(id) {
         fluidRow(
           column(
             10,
-            h3("Data - Exports", style = "color: #39ab2c;  font-weight:bold")
+            h3("Data - Exports directly supported by the LCRE sector (\u00A3)", style = "color: #39ab2c;  font-weight:bold")
           ),
           column(
             2,
@@ -139,7 +139,7 @@ LowCarbonEconomyOutput <- function(id) {
           12, dataTableOutput(ns("LowCarbonEconomyExportsTable")) %>% withSpinner(color =
                                                                                      "#39ab2c")
         )),
-        p("*Blank cells have been suppressed for disclosure control"),
+        p("*Cells marked 'c' have been suppressed for disclosure control"),
         tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")
       ),
       tabPanel(
@@ -147,7 +147,7 @@ LowCarbonEconomyOutput <- function(id) {
         fluidRow(
           column(
             10,
-            h3("Data - Businesses", style = "color: #39ab2c;  font-weight:bold")
+            h3("Data - Businesses directly supported by the LCRE sector", style = "color: #39ab2c;  font-weight:bold")
           ),
           column(
             2,
@@ -159,7 +159,7 @@ LowCarbonEconomyOutput <- function(id) {
           12, dataTableOutput(ns("LowCarbonEconomyBusinessTable")) %>% withSpinner(color =
                                                                                      "#39ab2c")
         )),
-        p("*Blank cells have been suppressed for disclosure control"),
+        p("*Cells marked 'c' have been suppressed for disclosure control"),
         tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")
       )
     ),
@@ -260,6 +260,9 @@ LowCarbonEconomy <- function(input, output, session) {
         legend = list(font = list(color = "#1A5D38"),
                       orientation = 'h')
       )
+    
+    #orca(p, "StaticCharts/LowCarbonEconomyPie.svg")
+    
     p
   })
   
@@ -296,6 +299,9 @@ LowCarbonEconomy <- function(input, output, session) {
         legend = list(font = list(color = "#1A5D38"),
                       orientation = 'h')
       )
+    
+    #orca(p, "StaticCharts/LowCarbonTurnoverPie.svg")
+    
     p
     
     
@@ -313,6 +319,9 @@ LowCarbonEconomy <- function(input, output, session) {
       }
     
       names(Data)[1] <- " "
+      
+      Data
+      
       datatable(
         Data,
         extensions = 'Buttons',
@@ -326,17 +335,17 @@ LowCarbonEconomy <- function(input, output, session) {
           fixedColumns = FALSE,
           autoWidth = TRUE,
           ordering = TRUE,
-          title = "Employees in the LCRE sector",
+          title = "Employees directly supported by the LCRE sector",
           dom = 'ltBp',
           buttons = list(
             list(extend = 'copy'),
             list(
               extend = 'excel',
-              title = 'Employees in the LCRE sector',
+              title = 'Employees directly supported by the LCRE sector',
               header = TRUE
             ),
             list(extend = 'csv',
-                 title = 'Employees in the LCRE sector')
+                 title = 'Employees directly supported by the LCRE sector')
           ),
           
           # customize the length menu
@@ -376,17 +385,17 @@ LowCarbonEconomy <- function(input, output, session) {
           fixedColumns = FALSE,
           autoWidth = TRUE,
           ordering = TRUE,
-          title = "Employees in the LCRE sector",
+          title = "Turnover directly supported by the LCRE sector (\u00A3)",
           dom = 'ltBp',
           buttons = list(
             list(extend = 'copy'),
             list(
               extend = 'excel',
-              title = 'Employees in the LCRE sector',
+              title = 'Turnover directly supported by the LCRE sector (\u00A3)',
               header = TRUE
             ),
             list(extend = 'csv',
-                 title = 'Employees in the LCRE sector')
+                 title = 'Turnover directly supported by the LCRE sector (\u00A3)')
           ),
           
           # customize the length menu
@@ -399,7 +408,7 @@ LowCarbonEconomy <- function(input, output, session) {
         formatStyle(1,
                     target = 'row',
                     backgroundColor = styleEqual(c('Direct Activity',  'Renewable sector', 'Low carbon', 'Low carbon electricity', 'Low carbon heat', 'Energy from waste and biomass', 'Energy efficient products', 'Low carbon services', 'Low emission vehicles, infrastructure, fuels cells and energy storage'), c('#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd'))
-        )
+        ) 
     })
     
     output$LowCarbonEconomyExportsTable = renderDataTable({
@@ -426,17 +435,17 @@ LowCarbonEconomy <- function(input, output, session) {
           fixedColumns = FALSE,
           autoWidth = TRUE,
           ordering = TRUE,
-          title = "Employees in the LCRE sector",
+          title = "Exports directly supported by the LCRE sector (\u00A3)",
           dom = 'ltBp',
           buttons = list(
             list(extend = 'copy'),
             list(
               extend = 'excel',
-              title = 'Employees in the LCRE sector',
+              title = 'Exports directly supported by the LCRE sector (\u00A3)',
               header = TRUE
             ),
             list(extend = 'csv',
-                 title = 'Employees in the LCRE sector')
+                 title = 'Exports directly supported by the LCRE sector (\u00A3)')
           ),
           
           # customize the length menu
@@ -476,17 +485,17 @@ LowCarbonEconomy <- function(input, output, session) {
           fixedColumns = FALSE,
           autoWidth = TRUE,
           ordering = TRUE,
-          title = "Employees in the LCRE sector",
+          title = "Businesses directly supported the LCRE sector",
           dom = 'ltBp',
           buttons = list(
             list(extend = 'copy'),
             list(
               extend = 'excel',
-              title = 'Employees in the LCRE sector',
+              title = 'Businesses directly supported the LCRE sector',
               header = TRUE
             ),
             list(extend = 'csv',
-                 title = 'Employees in the LCRE sector')
+                 title = 'Businesses directly supported the LCRE sector')
           ),
           
           # customize the length menu

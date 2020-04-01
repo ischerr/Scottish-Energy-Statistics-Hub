@@ -11,13 +11,7 @@ file.copy("www/GOTHIC.TTF", "~/.fonts")
 system('fc-cache -f ~/.fonts')
 
 ### Create List of Scripts, including filepath ###
- 
-
-  
-  
-server <- function(input, output, session) {
-  
-  SourceList <-
+   SourceList <-
     list.files(
       "Structure",
       full.names = TRUE,
@@ -29,6 +23,12 @@ server <- function(input, output, session) {
   sapply(SourceList, source)
 
   observe_helpers()
+
+  
+  
+server <- function(input, output, session) {
+  
+
   
   rv = reactiveValues()
 

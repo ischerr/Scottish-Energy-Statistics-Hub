@@ -60,7 +60,7 @@ DomesticRHIOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Local Authority Installations",
                fluidRow(
-                 column(10, h3(paste("Data - Number of accredited installations by Local Authority -", format(max(SubtitleYear$Year), "%b %Y")), style = "color: #39ab2c;  font-weight:bold")),
+                 uiOutput(ns("SubtitleYearText")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
@@ -184,6 +184,11 @@ DomesticRHI <- function(input, output, session) {
   SubtitleYear <- SubtitleYear[complete.cases(SubtitleYear),]
   
   names(SubtitleYear)[1] <- "Year"
+  
+  output$SubtitleYearText <- renderUI({
+    column(10, h3(paste("Data - Number of accredited installations by Local Authority -", format(max(SubtitleYear$Year), "%b %Y")) , style = "color: #39ab2c;  font-weight:bold"))
+    
+  })
   
   output$DomRHIInstallationsOutputSubtitle <- renderText({
     

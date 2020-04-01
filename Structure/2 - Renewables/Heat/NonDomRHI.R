@@ -74,7 +74,7 @@ NonDomRHIOutput <- function(id) {
       
       tabPanel("LA Installations",
                fluidRow(
-                 column(10, h3(paste("Data - Number of accredited installations by Local Authority,", format(max(SubtitleYear$Year), "%b %Y")), style = "color: #39ab2c;  font-weight:bold")),
+                 column(10, uiOutput(ns("SubtitleYearText"))),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
@@ -221,6 +221,11 @@ NonDomRHI <- function(input, output, session) {
   SubtitleYear <- SubtitleYear[complete.cases(SubtitleYear),]
   
   names(SubtitleYear)[1] <- "Year"
+  
+  output$SubtitleYearText <- renderUI({
+    h3(paste("Data - Number of accredited installations by Local Authority,", format(max(SubtitleYear$Year), "%b %Y")), style = "color: #39ab2c;  font-weight:bold")
+    
+  })
   
   output$NonDomRHIAccreditedInstallationsSubtitle <- renderText({
     
