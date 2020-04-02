@@ -74,7 +74,7 @@ DistrictHeatOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
     tabPanel("Buildings",
              fluidRow(
-               column(10, h3("Data - Scottish heat network customers by technology and fuel type", style = "color: #a3d65c;  font-weight:bold")),
+               column(10, h3("Data - Buildings connected to Scottish heat networks by technology and fuel type", style = "color: #a3d65c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable6"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -82,7 +82,7 @@ DistrictHeatOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
     tabPanel("Heat supplied",
              fluidRow(
-               column(10, h3("Data - Scottish heat network customers by technology and fuel type", style = "color: #a3d65c;  font-weight:bold")),
+               column(10, h3("Data - Heat supplied (GWh) by Scottish heat networks by technology and fuel type", style = "color: #a3d65c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable7"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(

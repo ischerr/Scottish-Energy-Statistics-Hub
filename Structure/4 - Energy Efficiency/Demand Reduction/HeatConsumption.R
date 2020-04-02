@@ -10,6 +10,8 @@ source("Structure/Global.R")
 HeatConsumptionOutput <- function(id) {
   ns <- NS(id)
   tagList(
+    tabsetPanel(
+      tabPanel("Sector",
     fluidRow(column(8,
                     h3("Non-electrical heat demand by sector", style = "color: #34d1a3;  font-weight:bold"),
                     h4(textOutput(ns('HeatConsumptionSubtitle')), style = "color: #34d1a3;")
@@ -22,7 +24,21 @@ HeatConsumptionOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     #dygraphOutput(ns("HeatConsumptionPlot")),
     plotlyOutput(ns("HeatConsumptionPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
-    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("Fuel",
+             fluidRow(column(8,
+                             h3("Non-electrical heat demand by sector", style = "color: #34d1a3;  font-weight:bold"),
+                             h4(textOutput(ns('HeatConsumptionFuelSubtitle')), style = "color: #34d1a3;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('HeatConsumptionFuel.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+             #dygraphOutput(ns("HeatConsumptionPlot")),
+             plotlyOutput(ns("HeatConsumptionFuelPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
@@ -31,13 +47,24 @@ HeatConsumptionOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+    tabsetPanel(
+      tabPanel("Sector",
     fluidRow(
     column(10, h3("Data - Non-electrical heat demand by sector (GWh)", style = "color: #34d1a3;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("HeatConsumptionTable"))%>% withSpinner(color="#34d1a3"))),
-    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("Fuel",
+             fluidRow(
+               column(10, h3("Data - Non-electrical heat demand (GWh), by fuel", style = "color: #34d1a3;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("HeatConsumptionFuelTable"))%>% withSpinner(color="#34d1a3"))),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))
+    ),
     fluidRow(
       column(1,
              p("Next update:")),
@@ -457,7 +484,7 @@ HeatConsumption <- function(input, output, session) {
           )[1, 4]),
           label = percent((
             subset(HeatDemandMax, variable == "Domestic")[1, 3]
-          )),
+          ),.1),
           fontface = 2,
           color = BarColours[1],
           family = "Century Gothic"
@@ -480,7 +507,7 @@ HeatConsumption <- function(input, output, session) {
           ),
           label = percent((
             subset(HeatDemandMax, variable == "Industrial/Commercial")[1, 3]
-          )),
+          ),.1),
           fontface = 2,
           color = BarColours[3],
           family = "Century Gothic"
@@ -494,7 +521,7 @@ HeatConsumption <- function(input, output, session) {
           )[1, 5]),
           label = percent((
             subset(HeatDemandMax, variable == "Total")[1, 3]
-          )),
+          ), .1),
           fontface = 2,
           color = ChartColours[1],
           family = "Century Gothic",
@@ -542,4 +569,257 @@ HeatConsumption <- function(input, output, session) {
       
     }
   )
+  
+  HeatConsumptionFuel <- read_csv("Processed Data/Output/Consumption/HeatConsumptionbyLA.csv")
+  
+  HeatConsumptionFuel <- HeatConsumptionFuel[which(HeatConsumptionFuel$`LA Code` == "S92000003"),]
+  
+  HeatConsumptionFuel$Coal <- HeatConsumptionFuel$`Coal - Industrial & Commercial` + HeatConsumptionFuel$`Coal - Domestic`
+  
+  HeatConsumptionFuel$`Manufactured fuels` <- HeatConsumptionFuel$`Manufactured fuels - Industrial` + HeatConsumptionFuel$`Manufactured fuels - Domestic`
+  
+  HeatConsumptionFuel$`Petroleum products` <- HeatConsumptionFuel$`Petroleum products - Industrial & Commercial` + HeatConsumptionFuel$`Petroleum products - Domestic` + HeatConsumptionFuel$`Petroleum products - Public Sector` + HeatConsumptionFuel$`Petroleum products - Agriculture`
+  
+  HeatConsumptionFuel$Gas <- HeatConsumptionFuel$`Sales (GWh) - Non-domestic consumption` + HeatConsumptionFuel$`Sales (GWh) - Domestic consumption`
+  
+  HeatConsumptionFuel$`Bioenergy & wastes` <- HeatConsumptionFuel$`Bioenergy & wastes - Total`
+  
+  HeatConsumptionFuel <- HeatConsumptionFuel[c(2, 19,20,21,17,18, 16)]
+  
+  HeatConsumptionFuel <- rbind(HeatConsumptionFuel, read_csv("Structure/4 - Energy Efficiency/Demand Reduction/HeatFuelExtra.csv"))
+  
+  HeatConsumptionFuel <- HeatConsumptionFuel[order(-HeatConsumptionFuel$Year),]
+  
+  HeatConsumptionFuelBaseline <- as.data.frame.list(colMeans(HeatConsumptionFuel[which(HeatConsumptionFuel$Year %in% c(2005,2006,2007)),] ))
+  
+  HeatConsumptionFuelBaseline[1,1] <- "Baseline 2005/2007"
+  
+  names(HeatConsumptionFuelBaseline) <- names(HeatConsumptionFuel)
+  
+  HeatConsumptionFuel <- rbind(HeatConsumptionFuel, HeatConsumptionFuelBaseline)
+  
+  output$HeatConsumptionFuelTable = renderDataTable({
+    
+    
+    datatable(
+      HeatConsumptionFuel,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "Non-electrical heat demand (GWh), by fuel",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Non-electrical heat demand (GWh), by fuel',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Non-electrical heat demand (GWh), by fuel')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(2:7, 0)
+    
+  })
+  
+  observeEvent(input$ToggleTable2, {
+    toggle("HeatConsumptionFuelTable")
+  })
+  
+  output$HeatConsumptionFuelSubtitle <- renderText({
+    
+    paste("Scotland,", min(as.numeric(HeatConsumptionFuel$Year), na.rm = TRUE),"-", max(as.numeric(HeatConsumptionFuel$Year), na.rm = TRUE))
+
+      })
+  
+  output$HeatConsumptionFuelPlot <- renderPlotly  ({
+    Data <- HeatConsumptionFuel
+    
+    Data<- Data[seq(dim(Data)[1],1),]
+    
+    DataCalc <- -(1-(Data[nrow(Data),2:7]/Data[1,2:7]))
+    
+    DataCalc$Year <- "% Change\nfrom baseline"
+    
+    Data <- rbind(Data, DataCalc)
+    
+    Data[nrow(Data)+1,] <- NA
+    
+    Data <- Data[c(1,nrow(Data), 2:(nrow(Data)-1)),]
+    
+    
+    Data[1,1] <- "Baseline\n2005/2007"
+    
+    Data[2,1] <- " "
+    
+    Data$Year <- paste("<b>", Data$Year, "</b>")
+    
+    Data$RowNumber <- as.numeric(rownames(Data))
+    
+    Data[is.na(Data)] <- 0
+    
+    DataTail <- tail(Data,1)
+    DataLatest <- Data[nrow(Data)-1,]
+    
+    ChartColours <- c("#34d1a3", "#FF8500")
+    BarColours <- c("#00441b", "#238b45","#41ae76", "#66c2a4","#66c2a4", "#99d8c9", "ffffff")
+    
+    p <- plot_ly(data = Data, y = ~ Year) %>%
+      
+      add_trace(
+        data = Data,
+        x = ~ `Petroleum products`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Petroleum products",
+        text = paste0("Petroleum products: ", format(round(Data$`Petroleum products`, digits = 0), big.mark = ","), " GWh"),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[1]),
+        legendgroup = 2
+      ) %>%
+      add_trace(
+        data = Data,
+        x = ~ `Gas`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Gas",
+        text = paste0("Gas: ", format(round(Data$`Gas`, digits = 0), big.mark = ","), " GWh"),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[2]),
+        legendgroup = 3
+      ) %>%
+      add_trace(
+        data = Data,
+        x = ~ `Bioenergy & wastes`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Bioenergy & wastes",
+        text = paste0("Bioenergy & wastes: ", format(round(Data$`Bioenergy & wastes`, digits = 0), big.mark = ","), " GWh"),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[4]),
+        legendgroup = 5
+      ) %>%
+      add_trace(
+        data = Data,
+        x = ~ `Coal`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Coal",
+        text = paste0("Coal: ", format(round(Data$`Coal`, digits = 0), big.mark = ","), " GWh"),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[5]),
+        legendgroup = 6
+      ) %>%
+      add_trace(
+        data = Data,
+        x = ~ `Manufactured fuels`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Manufactured fuels",
+        text = paste0("Manufactured fuels: ", format(round(Data$`Manufactured fuels`, digits = 0), big.mark = ","), " GWh"),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[6]),
+        legendgroup = 7
+      ) %>%
+      add_trace(
+        data = Data,
+        y = ~ Year,
+        x = ~ (Data$`Petroleum products` + Data$Gas  + Data$`Bioenergy & wastes` + Data$`Coal` + Data$`Manufactured fuels`) + 0.1,
+        showlegend = FALSE,
+        type = 'scatter',
+        mode = 'text',
+        text = ifelse(Data$`Petroleum products` >0, paste("<b>",format(round((Data$`Petroleum products` + Data$Gas  + Data$`Bioenergy & wastes` + Data$`Coal` + Data$`Manufactured fuels`), digits = 0), big.mark = ","),"GWh</b>")," "),
+        textposition = 'middle right',
+        textfont = list(color = ChartColours[1]),
+        hoverinfo = 'skip',
+        marker = list(
+          size = 0.00001
+        )
+      )  %>% 
+      add_trace(
+        data = tail(Data,1),
+        y = ~Year,
+        x = mean(DataLatest$`Petroleum products`)/2,
+        showlegend = FALSE,
+        mode = 'text',
+        type = 'scatter',
+        hoverinfo = 'skip',
+        textfont = list(color = BarColours[1]),
+        text = paste0("<b>", percent(DataTail$`Petroleum products`, accuracy = 0.1), "</b>")
+      ) %>% 
+      add_trace(
+        data = tail(Data,1),
+        y = ~Year,
+        x =  mean(DataLatest$`Petroleum products`) + (mean(DataLatest$`Gas`)/2),
+        showlegend = FALSE,
+        mode = 'text',
+        type = 'scatter',
+        hoverinfo = 'skip',
+        textfont = list(color = BarColours[2]),
+        text =  paste0("<b>", percent(DataTail$`Gas`, accuracy = 0.1), "</b>")
+      ) %>% 
+      add_trace(
+        data = tail(Data,1),
+        y = ~Year,
+        x = mean(DataLatest$`Total`)+ 25000,
+        showlegend = FALSE,
+        mode = 'text',
+        type = 'scatter',
+        hoverinfo = 'skip',
+        textfont = list(color = ChartColours[1]),
+        text =  paste0("<b>", percent(DataTail$Total, accuracy = 0.1), "</b>")
+      ) %>% 
+      layout(
+        barmode = 'stack',
+        legend = list(font = list(color = "#34d1a3"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        yaxis = list(title = "",
+                     showgrid = FALSE,
+                     type = "category",
+                     autorange = "reversed",
+                     ticktext = as.list(Data$Year),
+                     tickmode = "array",
+                     tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
+        ),
+        xaxis = list(
+          title = "",
+          tickformat = ",d",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          range = c(0,125000)
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    
+    p
+    
+    
+    
+    
+  })
+  
 }
