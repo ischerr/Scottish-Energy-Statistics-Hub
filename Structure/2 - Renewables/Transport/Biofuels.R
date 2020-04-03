@@ -49,7 +49,7 @@ BiofuelsOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISRenFuel")
+        SourceLookup("DFTRenewable")
         
       )
     )
@@ -105,7 +105,7 @@ Biofuels <- function(input, output, session) {
     Biofuels <- as_tibble(Data)
     
     plottitle <- "Share of biofuels in transport petrol\nand diesel consumption"
-    sourcecaption <- "Source: BEIS, HMRC"
+    sourcecaption <- "Source: DfT, HMRC"
     ChartColours <- c("#39ab2c", "#FF8500")
     
     Biofuels$Year <- paste0("01/01/", Biofuels$Year)
@@ -269,7 +269,7 @@ Biofuels <- function(input, output, session) {
       Biofuels <- as_tibble(Data)
       
       plottitle <- "Share of biofuels in transport petrol\nand diesel consumption"
-      sourcecaption <- "Source: BEIS"
+      sourcecaption <- "Source: DfT"
       ChartColours <- c("#39ab2c", "#FF8500")
       
       BiofuelsChart <-

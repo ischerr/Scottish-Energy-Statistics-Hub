@@ -502,7 +502,7 @@ GasConsumption <- function(input, output, session) {
           )[1, 4]),
           label = percent((
             subset(GasConsumptiontionMax, variable == "Domestic")[1, 3]
-          )),
+          ), 0.1),
           fontface = 2,
           color = BarColours[1],
           family = "Century Gothic"
@@ -525,7 +525,7 @@ GasConsumption <- function(input, output, session) {
           ),
           label = percent((
             subset(GasConsumptiontionMax, variable == "Non-domestic")[1, 3]
-          )),
+          ), 0.1),
           fontface = 2,
           color = BarColours[3],
           family = "Century Gothic"
@@ -539,7 +539,7 @@ GasConsumption <- function(input, output, session) {
           )[1, 5]),
           label = percent((
             subset(GasConsumptiontionMax, variable == "Total")[1, 3]
-          )),
+          ), 0.1),
           fontface = 2,
           color = ChartColours[1],
           family = "Century Gothic",
@@ -730,6 +730,10 @@ GasConsumption <- function(input, output, session) {
     
     Data[nrow(Data),1] <- "% Change\nfrom baseline"
     
+    Data<- Data[seq(dim(Data)[1],1),]
+    
+    Data <- Data[-1,]
+    
     datatable(
       Data,
       extensions = 'Buttons',
@@ -741,8 +745,6 @@ GasConsumption <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        ordering = TRUE,
-        order = list(list(0, 'desc')),
         title = "Average domestic gas consumption per consumer (kWh)",
         dom = 'ltBp',
         buttons = list(
@@ -1015,8 +1017,6 @@ GasConsumption <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        ordering = TRUE,
-        order = list(list(1, 'asc')),
         title = "Average annual household consumption of gas by local authority (kWh)",
         dom = 'ltBp',
         buttons = list(
