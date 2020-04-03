@@ -103,7 +103,7 @@ IndustrySevicesProductivityOutput <- function(id) {
         8,
         align = "right",
         SourceLookup("BEISSubNatEnergy"),
-        SourceLookup("BEISDUKESBalance"),
+        SourceLookup("BEISSubNatFuel"),
         SourceLookup("SGEmissions"),
         SourceLookup("SGQNASSector")
       )
@@ -242,7 +242,7 @@ IndustrySevicesProductivity <- function(input, output, session) {
       length <- max(IndustryProductivity$Year) - min(IndustryProductivity$Year)
       
       plottitle <- "Industrial energy productivity"
-      sourcecaption <- "Source: BEIS"
+      sourcecaption <- "Source: BEIS, SG"
       ChartColours <- c("#34d1a3", "#FF8500")
       
       IndustryProductivityChart <-
@@ -427,7 +427,7 @@ IndustrySevicesProductivity <- function(input, output, session) {
       names(IndustryEmissionsIntensity) <- c("Year", "GVA")
       
       plottitle <- "Industrial emissions intensity"
-      sourcecaption <- "Source: BEIS"
+      sourcecaption <- "Source: SG"
       ChartColours <- c("#34d1a3", "#FF8500")
       
       length <- max(IndustryEmissionsIntensity$Year) - min(IndustryEmissionsIntensity$Year)
@@ -678,7 +678,7 @@ IndustrySevicesProductivity <- function(input, output, session) {
       length <- max(ServicesProductivity$Year) - min(ServicesProductivity$Year)
       
       plottitle <- "Services energy productivity"
-      sourcecaption <- "Source: BEIS"
+      sourcecaption <- "Source: BEIS, SG"
       ChartColours <- c("#34d1a3", "#FF8500")
       
       ServicesProductivityChart <-
@@ -865,7 +865,7 @@ IndustrySevicesProductivity <- function(input, output, session) {
       names(ServicesEmissionsIntensity) <- c("Year", "GVA")
       
       plottitle <- "Services emissions intensity"
-      sourcecaption <- "Source: BEIS"
+      sourcecaption <- "Source: SG"
       ChartColours <- c("#34d1a3", "#FF8500")
       
       ServicesEmissionsIntensityChart <-

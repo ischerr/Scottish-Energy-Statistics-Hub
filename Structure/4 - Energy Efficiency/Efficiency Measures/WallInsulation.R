@@ -10,6 +10,8 @@ source("Structure/Global.R")
 WallInsulationOutput <- function(id) {
   ns <- NS(id)
   tagList(
+    tabsetPanel(
+      tabPanel("Homes",
     fluidRow(column(8,
                     h3("Proportion of eligible homes with wall insulation", style = "color: #34d1a3;  font-weight:bold"),
                     h4(textOutput(ns('WallInsulationSubtitle')), style = "color: #34d1a3;")
@@ -22,7 +24,21 @@ WallInsulationOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     #dygraphOutput(ns("WallInsulationPlot")),
     plotlyOutput(ns("WallInsulationPlot"))%>% withSpinner(color="#34d1a3"),
-    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("Schemes",
+             fluidRow(column(8,
+                             h3("Cumulative recorded wall insulations under government schemes", style = "color: #34d1a3;  font-weight:bold"),
+                             h4(textOutput(ns('WallInsulationSchemesSubtitle')), style = "color: #34d1a3;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('WallInsulationSchemes.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+             #dygraphOutput(ns("WallInsulationPlot")),
+             plotlyOutput(ns("WallInsulationSchemesPlot"))%>% withSpinner(color="#34d1a3"),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
@@ -40,6 +56,14 @@ WallInsulationOutput <- function(id) {
     fluidRow(
       column(12, dataTableOutput(ns("WallInsulationTable"))%>% withSpinner(color="#34d1a3"))),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("Schemes",
+             fluidRow(
+               column(10, h3("Data - Cumulative recorded wall insulations under government schemes, CERT + ECO (000s)", style = "color: #34d1a3;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("WallInsulationSchemesTable"))%>% withSpinner(color="#34d1a3"))),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
     tabPanel("Impact of Measures",
              fluidRow(
                column(10, h3("Data - Impact of Measures", style = "color: #34d1a3;  font-weight:bold")),
@@ -379,6 +403,10 @@ WallInsulation <- function(input, output, session) {
     toggle("WallInsulationImpactTable")
   })
   
+  observeEvent(input$ToggleTable3, {
+    toggle("WallInsulationSchemesTable")
+  })
+  
   observeEvent(input$ToggleText, {
     toggle("Text")
   })
@@ -614,4 +642,438 @@ WallInsulation <- function(input, output, session) {
       
     }
   )
+  
+    WallInsulationData <- read_excel("Structure/CurrentWorking.xlsx", 
+                       sheet = "Wall insulation", n_max = 4, skip = 26, col_names = FALSE)
+    
+    WallInsulationData <- as_tibble(t(WallInsulationData))
+    
+    WallInsulationData <- tail(WallInsulationData, -1)
+    
+    names(WallInsulationData) <- c("Year", "Cavity wall insulation", "Solid wall insulation", "Total wall insulation")
+    
+    WallInsulationData <- as_tibble(sapply( WallInsulationData, as.numeric ))
+    
+    WallInsulationData <- WallInsulationData[complete.cases(WallInsulationData),]
+    
+  output$WallInsulationSchemesTable = renderDataTable({
+    
+    datatable(
+      WallInsulationData,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        order = list(list(0, 'desc')),
+        title = "Cumulative recorded wall insulations under government schemes, CERT + ECO (000s)",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Cumulative recorded wall insulations under government schemes, CERT + ECO (000s)',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Cumulative recorded wall insulations under government schemes, CERT + ECO (000s)')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(c(2:4), 0)
+  })
+  
+  output$WallInsulationSchemesPlot <- renderPlotly  ({
+    
+    WallInsulationPlotlyData <- WallInsulationData
+    
+    names(WallInsulationPlotlyData) <- c("Year", "Cavity", "Solid", "Total")
+    
+    WallInsulationPlotlyData <- as_tibble(sapply( WallInsulationPlotlyData, as.numeric ))
+    
+    ### variables
+    ChartColours <- c("#34d1a3", "#8da0cb", "#fc8d62", "#34d1a3")
+    
+    WallInsulationPlotlyData$Year <- paste0("01/01/", WallInsulationPlotlyData$Year)
+    
+    WallInsulationPlotlyData$Year <- dmy(WallInsulationPlotlyData$Year)
+    
+    p <-  plot_ly(WallInsulationPlotlyData,x = ~ Year ) %>% 
+      add_trace(data = WallInsulationPlotlyData,
+                x = ~ Year,
+                y = ~ Total,
+                name = "Total wall insulation - CERT + ECO (000s)",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "1",
+                text = paste0(
+                  "Total wall insulation - CERT + ECO (000s): ",
+                  WallInsulationPlotlyData$Total,
+                  "\nYear: ",
+                  format(WallInsulationPlotlyData$Year, "%Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[1], dash = "none")
+      ) %>% 
+      add_trace(
+        data = tail(WallInsulationPlotlyData[which(WallInsulationPlotlyData$Total > 0 | WallInsulationPlotlyData$Total < 0),], 1),
+        x = ~ Year,
+        y = ~ `Total`,
+        legendgroup = "1",
+        name = "Total wall insulation - CERT + ECO (000s)",
+        text = paste0(
+          "Total wall insulation - CERT + ECO (000s): ",
+          WallInsulationPlotlyData[which(WallInsulationPlotlyData$Total > 0 | WallInsulationPlotlyData$Total < 0),][-1,]$Total, 
+          "\nYear: ",
+          format(WallInsulationPlotlyData[which(WallInsulationPlotlyData$Total > 0 | WallInsulationPlotlyData$Total < 0),][-1,]$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[1])
+      ) %>% 
+      add_trace(data = WallInsulationPlotlyData,
+                x = ~ Year,
+                y = ~ Cavity,
+                name = "Cavity wall insulation - CERT + ECO (000s)",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "2",
+                text = paste0(
+                  "Cavity wall insulation - CERT + ECO (000s): ",
+                  WallInsulationPlotlyData$Cavity,
+                  "\nYear: ",
+                  format(WallInsulationPlotlyData$Year, "%Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[2], dash = "dash")
+      ) %>% 
+      add_trace(
+        data = tail(WallInsulationPlotlyData[which(WallInsulationPlotlyData$Cavity > 0 | WallInsulationPlotlyData$Cavity < 0),], 1),
+        x = ~ Year,
+        y = ~ `Cavity`,
+        legendgroup = "2",
+        name = "Cavity wall insulation - CERT + ECO (000s)",
+        text = paste0(
+          "Cavity wall insulation - CERT + ECO (000s): ",
+          WallInsulationPlotlyData[which(WallInsulationPlotlyData$Cavity > 0 | WallInsulationPlotlyData$Cavity < 0),][-1,]$Cavity,
+          "\nYear: ",
+          format(WallInsulationPlotlyData[which(WallInsulationPlotlyData$Cavity > 0 | WallInsulationPlotlyData$Cavity < 0),][-1,]$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[2])
+      ) %>% 
+      add_trace(data = WallInsulationPlotlyData,
+                x = ~ Year,
+                y = ~ Solid,
+                name = "Solid wall insulation - CERT + ECO (000s)",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "3",
+                text = paste0(
+                  "Solid: ",
+                  WallInsulationPlotlyData$Solid,
+                  "\nYear: ",
+                  format(WallInsulationPlotlyData$Year, "%Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[3], dash = "dash")
+      ) %>% 
+      add_trace(
+        data = tail(WallInsulationPlotlyData[which(WallInsulationPlotlyData$Solid > 0 | WallInsulationPlotlyData$Solid < 0),], 1),
+        x = ~ Year,
+        y = ~ `Solid`,
+        legendgroup = "3",
+        name = "Solid wall insulation - CERT + ECO (000s)",
+        text = paste0(
+          "Solid wall insulation - CERT + ECO (000s): ",
+         WallInsulationPlotlyData[which(WallInsulationPlotlyData$Solid > 0 | WallInsulationPlotlyData$Solid < 0),][-1,]$Solid, 
+          "\nYear: ",
+          format(WallInsulationPlotlyData[which(WallInsulationPlotlyData$Solid > 0 | WallInsulationPlotlyData$Solid < 0),][-1,]$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[3])
+      ) %>% 
+      layout(
+        barmode = 'stack',
+        bargap = 0.66,
+        legend = list(font = list(color = "#34d1a3"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        
+        xaxis = list(title = "",
+                     showgrid = FALSE,
+                     range = c(min(WallInsulationPlotlyData$Year)-100, max(WallInsulationPlotlyData$Year)+100)),
+        yaxis = list(
+          title = "",
+          tickformat = "",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    p
+    
+    
+    
+  })
+  
+  output$WallInsulationSchemes.png <- downloadHandler(
+    filename = "WallInsulationSchemes.png",
+    content = function(file) {
+      
+      
+      WallInsulationggplotData <- WallInsulationData
+      
+      names(WallInsulationggplotData) <- c("Year", "Cavity", "Solid", "Total")
+      
+      WallInsulationggplotData <- as_tibble(sapply(WallInsulationggplotData, as.numeric ))
+      
+      ### variables
+      ChartColours <- c("#34d1a3", "#8da0cb", "#fc8d62", "#34d1a3")
+      
+      sourcecaption = "Source: BEIS"
+      plottitle = "Cumulative recorded wall insulations\nunder government schemes"
+      
+      #WallInsulationggplotData$CavityPercentage <- PercentLabel(WallInsulationggplotData$Cavity)
+      
+      
+      WallInsulationggplotDataChart <- WallInsulationggplotData %>%
+        ggplot(aes(x = Year), family = "Century Gothic") +
+        
+        geom_line(
+          aes(
+            y = Cavity,
+            colour = ChartColours[2],
+            label = Cavity
+          ),
+          size = 1.5,
+          family = "Century Gothic",
+          linetype = 2
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = Cavity,
+            label = ifelse(Year == min(Year), Cavity, ""),
+            hjust = 0.5,
+            vjust = -.8,
+            colour = ChartColours[2],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = Cavity,
+            label = ifelse(Year == max(Year), Cavity, ""),
+            hjust = 0.5,
+            vjust = 2,
+            colour = ChartColours[2],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(WallInsulationggplotData, 1),
+          aes(
+            x = Year,
+            y = Cavity,
+            colour = ChartColours[2],
+            show_guide = FALSE
+          ),
+          size = 4,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = mean(Year),
+            y = mean(Cavity),
+            label = "Cavity",
+            hjust = 0.5,
+            vjust = 2,
+            colour = ChartColours[2],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_line(
+          aes(
+            y = Solid,
+            colour = ChartColours[3],
+            label = paste0(Solid)
+          ),
+          size = 1.5,
+          family = "Century Gothic",
+          linetype = 2
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = Solid,
+            label = ifelse(Year == min(Year), Solid, ""),
+            hjust = 0.5,
+            vjust = -.8,
+            colour = ChartColours[3],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = Solid,
+            label = ifelse(Year == max(Year), Solid, ""),
+            hjust = 0.5,
+            vjust = 2,
+            colour = ChartColours[3],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(WallInsulationggplotData, 1),
+          aes(
+            x = Year,
+            y = Solid,
+            colour = ChartColours[3],
+            show_guide = FALSE
+          ),
+          size = 4,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = mean(Year),
+            y = mean(Solid),
+            label = "Solid",
+            hjust = 0.5,
+            vjust = 2,
+            colour = ChartColours[3],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_line(
+          aes(y = Total,
+              colour = ChartColours[4]),
+          size = 1.5,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = Total,
+            label = ifelse(Year == min(Year), Total, ""),
+            hjust = 0.5,
+            vjust = -.8,
+            colour = ChartColours[4],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = Total,
+            label = ifelse(Year == max(Year),Total, ""),
+            hjust = 0.5,
+            vjust = 2,
+            colour = ChartColours[4],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(WallInsulationggplotData, 1),
+          aes(
+            x = Year,
+            y = Total,
+            colour = ChartColours[4],
+            show_guide = FALSE
+          ),
+          size = 4,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = mean(Year),
+            y = mean(Total),
+            label = "Total",
+            hjust = 0.5,
+            vjust = 2,
+            colour = ChartColours[4],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = 0,
+            label = ifelse(Year == max(Year) |
+                             Year == min(Year), Year, ""),
+            hjust = 0.5,
+            vjust = 1.5,
+            colour = ChartColours[1],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        )
+      
+      
+      WallInsulationggplotDataChart <-
+        LinePercentChart(WallInsulationggplotDataChart,
+                         WallInsulationggplotData,
+                         plottitle,
+                         sourcecaption,
+                         ChartColours)
+      
+      WallInsulationggplotDataChart
+      
+      ggsave(
+        file,
+        plot =  WallInsulationggplotDataChart,
+        width = 14,
+        height = 14,
+        units = "cm",
+        dpi = 300
+      )
+      
+    }
+  )
+  
+  output$WallInsulationSchemesSubtitle <- renderText({
+    
+        paste("Scotland,", min(WallInsulationData$Year),"-", max(WallInsulationData$Year))
+    
+  })
+  
 }

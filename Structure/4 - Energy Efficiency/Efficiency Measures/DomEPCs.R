@@ -64,7 +64,7 @@ DomEPCsOutput <- function(id) {
     tabsetPanel(
       tabPanel("Housing stock EPC",
     fluidRow(
-    column(10, h3("Data - housing stock by EPC", style = "color: #34d1a3;  font-weight:bold")),
+    column(10, h3("Data - Housing stock by EPC (SAP 2012 RdSAP v9.93)", style = "color: #34d1a3;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -72,7 +72,7 @@ DomEPCsOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
     tabPanel("Properties above EPC C",
              fluidRow(
-               column(10, h3("Data - properties above EPC band C", style = "color: #34d1a3;  font-weight:bold")),
+               column(10, h3("Data - Properties above EPC band C", style = "color: #34d1a3;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -319,17 +319,17 @@ DomEPCs <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Distribution of Scottish Housing Stock by EPC Band",
+        title = "Distribution of Scottish housing Stock by EPC Band (SAP 2012 RdSAP v9.93)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Distribution of Scottish Housing Stock by EPC Band',
+            title = 'Distribution of Scottish housing Stock by EPC Band (SAP 2012 RdSAP v9.93)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Distribution of Scottish Housing Stock by EPC Band')
+               title = 'Distribution of Scottish housing Stock by EPC Band (SAP 2012 RdSAP v9.93)')
         ),
         
         # customize the length menu
@@ -559,6 +559,8 @@ DomEPCs <- function(input, output, session) {
     
     Data$`C or Better` <- Data$A + Data$B + Data$C
     
+    Data$Total <- Data$`C or Better` + Data$D + Data$E + Data$`F & G`
+    
     Data$Year <- paste0("<b>",Data$Year,"</b>")
     
     ChartColours <- c("#34d1a3", "#FF8500")
@@ -576,7 +578,7 @@ DomEPCs <- function(input, output, session) {
       
       add_trace(
         data = Data,
-        x = ~ `A`,
+        x = ~ `A`/ Total,
         type = 'bar',
         width = 0.7,
         orientation = 'h',
@@ -588,7 +590,7 @@ DomEPCs <- function(input, output, session) {
       ) %>%
       add_trace(
         data = Data,
-        x = ~ `B`,
+        x = ~ `B` / Total,
         type = 'bar',
         width = 0.7,
         orientation = 'h',
@@ -600,7 +602,7 @@ DomEPCs <- function(input, output, session) {
       ) %>%
       add_trace(
         data = Data,
-        x = ~ `C`,
+        x = ~ `C` / Total,
         type = 'bar',
         width = 0.7,
         orientation = 'h',
@@ -612,7 +614,7 @@ DomEPCs <- function(input, output, session) {
       ) %>%
       add_trace(
         data = Data,
-        x = ~ `D`,
+        x = ~ `D` / Total,
         type = 'bar',
         width = 0.7,
         orientation = 'h',
@@ -624,7 +626,7 @@ DomEPCs <- function(input, output, session) {
       ) %>%
       add_trace(
         data = Data,
-        x = ~ `E`,
+        x = ~ `E` / Total,
         type = 'bar',
         width = 0.7,
         orientation = 'h',
@@ -636,7 +638,7 @@ DomEPCs <- function(input, output, session) {
       ) %>%
       add_trace(
         data = Data,
-        x = ~ `F & G`,
+        x = ~ `F & G` / Total,
         type = 'bar',
         width = 0.7,
         orientation = 'h',
@@ -719,17 +721,17 @@ DomEPCs <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(7, 'desc')),
-        title = "Distribution of Scottish Housing Stock by EPC Band and Housing Tenure",
+        title = "Distribution of Scottish housing stock by EPC band and housing tenure",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Distribution of Scottish Housing Stock by EPC Band and Housing Tenure',
+            title = 'Distribution of Scottish housing stock by EPC band and housing tenure',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Distribution of Scottish Housing Stock by EPC Band and Housing Tenure')
+               title = 'Distribution of Scottish housing stock by EPC band and housing tenure')
         ),
         
         # customize the length menu
@@ -984,7 +986,7 @@ DomEPCs <- function(input, output, session) {
       mutate(top = sum(value))
     
     plottitle <-
-      "Distribution of Housing Stock by EPC Band"
+      "Distribution of housing stock by EPC band"
     sourcecaption <- "Source: SG"
     
     ChartColours <- c("#34d1a3", "#FF8500")
@@ -1171,6 +1173,20 @@ DomEPCs <- function(input, output, session) {
       Data$Total <- Data$B + Data$C
       
       Data$`A or better` <- 0
+      
+      Data$BarTotal <- Data$`A or better`+Data$B + Data$C + Data$D + Data$E + Data$`F & G`
+      
+      Data$B <- Data$B / Data$BarTotal
+      
+      Data$C <- Data$C / Data$BarTotal
+      
+      Data$D <- Data$D / Data$BarTotal
+      
+      Data$E <- Data$E / Data$BarTotal
+      
+      Data$`F & G` <- Data$`F & G` / Data$BarTotal
+      
+      Data$BarTotal <- NULL
       
       DomesticEPC <- as_tibble(Data)
       
