@@ -822,4 +822,334 @@ HeatConsumption <- function(input, output, session) {
     
   })
   
+  output$HeatConsumptionFuel.png <- downloadHandler(
+    filename = "HeatConsumptionFuel.png",
+    content = function(file) {
+      
+      Data <- HeatConsumptionFuel
+      
+      Data<- Data[seq(dim(Data)[1],1),]
+      
+      DataCalc <- -(1-(Data[nrow(Data),2:7]/Data[1,2:7]))
+      
+      DataCalc$Year <- "% Change\nfrom baseline"
+      
+      Data <- rbind(Data, DataCalc)
+      
+      Data[1,1] <- 2003
+      
+      Data <- Data[complete.cases(Data),]
+      
+      Data[nrow(Data),1] <- max(as.numeric(Data$Year),na.rm = TRUE)+1
+      
+      Data <- as_tibble(sapply( Data, as.numeric ))
+      
+      HeatConsumptionFuel <- Data[c(1,6:2,7)]
+      
+      HeatConsumptionFuel <-
+        HeatConsumptionFuel[order(-HeatConsumptionFuel$Year),]
+      
+      HeatConsumptionFuel <-
+        melt(HeatConsumptionFuel, id.vars = "Year")
+      
+      HeatConsumptionMax <-
+        subset(HeatConsumptionFuel,
+               Year == max(HeatConsumptionFuel$Year))
+      
+      HeatConsumptionFuel <-
+        subset(
+          HeatConsumptionFuel,
+          Year < max(HeatConsumptionFuel$Year) & variable != "Total"
+        )
+      
+      HeatConsumptionFuel$variable <-
+        factor(HeatConsumptionFuel$variable,
+               levels = unique(HeatConsumptionFuel$variable))
+      
+      HeatConsumptionFuel <- HeatConsumptionFuel %>%
+        group_by(Year) %>%
+        mutate(pos = cumsum(value) - value / 2) %>%
+        mutate(top = sum(value))
+      
+      plottitle <-
+        "Non-electrical heat demand by sector"
+      sourcecaption <- "Source: BEIS"
+      
+      ChartColours <- c("#34d1a3", "#FF8500")
+      BarColours <- c("#00441b", "#238b45","#41ae76", "#66c2a4","#66c2a4", "#99d8c9", "ffffff")
+      
+      
+      HeatConsumptionFuelChart <- HeatConsumptionFuel %>%
+        ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
+        scale_fill_manual(
+          "variable",
+          values = c(
+            "Petroleum products" = BarColours[1],
+            "Gas" = BarColours[2],
+            "Electricity" = BarColours[3],
+            "Bioenergy & wastes" = BarColours[4],
+            "Coal" = BarColours[5],
+            "Manufactured fuels" = BarColours[6]
+          )
+        ) +
+        geom_bar(stat = "identity", width = .8) +
+        geom_text(
+          y = HeatConsumptionFuel$top,
+          label = ifelse(
+            HeatConsumptionFuel$value < 7000,
+            paste0(format(
+              round(HeatConsumptionFuel$top, digits = 0), big.mark = ","
+            ), " GWh"),
+            ""
+          ),
+          hjust = 0,
+          family = "Century Gothic",
+          fontface = 2,
+          color = ChartColours[1]
+        ) +
+        geom_text(
+          y = -17500,
+          label =   ifelse(
+            HeatConsumptionFuel$value < 7000,
+            ifelse(
+              HeatConsumptionFuel$Year == 2003,
+              "2005/2007\n(baseline)",
+              HeatConsumptionFuel$Year
+            ),
+            ""
+          ),
+          hjust = .5,
+          family = "Century Gothic",
+          fontface = 2,
+          color = ChartColours[1]
+        ) +
+        geom_text(
+          y = HeatConsumptionFuel$top - HeatConsumptionFuel$pos,
+          label =   ifelse(
+            HeatConsumptionFuel$value > 7000,
+            ifelse(
+              HeatConsumptionFuel$Year == 2003 |
+                HeatConsumptionFuel$Year ==  max(HeatConsumptionFuel$Year),
+              paste0(format(
+                round(HeatConsumptionFuel$value, digits = 0), big.mark = ","
+              ), " GWh"),
+              ""
+            ),
+            ""
+          ),
+          hjust = .5,
+          family = "Century Gothic",
+          fontface = 2,
+          color = "white"
+        ) +
+        annotate(
+          "text",
+          x = 2002,
+          y = (.5/5)*max(HeatConsumptionFuel$top),
+          label = "Petroleum\nProducts",
+          fontface = 2,
+          color = BarColours[1],
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = 2002,
+          y = (1.5/5)*max(HeatConsumptionFuel$top),
+          label = "Gas",
+          fontface = 2,
+          color = BarColours[2],
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = 2002,
+          y = (2.5/5)*max(HeatConsumptionFuel$top),
+          label = "Bioenergy\n& wastes",
+          fontface = 2,
+          color = BarColours[4],
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = 2002,
+          y = (3.5/5)*max(HeatConsumptionFuel$top),
+          label = "Coal",
+          fontface = 2,
+          color = BarColours[5],
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = 2002,
+          y = (4.5/5)*max(HeatConsumptionFuel$top),
+          label = "Manufactured\nFuels",
+          fontface = 2,
+          color = BarColours[6],
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = 2002,
+          y = (5.5/5)*max(HeatConsumptionFuel$top),
+          label = "Total",
+          fontface = 2,
+          color = ChartColours[1],
+          family = "Century Gothic"
+        ) +
+        
+        annotate(
+          "text",
+          x = max(HeatConsumptionFuel$Year) + 1.2,
+          y = as.numeric(
+            subset(
+              HeatConsumptionFuel,
+              Year == max(HeatConsumptionFuel$Year) &
+                variable == "Petroleum products"
+            )[1, 5]
+          ) - as.numeric(
+            subset(
+              HeatConsumptionFuel,
+              Year == max(HeatConsumptionFuel$Year) &
+                variable == "Petroleum products"
+            )[1, 4]
+          ),
+          label = percent((
+            subset(HeatConsumptionMax, variable == "Petroleum products")[1, 3]
+          ), accuracy = .1),
+          fontface = 2,
+          color = BarColours[1],
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = max(HeatConsumptionFuel$Year) + 1.2,
+          y = as.numeric(
+            subset(
+              HeatConsumptionFuel,
+              Year == max(HeatConsumptionFuel$Year) &
+                variable == "Gas"
+            )[1, 5]
+          ) - as.numeric(
+            subset(
+              HeatConsumptionFuel,
+              Year == max(HeatConsumptionFuel$Year) &
+                variable == "Gas"
+            )[1, 4]
+          ),
+          label = percent((
+            subset(HeatConsumptionMax, variable == "Gas")[1, 3]
+          ), accuracy = .1),
+          fontface = 2,
+          color = BarColours[2],
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = max(HeatConsumptionFuel$Year) + 1.2,
+          y = as.numeric(
+            subset(
+              HeatConsumptionFuel,
+              Year == max(HeatConsumptionFuel$Year) &
+                variable == "Electricity"
+            )[1, 5]
+          ) - as.numeric(
+            subset(
+              HeatConsumptionFuel,
+              Year == max(HeatConsumptionFuel$Year) &
+                variable == "Electricity"
+            )[1, 4]
+          ),
+          label = percent((
+            subset(HeatConsumptionMax, variable == "Electricity")[1, 3]
+          ), accuracy = .1),
+          fontface = 2,
+          color = BarColours[3],
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = max(HeatConsumptionFuel$Year) + 1.2,
+          y = as.numeric(
+            subset(
+              HeatConsumptionFuel,
+              Year == max(HeatConsumptionFuel$Year) &
+                variable == "Bioenergy & Wastes"
+            )[1, 5]
+          ) - as.numeric(
+            subset(
+              HeatConsumptionFuel,
+              Year == max(HeatConsumptionFuel$Year) &
+                variable == "Bioenergy & Wastes"
+            )[1, 4]
+          ),
+          label = paste0("+",percent((
+            subset(HeatConsumptionMax, variable == "Bioenergy & Wastes")[1, 3]
+          ), accuracy = .1)),
+          fontface = 2,
+          color = BarColours[4],
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = max(HeatConsumptionFuel$Year) + 1.2,
+          y = as.numeric(
+            subset(
+              HeatConsumptionFuel,
+              Year == max(HeatConsumptionFuel$Year) &
+                variable == "Gas"
+            )[1, 5]
+          ),
+          label = percent((
+            subset(HeatConsumptionMax, variable == "Total")[1, 3]
+          ), accuracy  = .1),
+          fontface = 2,
+          color = ChartColours[1],
+          family = "Century Gothic",
+          hjust = -.75
+        ) + annotate(
+          "text",
+          x = max(HeatConsumptionFuel$Year) + 1.2,
+          y = -17500,
+          label = "% Change\nfrom baseline",
+          fontface = 2,
+          color = ChartColours[1],
+          family = "Century Gothic"
+        )
+      
+      
+      
+      HeatConsumptionFuelChart
+      
+      
+      HeatConsumptionFuelChart <-
+        BaselineChart(
+          HeatConsumptionFuelChart,
+          HeatConsumptionFuel,
+          plottitle,
+          sourcecaption,
+          ChartColours
+        )
+      
+      HeatConsumptionFuelChart <-
+        HeatConsumptionFuelChart +
+        coord_flip() +
+        labs(subtitle = paste("Scotland, 2005 -", max(HeatConsumptionFuel$Year))) +
+        ylim(-max(HeatConsumptionFuel$top * 0.16), max(HeatConsumptionFuel$top * 1.16)) +
+        xlim(max(HeatConsumptionFuel$Year) + 1.2, 2002)
+      
+      HeatConsumptionFuelChart
+      
+      ggsave(
+        file,
+        plot = HeatConsumptionFuelChart,
+        width = 20,
+        height = 17.5,
+        units = "cm",
+        dpi = 300
+      )
+      
+      
+    }
+  )
+  
 }
