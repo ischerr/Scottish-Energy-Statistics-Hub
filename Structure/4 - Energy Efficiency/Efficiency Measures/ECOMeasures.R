@@ -28,11 +28,25 @@ ECOMeasuresOutput <- function(id) {
     tabPanel("Households in receipt of ECO measures",
              fluidRow(column(8,
                              h3("Households in receipt of ECO measures", style = "color: #34d1a3;  font-weight:bold"),
+                             h4(textOutput(ns('ECOHouseholdsSubtitle')), style = "color: #34d1a3;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('ECOHouseholds.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+             #dygraphOutput(ns("ECOMeasuresPlot")),
+             plotlyOutput(ns("ECOHouseholdsPlot"))%>% withSpinner(color="#34d1a3"),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("Obligations",
+             fluidRow(column(8,
+                             h3("ECO measure by obligation", style = "color: #34d1a3;  font-weight:bold"),
                              h4(textOutput(ns('ECOObligationSubtitle')), style = "color: #34d1a3;")
              ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('ECODelivered.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('ECOObligation.png'), 'Download Graph', style="float:right")
              )),
              
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
@@ -55,7 +69,15 @@ ECOMeasuresOutput <- function(id) {
     ),
     fluidRow(
       column(12, dataTableOutput(ns("ECOMeasuresTable"))%>% withSpinner(color="#34d1a3"))),
-    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
+    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("Obligations",
+             fluidRow(
+               column(10, h3("Data - Obligations", style = "color: #34d1a3;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("ECOObligationTable"))%>% withSpinner(color="#34d1a3"))),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
       column(1,
              p("Next update:")),
@@ -264,7 +286,7 @@ ECOMeasures <- function(input, output, session) {
       formatRound(2:3, 0)
   })
   
-  output$ECOObligationSubtitle <- renderText({
+  output$ECOHouseholdsSubtitle <- renderText({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -297,7 +319,7 @@ ECOMeasures <- function(input, output, session) {
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
-  output$ECOObligationPlot <- renderPlotly  ({
+  output$ECOHouseholdsPlot <- renderPlotly  ({
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -389,22 +411,45 @@ ECOMeasures <- function(input, output, session) {
       config(displayModeBar = F)
     p
   })
+  
+  ObligationDate <- { 
+    Data <- read_excel(
+    "Structure/CurrentWorking.xlsx",
+    sheet = "ECO",
+    col_names = FALSE,
+    skip = 12,
+    n_max = 7
+  )
+  
+  Data <- as_tibble(t(Data))[1:3]
+  
+  names(Data) <- unlist(Data[1,])
+  
+  names(Data)[1] <- "Year"
+  
+  Data[2:3] %<>% lapply(function(x) as.numeric(as.character(x)))
+  
+  Data <- head(Data, -1)
+  
+  Data <- Data[complete.cases(Data),]
+  
+  #Data$Year <- paste0("<b>",Data$Year,"</b>")
+  
+  Data$Year <- paste(substr(Data$Year, 1,3), substr(Data$Year,11,14))
+  
+  Data$Year <-  as.yearmon(Data$Year, format = "%b %Y")
+  
+  Data$Year <- as.yearqtr(Data$Year)
+  
+  paste(max(Data$Year, na.rm = TRUE))
+  }
 
   output$ECOObligationTable = renderDataTable({
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "ECO", skip = 12,  col_names = FALSE)[10:12]
+                       sheet = "ECO", skip = 18, col_names = TRUE, n_max = 1)
     
-    Data <- tail(Data, -1)
-    
-    names(Data) <- c("Year", "SAP 2012", "SAP 2009")
-    
-    Data <- Data[which(Data$Year > 0),]
-    
-    Data[2:3] %<>% lapply(function(x) as.numeric(as.character(x)))
-    
-    Data <- Data[-1,]
     datatable(
       Data,
       extensions = 'Buttons',
@@ -418,17 +463,17 @@ ECOMeasures <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Proportion of properties rated EPC band C or above, Scotland",
+        title = "ECO measure by obligation",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Proportion of properties rated EPC band C or above, Scotland',
+            title = 'ECO measure by obligation',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Proportion of properties rated EPC band C or above, Scotland')
+               title = 'ECO measure by obligation')
         ),
         
         # customize the length menu
@@ -438,7 +483,66 @@ ECOMeasures <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:9, 1)
+      formatRound(1:4, 0)
+  })
+  
+  output$ECOObligationPlot <- renderPlotly  ({
+    
+    Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                       sheet = "ECO", skip = 18, col_names = FALSE, n_max = 2)
+    
+    Data <- as_tibble(t(Data))
+      
+    names(Data) <- c("Scheme", "Value")
+    
+    ChartColours <- c("#34d1a3", "#FF8500")
+    
+    Data$Value <- as.numeric(as.character(Data$Value))
+    
+    Data$Scheme <- paste0("<b>",str_wrap(Data$Scheme,15), "</b>")
+    
+    p <- plot_ly(
+      data = Data,
+      y = ~Scheme,
+      x = ~Value,
+      text = paste0(Data$Scheme,
+                    "\n",
+                    format(round(Data$Value, 0), big.mark = ",")
+      ),
+      name = "Value",
+      type = "bar",
+      hoverinfo = "text",
+      orientation = 'h',
+      marker = list(color =  ChartColours[1])
+    )  %>% 
+      layout(
+        barmode = 'stack',
+        legend = list(font = list(color = "#39ab2c"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        yaxis = list(title = "",
+                     autorange = "reversed",
+                     showgrid = FALSE),
+        xaxis = list(
+          title = "",
+          tickformat = "",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    
+    p
+  })
+  
+  output$ECOObligationSubtitle <- renderText({
+    
+    paste("Scotland,", ObligationDate)
   })
   
   output$ECOGreenDealSubtitle <- renderText({
@@ -699,8 +803,8 @@ ECOMeasures <- function(input, output, session) {
     toggle("Text")
   })
   
-  output$ECODelivered.png <- downloadHandler(
-  filename = "ECODelivered.png",
+  output$ECOHouseholds.png <- downloadHandler(
+  filename = "ECOHouseholds.png",
   content = function(file) {
     
     
@@ -734,17 +838,17 @@ ECOMeasures <- function(input, output, session) {
     
     ChartColours <- c("#34d1a3", "#FF8500")
     
-  sourcecaption <- "BEIS"
-  plottitle = "Total number of ECO measures delivered"
+  sourcecaption <- "Source: BEIS"
+  plottitle = "Households in receipt of ECO measures"
     
     DataChart <- Data %>%
       ggplot(aes(x = Year), family = "Century Gothic") +
       
       geom_line(
         aes(
-          y = `Total number of ECO measures delivered`,
+          y = `Households in receipt of ECO measures`,
           colour = ChartColours[2],
-          label = percent(`Total number of ECO measures delivered`)
+          label = percent(`Households in receipt of ECO measures`)
         ),
         size = 1.5,
         family = "Century Gothic"
@@ -752,8 +856,8 @@ ECOMeasures <- function(input, output, session) {
       geom_text(
         aes(
           x = Year,
-          y = `Total number of ECO measures delivered`,
-          label = ifelse(Year == min(Year[which(Data$`Total number of ECO measures delivered` > 0)]), format(`Total number of ECO measures delivered`, big.mark = ","), ""),
+          y = `Households in receipt of ECO measures`,
+          label = ifelse(Year == min(Year[which(Data$`Households in receipt of ECO measures` > 0)]), format(`Households in receipt of ECO measures`, big.mark = ","), ""),
           hjust = 0.5,
           vjust = -.8,
           colour = ChartColours[2],
@@ -764,8 +868,8 @@ ECOMeasures <- function(input, output, session) {
       geom_text(
         aes(
           x = Year,
-          y = `Total number of ECO measures delivered`,
-          label = ifelse(Year == max(Year), format(`Total number of ECO measures delivered`, big.mark = ","), ""),
+          y = `Households in receipt of ECO measures`,
+          label = ifelse(Year == max(Year), format(`Households in receipt of ECO measures`, big.mark = ","), ""),
           hjust = .5,
           vjust = 1.5,
           colour = ChartColours[2],
@@ -777,7 +881,7 @@ ECOMeasures <- function(input, output, session) {
         data = tail(Data, 1),
         aes(
           x = Year,
-          y = `Total number of ECO measures delivered`,
+          y = `Households in receipt of ECO measures`,
           colour = ChartColours[2],
           show_guide = FALSE
         ),
@@ -790,7 +894,7 @@ ECOMeasures <- function(input, output, session) {
         y = 0,
         label = ifelse(
           Data$Year == max(Data$Year) |
-            Data$Year == min(Data$Year[which(Data$`Total number of ECO measures delivered` > 0)]),
+            Data$Year == min(Data$Year[which(Data$`Households in receipt of ECO measures` > 0)]),
           format(Data$Year, "%Y Q%q"),
           ""
         ),
@@ -859,7 +963,7 @@ ECOMeasures <- function(input, output, session) {
     
     ChartColours <- c("#34d1a3", "#FF8500")
     
-    sourcecaption <- "BEIS"
+    sourcecaption <- "Source: BEIS"
     plottitle = "Total number of ECO measures delivered"
     
     length <- max(Data$Year) - min(Data$Year)
@@ -1151,6 +1255,107 @@ ECOMeasures <- function(input, output, session) {
                            units = "cm",
                            dpi = 300
                          )
+      
+      
+    }
+  )  
+  
+  output$ECOObligation.png <- downloadHandler(
+    filename = "ECOObligation.png",
+    content = function(file) {
+      
+      
+      Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                         sheet = "ECO", skip = 18, col_names = FALSE, n_max = 2)
+      
+      Data <- as_tibble(t(Data))
+      
+      names(Data) <- c("Scheme", "Value")
+      
+      Data$Value <- as.numeric(as.character(Data$Value))
+      
+      plottitle <-
+        "ECO measure by obligation"
+      sourcecaption <- "Source: BEIS"
+      
+      ChartColours <- c("#34d1a3", "#FF8500")
+      BarColours <-
+        c(
+          "#31a354",
+          "#0868ac",
+          "#43a2ca",
+          "#7bccc4",
+          "#a6bddb",
+          "#d0d1e6",
+          "#bdbdbd",
+          "#969696"
+        )
+      
+      
+      ECOObligationChart <- Data %>%
+        ggplot(aes(x = Scheme, y = Value), family = "Century Gothic") +
+        geom_bar(stat = "identity", width = .4, fill = ChartColours[1]) +
+        geom_text(
+          aes(
+            x = Scheme,
+            y = -(max(Data$Value)*.05),
+            label = str_wrap(Scheme, 22),
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          hjust = 1
+        ) +
+        geom_text(
+          aes(
+            x = Scheme,
+            y = Value+ (max(Data$Value)*0.14)  ,
+            label = paste0(format(round(Value, digits = 0), big.mark = ","), " MW"),
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = 1.7,
+            y = (3.5/4) * 15,
+            label = " ",
+            fontface = 2
+          ),
+          colour = BarColours[4],
+          family = "Century Gothic"
+        )
+      
+      
+      
+      ECOObligationChart
+      
+      
+      ECOObligationChart <-
+        StackedBars(ECOObligationChart,
+                    PipelineTotal,
+                    plottitle,
+                    sourcecaption,
+                    ChartColours)
+      
+      ECOObligationChart <-
+        ECOObligationChart +
+        labs(subtitle = paste("Scotland,", ObligationDate)) +
+        ylim(-(max(Data$Value)*0.4), max(Data$Value)*1.2) +
+        scale_x_discrete(limits = rev(unique(sort(Data$Scheme))))+
+        coord_flip()
+      
+      ECOObligationChart
+      
+      ggsave(
+        file,
+        plot = ECOObligationChart,
+        width = 17.5,
+        height = 10,
+        units = "cm",
+        dpi = 300
+      )
       
       
     }

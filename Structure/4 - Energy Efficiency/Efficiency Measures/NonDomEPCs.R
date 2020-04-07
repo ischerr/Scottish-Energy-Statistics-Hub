@@ -48,7 +48,7 @@ NonDomEPCsOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("SGSHCS")
+        SourceLookup("SGNonDomBase")
         
       )
     )

@@ -10,6 +10,8 @@ source("Structure/Global.R")
 LoftInsulationOutput <- function(id) {
   ns <- NS(id)
   tagList(
+    tabsetPanel(
+      tabPanel("Insulation by thickness",
     fluidRow(column(8,
                     h3("Proportion of homes with loft insulation, by thickness", style = "color: #34d1a3;  font-weight:bold"),
                     h4(textOutput(ns('LoftInsulationSubtitle')), style = "color: #34d1a3;")
@@ -22,22 +24,53 @@ LoftInsulationOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     #dygraphOutput(ns("LoftInsulationPlot")),
     plotlyOutput(ns("LoftInsulationPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
-    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("Government supported schemes",
+             fluidRow(column(8,
+                             h3("Cumulative recorded loft insulations under government schemes", style = "color: #34d1a3;  font-weight:bold"),
+                             h4(textOutput(ns('LoftInsulationSchemesSubtitle')), style = "color: #34d1a3;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('LoftInsulationSchemes.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+             #dygraphOutput(ns("LoftInsulationPlot")),
+             plotlyOutput(ns("LoftInsulationSchemesPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
-    
     fluidRow(
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+    tabsetPanel(
+      tabPanel("Insulation Thickness",
     fluidRow(
-    column(10, h3("Data", style = "color: #34d1a3;  font-weight:bold")),
+    column(10, h3("Data - Proportion of homes with loft insulation, by thickness", style = "color: #34d1a3;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("LoftInsulationTable"))%>% withSpinner(color="#34d1a3"))),
-    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+    tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("Impact",
+             fluidRow(
+               column(10, h3("Data - Impact of measures", style = "color: #34d1a3;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("LoftInsulationImpactTable"))%>% withSpinner(color="#34d1a3"))),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("Schemes",
+             fluidRow(
+               column(10, h3("Data - Cumulative recorded loft insulations under government schemes", style = "color: #34d1a3;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("LoftInsulationSchemesTable"))%>% withSpinner(color="#34d1a3"))),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
       column(1,
              p("Next update:")),
@@ -235,6 +268,8 @@ LoftInsulation <- function(input, output, session) {
     
     Data$`100mm or better` <- Data$`200mm or more` + Data$`100mm-199mm`
     
+    Data$`300mm or more` <- c(NA,NA,NA,.05,.10,.17,.24,.27,.32,.30,.30,.30)
+    
     datatable(
       Data,
       extensions = 'Buttons',
@@ -268,7 +303,9 @@ LoftInsulation <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:6, 1)
+      formatPercentage(2:7, 1) %>% 
+      formatStyle(7, fontStyle = "italic") %>% 
+      formatStyle(6, fontWeight = "bold")
   })
   
   
@@ -466,6 +503,300 @@ LoftInsulation <- function(input, output, session) {
       )
       
       
-    }
-  )
+    })
+    
+    output$LoftInsulationImpactTable = renderDataTable({
+      
+      Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                         sheet = "Loft insulation", skip = 33,  col_names = FALSE)
+      
+      Data <- as_tibble(t(Data))
+      
+      Data <- tail(Data, -1)
+      
+      names(Data) <- c("Year", "Median Saving in Consumption (kWh)", "Median percentage saving in energy Consumption")
+      
+      Data <- as_tibble(sapply( Data, as.numeric ))
+      
+      LoftInsulation <- Data[complete.cases(Data),]
+      
+      datatable(
+        LoftInsulation,
+        extensions = 'Buttons',
+        
+        rownames = FALSE,
+        options = list(
+          paging = TRUE,
+          pageLength = -1,
+          searching = TRUE,
+          fixedColumns = FALSE,
+          autoWidth = TRUE,
+          ordering = TRUE,
+          order = list(list(0, 'desc')),
+          title = "Impact of Measures - Wall Insulation",
+          dom = 'ltBp',
+          buttons = list(
+            list(extend = 'copy'),
+            list(
+              extend = 'excel',
+              title = 'Impact of Measures - Wall Insulation',
+              header = TRUE
+            ),
+            list(extend = 'csv',
+                 title = 'Impact of Measures - Wall Insulation')
+          ),
+          
+          # customize the length menu
+          lengthMenu = list( c(10, 20, -1) # declare values
+                             , c(10, 20, "All") # declare titles
+          ), # end of lengthMenu customization
+          pageLength = 10
+        )
+      ) %>%
+        formatPercentage(c(3), 1) %>% 
+        formatRound(c(2), 0)
+    })
+    
+    
+    observeEvent(input$ToggleTable2, {
+      toggle("LoftInsulationImpactTable")
+    })
+    
+    LoftInsulationData <- read_excel("Structure/CurrentWorking.xlsx", 
+                                     sheet = "Loft insulation", n_max = 3, skip = 26, col_names = FALSE)
+  
+    LoftInsulationData <- as_tibble(t(LoftInsulationData))
+    
+    LoftInsulationData <- LoftInsulationData[-1,]
+    
+    names(LoftInsulationData) <- c("Year", "CERT + ECO (000s)")
+    
+    LoftInsulationData <- LoftInsulationData[complete.cases(LoftInsulationData),]
+    
+    output$LoftInsulationSchemesTable = renderDataTable({
+      
+      datatable(
+        LoftInsulationData,
+        extensions = 'Buttons',
+        
+        rownames = FALSE,
+        options = list(
+          paging = TRUE,
+          pageLength = -1,
+          searching = TRUE,
+          fixedColumns = FALSE,
+          autoWidth = TRUE,
+          ordering = TRUE,
+          order = list(list(0, 'desc')),
+          title = "Cumulative recorded Loft insulations under government schemes, CERT + ECO (000s)",
+          dom = 'ltBp',
+          buttons = list(
+            list(extend = 'copy'),
+            list(
+              extend = 'excel',
+              title = 'Cumulative recorded Loft insulations under government schemes, CERT + ECO (000s)',
+              header = TRUE
+            ),
+            list(extend = 'csv',
+                 title = 'Cumulative recorded Loft insulations under government schemes, CERT + ECO (000s)')
+          ),
+          
+          # customize the length menu
+          lengthMenu = list( c(10, 20, -1) # declare values
+                             , c(10, 20, "All") # declare titles
+          ), # end of lengthMenu customization
+          pageLength = 10
+        )
+      ) %>%
+        formatRound(c(2:4), 0)
+    })
+    
+    output$LoftInsulationSchemesPlot <- renderPlotly  ({
+      
+      LoftInsulationPlotlyData <- LoftInsulationData
+      
+      names(LoftInsulationPlotlyData) <- c("Year", "Amount")
+      
+      LoftInsulationPlotlyData <- as_tibble(sapply( LoftInsulationPlotlyData, as.numeric ))
+      
+      ### variables
+      ChartColours <- c("#34d1a3", "#8da0cb", "#fc8d62", "#34d1a3")
+      
+      LoftInsulationPlotlyData$Year <- paste0("01/01/", LoftInsulationPlotlyData$Year)
+      
+      LoftInsulationPlotlyData$Year <- dmy(LoftInsulationPlotlyData$Year)
+      
+      p <-  plot_ly(LoftInsulationPlotlyData,x = ~ Year ) %>% 
+        add_trace(data = LoftInsulationPlotlyData,
+                  x = ~ Year,
+                  y = ~ Amount,
+                  name = "Total Loft insulation - CERT + ECO (000s)",
+                  type = 'scatter',
+                  mode = 'lines',
+                  legendgroup = "1",
+                  text = paste0(
+                    "Total Loft insulation - CERT + ECO (000s): ",
+                    LoftInsulationPlotlyData$Amount,
+                    "\nYear: ",
+                    format(LoftInsulationPlotlyData$Year, "%Y")
+                  ),
+                  hoverinfo = 'text',
+                  line = list(width = 6, color = ChartColours[1], dash = "none")
+        ) %>% 
+        add_trace(
+          data = tail(LoftInsulationPlotlyData[which(LoftInsulationPlotlyData$Amount > 0 | LoftInsulationPlotlyData$Amount < 0),], 1),
+          x = ~ Year,
+          y = ~ `Amount`,
+          legendgroup = "1",
+          name = "Total Loft insulation - CERT + ECO (000s)",
+          text = paste0(
+            "Total Loft insulation - CERT + ECO (000s): ",
+            LoftInsulationPlotlyData[which(LoftInsulationPlotlyData$Amount > 0 | LoftInsulationPlotlyData$Amount < 0),][-1,]$Amount, 
+            "\nYear: ",
+            format(LoftInsulationPlotlyData[which(LoftInsulationPlotlyData$Amount > 0 | LoftInsulationPlotlyData$Amount < 0),][-1,]$Year, "%Y")
+          ),
+          hoverinfo = 'text',
+          showlegend = FALSE ,
+          type = "scatter",
+          mode = 'markers',
+          marker = list(size = 18, 
+                        color = ChartColours[1])
+        ) %>% 
+        layout(
+          barmode = 'stack',
+          bargap = 0.66,
+          legend = list(font = list(color = "#34d1a3"),
+                        orientation = 'h'),
+          hoverlabel = list(font = list(color = "white"),
+                            hovername = 'text'),
+          hovername = 'text',
+          
+          xaxis = list(title = "",
+                       showgrid = FALSE,
+                       range = c(min(LoftInsulationPlotlyData$Year)-100, max(LoftInsulationPlotlyData$Year)+100)),
+          yaxis = list(
+            title = "",
+            tickformat = "",
+            showgrid = TRUE,
+            zeroline = TRUE,
+            zerolinecolor = ChartColours[1],
+            zerolinewidth = 2,
+            rangemode = "tozero"
+          )
+        ) %>% 
+        config(displayModeBar = F)
+      p
+      
+      
+      
+    })
+    
+    output$LoftInsulationSchemes.png <- downloadHandler(
+      filename = "LoftInsulationSchemes.png",
+      content = function(file) {
+        
+        
+        LoftInsulationggplotData <- LoftInsulationData
+        
+        names(LoftInsulationggplotData) <- c("Year", "Amount")
+        
+        LoftInsulationggplotData <- as_tibble(sapply(LoftInsulationggplotData, as.numeric ))
+        
+        ### variables
+        ChartColours <- c("#34d1a3", "#8da0cb", "#fc8d62", "#34d1a3")
+        
+        sourcecaption = "Source: BEIS"
+        plottitle = "Cumulative recorded Loft insulations\nunder government schemes"
+        
+        #LoftInsulationggplotData$CavityPercentage <- PercentLabel(LoftInsulationggplotData$Cavity)
+        
+        
+        LoftInsulationggplotDataChart <- LoftInsulationggplotData %>%
+          ggplot(aes(x = Year), family = "Century Gothic") +
+          geom_line(
+            aes(y = Amount,
+                colour = ChartColours[4]),
+            size = 1.5,
+            family = "Century Gothic"
+          ) +
+          geom_text(
+            aes(
+              x = Year,
+              y = Amount,
+              label = ifelse(Year == min(Year), Amount, ""),
+              hjust = 0.5,
+              vjust = -.8,
+              colour = ChartColours[4],
+              fontface = 2
+            ),
+            family = "Century Gothic"
+          ) +
+          geom_text(
+            aes(
+              x = Year,
+              y = Amount,
+              label = ifelse(Year == max(Year),Amount, ""),
+              hjust = 0.5,
+              vjust = 2,
+              colour = ChartColours[4],
+              fontface = 2
+            ),
+            family = "Century Gothic"
+          ) +
+          geom_point(
+            data = tail(LoftInsulationggplotData, 1),
+            aes(
+              x = Year,
+              y = Amount,
+              colour = ChartColours[4],
+              show_guide = FALSE
+            ),
+            size = 4,
+            family = "Century Gothic"
+          ) +
+          geom_text(
+            aes(
+              x = Year,
+              y = 0,
+              label = ifelse(Year == max(Year) |
+                               Year == min(Year), Year, ""),
+              hjust = 0.5,
+              vjust = 1.5,
+              colour = ChartColours[1],
+              fontface = 2
+            ),
+            family = "Century Gothic"
+          )
+        
+        
+        LoftInsulationggplotDataChart <-
+          LinePercentChart(LoftInsulationggplotDataChart,
+                           LoftInsulationggplotData,
+                           plottitle,
+                           sourcecaption,
+                           ChartColours)
+        
+        LoftInsulationggplotDataChart
+        
+        ggsave(
+          file,
+          plot =  LoftInsulationggplotDataChart,
+          width = 14,
+          height = 14,
+          units = "cm",
+          dpi = 300
+        )
+        
+      }
+    )
+    
+    output$LoftInsulationSchemesSubtitle <- renderText({
+      
+      paste("Scotland,", min(LoftInsulationData$Year),"-", max(LoftInsulationData$Year))
+      
+    })
+    
+    observeEvent(input$ToggleTable3, {
+      toggle("LoftInsulationSchemesTable")
+    })
 }

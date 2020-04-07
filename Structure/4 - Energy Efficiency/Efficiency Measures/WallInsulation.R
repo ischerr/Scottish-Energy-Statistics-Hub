@@ -883,7 +883,7 @@ WallInsulation <- function(input, output, session) {
             y = Cavity,
             label = ifelse(Year == min(Year), Cavity, ""),
             hjust = 0.5,
-            vjust = -.8,
+            vjust = 2,
             colour = ChartColours[2],
             fontface = 2
           ),
