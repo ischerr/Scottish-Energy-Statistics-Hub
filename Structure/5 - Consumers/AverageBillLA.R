@@ -11,7 +11,7 @@ AverageBillLAOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Average annual energy bill prices", style = "color: #68c3ea;  font-weight:bold"),
+                    h3("Average annual energy bill prices by local authority", style = "color: #68c3ea;  font-weight:bold"),
                     h4(textOutput(ns('AverageBillLASubtitle')), style = "color: #68c3ea;")
     ),
              column(
@@ -31,13 +31,31 @@ AverageBillLAOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+    tabsetPanel(
+      tabPanel("LA Breakdown",
     fluidRow(
     column(10, h3("Data", style = "color: #68c3ea;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("AverageBillLATable"))%>% withSpinner(color="#68c3ea"))),
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Electicity cost breakdown",
+             fluidRow(
+               column(10, h3("Data - Average variable unit costs and standing charges for standard electricity in 2019", style = "color: #68c3ea;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("ElecUnitTable"))%>% withSpinner(color="#68c3ea"))),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Gas cost breakdown",
+             fluidRow(
+               column(10, h3("Data", style = "color: #68c3ea;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("GasUnitTable"))%>% withSpinner(color="#68c3ea"))),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     fluidRow(
       column(1,
              p("Next update:")),
@@ -76,7 +94,7 @@ AverageBillLA <- function(input, output, session) {
   
   output$AverageBillLASubtitle <- renderText({
     
-    paste("Scotland, 2017")
+    paste("Scotland, 2018")
   
     })
   
@@ -173,17 +191,17 @@ AverageBillLA <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Proportion of households not on the gas grid by local authority (estimates), Scotland, 2017",
+        title = "Proportion of households not on the gas grid by local authority (estimates), Scotland, 2018",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Proportion of households not on the gas grid by local authority (estimates), Scotland, 2017',
+            title = 'Proportion of households not on the gas grid by local authority (estimates), Scotland, 2018',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Proportion of households not on the gas grid by local authority (estimates), Scotland, 2017')
+               title = 'Proportion of households not on the gas grid by local authority (estimates), Scotland, 2018')
         ),
         
         # customize the length menu
@@ -212,10 +230,97 @@ AverageBillLA <- function(input, output, session) {
   })
   
   observeEvent(input$ToggleTable2, {
-    toggle("AverageBillLATimeSeriesTable")
+    toggle("ElecUnitTable")
+  })
+  
+  observeEvent(input$ToggleTable3, {
+    toggle("GasUnitTable")
   })
   
 
+  output$ElecUnitTable = renderDataTable({
+    
+    ElecUnitCost <- read_csv("Processed Data/Output/Energy Bills/ElecUnitCost.csv")
+    
+    names(ElecUnitCost) <- c("Region", "Credit - Average variable unit price (\u00A3/kWh)", "Credit - Average fixed cost (\u00A3/year)" ," Direct debit - Average variable unit price (\u00A3/kWh)", "Direct debit - Average fixed cost (\u00A3/year)" , "Prepayment - Average variable unit price (\u00A3/kWh)" , "Prepayment - Average fixed cost (\u00A3/year)" , "Total - Average variable unit price (\u00A3/kWh)" , "Total - Average fixed cost (\u00A3/year)")
+
+    datatable(
+      ElecUnitCost,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        title = "Average variable unit costs and standing charges for standard electricity in 2019",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Average variable unit costs and standing charges for standard electricity in 2019',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Average variable unit costs and standing charges for standard electricity in 2019')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(2:9, 2) %>% 
+      formatRound(c(2,4,6,8,10), 3)
+  })
+  
+  output$GasUnitTable = renderDataTable({
+    
+    GasUnitCost <- read_csv("Processed Data/Output/Energy Bills/GasUnitCost.csv")
+    
+    names(GasUnitCost) <- c("Region", "Credit - Average variable unit price (\u00A3/kWh)", "Credit - Average fixed cost (\u00A3/year)" ," Direct debit - Average variable unit price (\u00A3/kWh)", "Direct debit - Average fixed cost (\u00A3/year)" , "Prepayment - Average variable unit price (\u00A3/kWh)" , "Prepayment - Average fixed cost (\u00A3/year)" , "Total - Average variable unit price (\u00A3/kWh)" , "Total - Average fixed cost (\u00A3/year)")
+    
+    datatable(
+      GasUnitCost,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        title = "Average variable unit costs and standing charges for standard gas in 2019",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Average variable unit costs and standing charges for standard gas in 2019',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Average variable unit costs and standing charges for standard gas in 2019')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(2:9, 2) %>% 
+      formatRound(c(2,4,6,8,10), 3)
+  })
   
   observeEvent(input$ToggleText, {
     toggle("Text")

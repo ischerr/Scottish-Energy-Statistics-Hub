@@ -58,7 +58,7 @@ PrimaryHeatingOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Primary Fuel by Local Authority",
              fluidRow(
-               column(10, h3("Data - Primary heating fuel by Local Authority", style = "color: #68c3ea;  font-weight:bold")),
+               column(10,uiOutput(ns('PrimaryHeatingDataSubtitle'))),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -84,7 +84,8 @@ PrimaryHeatingOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("SGSHCS")
+        SourceLookup("SGSHCS"),
+        SourceLookup("SGNonDomBase")
         
       )
     )
@@ -103,19 +104,20 @@ PrimaryHeating <- function(input, output, session) {
   
   print("PrimaryHeating.R")
   
+      PrimaryHeating <- read_excel("Structure/CurrentWorking.xlsx",
+                          sheet = "Primary heating fuel", col_names = TRUE, 
+                          skip = 15)
+      
   output$PrimaryHeatingSubtitle <- renderText({
     
-    PrimaryHeating <- read_excel("Structure/CurrentWorking.xlsx",
-                          sheet = "Energy consump by sector", col_names = TRUE, 
-                          skip = 17)
+
+
     
-    PrimaryHeating <- PrimaryHeating[2:6]
-    
-    PrimaryHeating <- PrimaryHeating[complete.cases(PrimaryHeating),]
-    
-    names(PrimaryHeating) <- c("Year", "Heat", "Transport", "Electricity", "Other")
-    
-    paste(max(as.numeric(PrimaryHeating$Year), na.rm = TRUE))
+    paste(max(as.numeric(names(PrimaryHeating)), na.rm = TRUE))
+  })
+  
+  output$PrimaryHeatingDataSubtitle <- renderUI({
+    tagList(h3(paste("Data - Primary heating fuel by Local Authority,", max(as.numeric(names(PrimaryHeating)), na.rm = TRUE)), style = "color: #68c3ea;  font-weight:bold"))
   })
  
   output$PrimaryHeatingPlot <- renderPlotly  ({
@@ -190,6 +192,8 @@ PrimaryHeating <- function(input, output, session) {
         )
       ) %>% 
       config(displayModeBar = F)
+    
+    orca(p, "StaticCharts/PrimaryHeatingPie.svg")
     
     p
     

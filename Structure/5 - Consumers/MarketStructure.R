@@ -88,7 +88,7 @@ MarketStructure <- function(input, output, session) {
     
     MarketStructure$Region <- paste0("<b>", str_wrap(MarketStructure$Region, 6), "</b>")
     
-    ChartColours <- c("#5d8be1", "#FF8500")
+    ChartColours <- c("#68c3ea", "#FF8500")
     BarColours <-
       c(
         "#31a354",
@@ -258,7 +258,7 @@ MarketStructure <- function(input, output, session) {
       
       sourcecaption <- "Source: Xoserve, Ofgem"
       
-      ChartColours <- c("#5d8be1", "#FF8500")
+      ChartColours <- c("#68c3ea", "#FF8500")
       BarColours <-
         c(
           "#31a354",

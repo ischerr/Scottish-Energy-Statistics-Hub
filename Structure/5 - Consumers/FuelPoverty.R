@@ -40,7 +40,7 @@ FuelPovertyOutput <- function(id) {
                #dygraphOutput(ns("FuelPovertySAPPlot")),
                plotlyOutput(ns("FuelPovertySAPPlot"), height =  "900px")%>% withSpinner(color="#68c3ea"),
                tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-      tabPanel("Proportions",
+      tabPanel("Fuel poverty breakdown",
     fluidRow(column(8,
                     h3("Proportion of homes in fuel poverty by primary heating fuel and EPC band", style = "color: #68c3ea;  font-weight:bold"),
                     h4(textOutput(ns('FuelPovertyProportionSubtitle')), style = "color: #68c3ea;")
@@ -226,29 +226,14 @@ FuelPoverty <- function(input, output, session) {
       n_max = 11
     )[c(7:9,11:12)]
     
-    names(Data) <- c("Type", "2017 - 000s", "2017 - %",  "2016 - 000s", "2016 - %")
+    names(Data) <- c("Type", "2017 - 000s", "2017",  "2016 - 000s", "2016")
     
     Data[2,1] <- paste0("<b>", Data[2,1], "</b>")
     
     Data[7,1] <- paste0("<b>", Data[7,1], "</b>")
     
-    sketch = htmltools::withTags(table(
-      class = 'display',
-      thead(
-        tr(
-          th(rowspan = 2, 'Type'),
-          th(colspan = 2, '2017'),
-          th(colspan = 2, '2016')
-        ),
-        tr(
-          lapply(rep(c('000s', '%'), 2), th)
-        )
-      )
-    ))
-    
     datatable(
-      Data,
-      container = sketch,
+      Data[c(1,3,5)],
       escape = FALSE,
       extensions = 'Buttons',
       
@@ -280,7 +265,7 @@ FuelPoverty <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%     
-      formatPercentage(c(3,5), 0) 
+      formatPercentage(c(2:3), 0) 
   })
 
   output$FuelPovertyProportion.png <- downloadHandler(
@@ -757,7 +742,7 @@ FuelPoverty <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:5, 1)
+      formatPercentage(2:ncol(Data), 1)
   })
   
   

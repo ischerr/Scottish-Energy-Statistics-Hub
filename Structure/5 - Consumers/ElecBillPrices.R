@@ -13,7 +13,7 @@ ElecBillPricesOutput <- function(id) {
     tabsetPanel(
     tabPanel("Average Bill Time Series",
              fluidRow(column(8,
-                             h3("Average annual domestic standard electricity bills in Scotland (2010 \u00A3)", style = "color: #68c3ea;  font-weight:bold"),
+                             h3("Average annual domestic standard electricity bills in Scotland (based on 2010 prices)", style = "color: #68c3ea;  font-weight:bold"),
                              h4(textOutput(ns('AverageElecBillsSubtitle')), style = "color: #68c3ea;")
              ),
              column(
@@ -25,7 +25,7 @@ ElecBillPricesOutput <- function(id) {
              #dygraphOutput(ns("ElecBillPricesPlot")),
              plotlyOutput(ns("AverageElecBillsPlot"))%>% withSpinner(color="#68c3ea"),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-    tabPanel("Average Bill",
+    tabPanel("Regional breakdown",
              fluidRow(column(8,
                              h3("Average annual domestic standard electricity bills in Scotland (Current Prices)", style = "color: #68c3ea;  font-weight:bold"),
                              h4(textOutput(ns('ElecBillPricesSubtitle')), style = "color: #68c3ea;")
@@ -50,7 +50,7 @@ ElecBillPricesOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     tabsetPanel(
       
-    tabPanel("Time Series",
+    tabPanel("Data - Time Series",
       fluidRow(
         column(10, h3("Data - Electricity Bills Time Series (2010 \u00A3)", style = "color: #68c3ea;  font-weight:bold")),
         column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
@@ -58,7 +58,7 @@ ElecBillPricesOutput <- function(id) {
       fluidRow(
         column(12, dataTableOutput(ns("AverageElecBillsTable"))%>% withSpinner(color="#68c3ea"))),
       tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-    tabPanel("Average Bill",
+    tabPanel("Data - Regional breakdown",
              fluidRow(
                column(10, h3("Data - Average Annual Electricity Bills (Current Prices)", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
@@ -212,7 +212,7 @@ ElecBillPrices <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Average annual domestic standard electricity bills in Scotland (\u00A3)",
+        title = "Average annual domestic standard electricity bills in Scotland based (\u00A3)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
@@ -341,7 +341,7 @@ ElecBillPrices <- function(input, output, session) {
         legendgroup = "1",
         text = paste0(
           "Prepayment: \u00A3",
-          format(tail(Data[which(Data$`Prepayment - Scotland` != 0),], 1)$`Prepayment - Scotland`, big.mark = ","),
+          format(round(tail(Data[which(Data$`Prepayment - Scotland` != 0),], 1)$`Prepayment - Scotland`, digits = 0), big.mark = ","),
           "\nYear: ",
           format(tail(Data[which(Data$`Prepayment - Scotland` != 0),], 1)$Year, "%Y")
         ),
@@ -360,7 +360,7 @@ ElecBillPrices <- function(input, output, session) {
         legendgroup = "2",
         text = paste0(
           "Standard Credit: \u00A3",
-          format(tail(Data[which(Data$`Standard Credit - Scotland` != 0),], 1)$`Standard Credit - Scotland`, big.mark = ","),
+          format(round(tail(Data[which(Data$`Standard Credit - Scotland` != 0),], 1)$`Standard Credit - Scotland`, digits = 0), big.mark = ","),
           "\nYear: ",
           format(tail(Data[which(Data$`Standard Credit - Scotland` != 0),], 1)$Year, "%Y")
         ),
@@ -379,7 +379,7 @@ ElecBillPrices <- function(input, output, session) {
         legendgroup = "3",
         text = paste0(
           "Direct Debit: \u00A3",
-          format(tail(Data[which(Data$`Direct Debit - Scotland` != 0),], 1)$`Direct Debit - Scotland`, big.mark = ","),
+          format(round(tail(Data[which(Data$`Direct Debit - Scotland` != 0),], 1)$`Direct Debit - Scotland`, digits = 0), big.mark = ","),
           "\nYear: ",
           format(tail(Data[which(Data$`Direct Debit - Scotland` != 0),], 1)$Year, "%Y")
         ),
@@ -454,17 +454,17 @@ ElecBillPrices <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Average annual domestic standard electricity bills in Scotland (2010 \u00A3)",
+        title = "Average annual domestic standard electricity bills in Scotland based on 2010 prices (\u00A3)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Average annual domestic standard electricity bills in Scotland (2010 \u00A3)",
+            title = "Average annual domestic standard electricity bills in Scotland based on 2010 prices (\u00A3)",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Average annual domestic standard electricity bills in Scotland (2010 \u00A3)")
+               title = "Average annual domestic standard electricity bills in Scotland based on 2010 prices (\u00A3)")
         ),
         
         # customize the length menu

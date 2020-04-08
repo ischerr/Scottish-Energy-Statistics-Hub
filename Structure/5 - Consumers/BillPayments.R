@@ -148,7 +148,7 @@ BillPayments <- function(input, output, session) {
                 legendgroup = "1",
                 text = paste0(
                   "Prepayment: ",
-                  percent(ElecPayments$`Prepayment - Scotland`, accuracy = 0.1),
+                  percent(ElecPayments$`Prepayment - Scotland`, accuracy = 1),
                   "\nYear: ",
                   format(ElecPayments$Year, "%Y Q%q")
                 ),
@@ -162,7 +162,7 @@ BillPayments <- function(input, output, session) {
         name = "Prepayment",
         text = paste0(
           "Prepayment: ",
-          percent(ElecPayments[which(ElecPayments$`Prepayment - Scotland` > 0 | ElecPayments$`Prepayment - Scotland` < 0),][-1,]$`Prepayment - Scotland`, accuracy = 0.1),
+          percent(ElecPayments[which(ElecPayments$`Prepayment - Scotland` > 0 | ElecPayments$`Prepayment - Scotland` < 0),][-1,]$`Prepayment - Scotland`, accuracy = 1),
           "\nYear: ",
           format(ElecPayments[which(ElecPayments$`Prepayment - Scotland` > 0 | ElecPayments$`Prepayment - Scotland` < 0),][-1,]$Year, "%Y Q%q")
         ),
@@ -183,7 +183,7 @@ BillPayments <- function(input, output, session) {
                 legendgroup = "2",
                 text = paste0(
                   "Standard Credit: ",
-                  percent(ElecPayments$`Standard Credit - Scotland`, accuracy = 0.1),
+                  percent(ElecPayments$`Standard Credit - Scotland`, accuracy = 1),
                   "\nYear: ",
                   format(ElecPayments$Year, "%Y Q%q")
                 ),
@@ -198,7 +198,7 @@ BillPayments <- function(input, output, session) {
         legendgroup = "2",
         text = paste0(
           "Standard Credit: ",
-          percent(ElecPayments[which(ElecPayments$`Standard Credit - Scotland` > 0 | ElecPayments$`Standard Credit - Scotland` < 0),][-1,]$`Standard Credit - Scotland`, accuracy = 0.1),
+          percent(ElecPayments[which(ElecPayments$`Standard Credit - Scotland` > 0 | ElecPayments$`Standard Credit - Scotland` < 0),][-1,]$`Standard Credit - Scotland`, accuracy = 1),
           "\nYear: ",
           format(ElecPayments[which(ElecPayments$`Standard Credit - Scotland` > 0 | ElecPayments$`Standard Credit - Scotland` < 0),][-1,]$Year, "%Y Q%q")
         ),
@@ -218,7 +218,7 @@ BillPayments <- function(input, output, session) {
                 legendgroup = "3",
                 text = paste0(
                   "Direct Debit: ",
-                  percent(ElecPayments$`Direct Debit - Scotland`, accuracy = 0.1),
+                  percent(ElecPayments$`Direct Debit - Scotland`, accuracy = 1),
                   "\nYear: ",
                   format(ElecPayments$Year, "%Y Q%q")
                 ),
@@ -233,7 +233,7 @@ BillPayments <- function(input, output, session) {
         legendgroup = "3",
         text = paste0(
           "Direct Debit: ",
-          percent(ElecPayments[which(ElecPayments$`Direct Debit - Scotland` > 0 | ElecPayments$`Direct Debit - Scotland` < 0),][-1,]$`Direct Debit - Scotland`, accuracy = 0.1),
+          percent(ElecPayments[which(ElecPayments$`Direct Debit - Scotland` > 0 | ElecPayments$`Direct Debit - Scotland` < 0),][-1,]$`Direct Debit - Scotland`, accuracy = 1),
           "\nYear: ",
           format(ElecPayments[which(ElecPayments$`Direct Debit - Scotland` > 0 | ElecPayments$`Direct Debit - Scotland` < 0),][-1,]$Year, "%Y Q%q")
         ),
@@ -324,7 +324,7 @@ BillPayments <- function(input, output, session) {
         pageLength = -1
       )
     ) %>%
-      formatPercentage(2:4, 1) 
+      formatPercentage(2:4, 0) 
   })
   
   output$GasPaymentsSubtitle <- renderText({
@@ -379,7 +379,7 @@ BillPayments <- function(input, output, session) {
                 legendgroup = "1",
                 text = paste0(
                   "Prepayment: ",
-                  percent(GasPayments$`Prepayment - Scotland`, accuracy = 0.1),
+                  percent(GasPayments$`Prepayment - Scotland`, accuracy = 1),
                   "\nYear: ",
                   format(GasPayments$Year, "%Y Q%q")
                 ),
@@ -393,7 +393,7 @@ BillPayments <- function(input, output, session) {
         name = "Prepayment",
         text = paste0(
           "Prepayment: ",
-          percent(GasPayments[which(GasPayments$`Prepayment - Scotland` > 0 | GasPayments$`Prepayment - Scotland` < 0),][-1,]$`Prepayment - Scotland`, accuracy = 0.1),
+          percent(GasPayments[which(GasPayments$`Prepayment - Scotland` > 0 | GasPayments$`Prepayment - Scotland` < 0),][-1,]$`Prepayment - Scotland`, accuracy = 1),
           "\nYear: ",
           format(GasPayments[which(GasPayments$`Prepayment - Scotland` > 0 | GasPayments$`Prepayment - Scotland` < 0),][-1,]$Year, "%Y Q%q")
         ),
@@ -414,7 +414,7 @@ BillPayments <- function(input, output, session) {
                 legendgroup = "2",
                 text = paste0(
                   "Standard Credit: ",
-                  percent(GasPayments$`Standard Credit - Scotland`, accuracy = 0.1),
+                  percent(GasPayments$`Standard Credit - Scotland`, accuracy = 1),
                   "\nYear: ",
                   format(GasPayments$Year, "%Y Q%q")
                 ),
@@ -429,7 +429,7 @@ BillPayments <- function(input, output, session) {
         legendgroup = "2",
         text = paste0(
           "Standard Credit: ",
-          percent(GasPayments[which(GasPayments$`Standard Credit - Scotland` > 0 | GasPayments$`Standard Credit - Scotland` < 0),][-1,]$`Standard Credit - Scotland`, accuracy = 0.1),
+          percent(GasPayments[which(GasPayments$`Standard Credit - Scotland` > 0 | GasPayments$`Standard Credit - Scotland` < 0),][-1,]$`Standard Credit - Scotland`, accuracy = 1),
           "\nYear: ",
           format(GasPayments[which(GasPayments$`Standard Credit - Scotland` > 0 | GasPayments$`Standard Credit - Scotland` < 0),][-1,]$Year, "%Y Q%q")
         ),
@@ -449,7 +449,7 @@ BillPayments <- function(input, output, session) {
                 legendgroup = "3",
                 text = paste0(
                   "Direct Debit: ",
-                  percent(GasPayments$`Direct Debit - Scotland`, accuracy = 0.1),
+                  percent(GasPayments$`Direct Debit - Scotland`, accuracy = 1),
                   "\nYear: ",
                   format(GasPayments$Year, "%Y Q%q")
                 ),
@@ -464,7 +464,7 @@ BillPayments <- function(input, output, session) {
         legendgroup = "3",
         text = paste0(
           "Direct Debit: ",
-          percent(GasPayments[which(GasPayments$`Direct Debit - Scotland` > 0 | GasPayments$`Direct Debit - Scotland` < 0),][-1,]$`Direct Debit - Scotland`, accuracy = 0.1),
+          percent(GasPayments[which(GasPayments$`Direct Debit - Scotland` > 0 | GasPayments$`Direct Debit - Scotland` < 0),][-1,]$`Direct Debit - Scotland`, accuracy = 1),
           "\nYear: ",
           format(GasPayments[which(GasPayments$`Direct Debit - Scotland` > 0 | GasPayments$`Direct Debit - Scotland` < 0),][-1,]$Year, "%Y Q%q")
         ),
@@ -555,7 +555,7 @@ BillPayments <- function(input, output, session) {
         pageLength = -1
       )
     ) %>%
-      formatPercentage(2:4, 1) 
+      formatPercentage(2:4, 0) 
   })
   
   
@@ -817,7 +817,7 @@ BillPayments <- function(input, output, session) {
       ### variables
       ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
       sourcecaption = "Source: BEIS"
-      plottitle = "Proportion of payment methods used\nfor Gas bills"
+      plottitle = "Proportion of payment methods used\nfor gas bills"
       
       #GasBillPaymentMethods$`Prepayment`Percentage <- PercentLabel(GasBillPaymentMethods$`Prepayment`)
       
