@@ -59,8 +59,7 @@ PrimaryOilGasOutput <- function(id) {
       column(
         8,
         align = "right",
-        p("Energy Balance")
-        
+        SourceLookup("SESHEnergyBalance")
       )
     )
   )
@@ -253,6 +252,8 @@ PrimaryOilGas <- function(input, output, session) {
       as.numeric(as.character(x)))
     
     Data <- as_tibble(Data)
+    
+    Data<- Data[seq(dim(Data)[1],1),]
     
     PrimaryOilGas <- Data[complete.cases(Data),]
     
@@ -587,6 +588,7 @@ PrimaryOilGas <- function(input, output, session) {
     names(Data) <- c("Year",  "Oil/petroleum - Indigenous production", "Oil/petroleum - Imports",
                               "Gas - Indigenous production", "Gas - Imports",
                               "Total - Indigenous production", "Total - Imports")
+    
     
     PrimaryOilGas <- Data[complete.cases(Data),]
     

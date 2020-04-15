@@ -454,6 +454,8 @@ DailyDemand <- function(input, output, session) {
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "DailyDemandWorking")[c(1,2,4,3)]
       
+      Data <- Data[complete.cases(Data),]
+      
       names(Data) <- c("Year", "Gas", "Transport", "Electricity")
       
       Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
@@ -592,7 +594,8 @@ DailyDemand <- function(input, output, session) {
                    ChartColours)
       
       DailyDemandChart <- DailyDemandChart +
-        coord_cartesian(xlim = c(min(DailyDemand$Year), max(DailyDemand$Year)+30)) +
+        coord_cartesian(xlim = c(min(DailyDemand$Year), max(DailyDemand$Year)+130)) +
+        
         ylim(-15, 352) +
         geom_hline(
           yintercept = 0,
@@ -600,7 +603,6 @@ DailyDemand <- function(input, output, session) {
           alpha = 0.7,
           linetype = 2
         )
-      
       
       DailyDemandChart
       

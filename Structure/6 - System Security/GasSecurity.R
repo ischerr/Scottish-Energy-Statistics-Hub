@@ -41,7 +41,7 @@ GasSecurityOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
     tabPanel("Proportion",
              fluidRow(column(8,
-                             h3("Proportion of UK gas from St. Fergus", style = "color: #5d8be1;  font-weight:bold"),
+                             h3("Proportion of UK gas supply from St. Fergus", style = "color: #5d8be1;  font-weight:bold"),
                              h4(textOutput(ns('GasSecurityProportionSubtitle')), style = "color: #5d8be1;")
              ),
              column(
@@ -454,7 +454,7 @@ GasSecurity <- function(input, output, session) {
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "GasSecurityWorking")[c(1,7:12)]
     
-    names(Data) <- c("Year", "Scottish Demand", "Transfers to N.I.", "Transfers to England", "ST. Fergus", "UK Demand", "Proportion of U.K. Gas from ST. Fergus" )
+    names(Data) <- c("Year", "Scottish Demand (GWh)", "Transfers to N.I. (GWh)", "Transfers to England (GWh)", "ST. Fergus (GWh)", "UK Demand (GWh)", "Proportion of U.K. gas supply from ST. Fergus" )
     
     Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
     
@@ -540,9 +540,11 @@ GasSecurity <- function(input, output, session) {
       #   )
       
       GasDistribution <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "GasSecurityWorking")[c(1,2,3,5,6,4)] 
+                                    sheet = "GasSecurityWorking")[c(1,2,3,5,6,4)] 
       
       names(GasDistribution)[1] <- c("Year")
+      
+      GasDistribution <- GasDistribution[complete.cases(GasDistribution),]
       
       GasDistribution$Year <-
         ymd(GasDistribution$Year)
@@ -570,6 +572,7 @@ GasSecurity <- function(input, output, session) {
       
       #GasDistribution$CavityPercentage <- PercentLabel(GasDistribution$Cavity)
       
+      width <- max(GasDistribution$Year) - min(GasDistribution$Year)
       
       GasDistributionChart <- GasDistribution %>%
         ggplot(aes(
@@ -584,7 +587,67 @@ GasSecurity <- function(input, output, session) {
             "ScotDemand" = BarColours[1],
             "NITransfer" = BarColours[2],
             "EnglandTransfer" = BarColours[3]
-          ))+
+          )) +
+        annotate(
+          "segment",
+          x = min(GasDistribution$Year),
+          xend = max(GasDistribution$Year),
+          y = 200,
+          yend = 200,
+          colour = "grey",
+          alpha = 0.7,
+          linetype = 2
+        ) +
+        annotate(
+          "segment",
+          x = min(GasDistribution$Year),
+          xend = max(GasDistribution$Year),
+          y = 400,
+          yend = 400,
+          colour = "grey",
+          alpha = 0.7,
+          linetype = 2
+        )+ 
+        annotate(
+          "segment",
+          x = min(GasDistribution$Year),
+          xend = max(GasDistribution$Year),
+          y = 600,
+          yend = 600,
+          colour = "grey",
+          alpha = 0.7,
+          linetype = 2
+        ) +
+        annotate(
+          "segment",
+          x = min(GasDistribution$Year),
+          xend = max(GasDistribution$Year),
+          y = 800,
+          yend = 800,
+          colour = "grey",
+          alpha = 0.7,
+          linetype = 2
+        ) +
+        annotate(
+          "segment",
+          x = min(GasDistribution$Year),
+          xend = max(GasDistribution$Year),
+          y = 1000,
+          yend = 1000,
+          colour = "grey",
+          alpha = 0.7,
+          linetype = 2
+        ) +
+        annotate(
+          "segment",
+          x = min(GasDistribution$Year),
+          xend = max(GasDistribution$Year),
+          y = 1200,
+          yend = 1200,
+          colour = "grey",
+          alpha = 0.7,
+          linetype = 2
+        ) +
         geom_area(posistion = "fill") +
         geom_text(
           aes(
@@ -635,6 +698,72 @@ GasSecurity <- function(input, output, session) {
           colour = BarColours[3],
           family = "Century Gothic",
           size = 3
+        ) +
+        geom_text(
+          aes(
+            x = min(Year)-(width*0.03),
+            y = 200,
+            label = "200\nGWh",
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          size = 3
+        ) +
+        geom_text(
+          aes(
+            x = min(Year)-(width*0.03),
+            y = 400,
+            label = "400\nGWh",
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          size = 3
+        ) +
+        geom_text(
+          aes(
+            x = min(Year)-(width*0.03),
+            y = 600,
+            label = "600\nGWh",
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          size = 3
+        ) +
+        geom_text(
+          aes(
+            x = min(Year)-(width*0.03),
+            y = 800,
+            label = "800\nGWh",
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          size = 3
+        )+
+        geom_text(
+          aes(
+            x = min(Year)-(width*0.03),
+            y = 1000,
+            label = "1000\nGWh",
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          size = 3
+        ) +
+        geom_text(
+          aes(
+            x = min(Year)-(width*0.03),
+            y = 1200,
+            label = "1200\nGWh",
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          size = 3
         )
       
       
@@ -650,11 +779,12 @@ GasSecurity <- function(input, output, session) {
       
       
       GasDistributionChart <- GasDistributionChart+
-        coord_cartesian(xlim = c(min(GasDistribution$Year), max(GasDistribution$Year)+180)) 
+        coord_cartesian(xlim = c(min(GasDistribution$Year-(width*0.025)), max(GasDistribution$Year)+(width*0.07))) 
       
       
       ggsave(
-        file,plot =  GasDistributionChart,
+        file,
+        plot = GasDistributionChart,
         width = 20,
         height = 18,
         units = "cm",
@@ -988,6 +1118,8 @@ output$FullData <- downloadHandler(
     Data$Date <- ymd(Data$Date)
     
     GasSecurity <- Data
+    
+    names(GasSecurity) <- c("Date", "Scottish Demand (GWh)", "Transfers to N.I. (GWh)", "Transfers to England (GWh)", "ST. Fergus (GWh)", "UK Demand (GWh)")
     
     write.csv(GasSecurity, 
               file,

@@ -48,7 +48,7 @@ OilGasProdOutput <- function(id) {
       column(
         8,
         align = "right",
-        p("Energy Balance")
+        SourceLookup("SGOilGasProd")
         
       )
     )

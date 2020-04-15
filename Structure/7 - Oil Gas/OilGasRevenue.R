@@ -215,7 +215,7 @@ OilGasRevenue <- function(input, output, session) {
       )
     ) %>%
       formatRound(c(2), 3) %>% 
-      formatPercentage(3,1)
+      formatPercentage(3,0)
   })
   
 

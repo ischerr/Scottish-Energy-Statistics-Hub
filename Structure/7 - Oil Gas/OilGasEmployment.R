@@ -56,9 +56,9 @@ OilGasEmploymentOutput <- function(id) {
     fluidRow(
       column(12, dataTableOutput(ns("OilGasEmploymentTable"))%>% withSpinner(color="#126992"))),
     tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;")),
-  tabPanel("Proportions",
+  tabPanel("Regional",
            fluidRow(
-             column(10, h3("Data - Scottish Oil and gas employment", style = "color: #126992;  font-weight:bold")),
+             column(10, h3("Data - UK Oil and gas employment by region", style = "color: #126992;  font-weight:bold")),
              column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
            ),
            fluidRow(
@@ -196,6 +196,8 @@ OilGasEmployment <- function(input, output, session) {
     Data[nrow(Data),1] <- Data[nrow(Data)-1,1] + 1
     
     names(Data) <- c("Year", "UK - Direct", "UK - Indirect", "UK - Induced", "UK - Total", "Total employment - Scotland only")
+    
+    Data<- Data[seq(dim(Data)[1],1),]
     
     datatable(
       Data[c(1,6,2:5)],

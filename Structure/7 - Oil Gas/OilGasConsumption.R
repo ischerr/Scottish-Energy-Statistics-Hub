@@ -390,7 +390,7 @@ OilGasConsumption <- function(input, output, session) {
     
     OilGasConsumpChart <-
       OilGasConsumpChart +
-      labs(subtitle = "Scotland, 2016") +
+      labs(subtitle = "Scotland, 2017") +
       ylim(-.16,1) +
       coord_flip()
     

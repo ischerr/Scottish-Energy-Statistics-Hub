@@ -13,7 +13,7 @@ ElecStorageOutput <- function(id) {
     tabsetPanel(
       tabPanel("Capacity",
                fluidRow(column(8,
-                               h3("Energy storage capacity", style = "color: #5d8be1;  font-weight:bold"),
+                               h3("Electricity storage capacity", style = "color: #5d8be1;  font-weight:bold"),
                                h4(textOutput(ns('ElecStorageCapSubtitle')), style = "color: #5d8be1;")
                ),
                column(
@@ -53,7 +53,7 @@ ElecStorageOutput <- function(id) {
     tabsetPanel(
       tabPanel("Capacity",
                fluidRow(
-                 column(10, h3("Data- Energy storage capacity by technology (MW)", style = "color: #5d8be1;  font-weight:bold")),
+                 column(10, h3("Data- Electricity storage capacity by technology (MW)", style = "color: #5d8be1;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
@@ -266,17 +266,17 @@ ElecStorage <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(ncol(ElecStorage)-1, 'desc')),
-        title = "Pipeline storage capacity",
+        title = "Pipeline storage capacity (MW)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Pipeline storage capacity',
+            title = 'Pipeline storage capacity (MW)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Pipeline storage capacity')
+               title = 'Pipeline storage capacity (MW)')
         ),
         
         # customize the length menu
@@ -616,17 +616,17 @@ ElecStorage <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(ncol(ElecStorageCap)-1, 'desc')),
-        title = "Pipeline storage capacity",
+        title = "Electricity storage capacity (MW)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Pipeline storage capacity',
+            title = 'Electricity storage capacity (MW)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Pipeline storage capacity')
+               title = 'Electricity storage capacity (MW)')
         ),
         
         # customize the length menu
@@ -680,7 +680,7 @@ ElecStorage <- function(input, output, session) {
         mutate(top = sum(value))
       
       plottitle <-
-        "Pipeline storage capacity by planning stage"
+        "Electricity storage capacity"
       sourcecaption <- "Source: BEIS"
       
       ChartColours <- c("#5d8be1", "#FF8500")

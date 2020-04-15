@@ -48,9 +48,10 @@ OilGasOutputsOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
-        SourceLookup("ESTDomRHIInstallations")
+        SourceLookup("BEISSubNatEnergy"),
+        SourceLookup("BEISSubNatElec"),
+        SourceLookup("BEISRHI"),
+        SourceLookup("SESHEnergyBalance")
         
       )
     )
@@ -261,7 +262,7 @@ OilGasOutputs <- function(input, output, session) {
     
     plottitle <-
       "Outputs from oil and gas"
-    sourcecaption <- "Source: SG"
+    sourcecaption <- "Source: BEIS, SG, HMRC"
     
     ChartColours <- c("#126992", "#FF8500")
     BarColours <- c("#034e7b", "#0570b0", "#969696", "#f46d43", "#d73027")
