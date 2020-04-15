@@ -74,7 +74,8 @@ DailyDemandOutput <- function(id) {
         8,
         align = "right",
         SourceLookup("NGElecDemand"),
-        SourceLookup("NGData")
+        SourceLookup("NGData"),
+        SourceLookup("BEISOil")
         
       )
     )
@@ -146,7 +147,7 @@ DailyDemand <- function(input, output, session) {
     
     ### variables
     ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
-    sourcecaption = "Source: University of Sheffield, National Grid, BEIS"
+    sourcecaption = "Source: National Grid, BEIS"
     plottitle = "Energy use in Scotland per day"
     
     #DailyDemand$GasPercentage <- PercentLabel(DailyDemand$Gas)
@@ -292,7 +293,7 @@ DailyDemand <- function(input, output, session) {
     
     ### variables
     ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
-    sourcecaption = "Source: University of Sheffield, National Grid, BEIS"
+    sourcecaption = "Source: Sheffield, National Grid, BEIS"
     plottitle = "Energy use in Scotland per day"
     
     #DailyDemandRolling$GasPercentage <- PercentLabel(DailyDemandRolling$Gas)
@@ -366,7 +367,7 @@ DailyDemand <- function(input, output, session) {
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "DailyDemandWorking")[c(1,5,7,6)]
     
-    names(Data) <- c("Year", "Gas", "Transport", "Electricity")
+    names(Data) <- c("Year", "Gas (Gwh)", "Transport (GWh)", "Electricity (GWh)")
     
     Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
     
@@ -461,7 +462,7 @@ DailyDemand <- function(input, output, session) {
       
       ### variables
       ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
-      sourcecaption = "Source: University of Sheffield, National Grid, BEIS"
+      sourcecaption = "Source: Sheffield, National Grid, BEIS"
       plottitle = "Energy use in Scotland per day"
       
       #DailyDemand$GasPercentage <- PercentLabel(DailyDemand$Gas)
@@ -628,7 +629,7 @@ output$DailyDemandRolling.png <- downloadHandler(
     
     ### variables
     ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
-    sourcecaption = "Source: University of Sheffield, National Grid, BEIS"
+    sourcecaption = "Source: Sheffield, National Grid, BEIS"
     plottitle = "Energy use in Scotland per day\n12 month rolling average"
     
     #DailyDemandRolling$GasPercentage <- PercentLabel(DailyDemandRolling$Gas)
@@ -814,7 +815,7 @@ output$FullData <- downloadHandler(
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "DailyDemandWorking")[c(1,2,4,3)]
     
-    names(Data) <- c("Year", "Gas", "Transport", "Electricity")
+    names(Data) <- c("Year", "Gas (GWh)", "Transport (GWh)", "Electricity (GWh)")
     
     Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
     

@@ -41,8 +41,12 @@ MaxSupplyPeakDemandOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
     tabPanel("Scottish Generation",
              fluidRow(column(8,
-                             h3("Maximum supply capacity by source", style = "color: #5d8be1;  font-weight:bold"),
+                             h3("Maximum supply capacity, Scottish generation and imports", style = "color: #5d8be1;  font-weight:bold"),
                              h4(textOutput(ns('MaxSupplyScotGenSubtitle')), style = "color: #5d8be1;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('MaxSupplyScotGen.png'), 'Download Graph', style="float:right")
              )),
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
              #dygraphOutput(ns("MaxSupplyPeakDemandPlot")),
@@ -58,9 +62,9 @@ MaxSupplyPeakDemandOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     tabsetPanel(
-      tabPanel("Capacity and Demand",
+      tabPanel("Maximum capacity",
     fluidRow(
-    column(10, h3("Data - Capacity and Demand", style = "color: #5d8be1;  font-weight:bold")),
+    column(10, h3("Data - Maximum capacity and peak demand", style = "color: #5d8be1;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -68,7 +72,7 @@ MaxSupplyPeakDemandOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
     tabPanel("Breakdown",
       fluidRow(
-        column(10, h3("Data - Maximum supply capacity breakdown", style = "color: #5d8be1;  font-weight:bold")),
+        column(10, h3("Data - Capacity breakdown (MW)", style = "color: #5d8be1;  font-weight:bold")),
         column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
       ),
       fluidRow(
@@ -85,7 +89,9 @@ MaxSupplyPeakDemandOutput <- function(id) {
       column(
         8,
         align = "right",
-        SourceLookup("BEISDUKESPower")
+        SourceLookup("BEISDUKESPower"),
+        SourceLookup("NGData"),
+        SourceLookup("NGTen")
         
       )
     )
@@ -142,6 +148,9 @@ MaxSupplyPeakDemand <- function(input, output, session) {
     
     Data$Year <- paste0("<b>", Data$Year, "</b>")
     
+    Data$`Maximum supply capacity` <- Data$`Maximum supply capacity`/1000
+    Data$`Peak electricity demand for the year` <- Data$`Peak electricity demand for the year` /1000
+    
     ChartColours <- c("#5d8be1", "#FF8500")
     BarColours <-
       c(
@@ -155,7 +164,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
                   type = 'bar', 
                   name = 'Peak electricity demand for the year',
                   hoverinfo = "text",
-                  text = paste0("Peak electricity demand for the year: ",format(round(Data$`Peak electricity demand for the year`, digits = 0), big.mark = ","), " MW\nDate: ", format(Data$`Peak electricity demand date`, "%d/%m/%y")),
+                  text = paste0("Peak electricity demand for the year: ",format(round(Data$`Peak electricity demand for the year`, digits = 1), big.mark = ","), " GW\nDate: ", format(Data$`Peak electricity demand date`, "%d/%m/%y")),
                   orientation = 'h',
                   marker = list(color = BarColours[2])
                   )%>%
@@ -163,7 +172,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
                 type = 'bar', 
                 name = 'Maximum supply capacity',
                 hoverinfo = "text",
-                text = paste0("Maximum supply capacity: ",format(round(Data$`Maximum supply capacity`, digits = 0), big.mark = ",")," MW\nPeak demand as percentage of maximum supply capacity: ", percent(Data$`Peak demand as percentage of maximum supply capacity`, 0.1)),
+                text = paste0("Maximum supply capacity: ",format(round(Data$`Maximum supply capacity`, digits = 1), big.mark = ",")," GW\nPeak demand as percentage of maximum supply capacity: ", percent(Data$`Peak demand as percentage of maximum supply capacity`, 0.1)),
                 orientation = 'h',
                 marker = list(color = BarColours[1])
       ) %>% 
@@ -179,7 +188,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         xaxis = list(title = "",
                      zeroline = FALSE,
                      tickformat = "",
-                     ticksuffix = " MW",
+                     ticksuffix = " GW",
                      showgrid = TRUE,
                      x = 0.5
                      
@@ -218,6 +227,8 @@ MaxSupplyPeakDemand <- function(input, output, session) {
     Data$`Peak electricity demand date` <- as.Date(Data$`Peak electricity demand date`,  origin = "1899-12-30")
     
     Data <- Data[!duplicated(Data$Year),]
+    
+    names(Data)[2:3] <- c("Maximum supply capacity (MW)", "Peak electricity demand for the year (MW)")
     
     datatable(
       Data,
@@ -300,7 +311,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
     
     Data <- Data[which(Data$Year >= 2010),]
     
-    Data[3:11] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data[3:11] %<>% lapply(function(x) as.numeric(as.character(x))/1000)
     
     Data <- as_tibble(Data)
     
@@ -313,9 +324,9 @@ MaxSupplyPeakDemand <- function(input, output, session) {
                 type = 'bar',
                 legendgroup = "1",
                 text = paste0(
-                  "CCGT: ", format(Data$CCGT, big.mark = ",")," MW\n",
+                  "CCGT: ", round(Data$CCGT, digits = 1)," GW\n",
                   "Year: ", Data$Year, "\n",
-                  "Total Scottish generation: ", format( round((Data$CCGT + Data$Coal + Data$Nuclear + Data$`Large Hydro` + Data$`Pumped Storage` + Data$Diesel), digits = 0), big.mark = ","), " MW"
+                  "Total Scottish generation: ", round( round((Data$CCGT + Data$Coal + Data$Nuclear + Data$`Large Hydro` + Data$`Pumped Storage` + Data$Diesel), digits = 1), digits = 1), " GW"
                 ),
                 hoverinfo = 'text',
                 marker = list(color = BarColours[1])
@@ -326,9 +337,9 @@ MaxSupplyPeakDemand <- function(input, output, session) {
                 type = 'bar',
                 legendgroup = "2",
                 text = paste0(
-                  "Coal: ", format(Data$Coal, big.mark = ",")," MW\n",
+                  "Coal: ", round(Data$Coal, digits = 1)," GW\n",
                   "Year: ", Data$Year, "\n",
-                  "Total Scottish generation: ", format( round((Data$CCGT + Data$Coal + Data$Nuclear + Data$`Large Hydro` + Data$`Pumped Storage` + Data$Diesel), digits = 0), big.mark = ","), " MW"
+                  "Total Scottish generation: ", round( round((Data$CCGT + Data$Coal + Data$Nuclear + Data$`Large Hydro` + Data$`Pumped Storage` + Data$Diesel), digits = 0), digits = 1), " GW"
                 ),
                 hoverinfo = 'text',
                 marker = list(color = BarColours[2])
@@ -339,9 +350,9 @@ MaxSupplyPeakDemand <- function(input, output, session) {
                 type = 'bar',
                 legendgroup = "3",
                 text = paste0(
-                  "Nuclear: ", format(Data$Nuclear, big.mark = ",")," MW\n",
+                  "Nuclear: ", round(Data$Nuclear, digits = 1)," GW\n",
                   "Year: ", Data$Year, "\n",
-                  "Total Scottish generation: ", format( round((Data$CCGT + Data$Coal + Data$Nuclear + Data$`Large Hydro` + Data$`Pumped Storage` + Data$Diesel), digits = 0), big.mark = ","), " MW"
+                  "Total Scottish generation: ", round( round((Data$CCGT + Data$Coal + Data$Nuclear + Data$`Large Hydro` + Data$`Pumped Storage` + Data$Diesel), digits = 0), digits = 1), " GW"
                 ),
                 hoverinfo = 'text',
                 marker = list(color = BarColours[3])
@@ -352,9 +363,9 @@ MaxSupplyPeakDemand <- function(input, output, session) {
                 type = 'bar',
                 legendgroup = "4",
                 text = paste0(
-                  "Large Hydro: ", format(Data$`Large Hydro`, big.mark = ",")," MW\n",
+                  "Large Hydro: ", round(Data$`Large Hydro`, digits = 1)," GW\n",
                   "Year: ", Data$Year, "\n",
-                  "Total Scottish generation: ", format( round((Data$CCGT + Data$Coal + Data$Nuclear + Data$`Large Hydro` + Data$`Pumped Storage` + Data$Diesel), digits = 0), big.mark = ","), " MW"
+                  "Total Scottish generation: ", round( round((Data$CCGT + Data$Coal + Data$Nuclear + Data$`Large Hydro` + Data$`Pumped Storage` + Data$Diesel), digits = 0), digits = 1), " GW"
                 ),
                 hoverinfo = 'text',
                 marker = list(color = BarColours[4])
@@ -365,9 +376,9 @@ MaxSupplyPeakDemand <- function(input, output, session) {
                 type = 'bar',
                 legendgroup = "5",
                 text = paste0(
-                  "Pumped Storage: ", format(Data$`Pumped Storage`, big.mark = ",")," MW\n",
+                  "Pumped Storage: ", round(Data$`Pumped Storage`, digits = 1)," GW\n",
                   "Year: ", Data$Year, "\n",
-                  "Total Scottish generation: ", format( round((Data$CCGT + Data$Coal + Data$Nuclear + Data$`Large Hydro` + Data$`Pumped Storage` + Data$Diesel), digits = 0), big.mark = ","), " MW"
+                  "Total Scottish generation: ", round( round((Data$CCGT + Data$Coal + Data$Nuclear + Data$`Large Hydro` + Data$`Pumped Storage` + Data$Diesel), digits = 0), digits = 1), " GW"
                 ),
                 hoverinfo = 'text',
                 marker = list(color = BarColours[5])
@@ -378,9 +389,9 @@ MaxSupplyPeakDemand <- function(input, output, session) {
                 type = 'bar',
                 legendgroup = "6",
                 text = paste0(
-                  "Diesel: ", format(Data$`Diesel`, big.mark = ",")," MW\n",
+                  "Diesel: ", round(Data$`Diesel`, digits = 1)," GW\n",
                   "Year: ", Data$Year, "\n",
-                  "Total Scottish generation: ", format( round((Data$CCGT + Data$Coal + Data$Nuclear + Data$`Large Hydro` + Data$`Pumped Storage` + Data$Diesel), digits = 0), big.mark = ","), " MW"
+                  "Total Scottish generation: ", round( round((Data$CCGT + Data$Coal + Data$Nuclear + Data$`Large Hydro` + Data$`Pumped Storage` + Data$Diesel), digits = 0), digits = 1), " GW"
                 ),
                 hoverinfo = 'text',
                 marker = list(color = BarColours[6])
@@ -391,7 +402,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
                 type = 'bar',
                 legendgroup = "7",
                 text = paste0(
-                  "Moyle Interconnector: ", format(Data$`Moyle Interconnector`, big.mark = ",")," MW\n",
+                  "Moyle Interconnector: ", round(Data$`Moyle Interconnector`, digits = 1)," GW\n",
                   "Year: ", Data$Year
                 ),
                 hoverinfo = 'text',
@@ -403,7 +414,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
                 type = 'bar',
                 legendgroup = "8",
                 text = paste0(
-                  "Secure import: ", format(Data$`Secure import capability of GB Transmission Network into Scotland`, big.mark = ",")," MW\n",
+                  "Secure import: ", round(Data$`Secure import capability of GB Transmission Network into Scotland`, digits = 1)," GW\n",
                   "Year: ", Data$Year
                 ),
                 hoverinfo = 'text',
@@ -417,7 +428,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         legendgroup = 9,
         type = 'scatter',
         mode = 'text',
-        text = ifelse(Data$`Total maximum supply capacity` >0, paste0("<b>",format(round((Data$`Total maximum supply capacity`), digits = 0), big.mark = ",")," MW</b>")," "),
+        text = ifelse(Data$`Total maximum supply capacity` >0, paste0("<b>",round(round((Data$`Total maximum supply capacity`), digits = 1), digits = 1)," GW</b>")," "),
         textposition = 'middle right',
         textfont = list(color = ChartColours[1]),
         hoverinfo = 'skip',
@@ -435,7 +446,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         xaxis = list(title = "",
                      zeroline = FALSE,
                      tickformat = "",
-                     ticksuffix = " MW",
+                     ticksuffix = " GW",
                      showgrid = TRUE,
                      x = 0.5,
                      range = c(0, max(Data$`Total maximum supply capacity`) * 1.135)
@@ -491,17 +502,17 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Maximum supply capacity by source",
+        title = "Maximum supply capacity by source (MW)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Maximum supply capacity by source",
+            title = "Maximum supply capacity by source (MW)",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Maximum supply capacity by source")
+               title = "Maximum supply capacity by source (MW)")
         ),
         
         # customize the length menu
@@ -1030,7 +1041,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
     
     Data <- Data[which(Data$Year >= 2010),]
     
-    Data[3:11] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data[3:11] %<>% lapply(function(x) as.numeric(as.character(x))/1000)
     
     Data <- as_tibble(Data)
     
@@ -1047,7 +1058,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
                 type = 'bar',
                 legendgroup = "1",
                 text = paste0(
-                  "Total Scottish generation: ", format(Data$ScottishGeneration, big.mark = ",")," MW\n",
+                  "Total Scottish generation: ", round(Data$ScottishGeneration, digits = 1)," GW\n",
                   "Year: ", Data$Year
                 ),
                 hoverinfo = 'text',
@@ -1059,7 +1070,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
                 type = 'bar',
                 legendgroup = "2",
                 text = paste0(
-                  "Scottish Imports: ", format(Data$ScottishImports, big.mark = ",")," MW\n",
+                  "Scottish Imports: ", round(Data$ScottishImports, digits = 1)," GW\n",
                   "Year: ", Data$Year, "\n"
                 ),
                 hoverinfo = 'text',
@@ -1073,7 +1084,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         legendgroup = 9,
         type = 'scatter',
         mode = 'text',
-        text = ifelse(Data$`Total maximum supply capacity` >0, paste0("<b>",format(round((Data$`Total maximum supply capacity`), digits = 0), big.mark = ",")," MW</b>")," "),
+        text = ifelse(Data$`Total maximum supply capacity` >0, paste0("<b>",round(round((Data$`Total maximum supply capacity`), digits = 1), digits = 1)," GW</b>")," "),
         textposition = 'middle right',
         textfont = list(color = ChartColours[1]),
         hoverinfo = 'skip',
@@ -1091,7 +1102,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         xaxis = list(title = "",
                      zeroline = FALSE,
                      tickformat = "",
-                     ticksuffix = " MW",
+                     ticksuffix = " GW",
                      showgrid = TRUE,
                      x = 0.5,
                      range = c(0, max(Data$`Total maximum supply capacity`) * 1.135)
@@ -1116,6 +1127,187 @@ MaxSupplyPeakDemand <- function(input, output, session) {
     
     
   })
+  
+  output$MaxSupplyScotGen.png <- downloadHandler(
+    filename = "MaxSupplyScotGen.png",
+    content = function(file) {
+      
+      Data <-
+        read_excel(
+          "Structure/CurrentWorking.xlsx",
+          sheet = "Elec capacity and peak demand", col_names = TRUE, 
+          skip = 37)[c(1:11)]
+      
+      names(Data)[1:2] <- c("Year", "Period")
+      
+      Data <- Data[which(Data$Year >= 2010),]
+      
+      Data[3:11] %<>% lapply(function(x) as.numeric(as.character(x)))
+      
+      Data <- as_tibble(Data)
+      
+      MaxSupply <- Data[2:11]
+      
+      names(MaxSupply)[1] <- "Year"
+      
+      MaxSupply <- MaxSupply[c(1, (ncol(MaxSupply) - 1):2)]
+      
+      MaxSupply <- arrange(MaxSupply,-row_number())
+      
+      MaxSupply$Imports <- MaxSupply$`Secure import capability of GB Transmission Network into Scotland` + MaxSupply$`Moyle Interconnector`
+      
+      MaxSupply$ScotGen <- MaxSupply$Diesel + MaxSupply$`Pumped Storage` + MaxSupply$`Large Hydro` + MaxSupply$Nuclear + MaxSupply$Coal + MaxSupply$CCGT
+      
+      MaxSupply[2:9] <- NULL
+      
+      MaxSupply$Year <-
+        factor(MaxSupply$Year,
+               levels = unique(MaxSupply$Year),
+               ordered = TRUE)
+      
+      MaxSupply <- melt(MaxSupply, id.vars = "Year")
+      
+      
+      MaxSupply$variable <-
+        factor(MaxSupply$variable,
+               levels = unique(MaxSupply$variable),
+               ordered = TRUE)
+      
+      MaxSupply <- MaxSupply %>%
+        group_by(Year) %>%
+        mutate(pos = cumsum(value) - value / 2) %>%
+        mutate(top = sum(value))
+      
+      plottitle <-
+        "Maximum supply capacity, Scottish generation and imports"
+      sourcecaption <- "Source: BEIS, National Grid"
+      
+      ChartColours <- c("#5d8be1", "#FF8500")
+      BarColours <-
+        c(
+          "#034e7b",
+          "#0570b0",
+          "#3690c0",
+          "#74a9cf",
+          "#a6bddb",
+          "#d0d1e6",
+          "#bdbdbd",
+          "#969696"
+        )
+      
+      
+      MaxSupplyChart <- MaxSupply %>%
+        ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
+        scale_fill_manual(
+          "variable",
+          values = c(
+            "ScotGen" = BarColours[3],
+            "Imports" = BarColours[7]
+            )
+        ) +
+        geom_bar(stat = "identity", width = .8) +
+        annotate(
+          "text",
+          x = MaxSupply$Year,
+          y = -.01,
+          label = ifelse(MaxSupply$Year == "z", "", str_wrap(MaxSupply$Year, width = 20)),
+          family = "Century Gothic",
+          fontface = 2,
+          colour =  ChartColours[1],
+          size = 3,
+          hjust = 1.05
+        ) +
+        geom_text(
+          aes(
+            x = MaxSupply$Year ,
+            y = MaxSupply$top,
+            label = paste(format(
+              round(MaxSupply$top, digits = 0), big.mark = ","
+            ), "MW")
+          ),
+          fontface = 2,
+          colour =  ChartColours[1],
+          family = "Century Gothic",
+          hjust = -0.1,
+          size = 3
+        ) +
+        geom_text(
+          aes(
+            x = MaxSupply$Year ,
+            y = MaxSupply$top - MaxSupply$pos,
+            label = paste(format(
+              round(MaxSupply$value, digits = 0), big.mark = ","
+            ), "MW")
+          ),
+          fontface = 2,
+          colour =  "white",
+          family = "Century Gothic",
+          size = 3
+        ) +
+        geom_text(
+          aes(
+            x = 10.1,
+            y = 4500,
+            label = "Scottish generation"
+          ),
+          fontface = 2,
+          colour =  BarColours[3],
+          family = "Century Gothic",
+          hjust = 0.5,
+          size = 3
+        ) +
+        geom_text(
+          aes(
+            x = 10.1,
+            y = 10500,
+            label = "Imports"
+          ),
+          fontface = 2,
+          colour =  BarColours[7],
+          family = "Century Gothic",
+          hjust = 0.5,
+          size = 3
+        ) +
+        geom_text(
+          aes(x = 10.5,
+              y = 13000 * (8 / 8),
+              label = " "),
+          fontface = 2,
+          colour =  BarColours[8],
+          family = "Century Gothic",
+          hjust = 0.5,
+          size = 3
+        ) 
+        
+        
+      MaxSupplyChart
+      
+      
+      MaxSupplyChart <-
+        StackedBars(MaxSupplyChart,
+                    MaxSupply,
+                    plottitle,
+                    sourcecaption,
+                    ChartColours)
+      
+      MaxSupplyChart <-
+        MaxSupplyChart +
+        labs(subtitle = paste(max(MaxSupply$Year), "-", min(MaxSupply$Year))) +
+        coord_flip() +
+        ylim(-650, 12950)
+      
+      MaxSupplyChart
+      
+      ggsave(
+        file,
+        plot = MaxSupplyChart,
+        width = 20,
+        height = 14,
+        units = "cm",
+        dpi = 300
+      )
+    }
+  )
   
   
 }
