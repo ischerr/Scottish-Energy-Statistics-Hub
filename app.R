@@ -36,6 +36,8 @@ server <- function(input, output, session) {
 rv$URLLoaded <- 0
   
 
+callModule(TargetTracker, "TargetTracker", parent_session = session)
+
 ###Parse URL to switch to appropriate tab
 observe({
   
@@ -178,12 +180,12 @@ observe({
     
     updateQueryString(paste0("?Section=",input$MainNav), mode = "push")
     
-    callModule(match.fun(input$MainNav), input$MainNav, parent_session = session)
+    
     
   }
   
     
-
+  
 
 
 }
@@ -241,12 +243,8 @@ output$HomeTab <- renderUI({
     fluidRow(
   h1("Scottish Energy Statistics"),
   h3(paste(input$MainTab)),
-  HTML("<h2>The Scottish Energy Statistics Hub is still in development. If you notice any errors, please email:  <a href='mailto:energystatistics@gov.scot?'>energystatistics@gov.scot</a></h2>"),
   p(
-    "This database brings together energy statistics from a range of data sources including Scottish
-                      Government, Eurostat and the Department for Business, Energy and Industrial Strategy (BEIS) of the
-                      UK Government. In previous years, Scottish Energy Statistics have been published in the 'Energy in Scotland'
-                      compendium."
+    "The Scottish Energy Statistics Hub is a new interactive tool which is a ‘one-stop shop’ for all Scottish energy data. Each page in the Hub has an interactive chart, commentary and data, with options to download charts and data. The Hub will be updated when new or revised data is available, so will always show the latest picture of Scottish energy statistics"
   ),
   img(src = "MainPage.png", width = "100%")
   ),

@@ -93,7 +93,41 @@ TargetTrackerOutput <- function(id) {
     )),
     #dygraphOutput(ns("TargetTrackerPlot")),
     plotlyOutput(ns("EnConsTgtPlot"), height = "75px")%>% withSpinner(color="#297fff"),
-    tags$hr(style = "height:3px;border:none;color:#297fff;background-color:#297fff;")
+    tags$hr(style = "height:3px;border:none;color:#297fff;background-color:#297fff;"),
+    
+    
+    #################################################################################
+    
+    fluidRow(column(8,
+                    h3("Community and locally owned renewables", style = "color: #a3d65c;  font-weight:bold"),
+                    h4("Capacity of operating locally owned renewable energy initiatives", style = "color: #a3d65c;")
+    ),
+    column(
+      4, style = 'padding:15px;',
+      actionButton(ns('COLOTgtLink'), 'More Information', style="float:right")
+    )),
+    #dygraphOutput(ns("TargetTrackerPlot")),
+    plotlyOutput(ns("COLOTgtPlot"), height = "75px")%>% withSpinner(color="#a3d65c"),
+    tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
+    
+    fluidRow(column(8,
+                    h3("District heat networks", style = "color: #a3d65c;  font-weight:bold"),
+                    h4("Domestic customers connected to a network", style = "color: #a3d65c;")
+    ),
+    column(
+      4, style = 'padding:15px;',
+      actionButton(ns('HeatNetworksTgtLink'), 'More Information', style="float:right")
+    )),
+    #dygraphOutput(ns("TargetTrackerPlot")),
+    plotlyOutput(ns("HeatNetworksCustomersTgtPlot"), height = "75px")%>% withSpinner(color="#a3d65c"),
+    fluidRow(column(8,
+                    h4("Total heat and cooling supplied through networks (GWh)", style = "color: #a3d65c;")
+    )),
+    #dygraphOutput(ns("TargetTrackerPlot")),
+    plotlyOutput(ns("HeatNetworksHeatPlot"), height = "75px")%>% withSpinner(color="#a3d65c"),
+    tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")
+    
+    
     
     
     
@@ -106,6 +140,7 @@ TargetTrackerOutput <- function(id) {
 
 ###### Server ######
 TargetTracker <- function(input, output, session, parent_session) {
+  
   
   BarPercentage <- function(start, target, current){
 
@@ -403,6 +438,73 @@ TargetTracker <- function(input, output, session, parent_session) {
     
     updateTabsetPanel(parent_session, "EnProd",
                       selected = "EnProd")
+    
+    print("Hi")
+  })
+  
+  output$COLOTgtPlot <- renderPlotly  ({
+    
+    start = 0
+    target = 1000
+    current = 731
+    CurrentAnnotation = paste0("<b>Current: ", format(round(current, digits = 0), big.mark = ","), " MW</b>\n in 2019")
+    TargetAnnotation = paste0("<b>Target: ", format(round(target, digits = 0), big.mark = ","), " MW</b>\n by 2020")
+    Colour = "#a3d65c"
+    
+    TargetTrackerBar(start, target, current, CurrentAnnotation, TargetAnnotation, Colour)
+    
+  })
+  
+  observeEvent(input$COLOTgtLink, {
+    
+    updateTabsetPanel(parent_session, "MainNav",
+                      selected = "LocalEnergy")
+    
+    updateNavbarPage(parent_session, inputId = "LocalEnergy",
+                     selected = "LocalRenewables")
+    
+    updateTabsetPanel(parent_session, "LocalRenewables",
+                      selected = "LocalRenewables")
+    
+    print("Hi")
+  })
+  
+  output$HeatNetworksCustomersTgtPlot <- renderPlotly  ({
+    
+    start = 0
+    target = 40000
+    current = 29647
+    CurrentAnnotation = paste0("<b>Current: ", format(round(current, digits = 0), big.mark = ","), "</b>\n in 2018")
+    TargetAnnotation = paste0("<b>Target: ", format(round(target, digits = 0), big.mark = ","), "</b>\n by 2020")
+    Colour = "#a3d65c"
+    
+    TargetTrackerBar(start, target, current, CurrentAnnotation, TargetAnnotation, Colour)
+    
+  })
+  
+  output$HeatNetworksHeatPlot <- renderPlotly  ({
+    
+    start = 0
+    target = 1500
+    current = 1178
+    CurrentAnnotation = paste0("<b>Current: ", format(round(current, digits = 0), big.mark = ","), " GWh</b>\n in 2018")
+    TargetAnnotation = paste0("<b>Target: ", format(round(target, digits = 0), big.mark = ","), " GWh</b>\n by 2020")
+    Colour = "#a3d65c"
+    
+    TargetTrackerBar(start, target, current, CurrentAnnotation, TargetAnnotation, Colour)
+    
+  })
+  
+  observeEvent(input$HeatNetworksTgtLink, {
+    
+    updateTabsetPanel(parent_session, "MainNav",
+                      selected = "LocalEnergy")
+    
+    updateNavbarPage(parent_session, inputId = "LocalEnergy",
+                     selected = "DistrictHeat")
+    
+    updateTabsetPanel(parent_session, "DistrictHeat",
+                      selected = "DistrictHeat")
     
     print("Hi")
   })
