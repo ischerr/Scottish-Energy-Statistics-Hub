@@ -260,7 +260,10 @@ HouseholdIntensity <- function(input, output, session) {
       ChartColours <- c("#34d1a3", "#FF8500")
       BarColours <- c("#00441b", "#238b45","#41ae76", "#66c2a4","#66c2a4", "#99d8c9", "ffffff")
 
-      HouseholdIntensity <- Data
+      HouseholdIntensity <- Data[c(1,5)]
+      
+      HouseholdIntensity <- HouseholdIntensity[complete.cases(HouseholdIntensity),]
+      
       HouseholdIntensityChart <- HouseholdIntensity %>%
         ggplot(aes(x = Year), family = "Century Gothic") +
         

@@ -27,7 +27,7 @@ HeatConsumptionOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
     tabPanel("Fuel",
              fluidRow(column(8,
-                             h3("Non-electrical heat demand by sector", style = "color: #34d1a3;  font-weight:bold"),
+                             h3("Non-electrical heat demand by fuel", style = "color: #34d1a3;  font-weight:bold"),
                              h4(textOutput(ns('HeatConsumptionFuelSubtitle')), style = "color: #34d1a3;")
              ),
              column(
@@ -872,7 +872,7 @@ HeatConsumption <- function(input, output, session) {
         mutate(top = sum(value))
       
       plottitle <-
-        "Non-electrical heat demand by sector"
+        "Non-electrical heat demand by fuel"
       sourcecaption <- "Source: BEIS"
       
       ChartColours <- c("#34d1a3", "#FF8500")
@@ -908,7 +908,7 @@ HeatConsumption <- function(input, output, session) {
           color = ChartColours[1]
         ) +
         geom_text(
-          y = -17500,
+          y = -11500,
           label =   ifelse(
             HeatConsumptionFuel$value < 7000,
             ifelse(

@@ -302,7 +302,18 @@ EnConsumptionTgt <- function(input, output, session) {
         geom_hline(yintercept = -0.12,
                    color = ChartColours[2],
                    linetype = 5)+
-        labs(subtitle = paste("Scotland, 2005-07 -", max(EnCons$Year[which(EnCons$Renewables !=0)])))
+        labs(subtitle = paste("Scotland, 2005-07 -", max(EnCons$Year[which(EnCons$Renewables !=0)]))) +
+        annotate(
+          "text",
+          x = 2013,
+          y = -.124,
+          label = "First dropped below 12%\nfrom the baseline in 2013",
+          hjust = 1,
+          vjust = 1,
+          fontface = 2,
+          color = ChartColours[1],
+          family = "Century Gothic"
+        )
       
       EnConsChart
       

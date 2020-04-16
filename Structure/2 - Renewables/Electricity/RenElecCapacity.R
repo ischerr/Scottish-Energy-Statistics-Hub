@@ -1156,8 +1156,8 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 1999,
-            y = 12350 * (.5 / 8),
+            x = 1998.5,
+            y = (max(RenElecCapFuel$top)*1.1) * (.5 / 8),
             label = "Onshore\nWind"
           ),
           fontface = 2,
@@ -1168,8 +1168,8 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 1999,
-            y = 12350 * (1.5 / 8),
+            x = 1998.5,
+            y = (max(RenElecCapFuel$top)*1.1) * (1.5 / 8),
             label = "Offshore\nWind"
           ),
           fontface = 2,
@@ -1180,8 +1180,8 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 1999,
-            y = 12350 * (2.5 / 8),
+            x = 1998.5,
+            y = (max(RenElecCapFuel$top)*1.1) * (2.5 / 8),
             label = "Hydro"
           ),
           fontface = 2,
@@ -1192,8 +1192,8 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 1999,
-            y = 12350 * (3.5 / 8),
+            x = 1998.5,
+            y = (max(RenElecCapFuel$top)*1.1) * (3.5 / 8),
             label = "Solar PV"
           ),
           fontface = 2,
@@ -1204,8 +1204,8 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 1999,
-            y = 12350 * (4.5 / 8),
+            x = 1998.5,
+            y = (max(RenElecCapFuel$top)*1.1) * (4.5 / 8),
             label = "Landfill\ngas"
           ),
           fontface = 2,
@@ -1216,8 +1216,8 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 1999,
-            y = 12350 * (5.5 / 8),
+            x = 1998.5,
+            y = (max(RenElecCapFuel$top)*1.1) * (5.5 / 8),
             label = "Wave\nand Tidal"
           ),
           fontface = 2,
@@ -1228,8 +1228,8 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 1999,
-            y = 12350 * (6.5 / 8),
+            x = 1998.5,
+            y = (max(RenElecCapFuel$top)*1.1) * (6.5 / 8),
             label = "Sewage\nGas"
           ),
           fontface = 2,
@@ -1240,8 +1240,8 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 1999,
-            y = 12350 * (7.5 / 8),
+            x = 1998.5,
+            y = (max(RenElecCapFuel$top)*1.1) * (7.5 / 8),
             label = "Other\nBioenergy"
           ),
           fontface = 2,
@@ -1251,8 +1251,8 @@ RenElecCapacity <- function(input, output, session) {
           size = 3
         ) +
         geom_text(
-          aes(x = 1998,
-              y = 12350 * (8 / 8),
+          aes(x = 1997.5,
+              y = (max(RenElecCapFuel$top)*1.1) * (8 / 8),
               label = " "),
           fontface = 2,
           colour =  BarColours[8],
@@ -1262,7 +1262,7 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = 0.1,
-              y = 12350 * (8 / 8),
+              y = (max(RenElecCapFuel$top)*1.1) * (8 / 8),
               label = " "),
           fontface = 2,
           colour =  BarColours[8],
@@ -1308,7 +1308,8 @@ RenElecCapacity <- function(input, output, session) {
         RenElecCapFuelChart +
         labs(subtitle = paste("Scotland,", min(RenElecCapFuel$Year), "-", max(RenElecCapFuel$Year))) +
         coord_flip() +
-        xlim(max(RenElecCapFuel$Year+.5),min(RenElecCapFuel$Year-1))
+        xlim(max(RenElecCapFuel$Year+.5),min(RenElecCapFuel$Year-1.5)) +
+        ylim(-(max(RenElecCapFuel$top)*0.03), (max(RenElecCapFuel$top)*1.15))
       
       RenElecCapFuelChart
       

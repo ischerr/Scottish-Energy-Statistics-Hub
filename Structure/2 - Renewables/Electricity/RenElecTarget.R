@@ -377,7 +377,9 @@ RenElecTarget <- function(input, output, session) {
       plottitle = "Share of renewable electricity in\ngross electricity consumption"
       
       RenElecChart <-
-        TargetChart(RenElec, plottitle, sourcecaption, ChartColours)
+        TargetChartSide(RenElec, plottitle, sourcecaption, ChartColours)
+      
+      
       
       RenElecChart
       

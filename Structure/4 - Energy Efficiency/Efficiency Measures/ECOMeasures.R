@@ -859,7 +859,7 @@ ECOMeasures <- function(input, output, session) {
           y = `Households in receipt of ECO measures`,
           label = ifelse(Year == min(Year[which(Data$`Households in receipt of ECO measures` > 0)]), format(`Households in receipt of ECO measures`, big.mark = ","), ""),
           hjust = 0.5,
-          vjust = -.8,
+          vjust = -1.6,
           colour = ChartColours[2],
           fontface = 2
         ),
@@ -871,7 +871,7 @@ ECOMeasures <- function(input, output, session) {
           y = `Households in receipt of ECO measures`,
           label = ifelse(Year == max(Year), format(`Households in receipt of ECO measures`, big.mark = ","), ""),
           hjust = .5,
-          vjust = 1.5,
+          vjust = 2.5,
           colour = ChartColours[2],
           fontface = 2
         ),
@@ -986,7 +986,7 @@ ECOMeasures <- function(input, output, session) {
           y = `Total number of ECO measures delivered`,
           label = ifelse(Year == min(Year[which(Data$`Total number of ECO measures delivered` > 0)]), format(`Total number of ECO measures delivered`, big.mark = ","), ""),
           hjust = 0.5,
-          vjust = -1.75,
+          vjust = -2,
           colour = ChartColours[2],
           fontface = 2
         ),
@@ -998,7 +998,7 @@ ECOMeasures <- function(input, output, session) {
           y = `Total number of ECO measures delivered`,
           label = ifelse(Year == max(Year), format(`Total number of ECO measures delivered`, big.mark = ","), ""),
           hjust = .5,
-          vjust = 2,
+          vjust = 3,
           colour = ChartColours[2],
           fontface = 2
         ),
@@ -1041,6 +1041,7 @@ ECOMeasures <- function(input, output, session) {
                   ChartColours)
     
   
+    DataChart
     
     ggsave(
       file,

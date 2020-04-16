@@ -541,7 +541,7 @@ ElecImportsExports <- function(input, output, session) {
         )+ 
         geom_text(
           aes(
-            x = ElecImportsExports[which(ElecImportsExports$Year == max(ElecImportsExports$Year)),]$Year - 2,
+            x = ElecImportsExports[which(ElecImportsExports$Year == max(ElecImportsExports$Year)),]$Year - 3,
             y = ((ElecImportsExports[which(ElecImportsExports$Year == max(ElecImportsExports$Year)),]$Exports - ElecImportsExports[which(ElecImportsExports$Year == max(ElecImportsExports$Year)),]$Imports)/2)+ElecImportsExports[which(ElecImportsExports$Year == max(ElecImportsExports$Year)),]$Imports,
             label = paste0("Net exports:\n",
                            format(round(ElecImportsExports$Exports[which(ElecImportsExports$Year == max(ElecImportsExports$Year))]-ElecImportsExports$Imports[which(ElecImportsExports$Year == max(ElecImportsExports$Year))], digits = 0), big.mark = ","),
@@ -561,7 +561,8 @@ ElecImportsExports <- function(input, output, session) {
                   ChartColours)
       
       ElecImportsExportsChart <- ElecImportsExportsChart +
-        xlim(1999,2019) +
+        xlim(1999,2020) +
+        ylim(0,(max(ElecImportsExports$Exports)*1.02))+
         labs(subtitle = paste("Scotland,", min(ElecImportsExports$Year), "-", max(ElecImportsExports$Year)))
       
       ElecImportsExportsChart

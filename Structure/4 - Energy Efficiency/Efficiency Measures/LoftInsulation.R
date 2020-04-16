@@ -725,7 +725,7 @@ LoftInsulation <- function(input, output, session) {
               y = Amount,
               label = ifelse(Year == min(Year), Amount, ""),
               hjust = 0.5,
-              vjust = -.8,
+              vjust = 1.5,
               colour = ChartColours[4],
               fontface = 2
             ),

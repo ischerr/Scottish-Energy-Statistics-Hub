@@ -757,7 +757,7 @@ RenHeatTech <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year+.8,
+            x = Year+1.2,
             y = Biomass,
             label = ifelse(Year == max(Year), paste0("Biomass\n",round(Biomass, digits = 3), " GW"), ""),
             fontface = 2
@@ -799,7 +799,7 @@ RenHeatTech <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year+.8,
+            x = Year+1.2,
             y = CHP,
             label = ifelse(Year == max(Year), paste0("Biomass CHP\n",round(CHP, digits = 3), " GW"), ""),
             fontface = 2
@@ -839,7 +839,7 @@ RenHeatTech <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year+.8,
+            x = Year+1.2,
             y = Waste,
             label = ifelse(Year == max(Year), paste0("Waste\n",round(Waste, digits = 3), " GW"), ""),
             fontface = 2,
@@ -881,7 +881,7 @@ RenHeatTech <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year+.8,
+            x = Year+1.2,
             y = Pumps,
             label = ifelse(Year == max(Year), paste0("Heat pumps\n", round(Pumps, digits = 3)," GW"), ""),
             vjust = -0.2,
@@ -923,7 +923,7 @@ RenHeatTech <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year+.8,
+            x = Year+1.2,
             y = Solar,
             label = ifelse(Year == max(Year), paste0("Solar thermal\n",round(Solar, digits = 3)," GW"), ""),
             fontface = 2,
@@ -974,7 +974,7 @@ RenHeatTech <- function(input, output, session) {
       
       RenHeatCapTechChart <- RenHeatCapTechChart +
         ylim(-.008, max(RenHeatCapTech$Biomass))+
-        xlim(min(RenHeatCapTech$Year-1.2), max(RenHeatCapTech$Year+1.4))
+        xlim(min(RenHeatCapTech$Year-1.2), max(RenHeatCapTech$Year+1.9))
       ggsave(
        file,
        plot = RenHeatCapTechChart,
@@ -1039,7 +1039,7 @@ output$RenHeatOutput.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year+.8,
+          x = Year+1.2,
           y = Biomass,
           label = ifelse(Year == max(Year), paste0("Biomass\n",format(round(Biomass, digits = 0), big.mark = ","), " GWh"), ""),
           fontface = 2
@@ -1081,7 +1081,7 @@ output$RenHeatOutput.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year+.8,
+          x = Year+1.2,
           y = CHP,
           label = ifelse(Year == max(Year), paste0("Biomass CHP\n",round(CHP, digits = 0), " GWh"), ""),
           fontface = 2,
@@ -1122,7 +1122,7 @@ output$RenHeatOutput.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year+.8,
+          x = Year+1.2,
           y = Waste,
           label = ifelse(Year == max(Year), paste0("Energy from waste\n",round(Waste, digits = 0), " GWh"), ""),
           fontface = 2,
@@ -1164,7 +1164,7 @@ output$RenHeatOutput.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year+.8,
+          x = Year+1.2,
           y = Pumps,
           label = ifelse(Year == max(Year), paste0("Heat pumps\n", round(Pumps, digits = 0)," GWh"), ""),
           vjust = .5,
@@ -1206,7 +1206,7 @@ output$RenHeatOutput.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year+.8,
+          x = Year+1.2,
           y = Solar,
           label = ifelse(Year == max(Year), paste0("Solar thermal\n",format(round(Solar, digits = 0), big.mark = ",")," GWh"), ""),
           fontface = 2,
@@ -1257,7 +1257,7 @@ output$RenHeatOutput.png <- downloadHandler(
     
     RenHeatOutputTechChart <- RenHeatOutputTechChart +
       ylim(-.008, max(RenHeatOutputTech$Biomass))+
-      xlim(min(RenHeatOutputTech$Year-1.2), max(RenHeatOutputTech$Year+1.4))
+      xlim(min(RenHeatOutputTech$Year-1.2), max(RenHeatOutputTech$Year+2.1))
     ggsave(
       file,
       plot = RenHeatOutputTechChart,

@@ -193,7 +193,7 @@ PrimaryHeating <- function(input, output, session) {
       ) %>% 
       config(displayModeBar = F)
     
-    orca(p, "StaticCharts/PrimaryHeatingPie.svg")
+    #orca(p, "StaticCharts/PrimaryHeatingPie.svg")
     
     p
     
