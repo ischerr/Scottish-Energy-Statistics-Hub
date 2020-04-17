@@ -429,7 +429,7 @@ ULEVs <- function(input, output, session) {
       ### variables
       ChartColours <- c("#39ab2c", "#238b45", "#a1d99b")
       sourcecaption = "Source: DfT"
-      plottitle = "Number of ultra low emission vehicles licenced"
+      plottitle = "Number of ultra low emission vehicles\nlicenced"
       
       #ElecVehicles$CavityPercentage <- PercentLabel(ElecVehicles$Cavity)
       

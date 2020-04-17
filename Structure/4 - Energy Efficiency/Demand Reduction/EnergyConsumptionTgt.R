@@ -77,7 +77,7 @@ EnConsumptionTgt <- function(input, output, session) {
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Energy consumption target", skip = 22, col_names = TRUE)[c(1,4)]
     
-    Data[1,1] <- 2007
+    Data[1,1] <- "2007"
     
     Data$Target <- NA
     EnConsumption <- Data
@@ -90,7 +90,7 @@ EnConsumptionTgt <- function(input, output, session) {
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Energy consumption target", skip = 22, col_names = TRUE)[c(1,4)]
     
-    Data[1,1] <- 2007
+    Data[1,1] <- "2007"
     
     Data$Target <- NA
     
@@ -280,7 +280,7 @@ EnConsumptionTgt <- function(input, output, session) {
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "Energy consumption target", skip = 22, col_names = TRUE)[c(1,4)]
       
-      Data[1,1] <- 2007
+      Data[1,1] <- "2007"
       
       Data$Target <- NA
       
