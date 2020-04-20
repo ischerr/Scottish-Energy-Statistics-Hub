@@ -76,7 +76,7 @@ RenEnTgtOutput <- function(id) {
       column(1,
              p("Next update:")),
       column(2,
-             p("March 2019")),
+             DateLookup(c("BEISRenElec", "BEISElecGen", "BEISSubNatEnergy", "ESTRenHeat", "BEISUKConsump", "DFTRenewable", "BEISSubNatElec", "BEISSubNatGas", "BEISLocalRoad"))),
       column(1, align = "right",
              p("Sources:")),
       column(

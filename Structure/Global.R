@@ -6,3 +6,21 @@ SourceLookup <- function(x){
     br()
   )
 }
+
+DateLookup <- function(x){
+  
+ y <- min(Sources[which(Sources$Code %in% x),]$`Update Expected`, na.rm = TRUE)
+  
+  tagList(
+    ifelse(is.infinite(y), "To Be Confirmed", format(y, "%B %Y")),
+    br()
+  )
+} 
+
+
+
+
+
+            
+            
+            

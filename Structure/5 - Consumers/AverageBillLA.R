@@ -60,7 +60,7 @@ AverageBillLAOutput <- function(id) {
       column(1,
              p("Next update:")),
       column(2,
-             p("March 2019")),
+             DateLookup(c("BEISUnitElec","BEISSubNatElec","BEISUnitGas","BEISSubNatGas"))),
       column(1, align = "right",
              p("Sources:")),
       column(
