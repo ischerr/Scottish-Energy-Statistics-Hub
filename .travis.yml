@@ -32,6 +32,6 @@ script:
 notifications:
   email:
     recipients:
-      - energystatistics@gov.scot
+     - energystatistics@gov.scot
     on_success: change # default: change
-    on_failure: always # default: always
+    on_failure: change # default: always
