@@ -25,17 +25,7 @@ system('fc-cache -f ~/.fonts')
   
 server <- function(input, output, session) {
   
-  ### Create List of Scripts, including filepath ###
-  SourceList <-
-    list.files(
-      "Structure",
-      full.names = TRUE,
-      recursive = TRUE,
-      pattern = "\\.R$"
-    )
-  
-  ### Pass Each list item to Source() command ###
-  sapply(SourceList, source)
+
 
   observe_helpers()
 
@@ -476,10 +466,7 @@ ui <- shinyUI(fluidPage(
                  GridEmissionsOutput("GridEmissions")),
         tabPanel(title ="Displaced Emissions", 
                  value = "DisplacedEmissions",
-                 DisplacedEmissionsOutput("DisplacedEmissions")),
-        tabPanel(title ="Wind Turbines", 
-                 value = "TurbineAnalysis",
-                 TurbineAnalysisOutput("TurbineAnalysis"))
+                 DisplacedEmissionsOutput("DisplacedEmissions"))
         )),
       tabPanel(
         value = "RenHeat",

@@ -1,5 +1,0 @@
-"Status"	"Sites"	"TurbineAmount"	"Capacity"
-"Application Submitted"	56	820	3807.85
-"Awaiting Construction"	108	1203	3941.02
-"Operational"	311	3843	8123.813
-"Under Construction"	8	76	178.5
