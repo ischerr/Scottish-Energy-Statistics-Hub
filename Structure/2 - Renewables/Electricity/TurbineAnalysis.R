@@ -13,7 +13,7 @@ TurbineAnalysisOutput <- function(id) {
     tabsetPanel(
       tabPanel("Sites",
                fluidRow(column(8,
-                               h3("Number of wind generating sites by planning status", style = "color: #39ab2c;  font-weight:bold"),
+                               h3("Sites", style = "color: #39ab2c;  font-weight:bold"),
                                h4(textOutput(ns('SitesTimeSeriesSubtitle')), style = "color: #39ab2c;")
                ),
                column(
@@ -27,7 +27,7 @@ TurbineAnalysisOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Turbines",
              fluidRow(column(8,
-                             h3("Number of wind turbines by planning status", style = "color: #39ab2c;  font-weight:bold"),
+                             h3("Turbines", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('TurbinesTimeSeriesSubtitle')), style = "color: #39ab2c;")
              ),
              column(
@@ -41,7 +41,7 @@ TurbineAnalysisOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Capacity",
              fluidRow(column(8,
-                             h3("Total wind capacity by planning status", style = "color: #39ab2c;  font-weight:bold"),
+                             h3("Capacity", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('CapacityTimeSeriesSubtitle')), style = "color: #39ab2c;")
              ),
              column(
@@ -65,7 +65,7 @@ TurbineAnalysisOutput <- function(id) {
     tabsetPanel(
       tabPanel("Summary",
                fluidRow(
-                 column(10, uiOutput(ns("TurbineDataDate"))),
+                 column(10, h3("Data - Summary", style = "color: #39ab2c;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Tables", style = "float:right; "))
                ),
                fluidRow(
@@ -86,7 +86,7 @@ TurbineAnalysisOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Sites",
                fluidRow(
-                 column(10, h3("Data - Number of wind generating sites by planning status", style = "color: #39ab2c;  font-weight:bold")),
+                 column(10, h3("Data - Sites", style = "color: #39ab2c;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
@@ -94,7 +94,7 @@ TurbineAnalysisOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Turbines",
              fluidRow(
-               column(10, h3("Data - Number of wind turbines by planning status", style = "color: #39ab2c;  font-weight:bold")),
+               column(10, h3("Data - Turbines", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -102,7 +102,7 @@ TurbineAnalysisOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Capacity",
              fluidRow(
-               column(10, h3("Data - Total wind capacity by planning status", style = "color: #39ab2c;  font-weight:bold")),
+               column(10, h3("Data - Capacity", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -150,11 +150,7 @@ TurbineAnalysis <- function(input, output, session) {
                   )))
  })
 
- output$TurbineDataDate <- renderUI({
-  tagList(
-    h3(paste("Data - Wind summary,", format(max(SitesTimeSeries$Month), "%B %Y")), style = "color: #39ab2c;  font-weight:bold")
-  )
- }) 
+ 
 
   observeEvent(input$ToggleText, {
     toggle("Text")
@@ -193,17 +189,17 @@ TurbineAnalysis <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Number of wind generating sites by planning status",
+        title = "Number of wind generating sites",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Number of wind generating sites by planning status',
+            title = 'Number of wind generating sites',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Number of wind generating sites by planning status')
+               title = 'Number of wind generating sites')
         ),
         
         # customize the length menu
@@ -350,7 +346,7 @@ TurbineAnalysis <- function(input, output, session) {
     ### variables
     ChartColours <- c( "#39ab2c", "#a8ddb5", "#4eb3d3", "#0868ac")
     sourcecaption = "Source: BEIS"
-    plottitle = "Number of wind generating sites by planning status"
+    plottitle = "Sites"
     
     #SitesTimeSeries$`Application Submitted`Percentage <- PercentLabel(SitesTimeSeries$`Application Submitted`)
     
@@ -661,17 +657,17 @@ TurbineAnalysis <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Number of wind turbines by planning status",
+        title = "Number of wind turbines",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Number of wind turbines by planning status',
+            title = 'Number of wind turbines',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Number of wind turbines by planning status')
+               title = 'Number of wind turbines')
         ),
         
         # customize the length menu
@@ -818,7 +814,7 @@ TurbineAnalysis <- function(input, output, session) {
       ### variables
       ChartColours <- c( "#39ab2c", "#a8ddb5", "#4eb3d3", "#0868ac")
       sourcecaption = "Source: BEIS"
-      plottitle = "Number of wind turbines by planning status"
+      plottitle = "Turbines"
       
       #TurbinesTimeSeries$`Application Submitted`Percentage <- PercentLabel(TurbinesTimeSeries$`Application Submitted`)
       
@@ -1135,7 +1131,7 @@ TurbineAnalysis <- function(input, output, session) {
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Total wind capacity by planning status (MW)')
+               title = 'Wind capacity (MW)')
         ),
         
         # customize the length menu
@@ -1282,7 +1278,7 @@ TurbineAnalysis <- function(input, output, session) {
       ### variables
       ChartColours <- c( "#39ab2c", "#a8ddb5", "#4eb3d3", "#0868ac")
       sourcecaption = "Source: BEIS"
-      plottitle = "Total wind capacity by planning status"
+      plottitle = "Capacity"
       
       #CapacityTimeSeries$`Application Submitted`Percentage <- PercentLabel(CapacityTimeSeries$`Application Submitted`)
       
@@ -1570,7 +1566,7 @@ TurbineAnalysis <- function(input, output, session) {
     ChangeAll[2:4] <- CurrentAll[2:4]-PreviousAll[2:4]
     
     
-    names(ChangeAll) <- c("Status", "Change in sites since last quarter","Change in turbines since last quarter","Change in capacity since last quarter (MW)")
+    names(ChangeAll) <- c("Status", "Change in sites since last quarter","Change in turbines since last quarter","Change in capacity since last quarter")
     
     names(CurrentAll) <- c("Status", "Sites","Turbines","Capacity (MW)")
     
@@ -1650,7 +1646,7 @@ TurbineAnalysis <- function(input, output, session) {
     
     ChangeOnshore[2:4] <- CurrentOnshore[2:4]-PreviousOnshore[2:4]
     
-    names(ChangeOnshore) <- c("Status", "Change in sites since last quarter","Change in turbines since last quarter","Change in capacity since last quarter (MW)")
+    names(ChangeOnshore) <- c("Status", "Change in sites since last quarter","Change in turbines since last quarter","Change in capacity since last quarter")
     
     names(CurrentOnshore) <- c("Status", "Sites","Turbines","Capacity (MW)")
     
@@ -1731,7 +1727,7 @@ TurbineAnalysis <- function(input, output, session) {
     ChangeOffshore[2:4] <- CurrentOffshore[2:4]-PreviousOffshore[2:4]
     
     
-    names(ChangeOffshore) <- c("Status", "Change in sites since last quarter","Change in turbines since last quarter","Change in capacity since last quarter (MW)")
+    names(ChangeOffshore) <- c("Status", "Change in sites since last quarter","Change in turbines since last quarter","Change in capacity since last quarter")
     
     names(CurrentOffshore) <- c("Status", "Sites","Turbines","Capacity (MW)")
     
