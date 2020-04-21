@@ -57,8 +57,8 @@ CHPStatsOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
       column(1,
              p("Next update:")),
-      column(2,
-             p("March 2019")),
+    column(2,
+           DateLookup(c("BEISCHP"))),
       column(1, align = "right",
              p("Sources:")),
       column(

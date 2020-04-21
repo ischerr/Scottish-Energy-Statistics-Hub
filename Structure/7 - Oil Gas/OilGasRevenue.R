@@ -42,7 +42,7 @@ OilGasRevenueOutput <- function(id) {
       column(1,
              p("Next update:")),
       column(2,
-             p("March 2019")),
+             DateLookup(c("SGOilGasProd"))),
       column(1, align = "right",
              p("Sources:")),
       column(
