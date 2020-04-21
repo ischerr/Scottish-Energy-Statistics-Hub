@@ -39,15 +39,12 @@ ScotGenDemandOutput <- function(id) {
       column(12, dataTableOutput(ns("ScotGenDemandTable"))%>% withSpinner(color="#5d8be1"))),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
-      column(1,
-             p("Next update:")),
+      column(2, p("Next update:")),
       column(2,
              DateLookup(c("ElexonScotGen", "NGElecDemand"))),
       column(1, align = "right",
              p("Sources:")),
-      column(
-        8,
-        align = "right",
+      column(7, align = "right",
         SourceLookup("ElexonScotGen"),
         SourceLookup("NGElecDemand")
 

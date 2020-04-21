@@ -92,15 +92,12 @@ DistrictHeatOutput <- function(id) {
     
     ),
     fluidRow(
-      column(1,
-             p("Next update:")),
+      column(2, p("Next update:")),
       column(2,
              DateLookup(c("BEISHeatNetwork"))),
       column(1, align = "right",
              p("Sources:")),
-      column(
-        8,
-        align = "right",
+      column(7, align = "right",
         SourceLookup("BEISHeatNetwork")
         
       )

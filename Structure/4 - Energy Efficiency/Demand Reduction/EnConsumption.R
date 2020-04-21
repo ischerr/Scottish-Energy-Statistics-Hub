@@ -88,15 +88,12 @@ EnergyConsumptionOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"
              ))),
     fluidRow(
-      column(1,
-             p("Next update:")),
+      column(2, p("Next update:")),
       column(2,
              DateLookup(c("BEISSubNatEnergy", "BEISDUKESBalance"))),
       column(1, align = "right",
              p("Sources:")),
-      column(
-        8,
-        align = "right",
+      column(7, align = "right",
         SourceLookup("BEISSubNatEnergy"),
         SourceLookup("BEISDUKESBalance")
         

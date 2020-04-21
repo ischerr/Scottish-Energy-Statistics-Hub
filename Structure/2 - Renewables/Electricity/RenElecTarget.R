@@ -39,15 +39,12 @@ RenElecTargetOutput <- function(id) {
       column(12, dataTableOutput(ns("RenElecTargetTable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
-      column(1,
-             p("Next update:")),
+      column(2, p("Next update:")),
       column(2,
              DateLookup(c("BEISRenElec", "BEISElecGen"))),
       column(1, align = "right",
              p("Sources:")),
-      column(
-        8,
-        align = "right",
+      column(7, align = "right",
         SourceLookup("BEISRenElec"),
         SourceLookup("BEISElecGen")
         
