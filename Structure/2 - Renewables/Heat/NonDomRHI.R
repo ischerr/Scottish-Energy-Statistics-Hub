@@ -92,15 +92,12 @@ NonDomRHIOutput <- function(id) {
 
     ),
     fluidRow(
-      column(1,
-             p("Next update:")),
+      column(2, p("Next update:")),
       column(2,
-             p("March 2019")),
+             DateLookup(c("BEISRHI"))),
       column(1, align = "right",
              p("Sources:")),
-      column(
-        8,
-        align = "right",
+      column(7, align = "right",
         SourceLookup("BEISRHI")
         
       )

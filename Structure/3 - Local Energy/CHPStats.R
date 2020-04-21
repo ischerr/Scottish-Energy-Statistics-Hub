@@ -55,15 +55,12 @@ CHPStatsOutput <- function(id) {
                fluidRow(
                  column(12, dataTableOutput(ns("CHPTable"))%>% withSpinner(color="#a3d65c"))),
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
-      column(1,
-             p("Next update:")),
-      column(2,
-             p("March 2019")),
+      column(2, p("Next update:")),
+    column(2,
+           DateLookup(c("BEISCHP"))),
       column(1, align = "right",
              p("Sources:")),
-      column(
-        8,
-        align = "right",
+      column(7, align = "right",
         SourceLookup("BEISCHP")
         
       )

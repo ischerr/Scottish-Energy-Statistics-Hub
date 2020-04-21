@@ -39,15 +39,12 @@ SmartMetersOutput <- function(id) {
       column(12, dataTableOutput(ns("SmartMetersTable"))%>% withSpinner(color="#68c3ea"))),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     fluidRow(
-      column(1,
-             p("Next update:")),
+      column(2, p("Next update:")),
       column(2,
-             p("March 2019")),
+             DateLookup(c("ElectralinkMeters"))),
       column(1, align = "right",
              p("Sources:")),
-      column(
-        8,
-        align = "right",
+      column(7, align = "right",
         SourceLookup("ElectralinkMeters")
         
       )
