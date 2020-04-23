@@ -11,7 +11,7 @@ OilGasExportsOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("International sales of oil and gas produced in Scotland’", style = "color: #126992;  font-weight:bold"),
+                    h3("International sales of oil and gas produced in Scotland", style = "color: #126992;  font-weight:bold"),
                     h4(textOutput(ns('OilGasExportsSubtitle')), style = "color: #;")
     ),
              column(
@@ -32,7 +32,7 @@ OilGasExportsOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
                fluidRow(
-    column(10, h3("Data - International sales of oil and gas produced in Scotland’", style = "color: #126992;  font-weight:bold")),
+    column(10, h3("Data - International sales of oil and gas produced in Scotland", style = "color: #126992;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -274,17 +274,17 @@ OilGasExports <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "International sales of oil and gas produced in Scotland’ (\u00A3billion)",
+        title = "International sales of oil and gas produced in Scotland (\u00A3billion)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'International sales of oil and gas produced in Scotland’ (\u00A3billion)',
+            title = 'International sales of oil and gas produced in Scotland (\u00A3billion)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'International sales of oil and gas produced in Scotland’ (\u00A3billion)')
+               title = 'International sales of oil and gas produced in Scotland (\u00A3billion)')
         ),
         
         # customize the length menu
@@ -336,7 +336,7 @@ OilGasExports <- function(input, output, session) {
       ### variables
       ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
       sourcecaption = "Source: Scottish Government"
-      plottitle = "International sales of oil and gas produced in Scotland’"
+      plottitle = "International sales of oil and gas produced in Scotland"
       
       #OilGasSupply$OilPercentage <- PercentLabel(OilGasSupply$Oil)
       
