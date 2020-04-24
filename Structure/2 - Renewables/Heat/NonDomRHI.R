@@ -92,7 +92,7 @@ NonDomRHIOutput <- function(id) {
 
     ),
     fluidRow(
-      column(2, p("Next update:")),
+      column(2, p("Update expected:")),
       column(2,
              DateLookup(c("BEISRHI"))),
       column(1, align = "right",

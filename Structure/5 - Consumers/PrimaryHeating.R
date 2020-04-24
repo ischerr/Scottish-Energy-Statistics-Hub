@@ -75,7 +75,7 @@ PrimaryHeatingOutput <- function(id) {
              p("* Small base and judged to be insufficiently reliable for publication"),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     fluidRow(
-      column(2, p("Next update:")),
+      column(2, p("Update expected:")),
       column(2,
              DateLookup(c("SGSHCS", "SGNonDomBase"))),
       column(1, align = "right",

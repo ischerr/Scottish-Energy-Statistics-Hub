@@ -91,7 +91,7 @@ GasConsumptionOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")       
     )),
     fluidRow(
-      column(2, p("Next update:")),
+      column(2, p("Update expected:")),
       column(2,
              DateLookup(c("BEISGasCustomers", "BEISUKConsump", "BEISSubNatGas"))),
       column(1, align = "right",

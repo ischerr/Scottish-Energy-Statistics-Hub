@@ -80,7 +80,7 @@ MaxSupplyPeakDemandOutput <- function(id) {
       tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"))
     ),
     fluidRow(
-      column(2, p("Next update:")),
+      column(2, p("Update expected:")),
       column(2,
              DateLookup(c("BEISDUKESPower", "NGData", "NGTen"))),
       column(1, align = "right",

@@ -67,7 +67,7 @@ GasBillPricesOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))
     ),
     fluidRow(
-      column(2, p("Next update:")),
+      column(2, p("Update expected:")),
       column(2,
              DateLookup(c("BEISAnnualGas"))),
       column(1, align = "right",
