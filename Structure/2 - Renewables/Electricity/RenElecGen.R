@@ -1249,15 +1249,16 @@ RenElecGen <- function(input, output, session) {
     
     ChartColours <- c("#39ab2c", "#78c679", "#a3d65c")
     
-    EUWind <- read_excel("Structure/CurrentWorking.xlsx",
-                         sheet = "Wind and hydro gen EU", col_names = FALSE, 
-                         skip = 16, n_max = 30)
+    EUWind <- read_delim("Processed Data/Output/EU/EUWind.txt", 
+                         "\t", escape_double = FALSE, trim_ws = TRUE)
     
     EUWind <- EUWind[,c(1,ncol(EUWind))]
     
     names(EUWind) <- c("Countries", "Renewables")
     
     EUWind <- EUWind %>% mutate(Countries = replace(Countries, Countries == "Rest of UK", "U.K."))
+    
+    EUWind$Renewables <- as.numeric(EUWind$Renewables)
     
     EUWind <- merge(EUWind, EUFlagLookup)
     
