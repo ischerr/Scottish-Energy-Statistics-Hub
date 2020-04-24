@@ -101,7 +101,7 @@ EnBalanceOutput <- function(id) {
   )),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     fluidRow(
-      column(2, p("Next update:")),
+      column(2, p("Update expected:")),
       column(2,
              p("March 2019")),
       column(1, align = "right",

@@ -65,7 +65,7 @@ OilGasEmploymentOutput <- function(id) {
              column(12, dataTableOutput(ns("OilGasEmploymentUKTable"))%>% withSpinner(color="#126992"))),
            tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"))),
     fluidRow(
-      column(2, p("Next update:")),
+      column(2, p("Update expected:")),
       column(2,
              DateLookup(c("OGUKWorkforce"))),
       column(1, align = "right",

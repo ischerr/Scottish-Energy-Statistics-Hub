@@ -188,7 +188,7 @@ LocalRenewablesOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"))
     ),
     fluidRow(
-      column(2, p("Next update:")),
+      column(2, p("Update expected:")),
       column(2,
              DateLookup(c("ESTComm"))),
       column(1, align = "right",

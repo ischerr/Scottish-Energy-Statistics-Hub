@@ -65,7 +65,7 @@ BillPaymentsOutput <- function(id) {
                column(12, dataTableOutput(ns("GasPaymentsTable"))%>% withSpinner(color="#68c3ea"))),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     fluidRow(
-      column(2, p("Next update:")),
+      column(2, p("Update expected:")),
       column(2,
              DateLookup(c("BEISPaymentMethodElec", "BEISPaymentMethodGas"))),
       column(1, align = "right",
