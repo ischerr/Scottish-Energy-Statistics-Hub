@@ -25,9 +25,9 @@ SmartMetersOutput <- function(id) {
     #dygraphOutput(ns("SmartMetersPlot")),
     imageOutput(ns("SmartMetersPlot"), height = "500px")%>% withSpinner(color="#68c3ea"),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-    tabPanel("Time series",
+    tabPanel("Proportion time series",
              fluidRow(column(8,
-                             h3("Cumulative smart meter installations", style = "color: #68c3ea;  font-weight:bold"),
+                             h3("Proportion of installed meters which are smart meters", style = "color: #68c3ea;  font-weight:bold"),
                              h4(textOutput(ns('SmartMetersTimeSeriesSubtitle')), style = "color: #68c3ea;")
              ),
              column(
@@ -251,7 +251,7 @@ SmartMeters <- function(input, output, session) {
         skip = 14
       )
       
-      names(SmartMeters) <- c("Year","Total", "Total Scotland - Proportion of smart meters", "NorthScotland", "North Scotland - Proportion of smart meters", "SouthScotland", "South Scotland - Proportion of smart meters")
+      names(SmartMeters) <- c("Year","Total Scotland - Proportion of smart meters","Total",  "North Scotland - Proportion of smart meters","NorthScotland", "South Scotland - Proportion of smart meters", "SouthScotland" )
       
       
       
@@ -264,7 +264,7 @@ SmartMeters <- function(input, output, session) {
       ### variables
       ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
       sourcecaption = "Source: Electralink"
-      plottitle = "Cumulative smart meter installations"
+      plottitle = "Proportion of installed meters which are smart meters"
       
       #SmartMeters$TotalPercentage <- PercentLabel(SmartMeters$Total)
       
@@ -285,7 +285,7 @@ SmartMeters <- function(input, output, session) {
           aes(
             x = Year - 1,
             y = Total,
-            label = ifelse(Year == min(Year), format(round(`Total`, 0), big.mark = ","), ""),
+            label = ifelse(Year == min(Year), percent(`Total`, 0.1) , ""),
             hjust =1.1,
             
             fontface = 2
@@ -297,7 +297,7 @@ SmartMeters <- function(input, output, session) {
           aes(
             x = Year + 1.2,
             y = Total,
-            label = ifelse(Year == max(Year), format(round(`Total`, 0), big.mark = ","), ""),
+            label = ifelse(Year == max(Year), percent(`Total`, 0.1) , ""),
             hjust = -0.2,
             
             fontface = 2
@@ -321,9 +321,9 @@ SmartMeters <- function(input, output, session) {
           aes(
             x = mean(Year),
             y = mean(Total),
-            label = "Total Scotland",
+            label = "Total\nScotland",
             hjust = 0.5,
-            vjust = -8.5,
+            vjust = 1.5,
             
             fontface = 2
           ),
@@ -345,7 +345,7 @@ SmartMeters <- function(input, output, session) {
           aes(
             x = Year - 1,
             y = `NorthScotland`,
-            label = ifelse(Year == min(Year), format(round(`NorthScotland`, 0), big.mark = ","), ""),
+            label = ifelse(Year == min(Year), percent(`NorthScotland`, 0.1) , ""),
             hjust = 1.1,
             
             fontface = 2
@@ -357,7 +357,7 @@ SmartMeters <- function(input, output, session) {
           aes(
             x = Year + 1.2,
             y = `NorthScotland`,
-            label = ifelse(Year == max(Year), format(round(`NorthScotland`, 0), big.mark = ","), ""),
+            label = ifelse(Year == max(Year), percent(`NorthScotland`, 0.1) , ""),
             hjust = -.2,
             
             fontface = 2
@@ -380,9 +380,9 @@ SmartMeters <- function(input, output, session) {
           aes(
             x = mean(Year),
             y = mean(`NorthScotland`),
-            label = "North Scotland",
+            label = "North\nScotland",
             hjust = 0.5,
-            vjust = 3.5,
+            vjust = 1.5,
             
             fontface = 2
           ),
@@ -403,7 +403,7 @@ SmartMeters <- function(input, output, session) {
           aes(
             x = Year - 1,
             y = `SouthScotland`,
-            label = ifelse(Year == min(Year), format(round(`SouthScotland`, 0), big.mark = ","), ""),
+            label = ifelse(Year == min(Year), percent(`SouthScotland`, 0.1) , ""),
             hjust = 1.1,
             fontface = 2
           ),
@@ -414,7 +414,7 @@ SmartMeters <- function(input, output, session) {
           aes(
             x = Year + 1.2,
             y = `SouthScotland`,
-            label = ifelse(Year == max(Year), format(round(`SouthScotland`, 0), big.mark = ","), ""),
+            label = ifelse(Year == max(Year), percent(`SouthScotland`, 0.1) , ""),
             hjust = -0.2,
             fontface = 2
           ),
@@ -436,9 +436,9 @@ SmartMeters <- function(input, output, session) {
           aes(
             x = mean(Year),
             y = mean(`SouthScotland`),
-            label = "South Scotland",
+            label = "South\nScotland",
             hjust = 0.5,
-            vjust = 6.3,
+            vjust = -2,
             fontface = 2
           ),
           colour = LineColours[4],
@@ -470,7 +470,7 @@ SmartMeters <- function(input, output, session) {
       length <- max(SmartMeters$Year)-min(SmartMeters$Year)
       
       SmartMetersChart <- SmartMetersChart +
-        coord_cartesian(xlim = c(min(SmartMeters$Year) - length*0.1, max(SmartMeters$Year)+ length*0.13)) +
+        coord_cartesian(xlim = c(min(SmartMeters$Year) - length*0.06, max(SmartMeters$Year)+ length*0.08)) +
         geom_hline(
           yintercept = 0,
           color = "grey",
@@ -534,42 +534,42 @@ SmartMeters <- function(input, output, session) {
       )
     
     p <-  plot_ly(SmartMeters, x = ~ Date ) %>%  
-      add_trace(y = ~ `Total Scotland - Installations (Cumulative)`, 
+      add_trace(y = ~ `Total Scotland - Proportion of smart meters`, 
                 name = "Total Scotland",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "1",
                 text = paste0(
-                  "Total Scotland - Installations: ",
-                  format(round(SmartMeters$`Total Scotland - Installations (Cumulative)`, digits = 0), big.mark = ","),
+                  "Total Scotland - Proportion of installed meters which are smart meters: ",
+                  percent(SmartMeters$`Total Scotland - Proportion of smart meters`, 0.1),
                   "\nDate: ",
                   format(SmartMeters$Date, "%B %Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = LineColours[1], dash = "none")
       ) %>% 
-      add_trace(y = ~ `North Scotland - Installations (Cumulative)`,
+      add_trace(y = ~ `North Scotland - Proportion of smart meters`,
                 name = "North Scotland",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "2",
                 text = paste0(
-                  "North Scotland - Installations: ",
-                  format(round(SmartMeters$`North Scotland - Installations (Cumulative)`, digits = 0), big.mark = ","),
+                  "North Scotland - Proportion of installed meters which are smart meters: ",
+                  percent(SmartMeters$`North Scotland - Proportion of smart meters`, 0.1),
                   "\nDate: ",
                   format(SmartMeters$Date, "%B %Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = LineColours[2], dash = "dash")
       ) %>% 
-      add_trace(y = ~ `South Scotland - Installations (Cumulative)`, 
+      add_trace(y = ~ `South Scotland - Proportion of smart meters`, 
                 name = "South Scotland",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "3",
                 text = paste0(
-                  "South Scotland - Installations: ",
-                  format(round(SmartMeters$`South Scotland - Installations (Cumulative)`, digits = 0), big.mark = ","),
+                  "South Scotland - Proportion of installed meters which are smart meters: ",
+                  percent(SmartMeters$`South Scotland - Proportion of smart meters`, 0.1),
                   "\nDate: ",
                   format(SmartMeters$Date, "%B %Y")
                 ),
@@ -577,16 +577,16 @@ SmartMeters <- function(input, output, session) {
                 line = list(width = 6, color = LineColours[3], dash = "dash")
       ) %>% 
       add_trace(
-        data = tail(SmartMeters[which(SmartMeters$`Total Scotland - Installations (Cumulative)` != 0),], 1),
+        data = tail(SmartMeters[which(SmartMeters$`Total Scotland - Proportion of smart meters` != 0),], 1),
         x = ~ Date,
-        y = ~ `Total Scotland - Installations (Cumulative)`,
+        y = ~ `Total Scotland - Proportion of smart meters`,
         name = "Total Scotland",
         legendgroup = "1",
         text = paste0(
-          "Total Scotland - Installations: ",
-          format(round(tail(SmartMeters[which(SmartMeters$`Total Scotland - Installations (Cumulative)` != 0),], 1)$`Total Scotland - Installations (Cumulative)`, digits = 0), big.mark = ","),
+          "Total Scotland - Proportion of installed meters which are smart meters: ",
+          percent(tail(SmartMeters[which(SmartMeters$`Total Scotland - Proportion of smart meters` != 0),], 1)$`Total Scotland - Proportion of smart meters`, 0.1),
           "\nDate: ",
-          format(tail(SmartMeters[which(SmartMeters$`Total Scotland - Installations (Cumulative)` != 0),], 1)$Date, "%B %Y")
+          format(tail(SmartMeters[which(SmartMeters$`Total Scotland - Proportion of smart meters` != 0),], 1)$Date, "%B %Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -596,16 +596,16 @@ SmartMeters <- function(input, output, session) {
                       color = LineColours[1])
       ) %>%
       add_trace(
-        data = tail(SmartMeters[which(SmartMeters$`North Scotland - Installations (Cumulative)` != 0),], 1),
+        data = tail(SmartMeters[which(SmartMeters$`North Scotland - Proportion of smart meters` != 0),], 1),
         x = ~ Date,
-        y = ~ `North Scotland - Installations (Cumulative)`,
+        y = ~ `North Scotland - Proportion of smart meters`,
         name = "North Scotland",
         legendgroup = "2",
         text = paste0(
-          "North Scotland - Installations: ",
-          format(round(tail(SmartMeters[which(SmartMeters$`North Scotland - Installations (Cumulative)` != 0),], 1)$`North Scotland - Installations (Cumulative)`, digits = 0), big.mark = ","),
+          "North Scotland - Proportion of installed meters which are smart meters: ",
+          percent(tail(SmartMeters[which(SmartMeters$`North Scotland - Proportion of smart meters` != 0),], 1)$`North Scotland - Proportion of smart meters`, 0.1),
           "\nDate: ",
-          format(tail(SmartMeters[which(SmartMeters$`North Scotland - Installations (Cumulative)` != 0),], 1)$Date, "%B %Y")
+          format(tail(SmartMeters[which(SmartMeters$`North Scotland - Proportion of smart meters` != 0),], 1)$Date, "%B %Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -615,16 +615,16 @@ SmartMeters <- function(input, output, session) {
                       color = LineColours[2])
       ) %>% 
       add_trace(
-        data = tail(SmartMeters[which(SmartMeters$`South Scotland - Installations (Cumulative)` != 0),], 1),
+        data = tail(SmartMeters[which(SmartMeters$`South Scotland - Proportion of smart meters` != 0),], 1),
         x = ~ Date,
-        y = ~ `South Scotland - Installations (Cumulative)`,
+        y = ~ `South Scotland - Proportion of smart meters`,
         name = "South Scotland",
         legendgroup = "3",
         text = paste0(
-          "South Scotland - Installations: ",
-          format(round(tail(SmartMeters[which(SmartMeters$`South Scotland - Installations (Cumulative)` != 0),], 1)$`South Scotland - Installations (Cumulative)`, digits = 0), big.mark = ","),
+          "South Scotland - Proportion of installed meters which are smart meters: ",
+          percent(tail(SmartMeters[which(SmartMeters$`South Scotland - Proportion of smart meters` != 0),], 1)$`South Scotland - Proportion of smart meters`, 0.1),
           "\nDate: ",
-          format(tail(SmartMeters[which(SmartMeters$`South Scotland - Installations (Cumulative)` != 0),], 1)$Date, "%B %Y")
+          format(tail(SmartMeters[which(SmartMeters$`South Scotland - Proportion of smart meters` != 0),], 1)$Date, "%B %Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -645,7 +645,7 @@ SmartMeters <- function(input, output, session) {
                      showgrid = FALSE),
         yaxis = list(
           title = "",
-          tickformat = "",
+          tickformat = "%",
           tickprefix = "",
           showgrid = TRUE,
           zeroline = TRUE,
