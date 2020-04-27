@@ -264,7 +264,7 @@ SmartMeters <- function(input, output, session) {
       ### variables
       ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
       sourcecaption = "Source: Electralink"
-      plottitle = "Proportion of installed meters which are smart meters"
+      plottitle = "Proportion of installed meters which are\nsmart meters"
       
       #SmartMeters$TotalPercentage <- PercentLabel(SmartMeters$Total)
       
@@ -540,7 +540,7 @@ SmartMeters <- function(input, output, session) {
                 mode = 'lines',
                 legendgroup = "1",
                 text = paste0(
-                  "Total Scotland - Proportion of installed meters which are smart meters: ",
+                  "Total Scotland - Proportion: ",
                   percent(SmartMeters$`Total Scotland - Proportion of smart meters`, 0.1),
                   "\nDate: ",
                   format(SmartMeters$Date, "%B %Y")
@@ -554,7 +554,7 @@ SmartMeters <- function(input, output, session) {
                 mode = 'lines',
                 legendgroup = "2",
                 text = paste0(
-                  "North Scotland - Proportion of installed meters which are smart meters: ",
+                  "North Scotland - Proportion: ",
                   percent(SmartMeters$`North Scotland - Proportion of smart meters`, 0.1),
                   "\nDate: ",
                   format(SmartMeters$Date, "%B %Y")
@@ -568,7 +568,7 @@ SmartMeters <- function(input, output, session) {
                 mode = 'lines',
                 legendgroup = "3",
                 text = paste0(
-                  "South Scotland - Proportion of installed meters which are smart meters: ",
+                  "South Scotland - Proportion: ",
                   percent(SmartMeters$`South Scotland - Proportion of smart meters`, 0.1),
                   "\nDate: ",
                   format(SmartMeters$Date, "%B %Y")
@@ -583,7 +583,7 @@ SmartMeters <- function(input, output, session) {
         name = "Total Scotland",
         legendgroup = "1",
         text = paste0(
-          "Total Scotland - Proportion of installed meters which are smart meters: ",
+          "Total Scotland - Proportion: ",
           percent(tail(SmartMeters[which(SmartMeters$`Total Scotland - Proportion of smart meters` != 0),], 1)$`Total Scotland - Proportion of smart meters`, 0.1),
           "\nDate: ",
           format(tail(SmartMeters[which(SmartMeters$`Total Scotland - Proportion of smart meters` != 0),], 1)$Date, "%B %Y")
@@ -602,7 +602,7 @@ SmartMeters <- function(input, output, session) {
         name = "North Scotland",
         legendgroup = "2",
         text = paste0(
-          "North Scotland - Proportion of installed meters which are smart meters: ",
+          "North Scotland - Proportion: ",
           percent(tail(SmartMeters[which(SmartMeters$`North Scotland - Proportion of smart meters` != 0),], 1)$`North Scotland - Proportion of smart meters`, 0.1),
           "\nDate: ",
           format(tail(SmartMeters[which(SmartMeters$`North Scotland - Proportion of smart meters` != 0),], 1)$Date, "%B %Y")
@@ -621,7 +621,7 @@ SmartMeters <- function(input, output, session) {
         name = "South Scotland",
         legendgroup = "3",
         text = paste0(
-          "South Scotland - Proportion of installed meters which are smart meters: ",
+          "South Scotland - Proportion: ",
           percent(tail(SmartMeters[which(SmartMeters$`South Scotland - Proportion of smart meters` != 0),], 1)$`South Scotland - Proportion of smart meters`, 0.1),
           "\nDate: ",
           format(tail(SmartMeters[which(SmartMeters$`South Scotland - Proportion of smart meters` != 0),], 1)$Date, "%B %Y")
