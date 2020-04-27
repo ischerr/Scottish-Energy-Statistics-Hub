@@ -25,7 +25,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -43,12 +43,12 @@
      id="namedview76"
      showgrid="false"
      inkscape:zoom="2.6811199"
-     inkscape:cx="147.12519"
+     inkscape:cx="74.580877"
      inkscape:cy="211.79703"
      inkscape:window-x="-11"
      inkscape:window-y="-11"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg74"
+     inkscape:current-layer="g883"
      fit-margin-top="5"
      fit-margin-left="5"
      fit-margin-right="5"
@@ -297,7 +297,7 @@
              y="133.94826"
              style="fill:#ffffff;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
            id="flowPara2599-9"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#ffffff">215,801</flowPara></flowRoot>      <flowRoot
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#ffffff">217,968</flowPara></flowRoot>      <flowRoot
          xml:space="preserve"
          id="flowRoot2593-1-9"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none"
@@ -313,7 +313,7 @@
              y="133.94826"
              style="fill:#ffffff;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
            id="flowPara2599-1-8"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#ffffff">867,121</flowPara></flowRoot>      <flowRoot
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#ffffff">876,522</flowPara></flowRoot>      <flowRoot
          xml:space="preserve"
          id="flowRoot2593-2-3"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#68c3ea;fill-opacity:1;stroke:none"
@@ -331,7 +331,7 @@
            id="flowPara2599-0-03"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;text-anchor:start;fill:#68c3ea;fill-opacity:1">Cumulative</flowPara><flowPara
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;text-anchor:start;fill:#68c3ea;fill-opacity:1"
-           id="flowPara2649-8">Jan 2012 - Feb 2020</flowPara></flowRoot>      <flowRoot
+           id="flowPara2649-8">Jan 2012 - Mar 2020</flowPara></flowRoot>      <flowRoot
          xml:space="preserve"
          id="flowRoot2593-2-4"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#68c3ea;fill-opacity:1;stroke:none"
@@ -349,6 +349,6 @@
            id="flowPara2599-0-1"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#68c3ea;fill-opacity:1">Total</flowPara><flowPara
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#68c3ea;fill-opacity:1"
-           id="flowPara2649-6">1,082,922</flowPara></flowRoot>    </g>
+           id="flowPara2649-6">1,094,490</flowPara></flowRoot>    </g>
   </g>
 </svg>
