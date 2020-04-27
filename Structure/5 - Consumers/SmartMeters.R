@@ -10,6 +10,8 @@ source("Structure/Global.R")
 SmartMetersOutput <- function(id) {
   ns <- NS(id)
   tagList(
+    tabsetPanel(
+      tabPanel("Current installations",
     fluidRow(column(8,
                     h3("Smart meter installations", style = "color: #68c3ea;  font-weight:bold"),
                     h4(textOutput(ns('SmartMetersSubtitle')), style = "color: #68c3ea;")
@@ -22,7 +24,21 @@ SmartMetersOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     #dygraphOutput(ns("SmartMetersPlot")),
     imageOutput(ns("SmartMetersPlot"), height = "500px")%>% withSpinner(color="#68c3ea"),
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Time series",
+             fluidRow(column(8,
+                             h3("Cumulative smart meter installations", style = "color: #68c3ea;  font-weight:bold"),
+                             h4(textOutput(ns('SmartMetersTimeSeriesSubtitle')), style = "color: #68c3ea;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('SmartMetersTimeSeries.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+             #dygraphOutput(ns("SmartMetersPlot")),
+             plotlyOutput(ns("SmartMetersTimeSeriesPlot"))%>% withSpinner(color="#68c3ea"),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
@@ -137,9 +153,7 @@ SmartMeters <- function(input, output, session) {
       formatRound(c(2,4,6), 0)
   })
   
-  output$SmartMetersTimeSeriesTable = renderDataTable({
-    
-    SmartMeters <- read_excel(
+      SmartMeters <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Non-home supplier elec",
       skip = 13
@@ -152,6 +166,10 @@ SmartMeters <- function(input, output, session) {
     SmartMeters$Quarter <- as.Date(as.numeric(SmartMeters$Quarter), origin = "1899-12-30")
     
     SmartMeters$Quarter <- as.character(as.yearqtr(SmartMeters$Quarter))
+    
+  output$SmartMetersTimeSeriesTable = renderDataTable({
+    
+
     
     
     datatable(
@@ -222,4 +240,426 @@ SmartMeters <- function(input, output, session) {
       writePNG(readPNG("Structure/5 - Consumers/SmartMetersChart.png"), file) 
     }
   )
+  
+  output$SmartMetersTimeSeries.png <- downloadHandler(
+    filename = "SmartMetersTimeSeries.png",
+    content = function(file) {
+      
+      SmartMeters <- read_excel(
+        "Structure/CurrentWorking.xlsx",
+        sheet = "Smart meter installations",
+        skip = 14
+      )
+      
+      names(SmartMeters) <- c("Year","Total", "Total Scotland - Proportion of smart meters", "NorthScotland", "North Scotland - Proportion of smart meters", "SouthScotland", "South Scotland - Proportion of smart meters")
+      
+      
+      
+      ChartColours <- c("#68c3ea", "#FF8500")
+      LineColours <-
+        c( "#68c3ea",   "#7bccc4","#0868ac","#43a2ca"
+        )
+      
+      
+      ### variables
+      ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
+      sourcecaption = "Source: Electralink"
+      plottitle = "Cumulative smart meter installations"
+      
+      #SmartMeters$TotalPercentage <- PercentLabel(SmartMeters$Total)
+      
+      
+      SmartMetersChart <- SmartMeters %>%
+        ggplot(aes(x = Year), family = "Century Gothic") +
+        
+        geom_line(
+          aes(
+            y = Total,
+            label = percent(Total)
+          ),
+          size = 1.5,
+          family = "Century Gothic",
+          colour = LineColours[2]
+        ) +
+        geom_text(
+          aes(
+            x = Year - 1,
+            y = Total,
+            label = ifelse(Year == min(Year), format(round(`Total`, 0), big.mark = ","), ""),
+            hjust =1.1,
+            
+            fontface = 2
+          ),
+          colour = LineColours[2],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year + 1.2,
+            y = Total,
+            label = ifelse(Year == max(Year), format(round(`Total`, 0), big.mark = ","), ""),
+            hjust = -0.2,
+            
+            fontface = 2
+          ),
+          colour = LineColours[2],
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(SmartMeters, 1),
+          aes(
+            x = Year,
+            y = Total,
+            
+            show_guide = FALSE
+          ),
+          size = 4,
+          colour = LineColours[2],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = mean(Year),
+            y = mean(Total),
+            label = "Total Scotland",
+            hjust = 0.5,
+            vjust = -8.5,
+            
+            fontface = 2
+          ),
+          colour = LineColours[2],
+          family = "Century Gothic"
+        ) +
+        geom_line(
+          aes(
+            y = `NorthScotland`,
+            
+            label = paste0(`NorthScotland` * 100, "%")
+          ),
+          linetype = "dashed",
+          size = 1.5,
+          colour = LineColours[3],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year - 1,
+            y = `NorthScotland`,
+            label = ifelse(Year == min(Year), format(round(`NorthScotland`, 0), big.mark = ","), ""),
+            hjust = 1.1,
+            
+            fontface = 2
+          ),
+          colour = LineColours[3],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year + 1.2,
+            y = `NorthScotland`,
+            label = ifelse(Year == max(Year), format(round(`NorthScotland`, 0), big.mark = ","), ""),
+            hjust = -.2,
+            
+            fontface = 2
+          ),
+          colour = LineColours[3],
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(SmartMeters, 1),
+          aes(
+            x = Year,
+            y = `NorthScotland`,
+            show_guide = FALSE
+          ),
+          size = 4,
+          colour = LineColours[3],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = mean(Year),
+            y = mean(`NorthScotland`),
+            label = "North Scotland",
+            hjust = 0.5,
+            vjust = 3.5,
+            
+            fontface = 2
+          ),
+          colour = LineColours[3],
+          family = "Century Gothic"
+        ) +
+        geom_line(
+          aes(
+            y = `SouthScotland`,
+            label = paste0(`SouthScotland` * 100, "%")
+          ),
+          linetype = "dashed",
+          size = 1.5,
+          colour = LineColours[4],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year - 1,
+            y = `SouthScotland`,
+            label = ifelse(Year == min(Year), format(round(`SouthScotland`, 0), big.mark = ","), ""),
+            hjust = 1.1,
+            fontface = 2
+          ),
+          colour = LineColours[4],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year + 1.2,
+            y = `SouthScotland`,
+            label = ifelse(Year == max(Year), format(round(`SouthScotland`, 0), big.mark = ","), ""),
+            hjust = -0.2,
+            fontface = 2
+          ),
+          colour = LineColours[4],
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(SmartMeters, 1),
+          aes(
+            x = Year,
+            y = `SouthScotland`,
+            show_guide = FALSE
+          ),
+          colour = LineColours[4],
+          size = 4,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = mean(Year),
+            y = mean(`SouthScotland`),
+            label = "South Scotland",
+            hjust = 0.5,
+            vjust = 6.3,
+            fontface = 2
+          ),
+          colour = LineColours[4],
+          family = "Century Gothic"
+        ) +
+        
+        geom_text(
+          aes(
+            x = Year,
+            y = 0,
+            label = ifelse(Year == max(Year) |
+                             Year == min(Year), format(Year, "%b %Y"), ""),
+            hjust = 0.5,
+            vjust = 1.5,
+            fontface = 2
+          ),
+          colour = LineColours[1],
+          family = "Century Gothic"
+        )
+      
+      
+      SmartMetersChart <-
+        DailyChart(SmartMetersChart,
+                   SmartMeters,
+                   plottitle,
+                   sourcecaption,
+                   LineColours)
+      
+      length <- max(SmartMeters$Year)-min(SmartMeters$Year)
+      
+      SmartMetersChart <- SmartMetersChart +
+        coord_cartesian(xlim = c(min(SmartMeters$Year) - length*0.1, max(SmartMeters$Year)+ length*0.13)) +
+        geom_hline(
+          yintercept = 0,
+          color = "grey",
+          alpha = 0.7,
+          linetype = 2
+        )
+      
+      SmartMetersChart
+      
+      ggsave(
+        file,
+        plot =  SmartMetersChart,
+        width = 16,
+        height = 16,
+        units = "cm",
+        dpi = 300
+      )
+      
+      
+    }
+  )
+  
+  
+  output$SmartMetersTimeSeriesSubtitle <- renderText({
+    
+    if (exists("PackageHeader") == 0){
+      source("Structure/PackageHeader.R")
+    }
+    
+    print("Energy daily demand")
+    SmartMeters <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Smart meter installations",
+      skip = 14
+    )
+    
+    names(SmartMeters) <- c("Date","Total Scotland - Installations (Cumulative)", "Total Scotland - Proportion of smart meters", "North Scotland - Installations (Cumulative)", "North Scotland - Proportion of smart meters", "South Scotland - Installations (Cumulative)", "South Scotland - Proportion of smart meters")
+    
+    paste("Scotland,", format(min(SmartMeters$Date),"%B %Y"),"-", format(max(SmartMeters$Date),"%B %Y"))
+  })
+  
+  output$SmartMetersTimeSeriesPlot <- renderPlotly  ({
+    
+    if (exists("PackageHeader") == 0){
+      source("Structure/PackageHeader.R")
+    }
+    
+    SmartMeters <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Smart meter installations",
+      skip = 14
+    )
+    
+    names(SmartMeters) <- c("Date","Total Scotland - Installations (Cumulative)", "Total Scotland - Proportion of smart meters", "North Scotland - Installations (Cumulative)", "North Scotland - Proportion of smart meters", "South Scotland - Installations (Cumulative)", "South Scotland - Proportion of smart meters")
+    
+    
+    
+    ChartColours <- c("#68c3ea", "#FF8500")
+    LineColours <-
+      c(    "#7bccc4","#0868ac","#43a2ca"
+      )
+    
+    p <-  plot_ly(SmartMeters, x = ~ Date ) %>%  
+      add_trace(y = ~ `Total Scotland - Installations (Cumulative)`, 
+                name = "Total Scotland",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "1",
+                text = paste0(
+                  "Total Scotland - Installations: ",
+                  format(round(SmartMeters$`Total Scotland - Installations (Cumulative)`, digits = 0), big.mark = ","),
+                  "\nDate: ",
+                  format(SmartMeters$Date, "%B %Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = LineColours[1], dash = "none")
+      ) %>% 
+      add_trace(y = ~ `North Scotland - Installations (Cumulative)`,
+                name = "North Scotland",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "2",
+                text = paste0(
+                  "North Scotland - Installations: ",
+                  format(round(SmartMeters$`North Scotland - Installations (Cumulative)`, digits = 0), big.mark = ","),
+                  "\nDate: ",
+                  format(SmartMeters$Date, "%B %Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = LineColours[2], dash = "dash")
+      ) %>% 
+      add_trace(y = ~ `South Scotland - Installations (Cumulative)`, 
+                name = "South Scotland",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "3",
+                text = paste0(
+                  "South Scotland - Installations: ",
+                  format(round(SmartMeters$`South Scotland - Installations (Cumulative)`, digits = 0), big.mark = ","),
+                  "\nDate: ",
+                  format(SmartMeters$Date, "%B %Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = LineColours[3], dash = "dash")
+      ) %>% 
+      add_trace(
+        data = tail(SmartMeters[which(SmartMeters$`Total Scotland - Installations (Cumulative)` != 0),], 1),
+        x = ~ Date,
+        y = ~ `Total Scotland - Installations (Cumulative)`,
+        name = "Total Scotland",
+        legendgroup = "1",
+        text = paste0(
+          "Total Scotland - Installations: ",
+          format(round(tail(SmartMeters[which(SmartMeters$`Total Scotland - Installations (Cumulative)` != 0),], 1)$`Total Scotland - Installations (Cumulative)`, digits = 0), big.mark = ","),
+          "\nDate: ",
+          format(tail(SmartMeters[which(SmartMeters$`Total Scotland - Installations (Cumulative)` != 0),], 1)$Date, "%B %Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = LineColours[1])
+      ) %>%
+      add_trace(
+        data = tail(SmartMeters[which(SmartMeters$`North Scotland - Installations (Cumulative)` != 0),], 1),
+        x = ~ Date,
+        y = ~ `North Scotland - Installations (Cumulative)`,
+        name = "North Scotland",
+        legendgroup = "2",
+        text = paste0(
+          "North Scotland - Installations: ",
+          format(round(tail(SmartMeters[which(SmartMeters$`North Scotland - Installations (Cumulative)` != 0),], 1)$`North Scotland - Installations (Cumulative)`, digits = 0), big.mark = ","),
+          "\nDate: ",
+          format(tail(SmartMeters[which(SmartMeters$`North Scotland - Installations (Cumulative)` != 0),], 1)$Date, "%B %Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = LineColours[2])
+      ) %>% 
+      add_trace(
+        data = tail(SmartMeters[which(SmartMeters$`South Scotland - Installations (Cumulative)` != 0),], 1),
+        x = ~ Date,
+        y = ~ `South Scotland - Installations (Cumulative)`,
+        name = "South Scotland",
+        legendgroup = "3",
+        text = paste0(
+          "South Scotland - Installations: ",
+          format(round(tail(SmartMeters[which(SmartMeters$`South Scotland - Installations (Cumulative)` != 0),], 1)$`South Scotland - Installations (Cumulative)`, digits = 0), big.mark = ","),
+          "\nDate: ",
+          format(tail(SmartMeters[which(SmartMeters$`South Scotland - Installations (Cumulative)` != 0),], 1)$Date, "%B %Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = LineColours[3])
+      ) %>% 
+      layout(
+        barmode = 'stack',
+        bargap = 0.66,
+        legend = list(font = list(color = "#68c3ea"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        xaxis = list(title = "",
+                     showgrid = FALSE),
+        yaxis = list(
+          title = "",
+          tickformat = "",
+          tickprefix = "",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    p
+    
+    
+    
+  })
+  
+  
 }
