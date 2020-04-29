@@ -32,6 +32,8 @@ LAsimple <- gSimplify(LAinitial, tol = 200, topologyPreserve = TRUE)
 
 ### Add Simplified shape back to the Shapefile
 LA = SpatialPolygonsDataFrame(LAsimple, data = LAinitial@data)
+
+LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/LocalAuthority2.shp")
 ############ RENEWABLE ELECTRICITY ################################################
 
 AverageBillLA <- read_excel(
@@ -101,3 +103,4 @@ CentralMap <- tm_shape(LACentral) +
 
 #Export to PDF
 save_tmap(CentralMap, filename = "Pre-Upload Scripts/Maps/Central.svg")
+

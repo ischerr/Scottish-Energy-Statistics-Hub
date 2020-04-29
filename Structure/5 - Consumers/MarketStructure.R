@@ -45,7 +45,6 @@ MarketStructureOutput <- function(id) {
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
-        SourceLookup("Xoserve"),
         SourceLookup("Ofgem")
         
       )
