@@ -21,7 +21,7 @@ AverageBillLAOutput <- function(id) {
     
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     #dygraphOutput(ns("AverageBillLAPlot")),
-    imageOutput(ns("AverageBillLAPlot"), height = "700px")%>% withSpinner(color="#68c3ea"),
+    leafletOutput(ns("RestrictedMeterMap"), height = "700px")%>% withSpinner(color="#68c3ea"),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),
@@ -330,4 +330,85 @@ AverageBillLA <- function(input, output, session) {
       writePNG(readPNG("Structure/5 - Consumers/AverageBillLAChart.png"), file) 
     }
   )
+  
+  
+  output$RestrictedMeterMap <- renderLeaflet({
+    
+    ### Load Packages
+    library(readr)
+    library("maptools")
+    library(tmaptools)
+    library(tmap)
+    library("sf")
+    library("leaflet")
+    library("rgeos")
+    library(readxl)
+    library(ggplot2)
+    
+    print("MapsandGasGrid")
+    
+    # This is unlikely to change from 2012
+    yearstart <- 2012
+    
+    ### Set the final year for the loop as the current year ###
+    yearend <- format(Sys.Date(), "%Y")
+    
+    
+    ### Add Simplified shape back to the Shapefile
+    LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/LocalAuthority2.shp")
+    
+    LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
+    ############ RENEWABLE ELECTRICITY ################################################
+    
+    AverageBillMap <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Average Bill",
+      skip = 22
+    )[c(2,1,4,5,6)]
+    
+    names(AverageBillMap) <- c("LocalAuthority", "CODE", "Average Electricity Bill", "Average Gas Bill", "Total")
+    
+    AverageBillMap <- AverageBillMap[which(substr(AverageBillMap$CODE, 1,3)== "S12"),]
+    
+    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Average total bill:<br/><em>\u00A3", round(AverageBillMap$Total, digits = 2),"</em>" )
+    
+    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - \u00A3", round(AverageBillMap$Total, digits = 2))
+    
+      ### Change LA$CODE to string
+    LA$CODE <- as.character(LA$CODE)
+    
+    ### Order LAs in Shapefile
+    LA <- LA[order(LA$CODE),]
+    
+    ### Order LAs in Data
+    AverageBillMap <- AverageBillMap[order(AverageBillMap$CODE),]
+    
+    ### Combine Data with Map data
+    LAMap <-
+      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+    
+    
+    pal <- colorNumeric(
+      palette = "Blues",
+      domain = LAMap$Total)
+    
+    leaflet(LAMap) %>% 
+      addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
+      addPolygons(stroke = TRUE, 
+                  weight = 0.1,
+                  smoothFactor = 0.2,
+                  popup = ~Content,
+                  label = ~Hover,
+                  fillOpacity = 1,
+                  color = ~pal(Total),
+                  highlightOptions = list(color = "white", weight = 2,
+                                          bringToFront = TRUE)) %>%
+      leaflet::addLegend("bottomright", pal = pal, values = ~Total,
+                         title = "Average total<br/>bill",
+                         labFormat = labelFormat(prefix = "\u00A3"),
+                         opacity = 1
+      ) 
+    
+  }) 
+  
 }
