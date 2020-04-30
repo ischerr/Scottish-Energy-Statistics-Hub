@@ -7,38 +7,10 @@ require("DT")
 
 source("Structure/Global.R")
 
-RenElecCapacityOutput <- function(id) {
+RenElecPipelineOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("Quarterly operational capacity",
-               fluidRow(column(8,
-                               h3("Operational renewable capacity", style = "color: #39ab2c;  font-weight:bold"),
-                               h4(textOutput(ns('RenElecCapacitySubtitle')), style = "color: #39ab2c;")
-               ),
-               column(
-                 4, style = 'padding:15px;',
-                 downloadButton(ns('RenElecOperational.png'), 'Download Graph', style="float:right")
-               )),
-               
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-               #dygraphOutput(ns("RenElecCapacityPlot")),
-               plotlyOutput(ns("RenElecCapacityPlot"))%>% withSpinner(color="#39ab2c"),
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-      tabPanel("Annual operational capacity by fuel",
-               fluidRow(column(8,
-                               h3("Annual operational capacity of sites generating electricity from renewable sources", style = "color: #39ab2c;  font-weight:bold"),
-                               h4(textOutput(ns('RenElecFuelSubtitle')), style = "color: #39ab2c;")
-               ),
-               column(
-                 4, style = 'padding:15px;',
-                 downloadButton(ns('RenElecFuel.png'), 'Download Graph', style="float:right")
-               )),
-               
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-               #dygraphOutput(ns("RenElecFuelPlot")),
-               plotlyOutput(ns("RenElecFuelPlot"), height = "900px")%>% withSpinner(color="#39ab2c"),
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Operational capacity tech",
              fluidRow(column(8,
                              h3("Operational renewable capacity by technology", style = "color: #39ab2c;  font-weight:bold"),
@@ -52,6 +24,34 @@ RenElecCapacityOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
              #dygraphOutput(ns("RenElecCapacityPlot")),
              plotlyOutput(ns("RenElecBreakdownCapPlot"), height = "600px")%>% withSpinner(color="#39ab2c"),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Pipeline renewable capacity",
+             fluidRow(column(8,
+                             h3("Pipeline renewable capacity by planning stage", style = "color: #39ab2c;  font-weight:bold"),
+                             h4(textOutput(ns('RenElecPipelineCapSubtitle')), style = "color: #39ab2c;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('RenElecPipelineCap.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+             #dygraphOutput(ns("RenElecCapacityPlot")),
+             plotlyOutput(ns("RenElecPipelineCapPlot"), height = "200px")%>% withSpinner(color="#39ab2c"),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Pipeline capacity tech",
+             fluidRow(column(8,
+                             h3("Pipeline renewable capacity by technology", style = "color: #39ab2c;  font-weight:bold"),
+                             h4(textOutput(ns('RenElecPipelineSubtitle')), style = "color: #39ab2c;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('RenElecPipeline.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+             #dygraphOutput(ns("RenElecPipelinePlot")),
+             plotlyOutput(ns("RenElecPipelinePlot"), height = "500px")%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
@@ -61,14 +61,31 @@ RenElecCapacityOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-               fluidRow(
-                 column(10, h3("Data - Operational renewable capacity by technology (MW)", style = "color: #39ab2c;  font-weight:bold")),
-                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
-               ),
-               fluidRow(
-                 column(12, dataTableOutput(ns("RenElecBreakdownCapTable"))%>% withSpinner(color="#39ab2c"))),
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-    
+    tabsetPanel(
+    tabPanel("Pipeline capacity",
+             fluidRow(
+               column(10, h3("Data - Pipeline capacity (MW)", style = "color: #39ab2c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("RenElecPipelineTable"))%>% withSpinner(color="#39ab2c"))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("LA pipeline capacity",
+             fluidRow(
+               column(10, h3("Data - Pipeline capacity by local authority  (MW)", style = "color: #39ab2c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable6"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("RenElecPipelineLATable"))%>% withSpinner(color="#39ab2c"))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Pipeline capacity time series",
+             fluidRow(
+               column(10, h3("Data - Pipeline capacity time series (GW)", style = "color: #39ab2c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("RenElecPipelineTimeTable"))%>% withSpinner(color="#39ab2c"))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
@@ -85,7 +102,7 @@ RenElecCapacityOutput <- function(id) {
 }
 
 ###### Server ######
-RenElecCapacity <- function(input, output, session) {
+RenElecPipeline <- function(input, output, session) {
 
   
   if (exists("PackageHeader") == 0) {
@@ -1420,9 +1437,25 @@ RenElecCapacity <- function(input, output, session) {
                                   skip = 13,
                                   n_max = 11)
     
-    RenElecPipeline <- RenElecPipeline[c(1:5,8:9)]
+    
     
     names(RenElecPipeline)[1] <- "Tech"
+    
+    CurrentOnshore <- read_delim("Processed Data/Output/Turbine Analysis/Quarterly/CurrentOnshore.txt", 
+                                     "\t", escape_double = FALSE, trim_ws = TRUE)
+    CurrentOffshore <- read_delim("Processed Data/Output/Turbine Analysis/Quarterly/CurrentOffshore.txt", 
+                                 "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    Turbines <- data.frame(
+      Tech = c("Wind Onshore", "Wind Offshore"),
+      Turbines = c(sum(CurrentOnshore$TurbineAmount), sum(CurrentOffshore$TurbineAmount))
+    )
+    
+    names(Turbines) <- c("Tech", "Number of wind turbines")
+    
+    RenElecPipeline <- merge(RenElecPipeline, Turbines, all = TRUE)
+    
+    RenElecPipeline <- RenElecPipeline[c(1:5,8,17,9)]
     
     datatable(
       RenElecPipeline,
