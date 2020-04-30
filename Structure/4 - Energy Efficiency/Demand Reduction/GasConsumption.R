@@ -52,7 +52,7 @@ GasConsumptionOutput <- function(id) {
              
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
              #dygraphOutput(ns("GasConsumptionLAPlot")),
-             imageOutput(ns("GasConsumptionLAPlot"), height = "700px")%>% withSpinner(color="#34d1a3"),
+             leafletOutput(ns("GasConsumptionMap"), height = "800px")%>% withSpinner(color="#34d1a3"),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")
              )),
     fluidRow(
@@ -1048,4 +1048,104 @@ GasConsumption <- function(input, output, session) {
     }
   )
   
+  
+  output$GasConsumptionMap <- renderLeaflet({
+    
+    ### Load Packages
+    library(readr)
+    library("maptools")
+    library(tmaptools)
+    library(tmap)
+    library("sf")
+    library("leaflet")
+    library("rgeos")
+    library(readxl)
+    library(ggplot2)
+    library(spatialEco)
+    
+    print("MapsandGasGrid")
+    
+    # This is unlikely to change from 2012
+    yearstart <- 2012
+    
+    ### Set the final year for the loop as the current year ###
+    yearend <- format(Sys.Date(), "%Y")
+    
+    
+    ### Add Simplified shape back to the Shapefile
+    LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/LocalAuthority2.shp")
+    
+    LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
+    ############ RENEWABLE GasTRICITY ################################################
+    
+    GasConsumptionLAMap <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Gas consump hhold LA",
+      skip = 12,
+      n_max = 34
+    )[1:3]
+    
+    
+    names(GasConsumptionLAMap) <- c("CODE", "LocalAuthority", "Total")
+    
+    GasConsumptionLAMapExtra <- data.frame(
+      CODE = c ("S12000027", "S12000023"	), 
+      LocalAuthority = c("Shetland Islands", "Orkney Islands"),
+      Total = c(9000,9000)
+    )
+    
+    
+    GasConsumptionLAMap <- rbind(GasConsumptionLAMap, GasConsumptionLAMapExtra)
+    GasConsumptionLAMap[order(substr(GasConsumptionLAMap$`CODE`,1,3), GasConsumptionLAMap$`LocalAuthority`),]
+    
+    
+    GasConsumptionLAMap <- GasConsumptionLAMap[c(1,2,ncol(GasConsumptionLAMap))]
+    
+    GasConsumptionLAMap <- GasConsumptionLAMap[which(substr(GasConsumptionLAMap$CODE, 1,3)== "S12"),]
+    
+    GasConsumptionLAMap[is.na(GasConsumptionLAMap)] <- 10000
+    
+    GasConsumptionLAMap$Content <- paste0("<b>",GasConsumptionLAMap$LocalAuthority, "</b><br/>Average annual household gas consumption:<br/><em>", ifelse(GasConsumptionLAMap$Total > 10001,paste0(format(round(GasConsumptionLAMap$Total,0 ),  big.mark = ",")," kWh</em>"),"Not connected to gas grid" ))
+    
+    GasConsumptionLAMap$Hover <- paste0(GasConsumptionLAMap$LocalAuthority, " - ", ifelse(GasConsumptionLAMap$Total > 10001,paste0(format(round(GasConsumptionLAMap$Total,0 ),  big.mark = ",")," kWh"),"N/A" ))
+    
+    
+    
+    
+    ### Change LA$CODE to string
+    LA$CODE <- as.character(LA$CODE)
+    
+    ### Order LAs in Shapefile
+    LA <- LA[order(LA$CODE),]
+    
+    ### Order LAs in Data
+    GasConsumptionLAMap <- GasConsumptionLAMap[order(GasConsumptionLAMap$CODE),]
+    
+    ### Combine Data with Map data
+    LAMap <-
+      append_data(LA, GasConsumptionLAMap, key.shp = "CODE", key.data = "CODE")
+    
+    pal <- colorNumeric(
+      palette = "Greens",
+      domain = LAMap$Total)
+    
+    leaflet(LAMap) %>% 
+      addProviderTiles("Esri.WorldGrayCanvas" ) %>% 
+      addPolygons(stroke = TRUE, 
+                  weight = 0.1,
+                  smoothFactor = 0.2,
+                  popup = ~Content,
+                  label = ~Hover,
+                  fillOpacity = 1,
+                  color = ~pal(Total),
+                  highlightOptions = list(color = "white", weight = 2,
+                                          bringToFront = TRUE)) %>%
+      leaflet::addLegend("bottomright", pal = pal, values = ~Total,
+                         title = "Gas consumption",
+                         labFormat = labelFormat(suffix = " kWh"),
+                         opacity = 1
+      ) %>% 
+      htmlwidgets::prependContent(html_fix) 
+    
+  }) 
 }

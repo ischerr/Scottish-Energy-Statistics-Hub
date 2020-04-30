@@ -48,7 +48,7 @@ EnergyConsumptionOutput <- function(id) {
              )),
              
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
-             imageOutput(ns("EnConsumptionLAPlot"), height = "700px")%>% withSpinner(color="#34d1a3"),
+             leafletOutput(ns("EnConsumptionMap"), height = "800px")%>% withSpinner(color="#34d1a3"),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")
              )),
 
@@ -1399,4 +1399,102 @@ EnergyConsumption <- function(input, output, session) {
     }
 
   )
+  
+  
+  
+  
+  
+  output$EnConsumptionMap <- renderLeaflet({
+    
+    ### Load Packages
+    library(readr)
+    library("maptools")
+    library(tmaptools)
+    library(tmap)
+    library("sf")
+    library("leaflet")
+    library("rgeos")
+    library(readxl)
+    library(ggplot2)
+    library(spatialEco)
+    
+    print("MapsandGasGrid")
+    
+    # This is unlikely to change from 2012
+    yearstart <- 2012
+    
+    ### Set the final year for the loop as the current year ###
+    yearend <- format(Sys.Date(), "%Y")
+    
+    
+    ### Add Simplified shape back to the Shapefile
+    LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/LocalAuthority2.shp")
+    
+    LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
+    ############ RENEWABLE ELECTRICITY ################################################
+    
+    EnConsumptionLA <- read_csv("Processed Data/Output/Consumption/CorrectedFinalConsumptionbyLA.csv")
+    
+    Year <- 2017
+    
+      unique(EnConsumptionLA$Year)
+      
+      EnConsumptionLAMap <- EnConsumptionLA[which(EnConsumptionLA$Year == Year),]
+      
+      EnConsumptionLAMap <- EnConsumptionLAMap[c(3,1,26,27,28,25)]
+      
+      names(EnConsumptionLAMap) <- c("LocalAuthority", "CODE", "Industry & Commercial", "Domestic", "Transport", "Total")
+      
+      EnConsumptionLAMap[order(substr(EnConsumptionLAMap$`CODE`,1,3), EnConsumptionLAMap$`LocalAuthority`),]
+      
+    
+    EnConsumptionLAMap <- EnConsumptionLAMap[c(1,2,ncol(EnConsumptionLAMap))]
+    
+    EnConsumptionLAMap <- EnConsumptionLAMap[which(substr(EnConsumptionLAMap$CODE, 1,3)== "S12"),]
+    
+    EnConsumptionLAMap[is.na(EnConsumptionLAMap)] <- 0
+    
+    EnConsumptionLAMap$Content <- paste0("<b>",EnConsumptionLAMap$LocalAuthority, "</b><br/>Total final energy consumption:<br/><em>", ifelse(EnConsumptionLAMap$Total > 0,paste0(format(round(EnConsumptionLAMap$Total,0 ),  big.mark = ",")," GWh</em>"),"N/A" ))
+    
+    EnConsumptionLAMap$Hover <- paste0(EnConsumptionLAMap$LocalAuthority, " - ", ifelse(EnConsumptionLAMap$Total > 0,paste0(format(round(EnConsumptionLAMap$Total,0 ),  big.mark = ",")," GWh"),"N/A" ))
+  
+    
+    
+    
+    ### Change LA$CODE to string
+    LA$CODE <- as.character(LA$CODE)
+    
+    ### Order LAs in Shapefile
+    LA <- LA[order(LA$CODE),]
+    
+    ### Order LAs in Data
+    EnConsumptionLAMap <- EnConsumptionLAMap[order(EnConsumptionLAMap$CODE),]
+    
+    ### Combine Data with Map data
+    LAMap <-
+      append_data(LA, EnConsumptionLAMap, key.shp = "CODE", key.data = "CODE")
+    
+    pal <- colorNumeric(
+      palette = "Greens",
+      domain = LAMap$Total)
+    
+    leaflet(LAMap) %>% 
+      addProviderTiles("Esri.WorldGrayCanvas" ) %>% 
+      addPolygons(stroke = TRUE, 
+                  weight = 0.1,
+                  smoothFactor = 0.2,
+                  popup = ~Content,
+                  label = ~Hover,
+                  fillOpacity = 1,
+                  color = ~pal(Total),
+                  highlightOptions = list(color = "white", weight = 2,
+                                          bringToFront = TRUE)) %>%
+      leaflet::addLegend("bottomright", pal = pal, values = ~Total,
+                         title = "Total final energy consumption",
+                         labFormat = labelFormat(suffix = " GWh"),
+                         opacity = 1
+      ) %>% 
+      htmlwidgets::prependContent(html_fix) 
+    
+  }) 
 }
