@@ -21,7 +21,7 @@ NonGasGridOutput <- function(id) {
     
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     #dygraphOutput(ns("NonGasGridPlot")),
-    imageOutput(ns("NonGasGridPlot"), height = "700px")%>% withSpinner(color="#68c3ea"),
+    leafletOutput(ns("GasGridMap"), height = "800px")%>% withSpinner(color="#68c3ea"),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),
@@ -253,7 +253,7 @@ NonGasGrid <- function(input, output, session) {
       skip = 13
     )
     
-    GasGridMap <- GasGridMap[c(1,2,ncol(GasGridMap))]
+    GasGridMap <- GasGridMap[c(2,ncol(GasGridMap),5)]
     
     names(GasGridMap) <- c("LocalAuthority", "CODE", "Meters")
     
@@ -282,8 +282,8 @@ NonGasGrid <- function(input, output, session) {
     
     
     pal <- colorNumeric(
-      palette = "Blues",
-      domain = LAMap$Meters)
+      palette = "Reds",
+      domain = c(0,100))
     
     leaflet(LAMap) %>% 
       addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
@@ -296,7 +296,7 @@ NonGasGrid <- function(input, output, session) {
                   color = ~pal(Meters),
                   highlightOptions = list(color = "white", weight = 2,
                                           bringToFront = TRUE)) %>%
-      leaflet::addLegend("bottomright", pal = pal, values = ~Meters,
+      leaflet::addLegend("bottomright", pal = pal, values = c(0,50,100),
                          title = "Proportion of<br/>Economy 7 Meters",
                          labFormat = labelFormat(suffix = "%"),
                          opacity = 1
