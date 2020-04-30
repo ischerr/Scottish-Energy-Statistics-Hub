@@ -259,7 +259,7 @@ NonGasGrid <- function(input, output, session) {
     
     GasGridMap <- GasGridMap[which(substr(GasGridMap$CODE, 1,3)== "S12"),]
     
-    GasGridMap$Content <- paste0("<b>",GasGridMap$LocalAuthority, "</b><br/>Proportion of Economy 7 Meters:<br/><em>", percent(GasGridMap$Meters, 0.1),"</em>" )
+    GasGridMap$Content <- paste0("<b>",GasGridMap$LocalAuthority, "</b><br/>Proportion of households<br/>not on the gas grid:<br/><em>", percent(GasGridMap$Meters, 0.1),"</em>" )
     
     GasGridMap$Hover <- paste0(GasGridMap$LocalAuthority, " - ", percent(GasGridMap$Meters, 0.1))
     
@@ -297,7 +297,7 @@ NonGasGrid <- function(input, output, session) {
                   highlightOptions = list(color = "white", weight = 2,
                                           bringToFront = TRUE)) %>%
       leaflet::addLegend("bottomright", pal = pal, values = c(0,50,100),
-                         title = "Proportion of<br/>Economy 7 Meters",
+                         title = "Proportion of households<br/>not on the gas grid",
                          labFormat = labelFormat(suffix = "%"),
                          opacity = 1
       ) 
