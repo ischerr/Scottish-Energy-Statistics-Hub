@@ -39,47 +39,47 @@ RenElecCapacityOutput <- function(id) {
                #dygraphOutput(ns("RenElecFuelPlot")),
                plotlyOutput(ns("RenElecFuelPlot"), height = "900px")%>% withSpinner(color="#39ab2c"),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-      tabPanel("Operational capacity tech",
-               fluidRow(column(8,
-                               h3("Operational renewable capacity by technology", style = "color: #39ab2c;  font-weight:bold"),
-                               h4(textOutput(ns('RenElecBreakdownCapSubtitle')), style = "color: #39ab2c;")
-               ),
-               column(
-                 4, style = 'padding:15px;',
-                 downloadButton(ns('RenElecBreakdownCap.png'), 'Download Graph', style="float:right")
-               )),
-               
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-               #dygraphOutput(ns("RenElecCapacityPlot")),
-               plotlyOutput(ns("RenElecBreakdownCapPlot"), height = "600px")%>% withSpinner(color="#39ab2c"),
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-      
-      tabPanel("Operational capacity by installation size",
-               fluidRow(column(8,
-                               h3("Operational renewable capacity by technology", style = "color: #39ab2c;  font-weight:bold"),
-                               h4(textOutput(ns('RenElecOperationalSizeSubtitle')), style = "color: #39ab2c;")
-               ),
-               column(
-                 4, style = 'padding:15px;',
-                 downloadButton(ns('RenElecOperationalSize.png'), 'Download Graph', style="float:right")
-               )),
-               
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-               #dygraphOutput(ns("RenElecCapacityPlot")),
-               
-               plotlyOutput(ns("RenElecOperationalSizePlot"), height = "600px")%>% withSpinner(color="#39ab2c"),
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
+    tabPanel("Operational capacity tech",
+             fluidRow(column(8,
+                             h3("Operational renewable capacity by technology", style = "color: #39ab2c;  font-weight:bold"),
+                             h4(textOutput(ns('RenElecBreakdownCapSubtitle')), style = "color: #39ab2c;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('RenElecBreakdownCap.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+             #dygraphOutput(ns("RenElecCapacityPlot")),
+             plotlyOutput(ns("RenElecBreakdownCapPlot"), height = "600px")%>% withSpinner(color="#39ab2c"),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+
+    tabPanel("Operational capacity by installation size",
+             fluidRow(column(8,
+                             h3("Operational renewable capacity by technology", style = "color: #39ab2c;  font-weight:bold"),
+                             h4(textOutput(ns('RenElecOperationalSizeSubtitle')), style = "color: #39ab2c;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('RenElecOperationalSize.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+             #dygraphOutput(ns("RenElecCapacityPlot")),
+
+             plotlyOutput(ns("RenElecOperationalSizePlot"), height = "600px")%>% withSpinner(color="#39ab2c"),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     
     fluidRow(
-      column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
-      column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
+    column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
+    column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
     
     fluidRow(
-      uiOutput(ns("Text"))
+    uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     tabsetPanel(
-      
+
       tabPanel("Capacity by technology",
                fluidRow(
                  column(10, h3("Data - Operational renewable capacity by technology (MW)", style = "color: #39ab2c;  font-weight:bold")),
@@ -88,7 +88,7 @@ RenElecCapacityOutput <- function(id) {
                fluidRow(
                  column(12, dataTableOutput(ns("RenElecBreakdownCapTable"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-      
+
       tabPanel("Capacity by installation size",
                fluidRow(
                  column(10, h3("Data - Operational renewable capacity by installation size (MW)", style = "color: #39ab2c;  font-weight:bold")),
@@ -97,7 +97,7 @@ RenElecCapacityOutput <- function(id) {
                fluidRow(
                  column(12, dataTableOutput(ns("RenElecOperationalSizeTable"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
-    
+  
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
@@ -105,9 +105,9 @@ RenElecCapacityOutput <- function(id) {
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
-             SourceLookup("BEISREPD"),
-             SourceLookup("BEISRenElec")
-             
+        SourceLookup("BEISREPD"),
+        SourceLookup("BEISRenElec")
+        
       )
     )
   )
@@ -115,7 +115,7 @@ RenElecCapacityOutput <- function(id) {
 
 ###### Server ######
 RenElecCapacity <- function(input, output, session) {
-  
+
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
@@ -142,7 +142,7 @@ RenElecCapacity <- function(input, output, session) {
     
     paste(min(Data$Year),"-", max(Data$Year))
   })
-  
+
   output$RenElecCapacityPlot <- renderPlotly  ({
     
     Data <-
@@ -295,14 +295,14 @@ RenElecCapacity <- function(input, output, session) {
       formatStyle(12, fontWeight = "bold")
   })
   
-  output$Text <- renderUI({
-    tagList(column(12,
-                   HTML(
-                     paste(readtext("Structure/2 - Renewables/Electricity/RenElecCapacity.txt")[2])
-                     
-                   )))
-  })
-  
+ output$Text <- renderUI({
+   tagList(column(12,
+                  HTML(
+                    paste(readtext("Structure/2 - Renewables/Electricity/RenElecCapacity.txt")[2])
+                    
+                  )))
+ })
+ 
   
   observeEvent(input$ToggleTable2, {
     toggle("RenElecBreakdownCapTable")
@@ -386,22 +386,22 @@ RenElecCapacity <- function(input, output, session) {
           colour = LineColours[1],
           family = "Century Gothic"
         ) +
-        geom_text(
-          aes(
-            y = 0,
-            label = ifelse(
-              Year == min(Year) |
-                Year == max(Year),
-              format(Year, format = "%Y Q%q"),
-              ""
-            ),
-            hjust = 0.5,
-            vjust = 1.5,
-            colour = ChartColours[1],
-            fontface = 2
+      geom_text(
+        aes(
+          y = 0,
+          label = ifelse(
+            Year == min(Year) |
+              Year == max(Year),
+            format(Year, format = "%Y Q%q"),
+            ""
           ),
-          family = "Century Gothic"
-        )
+          hjust = 0.5,
+          vjust = 1.5,
+          colour = ChartColours[1],
+          fontface = 2
+        ),
+        family = "Century Gothic"
+      )
       
       
       RenElecOperationalChart
@@ -582,7 +582,7 @@ RenElecCapacity <- function(input, output, session) {
     
     Data$Date <- paste0(substr(Data$Date,1,4), " Q", substr(Data$Date, 8,8))
     
-    paste("Scotland,", Data$Date)
+        paste("Scotland,", Data$Date)
   })
   
   output$RenElecBreakdownCap.png <- downloadHandler(
@@ -758,12 +758,12 @@ RenElecCapacity <- function(input, output, session) {
     Data %<>% lapply(function(x)
       as.numeric(as.character(x)))
     
-    
+  
     
     RenElecCapFuel <- as_tibble(Data)
     
     RenElecCapFuel[is.na(RenElecCapFuel)] <- 0
-    
+      
     RenElecCapFuel <- RenElecCapFuel[c(1, (ncol(RenElecCapFuel) - 1):2)]
     
     RenElecCapFuel <- arrange(RenElecCapFuel,-row_number())
@@ -1033,7 +1033,7 @@ RenElecCapacity <- function(input, output, session) {
   observeEvent(input$ToggleTable, {
     toggle("RenElecFuelCapTable")
   })
-  
+
   output$RenElecFuel.png <- downloadHandler(
     filename = "RenElecFuel.png",
     content = function(file) {
@@ -2251,7 +2251,7 @@ RenElecCapacity <- function(input, output, session) {
   output$RenElecOperationalSizeTable = renderDataTable({
     
     OperationalSize <- read_delim("Processed Data/Output/Capacity by Size/CapacitySizeTech.txt", 
-                                  "\t", escape_double = FALSE, trim_ws = TRUE)
+                  "\t", escape_double = FALSE, trim_ws = TRUE)
     
     names(OperationalSize) <- c("Technology Type", "Total capacity of installations below  5MW", "Total capacity of installations between 5 - 10MW", "Total capacity of installations between 10-50MW", "Total capacity of installations above 50MW", "All Installation Sizes")
     
@@ -2266,7 +2266,7 @@ RenElecCapacity <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        
+
         title = "Operational renewable capacity by installation size (MW)",
         dom = 'ltBp',
         buttons = list(
