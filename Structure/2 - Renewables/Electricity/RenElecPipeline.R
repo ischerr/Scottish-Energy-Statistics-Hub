@@ -11,20 +11,6 @@ RenElecPipelineOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-    tabPanel("Operational capacity tech",
-             fluidRow(column(8,
-                             h3("Operational renewable capacity by technology", style = "color: #39ab2c;  font-weight:bold"),
-                             h4(textOutput(ns('RenElecBreakdownCapSubtitle')), style = "color: #39ab2c;")
-             ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('RenElecBreakdownCap.png'), 'Download Graph', style="float:right")
-             )),
-             
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-             #dygraphOutput(ns("RenElecCapacityPlot")),
-             plotlyOutput(ns("RenElecBreakdownCapPlot"), height = "600px")%>% withSpinner(color="#39ab2c"),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Pipeline renewable capacity",
              fluidRow(column(8,
                              h3("Pipeline renewable capacity by planning stage", style = "color: #39ab2c;  font-weight:bold"),
