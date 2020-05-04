@@ -531,7 +531,7 @@ ULEVs <- function(input, output, session) {
           ),
           label = "Other ULEVs",
           hjust = .5,
-          vjust = 6.1,
+          vjust = 8.1,
           colour = "white",
           fontface = 2,
           family = "Century Gothic"
