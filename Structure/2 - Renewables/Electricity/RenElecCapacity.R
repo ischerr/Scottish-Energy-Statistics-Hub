@@ -9,7 +9,7 @@ source("Structure/Global.R")
 
 RenElecCapacityOutput <- function(id) {
   ns <- NS(id)
-  tagList(
+  tagList( 
     tabsetPanel(
       tabPanel("Quarterly operational capacity",
                fluidRow(column(8,
@@ -39,58 +39,48 @@ RenElecCapacityOutput <- function(id) {
                #dygraphOutput(ns("RenElecFuelPlot")),
                plotlyOutput(ns("RenElecFuelPlot"), height = "900px")%>% withSpinner(color="#39ab2c"),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Operational capacity tech",
-             fluidRow(column(8,
-                             h3("Operational renewable capacity by technology", style = "color: #39ab2c;  font-weight:bold"),
-                             h4(textOutput(ns('RenElecBreakdownCapSubtitle')), style = "color: #39ab2c;")
-             ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('RenElecBreakdownCap.png'), 'Download Graph', style="float:right")
-             )),
-             
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-             #dygraphOutput(ns("RenElecCapacityPlot")),
-             plotlyOutput(ns("RenElecBreakdownCapPlot"), height = "600px")%>% withSpinner(color="#39ab2c"),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Pipeline renewable capacity",
-             fluidRow(column(8,
-                             h3("Pipeline renewable capacity by planning stage", style = "color: #39ab2c;  font-weight:bold"),
-                             h4(textOutput(ns('RenElecPipelineCapSubtitle')), style = "color: #39ab2c;")
-             ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('RenElecPipelineCap.png'), 'Download Graph', style="float:right")
-             )),
-             
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-             #dygraphOutput(ns("RenElecCapacityPlot")),
-             plotlyOutput(ns("RenElecPipelineCapPlot"), height = "200px")%>% withSpinner(color="#39ab2c"),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Pipeline capacity tech",
-             fluidRow(column(8,
-                             h3("Pipeline renewable capacity by technology", style = "color: #39ab2c;  font-weight:bold"),
-                             h4(textOutput(ns('RenElecPipelineSubtitle')), style = "color: #39ab2c;")
-             ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('RenElecPipeline.png'), 'Download Graph', style="float:right")
-             )),
-             
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-             #dygraphOutput(ns("RenElecPipelinePlot")),
-             plotlyOutput(ns("RenElecPipelinePlot"), height = "500px")%>% withSpinner(color="#39ab2c"),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
-    fluidRow(
-    column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
-    column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
+      tabPanel("Operational capacity tech",
+               fluidRow(column(8,
+                               h3("Operational renewable capacity by technology", style = "color: #39ab2c;  font-weight:bold"),
+                               h4(textOutput(ns('RenElecBreakdownCapSubtitle')), style = "color: #39ab2c;")
+               ),
+               column(
+                 4, style = 'padding:15px;',
+                 downloadButton(ns('RenElecBreakdownCap.png'), 'Download Graph', style="float:right")
+               )),
+               
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+               #dygraphOutput(ns("RenElecCapacityPlot")),
+               plotlyOutput(ns("RenElecBreakdownCapPlot"), height = "600px")%>% withSpinner(color="#39ab2c"),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+      
+      tabPanel("Operational capacity by installation size",
+               fluidRow(column(8,
+                               h3("Operational renewable capacity by installation size", style = "color: #39ab2c;  font-weight:bold"),
+                               h4(textOutput(ns('RenElecOperationalSizeSubtitle')), style = "color: #39ab2c;")
+               ),
+               column(
+                 4, style = 'padding:15px;',
+                 downloadButton(ns('RenElecOperationalSize.png'), 'Download Graph', style="float:right")
+               )),
+               
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+               #dygraphOutput(ns("RenElecCapacityPlot")),
+               
+               plotlyOutput(ns("RenElecOperationalSizePlot"), height = "600px")%>% withSpinner(color="#39ab2c"),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     
     fluidRow(
-    uiOutput(ns("Text"))
+      column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
+      column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
+    
+    fluidRow(
+      uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     tabsetPanel(
-      tabPanel("Quarterly operational capacity",
+      
+      tabPanel("Capacity by technology",
                fluidRow(
                  column(10, h3("Data - Operational renewable capacity by technology (MW)", style = "color: #39ab2c;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
@@ -98,30 +88,16 @@ RenElecCapacityOutput <- function(id) {
                fluidRow(
                  column(12, dataTableOutput(ns("RenElecBreakdownCapTable"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Pipeline capacity",
-             fluidRow(
-               column(10, h3("Data - Pipeline capacity (MW)", style = "color: #39ab2c;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
-             ),
-             fluidRow(
-               column(12, dataTableOutput(ns("RenElecPipelineTable"))%>% withSpinner(color="#39ab2c"))),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("LA pipeline capacity",
-             fluidRow(
-               column(10, h3("Data - Pipeline capacity by local authority  (MW)", style = "color: #39ab2c;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable6"), "Show/Hide Table", style = "float:right; "))
-             ),
-             fluidRow(
-               column(12, dataTableOutput(ns("RenElecPipelineLATable"))%>% withSpinner(color="#39ab2c"))),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Pipeline capacity time series",
-             fluidRow(
-               column(10, h3("Data - Pipeline capacity time series (GW)", style = "color: #39ab2c;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
-             ),
-             fluidRow(
-               column(12, dataTableOutput(ns("RenElecPipelineTimeTable"))%>% withSpinner(color="#39ab2c"))),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
+      
+      tabPanel("Capacity by installation size",
+               fluidRow(
+                 column(10, h3("Data - Operational renewable capacity by installation size (MW)", style = "color: #39ab2c;  font-weight:bold")),
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
+               ),
+               fluidRow(
+                 column(12, dataTableOutput(ns("RenElecOperationalSizeTable"))%>% withSpinner(color="#39ab2c"))),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
+    
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
@@ -129,9 +105,9 @@ RenElecCapacityOutput <- function(id) {
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
-        SourceLookup("BEISREPD"),
-        SourceLookup("BEISRenElec")
-        
+             SourceLookup("BEISREPD"),
+             SourceLookup("BEISRenElec")
+             
       )
     )
   )
@@ -139,7 +115,7 @@ RenElecCapacityOutput <- function(id) {
 
 ###### Server ######
 RenElecCapacity <- function(input, output, session) {
-
+  
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
@@ -166,7 +142,7 @@ RenElecCapacity <- function(input, output, session) {
     
     paste(min(Data$Year),"-", max(Data$Year))
   })
-
+  
   output$RenElecCapacityPlot <- renderPlotly  ({
     
     Data <-
@@ -319,14 +295,14 @@ RenElecCapacity <- function(input, output, session) {
       formatStyle(12, fontWeight = "bold")
   })
   
- output$Text <- renderUI({
-   tagList(column(12,
-                  HTML(
-                    paste(readtext("Structure/2 - Renewables/Electricity/RenElecCapacity.txt")[2])
-                    
-                  )))
- })
- 
+  output$Text <- renderUI({
+    tagList(column(12,
+                   HTML(
+                     paste(readtext("Structure/2 - Renewables/Electricity/RenElecCapacity.txt")[2])
+                     
+                   )))
+  })
+  
   
   observeEvent(input$ToggleTable2, {
     toggle("RenElecBreakdownCapTable")
@@ -410,22 +386,22 @@ RenElecCapacity <- function(input, output, session) {
           colour = LineColours[1],
           family = "Century Gothic"
         ) +
-      geom_text(
-        aes(
-          y = 0,
-          label = ifelse(
-            Year == min(Year) |
-              Year == max(Year),
-            format(Year, format = "%Y Q%q"),
-            ""
+        geom_text(
+          aes(
+            y = 0,
+            label = ifelse(
+              Year == min(Year) |
+                Year == max(Year),
+              format(Year, format = "%Y Q%q"),
+              ""
+            ),
+            hjust = 0.5,
+            vjust = 1.5,
+            colour = ChartColours[1],
+            fontface = 2
           ),
-          hjust = 0.5,
-          vjust = 1.5,
-          colour = ChartColours[1],
-          fontface = 2
-        ),
-        family = "Century Gothic"
-      )
+          family = "Century Gothic"
+        )
       
       
       RenElecOperationalChart
@@ -606,7 +582,7 @@ RenElecCapacity <- function(input, output, session) {
     
     Data$Date <- paste0(substr(Data$Date,1,4), " Q", substr(Data$Date, 8,8))
     
-        paste("Scotland,", Data$Date)
+    paste("Scotland,", Data$Date)
   })
   
   output$RenElecBreakdownCap.png <- downloadHandler(
@@ -782,12 +758,12 @@ RenElecCapacity <- function(input, output, session) {
     Data %<>% lapply(function(x)
       as.numeric(as.character(x)))
     
-  
+    
     
     RenElecCapFuel <- as_tibble(Data)
     
     RenElecCapFuel[is.na(RenElecCapFuel)] <- 0
-      
+    
     RenElecCapFuel <- RenElecCapFuel[c(1, (ncol(RenElecCapFuel) - 1):2)]
     
     RenElecCapFuel <- arrange(RenElecCapFuel,-row_number())
@@ -1057,7 +1033,7 @@ RenElecCapacity <- function(input, output, session) {
   observeEvent(input$ToggleTable, {
     toggle("RenElecFuelCapTable")
   })
-
+  
   output$RenElecFuel.png <- downloadHandler(
     filename = "RenElecFuel.png",
     content = function(file) {
@@ -1321,315 +1297,9 @@ RenElecCapacity <- function(input, output, session) {
     }
   )
   
-  output$RenElecPipelineSubtitle <- renderText({
-    
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Renewable elec pipeline", col_names = TRUE,
-                       skip = 26, n_max = 1)
-    Quarter <- substr(Data[1,1], 8,8)
-    
-    Quarter <- as.numeric(Quarter)*3
-    
-    Year <- substr(Data[1,1], 1,4)
-    
-    paste("Scotland,", month.name[Quarter], Year)
-  })
-  
-  output$RenElecPipelinePlot <- renderPlotly  ({
-    
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Renewable elec pipeline", col_names = TRUE,
-                       skip = 13, n_max = 10)[1:6]
-    
-    Data[2:5]%<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    RenElecPipeline <- as_tibble(Data)
-    
-    RenElecPipeline$Total <- RenElecPipeline$`Under Construction` + RenElecPipeline$`Awaiting Construction` + RenElecPipeline$`In Planning`
-    
-    names(RenElecPipeline)[1] <- "Type"
-    
-    RenElecPipeline <- RenElecPipeline[which(RenElecPipeline$Total > 0),]
-    
-    RenElecPipeline <- arrange(RenElecPipeline, RenElecPipeline$Total)
-    
-    RenElecPipeline$Type <- paste0("<b>", RenElecPipeline$Type, "</b>")
-    
-    rownames(RenElecPipeline) <- NULL
-    
-    ChartColours <- c("#39ab2c", "#FF8500")
-    BarColours <-
-      c(
-        "#31a354",
-        "#0868ac",
-        "#43a2ca",
-        "#7bccc4",
-        "#a6bddb",
-        "#d0d1e6",
-        "#bdbdbd",
-        "#969696"
-      )
-    
-    
-    p <- plot_ly(data = RenElecPipeline, y = ~ Type) %>%
-      
-      add_trace(
-        data = RenElecPipeline,
-        x = ~ `Under Construction`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "Under Construction",
-        text = paste0("Under Construction: ", format(round(RenElecPipeline$`Under Construction`, digits = 0), big.mark = ","), " MW"),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[2]),
-        legendgroup = 2
-      ) %>%
-      add_trace(
-        data = RenElecPipeline,
-        x = ~ `Awaiting Construction`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "Awaiting Construction",
-        text = paste0("Awaiting Construction: ", format(round(RenElecPipeline$`Awaiting Construction`, digits = 0), big.mark = ","), " MW"),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[3]),
-        legendgroup = 3
-      ) %>%
-      
-      add_trace(
-        data = RenElecPipeline,
-        x = ~ `In Planning`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "In Planning",
-        text = paste0("In Planning: ", format(round(RenElecPipeline$`In Planning`, digits = 0), big.mark = ","), " MW"),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[4]),
-        legendgroup = 4
-      ) %>%
-      add_trace(
-        data = RenElecPipeline,
-        y = ~ Type,
-        x = ~ (RenElecPipeline$`Under Construction` + RenElecPipeline$`Awaiting Construction` + RenElecPipeline$`In Planning`) + 0.1,
-        showlegend = FALSE,
-        type = 'scatter',
-        mode = 'text',
-        text = paste("<b>",format(round((RenElecPipeline$`Under Construction` + RenElecPipeline$`Awaiting Construction` + RenElecPipeline$`In Planning`), digits = 0), big.mark = ","),"MW</b>"),
-        textposition = 'middle right',
-        textfont = list(color = ChartColours[1]),
-        hoverinfo = 'skip',
-        marker = list(
-          size = 0.00001
-        )
-      ) %>%
-      layout(
-        barmode = 'stack',
-        legend = list(font = list(color = "#1A5D38"),
-                      orientation = 'h'),
-        hoverlabel = list(font = list(color = "white"),
-                          hovername = 'text'),
-        hovername = 'text',
-        yaxis = list(
-          title = "",
-          showgrid = FALSE,
-          # ticktext = list( "Landfill Gas",          
-          #                  "Large Hydro",          
-          #                  "Anaerobic Digestion",   
-          #                  "Small Hydro",     
-          #                  "Energy from waste"  ,   
-          #                  "Biomass (co-firing)" ,  
-          #                  "Solar Photovoltaics" ,  
-          #                  "Shoreline wave / tidal",
-          #                  "Wind Offshore",       
-          #                  "Wind Onshore"),
-          tickvals = list(0,1,2,3,4,5,6,7,8,9),
-          tickmode = "array"
-        ),
-        xaxis = list(
-          title = "",
-          tickformat = "%",
-          showgrid = FALSE,
-          showticklabels = FALSE,
-          range = c(0,9900),
-          zeroline = FALSE,
-          zerolinecolor = ChartColours[1],
-          zerolinewidth = 2,
-          rangemode = "tozero"
-        )
-      ) %>%
-      config(displayModeBar = F)
-    
-    p
-  })
-  
-  output$RenElecPipelineTable = renderDataTable({
-    
-    RenElecPipeline <- read_excel("Structure/CurrentWorking.xlsx",
-                                  sheet = "Renewable elec pipeline", col_names = TRUE, 
-                                  skip = 13,
-                                  n_max = 11)
-    
-    RenElecPipeline <- RenElecPipeline[c(1:5,8:9)]
-    
-    names(RenElecPipeline)[1] <- "Tech"
-    
-    datatable(
-      RenElecPipeline,
-      extensions = 'Buttons',
-      
-      rownames = FALSE,
-      options = list(
-        paging = TRUE,
-        pageLength = -1,
-        searching = TRUE,
-        fixedColumns = FALSE,
-        autoWidth = TRUE,
-        ordering = TRUE,
-        order = list(list(ncol(RenElecPipeline)-1, 'desc')),
-        title = "Pipeline renewable capacity by technology  (MW)",
-        dom = 'ltBp',
-        buttons = list(
-          list(extend = 'copy'),
-          list(
-            extend = 'excel',
-            title = 'Pipeline renewable capacity by technology  (MW)',
-            header = TRUE
-          ),
-          list(extend = 'csv',
-               title = 'Pipeline renewable capacity by technology  (MW)')
-        ),
-        
-        # customize the length menu
-        lengthMenu = list( c(10, 20, -1) # declare values
-                           , c(10, 20, "All") # declare titles
-        ), # end of lengthMenu customization
-        pageLength = 10
-      )
-    ) %>%
-      formatRound(2:ncol(RenElecPipeline), 0)
-  })
-  
-  output$RenElecPipelineLATable = renderDataTable({
-    
-    RenElecPipeline <- read_excel("Structure/CurrentWorking.xlsx",
-                                  sheet = "Table 2.3", col_names = TRUE, skip = 4
-    )[1:4]
-    
-    names(RenElecPipeline) <- c("Local Authority", "In Planning", "Awaiting Construction", "Under Construction")
-    
-    RenElecPipeline <- RenElecPipeline[complete.cases(RenElecPipeline),]
-    
-    LALookup <- read_excel("Structure/LALookup.xlsx", 
-                           sheet = "LA to Code")
-    
-    names(LALookup) <- c("Local Authority", "LA Code")
-    
-    RenElecPipeline <- merge(RenElecPipeline, LALookup, all.x = TRUE)
-    
-    RenElecPipeline$Total <- RenElecPipeline$`In Planning` + RenElecPipeline$`Awaiting Construction` + RenElecPipeline$`Under Construction`
-    
-    RenElecPipeline <- RenElecPipeline[c(1:22,24:31,33,34,23,32),c(1,5,2,3,4,6)]
-    
-    datatable(
-      RenElecPipeline,
-      extensions = 'Buttons',
-      rownames = FALSE,
-      options = list(
-        paging = TRUE,
-        pageLength = -1,
-        searching = TRUE,
-        fixedColumns = FALSE,
-        autoWidth = TRUE,
-        ordering = TRUE,
-        title = "Pipeline renewable capacity by planning stage and local authority (MW)",
-        dom = 'ltBp',
-        buttons = list(
-          list(extend = 'copy'),
-          list(
-            extend = 'excel',
-            title = 'Pipeline renewable capacity by planning stage and local authority (MW)',
-            header = TRUE
-          ),
-          list(extend = 'csv',
-               title = 'Pipeline renewable capacity by planning stage and local authority (MW)')
-        ),
-        
-        # customize the length menu
-        lengthMenu = list( c(10, 20, -1) # declare values
-                           , c(10, 20, "All") # declare titles
-        ), # end of lengthMenu customization
-        pageLength = 10
-      )
-    ) %>%
-      formatRound(3:ncol(RenElecPipeline), 0)
-    
-  })
-  
-  output$RenElecPipelineCapTable = renderDataTable({
-    
-    RenElecPipeline <- read_excel("Structure/CurrentWorking.xlsx",
-                                  sheet = "Renewable elec pipeline", col_names = TRUE, 
-                                  skip = 13,
-                                  n_max = 11)
-    
-    RenElecPipeline <- RenElecPipeline[c(7:9)]
-    
-    
-    
-    names(RenElecPipeline)[1] <- c("Type")
-    
-    datatable(
-      RenElecPipeline,
-      extensions = 'Buttons',
-      
-      rownames = FALSE,
-      options = list(
-        paging = TRUE,
-        pageLength = -1,
-        searching = TRUE,
-        fixedColumns = FALSE,
-        autoWidth = TRUE,
-        ordering = TRUE,
-        order = list(list(ncol(RenElecPipeline)-1, 'desc')),
-        title = "Pipeline renewable capacity by planning stage",
-        dom = 'ltBp',
-        buttons = list(
-          list(extend = 'copy'),
-          list(
-            extend = 'excel',
-            title = 'Pipeline renewable capacity by planning stage',
-            header = TRUE
-          ),
-          list(extend = 'csv',
-               title = 'Pipeline renewable capacity by planning stage')
-        ),
-        
-        # customize the length menu
-        lengthMenu = list( c(10, 20, -1) # declare values
-                           , c(10, 20, "All") # declare titles
-        ), # end of lengthMenu customization
-        pageLength = 10
-      )
-    ) %>%
-      formatRound(2:ncol(RenElecPipeline), 0)
-  })
-  
   observeEvent(input$ToggleTable3, {
-    toggle("RenElecPipelineTable")
+    toggle("RenElecOperationalSizeTable")
   })
-  
-  observeEvent(input$ToggleTable6, {
-    toggle("RenElecPipelineLATable")
-  })
-  
-  observeEvent(input$ToggleTable4, {
-    toggle("RenElecPipelineCapTable")
-  })
-  
   
   ######
   Time <- read_excel("Structure/CurrentWorking.xlsx", 
@@ -1644,165 +1314,6 @@ RenElecCapacity <- function(input, output, session) {
   Subtitle <- paste("Scotland,", month.name[Quarter], Year)
   
   
-  output$RenElecPipeline.png <- downloadHandler(
-    filename = "RenElecPipeline.png",
-    content = function(file) {
-      
-      
-      
-      ### Load Packages and Functions
-      Data2 <- read_excel("Structure/CurrentWorking.xlsx",
-                          sheet = "Renewable elec pipeline", col_names = TRUE, 
-                          skip = 13, n_max = 10)[1:5]
-      
-      names(Data2)[1] <- "Type"
-      
-      RenElecCapTech <- Data2[1:4]
-      
-      
-      RenElecCapTech <- arrange(RenElecCapTech,-row_number())
-      
-      RenElecCapTech$Type <-
-        factor(RenElecCapTech$Type,
-               levels = unique(RenElecCapTech$Type),
-               ordered = TRUE)
-      
-      RenElecCapTech <- melt(RenElecCapTech, id.vars = "Type")
-      
-      
-      RenElecCapTech$variable <-
-        factor(RenElecCapTech$variable,
-               levels = rev(unique(RenElecCapTech$variable)),
-               ordered = TRUE)
-      
-      RenElecCapTech <- RenElecCapTech %>%
-        group_by(Type) %>%
-        mutate(pos = cumsum(value) - value / 2) %>%
-        mutate(top = sum(value))
-      
-      plottitle <-
-        "Pipeline renewable capacity by technology"
-      sourcecaption <- "Source: BEIS"
-      
-      ChartColours <- c("#39ab2c", "#FF8500")
-      BarColours <-
-        c(
-          "#31a354",
-          "#0868ac",
-          "#43a2ca",
-          "#7bccc4",
-          "#a6bddb",
-          "#d0d1e6",
-          "#bdbdbd",
-          "#969696"
-        )
-      
-      
-      RenElecCapTechChart <- RenElecCapTech %>%
-        ggplot(aes(x = Type, y = value, fill = variable), family = "Century Gothic") +
-        scale_fill_manual(
-          "variable",
-          values = c(
-            "Operational" = BarColours[1],
-            "Under Construction" = BarColours[2],
-            "Awaiting Construction" = BarColours[3],
-            "In Planning" = BarColours[4]
-          )
-        ) +
-        geom_bar(stat = "identity", width = .8) +
-        geom_text(
-          aes(
-            x = Type,
-            y = -200,
-            label = Type,
-            fontface = 2
-          ),
-          colour = ChartColours[1],
-          family = "Century Gothic",
-          hjust = 1
-        ) +
-        geom_text(
-          aes(
-            x = Type,
-            y = top+100  ,
-            label = paste(format(round(top,digits = 0),big.mark = ","), "MW"),
-            fontface = 2
-          ),
-          colour = ChartColours[1],
-          family = "Century Gothic",
-          hjust = 0
-        ) +
-        
-        geom_text(
-          aes(
-            x = 11.1,
-            y = (2/2) * (max(RenElecCapTech$top) * .8) +(max(RenElecCapTech$top) *.1),
-            label = "Under\nConstruction",
-            fontface = 2
-          ),
-          colour = BarColours[2],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = 11.1,
-            y = (1/2) * (max(RenElecCapTech$top) * .8) +(max(RenElecCapTech$top) *.1),
-            label = "Awaiting\nConstruction",
-            fontface = 2
-          ),
-          colour = BarColours[3],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = 11.1,
-            y = (0/2) * (max(RenElecCapTech$top) * .8) +(max(RenElecCapTech$top) *.1),
-            label = "In\nPlanning",
-            fontface = 2
-          ),
-          colour = BarColours[4],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = 12,
-            y = (3.5/4) * 15000,
-            label = " ",
-            fontface = 2
-          ),
-          colour = BarColours[4],
-          family = "Century Gothic"
-        )
-      
-      
-      RenElecCapTechChart
-      
-      
-      RenElecCapTechChart <-
-        StackedBars(RenElecCapTechChart,
-                    RenElecCapTech,
-                    plottitle,
-                    sourcecaption,
-                    ChartColours)
-      
-      RenElecCapTechChart <-
-        RenElecCapTechChart +
-        labs(subtitle = Subtitle) +
-        ylim(-4000, max(RenElecCapTech$top)+1800)+
-        coord_flip()
-      
-      RenElecCapTechChart
-      
-      ggsave(
-        file,
-        plot = RenElecCapTechChart,
-        width = 17.5,
-        height = 12,
-        units = "cm",
-        dpi = 300
-      )
-    }
-  )
   ######
   
   observeEvent(input$ToggleTable5, {
@@ -1930,315 +1441,16 @@ RenElecCapacity <- function(input, output, session) {
     }
   )
   
-  output$RenElecPipelineCapPlot <- renderPlotly  ({
-    
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Renewable elec pipeline", col_names = TRUE,
-                       skip = 26, n_max = 1)
-    
-    names(Data)[1] <- c("Type")
-    
-    Data[2:5]%<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    RenElecPipelineCap <- as_tibble(Data)
-    
-    RenElecPipelineCap <- arrange(RenElecPipelineCap,-row_number())
-    
-    ChartColours <- c("#39ab2c", "#FF8500")
-    BarColours <-
-      c(
-        "#31a354",
-        "#0868ac",
-        "#43a2ca",
-        "#7bccc4",
-        "#a6bddb",
-        "#d0d1e6",
-        "#bdbdbd",
-        "#969696"
-      )
-    
-    
-    RenElecPipelineCap$Type <- paste0("<b>", RenElecPipelineCap$Type, "</b>"  )
-    
-    p <- plot_ly(data = RenElecPipelineCap, y = ~ Type) %>%
-      
-      add_trace(
-        data = RenElecPipelineCap,
-        x = ~ `Under Construction`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "Under Construction",
-        text = paste0("Under Construction: ", round(RenElecPipelineCap$`Under Construction`, digits = 1), " GW"),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[2]),
-        legendgroup = 2
-      ) %>%
-      add_trace(
-        data = RenElecPipelineCap,
-        x = ~ `Awaiting Construction`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "Awaiting Construction",
-        text = paste0("Awaiting Construction: ", round(RenElecPipelineCap$`Awaiting Construction`, digits = 1), " GW"),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[3]),
-        legendgroup = 3
-      ) %>%
-      
-      add_trace(
-        data = RenElecPipelineCap,
-        x = ~ `In Planning`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "In Planning",
-        text = paste0("In Planning: ", round(RenElecPipelineCap$`In Planning`, digits = 1), " GW"),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[4]),
-        legendgroup = 4
-      ) %>%
-      add_trace(
-        data = RenElecPipelineCap,
-        y = ~Type,
-        x = ~ (RenElecPipelineCap$`Under Construction` + RenElecPipelineCap$`Awaiting Construction` + RenElecPipelineCap$`In Planning`) + 0.3,
-        showlegend = FALSE,
-        type = 'scatter',
-        mode = 'text',
-        text = paste("<b>",format(round((RenElecPipelineCap$`Under Construction` + RenElecPipelineCap$`Awaiting Construction` + RenElecPipelineCap$`In Planning`), digits = 1), big.mark = ","),"GW</b>"),
-        textposition = 'middle right',
-        textfont = list(color = ChartColours[1]),
-        hoverinfo = 'skip',
-        marker = list(
-          size = 0.00001
-        )
-      ) %>%
-      layout(
-        barmode = 'stack',
-        legend = list(font = list(color = "#1A5D38"),
-                      orientation = 'h'),
-        hoverlabel = list(font = list(color = "white"),
-                          hovername = 'text'),
-        hovername = 'text',
-        yaxis = list(
-          title = "",
-          showgrid = FALSE,
-          tickmode = "array"
-        ),
-        xaxis = list(
-          title = "",
-          tickformat = "%",
-          showgrid = FALSE,
-          showticklabels = FALSE,
-          range = c(0,15),
-          zeroline = FALSE,
-          zerolinecolor = ChartColours[1],
-          zerolinewidth = 2,
-          rangemode = "tozero"
-        )
-      ) %>%
-      config(displayModeBar = F)
-    
-    p
-  })
   
-  output$RenElecPipelineCapSubtitle <- renderText({
+  output$RenElecOperationalSizeTable = renderDataTable({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Renewable elec pipeline", col_names = TRUE,
-                       skip = 26, n_max = 1)
-    Quarter <- substr(Data[1,1], 8,8)
+    OperationalSize <- read_delim("Processed Data/Output/Capacity by Size/CapacitySizeTech.txt", 
+                                  "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Quarter <- as.numeric(Quarter)*3
-    
-    Year <- substr(Data[1,1], 1,4)
-    
-    paste("Scotland,", month.name[Quarter], Year)
-  })
-  
-  output$RenElecPipelineCap.png <- downloadHandler(
-    filename = "RenElecPipelineCap.png",
-    content = function(file) {
-      
-      Data2 <- read_excel("Structure/CurrentWorking.xlsx", 
-                          sheet = "Renewable elec pipeline", col_names = TRUE,
-                          skip = 13, n_max = 13)
-      
-      Data2 <- Data2[c(1,4,3,2)]
-      
-      Data2 <- Data2[complete.cases(Data2),]
-      
-      names(Data2) <- c("Type", "Under Construction", "Awaiting Construction", "In Planning")
-      
-      PipelineTotal <- tail(Data2, 1)
-      
-      PipelineTotal <- arrange(PipelineTotal,-row_number())
-      
-      PipelineTotal$Type <-
-        factor(PipelineTotal$Type,
-               levels = unique(PipelineTotal$Type),
-               ordered = TRUE)
-      
-      PipelineTotal <- melt(PipelineTotal, id.vars = "Type")
-      
-      
-      PipelineTotal$variable <-
-        factor(PipelineTotal$variable,
-               levels = rev(unique(PipelineTotal$variable)),
-               ordered = TRUE)
-      
-      PipelineTotal$value <- as.numeric(PipelineTotal$value) /1000
-      
-      PipelineTotal <- PipelineTotal %>%
-        group_by(Type) %>%
-        mutate(pos = cumsum(value) - value / 2) %>%
-        mutate(top = sum(value))
-      
-      plottitle <-
-        "Pipeline renewable capacity by planning stage"
-      sourcecaption <- "Source: BEIS"
-      
-      ChartColours <- c("#39ab2c", "#FF8500")
-      BarColours <-
-        c(
-          "#31a354",
-          "#0868ac",
-          "#43a2ca",
-          "#7bccc4",
-          "#a6bddb",
-          "#d0d1e6",
-          "#bdbdbd",
-          "#969696"
-        )
-      
-      
-      PipelineTotalChart <- PipelineTotal %>%
-        ggplot(aes(x = Type, y = value, fill = variable), family = "Century Gothic") +
-        scale_fill_manual(
-          "variable",
-          values = c(
-            "Under Construction" = BarColours[2],
-            "Awaiting Construction" = BarColours[3],
-            "In Planning" = BarColours[4]
-          )
-        ) +
-        geom_bar(stat = "identity", width = .4) +
-        geom_text(
-          aes(
-            x = Type,
-            y = -200,
-            label = Type,
-            fontface = 2
-          ),
-          colour = ChartColours[1],
-          family = "Century Gothic",
-          hjust = 1
-        ) +
-        geom_text(
-          aes(
-            x = Type,
-            y = top+1.600  ,
-            label = paste0(format(sprintf("%.1f", round(top,digits = 1)),big.mark = ","), "\nGW"),
-            fontface = 2
-          ),
-          colour = ChartColours[1],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Type,
-            y = pos  ,
-            label = paste0(format(round(value,digits = 1),big.mark = ",", trim = TRUE), "\nGW"),
-            fontface = 2
-          ),
-          colour = "white",
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = 1.4,
-            y = PipelineTotal$pos[which(PipelineTotal$variable == "Under Construction")],
-            label = "Under\nConstruction",
-            fontface = 2
-          ),
-          colour = BarColours[2],
-          family = "Century Gothic",
-          size = 3.5
-        ) +
-        geom_text(
-          aes(
-            x = 1.4,
-            y = PipelineTotal$pos[which(PipelineTotal$variable == "Awaiting Construction")],
-            label = "Awaiting\nConstruction",
-            fontface = 2
-          ),
-          colour = BarColours[3],
-          family = "Century Gothic",
-          size = 3.5
-        ) +
-        geom_text(
-          aes(
-            x = 1.4,
-            y = PipelineTotal$pos[which(PipelineTotal$variable == "In Planning")],
-            label = "In\nPlanning",
-            fontface = 2
-          ),
-          colour = BarColours[4],
-          family = "Century Gothic",
-          size = 3.5
-        ) +
-        geom_text(
-          aes(
-            x = 1.7,
-            y = (3.5/4) * 15,
-            label = " ",
-            fontface = 2
-          ),
-          colour = BarColours[4],
-          family = "Century Gothic"
-        )
-      
-      PipelineTotalChart
-      
-      
-      PipelineTotalChart <-
-        StackedBars(PipelineTotalChart,
-                    PipelineTotal,
-                    plottitle,
-                    sourcecaption,
-                    ChartColours)
-      
-      PipelineTotalChart <-
-        PipelineTotalChart +
-        labs(subtitle = Subtitle) +
-        ylim(-1, max(PipelineTotal$top)+1.700)+
-        coord_flip()
-      
-      PipelineTotalChart
-      
-      ggsave(
-        file,
-        plot = PipelineTotalChart,
-        width = 17.5,
-        height = 8,
-        units = "cm",
-        dpi = 300
-      )
-    }
-  )
-  
-  output$RenElecPipelineTimeTable = renderDataTable({
-    
-    RenElecCapacity <- read_excel("Structure/CurrentWorking.xlsx",
-                                  sheet = "Renewable elec pipeline", col_names = TRUE, 
-                                  skip = 26,)
-    
-    names(RenElecCapacity)[1] <- "Quarter"
+    names(OperationalSize) <- c("Technology Type", "Total capacity of installations below  5MW", "Total capacity of installations between 5 - 10MW", "Total capacity of installations between 10-50MW", "Total capacity of installations above 50MW", "All Installation Sizes")
     
     datatable(
-      RenElecCapacity,
+      OperationalSize[1:5],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -2248,18 +1460,18 @@ RenElecCapacity <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        ordering = TRUE,
-        title = "Pipeline Capacity Time Series (MW)",
+        
+        title = "Operational renewable capacity by installation size (MW)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Pipeline Capacity Time Series (MW)',
+            title = 'Operational renewable capacity by installation size (MW)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Pipeline Capacity Time Series (MW)')
+               title = 'Operational renewable capacity by installation size (MW)')
         ),
         
         # customize the length menu
@@ -2269,7 +1481,317 @@ RenElecCapacity <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:ncol(RenElecCapacity), 1)
+      formatRound(2:ncol(OperationalSize), 0)
   })
+  
+  output$RenElecOperationalSizeSubtitle <- renderText({
+    
+    Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                       sheet = "R - QTRCapacity", col_names = FALSE)
+    
+    Data <- as_tibble(t(Data))
+    
+    names(Data) <- c("Date", "Wind Onshore", "Wind Offshore", "Shoreline wave / tidal", "Solar Photovoltaics", "Small Hydro", "Large Hydro", "Landfill Gas", "Sewage", "Waste", "Animal Biomass", "Anaerobic Digestion", "Plant", "Total")
+    
+    Data <- Data[2,]
+    
+    Data$Date <- paste0(substr(Data$Date,1,4), " Q", substr(Data$Date, 8,8))
+    
+    paste("Scotland,", Data$Date)
+  })
+  
+  output$RenElecOperationalSizePlot <- renderPlotly  ({
+    
+    OperationalSize <- read_delim("Processed Data/Output/Capacity by Size/CapacitySizeTech.txt", 
+                                  "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    names(OperationalSize) <- c("Technology Type", "Tiny", "Small", "Medium", "Large", "Total")
+    
+    OperationalSize <- head(OperationalSize, -1)
+    
+    OperationalSize <- OperationalSize[order(-OperationalSize$Total),]
+    
+    OperationalSize$Year <- paste("<b>", OperationalSize$`Technology Type`, "</b>")
+    
+    ChartColours <- c("#39ab2c", "#FF8500")
+    
+    BarColours <- c("#addd8e",
+                    "#78c679",
+                    "#41ab5d",
+                    "#238443")
+    
+    p <- plot_ly(data = OperationalSize, y = ~ Year) %>%
+      
+      add_trace(
+        data = OperationalSize,
+        x = ~ `Tiny`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Installations below 5MW",
+        text = paste0("Total capacity of installations below 5 MW: ", format(round(OperationalSize$`Tiny`, digits = 0.1), big.mark = ","), " MW"),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[1]),
+        legendgroup = 1
+      ) %>%
+      add_trace(
+        data = OperationalSize,
+        x = ~ `Small`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Installations between 5 - 10MW",
+        text = paste0("Total capacity of installations between 5 - 10 MW: ", format(round(OperationalSize$`Small`, digits = 0.1), big.mark = ","), " MW"),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[2]),
+        legendgroup = 2
+      ) %>%
+      add_trace(
+        data = OperationalSize,
+        x = ~ `Medium`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Installations between 10 - 50MW",
+        text = paste0("Total capacity of installations between 10 - 50 MW: ", format(round(OperationalSize$`Medium`, digits = 0.1), big.mark = ","), " MW"),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[3]),
+        legendgroup = 3
+      ) %>%
+      add_trace(
+        data = OperationalSize,
+        x = ~ `Large`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Installations above 50 MW",
+        text = paste0("Total capacity of installations above 50 MW: ", format(round(OperationalSize$`Large`, digits = 0.1), big.mark = ","), " MW"),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[4]),
+        legendgroup = 4
+      ) %>% 
+      layout(
+        barmode = 'stack',
+        legend = list(font = list(color = "#1A5D38"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        yaxis = list(title = "",
+                     showgrid = FALSE,
+                     type = "category",
+                     autorange = "reversed",
+                     ticktext = as.list(OperationalSize$`Year`),
+                     tickmode = "array",
+                     tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
+        ),
+        xaxis = list(
+          title = "",
+          tickformat = "",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    
+    p
+  })
+  
+  output$RenElecOperationalSize.png <- downloadHandler(
+    filename = "RenElecOperationalSize.png",
+    content = function(file) {
+      
+      
+      OperationalSize <- read_delim("Processed Data/Output/Capacity by Size/CapacitySizeTech.txt", 
+                                    "\t", escape_double = FALSE, trim_ws = TRUE)
+      
+      names(OperationalSize) <- c("Type", "Tiny", "Small", "Medium", "Large", "Total")
+      
+      OperationalSize <- OperationalSize[order(OperationalSize$Total),]
+      
+      OperationalSize <- head(OperationalSize, -1)
+      
+      OperationalSize <- OperationalSize[which(OperationalSize$Total > 250),]
+      
+      
+      
+      
+      ChartColours <- c("#39ab2c", "#FF8500")
+      
+      BarColours <- c("#addd8e",
+                      "#78c679",
+                      "#41ab5d",
+                      "#238443")
+      
+      
+      OperationalSize<- OperationalSize[1:5]
+      
+      
+      
+      OperationalSize <- melt(OperationalSize, id.vars = "Type")
+      
+      OperationalSize$Type <- str_wrap(OperationalSize$Type, 26)
+      
+      OperationalSize$Type <-
+        factor(OperationalSize$Type,
+               levels = unique(OperationalSize$Type),
+               ordered = TRUE)
+      
+      OperationalSize$variable <-
+        factor(OperationalSize$variable,
+               levels = rev(unique(OperationalSize$variable)),
+               ordered = TRUE)
+      
+      OperationalSize <- OperationalSize %>%
+        group_by(Type) %>%
+        mutate(pos = cumsum(value) - value / 2) %>%
+        mutate(top = sum(value))
+      
+      
+      
+      plottitle <-
+        "Operational renewable capacity by installation size"
+      sourcecaption <- "Source: BEIS"
+      
+      
+      
+      OperationalSizeChart <- OperationalSize %>%
+        ggplot(aes(x = Type, y = value, fill = variable), family = "Century Gothic") +
+        scale_fill_manual(
+          "variable",
+          values = c(
+            "Tiny" = BarColours[1],
+            "Small" = BarColours[2],
+            "Medium" = BarColours[3],
+            "Large" = BarColours[4]
+          )
+        ) +
+        geom_bar(stat = "identity", width = .8) +
+        geom_text(
+          aes(
+            y = pos,
+            label = ifelse(OperationalSize$value > 800,paste0(format(round(value, 0), big.mark = ",", trim = TRUE),"\nMW"), ""),
+            
+            fontface = 2
+          ),
+          colour = "white",
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Type,
+            y = -100,
+            label = Type,
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          hjust = 1
+        ) +
+        geom_text(
+          aes(
+            x = 6.95,
+            y = max(OperationalSize$top)*0.05,
+            label = "Installations\nbelow\n5 MW",
+            fontface = 2
+          ),
+          colour = BarColours[1],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = 6.95,
+            y = max(OperationalSize$top)*0.33,
+            label = "Installations\nbetween\n5 MW - 10 MW",
+            fontface = 2
+          ),
+          colour = BarColours[2],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = 6.95,
+            y = max(OperationalSize$top)*0.63,
+            label = "Installations\nbetween\n10 MW - 50 MW",
+            fontface = 2
+          ),
+          colour = BarColours[3],
+          family = "Century Gothic"
+        )+
+        
+        geom_text(
+          aes(
+            x = 6.95,
+            y = max(OperationalSize$top)*0.9,
+            label = "Installations\nabove\n50 MW",
+            fontface = 2
+          ),
+          colour = BarColours[4],
+          family = "Century Gothic"
+        )+
+        geom_text(
+          aes(
+            x = 6.95,
+            y = max(OperationalSize$top)*1.08,
+            label = "Total\nCapacity",
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic"
+        )+
+        geom_text(
+          aes(
+            x = 7.45,
+            y = .5,
+            label = "",
+            fontface = 2
+          ),
+          colour = "black",
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Type,
+            y = top + 630,
+            label = paste0(format(round(OperationalSize$top,0), big.mark = ",", trim = TRUE), "\nMW"),
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          hjust = 0.5
+        )
+      
+      
+      
+      OperationalSizeChart
+      
+      
+      OperationalSizeChart <-
+        StackedBars(OperationalSizeChart,
+                    OperationalSize,
+                    plottitle,
+                    sourcecaption,
+                    ChartColours)
+      
+      OperationalSizeChart <-
+        OperationalSizeChart +
+        labs(subtitle = Subtitle) +
+        ylim(-max(OperationalSize$top)*0.30,max(OperationalSize$top)*1.1)+
+        coord_flip()
+      
+      OperationalSizeChart
+      
+      ggsave(
+        file,
+        plot = OperationalSizeChart,
+        width = 20,
+        height = 14,
+        units = "cm",
+        dpi = 300
+      )
+    }
+  )
   
 }
