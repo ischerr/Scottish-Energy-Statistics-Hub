@@ -9,7 +9,7 @@ source("Structure/Global.R")
 
 RenElecCapacityOutput <- function(id) {
   ns <- NS(id)
-  tagList( 
+  tagList(
     tabsetPanel(
       tabPanel("Quarterly operational capacity",
                fluidRow(column(8,
@@ -53,23 +53,34 @@ RenElecCapacityOutput <- function(id) {
              #dygraphOutput(ns("RenElecCapacityPlot")),
              plotlyOutput(ns("RenElecBreakdownCapPlot"), height = "600px")%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-
-    tabPanel("Operational capacity by installation size",
+    tabPanel("Pipeline renewable capacity",
              fluidRow(column(8,
-                             h3("Operational renewable capacity by technology", style = "color: #39ab2c;  font-weight:bold"),
-                             h4(textOutput(ns('RenElecOperationalSizeSubtitle')), style = "color: #39ab2c;")
+                             h3("Pipeline renewable capacity by planning stage", style = "color: #39ab2c;  font-weight:bold"),
+                             h4(textOutput(ns('RenElecPipelineCapSubtitle')), style = "color: #39ab2c;")
              ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('RenElecOperationalSize.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('RenElecPipelineCap.png'), 'Download Graph', style="float:right")
              )),
              
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
              #dygraphOutput(ns("RenElecCapacityPlot")),
-
-             plotlyOutput(ns("RenElecOperationalSizePlot"), height = "600px")%>% withSpinner(color="#39ab2c"),
+             plotlyOutput(ns("RenElecPipelineCapPlot"), height = "200px")%>% withSpinner(color="#39ab2c"),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Pipeline capacity tech",
+             fluidRow(column(8,
+                             h3("Pipeline renewable capacity by technology", style = "color: #39ab2c;  font-weight:bold"),
+                             h4(textOutput(ns('RenElecPipelineSubtitle')), style = "color: #39ab2c;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('RenElecPipeline.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+             #dygraphOutput(ns("RenElecPipelinePlot")),
+             plotlyOutput(ns("RenElecPipelinePlot"), height = "500px")%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
-    
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
@@ -79,8 +90,7 @@ RenElecCapacityOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     tabsetPanel(
-
-      tabPanel("Capacity by technology",
+      tabPanel("Quarterly operational capacity",
                fluidRow(
                  column(10, h3("Data - Operational renewable capacity by technology (MW)", style = "color: #39ab2c;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
@@ -88,16 +98,30 @@ RenElecCapacityOutput <- function(id) {
                fluidRow(
                  column(12, dataTableOutput(ns("RenElecBreakdownCapTable"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-
-      tabPanel("Capacity by installation size",
-               fluidRow(
-                 column(10, h3("Data - Operational renewable capacity by installation size (MW)", style = "color: #39ab2c;  font-weight:bold")),
-                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
-               ),
-               fluidRow(
-                 column(12, dataTableOutput(ns("RenElecOperationalSizeTable"))%>% withSpinner(color="#39ab2c"))),
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
-  
+    tabPanel("Pipeline capacity",
+             fluidRow(
+               column(10, h3("Data - Pipeline capacity (MW)", style = "color: #39ab2c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("RenElecPipelineTable"))%>% withSpinner(color="#39ab2c"))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("LA pipeline capacity",
+             fluidRow(
+               column(10, h3("Data - Pipeline capacity by local authority  (MW)", style = "color: #39ab2c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable6"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("RenElecPipelineLATable"))%>% withSpinner(color="#39ab2c"))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Pipeline capacity time series",
+             fluidRow(
+               column(10, h3("Data - Pipeline capacity time series (GW)", style = "color: #39ab2c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("RenElecPipelineTimeTable"))%>% withSpinner(color="#39ab2c"))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
@@ -1595,7 +1619,7 @@ RenElecCapacity <- function(input, output, session) {
   })
   
   observeEvent(input$ToggleTable3, {
-    toggle("RenElecOperationalSizeTable")
+    toggle("RenElecPipelineTable")
   })
   
   observeEvent(input$ToggleTable6, {
@@ -2246,142 +2270,6 @@ RenElecCapacity <- function(input, output, session) {
       )
     ) %>%
       formatRound(2:ncol(RenElecCapacity), 1)
-  })
-  
-  output$RenElecOperationalSizeTable = renderDataTable({
-    
-    OperationalSize <- read_delim("Processed Data/Output/Capacity by Size/CapacitySizeTech.txt", 
-                  "\t", escape_double = FALSE, trim_ws = TRUE)
-    
-    names(OperationalSize) <- c("Technology Type", "Total capacity of installations below  5MW", "Total capacity of installations between 5 - 10MW", "Total capacity of installations between 10-50MW", "Total capacity of installations above 50MW", "All Installation Sizes")
-    
-    datatable(
-      OperationalSize[1:5],
-      extensions = 'Buttons',
-      
-      rownames = FALSE,
-      options = list(
-        paging = TRUE,
-        pageLength = -1,
-        searching = TRUE,
-        fixedColumns = FALSE,
-        autoWidth = TRUE,
-
-        title = "Operational renewable capacity by installation size (MW)",
-        dom = 'ltBp',
-        buttons = list(
-          list(extend = 'copy'),
-          list(
-            extend = 'excel',
-            title = 'Operational renewable capacity by installation size (MW)',
-            header = TRUE
-          ),
-          list(extend = 'csv',
-               title = 'Operational renewable capacity by installation size (MW)')
-        ),
-        
-        # customize the length menu
-        lengthMenu = list( c(10, 20, -1) # declare values
-                           , c(10, 20, "All") # declare titles
-        ), # end of lengthMenu customization
-        pageLength = 10
-      )
-    ) %>%
-      formatRound(2:ncol(OperationalSize), 0)
-  })
-  
-  output$RenElecOperationalSizePlot <- renderPlotly  ({
-    
-    OperationalSize <- read_delim("Processed Data/Output/Capacity by Size/CapacitySizeTech.txt", 
-                                  "\t", escape_double = FALSE, trim_ws = TRUE)
-    
-    names(OperationalSize) <- c("Technology Type", "Tiny", "Small", "Medium", "Large", "Total")
-    
-    OperationalSize <- head(OperationalSize, -1)
-    
-    OperationalSize$Year <- paste("<b>", OperationalSize$`Technology Type`, "</b>")
-    
-    ChartColours <- c("#68c3ea", "#FF8500")
-    
-    BarColours <- c("#081d58", "#253494", "#225ea8", "#1d91c0", "#41b6c4", "#7fcdbb", "#c7e9b4")
-    
-    p <- plot_ly(data = OperationalSize, y = ~ Year) %>%
-      
-      add_trace(
-        data = OperationalSize,
-        x = ~ `Tiny`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "Tiny",
-        text = paste0("Tiny: ", round(OperationalSize$`Tiny`, digits = 0.1)),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[1]),
-        legendgroup = 1
-      ) %>%
-      add_trace(
-        data = OperationalSize,
-        x = ~ `Small`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "Small",
-        text = paste0("Small: ", round(OperationalSize$`Small`, digits = 0.1)),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[2]),
-        legendgroup = 2
-      ) %>%
-      add_trace(
-        data = OperationalSize,
-        x = ~ `Medium`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "Medium",
-        text = paste0("Medium: ", round(OperationalSize$`Medium`, digits = 0.1)),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[3]),
-        legendgroup = 3
-      ) %>%
-      add_trace(
-        data = OperationalSize,
-        x = ~ `Large`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "Large",
-        text = paste0("Large: ", round(OperationalSize$`Large`, digits = 0.1)),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[4]),
-        legendgroup = 4
-      ) %>% 
-      layout(
-        barmode = 'stack',
-        legend = list(font = list(color = "#1A5D38"),
-                      orientation = 'h'),
-        hoverlabel = list(font = list(color = "white"),
-                          hovername = 'text'),
-        hovername = 'text',
-        yaxis = list(title = "",
-                     showgrid = FALSE,
-                     type = "category",
-                     autorange = "reversed",
-                     ticktext = as.list(OperationalSize$`Year`),
-                     tickmode = "array",
-                     tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
-        ),
-        xaxis = list(
-          title = "",
-          tickformat = "",
-          showgrid = TRUE,
-          zeroline = TRUE,
-          zerolinecolor = ChartColours[1],
-          zerolinewidth = 2
-        )
-      ) %>% 
-      config(displayModeBar = F)
-    
-    p
   })
   
 }
