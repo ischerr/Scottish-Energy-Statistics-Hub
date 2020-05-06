@@ -25,6 +25,17 @@ system('fc-cache -f ~/.fonts')
   
 server <- function(input, output, session) {
   
+  ### Create List of Scripts, including filepath ###
+  SourceList <-
+    list.files(
+      "Structure",
+      full.names = TRUE,
+      recursive = TRUE,
+      pattern = "\\.R$"
+    )
+  
+  ### Pass Each list item to Source() command ###
+  sapply(SourceList, source)
 
 
   observe_helpers()
@@ -75,6 +86,14 @@ observe({
   })
 
 observe({
+  
+  if(input$MainNav == "Covid19"){
+    
+    updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$Covid19), mode = "push")
+    
+    callModule(match.fun(input$Covid19), input$Covid19)
+    
+  }
 
   if(input$MainNav == "WholeSystem"){
     
@@ -408,6 +427,16 @@ ui <- shinyUI(fluidPage(
       title = tags$div(img(src = "HomeIcon.svg", height = "30px",   display= "block"), " Home", style = "font-family: 'Century Gothic'; font-weight: 400 "),
       uiOutput("HomeTab")%>% withSpinner(color="#3f3f3f")
       ),
+    ###### Section - Innovative Local Energy #######
+    tabPanel(
+      value = "Covid19",
+      tags$div(img(src = "signs.svg", height = "30px",   display= "block"), " Covid 19" , style = "font-family: 'Century Gothic'; font-weight: 400 "),
+      navlistPanel(id = "Covid19",
+                   widths = c(3, 8),
+                   tabPanel(title = "Covid 19 Electricity Demand",
+                            value = "C19Elec",
+                            C19ElecOutput("C19Elec"))
+      )),
 
     tabPanel(
       ###### Section - Whole System View of Energy #######
