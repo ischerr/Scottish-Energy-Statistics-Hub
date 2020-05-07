@@ -195,7 +195,7 @@ C19Elec <- function(input, output, session) {
   
   output$C19ElecRollingSubtitle <- renderText({
     
-    paste("Scotland, March - May, 2019 & 2020")
+    paste("Scotland")
   })
   
   output$C19ElecRollingPlot <- renderPlotly  ({
@@ -204,6 +204,9 @@ C19Elec <- function(input, output, session) {
     library(lubridate)
     library(zoo)
     library(plotly)
+    
+    ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
+    BarColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
     
     DailyDemand <- read_delim("CovidAnalysis/DailyDemand.txt", 
                               "\t", escape_double = FALSE, trim_ws = TRUE)
@@ -286,7 +289,7 @@ C19Elec <- function(input, output, session) {
                 legendgroup = "2",
                 text = paste0(
                   "2019 demand on equivalent date: ",
-                  round(DailyDemandFromMarch$`2020`, digits = 1),
+                  round(DailyDemandFromMarch$`2019`, digits = 1),
                   " GWh\nDate: ",
                   format(DailyDemandFromMarch$Date, format="%d/%m/%y")
                 ),
