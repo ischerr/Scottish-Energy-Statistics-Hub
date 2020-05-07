@@ -210,6 +210,12 @@ observe({
 }
 )
 
+observeEvent(input$GoToCovidTab, {
+  updateTabsetPanel(session, "MainNav",
+                    selected = "Covid19")
+  
+})
+
   observeEvent(input$GoToTotalEnergyTab, {
     updateTabsetPanel(session, "MainNav",
                       selected = "WholeSystem")
@@ -269,6 +275,25 @@ output$HomeTab <- renderUI({
   ),
   setZoom(id = "SetEffects"),
   setShadow(id = "SetEffects"),
+  fluidRow(
+    column(width = 3),
+    column(width = 6,
+           actionLink(
+             "GoToCovidTab",
+             label = div(
+               tags$h3("Energy demand in Scotland since Covid-19 lockdown", style = "color: black;"),
+               tags$p(
+                 " ",
+                 style = "color: black;"
+               ),
+               img(src = "signsblack.svg", height = "55%"),
+               style = "border: solid 2px #000000; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px; ",
+               id = "SetEffects"
+             )
+           )),
+    column(width = 3),
+    style = "padding: 10px; margin-top: 20px;"
+  ),
   fluidRow(
     column(width = 3,
            actionLink(
@@ -438,7 +463,10 @@ ui <- shinyUI(fluidPage(
                             C19ElecOutput("C19Elec")),
                    tabPanel(title = "Covid 19 Electricity Profile",
                             value = "C19Settlement",
-                            C19SettlementOutput("C19Settlement"))
+                            C19SettlementOutput("C19Settlement")),
+                   tabPanel(title = "Covid 19 Gas Demand",
+                            value = "C19Gas",
+                            C19GasOutput("C19Gas"))
       )),
 
     tabPanel(

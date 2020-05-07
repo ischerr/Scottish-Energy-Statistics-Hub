@@ -1,3 +1,4 @@
+<p><strong>Electricity demand has reduced significantly</strong></p>
 <p>The first chart above compares average weekday daily electricity demand pre and post lockdown for 2020, and how this compares against previous years.&nbsp; To do this, a comparison is made between the first three weeks of March (blue bars) and the subsequent three weeks (orange bars) for each year since 2013.&nbsp; It shows that:</p>
 <ul>
 <li>Before lockdown, average weekday daily consumption is similar to previous years</li>

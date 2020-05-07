@@ -164,7 +164,8 @@ C19Settlement <- function(input, output, session) {
                   "\nDate: ",
                   format(ElecDemandHalfHourly$Date, format="%d/%m/%y")
                 ),
-                hoverinfo = 'text'
+                hoverinfo = 'text',
+                line = list(width = 4)
       ) %>% 
       add_trace(data = ElecDemandHalfHourly,
                 x = ~ id,
@@ -180,7 +181,8 @@ C19Settlement <- function(input, output, session) {
                   "\nDate: ",
                   format(ElecDemandHalfHourly$Date, format="%d/%m/%y")
                 ),
-                hoverinfo = 'text'
+                hoverinfo = 'text',
+                line = list(width = 4)
       )  %>% 
       layout(
         legend = list(font = list(color = "#126992"),
@@ -286,7 +288,7 @@ C19Settlement <- function(input, output, session) {
                   " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod
                 ),
                 hoverinfo = 'text',
-                line = list(color = ChartColours[1], dash = "none")
+                line = list(width = 4, color = ChartColours[3], dash = "none")
       ) %>% 
       add_trace(data = ElecDemandHalfHourly,
                 x = ~ SettlementPeriod,
@@ -301,7 +303,7 @@ C19Settlement <- function(input, output, session) {
                   " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod
                 ),
                 hoverinfo = 'text',
-                line = list(color = ChartColours[4], dash = "none")
+                line = list(width = 4, color = ChartColours[2], dash = "none")
       ) %>% 
       add_trace(data = ElecDemandHalfHourly,
                 x = ~ SettlementPeriod,
@@ -316,7 +318,7 @@ C19Settlement <- function(input, output, session) {
                   " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod
                 ),
                 hoverinfo = 'text',
-                line = list(color = ChartColours[3], dash = "none")
+                line = list(width = 4, color = ChartColours[1], dash = "none")
       ) %>% 
       add_trace(data = ElecDemandHalfHourly,
                 x = ~ SettlementPeriod,
@@ -331,7 +333,7 @@ C19Settlement <- function(input, output, session) {
                   " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod
                 ),
                 hoverinfo = 'text',
-                line = list(color = ChartColours[2], dash = "none")
+                line = list(width = 4, color = ChartColours[4], dash = "none")
       ) %>% 
       layout(
         legend = list(font = list(color = "#126992"),
@@ -341,7 +343,7 @@ C19Settlement <- function(input, output, session) {
         ),
         hovername = 'text',
         
-        xaxis = list(title = "",
+        xaxis = list(title = "Settlement period",
                      showgrid = TRUE),
         yaxis = list(
           title = "MW",

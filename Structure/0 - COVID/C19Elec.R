@@ -147,7 +147,8 @@ C19Elec <- function(input, output, session) {
                 text = paste0(
                   "Average weekday electricity consumption in first three weeks of March: ", format(round(WeekdayElecDemand$`BeforeLockdown`, 0.1), big.mark = ",")," GWh\n",
                   "Year: ", WeekdayElecDemand$Year, "\n"),
-                hoverinfo = 'text'
+                hoverinfo = 'text',
+                line = list(width = 4)
       ) %>% 
       add_trace(x = ~ `PostLockdown`, 
                 orientation = 'h',
@@ -157,7 +158,8 @@ C19Elec <- function(input, output, session) {
                 text = paste0(
                   "Average weekday electricity consumption in from the last week in March to first week of May: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
                   "Year: ", WeekdayElecDemand$Year, "\n"),
-                hoverinfo = 'text'
+                hoverinfo = 'text',
+                line = list(width = 4)
       ) %>% 
       layout(
         legend = list(font = list(color = "#126992"),
@@ -165,7 +167,7 @@ C19Elec <- function(input, output, session) {
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
         hovername = 'text',
-        xaxis = list(title = "",
+        xaxis = list(title = "GWh",
                      zeroline = FALSE,
                      tickformat = "",
                      showgrid = TRUE,
@@ -278,7 +280,8 @@ C19Elec <- function(input, output, session) {
                   " GWh\nDate: ",
                   format(DailyDemandFromMarch$Date, format="%d/%m/%y")
                 ),
-                hoverinfo = 'text'
+                hoverinfo = 'text',
+                line = list(width = 4)
       ) %>% 
       add_trace(data = DailyDemandFromMarch,
                 x = ~ Date,
@@ -293,7 +296,8 @@ C19Elec <- function(input, output, session) {
                   " GWh\nDate: ",
                   format(DailyDemandFromMarch$Date, format="%d/%m/%y")
                 ),
-                hoverinfo = 'text'
+                hoverinfo = 'text',
+                line = list(width = 4)
       )  %>% 
       add_annotations(
         x = dmy("13/03/2020"),
@@ -325,7 +329,7 @@ C19Elec <- function(input, output, session) {
                           hovername = 'text'),
         hovername = 'text',
         
-        xaxis = list(title = "",
+        xaxis = list(title = "Date in 2020",
                      showgrid = FALSE),
         yaxis = list(
           title = "GWh",
