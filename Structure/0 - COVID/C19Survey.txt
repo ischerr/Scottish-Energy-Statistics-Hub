@@ -1,7 +1,11 @@
-<p><strong>Electricity demand has reduced significantly</strong></p>
-<p>The first chart above compares average weekday daily electricity demand pre and post lockdown for 2020, and how this compares against previous years.&nbsp; To do this, a comparison is made between the first three weeks of March (blue bars) and the subsequent three weeks (orange bars) for each year since 2013.&nbsp; It shows that:</p>
+<p>Ofgem commissioned a telephone <strong>survey</strong> of <strong>consumers</strong> in April 2020 to assess the <strong>impact</strong> (if any) the outbreak of <strong>Covid-19</strong> has had on their electricity and gas arrangements.&nbsp; 526 adults in Scotland aged 18+ who are solely or jointly responsible for paying the energy bills in their household were surveyed.&nbsp; Care should be taken with these results due to the small sample size and likelihood that timing may affect responses.</p>
+<p>Headline findings are as follows:</p>
 <ul>
-<li>Before lockdown, average weekday daily consumption is similar to previous years</li>
-<li>After lockdown, weekday consumption dropped by <strong>22%</strong> compared to the start of March. Even though more people are working from home, the presumed increase in domestic consumption is more than offset by the inactivity from non-essential commercial and industrial premises.&nbsp;</li>
+<li>Most respondents have <strong>not had an issue</strong> with energy bills or supply (<strong>88%</strong>). <strong>6%</strong> of respondents have been trying <strong>unsuccessfully</strong> to <strong>contact</strong> their energy <strong>supplier</strong>.</li>
+<li><strong>58%</strong> of respondents report <strong>using more energy</strong> than usual and <strong>35%</strong> have thought about the <strong>impact</strong> on energy <strong>bills</strong>.</li>
+<li><strong>22%</strong> are <strong>concerned</strong> about their energy <strong>supply</strong> being <strong>affected</strong>.</li>
+<li><strong>38%</strong> of <strong>prepayment</strong> Meter (PPM) consumers are worried about <strong>affordability</strong> and <strong>37%</strong> are worried about being able to <strong>top up</strong>.</li>
+<li><strong>15%</strong> of non-PPM consumers are worried about <strong>falling behind</strong> on energy <strong>bills</strong>.</li>
+<li>Most respondents have <strong>not contacted</strong> anyone for <strong>information</strong> or <strong>advice</strong> about energy (<strong>92%</strong>). <strong>5%</strong> have <strong>contacted</strong> <strong>friends and family</strong>.</li>
+<li><strong>One in three</strong> have <strong>received information</strong> from their <strong>supplier</strong> about what they are doing to manage operations and customer service. This information was found to be easy to understand and informative by a majority of these respondents.</li>
 </ul>
-<p>The second chart above shows daily electricity demand from the start of March in 2020 (blue line) and 2019 (orange line).&nbsp; Daily demand levels are similar until Friday 20<sup>th</sup> March when pubs, clubs, restaurants and gyms closed.&nbsp; From then, electricity demand reduced and was consistently lower from the lockdown onwards.&nbsp;</p>
