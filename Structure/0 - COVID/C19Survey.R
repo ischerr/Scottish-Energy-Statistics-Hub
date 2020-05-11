@@ -8,38 +8,83 @@ require("DT")
 
 source("Structure/Global.R")
 
-C19ElecOutput <- function(id) {
+C19SurveyOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("Weekday demand",
+      tabPanel("Energy supply and bills",
     fluidRow(column(8,
-                    h3("Average weekday daily electricity demand", style = "color: #5d8be1;  font-weight:bold"),
-                    h4(textOutput(ns('C19ElecSubtitle')), style = "color: #5d8be1;")
+                    h3("Survey on energy supply and energy bills during lockdown", style = "color: #5d8be1;  font-weight:bold"),
+                    h4(textOutput(ns('C19SurveySubtitle')), style = "color: #5d8be1;")
     ),
              column(
                4, style = 'padding:15px;'#,
-               #downloadButton(ns('C19Elec.png'), 'Download Graph', style="float:right")
+               #downloadButton(ns('C19Survey.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
-    #dygraphOutput(ns("C19ElecPlot")),
-    plotlyOutput(ns("C19ElecPlot"), height = "600px")%>% withSpinner(color="#5d8be1"),
+    #dygraphOutput(ns("C19SurveyPlot")),
+    plotlyOutput(ns("C19SurveyPlot"), height = "1000px")%>% withSpinner(color="#5d8be1"),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")
     ),
-    tabPanel("Daily demand",
+    tabPanel("Household questions",
              fluidRow(column(8,
-                             h3("Daily electricity demand from start of March - 2020 vs 2019", style = "color: #5d8be1;  font-weight:bold"),
-                             h4(textOutput(ns('C19ElecRollingSubtitle')), style = "color: #5d8be1;")
+                             h3("Household questions", style = "color: #5d8be1;  font-weight:bold"),
+                             h4(textOutput(ns('C19SurveyRollingSubtitle')), style = "color: #5d8be1;")
              ),
              column(
                4, style = 'padding:15px;'#,
-               #downloadButton(ns('C19ElecRolling.png'), 'Download Graph', style="float:right")
+               #downloadButton(ns('C19SurveyRolling.png'), 'Download Graph', style="float:right")
              )),
              
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
-             #dygraphOutput(ns("C19ElecPlot")),
-             plotlyOutput(ns("C19ElecRollingPlot"))%>% withSpinner(color="#5d8be1"),
+             #dygraphOutput(ns("C19SurveyPlot")),
+             plotlyOutput(ns("C19SurveyRollingPlot"), height = "1200px")%>% withSpinner(color="#5d8be1"),
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")
+    ),
+    tabPanel("T62",
+             fluidRow(column(8,
+                             h3("T62", style = "color: #5d8be1;  font-weight:bold"),
+                             h4(textOutput(ns('C19SurveyT62Subtitle')), style = "color: #5d8be1;")
+             ),
+             column(
+               4, style = 'padding:15px;'#,
+               #downloadButton(ns('C19SurveyRolling.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
+             #dygraphOutput(ns("C19SurveyPlot")),
+             plotlyOutput(ns("C19SurveyT62Plot"), height = "500px")%>% withSpinner(color="#5d8be1"),
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")
+    ),
+    tabPanel("T66",
+             fluidRow(column(8,
+                             h3("T66", style = "color: #5d8be1;  font-weight:bold"),
+                             h4(textOutput(ns('C19SurveyT66Subtitle')), style = "color: #5d8be1;")
+             ),
+             column(
+               4, style = 'padding:15px;'#,
+               #downloadButton(ns('C19SurveyRolling.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
+             #dygraphOutput(ns("C19SurveyPlot")),
+             plotlyOutput(ns("C19SurveyT66Plot"), height = "300px")%>% withSpinner(color="#5d8be1"),
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")
+    ),
+    tabPanel("T70",
+             fluidRow(column(8,
+                             h3("Which, if any, of the following would you use to describe information provided by your electricity and gas supplier?", style = "color: #5d8be1;  font-weight:bold"),
+                             h4(textOutput(ns('C19SurveyT70Subtitle')), style = "color: #5d8be1;")
+             ),
+             column(
+               4, style = 'padding:15px;'#,
+               #downloadButton(ns('C19SurveyRolling.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
+             #dygraphOutput(ns("C19SurveyPlot")),
+             plotlyOutput(ns("C19SurveyT70Plot"), height = "500px")%>% withSpinner(color="#5d8be1"),
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")
     )
     ),
@@ -56,7 +101,7 @@ C19ElecOutput <- function(id) {
     # column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     # ),
     # fluidRow(
-    #   column(12, dataTableOutput(ns("C19ElecTable"))%>% withSpinner(color="#5d8be1"))),
+    #   column(12, dataTableOutput(ns("C19SurveyTable"))%>% withSpinner(color="#5d8be1"))),
     # tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
       column(2, p(" ")),
@@ -76,7 +121,7 @@ C19ElecOutput <- function(id) {
 
 
 ###### Server ######
-C19Elec <- function(input, output, session) {
+C19Survey <- function(input, output, session) {
 
   
   
@@ -84,270 +129,288 @@ C19Elec <- function(input, output, session) {
     source("Structure/PackageHeader.R")
   }
   
-  print("C19Elec.R")
+  print("C19Survey.R")
 
-  output$C19ElecSubtitle <- renderText({
+  output$C19SurveySubtitle <- renderText({
     
-    paste("Scotland, 2013 - 2020")
+    paste("Scotland, April 2020")
   })
   
-  output$C19ElecPlot <- renderPlotly  ({
+  output$C19SurveyPlot <- renderPlotly  ({
     
     library(readr)
     library(ISOweek)
     library(lubridate)
     library(zoo)
     library(plotly)
-    
-    DailyDemand <- read_delim("CovidAnalysis/DailyDemand.txt", 
-                              "\t", escape_double = FALSE, trim_ws = TRUE)
-    
-    DailyDemand$Date <- ymd(DailyDemand$Date)
-    
-    DailyDemand$Year <-year(DailyDemand$Date)
-    
-    DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013),]
-    
-    DailyDemand$Month <-month(DailyDemand$Date)
-    
-    DailyDemand$Week <- isoweek(DailyDemand$Date)
-    
-    DailyDemand$Weekday <- weekdays(DailyDemand$Date)
-    
-    DailyDemand$DayofYear <- yday(DailyDemand$Date)
-    
-    DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "PostLockdown", "BeforeLockdown")
-    
-    WeekdayElecDemand <- DailyDemand
-    
-    WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Weekday %in%c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")),]
-    
-    WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Month >= 3),]
-    
-    maxweek <- max(WeekdayElecDemand[which(WeekdayElecDemand$Year ==max(WeekdayElecDemand$Year)),]$Week)
-    
-    WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Week <= maxweek),]
-    
-    WeekdayElecDemand <- WeekdayElecDemand %>% group_by(Year, PostLockdown) %>% 
-      summarise(Electricity = mean(Electricity))
-    
-    WeekdayElecDemand <- dcast(WeekdayElecDemand, Year ~ PostLockdown)
+    library(readxl)
+    library(scales)
+    library(tidyverse)
     
     ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
-    BarColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
+    BarColours <- c("#126992", "#1d91c0","#737373", "#bdbdbd", "#7fcdbb", "#8da0cb")
     
-    WeekdayElecDemand$YearFormat <- paste0("<b>", WeekdayElecDemand$Year, "</b>")
+    Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx")
     
-    p1 <-  plot_ly(WeekdayElecDemand, y = ~ YearFormat ) %>%  
-      add_trace(x = ~ `BeforeLockdown`, 
-                orientation = 'h',
-                name = "First three weeks of March",
-                type = 'bar',
-                legendgroup = "1",
-                text = paste0(
-                  "Average weekday electricity consumption in first three weeks of March: ", format(round(WeekdayElecDemand$`BeforeLockdown`, 0.1), big.mark = ",")," GWh\n",
-                  "Year: ", WeekdayElecDemand$Year, "\n"),
-                hoverinfo = 'text',
-                line = list(width = 4)
-      ) %>% 
-      add_trace(x = ~ `PostLockdown`, 
-                orientation = 'h',
-                name = "Last week of March to first week in May",
-                type = 'bar',
-                legendgroup = "2",
-                text = paste0(
-                  "Average weekday electricity consumption in from the last week in March to first week of May: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
-                  "Year: ", WeekdayElecDemand$Year, "\n"),
-                hoverinfo = 'text',
-                line = list(width = 4)
-      ) %>% 
+    Data$Question <- paste0("<b>", str_wrap(Data$Question,30), "</b>")
+    
+    Data$Total <- Data$`Strongly agree` + Data$`Tend to agree` + Data$`Neither agree nor disagree` + Data$`Tend to disagree` + Data$`Strongly disagree`
+    
+    ChartColours <- c("#34d1a3", "#FF8500")
+    BarColours <- c("#1a9850", "#a6d96a","#737373", "#bdbdbd", "#f46d43", "#d73027")
+    
+    p <- plot_ly(data = Data, y = ~ Question) %>%
+      
+      add_trace(
+        data = Data,
+        x = ~ `Strongly agree` / Data$Total,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Strongly agree",
+        text = paste0("Strongly agree: ", percent(Data$`Strongly agree`, accuracy = 1)),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[1]),
+        legendgroup = 1
+      ) %>%
+      add_trace(
+        data = Data,
+        x = ~ `Tend to agree`  / Data$Total,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Tend to agree",
+        text = paste0("Tend to agree: ", percent(Data$`Tend to agree`, accuracy = 1)),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[2]),
+        legendgroup = 2
+      ) %>%
+      add_trace(
+        data = Data,
+        x = ~ `Neither agree nor disagree`  / Data$Total,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Neither agree nor disagree",
+        text = paste0("Neither agree nor disagree: ", percent(Data$`Neither agree nor disagree`, accuracy = 1)),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[3]),
+        legendgroup = 3
+      ) %>%
+      add_trace(
+        data = Data,
+        x = ~ `Tend to disagree`  / Data$Total,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Tend to disagree",
+        text = paste0("Tend to disagree: ", percent(Data$`Tend to disagree`, accuracy = 1)),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[5]),
+        legendgroup = 5
+      ) %>%
+      add_trace(
+        data = Data,
+        x = ~ `Strongly disagree`  / Data$Total,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Strongly disagree",
+        text = paste0("Strongly disagree: ", percent(Data$`Strongly disagree`, accuracy = 1)),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[6]),
+        legendgroup = 6
+      ) %>%
+      add_trace(
+        data = Data,
+        x = ~ 1.05 ,
+        showlegend = TRUE,
+        name = 'All agree',
+        mode = 'text',
+        type = 'scatter',
+        hoverinfo = 'skip',
+        textfont = list(color = ChartColours[1]),
+        text =  paste0("<b>", percent(Data$`Strongly agree`+Data$`Tend to agree`, accuracy = 1), "</b>"),
+        legendgroup = 8
+      ) %>%
       layout(
-        legend = list(font = list(color = "#126992"),
+        barmode = 'stack',
+        legend = list(font = list(color = "#1A5D38"),
                       orientation = 'h'),
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
         hovername = 'text',
-        xaxis = list(title = "GWh",
-                     zeroline = FALSE,
-                     tickformat = "",
-                     showgrid = TRUE,
-                     x = 0.5
-                     
+        yaxis = list(title = "",
+                     showgrid = FALSE,
+                     type = "category",
+                     autorange = "reversed",
+                     ticktext = as.list(Data$`Question`),
+                     tickmode = "array",
+                     tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
         ),
-        yaxis = list(
+        xaxis = list(
           title = "",
-          tickformat = ",d",
-          autorange = "reversed",
-          ticktext = as.list(WeekdayElecDemand$`Year`),
-          tickmode = "array",
-          tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16),
-          showgrid = FALSE,
-          zeroline = FALSE,
-          rangemode = "tozero"
+          tickformat = "%",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2
         )
       ) %>% 
       config(displayModeBar = F)
     
-    p1
+    p
 
     
     
    
   })
   
-  output$C19ElecRollingSubtitle <- renderText({
+  output$C19SurveyRollingSubtitle <- renderText({
     
-    paste("Scotland")
+    paste("Scotland, April 2020")
   })
   
-  output$C19ElecRollingPlot <- renderPlotly  ({
+  output$C19SurveyRollingPlot <- renderPlotly  ({
     library(readr)
     library(ISOweek)
     library(lubridate)
     library(zoo)
     library(plotly)
+    library(readxl)
+    library(scales)
+    library(tidyverse)
     
     ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
-    BarColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
+    BarColours <- c("#126992", "#1d91c0","#737373", "#bdbdbd", "#7fcdbb", "#8da0cb")
     
-    DailyDemand <- read_delim("CovidAnalysis/DailyDemand.txt", 
-                              "\t", escape_double = FALSE, trim_ws = TRUE)
+    Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx",
+                       sheet = "T54")
     
-    DailyDemand$Date <- ymd(DailyDemand$Date)
+    Data$Question <- paste0("<b>", str_wrap(Data$Question,40), "</b>")
     
-    DailyDemand$Year <-year(DailyDemand$Date)
+    ChartColours <- c("#34d1a3", "#FF8500")
+    BarColours <- c("#2b8cbe", "#a6d96a","#737373", "#bdbdbd", "#f46d43", "#d73027")
     
-    DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013),]
-    
-    DailyDemand$Month <-month(DailyDemand$Date)
-    
-    DailyDemand$Week <- isoweek(DailyDemand$Date)
-    
-    DailyDemand$Weekday <- weekdays(DailyDemand$Date)
-    
-    DailyDemand$DayofYear <- yday(DailyDemand$Date)
-    
-    DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "PostLockdown", "BeforeLockdown")
-    
-    DailyDemandFromMarch <- DailyDemand[which(DailyDemand$Week >= 10 & DailyDemand$Week <= 51),]
-    
-    DailyDemandFromMarch <- DailyDemandFromMarch[c(5,6,7,9,1,8,4)]
-    
-    DailyDemandFromMarch <- DailyDemandFromMarch %>% group_by(Year) %>% mutate(id = row_number())
-    
-    
-    DailyDemandFromMarch  <- dcast(DailyDemandFromMarch, id ~ Year, value.var = 'Electricity')
-    
-    DailyDemandFromMarch$Date <- ymd("2020/03/01") + DailyDemandFromMarch$id
-    
-    DailyDemandFromMarch <- DailyDemandFromMarch[complete.cases(DailyDemandFromMarch),]
-    
-    vline1 <- function(x = 0, color = "#02818a") {
-      list(
-        type = "line", 
-        y0 = 0, 
-        y1 = 1, 
-        yref = "paper",
-        x0 = x, 
-        x1 = x, 
-        line = list(color = color)
-      )}
-    
-    vline2 <- function(x = 0, color = "#67a9cf") {
-      list(
-        type = "line", 
-        y0 = 0, 
-        y1 = 1, 
-        yref = "paper",
-        x0 = x, 
-        x1 = x, 
-        line = list(color = color, dash = "dash")
-      )
-    }
-    
-    
-    p2 <-  plot_ly(DailyDemandFromMarch,x = ~ Date ) %>% 
-      add_trace(data = DailyDemandFromMarch,
-                x = ~ Date,
-                y = ~ `2020`,
-                name = "2020",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "1",
-                text = paste0(
-                  "2020 Demand: ",
-                  round(DailyDemandFromMarch$`2020`, digits = 1),
-                  " GWh\nDate: ",
-                  format(DailyDemandFromMarch$Date, format="%d/%m/%y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 4)
-      ) %>% 
-      add_trace(data = DailyDemandFromMarch,
-                x = ~ Date,
-                y = ~ `2019`,
-                name = "2019",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "2",
-                text = paste0(
-                  "2019 demand on equivalent date: ",
-                  round(DailyDemandFromMarch$`2019`, digits = 1),
-                  " GWh\nDate: ",
-                  format(DailyDemandFromMarch$Date, format="%d/%m/%y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 4)
-      )  %>% 
-      add_annotations(
-        x = dmy("13/03/2020"),
-        y = .4,
-        yref = "paper",
-        text = "<b>20/03</b>\nClosure of pubs, gyms\netc.",
-        font = list(color = "#67a9cf",
-                    family = "Century Gothic"),
-        textposistion = "bottom right",
-        showarrow = FALSE
-      ) %>% 
-      add_annotations(
-        x = dmy("29/03/2020"),
-        y = .4,
-        yref = "paper",
-        text = "<b>23/03</b>\nLockdown",
-        font = list(color = "#02818a",
-                    family = "Century Gothic"),
-        textposistion = "bottom right",
-        showarrow = FALSE
+    p <- plot_ly(data = Data, y = ~ Question) %>%
+      
+      add_trace(
+        data = Data,
+        x = ~ `Total`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Total",
+        text = paste0("Total: ", percent(Data$`Total`, accuracy = 0.1)),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[1]),
+        legendgroup = 1
       ) %>% 
       layout(
         barmode = 'stack',
-        shapes = list(vline1(dmy("23/03/2020")), vline2(dmy("20/03/2020"))),
-        bargap = 0.66,
-        legend = list(font = list(color = "#126992"),
+        legend = list(font = list(color = "#1A5D38"),
                       orientation = 'h'),
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
         hovername = 'text',
-        
-        xaxis = list(title = "Date in 2020",
-                     showgrid = FALSE),
-        yaxis = list(
-          title = "GWh",
-          tickformat = "",
+        yaxis = list(title = "",
+                     showgrid = FALSE,
+                     type = "category",
+                     autorange = "reversed",
+                     ticktext = as.list(Data$`Question`),
+                     tickmode = "array",
+                     tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
+        ),
+        xaxis = list(
+          title = "",
+          tickformat = "%",
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
-          zerolinewidth = 2,
-          rangemode = "tozero"
+          zerolinewidth = 2
         )
       ) %>% 
       config(displayModeBar = F)
-    p2
+    
+    p
+    
     
     
   })
   
-  output$C19ElecTable = renderDataTable({
+  output$C19SurveyT62Subtitle <- renderText({
+    
+    paste("Scotland, April 2020")
+  })
+  
+  output$C19SurveyT62Plot <- renderPlotly  ({
+    library(readr)
+    library(ISOweek)
+    library(lubridate)
+    library(zoo)
+    library(plotly)
+    library(readxl)
+    library(scales)
+    library(tidyverse)
+    
+    ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
+    BarColours <- c("#126992", "#1d91c0","#737373", "#bdbdbd", "#7fcdbb", "#8da0cb")
+    
+    Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx",
+                       sheet = "T62")
+    
+    Data$Question <- paste0("<b>", str_wrap(Data$Question,40), "</b>")
+    
+    ChartColours <- c("#34d1a3", "#FF8500")
+    BarColours <- c("#2b8cbe", "#a6d96a","#737373", "#bdbdbd", "#f46d43", "#d73027")
+    
+    p <- plot_ly(data = Data, y = ~ Question) %>%
+      
+      add_trace(
+        data = Data,
+        x = ~ `Total`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Total",
+        text = paste0("Total: ", percent(Data$`Total`, accuracy = 0.1)),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[1]),
+        legendgroup = 1
+      ) %>% 
+      layout(
+        barmode = 'stack',
+        legend = list(font = list(color = "#1A5D38"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        yaxis = list(title = "",
+                     showgrid = FALSE,
+                     type = "category",
+                     autorange = "reversed",
+                     ticktext = as.list(Data$`Question`),
+                     tickmode = "array",
+                     tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
+        ),
+        xaxis = list(
+          title = "",
+          tickformat = "%",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    
+    p
+    
+    
+    
+  })
+  
+  output$C19SurveyTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "DailyDemandWorking")[c(1,5,7,6)]
@@ -356,18 +419,18 @@ C19Elec <- function(input, output, session) {
     
     Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
     
-    C19ElecRolling <- Data[complete.cases(Data),]
+    C19SurveyRolling <- Data[complete.cases(Data),]
     
-    C19ElecRolling <- C19ElecRolling %>% 
+    C19SurveyRolling <- C19SurveyRolling %>% 
       mutate(yr_mnth = format(Year, '%Y-%m')) %>% 
       group_by(yr_mnth) %>% 
       filter(Year == max(Year)) %>% 
       mutate(Year = format(Year, "%B %Y"))
     
-    names(C19ElecRolling)[1] <- "12 month ending"
+    names(C19SurveyRolling)[1] <- "12 month ending"
     
     datatable(
-      C19ElecRolling,
+      C19SurveyRolling,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -403,18 +466,201 @@ C19Elec <- function(input, output, session) {
       formatRound(2:5, 1) 
   })
   
+  output$C19SurveyT66Subtitle <- renderText({
+    
+    paste("Scotland, April 2020")
+  })
+  
+  output$C19SurveyT66Plot <- renderPlotly  ({
+    
+    library(readr)
+    library(ISOweek)
+    library(lubridate)
+    library(zoo)
+    library(plotly)
+    library(readxl)
+    library(scales)
+    library(tidyverse)
+    
+    ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
+    BarColours <- c("#126992", "#1d91c0","#737373", "#bdbdbd", "#7fcdbb", "#8da0cb")
+    
+    Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx", sheet = "T66")
+    
+    Data$Question <- paste0("<b>", str_wrap(Data$Question,40), "</b>")
+    
+    Data$Total <- Data$`Yes` + Data$`Don't know` + Data$`No` 
+    
+    ChartColours <- c("#34d1a3", "#FF8500")
+    BarColours <- c("#1a9850", "#a6d96a","#737373", "#bdbdbd", "#f46d43", "#d73027")
+    
+    p <- plot_ly(data = Data, y = ~ Question) %>%
+      
+      add_trace(
+        data = Data,
+        x = ~ `Yes` / Data$Total,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Yes",
+        text = paste0("Yes: ", percent(Data$`Yes`, accuracy = 0.1)),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[1]),
+        legendgroup = 1
+      ) %>%
+      add_trace(
+        data = Data,
+        x = ~ `Don't know`  / Data$Total,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Don't know",
+        text = paste0("Don't know: ", percent(Data$`Don't know`, accuracy = 0.1)),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[3]),
+        legendgroup = 3
+      ) %>%
+      add_trace(
+        data = Data,
+        x = ~ `No`  / Data$Total,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "No",
+        text = paste0("No: ", percent(Data$`No`, accuracy = 0.1)),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[6]),
+        legendgroup = 6
+      ) %>%
+      add_trace(
+        data = Data,
+        x = ~ 1.05 ,
+        showlegend = TRUE,
+        name = 'All agree',
+        mode = 'text',
+        type = 'scatter',
+        hoverinfo = 'skip',
+        textfont = list(color = ChartColours[1]),
+        text =  paste0("<b>", percent(Data$`Strongly agree`+Data$`Tend to agree`, accuracy = 0.1), "</b>"),
+        legendgroup = 8
+      ) %>%
+      layout(
+        barmode = 'stack',
+        legend = list(font = list(color = "#1A5D38"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        yaxis = list(title = "",
+                     showgrid = FALSE,
+                     type = "category",
+                     autorange = "reversed",
+                     ticktext = as.list(Data$`Question`),
+                     tickmode = "array",
+                     tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
+        ),
+        xaxis = list(
+          title = "",
+          tickformat = "%",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    
+    p
+    
+    
+    
+    
+  })
+  
+  output$C19SurveyT70Subtitle <- renderText({
+    
+    paste("Scotland, April 2020")
+  })
+  
+  output$C19SurveyT70Plot <- renderPlotly  ({
+    library(readr)
+    library(ISOweek)
+    library(lubridate)
+    library(zoo)
+    library(plotly)
+    library(readxl)
+    library(scales)
+    library(tidyverse)
+    
+    ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
+    BarColours <- c("#126992", "#1d91c0","#737373", "#bdbdbd", "#7fcdbb", "#8da0cb")
+    
+    Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx",
+                       sheet = "T70")
+    
+    Data$Question <- paste0("<b>", str_wrap(Data$Question,40), "</b>")
+    
+    ChartColours <- c("#34d1a3", "#FF8500")
+    BarColours <- c("#2b8cbe", "#a6d96a","#737373", "#bdbdbd", "#f46d43", "#d73027")
+    
+    p <- plot_ly(data = Data, y = ~ Question) %>%
+      
+      add_trace(
+        data = Data,
+        x = ~ `Total`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Total",
+        text = paste0("Total: ", percent(Data$`Total`, accuracy = 0.1)),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[1]),
+        legendgroup = 1
+      ) %>% 
+      layout(
+        barmode = 'stack',
+        legend = list(font = list(color = "#1A5D38"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        yaxis = list(title = "",
+                     showgrid = FALSE,
+                     type = "category",
+                     autorange = "reversed",
+                     ticktext = as.list(Data$`Question`),
+                     tickmode = "array",
+                     tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
+        ),
+        xaxis = list(
+          title = "",
+          tickformat = "%",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    
+    p
+    
+    
+    
+  })
+  
   output$Text <- renderUI({
     tagList(column(12,
                    
                    HTML(
-                     paste(readtext("Structure/0 - COVID/C19Elec.txt")[2])
+                     paste(readtext("Structure/0 - COVID/C19Survey.txt")[2])
                      
                    )))
   })
  
  
   observeEvent(input$ToggleTable, {
-    toggle("C19ElecTable")
+    toggle("C19SurveyTable")
   })
   
 
@@ -424,16 +670,16 @@ C19Elec <- function(input, output, session) {
   })
   
   
-  output$C19Elec.png <- downloadHandler(
-    filename = "C19Elec.png",
+  output$C19Survey.png <- downloadHandler(
+    filename = "C19Survey.png",
     content = function(file) {
       
       print("Energy daily demand")
       ###### Daily Demand  #####
       
-      # C19Elec <-
+      # C19Survey <-
       #   read_csv(
-      #     "J:/ENERGY BRANCH/Statistics/Energy Strategy - Stats Publication/2019/Graphs/Data/C19Elec.csv"
+      #     "J:/ENERGY BRANCH/Statistics/Energy Strategy - Stats Publication/2019/Graphs/Data/C19Survey.csv"
       #   )
       
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
@@ -445,17 +691,17 @@ C19Elec <- function(input, output, session) {
       
       Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
       
-      C19Elec <- Data
+      C19Survey <- Data
       
       ### variables
       ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
       sourcecaption = "Source: Sheffield, National Grid, BEIS"
       plottitle = "Energy use in Scotland per day"
       
-      #C19Elec$GasPercentage <- PercentLabel(C19Elec$Gas)
+      #C19Survey$GasPercentage <- PercentLabel(C19Survey$Gas)
       
       
-      C19ElecChart <- C19Elec %>%
+      C19SurveyChart <- C19Survey %>%
         ggplot(aes(x = Year), family = "Century Gothic") +
         
         geom_line(
@@ -467,8 +713,8 @@ C19Elec <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = mean(C19Elec$Year),
-          y = max(C19Elec$Gas),
+          x = mean(C19Survey$Year),
+          y = max(C19Survey$Gas),
           label = "Gas",
           hjust = 0.5,
           vjust = 1,
@@ -485,8 +731,8 @@ C19Elec <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = mean(C19Elec$Year),
-          y = mean(C19Elec$Electricity),
+          x = mean(C19Survey$Year),
+          y = mean(C19Survey$Electricity),
           label = "Electricity",
           hjust = 0.5,
           vjust = 5.5,
@@ -503,8 +749,8 @@ C19Elec <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = mean(C19Elec$Year),
-          y = mean(C19Elec$Transport),
+          x = mean(C19Survey$Year),
+          y = mean(C19Survey$Transport),
           label = "Transport",
           hjust = 0.5,
           vjust = 8,
@@ -531,17 +777,17 @@ C19Elec <- function(input, output, session) {
         )+
         annotate(
           "segment",
-          x = C19Elec$Year[which(C19Elec$Gas == max(C19Elec$Gas))]-2,
-          xend = C19Elec$Year[which(C19Elec$Gas == max(C19Elec$Gas))] - 30,
-          y = max(C19Elec$Gas),
-          yend = max(C19Elec$Gas),
+          x = C19Survey$Year[which(C19Survey$Gas == max(C19Survey$Gas))]-2,
+          xend = C19Survey$Year[which(C19Survey$Gas == max(C19Survey$Gas))] - 30,
+          y = max(C19Survey$Gas),
+          yend = max(C19Survey$Gas),
           colour = "#3690c0"
         ) +
         annotate(
           "text",
-          x = C19Elec$Year[which(C19Elec$Gas == max(C19Elec$Gas))] - 35,
-          y = max(C19Elec$Gas),
-          label = paste(round(max(C19Elec$Gas), digits = 0), "GWh"),
+          x = C19Survey$Year[which(C19Survey$Gas == max(C19Survey$Gas))] - 35,
+          y = max(C19Survey$Gas),
+          label = paste(round(max(C19Survey$Gas), digits = 0), "GWh"),
           hjust = 1,
           fontface = 2,
           size = 4,
@@ -550,17 +796,17 @@ C19Elec <- function(input, output, session) {
         )+
         annotate(
           "segment",
-          x = C19Elec$Year[which(C19Elec$Electricity == max(C19Elec$Electricity[which(C19Elec$Year > dmy("01/08/18"))]))]+2,
-          xend = C19Elec$Year[which(C19Elec$Electricity == max(C19Elec$Electricity[which(C19Elec$Year > dmy("01/08/18"))]))] + 30,
-          y = max(C19Elec$Electricity[which(C19Elec$Year > dmy("01/08/18"))]),
-          yend = max(C19Elec$Electricity[which(C19Elec$Year > dmy("01/08/18"))]),
+          x = C19Survey$Year[which(C19Survey$Electricity == max(C19Survey$Electricity[which(C19Survey$Year > dmy("01/08/18"))]))]+2,
+          xend = C19Survey$Year[which(C19Survey$Electricity == max(C19Survey$Electricity[which(C19Survey$Year > dmy("01/08/18"))]))] + 30,
+          y = max(C19Survey$Electricity[which(C19Survey$Year > dmy("01/08/18"))]),
+          yend = max(C19Survey$Electricity[which(C19Survey$Year > dmy("01/08/18"))]),
           colour = "#3690c0"
         ) +
         annotate(
           "text",
-          x = C19Elec$Year[which(C19Elec$Electricity == max(C19Elec$Electricity[which(C19Elec$Year > dmy("01/08/18"))]))] + 35,
-          y = max(C19Elec$Electricity[which(C19Elec$Year > dmy("01/08/18"))]),
-          label = paste(round(max(C19Elec$Electricity[which(C19Elec$Year > dmy("01/08/18"))]), digits = 0), "GWh"),
+          x = C19Survey$Year[which(C19Survey$Electricity == max(C19Survey$Electricity[which(C19Survey$Year > dmy("01/08/18"))]))] + 35,
+          y = max(C19Survey$Electricity[which(C19Survey$Year > dmy("01/08/18"))]),
+          label = paste(round(max(C19Survey$Electricity[which(C19Survey$Year > dmy("01/08/18"))]), digits = 0), "GWh"),
           hjust = 0,
           fontface = 2,
           size = 4,
@@ -569,17 +815,17 @@ C19Elec <- function(input, output, session) {
         )
       
       
-      C19ElecChart
+      C19SurveyChart
       
-      C19ElecChart <-
-        DailyChart(C19ElecChart,
-                   C19Elec,
+      C19SurveyChart <-
+        DailyChart(C19SurveyChart,
+                   C19Survey,
                    plottitle,
                    sourcecaption,
                    ChartColours)
       
-      C19ElecChart <- C19ElecChart +
-        coord_cartesian(xlim = c(min(C19Elec$Year), max(C19Elec$Year)+130)) +
+      C19SurveyChart <- C19SurveyChart +
+        coord_cartesian(xlim = c(min(C19Survey$Year), max(C19Survey$Year)+130)) +
         
         ylim(-15, 352) +
         geom_hline(
@@ -589,11 +835,11 @@ C19Elec <- function(input, output, session) {
           linetype = 2
         )
       
-      C19ElecChart
+      C19SurveyChart
       
       ggsave(
         file,
-        plot =  C19ElecChart,
+        plot =  C19SurveyChart,
         width = 30,
         height = 12,
         units = "cm",
@@ -602,8 +848,8 @@ C19Elec <- function(input, output, session) {
     }
 )
 
-output$C19ElecRolling.png <- downloadHandler(
-  filename = "C19ElecRolling.png",
+output$C19SurveyRolling.png <- downloadHandler(
+  filename = "C19SurveyRolling.png",
   content = function(file) {
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "DailyDemandWorking")[c(1,5,7,6)]
@@ -612,17 +858,17 @@ output$C19ElecRolling.png <- downloadHandler(
     
     Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
     
-    C19ElecRolling <- Data[complete.cases(Data),]
+    C19SurveyRolling <- Data[complete.cases(Data),]
     
     ### variables
     ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
     sourcecaption = "Source: Sheffield, National Grid, BEIS"
     plottitle = "Energy use in Scotland per day\n12 month rolling average"
     
-    #C19ElecRolling$GasPercentage <- PercentLabel(C19ElecRolling$Gas)
+    #C19SurveyRolling$GasPercentage <- PercentLabel(C19SurveyRolling$Gas)
     
     
-    C19ElecRollingChart <- C19ElecRolling %>%
+    C19SurveyRollingChart <- C19SurveyRolling %>%
       ggplot(aes(x = Year), family = "Century Gothic") +
       
       geom_line(
@@ -634,8 +880,8 @@ output$C19ElecRolling.png <- downloadHandler(
       ) +
       annotate(
         "text",
-        x = mean(C19ElecRolling$Year),
-        y = max(C19ElecRolling$Gas),
+        x = mean(C19SurveyRolling$Year),
+        y = max(C19SurveyRolling$Gas),
         label = "Gas Rolling Average",
         hjust = 0.5,
         vjust = 2,
@@ -652,8 +898,8 @@ output$C19ElecRolling.png <- downloadHandler(
       ) +
       annotate(
         "text",
-        x = mean(C19ElecRolling$Year),
-        y = mean(C19ElecRolling$Electricity),
+        x = mean(C19SurveyRolling$Year),
+        y = mean(C19SurveyRolling$Electricity),
         label = "Electricity Rolling Average",
         hjust = 0.5,
         vjust = -1,
@@ -670,8 +916,8 @@ output$C19ElecRolling.png <- downloadHandler(
       ) +
       annotate(
         "text",
-        x = mean(C19ElecRolling$Year),
-        y = mean(C19ElecRolling$Transport),
+        x = mean(C19SurveyRolling$Year),
+        y = mean(C19SurveyRolling$Transport),
         label = "Transport Rolling Average",
         hjust = 0.5,
         vjust = -1,
@@ -699,8 +945,8 @@ output$C19ElecRolling.png <- downloadHandler(
       geom_text(
         aes(
           x = min(Year)-50,
-          y = C19ElecRolling$Gas[which(C19ElecRolling$Year == min(C19ElecRolling$Year))],
-          label = paste0(round(C19ElecRolling$Gas[which(C19ElecRolling$Year == min(C19ElecRolling$Year))], digits = 0), "\nGWh"),
+          y = C19SurveyRolling$Gas[which(C19SurveyRolling$Year == min(C19SurveyRolling$Year))],
+          label = paste0(round(C19SurveyRolling$Gas[which(C19SurveyRolling$Year == min(C19SurveyRolling$Year))], digits = 0), "\nGWh"),
           hjust = 0.5,
           fontface = 2
         ),
@@ -710,8 +956,8 @@ output$C19ElecRolling.png <- downloadHandler(
       geom_text(
         aes(
           x = max(Year)+50,
-          y = C19ElecRolling$Gas[which(C19ElecRolling$Year == max(C19ElecRolling$Year))],
-          label = paste0(round(C19ElecRolling$Gas[which(C19ElecRolling$Year == max(C19ElecRolling$Year))], digits = 0), "\nGWh"),
+          y = C19SurveyRolling$Gas[which(C19SurveyRolling$Year == max(C19SurveyRolling$Year))],
+          label = paste0(round(C19SurveyRolling$Gas[which(C19SurveyRolling$Year == max(C19SurveyRolling$Year))], digits = 0), "\nGWh"),
           hjust = 0.5,
           fontface = 2
         ),
@@ -721,8 +967,8 @@ output$C19ElecRolling.png <- downloadHandler(
       geom_text(
         aes(
           x = min(Year)-50,
-          y = C19ElecRolling$Electricity[which(C19ElecRolling$Year == min(C19ElecRolling$Year))],
-          label = paste0(round(C19ElecRolling$Electricity[which(C19ElecRolling$Year == min(C19ElecRolling$Year))], digits = 0), "\nGWh"),
+          y = C19SurveyRolling$Electricity[which(C19SurveyRolling$Year == min(C19SurveyRolling$Year))],
+          label = paste0(round(C19SurveyRolling$Electricity[which(C19SurveyRolling$Year == min(C19SurveyRolling$Year))], digits = 0), "\nGWh"),
           hjust = 0.5,
           fontface = 2
         ),
@@ -732,8 +978,8 @@ output$C19ElecRolling.png <- downloadHandler(
       geom_text(
         aes(
           x = max(Year)+50,
-          y = C19ElecRolling$Electricity[which(C19ElecRolling$Year == max(C19ElecRolling$Year))],
-          label = paste0(round(C19ElecRolling$Electricity[which(C19ElecRolling$Year == max(C19ElecRolling$Year))], digits = 0), "\nGWh"),
+          y = C19SurveyRolling$Electricity[which(C19SurveyRolling$Year == max(C19SurveyRolling$Year))],
+          label = paste0(round(C19SurveyRolling$Electricity[which(C19SurveyRolling$Year == max(C19SurveyRolling$Year))], digits = 0), "\nGWh"),
           hjust = 0.5,
           fontface = 2
         ),
@@ -743,8 +989,8 @@ output$C19ElecRolling.png <- downloadHandler(
       geom_text(
         aes(
           x = min(Year)-50,
-          y = C19ElecRolling$Transport[which(C19ElecRolling$Year == min(C19ElecRolling$Year))],
-          label = paste0(round(C19ElecRolling$Transport[which(C19ElecRolling$Year == min(C19ElecRolling$Year))], digits = 0), "\nGWh"),
+          y = C19SurveyRolling$Transport[which(C19SurveyRolling$Year == min(C19SurveyRolling$Year))],
+          label = paste0(round(C19SurveyRolling$Transport[which(C19SurveyRolling$Year == min(C19SurveyRolling$Year))], digits = 0), "\nGWh"),
           hjust = 0.5,
           fontface = 2
         ),
@@ -754,8 +1000,8 @@ output$C19ElecRolling.png <- downloadHandler(
       geom_text(
         aes(
           x = max(Year)+50,
-          y = C19ElecRolling$Transport[which(C19ElecRolling$Year == max(C19ElecRolling$Year))],
-          label = paste0(round(C19ElecRolling$Transport[which(C19ElecRolling$Year == max(C19ElecRolling$Year))], digits = 0), "\nGWh"),
+          y = C19SurveyRolling$Transport[which(C19SurveyRolling$Year == max(C19SurveyRolling$Year))],
+          label = paste0(round(C19SurveyRolling$Transport[which(C19SurveyRolling$Year == max(C19SurveyRolling$Year))], digits = 0), "\nGWh"),
           hjust = 0.5,
           fontface = 2
         ),
@@ -763,17 +1009,17 @@ output$C19ElecRolling.png <- downloadHandler(
         family = "Century Gothic"
       )
     
-    C19ElecRollingChart
+    C19SurveyRollingChart
     
-    C19ElecRollingChart <-
-      DailyChart(C19ElecRollingChart,
-                 C19ElecRolling,
+    C19SurveyRollingChart <-
+      DailyChart(C19SurveyRollingChart,
+                 C19SurveyRolling,
                  plottitle,
                  sourcecaption,
                  ChartColours)
     
-    C19ElecRollingChart <- C19ElecRollingChart +
-      coord_cartesian(xlim = c(min(C19ElecRolling$Year)-30, max(C19ElecRolling$Year)+30)) +
+    C19SurveyRollingChart <- C19SurveyRollingChart +
+      coord_cartesian(xlim = c(min(C19SurveyRolling$Year)-30, max(C19SurveyRolling$Year)+30)) +
       ylim(-5,190)+
       geom_hline(
         yintercept = 0,
@@ -783,11 +1029,11 @@ output$C19ElecRolling.png <- downloadHandler(
       )
     
     
-    C19ElecRollingChart
+    C19SurveyRollingChart
     
     ggsave(
       file,
-      plot =  C19ElecRollingChart,
+      plot =  C19SurveyRollingChart,
       width = 18,
       height = 12,
       units = "cm",
@@ -797,7 +1043,7 @@ output$C19ElecRolling.png <- downloadHandler(
 )
 
 output$FullData <- downloadHandler(
-  filename = "C19ElecFullData.csv",
+  filename = "C19SurveyFullData.csv",
   content = function(file){
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "DailyDemandWorking")[c(1,2,4,3)]
@@ -806,9 +1052,9 @@ output$FullData <- downloadHandler(
     
     Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
     
-    C19Elec <- Data
+    C19Survey <- Data
     
-    write.csv(C19Elec, 
+    write.csv(C19Survey, 
               file,
               row.names = FALSE)
   }

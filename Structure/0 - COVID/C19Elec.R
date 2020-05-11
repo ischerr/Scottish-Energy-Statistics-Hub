@@ -138,9 +138,8 @@ C19Elec <- function(input, output, session) {
     
     WeekdayElecDemand$YearFormat <- paste0("<b>", WeekdayElecDemand$Year, "</b>")
     
-    p1 <-  plot_ly(WeekdayElecDemand, y = ~ YearFormat ) %>%  
-      add_trace(x = ~ `BeforeLockdown`, 
-                orientation = 'h',
+    p1 <-  plot_ly(WeekdayElecDemand, x = ~ Year ) %>%  
+      add_trace(y = ~ `BeforeLockdown`, 
                 name = "First three weeks of March",
                 type = 'bar',
                 legendgroup = "1",
@@ -150,8 +149,7 @@ C19Elec <- function(input, output, session) {
                 hoverinfo = 'text',
                 line = list(width = 4)
       ) %>% 
-      add_trace(x = ~ `PostLockdown`, 
-                orientation = 'h',
+      add_trace(y = ~ `PostLockdown`,
                 name = "Last week of March to first week in May",
                 type = 'bar',
                 legendgroup = "2",
@@ -167,23 +165,17 @@ C19Elec <- function(input, output, session) {
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
         hovername = 'text',
-        xaxis = list(title = "GWh",
+        yaxis = list(title = "GWh",
                      zeroline = FALSE,
                      tickformat = "",
                      showgrid = TRUE,
                      x = 0.5
                      
         ),
-        yaxis = list(
+        xaxis = list(
           title = "",
-          tickformat = ",d",
-          autorange = "reversed",
-          ticktext = as.list(WeekdayElecDemand$`Year`),
-          tickmode = "array",
-          tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16),
           showgrid = FALSE,
-          zeroline = FALSE,
-          rangemode = "tozero"
+          zeroline = FALSE
         )
       ) %>% 
       config(displayModeBar = F)
@@ -330,7 +322,8 @@ C19Elec <- function(input, output, session) {
         hovername = 'text',
         
         xaxis = list(title = "Date in 2020",
-                     showgrid = FALSE),
+                     showgrid = FALSE,
+                     tickfont = list(size = 15)),
         yaxis = list(
           title = "GWh",
           tickformat = "",
