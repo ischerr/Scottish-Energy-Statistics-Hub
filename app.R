@@ -466,7 +466,10 @@ ui <- shinyUI(fluidPage(
                             C19SettlementOutput("C19Settlement")),
                    tabPanel(title = "Covid 19 Gas Demand",
                             value = "C19Gas",
-                            C19GasOutput("C19Gas"))
+                            C19GasOutput("C19Gas")),
+                   tabPanel(title = "Covid 19 Vulnerable consumers research",
+                            value = "C19Survey",
+                            C19SurveyOutput("C19Survey"))
       )),
 
     tabPanel(
