@@ -16,8 +16,7 @@ C19GasOutput <- function(id) {
                     h4(textOutput(ns('C19GasSubtitle')), style = "color: #5d8be1;")
     ),
              column(
-               4, style = 'padding:15px;'#,
-               #downloadButton(ns('C19Gas.png'), 'Download Graph', style="float:right")
+               4, style = 'padding:15px;', downloadButton(ns('C19Gas.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
@@ -131,11 +130,11 @@ C19Gas <- function(input, output, session) {
                 line = list(width = 4)
       ) %>% 
       add_trace(y = ~ `PostLockdown`, 
-                name = "Last week of March to first week in May",
+                name = "Last week of March to second week in May",
                 type = 'bar',
                 legendgroup = "2",
                 text = paste0(
-                  "Average weekday gas consumption in from the last week in March to first week of May: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
+                  "Average weekday gas consumption in from the last week in March to second week of May: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
                   "Year: ", WeekdayElecDemand$Year, "\n"),
                 hoverinfo = 'text',
                 line = list(width = 4)
@@ -246,182 +245,120 @@ C19Gas <- function(input, output, session) {
   
   
   output$C19Gas.png <- downloadHandler(
-    filename = "C19Gas.png",
+    filename = "C19GasAverage.png",
     content = function(file) {
       
-      print("Energy daily demand")
-      ###### Daily Demand  #####
       
-      # C19Gas <-
-      #   read_csv(
-      #     "J:/ENERGY BRANCH/Statistics/Energy Strategy - Stats Publication/2019/Graphs/Data/C19Gas.csv"
-      #   )
+      library(readr)
+      library(ISOweek)
+      library(lubridate)
+      library(zoo)
+      library(plotly)
       
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "DailyDemandWorking")[c(1,2,4,3)]
+      plottitle <-
+        "Average weekday daily gas demand"
+      sourcecaption <- "Source: National Grid"
       
-      Data <- Data[complete.cases(Data),]
+      DailyDemand <- read_delim("CovidAnalysis/DailyDemand.txt", 
+                                "\t", escape_double = FALSE, trim_ws = TRUE)
       
-      names(Data) <- c("Year", "Gas", "Transport", "Electricity")
+      DailyDemand$Date <- ymd(DailyDemand$Date)
       
-      Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
+      DailyDemand$Year <-year(DailyDemand$Date)
       
-      C19Gas <- Data
+      DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013),]
       
-      ### variables
-      ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
-      sourcecaption = "Source: Sheffield, National Grid, BEIS"
-      plottitle = "Energy use in Scotland per day"
+      DailyDemand$Month <-month(DailyDemand$Date)
       
-      #C19Gas$GasPercentage <- PercentLabel(C19Gas$Gas)
+      DailyDemand$Week <- isoweek(DailyDemand$Date)
       
+      DailyDemand$Weekday <- weekdays(DailyDemand$Date)
       
-      C19GasChart <- C19Gas %>%
-        ggplot(aes(x = Year), family = "Century Gothic") +
-        
-        geom_line(
-          aes(y = Gas,
-              label = Gas),
-          colour = ChartColours[2],
-          size = 1,
-          family = "Century Gothic"
+      DailyDemand$DayofYear <- yday(DailyDemand$Date)
+      
+      DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "First three weeks of March", "Last week of March to second week in May")
+      
+      WeekdayElecDemand <- DailyDemand
+      
+      WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Weekday %in%c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")),]
+      
+      WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Month >= 3),]
+      
+      maxweek <- max(WeekdayElecDemand[which(WeekdayElecDemand$Year ==max(WeekdayElecDemand$Year)),]$Week)
+      
+      WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Week <= maxweek),]
+      
+      WeekdayElecDemand <- WeekdayElecDemand %>% group_by(Year, PostLockdown) %>% 
+        summarise(Gas = mean(Gas))
+      
+      #WeekdayElecDemand <- as.data.frame(dcast(WeekdayElecDemand, Year ~ PostLockdown))
+      
+      ChartColours <- c("#126992", "#2078b4", "#ff7f0e", "#8da0cb")
+      BarColours <- c("#126992", "#2078b4", "#ff7f0e", "#8da0cb")
+      
+      WeekdayElecDemandChart <- WeekdayElecDemand  %>%
+        ggplot(aes(x = Year, y = Gas, fill = PostLockdown), family = "Century Gothic") +
+        scale_fill_manual(
+          "variable",
+          values = c(
+            "First three weeks of March" = BarColours[3],
+            "Last week of March to second week in May" = BarColours[2]
+          )
         ) +
+        geom_bar(position = "dodge",
+                 stat = "identity",
+                 width = -.8) +
+        geom_text(position = position_dodge(width = -.8),
+                  aes(
+                    y = Gas + 12,
+                    fill = PostLockdown,
+                    label = paste(format(round(Gas, digits = 0), big.mark = ","), "\nGWh")
+                  ),
+                  fontface = 2,
+                  colour =  ChartColours[1],
+                  family = "Century Gothic",
+                  size = 3) +
+        geom_text(position = position_dodge(width = .8),
+                  aes(
+                    y = 5,
+                    fill = PostLockdown,
+                    angle = 90,
+                    label = ifelse(Year == min(Year), as.character(PostLockdown), ""),
+                    hjust = 0
+                  ),
+                  fontface = 2,
+                  colour =  "white",
+                  family = "Century Gothic",
+                  size = 4) +
         annotate(
           "text",
-          x = mean(C19Gas$Year),
-          y = max(C19Gas$Gas),
-          label = "Gas",
-          hjust = 0.5,
-          vjust = 1,
-          colour = ChartColours[2],
+          x = WeekdayElecDemand$Year,
+          y = -9,
+          label = WeekdayElecDemand$Year,
+          family = "Century Gothic",
           fontface = 2,
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = Electricity,
-              label = paste0(Electricity * 100, "%")),
-          colour = ChartColours[3],
-          size = 1,
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = mean(C19Gas$Year),
-          y = mean(C19Gas$Electricity),
-          label = "Electricity",
-          hjust = 0.5,
-          vjust = 5.5,
-          colour = ChartColours[3],
-          fontface = 2,
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = Transport,
-              label = paste0(Transport * 100, "%")),
-          colour = ChartColours[4],
-          size = 1,
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = mean(C19Gas$Year),
-          y = mean(C19Gas$Transport),
-          label = "Transport",
-          hjust = 0.5,
-          vjust = 8,
-          colour = ChartColours[4],
-          fontface = 2,
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year,
-            y = 0,
-            label = ifelse(
-              Year == max(Year) |
-                Year == min(Year),
-              format(Year, format = "%b %Y"),
-              ""
-            ),
-            hjust = 0.5,
-            vjust = 1.5,
-            fontface = 2
-          ),
-          colour = ChartColours[1],
-          family = "Century Gothic"
-        )+
-        annotate(
-          "segment",
-          x = C19Gas$Year[which(C19Gas$Gas == max(C19Gas$Gas))]-2,
-          xend = C19Gas$Year[which(C19Gas$Gas == max(C19Gas$Gas))] - 30,
-          y = max(C19Gas$Gas),
-          yend = max(C19Gas$Gas),
-          colour = "#3690c0"
-        ) +
-        annotate(
-          "text",
-          x = C19Gas$Year[which(C19Gas$Gas == max(C19Gas$Gas))] - 35,
-          y = max(C19Gas$Gas),
-          label = paste(round(max(C19Gas$Gas), digits = 0), "GWh"),
-          hjust = 1,
-          fontface = 2,
-          size = 4,
-          colour = ChartColours[2],
-          family = "Century Gothic"
-        )+
-        annotate(
-          "segment",
-          x = C19Gas$Year[which(C19Gas$Electricity == max(C19Gas$Electricity[which(C19Gas$Year > dmy("01/08/18"))]))]+2,
-          xend = C19Gas$Year[which(C19Gas$Electricity == max(C19Gas$Electricity[which(C19Gas$Year > dmy("01/08/18"))]))] + 30,
-          y = max(C19Gas$Electricity[which(C19Gas$Year > dmy("01/08/18"))]),
-          yend = max(C19Gas$Electricity[which(C19Gas$Year > dmy("01/08/18"))]),
-          colour = "#3690c0"
-        ) +
-        annotate(
-          "text",
-          x = C19Gas$Year[which(C19Gas$Electricity == max(C19Gas$Electricity[which(C19Gas$Year > dmy("01/08/18"))]))] + 35,
-          y = max(C19Gas$Electricity[which(C19Gas$Year > dmy("01/08/18"))]),
-          label = paste(round(max(C19Gas$Electricity[which(C19Gas$Year > dmy("01/08/18"))]), digits = 0), "GWh"),
-          hjust = 0,
-          fontface = 2,
-          size = 4,
-          colour = ChartColours[3],
-          family = "Century Gothic"
+          colour =  ChartColours[1]
         )
       
+      WeekdayElecDemandChart <-
+        StackedArea(WeekdayElecDemandChart,
+                    WeekdayElecDemand,
+                    plottitle,
+                    sourcecaption,
+                    ChartColours)
       
-      C19GasChart
-      
-      C19GasChart <-
-        DailyChart(C19GasChart,
-                   C19Gas,
-                   plottitle,
-                   sourcecaption,
-                   ChartColours)
-      
-      C19GasChart <- C19GasChart +
-        coord_cartesian(xlim = c(min(C19Gas$Year), max(C19Gas$Year)+130)) +
-        
-        ylim(-15, 352) +
-        geom_hline(
-          yintercept = 0,
-          color = "grey",
-          alpha = 0.7,
-          linetype = 2
-        )
-      
-      C19GasChart
+      WeekdayElecDemandChart
       
       ggsave(
         file,
-        plot =  C19GasChart,
-        width = 30,
-        height = 12,
+        plot = WeekdayElecDemandChart,
+        width = 20,
+        height = 16,
         units = "cm",
         dpi = 300
       )
     }
-)
+    )
 
 
 output$FullData <- downloadHandler(

@@ -18,8 +18,7 @@ C19ElecOutput <- function(id) {
                     h4(textOutput(ns('C19ElecSubtitle')), style = "color: #5d8be1;")
     ),
              column(
-               4, style = 'padding:15px;'#,
-               #downloadButton(ns('C19Elec.png'), 'Download Graph', style="float:right")
+               4, style = 'padding:15px;', downloadButton(ns('C19Elec.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
@@ -33,8 +32,8 @@ C19ElecOutput <- function(id) {
                              h4(textOutput(ns('C19ElecRollingSubtitle')), style = "color: #5d8be1;")
              ),
              column(
-               4, style = 'padding:15px;'#,
-               #downloadButton(ns('C19ElecRolling.png'), 'Download Graph', style="float:right")
+               4, style = 'padding:15px;',
+               downloadButton(ns('C19ElecRolling.png'), 'Download Graph', style="float:right")
              )),
              
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
@@ -150,11 +149,11 @@ C19Elec <- function(input, output, session) {
                 line = list(width = 4)
       ) %>% 
       add_trace(y = ~ `PostLockdown`,
-                name = "Last week of March to first week in May",
+                name = "Last week of March to second week in May",
                 type = 'bar',
                 legendgroup = "2",
                 text = paste0(
-                  "Average weekday electricity consumption in from the last week in March to first week of May: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
+                  "Average weekday electricity consumption in from the last week in March to second week of May: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
                   "Year: ", WeekdayElecDemand$Year, "\n"),
                 hoverinfo = 'text',
                 line = list(width = 4)
@@ -418,177 +417,115 @@ C19Elec <- function(input, output, session) {
   
   
   output$C19Elec.png <- downloadHandler(
-    filename = "C19Elec.png",
+    filename = "C19ElecAverage.png",
     content = function(file) {
       
-      print("Energy daily demand")
-      ###### Daily Demand  #####
       
-      # C19Elec <-
-      #   read_csv(
-      #     "J:/ENERGY BRANCH/Statistics/Energy Strategy - Stats Publication/2019/Graphs/Data/C19Elec.csv"
-      #   )
+      library(readr)
+      library(ISOweek)
+      library(lubridate)
+      library(zoo)
+      library(plotly)
       
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "DailyDemandWorking")[c(1,2,4,3)]
+      plottitle <-
+        "Average weekday daily electricity demand"
+      sourcecaption <- "Source: National Grid"
       
-      Data <- Data[complete.cases(Data),]
+      DailyDemand <- read_delim("CovidAnalysis/DailyDemand.txt", 
+                                "\t", escape_double = FALSE, trim_ws = TRUE)
       
-      names(Data) <- c("Year", "Gas", "Transport", "Electricity")
+      DailyDemand$Date <- ymd(DailyDemand$Date)
       
-      Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
+      DailyDemand$Year <-year(DailyDemand$Date)
       
-      C19Elec <- Data
+      DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013),]
       
-      ### variables
-      ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
-      sourcecaption = "Source: Sheffield, National Grid, BEIS"
-      plottitle = "Energy use in Scotland per day"
+      DailyDemand$Month <-month(DailyDemand$Date)
       
-      #C19Elec$GasPercentage <- PercentLabel(C19Elec$Gas)
+      DailyDemand$Week <- isoweek(DailyDemand$Date)
       
+      DailyDemand$Weekday <- weekdays(DailyDemand$Date)
       
-      C19ElecChart <- C19Elec %>%
-        ggplot(aes(x = Year), family = "Century Gothic") +
-        
-        geom_line(
-          aes(y = Gas,
-              label = Gas),
-          colour = ChartColours[2],
-          size = 1,
-          family = "Century Gothic"
+      DailyDemand$DayofYear <- yday(DailyDemand$Date)
+      
+      DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "First three weeks of March", "Last week of March to second week in May")
+      
+      WeekdayElecDemand <- DailyDemand
+      
+      WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Weekday %in%c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")),]
+      
+      WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Month >= 3),]
+      
+      maxweek <- max(WeekdayElecDemand[which(WeekdayElecDemand$Year ==max(WeekdayElecDemand$Year)),]$Week)
+      
+      WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Week <= maxweek),]
+      
+      WeekdayElecDemand <- WeekdayElecDemand %>% group_by(Year, PostLockdown) %>% 
+        summarise(Electricity = mean(Electricity))
+      
+      #WeekdayElecDemand <- as.data.frame(dcast(WeekdayElecDemand, Year ~ PostLockdown))
+      
+      ChartColours <- c("#126992", "#2078b4", "#ff7f0e", "#8da0cb")
+      BarColours <- c("#126992", "#2078b4", "#ff7f0e", "#8da0cb")
+      
+      WeekdayElecDemandChart <- WeekdayElecDemand  %>%
+        ggplot(aes(x = Year, y = Electricity, fill = PostLockdown), family = "Century Gothic") +
+        scale_fill_manual(
+          "variable",
+          values = c(
+            "First three weeks of March" = BarColours[3],
+            "Last week of March to second week in May" = BarColours[2]
+          )
         ) +
+        geom_bar(position = "dodge",
+                 stat = "identity",
+                 width = -.8) +
+        geom_text(position = position_dodge(width = -.8),
+                  aes(
+                    y = Electricity + 4,
+                    fill = PostLockdown,
+                    label = paste(format(round(Electricity, digits = 0), big.mark = ","), "\nGWh")
+                  ),
+                  fontface = 2,
+                  colour =  ChartColours[1],
+                  family = "Century Gothic",
+                  size = 3) +
+        geom_text(position = position_dodge(width = .8),
+                  aes(
+                    y = 5,
+                    fill = PostLockdown,
+                    angle = 90,
+                    label = ifelse(Year == min(Year), as.character(PostLockdown), ""),
+                    hjust = 0
+                  ),
+                  fontface = 2,
+                  colour =  "white",
+                  family = "Century Gothic",
+                  size = 4) +
         annotate(
           "text",
-          x = mean(C19Elec$Year),
-          y = max(C19Elec$Gas),
-          label = "Gas",
-          hjust = 0.5,
-          vjust = 1,
-          colour = ChartColours[2],
+          x = WeekdayElecDemand$Year,
+          y = -3,
+          label = WeekdayElecDemand$Year,
+          family = "Century Gothic",
           fontface = 2,
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = Electricity,
-              label = paste0(Electricity * 100, "%")),
-          colour = ChartColours[3],
-          size = 1,
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = mean(C19Elec$Year),
-          y = mean(C19Elec$Electricity),
-          label = "Electricity",
-          hjust = 0.5,
-          vjust = 5.5,
-          colour = ChartColours[3],
-          fontface = 2,
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = Transport,
-              label = paste0(Transport * 100, "%")),
-          colour = ChartColours[4],
-          size = 1,
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = mean(C19Elec$Year),
-          y = mean(C19Elec$Transport),
-          label = "Transport",
-          hjust = 0.5,
-          vjust = 8,
-          colour = ChartColours[4],
-          fontface = 2,
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year,
-            y = 0,
-            label = ifelse(
-              Year == max(Year) |
-                Year == min(Year),
-              format(Year, format = "%b %Y"),
-              ""
-            ),
-            hjust = 0.5,
-            vjust = 1.5,
-            fontface = 2
-          ),
-          colour = ChartColours[1],
-          family = "Century Gothic"
-        )+
-        annotate(
-          "segment",
-          x = C19Elec$Year[which(C19Elec$Gas == max(C19Elec$Gas))]-2,
-          xend = C19Elec$Year[which(C19Elec$Gas == max(C19Elec$Gas))] - 30,
-          y = max(C19Elec$Gas),
-          yend = max(C19Elec$Gas),
-          colour = "#3690c0"
-        ) +
-        annotate(
-          "text",
-          x = C19Elec$Year[which(C19Elec$Gas == max(C19Elec$Gas))] - 35,
-          y = max(C19Elec$Gas),
-          label = paste(round(max(C19Elec$Gas), digits = 0), "GWh"),
-          hjust = 1,
-          fontface = 2,
-          size = 4,
-          colour = ChartColours[2],
-          family = "Century Gothic"
-        )+
-        annotate(
-          "segment",
-          x = C19Elec$Year[which(C19Elec$Electricity == max(C19Elec$Electricity[which(C19Elec$Year > dmy("01/08/18"))]))]+2,
-          xend = C19Elec$Year[which(C19Elec$Electricity == max(C19Elec$Electricity[which(C19Elec$Year > dmy("01/08/18"))]))] + 30,
-          y = max(C19Elec$Electricity[which(C19Elec$Year > dmy("01/08/18"))]),
-          yend = max(C19Elec$Electricity[which(C19Elec$Year > dmy("01/08/18"))]),
-          colour = "#3690c0"
-        ) +
-        annotate(
-          "text",
-          x = C19Elec$Year[which(C19Elec$Electricity == max(C19Elec$Electricity[which(C19Elec$Year > dmy("01/08/18"))]))] + 35,
-          y = max(C19Elec$Electricity[which(C19Elec$Year > dmy("01/08/18"))]),
-          label = paste(round(max(C19Elec$Electricity[which(C19Elec$Year > dmy("01/08/18"))]), digits = 0), "GWh"),
-          hjust = 0,
-          fontface = 2,
-          size = 4,
-          colour = ChartColours[3],
-          family = "Century Gothic"
+          colour =  ChartColours[1]
         )
       
+      WeekdayElecDemandChart <-
+        StackedArea(WeekdayElecDemandChart,
+                    WeekdayElecDemand,
+                    plottitle,
+                    sourcecaption,
+                    ChartColours)
       
-      C19ElecChart
-      
-      C19ElecChart <-
-        DailyChart(C19ElecChart,
-                   C19Elec,
-                   plottitle,
-                   sourcecaption,
-                   ChartColours)
-      
-      C19ElecChart <- C19ElecChart +
-        coord_cartesian(xlim = c(min(C19Elec$Year), max(C19Elec$Year)+130)) +
-        
-        ylim(-15, 352) +
-        geom_hline(
-          yintercept = 0,
-          color = "grey",
-          alpha = 0.7,
-          linetype = 2
-        )
-      
-      C19ElecChart
+      WeekdayElecDemandChart
       
       ggsave(
         file,
-        plot =  C19ElecChart,
-        width = 30,
-        height = 12,
+        plot = WeekdayElecDemandChart,
+        width = 20,
+        height = 16,
         units = "cm",
         dpi = 300
       )
@@ -596,58 +533,65 @@ C19Elec <- function(input, output, session) {
 )
 
 output$C19ElecRolling.png <- downloadHandler(
-  filename = "C19ElecRolling.png",
+  filename = "C19DailyDemand.png",
   content = function(file) {
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "DailyDemandWorking")[c(1,5,7,6)]
+    library(readr)
+    library(ISOweek)
+    library(lubridate)
+    library(zoo)
+    library(plotly)
     
-    names(Data) <- c("Year", "Gas", "Transport", "Electricity")
+    ChartColours <- c("#126992", "#1f77b4", "#ff7f0e", "#8da0cb")
+    BarColours <- c("#126992", "#1f77b4", "#ff7f0e", "#8da0cb")
     
-    Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
+    DailyDemand <- read_delim("CovidAnalysis/DailyDemand.txt", 
+                              "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    C19ElecRolling <- Data[complete.cases(Data),]
+    DailyDemand$Date <- ymd(DailyDemand$Date)
     
-    ### variables
-    ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
-    sourcecaption = "Source: Sheffield, National Grid, BEIS"
-    plottitle = "Energy use in Scotland per day\n12 month rolling average"
+    DailyDemand$Year <-year(DailyDemand$Date)
     
-    #C19ElecRolling$GasPercentage <- PercentLabel(C19ElecRolling$Gas)
+    DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013),]
+    
+    DailyDemand$Month <-month(DailyDemand$Date)
+    
+    DailyDemand$Week <- isoweek(DailyDemand$Date)
+    
+    DailyDemand$Weekday <- weekdays(DailyDemand$Date)
+    
+    DailyDemand$DayofYear <- yday(DailyDemand$Date)
+    
+    DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "PostLockdown", "BeforeLockdown")
+    
+    DailyDemandFromMarch <- DailyDemand[which(DailyDemand$Week >= 10 & DailyDemand$Week <= 51),]
+    
+    DailyDemandFromMarch <- DailyDemandFromMarch[c(5,6,7,9,1,8,4)]
+    
+    DailyDemandFromMarch <- DailyDemandFromMarch %>% group_by(Year) %>% mutate(id = row_number())
     
     
-    C19ElecRollingChart <- C19ElecRolling %>%
+    DailyDemandFromMarch  <- dcast(DailyDemandFromMarch, id ~ Year, value.var = 'Electricity')
+    
+    DailyDemandFromMarch$Year <- ymd("2020/03/01") + DailyDemandFromMarch$id
+    
+    DailyDemandFromMarch <- DailyDemandFromMarch[complete.cases(DailyDemandFromMarch),]
+    
+    width <- max(DailyDemandFromMarch$Year) - min(DailyDemandFromMarch$Year)
+    
+    DailyDemandFromMarchChart <- DailyDemandFromMarch %>%
       ggplot(aes(x = Year), family = "Century Gothic") +
-      
       geom_line(
-        aes(y = Gas,
-            label = Gas),
-        colour = ChartColours[2],
-        size = 1,
-        family = "Century Gothic"
-      ) +
-      annotate(
-        "text",
-        x = mean(C19ElecRolling$Year),
-        y = max(C19ElecRolling$Gas),
-        label = "Gas Rolling Average",
-        hjust = 0.5,
-        vjust = 2,
-        colour = ChartColours[2],
-        fontface = 2,
-        family = "Century Gothic"
-      ) +
-      geom_line(
-        aes(y = Electricity,
-            label = paste0(Electricity * 100, "%")),
+        aes(y = `2019`,
+            label = paste0(`2019` * 100, "%")),
         colour = ChartColours[3],
         size = 1,
         family = "Century Gothic"
       ) +
       annotate(
         "text",
-        x = mean(C19ElecRolling$Year),
-        y = mean(C19ElecRolling$Electricity),
-        label = "Electricity Rolling Average",
+        x = mean(DailyDemandFromMarch$Year),
+        y = mean(DailyDemandFromMarch$`2019`),
+        label = "2019",
         hjust = 0.5,
         vjust = -1,
         colour = ChartColours[3],
@@ -655,20 +599,20 @@ output$C19ElecRolling.png <- downloadHandler(
         family = "Century Gothic"
       ) +
       geom_line(
-        aes(y = Transport,
-            label = paste0(Transport * 100, "%")),
-        colour = ChartColours[4],
+        aes(y = `2020`,
+            label = `2020`),
+        colour = ChartColours[2],
         size = 1,
         family = "Century Gothic"
       ) +
       annotate(
         "text",
-        x = mean(C19ElecRolling$Year),
-        y = mean(C19ElecRolling$Transport),
-        label = "Transport Rolling Average",
+        x = mean(DailyDemandFromMarch$Year),
+        y = mean(DailyDemandFromMarch$`2020`),
+        label = "2020",
         hjust = 0.5,
-        vjust = -1,
-        colour = ChartColours[4],
+        vjust = 0,
+        colour = ChartColours[2],
         fontface = 2,
         family = "Century Gothic"
       ) +
@@ -679,7 +623,7 @@ output$C19ElecRolling.png <- downloadHandler(
           label = ifelse(
             Year == max(Year) |
               Year == min(Year),
-            format(Year, format = "%b %Y"),
+            format(Year, format = "%d/%m/%y"),
             ""
           ),
           hjust = 0.5,
@@ -689,99 +633,196 @@ output$C19ElecRolling.png <- downloadHandler(
         colour = ChartColours[1],
         family = "Century Gothic"
       )+
+      annotate(
+        "segment",
+        x = min(DailyDemandFromMarch$Year)-100,
+        xend = max(DailyDemandFromMarch$Year)+100,
+        y = 25,
+        yend = 25,
+        colour = "grey",
+        alpha = 0.4,
+        linetype = 2
+      ) +
       geom_text(
         aes(
-          x = min(Year)-50,
-          y = C19ElecRolling$Gas[which(C19ElecRolling$Year == min(C19ElecRolling$Year))],
-          label = paste0(round(C19ElecRolling$Gas[which(C19ElecRolling$Year == min(C19ElecRolling$Year))], digits = 0), "\nGWh"),
-          hjust = 0.5,
+          x = min(Year)-(width*0.03),
+          y = 25,
+          label = "25\nGWh",
           fontface = 2
         ),
-        colour = ChartColours[2],
-        family = "Century Gothic"
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        size = 3
       )+
       geom_text(
         aes(
-          x = max(Year)+50,
-          y = C19ElecRolling$Gas[which(C19ElecRolling$Year == max(C19ElecRolling$Year))],
-          label = paste0(round(C19ElecRolling$Gas[which(C19ElecRolling$Year == max(C19ElecRolling$Year))], digits = 0), "\nGWh"),
-          hjust = 0.5,
+          x = min(Year)-(width*0.03),
+          y = 50,
+          label = "50\nGWh",
           fontface = 2
         ),
-        colour = ChartColours[2],
-        family = "Century Gothic"
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        size = 3
+      )+
+      annotate(
+        "segment",
+        x = min(DailyDemandFromMarch$Year)-100,
+        xend = max(DailyDemandFromMarch$Year)+100,
+        y = 50,
+        yend = 50,
+        colour = "grey",
+        alpha = 0.4,
+        linetype = 2
+      ) +
+      geom_text(
+        aes(
+          x = min(Year)-(width*0.03),
+          y = 75,
+          label = "75\nGWh",
+          fontface = 2
+        ),
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        size = 3
+      )+
+      annotate(
+        "segment",
+        x = min(DailyDemandFromMarch$Year)-100,
+        xend = max(DailyDemandFromMarch$Year)+100,
+        y = 75,
+        yend = 75,
+        colour = "grey",
+        alpha = 0.4,
+        linetype = 2
+      ) +
+      geom_text(
+        aes(
+          x = min(Year)-(width*0.03),
+          y = 100,
+          label = "100\nGWh",
+          fontface = 2
+        ),
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        size = 3
+      ) +
+      annotate(
+        "segment",
+        x = min(DailyDemandFromMarch$Year)-100,
+        xend = max(DailyDemandFromMarch$Year)+100,
+        y = 100,
+        yend = 100,
+        colour = "grey",
+        alpha = 0.4,
+        linetype = 2
+      ) +
+      annotate(
+        "segment",
+        x = dmy("20/03/2020"),
+        xend = dmy("20/03/2020"),
+        y = -1000,
+        yend = 1000,
+        colour = "#68a9cf",
+        alpha = 0.9,
+        linetype = 2
       )+
       geom_text(
         aes(
-          x = min(Year)-50,
-          y = C19ElecRolling$Electricity[which(C19ElecRolling$Year == min(C19ElecRolling$Year))],
-          label = paste0(round(C19ElecRolling$Electricity[which(C19ElecRolling$Year == min(C19ElecRolling$Year))], digits = 0), "\nGWh"),
-          hjust = 0.5,
+          x = dmy("19/03/2020"),
+          y = 50,
+          label = "20/03",
           fontface = 2
         ),
-        colour = ChartColours[3],
-        family = "Century Gothic"
+        hjust = 1,
+        vjust = -.2,
+        colour = "#68a9cf",
+        family = "Century Gothic",
+        size = 3
       )+
       geom_text(
         aes(
-          x = max(Year)+50,
-          y = C19ElecRolling$Electricity[which(C19ElecRolling$Year == max(C19ElecRolling$Year))],
-          label = paste0(round(C19ElecRolling$Electricity[which(C19ElecRolling$Year == max(C19ElecRolling$Year))], digits = 0), "\nGWh"),
-          hjust = 0.5,
-          fontface = 2
+          x = dmy("19/03/2020"),
+          y = 50,
+          label = "Closure of pubs, gyms\netc."
         ),
-        colour = ChartColours[3],
-        family = "Century Gothic"
+        vjust = 1.1,
+        hjust = 1,
+        colour = "#68a9cf",
+        family = "Century Gothic",
+        size = 3
       )+
       geom_text(
         aes(
-          x = min(Year)-50,
-          y = C19ElecRolling$Transport[which(C19ElecRolling$Year == min(C19ElecRolling$Year))],
-          label = paste0(round(C19ElecRolling$Transport[which(C19ElecRolling$Year == min(C19ElecRolling$Year))], digits = 0), "\nGWh"),
-          hjust = 0.5,
+          x = dmy("24/03/2020"),
+          y = 50,
+          label = "23/03",
           fontface = 2
         ),
-        colour = ChartColours[4],
-        family = "Century Gothic"
+        hjust = 0,
+        vjust = -.2,
+        colour = "#07818a",
+        family = "Century Gothic",
+        size = 3
       )+
       geom_text(
         aes(
-          x = max(Year)+50,
-          y = C19ElecRolling$Transport[which(C19ElecRolling$Year == max(C19ElecRolling$Year))],
-          label = paste0(round(C19ElecRolling$Transport[which(C19ElecRolling$Year == max(C19ElecRolling$Year))], digits = 0), "\nGWh"),
-          hjust = 0.5,
-          fontface = 2
+          x = dmy("24/03/2020"),
+          y = 50,
+          label = "Lockdown\n "
         ),
-        colour = ChartColours[4],
-        family = "Century Gothic"
-      )
+        vjust = 1.1,
+        hjust = 0,
+        colour = "#07818a",
+        family = "Century Gothic",
+        size = 3
+      )+
+      annotate(
+        "segment",
+        x = dmy("23/03/2020"),
+        xend = dmy("23/03/2020"),
+        y = -1000,
+        yend = 1000,
+        colour = "#07818a",
+        alpha = 0.9
+      ) 
     
-    C19ElecRollingChart
     
-    C19ElecRollingChart <-
-      DailyChart(C19ElecRollingChart,
-                 C19ElecRolling,
+    DailyDemandFromMarchChart
+    
+    plottitle = "Daily electricity demand from start of March - 2020 vs 2019"
+    sourcecaption = "Source: National Grid"
+    
+    DailyDemandFromMarchChart <-
+      DailyChart(DailyDemandFromMarchChart,
+                 DailyDemandFromMarch,
                  plottitle,
                  sourcecaption,
                  ChartColours)
     
-    C19ElecRollingChart <- C19ElecRollingChart +
-      coord_cartesian(xlim = c(min(C19ElecRolling$Year)-30, max(C19ElecRolling$Year)+30)) +
-      ylim(-5,190)+
+    DailyDemandFromMarchChart <- DailyDemandFromMarchChart +
+      coord_cartesian(xlim = c(min(DailyDemandFromMarch$Year-1), max(DailyDemandFromMarch$Year)),
+                      ylim = c(-3,101)) +
+      labs(
+        title = plottitle,
+        face = 2,
+        subtitle = paste(
+          "Scotland"
+        )
+      )+
+      
       geom_hline(
         yintercept = 0,
         color = "grey",
-        alpha = 0.7,
-        linetype = 2
+        alpha = 0.9
       )
     
-    
-    C19ElecRollingChart
+    DailyDemandFromMarchChart
     
     ggsave(
       file,
-      plot =  C19ElecRollingChart,
-      width = 18,
+      plot =  DailyDemandFromMarchChart,
+      width = 30,
       height = 12,
       units = "cm",
       dpi = 300
