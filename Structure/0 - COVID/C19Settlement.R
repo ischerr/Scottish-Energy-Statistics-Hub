@@ -341,11 +341,11 @@ C19Settlement <- function(input, output, session) {
         ),
         hovername = 'text',
         
-        xaxis = list(title = "Settlement period",
+        xaxis = list(title = "\nSettlement period",
                      showgrid = TRUE),
         yaxis = list(
           title = "MW",
-          tickformat = "Settlement Period",
+          tickformat = "",
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
@@ -365,7 +365,7 @@ C19Settlement <- function(input, output, session) {
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "DailyDemandWorking")[c(1,5,7,6)]
     
-    names(Data) <- c("Year", "Gas (Gwh)", "Transport (GWh)", "Electricity (GWh)")
+    names(Data) <- c("Year", "Gas (MW)", "Transport (MW)", "Electricity (MW)")
     
     Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
     
@@ -559,7 +559,7 @@ C19Settlement <- function(input, output, session) {
           aes(
             x = min(Year)-(width*0.03),
             y = 500,
-            label = "500\nGWh",
+            label = "500\nMW",
             fontface = 2
           ),
           colour = ChartColours[1],
@@ -580,7 +580,7 @@ C19Settlement <- function(input, output, session) {
           aes(
             x = min(Year)-(width*0.03),
             y = 1000,
-            label = "1000\nGWh",
+            label = "1000\nMW",
             fontface = 2
           ),
           colour = ChartColours[1],
@@ -601,7 +601,7 @@ C19Settlement <- function(input, output, session) {
           aes(
             x = min(Year)-(width*0.03),
             y = 1500,
-            label = "1500\nGWh",
+            label = "1500\nMW",
             fontface = 2
           ),
           colour = ChartColours[1],
@@ -622,7 +622,7 @@ C19Settlement <- function(input, output, session) {
           aes(
             x = min(Year)-(width*0.03),
             y = 2000,
-            label = "2000\nGWh",
+            label = "2000\nMW",
             fontface = 2
           ),
           colour = ChartColours[1],
@@ -654,7 +654,7 @@ C19Settlement <- function(input, output, session) {
           aes(
             x = min(Year)-(width*0.03),
             y = 2500,
-            label = "2500\nGWh",
+            label = "2500\nMW",
             fontface = 2
           ),
           colour = ChartColours[1],
@@ -665,7 +665,7 @@ C19Settlement <- function(input, output, session) {
           aes(
             x = min(Year)-(width*0.03),
             y = 3000,
-            label = "3000\nGWh",
+            label = "3000\nMW",
             fontface = 2
           ),
           colour = ChartColours[1],
@@ -686,7 +686,7 @@ C19Settlement <- function(input, output, session) {
           aes(
             x = min(Year)-(width*0.03),
             y = 3500,
-            label = "3500\nGWh",
+            label = "3500\nMW",
             fontface = 2
           ),
           colour = ChartColours[1],
@@ -909,7 +909,7 @@ output$C19SettlementRolling.png <- downloadHandler(
         aes(
           x = min(Year)-(width*0.03),
           y = 500,
-          label = "500\nGWh",
+          label = "500\nMW",
           fontface = 2
         ),
         colour = ChartColours[1],
@@ -930,7 +930,7 @@ output$C19SettlementRolling.png <- downloadHandler(
         aes(
           x = min(Year)-(width*0.03),
           y = 1000,
-          label = "1000\nGWh",
+          label = "1000\nMW",
           fontface = 2
         ),
         colour = ChartColours[1],
@@ -951,7 +951,7 @@ output$C19SettlementRolling.png <- downloadHandler(
         aes(
           x = min(Year)-(width*0.03),
           y = 1500,
-          label = "1500\nGWh",
+          label = "1500\nMW",
           fontface = 2
         ),
         colour = ChartColours[1],
@@ -972,7 +972,7 @@ output$C19SettlementRolling.png <- downloadHandler(
         aes(
           x = min(Year)-(width*0.03),
           y = 2000,
-          label = "2000\nGWh",
+          label = "2000\nMW",
           fontface = 2
         ),
         colour = ChartColours[1],
@@ -1004,7 +1004,7 @@ output$C19SettlementRolling.png <- downloadHandler(
         aes(
           x = min(Year)-(width*0.03),
           y = 2500,
-          label = "2500\nGWh",
+          label = "2500\nMW",
           fontface = 2
         ),
         colour = ChartColours[1],
@@ -1015,7 +1015,7 @@ output$C19SettlementRolling.png <- downloadHandler(
         aes(
           x = min(Year)-(width*0.03),
           y = 3000,
-          label = "3000\nGWh",
+          label = "3000\nMW",
           fontface = 2
         ),
         colour = ChartColours[1],
@@ -1036,7 +1036,7 @@ output$C19SettlementRolling.png <- downloadHandler(
         aes(
           x = min(Year)-(width*0.03),
           y = 3500,
-          label = "3500\nGWh",
+          label = "3500\nMW",
           fontface = 2
         ),
         colour = ChartColours[1],
@@ -1114,7 +1114,7 @@ output$FullData <- downloadHandler(
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "DailyDemandWorking")[c(1,2,4,3)]
     
-    names(Data) <- c("Year", "Gas (GWh)", "Transport (GWh)", "Electricity (GWh)")
+    names(Data) <- c("Year", "Gas (MW)", "Transport (MW)", "Electricity (MW)")
     
     Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
     
