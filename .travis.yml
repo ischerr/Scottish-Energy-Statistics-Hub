@@ -21,6 +21,7 @@ git:
   depth: false
  
 r_packages:
+- lwgeom
  
 r_github_packages: 
 - rensa/ggflags
