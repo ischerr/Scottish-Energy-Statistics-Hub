@@ -1032,9 +1032,9 @@ output$C19SurveyRolling.png <- downloadHandler(
       #scale_size(range = c(15,30), guide = FALSE)+
       geom_bar(stat = "identity", fill = ChartColours[1]) +
       coord_flip() +
-      ylim(-1.26,.9) +
+      ylim(-1.6,.9) +
       geom_text(
-        y = -0.7,
+        y = -0.85,
         label = str_wrap(Data$Region, 55),
         fontface = 2,
         family = "Century Gothic",
