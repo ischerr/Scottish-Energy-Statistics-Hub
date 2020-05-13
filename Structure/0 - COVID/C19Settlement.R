@@ -18,8 +18,7 @@ C19SettlementOutput <- function(id) {
                     h4(textOutput(ns('C19SettlementSubtitle')), style = "color: #5d8be1;")
     ),
              column(
-               4, style = 'padding:15px;'#,
-               #downloadButton(ns('C19Settlement.png'), 'Download Graph', style="float:right")
+               4, style = 'padding:15px;', downloadButton(ns('C19Settlement.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
@@ -33,8 +32,7 @@ C19SettlementOutput <- function(id) {
                              h4(textOutput(ns('C19SettlementRollingSubtitle')), style = "color: #5d8be1;")
              ),
              column(
-               4, style = 'padding:15px;'#,
-               #downloadButton(ns('C19SettlementRolling.png'), 'Download Graph', style="float:right")
+               4, style = 'padding:15px;', downloadButton(ns('C19SettlementRolling.png'), 'Download Graph', style="float:right")
              )),
              
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
@@ -88,7 +86,7 @@ C19Settlement <- function(input, output, session) {
 
   output$C19SettlementSubtitle <- renderText({
     
-    paste("Scotland, week commencing 27/04/2020 and equivalent week in 2019")
+    paste("Scotland, week commencing 04/05/2020 and equivalent week in 2019")
   })
   
   output$C19SettlementPlot <- renderPlotly  ({
@@ -126,7 +124,7 @@ C19Settlement <- function(input, output, session) {
     # 
     # max(x$Week)}
     
-    MaxWeek = 18
+    MaxWeek = 19
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week == MaxWeek),] 
     
@@ -255,7 +253,7 @@ C19Settlement <- function(input, output, session) {
     # 
     # max(x$Week)}
     
-    MaxWeek = 18
+    MaxWeek = 19
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week <= MaxWeek),] 
     
@@ -343,11 +341,11 @@ C19Settlement <- function(input, output, session) {
         ),
         hovername = 'text',
         
-        xaxis = list(title = "Settlement period",
+        xaxis = list(title = "\nSettlement period",
                      showgrid = TRUE),
         yaxis = list(
           title = "MW",
-          tickformat = "Settlement Period",
+          tickformat = "",
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
@@ -367,7 +365,7 @@ C19Settlement <- function(input, output, session) {
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "DailyDemandWorking")[c(1,5,7,6)]
     
-    names(Data) <- c("Year", "Gas (Gwh)", "Transport (GWh)", "Electricity (GWh)")
+    names(Data) <- c("Year", "Gas (MW)", "Transport (MW)", "Electricity (MW)")
     
     Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
     
@@ -440,90 +438,104 @@ C19Settlement <- function(input, output, session) {
   
   
   output$C19Settlement.png <- downloadHandler(
-    filename = "C19Settlement.png",
+    filename = "C19HalfHourlyDemand.png",
     content = function(file) {
       
-      print("Energy daily demand")
-      ###### Daily Demand  #####
+      library(readr)
+      library(lubridate)
       
-      # C19Settlement <-
-      #   read_csv(
-      #     "J:/ENERGY BRANCH/Statistics/Energy Strategy - Stats Publication/2019/Graphs/Data/C19Settlement.csv"
-      #   )
+      ElecDemandHalfHourly <- read_csv("CovidAnalysis/ElecDemandHalfHourly.csv")
       
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "DailyDemandWorking")[c(1,2,4,3)]
+      names(ElecDemandHalfHourly) <- c("Date", "SettlementPeriod", "Total", "Quarter")
       
-      Data <- Data[complete.cases(Data),]
+      ElecDemandHalfHourly$Date <- ymd(ElecDemandHalfHourly$Date)
       
-      names(Data) <- c("Year", "Gas", "Transport", "Electricity")
+      ElecDemandHalfHourly$Year <-year(ElecDemandHalfHourly$Date)
       
-      Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
+      ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2013),]
       
-      C19Settlement <- Data
+      ElecDemandHalfHourly$Month <-month(ElecDemandHalfHourly$Date)
       
-      ### variables
-      ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
-      sourcecaption = "Source: Sheffield, National Grid, BEIS"
-      plottitle = "Energy use in Scotland per day"
+      ElecDemandHalfHourly$Week <- isoweek(ElecDemandHalfHourly$Date)
       
-      #C19Settlement$GasPercentage <- PercentLabel(C19Settlement$Gas)
+      ElecDemandHalfHourly$Weekday <- weekdays(ElecDemandHalfHourly$Date)
+      
+      ElecDemandHalfHourly$DayofYear <- yday(ElecDemandHalfHourly$Date)
+      
+      ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 13, "PostLockdown", "BeforeLockdown")
+      
+      ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2019),]
+      
+      # MaxWeek <- {x <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year == max(ElecDemandHalfHourly$Year)),] 
+      # 
+      # x <- x[which(x$Weekday == "Sunday"),]
+      # 
+      # x <- x[which(x$Week == max(x$Week)),]
+      # 
+      # max(x$Week)}
+      
+      MaxWeek = 19
+      
+      ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week == MaxWeek),] 
+      
+      ElecDemandHalfHourly <- ElecDemandHalfHourly[order(ElecDemandHalfHourly$Date, ElecDemandHalfHourly$SettlementPeriod),]
+      
+      ElecDemandHalfHourly <- ElecDemandHalfHourly %>% group_by(Year) %>% mutate(id = row_number())
       
       
-      C19SettlementChart <- C19Settlement %>%
+      ElecDemandHalfHourly  <- dcast(ElecDemandHalfHourly, id + SettlementPeriod + Weekday ~ Year, value.var = 'Total')
+      
+      ElecDemandHalfHourly$Date <- ymd("2020/04/27")
+      
+      ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date) + 1
+      ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date) + 2
+      ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Thursday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Thursday"),]$Date) + 3
+      ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Friday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Friday"),]$Date) + 4
+      ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Saturday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Saturday"),]$Date) + 5
+      ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Sunday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Sunday"),]$Date) + 6
+      
+      ElecDemandHalfHourly$Year <- ElecDemandHalfHourly$id
+      
+      width <- 336
+      
+      ChartColours <- c("#126992", "#1f77b4", "#ff7f0e", "#8da0cb")
+      BarColours <- c("#126992", "#1f77b4", "#ff7f0e", "#8da0cb")
+      
+      ElecDemandHalfHourlyChart <- ElecDemandHalfHourly %>%
         ggplot(aes(x = Year), family = "Century Gothic") +
-        
         geom_line(
-          aes(y = Gas,
-              label = Gas),
-          colour = ChartColours[2],
-          size = 1,
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = mean(C19Settlement$Year),
-          y = max(C19Settlement$Gas),
-          label = "Gas",
-          hjust = 0.5,
-          vjust = 1,
-          colour = ChartColours[2],
-          fontface = 2,
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = Electricity,
-              label = paste0(Electricity * 100, "%")),
+          aes(y = `2019`,
+              label = paste0(`2019` * 100, "%")),
           colour = ChartColours[3],
           size = 1,
           family = "Century Gothic"
         ) +
         annotate(
           "text",
-          x = mean(C19Settlement$Year),
-          y = mean(C19Settlement$Electricity),
-          label = "Electricity",
+          x = mean(ElecDemandHalfHourly$Year),
+          y = mean(ElecDemandHalfHourly$`2019`),
+          label = "2019",
           hjust = 0.5,
-          vjust = 5.5,
+          vjust = -6,
           colour = ChartColours[3],
           fontface = 2,
           family = "Century Gothic"
         ) +
         geom_line(
-          aes(y = Transport,
-              label = paste0(Transport * 100, "%")),
-          colour = ChartColours[4],
+          aes(y = `2020`,
+              label = `2020`),
+          colour = ChartColours[2],
           size = 1,
           family = "Century Gothic"
         ) +
         annotate(
           "text",
-          x = mean(C19Settlement$Year),
-          y = mean(C19Settlement$Transport),
-          label = "Transport",
+          x = mean(ElecDemandHalfHourly$Year),
+          y = mean(ElecDemandHalfHourly$`2020`),
+          label = "2020",
           hjust = 0.5,
-          vjust = 8,
-          colour = ChartColours[4],
+          vjust = 2,
+          colour = ChartColours[2],
           fontface = 2,
           family = "Century Gothic"
         ) +
@@ -532,9 +544,8 @@ C19Settlement <- function(input, output, session) {
             x = Year,
             y = 0,
             label = ifelse(
-              Year == max(Year) |
-                Year == min(Year),
-              format(Year, format = "%b %Y"),
+              Year %in% c(1, 49,97,145,193,241,289),
+              substr(ElecDemandHalfHourly$Weekday,1,3),
               ""
             ),
             hjust = 0.5,
@@ -543,72 +554,201 @@ C19Settlement <- function(input, output, session) {
           ),
           colour = ChartColours[1],
           family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = min(Year)-(width*0.03),
+            y = 500,
+            label = "500\nMW",
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          size = 3
+        ) +
+        annotate(
+          "segment",
+          x = min(ElecDemandHalfHourly$Year)-100,
+          xend = max(ElecDemandHalfHourly$Year)+100,
+          y = 500,
+          yend = 500,
+          colour = "grey",
+          alpha = 0.4,
+          linetype = 2
+        ) +
+        geom_text(
+          aes(
+            x = min(Year)-(width*0.03),
+            y = 1000,
+            label = "1000\nMW",
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          size = 3
+        ) +
+        annotate(
+          "segment",
+          x = min(ElecDemandHalfHourly$Year)-100,
+          xend = max(ElecDemandHalfHourly$Year)+100,
+          y = 1000,
+          yend = 1000,
+          colour = "grey",
+          alpha = 0.4,
+          linetype = 2
+        ) +
+        geom_text(
+          aes(
+            x = min(Year)-(width*0.03),
+            y = 1500,
+            label = "1500\nMW",
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          size = 3
+        ) +
+        annotate(
+          "segment",
+          x = min(ElecDemandHalfHourly$Year)-100,
+          xend = max(ElecDemandHalfHourly$Year)+100,
+          y = 1500,
+          yend = 1500,
+          colour = "grey",
+          alpha = 0.4,
+          linetype = 2
+        ) +
+        geom_text(
+          aes(
+            x = min(Year)-(width*0.03),
+            y = 2000,
+            label = "2000\nMW",
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          size = 3
+        ) +
+        
+        annotate(
+          "segment",
+          x = min(ElecDemandHalfHourly$Year)-100,
+          xend = max(ElecDemandHalfHourly$Year)+100,
+          y = 2000,
+          yend = 2000,
+          colour = "grey",
+          alpha = 0.4,
+          linetype = 2
+        ) +
+        annotate(
+          "segment",
+          x = min(ElecDemandHalfHourly$Year)-100,
+          xend = max(ElecDemandHalfHourly$Year)+100,
+          y = 2500,
+          yend = 2500,
+          colour = "grey",
+          alpha = 0.4,
+          linetype = 2
+        ) +
+        geom_text(
+          aes(
+            x = min(Year)-(width*0.03),
+            y = 2500,
+            label = "2500\nMW",
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          size = 3
+        ) +
+        geom_text(
+          aes(
+            x = min(Year)-(width*0.03),
+            y = 3000,
+            label = "3000\nMW",
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          size = 3
+        ) +
+        annotate(
+          "segment",
+          x = min(ElecDemandHalfHourly$Year)-100,
+          xend = max(ElecDemandHalfHourly$Year)+100,
+          y = 3000,
+          yend = 3000,
+          colour = "grey",
+          alpha = 0.4,
+          linetype = 2
+        ) +
+        geom_text(
+          aes(
+            x = min(Year)-(width*0.03),
+            y = 3500,
+            label = "3500\nMW",
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          size = 3
+        ) +
+        annotate(
+          "segment",
+          x = min(ElecDemandHalfHourly$Year)-100,
+          xend = max(ElecDemandHalfHourly$Year)+100,
+          y = 3500,
+          yend = 3500,
+          colour = "grey",
+          alpha = 0.4,
+          linetype = 2
         )+
         annotate(
           "segment",
-          x = C19Settlement$Year[which(C19Settlement$Gas == max(C19Settlement$Gas))]-2,
-          xend = C19Settlement$Year[which(C19Settlement$Gas == max(C19Settlement$Gas))] - 30,
-          y = max(C19Settlement$Gas),
-          yend = max(C19Settlement$Gas),
-          colour = "#3690c0"
-        ) +
-        annotate(
-          "text",
-          x = C19Settlement$Year[which(C19Settlement$Gas == max(C19Settlement$Gas))] - 35,
-          y = max(C19Settlement$Gas),
-          label = paste(round(max(C19Settlement$Gas), digits = 0), "GWh"),
-          hjust = 1,
-          fontface = 2,
-          size = 4,
-          colour = ChartColours[2],
-          family = "Century Gothic"
-        )+
-        annotate(
-          "segment",
-          x = C19Settlement$Year[which(C19Settlement$Electricity == max(C19Settlement$Electricity[which(C19Settlement$Year > dmy("01/08/18"))]))]+2,
-          xend = C19Settlement$Year[which(C19Settlement$Electricity == max(C19Settlement$Electricity[which(C19Settlement$Year > dmy("01/08/18"))]))] + 30,
-          y = max(C19Settlement$Electricity[which(C19Settlement$Year > dmy("01/08/18"))]),
-          yend = max(C19Settlement$Electricity[which(C19Settlement$Year > dmy("01/08/18"))]),
-          colour = "#3690c0"
-        ) +
-        annotate(
-          "text",
-          x = C19Settlement$Year[which(C19Settlement$Electricity == max(C19Settlement$Electricity[which(C19Settlement$Year > dmy("01/08/18"))]))] + 35,
-          y = max(C19Settlement$Electricity[which(C19Settlement$Year > dmy("01/08/18"))]),
-          label = paste(round(max(C19Settlement$Electricity[which(C19Settlement$Year > dmy("01/08/18"))]), digits = 0), "GWh"),
-          hjust = 0,
-          fontface = 2,
-          size = 4,
-          colour = ChartColours[3],
-          family = "Century Gothic"
+          x = c(1, 49,97,145,193,241,289),
+          xend = c(1, 49,97,145,193,241,289),
+          y = 0,
+          yend = 10000,
+          colour = "grey",
+          alpha = 0.4,
+          linetype = 2
         )
       
       
-      C19SettlementChart
+      ElecDemandHalfHourlyChart
       
-      C19SettlementChart <-
-        DailyChart(C19SettlementChart,
-                   C19Settlement,
+      plottitle = "Electricity demand by settlement period"
+      sourcecaption = "Source: National Grid"
+      
+      ElecDemandHalfHourlyChart <-
+        DailyChart(ElecDemandHalfHourlyChart,
+                   ElecDemandHalfHourly,
                    plottitle,
                    sourcecaption,
                    ChartColours)
       
-      C19SettlementChart <- C19SettlementChart +
-        coord_cartesian(xlim = c(min(C19Settlement$Year), max(C19Settlement$Year)+130)) +
+      ElecDemandHalfHourlyChart <- ElecDemandHalfHourlyChart +
+        coord_cartesian(xlim = c(min(ElecDemandHalfHourly$Year-1), max(ElecDemandHalfHourly$Year)-13),
+                        ylim = c(-40,max(ElecDemandHalfHourly$`2019`)*1.03)) +
+        labs(
+          title = plottitle,
+          face = 2,
+          subtitle = paste(
+            "Scotland, week commencing 04/05/2020 and equivalent week in 2019"
+          )
+        )+
         
-        ylim(-15, 352) +
         geom_hline(
           yintercept = 0,
           color = "grey",
-          alpha = 0.7,
-          linetype = 2
+          alpha = 0.9
         )
       
-      C19SettlementChart
+      ElecDemandHalfHourlyChart
       
       ggsave(
         file,
-        plot =  C19SettlementChart,
+        plot =  ElecDemandHalfHourlyChart,
         width = 30,
         height = 12,
         units = "cm",
@@ -618,40 +758,95 @@ C19Settlement <- function(input, output, session) {
 )
 
 output$C19SettlementRolling.png <- downloadHandler(
-  filename = "C19SettlementRolling.png",
+  filename = "C19AverageElecSettlement.png",
   content = function(file) {
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "DailyDemandWorking")[c(1,5,7,6)]
+    ElecDemandHalfHourly <- read_csv("CovidAnalysis/ElecDemandHalfHourly.csv")
     
-    names(Data) <- c("Year", "Gas", "Transport", "Electricity")
+    names(ElecDemandHalfHourly) <- c("Date", "SettlementPeriod", "Total", "Quarter")
     
-    Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
+    ElecDemandHalfHourly$Date <- ymd(ElecDemandHalfHourly$Date)
     
-    C19SettlementRolling <- Data[complete.cases(Data),]
+    ElecDemandHalfHourly$Year <-year(ElecDemandHalfHourly$Date)
     
-    ### variables
-    ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
-    sourcecaption = "Source: Sheffield, National Grid, BEIS"
-    plottitle = "Energy use in Scotland per day\n12 month rolling average"
+    ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2013),]
     
-    #C19SettlementRolling$GasPercentage <- PercentLabel(C19SettlementRolling$Gas)
+    ElecDemandHalfHourly$Month <-month(ElecDemandHalfHourly$Date)
     
+    ElecDemandHalfHourly$Week <- isoweek(ElecDemandHalfHourly$Date)
     
-    C19SettlementRollingChart <- C19SettlementRolling %>%
+    ElecDemandHalfHourly$Weekday <- weekdays(ElecDemandHalfHourly$Date)
+    
+    ElecDemandHalfHourly$DayofYear <- yday(ElecDemandHalfHourly$Date)
+    
+    ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 13, "PostLockdown", "BeforeLockdown")
+    
+    ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2019),]
+    
+    # MaxWeek <- {x <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year == max(ElecDemandHalfHourly$Year)),] 
+    # 
+    # x <- x[which(x$Weekday == "Sunday"),]
+    # 
+    # x <- x[which(x$Week == max(x$Week)),]
+    # 
+    # max(x$Week)}
+    
+    MaxWeek = 19
+    
+    ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week <= MaxWeek),] 
+    
+    ElecDemandHalfHourly <- ElecDemandHalfHourly[order(ElecDemandHalfHourly$Date, ElecDemandHalfHourly$SettlementPeriod),]
+    
+    ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$PostLockdown == "PostLockdown"),]
+    
+    ElecDemandHalfHourly$Weekend <- ifelse(substr(ElecDemandHalfHourly$Weekday,1,1) == "S", "Weekend", "Weekday")
+    
+    ElecDemandHalfHourly <- ElecDemandHalfHourly %>% group_by(Year, Weekend, SettlementPeriod) %>% 
+      summarise(Total = mean(Total))
+    
+    ElecDemandHalfHourly$Variable <- paste0(ElecDemandHalfHourly$Year," - ",ElecDemandHalfHourly$Weekend)
+    
+    ElecDemandHalfHourly <- dcast(ElecDemandHalfHourly, SettlementPeriod ~ Variable, value.var = "Total")
+    
+    ChartColours <- c("#1f77b4","#fdae6b","#ff7f0e","#9ecae1")
+    
+    ElecDemandHalfHourly$Year <- ElecDemandHalfHourly$SettlementPeriod
+    width <- 48
+    
+    ChartColours <- c("#126992", "#1f77b4", "#ff7f0e", "#8da0cb", "#fdae6b")
+    BarColours <- c("#126992", "#1f77b4", "#ff7f0e", "#8da0cb")
+    
+    ElecDemandHalfHourlyChart <- ElecDemandHalfHourly %>%
       ggplot(aes(x = Year), family = "Century Gothic") +
-      
       geom_line(
-        aes(y = Gas,
-            label = Gas),
+        aes(y = `2019 - Weekday`,
+            label = paste0(`2019 - Weekday` * 100, "%")),
+        colour = ChartColours[3],
+        size = 1,
+        family = "Century Gothic"
+      ) +
+      annotate(
+        "text",
+        x = mean(ElecDemandHalfHourly$Year),
+        y = mean(ElecDemandHalfHourly$`2019 - Weekday`),
+        label = "2019 - Weekday",
+        hjust = 0.5,
+        vjust = -6,
+        colour = ChartColours[3],
+        fontface = 2,
+        family = "Century Gothic"
+      ) +
+      geom_line(
+        aes(y = `2020 - Weekday`,
+            label = `2020 - Weekday`),
         colour = ChartColours[2],
         size = 1,
         family = "Century Gothic"
       ) +
       annotate(
         "text",
-        x = mean(C19SettlementRolling$Year),
-        y = max(C19SettlementRolling$Gas),
-        label = "Gas Rolling Average",
+        x = mean(ElecDemandHalfHourly$Year),
+        y = mean(ElecDemandHalfHourly$`2020 - Weekday`),
+        label = "2020 - Weekday",
         hjust = 0.5,
         vjust = 2,
         colour = ChartColours[2],
@@ -659,37 +854,37 @@ output$C19SettlementRolling.png <- downloadHandler(
         family = "Century Gothic"
       ) +
       geom_line(
-        aes(y = Electricity,
-            label = paste0(Electricity * 100, "%")),
-        colour = ChartColours[3],
+        aes(y = `2019 - Weekend`,
+            label = paste0(`2019 - Weekend` * 100, "%")),
+        colour = ChartColours[5],
         size = 1,
         family = "Century Gothic"
       ) +
       annotate(
         "text",
-        x = mean(C19SettlementRolling$Year),
-        y = mean(C19SettlementRolling$Electricity),
-        label = "Electricity Rolling Average",
+        x = mean(ElecDemandHalfHourly$Year),
+        y = mean(ElecDemandHalfHourly$`2019 - Weekend`),
+        label = "2019 - Weekend",
         hjust = 0.5,
-        vjust = -1,
-        colour = ChartColours[3],
+        vjust = -6,
+        colour = ChartColours[5],
         fontface = 2,
         family = "Century Gothic"
       ) +
       geom_line(
-        aes(y = Transport,
-            label = paste0(Transport * 100, "%")),
+        aes(y = `2020 - Weekend`,
+            label = `2020 - Weekend`),
         colour = ChartColours[4],
         size = 1,
         family = "Century Gothic"
       ) +
       annotate(
         "text",
-        x = mean(C19SettlementRolling$Year),
-        y = mean(C19SettlementRolling$Transport),
-        label = "Transport Rolling Average",
+        x = mean(ElecDemandHalfHourly$Year),
+        y = mean(ElecDemandHalfHourly$`2020 - Weekend`),
+        label = "2020 - Weekend",
         hjust = 0.5,
-        vjust = -1,
+        vjust = 2.2,
         colour = ChartColours[4],
         fontface = 2,
         family = "Century Gothic"
@@ -699,9 +894,8 @@ output$C19SettlementRolling.png <- downloadHandler(
           x = Year,
           y = 0,
           label = ifelse(
-            Year == max(Year) |
-              Year == min(Year),
-            format(Year, format = "%b %Y"),
+            Year %in% c(1, 12, 24, 36, 48),
+            ElecDemandHalfHourly$Year,
             ""
           ),
           hjust = 0.5,
@@ -710,100 +904,203 @@ output$C19SettlementRolling.png <- downloadHandler(
         ),
         colour = ChartColours[1],
         family = "Century Gothic"
-      )+
+      ) +
       geom_text(
         aes(
-          x = min(Year)-50,
-          y = C19SettlementRolling$Gas[which(C19SettlementRolling$Year == min(C19SettlementRolling$Year))],
-          label = paste0(round(C19SettlementRolling$Gas[which(C19SettlementRolling$Year == min(C19SettlementRolling$Year))], digits = 0), "\nGWh"),
-          hjust = 0.5,
+          x = min(Year)-(width*0.03),
+          y = 500,
+          label = "500\nMW",
           fontface = 2
         ),
-        colour = ChartColours[2],
-        family = "Century Gothic"
-      )+
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        size = 3
+      ) +
+      annotate(
+        "segment",
+        x = min(ElecDemandHalfHourly$Year)-100,
+        xend = max(ElecDemandHalfHourly$Year)+100,
+        y = 500,
+        yend = 500,
+        colour = "grey",
+        alpha = 0.4,
+        linetype = 2
+      ) +
       geom_text(
         aes(
-          x = max(Year)+50,
-          y = C19SettlementRolling$Gas[which(C19SettlementRolling$Year == max(C19SettlementRolling$Year))],
-          label = paste0(round(C19SettlementRolling$Gas[which(C19SettlementRolling$Year == max(C19SettlementRolling$Year))], digits = 0), "\nGWh"),
-          hjust = 0.5,
+          x = min(Year)-(width*0.03),
+          y = 1000,
+          label = "1000\nMW",
           fontface = 2
         ),
-        colour = ChartColours[2],
-        family = "Century Gothic"
-      )+
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        size = 3
+      ) +
+      annotate(
+        "segment",
+        x = min(ElecDemandHalfHourly$Year)-100,
+        xend = max(ElecDemandHalfHourly$Year)+100,
+        y = 1000,
+        yend = 1000,
+        colour = "grey",
+        alpha = 0.4,
+        linetype = 2
+      ) +
       geom_text(
         aes(
-          x = min(Year)-50,
-          y = C19SettlementRolling$Electricity[which(C19SettlementRolling$Year == min(C19SettlementRolling$Year))],
-          label = paste0(round(C19SettlementRolling$Electricity[which(C19SettlementRolling$Year == min(C19SettlementRolling$Year))], digits = 0), "\nGWh"),
-          hjust = 0.5,
+          x = min(Year)-(width*0.03),
+          y = 1500,
+          label = "1500\nMW",
           fontface = 2
         ),
-        colour = ChartColours[3],
-        family = "Century Gothic"
-      )+
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        size = 3
+      ) +
+      annotate(
+        "segment",
+        x = min(ElecDemandHalfHourly$Year)-100,
+        xend = max(ElecDemandHalfHourly$Year)+100,
+        y = 1500,
+        yend = 1500,
+        colour = "grey",
+        alpha = 0.4,
+        linetype = 2
+      ) +
       geom_text(
         aes(
-          x = max(Year)+50,
-          y = C19SettlementRolling$Electricity[which(C19SettlementRolling$Year == max(C19SettlementRolling$Year))],
-          label = paste0(round(C19SettlementRolling$Electricity[which(C19SettlementRolling$Year == max(C19SettlementRolling$Year))], digits = 0), "\nGWh"),
-          hjust = 0.5,
+          x = min(Year)-(width*0.03),
+          y = 2000,
+          label = "2000\nMW",
           fontface = 2
         ),
-        colour = ChartColours[3],
-        family = "Century Gothic"
-      )+
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        size = 3
+      ) +
+      
+      annotate(
+        "segment",
+        x = min(ElecDemandHalfHourly$Year)-100,
+        xend = max(ElecDemandHalfHourly$Year)+100,
+        y = 2000,
+        yend = 2000,
+        colour = "grey",
+        alpha = 0.4,
+        linetype = 2
+      ) +
+      annotate(
+        "segment",
+        x = min(ElecDemandHalfHourly$Year)-100,
+        xend = max(ElecDemandHalfHourly$Year)+100,
+        y = 2500,
+        yend = 2500,
+        colour = "grey",
+        alpha = 0.4,
+        linetype = 2
+      ) +
       geom_text(
         aes(
-          x = min(Year)-50,
-          y = C19SettlementRolling$Transport[which(C19SettlementRolling$Year == min(C19SettlementRolling$Year))],
-          label = paste0(round(C19SettlementRolling$Transport[which(C19SettlementRolling$Year == min(C19SettlementRolling$Year))], digits = 0), "\nGWh"),
-          hjust = 0.5,
+          x = min(Year)-(width*0.03),
+          y = 2500,
+          label = "2500\nMW",
           fontface = 2
         ),
-        colour = ChartColours[4],
-        family = "Century Gothic"
-      )+
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        size = 3
+      ) +
       geom_text(
         aes(
-          x = max(Year)+50,
-          y = C19SettlementRolling$Transport[which(C19SettlementRolling$Year == max(C19SettlementRolling$Year))],
-          label = paste0(round(C19SettlementRolling$Transport[which(C19SettlementRolling$Year == max(C19SettlementRolling$Year))], digits = 0), "\nGWh"),
-          hjust = 0.5,
+          x = min(Year)-(width*0.03),
+          y = 3000,
+          label = "3000\nMW",
           fontface = 2
         ),
-        colour = ChartColours[4],
-        family = "Century Gothic"
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        size = 3
+      ) +
+      annotate(
+        "segment",
+        x = min(ElecDemandHalfHourly$Year)-100,
+        xend = max(ElecDemandHalfHourly$Year)+100,
+        y = 3000,
+        yend = 3000,
+        colour = "grey",
+        alpha = 0.4,
+        linetype = 2
+      ) +
+      geom_text(
+        aes(
+          x = min(Year)-(width*0.03),
+          y = 3500,
+          label = "3500\nMW",
+          fontface = 2
+        ),
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        size = 3
+      ) +
+      annotate(
+        "segment",
+        x = min(ElecDemandHalfHourly$Year)-100,
+        xend = max(ElecDemandHalfHourly$Year)+100,
+        y = 3500,
+        yend = 3500,
+        colour = "grey",
+        alpha = 0.4,
+        linetype = 2
       )
+    # )+
+    # annotate(
+    #   "segment",
+    #   x = c(1, 49,97,145,193,241,289),
+    #   xend = c(1, 49,97,145,193,241,289),
+    #   y = 0,
+    #   yend = 10000,
+    #   colour = "grey",
+    #   alpha = 0.4,
+    #   linetype = 2
+    # )
     
-    C19SettlementRollingChart
     
-    C19SettlementRollingChart <-
-      DailyChart(C19SettlementRollingChart,
-                 C19SettlementRolling,
+    ElecDemandHalfHourlyChart
+    
+    plottitle = "Average electricity demand by weekday/weekend, post lockdown"
+    sourcecaption = "Source: National Grid"
+    
+    ElecDemandHalfHourlyChart <-
+      DailyChart(ElecDemandHalfHourlyChart,
+                 ElecDemandHalfHourly,
                  plottitle,
                  sourcecaption,
                  ChartColours)
     
-    C19SettlementRollingChart <- C19SettlementRollingChart +
-      coord_cartesian(xlim = c(min(C19SettlementRolling$Year)-30, max(C19SettlementRolling$Year)+30)) +
-      ylim(-5,190)+
+    ElecDemandHalfHourlyChart <- ElecDemandHalfHourlyChart +
+      coord_cartesian(xlim = c(min(ElecDemandHalfHourly$Year-1), max(ElecDemandHalfHourly$Year)-1),
+                      ylim = c(-45,max(ElecDemandHalfHourly$`2019 - Weekday`)*1.14)) +
+      labs(
+        title = plottitle,
+        face = 2,
+        subtitle = paste(
+          "Scotland, 2020 vs 2019"
+        )
+      )+
+      
       geom_hline(
         yintercept = 0,
         color = "grey",
-        alpha = 0.7,
-        linetype = 2
+        alpha = 0.9
       )
     
-    
-    C19SettlementRollingChart
+    ElecDemandHalfHourlyChart
     
     ggsave(
       file,
-      plot =  C19SettlementRollingChart,
-      width = 18,
+      plot =  ElecDemandHalfHourlyChart,
+      width = 30,
       height = 12,
       units = "cm",
       dpi = 300
@@ -817,7 +1114,7 @@ output$FullData <- downloadHandler(
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "DailyDemandWorking")[c(1,2,4,3)]
     
-    names(Data) <- c("Year", "Gas (GWh)", "Transport (GWh)", "Electricity (GWh)")
+    names(Data) <- c("Year", "Gas (MW)", "Transport (MW)", "Electricity (MW)")
     
     Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
     
