@@ -511,12 +511,15 @@ ui <- shinyUI(fluidPage(
       ),
       tabPanel(
         value = "LowCarbonEconomy",
-        title = "Low Carbon Economy",
+        title = "Economy",
         navlistPanel(id = "LowCarbonEconomy",
                      widths = c(3, 8),
                      tabPanel(title ="Low Carbon Economy", 
                               value = "LowCarbonEconomy",
-                              LowCarbonEconomyOutput("LowCarbonEconomy"))
+                              LowCarbonEconomyOutput("LowCarbonEconomy")),
+                     tabPanel(title ="Value of services and assets", 
+                              value = "RenServicesAssets",
+                              RenServicesAssetsOutput("RenServicesAssets"))
       ))
     
     )),
