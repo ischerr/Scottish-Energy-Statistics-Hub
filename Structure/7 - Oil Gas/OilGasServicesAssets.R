@@ -79,8 +79,7 @@ OilGasServicesAssets <- function(input, output, session) {
     
     FossilFuels <- read_delim("Processed Data/Output/Services and assets/FossilFuels.txt", 
                               "\t", escape_double = FALSE, trim_ws = TRUE)
-    View(FossilFuels)
-    
+
     ### variables
     ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
     sourcecaption = "Source: Scottish Government"
