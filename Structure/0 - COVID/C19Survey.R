@@ -170,7 +170,7 @@ C19Survey <- function(input, output, session) {
     ChartColours <- c("#5d8be1", "#1d91c0", "#7fcdbb", "#8da0cb")
     BarColours <- c("#5d8be1", "#1d91c0","#737373", "#bdbdbd", "#7fcdbb", "#8da0cb")
     
-    Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx")
+    Data <- read_excel("Structure/0 - COVID/Survey/Data/Survey.xlsx")
     
     Data$Question <- paste0("<b>", str_wrap(Data$Question,30), "</b>")
     
@@ -296,7 +296,7 @@ C19Survey <- function(input, output, session) {
   
   output$C19SurveyTable = renderDataTable({
     
-    Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx")
+    Data <- read_excel("Structure/0 - COVID/Survey/Data/Survey.xlsx")
     
     names(Data)[1] <- "Thinking about your energy supply and energy bills since the Government advised people to socially distance themselves from each other. To what extent do you agree or disagree with each of the following statements:"
     
@@ -353,7 +353,7 @@ C19Survey <- function(input, output, session) {
     ChartColours <- c("#5d8be1", "#1d91c0", "#7fcdbb", "#8da0cb")
     BarColours <- c("#5d8be1", "#1d91c0","#737373", "#bdbdbd", "#7fcdbb", "#8da0cb")
     
-    Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx",
+    Data <- read_excel("Structure/0 - COVID/Survey/Data/Survey.xlsx",
                        sheet = "T54")
     
     Data$Question <- paste0("<b>", str_wrap(Data$Question,40), "</b>")
@@ -416,7 +416,7 @@ C19Survey <- function(input, output, session) {
   
   output$C19SurveyRollingTable = renderDataTable({
     
-    Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx", sheet = "T54")
+    Data <- read_excel("Structure/0 - COVID/Survey/Data/Survey.xlsx", sheet = "T54")
     
     names(Data)[1] <- "Which of the following have happened to you in your household?"
     
@@ -472,7 +472,7 @@ C19Survey <- function(input, output, session) {
     ChartColours <- c("#5d8be1", "#1d91c0", "#7fcdbb", "#8da0cb")
     BarColours <- c("#5d8be1", "#1d91c0","#737373", "#bdbdbd", "#7fcdbb", "#8da0cb")
     
-    Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx",
+    Data <- read_excel("Structure/0 - COVID/Survey/Data/Survey.xlsx",
                        sheet = "T62")
     
     Data$Question <- paste0("<b>", str_wrap(Data$Question,40), "</b>")
@@ -535,7 +535,7 @@ C19Survey <- function(input, output, session) {
   
   output$C19SurveyT62Table = renderDataTable({
     
-    Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx", sheet = "T62")
+    Data <- read_excel("Structure/0 - COVID/Survey/Data/Survey.xlsx", sheet = "T62")
     
     names(Data)[1] <- "Since social distancing started, have you contacted any of the following for information or advice?"
     
@@ -592,7 +592,7 @@ C19Survey <- function(input, output, session) {
     ChartColours <- c("#5d8be1", "#1d91c0", "#7fcdbb", "#8da0cb")
     BarColours <- c("#5d8be1", "#1d91c0","#737373", "#bdbdbd", "#7fcdbb", "#8da0cb")
     
-    Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx", sheet = "T66")
+    Data <- read_excel("Structure/0 - COVID/Survey/Data/Survey.xlsx", sheet = "T66")
     
     Data$Question <- paste0("<b>", str_wrap(Data$Question,40), "</b>")
     
@@ -675,7 +675,7 @@ C19Survey <- function(input, output, session) {
   
   output$C19SurveyT66Table = renderDataTable({
     
-    Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx", sheet = "T66")
+    Data <- read_excel("Structure/0 - COVID/Survey/Data/Survey.xlsx", sheet = "T66")
     
     names(Data)[1] <- "Question"
     
@@ -731,7 +731,7 @@ C19Survey <- function(input, output, session) {
     ChartColours <- c("#5d8be1", "#1d91c0", "#7fcdbb", "#8da0cb")
     BarColours <- c("#5d8be1", "#1d91c0","#737373", "#bdbdbd", "#7fcdbb", "#8da0cb")
     
-    Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx",
+    Data <- read_excel("Structure/0 - COVID/Survey/Data/Survey.xlsx",
                        sheet = "T70")
     
     Data$Question <- paste0("<b>", str_wrap(Data$Question,40), "</b>")
@@ -787,7 +787,7 @@ C19Survey <- function(input, output, session) {
   
   output$C19SurveyT70Table = renderDataTable({
     
-    Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx", sheet = "T70")
+    Data <- read_excel("Structure/0 - COVID/Survey/Data/Survey.xlsx", sheet = "T70")
     
     names(Data)[1] <- "The information I received was..."
     
@@ -862,7 +862,7 @@ C19Survey <- function(input, output, session) {
       ChartColours <- c("#5d8be1", "#1d91c0", "#7fcdbb", "#8da0cb")
       BarColours <- c("#5d8be1", "#1d91c0", "#bdbdbd", "#7fcdbb", "#8da0cb")
       
-      Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx")
+      Data <- read_excel("Structure/0 - COVID/Survey/Data/Survey.xlsx")
       
       Data$`Don't know` <- NULL
       
@@ -1046,7 +1046,7 @@ output$C19SurveyRolling.png <- downloadHandler(
   filename = "C19Issues.png",
   content = function(file) {
     
-    Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx", sheet = "T54")
+    Data <- read_excel("Structure/0 - COVID/Survey/Data/Survey.xlsx", sheet = "T54")
     
     names(Data) <- c("Region", "Renewables")
     
@@ -1180,7 +1180,7 @@ output$C19SurveyT62.png <- downloadHandler(
   filename = "C19Advice.png",
   content = function(file) {
     
-    Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx", sheet = "T62")
+    Data <- read_excel("Structure/0 - COVID/Survey/Data/Survey.xlsx", sheet = "T62")
     
     Data <- Data[complete.cases(Data),]
     names(Data) <- c("Region", "Renewables")
@@ -1327,7 +1327,7 @@ output$C19SurveyT66.png <- downloadHandler(
     ChartColours <- c("#5d8be1", "#1d91c0", "#7fcdbb", "#8da0cb")
     BarColours <- c("#5d8be1", "#1d91c0", "#bdbdbd", "#7fcdbb", "#8da0cb")
     
-    Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx", sheet = "T66")
+    Data <- read_excel("Structure/0 - COVID/Survey/Data/Survey.xlsx", sheet = "T66")
     
     Data$Year <- paste0(str_wrap(Data$Question,30))
     
@@ -1463,7 +1463,7 @@ output$FullData <- downloadHandler(
   },
   
   content <- function(file) {
-    file.copy("Structure/0 - COVID/Hidden/Data/Consumers - Energy - Ipsos Covid survey - 19-001011-14 Energy Suppliers_Scottish boost weighted tables_v1_internal.xls", file)
+    file.copy("Structure/0 - COVID/Survey/Data/Consumers - Energy - Ipsos Covid survey - 19-001011-14 Energy Suppliers_Scottish boost weighted tables_v1_internal.xls", file)
   },
   contentType = NULL
 )
