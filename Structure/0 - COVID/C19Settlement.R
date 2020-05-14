@@ -49,13 +49,23 @@ C19SettlementOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:;background-color:#5d8be1;"),
-    # fluidRow(
-    # column(10, h3("Data - 12 month rolling average.", style = "color: #5d8be1;  font-weight:bold")),
-    # column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
-    # ),
-    # fluidRow(
-    #   column(12, dataTableOutput(ns("C19SettlementTable"))%>% withSpinner(color="#5d8be1"))),
-    # tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
+    tabsetPanel(
+      tabPanel("Demand by settlement period",
+    fluidRow(
+    column(10, h3("Data - Electricity demand by settlement period, week commencing 04/05/2020 and equivalent week in 2019.", style = "color: #5d8be1;  font-weight:bold")),
+    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+    ),
+    fluidRow(
+      column(12, dataTableOutput(ns("C19SettlementTable"))%>% withSpinner(color="#5d8be1"))),
+    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
+    tabPanel("Demand by settlement period",
+             fluidRow(
+               column(10, h3("Data - Average electricity demand by weekday/weekend, post lockdown", style = "color: #5d8be1;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("C19SettlementRollingTable"))%>% withSpinner(color="#5d8be1"))),
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"))),
     fluidRow(
       column(2, p(" ")),
       column(2,
@@ -214,6 +224,105 @@ C19Settlement <- function(input, output, session) {
    
   })
   
+  output$C19SettlementTable = renderDataTable({
+    
+    library(readr)
+    library(lubridate)
+    
+    ElecDemandHalfHourly <- read_csv("CovidAnalysis/ElecDemandHalfHourly.csv")
+    
+    names(ElecDemandHalfHourly) <- c("Date", "SettlementPeriod", "Total", "Quarter")
+    
+    ElecDemandHalfHourly$Date <- ymd(ElecDemandHalfHourly$Date)
+    
+    ElecDemandHalfHourly$Year <-year(ElecDemandHalfHourly$Date)
+    
+    ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2013),]
+    
+    ElecDemandHalfHourly$Month <-month(ElecDemandHalfHourly$Date)
+    
+    ElecDemandHalfHourly$Week <- isoweek(ElecDemandHalfHourly$Date)
+    
+    ElecDemandHalfHourly$Weekday <- weekdays(ElecDemandHalfHourly$Date)
+    
+    ElecDemandHalfHourly$DayofYear <- yday(ElecDemandHalfHourly$Date)
+    
+    ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 13, "PostLockdown", "BeforeLockdown")
+    
+    ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2019),]
+    
+    # MaxWeek <- {x <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year == max(ElecDemandHalfHourly$Year)),] 
+    # 
+    # x <- x[which(x$Weekday == "Sunday"),]
+    # 
+    # x <- x[which(x$Week == max(x$Week)),]
+    # 
+    # max(x$Week)}
+    
+    MaxWeek = 19
+    
+    ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week == MaxWeek),] 
+    
+    ElecDemandHalfHourly <- ElecDemandHalfHourly[order(ElecDemandHalfHourly$Date, ElecDemandHalfHourly$SettlementPeriod),]
+    
+    ElecDemandHalfHourly <- ElecDemandHalfHourly %>% group_by(Year) %>% mutate(id = row_number())
+    
+    
+    ElecDemandHalfHourly  <- dcast(ElecDemandHalfHourly, id + SettlementPeriod + Weekday ~ Year, value.var = 'Total')
+    
+    ElecDemandHalfHourly$Date <- ymd("2020/04/27")
+    
+    ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date) + 1
+    ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date) + 2
+    ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Thursday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Thursday"),]$Date) + 3
+    ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Friday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Friday"),]$Date) + 4
+    ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Saturday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Saturday"),]$Date) + 5
+    ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Sunday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Sunday"),]$Date) + 6
+    
+    ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
+    BarColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
+    
+    ElecDemandHalfHourly$Date <- as.character((hms("00:30:00")*(ElecDemandHalfHourly$SettlementPeriod-1))+ElecDemandHalfHourly$Date)
+    
+    ElecDemandHalfHourly <- ElecDemandHalfHourly[6:4]
+    
+    names(ElecDemandHalfHourly) <- c("Date", "Half hourly demand in 2020 (MW)", "Demand in equivalent half hour in 2019 (MW)")
+    
+    DT::datatable(
+      ElecDemandHalfHourly,
+      extensions = 'Buttons',
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "Electricity demand by settlement period, week commencing 04/05/2020 and equivalent week in 2019",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Electricity demand by settlement period, week commencing 04/05/2020 and equivalent week in 2019',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Electricity demand by settlement period, week commencing 04/05/2020 and equivalent week in 2019')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = -1
+      ) 
+    ) %>%
+        formatRound(2:5, 0) %>% 
+      formatDate(1,
+                 method =  "toLocaleString")
+  }) 
+   
   output$C19SettlementRollingSubtitle <- renderText({
     
     paste("Scotland, 2020 vs 2019")
@@ -360,60 +469,91 @@ C19Settlement <- function(input, output, session) {
     
   })
   
-  output$C19SettlementTable = renderDataTable({
+  output$C19SettlementRollingTable = renderDataTable({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "DailyDemandWorking")[c(1,5,7,6)]
+    library(readr)
+    library(lubridate)
     
-    names(Data) <- c("Year", "Gas (MW)", "Transport (MW)", "Electricity (MW)")
+    ElecDemandHalfHourly <- read_csv("CovidAnalysis/ElecDemandHalfHourly.csv")
     
-    Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
+    names(ElecDemandHalfHourly) <- c("Date", "SettlementPeriod", "Total", "Quarter")
     
-    C19SettlementRolling <- Data[complete.cases(Data),]
+    ElecDemandHalfHourly$Date <- ymd(ElecDemandHalfHourly$Date)
     
-    C19SettlementRolling <- C19SettlementRolling %>% 
-      mutate(yr_mnth = format(Year, '%Y-%m')) %>% 
-      group_by(yr_mnth) %>% 
-      filter(Year == max(Year)) %>% 
-      mutate(Year = format(Year, "%B %Y"))
+    ElecDemandHalfHourly$Year <-year(ElecDemandHalfHourly$Date)
     
-    names(C19SettlementRolling)[1] <- "12 month ending"
+    ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2013),]
     
-    datatable(
-      C19SettlementRolling,
+    ElecDemandHalfHourly$Month <-month(ElecDemandHalfHourly$Date)
+    
+    ElecDemandHalfHourly$Week <- isoweek(ElecDemandHalfHourly$Date)
+    
+    ElecDemandHalfHourly$Weekday <- weekdays(ElecDemandHalfHourly$Date)
+    
+    ElecDemandHalfHourly$DayofYear <- yday(ElecDemandHalfHourly$Date)
+    
+    ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 13, "PostLockdown", "BeforeLockdown")
+    
+    ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2019),]
+    
+    # MaxWeek <- {x <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year == max(ElecDemandHalfHourly$Year)),] 
+    # 
+    # x <- x[which(x$Weekday == "Sunday"),]
+    # 
+    # x <- x[which(x$Week == max(x$Week)),]
+    # 
+    # max(x$Week)}
+    
+    MaxWeek = 19
+    
+    ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week <= MaxWeek),] 
+    
+    ElecDemandHalfHourly <- ElecDemandHalfHourly[order(ElecDemandHalfHourly$Date, ElecDemandHalfHourly$SettlementPeriod),]
+    
+    ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$PostLockdown == "PostLockdown"),]
+    
+    ElecDemandHalfHourly$Weekend <- ifelse(substr(ElecDemandHalfHourly$Weekday,1,1) == "S", "Weekend", "Weekday")
+    
+    ElecDemandHalfHourly <- ElecDemandHalfHourly %>% group_by(Year, Weekend, SettlementPeriod) %>% 
+      summarise(Total = mean(Total))
+    
+    ElecDemandHalfHourly$Variable <- paste0(ElecDemandHalfHourly$Year," - ",ElecDemandHalfHourly$Weekend)
+    
+    ElecDemandHalfHourly <- dcast(ElecDemandHalfHourly, SettlementPeriod ~ Variable, value.var = "Total")
+    
+    names(ElecDemandHalfHourly) <- c("Settlement Period", "2019 - Weekday (MW)",   "2019 - Weekend (MW)",   "2020 - Weekday (MW)",   "2020 - Weekend (MW)")  
+    
+    DT::datatable(
+      ElecDemandHalfHourly,
       extensions = 'Buttons',
-      
       rownames = FALSE,
       options = list(
         paging = TRUE,
-        pageLength = 10,
+        pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
-        columnDefs = list(list(visible=FALSE, targets=c(4))),
         autoWidth = TRUE,
-        ordering = TRUE,
-        order = list(list(4, 'desc')),
-        title = "Daily Demand - 12 month rolling average",
+        title = "Average electricity demand by weekday/weekend, post lockdown",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Daily Demand - 12 month rolling average',
+            title = 'Average electricity demand by weekday/weekend, post lockdown',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Daily Demand - 12 month rolling average')
+               title = 'Average electricity demand by weekday/weekend, post lockdown')
         ),
         
         # customize the length menu
         lengthMenu = list( c(10, 20, -1) # declare values
                            , c(10, 20, "All") # declare titles
         ), # end of lengthMenu customization
-        pageLength = 10
-      )
+        pageLength = -1
+      ) 
     ) %>%
-      formatRound(2:5, 1) 
+      formatRound(2:5, 0)
   })
   
   output$Text <- renderUI({

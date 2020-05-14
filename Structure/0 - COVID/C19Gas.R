@@ -31,13 +31,13 @@ C19GasOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:;background-color:#5d8be1;"),
-    # fluidRow(
-    # column(10, h3("Data - 12 month rolling average.", style = "color: #5d8be1;  font-weight:bold")),
-    # column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
-    # ),
-    # fluidRow(
-    #   column(12, dataTableOutput(ns("C19GasTable"))%>% withSpinner(color="#5d8be1"))),
-    # tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
+    fluidRow(
+    column(10, h3("Data - Average weekday daily gas demand (GWh)", style = "color: #5d8be1;  font-weight:bold")),
+    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+    ),
+    fluidRow(
+      column(12, dataTableOutput(ns("C19GasTable"))%>% withSpinner(color="#5d8be1"))),
+    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
       column(2, p(" ")),
       column(2,
@@ -169,25 +169,49 @@ C19Gas <- function(input, output, session) {
   
   output$C19GasTable = renderDataTable({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "DailyDemandWorking")[c(1,5,7,6)]
+    library(readr)
+    library(ISOweek)
+    library(lubridate)
+    library(zoo)
+    library(plotly)
     
-    names(Data) <- c("Year", "Gas (Gwh)", "Transport (GWh)", "Electricity (GWh)")
+    DailyDemand <- read_delim("CovidAnalysis/DailyDemand.txt", 
+                              "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
+    DailyDemand$Date <- ymd(DailyDemand$Date)
     
-    C19GasRolling <- Data[complete.cases(Data),]
+    DailyDemand$Year <-year(DailyDemand$Date)
     
-    C19GasRolling <- C19GasRolling %>% 
-      mutate(yr_mnth = format(Year, '%Y-%m')) %>% 
-      group_by(yr_mnth) %>% 
-      filter(Year == max(Year)) %>% 
-      mutate(Year = format(Year, "%B %Y"))
+    DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013),]
     
-    names(C19GasRolling)[1] <- "12 month ending"
+    DailyDemand$Month <-month(DailyDemand$Date)
     
+    DailyDemand$Week <- isoweek(DailyDemand$Date)
+    
+    DailyDemand$Weekday <- weekdays(DailyDemand$Date)
+    
+    DailyDemand$DayofYear <- yday(DailyDemand$Date)
+    
+    DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "PostLockdown", "BeforeLockdown")
+    
+    WeekdayElecDemand <- DailyDemand
+    
+    WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Weekday %in%c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")),]
+    
+    WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Month >= 3),]
+    
+    maxweek <- max(WeekdayElecDemand[which(WeekdayElecDemand$Year ==max(WeekdayElecDemand$Year)),]$Week)
+    
+    WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Week <= maxweek),]
+    
+    WeekdayElecDemand <- WeekdayElecDemand %>% group_by(Year, PostLockdown) %>% 
+      summarise(Gas = mean(Gas))
+    
+    WeekdayElecDemand <- dcast(WeekdayElecDemand, Year ~ PostLockdown)
+    
+    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "Last week of March to second week in May (GWh)")
     datatable(
-      C19GasRolling,
+      WeekdayElecDemand,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -196,21 +220,20 @@ C19Gas <- function(input, output, session) {
         pageLength = 10,
         searching = TRUE,
         fixedColumns = FALSE,
-        columnDefs = list(list(visible=FALSE, targets=c(4))),
         autoWidth = TRUE,
         ordering = TRUE,
-        order = list(list(4, 'desc')),
-        title = "Daily Demand - 12 month rolling average",
+        order = list(list(0, 'desc')),
+        title = "Average weekday daily electricity demand (GWh)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Daily Demand - 12 month rolling average',
+            title = 'Average weekday daily electricity demand (GWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Daily Demand - 12 month rolling average')
+               title = 'Average weekday daily electricity demand (GWh)')
         ),
         
         # customize the length menu
@@ -220,7 +243,7 @@ C19Gas <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:5, 1) 
+      formatRound(2:5, 0) 
   })
   
   output$Text <- renderUI({

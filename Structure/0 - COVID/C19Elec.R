@@ -391,7 +391,7 @@ C19Elec <- function(input, output, session) {
     
     WeekdayElecDemand <- dcast(WeekdayElecDemand, Year ~ PostLockdown)
     
-    names(WeekdayElecDemand) <- c("Year", "First three weeks of March", "Last week of March to second week in May")
+    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "Last week of March to second week in May (GWh)")
     datatable(
       WeekdayElecDemand,
       extensions = 'Buttons',
@@ -462,10 +462,12 @@ C19Elec <- function(input, output, session) {
     
     DailyDemandFromMarch <- DailyDemandFromMarch[complete.cases(DailyDemandFromMarch),]
     
-    names(DailyDemandFromMarch) <- c("Date", "Daily electricity demand in 2020", "Electricity demand on equivalent day in 2019")
+    DailyDemandFromMarch <- DailyDemandFromMarch[10:8]
+    
+    names(DailyDemandFromMarch) <- c("Date", "Daily electricity demand in 2020 (GWh)", "Electricity demand on equivalent day in 2019 (GWh)")
     
     datatable(
-      DailyDemandFromMarch[10:8],
+      DailyDemandFromMarch,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -491,8 +493,8 @@ C19Elec <- function(input, output, session) {
         ),
         
         # customize the length menu
-        lengthMenu = list( c(10, 20, -1) # declare values
-                           , c(10, 20, "All") # declare titles
+        lengthMenu = list( c( -1, 10, 20) # declare values
+                           , c("All", 10, 20 ) # declare titles
         ), # end of lengthMenu customization
         pageLength = 10
       )
