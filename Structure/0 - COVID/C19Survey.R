@@ -77,6 +77,11 @@ C19SurveyOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:;background-color:#5d8be1;"),
+    fluidRow(
+      column(10, h3("Full Survey Results", style = "color: #5d8be1;  font-weight:bold")),
+      column(2, style = "padding:15px",  downloadButton(ns("FullData"), "Full Results", style = "float:right; "))
+    ),
+    tags$hr(style = "height:3px;border:none;color:;background-color:#5d8be1;"),
     tabsetPanel(
       tabPanel("Attitudes",
     fluidRow(
@@ -125,7 +130,7 @@ C19SurveyOutput <- function(id) {
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
-        SourceLookup("NGElecDemand")
+        SourceLookup("Ofgem")
         
       )
     )
@@ -249,6 +254,13 @@ C19Survey <- function(input, output, session) {
         text =  paste0("<b>", percent(Data$`Strongly agree`+Data$`Tend to agree`, accuracy = 1), "</b>"),
         legendgroup = 8
       ) %>%
+      add_annotations(
+        y = -0.9,
+        x = .5,
+        xref = "paper",
+        text = paste0("<b>",str_wrap("Thinking about your energy supply and energy bills since the Government advised people to socially distance themselves from each other. To what extent do you agree or disagree with each of the following statements:", 50), "</b>"),
+        showarrow = FALSE
+      ) %>% 
       layout(
         barmode = 'stack',
         legend = list(font = list(color = "#1A5D38"),
@@ -286,7 +298,7 @@ C19Survey <- function(input, output, session) {
     
     Data <- read_excel("Structure/0 - COVID/Hidden/Data/Survey.xlsx")
     
-    names(Data)[1] <- "Attitude"
+    names(Data)[1] <- "Thinking about your energy supply and energy bills since the Government advised people to socially distance themselves from each other. To what extent do you agree or disagree with each of the following statements:"
     
     datatable(
       Data,
@@ -362,6 +374,13 @@ C19Survey <- function(input, output, session) {
         hoverinfo = 'text',
         marker = list(color = BarColours[1]),
         legendgroup = 1
+      ) %>% 
+      add_annotations(
+        y = -0.8,
+        x = .5,
+        xref = "paper",
+        text = paste0("<b>",str_wrap("Which of the following have happened to you in your household?", 50), "</b>"),
+        showarrow = FALSE
       ) %>% 
       layout(
         barmode = 'stack',
@@ -474,6 +493,13 @@ C19Survey <- function(input, output, session) {
         hoverinfo = 'text',
         marker = list(color = BarColours[1]),
         legendgroup = 1
+      ) %>% 
+      add_annotations(
+        y = -0.8,
+        x = .5,
+        xref = "paper",
+        text = paste0("<b>",str_wrap("Since social distancing started, have you contacted any of the following for information or advice?", 50), "</b>"),
+        showarrow = FALSE
       ) %>% 
       layout(
         barmode = 'stack',
@@ -591,6 +617,18 @@ C19Survey <- function(input, output, session) {
       ) %>%
       add_trace(
         data = Data,
+        x = ~ `No`  / Data$Total,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "No",
+        text = paste0("No: ", percent(Data$`No`, accuracy = 0.1)),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[6]),
+        legendgroup = 2
+      ) %>%
+      add_trace(
+        data = Data,
         x = ~ `Don't know`  / Data$Total,
         type = 'bar',
         width = 0.7,
@@ -601,18 +639,6 @@ C19Survey <- function(input, output, session) {
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 3
-      ) %>%
-      add_trace(
-        data = Data,
-        x = ~ `No`  / Data$Total,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "No",
-        text = paste0("No: ", percent(Data$`No`, accuracy = 0.1)),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[6]),
-        legendgroup = 6
       ) %>%
       layout(
         barmode = 'stack',
@@ -684,7 +710,7 @@ C19Survey <- function(input, output, session) {
         pageLength = -1
       )
     ) %>%
-      formatPercentage(2, 0) 
+      formatPercentage(2:4, 0) 
   })
   
   output$C19SurveyT70Subtitle <- renderText({
@@ -864,7 +890,7 @@ C19Survey <- function(input, output, session) {
       
       plottitle <-
         "Attitudes towards energy since lockdown"
-      sourcecaption <- "Source: SG"
+      sourcecaption <- "Source: Ofgem"
       
       SurveyChartChart <- SurveyChart %>%
         ggplot(aes(x = Year, y = value2, fill = variable), family = "Century Gothic") +
@@ -890,7 +916,7 @@ C19Survey <- function(input, output, session) {
           family = "Century Gothic"
         ) +
         geom_text(
-          aes(x = 6.6,
+          aes(x = 6.7,
               y = 0.05,
               label = "Strongly\nAgree"),
           fontface = 2,
@@ -899,7 +925,7 @@ C19Survey <- function(input, output, session) {
           hjust = 0.5
         ) +
         geom_text(
-          aes(x = 6.6,
+          aes(x = 6.7,
               y = 0.25,
               label = "Tend to\nagree"),
           fontface = 2,
@@ -908,7 +934,7 @@ C19Survey <- function(input, output, session) {
           hjust = 0.5
         ) +
         geom_text(
-          aes(x = 6.6,
+          aes(x = 6.7,
               y = 0.5,
               label = "Neither agree\nnor disagree"),
           fontface = 2,
@@ -917,7 +943,7 @@ C19Survey <- function(input, output, session) {
           hjust = 0.5
         ) +
         geom_text(
-          aes(x = 6.6,
+          aes(x = 6.7,
               y = 0.73,
               label = "Tend to\ndisagree"),
           fontface = 2,
@@ -926,7 +952,7 @@ C19Survey <- function(input, output, session) {
           hjust = 0.5
         ) +
         geom_text(
-          aes(x = 6.6,
+          aes(x = 6.7,
               y = 0.91,
               label = "Strongly\ndisagree"),
           fontface = 2,
@@ -935,8 +961,17 @@ C19Survey <- function(input, output, session) {
           hjust = 0.5
         ) +
         geom_text(
-          aes(x = 6.9,
-              y = 0.97227,
+          aes(x = 7.3,
+              y = 0.24,
+              label = str_wrap("Thinking about your energy supply and energy bills since the Government advised people to socially distance themselves from each other. To what extent do you agree or disagree with each of the following statements:", 90)),
+          fontface = 2,
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 7.7,
+              y = 0.5,
               label = " "),
           fontface = 2,
           colour = BarColours[4],
@@ -957,7 +992,7 @@ C19Survey <- function(input, output, session) {
           colour = ChartColours[1]
         ) +
         geom_text(
-          aes(x = 6.6,
+          aes(x = 6.7,
               y = 1.069,
               label = "Total\nAgree"),
           fontface = 2,
@@ -990,7 +1025,7 @@ C19Survey <- function(input, output, session) {
   
   SurveyChartChart <-
     SurveyChartChart +
-    ylim(-.5,1.07) +
+    ylim(-.55,1.07) +
     coord_flip() +
     labs(subtitle = "Scotland, April 2020")
   
@@ -1000,7 +1035,7 @@ C19Survey <- function(input, output, session) {
     file,
     plot = SurveyChartChart,
     width = 20,
-    height = 20,
+    height = 22,
     units = "cm",
     dpi = 300
   )
@@ -1017,7 +1052,7 @@ output$C19SurveyRolling.png <- downloadHandler(
     
     ### variables
     ChartColours <- c("#5d8be1", "#238b45", "#a1d99b")
-    sourcecaption = "Source: SG"
+    sourcecaption = "Source: Ofgem"
     plottitle = "Issues with energy"
     
     
@@ -1040,6 +1075,24 @@ output$C19SurveyRolling.png <- downloadHandler(
         family = "Century Gothic",
         vjust = .5,
         color = ChartColours[1]
+      ) +
+      geom_text(
+        aes(x = 11.8,
+            y = -0.29,
+            label = str_wrap("Which of the following have happened to you in your household?", 90)),
+        fontface = 2,
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        hjust = 0.5
+      ) +
+      geom_text(
+        aes(x = 12.2,
+            y = 0.29,
+            label = " "),
+        fontface = 2,
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        hjust = 0.5
       ) +
       geom_text(
         y = Data$Renewables + 0.01,
@@ -1134,7 +1187,7 @@ output$C19SurveyT62.png <- downloadHandler(
     
     ### variables
     ChartColours <- c("#5d8be1", "#238b45", "#a1d99b")
-    sourcecaption = "Source: SG"
+    sourcecaption = "Source: Ofgem"
     plottitle = "Sources of advice"
     
     
@@ -1157,6 +1210,24 @@ output$C19SurveyT62.png <- downloadHandler(
         family = "Century Gothic",
         vjust = .5,
         color = ChartColours[1]
+      ) +
+      geom_text(
+        aes(x = 4.85,
+            y = 0.19,
+            label = str_wrap("Since social distancing started, have you contacted any of the following for information or advice?", 70)),
+        fontface = 2,
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        hjust = 0.5
+      ) +
+      geom_text(
+        aes(x = 5.2,
+            y = 0.29,
+            label = " "),
+        fontface = 2,
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        hjust = 0.5
       ) +
       geom_text(
         y = Data$Renewables + 0.01,
@@ -1282,7 +1353,7 @@ output$C19SurveyT66.png <- downloadHandler(
     
     plottitle <-
       "Information from energy supplier"
-    sourcecaption <- "Source: SG"
+    sourcecaption <- "Source: Ofgem"
     
     SurveyChartChart <- SurveyChart %>%
       ggplot(aes(x = Year, y = value2, fill = variable), family = "Century Gothic") +
@@ -1307,7 +1378,7 @@ output$C19SurveyT66.png <- downloadHandler(
       ) +
       geom_text(
         aes(x = 1.6,
-            y = 0.05,
+            y = (0.33/2),
             label = "Yes"),
         fontface = 2,
         colour = BarColours[1],
@@ -1316,7 +1387,7 @@ output$C19SurveyT66.png <- downloadHandler(
       ) +
       geom_text(
         aes(x = 1.6,
-            y = 0.5,
+            y = .93+(.07/2),
             label = "Don't know"),
         fontface = 2,
         colour = BarColours[2],
@@ -1325,7 +1396,7 @@ output$C19SurveyT66.png <- downloadHandler(
       ) +
       geom_text(
         aes(x = 1.6,
-            y = 0.95,
+            y = .33 + (.6/2),
             label = "No"),
         fontface = 2,
         colour = BarColours[3],
@@ -1341,6 +1412,7 @@ output$C19SurveyT66.png <- downloadHandler(
         family = "Century Gothic",
         hjust = 0.5
       ) +
+      
       geom_text(
         y = SurveyChart$pos,
         label = ifelse(SurveyChart$value >0.05, percent(SurveyChart$value,1), ""),
@@ -1383,22 +1455,17 @@ output$C19SurveyT66.png <- downloadHandler(
   }
 )
 
+
+
 output$FullData <- downloadHandler(
-  filename = "C19SurveyFullData.csv",
-  content = function(file){
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "DailyDemandWorking")[c(1,2,4,3)]
-    
-    names(Data) <- c("Year", "Gas (GWh)", "Transport (GWh)", "Electricity (GWh)")
-    
-    Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
-    
-    C19Survey <- Data
-    
-    write.csv(C19Survey, 
-              file,
-              row.names = FALSE)
-  }
+  filename <- function() {
+    paste("SurveyResults", "xls", sep=".")
+  },
+  
+  content <- function(file) {
+    file.copy("Structure/0 - COVID/Hidden/Data/Consumers - Energy - Ipsos Covid survey - 19-001011-14 Energy Suppliers_Scottish boost weighted tables_v1_internal.xls", file)
+  },
+  contentType = NULL
 )
 
 }
