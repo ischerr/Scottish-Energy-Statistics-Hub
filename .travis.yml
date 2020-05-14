@@ -33,6 +33,7 @@ r_packages:
 r_github_packages: 
 - rensa/ggflags
 - rstudio/DT
+- r-spatial/sf
 
 script:
   - Rscript deploy.r
