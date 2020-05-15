@@ -7,92 +7,61 @@ require("DT")
 
 source("Structure/Global.R")
 
-OilGasServicesAssetsOutput <- function(id) {
+RenServicesAssetsOutput <- function(id) {
   ns <- NS(id)
   tagList(
-<<<<<<< HEAD
-    fluidRow(column(8,
-                    h3("Value of services", style = "color: #126992;  font-weight:bold"),
-                    h4(textOutput(ns('OilGasServicesAssetsSubtitle')), style = "color: #126992;")
-    ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('OilGasServicesAssets.png'), 'Download Graph', style="float:right")
-=======
     tabsetPanel(
       tabPanel("Services",
     fluidRow(column(8,
-                    h3("Value of fossil fuel services", style = "color: #126992;  font-weight:bold"),
-                    h4(textOutput(ns('OilGasServicesSubtitle')), style = "color: #126992;")
+                    h3("Value of renewable energy services", style = "color: #39ab2c;  font-weight:bold"),
+                    h4(textOutput(ns('RenServicesSubtitle')), style = "color: #39ab2c;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('OilGasServices.png'), 'Download Graph', style="float:right")
->>>>>>> master
+               downloadButton(ns('RenServices.png'), 'Download Graph', style="float:right")
              )),
     
-    tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
-    #dygraphOutput(ns("OilGasServicesAssetsPlot")),
-<<<<<<< HEAD
-    plotlyOutput(ns("OilGasServicesAssetsPlot"))%>% withSpinner(color="#126992"),
-    tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
-=======
-    plotlyOutput(ns("OilGasServicesPlot"))%>% withSpinner(color="#126992"),
-    tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;")),
+    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+    #dygraphOutput(ns("RenServicesAssetsPlot")),
+    plotlyOutput(ns("RenServicesPlot"))%>% withSpinner(color="#39ab2c"),
+    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Assets",
              fluidRow(column(8,
-                             h3("Value of fossil fuel assets", style = "color: #126992;  font-weight:bold"),
-                             h4(textOutput(ns('OilGasAssetsSubtitle')), style = "color: #126992;")
+                             h3("Value of renewable energy assets", style = "color: #39ab2c;  font-weight:bold"),
+                             h4(textOutput(ns('RenAssetsSubtitle')), style = "color: #39ab2c;")
              ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('OilGasAssets.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('RenAssets.png'), 'Download Graph', style="float:right")
              )),
              
-             tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
-             #dygraphOutput(ns("OilGasServicesAssetsPlot")),
-             plotlyOutput(ns("OilGasAssetsPlot"))%>% withSpinner(color="#126992"),
-             tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"))),
->>>>>>> master
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+             #dygraphOutput(ns("RenServicesAssetsPlot")),
+             plotlyOutput(ns("RenAssetsPlot"))%>% withSpinner(color="#39ab2c"),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
-    column(10,h3("Commentary", style = "color: #126992;  font-weight:bold")),
+    column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
     
     fluidRow(
     uiOutput(ns("Text"))
     ),
-    tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
+    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
                fluidRow(
-<<<<<<< HEAD
-    column(10, h3("Data - Value of services", style = "color: #126992;  font-weight:bold")),
+    column(10, h3("Data - Value of renewable energy services and assets", style = "color: #39ab2c;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("OilGasServicesAssetsTable"))%>% withSpinner(color="#126992"))),
-=======
-    column(10, h3("Data - Value of fossil fuel services and assets", style = "color: #126992;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
-    ),
-    fluidRow(
-      column(12, dataTableOutput(ns("OilGasServicesTable"))%>% withSpinner(color="#126992"))),
->>>>>>> master
-    tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
+      column(12, dataTableOutput(ns("RenServicesTable"))%>% withSpinner(color="#39ab2c"))),
+    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
-<<<<<<< HEAD
-             DateLookup(c("SGOilGasProd"))),
-      column(1, align = "right",
-             p("Sources:")),
-      column(7, align = "right",
-        SourceLookup("SGOilGasProd")
-=======
              DateLookup(c("ONSNatural"))),
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
         SourceLookup("ONSNatural")
->>>>>>> master
         
       )
     )
@@ -103,104 +72,64 @@ OilGasServicesAssetsOutput <- function(id) {
 
 
 ###### Server ######
-OilGasServicesAssets <- function(input, output, session) {
+RenServicesAssets <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("OilGasServicesAssets.R")
+  print("RenServicesAssets.R")
 
   
-<<<<<<< HEAD
-  output$OilGasServicesAssetsSubtitle <- renderText({
-=======
-  output$OilGasServicesSubtitle <- renderText({
->>>>>>> master
+  output$RenServicesSubtitle <- renderText({
     
-    FossilFuels <- read_delim("Processed Data/Output/Services and assets/FossilFuels.txt", 
+    Renewables <- read_delim("Processed Data/Output/Services and assets/Renewables.txt", 
                               "\t", escape_double = FALSE, trim_ws = TRUE)
 
-    paste0("Scotland, ", min(FossilFuels$Year), " - ", max(FossilFuels$Year))
+    paste0("Scotland, ", min(Renewables$Year), " - ", max(Renewables$Year))
   })
   
-<<<<<<< HEAD
-  output$OilGasServicesAssetsPlot <- renderPlotly  ({
-=======
-  output$OilGasServicesPlot <- renderPlotly  ({
->>>>>>> master
+  output$RenServicesPlot <- renderPlotly  ({
     
     
-    FossilFuels <- read_delim("Processed Data/Output/Services and assets/FossilFuels.txt", 
+    Renewables <- read_delim("Processed Data/Output/Services and assets/Renewables.txt", 
                               "\t", escape_double = FALSE, trim_ws = TRUE)
-<<<<<<< HEAD
-    View(FossilFuels)
-    
-    ### variables
-    ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
-    sourcecaption = "Source: Scottish Government"
-    plottitle = "Value of services"
-=======
 
     ### variables
-    ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
+    ChartColours <- c("#39ab2c", "#1d91c0", "#7fcdbb", "#8da0cb")
     sourcecaption = "Source: ONS, SG"
-    plottitle = "Value of fossil fuel services"
->>>>>>> master
+    plottitle = "Value of renewable energy services"
     
     
-    p <-  plot_ly(FossilFuels,x = ~ Year ) %>% 
-      add_trace(data = FossilFuels,
+    p <-  plot_ly(Renewables,x = ~ Year ) %>% 
+      add_trace(data = Renewables,
                 x = ~ Year,
-<<<<<<< HEAD
-                y = ~ Asset,
-                name = "Asset",
-=======
                 y = ~ Annual,
                 name = "Services",
->>>>>>> master
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "1",
                 text = paste0(
-<<<<<<< HEAD
-                  "Value of assets: \u00A3",
-                  round(FossilFuels$Asset, digits = 1),
-=======
-                  "Value of fossil fuel services: \u00A3",
-                  round(FossilFuels$Annual, digits = 1),
->>>>>>> master
+                  "Value of renewable energy services: \u00A3",
+                  round(Renewables$Annual, digits = 1),
                   " billion\nYear: ",
-                  paste(FossilFuels$Year)
+                  paste(Renewables$Year)
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = ChartColours[1], dash = "none")
       )  %>% 
       add_trace(
-<<<<<<< HEAD
-        data = tail(FossilFuels[which(FossilFuels$Asset > 0 | FossilFuels$Asset < 0),], 1),
-        x = ~ Year,
-        y = ~ Asset,
-        legendgroup = "1",
-        name = "Total",
-        text = paste0(
-          "Value of assets: \u00A3",
-          round(FossilFuels[which(FossilFuels$Asset > 0 | FossilFuels$Asset < 0),][-1,]$Asset, digits = 1),
-          " billion\nYear: ",
-          paste(FossilFuels[which(FossilFuels$Asset > 0 | FossilFuels$Asset < 0),][-1,]$Year)
-=======
-        data = tail(FossilFuels[which(FossilFuels$Annual > 0 | FossilFuels$Annual < 0),], 1),
+        data = tail(Renewables[which(Renewables$Annual > 0 | Renewables$Annual < 0),], 1),
         x = ~ Year,
         y = ~ Annual,
         legendgroup = "1",
         name = "Total",
         text = paste0(
-          "Value of fossil fuel services: \u00A3",
-          round(FossilFuels[which(FossilFuels$Annual > 0 | FossilFuels$Annual < 0),][-1,]$Annual, digits = 1),
+          "Value of renewable energy services: \u00A3",
+          round(Renewables[which(Renewables$Annual > 0 | Renewables$Annual < 0),][-1,]$Annual, digits = 1),
           " billion\nYear: ",
-          paste(FossilFuels[which(FossilFuels$Annual > 0 | FossilFuels$Annual < 0),][-1,]$Year)
->>>>>>> master
+          paste(Renewables[which(Renewables$Annual > 0 | Renewables$Annual < 0),][-1,]$Year)
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -212,7 +141,7 @@ OilGasServicesAssets <- function(input, output, session) {
       layout(
         barmode = 'stack',
         bargap = 0.66,
-        legend = list(font = list(color = "#126992"),
+        legend = list(font = list(color = "#39ab2c"),
                       orientation = 'h'),
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
@@ -238,24 +167,15 @@ OilGasServicesAssets <- function(input, output, session) {
     
   })
   
-<<<<<<< HEAD
-  
-  output$OilGasServicesAssetsTable = renderDataTable({
-=======
-  output$OilGasServicesTable = renderDataTable({
->>>>>>> master
+  output$RenServicesTable = renderDataTable({
     
-    FossilFuels <- read_delim("Processed Data/Output/Services and assets/FossilFuels.txt", 
+    Renewables <- read_delim("Processed Data/Output/Services and assets/Renewables.txt", 
                               "\t", escape_double = FALSE, trim_ws = TRUE)
     
-<<<<<<< HEAD
-    names(FossilFuels) <- c("Year", "Value of services (\u00A3 bn)", "Value of assets (\u00A3 bn)")
-=======
-    names(FossilFuels) <- c("Year", "Value of fossil fuel services (\u00A3 bn)", "Value of fossil fuel assets (\u00A3 bn)")
->>>>>>> master
+    names(Renewables) <- c("Year", "Value of renewable energy services (\u00A3 bn)", "Value of renewable energy assets (\u00A3 bn)")
     
     datatable(
-      FossilFuels,
+      Renewables,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -267,29 +187,17 @@ OilGasServicesAssets <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-<<<<<<< HEAD
-        title = "Oil and gas revenue (\u00A3 billion)",
-=======
-        title = "Value of fossil fuel energy services and assets (\u00A3 billion)",
->>>>>>> master
+        title = "Value of renewable energy services and assets (\u00A3 billion)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-<<<<<<< HEAD
-            title = 'Oil and gas revenue (\u00A3 billion)',
+            title = 'Value of renewable energy services and assets (\u00A3 billion)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Oil and gas revenue (\u00A3 billion)')
-=======
-            title = 'Value of fossil fuel energy services and assets (\u00A3 billion)',
-            header = TRUE
-          ),
-          list(extend = 'csv',
-               title = 'Value of fossil fuel energy services and assets (\u00A3 billion)')
->>>>>>> master
+               title = 'Value of renewable energy services and assets (\u00A3 billion)')
         ),
         
         # customize the length menu
@@ -301,67 +209,30 @@ OilGasServicesAssets <- function(input, output, session) {
     ) %>%
       formatRound(c(2:3), 1) 
   })
-<<<<<<< HEAD
-  
-
- output$Text <- renderUI({
-   tagList(column(12,
-                                   
-                                     HTML(
-                                       paste(readtext("Structure/7 - Oil Gas/OilGasServicesAssets.txt")[2])
-                                     
-                                   )))
- })
- 
- 
-  observeEvent(input$ToggleTable, {
-    toggle("OilGasServicesAssetsTable")
-  })
-  
-  
-  observeEvent(input$ToggleText, {
-    toggle("Text")
-  })
-  
-  
-  output$OilGasServicesAssets.png <- downloadHandler(
-=======
-    output$OilGasServices.png <- downloadHandler(
->>>>>>> master
-    filename = "OilGasServicesAssets.png",
+    output$RenServices.png <- downloadHandler(
+    filename = "RenServicesAssets.png",
     content = function(file) {
 
 
-      FossilFuels <- read_delim("Processed Data/Output/Services and assets/FossilFuels.txt", 
+      Renewables <- read_delim("Processed Data/Output/Services and assets/Renewables.txt", 
                                 "\t", escape_double = FALSE, trim_ws = TRUE)
       
       ### variables
-      ChartColours <- c("#126992", "#66c2a5", "#fc8d62", "#8da0cb")
-<<<<<<< HEAD
-      sourcecaption = "Source: Scottish Government"
-      plottitle = "Value of services"
-=======
+      ChartColours <- c("#39ab2c", "#66c2a5", "#fc8d62", "#8da0cb")
       sourcecaption = "Source: ONS, SG"
-      plottitle = "Value of fossil fuel services"
->>>>>>> master
+      plottitle = "Value of renewable energy services"
       
-      #FossilFuels$OilPercentage <- PercentLabel(FossilFuels$Oil)
+      #Renewables$OilPercentage <- PercentLabel(Renewables$Oil)
       
       
-      FossilFuelsChart <- FossilFuels %>%
+      RenewablesChart <- Renewables %>%
         ggplot(aes(x = Year), family = "Century Gothic") +
         
         geom_line(
           aes(
-<<<<<<< HEAD
-            y = Asset,
-            colour = ChartColours[2],
-            label = percent(Asset, 0.1)
-=======
             y = Annual,
             colour = ChartColours[2],
             label = percent(Annual, 0.1)
->>>>>>> master
           ),
           size = 1.5,
           family = "Century Gothic"
@@ -369,13 +240,8 @@ OilGasServicesAssets <- function(input, output, session) {
         geom_text(
           aes(
             x = Year,
-<<<<<<< HEAD
-            y = Asset,
-            label = ifelse(Year == min(Year), paste0("\u00A3", format(round(Asset, digits = 1),nsmall = 1, trim = TRUE), " billion"), ""),
-=======
             y = Annual,
             label = ifelse(Year == min(Year), paste0("\u00A3", format(round(Annual, digits = 1),nsmall = 1, trim = TRUE), " billion"), ""),
->>>>>>> master
             hjust = 1.1,
             colour = ChartColours[2],
             fontface = 2
@@ -385,13 +251,8 @@ OilGasServicesAssets <- function(input, output, session) {
         geom_text(
           aes(
             x = Year,
-<<<<<<< HEAD
-            y = Asset,
-            label = ifelse(Year == max(Year), paste0("\u00A3", format(round(Asset, digits = 1),nsmall = 1, trim = TRUE), " billion"), ""),
-=======
             y = Annual,
             label = ifelse(Year == max(Year), paste0("\u00A3", format(round(Annual, digits = 1),nsmall = 1, trim = TRUE), " billion"), ""),
->>>>>>> master
             hjust = 0.5,
             vjust = -1.5,
             colour = ChartColours[2],
@@ -400,14 +261,10 @@ OilGasServicesAssets <- function(input, output, session) {
           family = "Century Gothic"
         ) +
         geom_point(
-          data = tail(FossilFuels, 1),
+          data = tail(Renewables, 1),
           aes(
             x = Year,
-<<<<<<< HEAD
-            y = Asset,
-=======
             y = Annual,
->>>>>>> master
             colour = ChartColours[2],
             show_guide = FALSE
           ),
@@ -429,22 +286,23 @@ OilGasServicesAssets <- function(input, output, session) {
         )
       
       
-      FossilFuelsChart <-
-        LinePercentChart(FossilFuelsChart,
-                         FossilFuels,
+      RenewablesChart <-
+        LinePercentChart(RenewablesChart,
+                         Renewables,
                          plottitle,
                          sourcecaption,
                          ChartColours)
       
-      FossilFuelsChart <- FossilFuelsChart +
-        xlim(min(FossilFuels$Year)-2, max(FossilFuels$Year))+
-        labs(subtitle = paste0("Scotland, ",min(FossilFuels$Year), " - ", max(FossilFuels$Year)+1))
+      RenewablesChart <- RenewablesChart +
+        xlim(min(Renewables$Year)-1, max(Renewables$Year)+1)+
+        ylim((max(Renewables$Annual)*-0.04), max(Renewables$Annual)*1.05)+
+        labs(subtitle = paste0("Scotland, ",min(Renewables$Year), " - ", max(Renewables$Year)+1))
       
-      FossilFuelsChart
+      RenewablesChart
       
       ggsave(
         file,
-        plot =  FossilFuelsChart,
+        plot =  RenewablesChart,
         width = 26,
         height = 12,
         units = "cm",
@@ -453,40 +311,37 @@ OilGasServicesAssets <- function(input, output, session) {
       
       
     }
-<<<<<<< HEAD
-  )
-=======
   ) 
     
     observeEvent(input$ToggleTable, {
-    toggle("OilGasServicesTable")
+    toggle("RenServicesTable")
   })
 
     
     
     
-    output$OilGasAssetsSubtitle <- renderText({
+    output$RenAssetsSubtitle <- renderText({
       
-      FossilFuels <- read_delim("Processed Data/Output/Services and assets/FossilFuels.txt", 
+      Renewables <- read_delim("Processed Data/Output/Services and assets/Renewables.txt", 
                                 "\t", escape_double = FALSE, trim_ws = TRUE)
       
-      paste0("Scotland, ", min(FossilFuels$Year), " - ", max(FossilFuels$Year))
+      paste0("Scotland, ", min(Renewables$Year), " - ", max(Renewables$Year))
     })
     
-    output$OilGasAssetsPlot <- renderPlotly  ({
+    output$RenAssetsPlot <- renderPlotly  ({
       
       
-      FossilFuels <- read_delim("Processed Data/Output/Services and assets/FossilFuels.txt", 
+      Renewables <- read_delim("Processed Data/Output/Services and assets/Renewables.txt", 
                                 "\t", escape_double = FALSE, trim_ws = TRUE)
       
       ### variables
-      ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
+      ChartColours <- c("#39ab2c", "#1d91c0", "#7fcdbb", "#8da0cb")
       sourcecaption = "Source: ONS, SG"
-      plottitle = "Value of fossil fuel Assets"
+      plottitle = "Value of renewable energy Assets"
       
       
-      p <-  plot_ly(FossilFuels,x = ~ Year ) %>% 
-        add_trace(data = FossilFuels,
+      p <-  plot_ly(Renewables,x = ~ Year ) %>% 
+        add_trace(data = Renewables,
                   x = ~ Year,
                   y = ~ Asset,
                   name = "Asset",
@@ -494,25 +349,25 @@ OilGasServicesAssets <- function(input, output, session) {
                   mode = 'lines',
                   legendgroup = "1",
                   text = paste0(
-                    "Value of fossil fuel assets: \u00A3",
-                    round(FossilFuels$Asset, digits = 1),
+                    "Value of renewable energy assets: \u00A3",
+                    round(Renewables$Asset, digits = 1),
                     " billion\nYear: ",
-                    paste(FossilFuels$Year)
+                    paste(Renewables$Year)
                   ),
                   hoverinfo = 'text',
                   line = list(width = 6, color = ChartColours[1], dash = "none")
         )  %>% 
         add_trace(
-          data = tail(FossilFuels[which(FossilFuels$Asset > 0 | FossilFuels$Asset < 0),], 1),
+          data = tail(Renewables[which(Renewables$Asset > 0 | Renewables$Asset < 0),], 1),
           x = ~ Year,
           y = ~ Asset,
           legendgroup = "1",
           name = "Total",
           text = paste0(
-            "Value of fossil fuel assets: \u00A3",
-            round(FossilFuels[which(FossilFuels$Asset > 0 | FossilFuels$Asset < 0),][-1,]$Asset, digits = 1),
+            "Value of renewable energy assets: \u00A3",
+            round(Renewables[which(Renewables$Asset > 0 | Renewables$Asset < 0),][-1,]$Asset, digits = 1),
             " billion\nYear: ",
-            paste(FossilFuels[which(FossilFuels$Asset > 0 | FossilFuels$Asset < 0),][-1,]$Year)
+            paste(Renewables[which(Renewables$Asset > 0 | Renewables$Asset < 0),][-1,]$Year)
           ),
           hoverinfo = 'text',
           showlegend = FALSE ,
@@ -524,7 +379,7 @@ OilGasServicesAssets <- function(input, output, session) {
         layout(
           barmode = 'stack',
           bargap = 0.66,
-          legend = list(font = list(color = "#126992"),
+          legend = list(font = list(color = "#39ab2c"),
                         orientation = 'h'),
           hoverlabel = list(font = list(color = "white"),
                             hovername = 'text'),
@@ -550,15 +405,15 @@ OilGasServicesAssets <- function(input, output, session) {
       
     })
     
-    output$OilGasAssetsTable = renderDataTable({
+    output$RenAssetsTable = renderDataTable({
       
-      FossilFuels <- read_delim("Processed Data/Output/Services and assets/FossilFuels.txt", 
+      Renewables <- read_delim("Processed Data/Output/Services and assets/Renewables.txt", 
                                 "\t", escape_double = FALSE, trim_ws = TRUE)
       
-      names(FossilFuels) <- c("Year", "Value of fossil fuel Assets (\u00A3 bn)", "Value of fossil fuel assets (\u00A3 bn)")
+      names(Renewables) <- c("Year", "Value of renewable energy Assets (\u00A3 bn)", "Value of renewable energy assets (\u00A3 bn)")
       
       datatable(
-        FossilFuels,
+        Renewables,
         extensions = 'Buttons',
         
         rownames = FALSE,
@@ -592,23 +447,23 @@ OilGasServicesAssets <- function(input, output, session) {
       ) %>%
         formatRound(c(2:3), 1) 
     })
-    output$OilGasAssets.png <- downloadHandler(
-      filename = "OilGasAssetsAssets.png",
+    output$RenAssets.png <- downloadHandler(
+      filename = "RenAssetsAssets.png",
       content = function(file) {
         
         
-        FossilFuels <- read_delim("Processed Data/Output/Services and assets/FossilFuels.txt", 
+        Renewables <- read_delim("Processed Data/Output/Services and assets/Renewables.txt", 
                                   "\t", escape_double = FALSE, trim_ws = TRUE)
         
         ### variables
-        ChartColours <- c("#126992", "#66c2a5", "#fc8d62", "#8da0cb")
+        ChartColours <- c("#39ab2c", "#66c2a5", "#fc8d62", "#8da0cb")
         sourcecaption = "Source: ONS, SG"
-        plottitle = "Value of fossil fuel Assets"
+        plottitle = "Value of renewable energy Assets"
         
-        #FossilFuels$OilPercentage <- PercentLabel(FossilFuels$Oil)
+        #Renewables$OilPercentage <- PercentLabel(Renewables$Oil)
         
         
-        FossilFuelsChart <- FossilFuels %>%
+        RenewablesChart <- Renewables %>%
           ggplot(aes(x = Year), family = "Century Gothic") +
           
           geom_line(
@@ -644,7 +499,7 @@ OilGasServicesAssets <- function(input, output, session) {
             family = "Century Gothic"
           ) +
           geom_point(
-            data = tail(FossilFuels, 1),
+            data = tail(Renewables, 1),
             aes(
               x = Year,
               y = Asset,
@@ -669,22 +524,23 @@ OilGasServicesAssets <- function(input, output, session) {
           )
         
         
-        FossilFuelsChart <-
-          LinePercentChart(FossilFuelsChart,
-                           FossilFuels,
+        RenewablesChart <-
+          LinePercentChart(RenewablesChart,
+                           Renewables,
                            plottitle,
                            sourcecaption,
                            ChartColours)
         
-        FossilFuelsChart <- FossilFuelsChart +
-          xlim(min(FossilFuels$Year)-2, max(FossilFuels$Year))+
-          labs(subtitle = paste0("Scotland, ",min(FossilFuels$Year), " - ", max(FossilFuels$Year)+1))
+        RenewablesChart <- RenewablesChart +
+          xlim(min(Renewables$Year)-1, max(Renewables$Year))+
+          ylim((max(Renewables$Asset)*-0.04), max(Renewables$Asset)*1.05)+
+          labs(subtitle = paste0("Scotland, ",min(Renewables$Year), " - ", max(Renewables$Year)+1))
         
-        FossilFuelsChart
+        RenewablesChart
         
         ggsave(
           file,
-          plot =  FossilFuelsChart,
+          plot =  RenewablesChart,
           width = 26,
           height = 12,
           units = "cm",
@@ -696,14 +552,14 @@ OilGasServicesAssets <- function(input, output, session) {
     ) 
     
     observeEvent(input$ToggleTable, {
-      toggle("OilGasAssetsTable")
+      toggle("RenAssetsTable")
     })
     
  output$Text <- renderUI({
    tagList(column(12,
                                    
                                      HTML(
-                                       paste(readtext("Structure/7 - Oil Gas/OilGasServicesAssets.txt")[2])
+                                       paste(readtext("Structure/2 - Renewables/Economy/RenServicesAssets.txt")[2])
                                      
                                    )))
  })
@@ -718,5 +574,4 @@ OilGasServicesAssets <- function(input, output, session) {
   
   
 
->>>>>>> master
 }
