@@ -13,7 +13,7 @@ OilGasServicesAssetsOutput <- function(id) {
     tabsetPanel(
       tabPanel("Services",
     fluidRow(column(8,
-                    h3("Value of services", style = "color: #126992;  font-weight:bold"),
+                    h3("Value of fossil fuel services", style = "color: #126992;  font-weight:bold"),
                     h4(textOutput(ns('OilGasServicesSubtitle')), style = "color: #126992;")
     ),
              column(
@@ -27,7 +27,7 @@ OilGasServicesAssetsOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;")),
     tabPanel("Assets",
              fluidRow(column(8,
-                             h3("Value of assets", style = "color: #126992;  font-weight:bold"),
+                             h3("Value of fossil fuel assets", style = "color: #126992;  font-weight:bold"),
                              h4(textOutput(ns('OilGasAssetsSubtitle')), style = "color: #126992;")
              ),
              column(
@@ -48,7 +48,7 @@ OilGasServicesAssetsOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
                fluidRow(
-    column(10, h3("Data - Value of services", style = "color: #126992;  font-weight:bold")),
+    column(10, h3("Data - Value of fossil fuel services", style = "color: #126992;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -99,7 +99,7 @@ OilGasServicesAssets <- function(input, output, session) {
     ### variables
     ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
     sourcecaption = "Source: ONS, SG"
-    plottitle = "Value of services"
+    plottitle = "Value of fossil fuel services"
     
     
     p <-  plot_ly(FossilFuels,x = ~ Year ) %>% 
@@ -111,7 +111,7 @@ OilGasServicesAssets <- function(input, output, session) {
                 mode = 'lines',
                 legendgroup = "1",
                 text = paste0(
-                  "Value of services: \u00A3",
+                  "Value of fossil fuel services: \u00A3",
                   round(FossilFuels$Annual, digits = 1),
                   " billion\nYear: ",
                   paste(FossilFuels$Year)
@@ -126,7 +126,7 @@ OilGasServicesAssets <- function(input, output, session) {
         legendgroup = "1",
         name = "Total",
         text = paste0(
-          "Value of services: \u00A3",
+          "Value of fossil fuel services: \u00A3",
           round(FossilFuels[which(FossilFuels$Annual > 0 | FossilFuels$Annual < 0),][-1,]$Annual, digits = 1),
           " billion\nYear: ",
           paste(FossilFuels[which(FossilFuels$Annual > 0 | FossilFuels$Annual < 0),][-1,]$Year)
@@ -172,7 +172,7 @@ OilGasServicesAssets <- function(input, output, session) {
     FossilFuels <- read_delim("Processed Data/Output/Services and assets/FossilFuels.txt", 
                               "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    names(FossilFuels) <- c("Year", "Value of services (\u00A3 bn)", "Value of assets (\u00A3 bn)")
+    names(FossilFuels) <- c("Year", "Value of fossil fuel services (\u00A3 bn)", "Value of fossil fuel assets (\u00A3 bn)")
     
     datatable(
       FossilFuels,
@@ -220,7 +220,7 @@ OilGasServicesAssets <- function(input, output, session) {
       ### variables
       ChartColours <- c("#126992", "#66c2a5", "#fc8d62", "#8da0cb")
       sourcecaption = "Source: ONS, SG"
-      plottitle = "Value of services"
+      plottitle = "Value of fossil fuel services"
       
       #FossilFuels$OilPercentage <- PercentLabel(FossilFuels$Oil)
       
@@ -336,7 +336,7 @@ OilGasServicesAssets <- function(input, output, session) {
       ### variables
       ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
       sourcecaption = "Source: ONS, SG"
-      plottitle = "Value of Assets"
+      plottitle = "Value of fossil fuel Assets"
       
       
       p <-  plot_ly(FossilFuels,x = ~ Year ) %>% 
@@ -348,7 +348,7 @@ OilGasServicesAssets <- function(input, output, session) {
                   mode = 'lines',
                   legendgroup = "1",
                   text = paste0(
-                    "Value of assets: \u00A3",
+                    "Value of fossil fuel assets: \u00A3",
                     round(FossilFuels$Asset, digits = 1),
                     " billion\nYear: ",
                     paste(FossilFuels$Year)
@@ -363,7 +363,7 @@ OilGasServicesAssets <- function(input, output, session) {
           legendgroup = "1",
           name = "Total",
           text = paste0(
-            "Value of assets: \u00A3",
+            "Value of fossil fuel assets: \u00A3",
             round(FossilFuels[which(FossilFuels$Asset > 0 | FossilFuels$Asset < 0),][-1,]$Asset, digits = 1),
             " billion\nYear: ",
             paste(FossilFuels[which(FossilFuels$Asset > 0 | FossilFuels$Asset < 0),][-1,]$Year)
@@ -409,7 +409,7 @@ OilGasServicesAssets <- function(input, output, session) {
       FossilFuels <- read_delim("Processed Data/Output/Services and assets/FossilFuels.txt", 
                                 "\t", escape_double = FALSE, trim_ws = TRUE)
       
-      names(FossilFuels) <- c("Year", "Value of Assets (\u00A3 bn)", "Value of assets (\u00A3 bn)")
+      names(FossilFuels) <- c("Year", "Value of fossil fuel Assets (\u00A3 bn)", "Value of fossil fuel assets (\u00A3 bn)")
       
       datatable(
         FossilFuels,
@@ -457,7 +457,7 @@ OilGasServicesAssets <- function(input, output, session) {
         ### variables
         ChartColours <- c("#126992", "#66c2a5", "#fc8d62", "#8da0cb")
         sourcecaption = "Source: ONS, SG"
-        plottitle = "Value of Assets"
+        plottitle = "Value of fossil fuel Assets"
         
         #FossilFuels$OilPercentage <- PercentLabel(FossilFuels$Oil)
         

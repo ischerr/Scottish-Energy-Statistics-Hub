@@ -517,7 +517,7 @@ ui <- shinyUI(fluidPage(
                      tabPanel(title ="Low Carbon Economy", 
                               value = "LowCarbonEconomy",
                               LowCarbonEconomyOutput("LowCarbonEconomy")),
-                     tabPanel(title ="Value of services and assets", 
+                     tabPanel(title ="Value of Renewable Services and Assets", 
                               value = "RenServicesAssets",
                               RenServicesAssetsOutput("RenServicesAssets"))
       ))
@@ -702,7 +702,7 @@ ui <- shinyUI(fluidPage(
                    tabPanel(title = "Oil and Gas GVA",
                             value = "OilGasGVA",
                             OilGasGVAOutput("OilGasGVA")),
-                   tabPanel(title = "Value of services and assets",
+                   tabPanel(title = "Value of Fossil Fuel Services and Assets",
                             value = "OilGasServicesAssets",
                             OilGasServicesAssetsOutput("OilGasServicesAssets")),
                    tabPanel(title = "Oil and Gas Employment",
