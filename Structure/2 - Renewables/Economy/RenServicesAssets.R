@@ -48,7 +48,7 @@ RenServicesAssetsOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
                fluidRow(
-    column(10, h3("Data - Value of renewable energy services", style = "color: #39ab2c;  font-weight:bold")),
+    column(10, h3("Data - Value of renewable energy services and assets", style = "color: #39ab2c;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -187,17 +187,17 @@ RenServicesAssets <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Oil and gas revenue (\u00A3 billion)",
+        title = "Value of renewable energy services and assets (\u00A3 billion)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Oil and gas revenue (\u00A3 billion)',
+            title = 'Value of renewable energy services and assets (\u00A3 billion)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Oil and gas revenue (\u00A3 billion)')
+               title = 'Value of renewable energy services and assets (\u00A3 billion)')
         ),
         
         # customize the length menu
