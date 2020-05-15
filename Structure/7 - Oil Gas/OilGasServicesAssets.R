@@ -57,11 +57,11 @@ OilGasServicesAssetsOutput <- function(id) {
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
-             DateLookup(c("SGOilGasProd"))),
+             DateLookup(c("ONSNatural"))),
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
-        SourceLookup("SGOilGasProd")
+        SourceLookup("ONSNatural")
         
       )
     )
@@ -98,7 +98,7 @@ OilGasServicesAssets <- function(input, output, session) {
 
     ### variables
     ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
-    sourcecaption = "Source: Scottish Government"
+    sourcecaption = "Source: ONS, SG"
     plottitle = "Value of services"
     
     
@@ -219,7 +219,7 @@ OilGasServicesAssets <- function(input, output, session) {
       
       ### variables
       ChartColours <- c("#126992", "#66c2a5", "#fc8d62", "#8da0cb")
-      sourcecaption = "Source: Scottish Government"
+      sourcecaption = "Source: ONS, SG"
       plottitle = "Value of services"
       
       #FossilFuels$OilPercentage <- PercentLabel(FossilFuels$Oil)
@@ -335,7 +335,7 @@ OilGasServicesAssets <- function(input, output, session) {
       
       ### variables
       ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
-      sourcecaption = "Source: Scottish Government"
+      sourcecaption = "Source: ONS, SG"
       plottitle = "Value of Assets"
       
       
@@ -456,7 +456,7 @@ OilGasServicesAssets <- function(input, output, session) {
         
         ### variables
         ChartColours <- c("#126992", "#66c2a5", "#fc8d62", "#8da0cb")
-        sourcecaption = "Source: Scottish Government"
+        sourcecaption = "Source: ONS, SG"
         plottitle = "Value of Assets"
         
         #FossilFuels$OilPercentage <- PercentLabel(FossilFuels$Oil)
