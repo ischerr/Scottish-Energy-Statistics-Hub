@@ -890,7 +890,7 @@ C19Survey <- function(input, output, session) {
       
       plottitle <-
         "Attitudes towards energy since lockdown"
-      sourcecaption <- "Source: Ofgem"
+      sourcecaption <- "Source: Ofgem, Scottish Government"
       
       SurveyChartChart <- SurveyChart %>%
         ggplot(aes(x = Year, y = value2, fill = variable), family = "Century Gothic") +
@@ -1052,7 +1052,7 @@ output$C19SurveyRolling.png <- downloadHandler(
     
     ### variables
     ChartColours <- c("#5d8be1", "#238b45", "#a1d99b")
-    sourcecaption = "Source: Ofgem"
+    sourcecaption = "Source: Ofgem, Scottish Government"
     plottitle = "Issues with energy"
     
     
@@ -1187,7 +1187,7 @@ output$C19SurveyT62.png <- downloadHandler(
     
     ### variables
     ChartColours <- c("#5d8be1", "#238b45", "#a1d99b")
-    sourcecaption = "Source: Ofgem"
+    sourcecaption = "Source: Ofgem, Scottish Government"
     plottitle = "Sources of advice"
     
     
@@ -1353,7 +1353,7 @@ output$C19SurveyT66.png <- downloadHandler(
     
     plottitle <-
       "Information from energy supplier"
-    sourcecaption <- "Source: Ofgem"
+    sourcecaption <- "Source: Ofgem, Scottish Government"
     
     SurveyChartChart <- SurveyChart %>%
       ggplot(aes(x = Year, y = value2, fill = variable), family = "Century Gothic") +
