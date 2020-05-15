@@ -1463,7 +1463,7 @@ output$FullData <- downloadHandler(
   },
   
   content <- function(file) {
-    file.copy("Structure/0 - COVID/Survey/Data/Consumers - Energy - Ipsos Covid survey - 19-001011-14 Energy Suppliers_Scottish boost weighted tables_v1_internal.xls", file)
+    file.copy("Structure/0 - COVID/Survey/Data/FullSurvey.xls", file)
   },
   contentType = NULL
 )
