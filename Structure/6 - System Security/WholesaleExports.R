@@ -11,7 +11,7 @@ WholesaleExportsOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Electricity imports and exports", style = "color: #5d8be1;  font-weight:bold"),
+                    h3("Wholesale value of electricity exports", style = "color: #5d8be1;  font-weight:bold"),
                     h4(textOutput(ns('WholesaleExportsSubtitle')), style = "color: #5d8be1;")
     ),
              column(
@@ -32,7 +32,7 @@ WholesaleExportsOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
-    column(10, h3("Data - Electricity imports and exports (GWh)", style = "color: #5d8be1;  font-weight:bold")),
+    column(10, h3("Data - Wholesale value of electricity exports", style = "color: #5d8be1;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -122,7 +122,7 @@ WholesaleExports <- function(input, output, session) {
                   format(WholesaleExports$Year, "%Y")
                 ),
                 hoverinfo = 'text',
-                line = list(width = 6, color = ChartColours[2], dash = "none")
+                line = list(width = 6, color = ChartColours[1], dash = "none")
       ) %>% 
       add_trace(
         data = tail(WholesaleExports[which(WholesaleExports$WholesaleValue > 0 | WholesaleExports$WholesaleValue < 0),], 1),
@@ -141,7 +141,7 @@ WholesaleExports <- function(input, output, session) {
         type = "scatter",
         mode = 'markers',
         marker = list(size = 18, 
-                      color = ChartColours[2])
+                      color = ChartColours[1])
       ) %>% 
       layout(
         barmode = 'stack',
@@ -193,17 +193,17 @@ WholesaleExports <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Electricity imports and exports (GWh)",
+        title = "Wholesale value of electricity exports",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Electricity imports and exports (GWh)',
+            title = 'Wholesale value of electricity exports',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Electricity imports and exports (GWh)')
+               title = 'Wholesale value of electricity exports')
         ),
         
         # customize the length menu
@@ -250,7 +250,7 @@ WholesaleExports <- function(input, output, session) {
       ### variables
       ChartColours <- c("#5d8be1", "#225ea8", "#41b6c4", "#8da0cb")
       sourcecaption = "Source: BEIS"
-      plottitle = "Electricity imports and exports"
+      plottitle = "Wholesale value of electricity exports"
       
       #WholesaleExports$ExportsPercentage <- PercentLabel(WholesaleExports$Exports)
       
@@ -264,7 +264,7 @@ WholesaleExports <- function(input, output, session) {
             label = percent(WholesaleValue)
           ),
           size = 1.5,
-          colour = ChartColours[2],
+          colour = ChartColours[1],
           family = "Century Gothic"
         ) +
         geom_text(
@@ -277,7 +277,7 @@ WholesaleExports <- function(input, output, session) {
             
             fontface = 2
           ),
-          colour = ChartColours[2],
+          colour = ChartColours[1],
           family = "Century Gothic"
         ) +
         geom_text(
@@ -289,7 +289,7 @@ WholesaleExports <- function(input, output, session) {
             
             fontface = 2
           ),
-          colour = ChartColours[2],
+          colour = ChartColours[1],
           family = "Century Gothic"
         ) +
         geom_point(
@@ -301,7 +301,7 @@ WholesaleExports <- function(input, output, session) {
             show_guide = FALSE
           ),
           size = 4,
-          colour = ChartColours[2],
+          colour = ChartColours[1],
           family = "Century Gothic"
         ) +
         geom_text(
@@ -313,7 +313,7 @@ WholesaleExports <- function(input, output, session) {
             
             fontface = 2
           ),
-          colour = ChartColours[2],
+          colour = ChartColours[1],
           family = "Century Gothic"
         )
       
