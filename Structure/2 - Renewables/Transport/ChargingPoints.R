@@ -7,11 +7,9 @@ require("DT")
 
 source("Structure/Global.R")
 
-ChargingPoints <- function(id) {
+ChargingPointsOutput <- function(id) {
   ns <- NS(id)
   tagList(
-    tabsetPanel(
-      tabPanel("Vehicles licenced",
     fluidRow(column(8,
                     h3("Number of ultra low emission vehicles licenced", style = "color: #39ab2c;  font-weight:bold"),
                     h4(textOutput(ns('ULEVsSubtitle')), style = "color: #39ab2c;")
@@ -23,24 +21,9 @@ ChargingPoints <- function(id) {
     
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     #dygraphOutput(ns("ULEVsPlot")),
-    plotlyOutput(ns("ULEVsPlot"))%>% withSpinner(color="#39ab2c"),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("First time registrations",
-             fluidRow(column(8,
-                             h3("Proportion of ULEVs registered for the first time", style = "color: #39ab2c;  font-weight:bold"),
-                             h4(textOutput(ns('ULEVRegOutputSubtitle')), style = "color: #39ab2c;")
-             ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('ULEVRegOutput.png'), 'Download Graph', style="float:right")
-             )),
-             
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-             #dygraphOutput(ns("ULEVsPlot")),
-             plotlyOutput(ns("ULEVRegOutputPlot"))%>% withSpinner(color="#39ab2c"),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
-    ),
-    fluidRow(
+    leafletOutput(ns("ChargingPointMap"), height = "700px")%>% withSpinner(color="#39ab2c"),
+    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+      fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
     
@@ -110,77 +93,74 @@ ChargingPoints <- function(input, output, session) {
     paste("Scotland,", min(Data$Year), "-", max(Data$Year))
   })
   
-  output$ULEVsPlot <- renderPlotly  ({
+  output$ChargingPointMap <- renderLeaflet({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "ULEVs", 
-        skip = 17)
+    ### Load Packages
+    library(readr)
+    library("maptools")
+    library(tmaptools)
+    library(tmap)
+    library("sf")
+    library("leaflet")
+    library("rgeos")
+    library(readxl)
+    library(ggplot2)
     
-    Data <- Data[c(1,3,4,2)]
+    ### Add Simplified shape back to the Shapefile
+    LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/LocalAuthority2.shp")
     
-    Data$Year <- as.yearqtr(Data$Year)
+    LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
+    ############ RENEWABLE ELECTRICITY ################################################
     
-    Data2 <- rbind(head(Data,1), tail(Data,1))
+    AverageBillMap <- read_delim("Processed Data/Output/Charging Points/Points.txt", 
+                              "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    ChartColours <- c("#39ab2c", "#238b45", "#a1d99b")
+    AverageBillMap <- AverageBillMap[c(1,2,ncol(AverageBillMap))]
     
-    p <-  plot_ly(Data, 
-                  x = ~Year, 
-                  y = ~ `Battery Electric Vehicles`, 
-                  name = 'Battery Electric Vehicles',
-                  type = 'scatter',
-                  mode = 'none',
-                  stackgroup = 'one',
-                  fillcolor = ChartColours[1],
-                  hoverinfo = "text",
-                  text = paste0("Battery Electric Vehicles: ", Data$`Battery Electric Vehicles`, "\nAs Of: ", Data$Year)
-    )%>%
-      add_trace(
-        y = ~ `Other ULEVs`, 
-        name = 'Other ULEVs',
-        fillcolor = ChartColours[3],
-        hoverinfo = "text",
-        text = paste0("Other ULEVs: ", Data$`Other ULEVs`, "\nAs Of: ", Data$Year)
-      ) %>% 
-      add_trace(
-        x = Data2$Year,
-        y = Data2$`All ULEVs` +  1500,
-        name = "All ULEVs",
-        mode = 'text',
-        text = paste("<b>Total:\n", format(Data2$`All ULEVs`, big.mark = ","),"</b>"),
-        stackgroup = 'two',
-        showlegend = FALSE,
-        fillcolor = 'rgba(26,150,65,0)'
-      ) %>% 
-      layout(
-        barmode = 'group',
-        bargap = 0.25,
-        legend = list(font = list(color = "#39ab2c"),
-                      orientation = 'h'),
-        hoverlabel = list(font = list(color = "white"),
-                          hovername = 'text'),
-        hovername = 'skip',
-        xaxis = list(title = "",
-                     zeroline = FALSE,
-                     showgrid = FALSE,
-                     range = c(min(Data$Year)-.25, max(Data$Year)+.25)
-                     
-        ),
-        yaxis = list(
-          title = "",
-          showgrid = TRUE,
-          zeroline = FALSE,
-          rangemode = "tozero",
-          range = c(0, max(Data$`All ULEVs`)+3000)
-        )
-      ) %>% 
-      config(displayModeBar = F)
-    p
+    names(AverageBillMap) <- c("LocalAuthority", "CODE", "Points")
+    
+    AverageBillMap <- AverageBillMap[which(substr(AverageBillMap$CODE, 1,3)== "S12"),]
+    
+    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Charging Points:<br/><em>", round(AverageBillMap$Points, digits = 0),"</em>" )
+    
+    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - ", round(AverageBillMap$Points, digits = 2))
+    
+    ### Change LA$CODE to string
+    LA$CODE <- as.character(LA$CODE)
+    
+    ### Order LAs in Shapefile
+    LA <- LA[order(LA$CODE),]
+    
+    ### Order LAs in Data
+    AverageBillMap <- AverageBillMap[order(AverageBillMap$CODE),]
+    
+    ### Combine Data with Map data
+    LAMap <-
+      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
     
     
+    pal <- colorNumeric(
+      palette = "Greens",
+      domain = LAMap$Points)
     
+    l <-leaflet(LAMap) %>% 
+      addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
+      addPolygons(stroke = TRUE, 
+                  weight = 0.1,
+                  smoothFactor = 0.2,
+                  popup = ~Content,
+                  label = ~Hover,
+                  fillOpacity = 1,
+                  color = ~pal(Points),
+                  highlightOptions = list(color = "white", weight = 2,
+                                          bringToFront = TRUE)) %>%
+      leaflet::addLegend("bottomright", pal = pal, values = ~Points,
+                         title = "Charging Points",
+                         opacity = 1
+      ) 
+    
+  l
+      
   })
   
   output$ULEVRegOutputSubtitle <- renderText({

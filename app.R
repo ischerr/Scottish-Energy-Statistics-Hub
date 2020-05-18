@@ -509,7 +509,7 @@ ui <- shinyUI(fluidPage(
                               ULEVsOutput("ULEVs")),
                      tabPanel(title ="Charging Points", 
                               value = "ChargingPoints",
-                              ULEVsOutput("ChargingPoints"))
+                              ChargingPointsOutput("ChargingPoints"))
         )
       ),
       tabPanel(
