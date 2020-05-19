@@ -163,6 +163,146 @@ ChargingPoints <- function(input, output, session) {
       
   })
   
+  output$ChargingEventsMap <- renderLeaflet({
+    
+    ### Load Packages
+    library(readr)
+    library("maptools")
+    library(tmaptools)
+    library(tmap)
+    library("sf")
+    library("leaflet")
+    library("rgeos")
+    library(readxl)
+    library(ggplot2)
+    
+    ### Add Simplified shape back to the Shapefile
+    LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/LocalAuthority2.shp")
+    
+    LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
+    ############ RENEWABLE ELECTRICITY ################################################
+    
+    AverageBillMap <- read_delim("Processed Data/Output/Charging Points/Events.txt", 
+                                 "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    AverageBillMap <- AverageBillMap[c(1,2,ncol(AverageBillMap))]
+    
+    names(AverageBillMap) <- c("LocalAuthority", "CODE", "Events")
+    
+    AverageBillMap <- AverageBillMap[which(substr(AverageBillMap$CODE, 1,3)== "S12"),]
+    
+    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Charging Events:<br/><em>", round(AverageBillMap$Events, digits = 0),"</em>" )
+    
+    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - ", round(AverageBillMap$Events, digits = 2))
+    
+    ### Change LA$CODE to string
+    LA$CODE <- as.character(LA$CODE)
+    
+    ### Order LAs in Shapefile
+    LA <- LA[order(LA$CODE),]
+    
+    ### Order LAs in Data
+    AverageBillMap <- AverageBillMap[order(AverageBillMap$CODE),]
+    
+    ### Combine Data with Map data
+    LAMap <-
+      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+    
+    
+    pal <- colorNumeric(
+      palette = "Greens",
+      domain = LAMap$Events)
+    
+    l <-leaflet(LAMap) %>% 
+      addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
+      addPolygons(stroke = TRUE, 
+                  weight = 0.1,
+                  smoothFactor = 0.2,
+                  popup = ~Content,
+                  label = ~Hover,
+                  fillOpacity = 1,
+                  color = ~pal(Events),
+                  highlightOptions = list(color = "white", weight = 2,
+                                          bringToFront = TRUE)) %>%
+      leaflet::addLegend("bottomright", pal = pal, values = ~Events,
+                         title = "Charging Events",
+                         opacity = 1
+      ) 
+    
+    l
+    
+  })
+  
+  output$ChareProvidedMap <- renderLeaflet({
+    
+    ### Load Packages
+    library(readr)
+    library("maptools")
+    library(tmaptools)
+    library(tmap)
+    library("sf")
+    library("leaflet")
+    library("rgeos")
+    library(readxl)
+    library(ggplot2)
+    
+    ### Add Simplified shape back to the Shapefile
+    LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/LocalAuthority2.shp")
+    
+    LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
+    ############ RENEWABLE ELECTRICITY ################################################
+    
+    AverageBillMap <- read_delim("Processed Data/Output/Charging Points/Points.txt", 
+                                 "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    AverageBillMap <- AverageBillMap[c(1,2,ncol(AverageBillMap))]
+    
+    names(AverageBillMap) <- c("LocalAuthority", "CODE", "Points")
+    
+    AverageBillMap <- AverageBillMap[which(substr(AverageBillMap$CODE, 1,3)== "S12"),]
+    
+    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Charging Points:<br/><em>", round(AverageBillMap$Points, digits = 0),"</em>" )
+    
+    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - ", round(AverageBillMap$Points, digits = 2))
+    
+    ### Change LA$CODE to string
+    LA$CODE <- as.character(LA$CODE)
+    
+    ### Order LAs in Shapefile
+    LA <- LA[order(LA$CODE),]
+    
+    ### Order LAs in Data
+    AverageBillMap <- AverageBillMap[order(AverageBillMap$CODE),]
+    
+    ### Combine Data with Map data
+    LAMap <-
+      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+    
+    
+    pal <- colorNumeric(
+      palette = "Greens",
+      domain = LAMap$Points)
+    
+    l <-leaflet(LAMap) %>% 
+      addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
+      addPolygons(stroke = TRUE, 
+                  weight = 0.1,
+                  smoothFactor = 0.2,
+                  popup = ~Content,
+                  label = ~Hover,
+                  fillOpacity = 1,
+                  color = ~pal(Points),
+                  highlightOptions = list(color = "white", weight = 2,
+                                          bringToFront = TRUE)) %>%
+      leaflet::addLegend("bottomright", pal = pal, values = ~Points,
+                         title = "Charging Points",
+                         opacity = 1
+      ) 
+    
+    l
+    
+  })
+  
   output$ULEVRegOutputSubtitle <- renderText({
     
     Data <-
