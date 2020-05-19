@@ -4,7 +4,7 @@
 <li>Before lockdown, average weekday daily consumption is similar to previous years</li>
 <li>After lockdown, weekday consumption dropped by <strong>22%</strong> compared to the start of March. Even though more people are working from home, the presumed increase in domestic* consumption is more than offset by the inactivity from non-essential commercial and industrial premises.&nbsp;</li>
 </ul>
-<p>The second chart above shows daily electricity demand from the start of March in 2020 (blue line) and 2019 (orange line).&nbsp; Daily demand levels are similar until Friday 20<sup>th</sup> March when pubs, clubs, restaurants and gyms closed.&nbsp; From then, electricity demand reduced and was consistently lower from the lockdown onwards.&nbsp;</p>
+<p>The second chart shows daily electricity demand from the start of March in 2020 (blue line) and 2019 (orange line).&nbsp; Daily demand levels are similar until Friday 20<sup>th</sup> March when pubs, clubs, restaurants and gyms closed.&nbsp; From then, electricity demand reduced and was consistently lower from the lockdown onwards.&nbsp;</p>
 <blockquote>
 <p>*Please note that it is <strong>not</strong> possible to disaggregate domestic and non-domestic consumption from this analysis.</p>
 </blockquote>
