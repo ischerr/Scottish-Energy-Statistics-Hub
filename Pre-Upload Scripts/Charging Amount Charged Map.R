@@ -15,18 +15,20 @@ LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/LocalAuthority2.shp")
 LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
 ############ RENEWABLE ELECTRICITY ################################################
 
-AverageBillMap <- read_delim("Processed Data/Output/Charging Points/Events.txt", 
+AverageBillMap <- read_delim("Processed Data/Output/Charging Points/AmountCharged.txt", 
                              "\t", escape_double = FALSE, trim_ws = TRUE)
 
 AverageBillMap <- AverageBillMap[c(1,2,ncol(AverageBillMap))]
 
-names(AverageBillMap) <- c("LocalAuthority", "CODE", "Events")
+names(AverageBillMap) <- c("LocalAuthority", "CODE", "AmountCharged")
+
+AverageBillMap$AmountCharged <- AverageBillMap$AmountCharged /1000
 
 AverageBillMap <- AverageBillMap[which(substr(AverageBillMap$CODE, 1,3)== "S12"),]
 
-AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Charging Events:<br/><em>", round(AverageBillMap$Events, digits = 0),"</em>" )
+AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Charging AmountCharged:<br/><em>", round(AverageBillMap$AmountCharged, digits = 0),"</em>" )
 
-AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - ", round(AverageBillMap$Events, digits = 2))
+AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - ", round(AverageBillMap$AmountCharged, digits = 2))
 
 ### Change LA$CODE to string
 LA$CODE <- as.character(LA$CODE)
@@ -45,17 +47,17 @@ LAMap <-
 ### Create Full Scotland Map
 ScotlandMap <- tm_shape(LAMap) +
   tm_fill(
-    "Events",
+    "AmountCharged",
     title = "LA Renewable Percentages",
     palette = "Greens",
-    breaks = c(0,25000,50000,75000,100000,125000),
+    breaks = c(0,500,1000,1500),
     style = "cont"
   ) +
   tm_borders(alpha = .1) +
   tm_text("LocalAuthority", size = .5) # Set the variable to use as Labels, and the text size.
 
 #Export to PDF, to be used in Inkscape
-save_tmap(ScotlandMap, filename = "Pre-Upload Scripts/Maps/ScotlandChargingEvents.svg")
+save_tmap(ScotlandMap, filename = "Pre-Upload Scripts/Maps/ScotlandChargingAmountCharged.svg")
 
 #Subset the Central Belt
 LACentral <-
@@ -76,14 +78,14 @@ LACentral <-
 # Create Central Belt Map
 CentralMap <- tm_shape(LACentral) +
   tm_fill(
-    "Events",
+    "AmountCharged",
     title = "LA Renewable Percentages",
     palette = "Greens",
-    breaks = c(0,25000,50000,75000,100000,125000),
+    breaks = c(0,500,1000,1500),
     style = "cont"
   ) +
   tm_borders(alpha = .1) +
   tm_text("LocalAuthority", size = 1) # Bigger Text size
 
 #Export to PDF
-save_tmap(CentralMap, filename = "Pre-Upload Scripts/Maps/CentralChargingEvents.svg")
+save_tmap(CentralMap, filename = "Pre-Upload Scripts/Maps/CentralChargingAmountCharged.svg")

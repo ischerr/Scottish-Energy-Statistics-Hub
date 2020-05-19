@@ -18,7 +18,7 @@ ChargingPointsOutput <- function(id) {
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('ChargingPoint.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('ChargingPointStatic'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
@@ -32,7 +32,7 @@ ChargingPointsOutput <- function(id) {
              ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('ChargingEvents.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('ChargingEventsStatic'), 'Download Graph', style="float:right")
              )),
              
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
@@ -46,7 +46,7 @@ ChargingPointsOutput <- function(id) {
              ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('ChargeProvided.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('ChargeProvidedStatic'), 'Download Graph', style="float:right")
              )),
              
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
@@ -298,11 +298,13 @@ ChargingPoints <- function(input, output, session) {
     
     names(AverageBillMap) <- c("LocalAuthority", "CODE", "AmountCharged")
     
+    AverageBillMap$AmountCharged <- AverageBillMap$AmountCharged /1000
+    
     AverageBillMap <- AverageBillMap[which(substr(AverageBillMap$CODE, 1,3)== "S12"),]
     
-    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Amount Charged:<br/><em>", format(round(AverageBillMap$AmountCharged, digits = 0), big.mark = ",")," kWh</em>" )
+    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Amount Charged:<br/><em>", format(round(AverageBillMap$AmountCharged, digits = 0), big.mark = ",")," GWh</em>" )
     
-    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - ", format(round(AverageBillMap$AmountCharged, digits = 2), big.mark = ","), " kWh")
+    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - ", format(round(AverageBillMap$AmountCharged, digits = 2), big.mark = ","), " GWh")
     
     ### Change LA$CODE to string
     LA$CODE <- as.character(LA$CODE)
@@ -334,7 +336,7 @@ ChargingPoints <- function(input, output, session) {
                   highlightOptions = list(color = "white", weight = 2,
                                           bringToFront = TRUE)) %>%
       leaflet::addLegend("bottomright", pal = pal, values = ~AmountCharged,
-                         title = "Amount Charged (kWh)",
+                         title = "Amount<br/>Charged<br/>(GWh)",
                          opacity = 1
       ) 
     
@@ -561,309 +563,29 @@ ChargingPoints <- function(input, output, session) {
   })
   
   
-  output$ULEVs.png <- downloadHandler(
-    filename = "ULEVs.png",
+  output$ChargingPointStatic <- downloadHandler(
+    filename = "ChargePointMap.png",
     content = function(file) {
-
-      ElecVehicles <- read_excel("Structure/CurrentWorking.xlsx", 
-                                 sheet = "ULEVs", col_names = TRUE, 
-                                 skip = 17)[c(1,3,4)]
-      
-      ElecVehicles$Year <-
-        as.yearqtr(ElecVehicles$Year, format = "%Y Q%q")
-      
-      
-      ElecVehiclesMin <- head(ElecVehicles, 1)
-      ElecVehiclesMax <- tail(ElecVehicles, 1)
-      
-      ElecVehicles <- melt(ElecVehicles, id.vars = "Year")
-      
-      ElecVehicles <- ElecVehicles %>% mutate(variable = factor(variable),
-                                              variable = factor(variable, levels = rev(levels(variable))))
-      
-      
-      ### variables
-      ChartColours <- c("#39ab2c", "#238b45", "#a1d99b")
-      sourcecaption = "Source: DfT"
-      plottitle = "Number of ultra low emission vehicles\nlicenced"
-      
-      #ElecVehicles$CavityPercentage <- PercentLabel(ElecVehicles$Cavity)
-      
-      
-      ElecVehiclesChart <- ElecVehicles %>%
-        ggplot(aes(
-          x = Year,
-          y = value,
-          group = variable,
-          fill = variable
-        )) +
-        scale_fill_manual(
-          "variable",
-          values = c(
-            "Battery Electric Vehicles" = ChartColours[2],
-            "Other ULEVs" = ChartColours[3]
-          )
-        ) +
-        geom_area(posistion = "fill") +
-        geom_text(
-          aes(
-            x = Year,
-            y = 0,
-            label = ifelse(
-              Year == max(Year) |
-                Year == min(Year),
-              format(Year, format = "%Y Q%q"),
-              ""
-            ),
-            hjust = ifelse(Year == min(Year), 0, 1),
-            vjust = 1.5,
-            colour = ChartColours[1],
-            fontface = 2,
-            family = "Century Gothic"
-          )
-        ) +
-        annotate(
-          "text",
-          x = ElecVehiclesMin$Year,
-          y = ElecVehiclesMin$`Battery Electric Vehicles` * 0.5,
-          label = format(ElecVehiclesMin$`Battery Electric Vehicles`,big.mark = ","),
-          hjust = -.1,
-          vjust = 0,
-          colour = "white",
-          fontface = 2,
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = ElecVehiclesMin$Year,
-          y = (ElecVehiclesMin$`Other ULEVs` * 0.5) + ElecVehiclesMin$`Battery Electric Vehicles`,
-          label = format(ElecVehiclesMin$`Other ULEVs`,big.mark = ","),
-          hjust = -.1,
-          vjust = -1,
-          colour = ChartColours[3],
-          fontface = 2,
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = ElecVehiclesMax$Year,
-          y = ElecVehiclesMax$`Battery Electric Vehicles` * 0.5,
-          label = format(ElecVehiclesMax$`Battery Electric Vehicles`, big.mark = ","),
-          hjust = 1.1,
-          vjust = 0,
-          colour = "white",
-          fontface = 2,
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = ElecVehiclesMax$Year,
-          y = (ElecVehiclesMax$`Other ULEVs` * 0.5) + ElecVehiclesMax$`Battery Electric Vehicles`,
-          label = format(ElecVehiclesMax$`Other ULEVs`, big.mark = ","),
-          hjust = 1.1,
-          vjust = 0,
-          colour = "white",
-          fontface = 2,
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = mean(ElecVehicles$Year),
-          y = (
-            ElecVehiclesMax$`Battery Electric Vehicles` + ElecVehiclesMin$`Battery Electric Vehicles`
-          ) * .25,
-          label = "Battery Electric\nVehicles",
-          hjust = .5,
-          vjust = 1,
-          colour = "white",
-          fontface = 2,
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = mean(ElecVehicles$Year),
-          y = ((ElecVehiclesMax$`Other ULEVs` + ElecVehiclesMin$`Other ULEVs`) *
-                 .25
-          ) + ((
-            ElecVehiclesMax$`Battery Electric Vehicles` + ElecVehiclesMin$`Battery Electric Vehicles`
-          ) * .5
-          ),
-          label = "Other ULEVs",
-          hjust = .5,
-          vjust = 8.1,
-          colour = "white",
-          fontface = 2,
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = ElecVehiclesMin$Year,
-          y = ElecVehiclesMin$`Battery Electric Vehicles` + ElecVehiclesMin$`Other ULEVs`,
-          label = paste0(
-            "Total: ",
-            format(ElecVehiclesMin$`Battery Electric Vehicles` + ElecVehiclesMin$`Other ULEVs`, big.mark = ",")
-          ),
-          hjust = 0,
-          vjust = -3,
-          colour = ChartColours[1],
-          fontface = 2,
-          family = "Century Gothic"
-        ) +
-        annotate(
-          "text",
-          x = ElecVehiclesMax$Year,
-          y = ElecVehiclesMax$`Battery Electric Vehicles` + ElecVehiclesMax$`Other ULEVs`,
-          label = paste0(
-            "Total: ",
-            format(ElecVehiclesMax$`Battery Electric Vehicles` + ElecVehiclesMax$`Other ULEVs`,big.mark = ",")
-          ),
-          hjust = 1.3,
-          vjust = 1,
-          colour = ChartColours[1],
-          fontface = 2,
-          family = "Century Gothic"
-        )
-      
-      ElecVehiclesChart
-      
-      
-      ElecVehiclesChart <-
-        StackedArea(ElecVehiclesChart,
-                    ElecVehicles,
-                    plottitle,
-                    sourcecaption,
-                    ChartColours)
-      
-      
-      ElecVehiclesChart <- ElecVehiclesChart +
-        ylim(-100, max(ElecVehiclesMax$`Battery Electric Vehicles`)+max(ElecVehiclesMax$`Other ULEVs`))
-      
-
-
-      
-      ggsave(
-        file,
-        plot =  ElecVehiclesChart,
-        width = 14,
-        height = 16,
-        units = "cm",
-        dpi = 300
-      )
+      writePNG(readPNG("Structure/2 - Renewables/Transport/ChargePointMap.png"), file) 
     }
   )
-
-
-
-output$ULEVRegOutput.png <- downloadHandler(
-  filename = "ULEVRegOutput.png",
-  content = function(file) {
-    
-
-    ElecVehiclesRegistrations <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "ULEVs", col_names = TRUE, 
-        skip = 18)[c(1,10,12)]
-    
-    names(ElecVehiclesRegistrations) <- c("Year", "Registrations", "Proportion")
-    
-    ElecVehiclesRegistrations$Year <-
-      as.yearqtr(ElecVehiclesRegistrations$Year, format = "%Y Q%q")
-    
-        ElecVehiclesProportion <- ElecVehiclesRegistrations
-        
-        ElecVehiclesProportion$Year <-
-          as.yearqtr(ElecVehiclesProportion$Year, format = "%Y Q%q")
-        
-        
-        ### variables
-        ChartColours <- c("#39ab2c", "#238b45", "#a1d99b")
-        LineColours <- c("#39ab2c", "#238b45", "#a1d99b")
-        sourcecaption = "Source: DfT"
-        plottitle = "Proportion of ULEVs registered for\nthe first time"
-        
-        #ElecVehiclesProportion$CavityPercentage <- PercentLabel(ElecVehiclesProportion$Cavity)
-        
-        
-        ElecVehiclesProportionChart <- ElecVehiclesProportion %>%
-          ggplot(aes(x = Year,
-                     y = Proportion)) +
-          geom_line(aes(),
-                    size = 1.5,
-                    colour = LineColours[1],
-                    family = "Century Gothic") +
-          geom_point(
-            data = tail(ElecVehiclesProportion, 1),
-            aes(x = Year,
-                y = Proportion),
-            size = 4,
-            colour = LineColours[1],
-            family = "Century Gothic"
-          ) +
-          geom_text(
-            aes(
-              label = ifelse(Year == min(Year), percent(Proportion, accuracy =  .1), ""),
-              show_guide = FALSE
-            ),
-            fontface = 2,
-            vjust = 2,
-            colour = LineColours[1],
-            family = "Century Gothic"
-          ) +
-          geom_text(
-            aes(
-              x = Year,
-              label = ifelse(Year == max(Year), percent(Proportion, accuracy =  .1), ""),
-              show_guide = FALSE
-            ),
-            hjust = -.4,
-            fontface = 2,
-            colour = LineColours[1],
-            family = "Century Gothic"
-          ) +
-          geom_text(
-            aes(
-              y = 0,
-              label = ifelse(Year == min(Year) |
-                               Year == max(Year), format(Year, format = "%Y Q%q"), ""),
-              hjust = 0.5,
-              vjust = 1.5,
-              colour = ChartColours[1],
-              fontface = 2
-            ),
-            family = "Century Gothic"
-          )
-        
-        
-        ElecVehiclesProportionChart
-        
-        
-        ElecVehiclesProportionChart <-
-          StackedArea(ElecVehiclesProportionChart,
-                      ElecVehiclesProportion,
-                      plottitle,
-                      sourcecaption,
-                      ChartColours)
-        
-        
-        ElecVehiclesProportionChart <- ElecVehiclesProportionChart +
-          xlim(min(as.numeric(ElecVehiclesProportion$Year)-.15),max(as.numeric(ElecVehiclesProportion$Year)+.3))
-        
-        ElecVehiclesProportionChart
-        
-        
-        ggsave(
-          file,
-          plot =  ElecVehiclesProportionChart,
-          width = 14,
-          height = 16,
-          units = "cm",
-          dpi = 300
-        )
-        
-    
-  }
-)
+  
+  
+  output$ChargingEventsStatic <- downloadHandler(
+    filename = "ChargeEventsMap.png",
+    content = function(file) {
+      writePNG(readPNG("Structure/2 - Renewables/Transport/ChargeEventsMap.png"), file) 
+    }
+  )
+  
+  
+  output$ChargeProvidedStatic <- downloadHandler(
+    filename = "ChargeProvidedMap.png",
+    content = function(file) {
+      writePNG(readPNG("Structure/2 - Renewables/Transport/ChargeChargedMap.png"), file) 
+    }
+  )
+  
 }
-    
+  
     
