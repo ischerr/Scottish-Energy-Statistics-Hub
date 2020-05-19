@@ -10,19 +10,49 @@ source("Structure/Global.R")
 ChargingPointsOutput <- function(id) {
   ns <- NS(id)
   tagList(
+    tabsetPanel(
+      tabPanel("Charging Points",
     fluidRow(column(8,
-                    h3("Number of ultra low emission vehicles licenced", style = "color: #39ab2c;  font-weight:bold"),
-                    h4(textOutput(ns('ULEVsSubtitle')), style = "color: #39ab2c;")
+                    h3("Charging Points", style = "color: #39ab2c;  font-weight:bold"),
+                    h4(textOutput(ns('ChargingPointSubtitle')), style = "color: #39ab2c;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('ULEVs.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('ChargingPoint.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     #dygraphOutput(ns("ULEVsPlot")),
     leafletOutput(ns("ChargingPointMap"), height = "700px")%>% withSpinner(color="#39ab2c"),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Charging Events",
+             fluidRow(column(8,
+                             h3("Charging Events", style = "color: #39ab2c;  font-weight:bold"),
+                             h4(textOutput(ns('ChargingEventsSubtitle')), style = "color: #39ab2c;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('ChargingEvents.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+             #dygraphOutput(ns("ULEVsPlot")),
+             leafletOutput(ns("ChargingEventsMap"), height = "700px")%>% withSpinner(color="#39ab2c"),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Charge Provided",
+             fluidRow(column(8,
+                             h3("Charge Provided", style = "color: #39ab2c;  font-weight:bold"),
+                             h4(textOutput(ns('ChargeProvidedSubtitle')), style = "color: #39ab2c;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('ChargeProvided.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+             #dygraphOutput(ns("ULEVsPlot")),
+             leafletOutput(ns("ChargeProvidedMap"), height = "700px")%>% withSpinner(color="#39ab2c"),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
       fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
@@ -78,19 +108,12 @@ ChargingPoints <- function(input, output, session) {
   print("ULEVs.R")
 
   
-  output$ULEVsSubtitle <- renderText({
+  output$ChargingPointSubtitle <- renderText({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "ULEVs", 
-        skip = 17)
+    AverageBillMap <- read_delim("Processed Data/Output/Charging Points/Points.txt", 
+                                 "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Data <- Data[c(1,3,4,2)]
-    
-    Data$Year <- as.yearqtr(Data$Year)
-    
-    paste("Scotland,", min(Data$Year), "-", max(Data$Year))
+    paste("Scotland,", names(AverageBillMap)[ncol(AverageBillMap)])
   })
   
   output$ChargingPointMap <- renderLeaflet({
@@ -163,6 +186,14 @@ ChargingPoints <- function(input, output, session) {
       
   })
   
+  output$ChargingEventsSubtitle <- renderText({
+    
+    AverageBillMap <- read_delim("Processed Data/Output/Charging Points/Points.txt", 
+                                 "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    paste("Scotland,", names(AverageBillMap)[ncol(AverageBillMap)])
+  })
+  
   output$ChargingEventsMap <- renderLeaflet({
     
     ### Load Packages
@@ -191,9 +222,9 @@ ChargingPoints <- function(input, output, session) {
     
     AverageBillMap <- AverageBillMap[which(substr(AverageBillMap$CODE, 1,3)== "S12"),]
     
-    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Charging Events:<br/><em>", round(AverageBillMap$Events, digits = 0),"</em>" )
+    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Charging Events:<br/><em>", format(round(AverageBillMap$Events, digits = 0), big.mark = ","),"</em>" )
     
-    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - ", round(AverageBillMap$Events, digits = 2))
+    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - ", format(round(AverageBillMap$Events, digits = 2), big.mark = ","))
     
     ### Change LA$CODE to string
     LA$CODE <- as.character(LA$CODE)
@@ -233,7 +264,15 @@ ChargingPoints <- function(input, output, session) {
     
   })
   
-  output$ChareProvidedMap <- renderLeaflet({
+  output$ChargeProvidedSubtitle <- renderText({
+    
+    AverageBillMap <- read_delim("Processed Data/Output/Charging Points/Points.txt", 
+                                 "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    paste("Scotland,", names(AverageBillMap)[ncol(AverageBillMap)])
+  })
+  
+  output$ChargeProvidedMap <- renderLeaflet({
     
     ### Load Packages
     library(readr)
@@ -252,18 +291,18 @@ ChargingPoints <- function(input, output, session) {
     LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
     ############ RENEWABLE ELECTRICITY ################################################
     
-    AverageBillMap <- read_delim("Processed Data/Output/Charging Points/Points.txt", 
+    AverageBillMap <- read_delim("Processed Data/Output/Charging Points/AmountCharged.txt", 
                                  "\t", escape_double = FALSE, trim_ws = TRUE)
     
     AverageBillMap <- AverageBillMap[c(1,2,ncol(AverageBillMap))]
     
-    names(AverageBillMap) <- c("LocalAuthority", "CODE", "Points")
+    names(AverageBillMap) <- c("LocalAuthority", "CODE", "AmountCharged")
     
     AverageBillMap <- AverageBillMap[which(substr(AverageBillMap$CODE, 1,3)== "S12"),]
     
-    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Charging Points:<br/><em>", round(AverageBillMap$Points, digits = 0),"</em>" )
+    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Amount Charged:<br/><em>", format(round(AverageBillMap$AmountCharged, digits = 0), big.mark = ",")," kWh</em>" )
     
-    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - ", round(AverageBillMap$Points, digits = 2))
+    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - ", format(round(AverageBillMap$AmountCharged, digits = 2), big.mark = ","), " kWh")
     
     ### Change LA$CODE to string
     LA$CODE <- as.character(LA$CODE)
@@ -281,7 +320,7 @@ ChargingPoints <- function(input, output, session) {
     
     pal <- colorNumeric(
       palette = "Greens",
-      domain = LAMap$Points)
+      domain = LAMap$AmountCharged)
     
     l <-leaflet(LAMap) %>% 
       addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
@@ -291,11 +330,11 @@ ChargingPoints <- function(input, output, session) {
                   popup = ~Content,
                   label = ~Hover,
                   fillOpacity = 1,
-                  color = ~pal(Points),
+                  color = ~pal(AmountCharged),
                   highlightOptions = list(color = "white", weight = 2,
                                           bringToFront = TRUE)) %>%
-      leaflet::addLegend("bottomright", pal = pal, values = ~Points,
-                         title = "Charging Points",
+      leaflet::addLegend("bottomright", pal = pal, values = ~AmountCharged,
+                         title = "Amount Charged (kWh)",
                          opacity = 1
       ) 
     
