@@ -1,0 +1,34 @@
+"LA"	"Code"	"2017"	"2018"	"2019"
+"Aberdeen City"	"S12000033"	43	46	50
+"Aberdeenshire"	"S12000034"	19	32	48
+"Angus"	"S12000041"	16	25	42
+"Argyll and Bute"	"S12000035"	24	29	40
+"City of Edinburgh"	"S12000036"	44	56	69
+"Clackmannanshire"	"S12000005"	12	13	15
+"Comhairle nan Eilean Siar"	"S12000013"	19	19	22
+"Dumfries and Galloway"	"S12000006"	17	20	26
+"Dundee City"	"S12000042"	34	62	73
+"East Ayrshire"	"S12000008"	10	14	34
+"East Dunbartonshire"	"S12000045"	6	6	15
+"East Lothian"	"S12000010"	12	34	53
+"East Renfrewshire"	"S12000011"	8	9	13
+"Falkirk"	"S12000014"	12	14	20
+"Fife"	"S12000047"	43	50	67
+"Glasgow City"	"S12000049"	73	80	119
+"Highland"	"S12000017"	40	54	78
+"Inverclyde"	"S12000018"	13	13	17
+"Midlothian"	"S12000019"	21	22	25
+"Moray"	"S12000020"	11	13	21
+"North Ayrshire"	"S12000021"	16	24	31
+"North Lanarkshire"	"S12000050"	23	30	37
+"Orkney Islands"	"S12000023"	14	14	23
+"Perth and Kinross"	"S12000048"	41	47	53
+"Renfrewshire"	"S12000038"	20	23	31
+"Scottish Borders"	"S12000026"	23	24	32
+"Shetland Islands"	"S12000027"	12	13	13
+"South Ayrshire"	"S12000028"	9	13	24
+"South Lanarkshire"	"S12000029"	14	15	50
+"Stirling"	"S12000030"	22	22	42
+"West Dunbartonshire"	"S12000039"	12	15	18
+"West Lothian"	"S12000040"	19	25	25
+"Total"	"S92000003"	702	876	1226
