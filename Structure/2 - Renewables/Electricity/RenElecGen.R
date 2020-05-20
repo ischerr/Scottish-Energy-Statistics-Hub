@@ -1427,7 +1427,7 @@ RenElecGen <- function(input, output, session) {
         )) +
         #scale_country()+
         #scale_size(range = c(15,30), guide = FALSE)+
-        ylim(-.54, 1.10) +
+        ylim(-.64, 1.10) +
         geom_bar(stat = "identity") +
         coord_flip() +
         scale_fill_manual("Group",
@@ -1522,15 +1522,15 @@ RenElecGen <- function(input, output, session) {
         ) +
         annotation_custom(
           ScotFlag,
-          xmin = match("SCOTLAND", EUWind$Countries) - .4,
-          xmax = match("SCOTLAND", EUWind$Countries) + .4,
-          ymax = .572
+          xmin = match("SCOTLAND", EUWind$Countries) - .38,
+          xmax = match("SCOTLAND", EUWind$Countries) + .38,
+          ymax = .675
         ) +
         annotation_custom(
           LatviaFlag,
-          xmin = match("Latvia", EUWind$Countries) - .4,
-          xmax = match("Latvia", EUWind$Countries) + .4,
-          ymax = .572
+          xmin = match("Latvia", EUWind$Countries) - .38,
+          xmax = match("Latvia", EUWind$Countries) + .38,
+          ymax = .675
         )
       
       
