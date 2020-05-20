@@ -560,10 +560,7 @@ ui <- shinyUI(fluidPage(
                               BiofuelsOutput("Biofuels")),
                      tabPanel(title ="ULEVs", 
                               value = "ULEVs",
-                              ULEVsOutput("ULEVs")),
-                     tabPanel(title ="Charging Points", 
-                              value = "ChargingPoints",
-                              ChargingPointsOutput("ChargingPoints"))
+                              ULEVsOutput("ULEVs"))
         )
       ),
       tabPanel(
