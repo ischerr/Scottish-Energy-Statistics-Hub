@@ -21,7 +21,7 @@ NonGasGridOutput <- function(id) {
     
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     #dygraphOutput(ns("NonGasGridPlot")),
-    imageOutput(ns("NonGasGridPlot"), height = "700px")%>% withSpinner(color="#68c3ea"),
+    leafletOutput(ns("GasGridMap"), height = "800px")%>% withSpinner(color="#68c3ea"),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),
@@ -218,4 +218,89 @@ NonGasGrid <- function(input, output, session) {
       writePNG(readPNG("Structure/5 - Consumers/NonGasGridChart.png"), file) 
     }
   )
+  
+  output$GasGridMap <- renderLeaflet({
+    
+    ### Load Packages
+    library(readr)
+    library("maptools")
+    library(tmaptools)
+    library(tmap)
+    library("sf")
+    library("leaflet")
+    library("rgeos")
+    library(readxl)
+    library(ggplot2)
+    
+    print("MapsandGasGrid")
+    
+    # This is unlikely to change from 2012
+    yearstart <- 2012
+    
+    ### Set the final year for the loop as the current year ###
+    yearend <- format(Sys.Date(), "%Y")
+    
+    
+    ### Add Simplified shape back to the Shapefile
+    LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/LocalAuthority2.shp")
+    
+    LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
+    ############ RENEWABLE ELECTRICITY ################################################
+    
+    GasGridMap <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Non-gas grid by LA",
+      skip = 13
+    )
+    
+    GasGridMap <- GasGridMap[c(2,ncol(GasGridMap),5)]
+    
+    names(GasGridMap) <- c("LocalAuthority", "CODE", "Meters")
+    
+    GasGridMap <- GasGridMap[which(substr(GasGridMap$CODE, 1,3)== "S12"),]
+    
+    GasGridMap$Content <- paste0("<b>",GasGridMap$LocalAuthority, "</b><br/>Proportion of households<br/>not on the gas grid:<br/><em>", percent(GasGridMap$Meters, 0.1),"</em>" )
+    
+    GasGridMap$Hover <- paste0(GasGridMap$LocalAuthority, " - ", percent(GasGridMap$Meters, 0.1))
+    
+    GasGridMap$Meters <- GasGridMap$Meters*100
+    
+    
+    
+    ### Change LA$CODE to string
+    LA$CODE <- as.character(LA$CODE)
+    
+    ### Order LAs in Shapefile
+    LA <- LA[order(LA$CODE),]
+    
+    ### Order LAs in Data
+    GasGridMap <- GasGridMap[order(GasGridMap$CODE),]
+    
+    ### Combine Data with Map data
+    LAMap <-
+      append_data(LA, GasGridMap, key.shp = "CODE", key.data = "CODE")
+    
+    
+    pal <- colorNumeric(
+      palette = "Reds",
+      domain = c(0,100))
+    
+    leaflet(LAMap) %>% 
+      addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
+      addPolygons(stroke = TRUE, 
+                  weight = 0.1,
+                  smoothFactor = 0.2,
+                  popup = ~Content,
+                  label = ~Hover,
+                  fillOpacity = 1,
+                  color = ~pal(Meters),
+                  highlightOptions = list(color = "white", weight = 2,
+                                          bringToFront = TRUE)) %>%
+      leaflet::addLegend("bottomright", pal = pal, values = c(0,50,100),
+                         title = "Proportion of households<br/>not on the gas grid",
+                         labFormat = labelFormat(suffix = "%"),
+                         opacity = 1
+      ) 
+    
+  }) 
 }

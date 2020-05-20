@@ -244,7 +244,25 @@ TargetTracker <- function(input, output, session, parent_session) {
     
     start = 0
     target = .5
-    current = .209
+    current <- {
+      RenEn <- read_excel(
+        "Structure/CurrentWorking.xlsx",
+        sheet = "Renewable energy target",
+        col_names = FALSE,
+        skip = 36,
+        n_max = 23
+      )
+      RenEn <- as.data.frame(t(RenEn))
+      RenEn <- RenEn[, c(1, 6, 12, 18, 23)]
+      RenEn <- tail(RenEn,-5)
+      names(RenEn) <-
+        c("Year", "Electricity", "Heat", "Transport", "Renewables")
+      RenEn[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
+        as.numeric(as.character(x)))
+      
+      RenEn[which(RenEn$Year != max(RenEn$Year)),][2:4] <- 0
+      RenEn[which(RenEn$Year == max(RenEn$Year)),]$Renewables
+    }
     CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2018")
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2030")
     Colour = "#4d4d4d"
@@ -272,7 +290,18 @@ TargetTracker <- function(input, output, session, parent_session) {
     
     start = 0
     target = 1
-    current = .762
+    current <- {
+      RenElec <- read_excel("Structure/CurrentWorking.xlsx", 
+                            sheet = "Renewable elec target", col_names = FALSE, 
+                            skip = 15)
+      RenElec <- tail(RenElec[c(1,4)], -1)
+      
+      names(RenElec) <- c("Year", "Renewables")
+      RenElec %<>% lapply(function(x) as.numeric(as.character(x)))
+      RenElec <- as.data.frame(RenElec)
+      
+      RenElec[which(RenElec$Year == max(RenElec$Year)),]$Renewables
+    }
     CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2018")
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2020")
     Colour = "#31a354"
@@ -301,7 +330,9 @@ TargetTracker <- function(input, output, session, parent_session) {
     
     start = 75.6878490587855
     target = 0
-    current = 46.4103865830099
+    current <- {
+      
+    }
     CurrentAnnotation = paste0("<b>Current: ", round(current, digits = 0), " MtCO2e</b>\n in 2017")
     TargetAnnotation = paste0("<b>Target: ", round(target, digits = 0), " MtCO2e</b>\n by 2045")
     Colour = "#ff6600"
@@ -330,7 +361,21 @@ TargetTracker <- function(input, output, session, parent_session) {
     
     start = 389.8
     target = 50
-    current = 24
+    current <- {
+      Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                         sheet = "Grid emissions", skip = 15)
+      
+      Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
+      Data <- setDT(Data, keep.rownames = TRUE)[]
+      colnames(Data) <- as.character(unlist(Data[1,]))
+      Data = Data[-1, ]
+      
+      Data <- as_tibble(sapply( Data, as.numeric ))
+      
+      names(Data) <- c("Year", "Renewables")
+      
+      Data[which(Data$Year == max(Data$Year)),]$Renewables
+    }
     CurrentAnnotation = paste0("<b>Current: ", round(current, digits = 0), " gCO2e/kWh</b>\n in 2017")
     TargetAnnotation = paste0("<b>Target: ", round(target, digits = 0), " gCO2e/kWh</b>\n by 2020")
     Colour = "#ff6600"
@@ -359,7 +404,21 @@ TargetTracker <- function(input, output, session, parent_session) {
     
     start = 0
     target = .11
-    current = .063
+    current <- {
+      RenHeat <- read_excel("Structure/CurrentWorking.xlsx", 
+                            sheet = "Renewable heat", col_names = FALSE, 
+                            skip = 20)
+      RenHeat <- RenHeat[c(1,4)]
+      
+      names(RenHeat) <- c("Year", "Renewables")
+      RenHeat$Year <- substr(RenHeat$Year,1,4)
+      RenHeat <- merge(RenHeat, data.frame(Year = 2020, Renewables = NA, Tgt = .11), all = T)
+      RenHeat %<>% lapply(function(x) as.numeric(as.character(x)))
+      RenHeat <- as.data.frame(RenHeat)
+      RenHeat[which(RenHeat$Year == max(RenHeat[which(RenHeat$Renewables>0),]$Year)),]$Renewables
+    
+      
+      }
     CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2018")
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2020")
     Colour = "#ff6600"
@@ -387,8 +446,18 @@ TargetTracker <- function(input, output, session, parent_session) {
   output$EnConsTgtPlot <- renderPlotly  ({
     
     start = 0
-    target = .12
-    current = .121
+    target = -.12
+    current <- {
+      Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                         sheet = "Energy consumption target", skip = 22, col_names = TRUE)[c(1,4)]
+      
+      Data[1,1] <- "2007"
+      
+      Data$Target <- NA
+    
+      Data[which(Data$Year == max(Data$Year)),]$`% Progress`
+      
+      }
     CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2018")
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2020")
     Colour = "#297fff"
@@ -419,7 +488,27 @@ TargetTracker <- function(input, output, session, parent_session) {
     
     start = 0
     target = .3
-    current = .003
+    current <- {
+      EnProd <- read_excel(
+        "Structure/CurrentWorking.xlsx", 
+        sheet = "Energy productivity", col_names = FALSE, 
+        skip = 26, n_max = 4)
+      
+      EnProd <- as.data.frame(t(EnProd))
+      
+      EnProd <- EnProd[c(1,3)]
+      
+      EnProd <- EnProd[complete.cases(EnProd),]
+      
+      names(EnProd) <- c("Year", "Renewables")
+      
+      EnProd %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+      EnProd <- as_tibble(EnProd)
+      
+      EnProd[which(EnProd$Year == max(EnProd$Year)),]$Renewables
+      
+      }
     CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2018")
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2030")
     Colour = "#800008"

@@ -25,7 +25,19 @@ system('fc-cache -f ~/.fonts')
   
 server <- function(input, output, session) {
   
+  # ### Create List of Scripts, including filepath ###
+  # SourceList <-
+  #   list.files(
+  #     "Structure",
+  #     full.names = TRUE,
+  #     recursive = TRUE,
+  #     pattern = "\\.R$"
+  #   )
+  # 
+  # ### Pass Each list item to Source() command ###
+  # sapply(SourceList, source)
 
+  
 
   observe_helpers()
 
@@ -75,6 +87,14 @@ observe({
   })
 
 observe({
+  
+  if(input$MainNav == "Covid19"){
+    
+    updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$Covid19), mode = "push")
+    
+    callModule(match.fun(input$Covid19), input$Covid19)
+    
+  }
 
   if(input$MainNav == "WholeSystem"){
     
@@ -191,6 +211,12 @@ observe({
 }
 )
 
+observeEvent(input$GoToCovidTab, {
+  updateTabsetPanel(session, "MainNav",
+                    selected = "Covid19")
+  
+})
+
   observeEvent(input$GoToTotalEnergyTab, {
     updateTabsetPanel(session, "MainNav",
                       selected = "WholeSystem")
@@ -250,6 +276,25 @@ output$HomeTab <- renderUI({
   ),
   setZoom(id = "SetEffects"),
   setShadow(id = "SetEffects"),
+  fluidRow(
+    column(width = 3),
+    column(width = 6,
+           actionLink(
+             "GoToCovidTab",
+             label = div(
+               tags$h3("Energy demand in Scotland since Covid-19 lockdown", style = "color: black;"),
+               tags$p(
+                 " ",
+                 style = "color: black;"
+               ),
+               img(src = "signsblack.svg", height = "55%"),
+               style = "border: solid 2px #000000; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px; ",
+               id = "SetEffects"
+             )
+           )),
+    column(width = 3),
+    style = "padding: 10px; margin-top: 20px;"
+  ),
   fluidRow(
     column(width = 3,
            actionLink(
@@ -408,6 +453,25 @@ ui <- shinyUI(fluidPage(
       title = tags$div(img(src = "HomeIcon.svg", height = "30px",   display= "block"), " Home", style = "font-family: 'Century Gothic'; font-weight: 400 "),
       uiOutput("HomeTab")%>% withSpinner(color="#3f3f3f")
       ),
+    ###### Section - Innovative Local Energy #######
+    tabPanel(
+      value = "Covid19",
+      tags$div(img(src = "signs.svg", height = "30px",   display= "block"), " Covid 19" , style = "font-family: 'Century Gothic'; font-weight: 400 "),
+      navlistPanel(id = "Covid19",
+                   widths = c(3, 8),
+                   tabPanel(title = "Covid 19 Electricity Daily Demand",
+                            value = "C19Elec",
+                            C19ElecOutput("C19Elec")),
+                   tabPanel(title = "Covid 19 Electricity Half Hourly Demand",
+                            value = "C19Settlement",
+                            C19SettlementOutput("C19Settlement")),
+                   tabPanel(title = "Covid 19 Gas Demand",
+                            value = "C19Gas",
+                            C19GasOutput("C19Gas")),
+                   tabPanel(title = "Covid 19 Vulnerable consumers research",
+                            value = "C19Survey",
+                            C19SurveyOutput("C19Survey"))
+      )),
 
     tabPanel(
       ###### Section - Whole System View of Energy #######
@@ -501,12 +565,15 @@ ui <- shinyUI(fluidPage(
       ),
       tabPanel(
         value = "LowCarbonEconomy",
-        title = "Low Carbon Economy",
+        title = "Economy",
         navlistPanel(id = "LowCarbonEconomy",
                      widths = c(3, 8),
                      tabPanel(title ="Low Carbon Economy", 
                               value = "LowCarbonEconomy",
-                              LowCarbonEconomyOutput("LowCarbonEconomy"))
+                              LowCarbonEconomyOutput("LowCarbonEconomy")),
+                     tabPanel(title ="Value of Renewable Services and Assets", 
+                              value = "RenServicesAssets",
+                              RenServicesAssetsOutput("RenServicesAssets"))
       ))
     
     )),
@@ -689,6 +756,9 @@ ui <- shinyUI(fluidPage(
                    tabPanel(title = "Oil and Gas GVA",
                             value = "OilGasGVA",
                             OilGasGVAOutput("OilGasGVA")),
+                   tabPanel(title = "Value of Fossil Fuel Services and Assets",
+                            value = "OilGasServicesAssets",
+                            OilGasServicesAssetsOutput("OilGasServicesAssets")),
                    tabPanel(title = "Oil and Gas Employment",
                             value = "OilGasEmployment",
                             OilGasEmploymentOutput("OilGasEmployment")),

@@ -18,7 +18,9 @@ DateLookup <- function(x){
 } 
 
 
-
+css_fix <- "div.info.legend.leaflet-control br {clear: both;}" # CSS to correct spacing
+html_fix <- htmltools::tags$style(type = "text/css", css_fix)  # Convert CSS to HTML
+                
 
 
             

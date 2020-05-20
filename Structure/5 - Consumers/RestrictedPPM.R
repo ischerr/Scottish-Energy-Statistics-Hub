@@ -23,7 +23,7 @@ RestrictedPPMOutput <- function(id) {
     
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     #imageOutput(ns("RestrictedMeterPlot"), height = "700px")%>% withSpinner(color="#68c3ea"),
-    leafletOutput(ns("leaflettest"), height = "800px")%>% withSpinner(color="#68c3ea"),
+    leafletOutput(ns("RestrictedMeterMap"), height = "800px")%>% withSpinner(color="#68c3ea"),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Time Series",
              fluidRow(column(8,
@@ -485,7 +485,7 @@ RestrictedPPM <- function(input, output, session) {
     paste0("Scotland, ", min(RestrictedMetersProp$Year)," - ",  max(RestrictedMetersProp$Year))
   })
   
-  output$leaflettest <- renderLeaflet({
+  output$RestrictedMeterMap <- renderLeaflet({
     
     ### Load Packages
     library(readr)
@@ -549,7 +549,7 @@ RestrictedPPM <- function(input, output, session) {
       domain = LAMap$Meters)
     
     leaflet(LAMap) %>% 
-      addProviderTiles("Thunderforest.TransportDark", ) %>% 
+      addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
       addPolygons(stroke = TRUE, 
                   weight = 0.1,
                   smoothFactor = 0.2,
