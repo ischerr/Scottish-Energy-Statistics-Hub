@@ -1323,11 +1323,12 @@ RenElecGen <- function(input, output, session) {
   
   output$EUWindTable = renderDataTable({
     
-    EUWind <- read_excel("Structure/CurrentWorking.xlsx",
-                         sheet = "Wind and hydro gen EU", col_names = TRUE, 
-                         skip = 15, n_max = 30)
+    ChartColours <- c("#39ab2c", "#78c679", "#a3d65c")
     
-    EUWind <- EUWind[,c(1:ncol(EUWind))]
+    EUWind <- read_delim("Processed Data/Output/EU Wind Hydro/EUWind.txt", 
+                         "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    EUWind <- EUWind[,c(1, 16:ncol(EUWind))]
     
     
     
@@ -1351,18 +1352,18 @@ RenElecGen <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        order = list(list(ncol(EUWind)-2, 'desc')),
-        title = "EU Wind Generation (GWh)",
+        order = list(list(ncol(EUWind)-1, 'desc')),
+        title = "European Wind Generation (GWh)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'EU Wind Generation (GWh)',
+            title = 'European Wind Generation (GWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'EU Wind Generation (GWh)')
+               title = 'European Wind Generation (GWh)')
         ),
         
         # customize the length menu
@@ -1651,11 +1652,12 @@ RenElecGen <- function(input, output, session) {
   
   output$EUHydroTable = renderDataTable({
     
-    EUHydro <- read_excel("Structure/CurrentWorking.xlsx",
-                          sheet = "Wind and hydro gen EU", col_names = TRUE, 
-                          skip = 48, n_max = 30)
+    ChartColours <- c("#39ab2c", "#78c679", "#a3d65c")
     
-    EUHydro <- EUHydro[,c(1:ncol(EUHydro))]
+    EUHydro <- read_delim("Processed Data/Output/EU Wind Hydro/EUHydro.txt", 
+                         "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    EUHydro <- EUHydro[,c(1, 16:ncol(EUHydro))]
     
     
     
@@ -1679,18 +1681,18 @@ RenElecGen <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        order = list(list(ncol(EUHydro)-2, 'desc')),
-        title = "EU Hydro Generation (GWh)",
+        order = list(list(ncol(EUHydro)-1, 'desc')),
+        title = "European Hydro Generation (GWh)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'EU Hydro Generation (GWh)',
+            title = 'European Hydro Generation (GWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'EU Hydro Generation (GWh)')
+               title = 'European Hydro Generation (GWh)')
         ),
         
         # customize the length menu
@@ -1705,6 +1707,7 @@ RenElecGen <- function(input, output, session) {
                   target = 'row',
                   backgroundColor = styleEqual(c('Scotland'), c('#bdbdbd')))
   })
+
   
   output$EUHydro.png <- downloadHandler(
     filename = "EUHydro.png",
