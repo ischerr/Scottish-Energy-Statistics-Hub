@@ -57,11 +57,12 @@ SmartMetersOutput <- function(id) {
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
-             DateLookup(c("ElectralinkMeters"))),
+             DateLookup(c("ElectralinkMeters", "BEISLSOA"))),
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
-        SourceLookup("ElectralinkMeters")
+        SourceLookup("ElectralinkMeters"),
+        SourceLookup("BEISLSOA")
         
       )
     )
@@ -256,7 +257,7 @@ SmartMeters <- function(input, output, session) {
       
       ### variables
       ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
-      sourcecaption = "Source: Electralink"
+      sourcecaption = "Source: Electralink, BEIS"
       plottitle = "Proportion of installed meters which are\nsmart meters"
       
       #SmartMeters$TotalPercentage <- PercentLabel(SmartMeters$Total)
