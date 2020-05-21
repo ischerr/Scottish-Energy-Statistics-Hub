@@ -1328,7 +1328,7 @@ RenElecGen <- function(input, output, session) {
     EUWind <- read_delim("Processed Data/Output/EU Wind Hydro/EUWind.txt", 
                          "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    EUWind <- EUWind[,c(1, 16:ncol(EUWind))]
+    EUWind <- EUWind[,c(1, 20:ncol(EUWind))]
     
     
     
@@ -1657,7 +1657,7 @@ RenElecGen <- function(input, output, session) {
     EUHydro <- read_delim("Processed Data/Output/EU Wind Hydro/EUHydro.txt", 
                          "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    EUHydro <- EUHydro[,c(1, 16:ncol(EUHydro))]
+    EUHydro <- EUHydro[,c(1, 20:ncol(EUHydro))]
     
     
     
