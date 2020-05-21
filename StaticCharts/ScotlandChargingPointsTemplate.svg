@@ -14,9 +14,9 @@
    id="svg1391"
    sodipodi:docname="ScotlandChargingPointsTemplate.svg"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   inkscape:export-filename="C:\Users\ische\OneDrive\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\2 - Renewables\Transport\ChargeEventsMap.png"
-   inkscape:export-xdpi="121.95"
-   inkscape:export-ydpi="121.95">
+   inkscape:export-filename="C:\Users\ische\OneDrive\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\2 - Renewables\Transport\ChargePointMap.png"
+   inkscape:export-xdpi="60"
+   inkscape:export-ydpi="60">
   <metadata
      id="metadata1395">
     <rdf:RDF>
@@ -25,7 +25,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -47,7 +47,7 @@
      fit-margin-bottom="50"
      fit-margin-right="50"
      inkscape:zoom="0.40968215"
-     inkscape:cx="1933.9369"
+     inkscape:cx="1459.1786"
      inkscape:cy="1156.7623"
      inkscape:window-x="-11"
      inkscape:window-y="-11"
