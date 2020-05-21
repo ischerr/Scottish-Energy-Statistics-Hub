@@ -1,0 +1,3 @@
+"Year"	"Region"	"METERS"
+2018	"North"	773601
+2018	"South"	2033259

@@ -107,11 +107,10 @@ SmartMeters <- function(input, output, session) {
   
   output$SmartMetersTable = renderDataTable({
     
-    SmartMeters <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Smart meter installations",
-      skip = 14
-    )
+    SmartMeters <- read_delim("Processed Data/Output/Electricity Meters/SmartMeters.txt", 
+                              "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    
     
     names(SmartMeters) <- c("Date","Total Scotland - Installations (Cumulative)", "Total Scotland - Proportion of smart meters", "North Scotland - Installations (Cumulative)", "North Scotland - Proportion of smart meters", "South Scotland - Installations (Cumulative)", "South Scotland - Proportion of smart meters")
 
@@ -153,11 +152,8 @@ SmartMeters <- function(input, output, session) {
       formatRound(c(2,4,6), 0)
   })
   
-      SmartMeters <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Non-home supplier elec",
-      skip = 13
-    )
+      SmartMeters <- read_delim("Processed Data/Output/Electricity Meters/SmartMeters.txt", 
+                                "\t", escape_double = FALSE, trim_ws = TRUE)
     
     names(SmartMeters)[1] <- "Quarter"#
     
@@ -245,11 +241,8 @@ SmartMeters <- function(input, output, session) {
     filename = "SmartMetersTimeSeries.png",
     content = function(file) {
       
-      SmartMeters <- read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Smart meter installations",
-        skip = 14
-      )
+      SmartMeters <- read_delim("Processed Data/Output/Electricity Meters/SmartMeters.txt", 
+                                "\t", escape_double = FALSE, trim_ws = TRUE)
       
       names(SmartMeters) <- c("Year","Total Scotland - Proportion of smart meters","Total",  "North Scotland - Proportion of smart meters","NorthScotland", "South Scotland - Proportion of smart meters", "SouthScotland" )
       
@@ -501,11 +494,8 @@ SmartMeters <- function(input, output, session) {
     }
     
     print("Energy daily demand")
-    SmartMeters <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Smart meter installations",
-      skip = 14
-    )
+    SmartMeters <- read_delim("Processed Data/Output/Electricity Meters/SmartMeters.txt", 
+                              "\t", escape_double = FALSE, trim_ws = TRUE)
     
     names(SmartMeters) <- c("Date","Total Scotland - Installations (Cumulative)", "Total Scotland - Proportion of smart meters", "North Scotland - Installations (Cumulative)", "North Scotland - Proportion of smart meters", "South Scotland - Installations (Cumulative)", "South Scotland - Proportion of smart meters")
     
@@ -518,11 +508,8 @@ SmartMeters <- function(input, output, session) {
       source("Structure/PackageHeader.R")
     }
     
-    SmartMeters <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Smart meter installations",
-      skip = 14
-    )
+    SmartMeters <- read_delim("Processed Data/Output/Electricity Meters/SmartMeters.txt", 
+                              "\t", escape_double = FALSE, trim_ws = TRUE)
     
     names(SmartMeters) <- c("Date","Total Scotland - Installations (Cumulative)", "Total Scotland - Proportion of smart meters", "North Scotland - Installations (Cumulative)", "North Scotland - Proportion of smart meters", "South Scotland - Installations (Cumulative)", "South Scotland - Proportion of smart meters")
     
