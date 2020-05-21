@@ -135,12 +135,13 @@ ULEVsOutput <- function(id) {
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
-             DateLookup(c("DFTLicenced", "DFTULEVs"))),
+             DateLookup(c("DFTLicenced", "DFTULEVs", "ChargePlace"))),
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
         SourceLookup("DFTLicenced"),
-        SourceLookup("DFTULEVs")
+        SourceLookup("DFTULEVs"),
+        SourceLookup("ChargePlace")
         
       )
     )
