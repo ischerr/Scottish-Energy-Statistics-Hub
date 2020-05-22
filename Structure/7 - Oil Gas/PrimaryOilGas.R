@@ -10,7 +10,8 @@ source("Structure/Global.R")
 PrimaryOilGasOutput <- function(id) {
   ns <- NS(id)
   tagList(
-
+    tabsetPanel(
+      tabPanel("1",
     fluidRow(column(8,
                     h3("Distribution of primary energy (indigenous production and imports)", style = "color: #126992;  font-weight:bold"),
                     h4(textOutput(ns('PrimaryOilGasSubtitle')), style = "color: #126992;")
@@ -22,7 +23,20 @@ PrimaryOilGasOutput <- function(id) {
     
     tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
     #dygraphOutput(ns("PrimaryOilGasPlot")),
-    plotlyOutput(ns("PrimaryOilGasPlot"), height = "600px")%>% withSpinner(color="#126992"),
+    plotlyOutput(ns("PrimaryOilGasPlot"), height = "600px")%>% withSpinner(color="#126992")),
+    tabPanel("2",
+             fluidRow(column(8,
+                             h3("Distribution of primary energy (indigenous production and imports)", style = "color: #126992;  font-weight:bold"),
+                             h4(textOutput(ns('ProportionSubtitle')), style = "color: #126992;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('Proportion.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
+             #dygraphOutput(ns("PrimaryOilGasPlot")),
+             plotlyOutput(ns("ProportionPlot"), height = "600px")%>% withSpinner(color="#126992"))),
     tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #126992;  font-weight:bold")),
@@ -624,6 +638,22 @@ PrimaryOilGas <- function(input, output, session) {
   
   observeEvent(input$ToggleTable, {
     toggle("PrimaryOilGasImportsTable")
+  })
+  
+  output$ProportionSubtitle <- renderText({
+    
+    Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                       sheet = "Primary energy oil and gas",
+                       skip = 13)
+    
+    Data %<>% lapply(function(x)
+      as.numeric(as.character(x)))
+    
+    Data <- as_tibble(Data)
+    
+    PrimaryOilGas <- Data[complete.cases(Data),]
+    
+    paste("Scotland,", min(PrimaryOilGas$Year),"-", max(PrimaryOilGas$Year))
   })
   
   output$ProportionPlot <- renderPlotly  ({
