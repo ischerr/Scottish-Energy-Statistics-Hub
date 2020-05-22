@@ -264,7 +264,6 @@ PrimaryOilGas <- function(input, output, session) {
         pageLength = 10,
         searching = TRUE,
         fixedColumns = FALSE,
-        columnDefs = list(list(visible=FALSE, targets=c(4))),
         autoWidth = TRUE,
         title = "Distribution of primary energy - indigenous production and imports (TWh)",
         dom = 'ltBp',
@@ -599,7 +598,6 @@ PrimaryOilGas <- function(input, output, session) {
         pageLength = 10,
         searching = TRUE,
         fixedColumns = FALSE,
-        columnDefs = list(list(visible=FALSE, targets=c(4))),
         autoWidth = TRUE,
         title = "Oil and gas by indigenous production and imports",
         dom = 'ltBp',
@@ -626,6 +624,94 @@ PrimaryOilGas <- function(input, output, session) {
   
   observeEvent(input$ToggleTable, {
     toggle("PrimaryOilGasImportsTable")
+  })
+  
+  output$ProportionPlot <- renderPlotly  ({
+    Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                       sheet = "Primary energy oil and gas",
+                       skip = 13)
+    
+    Data %<>% lapply(function(x)
+      as.numeric(as.character(x)))
+    
+    Data <- as_tibble(Data)
+    
+    Data<- Data[seq(dim(Data)[1],1),]
+    
+    PrimaryOilGas <- Data[complete.cases(Data),]
+    
+    PrimaryOilGas$Prop <- (PrimaryOilGas$`Primary oils` + PrimaryOilGas$`Natural gas` + PrimaryOilGas$`Petroleum products`) / PrimaryOilGas$Total
+    
+    ChartColours <- c("#126992", "#66c2a5", "#fc8d62", "#8da0cb")
+    BarColours <-
+      c(    "#0868ac","#43a2ca","#7bccc4"
+      )
+    
+    PrimaryOilGas$Year2 <- paste0("01/01/", PrimaryOilGas$Year)
+    
+    PrimaryOilGas$Year2 <- dmy(PrimaryOilGas$Year2)
+    
+    PrimaryOilGas <- PrimaryOilGas[order(PrimaryOilGas$Year),]
+    
+    p <-  plot_ly(PrimaryOilGas,x = ~ Year2 ) %>% 
+      add_trace(data = PrimaryOilGas,
+                x = ~ Year2,
+                y = ~ Prop,
+                name = "Prop",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "1",
+                text = paste0(
+                  "Proportion of primary energy from oil and gas: ",
+                  percent(PrimaryOilGas$Prop, .1),
+                  "\nYear: ",
+                  paste(PrimaryOilGas$Year)
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[1], dash = "none")
+      )  %>% 
+      add_trace(
+        data = tail(PrimaryOilGas[which(PrimaryOilGas$Prop > 0 | PrimaryOilGas$Prop < 0),], 1),
+        x = ~ Year2,
+        y = ~ Prop,
+        legendgroup = "1",
+        name = "Total",
+        text = paste0(
+          "Proportion of primary energy from oil and gas: ",
+          percent(PrimaryOilGas[which(PrimaryOilGas$Prop > 0 | PrimaryOilGas$Prop < 0),][-1,]$Prop,  .1),
+          " \nYear: ",
+          paste(PrimaryOilGas[which(PrimaryOilGas$Prop > 0 | PrimaryOilGas$Prop < 0),][-1,]$Year)
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[1])
+      )  %>%  
+      layout(
+        barmode = 'stack',
+        bargap = 0.66,
+        legend = list(font = list(color = "#126992"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        
+        xaxis = list(title = "",
+                     showgrid = FALSE),
+        yaxis = list(
+          title = "",
+          tickformat = "%",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    p
   })
 
 }
