@@ -10,6 +10,8 @@ source("Structure/Global.R")
 OilGasProdOutput <- function(id) {
   ns <- NS(id)
   tagList(
+    tabsetPanel(
+      tabPanel("1",
     fluidRow(column(8,
                     h3("Oil and gas production", style = "color: #126992;  font-weight:bold"),
                     h4(textOutput(ns('OilGasProdSubtitle')), style = "color: #;")
@@ -20,9 +22,25 @@ OilGasProdOutput <- function(id) {
              )),
     
     tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
+    
     #dygraphOutput(ns("OilGasProdPlot")),
     plotlyOutput(ns("OilGasProdPlot"))%>% withSpinner(color="#126992"),
-    tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
+    tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;")),
+    tabPanel("2",
+             fluidRow(column(8,
+                             h3("Oil and gas production", style = "color: #126992;  font-weight:bold"),
+                             h4(textOutput(ns('OilGasPropSubtitle')), style = "color: #;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('OilGasProp.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
+             
+             #dygraphOutput(ns("OilGasProdPlot")),
+             plotlyOutput(ns("OilGasPropPlot"))%>% withSpinner(color="#126992"),
+             tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #126992;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
@@ -441,4 +459,313 @@ OilGasProd <- function(input, output, session) {
       
     }
   )
+  
+  output$OilGasPropSubtitle <- renderText({
+    
+    Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                       sheet = "Scottish oil and gas production", skip = 13)[c(1,4,6)]
+    
+    names(Data) <- c("Year", "Oil", "Gas")
+    
+    OilGasProp <- Data
+    
+    
+    paste("Scotland,", min(OilGasProp$Year),"-", max(OilGasProp$Year))
+  })
+  
+  output$OilGasPropPlot <- renderPlotly  ({
+    
+    
+    Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                       sheet = "Scottish oil and gas production", skip = 13)[c(1,5,7)]
+    
+    names(Data) <- c("Year", "Oil", "Gas")
+    
+    OilGasProp <- Data
+    
+    ### variables
+    ChartColours <- c("#126992", "#66c2a5", "#fc8d62", "#8da0cb")
+    sourcecaption = "Source: Scottish Government"
+    plottitle = "Oil and gas production"
+    
+    OilGasProp$Year <- paste0("01/01/", OilGasProp$Year)
+    
+    OilGasProp$Year <- dmy(OilGasProp$Year)
+    
+    
+    p <-  plot_ly(OilGasProp,x = ~ Year ) %>% 
+      add_trace(data = OilGasProp,
+                x = ~ Year,
+                y = ~ Oil,
+                name = "Oil",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "1",
+                text = paste0(
+                  "Proportion of Scottish Oil in UK production: ",
+                  percent(OilGasProp$Oil, .1),
+                  "\nYear: ",
+                  format(OilGasProp$Year, "%Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[1], dash = "none")
+      ) %>% 
+      add_trace(
+        data = tail(OilGasProp[which(OilGasProp$Oil > 0 | OilGasProp$Oil < 0),], 1),
+        x = ~ Year,
+        y = ~ Oil,
+        legendgroup = "1",
+        name = "Oil",
+        text = paste0(
+          "Proportion of Scottish Oil in UK production: ",
+          percent(OilGasProp[which(OilGasProp$Oil > 0 | OilGasProp$Oil < 0),][-1,]$Oil, .1),
+          "\nYear: ",
+          format(OilGasProp[which(OilGasProp$Oil > 0 | OilGasProp$Oil < 0),][-1,]$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[1])
+      ) %>% 
+      add_trace(data = OilGasProp,
+                x = ~ Year,
+                y = ~ Gas,
+                name = "Gas",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "2",
+                text = paste0(
+                  "Proportion of Scottish Gas in UK production: ",
+                  percent(OilGasProp$Gas, .1),
+                  "\nYear: ",
+                  format(OilGasProp$Year, "%Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[2], dash = "none")
+      ) %>% 
+      add_trace(
+        data = tail(OilGasProp[which(OilGasProp$Gas > 0 | OilGasProp$Gas < 0),], 1),
+        x = ~ Year,
+        y = ~ Gas,
+        legendgroup = "2",
+        name = "Gas",
+        text = paste0(
+          "Proportion of Scottish Gas in UK production: ",
+          percent(OilGasProp[which(OilGasProp$Gas > 0 | OilGasProp$Gas < 0),][-1,]$Gas, .1),
+          "\nYear: ",
+          format(OilGasProp[which(OilGasProp$Gas > 0 | OilGasProp$Gas < 0),][-1,]$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[2])
+      ) %>% 
+      layout(
+        barmode = 'stack',
+        bargap = 0.66,
+        legend = list(font = list(color = "#126992"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        
+        xaxis = list(title = "",
+                     showgrid = FALSE,
+                     range = c(min(OilGasProp$Year)-100, max(OilGasProp$Year)+100)),
+        yaxis = list(
+          title = "",
+          tickformat = "%",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    p
+    
+    
+    
+  })
+  
+  output$OilGasProp.png <- downloadHandler(
+    filename = "OilGasProp.png",
+    content = function(file) {
+      
+      
+      Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                         sheet = "Scottish oil and gas production", skip = 13)[c(1,5,7)]
+      
+      names(Data) <- c("Year", "Oil", "Gas")
+      
+      OilGasProp <- Data
+      
+      ### variables
+      ChartColours <- c("#126992", "#66c2a5", "#fc8d62", "#8da0cb")
+      sourcecaption = "Source: Scottish Government"
+      plottitle = "Oil and gas production"
+      
+      #OilGasProp$OilPercentage <- PercentLabel(OilGasProp$Oil)
+      
+      
+      OilGasPropChart <- OilGasProp %>%
+        ggplot(aes(x = Year), family = "Century Gothic") +
+        
+        geom_line(
+          aes(
+            y = Oil,
+            colour = ChartColours[2],
+            label = percent(Oil)
+          ),
+          size = 1.5,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = Oil,
+            label = ifelse(Year == min(Year), paste0(percent(`Oil`, .1), ""), ""),
+            hjust = 0.5,
+            vjust = -1,
+            colour = ChartColours[2],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = Oil,
+            label = ifelse(Year == max(Year), paste0(percent(`Oil`, .1), ""), ""),
+            hjust = 0.5,
+            vjust = -1,
+            colour = ChartColours[2],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(OilGasProp, 1),
+          aes(
+            x = Year,
+            y = Oil,
+            colour = ChartColours[2],
+            show_guide = FALSE
+          ),
+          size = 4,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = mean(Year),
+            y = mean(Oil),
+            label = "Oil",
+            hjust = 0.5,
+            vjust = -1.5,
+            colour = ChartColours[2],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_line(
+          aes(
+            y = `Gas`,
+            colour = ChartColours[3],
+            label = paste0(`Gas` * 100, "%")
+          ),
+          size = 1.5,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = `Gas`,
+            label = ifelse(Year == min(Year), paste0(percent(`Gas`, .1),""), ""),
+            hjust = 0.5,
+            vjust = -1.9,
+            colour = ChartColours[3],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = `Gas`,
+            label = ifelse(Year == max(Year), paste0(percent(`Gas`, .1), ""), ""),
+            hjust = 0.5,
+            vjust = -1.5,
+            colour = ChartColours[3],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(OilGasProp, 1),
+          aes(
+            x = Year,
+            y = `Gas`,
+            colour = ChartColours[3],
+            show_guide = FALSE
+          ),
+          size = 4,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = mean(Year),
+            y = mean(`Gas`),
+            label = "Gas",
+            hjust = 0.5,
+            vjust = 2,
+            colour = ChartColours[3],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = 0,
+            label = ifelse(Year == max(Year) |
+                             Year == min(Year), Year, ""),
+            hjust = 0.5,
+            vjust = 1.5,
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic"
+        )
+      
+      
+      OilGasPropChart <-
+        LinePercentChart(OilGasPropChart,
+                         OilGasProp,
+                         plottitle,
+                         sourcecaption,
+                         ChartColours)
+      
+      OilGasPropChart <- OilGasPropChart +
+        xlim(min(OilGasProp$Year) -1 , max(OilGasProp$Year) +1)
+      
+      OilGasPropChart
+      
+      ggsave(
+        file,
+        plot =  OilGasPropChart,
+        width = 14,
+        height = 14,
+        units = "cm",
+        dpi = 300
+      )
+      
+      
+    }
+  )
+  
 }
