@@ -11,7 +11,7 @@ OilGasProdOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("1",
+      tabPanel("Production",
     fluidRow(column(8,
                     h3("Oil and gas production", style = "color: #126992;  font-weight:bold"),
                     h4(textOutput(ns('OilGasProdSubtitle')), style = "color: #;")
@@ -26,9 +26,9 @@ OilGasProdOutput <- function(id) {
     #dygraphOutput(ns("OilGasProdPlot")),
     plotlyOutput(ns("OilGasProdPlot"))%>% withSpinner(color="#126992"),
     tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;")),
-    tabPanel("2",
+    tabPanel("Proportion",
              fluidRow(column(8,
-                             h3("Oil and gas production", style = "color: #126992;  font-weight:bold"),
+                             h3("Oil and gas production as a proportion of the UK", style = "color: #126992;  font-weight:bold"),
                              h4(textOutput(ns('OilGasPropSubtitle')), style = "color: #;")
              ),
              column(
@@ -608,7 +608,7 @@ OilGasProd <- function(input, output, session) {
       ### variables
       ChartColours <- c("#126992", "#66c2a5", "#fc8d62", "#8da0cb")
       sourcecaption = "Source: Scottish Government"
-      plottitle = "Oil and gas production"
+      plottitle = "Oil and gas production as a proportion of the UK"
       
       #OilGasProp$OilPercentage <- PercentLabel(OilGasProp$Oil)
       
@@ -631,7 +631,7 @@ OilGasProd <- function(input, output, session) {
             y = Oil,
             label = ifelse(Year == min(Year), paste0(percent(`Oil`, .1), ""), ""),
             hjust = 0.5,
-            vjust = -1,
+            vjust = 2,
             colour = ChartColours[2],
             fontface = 2
           ),
@@ -643,7 +643,7 @@ OilGasProd <- function(input, output, session) {
             y = Oil,
             label = ifelse(Year == max(Year), paste0(percent(`Oil`, .1), ""), ""),
             hjust = 0.5,
-            vjust = -1,
+            vjust = 2,
             colour = ChartColours[2],
             fontface = 2
           ),
@@ -666,7 +666,7 @@ OilGasProd <- function(input, output, session) {
             y = mean(Oil),
             label = "Oil",
             hjust = 0.5,
-            vjust = -1.5,
+            vjust = 2,
             colour = ChartColours[2],
             fontface = 2
           ),
