@@ -11,7 +11,7 @@ PrimaryOilGasOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("1",
+      tabPanel("Distribution of Energy",
     fluidRow(column(8,
                     h3("Distribution of primary energy (indigenous production and imports)", style = "color: #126992;  font-weight:bold"),
                     h4(textOutput(ns('PrimaryOilGasSubtitle')), style = "color: #126992;")
@@ -24,9 +24,9 @@ PrimaryOilGasOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
     #dygraphOutput(ns("PrimaryOilGasPlot")),
     plotlyOutput(ns("PrimaryOilGasPlot"), height = "600px")%>% withSpinner(color="#126992")),
-    tabPanel("2",
+    tabPanel("Proportion Oil & Gas",
              fluidRow(column(8,
-                             h3("Distribution of primary energy (indigenous production and imports)", style = "color: #126992;  font-weight:bold"),
+                             h3("Proportion of primary energy from oil and gas", style = "color: #126992;  font-weight:bold"),
                              h4(textOutput(ns('ProportionSubtitle')), style = "color: #126992;")
              ),
              column(
@@ -744,4 +744,127 @@ PrimaryOilGas <- function(input, output, session) {
     p
   })
 
+  output$Proportion.png <- downloadHandler(
+    filename = "ProportionOilGas.png",
+    content = function(file) {
+      
+      Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                         sheet = "Primary energy oil and gas",
+                         skip = 13)
+      
+      Data %<>% lapply(function(x)
+        as.numeric(as.character(x)))
+      
+      Data <- as_tibble(Data)
+      
+      Data<- Data[seq(dim(Data)[1],1),]
+      
+      PrimaryOilGas <- Data[complete.cases(Data),]
+      
+      PrimaryOilGas$Prop <- (PrimaryOilGas$`Primary oils` + PrimaryOilGas$`Natural gas` + PrimaryOilGas$`Petroleum products`) / PrimaryOilGas$Total
+      
+      ChartColours <- c("#126992", "#66c2a5", "#fc8d62", "#8da0cb")
+      BarColours <-
+        c(    "#0868ac","#43a2ca","#7bccc4"
+        )
+      
+      PrimaryOilGas$Year2 <- paste0("01/01/", PrimaryOilGas$Year)
+      
+      PrimaryOilGas$Year2 <- dmy(PrimaryOilGas$Year2)
+      
+      PrimaryOilGas <- PrimaryOilGas[order(PrimaryOilGas$Year),]
+      
+      
+      plottitle <-
+        "Proportion of primary energy from\noil and gas"
+      sourcecaption <- "Source: SG"
+      
+      ChartColours <- c("#126992", "#66c2a5", "#fc8d62", "#8da0cb")
+      BarColours <-
+        c(    "#0868ac","#43a2ca","#7bccc4"
+        )
+      
+      
+      PrimaryOilGasChart <- PrimaryOilGas %>%
+        ggplot(aes(x = Year), family = "Century Gothic") +
+        
+        geom_line(
+          aes(
+            y = Prop,
+            colour = ChartColours[2],
+            label = percent(Prop, 0.1)
+          ),
+          size = 1.5,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = Prop,
+            label = ifelse(Year == min(Year), percent(Prop, .1), ""),
+            hjust = 0.5,
+            vjust = 2.2,
+            colour = ChartColours[2],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = Prop,
+            label = ifelse(Year == max(Year), percent(Prop, .1), ""),
+            hjust = 0.5,
+            vjust = 2.5,
+            colour = ChartColours[2],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(PrimaryOilGas, 1),
+          aes(
+            x = Year,
+            y = Prop,
+            colour = ChartColours[2],
+            show_guide = FALSE
+          ),
+          size = 4,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = 0,
+            label = ifelse(Year == max(Year) |
+                             Year == min(Year), Year, ""),
+            hjust = 0.5,
+            vjust = 1.5,
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic"
+        )
+      
+      PrimaryOilGasChart <-
+        LinePercentChart(PrimaryOilGasChart,
+                         PrimaryOilGas,
+                         plottitle,
+                         sourcecaption,
+                         ChartColours)
+      
+      
+      PrimaryOilGasChart
+      
+      ggsave(
+        file,
+        plot = PrimaryOilGasChart,
+        width = 12.5,
+        height = 14,
+        units = "cm",
+        dpi = 300
+      )
+    }
+  )
+  
 }
