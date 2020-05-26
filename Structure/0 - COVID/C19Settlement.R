@@ -108,7 +108,7 @@ C19Settlement <- function(input, output, session) {
     
     names(ElecDemandHalfHourly) <- c("Date", "SettlementPeriod", "Total", "Quarter")
     
-    ElecDemandHalfHourly$Date <- ymd(ElecDemandHalfHourly$Date)
+    ElecDemandHalfHourly$Date <- dmy(ElecDemandHalfHourly$Date)
     
     ElecDemandHalfHourly$Year <-year(ElecDemandHalfHourly$Date)
     
