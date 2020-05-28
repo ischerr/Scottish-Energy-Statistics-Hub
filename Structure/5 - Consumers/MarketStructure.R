@@ -475,135 +475,222 @@ MarketStructure <- function(input, output, session) {
     filename = "MarketSupplier.png",
     content = function(file) {
       
-      MarketSupplierStatic <- MarketSupplier
+      Data <- read_delim("Processed Data/Output/Domestic Suppliers/DomesticSuppliers.txt", 
+                         "\t", escape_double = FALSE, trim_ws = TRUE)
       
-      plottitle = "Market Shares, combined electricity and gas"
+      names(Data)[1] <- "Year"
       
-      MarketSupplierStatic <- arrange(MarketSupplierStatic,row_number())
+      DataMin <- head(Data, 1)
       
-      MarketSupplierStatic$Region <-
-        factor(MarketSupplierStatic$Region,
-               levels = unique(MarketSupplierStatic$Region),
-               ordered = TRUE)
+      DataMax <- tail(Data, 1)
       
-      MarketSupplierStatic <- melt(MarketSupplierStatic, id.vars = "Region")
+      ChartColours <- c("#081d58", "#225ea8", "#41b6c4", "#41ab5d")
       
+      Data$Year <- ymd(Data$Year)
       
-      MarketSupplierStatic$variable <-
-        factor(MarketSupplierStatic$variable,
-               levels = rev(unique(MarketSupplierStatic$variable)),
-               ordered = TRUE)
+      DataMelt <- Data[1:4]
       
-      MarketSupplierStatic <- MarketSupplierStatic %>%
-        group_by(Region) %>%
-        mutate(pos = cumsum(value) - value / 2) %>%
-        mutate(top = sum(value))
+      DataMelt <- melt(DataMelt, id.vars = "Year")
       
-      sourcecaption <- "Source: Xoserve, Ofgem"
+      plottitle = "Hello"
+      sourcecaption = "Hey"
       
-      ChartColours <- c("#68c3ea", "#FF8500")
-      BarColours <-
-        c(
-          "#31a354",
-          "#0868ac",
-          "#43a2ca",
-          "#7bccc4",
-          "#a6bddb",
-          "#d0d1e6",
-          "#bdbdbd",
-          "#969696"
-        )
+      width = max(Data$Year)- min(Data$Year)
       
-      
-      MarketSupplierStaticChart <- MarketSupplierStatic %>%
-        ggplot(aes(x = Region, y = value, fill = variable), family = "Century Gothic") +
+      DataChart <- DataMelt %>%
+        ggplot(aes(
+          x = Year,
+          y = value,
+          group = variable,
+          fill = variable
+        )) +
         scale_fill_manual(
           "variable",
           values = c(
-            "Large" = BarColours[2],
-            "Medium" = BarColours[3],
-            "Small" = BarColours[4]
+            "Dual" = ChartColours[1],
+            "Electricity" = ChartColours[2],
+            "Gas" = ChartColours[3]
           )
         ) +
-        geom_bar(stat = "identity", width = .8) +
+        geom_bar(stat = "identity") +
         geom_text(
           aes(
-            x = Region,
-            y = -0.08,
-            label = str_wrap(Region, 10),
+            x = Year,
+            y = 0,
+            label = ifelse(
+              Year == max(Year) |
+                Year == min(Year),
+              format(Year, format = "%b\n%Y"),
+              ""
+            ),
+            vjust = 1.2,
+            colour = "white",
+            fontface = 2,
+            family = "Century Gothic"
+          )
+        ) +
+        annotate("line",
+                 x = Data$Year,
+                 y = Data$Total,
+                 size = 1.5,
+                 colour = ChartColours[4],
+                 family = "Century Gothic"
+        ) +
+        annotate("text",
+                 x = Data$Year,
+                 y = Data$Total,
+                 size = 3,
+                 label = ifelse(Data$Year %in% c(min(Data$Year)), paste0("Total\nsuppliers:\n", Data$Total), " "),
+                 vjust = -.2,
+                 colour = ChartColours[4],
+                 family = "Century Gothic",
+                 fontface = 2
+        ) +
+        annotate("text",
+                 x = max(Data$Year)+(width*0.04),
+                 y = Data$Total,
+                 size = 3,
+                 label = ifelse(Data$Year %in% c(max(Data$Year)), paste0("Total\nsuppliers:\n", Data$Total), " "),
+                 vjust = 0,
+                 colour = ChartColours[4],
+                 family = "Century Gothic",
+                 fontface = 2
+        ) +
+        annotate(
+          "segment",
+          x = min(Data$Year)-100,
+          xend = max(Data$Year)+10,
+          y = 0,
+          yend = 0,
+          colour = "grey",
+          alpha = 0.8,
+          linetype = 2
+        ) +
+        geom_text(
+          aes(
+            x = min(Year)-(width*0.05),
+            y = 25,
+            label = "25",
             fontface = 2
           ),
           colour = ChartColours[1],
           family = "Century Gothic",
+          size = 3
+        )+
+        annotate(
+          "segment",
+          x = min(Data$Year)-100,
+          xend = max(Data$Year)+10,
+          y = 25,
+          yend = 25,
+          colour = "grey",
+          alpha = 0.4,
+          linetype = 2
         ) +
         geom_text(
           aes(
-            x = 2.5,
-            y = ((0/3) *1),
-            label = "Large Suppliers",
+            x = min(Year)-(width*0.05),
+            y = 50,
+            label = "50",
             fontface = 2
           ),
-          colour = BarColours[2],
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          size = 3
+        )+
+        annotate(
+          "segment",
+          x = min(Data$Year)-100,
+          xend = max(Data$Year)+10,
+          y = 75,
+          yend = 75,
+          colour = "grey",
+          alpha = 0.4,
+          linetype = 2
+        ) +
+        geom_text(
+          aes(
+            x = min(Year)-(width*0.05),
+            y = 75,
+            label = "75",
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          size = 3
+        )+
+        annotate(
+          "segment",
+          x = min(Data$Year)-100,
+          xend = max(Data$Year)+10,
+          y = 50,
+          yend = 50,
+          colour = "grey",
+          alpha = 0.4,
+          linetype = 2
+        ) +
+        geom_text(
+          aes(
+            x = max(Year)+(width*0.015),
+            y = DataMax$Dual/2,
+            label = "Dual fuel",
+            fontface = 2
+          ),
           hjust = 0,
-          family = "Century Gothic"
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          size = 3
         ) +
         geom_text(
           aes(
-            x = 2.5,
-            y = ((1.5/3) *1),
-            label = "Medium Suppliers",
+            x = max(Year)+(width*0.015),
+            y = DataMax$Dual + (DataMax$Electricity/2),
+            label = "Electricity",
             fontface = 2
           ),
-          colour = BarColours[3],
-          family = "Century Gothic"
+          hjust = 0,
+          colour = ChartColours[2],
+          family = "Century Gothic",
+          size = 3
         ) +
         geom_text(
           aes(
-            x = 2.5,
-            y = ((3/3) *1),
-            label = "Small Suppliers",
+            x = max(Year)+(width*0.015),
+            y = DataMax$Dual + DataMax$Electricity + (DataMax$Gas/2),
+            label = "Gas",
             fontface = 2
           ),
-          colour = BarColours[4],
-          hjust = 1,
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Region,
-            y = pos,
-            label = ifelse(value > 0, percent(value, 0.1),""),
-            fontface = 2
-          ),
-          colour = "white",
-          family = "Century Gothic"
+          hjust = 0,
+          colour = ChartColours[3],
+          family = "Century Gothic",
+          size = 3
         )
       
       
-      MarketSupplierStaticChart
+      DataChart
       
       
-      MarketSupplierStaticChart <-
-        StackedBars(MarketSupplierStaticChart,
-                    MarketSupplierStatic,
-                    plottitle,
-                    sourcecaption,
-                    ChartColours)
+      DataChart <-
+        DailyChart(DataChart,
+                   Data,
+                   plottitle,
+                   sourcecaption,
+                   ChartColours)
       
-      MarketSupplierStaticChart <-
-        MarketSupplierStaticChart +
-        labs(subtitle = "Scotland, December 2019") +
-        ylim(-0.1,1) +
-        scale_x_discrete(limits = rev(levels(MarketSupplierStatic$Region)))+
-        coord_flip()
+      DataChart <- DataChart +
+        coord_cartesian(xlim = c(min(DataMelt$Year)-(width*0.01), max(DataMelt$Year)+(width*0.1))) +
+        ylim(-4,76)
       
-      MarketSupplierStaticChart
+      DataChart <- DataChart 
+      
+      DataChart
+      
       
       ggsave(
         file,
-        plot = MarketSupplierStaticChart,
-        width = 19,
-        height = 12,
+        plot =  DataChart,
+        width = 20,
+        height = 16,
         units = "cm",
         dpi = 300
       )
