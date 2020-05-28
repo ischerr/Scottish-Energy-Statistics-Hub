@@ -27,7 +27,7 @@ MarketStructureOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Market Suppliers",
              fluidRow(column(8,
-                             h3("Market Supplier", style = "color: #68c3ea;  font-weight:bold"),
+                             h3("Number of active domestic suppliers by fuel type", style = "color: #68c3ea;  font-weight:bold"),
                              h4(textOutput(ns('MarketSupplierSubtitle')), style = "color: #68c3ea;")
              ),
              column(
@@ -47,13 +47,23 @@ MarketStructureOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+    tabsetPanel(
+      tabPanel("Market Shares",
     fluidRow(
     column(10, h3("Data - Market shares, combined electricity and gas", style = "color: #68c3ea;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("MarketStructureTable"))%>% withSpinner(color="#68c3ea"))),
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Market Suppliers",
+             fluidRow(
+               column(10, h3("Data - Number of active domestic suppliers by fuel type", style = "color: #68c3ea;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("MarketSupplierTable"))%>% withSpinner(color="#68c3ea"))),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
@@ -385,7 +395,7 @@ MarketStructure <- function(input, output, session) {
     Data <- read_delim("Processed Data/Output/Domestic Suppliers/DomesticSuppliers.txt", 
                        "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    paste("Scotland, ", format(min(Data$Date), format = "%B %Y")," - " ,format(max(Data$Date), format = "%B %Y"))
+    paste("Great Britain, ", format(min(Data$Date), format = "%B %Y")," - " ,format(max(Data$Date), format = "%B %Y"))
   })
   
   output$MarketSupplierPlot <- renderPlotly({
@@ -471,6 +481,48 @@ MarketStructure <- function(input, output, session) {
     p
   })
   
+  output$MarketSupplierTable = renderDataTable({
+    
+    MarketSupplier <- read_delim("Processed Data/Output/Domestic Suppliers/DomesticSuppliers.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    MarketSupplier$Date <- as.character(as.yearmon(MarketSupplier$Date))
+    
+    MarketSupplier <- MarketSupplier[seq(dim(MarketSupplier)[1],1),]
+    
+    datatable(
+      MarketSupplier[c(1,4,3,2,5)],
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "Number of active domestic suppliers by fuel type (GB)",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Number of active domestic suppliers by fuel type (GB)',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Number of active domestic suppliers by fuel type (GB)')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) 
+  })
+  
   output$MarketSupplier.png <- downloadHandler(
     filename = "MarketSupplier.png",
     content = function(file) {
@@ -492,8 +544,8 @@ MarketStructure <- function(input, output, session) {
       
       DataMelt <- melt(DataMelt, id.vars = "Year")
       
-      plottitle = "Hello"
-      sourcecaption = "Hey"
+      plottitle = "Number of active domestic suppliers by fuel type"
+      sourcecaption = "Source: Ofgem"
       
       width = max(Data$Year)- min(Data$Year)
       
@@ -679,7 +731,17 @@ MarketStructure <- function(input, output, session) {
       
       DataChart <- DataChart +
         coord_cartesian(xlim = c(min(DataMelt$Year)-(width*0.01), max(DataMelt$Year)+(width*0.1))) +
-        ylim(-4,76)
+        ylim(-4,76) +
+        labs(
+          title = plottitle,
+          face = 2,
+          subtitle = paste(
+            "Great Britain,",
+            format(min(Data$Year), format = "%b %Y"),
+            "-",
+            format(max(Data$Year), format = "%b %Y")
+          )
+        ) 
       
       DataChart <- DataChart 
       
