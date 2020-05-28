@@ -10,6 +10,8 @@ source("Structure/Global.R")
 MarketStructureOutput <- function(id) {
   ns <- NS(id)
   tagList(
+    tabsetPanel(
+      tabPanel("Market Shares",
     fluidRow(column(8,
                     h3("Market shares, combined electricity and gas", style = "color: #68c3ea;  font-weight:bold"),
                     h4(textOutput(ns('MarketStructureSubtitle')), style = "color: #68c3ea;")
@@ -22,7 +24,21 @@ MarketStructureOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     #dygraphOutput(ns("MarketStructurePlot")),
     plotlyOutput(ns("MarketStructurePlot"), height = "500px")%>% withSpinner(color="#68c3ea"),
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Market Suppliers",
+             fluidRow(column(8,
+                             h3("Market Supplier", style = "color: #68c3ea;  font-weight:bold"),
+                             h4(textOutput(ns('MarketSupplierSubtitle')), style = "color: #68c3ea;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('MarketSupplier.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+             #dygraphOutput(ns("MarketStructurePlot")),
+             plotlyOutput(ns("MarketSupplierPlot"), height = "800px")%>% withSpinner(color="#68c3ea"),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
@@ -363,4 +379,236 @@ MarketStructure <- function(input, output, session) {
       
     }
   )
+  
+  output$MarketSupplierSubtitle <- renderText({
+    
+    Data <- read_delim("Processed Data/Output/Domestic Suppliers/DomesticSuppliers.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    paste("Scotland, ", format(min(Data$Date), format = "%B %Y")," - " ,format(max(Data$Date), format = "%B %Y"))
+  })
+  
+  output$MarketSupplierPlot <- renderPlotly({
+    Data <- read_delim("Processed Data/Output/Domestic Suppliers/DomesticSuppliers.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    ChartColours <- c("#081d58", "#225ea8", "#41b6c4", "#41ab5d")
+    
+    Data$Date <- ymd(Data$Date)
+    
+    p <- plot_ly(data = Data, x = ~ Date) %>%
+      add_trace(
+        data = Data,
+        y = ~ Dual,
+        type = 'bar',
+        name = "Dual fuel suppliers",
+        text = paste0("Dual fuel suppliers: ", Data$Dual, "\n", format(Data$Date, format = "%B %Y")),
+        hoverinfo = 'text',
+        hoveron = 'points+fills',
+        marker = list(color = ChartColours[1]),
+        legendgroup = 1
+      ) %>% 
+      add_trace(
+        data = Data,
+        y = ~ Electricity,
+        type = 'bar',
+        name = "Electricity only suppliers",
+        text = paste0("Electricity only suppliers: ", Data$Electricity, "\n", format(Data$Date, format = "%B %Y")),
+        hoverinfo = 'text',
+        hoveron = 'points+fills',
+        marker = list(color = ChartColours[2]),
+        legendgroup = 2
+      ) %>% 
+      add_trace(
+        data = Data,
+        y = ~ Gas,
+        type = 'bar',
+        name = "Gas only suppliers",
+        text = paste0("Gas only suppliers: ", Data$Gas, "\n", format(Data$Date, format = "%B %Y")),
+        hoverinfo = 'text',
+        hoveron = 'points+fills',
+        marker = list(color = ChartColours[3]),
+        legendgroup = 3
+      ) %>% 
+      add_trace(data = Data,
+                x = ~ Date,
+                y = ~ Total,
+                name = "Total Suppliers",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "4",
+                text = paste0(
+                  "Total Suppliers: ",
+                  Data$Total,
+                  "\n",
+                  Data$Date
+                ),
+                hoverinfo = 'text',
+                line = list(width = 3, color = ChartColours[4], dash = "dash")
+      ) %>% 
+      layout(
+        barmode = 'stack',
+        bargap = 0.1,
+        legend = list(font = list(color = "#126992"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        
+        xaxis = list(title = "",
+                     showgrid = FALSE),
+        yaxis = list(
+          title = "",
+          tickformat = "",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    p
+  })
+  
+  output$MarketSupplier.png <- downloadHandler(
+    filename = "MarketSupplier.png",
+    content = function(file) {
+      
+      MarketSupplierStatic <- MarketSupplier
+      
+      plottitle = "Market Shares, combined electricity and gas"
+      
+      MarketSupplierStatic <- arrange(MarketSupplierStatic,row_number())
+      
+      MarketSupplierStatic$Region <-
+        factor(MarketSupplierStatic$Region,
+               levels = unique(MarketSupplierStatic$Region),
+               ordered = TRUE)
+      
+      MarketSupplierStatic <- melt(MarketSupplierStatic, id.vars = "Region")
+      
+      
+      MarketSupplierStatic$variable <-
+        factor(MarketSupplierStatic$variable,
+               levels = rev(unique(MarketSupplierStatic$variable)),
+               ordered = TRUE)
+      
+      MarketSupplierStatic <- MarketSupplierStatic %>%
+        group_by(Region) %>%
+        mutate(pos = cumsum(value) - value / 2) %>%
+        mutate(top = sum(value))
+      
+      sourcecaption <- "Source: Xoserve, Ofgem"
+      
+      ChartColours <- c("#68c3ea", "#FF8500")
+      BarColours <-
+        c(
+          "#31a354",
+          "#0868ac",
+          "#43a2ca",
+          "#7bccc4",
+          "#a6bddb",
+          "#d0d1e6",
+          "#bdbdbd",
+          "#969696"
+        )
+      
+      
+      MarketSupplierStaticChart <- MarketSupplierStatic %>%
+        ggplot(aes(x = Region, y = value, fill = variable), family = "Century Gothic") +
+        scale_fill_manual(
+          "variable",
+          values = c(
+            "Large" = BarColours[2],
+            "Medium" = BarColours[3],
+            "Small" = BarColours[4]
+          )
+        ) +
+        geom_bar(stat = "identity", width = .8) +
+        geom_text(
+          aes(
+            x = Region,
+            y = -0.08,
+            label = str_wrap(Region, 10),
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic",
+        ) +
+        geom_text(
+          aes(
+            x = 2.5,
+            y = ((0/3) *1),
+            label = "Large Suppliers",
+            fontface = 2
+          ),
+          colour = BarColours[2],
+          hjust = 0,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = 2.5,
+            y = ((1.5/3) *1),
+            label = "Medium Suppliers",
+            fontface = 2
+          ),
+          colour = BarColours[3],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = 2.5,
+            y = ((3/3) *1),
+            label = "Small Suppliers",
+            fontface = 2
+          ),
+          colour = BarColours[4],
+          hjust = 1,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Region,
+            y = pos,
+            label = ifelse(value > 0, percent(value, 0.1),""),
+            fontface = 2
+          ),
+          colour = "white",
+          family = "Century Gothic"
+        )
+      
+      
+      MarketSupplierStaticChart
+      
+      
+      MarketSupplierStaticChart <-
+        StackedBars(MarketSupplierStaticChart,
+                    MarketSupplierStatic,
+                    plottitle,
+                    sourcecaption,
+                    ChartColours)
+      
+      MarketSupplierStaticChart <-
+        MarketSupplierStaticChart +
+        labs(subtitle = "Scotland, December 2019") +
+        ylim(-0.1,1) +
+        scale_x_discrete(limits = rev(levels(MarketSupplierStatic$Region)))+
+        coord_flip()
+      
+      MarketSupplierStaticChart
+      
+      ggsave(
+        file,
+        plot = MarketSupplierStaticChart,
+        width = 19,
+        height = 12,
+        units = "cm",
+        dpi = 300
+      )
+      
+    }
+  )
+  
 }
