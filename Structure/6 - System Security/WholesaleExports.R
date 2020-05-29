@@ -65,7 +65,26 @@ WholesaleExports <- function(input, output, session) {
   
   print("WholesaleExports.R")
   
-  WholesaleExportsData <- {
+
+  
+  
+  output$Text <- renderUI({
+    tagList(column(12,
+                   
+                   HTML(
+                     paste(readtext("Structure/6 - System Security/WholesaleExports.txt")[2])
+                     
+                   )))
+  })
+ 
+ 
+
+  observeEvent(input$ToggleText, {
+    toggle("Text")
+  })
+  
+  
+   WholesaleExportsData <- {
     WholesaleValue <- read_delim("Processed Data/Output/Exports/WholesaleValue.txt", 
                                  "\t", escape_double = FALSE, trim_ws = TRUE)
     
@@ -214,30 +233,13 @@ WholesaleExports <- function(input, output, session) {
       )
     ) %>%
       formatRound(2:8, 0)
-  })
+  }) 
   
-  
-  output$Text <- renderUI({
-    tagList(column(12,
-                   
-                   HTML(
-                     paste(readtext("Structure/6 - System Security/WholesaleExports.txt")[2])
-                     
-                   )))
-  })
- 
-  observeEvent(input$ToggleTable, {
+   observeEvent(input$ToggleTable3, {
     toggle("WholesaleExportsTable")
   })
-  
-  observeEvent(input$ToggleTable2, {
-    toggle("WholesaleExportsQuarterTable")
-  })
-  
-  observeEvent(input$ToggleText, {
-    toggle("Text")
-  })
-  
+   
+   
   
   output$WholesaleExports.png <- downloadHandler(
     filename = "WholesaleExports.png",
