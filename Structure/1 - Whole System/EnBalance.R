@@ -141,10 +141,10 @@ EnBalance <- function(input, output, session) {
   
   output$EnBalancePlot <- renderPlotly  ({
     
-    EnergyLinks <- as.data.frame(read_excel("Structure/1 - Whole System/EnBalance.xlsx", 
+    EnergyLinks <- as.data.frame(read_excel("Structure/1 - Whole System/SankeyTest.xlsx", 
                                             sheet = "links"))
     
-    EnergyNodes <- as.data.frame(read_excel("Structure/1 - Whole System/EnBalance.xlsx", 
+    EnergyNodes <- as.data.frame(read_excel("Structure/1 - Whole System/SankeyTest.xlsx", 
                                             sheet = "nodes"))
     
     
