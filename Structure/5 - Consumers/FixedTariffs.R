@@ -12,7 +12,7 @@ FixedTariffsOutput <- function(id) {
   tagList(tabsetPanel(
     tabPanel("Electricity",
     fluidRow(column(8,
-                    h3("Proportion of payment methods used for electricity bills", style = "color: #68c3ea;  font-weight:bold"),
+                    h3("Proportion of electricity customers on a fixed tariff", style = "color: #68c3ea;  font-weight:bold"),
                     h4(textOutput(ns('ElecPaymentsSubtitle')), style = "color: #68c3ea;")
     ),
              column(
@@ -26,7 +26,7 @@ FixedTariffsOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Gas",
              fluidRow(column(8,
-                             h3("Proportion of payment methods used for gas bills", style = "color: #68c3ea;  font-weight:bold"),
+                             h3("Proportion of gas customers on a fixed tariff", style = "color: #68c3ea;  font-weight:bold"),
                              h4(textOutput(ns('GasPaymentsSubtitle')), style = "color: #68c3ea;")
              ),
              column(
@@ -50,7 +50,7 @@ FixedTariffsOutput <- function(id) {
     tabsetPanel(
       tabPanel("Electricity",
     fluidRow(
-    column(10, h3("Data - Proportion of payment methods used for electricity bills", style = "color: #68c3ea;  font-weight:bold")),
+    column(10, h3("Data - Proportion of electricity customers on a fixed tariff", style = "color: #68c3ea;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -58,7 +58,7 @@ FixedTariffsOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Gas",
              fluidRow(
-               column(10, h3("Data - Proportion of payment methods used for gas bills", style = "color: #68c3ea;  font-weight:bold")),
+               column(10, h3("Data - Proportion of gas customers on a fixed tariff", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -114,54 +114,53 @@ FixedTariffs <- function(input, output, session) {
   })
   
   output$ElecPaymentsPlot <- renderPlotly  ({
+    Data <- read_delim("Processed Data/Output/Energy Bills/FixedTariffElectricity.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Elec payment methods",
-        col_names = TRUE,
-        skip = 12
-      )
+    
     
     names(Data)[1] <- "Year"
     
-    Data$Year <- as.yearqtr(Data$Year)
+    
     
     ElecPayments <- Data
     
     ### variables
-    ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
+    ChartColours <- c("#68c3ea", "#FF8500")
+    BarColours <-
+      c(    "#0868ac","#43a2ca","#7bccc4"
+      )
     sourcecaption = "Source: BEIS"
-    plottitle = "Proportion of payment methods used\nfor electricity bills"
-
+    plottitle = "Proportion of payment methods used\nfor Electricity bills"
+    
     
     
     p <-  plot_ly(data = ElecPayments,
                   x = ~ Year ) %>% 
-      add_trace(y = ~ `Prepayment - Scotland`,
-                name = "Prepayment",
+      add_trace(y = ~ `North Scotland`,
+                name = "North Scotland",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "1",
                 text = paste0(
-                  "Prepayment: ",
-                  percent(ElecPayments$`Prepayment - Scotland`, accuracy = 1),
+                  "North Scotland: ",
+                  percent(ElecPayments$`North Scotland`, accuracy = 1),
                   "\nYear: ",
-                  format(ElecPayments$Year, "%Y Q%q")
+                  format(as.yearqtr(ElecPayments$Year), "%Y Q%q")
                 ),
                 hoverinfo = 'text',
-                line = list(width = 6, color = ChartColours[2], dash = "none")
+                line = list(width = 6, color = BarColours[1], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(ElecPayments[which(ElecPayments$`Prepayment - Scotland` > 0 | ElecPayments$`Prepayment - Scotland` < 0),], 1),
+        data = tail(ElecPayments[which(ElecPayments$`North Scotland` > 0 | ElecPayments$`North Scotland` < 0),], 1),
         x = ~ Year,
-        y = ~ `Prepayment - Scotland`,
-        name = "Prepayment",
+        y = ~ `North Scotland`,
+        name = "North Scotland",
         text = paste0(
-          "Prepayment: ",
-          percent(ElecPayments[which(ElecPayments$`Prepayment - Scotland` > 0 | ElecPayments$`Prepayment - Scotland` < 0),][-1,]$`Prepayment - Scotland`, accuracy = 1),
+          "North Scotland: ",
+          percent(ElecPayments[which(ElecPayments$`North Scotland` > 0 | ElecPayments$`North Scotland` < 0),][-1,]$`North Scotland`, accuracy = 1),
           "\nYear: ",
-          format(ElecPayments[which(ElecPayments$`Prepayment - Scotland` > 0 | ElecPayments$`Prepayment - Scotland` < 0),][-1,]$Year, "%Y Q%q")
+          format(as.yearqtr(ElecPayments[which(ElecPayments$`North Scotland` > 0 | ElecPayments$`North Scotland` < 0),][-1,]$Year), "%Y Q%q")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -169,77 +168,77 @@ FixedTariffs <- function(input, output, session) {
         mode = 'markers',
         legendgroup = "1",
         marker = list(size = 18, 
-                      color = ChartColours[2])
+                      color = BarColours[1])
       ) %>% 
       add_trace(data = ElecPayments,
                 x = ~ Year,
-                y = ~ `Standard Credit - Scotland`,
-                name = "Standard Credit",
+                y = ~ `South Scotland`,
+                name = "South Scotland",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "2",
                 text = paste0(
-                  "Standard Credit: ",
-                  percent(ElecPayments$`Standard Credit - Scotland`, accuracy = 1),
+                  "South Scotland: ",
+                  percent(ElecPayments$`South Scotland`, accuracy = 1),
                   "\nYear: ",
-                  format(ElecPayments$Year, "%Y Q%q")
+                  format(as.yearqtr(ElecPayments$Year), "%Y Q%q")
                 ),
                 hoverinfo = 'text',
-                line = list(width = 6, color = ChartColours[3], dash = "none")
+                line = list(width = 6, color = BarColours[2], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(ElecPayments[which(ElecPayments$`Standard Credit - Scotland` > 0 | ElecPayments$`Standard Credit - Scotland` < 0),], 1),
+        data = tail(ElecPayments[which(ElecPayments$`South Scotland` > 0 | ElecPayments$`South Scotland` < 0),], 1),
         x = ~ Year,
-        y = ~ `Standard Credit - Scotland`,
-        name = "Standard Credit",
+        y = ~ `South Scotland`,
+        name = "South Scotland",
         legendgroup = "2",
         text = paste0(
-          "Standard Credit: ",
-          percent(ElecPayments[which(ElecPayments$`Standard Credit - Scotland` > 0 | ElecPayments$`Standard Credit - Scotland` < 0),][-1,]$`Standard Credit - Scotland`, accuracy = 1),
+          "South Scotland: ",
+          percent(ElecPayments[which(ElecPayments$`South Scotland` > 0 | ElecPayments$`South Scotland` < 0),][-1,]$`South Scotland`, accuracy = 1),
           "\nYear: ",
-          format(ElecPayments[which(ElecPayments$`Standard Credit - Scotland` > 0 | ElecPayments$`Standard Credit - Scotland` < 0),][-1,]$Year, "%Y Q%q")
+          format(as.yearqtr(ElecPayments[which(ElecPayments$`South Scotland` > 0 | ElecPayments$`South Scotland` < 0),][-1,]$Year), "%Y Q%q")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
         type = "scatter",
         mode = 'markers',
         marker = list(size = 18, 
-                      color = ChartColours[3])
+                      color = BarColours[2])
       ) %>% 
       add_trace(data = ElecPayments,
                 x = ~ Year,
-                y = ~ `Direct Debit - Scotland`,
-                name = "Direct Debit",
+                y = ~ `Great Britain`,
+                name = "Great Britain",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "3",
                 text = paste0(
-                  "Direct Debit: ",
-                  percent(ElecPayments$`Direct Debit - Scotland`, accuracy = 1),
+                  "Great Britain: ",
+                  percent(ElecPayments$`Great Britain`, accuracy = 1),
                   "\nYear: ",
-                  format(ElecPayments$Year, "%Y Q%q")
+                  format(as.yearqtr(ElecPayments$Year), "%Y Q%q")
                 ),
                 hoverinfo = 'text',
-                line = list(width = 6, color = ChartColours[1], dash = "none")
+                line = list(width = 6, color = BarColours[3], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(ElecPayments[which(ElecPayments$`Direct Debit - Scotland` > 0 | ElecPayments$`Direct Debit - Scotland` < 0),], 1),
+        data = tail(ElecPayments[which(ElecPayments$`Great Britain` > 0 | ElecPayments$`Great Britain` < 0),], 1),
         x = ~ Year,
-        y = ~ `Direct Debit - Scotland`,
-        name = "Direct Debit",
+        y = ~ `Great Britain`,
+        name = "Great Britain",
         legendgroup = "3",
         text = paste0(
-          "Direct Debit: ",
-          percent(ElecPayments[which(ElecPayments$`Direct Debit - Scotland` > 0 | ElecPayments$`Direct Debit - Scotland` < 0),][-1,]$`Direct Debit - Scotland`, accuracy = 1),
+          "Great Britain: ",
+          percent(ElecPayments[which(ElecPayments$`Great Britain` > 0 | ElecPayments$`Great Britain` < 0),][-1,]$`Great Britain`, accuracy = 1),
           "\nYear: ",
-          format(ElecPayments[which(ElecPayments$`Direct Debit - Scotland` > 0 | ElecPayments$`Direct Debit - Scotland` < 0),][-1,]$Year, "%Y Q%q")
+          format(as.yearqtr(ElecPayments[which(ElecPayments$`Great Britain` > 0 | ElecPayments$`Great Britain` < 0),][-1,]$Year), "%Y Q%q")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
         type = "scatter",
         mode = 'markers',
         marker = list(size = 18, 
-                      color = ChartColours[1])
+                      color = BarColours[3])
       ) %>% 
       layout(
         barmode = 'stack',
@@ -250,9 +249,8 @@ FixedTariffs <- function(input, output, session) {
                           hovername = 'text'),
         hovername = 'text',
         xaxis = list(title = "",
-                     showgrid = FALSE,
-                     range = c(min(ElecPayments$Year)-1
-                               , max(ElecPayments$Year)+1)),
+                     showgrid = FALSE
+        ),
         yaxis = list(
           title = "",
           tickformat = "%",
@@ -267,21 +265,14 @@ FixedTariffs <- function(input, output, session) {
     p
     
     
-    
   })
   
   
   output$ElecPaymentsTable = renderDataTable({
+    Data  <- read_delim("Processed Data/Output/Energy Bills/FixedTariffElectricity.txt", 
+                                                 "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Elec payment methods",
-        col_names = TRUE,
-        skip = 12
-      )
-    
-    names(Data)[1] <- "Year"
+    names(Data) <- c("Year", "North Scotland", "South Scotland", "Great Britain")
     
     Data$Year <- as.yearqtr(Data$Year)
     
@@ -301,17 +292,17 @@ FixedTariffs <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Electricity Bill Payment Methods",
+        title = "Proportion of electricity customers on a fixed tariff",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Electricity Bill Payment Methods',
+            title = 'Proportion of electricity customers on a fixed tariff',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Electricity Bill Payment Methods')
+               title = 'Proportion of electricity customers on a fixed tariff')
         ),
         
         # customize the length menu
@@ -346,53 +337,53 @@ FixedTariffs <- function(input, output, session) {
   
   output$GasPaymentsPlot <- renderPlotly  ({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Gas payment methods",
-        col_names = TRUE,
-        skip = 12
-      )
+    Data <- read_delim("Processed Data/Output/Energy Bills/FixedTariffGas.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    
     
     names(Data)[1] <- "Year"
     
-    Data$Year <- as.yearqtr(Data$Year)
     
-    GasPayments <- Data
+
+    ElecPayments <- Data
     
     ### variables
-    ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
+    ChartColours <- c("#68c3ea", "#FF8500")
+    BarColours <-
+      c(    "#0868ac","#43a2ca","#7bccc4"
+      )
     sourcecaption = "Source: BEIS"
-    plottitle = "Proportion of payment methods used\nfor Gastricity bills"
+    plottitle = "Proportion of payment methods used\nfor Gas bills"
     
     
     
-    p <-  plot_ly(data = GasPayments,
+    p <-  plot_ly(data = ElecPayments,
                   x = ~ Year ) %>% 
-      add_trace(y = ~ `Prepayment - Scotland`,
-                name = "Prepayment",
+      add_trace(y = ~ `North Scotland`,
+                name = "North Scotland",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "1",
                 text = paste0(
-                  "Prepayment: ",
-                  percent(GasPayments$`Prepayment - Scotland`, accuracy = 1),
+                  "North Scotland: ",
+                  percent(ElecPayments$`North Scotland`, accuracy = 1),
                   "\nYear: ",
-                  format(GasPayments$Year, "%Y Q%q")
+                  format(as.yearqtr(ElecPayments$Year), "%Y Q%q")
                 ),
                 hoverinfo = 'text',
-                line = list(width = 6, color = ChartColours[2], dash = "none")
+                line = list(width = 6, color = BarColours[1], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(GasPayments[which(GasPayments$`Prepayment - Scotland` > 0 | GasPayments$`Prepayment - Scotland` < 0),], 1),
+        data = tail(ElecPayments[which(ElecPayments$`North Scotland` > 0 | ElecPayments$`North Scotland` < 0),], 1),
         x = ~ Year,
-        y = ~ `Prepayment - Scotland`,
-        name = "Prepayment",
+        y = ~ `North Scotland`,
+        name = "North Scotland",
         text = paste0(
-          "Prepayment: ",
-          percent(GasPayments[which(GasPayments$`Prepayment - Scotland` > 0 | GasPayments$`Prepayment - Scotland` < 0),][-1,]$`Prepayment - Scotland`, accuracy = 1),
+          "North Scotland: ",
+          percent(ElecPayments[which(ElecPayments$`North Scotland` > 0 | ElecPayments$`North Scotland` < 0),][-1,]$`North Scotland`, accuracy = 1),
           "\nYear: ",
-          format(GasPayments[which(GasPayments$`Prepayment - Scotland` > 0 | GasPayments$`Prepayment - Scotland` < 0),][-1,]$Year, "%Y Q%q")
+          format(as.yearqtr(ElecPayments[which(ElecPayments$`North Scotland` > 0 | ElecPayments$`North Scotland` < 0),][-1,]$Year), "%Y Q%q")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -400,77 +391,77 @@ FixedTariffs <- function(input, output, session) {
         mode = 'markers',
         legendgroup = "1",
         marker = list(size = 18, 
-                      color = ChartColours[2])
+                      color = BarColours[1])
       ) %>% 
-      add_trace(data = GasPayments,
+      add_trace(data = ElecPayments,
                 x = ~ Year,
-                y = ~ `Standard Credit - Scotland`,
-                name = "Standard Credit",
+                y = ~ `South Scotland`,
+                name = "South Scotland",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "2",
                 text = paste0(
-                  "Standard Credit: ",
-                  percent(GasPayments$`Standard Credit - Scotland`, accuracy = 1),
+                  "South Scotland: ",
+                  percent(ElecPayments$`South Scotland`, accuracy = 1),
                   "\nYear: ",
-                  format(GasPayments$Year, "%Y Q%q")
+                  format(as.yearqtr(ElecPayments$Year), "%Y Q%q")
                 ),
                 hoverinfo = 'text',
-                line = list(width = 6, color = ChartColours[3], dash = "none")
+                line = list(width = 6, color = BarColours[2], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(GasPayments[which(GasPayments$`Standard Credit - Scotland` > 0 | GasPayments$`Standard Credit - Scotland` < 0),], 1),
+        data = tail(ElecPayments[which(ElecPayments$`South Scotland` > 0 | ElecPayments$`South Scotland` < 0),], 1),
         x = ~ Year,
-        y = ~ `Standard Credit - Scotland`,
-        name = "Standard Credit",
+        y = ~ `South Scotland`,
+        name = "South Scotland",
         legendgroup = "2",
         text = paste0(
-          "Standard Credit: ",
-          percent(GasPayments[which(GasPayments$`Standard Credit - Scotland` > 0 | GasPayments$`Standard Credit - Scotland` < 0),][-1,]$`Standard Credit - Scotland`, accuracy = 1),
+          "South Scotland: ",
+          percent(ElecPayments[which(ElecPayments$`South Scotland` > 0 | ElecPayments$`South Scotland` < 0),][-1,]$`South Scotland`, accuracy = 1),
           "\nYear: ",
-          format(GasPayments[which(GasPayments$`Standard Credit - Scotland` > 0 | GasPayments$`Standard Credit - Scotland` < 0),][-1,]$Year, "%Y Q%q")
+          format(as.yearqtr(ElecPayments[which(ElecPayments$`South Scotland` > 0 | ElecPayments$`South Scotland` < 0),][-1,]$Year), "%Y Q%q")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
         type = "scatter",
         mode = 'markers',
         marker = list(size = 18, 
-                      color = ChartColours[3])
+                      color = BarColours[2])
       ) %>% 
-      add_trace(data = GasPayments,
+      add_trace(data = ElecPayments,
                 x = ~ Year,
-                y = ~ `Direct Debit - Scotland`,
-                name = "Direct Debit",
+                y = ~ `Great Britain`,
+                name = "Great Britain",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "3",
                 text = paste0(
-                  "Direct Debit: ",
-                  percent(GasPayments$`Direct Debit - Scotland`, accuracy = 1),
+                  "Great Britain: ",
+                  percent(ElecPayments$`Great Britain`, accuracy = 1),
                   "\nYear: ",
-                  format(GasPayments$Year, "%Y Q%q")
+                  format(as.yearqtr(ElecPayments$Year), "%Y Q%q")
                 ),
                 hoverinfo = 'text',
-                line = list(width = 6, color = ChartColours[1], dash = "none")
+                line = list(width = 6, color = BarColours[3], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(GasPayments[which(GasPayments$`Direct Debit - Scotland` > 0 | GasPayments$`Direct Debit - Scotland` < 0),], 1),
+        data = tail(ElecPayments[which(ElecPayments$`Great Britain` > 0 | ElecPayments$`Great Britain` < 0),], 1),
         x = ~ Year,
-        y = ~ `Direct Debit - Scotland`,
-        name = "Direct Debit",
+        y = ~ `Great Britain`,
+        name = "Great Britain",
         legendgroup = "3",
         text = paste0(
-          "Direct Debit: ",
-          percent(GasPayments[which(GasPayments$`Direct Debit - Scotland` > 0 | GasPayments$`Direct Debit - Scotland` < 0),][-1,]$`Direct Debit - Scotland`, accuracy = 1),
+          "Great Britain: ",
+          percent(ElecPayments[which(ElecPayments$`Great Britain` > 0 | ElecPayments$`Great Britain` < 0),][-1,]$`Great Britain`, accuracy = 1),
           "\nYear: ",
-          format(GasPayments[which(GasPayments$`Direct Debit - Scotland` > 0 | GasPayments$`Direct Debit - Scotland` < 0),][-1,]$Year, "%Y Q%q")
+          format(as.yearqtr(ElecPayments[which(ElecPayments$`Great Britain` > 0 | ElecPayments$`Great Britain` < 0),][-1,]$Year), "%Y Q%q")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
         type = "scatter",
         mode = 'markers',
         marker = list(size = 18, 
-                      color = ChartColours[1])
+                      color = BarColours[3])
       ) %>% 
       layout(
         barmode = 'stack',
@@ -481,9 +472,8 @@ FixedTariffs <- function(input, output, session) {
                           hovername = 'text'),
         hovername = 'text',
         xaxis = list(title = "",
-                     showgrid = FALSE,
-                     range = c(min(GasPayments$Year)-1
-                               , max(GasPayments$Year)+1)),
+                     showgrid = FALSE
+        ),
         yaxis = list(
           title = "",
           tickformat = "%",
@@ -498,29 +488,23 @@ FixedTariffs <- function(input, output, session) {
     p
     
     
-    
   })
   
   
   output$GasPaymentsTable = renderDataTable({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Gas payment methods",
-        col_names = TRUE,
-        skip = 12
-      )
+    Data  <- read_delim("Processed Data/Output/Energy Bills/FixedTariffGas.txt", 
+                        "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    names(Data)[1] <- "Year"
+    names(Data) <- c("Year", "North Scotland", "South Scotland", "Great Britain")
     
     Data$Year <- as.yearqtr(Data$Year)
     
     Data$Year <- format(Data$Year, "%Y Q%q")
-    GasPayments <- Data
+    ElecPayments <- Data
     
     datatable(
-      GasPayments,
+      ElecPayments,
       extensions = 'Buttons',
       # container = sketch,
       rownames = FALSE,
@@ -532,17 +516,17 @@ FixedTariffs <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Gas Bill Payment Methods",
+        title = "Proportion of gas customers on a fixed tariff",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Gas Bill Payment Methods',
+            title = 'Proportion of gas customers on a fixed tariff',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Gas Bill Payment Methods')
+               title = 'Proportion of gas customers on a fixed tariff')
         ),
         
         # customize the length menu
@@ -581,177 +565,178 @@ FixedTariffs <- function(input, output, session) {
   output$ElecPayments.png <- downloadHandler(
     filename = "ElecPayments.png",
     content = function(file) {
-
-      ElecBillPaymentMethods <-
-        read_excel(
-          "Structure/CurrentWorking.xlsx",
-          sheet = "Elec payment methods",
-          col_names = TRUE,
-          skip = 12
-        )
+      ElectricityBillPaymentMethods  <- read_delim("Processed Data/Output/Energy Bills/FixedTariffElectricity.txt", 
+                                                   "\t", escape_double = FALSE, trim_ws = TRUE)
       
-      names(ElecBillPaymentMethods) <- c("Year", "Prepayment", "Credit", "Direct Debit")
+      names(ElectricityBillPaymentMethods) <- c("Year", "North Scotland", "South Scotland", "Great Britain")
       
-      ElecBillPaymentMethods$Year <- as.yearqtr(ElecBillPaymentMethods$Year)
+      ElectricityBillPaymentMethods$Year <- as.yearqtr(ElectricityBillPaymentMethods$Year)
       
       ### variables
       ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
+      
+      BarColours <-
+        c(    "#0868ac","#43a2ca","#7bccc4"
+        )
       sourcecaption = "Source: BEIS"
-      plottitle = "Proportion of payment methods used\nfor electricity bills"
+      plottitle = "Proportion of electricity customers\non a fixed tariff"
       
-      #ElecBillPaymentMethods$`Prepayment`Percentage <- PercentLabel(ElecBillPaymentMethods$`Prepayment`)
+      width = max(ElectricityBillPaymentMethods$Year) - min(ElectricityBillPaymentMethods$Year)
+      
+      #ElectricityBillPaymentMethods$`North Scotland`Percentage <- PercentLabel(ElectricityBillPaymentMethods$`North Scotland`)
       
       
-      ElecBillPaymentMethodsChart <- ElecBillPaymentMethods %>%
+      ElectricityBillPaymentMethodsChart <- ElectricityBillPaymentMethods %>%
         ggplot(aes(x = Year), family = "Century Gothic") +
         
         geom_line(
-          aes(y = `Prepayment`,
-              label = percent(`Prepayment`)),
-          colour = ChartColours[2],
+          aes(y = `North Scotland`,
+              label = percent(`North Scotland`)),
+          colour = BarColours[1],
           size = 1.5,
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
-            x = Year - .45,
-            y = `Prepayment`,
-            label = ifelse(Year == min(Year), percent(`Prepayment`, accuracy = 1), ""),
+            x = Year - (width * 0.05),
+            y = `North Scotland`,
+            label = ifelse(Year == min(Year), percent(`North Scotland`, accuracy = 1), ""),
             hjust = 0.5,
+            vjust = -0.5,
             fontface = 2
           ),
-          colour = ChartColours[2],
+          colour = BarColours[1],
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
-            x = Year + .8,
-            y = `Prepayment`,
-            label = ifelse(Year == max(Year), percent(`Prepayment`, accuracy = 1), ""),
+            x = Year + (width * 0.1),
+            y = `North Scotland`,
+            label = ifelse(Year == max(Year), percent(`North Scotland`, accuracy = 1), ""),
             hjust = 0.5,
-            vjust = 1,
+            vjust = -.5,
             fontface = 2
           ),
-          colour = ChartColours[2],
+          colour = BarColours[1],
           family = "Century Gothic"
         ) +
         geom_point(
-          data = tail(ElecBillPaymentMethods, 1),
+          data = tail(ElectricityBillPaymentMethods, 1),
           aes(x = Year,
-              y = `Prepayment`,
+              y = `North Scotland`,
               show_guide = FALSE),
-          colour = ChartColours[2],
+          colour = BarColours[1],
           size = 4,
           family = "Century Gothic"
         ) +
         annotate(
           "text",
-          x = mean(ElecBillPaymentMethods$Year),
-          y = mean(ElecBillPaymentMethods$`Prepayment`),
-          label = "Prepayment",
+          x = mean(ElectricityBillPaymentMethods$Year),
+          y = mean(ElectricityBillPaymentMethods$`North Scotland`),
+          label = "North Scotland",
           hjust = 0.5,
-          vjust = 2,
-          colour = ChartColours[2],
+          vjust = -4,
+          colour = BarColours[1],
           fontface = 2,
           family = "Century Gothic"
         ) +
         geom_line(
-          aes(y = `Credit`,
-              label = paste0(`Credit` * 100, "%")),
-          colour = ChartColours[3],
+          aes(y = `South Scotland`,
+              label = paste0(`South Scotland` * 100, "%")),
+          colour = BarColours[2],
           size = 1.5,
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
-            x = Year - .45,
-            y = `Credit`,
-            label = ifelse(Year == min(Year), percent(`Credit`, accuracy = 1), ""),
+            x = Year - (width * 0.05),
+            y = `South Scotland`,
+            label = ifelse(Year == min(Year), percent(`South Scotland`, accuracy = 1), ""),
             hjust = 0.5,
             fontface = 2
           ),
-          colour = ChartColours[3],
+          colour = BarColours[2],
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
-            x = Year + .8,
-            y = `Credit`,
-            label = ifelse(Year == max(Year), percent(`Credit`, accuracy = 1), ""),
+            x = Year + (width * 0.1),
+            y = `South Scotland`,
+            label = ifelse(Year == max(Year), percent(`South Scotland`, accuracy = 1), ""),
             hjust = 0.5,
-            vjust = -0.2,
+            vjust = .5,
             fontface = 2
           ),
-          colour = ChartColours[3],
+          colour = BarColours[2],
           family = "Century Gothic"
         ) +
         geom_point(
-          data = tail(ElecBillPaymentMethods, 1),
+          data = tail(ElectricityBillPaymentMethods, 1),
           aes(x = Year,
-              y = `Credit`,
+              y = `South Scotland`,
               show_guide = FALSE),
-          colour = ChartColours[3],
+          colour = BarColours[2],
           size = 4,
           family = "Century Gothic"
         ) +
         annotate(
           "text",
-          x = mean(ElecBillPaymentMethods$Year),
-          y = mean(ElecBillPaymentMethods$`Credit`),
-          label = "Credit",
+          x = mean(ElectricityBillPaymentMethods$Year),
+          y = mean(ElectricityBillPaymentMethods$`South Scotland`),
+          label = "South Scotland",
           hjust = 0.5,
-          vjust = -.5,
-          colour = ChartColours[3],
+          vjust = 5,
+          colour = BarColours[2],
           fontface = 2,
           family = "Century Gothic"
         ) +
         geom_line(
-          aes(y = `Direct Debit`,
-              label = paste0(`Direct Debit` * 100, "%")),
-          colour = ChartColours[4],
+          aes(y = `Great Britain`,
+              label = paste0(`Great Britain` * 100, "%")),
+          colour = BarColours[3],
           size = 1.5,
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
-            x = Year - .45,
-            y = `Direct Debit`,
-            label = ifelse(Year == min(Year), percent(`Direct Debit`, accuracy = 1), ""),
+            x = Year - (width * 0.05),
+            y = `Great Britain`,
+            label = ifelse(Year == min(Year), percent(`Great Britain`, accuracy = 1), ""),
             hjust = 0.5,
             fontface = 2
           ),
-          colour = ChartColours[4],
+          colour = BarColours[3],
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
-            x = Year + .8,
-            y = `Direct Debit`,
-            label = ifelse(Year == max(Year), percent(`Direct Debit`,  accuracy = 1), ""),
+            x = Year + (width * 0.1),
+            y = `Great Britain`,
+            label = ifelse(Year == max(Year), percent(`Great Britain`,  accuracy = 1), ""),
             hjust = 0.5,
             fontface = 2
           ),
-          colour = ChartColours[4],
+          colour = BarColours[3],
           family = "Century Gothic"
         ) +
         geom_point(
-          data = tail(ElecBillPaymentMethods, 1),
+          data = tail(ElectricityBillPaymentMethods, 1),
           aes(x = Year,
-              y = `Direct Debit`,
+              y = `Great Britain`,
               
               show_guide = FALSE),
           size = 4,
-          colour = ChartColours[4],
+          colour = BarColours[3],
           family = "Century Gothic"
         ) +
         annotate(
           "text",
-          x = mean(ElecBillPaymentMethods$Year),
-          y = mean(ElecBillPaymentMethods$`Direct Debit`),
-          label = "Direct Debit",
+          x = mean(ElectricityBillPaymentMethods$Year),
+          y = mean(ElectricityBillPaymentMethods$`Great Britain`),
+          label = "Great Britain",
           hjust = 0.5,
-          vjust = 2.5,
-          colour = ChartColours[4],
+          vjust = -2.5,
+          colour = BarColours[3],
           fontface = 2,
           family = "Century Gothic"
         ) +
@@ -773,20 +758,22 @@ FixedTariffs <- function(input, output, session) {
           family = "Century Gothic"
         )
       
-      ElecBillPaymentMethodsChart
+      ElectricityBillPaymentMethodsChart
       
-      ElecBillPaymentMethodsChart <-
-        StackedArea(ElecBillPaymentMethodsChart,
-                    ElecBillPaymentMethods,
+      ElectricityBillPaymentMethodsChart <-
+        StackedArea(ElectricityBillPaymentMethodsChart,
+                    ElectricityBillPaymentMethods,
                     plottitle,
                     sourcecaption,
                     ChartColours)
       
-      ElecBillPaymentMethodsChart
+      
+      ElectricityBillPaymentMethodsChart <- ElectricityBillPaymentMethodsChart +
+        ylim(0 - (max(ElectricityBillPaymentMethods[2:4])*0.01),(max(ElectricityBillPaymentMethods[2:4])*1.15))
       
       ggsave(
         file,
-        plot =  ElecBillPaymentMethodsChart,
+        plot =  ElectricityBillPaymentMethodsChart,
         width = 14,
         height = 14,
         units = "cm",
@@ -799,176 +786,178 @@ FixedTariffs <- function(input, output, session) {
     filename = "GasPayments.png",
     content = function(file) {
       
-      GasBillPaymentMethods <-
-        read_excel(
-          "Structure/CurrentWorking.xlsx",
-          sheet = "Gas payment methods",
-          col_names = TRUE,
-          skip = 12
-        )
+      GasBillPaymentMethods  <- read_delim("Processed Data/Output/Energy Bills/FixedTariffGas.txt", 
+                                           "\t", escape_double = FALSE, trim_ws = TRUE)
       
-      names(GasBillPaymentMethods) <- c("Year", "Prepayment", "Credit", "Direct Debit")
+      names(GasBillPaymentMethods) <- c("Year", "North Scotland", "South Scotland", "Great Britain")
       
       GasBillPaymentMethods$Year <- as.yearqtr(GasBillPaymentMethods$Year)
       
       ### variables
       ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
-      sourcecaption = "Source: BEIS"
-      plottitle = "Proportion of payment methods used\nfor gas bills"
       
-      #GasBillPaymentMethods$`Prepayment`Percentage <- PercentLabel(GasBillPaymentMethods$`Prepayment`)
+      BarColours <-
+        c(    "#0868ac","#43a2ca","#7bccc4"
+        )
+      sourcecaption = "Source: BEIS"
+      plottitle = "Proportion of gas customers\non a fixed tariff"
+      
+      width = max(GasBillPaymentMethods$Year) - min(GasBillPaymentMethods$Year)
+      
+      #GasBillPaymentMethods$`North Scotland`Percentage <- PercentLabel(GasBillPaymentMethods$`North Scotland`)
       
       
       GasBillPaymentMethodsChart <- GasBillPaymentMethods %>%
         ggplot(aes(x = Year), family = "Century Gothic") +
         
         geom_line(
-          aes(y = `Prepayment`,
-              label = percent(`Prepayment`)),
-          colour = ChartColours[2],
+          aes(y = `North Scotland`,
+              label = percent(`North Scotland`)),
+          colour = BarColours[1],
           size = 1.5,
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
-            x = Year - .45,
-            y = `Prepayment`,
-            label = ifelse(Year == min(Year), percent(`Prepayment`, accuracy = 1), ""),
+            x = Year - (width * 0.05),
+            y = `North Scotland`,
+            label = ifelse(Year == min(Year), percent(`North Scotland`, accuracy = 1), ""),
             hjust = 0.5,
+            vjust = -0.5,
             fontface = 2
           ),
-          colour = ChartColours[2],
+          colour = BarColours[1],
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
-            x = Year + .8,
-            y = `Prepayment`,
-            label = ifelse(Year == max(Year), percent(`Prepayment`, accuracy = 1), ""),
+            x = Year + (width * 0.1),
+            y = `North Scotland`,
+            label = ifelse(Year == max(Year), percent(`North Scotland`, accuracy = 1), ""),
             hjust = 0.5,
-            vjust = .5,
+            vjust = -.5,
             fontface = 2
           ),
-          colour = ChartColours[2],
+          colour = BarColours[1],
           family = "Century Gothic"
         ) +
         geom_point(
           data = tail(GasBillPaymentMethods, 1),
           aes(x = Year,
-              y = `Prepayment`,
+              y = `North Scotland`,
               show_guide = FALSE),
-          colour = ChartColours[2],
+          colour = BarColours[1],
           size = 4,
           family = "Century Gothic"
         ) +
         annotate(
           "text",
           x = mean(GasBillPaymentMethods$Year),
-          y = mean(GasBillPaymentMethods$`Prepayment`),
-          label = "Prepayment",
+          y = mean(GasBillPaymentMethods$`North Scotland`),
+          label = "North Scotland",
           hjust = 0.5,
-          vjust = 2,
-          colour = ChartColours[2],
+          vjust = -6,
+          colour = BarColours[1],
           fontface = 2,
           family = "Century Gothic"
         ) +
         geom_line(
-          aes(y = `Credit`,
-              label = paste0(`Credit` * 100, "%")),
-          colour = ChartColours[3],
+          aes(y = `South Scotland`,
+              label = paste0(`South Scotland` * 100, "%")),
+          colour = BarColours[2],
           size = 1.5,
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
-            x = Year - .45,
-            y = `Credit`,
-            label = ifelse(Year == min(Year), percent(`Credit`, accuracy = 1), ""),
+            x = Year - (width * 0.05),
+            y = `South Scotland`,
+            label = ifelse(Year == min(Year), percent(`South Scotland`, accuracy = 1), ""),
             hjust = 0.5,
             fontface = 2
           ),
-          colour = ChartColours[3],
+          colour = BarColours[2],
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
-            x = Year + .8,
-            y = `Credit`,
-            label = ifelse(Year == max(Year), percent(`Credit`, accuracy = 1), ""),
+            x = Year + (width * 0.1),
+            y = `South Scotland`,
+            label = ifelse(Year == max(Year), percent(`South Scotland`, accuracy = 1), ""),
             hjust = 0.5,
             vjust = .5,
             fontface = 2
           ),
-          colour = ChartColours[3],
+          colour = BarColours[2],
           family = "Century Gothic"
         ) +
         geom_point(
           data = tail(GasBillPaymentMethods, 1),
           aes(x = Year,
-              y = `Credit`,
+              y = `South Scotland`,
               show_guide = FALSE),
-          colour = ChartColours[3],
+          colour = BarColours[2],
           size = 4,
           family = "Century Gothic"
         ) +
         annotate(
           "text",
           x = mean(GasBillPaymentMethods$Year),
-          y = mean(GasBillPaymentMethods$`Credit`),
-          label = "Credit",
+          y = mean(GasBillPaymentMethods$`South Scotland`),
+          label = "South Scotland",
           hjust = 0.5,
-          vjust = -.5,
-          colour = ChartColours[3],
+          vjust = 3.5,
+          colour = BarColours[2],
           fontface = 2,
           family = "Century Gothic"
         ) +
         geom_line(
-          aes(y = `Direct Debit`,
-              label = paste0(`Direct Debit` * 100, "%")),
-          colour = ChartColours[4],
+          aes(y = `Great Britain`,
+              label = paste0(`Great Britain` * 100, "%")),
+          colour = BarColours[3],
           size = 1.5,
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
-            x = Year - .45,
-            y = `Direct Debit`,
-            label = ifelse(Year == min(Year), percent(`Direct Debit`, accuracy = 1), ""),
+            x = Year - (width * 0.05),
+            y = `Great Britain`,
+            label = ifelse(Year == min(Year), percent(`Great Britain`, accuracy = 1), ""),
             hjust = 0.5,
             fontface = 2
           ),
-          colour = ChartColours[4],
+          colour = BarColours[3],
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
-            x = Year + .8,
-            y = `Direct Debit`,
-            label = ifelse(Year == max(Year), percent(`Direct Debit`,  accuracy = 1), ""),
+            x = Year + (width * 0.1),
+            y = `Great Britain`,
+            label = ifelse(Year == max(Year), percent(`Great Britain`,  accuracy = 1), ""),
             hjust = 0.5,
             fontface = 2
           ),
-          colour = ChartColours[4],
+          colour = BarColours[3],
           family = "Century Gothic"
         ) +
         geom_point(
           data = tail(GasBillPaymentMethods, 1),
           aes(x = Year,
-              y = `Direct Debit`,
+              y = `Great Britain`,
               
               show_guide = FALSE),
           size = 4,
-          colour = ChartColours[4],
+          colour = BarColours[3],
           family = "Century Gothic"
         ) +
         annotate(
           "text",
           x = mean(GasBillPaymentMethods$Year),
-          y = mean(GasBillPaymentMethods$`Direct Debit`),
-          label = "Direct Debit",
+          y = mean(GasBillPaymentMethods$`Great Britain`),
+          label = "Great Britain",
           hjust = 0.5,
-          vjust = 2.5,
-          colour = ChartColours[4],
+          vjust = -5.5,
+          colour = BarColours[3],
           fontface = 2,
           family = "Century Gothic"
         ) +
@@ -1000,7 +989,8 @@ FixedTariffs <- function(input, output, session) {
                     ChartColours)
       
       
-      GasBillPaymentMethodsChart
+      GasBillPaymentMethodsChart <- GasBillPaymentMethodsChart +
+        ylim(0 - (max(GasBillPaymentMethods[2:4])*0.01),(max(GasBillPaymentMethods[2:4])*1.15))
       
       ggsave(
         file,
