@@ -141,12 +141,15 @@ ECOMeasures <- function(input, output, session) {
   
   output$ECOMeasuresPlot <- renderPlotly  ({
     
-    Data <- read_delim("Processed Data/Output/ECO/ECOMeasuresTotals.txt", 
-                       "\t", escape_double = FALSE, trim_ws = TRUE, col_names = FALSE)
-    
-    
-    
-    Data <- as_tibble(t(Data))
+    Data <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "ECO",
+      col_names = FALSE,
+      skip = 12,
+      n_max = 7
+    )
+
+    Data <- as_tibble(t(Data))[1:3]
     
     names(Data) <- unlist(Data[1,])
     
