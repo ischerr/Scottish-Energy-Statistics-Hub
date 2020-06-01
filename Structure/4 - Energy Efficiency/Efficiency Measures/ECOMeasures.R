@@ -148,7 +148,7 @@ ECOMeasures <- function(input, output, session) {
       skip = 12,
       n_max = 7
     )
-    
+
     Data <- as_tibble(t(Data))[1:3]
     
     names(Data) <- unlist(Data[1,])
