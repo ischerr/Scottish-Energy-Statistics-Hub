@@ -492,6 +492,9 @@ ui <- shinyUI(fluidPage(
         tabPanel(title = "Energy Balance",
                  value = "EnBalance",
                  EnBalanceOutput("EnBalance")),
+        tabPanel(title = "Generation and Supply",
+                 value = "ScotGenSupply",
+                 ScotGenSupplyOutput("ScotGenSupply")),
         tabPanel(title = "Energy Economy",
                  value = "EnEconomy",
                  EnEconomyOutput("EnEconomy"))
