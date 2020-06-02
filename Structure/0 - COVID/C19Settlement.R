@@ -52,7 +52,7 @@ C19SettlementOutput <- function(id) {
     tabsetPanel(
       tabPanel("Demand by settlement period",
     fluidRow(
-    column(10, h3("Data - Electricity demand by settlement period, week commencing 18/05/2020 and equivalent week in 2019.", style = "color: #5d8be1;  font-weight:bold")),
+    column(10, h3("Data - Electricity demand by settlement period, week commencing 25/05/2020 and equivalent week in 2019.", style = "color: #5d8be1;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -96,7 +96,7 @@ C19Settlement <- function(input, output, session) {
 
   output$C19SettlementSubtitle <- renderText({
     
-    paste("Scotland, week commencing 18/05/2020 and equivalent week in 2019")
+    paste("Scotland, week commencing 25/05/2020 and equivalent week in 2019")
   })
   
   output$C19SettlementPlot <- renderPlotly  ({
@@ -108,7 +108,7 @@ C19Settlement <- function(input, output, session) {
     
     names(ElecDemandHalfHourly) <- c("Date", "SettlementPeriod", "Total", "Quarter")
     
-    ElecDemandHalfHourly$Date <- dmy(ElecDemandHalfHourly$Date)
+    ElecDemandHalfHourly$Date <- ymd(ElecDemandHalfHourly$Date)
     
     ElecDemandHalfHourly$Year <-year(ElecDemandHalfHourly$Date)
     
@@ -134,7 +134,7 @@ C19Settlement <- function(input, output, session) {
     # 
     # max(x$Week)}
     
-    MaxWeek = 21
+    MaxWeek = 22
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week == MaxWeek),] 
     
@@ -145,7 +145,7 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly  <- dcast(ElecDemandHalfHourly, id + SettlementPeriod + Weekday ~ Year, value.var = 'Total')
     
-    ElecDemandHalfHourly$Date <- ymd("2020/05/18")
+    ElecDemandHalfHourly$Date <- ymd("2020/05/25")
     
     ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date) + 1
     ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date) + 2
@@ -233,7 +233,7 @@ C19Settlement <- function(input, output, session) {
     
     names(ElecDemandHalfHourly) <- c("Date", "SettlementPeriod", "Total", "Quarter")
     
-    ElecDemandHalfHourly$Date <- dmy(ElecDemandHalfHourly$Date)
+    ElecDemandHalfHourly$Date <- ymd(ElecDemandHalfHourly$Date)
     
     ElecDemandHalfHourly$Year <-year(ElecDemandHalfHourly$Date)
     
@@ -259,7 +259,7 @@ C19Settlement <- function(input, output, session) {
     # 
     # max(x$Week)}
     
-    MaxWeek = 21
+    MaxWeek = 22
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week == MaxWeek),] 
     
@@ -270,7 +270,7 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly  <- dcast(ElecDemandHalfHourly, id + SettlementPeriod + Weekday ~ Year, value.var = 'Total')
     
-    ElecDemandHalfHourly$Date <- ymd("2020/05/18")
+    ElecDemandHalfHourly$Date <- ymd("2020/05/25")
     
     ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date) + 1
     ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date) + 2
@@ -298,17 +298,17 @@ C19Settlement <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Electricity demand by settlement period, week commencing 18/05/2020 and equivalent week in 2019",
+        title = "Electricity demand by settlement period, week commencing 25/05/2020 and equivalent week in 2019",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Electricity demand by settlement period, week commencing 18/05/2020 and equivalent week in 2019',
+            title = 'Electricity demand by settlement period, week commencing 25/05/2020 and equivalent week in 2019',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Electricity demand by settlement period, week commencing 18/05/2020 and equivalent week in 2019')
+               title = 'Electricity demand by settlement period, week commencing 25/05/2020 and equivalent week in 2019')
         ),
         
         # customize the length menu
@@ -336,7 +336,7 @@ C19Settlement <- function(input, output, session) {
     
     names(ElecDemandHalfHourly) <- c("Date", "SettlementPeriod", "Total", "Quarter")
     
-    ElecDemandHalfHourly$Date <- dmy(ElecDemandHalfHourly$Date)
+    ElecDemandHalfHourly$Date <- ymd(ElecDemandHalfHourly$Date)
     
     ElecDemandHalfHourly$Year <-year(ElecDemandHalfHourly$Date)
     
@@ -362,7 +362,7 @@ C19Settlement <- function(input, output, session) {
     # 
     # max(x$Week)}
     
-    MaxWeek = 21
+    MaxWeek = 22
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week <= MaxWeek),] 
     
@@ -478,7 +478,7 @@ C19Settlement <- function(input, output, session) {
     
     names(ElecDemandHalfHourly) <- c("Date", "SettlementPeriod", "Total", "Quarter")
     
-    ElecDemandHalfHourly$Date <- dmy(ElecDemandHalfHourly$Date)
+    ElecDemandHalfHourly$Date <- ymd(ElecDemandHalfHourly$Date)
     
     ElecDemandHalfHourly$Year <-year(ElecDemandHalfHourly$Date)
     
@@ -504,7 +504,7 @@ C19Settlement <- function(input, output, session) {
     # 
     # max(x$Week)}
     
-    MaxWeek = 21
+    MaxWeek = 22
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week <= MaxWeek),] 
     
@@ -588,7 +588,7 @@ C19Settlement <- function(input, output, session) {
       
       names(ElecDemandHalfHourly) <- c("Date", "SettlementPeriod", "Total", "Quarter")
       
-      ElecDemandHalfHourly$Date <- dmy(ElecDemandHalfHourly$Date)
+      ElecDemandHalfHourly$Date <- ymd(ElecDemandHalfHourly$Date)
       
       ElecDemandHalfHourly$Year <-year(ElecDemandHalfHourly$Date)
       
@@ -614,7 +614,7 @@ C19Settlement <- function(input, output, session) {
       # 
       # max(x$Week)}
       
-      MaxWeek = 21
+      MaxWeek = 22
       
       ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week == MaxWeek),] 
       
@@ -625,7 +625,7 @@ C19Settlement <- function(input, output, session) {
       
       ElecDemandHalfHourly  <- dcast(ElecDemandHalfHourly, id + SettlementPeriod + Weekday ~ Year, value.var = 'Total')
       
-      ElecDemandHalfHourly$Date <- ymd("2020/05/18")
+      ElecDemandHalfHourly$Date <- ymd("2020/05/25")
       
       ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date) + 1
       ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date) + 2
@@ -874,7 +874,7 @@ C19Settlement <- function(input, output, session) {
           title = plottitle,
           face = 2,
           subtitle = paste(
-            "Scotland, week commencing 18/05/2020 and equivalent week in 2019"
+            "Scotland, week commencing 25/05/2020 and equivalent week in 2019"
           )
         )+
         
@@ -904,7 +904,7 @@ output$C19SettlementRolling.png <- downloadHandler(
     
     names(ElecDemandHalfHourly) <- c("Date", "SettlementPeriod", "Total", "Quarter")
     
-    ElecDemandHalfHourly$Date <- dmy(ElecDemandHalfHourly$Date)
+    ElecDemandHalfHourly$Date <- ymd(ElecDemandHalfHourly$Date)
     
     ElecDemandHalfHourly$Year <-year(ElecDemandHalfHourly$Date)
     
@@ -930,7 +930,7 @@ output$C19SettlementRolling.png <- downloadHandler(
     # 
     # max(x$Week)}
     
-    MaxWeek = 21
+    MaxWeek = 22
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week <= MaxWeek),] 
     
