@@ -7,23 +7,23 @@ require("DT")
 
 source("Structure/Global.R")
 
-EnBalanceOutput <- function(id) {
+ScotGenSupplyOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
       tabPanel("Balance",
                fluidRow(column(8,
                                h3("Scottish energy balance", style = "color: #1A5D38;  font-weight:bold"),
-                               h4(textOutput(ns('EnBalanceSubtitle')), style = "color: #1A5D38;")
+                               h4(textOutput(ns('ScotGenSupplySubtitle')), style = "color: #1A5D38;")
                ),
                column(
                  4, style = 'padding:15px;',
-                 downloadButton(ns('EnBalance.png'), 'Download Graph', style="float:right")
+                 downloadButton(ns('ScotGenSupply.png'), 'Download Graph', style="float:right")
                )),
                
                tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
-               #dygraphOutput(ns("EnBalancePlot")),
-               plotlyOutput(ns("EnBalancePlot"), height = "900px")%>% withSpinner(color="#1A5D38"),
+               #dygraphOutput(ns("ScotGenSupplyPlot")),
+               plotlyOutput(ns("ScotGenSupplyPlot"), height = "900px")%>% withSpinner(color="#1A5D38"),
                p("* TTL = Transfers, Transformation and Losses"),
                tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")),
       tabPanel("Simplified flow chart",
@@ -37,7 +37,7 @@ EnBalanceOutput <- function(id) {
                )),
                
                tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
-               #dygraphOutput(ns("EnBalancePlot")),
+               #dygraphOutput(ns("ScotGenSupplyPlot")),
                
                fluidRow(
                  plotlyOutput(ns("SimplifiedFlowPlot1"))%>% withSpinner(color="#1A5D38")),
@@ -59,21 +59,21 @@ EnBalanceOutput <- function(id) {
       tabPanel("Energy balance data",
     fluidRow(
       column(8, h3("Data - Supply (ktoe)", style = "color: #1A5D38;  font-weight:bold")),
-      column(2, style = "padding:15px",  downloadButton(ns('EnBalanceData.xlsx'), 'Download Full Data', style="float:right")),
+      column(2, style = "padding:15px",  downloadButton(ns('ScotGenSupplyData.xlsx'), 'Download Full Data', style="float:right")),
       column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Tables", style = "float:right; "))
     ),
     fluidRow(
-      column(12, DTOutput(ns("EnBalanceTable1"))%>% withSpinner(color="#1A5D38"))),
+      column(12, DTOutput(ns("ScotGenSupplyTable1"))%>% withSpinner(color="#1A5D38"))),
     fluidRow(
       column(10, h3("Data - Transfers and Transformation (ktoe)", style = "color: #1A5D38;  font-weight:bold"))
     ),
     fluidRow(
-      column(12, DTOutput(ns("EnBalanceTable2"))%>% withSpinner(color="#1A5D38"))),
+      column(12, DTOutput(ns("ScotGenSupplyTable2"))%>% withSpinner(color="#1A5D38"))),
     fluidRow(
       column(10, h3("Data - Consumption (ktoe)", style = "color: #1A5D38;  font-weight:bold"))
     ),
     fluidRow(
-      column(12, DTOutput(ns("EnBalanceTable3"))%>% withSpinner(color="#1A5D38")))),
+      column(12, DTOutput(ns("ScotGenSupplyTable3"))%>% withSpinner(color="#1A5D38")))),
     tabPanel("Energy flow data",
              
              fluidRow(
@@ -123,28 +123,28 @@ EnBalanceOutput <- function(id) {
 
 
 ###### Server ######
-EnBalance <- function(input, output, session) {
+ScotGenSupply <- function(input, output, session) {
 
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
-  print("EnBalance.R")
+  print("ScotGenSupply.R")
   ###### Renewable Energy ###### ######
   
   ### From ESD ###
   
-  output$EnBalanceSubtitle <- renderText({
+  output$ScotGenSupplySubtitle <- renderText({
     
     paste("Scotland, 2018")
   })
   
-  output$EnBalancePlot <- renderPlotly  ({
+  output$ScotGenSupplyPlot <- renderPlotly  ({
     
-    EnergyLinks <- as.data.frame(read_excel("Structure/1 - Whole System/EnBalance.xlsx", 
+    EnergyLinks <- as.data.frame(read_excel("Structure/1 - Whole System/SankeyTest.xlsx", 
                                             sheet = "links"))
     
-    EnergyNodes <- as.data.frame(read_excel("Structure/1 - Whole System/EnBalance.xlsx", 
+    EnergyNodes <- as.data.frame(read_excel("Structure/1 - Whole System/SankeyTest.xlsx", 
                                             sheet = "nodes"))
     
     
@@ -191,21 +191,21 @@ EnBalance <- function(input, output, session) {
   })
   
   
-  output$EnBalanceTable1 = renderDT({
+  output$ScotGenSupplyTable1 = renderDT({
     
-    EnBalance <- read_excel(
+    ScotGenSupply <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Energy balance",
       skip = 29,
       n_max = 11
     )
-    names(EnBalance)[1] <- ""
+    names(ScotGenSupply)[1] <- ""
     
-    EnBalance <- tail(EnBalance, -1)
+    ScotGenSupply <- tail(ScotGenSupply, -1)
     
-    EnBalance[2:10] %<>% lapply(function(x) as.numeric(as.character(x)))
+    ScotGenSupply[2:10] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    EnBalance[1] <- c( 
+    ScotGenSupply[1] <- c( 
       "Indigenous production", 
       "Imports", "...Rest of world", 
       "...Rest of UK", "Exports", 
@@ -217,7 +217,7 @@ EnBalance <- function(input, output, session) {
     )
     
     datatable(
-      EnBalance,
+      ScotGenSupply,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -255,21 +255,21 @@ EnBalance <- function(input, output, session) {
     
   })
   
-  output$EnBalanceTable2 = renderDT({
+  output$ScotGenSupplyTable2 = renderDT({
     
-    EnBalance <- read_excel(
+    ScotGenSupply <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Energy balance",
       skip = 29,
       n_max = 19
     )
-    names(EnBalance)[1] <- ""
+    names(ScotGenSupply)[1] <- ""
     
-    EnBalance <- tail(EnBalance, -12)
+    ScotGenSupply <- tail(ScotGenSupply, -12)
     
-    EnBalance[2:10] %<>% lapply(function(x) as.numeric(as.character(x)))
+    ScotGenSupply[2:10] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    EnBalance[1] <- c( 
+    ScotGenSupply[1] <- c( 
       "Primary Demand",
       "Transfers",
       "Transformation",
@@ -280,7 +280,7 @@ EnBalance <- function(input, output, session) {
     )
     
     datatable(
-      EnBalance,
+      ScotGenSupply,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -319,21 +319,21 @@ EnBalance <- function(input, output, session) {
     
   })
   
-  output$EnBalanceTable3 = renderDT({
+  output$ScotGenSupplyTable3 = renderDT({
     
-    EnBalance <- read_excel(
+    ScotGenSupply <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Energy balance",
       skip = 29,
       n_max = 25
     )
-    names(EnBalance)[1] <- ""
+    names(ScotGenSupply)[1] <- ""
     
-    EnBalance <- tail(EnBalance, -19)
+    ScotGenSupply <- tail(ScotGenSupply, -19)
     
-    EnBalance[2:10] %<>% lapply(function(x) as.numeric(as.character(x)))
+    ScotGenSupply[2:10] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    EnBalance[1] <- c( 
+    ScotGenSupply[1] <- c( 
       "Final Consumption",
       "Non-energy Use",
       "Industry",
@@ -343,7 +343,7 @@ EnBalance <- function(input, output, session) {
     )
     
     datatable(
-      EnBalance,
+      ScotGenSupply,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -386,7 +386,7 @@ EnBalance <- function(input, output, session) {
     tagList(column(12,
                    
                    HTML(
-                     paste(readtext("Structure/1 - Whole System/EnBalance.txt")[2])
+                     paste(readtext("Structure/1 - Whole System/ScotGenSupply.txt")[2])
                      
                    )))
   })
@@ -396,18 +396,18 @@ EnBalance <- function(input, output, session) {
   })
   
   
-  output$EnBalance.png <- downloadHandler(
-    filename = "EnBalance.png",
+  output$ScotGenSupply.png <- downloadHandler(
+    filename = "ScotGenSupply.png",
     content = function(file) {
-      writePNG(readPNG("Structure/1 - Whole System/EnBalance.png"), file) 
+      writePNG(readPNG("Structure/1 - Whole System/ScotGenSupply.png"), file) 
     }
   )
   
   
-  output$EnBalanceData.xlsx <- downloadHandler(
-    filename = "EnBalanceData.xlsx",
+  output$ScotGenSupplyData.xlsx <- downloadHandler(
+    filename = "ScotGenSupplyData.xlsx",
     content <- function(file) {
-      file.copy("Structure/1 - Whole System/EnBalanceData.xlsx", file)
+      file.copy("Structure/1 - Whole System/ScotGenSupplyData.xlsx", file)
     })  
   
   output$SimplifiedFlowSubtitle <- renderText({
@@ -613,27 +613,27 @@ EnBalance <- function(input, output, session) {
   })
   
   observeEvent(input$ToggleTable1, {
-    toggle("EnBalanceTable1")
-    toggle("EnBalanceTable2")
-    toggle("EnBalanceTable3")
+    toggle("ScotGenSupplyTable1")
+    toggle("ScotGenSupplyTable2")
+    toggle("ScotGenSupplyTable3")
   })
   
   
   output$EnFlowTable1 = renderDT({
     
-    EnBalance <- read_excel(
+    ScotGenSupply <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "PieChart Working",
       skip = 1,
       n_max = 6
     )[12:13]
     
-    names(EnBalance) <- c("Fuel", "Percentage")
+    names(ScotGenSupply) <- c("Fuel", "Percentage")
     
-    EnBalance$Percentage <- EnBalance$Percentage/ sum(EnBalance$Percentage)
+    ScotGenSupply$Percentage <- ScotGenSupply$Percentage/ sum(ScotGenSupply$Percentage)
     
     datatable(
-      EnBalance,
+      ScotGenSupply,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -678,19 +678,19 @@ EnBalance <- function(input, output, session) {
   
   output$EnFlowTable2 = renderDT({
     
-    EnBalance <- read_excel(
+    ScotGenSupply <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "PieChart Working",
       skip = 1,
       n_max = 2
     )[15:16]
     
-    names(EnBalance) <- c("Output", "Percentage")
+    names(ScotGenSupply) <- c("Output", "Percentage")
     
-    EnBalance$Percentage <- EnBalance$Percentage/ sum(EnBalance$Percentage)
+    ScotGenSupply$Percentage <- ScotGenSupply$Percentage/ sum(ScotGenSupply$Percentage)
     
     datatable(
-      EnBalance,
+      ScotGenSupply,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -729,19 +729,19 @@ EnBalance <- function(input, output, session) {
   
   output$EnFlowTable3 = renderDT({
     
-    EnBalance <- read_excel(
+    ScotGenSupply <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "PieChart Working",
       skip = 1,
       n_max = 3
     )[18:19]
     
-    names(EnBalance) <- c("Output", "Percentage")
+    names(ScotGenSupply) <- c("Output", "Percentage")
     
-    EnBalance$Percentage <- EnBalance$Percentage/ sum(EnBalance$Percentage)
+    ScotGenSupply$Percentage <- ScotGenSupply$Percentage/ sum(ScotGenSupply$Percentage)
     
     datatable(
-      EnBalance,
+      ScotGenSupply,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -780,19 +780,19 @@ EnBalance <- function(input, output, session) {
   
   output$EnFlowTable4 = renderDT({
     
-    EnBalance <- read_excel(
+    ScotGenSupply <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "PieChart Working",
       skip = 1,
       n_max = 6
     )[21:22]
     
-    names(EnBalance) <- c("Fuel", "Percentage")
+    names(ScotGenSupply) <- c("Fuel", "Percentage")
     
-    EnBalance$Percentage <- EnBalance$Percentage/ sum(EnBalance$Percentage)
+    ScotGenSupply$Percentage <- ScotGenSupply$Percentage/ sum(ScotGenSupply$Percentage)
     
     datatable(
-      EnBalance,
+      ScotGenSupply,
       extensions = 'Buttons',
       
       rownames = FALSE,
