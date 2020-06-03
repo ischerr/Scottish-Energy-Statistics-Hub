@@ -337,6 +337,7 @@ DualFuelBreakdown <- function(input, output, session) {
       
       DualFuelBreakdown <- melt(DualFuelBreakdown, id.vars = "Region")
       
+      DualFuelBreakdown$Region <- factor(DualFuelBreakdown$Region, levels = rev(unique(DualFuelBreakdown$Region)))
       
       DualFuelBreakdown$variable <-
         factor(DualFuelBreakdown$variable,
