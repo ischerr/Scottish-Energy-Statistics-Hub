@@ -372,7 +372,7 @@ DualFuelBreakdown <- function(input, output, session) {
         geom_text(
           aes(
             y = 0 - .12,
-            label = ifelse(variable == "EBIT", Region, ""),
+            label = ifelse(variable == "EBIT", as.character(Region), ""),
             color = ChartColours[2]
           ),
           fontface = 2,
