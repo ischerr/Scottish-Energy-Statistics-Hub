@@ -667,7 +667,7 @@ DualFuelBreakdown <- function(input, output, session) {
         geom_text(
           aes(x = 2.7,
               y = (2.5/5)*1,
-              label = "Env & Soc\ncosts"),
+              label = "Policy\ncosts"),
           fontface = 2,
           colour = BarColours[3],
           family = "Century Gothic",
@@ -676,7 +676,7 @@ DualFuelBreakdown <- function(input, output, session) {
         geom_text(
           aes(x = 2.7,
               y = (3.5/5)*1,
-              label = "Other direct\ncosts"),
+              label = "Operating\ncosts"),
           fontface = 2,
           colour = BarColours[4],
           family = "Century Gothic",
@@ -685,7 +685,7 @@ DualFuelBreakdown <- function(input, output, session) {
         geom_text(
           aes(x = 2.7,
               y = (4.5/5)*1,
-              label = "Operating\ncosts"),
+              label = "EBIT"),
           fontface = 2,
           colour = BarColours[5],
           family = "Century Gothic",
@@ -820,7 +820,7 @@ DualFuelBreakdown <- function(input, output, session) {
         geom_text(
           aes(x = height *1.11,
               y = (2.5/5)*1,
-              label = "Env & Soc\ncosts"),
+              label = "Policy\ncosts"),
           fontface = 2,
           colour = BarColours[3],
           family = "Century Gothic",
@@ -829,7 +829,7 @@ DualFuelBreakdown <- function(input, output, session) {
         geom_text(
           aes(x = height *1.11,
               y = (3.5/5)*1,
-              label = "Other direct\ncosts"),
+              label = "Operating\ncosts"),
           fontface = 2,
           colour = BarColours[4],
           family = "Century Gothic",
@@ -838,7 +838,7 @@ DualFuelBreakdown <- function(input, output, session) {
         geom_text(
           aes(x = height *1.11,
               y = (4.5/5)*1,
-              label = "Operating\ncosts"),
+              label = "EBIT"),
           fontface = 2,
           colour = BarColours[5],
           family = "Century Gothic",
@@ -976,7 +976,7 @@ DualFuelBreakdown <- function(input, output, session) {
         geom_text(
           aes(x = height *1.11,
               y = (2.5/5)*1,
-              label = "Env & Soc\ncosts"),
+              label = "Policy\ncosts"),
           fontface = 2,
           colour = BarColours[3],
           family = "Century Gothic",
@@ -985,7 +985,7 @@ DualFuelBreakdown <- function(input, output, session) {
         geom_text(
           aes(x = height *1.11,
               y = (3.5/5)*1,
-              label = "Other direct\ncosts"),
+              label = "Operating\ncosts"),
           fontface = 2,
           colour = BarColours[4],
           family = "Century Gothic",
@@ -994,7 +994,7 @@ DualFuelBreakdown <- function(input, output, session) {
         geom_text(
           aes(x = height *1.11,
               y = (4.5/5)*1,
-              label = "Operating\ncosts"),
+              label = "EBIT"),
           fontface = 2,
           colour = BarColours[5],
           family = "Century Gothic",
