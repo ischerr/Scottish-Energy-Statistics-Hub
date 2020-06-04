@@ -23,7 +23,7 @@ ScotGenSupplyOutput <- function(id) {
                
                tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
                #dygraphOutput(ns("ScotGenSupplyPlot")),
-               plotlyOutput(ns("ScotGenSupplyPlot"), height = "900px")%>% withSpinner(color="#1A5D38"),
+               forceNetworkOutput(ns("ScotGenSupplyPlot"), height = "900px")%>% withSpinner(color="#1A5D38"),
                p("* TTL = Transfers, Transformation and Losses"),
                tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")),
       tabPanel("Simplified flow chart",
@@ -139,53 +139,36 @@ ScotGenSupply <- function(input, output, session) {
     paste("Scotland, 2018")
   })
   
-  output$ScotGenSupplyPlot <- renderPlotly  ({
+  output$ScotGenSupplyPlot <- renderForceNetwork  ({
     
-    EnergyLinks <- as.data.frame(read_excel("Structure/1 - Whole System/SankeyTest.xlsx", 
-                                            sheet = "links"))
+    library(networkD3)
     
-    EnergyNodes <- as.data.frame(read_excel("Structure/1 - Whole System/SankeyTest.xlsx", 
-                                            sheet = "nodes"))
+    # Load data
+    data(MisLinks)
+    data(MisNodes)
     
+    xNodes <- as.data.frame(read_excel("Structure/1 - Whole System/Linkstest.xlsx", 
+                                       sheet = "Nodes"))
     
-    p <- plot_ly(
-      type = "sankey",
-      domain = list(
-        x =  c(0,1),
-        y =  c(0,1)
-      ),
-      orientation = "h",
-      valueformat = ".0f",
-      valuesuffix = " ktoe",
-      
-      node = list(
-        label = EnergyNodes$Name,
-        pad = 10,
-        thickness = 30,
-        colour = "white",
-        line = list(
-          color = "black",
-          width = 0.5
-        )
-      ),
-      
-      link = list(
-        source = EnergyLinks$Source,
-        target = EnergyLinks$Target,
-        value =  EnergyLinks$Value
-      )
-    ) %>% 
-      layout(
-        xaxis = list(showgrid = F, zeroline = F),
-        yaxis = list(showgrid = F, zeroline = F),
-        plot_bgcolor = 'rgba(22,5e,a8,FF)',
-        paper_bgcolor = 'rgba(22,5e,a8,FF)'
-      )
+    xLinks <- as.data.frame(read_excel("Structure/1 - Whole System/Linkstest.xlsx", 
+                                       sheet = "Links"))
     
-    p <- ggplotly(p)
-    
-    p
-    
+    # Plot
+    forceNetwork(Links = xLinks, Nodes = xNodes,
+                 Source = "source", 
+                 Target = "target",
+                 Value = "value", 
+                 NodeID = "name", 
+                 linkDistance = JS("function(d){return d.value * 100}"),
+                 Nodesize = "size",
+                 Group = "group", 
+                 fontSize = 15,
+                 opacity = 1, 
+                 height = 500,
+                 zoom = TRUE,
+                 opacityNoHover = .8, 
+                 arrows = TRUE, 
+                 charge = -3000)
     
     
   })
