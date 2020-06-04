@@ -25,21 +25,17 @@ system('fc-cache -f ~/.fonts')
   
 server <- function(input, output, session) {
   
+  ### Create List of Scripts, including filepath ###
+  SourceList <-
+    list.files(
+      "Structure",
+      full.names = TRUE,
+      recursive = TRUE,
+      pattern = "\\.R$"
+    )
 
-  # ### Create List of Scripts, including filepath ###
-  # SourceList <-
-  #   list.files(
-  #     "Structure",
-  #     full.names = TRUE,
-  #     recursive = TRUE,
-  #     pattern = "\\.R$"
-  #   )
-  # 
-  # ### Pass Each list item to Source() command ###
-  # sapply(SourceList, source)
-
-  
-
+  ### Pass Each list item to Source() command ###
+  sapply(SourceList, source)
 
   observe_helpers()
 
