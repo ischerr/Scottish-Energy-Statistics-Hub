@@ -23,7 +23,7 @@ ScotGenSupplyOutput <- function(id) {
                
                tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
                #dygraphOutput(ns("ScotGenSupplyPlot")),
-               forceNetworkOutput(ns("ScotGenSupplyPlot"), height = "900px")%>% withSpinner(color="#1A5D38"),
+              visNetworkOutput(ns("ScotGenSupplyPlot"), height = "900px")%>% withSpinner(color="#1A5D38"),
                p("* TTL = Transfers, Transformation and Losses"),
                tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")),
       tabPanel("Simplified flow chart",
@@ -139,36 +139,24 @@ ScotGenSupply <- function(input, output, session) {
     paste("Scotland, 2018")
   })
   
-  output$ScotGenSupplyPlot <- renderForceNetwork  ({
+  library(visNetwork)
+  library(readxl)
+  
+  output$ScotGenSupplyPlot <- renderVisNetwork({
     
-    library(networkD3)
+
     
-    # Load data
-    data(MisLinks)
-    data(MisNodes)
+    nodes <- as.data.frame(read_excel("Structure/1 - Whole System/Linkstest.xlsx", 
+                                      sheet = "Nodes"))
     
-    xNodes <- as.data.frame(read_excel("Structure/1 - Whole System/Linkstest.xlsx", 
-                                       sheet = "Nodes"))
+    edges <- as.data.frame(read_excel("Structure/1 - Whole System/Linkstest.xlsx", 
+                                      sheet = "Links"))
     
-    xLinks <- as.data.frame(read_excel("Structure/1 - Whole System/Linkstest.xlsx", 
-                                       sheet = "Links"))
+    visNetwork(nodes, edges) %>% 
+      visEdges(arrows = "to") %>% 
+      visHierarchicalLayout(direction = "LR", levelSeparation = 500)
     
-    # Plot
-    forceNetwork(Links = xLinks, Nodes = xNodes,
-                 Source = "source", 
-                 Target = "target",
-                 Value = "value", 
-                 NodeID = "name", 
-                 linkDistance = JS("function(d){return d.value * 100}"),
-                 Nodesize = "size",
-                 Group = "group", 
-                 fontSize = 15,
-                 opacity = 1, 
-                 height = 500,
-                 zoom = TRUE,
-                 opacityNoHover = .8, 
-                 arrows = TRUE, 
-                 charge = -3000)
+    
     
     
   })
