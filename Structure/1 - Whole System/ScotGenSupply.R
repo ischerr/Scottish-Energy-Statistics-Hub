@@ -139,8 +139,7 @@ ScotGenSupply <- function(input, output, session) {
     paste("Scotland, 2018")
   })
   
-  library(visNetwork)
-  library(readxl)
+
   
   output$ScotGenSupplyPlot <- renderVisNetwork({
     
