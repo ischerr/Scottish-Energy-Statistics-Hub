@@ -141,7 +141,7 @@ tabsetPanel(
                fluidRow(
                  column(12, dataTableOutput(ns("RenSourcesTable"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-  tabPanel("Summary",
+  tabPanel("Wind Summary",
            fluidRow(
              column(10, uiOutput(ns("TurbineDataDate"))),
              column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Tables", style = "float:right; "))
