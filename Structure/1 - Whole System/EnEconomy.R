@@ -631,168 +631,68 @@ EnEconomy <- function(input, output, session) {
     }
   )
   
+
   output$EnergySectorExportsSubtitle <- renderText({
-    EnergySectorExports <- read_excel("Structure/CurrentWorking.xlsx", 
-                                      sheet = "Energy economy", col_names = FALSE, 
-                                      skip = 12, n_max = 9)
-    
-    EnergySectorExports <- as.data.frame(t(EnergySectorExports))
-    
-    EnergySectorExports <- tail(EnergySectorExports[c(1,7:9)],-1)
-    EnergySectorExports %<>% lapply(function(x) as.numeric(as.character(x)))
-    EnergySectorExports[2:4] %<>% lapply(function(x) x /1000)
-    EnergySectorExports <- as.data.frame(EnergySectorExports)
-    names(EnergySectorExports) <- c("Year", "Exports", "rUK", "rWorld")
-    
-    
-    EnergySectorExports$Year <- as.numeric(substr(EnergySectorExports$Year, 1,4))
-    paste("Scotland,", min(EnergySectorExports$Year),"-", max(EnergySectorExports$Year))
+    GrowthExports <- read_delim("Processed Data/Output/Growth Exports/GrowthExports.txt", 
+                                "\t", escape_double = FALSE, trim_ws = TRUE)
+    paste("Scotland,", min(GrowthExports$Year),"-", max(GrowthExports$Year))
   })
   
   output$EnergySectorExports <- renderPlotly  ({
-    EnergySectorExports <- read_excel("Structure/CurrentWorking.xlsx", 
-                                      sheet = "Energy economy", col_names = FALSE, 
-                                      skip = 12, n_max = 9)
+    GrowthExports <- read_delim("Processed Data/Output/Growth Exports/GrowthExports.txt", 
+                                "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    EnergySectorExports <- as.data.frame(t(EnergySectorExports))
-    
-    EnergySectorExports <- tail(EnergySectorExports[c(1,7:9)],-1)
-    EnergySectorExports %<>% lapply(function(x) as.numeric(as.character(x)))
-    EnergySectorExports[2:4] %<>% lapply(function(x) x /1000)
-    EnergySectorExports <- as.data.frame(EnergySectorExports)
-    names(EnergySectorExports) <- c("Year", "Exports", "rUK", "rWorld")
-    
-    
-    EnergySectorExports$Year <- as.numeric(substr(EnergySectorExports$Year, 1,4))
-    
-    ### variables
     ChartColours <- c("#1a5d38", "#fc8d62", "#8da0cb")
-    sourcecaption = "Source: SG"
-    plottitle = "Exports associated with the energy sector"
     
-    EnergySectorExports$Year <-
-      paste0("01/01/", EnergySectorExports$Year)
+    GrowthExports$Year <-
+      paste0("01/01/", GrowthExports$Year)
     
-    EnergySectorExports$Year <- dmy(EnergySectorExports$Year)
+    GrowthExports$Year <- dmy(GrowthExports$Year)
     
-    EnergySectorExports[EnergySectorExports == 0] <- NA
-    
-    EnergySectorExports <- EnergySectorExports[complete.cases(EnergySectorExports),]
-    
-    p <-
-      plot_ly(
-        EnergySectorExports,
-        x = ~ Year,
-        y = ~ `Exports`,
-        name = "Total exports",
-        legendgroup = "1",
-        type = 'scatter',
-        mode = 'lines',
-        text = paste0(
-          "Total exports: \u00A3",
-          round(EnergySectorExports$`Exports`, digits = 3),
-          " billion\nYear: ",
-          format(EnergySectorExports$Year, "%Y")
-        ),
-        hoverinfo = 'text',
-        line = list(width = 6, color = ChartColours[1])
-      ) %>%
+    p <- plot_ly(
+      GrowthExports,
+      x = ~ Year,
+      y = ~ `UKExports`,
+      name = "UK exports",
+      legendgroup = "1",
+      type = 'scatter',
+      mode = 'none',
+      stackgroup = 'one',
+      text = paste0(
+        "UK exports: \u00A3",
+        round(GrowthExports$`UKExports`, digits = 3),
+        " billion\nYear: ",
+        format(GrowthExports$Year, "%Y")
+      ),
+      hoverinfo = 'text',
+      fillcolor = ChartColours[1]
+    )    %>%
       add_trace(
-        y = ~ `rUK`,
-        name = "Rest of UK",
-        legendgroup = "2",
-        mode = 'lines',
-        text = paste0(
-          "Exports to the rest of the U.K.: \u00A3",
-          round(EnergySectorExports$`rUK`, digits = 3),
-          " billion\nYear: ",
-          format(EnergySectorExports$Year, "%Y")
-        ),
-        hoverinfo = 'text',
-        line = list(width = 6, color = ChartColours[2], dash = "dash")
-      ) %>%
-      add_trace(
-        y = ~ `rWorld`,
-        name = "Rest of World",
-        legendgroup = "3",
-        mode = 'lines',
-        text = paste0(
-          "Exports to the rest of the World: \u00A3",
-          round(EnergySectorExports$`rWorld`, digits = 3),
-          " billion\nYear: ",
-          format(EnergySectorExports$Year, "%Y")
-        ),
-        hoverinfo = 'text',
-        line = list(width = 6, color = ChartColours[3], dash = "dash")
-      ) %>%
-      add_trace(
-        data = EnergySectorExports[nrow(EnergySectorExports), ],
-        x = ~ Year,
-        y = ~ `rUK`,
-        name = "rUK",
+        y = ~ `EUExports`,
+        name = "EU exports",
         legendgroup = "2",
         text = paste0(
-          "Exports to the rest of the UK: \u00A3",
-          round(EnergySectorExports$`rUK`, digits = 3),
+          "EU exports: \u00A3",
+          round(GrowthExports$`EUExports`, digits = 3),
           " billion\nYear: ",
-          format(EnergySectorExports$Year, "%Y")
+          format(GrowthExports$Year, "%Y")
         ),
         hoverinfo = 'text',
-        showlegend = FALSE ,
-        mode = 'markers',
-        marker = list(size = 18, color = ChartColours[3], dash = "dash")
-      ) %>%
+        fillcolor = ChartColours[2]
+      )   %>%
       add_trace(
-        data = EnergySectorExports[nrow(EnergySectorExports), ],
-        x = ~ Year,
-        y = ~ `Exports`,
-        name = "Exports",
-        legendgroup = "1",
-        text = paste0(
-          "Total exports: \u00A3",
-          round(EnergySectorExports$`Exports`, digits = 3),
-          " billion\nYear: ",
-          format(EnergySectorExports$Year, "%Y")
-        ),
-        hoverinfo = 'text',
-        showlegend = FALSE ,
-        mode = 'markers',
-        marker = list(size = 18, color = ChartColours[1])
-      ) %>%
-      add_trace(
-        data = EnergySectorExports[nrow(EnergySectorExports), ],
-        x = ~ Year,
-        y = ~ `rUK`,
-        name = "rUK",
-        legendgroup = "2",
-        text = paste0(
-          "Exports to the rest of the UK: \u00A3",
-          round(EnergySectorExports$`rUK`, digits = 3),
-          " billion\nYear: ",
-          format(EnergySectorExports$Year, "%Y")
-        ),
-        hoverinfo = 'text',
-        showlegend = FALSE ,
-        mode = 'markers',
-        marker = list(size = 18, color = ChartColours[2])
-      ) %>%
-      add_trace(
-        data = EnergySectorExports[nrow(EnergySectorExports), ],
-        x = ~ Year,
-        y = ~ `rWorld`,
-        name = "rWorld",
+        y = ~ `NonEUExports`,
+        name = "NonEU exports",
         legendgroup = "3",
         text = paste0(
-          "Exports to the rest of the World: \u00A3",
-          round(EnergySectorExports$`rWorld`, digits = 3),
-          "\nYear: ",
-          format(EnergySectorExports$Year, "%Y")
+          "Non EU exports: \u00A3",
+          round(GrowthExports$`NonEUExports`, digits = 3),
+          " billion\nYear: ",
+          format(GrowthExports$Year, "%Y")
         ),
         hoverinfo = 'text',
-        showlegend = FALSE ,
-        mode = 'markers',
-        marker = list(size = 18, color = ChartColours[3])
-      ) %>%
+        fillcolor = ChartColours[3]
+      )   %>%
       layout(
         legend = list(font = list(color = "#1A5D38"),
                       orientation = 'h'),
@@ -801,7 +701,7 @@ EnEconomy <- function(input, output, session) {
         hovername = 'text',
         xaxis = list(title = "",
                      showgrid = FALSE,
-                     range = c(min(EnergySectorExports$Year)-100, max(EnergySectorExports$Year)+100)),
+                     range = c(min(GrowthExports$Year)-100, max(GrowthExports$Year)+100)),
         yaxis = list(
           title = "\u00A3 billion",
           showgrid = TRUE,
@@ -813,6 +713,7 @@ EnEconomy <- function(input, output, session) {
       ) %>%
       config(displayModeBar = F)
     p
+    
     
   })
   
@@ -839,7 +740,12 @@ EnEconomy <- function(input, output, session) {
     
     EnergySectorExports[EnergySectorExports == 0] <- NA
     
-    names(EnergySectorExports) <- c("Year", "Employment - Excluding additional units registered for PAYE only", "Employment - Including additional PAYE only units", "Turnover (\u00A3b)", "GVA (\u00A3b)", "Total exports (\u00A3b)", "Exports to rest of the U.K. (\u00A3b)", "Exports to rest of the World (\u00A3b)")
+    GrowthExports <- read_delim("Processed Data/Output/Growth Exports/GrowthExports.txt", 
+                                           "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    EnergySectorExports <- merge(EnergySectorExports[1:5], GrowthExports)
+    
+    names(EnergySectorExports) <- c("Year", "Employment - Excluding additional units registered for PAYE only", "Employment - Including additional PAYE only units", "Turnover (\u00A3b)", "GVA (\u00A3b)",  "Exports to rest of the U.K. (\u00A3b)", "Exports to EU Countries (\u00A3b)", "Exports to Non-EU Countries (\u00A3b)")
     
     datatable(
       EnergySectorExports,
@@ -876,8 +782,7 @@ EnEconomy <- function(input, output, session) {
     ) %>% 
       
       formatRound(2:3, 0) %>% 
-      formatRound(4:8, 3) %>% 
-      formatStyle(7:8, fontStyle = "italic")
+      formatRound(4:8, 3) 
     
     
   })
@@ -1233,234 +1138,184 @@ EnEconomy <- function(input, output, session) {
     content = function(file) {
       
       
+      GrowthExports <- read_delim("Processed Data/Output/Growth Exports/GrowthExports.txt", 
+                                  "\t", escape_double = FALSE, trim_ws = TRUE)
       
-      EnergySectorExports <- read_excel("Structure/CurrentWorking.xlsx", 
-                                        sheet = "Energy economy", col_names = FALSE, 
-                                        skip = 12, n_max = 9)
+      GrowthExportsMin <- head(GrowthExports, 1)
       
-      EnergySectorExports <- as.data.frame(t(EnergySectorExports))
+      GrowthExportsMax <- tail(GrowthExports, 1)
       
-      EnergySectorExports <- tail(EnergySectorExports[c(1,7:9)],-1)
-      EnergySectorExports %<>% lapply(function(x) as.numeric(as.character(x)))
-      EnergySectorExports[2:4] %<>% lapply(function(x) x/1000)
-      EnergySectorExports <- as.data.frame(EnergySectorExports)
-      names(EnergySectorExports) <- c("Year", "Exports", "rUK", "rWorld")
+      GrowthExports <- melt(GrowthExports, id.vars = "Year")
+      
+      GrowthExports <- GrowthExports %>% mutate(variable = factor(variable),
+                                                variable = factor(variable, levels = rev(levels(variable))))
       
       
-      EnergySectorExports$Year <- as.numeric(substr(EnergySectorExports$Year, 1,4))
+      
       ### variables
-      ChartColours <- c("#1a5d38", "#66c2a5", "#fc8d62", "#8da0cb")
+      ChartColours <- c("#1a5d38", "#fc8d62", "#8da0cb")
       sourcecaption = "Source: SG"
       plottitle = "Exports associated with the energy sector"
       
-      #EnergySectorExports$OilPercentage <- PercentLabel(EnergySectorExports$Oil)
+      #GrowthExports$CavityPercentage <- PercentLabel(GrowthExports$Cavity)
       
-      EnergySectorExports[EnergySectorExports == 0] <- NA
       
-      EnergySectorExports <- EnergySectorExports[complete.cases(EnergySectorExports),]
-      
-      EnergySectorExportsChart <- EnergySectorExports %>%
-        ggplot(aes(x = Year), family = "Century Gothic") +
-        geom_line(
-          aes(
-            y = Exports,
-            
-            label = percent(Exports)
-          ),colour = ChartColours[1],
-          size = 1.5,
-          family = "Century Gothic"
+      GrowthExportsChart <- GrowthExports %>%
+        ggplot(aes(
+          x = Year,
+          y = value,
+          group = variable,
+          fill = variable
+        )) +
+        scale_fill_manual(
+          "variable",
+          values = c(
+            "UKExports" = ChartColours[1],
+            "EUExports" = ChartColours[2],
+            "NonEUExports" = ChartColours[3]
+          )
         ) +
-        geom_text(
-          aes(
-            x = Year-1.5,
-            y = Exports,
-            label = ifelse(Year == min(Year), paste0("\u00A3", format(round(Exports, digits = 3),nsmall = 0, big.mark = ",", trim = TRUE), "\nbillion"), ""),
-            hjust = 0.5,
-            
-            fontface = 2
-          ),colour = ChartColours[1],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year+1.5,
-            y = Exports,
-            label = ifelse(Year == max(Year), paste0("\u00A3", format(round(Exports, digits = 3),nsmall = 0, big.mark = ",", trim = TRUE), "\nbillion"), ""),
-            hjust = 0.5,
-            
-            fontface = 2
-          ),colour = ChartColours[1],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(EnergySectorExports, 1),
-          aes(
-            x = Year,
-            y = Exports,
-            
-            show_guide = FALSE
-          ),colour = ChartColours[1],
-          size = 4,
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = mean(Year)-3,
-            y = mean(Exports),
-            label = "Total\nExports",
-            hjust = 0.5,
-            vjust = 1,
-            
-            fontface = 2
-          ),colour = ChartColours[1],
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(
-            y = rUK,
-            
-            label = percent(Exports)
-          ), colour = ChartColours[3],
-          size = 1.5,
-          linetype = "dashed",
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year-1.5,
-            y = rUK,
-            label = ifelse(Year == min(Year), paste0("\u00A3", format(round(rUK, digits = 3),nsmall = 0, big.mark = ",", trim = TRUE), "\nbillion"), ""),
-            
-            vjust= 0.25,
-            fontface = 2
-          ),colour = ChartColours[3],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year+1.5,
-            y = rUK,
-            label = ifelse(Year == max(Year), paste0("\u00A3", format(round(rUK, digits = 3),nsmall = 0, big.mark = ",", trim = TRUE), "\nbillion"), ""),
-            hjust = 0.5,
-            
-            fontface = 2
-          ),colour = ChartColours[3],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(EnergySectorExports, 1),
-          aes(
-            x = Year,
-            y = rUK,
-            
-            show_guide = FALSE
-          ),colour = ChartColours[3],
-          size = 4,
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = mean(Year)+2,
-            y = mean(rUK)*1.1,
-            label = "Exports to\nrest of the U.K.",
-            hjust = 0.5,
-            vjust = 1,
-            
-            fontface = 2
-          ),colour = ChartColours[3],
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(
-            y = rWorld ,
-            
-            label = percent(Exports)
-          ),colour = ChartColours[4], linetype = "dashed",
-          size = 1.5,
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year-1.5,
-            y = rWorld,
-            label = ifelse(Year == min(Year), paste0("\u00A3", format(round(rWorld, digits = 3),nsmall = 0, big.mark = ",", trim = TRUE), "\nbillion"), ""),
-            hjust = 0.5,
-            vjust = .75,
-            fontface = 2
-          ),colour = ChartColours[4],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year+1.5,
-            y = rWorld,
-            label = ifelse(Year == max(Year), paste0("\u00A3", format(round(rWorld, digits = 3),nsmall = 0, big.mark = ",", trim = TRUE), "\nbillion"), ""),
-            hjust = 0.5,
-            
-            fontface = 2
-          ),colour = ChartColours[4],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(EnergySectorExports, 1),
-          aes(
-            x = Year,
-            y = rWorld,
-            
-            show_guide = FALSE
-          ),colour = ChartColours[4],
-          size = 4,
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = mean(Year),
-            y = mean(rWorld)*.75,
-            label = "Exports to\nrest of the World",
-            hjust = 0.5,
-            vjust = 1,
-            
-            fontface = 2
-          ),colour = ChartColours[4],
-          family = "Century Gothic"
-        ) +
+        geom_area(posistion = "fill") +
         geom_text(
           aes(
             x = Year,
             y = 0,
-            label = ifelse(Year == max(Year) |
-                             Year == min(Year), Year, ""),
-            hjust = 0.5,
+            label = ifelse(
+              Year == max(Year) |
+                Year == min(Year),
+              format(Year),
+              ""
+            ),
+            hjust = ifelse(Year == min(Year), 0, 1),
             vjust = 1.5,
-            fontface = 2
-          ),
-          colour = ChartColours[1],
+            colour = "white",
+            fontface = 2,
+            family = "Century Gothic"
+          )
+        ) +
+        annotate(
+          "text",
+          x = GrowthExportsMin$Year,
+          y = GrowthExportsMin$`UKExports` * 0.5,
+          label = paste0("\u00A3", format(round(GrowthExportsMin$`UKExports`, digits = 1),big.mark = ","), " bn"),
+          hjust = -.1,
+          colour = "white",
+          fontface = 2,
           family = "Century Gothic"
-        )
+        ) +
+        annotate(
+          "text",
+          x = GrowthExportsMin$Year,
+          y = (GrowthExportsMin$`EUExports` * 0.5) + GrowthExportsMin$`UKExports`,
+          label = paste0("\u00A3", format(round(GrowthExportsMin$`EUExports`, digits = 1),big.mark = ","), " bn"),
+          hjust = -.1,
+          vjust = 0,
+          colour = "white",
+          fontface = 2,
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = GrowthExportsMin$Year,
+          y = (GrowthExportsMin$`NonEUExports` * 0.5) + GrowthExportsMin$EUExports + GrowthExportsMin$`UKExports`,
+          label = paste0("\u00A3", format(round(GrowthExportsMin$`NonEUExports`, digits = 1),big.mark = ","), " bn"),
+          hjust = -.1,
+          vjust = -3,
+          colour = ChartColours[3],
+          fontface = 2,
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = GrowthExportsMax$Year,
+          y = GrowthExportsMax$`UKExports` * 0.5,
+          label = paste0("\u00A3", format(round(GrowthExportsMax$`UKExports`, digits = 1),big.mark = ","), " bn"),
+          hjust = 1.1,
+          colour = "white",
+          fontface = 2,
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = GrowthExportsMax$Year,
+          y = (GrowthExportsMax$`EUExports` * 0.5) + GrowthExportsMax$`UKExports`,
+          label = paste0("\u00A3", format(round(GrowthExportsMax$`EUExports`, digits = 1),big.mark = ","), " bn"),
+          hjust = 1.1,
+          vjust = 2.5,
+          colour = "white",
+          fontface = 2,
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = GrowthExportsMax$Year,
+          y = (GrowthExportsMax$`NonEUExports` * 0.5) + GrowthExportsMax$`EUExports` + GrowthExportsMax$`UKExports`,
+          label = paste0("\u00A3", format(round(GrowthExportsMax$`NonEUExports`, digits = 1),big.mark = ","), " bn"),
+          hjust = 1.1,
+          vjust = 2.5,
+          colour = "white",
+          fontface = 2,
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = 2004.5,
+          y = 8,
+          label = "Exports to the \nrest of the UK",
+          hjust = .5,
+          colour = ChartColours[1],
+          fontface = 2,
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = 2004.5,
+          y = 10,
+          label = "Exports to\nEU Countries",
+          hjust = .5,
+          colour = ChartColours[2],
+          fontface = 2,
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = 2004.5,
+          y = 12,
+          label = "Exports to\nNon-EU Countries",
+          hjust = .5,
+          colour = ChartColours[3],
+          fontface = 2,
+          family = "Century Gothic"
+        ) 
       
       
-      EnergySectorExportsChart <-
-        LinePercentChart(EnergySectorExportsChart,
-                         EnergySectorExports,
-                         plottitle,
-                         sourcecaption,
-                         ChartColours)
+      GrowthExportsChart
       
-      EnergySectorExportsChart <- EnergySectorExportsChart +
-        xlim(min(EnergySectorExports$Year) -2.4 , max(EnergySectorExports$Year) +2.4)+
-        ylim(-.1, max(EnergySectorExports$Exports+.5))
       
-      EnergySectorExportsChart
+      GrowthExportsChart <-
+        StackedArea(GrowthExportsChart,
+                    GrowthExports,
+                    plottitle,
+                    sourcecaption,
+                    ChartColours)
+      
+      
+      GrowthExportsChart <- GrowthExportsChart 
+      
+      
+      
       
       ggsave(
         file,
-        plot = EnergySectorExportsChart,
+        plot =  GrowthExportsChart,
         width = 14,
-        height = 15,
+        height = 16,
         units = "cm",
         dpi = 300
       )
     }
   )
   
+  
+
 }

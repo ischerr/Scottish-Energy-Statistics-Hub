@@ -159,11 +159,11 @@ C19Elec <- function(input, output, session) {
                 line = list(width = 4)
       ) %>% 
       add_trace(y = ~ `PostLockdown`,
-                name = "Last week of March to third week in May",
+                name = "Last week of March to last week in May",
                 type = 'bar',
                 legendgroup = "2",
                 text = paste0(
-                  "Average weekday electricity consumption in from the last week in March to third week of May: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
+                  "Average weekday electricity consumption in from the last week in March to last week of May: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
                   "Year: ", WeekdayElecDemand$Year, "\n"),
                 hoverinfo = 'text',
                 line = list(width = 4)
@@ -391,7 +391,7 @@ C19Elec <- function(input, output, session) {
     
     WeekdayElecDemand <- dcast(WeekdayElecDemand, Year ~ PostLockdown)
     
-    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "Last week of March to third week in May (GWh)")
+    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "Last week of March to last week in May (GWh)")
     datatable(
       WeekdayElecDemand,
       extensions = 'Buttons',
@@ -559,7 +559,7 @@ C19Elec <- function(input, output, session) {
       
       DailyDemand$DayofYear <- yday(DailyDemand$Date)
       
-      DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "First three weeks of March", "Last week of March to third week in May")
+      DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "First three weeks of March", "Last week of March to last week in May")
       
       WeekdayElecDemand <- DailyDemand
       
@@ -585,7 +585,7 @@ C19Elec <- function(input, output, session) {
           "variable",
           values = c(
             "First three weeks of March" = BarColours[3],
-            "Last week of March to third week in May" = BarColours[2]
+            "Last week of March to last week in May" = BarColours[2]
           )
         ) +
         geom_bar(position = "dodge",

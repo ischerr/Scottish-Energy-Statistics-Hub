@@ -37,7 +37,6 @@ server <- function(input, output, session) {
   # ### Pass Each list item to Source() command ###
   # sapply(SourceList, source)
 
-  
 
   observe_helpers()
 
@@ -513,12 +512,15 @@ ui <- shinyUI(fluidPage(
         tabPanel(title ="Electricity Generation", 
                  value = "ElecGen",
                  ElecGenOutput("ElecGen")),
-        tabPanel(title ="Renewable Electricity generation", 
+        tabPanel(title ="Renewable Electricity Generation", 
                  value = "RenElecGen",
                  RenElecGenOutput("RenElecGen")),
         tabPanel(title ="Renewable Electricity Capacity", 
                  value = "RenElecCapacity",
                  RenElecCapacityOutput("RenElecCapacity")),
+        tabPanel(title ="Renewable Electricity Pipeline", 
+                 value = "RenElecPipeline",
+                 RenElecPipelineOutput("RenElecPipeline")),
         tabPanel(title ="Electricity Consumption by Fuel", 
                  value = "ElecConsumptionFuel",
                  ElecConsumptionFuelOutput("ElecConsumptionFuel")),
@@ -677,6 +679,9 @@ ui <- shinyUI(fluidPage(
                    tabPanel(title = "Dual Fuel Bill Breakdown",
                             value = "DualFuelBreakdown",
                             DualFuelBreakdownOutput("DualFuelBreakdown")),
+                   tabPanel(title = "Fixed Tariffs",
+                            value = "FixedTariffs",
+                            FixedTariffsOutput("FixedTariffs")),
                    tabPanel(title = "Fuel Poverty",
                             value = "FuelPoverty",
                             FuelPovertyOutput("FuelPoverty")),

@@ -31,13 +31,23 @@ C19GasOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:;background-color:#5d8be1;"),
+    tabsetPanel(
+      tabPanel("Weekday Demand",
     fluidRow(
     column(10, h3("Data - Average weekday daily gas demand (GWh)", style = "color: #5d8be1;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("C19GasTable"))%>% withSpinner(color="#5d8be1"))),
-    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
+    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
+    tabPanel("Daily demand",
+             fluidRow(
+               column(10, h3("Data - Daily gas demand from start of March - 2020 vs 2019 (GWh)", style = "color: #5d8be1;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("C19GasRollingTable"))%>% withSpinner(color="#5d8be1"))),
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"))),
     fluidRow(
       column(2, p(" ")),
       column(2,
@@ -130,11 +140,11 @@ C19Gas <- function(input, output, session) {
                 line = list(width = 4)
       ) %>% 
       add_trace(y = ~ `PostLockdown`, 
-                name = "Last week of March to third week in May",
+                name = "Last week of March to last week in May",
                 type = 'bar',
                 legendgroup = "2",
                 text = paste0(
-                  "Average weekday gas consumption in from the last week in March to third week of May: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
+                  "Average weekday gas consumption in from the last week in March to last week of May: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
                   "Year: ", WeekdayElecDemand$Year, "\n"),
                 hoverinfo = 'text',
                 line = list(width = 4)
@@ -209,7 +219,7 @@ C19Gas <- function(input, output, session) {
     
     WeekdayElecDemand <- dcast(WeekdayElecDemand, Year ~ PostLockdown)
     
-    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "Last week of March to third week in May (GWh)")
+    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "Last week of March to last week in May (GWh)")
     datatable(
       WeekdayElecDemand,
       extensions = 'Buttons',
@@ -260,6 +270,9 @@ C19Gas <- function(input, output, session) {
     toggle("C19GasTable")
   })
   
+  observeEvent(input$ToggleTable2, {
+    toggle("C19GasRollingTable")
+  })
 
   
   observeEvent(input$ToggleText, {
@@ -299,7 +312,7 @@ C19Gas <- function(input, output, session) {
       
       DailyDemand$DayofYear <- yday(DailyDemand$Date)
       
-      DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "First three weeks of March", "Last week of March to third week in May")
+      DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "First three weeks of March", "Last week of March to last week in May")
       
       WeekdayElecDemand <- DailyDemand
       
@@ -325,7 +338,7 @@ C19Gas <- function(input, output, session) {
           "variable",
           values = c(
             "First three weeks of March" = BarColours[3],
-            "Last week of March to third week in May" = BarColours[2]
+            "Last week of March to last week in May" = BarColours[2]
           )
         ) +
         geom_bar(position = "dodge",
@@ -401,5 +414,79 @@ output$FullData <- downloadHandler(
               row.names = FALSE)
   }
 )
+
+output$C19GasRollingTable = renderDataTable({
+  
+  DailyDemand <- read_delim("CovidAnalysis/DailyDemand.txt", 
+                            "\t", escape_double = FALSE, trim_ws = TRUE)
+  
+  DailyDemand$Date <- ymd(DailyDemand$Date)
+  
+  DailyDemand$Year <-year(DailyDemand$Date)
+  
+  DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013),]
+  
+  DailyDemand$Month <-month(DailyDemand$Date)
+  
+  DailyDemand$Week <- isoweek(DailyDemand$Date)
+  
+  DailyDemand$Weekday <- weekdays(DailyDemand$Date)
+  
+  DailyDemand$DayofYear <- yday(DailyDemand$Date)
+  
+  DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "PostLockdown", "BeforeLockdown")
+  
+  DailyDemandFromMarch <- DailyDemand[which(DailyDemand$Week >= 2 & DailyDemand$Week <= 51),]
+  
+  DailyDemandFromMarch <- DailyDemandFromMarch[c(5,6,7,9,1,8,2)]
+  
+  DailyDemandFromMarch <- DailyDemandFromMarch %>% group_by(Year) %>% mutate(id = row_number())
+  
+  
+  DailyDemandFromMarch  <- dcast(DailyDemandFromMarch, id ~ Year, value.var = 'Gas')
+  
+  DailyDemandFromMarch$Year <- ymd("2020/01/05") + DailyDemandFromMarch$id
+  
+  DailyDemandFromMarch <- DailyDemandFromMarch[complete.cases(DailyDemandFromMarch),]
+  
+  DailyDemandFromMarch <- DailyDemandFromMarch[10:8]
+  
+  names(DailyDemandFromMarch) <- c("Date", "Daily gas demand in 2020 (GWh)", "Gas demand on equivalent day in 2019 (GWh)")
+  
+  datatable(
+    DailyDemandFromMarch,
+    extensions = 'Buttons',
+    
+    rownames = FALSE,
+    options = list(
+      paging = TRUE,
+      pageLength = -1,
+      searching = TRUE,
+      fixedColumns = FALSE,
+      autoWidth = TRUE,
+      ordering = TRUE,
+      order = list(list(0, 'desc')),
+      title = "Daily gas demand from start of March - 2020 vs 2019 (GWh)",
+      dom = 'ltBp',
+      buttons = list(
+        list(extend = 'copy'),
+        list(
+          extend = 'excel',
+          title = 'Daily gas demand from start of March - 2020 vs 2019 (GWh)',
+          header = TRUE
+        ),
+        list(extend = 'csv',
+             title = 'Daily gas demand from start of March - 2020 vs 2019 (GWh)')
+      ),
+      
+      # customize the length menu
+      lengthMenu = list( c( -1, 10, 20) # declare values
+                         , c("All", 10, 20 ) # declare titles
+      ), # end of lengthMenu customization
+      pageLength = 10
+    )
+  ) %>%
+    formatRound(2:5, 1) 
+})
 
 }
