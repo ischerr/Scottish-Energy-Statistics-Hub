@@ -1340,6 +1340,8 @@ RenElecGen <- function(input, output, session) {
     
     EUWind[2:ncol(EUWind)] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    EUWind <- EUWind %>% mutate(Countries = replace(Countries, Countries == "U.K.", "Rest of the UK"))
+    
     datatable(
       EUWind,
       extensions = 'Buttons',
@@ -1408,6 +1410,8 @@ RenElecGen <- function(input, output, session) {
       EUWind <- EUWind[order(-EUWind$Renewables),]
       
       EUWind$Renewables <- EUWind$Renewables /100000
+      
+      EUWind <- EUWind %>% mutate(Countries = replace(Countries, Countries == "U.K.", "Rest of the UK"))
       
       ### variables
       ChartColours <- c("#39ab2c", "#78c679", "#a3d65c")
@@ -1667,6 +1671,8 @@ RenElecGen <- function(input, output, session) {
     
     EUHydro <- EUHydro %>% mutate(Countries = replace(Countries, Countries == "SCOTLAND", "Scotland"))
     
+    EUHydro <- EUHydro %>% mutate(Countries = replace(Countries, Countries == "U.K.", "Rest of the UK"))
+    
     EUHydro[2:ncol(EUHydro)] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     datatable(
@@ -1744,6 +1750,8 @@ RenElecGen <- function(input, output, session) {
       EUHydro <- EUHydro[order(-EUHydro$Renewables),]
       
       EUHydro$Renewables <- EUHydro$Renewables /100000
+      
+      EUHydro <- EUHydro %>% mutate(Countries = replace(Countries, Countries == "U.K.", "Rest of the UK"))
       
       ### variables
       ChartColours <- c("#39ab2c", "#78c679", "#a3d65c")
