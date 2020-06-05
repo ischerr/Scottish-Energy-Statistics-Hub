@@ -25,6 +25,7 @@ system('fc-cache -f ~/.fonts')
   
 server <- function(input, output, session) {
   
+
   ### Create List of Scripts, including filepath ###
   SourceList <-
     list.files(
