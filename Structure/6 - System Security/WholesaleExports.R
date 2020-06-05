@@ -14,26 +14,26 @@ WholesaleExportsOutput <- function(id) {
                     h3("Wholesale value of electricity exports", style = "color: #5d8be1;  font-weight:bold"),
                     h4(textOutput(ns('WholesaleExportsSubtitle')), style = "color: #5d8be1;")
     ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('WholesaleExports.png'), 'Download Graph', style="float:right")
-             )),
+    column(
+      4, style = 'padding:15px;',
+      downloadButton(ns('WholesaleExports.png'), 'Download Graph', style="float:right")
+    )),
     
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     #dygraphOutput(ns("WholesaleExportsPlot")),
     plotlyOutput(ns("WholesaleExportsPlot"))%>% withSpinner(color="#5d8be1"),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
-    column(10,h3("Commentary", style = "color: #5d8be1;  font-weight:bold")),
-    column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
+      column(10,h3("Commentary", style = "color: #5d8be1;  font-weight:bold")),
+      column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
     
     fluidRow(
-    uiOutput(ns("Text"))
+      uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
-    column(10, h3("Data - Wholesale value of electricity exports", style = "color: #5d8be1;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+      column(10, h3("Data - Wholesale value of electricity exports", style = "color: #5d8be1;  font-weight:bold")),
+      column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("WholesaleExportsTable"))%>% withSpinner(color="#5d8be1"))),
@@ -45,8 +45,8 @@ WholesaleExportsOutput <- function(id) {
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
-        SourceLookup("BEISImportExport")
-        
+             SourceLookup("BEISImportExport")
+             
       )
     )
   )
@@ -64,6 +64,25 @@ WholesaleExports <- function(input, output, session) {
   }
   
   print("WholesaleExports.R")
+  
+  
+  
+  
+  output$Text <- renderUI({
+    tagList(column(12,
+                   
+                   HTML(
+                     paste(readtext("Structure/6 - System Security/WholesaleExports.txt")[2])
+                     
+                   )))
+  })
+  
+  
+  
+  observeEvent(input$ToggleText, {
+    toggle("Text")
+  })
+  
   
   WholesaleExportsData <- {
     WholesaleValue <- read_delim("Processed Data/Output/Exports/WholesaleValue.txt", 
@@ -83,9 +102,9 @@ WholesaleExports <- function(input, output, session) {
     WholesaleValue$WholesaleValue <- WholesaleValue$WholesaleValue/ 1000000
     
     WholesaleValue[2:6] %>%  group_by(`Year`) %>%  summarise_all(sum)
-
+    
   }
-
+  
   
   output$WholesaleExportsSubtitle <- renderText({
     
@@ -151,7 +170,7 @@ WholesaleExports <- function(input, output, session) {
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
         hovername = 'text',
-
+        
         xaxis = list(title = "",
                      showgrid = FALSE,
                      range = c(min(WholesaleExports$Year)-100, max(WholesaleExports$Year)+100)),
@@ -214,35 +233,18 @@ WholesaleExports <- function(input, output, session) {
       )
     ) %>%
       formatRound(2:8, 0)
-  })
+  }) 
   
-  
-  output$Text <- renderUI({
-    tagList(column(12,
-                   
-                   HTML(
-                     paste(readtext("Structure/6 - System Security/WholesaleExports.txt")[2])
-                     
-                   )))
-  })
- 
-  observeEvent(input$ToggleTable, {
+  observeEvent(input$ToggleTable3, {
     toggle("WholesaleExportsTable")
   })
   
-  observeEvent(input$ToggleTable2, {
-    toggle("WholesaleExportsQuarterTable")
-  })
-  
-  observeEvent(input$ToggleText, {
-    toggle("Text")
-  })
   
   
   output$WholesaleExports.png <- downloadHandler(
     filename = "WholesaleExports.png",
     content = function(file) {
-
+      
       WholesaleExports <- WholesaleExportsData
       
       WholesaleExports$Year <- as.numeric(substr(WholesaleExports$Year,1,4))
