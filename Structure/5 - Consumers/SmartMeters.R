@@ -57,11 +57,12 @@ SmartMetersOutput <- function(id) {
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
-             DateLookup(c("ElectralinkMeters"))),
+             DateLookup(c("ElectralinkMeters", "BEISLSOA"))),
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
-        SourceLookup("ElectralinkMeters")
+        SourceLookup("ElectralinkMeters"),
+        SourceLookup("BEISLSOA")
         
       )
     )
@@ -107,11 +108,10 @@ SmartMeters <- function(input, output, session) {
   
   output$SmartMetersTable = renderDataTable({
     
-    SmartMeters <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Smart meter installations",
-      skip = 14
-    )
+    SmartMeters <- read_delim("Processed Data/Output/Electricity Meters/SmartMeters.txt", 
+                              "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    
     
     names(SmartMeters) <- c("Date","Total Scotland - Installations (Cumulative)", "Total Scotland - Proportion of smart meters", "North Scotland - Installations (Cumulative)", "North Scotland - Proportion of smart meters", "South Scotland - Installations (Cumulative)", "South Scotland - Proportion of smart meters")
 
@@ -153,11 +153,8 @@ SmartMeters <- function(input, output, session) {
       formatRound(c(2,4,6), 0)
   })
   
-      SmartMeters <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Non-home supplier elec",
-      skip = 13
-    )
+      SmartMeters <- read_delim("Processed Data/Output/Electricity Meters/SmartMeters.txt", 
+                                "\t", escape_double = FALSE, trim_ws = TRUE)
     
     names(SmartMeters)[1] <- "Quarter"#
     
@@ -245,11 +242,8 @@ SmartMeters <- function(input, output, session) {
     filename = "SmartMetersTimeSeries.png",
     content = function(file) {
       
-      SmartMeters <- read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Smart meter installations",
-        skip = 14
-      )
+      SmartMeters <- read_delim("Processed Data/Output/Electricity Meters/SmartMeters.txt", 
+                                "\t", escape_double = FALSE, trim_ws = TRUE)
       
       names(SmartMeters) <- c("Year","Total Scotland - Proportion of smart meters","Total",  "North Scotland - Proportion of smart meters","NorthScotland", "South Scotland - Proportion of smart meters", "SouthScotland" )
       
@@ -263,7 +257,7 @@ SmartMeters <- function(input, output, session) {
       
       ### variables
       ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
-      sourcecaption = "Source: Electralink"
+      sourcecaption = "Source: Electralink, BEIS"
       plottitle = "Proportion of installed meters which are\nsmart meters"
       
       #SmartMeters$TotalPercentage <- PercentLabel(SmartMeters$Total)
@@ -501,11 +495,8 @@ SmartMeters <- function(input, output, session) {
     }
     
     print("Energy daily demand")
-    SmartMeters <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Smart meter installations",
-      skip = 14
-    )
+    SmartMeters <- read_delim("Processed Data/Output/Electricity Meters/SmartMeters.txt", 
+                              "\t", escape_double = FALSE, trim_ws = TRUE)
     
     names(SmartMeters) <- c("Date","Total Scotland - Installations (Cumulative)", "Total Scotland - Proportion of smart meters", "North Scotland - Installations (Cumulative)", "North Scotland - Proportion of smart meters", "South Scotland - Installations (Cumulative)", "South Scotland - Proportion of smart meters")
     
@@ -518,11 +509,8 @@ SmartMeters <- function(input, output, session) {
       source("Structure/PackageHeader.R")
     }
     
-    SmartMeters <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Smart meter installations",
-      skip = 14
-    )
+    SmartMeters <- read_delim("Processed Data/Output/Electricity Meters/SmartMeters.txt", 
+                              "\t", escape_double = FALSE, trim_ws = TRUE)
     
     names(SmartMeters) <- c("Date","Total Scotland - Installations (Cumulative)", "Total Scotland - Proportion of smart meters", "North Scotland - Installations (Cumulative)", "North Scotland - Proportion of smart meters", "South Scotland - Installations (Cumulative)", "South Scotland - Proportion of smart meters")
     

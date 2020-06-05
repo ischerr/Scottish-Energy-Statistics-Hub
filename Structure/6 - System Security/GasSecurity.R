@@ -66,12 +66,21 @@ GasSecurityOutput <- function(id) {
       column(2, style = "padding:15px",  downloadButton(ns("FullData"), "Full Data", style = "float:right; "))
     ),
     tags$hr(style = "height:3px;border:none;color:;background-color:#5d8be1;"),
+    tabsetPanel(
+      tabPanel("Flows",
     fluidRow(
-    column(10, h3("Data - 12 month rolling average (GWh)", style = "color: #5d8be1;  font-weight:bold")),
+    column(10, h3("Data - Flows into St. Fergus, 12 month rolling average (GWh)", style = "color: #5d8be1;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("GasSecurityTable"))%>% withSpinner(color="#5d8be1"))),
+      column(12, dataTableOutput(ns("GasSecurityTable"))%>% withSpinner(color="#5d8be1")))),
+    tabPanel("UK Proportion",
+             fluidRow(
+               column(10, h3("Data - Propotion of St. Fergus in UK gas, 12 month rolling average (GWh)", style = "color: #5d8be1;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("UKFergusTable"))%>% withSpinner(color="#5d8be1"))))),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
       column(2, p("Update expected:")),
@@ -446,29 +455,28 @@ GasSecurity <- function(input, output, session) {
     
   })
   
+  StFergusFlowRolling <- read_delim("Processed Data/Output/Gas Distribution/StFergusFlowRolling.txt", 
+                                    "\t", escape_double = FALSE, trim_ws = TRUE)
+  
+  names(StFergusFlowRolling) <- c("Date", "Scottish Demand (GWh)","% Scottish demand from St. Fergus", "Transfers to N.I. (GWh)","% N.I. transfers from St. Fergus" , "Transfers to England (GWh)","% Englannd transfers from St. Fergus" , "ST. Fergus (GWh)", "UK Demand (GWh)", "Proportion of U.K. gas supply from ST. Fergus" )
+  
+  StFergusFlowRolling$Date <- as.Date(StFergusFlowRolling$Date, format = "%d/%m/%Y")
+  
+
+  names(StFergusFlowRolling)[1] <- "12 month ending"
+  
+  StFergusFlowRolling <- StFergusFlowRolling[rev(order(StFergusFlowRolling$`12 month ending`)),]
+  
+  StFergusFlowRolling$`12 month ending` <- format(StFergusFlowRolling$`12 month ending`, format = "%B %Y")
+  
+  
   output$GasSecurityTable = renderDataTable({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "GasSecurityWorking")[c(1,7:12)]
-    
-    names(Data) <- c("Year", "Scottish Demand (GWh)", "Transfers to N.I. (GWh)", "Transfers to England (GWh)", "ST. Fergus (GWh)", "UK Demand (GWh)", "Proportion of U.K. gas supply from ST. Fergus" )
-    
-    Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
-    
-    GasSecurityRolling <- Data[complete.cases(Data),]
-    
-    GasSecurityRolling <- GasSecurityRolling %>% 
-      mutate(yr_mnth = format(Year, '%Y-%m')) %>% 
-      group_by(yr_mnth) %>% 
-      filter(Year == max(Year)) %>% 
-      mutate(Year = format(Year, "%B %Y"))
-    
-    names(GasSecurityRolling)[1] <- "12 month ending"
-    
-    GasSecurityRolling <- GasSecurityRolling[nrow(GasSecurityRolling):1,]
+
+   
     
     datatable(
-      GasSecurityRolling[1:7],
+      StFergusFlowRolling[1:7],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -477,7 +485,6 @@ GasSecurity <- function(input, output, session) {
         pageLength = 10,
         searching = TRUE,
         fixedColumns = FALSE,
-        columnDefs = list(list(visible=FALSE, targets=c(4))),
         autoWidth = TRUE,
         title = "Daily Demand - 12 month rolling average",
         dom = 'ltBp',
@@ -500,7 +507,47 @@ GasSecurity <- function(input, output, session) {
       )
     ) %>%
       formatRound(2:6, 1) %>% 
-      formatPercentage(7, 1)
+      formatPercentage(c(3,5,7), 1)
+  })
+  
+  output$UKFergusTable = renderDataTable({
+    
+    
+    
+    
+    datatable(
+      StFergusFlowRolling[c(1,8:10)],
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = 10,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "Daily Demand - 12 month rolling average",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Daily Demand - 12 month rolling average',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Daily Demand - 12 month rolling average')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(2:6, 1) %>% 
+      formatPercentage(c(4), 1)
   })
   
   output$Text <- renderUI({
@@ -1109,16 +1156,13 @@ output$GasSecurityProportion.png <- downloadHandler(
 output$FullData <- downloadHandler(
   filename = "GasSecurityFullData.csv",
   content = function(file){
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "GasSecurityWorking")[1:6]
+
+    StFergusFlow <- read_delim("Processed Data/Output/Gas Distribution/StFergusFlowDaily.txt", 
+                  "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Data$Date <- ymd(Data$Date)
+    names(StFergusFlow) <- c("Date", "Scottish Demand (GWh)","% Scottish demand from St. Fergus", "Transfers to N.I. (GWh)","% N.I. transfers from St. Fergus" , "Transfers to England (GWh)","% Englannd transfers from St. Fergus" , "ST. Fergus (GWh)", "UK Demand (GWh)", "Proportion of U.K. gas supply from ST. Fergus" )
     
-    GasSecurity <- Data
-    
-    names(GasSecurity) <- c("Date", "Scottish Demand (GWh)", "Transfers to N.I. (GWh)", "Transfers to England (GWh)", "ST. Fergus (GWh)", "UK Demand (GWh)")
-    
-    write.csv(GasSecurity, 
+    write.csv(StFergusFlow, 
               file,
               row.names = FALSE)
   }
