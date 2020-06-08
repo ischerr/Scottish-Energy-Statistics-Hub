@@ -23,7 +23,7 @@ ScotGenSupplyOutput <- function(id) {
                
                tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
                #dygraphOutput(ns("ScotGenSupplyPlot")),
-              visNetworkOutput(ns("ScotGenSupplyPlot"), height = "900px")%>% withSpinner(color="#1A5D38"),
+              visNetworkOutput(ns("ScotGenSupplyPlot"), height = "600px")%>% withSpinner(color="#1A5D38"),
                p("* TTL = Transfers, Transformation and Losses"),
                tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")),
       tabPanel("Simplified flow chart",
@@ -151,9 +151,25 @@ ScotGenSupply <- function(input, output, session) {
     edges <- as.data.frame(read_excel("Structure/1 - Whole System/Linkstest.xlsx", 
                                       sheet = "Links"))
     
-    visNetwork(nodes, edges) %>% 
+    nodes$label <- str_wrap(nodes$label, 20)
+    nodes$title <- paste(format(as.numeric(nodes$title), big.mark = ",", trim = TRUE), "GWh")
+    
+    visNetwork(nodes, edges, height = "100%", width = "100%") %>% 
       visEdges(arrows = "to") %>% 
-      visHierarchicalLayout(direction = "LR", levelSeparation = 500)
+      visHierarchicalLayout(direction = "LR", levelSeparation = 250) %>% visPhysics(hierarchicalRepulsion = c(nodeDistance = 180)) %>% 
+      visOptions(highlightNearest = list(enabled =TRUE,  hover = T)) %>%
+      visNodes(font = c(
+        face = "century gothic",
+        size = 20
+      ),
+      labelHighlightBold = TRUE
+      ) %>% 
+      visEdges(font = c(
+        face = "century gothic",
+        size = 20
+      ),
+      labelHighlightBold = TRUE
+      )
     
     
     
