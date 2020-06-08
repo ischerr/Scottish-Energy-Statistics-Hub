@@ -23,6 +23,6 @@ html_fix <- htmltools::tags$style(type = "text/css", css_fix)  # Convert CSS to 
                 
 
 
-            
-            
-            
+
+GenSupplyReadable <- read_delim("Processed Data/Output/Renewable Generation/GenSupplyReadable.txt", 
+                                "\t", escape_double = FALSE, trim_ws = TRUE)

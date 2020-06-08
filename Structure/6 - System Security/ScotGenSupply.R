@@ -11,95 +11,96 @@ ScotGenSupplyOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("Balance",
-               fluidRow(column(8,
-                               h3("Scottish energy balance", style = "color: #1A5D38;  font-weight:bold"),
-                               h4(textOutput(ns('ScotGenSupplySubtitle')), style = "color: #1A5D38;")
-               ),
-               column(
-                 4, style = 'padding:15px;',
-                 downloadButton(ns('ScotGenSupply.png'), 'Download Graph', style="float:right")
-               )),
-               
-               tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
+      tabPanel("Hey",
+      fluidRow(column(8,
+                      h3("Proportion of electricity generation by fuel", style = "color: #5d8be1;  font-weight:bold"),
+                      selectInput(ns("YearSelect"), "Year:", rev(unique(GenSupplyReadable$Year)), selected = max(unique(GenSupplyReadable$Year)), multiple = FALSE,
+                                  selectize = TRUE, width = NULL, size = NULL)
+      ),
+      column(
+        4, style = 'padding:15px;',
+        downloadButton(ns('ElecGenFuel.png'), 'Download Graph', style="float:right")
+      )),
+      
+               tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
                #dygraphOutput(ns("ScotGenSupplyPlot")),
-              visNetworkOutput(ns("ScotGenSupplyPlot"), height = "600px")%>% withSpinner(color="#1A5D38"),
+              visNetworkOutput(ns("ScotGenSupplyPlot"), height = "600px")%>% withSpinner(color="#5d8be1"),
                p("* TTL = Transfers, Transformation and Losses"),
-               tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")),
+               tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
       tabPanel("Simplified flow chart",
                fluidRow(column(8,
-                               h3("Simplified energy flow chart", style = "color: #1A5D38;  font-weight:bold"),
-                               h4(textOutput(ns('SimplifiedFlowSubtitle')), style = "color: #1A5D38;")
+                               h3("Simplified energy flow chart", style = "color: #5d8be1;  font-weight:bold"),
+                               h4(textOutput(ns('SimplifiedFlowSubtitle')), style = "color: #5d8be1;")
                ),
                column(
                  4, style = 'padding:15px;',
                  downloadButton(ns('SimplifiedFlow.png'), 'Download Graph', style="float:right")
                )),
                
-               tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
+               tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
                #dygraphOutput(ns("ScotGenSupplyPlot")),
                
                fluidRow(
-                 plotlyOutput(ns("SimplifiedFlowPlot1"))%>% withSpinner(color="#1A5D38")),
+                 plotlyOutput(ns("SimplifiedFlowPlot1"))%>% withSpinner(color="#5d8be1")),
                fluidRow(
-                 plotlyOutput(ns("SimplifiedFlowPlot2"))%>% withSpinner(color="#1A5D38")),
+                 plotlyOutput(ns("SimplifiedFlowPlot2"))%>% withSpinner(color="#5d8be1")),
                fluidRow(
-                 plotlyOutput(ns("SimplifiedFlowPlot3"))%>% withSpinner(color="#1A5D38"))
+                 plotlyOutput(ns("SimplifiedFlowPlot3"))%>% withSpinner(color="#5d8be1"))
                ,
-               tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"))),
+               tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"))),
     fluidRow(
-      column(10,h3("Commentary", style = "color: #1A5D38;  font-weight:bold")),
+      column(10,h3("Commentary", style = "color: #5d8be1;  font-weight:bold")),
       column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
     
     fluidRow(
       uiOutput(ns("Text"))
     ),
-    tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
+    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     tabsetPanel(
       tabPanel("Energy balance data",
     fluidRow(
-      column(8, h3("Data - Supply (ktoe)", style = "color: #1A5D38;  font-weight:bold")),
+      column(8, h3("Data - Supply (ktoe)", style = "color: #5d8be1;  font-weight:bold")),
       column(2, style = "padding:15px",  downloadButton(ns('ScotGenSupplyData.xlsx'), 'Download Full Data', style="float:right")),
       column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Tables", style = "float:right; "))
     ),
     fluidRow(
-      column(12, DTOutput(ns("ScotGenSupplyTable1"))%>% withSpinner(color="#1A5D38"))),
+      column(12, DTOutput(ns("ScotGenSupplyTable1"))%>% withSpinner(color="#5d8be1"))),
     fluidRow(
-      column(10, h3("Data - Transfers and Transformation (ktoe)", style = "color: #1A5D38;  font-weight:bold"))
+      column(10, h3("Data - Transfers and Transformation (ktoe)", style = "color: #5d8be1;  font-weight:bold"))
     ),
     fluidRow(
-      column(12, DTOutput(ns("ScotGenSupplyTable2"))%>% withSpinner(color="#1A5D38"))),
+      column(12, DTOutput(ns("ScotGenSupplyTable2"))%>% withSpinner(color="#5d8be1"))),
     fluidRow(
-      column(10, h3("Data - Consumption (ktoe)", style = "color: #1A5D38;  font-weight:bold"))
+      column(10, h3("Data - Consumption (ktoe)", style = "color: #5d8be1;  font-weight:bold"))
     ),
     fluidRow(
-      column(12, DTOutput(ns("ScotGenSupplyTable3"))%>% withSpinner(color="#1A5D38")))),
+      column(12, DTOutput(ns("ScotGenSupplyTable3"))%>% withSpinner(color="#5d8be1")))),
     tabPanel("Energy flow data",
              
              fluidRow(
-               column(10, h3("Data - Indigenous production & imports", style = "color: #1A5D38;  font-weight:bold")),
+               column(10, h3("Data - Indigenous production & imports", style = "color: #5d8be1;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Tables", style = "float:right; "))
              ),
              fluidRow(
-               column(12, DTOutput(ns("EnFlowTable1"))%>% withSpinner(color="#1A5D38"))),
+               column(12, DTOutput(ns("EnFlowTable1"))%>% withSpinner(color="#5d8be1"))),
     fluidRow(
-      column(10, h3("Data - Outputs", style = "color: #1A5D38;  font-weight:bold"))),
+      column(10, h3("Data - Outputs", style = "color: #5d8be1;  font-weight:bold"))),
     fluidRow(
-      column(12, DTOutput(ns("EnFlowTable2"))%>% withSpinner(color="#1A5D38"))),
+      column(12, DTOutput(ns("EnFlowTable2"))%>% withSpinner(color="#5d8be1"))),
     
     fluidRow(
-      column(10, h3("Data - Exports and losses", style = "color: #1A5D38;  font-weight:bold"))),
+      column(10, h3("Data - Exports and losses", style = "color: #5d8be1;  font-weight:bold"))),
     fluidRow(
-      column(12, DTOutput(ns("EnFlowTable3"))%>% withSpinner(color="#1A5D38"))),
+      column(12, DTOutput(ns("EnFlowTable3"))%>% withSpinner(color="#5d8be1"))),
     
   fluidRow(
-    column(10, h3("Data - Final consumption", style = "color: #1A5D38;  font-weight:bold")),
+    column(10, h3("Data - Final consumption", style = "color: #5d8be1;  font-weight:bold")),
   ),
   fluidRow(
-    column(12, DTOutput(ns("EnFlowTable4"))%>% withSpinner(color="#1A5D38"))),
+    column(12, DTOutput(ns("EnFlowTable4"))%>% withSpinner(color="#5d8be1"))),
   
   )),
-    tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
+    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
@@ -139,16 +140,56 @@ ScotGenSupply <- function(input, output, session) {
     paste("Scotland, 2018")
   })
   
-
+  GenSupplyReadable <- read_delim("Processed Data/Output/Renewable Generation/GenSupplyReadable.txt", 
+                                  "\t", escape_double = FALSE, trim_ws = TRUE)
   
+  
+  RenSupplyGen <- read_excel("Structure/6 - System Security/RenSupplyGen.xlsx")
+
+
   output$ScotGenSupplyPlot <- renderVisNetwork({
     
 
+  
+
+  Country <- "Scotland"
+  
+  Year <- as.numeric(input$YearSelect)
+  
+  
+  GenSupplyReadableProcessed <- GenSupplyReadable[which(GenSupplyReadable$Country == Country),]
+  
+  GenSupplyReadableProcessed <- GenSupplyReadableProcessed[which(GenSupplyReadableProcessed$Year == Year),]
+  
+  RenSupplyGen[c(3,6)]
+  
+  RenSupplyGen$title <- 0
+  
+  RenSupplyGen$title[1] <- GenSupplyReadableProcessed$`Total generated`
+  
+  RenSupplyGen$title[2] <- -(GenSupplyReadableProcessed$`Electricity transferred to England (net of receipts)`+ GenSupplyReadableProcessed$`Electricity transferred to Northern Ireland (net of receipts)`+ GenSupplyReadableProcessed$`Electricity transferred to Europe (net of receipts)`)
+  
+  RenSupplyGen$title[3] <- RenSupplyGen$title[1] + RenSupplyGen$title[2]
+  
+  RenSupplyGen$title[4] <- -GenSupplyReadableProcessed$`Transfers from other generators to public supply`
+  
+  RenSupplyGen$title[5] <- -GenSupplyReadableProcessed$`Consumption by autogenerators`
+  
+  RenSupplyGen$title[6] <- -(GenSupplyReadableProcessed$`Own use by Other generators`+GenSupplyReadableProcessed$`Used in pumping at pumped storage and other own use by MPPs`)
+  
+  RenSupplyGen$title[7] <- -(GenSupplyReadableProcessed$`Transmission losses` + GenSupplyReadableProcessed$`Distribution losses and theft`)
+  
+  RenSupplyGen$title[8] <- sum(RenSupplyGen$title[c(1,4, 5, 6)])
+  
+  RenSupplyGen$title[10] <- sum(RenSupplyGen$title[c(3,6:7)])
+  
+  RenSupplyGen$title[9] <- sum(RenSupplyGen$title[c(10,5)])
+  
+  RenSupplyGen$size <- (abs(RenSupplyGen$title) / 50000) * 75
     
-    nodes <- as.data.frame(read_excel("Structure/1 - Whole System/Linkstest.xlsx", 
-                                      sheet = "Nodes"))
+    nodes <- RenSupplyGen
     
-    edges <- as.data.frame(read_excel("Structure/1 - Whole System/Linkstest.xlsx", 
+    edges <- as.data.frame(read_excel("Structure/6 - System Security/RenSupplyGen.xlsx", 
                                       sheet = "Links"))
     
     nodes$label <- str_wrap(nodes$label, 20)
@@ -462,10 +503,10 @@ ScotGenSupply <- function(input, output, session) {
         title = list(
           text = paste("<b>Indigenous production & imports</b>:", format(round(sum(Pie2$Value), digits = 0), big.mark = ","), "ktoe"),
           font = list(
-            color = "#1A5D38"
+            color = "#5d8be1"
           )
         ),
-        legend = list(font = list(color = "#1A5D38"),
+        legend = list(font = list(color = "#5d8be1"),
                       orientation = 'h')
       ) 
     
@@ -527,7 +568,7 @@ ScotGenSupply <- function(input, output, session) {
             color = "#262626"
           )
         ),
-        legend = list(font = list(color = "#1A5D38"),
+        legend = list(font = list(color = "#5d8be1"),
                       orientation = 'h')
       )
     p2
@@ -589,7 +630,7 @@ ScotGenSupply <- function(input, output, session) {
             color = "#6f8a91"
           )
         ),
-        legend = list(font = list(color = "#1A5D38"),
+        legend = list(font = list(color = "#5d8be1"),
                       orientation = 'h')
       )
     
