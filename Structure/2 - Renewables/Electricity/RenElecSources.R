@@ -132,14 +132,36 @@ RenElecSourcesOutput <- function(id) {
            ),
            tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
     ),
-
+tabsetPanel(
+  tabPanel("Renewable sources",
                fluidRow(
                  column(10, h3("Data - Latest Figures", style = "color: #39ab2c;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
                  column(12, dataTableOutput(ns("RenSourcesTable"))%>% withSpinner(color="#39ab2c"))),
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+  tabPanel("Wind Summary",
+           fluidRow(
+             column(10, uiOutput(ns("TurbineDataDate"))),
+             column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Tables", style = "float:right; "))
+           ),
+           fluidRow(
+             column(10, h4("All Wind", style = "color: #39ab2c;  font-weight:bold"))
+           ),
+           fluidRow(
+             column(12, dataTableOutput(ns("AllWindTable"))%>% withSpinner(color="#39ab2c"))),
+           fluidRow(
+             column(10, h4("Onshore Wind", style = "color: #39ab2c;  font-weight:bold"))
+           ),
+           fluidRow(
+             column(12, dataTableOutput(ns("OnshoreWindTable"))%>% withSpinner(color="#39ab2c"))),
+           fluidRow(
+             column(10, h4("Offshore Wind", style = "color: #39ab2c;  font-weight:bold"))
+           ),
+           fluidRow(
+             column(12, dataTableOutput(ns("OffshoreWindTable"))%>% withSpinner(color="#39ab2c"))),
+           tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
@@ -1825,4 +1847,182 @@ RenElecSources <- function(input, output, session) {
       formatRound(2:(ncol(TechTable)-1), 0) %>% 
       formatRound(ncol(TechTable), 2)
   })
+  
+  output$AllWindTable = renderDataTable({
+    
+    CurrentAll <- read_delim("Processed Data/Output/Turbine Analysis/Quarterly/CurrentAll.txt", 
+                             "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    names(CurrentAll) <- c("Status", "Sites","Turbines","Capacity (MW)")
+    
+    datatable(
+      CurrentAll,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "All wind",
+        dom = 'tB',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'All wind',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'All wind')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>% 
+      formatRound(2:7, 0) 
+    
+  })
+  
+  output$OnshoreWindTable = renderDataTable({
+    
+    Dummy <- read_delim("Processed Data/Output/Turbine Analysis/Quarterly/CurrentAll.txt", 
+                        "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    Dummy[2:4] <- 0
+    
+    CurrentOnshore <- read_delim("Processed Data/Output/Turbine Analysis/Quarterly/CurrentOnshore.txt", 
+                                 "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    ### Ensure there is a full data frame with every status
+    
+    CurrentOnshore <- rbind(CurrentOnshore,Dummy)
+    
+    CurrentOnshore <- CurrentOnshore[!duplicated(CurrentOnshore[,c('Status')]),]
+    
+    CurrentOnshore <- CurrentOnshore[order(CurrentOnshore$Status),]
+    
+    names(CurrentOnshore) <- c("Status", "Sites","Turbines","Capacity (MW)")
+    
+    
+    datatable(
+      CurrentOnshore,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "Onshore wind",
+        dom = 'tB',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Onshore wind',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Onshore wind')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "Onshore") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>% 
+      formatRound(2:7, 0)
+    
+    
+  })
+  
+  output$OffshoreWindTable = renderDataTable({
+    
+    Dummy <- read_delim("Processed Data/Output/Turbine Analysis/Quarterly/CurrentAll.txt", 
+                        "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    Dummy[2:4] <- 0
+    
+    CurrentOffshore <- read_delim("Processed Data/Output/Turbine Analysis/Quarterly/CurrentOffshore.txt", 
+                                  "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    ### Ensure there is a full data frame with every status
+    
+    CurrentOffshore <- rbind(CurrentOffshore,Dummy)
+    
+    CurrentOffshore <- CurrentOffshore[!duplicated(CurrentOffshore[,c('Status')]),]
+    
+    CurrentOffshore <- CurrentOffshore[order(CurrentOffshore$Status),]
+    
+    names(CurrentOffshore) <- c("Status", "Sites","Turbines","Capacity (MW)")
+    
+    
+    
+    
+    
+    datatable(
+      CurrentOffshore,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "Offshore wind",
+        dom = 'tB',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Offshore wind',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Offshore wind')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "Offshore") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>% 
+      formatRound(2:7, 0)
+    
+  })
+  
+  output$TurbineDataDate <- renderUI({
+    tagList(
+      h3(paste("Data - Wind summary,", format(max(SitesTimeSeries$Month), "%B %Y")), style = "color: #39ab2c;  font-weight:bold")
+    )
+  }) 
+  
+  SitesTimeSeries <- {
+    
+    Data <- list.files(path="Processed Data/Output/Turbine Analysis/Time Series/Sites/", full.names = TRUE) %>% 
+      lapply(read_csv) %>% 
+      bind_rows 
+    
+    Data$Month <- dmy(paste0("01-",Data$Month)) 
+    
+    Data <- Data[rev(order(Data$Month)),]
+    
+    Data[c(1,2,3,5,4)]
+    
+  }
 }
