@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="311.76321mm"
+   height="164.42996mm"
+   viewBox="0 0 311.76321 164.42996"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="GenAndSupply.svg"
+   inkscape:export-filename="C:\Users\ische\OneDrive\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\6 - System Security\ScotGenSupply.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300">
+  <defs
+     id="defs2">
+    <marker
+       inkscape:stockid="TriangleInL"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleInL"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4769"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         style="fill:#e31a1c;fill-opacity:1;fill-rule:evenodd;stroke:#e31a1c;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="scale(-0.8)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5416"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#3283ba;fill-opacity:1;fill-rule:evenodd;stroke:#3283ba;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5414"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5340"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#3283ba;fill-opacity:1;fill-rule:evenodd;stroke:#3283ba;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5338"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5270"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#3283ba;fill-opacity:1;fill-rule:evenodd;stroke:#3283ba;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5268"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5206"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#ff7f00;fill-opacity:1;fill-rule:evenodd;stroke:#ff8104;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5204"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5148"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#ff7f00;fill-opacity:1;fill-rule:evenodd;stroke:#ff8104;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5146"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5096"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#ff7f00;fill-opacity:1;fill-rule:evenodd;stroke:#ff8104;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5094"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5050"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#ff7f00;fill-opacity:1;fill-rule:evenodd;stroke:#ff8104;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5048"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5010"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#33a02c;fill-opacity:1;fill-rule:evenodd;stroke:#33a02c;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5008"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker4976"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#33a02c;fill-opacity:1;fill-rule:evenodd;stroke:#33a02c;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path4974"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker4948"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#3283ba;fill-opacity:1;fill-rule:evenodd;stroke:#3283ba;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path4946"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleOutL"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker4920"
+       style="overflow:visible"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         id="path4918"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         style="fill:#3283ba;fill-opacity:1;fill-rule:evenodd;stroke:#3283ba;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="scale(0.8)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleOutL"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleOutL"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4778"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         style="fill:#e31a1c;fill-opacity:1;fill-rule:evenodd;stroke:#e31a1c;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="scale(0.8)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleOutL"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker4920-8"
+       style="overflow:visible"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4918-5"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         style="fill:#3283ba;fill-opacity:1;fill-rule:evenodd;stroke:#3283ba;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="scale(0.8)" />
+    </marker>
+    <clipPath
+       id="cpOC4yMnw2MTguMTR8MjQ1LjIyfDQ0Ljk3">
+      <rect
+         x="8.2200003"
+         y="44.970001"
+         width="609.91998"
+         height="200.25"
+         id="rect10"
+         style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
+    </clipPath>
+    <clipPath
+       id="cpOC4yMnw2MTguMTR8MjQ1LjIyfDQ0Ljk3-1">
+      <rect
+         x="8.2200003"
+         y="44.970001"
+         width="609.91998"
+         height="200.25"
+         id="rect10-9"
+         style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="224.51111"
+     inkscape:cy="376.73236"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="4"
+     fit-margin-left="4"
+     fit-margin-right="4"
+     fit-margin-bottom="4"
+     inkscape:window-width="3840"
+     inkscape:window-height="2066"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-39.335375,-39.211614)">
+    <rect
+       style="fill:#d0d1e6;fill-opacity:1;stroke:#000000;stroke-width:0.29019645;stroke-opacity:1"
+       id="rect4531"
+       width="8.794281"
+       height="8.794281"
+       x="108.79152"
+       y="123.15398" />
+    <circle
+       style="fill:#3690c0;fill-opacity:1;stroke:#000000;stroke-width:0.11703582;stroke-opacity:1"
+       id="path826-9-5"
+       cx="328.34061"
+       cy="81.447128"
+       r="12.709084" />
+    <circle
+       style="fill:#3690c0;fill-opacity:1;stroke:#000000;stroke-width:0.07844896;stroke-opacity:1"
+       id="path826-9-2"
+       cx="328.00653"
+       cy="119.06531"
+       r="8.5188818" />
+    <rect
+       style="fill:#a6bddb;fill-opacity:1;stroke:#000000;stroke-width:0.10236675;stroke-opacity:1"
+       id="rect4531-9"
+       width="3.1021812"
+       height="3.1021812"
+       x="219.21353"
+       y="63.325325" />
+    <rect
+       style="fill:#a6bddb;fill-opacity:1;stroke:#000000;stroke-width:0.09809789;stroke-opacity:1"
+       id="rect4531-3"
+       width="2.9728153"
+       height="2.9728153"
+       x="219.34503"
+       y="101.14183" />
+    <rect
+       style="fill:#a6bddb;fill-opacity:1;stroke:#000000;stroke-width:0.05852368;stroke-opacity:1"
+       id="rect4531-2"
+       width="1.7735356"
+       height="1.7735356"
+       x="219.80585"
+       y="139.36707" />
+    <rect
+       style="fill:#a6bddb;fill-opacity:1;stroke:#000000;stroke-width:0.06191954;stroke-opacity:1"
+       id="rect4531-29"
+       width="1.8764455"
+       height="1.8764455"
+       x="219.80568"
+       y="176.81963" />
+    <path
+       style="fill:#3283ba;fill-opacity:1;stroke:#3283ba;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker5416)"
+       d="M 59.740116,107.36689 216.22974,65.377391"
+       id="path4608"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#33a02c;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker4976)"
+       d="m 59.768466,107.34188 46.782214,16.6924"
+       id="path4610"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#33a02c;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker5010)"
+       d="m 118.81621,129.49665 34.71149,16.12887"
+       id="path4612"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#3283ba;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker4920)"
+       d="M 59.740116,107.36689 215.86322,103.16092"
+       id="path4614"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#3283ba;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker4948)"
+       d="M 59.740116,107.36689 217.26624,138.62415"
+       id="path4616"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#ff7f00;fill-opacity:1;stroke:#ff8104;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker5096)"
+       d="m 166.91519,150.26366 50.97694,26.81505"
+       id="path4618"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#ff7f00;fill-opacity:1;stroke:#ff8104;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker5050)"
+       d="m 166.91519,150.26366 50.484,-8.82709"
+       id="path4620"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#ff7f00;fill-opacity:1;stroke:#ff8104;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker5148)"
+       d="M 222.53092,177.81657 315.86043,158.1151"
+       id="path4622"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#ff7f00;fill-opacity:1;stroke:#ff8104;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker5206)"
+       d="m 222.30951,140.38171 93.13131,13.18233"
+       id="path4624"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#e31a1c;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#TriangleInL)"
+       d="m 224.39698,105.16216 103.54431,51.26655"
+       id="path4626"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#3283ba;fill-opacity:1;stroke:#3283ba;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker5270)"
+       d="m 223.01133,65.127905 90.43013,14.543066"
+       id="path4630"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#3283ba;fill-opacity:1;stroke:#3283ba;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker5340)"
+       d="M 223.41368,100.16042 313.3936,85.357422"
+       id="path4632"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#e31a1c;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutL)"
+       d="m 223.14391,102.57888 94.91633,14.5968"
+       id="path4634"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#a6bddb;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9590"
+       width="0.93544334"
+       height="0.93544334"
+       x="58.804672"
+       y="107.36689" />
+    <circle
+       style="fill:#045a8d;fill-opacity:1;stroke:#000000;stroke-width:0.14459786;stroke-opacity:1"
+       id="path826"
+       cx="59.801559"
+       cy="107.30544"
+       r="15.702085" />
+    <circle
+       style="fill:#0570b0;fill-opacity:1;stroke:#000000;stroke-width:0.10478602;stroke-opacity:1"
+       id="path826-9"
+       cx="166.97664"
+       cy="150.20222"
+       r="11.37886" />
+    <circle
+       style="fill:#3690c0;fill-opacity:1;stroke:#000000;stroke-width:0.08886129;stroke-opacity:1"
+       id="path826-9-9"
+       cx="327.93436"
+       cy="156.6835"
+       r="9.6495714" />
+    <path
+       style="fill:#3283ba;fill-opacity:1;stroke:#3283ba;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker4920-8)"
+       d="M 222.57689,139.48463 314.66041,90.498463"
+       id="path4614-0"
+       inkscape:connector-curvature="0" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot13274"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:0.75;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.16477377,0,0,0.16477377,11.510449,43.707477)"><flowRegion
+         id="flowRegion13276"
+         style="line-height:0.75"><rect
+           id="rect13278"
+           width="256.75824"
+           height="156.95615"
+           x="166.17009"
+           y="480.56775"
+           style="line-height:0.75" /></flowRegion><flowPara
+         id="flowPara13282"
+         style="font-weight:bold;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle">Total Generation</flowPara><flowPara
+         style="font-weight:normal;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle"
+         id="flowPara13288">48,236 GWh</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot13274-0"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:0.75;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.16477377,0,0,0.16477377,64.959019,52.531955)"><flowRegion
+         id="flowRegion13276-4"
+         style="line-height:0.75"><rect
+           id="rect13278-3"
+           width="256.75824"
+           height="156.95615"
+           x="166.17009"
+           y="480.56775"
+           style="line-height:0.75" /></flowRegion><flowPara
+         id="flowPara13282-6"
+         style="font-weight:normal;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle"><flowSpan
+           id="flowSpan13286-1"
+           style="font-weight:bold;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle">Net Exports</flowSpan></flowPara><flowPara
+         style="font-weight:normal;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle"
+         id="flowPara13288-1">-13,517 GWh</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot13274-7"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:0.75;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.16477377,0,0,0.16477377,118.4464,81.700293)"><flowRegion
+         id="flowRegion13276-0"
+         style="line-height:0.75"><rect
+           id="rect13278-39"
+           width="256.75824"
+           height="156.95615"
+           x="166.17009"
+           y="480.56775"
+           style="line-height:0.75" /></flowRegion><flowPara
+         id="flowPara13282-0"
+         style="font-weight:normal;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle"><flowSpan
+           id="flowSpan13286-5"
+           style="font-weight:bold;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle">Gross Electricity Consumption</flowSpan></flowPara><flowPara
+         style="font-weight:normal;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle"
+         id="flowPara13288-3">34,719 GWh</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot13274-8"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:0.75;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.16477377,0,0,0.16477377,172.21352,100.48571)"><flowRegion
+         id="flowRegion13276-8"
+         style="line-height:0.75"><rect
+           id="rect13278-8"
+           width="256.75824"
+           height="156.95615"
+           x="166.17009"
+           y="480.56775"
+           style="line-height:0.75" /></flowRegion><flowPara
+         id="flowPara13282-9"
+         style="font-weight:bold;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle">Losses</flowPara><flowPara
+         style="font-weight:normal;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle"
+         id="flowPara13288-9">-2,479 GWh</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot13274-1"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:0.75;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.16477377,0,0,0.16477377,172.21352,63.406246)"><flowRegion
+         id="flowRegion13276-3"
+         style="line-height:0.75"><rect
+           id="rect13278-7"
+           width="256.75824"
+           height="156.95615"
+           x="166.17009"
+           y="480.56775"
+           style="line-height:0.75" /></flowRegion><flowPara
+         id="flowPara13282-3"
+         style="font-weight:bold;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle">Own Use</flowPara><flowPara
+         style="font-weight:normal;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle"
+         id="flowPara13288-5">-2,529 GWh</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot13274-3"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:0.75;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.16477377,0,0,0.16477377,172.21352,27.271722)"><flowRegion
+         id="flowRegion13276-5"
+         style="line-height:0.75"><rect
+           id="rect13278-73"
+           width="256.75824"
+           height="156.95615"
+           x="166.17009"
+           y="480.56775"
+           style="line-height:0.75" /></flowRegion><flowPara
+         id="flowPara13282-98"
+         style="font-weight:bold;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle">Consumption </flowPara><flowPara
+         style="font-weight:bold;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle"
+         id="flowPara13452">by autogenerators</flowPara><flowPara
+         style="font-weight:normal;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle"
+         id="flowPara13288-8">-4,216 GWh</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot13274-11"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:0.75;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.16477377,0,0,0.16477377,172.21352,-11.546433)"><flowRegion
+         id="flowRegion13276-45"
+         style="line-height:0.75"><rect
+           id="rect13278-70"
+           width="256.75824"
+           height="156.95615"
+           x="166.17009"
+           y="480.56775"
+           style="line-height:0.75" /></flowRegion><flowPara
+         id="flowPara13282-7"
+         style="font-weight:normal;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle"><flowSpan
+           id="flowSpan13286-4"
+           style="font-weight:bold;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle">Transfers from </flowSpan></flowPara><flowPara
+         style="font-weight:normal;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle"
+         id="flowPara13448"><flowSpan
+           style="font-weight:bold;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle"
+           id="flowSpan13450">other generators</flowSpan></flowPara><flowPara
+         style="font-weight:normal;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle"
+         id="flowPara13288-98">-3,758 GWh</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot13274-2"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:0.75;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.16477377,0,0,0.16477377,279.84224,15.819043)"><flowRegion
+         id="flowRegion13276-6"
+         style="line-height:0.75"><rect
+           id="rect13278-1"
+           width="256.75824"
+           height="156.95615"
+           x="166.17009"
+           y="480.56775"
+           style="line-height:0.75" /></flowRegion><flowPara
+         id="flowPara13282-5"
+         style="font-weight:normal;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle"><flowSpan
+           id="flowSpan13286-8"
+           style="font-weight:bold;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle">Electricity Supplied</flowSpan></flowPara><flowPara
+         style="font-weight:normal;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle"
+         id="flowPara13288-33">37,733 GWh</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot13274-76"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:0.75;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.16477377,0,0,0.16477377,279.84224,49.118746)"><flowRegion
+         id="flowRegion13276-38"
+         style="line-height:0.75"><rect
+           id="rect13278-32"
+           width="256.75824"
+           height="156.95615"
+           x="166.17009"
+           y="480.56775"
+           style="line-height:0.75" /></flowRegion><flowPara
+         id="flowPara13282-79"
+         style="font-weight:normal;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle"><flowSpan
+           id="flowSpan13286-85"
+           style="font-weight:bold;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle">Consumption from public supply</flowSpan></flowPara><flowPara
+         style="font-weight:normal;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle"
+         id="flowPara13288-0">25,495 GWh</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot13274-31"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:0.75;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.16477377,0,0,0.16477377,279.84224,88.201484)"><flowRegion
+         id="flowRegion13276-2"
+         style="line-height:0.75"><rect
+           id="rect13278-84"
+           width="256.75824"
+           height="156.95615"
+           x="166.17009"
+           y="480.56775"
+           style="line-height:0.75" /></flowRegion><flowPara
+         id="flowPara13282-1"
+         style="font-weight:normal;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle"><flowSpan
+           id="flowSpan13286-41"
+           style="font-weight:bold;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle">Total Electricity Consumption</flowSpan></flowPara><flowPara
+         style="font-weight:normal;font-size:21.33333397px;line-height:0.75;text-align:center;text-anchor:middle"
+         id="flowPara13288-88">29,711 GWh</flowPara></flowRoot>    <path
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#5d8be1;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       d="m 8.2207031,43.369141 v 3.201171 H 618.14062 v -3.201171 z"
+       clip-path="url(#cpOC4yMnw2MTguMTR8MjQ1LjIyfDQ0Ljk3)"
+       id="line53"
+       inkscape:connector-curvature="0"
+       transform="matrix(0.49803802,0,0,0.31726222,39.241152,41.889867)" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot901-8"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#5d8be1;fill-opacity:1;stroke:none;"
+       transform="matrix(0.31726222,0,0,0.31726222,113.3112,111.85032)"><flowRegion
+         id="flowRegion903-3"
+         style="fill:#5d8be1;fill-opacity:1;"><rect
+           id="rect905-1"
+           width="483.75308"
+           height="373.72443"
+           x="-219.31134"
+           y="-218.56583"
+           style="fill:#5d8be1;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" /></flowRegion><flowPara
+         id="flowPara907-9"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#5d8be1;fill-opacity:1;">Scotland, 2018</flowPara></flowRoot>    <g
+       id="g13551"
+       transform="matrix(1.1991013,0,0,1.1991013,-153.44844,122.96129)"
+       style="fill:#5d8be1;fill-opacity:1">
+      <flowRoot
+         transform="matrix(0.26458333,0,0,0.26458333,347.62173,112.06812)"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#5d8be1;fill-opacity:1;stroke:none"
+         id="flowRoot901-8-4"
+         xml:space="preserve"><flowRegion
+           style="fill:#5d8be1;fill-opacity:1"
+           id="flowRegion903-3-8"><rect
+             style="fill:#5d8be1;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+             y="-218.56583"
+             x="-219.31134"
+             height="373.72443"
+             width="483.75308"
+             id="rect905-1-6" /></flowRegion><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.19999981px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:end;text-anchor:end;fill:#5d8be1;fill-opacity:1"
+           id="flowPara907-9-7">Source: BEIS</flowPara></flowRoot>      <path
+         transform="matrix(0.41534273,0,0,0.26458333,160.69501,47.270735)"
+         inkscape:connector-curvature="0"
+         id="line53-3"
+         clip-path="url(#cpOC4yMnw2MTguMTR8MjQ1LjIyfDQ0Ljk3-1)"
+         d="m 8.2207031,43.369141 v 3.201171 H 618.14062 v -3.201171 z"
+         style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#5d8be1;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+    </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot1106"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,336.21159,-38.838347)"><flowRegion
+         id="flowRegion1108"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"><rect
+           id="rect1110"
+           width="313.6749"
+           height="382.30292"
+           x="-261.45792"
+           y="-66.533241"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+         id="flowPara1118"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;line-height:12.2078743px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'" /></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4827"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,336.21159,-38.838347)"><flowRegion
+         id="flowRegion4829"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"><rect
+           id="rect4831"
+           width="372.6055"
+           height="392.74634"
+           x="-309.9451"
+           y="-75.484726"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+         id="flowPara4833" /></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4835-6"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';letter-spacing:0px;word-spacing:0px;fill:#5d8be1;fill-opacity:1;stroke:none;"
+       transform="matrix(0.31726222,0,0,0.31726222,-513.13163,114.20408)"><flowRegion
+         id="flowRegion4837-4"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#5d8be1;fill-opacity:1;"><rect
+           id="rect4839-1"
+           width="2922.1904"
+           height="2363.071"
+           x="1755.4242"
+           y="-226.71194"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#5d8be1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;fill-opacity:1;" /></flowRegion><flowPara
+         id="flowPara4851-3">Electricity generation and supply</flowPara></flowRoot>  </g>
+</svg>
