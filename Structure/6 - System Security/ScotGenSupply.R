@@ -34,7 +34,7 @@ ScotGenSupplyOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
-      column(10, h3("Data - Supply (ktoe)", style = "color: #5d8be1;  font-weight:bold")),
+      column(10, h3("Data - Scottish electricity generation and supply (GWh)", style = "color: #5d8be1;  font-weight:bold")),
       column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Tables", style = "float:right; "))
     ),
     fluidRow(
@@ -160,31 +160,30 @@ ScotGenSupply <- function(input, output, session) {
   
   output$ScotGenSupplyTable1 = renderDT({
     
-    ScotGenSupply <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Energy balance",
-      skip = 29,
-      n_max = 11
-    )
-    names(ScotGenSupply)[1] <- ""
+    GenSupplyReadableProcessed <- GenSupplyReadable[which(GenSupplyReadable$Country == "Scotland"),]
     
-    ScotGenSupply <- tail(ScotGenSupply, -1)
+    GenSupplyReadableProcessed$`Total Generation` <- GenSupplyReadableProcessed$`Total generated`
     
-    ScotGenSupply[2:10] %<>% lapply(function(x) as.numeric(as.character(x)))
+    GenSupplyReadableProcessed$`Net Exports` <- -(GenSupplyReadableProcessed$`Electricity transferred to England (net of receipts)`+ GenSupplyReadableProcessed$`Electricity transferred to Northern Ireland (net of receipts)`+ GenSupplyReadableProcessed$`Electricity transferred to Europe (net of receipts)`)
     
-    ScotGenSupply[1] <- c( 
-      "Indigenous production", 
-      "Imports", "...Rest of world", 
-      "...Rest of UK", "Exports", 
-      "...Rest of world", 
-      "...Rest of UK", 
-      "Marine bunkers", 
-      "Stock change", 
-      "Primary supply"
-    )
+    GenSupplyReadableProcessed$`Gross Electricity Consumption` <- GenSupplyReadableProcessed$`Total Generation` + GenSupplyReadableProcessed$`Net Exports`
+    
+    GenSupplyReadableProcessed$`Transfers from other generators` <- -GenSupplyReadableProcessed$`Transfers from other generators to public supply`
+    
+    GenSupplyReadableProcessed$`Consumption by Autogenerators` <- -GenSupplyReadableProcessed$`Consumption by autogenerators`
+    
+    GenSupplyReadableProcessed$`Own Use` <- -(GenSupplyReadableProcessed$`Own use by Other generators`+GenSupplyReadableProcessed$`Used in pumping at pumped storage and other own use by MPPs`)
+    
+    GenSupplyReadableProcessed$`Losses` <- -(GenSupplyReadableProcessed$`Transmission losses` + GenSupplyReadableProcessed$`Distribution losses and theft`)
+    
+    GenSupplyReadableProcessed$`Electricity Supplied` <- GenSupplyReadableProcessed$`Total Generation` + GenSupplyReadableProcessed$`Transfers from other generators` + GenSupplyReadableProcessed$`Consumption by autogenerators` + GenSupplyReadableProcessed$`Own Use`
+    
+    GenSupplyReadableProcessed$`Consumption from Public Supply` <-  GenSupplyReadableProcessed$`Gross Electricity Consumption` + GenSupplyReadableProcessed$`Own Use` + GenSupplyReadableProcessed$`Losses`
+    
+    GenSupplyReadableProcessed$`Total Electricity Consumption` <- GenSupplyReadableProcessed$`Consumption by autogenerators` + GenSupplyReadableProcessed$`Consumption from Public Supply`
     
     datatable(
-      ScotGenSupply,
+      GenSupplyReadableProcessed[c(1,21:28,30,29)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -195,17 +194,18 @@ ScotGenSupply <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Aggregate energy balance (thousand tonnes of oil equivalent)",
+        order = list(list(0, 'desc')),
+        title = "Scottish electricity generation and supply (GWh)",
         dom = '',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Aggregate energy balance (thousand tonnes of oil equivalent)',
+            title = 'Scottish electricity generation and supply (GWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Aggregate energy balance (thousand tonnes of oil equivalent)')
+               title = 'Scottish electricity generation and supply (GWh)')
         ),
         
         # customize the length menu
@@ -215,10 +215,7 @@ ScotGenSupply <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%     
-      formatRound(2:10, 0) %>% 
-      formatStyle(1,
-                  target = 'row',
-                  backgroundColor = styleEqual(c('Primary Supply'), c('#bdbdbd')))
+      formatRound(2:11, 0)
     
   })
   
