@@ -170,13 +170,42 @@ observe({
     }
   
   
-  if(input$MainNav == "ConsumerEngagement"){
 
-      updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$ConsumerEngagement), mode = "push")
+  if(input$MainNav == "ConsumerEngagement"){
     
-    callModule(match.fun(input$ConsumerEngagement), input$ConsumerEngagement)
-    
+    if(input$ConsumerEngagement == "Bills"){
+      
+      updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$ConsumerEngagement,"&Chart=",input$Bills), mode = "push")
+      
+      callModule(match.fun(input$Bills), input$Bills)
     }
+    
+    if(input$ConsumerEngagement == "VulnerabilityTab"){
+      
+      updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$ConsumerEngagement,"&Chart=",input$VulnerabilityTab), mode = "push")
+      
+      callModule(match.fun(input$VulnerabilityTab), input$VulnerabilityTab)
+      
+    }
+    
+    if(input$ConsumerEngagement == "ConsumerChoice"){
+      
+      updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$ConsumerEngagement,"&Chart=",input$ConsumerChoice), mode = "push")
+      
+      callModule(match.fun(input$ConsumerChoice), input$ConsumerChoice)
+      
+    }
+    
+    if(input$ConsumerEngagement == "Meters"){
+      
+      updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$ConsumerEngagement,"&Chart=",input$Meters), mode = "push")
+      
+      callModule(match.fun(input$Meters), input$Meters)
+      
+    }
+    
+    
+  }
   
   
   if(input$MainNav == "SystemSecurity"){
@@ -562,12 +591,13 @@ ui <- shinyUI(fluidPage(
         title = "Transport",
         navlistPanel(id = "RenTransport",
                      widths = c(3, 8),
-                     tabPanel(title ="Biofuels in Transport", 
-                              value = "Biofuels",
-                              BiofuelsOutput("Biofuels")),
                      tabPanel(title ="ULEVs", 
                               value = "ULEVs",
-                              ULEVsOutput("ULEVs"))
+                              ULEVsOutput("ULEVs")),
+                     tabPanel(title ="Biofuels in Transport", 
+                              value = "Biofuels",
+                              BiofuelsOutput("Biofuels"))
+                     
         )
       ),
       tabPanel(
@@ -667,8 +697,12 @@ ui <- shinyUI(fluidPage(
     tabPanel(
       value = "ConsumerEngagement",
       title = tags$div(img(src = "ConsumerIcon.svg", height = "30px",   display= "block"), " Consumer Engagement", style = "font-family: 'Century Gothic'; font-weight: 400 "),
-      navlistPanel(id = "ConsumerEngagement",
-                   widths = c(3, 8),
+      tabsetPanel(id = "ConsumerEngagement",
+                  tabPanel(
+                    value = "Bills",
+                    title = "Bills",
+                    navlistPanel(id = "Bills",
+                                 widths = c(3,8),
                    tabPanel(title = "Energy Bill Payment Methods",
                             value = "BillPayments",
                             BillPaymentsOutput("BillPayments")),
@@ -686,13 +720,25 @@ ui <- shinyUI(fluidPage(
                             DualFuelBreakdownOutput("DualFuelBreakdown")),
                    tabPanel(title = "Fixed Tariffs",
                             value = "FixedTariffs",
-                            FixedTariffsOutput("FixedTariffs")),
+                            FixedTariffsOutput("FixedTariffs"))
+                    )),
+                              tabPanel(
+                                value = "VulnerabilityTab",
+                                title = "Vulnerability",
+                                navlistPanel(id = "VulnerabilityTab",
+                                             widths = c(3,8),
                    tabPanel(title = "Fuel Poverty",
                             value = "FuelPoverty",
                             FuelPovertyOutput("FuelPoverty")),
                    tabPanel(title = "Vulnerability",
                             value = "Vulnerability",
-                            VulnerabilityOutput("Vulnerability")),
+                            VulnerabilityOutput("Vulnerability"))
+                                )),
+                               tabPanel(
+                                 value = "ConsumerChoice",
+                                 title = "Consumer Choice",
+                                 navlistPanel(id = "ConsumerChoice",
+                                              widths = c(3,8),
                    tabPanel(title = "Primary Heating Fuel",
                             value = "PrimaryHeating",
                             PrimaryHeatingOutput("PrimaryHeating")),                   
@@ -707,13 +753,20 @@ ui <- shinyUI(fluidPage(
                             MarketStructureOutput("MarketStructure")),
                    tabPanel(title = "Energy Customers on Non-home Supplier",
                             value = "EnergyNonHome",
-                            EnergyNonHomeOutput("EnergyNonHome")),
+                            EnergyNonHomeOutput("EnergyNonHome"))
+                                 )),
+                               tabPanel(
+                                 value = "Meters",
+                                 title = "Meters",
+                                 navlistPanel(id = "Meters",
+                                              widths = c(3,8),
                    tabPanel(title = "Smart Meter Installations",
                             value = "SmartMeters",
                             SmartMetersOutput("SmartMeters")),
                    tabPanel(title = "Restricted and Prepayment meters",
                             value = "RestrictedPPM",
                             RestrictedPPMOutput("RestrictedPPM"))
+                                 ))
     )),
     ###### Section - System Security and Flexibility #######
     tabPanel(
