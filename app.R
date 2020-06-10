@@ -295,7 +295,7 @@ output$HomeTab <- renderUI({
     style = "padding: 10px; margin-top: 20px;"
   ),
   fluidRow(
-    column(width = 3,
+    column(width = 4,
            actionLink(
              "GoToTotalEnergyTab",
              label = div(
@@ -309,7 +309,7 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
-    column(width = 3,
+    column(width = 4,
            actionLink(
              "GoToRenLowCarbonTab",
              label = div(
@@ -323,7 +323,7 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
-    column(width = 3,
+    column(width = 4,
            actionLink(
              "GoToLocalEnergyTab",
              label = div(
@@ -337,7 +337,11 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
-    column(width = 3,
+
+    style = "padding: 10px; margin-top: 20px;"
+  ),
+  fluidRow( 
+    column(width = 4,
            actionLink(
              "GoToEnergyEfficiencyTab",
              label = div(
@@ -351,10 +355,7 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
-    style = "padding: 10px; margin-top: 20px;"
-  ),
-  fluidRow(
-    column(width = 3,
+    column(width = 4,
            actionLink(
              "GoToConsumerTab",
              label = div(
@@ -368,7 +369,7 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
-    column(width = 3,
+    column(width = 4,
            actionLink(
              "GoToSystemSecurityTab",
              label = div(
@@ -382,7 +383,12 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )), 
-    column(width = 3,
+    
+    style = "padding: 10px; margin-top: 20px;"
+  ),
+fluidRow(
+  column(width = 2),
+  column(width = 4,
            actionLink(
              "GoToOilGasTab",
              label = div(
@@ -396,7 +402,7 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
-    column(width = 3,
+    column(width = 4,
            actionLink(
              "GoToOtherTab",
              label = div(
@@ -410,9 +416,8 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
-    style = "padding: 10px; margin-top: 20px;"
-  )
-  )
+  style = "padding: 10px; margin-top: 20px;"
+  ))
 })
 
   
