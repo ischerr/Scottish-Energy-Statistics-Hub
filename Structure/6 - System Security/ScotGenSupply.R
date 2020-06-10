@@ -171,9 +171,9 @@ ScotGenSupply <- function(input, output, session) {
     
     GenSupplyReadableProcessed$`Electricity Supplied` <- GenSupplyReadableProcessed$`Total Generation` - GenSupplyReadableProcessed$`Transfers from other generators` - GenSupplyReadableProcessed$`Consumption by autogenerators` - GenSupplyReadableProcessed$`Own Use`
     
-    GenSupplyReadableProcessed$`Consumption from Public Supply` <-  GenSupplyReadableProcessed$`Gross Electricity Consumption` - GenSupplyReadableProcessed$`Own Use` - GenSupplyReadableProcessed$`Losses`
+    GenSupplyReadableProcessed$`Total Electricity Consumption` <-  GenSupplyReadableProcessed$`Gross Electricity Consumption` - GenSupplyReadableProcessed$`Own Use` - GenSupplyReadableProcessed$`Losses`
     
-    GenSupplyReadableProcessed$`Total Electricity Consumption` <- GenSupplyReadableProcessed$`Consumption by autogenerators` - GenSupplyReadableProcessed$`Consumption from Public Supply`
+    GenSupplyReadableProcessed$`Consumption from Public Supply` <-   GenSupplyReadableProcessed$`Total Electricity Consumption` - GenSupplyReadableProcessed$`Consumption by autogenerators`
     
     datatable(
       GenSupplyReadableProcessed[c(1,21:28,30,29)],
