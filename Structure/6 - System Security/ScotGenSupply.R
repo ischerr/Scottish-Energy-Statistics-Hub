@@ -23,7 +23,6 @@ ScotGenSupplyOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
                #dygraphOutput(ns("ScotGenSupplyPlot")),
               visNetworkOutput(ns("ScotGenSupplyPlot"), height = "600px")%>% withSpinner(color="#5d8be1"),
-               p("* TTL = Transfers, Transformation and Losses"),
                tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
       column(10,h3("Commentary", style = "color: #5d8be1;  font-weight:bold")),
