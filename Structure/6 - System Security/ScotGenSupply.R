@@ -210,7 +210,7 @@ ScotGenSupply <- function(input, output, session) {
       )
     ) %>%     
       formatRound(2:11, 0) %>% 
-      formatStyle(c(2,4,8,9,10), fontWeight = "bold")
+      formatStyle(c(2,4,9,10,11), fontWeight = "bold")
     
   })
   
