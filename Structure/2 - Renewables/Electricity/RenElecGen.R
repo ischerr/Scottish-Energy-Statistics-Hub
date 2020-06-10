@@ -56,7 +56,7 @@ RenElecGenOutput <- function(id) {
     ),
     tabPanel("Wind",
              fluidRow(column(8,
-                             h3("Wind generation in European countries", style = "color: #39ab2c;  font-weight:bold"),
+                             h3("Scottish wind generation compared to European countries", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('EUWindSubtitle')), style = "color: #39ab2c;")
              ),
              column(
@@ -70,7 +70,7 @@ RenElecGenOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Hydro",
              fluidRow(column(8,
-                             h3("Hydro generation in European countries", style = "color: #39ab2c;  font-weight:bold"),
+                             h3("Scottish hydro generation compared to European countries", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('EUHydroSubtitle')), style = "color: #39ab2c;")
              ),
              column(
@@ -110,7 +110,7 @@ RenElecGenOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Scottish proportion",
              fluidRow(
-               column(10, h3("Data", style = "color: #39ab2c;  font-weight:bold")),
+               column(10, h3("Data - Scottish proportion of UK total", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -118,7 +118,7 @@ RenElecGenOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Wind",
              fluidRow(
-               column(10, h3("Data - Wind generation (GWh)", style = "color: #39ab2c;  font-weight:bold")),
+               column(10, h3("Data - Scottish wind generation compared to European countries (GWh)", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -126,7 +126,7 @@ RenElecGenOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Hydro",
              fluidRow(
-               column(10, h3("Data - Hydro generation (GWh)", style = "color: #39ab2c;  font-weight:bold")),
+               column(10, h3("Data - Scottish hydro generation compared to European countries (GWh)", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -1416,7 +1416,7 @@ RenElecGen <- function(input, output, session) {
       ### variables
       ChartColours <- c("#39ab2c", "#78c679", "#a3d65c")
       sourcecaption = "Source: Eurostat, BEIS"
-      plottitle = "Wind generation in European countries"
+      plottitle = "Scottish wind generation compared to European countries"
       
       
       EUWind <- EUWind[order(EUWind$Renewables),]
@@ -1756,7 +1756,7 @@ RenElecGen <- function(input, output, session) {
       ### variables
       ChartColours <- c("#39ab2c", "#78c679", "#a3d65c")
       sourcecaption = "Source: Eurostat, BEIS"
-      plottitle = "Hydro generation in European countries"
+      plottitle = "Scottish hydro generation compared to European countries"
       
       
       EUHydro <- EUHydro[order(EUHydro$Renewables),]
