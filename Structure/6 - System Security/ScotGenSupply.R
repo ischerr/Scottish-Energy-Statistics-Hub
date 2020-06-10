@@ -127,7 +127,7 @@ ScotGenSupply <- function(input, output, session) {
                                       sheet = "Links"))
     
     nodes$label <- str_wrap(nodes$label, 20)
-    nodes$title <- paste(format(as.numeric(nodes$title), big.mark = ",", trim = TRUE), "GWh")
+    nodes$title <- paste(format(round(as.numeric(nodes$title), 0), big.mark = ",", trim = TRUE), "GWh")
     
     visNetwork(nodes, edges, height = "100%", width = "100%") %>% 
       visEdges(arrows = "to") %>% 
