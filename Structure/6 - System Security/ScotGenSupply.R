@@ -17,7 +17,7 @@ ScotGenSupplyOutput <- function(id) {
       ),
       column(
         4, style = 'padding:15px;',
-        downloadButton(ns('ScotGenSupply.png'), 'Download Graph', style="float:right")
+        downloadButton(ns('ScotGenSupply.png'), paste('Download',max(unique(GenSupplyReadable$Year)), 'Graph'), style="float:right")
       )),
       
                tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
@@ -35,7 +35,7 @@ ScotGenSupplyOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
       column(10, h3("Data - Scottish electricity generation and supply (GWh)", style = "color: #5d8be1;  font-weight:bold")),
-      column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Tables", style = "float:right; "))
+      column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, DTOutput(ns("ScotGenSupplyTable1"))%>% withSpinner(color="#5d8be1"))),
@@ -43,16 +43,11 @@ ScotGenSupplyOutput <- function(id) {
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
-             p("March 2019")),
+             DateLookup(c("BEISElecGen"))),
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
-        SourceLookup("BEISElecGen"),
-        SourceLookup("BEISSubNatEnergy"),
-        SourceLookup("HMRCTrade"),
-        SourceLookup("BEISDUKESBalance"),
-        SourceLookup("SGCommodityBalance"),
-        SourceLookup("BEISImportExport")
+        SourceLookup("BEISElecGen")
         
       )
     )
