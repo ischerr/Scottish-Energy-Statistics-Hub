@@ -101,23 +101,23 @@ ScotGenSupply <- function(input, output, session) {
   
   RenSupplyGen$title[1] <- GenSupplyReadableProcessed$`Total generated`
   
-  RenSupplyGen$title[2] <- -(GenSupplyReadableProcessed$`Electricity transferred to England (net of receipts)`+ GenSupplyReadableProcessed$`Electricity transferred to Northern Ireland (net of receipts)`+ GenSupplyReadableProcessed$`Electricity transferred to Europe (net of receipts)`)
+  RenSupplyGen$title[2] <- (GenSupplyReadableProcessed$`Electricity transferred to England (net of receipts)`+ GenSupplyReadableProcessed$`Electricity transferred to Northern Ireland (net of receipts)`+ GenSupplyReadableProcessed$`Electricity transferred to Europe (net of receipts)`)
   
-  RenSupplyGen$title[3] <- RenSupplyGen$title[1] + RenSupplyGen$title[2]
+  RenSupplyGen$title[3] <- RenSupplyGen$title[1] - RenSupplyGen$title[2]
   
-  RenSupplyGen$title[4] <- -GenSupplyReadableProcessed$`Transfers from other generators to public supply`
+  RenSupplyGen$title[4] <- GenSupplyReadableProcessed$`Transfers from other generators to public supply`
   
-  RenSupplyGen$title[5] <- -GenSupplyReadableProcessed$`Consumption by autogenerators`
+  RenSupplyGen$title[5] <- GenSupplyReadableProcessed$`Consumption by autogenerators`
   
-  RenSupplyGen$title[6] <- -(GenSupplyReadableProcessed$`Own use by Other generators`+GenSupplyReadableProcessed$`Used in pumping at pumped storage and other own use by MPPs`)
+  RenSupplyGen$title[6] <- (GenSupplyReadableProcessed$`Own use by Other generators`+GenSupplyReadableProcessed$`Used in pumping at pumped storage and other own use by MPPs`)
   
-  RenSupplyGen$title[7] <- -(GenSupplyReadableProcessed$`Transmission losses` + GenSupplyReadableProcessed$`Distribution losses and theft`)
+  RenSupplyGen$title[7] <- (GenSupplyReadableProcessed$`Transmission losses` + GenSupplyReadableProcessed$`Distribution losses and theft`)
   
-  RenSupplyGen$title[8] <- sum(RenSupplyGen$title[c(1,4, 5, 6)])
+  RenSupplyGen$title[8] <- sum(RenSupplyGen$title[c(1)]) - sum(RenSupplyGen$title[c(4, 5, 6)])
   
-  RenSupplyGen$title[10] <- sum(RenSupplyGen$title[c(3,6:7)])
+  RenSupplyGen$title[10] <- RenSupplyGen$title[c(3)] - sum(RenSupplyGen$title[c(6:7)])
   
-  RenSupplyGen$title[9] <- sum(RenSupplyGen$title[c(10,5)])
+  RenSupplyGen$title[9] <-  RenSupplyGen$title[c(10)] - RenSupplyGen$title[c(5)]
   
   RenSupplyGen$size <- (abs(RenSupplyGen$title) / 50000) * 75
     
@@ -144,8 +144,7 @@ ScotGenSupply <- function(input, output, session) {
         size = 20
       ),
       labelHighlightBold = TRUE
-      ) %>% 
-      visExport("Chart", type  = "png")
+      ) 
     
     
     
@@ -159,23 +158,23 @@ ScotGenSupply <- function(input, output, session) {
     
     GenSupplyReadableProcessed$`Total Generation` <- GenSupplyReadableProcessed$`Total generated`
     
-    GenSupplyReadableProcessed$`Net Exports` <- -(GenSupplyReadableProcessed$`Electricity transferred to England (net of receipts)`+ GenSupplyReadableProcessed$`Electricity transferred to Northern Ireland (net of receipts)`+ GenSupplyReadableProcessed$`Electricity transferred to Europe (net of receipts)`)
+    GenSupplyReadableProcessed$`Net Exports` <- (GenSupplyReadableProcessed$`Electricity transferred to England (net of receipts)`+ GenSupplyReadableProcessed$`Electricity transferred to Northern Ireland (net of receipts)`+ GenSupplyReadableProcessed$`Electricity transferred to Europe (net of receipts)`)
     
-    GenSupplyReadableProcessed$`Gross Electricity Consumption` <- GenSupplyReadableProcessed$`Total Generation` + GenSupplyReadableProcessed$`Net Exports`
+    GenSupplyReadableProcessed$`Gross Electricity Consumption` <- GenSupplyReadableProcessed$`Total Generation` - GenSupplyReadableProcessed$`Net Exports`
     
-    GenSupplyReadableProcessed$`Transfers from other generators` <- -GenSupplyReadableProcessed$`Transfers from other generators to public supply`
+    GenSupplyReadableProcessed$`Transfers from other generators` <- GenSupplyReadableProcessed$`Transfers from other generators to public supply`
     
-    GenSupplyReadableProcessed$`Consumption by Autogenerators` <- -GenSupplyReadableProcessed$`Consumption by autogenerators`
+    GenSupplyReadableProcessed$`Consumption by Autogenerators` <- GenSupplyReadableProcessed$`Consumption by autogenerators`
     
-    GenSupplyReadableProcessed$`Own Use` <- -(GenSupplyReadableProcessed$`Own use by Other generators`+GenSupplyReadableProcessed$`Used in pumping at pumped storage and other own use by MPPs`)
+    GenSupplyReadableProcessed$`Own Use` <- (GenSupplyReadableProcessed$`Own use by Other generators`+GenSupplyReadableProcessed$`Used in pumping at pumped storage and other own use by MPPs`)
     
-    GenSupplyReadableProcessed$`Losses` <- -(GenSupplyReadableProcessed$`Transmission losses` + GenSupplyReadableProcessed$`Distribution losses and theft`)
+    GenSupplyReadableProcessed$`Losses` <- (GenSupplyReadableProcessed$`Transmission losses` + GenSupplyReadableProcessed$`Distribution losses and theft`)
     
-    GenSupplyReadableProcessed$`Electricity Supplied` <- GenSupplyReadableProcessed$`Total Generation` + GenSupplyReadableProcessed$`Transfers from other generators` + GenSupplyReadableProcessed$`Consumption by autogenerators` + GenSupplyReadableProcessed$`Own Use`
+    GenSupplyReadableProcessed$`Electricity Supplied` <- GenSupplyReadableProcessed$`Total Generation` - GenSupplyReadableProcessed$`Transfers from other generators` - GenSupplyReadableProcessed$`Consumption by autogenerators` - GenSupplyReadableProcessed$`Own Use`
     
-    GenSupplyReadableProcessed$`Consumption from Public Supply` <-  GenSupplyReadableProcessed$`Gross Electricity Consumption` + GenSupplyReadableProcessed$`Own Use` + GenSupplyReadableProcessed$`Losses`
+    GenSupplyReadableProcessed$`Consumption from Public Supply` <-  GenSupplyReadableProcessed$`Gross Electricity Consumption` - GenSupplyReadableProcessed$`Own Use` - GenSupplyReadableProcessed$`Losses`
     
-    GenSupplyReadableProcessed$`Total Electricity Consumption` <- GenSupplyReadableProcessed$`Consumption by autogenerators` + GenSupplyReadableProcessed$`Consumption from Public Supply`
+    GenSupplyReadableProcessed$`Total Electricity Consumption` <- GenSupplyReadableProcessed$`Consumption by autogenerators` - GenSupplyReadableProcessed$`Consumption from Public Supply`
     
     datatable(
       GenSupplyReadableProcessed[c(1,21:28,30,29)],
@@ -210,7 +209,8 @@ ScotGenSupply <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%     
-      formatRound(2:11, 0)
+      formatRound(2:11, 0) %>% 
+      formatStyle(c(2,4,8,9,10), fontWeight = "bold")
     
   })
   
