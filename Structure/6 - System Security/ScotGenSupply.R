@@ -11,7 +11,7 @@ ScotGenSupplyOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("1",
+      tabPanel("Generation and Supply",
       fluidRow(column(8,
                       h3("Scottish electricity generation and supply", style = "color: #5d8be1;  font-weight:bold"),
                       selectInput(ns("YearSelect"), "Year:", rev(unique(GenSupplyReadable$Year)), selected = max(unique(GenSupplyReadable$Year)), multiple = FALSE,
@@ -26,9 +26,9 @@ ScotGenSupplyOutput <- function(id) {
                #dygraphOutput(ns("ScotGenSupplyPlot")),
               visNetworkOutput(ns("ScotGenSupplyPlot"), height = "600px")%>% withSpinner(color="#5d8be1"),
                tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
-      tabPanel("2",
+      tabPanel("Time Series",
                fluidRow(column(8,
-                               h3("Scottish electricity generation and supply", style = "color: #5d8be1;  font-weight:bold"),
+                               h3("Scottish electricity generation and supply over time", style = "color: #5d8be1;  font-weight:bold"),
                                h4(textOutput(ns('ScotGenSupplyTimeSubtitle')), style = "color: #5d8be1;")
                                ),
                column(
@@ -539,7 +539,7 @@ ScotGenSupply <- function(input, output, session) {
       ### variables
       ChartColours <- c("#5d8be1", "#253494", "#2c7fb8",  "#a1dab4","#41b6c4", "#74c476")
       sourcecaption = "Source: Elexon, National Grid"
-      plottitle = "Proportion of time Scotland is capable of meeting"
+      plottitle = "Scottish electricity generation and supply over time"
       
       #GenSupplyReadableProcessed$`Total Generation`Percentage <- PercentLabel(GenSupplyReadableProcessed$`Total Generation`)
       
@@ -843,6 +843,13 @@ ScotGenSupply <- function(input, output, session) {
       
     }
   )
+  
+  output$ScotGenSupplyTimeSubtitle <- renderText({
+    
+
+    paste("Scotland,", min(GenSupplyReadable$Year),"-", max(GenSupplyReadable$Year))
+  })
+  
   
 }
                                                                                                                                                      
