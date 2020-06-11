@@ -294,6 +294,7 @@ ScotGenSupply <- function(input, output, session) {
     GenSupplyReadableProcessed$Year <- dmy(GenSupplyReadableProcessed$Year)
     
     
+    
     p <-  plot_ly(GenSupplyReadableProcessed,x = ~ Year ) %>% 
       add_trace(data = GenSupplyReadableProcessed,
                 x = ~ Year,
@@ -509,6 +510,7 @@ ScotGenSupply <- function(input, output, session) {
     content = function(file) {
       
       
+      
       GenSupplyReadableProcessed <- GenSupplyReadable[which(GenSupplyReadable$Country == "Scotland"),]
       
       GenSupplyReadableProcessed$`Total Generation` <- GenSupplyReadableProcessed$`Total generated`
@@ -533,10 +535,11 @@ ScotGenSupply <- function(input, output, session) {
       
       GenSupplyReadableProcessed <- GenSupplyReadableProcessed[c(1,21:28,30,29)]
       
+      width = max(GenSupplyReadableProcessed$Year)- min(GenSupplyReadableProcessed$Year)
       ### variables
       ChartColours <- c("#5d8be1", "#253494", "#2c7fb8",  "#a1dab4","#41b6c4", "#74c476")
       sourcecaption = "Source: Elexon, National Grid"
-      plottitle = "Proportion of time Scotland is capable of meeting\ndemand from Scottish generation"
+      plottitle = "Proportion of time Scotland is capable of meeting"
       
       #GenSupplyReadableProcessed$`Total Generation`Percentage <- PercentLabel(GenSupplyReadableProcessed$`Total Generation`)
       
@@ -552,11 +555,11 @@ ScotGenSupply <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year - .5,
+            x = Year - width*0.08,
             y = `Total Generation`,
-            label = ifelse(Year == min(Year), format(round(`Total Generation`, digits = 0), big.mark = ","), ""),
+            label = ifelse(Year == min(Year), paste0(format(round(`Total Generation`, digits = 0), big.mark = ","), "\nGWh"), ""),
             hjust = 0.5,
-            vjust = -0.02,
+            vjust = .5,
             fontface = 2
           ),
           colour = ChartColours[2],
@@ -564,9 +567,9 @@ ScotGenSupply <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year + .65,
+            x = Year + width*0.08,
             y = `Total Generation`,
-            label = ifelse(Year == max(Year), format(round(`Total Generation`, digits = 0), big.mark = ","), ""),
+            label = ifelse(Year == max(Year), paste0(format(round(`Total Generation`, digits = 0), big.mark = ","), "\nGWh"), ""),
             hjust = 0.5,
             
             fontface = 2
@@ -589,7 +592,7 @@ ScotGenSupply <- function(input, output, session) {
           y = mean(GenSupplyReadableProcessed$`Total Generation`),
           label = "Total Generation",
           hjust = 0.5,
-          vjust = -1,
+          vjust = -2.9,
           colour = ChartColours[2],
           fontface = 2,
           family = "Century Gothic"
@@ -603,11 +606,11 @@ ScotGenSupply <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year - .5,
+            x = Year - width*0.08,
             y = `Gross Electricity Consumption`,
-            label = ifelse(Year == min(Year), format(round(`Gross Electricity Consumption`, digits = 0), big.mark = ","), ""),
+            label = ifelse(Year == min(Year), paste0(format(round(`Gross Electricity Consumption`, digits = 0), big.mark = ","), "\nGWh"), ""),
             hjust = 0.5,
-            vjust = 1.02,
+            vjust = -.1,
             fontface = 2
           ),
           colour = ChartColours[3],
@@ -615,11 +618,11 @@ ScotGenSupply <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year + .65,
+            x = Year + width*0.08,
             y = `Gross Electricity Consumption`,
-            label = ifelse(Year == max(Year), format(round(`Gross Electricity Consumption`, digits = 0), big.mark = ","), ""),
+            label = ifelse(Year == max(Year), paste0(format(round(`Gross Electricity Consumption`, digits = 0), big.mark = ","), "\nGWh"), ""),
             hjust = 0.5,
-            vjust = 0,
+            vjust = 1,
             fontface = 2
           ),
           colour = ChartColours[3],
@@ -638,9 +641,9 @@ ScotGenSupply <- function(input, output, session) {
           "text",
           x = mean(GenSupplyReadableProcessed$Year),
           y = mean(GenSupplyReadableProcessed$`Gross Electricity Consumption`),
-          label = "Gross Electricity Consumption",
+          label = "Gross Electricity\nConsumption",
           hjust = 0.5,
-          vjust = 0.7,
+          vjust = 1.4,
           colour = ChartColours[3],
           fontface = 2,
           family = "Century Gothic"
@@ -654,11 +657,11 @@ ScotGenSupply <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year - .5,
+            x = Year - width*0.08,
             y = `Electricity Supplied`,
-            label = ifelse(Year == min(Year), format(round(`Electricity Supplied`, digits = 0), big.mark = ","), ""),
+            label = ifelse(Year == min(Year), paste0(format(round(`Electricity Supplied`, digits = 0), big.mark = ","), "\nGWh"), ""),
             hjust = 0.5,
-            vjust = -0.1,
+            vjust = 0.95,
             fontface = 2
           ),
           colour = ChartColours[4],
@@ -666,9 +669,9 @@ ScotGenSupply <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year + .65,
+            x = Year + width*0.08,
             y = `Electricity Supplied`,
-            label = ifelse(Year == max(Year), format(round(`Electricity Supplied`,  digits = 0), big.mark = ","), ""),
+            label = ifelse(Year == max(Year), paste0(format(round(`Electricity Supplied`,  digits = 0), big.mark = ","), "\nGWh"), ""),
             hjust = 0.5,
             fontface = 2
           ),
@@ -691,7 +694,7 @@ ScotGenSupply <- function(input, output, session) {
           y = mean(GenSupplyReadableProcessed$`Electricity Supplied`),
           label = "Electricity Supplied",
           hjust = 0.5,
-          vjust = -1,
+          vjust = -3.1,
           colour = ChartColours[4],
           fontface = 2,
           family = "Century Gothic"
@@ -705,9 +708,9 @@ ScotGenSupply <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year - .5,
+            x = Year - width*0.08,
             y = `Total Electricity Consumption`,
-            label = ifelse(Year == min(Year), format(round(`Total Electricity Consumption`, digits = 0), big.mark = ","), ""),
+            label = ifelse(Year == min(Year), paste0(format(round(`Total Electricity Consumption`, digits = 0), big.mark = ","), "\nGWh"), ""),
             hjust = 0.5,
             fontface = 2
           ),
@@ -716,9 +719,9 @@ ScotGenSupply <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year + .65,
+            x = Year + width*0.08,
             y = `Total Electricity Consumption`,
-            label = ifelse(Year == max(Year), format(round(`Total Electricity Consumption`, digits = 0), big.mark = ","), ""),
+            label = ifelse(Year == max(Year), paste0(format(round(`Total Electricity Consumption`, digits = 0), big.mark = ","), "\nGWh"), ""),
             hjust = 0.5,
             vjust = 1,
             fontface = 2
@@ -741,7 +744,7 @@ ScotGenSupply <- function(input, output, session) {
           y = mean(GenSupplyReadableProcessed$`Total Electricity Consumption`),
           label = "Total Electricity Consumption",
           hjust = 0.5,
-          vjust = 1.2,
+          vjust = 4.8,
           colour = ChartColours[5],
           fontface = 2,
           family = "Century Gothic"
@@ -755,9 +758,9 @@ ScotGenSupply <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year - .5,
+            x = Year - width*0.08,
             y = `Consumption from Public Supply`,
-            label = ifelse(Year == min(Year), format(round(`Consumption from Public Supply`, digits = 0), big.mark = ","), ""),
+            label = ifelse(Year == min(Year), paste0(format(round(`Consumption from Public Supply`, digits = 0), big.mark = ","), "\nGWh"), ""),
             hjust = 0.5,
             fontface = 2
           ),
@@ -766,9 +769,9 @@ ScotGenSupply <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year + .65,
+            x = Year + width*0.08,
             y = `Consumption from Public Supply`,
-            label = ifelse(Year == max(Year), format(round(`Consumption from Public Supply`, digits = 0), big.mark = ","), ""),
+            label = ifelse(Year == max(Year), paste0(format(round(`Consumption from Public Supply`, digits = 0), big.mark = ","), "\nGWh"), ""),
             hjust = 0.5,
             vjust = 1,
             fontface = 2
@@ -791,7 +794,7 @@ ScotGenSupply <- function(input, output, session) {
           y = mean(GenSupplyReadableProcessed$`Consumption from Public Supply`),
           label = "Consumption from Public Supply",
           hjust = 0.5,
-          vjust = 1.2,
+          vjust = 4.2,
           colour = ChartColours[6],
           fontface = 2,
           family = "Century Gothic"
@@ -823,13 +826,17 @@ ScotGenSupply <- function(input, output, session) {
                     sourcecaption,
                     ChartColours)
       
-      GenSupplyReadableProcessedChart <- GenSupplyReadableProcessedChart 
+      GenSupplyReadableProcessedChart <- GenSupplyReadableProcessedChart +
+        xlim(
+          min(GenSupplyReadableProcessed$Year)-(width*0.105),
+          max(GenSupplyReadableProcessed$Year)+(width*0.105)
+              )
       
       ggsave(
         file,
         plot =  GenSupplyReadableProcessedChart,
         width = 18,
-        height = 16,
+        height = 17,
         units = "cm",
         dpi = 300
       )
