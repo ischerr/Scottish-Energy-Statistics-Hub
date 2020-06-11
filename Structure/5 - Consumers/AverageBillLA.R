@@ -237,7 +237,9 @@ AverageBillLA <- function(input, output, session) {
 
   output$ElecUnitTable = renderDataTable({
     
-    ElecUnitCost <- read_csv("Processed Data/Output/Energy Bills/ElecUnitCost.csv")
+    ElecUnitCost <- read_csv("Processed Data/Output/Energy Bills/ElecUnitCost.csv", 
+                             locale = locale(encoding = "ASCII"))
+    
     
     names(ElecUnitCost) <- c("Region", "Credit - Average variable unit price (\u00A3/kWh)", "Credit - Average fixed cost (\u00A3/year)" ," Direct debit - Average variable unit price (\u00A3/kWh)", "Direct debit - Average fixed cost (\u00A3/year)" , "Prepayment - Average variable unit price (\u00A3/kWh)" , "Prepayment - Average fixed cost (\u00A3/year)" , "Total - Average variable unit price (\u00A3/kWh)" , "Total - Average fixed cost (\u00A3/year)")
 
@@ -279,7 +281,8 @@ AverageBillLA <- function(input, output, session) {
   
   output$GasUnitTable = renderDataTable({
     
-    GasUnitCost <- read_csv("Processed Data/Output/Energy Bills/GasUnitCost.csv")
+    GasUnitCost <- read_csv("Processed Data/Output/Energy Bills/GasUnitCost.csv", 
+                             locale = locale(encoding = "ASCII"))
     
     names(GasUnitCost) <- c("Region", "Credit - Average variable unit price (\u00A3/kWh)", "Credit - Average fixed cost (\u00A3/year)" ," Direct debit - Average variable unit price (\u00A3/kWh)", "Direct debit - Average fixed cost (\u00A3/year)" , "Prepayment - Average variable unit price (\u00A3/kWh)" , "Prepayment - Average fixed cost (\u00A3/year)" , "Total - Average variable unit price (\u00A3/kWh)" , "Total - Average fixed cost (\u00A3/year)")
     

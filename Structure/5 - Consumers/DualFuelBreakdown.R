@@ -480,7 +480,7 @@ DualFuelBreakdown <- function(input, output, session) {
     NorthScotlandDualFuelBreakdown <- read_delim("Processed Data/Output/Energy Bills/NorthScotlandDualFuelBreakdown.txt", 
                                                  "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    NorthScotlandDualFuelBreakdown <- NorthScotlandDualFuelBreakdown[order(nrow(NorthScotlandDualFuelBreakdown):1),]
+    
     
     datatable(
       NorthScotlandDualFuelBreakdown[1:6],
@@ -521,8 +521,6 @@ DualFuelBreakdown <- function(input, output, session) {
     
     SouthScotlandDualFuelBreakdown <- read_delim("Processed Data/Output/Energy Bills/SouthScotlandDualFuelBreakdown.txt", 
                                                  "\t", escape_double = FALSE, trim_ws = TRUE)
-    
-    SouthScotlandDualFuelBreakdown <- SouthScotlandDualFuelBreakdown[order(nrow(SouthScotlandDualFuelBreakdown):1),]
     
     datatable(
       SouthScotlandDualFuelBreakdown[1:6],
