@@ -10,6 +10,8 @@ source("Structure/Global.R")
 ScotGenSupplyOutput <- function(id) {
   ns <- NS(id)
   tagList(
+    tabsetPanel(
+      tabPanel("1",
       fluidRow(column(8,
                       h3("Scottish electricity generation and supply", style = "color: #5d8be1;  font-weight:bold"),
                       selectInput(ns("YearSelect"), "Year:", rev(unique(GenSupplyReadable$Year)), selected = max(unique(GenSupplyReadable$Year)), multiple = FALSE,
@@ -23,7 +25,21 @@ ScotGenSupplyOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
                #dygraphOutput(ns("ScotGenSupplyPlot")),
               visNetworkOutput(ns("ScotGenSupplyPlot"), height = "600px")%>% withSpinner(color="#5d8be1"),
+               tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
+      tabPanel("2",
+               fluidRow(column(8,
+                               h3("Scottish electricity generation and supply", style = "color: #5d8be1;  font-weight:bold"),
+                               h4(textOutput(ns('ScotGenSupplyTimeSubtitle')), style = "color: #5d8be1;")
+                               ),
+               column(
+                 4, style = 'padding:15px;',
+                 downloadButton(ns('ScotGenSupplyTime.png'), 'Download Graph', style="float:right")
+               )),
+               
                tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
+               #dygraphOutput(ns("ScotGenSupplyPlot")),
+               plotlyOutput(ns("ScotGenSupplyTimePlot"), height = "600px")%>% withSpinner(color="#5d8be1"),
+               tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"))),
     fluidRow(
       column(10,h3("Commentary", style = "color: #5d8be1;  font-weight:bold")),
       column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
@@ -242,7 +258,584 @@ ScotGenSupply <- function(input, output, session) {
   })
   
 
+  output$ScotGenSupplyTimePlot <- renderPlotly({
+    
+    GenSupplyReadableProcessed <- GenSupplyReadable[which(GenSupplyReadable$Country == "Scotland"),]
+    
+    GenSupplyReadableProcessed$`Total Generation` <- GenSupplyReadableProcessed$`Total generated`
+    
+    GenSupplyReadableProcessed$`Net Exports` <- (GenSupplyReadableProcessed$`Electricity transferred to England (net of receipts)`+ GenSupplyReadableProcessed$`Electricity transferred to Northern Ireland (net of receipts)`+ GenSupplyReadableProcessed$`Electricity transferred to Europe (net of receipts)`)
+    
+    GenSupplyReadableProcessed$`Gross Electricity Consumption` <- GenSupplyReadableProcessed$`Total Generation` - GenSupplyReadableProcessed$`Net Exports`
+    
+    GenSupplyReadableProcessed$`Transfers from other generators` <- GenSupplyReadableProcessed$`Transfers from other generators to public supply`
+    
+    GenSupplyReadableProcessed$`Consumption by Autogenerators` <- GenSupplyReadableProcessed$`Consumption by autogenerators`
+    
+    GenSupplyReadableProcessed$`Own Use` <- (GenSupplyReadableProcessed$`Own use by Other generators`+GenSupplyReadableProcessed$`Used in pumping at pumped storage and other own use by MPPs`)
+    
+    GenSupplyReadableProcessed$`Losses` <- (GenSupplyReadableProcessed$`Transmission losses` + GenSupplyReadableProcessed$`Distribution losses and theft`)
+    
+    GenSupplyReadableProcessed$`Electricity Supplied` <- GenSupplyReadableProcessed$`Total Generation` - GenSupplyReadableProcessed$`Transfers from other generators` - GenSupplyReadableProcessed$`Consumption by autogenerators` - GenSupplyReadableProcessed$`Own Use`
+    
+    GenSupplyReadableProcessed$`Total Electricity Consumption` <-  GenSupplyReadableProcessed$`Gross Electricity Consumption` - GenSupplyReadableProcessed$`Own Use` - GenSupplyReadableProcessed$`Losses`
+    
+    GenSupplyReadableProcessed$`Consumption from Public Supply` <-   GenSupplyReadableProcessed$`Total Electricity Consumption` - GenSupplyReadableProcessed$`Consumption by autogenerators`
+    
+    GenSupplyReadableProcessed <- GenSupplyReadableProcessed[c(1,21:28,30,29)]
+    
+    ### variables
+    ChartColours <- c("#5d8be1", "#253494", "#2c7fb8", "#41b6c4", "#a1dab4", "#74c476")
+    sourcecaption = "Source: Elexon, National Grid"
+    plottitle = "Proportion of time Scotland is capable of meeting\ndemand from Scottish generation"
+    
+    GenSupplyReadableProcessed$Year <- paste0("01/01/", GenSupplyReadableProcessed$Year)
+    
+    GenSupplyReadableProcessed$Year <- dmy(GenSupplyReadableProcessed$Year)
+    
+    
+    p <-  plot_ly(GenSupplyReadableProcessed,x = ~ Year ) %>% 
+      add_trace(data = GenSupplyReadableProcessed,
+                x = ~ Year,
+                y = ~ `Total Generation`,
+                name = "Total Generation",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "1",
+                text = paste0(
+                  "Total Generation: ",
+                  format(round(GenSupplyReadableProcessed$`Total Generation`, digits = 0), big.mark = ","),
+                  " GWh\nYear: ",
+                  format(GenSupplyReadableProcessed$Year, "%Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[2], dash = "none")
+      ) %>% 
+      add_trace(
+        data = tail(GenSupplyReadableProcessed[which(GenSupplyReadableProcessed$`Total Generation` > 0 | GenSupplyReadableProcessed$`Total Generation` < 0),], 1),
+        x = ~ Year,
+        y = ~ `Total Generation`,
+        legendgroup = "1",
+        name = "Total Generation",
+        text = paste0(
+          "Total Generation: ",
+          format(round(GenSupplyReadableProcessed[which(GenSupplyReadableProcessed$`Total Generation` > 0 | GenSupplyReadableProcessed$`Total Generation` < 0),][-1,]$`Total Generation`, digits = 0), big.mark = ","),
+          " GWh\nYear: ",
+          format(GenSupplyReadableProcessed[which(GenSupplyReadableProcessed$`Total Generation` > 0 | GenSupplyReadableProcessed$`Total Generation` < 0),][-1,]$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[2])
+      ) %>% 
+      add_trace(data = GenSupplyReadableProcessed,
+                x = ~ Year,
+                y = ~ `Gross Electricity Consumption`,
+                name = "Gross Electricity Consumption",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "2",
+                text = paste0(
+                  "Gross Electricity Consumption: ",
+                  format(round(GenSupplyReadableProcessed$`Gross Electricity Consumption`, digits = 0), big.mark = ","),
+                  " GWh\nYear: ",
+                  format(GenSupplyReadableProcessed$Year, "%Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[3], dash = "none")
+      ) %>% 
+      add_trace(
+        data = tail(GenSupplyReadableProcessed[which(GenSupplyReadableProcessed$`Gross Electricity Consumption` > 0 | GenSupplyReadableProcessed$`Gross Electricity Consumption` < 0),], 1),
+        x = ~ Year,
+        y = ~ `Gross Electricity Consumption`,
+        legendgroup = "2",
+        name = "Gross Electricity Consumption",
+        text = paste0(
+          "Gross Electricity Consumption: ",
+          format(round(GenSupplyReadableProcessed[which(GenSupplyReadableProcessed$`Gross Electricity Consumption` > 0 | GenSupplyReadableProcessed$`Gross Electricity Consumption` < 0),][-1,]$`Gross Electricity Consumption`, digits = 0), big.mark = ","),
+          " GWh\nYear: ",
+          format(GenSupplyReadableProcessed[which(GenSupplyReadableProcessed$`Gross Electricity Consumption` > 0 | GenSupplyReadableProcessed$`Gross Electricity Consumption` < 0),][-1,]$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[3])
+      ) %>% 
+      add_trace(data = GenSupplyReadableProcessed,
+                x = ~ Year,
+                y = ~ `Electricity Supplied`,
+                name = "Electricity Supplied",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "3",
+                text = paste0(
+                  "Electricity Supplied: ",
+                  format(round(GenSupplyReadableProcessed$`Electricity Supplied`, digits = 0), big.mark = ","),
+                  " GWh\nYear: ",
+                  format(GenSupplyReadableProcessed$Year, "%Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[5], dash = "none")
+      ) %>% 
+      add_trace(
+        data = tail(GenSupplyReadableProcessed[which(GenSupplyReadableProcessed$`Electricity Supplied` > 0 | GenSupplyReadableProcessed$`Electricity Supplied` < 0),], 1),
+        x = ~ Year,
+        y = ~ `Electricity Supplied`,
+        legendgroup = "3",
+        name = "Electricity Supplied",
+        text = paste0(
+          "Electricity Supplied: ",
+          format(round(GenSupplyReadableProcessed[which(GenSupplyReadableProcessed$`Electricity Supplied` > 0 | GenSupplyReadableProcessed$`Electricity Supplied` < 0),][-1,]$`Electricity Supplied`, digits = 0), big.mark = ","),
+          " GWh\nYear: ",
+          format(GenSupplyReadableProcessed[which(GenSupplyReadableProcessed$`Electricity Supplied` > 0 | GenSupplyReadableProcessed$`Electricity Supplied` < 0),][-1,]$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[5])
+      ) %>% 
+      add_trace(data = GenSupplyReadableProcessed,
+                x = ~ Year,
+                y = ~ `Total Electricity Consumption`,
+                name = "Total Electricity Consumption",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "4",
+                text = paste0(
+                  "Total Electricity Consumption: ",
+                  format(round(GenSupplyReadableProcessed$`Total Electricity Consumption`, digits = 0), big.mark = ","),
+                  " GWh\nYear: ",
+                  format(GenSupplyReadableProcessed$Year, "%Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[4], dash = "none")
+      ) %>% 
+      add_trace(
+        data = tail(GenSupplyReadableProcessed[which(GenSupplyReadableProcessed$`Total Electricity Consumption` > 0 | GenSupplyReadableProcessed$`Total Electricity Consumption` < 0),], 1),
+        x = ~ Year,
+        y = ~ `Total Electricity Consumption`,
+        legendgroup = "4",
+        name = "Total Electricity Consumption",
+        text = paste0(
+          "Total Electricity Consumption: ",
+          format(round(GenSupplyReadableProcessed[which(GenSupplyReadableProcessed$`Total Electricity Consumption` > 0 | GenSupplyReadableProcessed$`Total Electricity Consumption` < 0),][-1,]$`Total Electricity Consumption`, digits = 0), big.mark = ","),
+          " GWh\nYear: ",
+          format(GenSupplyReadableProcessed[which(GenSupplyReadableProcessed$`Total Electricity Consumption` > 0 | GenSupplyReadableProcessed$`Total Electricity Consumption` < 0),][-1,]$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[4])
+      ) %>% 
+      
+      
+      add_trace(data = GenSupplyReadableProcessed,
+                x = ~ Year,
+                y = ~ `Consumption from Public Supply`,
+                name = "Consumption from Public Supply",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "5",
+                text = paste0(
+                  "Consumption from Public Supply: ",
+                  format(round(GenSupplyReadableProcessed$`Consumption from Public Supply`, digits = 0), big.mark = ","),
+                  " GWh\nYear: ",
+                  format(GenSupplyReadableProcessed$Year, "%Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[6], dash = "none")
+      ) %>% 
+      add_trace(
+        data = tail(GenSupplyReadableProcessed[which(GenSupplyReadableProcessed$`Consumption from Public Supply` > 0 | GenSupplyReadableProcessed$`Consumption from Public Supply` < 0),], 1),
+        x = ~ Year,
+        y = ~ `Consumption from Public Supply`,
+        legendgroup = "5",
+        name = "Consumption from Public Supply",
+        text = paste0(
+          "Consumption from Public Supply: ",
+          format(round(GenSupplyReadableProcessed[which(GenSupplyReadableProcessed$`Consumption from Public Supply` > 0 | GenSupplyReadableProcessed$`Consumption from Public Supply` < 0),][-1,]$`Consumption from Public Supply`, digits = 0), big.mark = ","),
+          " GWh\nYear: ",
+          format(GenSupplyReadableProcessed[which(GenSupplyReadableProcessed$`Consumption from Public Supply` > 0 | GenSupplyReadableProcessed$`Consumption from Public Supply` < 0),][-1,]$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[6])
+      ) %>% 
+      
+      
+      
+      layout(
+        barmode = 'stack',
+        bargap = 0.66,
+        legend = list(font = list(color = "#5d8be1"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        
+        xaxis = list(title = "",
+                     showgrid = FALSE,
+                     range = c(min(GenSupplyReadableProcessed$Year)-100, max(GenSupplyReadableProcessed$Year)+100)),
+        yaxis = list(
+          title = "GWh",
+          tickformat = "",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    p
+    
+    
+  })
   
+  
+  output$ScotGenSupplyTime.png <- downloadHandler(
+    filename = "ScotGenSupplyTime.png",
+    content = function(file) {
+      
+      
+      GenSupplyReadableProcessed <- GenSupplyReadable[which(GenSupplyReadable$Country == "Scotland"),]
+      
+      GenSupplyReadableProcessed$`Total Generation` <- GenSupplyReadableProcessed$`Total generated`
+      
+      GenSupplyReadableProcessed$`Net Exports` <- (GenSupplyReadableProcessed$`Electricity transferred to England (net of receipts)`+ GenSupplyReadableProcessed$`Electricity transferred to Northern Ireland (net of receipts)`+ GenSupplyReadableProcessed$`Electricity transferred to Europe (net of receipts)`)
+      
+      GenSupplyReadableProcessed$`Gross Electricity Consumption` <- GenSupplyReadableProcessed$`Total Generation` - GenSupplyReadableProcessed$`Net Exports`
+      
+      GenSupplyReadableProcessed$`Transfers from other generators` <- GenSupplyReadableProcessed$`Transfers from other generators to public supply`
+      
+      GenSupplyReadableProcessed$`Consumption by Autogenerators` <- GenSupplyReadableProcessed$`Consumption by autogenerators`
+      
+      GenSupplyReadableProcessed$`Own Use` <- (GenSupplyReadableProcessed$`Own use by Other generators`+GenSupplyReadableProcessed$`Used in pumping at pumped storage and other own use by MPPs`)
+      
+      GenSupplyReadableProcessed$`Losses` <- (GenSupplyReadableProcessed$`Transmission losses` + GenSupplyReadableProcessed$`Distribution losses and theft`)
+      
+      GenSupplyReadableProcessed$`Electricity Supplied` <- GenSupplyReadableProcessed$`Total Generation` - GenSupplyReadableProcessed$`Transfers from other generators` - GenSupplyReadableProcessed$`Consumption by autogenerators` - GenSupplyReadableProcessed$`Own Use`
+      
+      GenSupplyReadableProcessed$`Total Electricity Consumption` <-  GenSupplyReadableProcessed$`Gross Electricity Consumption` - GenSupplyReadableProcessed$`Own Use` - GenSupplyReadableProcessed$`Losses`
+      
+      GenSupplyReadableProcessed$`Consumption from Public Supply` <-   GenSupplyReadableProcessed$`Total Electricity Consumption` - GenSupplyReadableProcessed$`Consumption by autogenerators`
+      
+      GenSupplyReadableProcessed <- GenSupplyReadableProcessed[c(1,21:28,30,29)]
+      
+      ### variables
+      ChartColours <- c("#5d8be1", "#253494", "#2c7fb8",  "#a1dab4","#41b6c4", "#74c476")
+      sourcecaption = "Source: Elexon, National Grid"
+      plottitle = "Proportion of time Scotland is capable of meeting\ndemand from Scottish generation"
+      
+      #GenSupplyReadableProcessed$`Total Generation`Percentage <- PercentLabel(GenSupplyReadableProcessed$`Total Generation`)
+      
+      
+      GenSupplyReadableProcessedChart <- GenSupplyReadableProcessed %>%
+        ggplot(aes(x = Year), family = "Century Gothic") +
+        geom_line(
+          aes(y = `Total Generation`,
+              label =  paste0(`Total Generation` * 100, "%")),
+          colour = ChartColours[2],
+          size = 1.5,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year - .5,
+            y = `Total Generation`,
+            label = ifelse(Year == min(Year), format(round(`Total Generation`, digits = 0), big.mark = ","), ""),
+            hjust = 0.5,
+            vjust = -0.02,
+            fontface = 2
+          ),
+          colour = ChartColours[2],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year + .65,
+            y = `Total Generation`,
+            label = ifelse(Year == max(Year), format(round(`Total Generation`, digits = 0), big.mark = ","), ""),
+            hjust = 0.5,
+            
+            fontface = 2
+          ),
+          colour = ChartColours[2],
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(GenSupplyReadableProcessed, 1),
+          aes(x = Year,
+              y = `Total Generation`,
+              show_guide = FALSE),
+          colour = ChartColours[2],
+          size = 4,
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = mean(GenSupplyReadableProcessed$Year),
+          y = mean(GenSupplyReadableProcessed$`Total Generation`),
+          label = "Total Generation",
+          hjust = 0.5,
+          vjust = -1,
+          colour = ChartColours[2],
+          fontface = 2,
+          family = "Century Gothic"
+        ) +
+        geom_line(
+          aes(y = `Gross Electricity Consumption`,
+              label = paste0(`Gross Electricity Consumption` * 100, "%")),
+          colour = ChartColours[3],
+          size = 1.5,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year - .5,
+            y = `Gross Electricity Consumption`,
+            label = ifelse(Year == min(Year), format(round(`Gross Electricity Consumption`, digits = 0), big.mark = ","), ""),
+            hjust = 0.5,
+            vjust = 1.02,
+            fontface = 2
+          ),
+          colour = ChartColours[3],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year + .65,
+            y = `Gross Electricity Consumption`,
+            label = ifelse(Year == max(Year), format(round(`Gross Electricity Consumption`, digits = 0), big.mark = ","), ""),
+            hjust = 0.5,
+            vjust = 0,
+            fontface = 2
+          ),
+          colour = ChartColours[3],
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(GenSupplyReadableProcessed, 1),
+          aes(x = Year,
+              y = `Gross Electricity Consumption`,
+              show_guide = FALSE),
+          colour = ChartColours[3],
+          size = 4,
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = mean(GenSupplyReadableProcessed$Year),
+          y = mean(GenSupplyReadableProcessed$`Gross Electricity Consumption`),
+          label = "Gross Electricity Consumption",
+          hjust = 0.5,
+          vjust = 0.7,
+          colour = ChartColours[3],
+          fontface = 2,
+          family = "Century Gothic"
+        ) +
+        geom_line(
+          aes(y = `Electricity Supplied`,
+              label = paste0(`Electricity Supplied` * 100, "%")),
+          colour = ChartColours[4],
+          size = 1.5,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year - .5,
+            y = `Electricity Supplied`,
+            label = ifelse(Year == min(Year), format(round(`Electricity Supplied`, digits = 0), big.mark = ","), ""),
+            hjust = 0.5,
+            vjust = -0.1,
+            fontface = 2
+          ),
+          colour = ChartColours[4],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year + .65,
+            y = `Electricity Supplied`,
+            label = ifelse(Year == max(Year), format(round(`Electricity Supplied`,  digits = 0), big.mark = ","), ""),
+            hjust = 0.5,
+            fontface = 2
+          ),
+          colour = ChartColours[4],
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(GenSupplyReadableProcessed, 1),
+          aes(x = Year,
+              y = `Electricity Supplied`,
+              
+              show_guide = FALSE),
+          size = 4,
+          colour = ChartColours[4],
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = mean(GenSupplyReadableProcessed$Year),
+          y = mean(GenSupplyReadableProcessed$`Electricity Supplied`),
+          label = "Electricity Supplied",
+          hjust = 0.5,
+          vjust = -1,
+          colour = ChartColours[4],
+          fontface = 2,
+          family = "Century Gothic"
+        ) +
+        geom_line(
+          aes(y = `Total Electricity Consumption`,
+              label = paste0(`Total Electricity Consumption` * 100, "%")),
+          colour = ChartColours[5],
+          size = 1.5,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year - .5,
+            y = `Total Electricity Consumption`,
+            label = ifelse(Year == min(Year), format(round(`Total Electricity Consumption`, digits = 0), big.mark = ","), ""),
+            hjust = 0.5,
+            fontface = 2
+          ),
+          colour = ChartColours[5],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year + .65,
+            y = `Total Electricity Consumption`,
+            label = ifelse(Year == max(Year), format(round(`Total Electricity Consumption`, digits = 0), big.mark = ","), ""),
+            hjust = 0.5,
+            vjust = 1,
+            fontface = 2
+          ),
+          colour = ChartColours[5],
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(GenSupplyReadableProcessed, 1),
+          aes(x = Year,
+              y = `Total Electricity Consumption`,
+              show_guide = FALSE),
+          colour = ChartColours[5],
+          size = 4,
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = mean(GenSupplyReadableProcessed$Year),
+          y = mean(GenSupplyReadableProcessed$`Total Electricity Consumption`),
+          label = "Total Electricity Consumption",
+          hjust = 0.5,
+          vjust = 1.2,
+          colour = ChartColours[5],
+          fontface = 2,
+          family = "Century Gothic"
+        )+
+        geom_line(
+          aes(y = `Consumption from Public Supply`,
+              label = paste0(`Consumption from Public Supply` * 100, "%")),
+          colour = ChartColours[6],
+          size = 1.5,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year - .5,
+            y = `Consumption from Public Supply`,
+            label = ifelse(Year == min(Year), format(round(`Consumption from Public Supply`, digits = 0), big.mark = ","), ""),
+            hjust = 0.5,
+            fontface = 2
+          ),
+          colour = ChartColours[6],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year + .65,
+            y = `Consumption from Public Supply`,
+            label = ifelse(Year == max(Year), format(round(`Consumption from Public Supply`, digits = 0), big.mark = ","), ""),
+            hjust = 0.5,
+            vjust = 1,
+            fontface = 2
+          ),
+          colour = ChartColours[6],
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(GenSupplyReadableProcessed, 1),
+          aes(x = Year,
+              y = `Consumption from Public Supply`,
+              show_guide = FALSE),
+          colour = ChartColours[6],
+          size = 4,
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = mean(GenSupplyReadableProcessed$Year),
+          y = mean(GenSupplyReadableProcessed$`Consumption from Public Supply`),
+          label = "Consumption from Public Supply",
+          hjust = 0.5,
+          vjust = 1.2,
+          colour = ChartColours[6],
+          fontface = 2,
+          family = "Century Gothic"
+        )+
+        geom_text(
+          aes(
+            x = Year,
+            y = 0,
+            label = ifelse(
+              Year == max(Year) |
+                Year == min(Year),
+              Year,
+              ""
+            ),
+            hjust = 0.5,
+            vjust = 1.5,
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic"
+        )
+      
+      GenSupplyReadableProcessedChart
+      
+      GenSupplyReadableProcessedChart <-
+        StackedArea(GenSupplyReadableProcessedChart,
+                    GenSupplyReadableProcessed,
+                    plottitle,
+                    sourcecaption,
+                    ChartColours)
+      
+      GenSupplyReadableProcessedChart <- GenSupplyReadableProcessedChart 
+      
+      ggsave(
+        file,
+        plot =  GenSupplyReadableProcessedChart,
+        width = 18,
+        height = 16,
+        units = "cm",
+        dpi = 300
+      )
+      
+    }
+  )
   
 }
                                                                                                                                                      
