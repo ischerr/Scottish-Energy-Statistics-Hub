@@ -192,7 +192,7 @@ ScotGenSupply <- function(input, output, session) {
     GenSupplyReadableProcessed$`Consumption from Public Supply` <-   GenSupplyReadableProcessed$`Total Electricity Consumption` - GenSupplyReadableProcessed$`Consumption by autogenerators`
     
     datatable(
-      GenSupplyReadableProcessed[c(1,21:28,30,29)],
+      GenSupplyReadableProcessed[c(1,21:30)],
       extensions = 'Buttons',
       
       rownames = FALSE,
