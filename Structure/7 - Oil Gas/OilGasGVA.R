@@ -11,7 +11,7 @@ OilGasGVAOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("GVA associated with oil and gas production", style = "color: #126992;  font-weight:bold"),
+                    h3("Gross value added (GVA) associated with oil and gas production", style = "color: #126992;  font-weight:bold"),
                     h4(textOutput(ns('OilGasGVASubtitle')), style = "color: #126992;")
     ),
              column(
@@ -208,17 +208,17 @@ OilGasGVA <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "GVA associated with oil and gas production (\u00A3 billion)",
+        title = "Gross value added (GVA) associated with oil and gas production (\u00A3 billion)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'GVA associated with oil and gas production (\u00A3 billion)',
+            title = 'Gross value added (GVA) associated with oil and gas production (\u00A3 billion)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'GVA associated with oil and gas production (\u00A3 billion)')
+               title = 'Gross value added (GVA) associated with oil and gas production (\u00A3 billion)')
         ),
         
         # customize the length menu
@@ -275,7 +275,7 @@ OilGasGVA <- function(input, output, session) {
       ### variables
       ChartColours <- c("#126992", "#66c2a5", "#fc8d62", "#8da0cb")
       sourcecaption = "Source: SG"
-      plottitle = "GVA associated with oil and gas production"
+      plottitle = "Gross value added (GVA) associated\nwith oil and gas production"
       
       #OilGasGVA$OilPercentage <- PercentLabel(OilGasGVA$Oil)
       
@@ -331,7 +331,7 @@ OilGasGVA <- function(input, output, session) {
           aes(
             x = mean(Year),
             y = mean(GVA),
-            label = "GVA",
+            label = " ",
             hjust = 0.5,
             vjust = -.5,
             colour = ChartColours[2],

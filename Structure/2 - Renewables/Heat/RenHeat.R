@@ -280,7 +280,7 @@ RenHeat <- function(input, output, session) {
   ### variables
   ChartColours <- c("#39ab2c", "#FF8500")
   sourcecaption = "Source: BEIS, EST"
-  plottitle = "Share of renewable heat\nof non-electrical heat demand"
+  plottitle = "Share of renewable heat of non-electrical\nheat demand"
   
   RenHeatChart <-
     TargetChart(RenHeat, plottitle, sourcecaption, ChartColours)

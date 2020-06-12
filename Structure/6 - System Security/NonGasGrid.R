@@ -11,33 +11,33 @@ NonGasGridOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Proportion of households not on the gas grid by local authority (estimates)", style = "color: #68c3ea;  font-weight:bold"),
-                    h4(textOutput(ns('NonGasGridSubtitle')), style = "color: #68c3ea;")
+                    h3("Proportion of households not on the gas grid by local authority (estimates)", style = "color: #5d8be1;  font-weight:bold"),
+                    h4(textOutput(ns('NonGasGridSubtitle')), style = "color: #5d8be1;")
     ),
              column(
                4, style = 'padding:15px;',
                downloadButton(ns('NonGasGrid.png'), 'Download Graph', style="float:right")
              )),
     
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     #dygraphOutput(ns("NonGasGridPlot")),
-    leafletOutput(ns("GasGridMap"), height = "800px")%>% withSpinner(color="#68c3ea"),
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+    leafletOutput(ns("GasGridMap"), height = "800px")%>% withSpinner(color="#5d8be1"),
+    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
-    column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),
+    column(10,h3("Commentary", style = "color: #5d8be1;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
     
     fluidRow(
     uiOutput(ns("Text"))
     ),
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
-    column(10, h3("Data", style = "color: #68c3ea;  font-weight:bold")),
+    column(10, h3("Data", style = "color: #5d8be1;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("NonGasGridTable"))%>% withSpinner(color="#68c3ea"))),
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+      column(12, dataTableOutput(ns("NonGasGridTable"))%>% withSpinner(color="#5d8be1"))),
+    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
@@ -79,7 +79,7 @@ NonGasGrid <- function(input, output, session) {
     # sends it, because deleteFile=TRUE.
     outfile <- tempfile(fileext='.png')
    
-     writePNG(readPNG("Structure/5 - Consumers/NonGasGridOutput.png"),outfile) 
+     writePNG(readPNG("Structure/6 - System Security/NonGasGridOutput.png"),outfile) 
     
     # Generate a png
     
@@ -191,7 +191,7 @@ NonGasGrid <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/5 - Consumers/NonGasGrid.txt")[2])
+                     paste(readtext("Structure/6 - System Security/NonGasGrid.txt")[2])
                      
                    )))
   })
@@ -215,7 +215,7 @@ NonGasGrid <- function(input, output, session) {
   output$NonGasGrid.png <- downloadHandler(
     filename = "NonGasGrid.png",
     content = function(file) {
-      writePNG(readPNG("Structure/5 - Consumers/NonGasGridChart.png"), file) 
+      writePNG(readPNG("Structure/6 - System Security/NonGasGridChart.png"), file) 
     }
   )
   

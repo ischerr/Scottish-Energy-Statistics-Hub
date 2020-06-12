@@ -275,7 +275,7 @@ PrimaryOilGas <- function(input, output, session) {
       rownames = FALSE,
       options = list(
         paging = TRUE,
-        pageLength = 10,
+        pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
@@ -296,7 +296,7 @@ PrimaryOilGas <- function(input, output, session) {
         lengthMenu = list( c(10, 20, -1) # declare values
                            , c(10, 20, "All") # declare titles
         ), # end of lengthMenu customization
-        pageLength = 10
+        pageLength = -1
       )
     ) %>%
       formatRound(2:9, 1) 

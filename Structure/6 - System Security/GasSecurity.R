@@ -39,7 +39,7 @@ GasSecurityOutput <- function(id) {
              #dygraphOutput(ns("GasSecurityPlot")),
              plotlyOutput(ns("GasSecurityRollingPlot"))%>% withSpinner(color="#5d8be1"),
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
-    tabPanel("Proportion",
+    tabPanel("UK Proportion",
              fluidRow(column(8,
                              h3("Proportion of UK gas supply from St. Fergus", style = "color: #5d8be1;  font-weight:bold"),
                              h4(textOutput(ns('GasSecurityProportionSubtitle')), style = "color: #5d8be1;")
@@ -76,7 +76,7 @@ GasSecurityOutput <- function(id) {
       column(12, dataTableOutput(ns("GasSecurityTable"))%>% withSpinner(color="#5d8be1")))),
     tabPanel("UK Proportion",
              fluidRow(
-               column(10, h3("Data - Propotion of St. Fergus in UK gas, 12 month rolling average (GWh)", style = "color: #5d8be1;  font-weight:bold")),
+               column(10, h3("Data - Proportion of St. Fergus in UK gas, 12 month rolling average (GWh)", style = "color: #5d8be1;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(

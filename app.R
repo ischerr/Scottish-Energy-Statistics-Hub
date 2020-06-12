@@ -402,7 +402,7 @@ output$HomeTab <- renderUI({
            actionLink(
              "GoToSystemSecurityTab",
              label = div(
-               tags$h3("System Security", style = "color: black;"),
+               tags$h3("Electricity and Gas Systems", style = "color: black;"),
                tags$p(
                  " ",
                  style = "color: black;"
@@ -742,9 +742,6 @@ ui <- shinyUI(fluidPage(
                    tabPanel(title = "Primary Heating Fuel",
                             value = "PrimaryHeating",
                             PrimaryHeatingOutput("PrimaryHeating")),                   
-                   tabPanel(title = "Households not on the Gas Grid",
-                            value = "NonGasGrid",
-                            NonGasGridOutput("NonGasGrid")),
                    tabPanel(title = "Energy Supplier Switching",
                             value = "EnSupplySwitch",
                             EnSupplySwitchOutput("EnSupplySwitch")),
@@ -768,16 +765,16 @@ ui <- shinyUI(fluidPage(
                             RestrictedPPMOutput("RestrictedPPM"))
                                  ))
     )),
-    ###### Section - System Security and Flexibility #######
+    ###### Section - Electricity and Gas Systems #######
     tabPanel(
       value = "SystemSecurity",
-      title = tags$div(img(src = "SystemIcon.svg", height = "30px",   display= "block"), " System Security", style = "font-family: 'Century Gothic'; font-weight: 400 "),
+      title = tags$div(img(src = "SystemIcon.svg", height = "30px",   display= "block"), " Electricity & Gas Systems", style = "font-family: 'Century Gothic'; font-weight: 400 "),
       navlistPanel(id = "SystemSecurity",
                    widths = c(3, 8),
                    tabPanel(title = "Daily Energy Demand",
                             value = "DailyDemand",
                             DailyDemandOutput("DailyDemand")),
-                   tabPanel(title = "Maximum Supply Capacity and Peak Electricity Demand",
+                   tabPanel(title = "Electricity System Security",
                             value = "MaxSupplyPeakDemand",
                             MaxSupplyPeakDemandOutput("MaxSupplyPeakDemand")),
                    tabPanel(title = "Electricity Imports and Exports",
@@ -792,6 +789,9 @@ ui <- shinyUI(fluidPage(
                    tabPanel(title = "Electricity Storage",
                             value = "ElecStorage",
                             ElecStorageOutput("ElecStorage")),
+                   tabPanel(title = "Households not on the Gas Grid",
+                            value = "NonGasGrid",
+                            NonGasGridOutput("NonGasGrid")),
                    tabPanel(title = "Gas Security",
                             value = "GasSecurity",
                             GasSecurityOutput("GasSecurity"))
@@ -832,7 +832,7 @@ ui <- shinyUI(fluidPage(
                             value = "CoalProd",
                             CoalProdOutput("CoalProd"))
                    )),
-                   ###### Section - System Security and Flexibility #######
+                   ###### Section - Target Tracker #######
                    tabPanel(value = "TargetTracker",
                             title = tags$div(img(src = "TargetIcon.svg", height = "30px",   display= "block"), " Target Tracker", style = "font-family: 'Century Gothic'; font-weight: 400 "),
                             TargetTrackerOutput("TargetTracker")
