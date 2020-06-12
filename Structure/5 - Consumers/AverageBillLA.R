@@ -50,7 +50,7 @@ AverageBillLAOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Gas cost breakdown",
              fluidRow(
-               column(10, h3("Data", style = "color: #68c3ea;  font-weight:bold")),
+               column(10, h3("Data - Average variable unit costs and standing charges for standard gas in 2019", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -237,9 +237,9 @@ AverageBillLA <- function(input, output, session) {
 
   output$ElecUnitTable = renderDataTable({
     
-    ElecUnitCost <- read_csv("Processed Data/Output/Energy Bills/ElecUnitCost.csv", 
-                             locale = locale(encoding = "ASCII"))
-    
+
+    ElecUnitCost <- read_csv("Processed Data/Output/Energy Bills/ElecUnitCost.csv",locale = locale(encoding = "WINDOWS-1252"))
+
     
     names(ElecUnitCost) <- c("Region", "Credit - Average variable unit price (\u00A3/kWh)", "Credit - Average fixed cost (\u00A3/year)" ," Direct debit - Average variable unit price (\u00A3/kWh)", "Direct debit - Average fixed cost (\u00A3/year)" , "Prepayment - Average variable unit price (\u00A3/kWh)" , "Prepayment - Average fixed cost (\u00A3/year)" , "Total - Average variable unit price (\u00A3/kWh)" , "Total - Average fixed cost (\u00A3/year)")
 
@@ -281,8 +281,10 @@ AverageBillLA <- function(input, output, session) {
   
   output$GasUnitTable = renderDataTable({
     
-    GasUnitCost <- read_csv("Processed Data/Output/Energy Bills/GasUnitCost.csv", 
-                             locale = locale(encoding = "ASCII"))
+
+
+    GasUnitCost <- read_csv("Processed Data/Output/Energy Bills/GasUnitCost.csv",locale = locale(encoding = "WINDOWS-1252"))
+
     
     names(GasUnitCost) <- c("Region", "Credit - Average variable unit price (\u00A3/kWh)", "Credit - Average fixed cost (\u00A3/year)" ," Direct debit - Average variable unit price (\u00A3/kWh)", "Direct debit - Average fixed cost (\u00A3/year)" , "Prepayment - Average variable unit price (\u00A3/kWh)" , "Prepayment - Average fixed cost (\u00A3/year)" , "Total - Average variable unit price (\u00A3/kWh)" , "Total - Average fixed cost (\u00A3/year)")
     
