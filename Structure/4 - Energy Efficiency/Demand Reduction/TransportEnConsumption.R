@@ -32,7 +32,7 @@ TransportEnConsumptionOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
-    column(10, h3("Data", style = "color: #34d1a3;  font-weight:bold")),
+    column(10, h3("Data - Road and rail energy consumption (Gwh)", style = "color: #34d1a3;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -303,7 +303,8 @@ TransportEnConsumption <- function(input, output, session) {
       )
     ) %>%
       formatRound(2:13, 0)%>% 
-      formatStyle(c(11,13), fontWeight = 'bold')
+      formatStyle(c(11,13), fontWeight = 'bold')%>% 
+      formatStyle(c(6,10), fontStyle = 'italic')
   })
   
   
