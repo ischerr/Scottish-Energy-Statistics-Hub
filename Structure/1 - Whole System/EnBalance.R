@@ -33,7 +33,7 @@ EnBalanceOutput <- function(id) {
                fluidRow(column(8,
                                h3("Simplified energy flow chart", style = "color: #1A5D38;  font-weight:bold"),
                                h4(textOutput(ns('SimplifiedFlowSubtitle')), style = "color: #1A5D38;"),
-                               selectInput(ns("UnitSelect"), "Unit:", BalanceMultipliers$Unit, selected = BalanceMultipliers$Unit[1], multiple = FALSE,
+                               selectInput(ns("UnitSelect2"), "Unit:", BalanceMultipliers$Unit, selected = BalanceMultipliers$Unit[1], multiple = FALSE,
                                            selectize = TRUE, width = NULL, size = NULL)
                ),
                column(
@@ -63,19 +63,19 @@ EnBalanceOutput <- function(id) {
     tabsetPanel(
       tabPanel("Energy balance data",
     fluidRow(
-      column(8, h3("Data - Supply (ktoe)", style = "color: #1A5D38;  font-weight:bold")),
+      uiOutput(ns("DataTableBalanceSupplyText")),
       column(2, style = "padding:15px",  downloadButton(ns('EnBalanceData.xlsx'), 'Download Full Data', style="float:right")),
       column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Tables", style = "float:right; "))
     ),
     fluidRow(
       column(12, DTOutput(ns("EnBalanceTable1"))%>% withSpinner(color="#1A5D38"))),
     fluidRow(
-      column(10, h3("Data - Transfers and Transformation (ktoe)", style = "color: #1A5D38;  font-weight:bold"))
+      uiOutput(ns("DataTableBalanceTransfersText")),
     ),
     fluidRow(
       column(12, DTOutput(ns("EnBalanceTable2"))%>% withSpinner(color="#1A5D38"))),
     fluidRow(
-      column(10, h3("Data - Consumption (ktoe)", style = "color: #1A5D38;  font-weight:bold"))
+      uiOutput(ns("DataTableBalanceConsumptionText")),
     ),
     fluidRow(
       column(12, DTOutput(ns("EnBalanceTable3"))%>% withSpinner(color="#1A5D38")))),
@@ -139,6 +139,43 @@ EnBalance <- function(input, output, session) {
   
   ### From ESD ###
   
+  observe({
+    BalanceDropdown$Unit <- input$UnitSelect
+    })
+  
+  observe({
+    BalanceDropdown$Unit <- input$UnitSelect2
+  })
+  
+  observe(
+    {
+      updateSelectInput(session, 'UnitSelect', selected = BalanceDropdown$Unit)
+      updateSelectInput(session, 'UnitSelect2', selected = BalanceDropdown$Unit)
+    }
+  )
+  
+  output$DataTableBalanceSupplyText <- renderUI({
+    
+    unit <- as.character(BalanceDropdown$Unit)
+    
+    column(8, h3(paste0("Data - Supply (", unit, ")"), style = "color: #1A5D38;  font-weight:bold"))
+  })
+  
+  output$DataTableBalanceTransfersText <- renderUI({
+    
+    unit <- as.character(BalanceDropdown$Unit)
+    
+    column(10, h3(paste0("Data - Transfers and Transformation (", unit, ")"), style = "color: #1A5D38;  font-weight:bold"))
+  })
+  
+  output$DataTableBalanceConsumptionText <- renderUI({
+    
+    unit <- as.character(BalanceDropdown$Unit)
+    
+    column(10, h3(paste0("Data - Consumption (", unit, ")"), style = "color: #1A5D38;  font-weight:bold"))
+  })
+  
+  
   output$EnBalanceSubtitle <- renderText({
     
     paste("Scotland, 2018")
@@ -152,6 +189,9 @@ EnBalance <- function(input, output, session) {
     EnergyNodes <- as.data.frame(read_excel("Structure/1 - Whole System/EnBalance.xlsx", 
                                             sheet = "nodes"))
     
+    unit <- as.character(BalanceDropdown$Unit)
+    
+    EnergyLinks$Value <- EnergyLinks$Value * BalanceMultipliers[which(BalanceMultipliers$Unit == unit),]$Multiplier
     
     p <- plot_ly(
       type = "sankey",
@@ -160,8 +200,8 @@ EnBalance <- function(input, output, session) {
         y =  c(0,1)
       ),
       orientation = "h",
-      valueformat = ".0f",
-      valuesuffix = " ktoe",
+      valueformat = ",.0f",
+      valuesuffix = paste0(" ", unit),
       
       node = list(
         label = EnergyNodes$Name,
@@ -208,7 +248,9 @@ EnBalance <- function(input, output, session) {
     
     EnBalance <- tail(EnBalance, -1)
     
-    EnBalance[2:10] %<>% lapply(function(x) as.numeric(as.character(x)))
+    unit <- as.character(BalanceDropdown$Unit)
+    
+    EnBalance[2:10] %<>% lapply(function(x) as.numeric(as.character(x)) * BalanceMultipliers[which(BalanceMultipliers$Unit == unit),]$Multiplier)
     
     EnBalance[1] <- c( 
       "Indigenous production", 
@@ -233,17 +275,17 @@ EnBalance <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Aggregate energy balance (thousand tonnes of oil equivalent)",
+        title = paste0("Aggregate energy balance (", unit, ")"),
         dom = '',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Aggregate energy balance (thousand tonnes of oil equivalent)',
+            title = paste0("Aggregate energy balance (", unit, ")"),
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Aggregate energy balance (thousand tonnes of oil equivalent)')
+               title = paste0("Aggregate energy balance (", unit, ")"))
         ),
         
         # customize the length menu
@@ -272,7 +314,9 @@ EnBalance <- function(input, output, session) {
     
     EnBalance <- tail(EnBalance, -12)
     
-    EnBalance[2:10] %<>% lapply(function(x) as.numeric(as.character(x)))
+    unit <- as.character(BalanceDropdown$Unit)
+    
+    EnBalance[2:10] %<>% lapply(function(x) as.numeric(as.character(x)) * BalanceMultipliers[which(BalanceMultipliers$Unit == unit),]$Multiplier)
     
     EnBalance[1] <- c( 
       "Primary Demand",
@@ -296,17 +340,17 @@ EnBalance <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Aggregate energy balance (thousand tonnes of oil equivalent)",
+        title = paste0("Aggregate energy balance (", unit, ")"),
         dom = '',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Aggregate energy balance (thousand tonnes of oil equivalent)',
+            title = paste0("Aggregate energy balance (", unit, ")"),
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Aggregate energy balance (thousand tonnes of oil equivalent)')
+               title = paste0("Aggregate energy balance (", unit, ")"))
         ),
         
         # customize the length menu
@@ -336,7 +380,9 @@ EnBalance <- function(input, output, session) {
     
     EnBalance <- tail(EnBalance, -19)
     
-    EnBalance[2:10] %<>% lapply(function(x) as.numeric(as.character(x)))
+    unit <- as.character(BalanceDropdown$Unit)
+    
+    EnBalance[2:10] %<>% lapply(function(x) as.numeric(as.character(x)) *   BalanceMultipliers[which(BalanceMultipliers$Unit == unit),]$Multiplier )
     
     EnBalance[1] <- c( 
       "Final Consumption",
@@ -359,17 +405,17 @@ EnBalance <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Aggregate energy balance (thousand tonnes of oil equivalent)",
+        title = paste0("Aggregate energy balance (", unit, ")"),
         dom = '',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Aggregate energy balance (thousand tonnes of oil equivalent)',
+            title = paste0("Aggregate energy balance (", unit, ")"),
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Aggregate energy balance (thousand tonnes of oil equivalent)')
+               title = paste0("Aggregate energy balance (", unit, ")"))
         ),
         
         # customize the length menu
@@ -429,6 +475,8 @@ EnBalance <- function(input, output, session) {
   
   output$SimplifiedFlowPlot1 <- renderPlotly  ({
     
+    unit <- as.character(BalanceDropdown$Unit)
+    
     Pie1 <- read_excel("Structure/CurrentWorking.xlsx",
                        sheet = "PieChart Working", col_names = TRUE, 
                        skip = 1)
@@ -437,6 +485,8 @@ EnBalance <- function(input, output, session) {
     names(Pie1) <- c("Label", "Value")
     
     Pie1 <- Pie1[complete.cases(Pie1),]
+    
+    Pie1$Value <- Pie1$Value * BalanceMultipliers[which(BalanceMultipliers$Unit == unit),]$Multiplier
     
     Pie1$TextInfo <- Pie1$Value / sum(Pie1$Value)
     
@@ -448,6 +498,8 @@ EnBalance <- function(input, output, session) {
     names(Pie2) <- c("Label", "Value")
     
     Pie2 <- Pie2[complete.cases(Pie2),]
+    
+    Pie2$Value <- Pie2$Value * BalanceMultipliers[which(BalanceMultipliers$Unit == unit),]$Multiplier
     
     p1 <- plot_ly() %>% 
       add_pie(data = Pie2, 
@@ -493,6 +545,8 @@ EnBalance <- function(input, output, session) {
   })
   output$SimplifiedFlowPlot2 <- renderPlotly  ({
     
+    unit <- as.character(BalanceDropdown$Unit)
+    
     Pie2 <- read_excel("Structure/CurrentWorking.xlsx",
                        sheet = "PieChart Working", col_names = TRUE, 
                        skip = 1)
@@ -501,6 +555,8 @@ EnBalance <- function(input, output, session) {
     names(Pie2) <- c("Label", "Value")
     
     Pie2 <- Pie2[complete.cases(Pie2),]
+    
+    Pie2$Value <- Pie2$Value * BalanceMultipliers[which(BalanceMultipliers$Unit == unit),]$Multiplier
     
     Pie3 <- read_excel("Structure/CurrentWorking.xlsx",
                        sheet = "PieChart Working", col_names = TRUE, 
@@ -512,6 +568,8 @@ EnBalance <- function(input, output, session) {
     Pie3 <- Pie3[complete.cases(Pie3),]
     
     Pie3[3,1] <- "Industry & Distribution Losses"
+    
+    Pie3$Value <- Pie3$Value * BalanceMultipliers[which(BalanceMultipliers$Unit == unit),]$Multiplier
     
     p2 <- plot_ly() %>% 
       add_pie(labels = c("Exports and Losses"), 
@@ -537,11 +595,11 @@ EnBalance <- function(input, output, session) {
                 y = c(0.05, 0.95)),
               marker = list(colors = c("#4f6228",  "#948a54", "#31859c","#77933c", "#4f6228", "#184d0f"),
                             line = list(color = '#FFFFFF', width = 2)),
-              text = paste0(Pie3$Label,": ", format(round(Pie3$Value, digits = 0), big.mark = ","), " ktoe\n", percent((Pie3$Value)/ sum(Pie3$Value), .1)),
+              text = paste0(Pie3$Label,": ", format(round(Pie3$Value, digits = 0), big.mark = ","), " ", unit,"\n", percent((Pie3$Value)/ sum(Pie3$Value), .1)),
               sort = T) %>% 
       layout(
         title = list(
-          text = paste("<b>Exports and losses</b>:",format(round(Pie2$Value[1], digits = 0), big.mark = ","), "ktoe"),
+          text = paste("<b>Exports and losses</b>:",format(round(Pie2$Value[1], digits = 0), big.mark = ","), unit),
           font = list(
             color = "#262626"
           )
@@ -557,7 +615,7 @@ EnBalance <- function(input, output, session) {
   })
   output$SimplifiedFlowPlot3 <- renderPlotly  ({
     
-    unit <- as.character(input$UnitSelect)
+    unit <- as.character(BalanceDropdown$Unit)
     
     
     Pie2 <- read_excel("Structure/CurrentWorking.xlsx",
@@ -641,7 +699,7 @@ EnBalance <- function(input, output, session) {
       n_max = 6
     )[12:13]
     
-    unit <- as.character(input$UnitSelect)
+    unit <- as.character(BalanceDropdown$Unit)
     
     names(EnBalance) <- c("Fuel", "Volume")
     
@@ -705,7 +763,7 @@ EnBalance <- function(input, output, session) {
       n_max = 2
     )[15:16]
     
-    unit <- as.character(input$UnitSelect)
+    unit <- as.character(BalanceDropdown$Unit)
     
     names(EnBalance) <- c("Fuel", "Volume")
     
@@ -763,7 +821,7 @@ EnBalance <- function(input, output, session) {
       n_max = 3
     )[18:19]
     
-    unit <- as.character(input$UnitSelect)
+    unit <- as.character(BalanceDropdown$Unit)
     
     names(EnBalance) <- c("Fuel", "Volume")
     
@@ -821,7 +879,7 @@ EnBalance <- function(input, output, session) {
       n_max = 6
     )[21:22]
     
-    unit <- as.character(input$UnitSelect)
+    unit <- as.character(BalanceDropdown$Unit)
     
     names(EnBalance) <- c("Fuel", "Volume")
     
