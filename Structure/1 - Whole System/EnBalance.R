@@ -14,11 +14,14 @@ EnBalanceOutput <- function(id) {
       tabPanel("Balance",
                fluidRow(column(8,
                                h3("Scottish energy balance", style = "color: #1A5D38;  font-weight:bold"),
-                               h4(textOutput(ns('EnBalanceSubtitle')), style = "color: #1A5D38;")
+                               h4(textOutput(ns('EnBalanceSubtitle')), style = "color: #1A5D38;"),
+                               selectInput(ns("UnitSelect"), "Unit:", BalanceMultipliers$Unit, selected = BalanceMultipliers$Unit[1], multiple = FALSE,
+                             selectize = TRUE, width = NULL, size = NULL)
                ),
                column(
                  4, style = 'padding:15px;',
-                 downloadButton(ns('EnBalance.png'), 'Download Graph', style="float:right")
+                 downloadButton(ns('EnBalance.png'), 'Download Graph', style="float:right"),
+                 
                )),
                
                tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
@@ -29,7 +32,9 @@ EnBalanceOutput <- function(id) {
       tabPanel("Simplified flow chart",
                fluidRow(column(8,
                                h3("Simplified energy flow chart", style = "color: #1A5D38;  font-weight:bold"),
-                               h4(textOutput(ns('SimplifiedFlowSubtitle')), style = "color: #1A5D38;")
+                               h4(textOutput(ns('SimplifiedFlowSubtitle')), style = "color: #1A5D38;"),
+                               selectInput(ns("UnitSelect"), "Unit:", BalanceMultipliers$Unit, selected = BalanceMultipliers$Unit[1], multiple = FALSE,
+                                           selectize = TRUE, width = NULL, size = NULL)
                ),
                column(
                  4, style = 'padding:15px;',
@@ -551,6 +556,10 @@ EnBalance <- function(input, output, session) {
     
   })
   output$SimplifiedFlowPlot3 <- renderPlotly  ({
+    
+    unit <- as.character(input$UnitSelect)
+    
+    
     Pie2 <- read_excel("Structure/CurrentWorking.xlsx",
                        sheet = "PieChart Working", col_names = TRUE, 
                        skip = 1)
@@ -560,6 +569,8 @@ EnBalance <- function(input, output, session) {
     
     Pie2 <- Pie2[complete.cases(Pie2),]
     
+    Pie2$Value <- Pie2$Value * BalanceMultipliers[which(BalanceMultipliers$Unit == unit),]$Multiplier
+    
     Pie4 <- read_excel("Structure/CurrentWorking.xlsx",
                        sheet = "PieChart Working", col_names = TRUE, 
                        skip = 1)
@@ -568,6 +579,8 @@ EnBalance <- function(input, output, session) {
     names(Pie4) <- c("Label", "Value")
     
     Pie4 <- Pie4[complete.cases(Pie4),]
+    
+    Pie4$Value <- Pie4$Value * BalanceMultipliers[which(BalanceMultipliers$Unit == unit),]$Multiplier
     
     p3 <- plot_ly() %>% 
       add_pie(labels = c("Final Consumption"), 
@@ -594,11 +607,11 @@ EnBalance <- function(input, output, session) {
                 y = c(0.05, 0.95)),
               marker = list(colors = c("#77933c",  "#c3d69b", "#8eb4e3","#8064a2", "#345e90", "#403152"),
                             line = list(color = '#FFFFFF', width = 2)),
-              text = paste0(Pie4$Label,": ", format(round(Pie4$Value, digits = 0), big.mark = ","), " ktoe\n", percent((Pie4$Value)/ sum(Pie4$Value), .1)),
+              text = paste0(Pie4$Label,": ", format(round(Pie4$Value, digits = 0), big.mark = ","), " ", unit, "\n", percent((Pie4$Value)/ sum(Pie4$Value), .1)),
               sort = T) %>% 
       layout(
         title = list(
-          text = paste("<b>Final consumption</b>:", format(round(Pie2$Value[2], digits = 0), big.mark = ","), "ktoe"),
+          text = paste("<b>Final consumption</b>:", format(round(Pie2$Value[2], digits = 0), big.mark = ","), unit),
           font = list(
             color = "#6f8a91"
           )
@@ -628,9 +641,15 @@ EnBalance <- function(input, output, session) {
       n_max = 6
     )[12:13]
     
-    names(EnBalance) <- c("Fuel", "Volume (ktoe)")
+    unit <- as.character(input$UnitSelect)
     
-    EnBalance$Percentage <- EnBalance$`Volume (ktoe)`/ sum(EnBalance$`Volume (ktoe)`)
+    names(EnBalance) <- c("Fuel", "Volume")
+    
+    EnBalance$Percentage <- EnBalance$`Volume`/ sum(EnBalance$`Volume`)
+    
+    EnBalance$Volume <- EnBalance$Volume * BalanceMultipliers[which(BalanceMultipliers$Unit == unit),]$Multiplier
+    
+    names(EnBalance)[2] <- paste0("Volume (", unit, ")")
     
     datatable(
       EnBalance,
@@ -686,9 +705,15 @@ EnBalance <- function(input, output, session) {
       n_max = 2
     )[15:16]
     
-    names(EnBalance) <- c("Fuel", "Volume (ktoe)")
+    unit <- as.character(input$UnitSelect)
     
-    EnBalance$Percentage <- EnBalance$`Volume (ktoe)`/ sum(EnBalance$`Volume (ktoe)`)
+    names(EnBalance) <- c("Fuel", "Volume")
+    
+    EnBalance$Percentage <- EnBalance$`Volume`/ sum(EnBalance$`Volume`)
+    
+    EnBalance$Volume <- EnBalance$Volume * BalanceMultipliers[which(BalanceMultipliers$Unit == unit),]$Multiplier
+    
+    names(EnBalance)[2] <- paste0("Volume (", unit, ")")
     
     datatable(
       EnBalance,
@@ -738,9 +763,15 @@ EnBalance <- function(input, output, session) {
       n_max = 3
     )[18:19]
     
-    names(EnBalance) <- c("Fuel", "Volume (ktoe)")
+    unit <- as.character(input$UnitSelect)
     
-    EnBalance$Percentage <- EnBalance$`Volume (ktoe)`/ sum(EnBalance$`Volume (ktoe)`)
+    names(EnBalance) <- c("Fuel", "Volume")
+    
+    EnBalance$Percentage <- EnBalance$`Volume`/ sum(EnBalance$`Volume`)
+    
+    EnBalance$Volume <- EnBalance$Volume * BalanceMultipliers[which(BalanceMultipliers$Unit == unit),]$Multiplier
+    
+    names(EnBalance)[2] <- paste0("Volume (", unit, ")")
     
     datatable(
       EnBalance,
@@ -790,9 +821,15 @@ EnBalance <- function(input, output, session) {
       n_max = 6
     )[21:22]
     
-    names(EnBalance) <- c("Fuel", "Volume (ktoe)")
+    unit <- as.character(input$UnitSelect)
     
-    EnBalance$Percentage <- EnBalance$`Volume (ktoe)`/ sum(EnBalance$`Volume (ktoe)`)
+    names(EnBalance) <- c("Fuel", "Volume")
+    
+    EnBalance$Percentage <- EnBalance$`Volume`/ sum(EnBalance$`Volume`)
+    
+    EnBalance$Volume <- EnBalance$Volume * BalanceMultipliers[which(BalanceMultipliers$Unit == unit),]$Multiplier
+    
+    names(EnBalance)[2] <- paste0("Volume (", unit, ")")
     
     datatable(
       EnBalance,
