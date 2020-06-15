@@ -511,7 +511,7 @@ EnBalance <- function(input, output, session) {
               insidetextfont = list(color = "#FFFFFF",
                                     font = "bold"),
               hoverinfo = 'text',
-              text = paste0(Pie2$Label,": ", format(round(Pie2$Value, digits = 0), big.mark = ","), " ktoe\n", percent((Pie2$Value)/ sum(Pie2$Value), .1)),
+              text = paste0(Pie2$Label,": ", format(round(Pie2$Value, digits = 0), big.mark = ","), " ", unit, "\n", percent((Pie2$Value)/ sum(Pie2$Value), .1)),
               hole = 0.8, 
               sort = F,
               marker = list(colors = c("#262626", "#6f8a91"),
@@ -531,7 +531,7 @@ EnBalance <- function(input, output, session) {
               sort = T) %>% 
       layout(
         title = list(
-          text = paste("<b>Indigenous production & imports</b>:", format(round(sum(Pie2$Value), digits = 0), big.mark = ","), "ktoe"),
+          text = paste("<b>Indigenous production & imports</b>:", format(round(sum(Pie2$Value), digits = 0), big.mark = ","), unit),
           font = list(
             color = "#1A5D38"
           )
