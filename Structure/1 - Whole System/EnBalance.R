@@ -454,7 +454,7 @@ EnBalance <- function(input, output, session) {
               insidetextfont = list(color = "#FFFFFF",
                                     font = "bold"),
               hoverinfo = 'text',
-              text = paste0(Pie2$Label,": ", format(round(Pie2$Value, digits = 0), big.mark = ","), " ktoe\n", percent((Pie2$Value)/ sum(Pie2$Value))),
+              text = paste0(Pie2$Label,": ", format(round(Pie2$Value, digits = 0), big.mark = ","), " ktoe\n", percent((Pie2$Value)/ sum(Pie2$Value), .1)),
               hole = 0.8, 
               sort = F,
               marker = list(colors = c("#262626", "#6f8a91"),
@@ -470,7 +470,7 @@ EnBalance <- function(input, output, session) {
                 y = c(0.1, 0.9)),
               marker = list(colors = c("#254061", "#376092", "#00aa88", "#77933c", "#4f6228", "#184d0f"),
                             line = list(color = '#FFFFFF', width = 2)),
-              text = paste0(Pie1$Label,": ", format(round(Pie1$Value, digits = 0), big.mark = ","), " ktoe\n", percent((Pie1$Value)/ sum(Pie1$Value))),
+              text = paste0(Pie1$Label,": ", format(round(Pie1$Value, digits = 0), big.mark = ","), " ktoe\n", percent((Pie1$Value)/ sum(Pie1$Value), .1)),
               sort = T) %>% 
       layout(
         title = list(
@@ -532,7 +532,7 @@ EnBalance <- function(input, output, session) {
                 y = c(0.05, 0.95)),
               marker = list(colors = c("#4f6228",  "#948a54", "#31859c","#77933c", "#4f6228", "#184d0f"),
                             line = list(color = '#FFFFFF', width = 2)),
-              text = paste0(Pie3$Label,": ", format(round(Pie3$Value, digits = 0), big.mark = ","), " ktoe\n", percent((Pie3$Value)/ sum(Pie3$Value))),
+              text = paste0(Pie3$Label,": ", format(round(Pie3$Value, digits = 0), big.mark = ","), " ktoe\n", percent((Pie3$Value)/ sum(Pie3$Value), .1)),
               sort = T) %>% 
       layout(
         title = list(
@@ -594,7 +594,7 @@ EnBalance <- function(input, output, session) {
                 y = c(0.05, 0.95)),
               marker = list(colors = c("#77933c",  "#c3d69b", "#8eb4e3","#8064a2", "#345e90", "#403152"),
                             line = list(color = '#FFFFFF', width = 2)),
-              text = paste0(Pie4$Label,": ", format(round(Pie4$Value, digits = 0), big.mark = ","), " ktoe\n", percent((Pie4$Value)/ sum(Pie4$Value))),
+              text = paste0(Pie4$Label,": ", format(round(Pie4$Value, digits = 0), big.mark = ","), " ktoe\n", percent((Pie4$Value)/ sum(Pie4$Value), .1)),
               sort = T) %>% 
       layout(
         title = list(
@@ -628,9 +628,9 @@ EnBalance <- function(input, output, session) {
       n_max = 6
     )[12:13]
     
-    names(EnBalance) <- c("Fuel", "Percentage")
+    names(EnBalance) <- c("Fuel", "Volume (ktoe)")
     
-    EnBalance$Percentage <- EnBalance$Percentage/ sum(EnBalance$Percentage)
+    EnBalance$Percentage <- EnBalance$`Volume (ktoe)`/ sum(EnBalance$`Volume (ktoe)`)
     
     datatable(
       EnBalance,
@@ -664,7 +664,8 @@ EnBalance <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%     
-      formatPercentage(2, 1)
+      formatPercentage(3, 1) %>% 
+      formatRound(2,0)
       
     
   })
@@ -685,9 +686,9 @@ EnBalance <- function(input, output, session) {
       n_max = 2
     )[15:16]
     
-    names(EnBalance) <- c("Output", "Percentage")
+    names(EnBalance) <- c("Fuel", "Volume (ktoe)")
     
-    EnBalance$Percentage <- EnBalance$Percentage/ sum(EnBalance$Percentage)
+    EnBalance$Percentage <- EnBalance$`Volume (ktoe)`/ sum(EnBalance$`Volume (ktoe)`)
     
     datatable(
       EnBalance,
@@ -721,7 +722,8 @@ EnBalance <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%     
-      formatPercentage(2, 1)
+      formatPercentage(3, 1) %>% 
+      formatRound(2,0)
     
     
   })
@@ -736,9 +738,9 @@ EnBalance <- function(input, output, session) {
       n_max = 3
     )[18:19]
     
-    names(EnBalance) <- c("Output", "Percentage")
+    names(EnBalance) <- c("Fuel", "Volume (ktoe)")
     
-    EnBalance$Percentage <- EnBalance$Percentage/ sum(EnBalance$Percentage)
+    EnBalance$Percentage <- EnBalance$`Volume (ktoe)`/ sum(EnBalance$`Volume (ktoe)`)
     
     datatable(
       EnBalance,
@@ -772,7 +774,8 @@ EnBalance <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%     
-      formatPercentage(2, 1)
+      formatPercentage(3, 1) %>% 
+      formatRound(2,0)
     
     
   })
@@ -787,9 +790,9 @@ EnBalance <- function(input, output, session) {
       n_max = 6
     )[21:22]
     
-    names(EnBalance) <- c("Fuel", "Percentage")
+    names(EnBalance) <- c("Fuel", "Volume (ktoe)")
     
-    EnBalance$Percentage <- EnBalance$Percentage/ sum(EnBalance$Percentage)
+    EnBalance$Percentage <- EnBalance$`Volume (ktoe)`/ sum(EnBalance$`Volume (ktoe)`)
     
     datatable(
       EnBalance,
@@ -823,7 +826,8 @@ EnBalance <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%     
-      formatPercentage(2, 1)
+      formatPercentage(3, 1) %>% 
+      formatRound(2,0)
     
     
   })

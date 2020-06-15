@@ -25,7 +25,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -38,17 +38,17 @@
      guidetolerance="10"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:window-width="1920"
-     inkscape:window-height="1017"
+     inkscape:window-width="3840"
+     inkscape:window-height="2066"
      id="namedview76"
      showgrid="false"
      inkscape:zoom="1.8958381"
-     inkscape:cx="376.31656"
+     inkscape:cx="273.72341"
      inkscape:cy="200.29438"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg74"
+     inkscape:current-layer="g1904"
      fit-margin-top="5"
      fit-margin-left="5"
      fit-margin-right="5"
@@ -609,7 +609,7 @@
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#262626;fill-opacity:1"
          id="flowPara2806-8-2">Exports and losses</flowPara><flowPara
          id="flowPara1261"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#262626;fill-opacity:1">86.9%</flowPara></flowRoot>    <g
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#262626;fill-opacity:1">87.1%</flowPara></flowRoot>    <g
        transform="matrix(4.018046,0,0,4.018046,236.70602,-861.63431)"
        id="g2051">
       <g
@@ -1029,7 +1029,7 @@
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#6f8a91;fill-opacity:1"
            id="flowPara1709">consumption</flowPara><flowPara
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#6f8a91;fill-opacity:1"
-           id="flowPara1261-6">13.1%</flowPara></flowRoot>      <flowRoot
+           id="flowPara1261-6">12.9%</flowPara></flowRoot>      <flowRoot
          xml:space="preserve"
          id="flowRoot2800-4-9-0-5"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#1a5d38;fill-opacity:1;stroke:none"
