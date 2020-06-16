@@ -224,6 +224,14 @@ observe({
     
   }
   
+  if(input$MainNav == "Emissions"){
+    
+    updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$Emissions), mode = "push")
+    
+    callModule(match.fun(input$Emissions), input$Emissions)
+    
+  }
+  
   if(input$MainNav == "TargetTracker"){
     
     updateQueryString(paste0("?Section=",input$MainNav), mode = "push")
@@ -281,6 +289,12 @@ observeEvent(input$GoToCovidTab, {
   observeEvent(input$GoToOilGasTab, {
     updateTabsetPanel(session, "MainNav",
                       selected = "OilGas"
+    )
+  })
+  
+  observeEvent(input$GoToEmissionsTab, {
+    updateTabsetPanel(session, "MainNav",
+                      selected = "Emissions"
     )
   })
   
@@ -416,7 +430,6 @@ output$HomeTab <- renderUI({
     style = "padding: 10px; margin-top: 20px;"
   ),
 fluidRow(
-  column(width = 2),
   column(width = 4,
            actionLink(
              "GoToOilGasTab",
@@ -431,6 +444,20 @@ fluidRow(
                id = "SetEffects"
              )
            )),
+  column(width = 4,
+         actionLink(
+           "GoToEmissionsTab",
+           label = div(
+             tags$h3("Emissions", style = "color: black;"),
+             tags$p(
+               " ",
+               style = "color: black;"
+             ),
+             img(src = "signsblack.svg", height = "55%"),
+             style = "border: solid 2px #126992; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px;",
+             id = "SetEffects"
+           )
+         )),
     column(width = 4,
            actionLink(
              "GoToOtherTab",
@@ -560,13 +587,7 @@ ui <- shinyUI(fluidPage(
                  ElecConsumptionFuelOutput("ElecConsumptionFuel")),
         tabPanel(title ="Renewable Electricity Sources", 
                  value = "RenElecSources",
-                 RenElecSourcesOutput("RenElecSources")),
-        tabPanel(title ="Grid Emissions", 
-                 value = "GridEmissions",
-                 GridEmissionsOutput("GridEmissions")),
-        tabPanel(title ="Displaced Emissions", 
-                 value = "DisplacedEmissions",
-                 DisplacedEmissionsOutput("DisplacedEmissions"))
+                 RenElecSourcesOutput("RenElecSources"))
         )),
       tabPanel(
         value = "RenHeat",
@@ -835,6 +856,27 @@ ui <- shinyUI(fluidPage(
                             value = "CoalProd",
                             CoalProdOutput("CoalProd"))
                    )),
+    ###### Section - Greenhouse Gases #######
+    tabPanel(value = "Emissions",
+             title = tags$div(img(src = "Emissions.svg", height = "30px",   display= "block"), " Emissions", style = "font-family: 'Century Gothic'; font-weight: 400 "),
+             navlistPanel(id = "Emissions",
+                          widths = c(3, 8),
+                          tabPanel(title = "Adjusted Emissions",
+                                   value = "AdjustedEmissions",
+                                   AdjustedEmissionsOutput("AdjustedEmissions")),
+                          tabPanel(title = "Displaced Emissions",
+                                   value = "DisplacedEmissions",
+                                   DisplacedEmissionsOutput("DisplacedEmissions")),
+                          tabPanel(title = "Energy Supply Emissions",
+                                   value = "EnSupplyEmissions",
+                                   EnSupplyEmissionsOutput("EnSupplyEmissions")),
+                          tabPanel(title = "Greenhouse Gas Emissions",
+                                   value = "GHGEmissions",
+                                   GHGEmissionsOutput("GHGEmissions")),
+                          tabPanel(title = "Grid Emissions",
+                                   value = "GridEmissions",
+                                   GridEmissionsOutput("GridEmissions"))
+             )),
                    ###### Section - Target Tracker #######
                    tabPanel(value = "TargetTracker",
                             title = tags$div(img(src = "TargetIcon.svg", height = "30px",   display= "block"), " Target Tracker", style = "font-family: 'Century Gothic'; font-weight: 400 "),
