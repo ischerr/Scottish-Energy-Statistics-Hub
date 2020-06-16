@@ -7,21 +7,21 @@ require("DT")
 
 source("Structure/Global.R")
 
-DisplacedEmissionsOutput <- function(id) {
+xGridEmissionsOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Estimated million tonnes of CO2 emissions displaced by renewables", style = "color: #39ab2c;  font-weight:bold"),
-                    h4(textOutput(ns('DisplacedEmissionsSubtitle')), style = "color: #39ab2c;")
+                    h3("Average greenhouse gas emissions per kilowatt hour of electricity", style = "color: #39ab2c;  font-weight:bold"),
+                    h4(textOutput(ns('xGridEmissionsSubtitle')), style = "color: #39ab2c;")
     ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('DisplacedEmissions.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('xGridEmissions.png'), 'Download Graph', style="float:right")
              )),
     
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-    #dygraphOutput(ns("DisplacedEmissionsPlot")),
-    plotlyOutput(ns("DisplacedEmissionsPlot"))%>% withSpinner(color="#39ab2c"),
+    #dygraphOutput(ns("xGridEmissionsPlot")),
+    plotlyOutput(ns("xGridEmissionsPlot"))%>% withSpinner(color="#39ab2c"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
@@ -36,7 +36,7 @@ DisplacedEmissionsOutput <- function(id) {
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("DisplacedEmissionsTable"))%>% withSpinner(color="#39ab2c"))),
+      column(12, dataTableOutput(ns("xGridEmissionsTable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
       column(1,
@@ -61,88 +61,83 @@ DisplacedEmissionsOutput <- function(id) {
 
 
 ###### Server ######
-DisplacedEmissions <- function(input, output, session) {
+xGridEmissions <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
+  print("xGridEmissions.R")
   
-  print("missions displaced renewables.R")
-  
-  output$DisplacedEmissionsSubtitle <- renderText({
+  output$xGridEmissionsSubtitle <- renderText({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Emissions displaced renewables", skip = 15, col_names = FALSE)
+                       sheet = "Grid emissions", skip = 15)
     
     Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
-    
-    names(Data) <- c("Year", "Renewables")
+    Data <- setDT(Data, keep.rownames = TRUE)[]
+    colnames(Data) <- as.character(unlist(Data[1,]))
     Data = Data[-1, ]
     
     Data <- as_tibble(sapply( Data, as.numeric ))
     
-    Displacement <- Data
+    names(Data) <- c("Year", "Renewables")
     
+    xGridEmissions <- Data
     
-    Displacement$Renewables <-
-      round(Displacement$Renewables, digits = 1)
-    
-    paste("Scotland,", min(Displacement$Year),"-", max(Displacement$Year))
+    paste("Scotland,", min(xGridEmissions$Year),"-", max(xGridEmissions$Year))
   })
   
-  output$DisplacedEmissionsPlot <- renderPlotly  ({
+  output$xGridEmissionsPlot <- renderPlotly  ({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Emissions displaced renewables", skip = 15, col_names = FALSE)
+                                sheet = "Grid emissions", skip = 15)
     
     Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
-    
-    names(Data) <- c("Year", "Renewables")
+    Data <- setDT(Data, keep.rownames = TRUE)[]
+    colnames(Data) <- as.character(unlist(Data[1,]))
     Data = Data[-1, ]
     
     Data <- as_tibble(sapply( Data, as.numeric ))
     
-    Displacement <- Data
+    names(Data) <- c("Year", "Renewables")
     
+    xGridEmissions <- Data
     
-    Displacement$Renewables <-
-      round(Displacement$Renewables, digits = 1)
-    
-    plottitle <- "Estimated million tonnes of CO2 emissions\ndisplaced by renewables"
+    plottitle <- "Average greenhouse gas emissions per kilowatt hour of electricity"
     sourcecaption <- "Source: BEIS"
     ChartColours <- c("#39ab2c", "#FF8500")
     
-    Displacement$Year <- paste0("01/01/", Displacement$Year)
+    xGridEmissions$Year <- paste0("01/01/", xGridEmissions$Year)
     
-    Displacement$Year <- dmy(Displacement$Year)
+    xGridEmissions$Year <- dmy(xGridEmissions$Year)
     
     
-    p <-  plot_ly(Displacement,x = ~ Year ) %>% 
+    p <-  plot_ly(xGridEmissions,x = ~ Year ) %>% 
       add_trace(y = ~ Renewables,
-                name = "DisplacedEmissions",
+                name = "xGridEmissions",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "1",
                 text = paste0(
-                  round(Displacement$Renewables, digits = 1),
-                  " MtCO2e\nYear: ",
-                  format(Displacement$Year, "%Y")
+                  round(xGridEmissions$Renewables, digits = 1),
+                  " gCO2e/kWh\nYear: ",
+                  format(xGridEmissions$Year, "%Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = ChartColours[1], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(Displacement[which(Displacement$Renewables > 0 | Displacement$Renewables < 0),], 1),
+        data = tail(xGridEmissions[which(xGridEmissions$Renewables > 0 | xGridEmissions$Renewables < 0),], 1),
         x = ~ Year,
         y = ~ `Renewables`,
-        name = "DisplacedEmissions",
+        name = "xGridEmissions",
         legendgroup = "1",
         text = paste0(
-          round(Displacement[which(Displacement$Renewables > 0 | Displacement$Renewables < 0),][-1,]$Renewables, digits = 1),
-          " MtCO2e\nYear: ",
-          format(Displacement[which(Displacement$Renewables > 0 | Displacement$Renewables < 0),][-1,]$Year, "%Y")
+          round(xGridEmissions[which(xGridEmissions$Renewables > 0 | xGridEmissions$Renewables < 0),][-1,]$Renewables, digits = 1),
+          " gCO2e/kWh\nYear: ",
+          format(xGridEmissions[which(xGridEmissions$Renewables > 0 | xGridEmissions$Renewables < 0),][-1,]$Year, "%Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -161,7 +156,7 @@ DisplacedEmissions <- function(input, output, session) {
         hovername = 'text',
         xaxis = list(title = "",
                      showgrid = FALSE,
-                     range = c(min(Displacement$Year)-100, max(Displacement$Year)+100)),
+                     range = c(min(xGridEmissions$Year)-100, max(xGridEmissions$Year)+100)),
         yaxis = list(
           title = "MtCO2e",
           tickformat = "",
@@ -180,22 +175,24 @@ DisplacedEmissions <- function(input, output, session) {
   })
   
   
-  output$DisplacedEmissionsTable = renderDataTable({
+  output$xGridEmissionsTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Emissions displaced renewables", skip = 15, col_names = FALSE)
+                                sheet = "Grid emissions", skip = 15)
     
     Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
-    
-    names(Data) <- c("Year", "CO2 emissions displaced")
+    Data <- setDT(Data, keep.rownames = TRUE)[]
+    colnames(Data) <- as.character(unlist(Data[1,]))
     Data = Data[-1, ]
     
     Data <- as_tibble(sapply( Data, as.numeric ))
     
-    Displacement <- Data
+    names(Data) <- c("Year", "Grid emissions (gCO2e/kWh)")
+    
+    xGridEmissions <- Data
     
     datatable(
-      Displacement,
+      xGridEmissions,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -207,17 +204,17 @@ DisplacedEmissions <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Estimated million tonnes of CO2 emissions displaced by renewables",
+        title = "Grid Emissions (Average Greenhouse Gas Emissions per kilowatt hour of electricity)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Estimated million tonnes of CO2 emissions displaced by renewables',
+            title = 'Grid Emissions (Average Greenhouse Gas Emissions per kilowatt hour of electricity)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Estimated million tonnes of CO2 emissions displaced by renewables')
+               title = 'Grid Emissions (Average Greenhouse Gas Emissions per kilowatt hour of electricity)')
         ),
         
         # customize the length menu
@@ -234,13 +231,13 @@ DisplacedEmissions <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/8 - Greenhouse Gases/DisplacedEmissions.txt")[2])
+                     paste(readtext("Structure/8 - Greenhouse Gases/xGridEmissions.txt")[2])
                      
                    )))
   })
-  
+ 
   observeEvent(input$ToggleTable, {
-    toggle("DisplacedEmissionsTable")
+    toggle("xGridEmissionsTable")
   })
   
 
@@ -250,32 +247,33 @@ DisplacedEmissions <- function(input, output, session) {
   })
   
   
-  output$DisplacedEmissions.png <- downloadHandler(
-    filename = "DisplacedEmissions.png",
+  output$xGridEmissions.png <- downloadHandler(
+    filename = "xGridEmissions.png",
     content = function(file) {
 
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                             sheet = "Emissions displaced renewables", skip = 15, col_names = FALSE)
+                                  sheet = "Grid emissions", skip = 15)
       
       Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
-      
-      names(Data) <- c("Year", "Renewables")
+      Data <- setDT(Data, keep.rownames = TRUE)[]
+      colnames(Data) <- as.character(unlist(Data[1,]))
       Data = Data[-1, ]
       
       Data <- as_tibble(sapply( Data, as.numeric ))
       
-      Displacement <- Data
+      names(Data) <- c("Year", "Renewables")
       
+      xGridEmissions <- Data
       
-      Displacement$Renewables <-
-        round(Displacement$Renewables, digits = 1)
+      xGridEmissions$Renewables <-
+        round(xGridEmissions$Renewables, digits = 1)
       
-      plottitle <- "Estimated million tonnes of CO2 emissions\ndisplaced by renewables"
+      plottitle <- "Average greenhouse gas emissions per kilowatt hour of electricity"
       sourcecaption <- "Source: BEIS"
       ChartColours <- c("#39ab2c", "#FF8500")
       
-      DisplacementChart <-
-        Displacement %>%  ggplot(aes(x = Year), family = "Century Gothic") +
+      xGridEmissionsChart <-
+        xGridEmissions %>%  ggplot(aes(x = Year), family = "Century Gothic") +
         
         ### Line of Values
         geom_line(
@@ -287,30 +285,27 @@ DisplacedEmissions <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year,
+            x = Year-1,
             y = Renewables,
-            label = ifelse(Year == min(Year), Renewables, ""),
-            hjust = 0.5,
-            vjust = 2,
+            label = ifelse(Year == min(Year), paste(Renewables,"\ngCO2e/kWh"), ""),
             colour = ChartColours[1],
             fontface = 2
           ),
           family = "Century Gothic"
-        ) +
+        )+
         geom_text(
           aes(
-            x = Year,
+            x = Year+1,
             y = Renewables,
-            label = ifelse(Year == max(Year), Renewables, ""),
-            hjust = 0.5,
-            vjust = -1,
+            label = ifelse(Year == max(Year), paste(sprintf("%.1f", Renewables),"\ngCO2e/kWh"), ""),
             colour = ChartColours[1],
             fontface = 2
           ),
-          family = "Century Gothic"
+          family = "Century Gothic",
+          vjust = -.5
         ) +
         geom_point(
-          data = tail(Displacement, 1),
+          data = tail(xGridEmissions, 1),
           aes(
             x = Year,
             y = Renewables,
@@ -336,26 +331,30 @@ DisplacedEmissions <- function(input, output, session) {
         )
       
       
-      DisplacementChart <-
-        LinePercentChart(DisplacementChart,
-                         Displacement,
+      xGridEmissionsChart <-
+        LinePercentChart(xGridEmissionsChart,
+                         xGridEmissions,
                          plottitle,
                          sourcecaption,
                          ChartColours)
       
       
-      DisplacementChart
+      xGridEmissionsChart <- xGridEmissionsChart +
+        xlim(min(xGridEmissions$Year)-1,max(xGridEmissions$Year)+1)+
+        ylim(-15,max(xGridEmissions$Renewables)+20)
       
-      DisplacementChart <- DisplacementChart +
-        ylim(-.5, max(Displacement$Renewables))
+      xGridEmissionsChart
+
+      
       ggsave(
         file,
-        plot = DisplacementChart,
+        plot = xGridEmissionsChart,
         width = 26,
         height = 10,
         units = "cm",
         dpi = 300
       )
+      
       
     }
   )

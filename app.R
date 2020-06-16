@@ -587,7 +587,13 @@ ui <- shinyUI(fluidPage(
                  ElecConsumptionFuelOutput("ElecConsumptionFuel")),
         tabPanel(title ="Renewable Electricity Sources", 
                  value = "RenElecSources",
-                 RenElecSourcesOutput("RenElecSources"))
+                 RenElecSourcesOutput("RenElecSources")),
+        tabPanel(title = "Displaced Emissions",
+                 value = "DisplacedEmissions",
+                 DisplacedEmissionsOutput("DisplacedEmissions")),
+        tabPanel(title = "Grid Emissions",
+                 value = "GridEmissions",
+                 GridEmissionsOutput("GridEmissions"))
         )),
       tabPanel(
         value = "RenHeat",
@@ -864,18 +870,12 @@ ui <- shinyUI(fluidPage(
                           tabPanel(title = "Adjusted Emissions",
                                    value = "AdjustedEmissions",
                                    AdjustedEmissionsOutput("AdjustedEmissions")),
-                          tabPanel(title = "Displaced Emissions",
-                                   value = "DisplacedEmissions",
-                                   DisplacedEmissionsOutput("DisplacedEmissions")),
                           tabPanel(title = "Energy Supply Emissions",
                                    value = "EnSupplyEmissions",
                                    EnSupplyEmissionsOutput("EnSupplyEmissions")),
                           tabPanel(title = "Greenhouse Gas Emissions",
                                    value = "GHGEmissions",
-                                   GHGEmissionsOutput("GHGEmissions")),
-                          tabPanel(title = "Grid Emissions",
-                                   value = "GridEmissions",
-                                   GridEmissionsOutput("GridEmissions"))
+                                   GHGEmissionsOutput("GHGEmissions"))
              )),
                    ###### Section - Target Tracker #######
                    tabPanel(value = "TargetTracker",
