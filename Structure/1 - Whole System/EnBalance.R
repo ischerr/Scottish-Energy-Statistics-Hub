@@ -64,7 +64,7 @@ EnBalanceOutput <- function(id) {
       tabPanel("Energy balance data",
     fluidRow(
       uiOutput(ns("DataTableBalanceSupplyText")),
-      uiOutput(ns("DataTableFullDownload")),
+      column(2, style = "padding:15px",  downloadButton(ns('EnBalanceData.xlsx'), 'Download Full Data', style="float:right")),
       column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Tables", style = "float:right; "))
     ),
     fluidRow(
@@ -159,13 +159,6 @@ EnBalance <- function(input, output, session) {
     unit <- as.character(BalanceDropdown$Unit)
     
     column(8, h3(paste0("Data - Supply (", unit, ")"), style = "color: #1A5D38;  font-weight:bold"))
-  })
-  
-  output$DataTableFullDownload <- renderUI({
-    
-    unit <- as.character(BalanceDropdown$Unit)
-    
-    column(2, style = "padding:15px",  downloadButton(ns(paste0('EnBalanceData', unit, '.xlsx')), 'Download Full Data', style="float:right"))
   })
   
   output$DataTableBalanceTransfersText <- renderUI({
@@ -455,17 +448,24 @@ EnBalance <- function(input, output, session) {
   
   
   output$EnBalance.png <- downloadHandler(
-    filename = "EnBalance.png",
+    filename = function(filename){
+      unit <- as.character(BalanceDropdown$Unit)
+      filename <- paste0("EnBalance", unit, ".png")},
     content = function(file) {
-      writePNG(readPNG("Structure/1 - Whole System/EnBalance.png"), file) 
+      unit <- as.character(BalanceDropdown$Unit)
+      writePNG(readPNG(paste0("Structure/1 - Whole System/EnBalance", unit, ".png")), file) 
     }
   )
   
   
   output$EnBalanceData.xlsx <- downloadHandler(
-    filename = "EnBalanceData.xlsx",
+    filename = function(filename){
+      unit <- as.character(BalanceDropdown$Unit)
+      filename <- paste0("EnBalanceData", unit, ".xlsx")},
     content <- function(file) {
-      file.copy("Structure/1 - Whole System/EnBalanceData.xlsx", file)
+      unit <- as.character(BalanceDropdown$Unit)
+      
+      file.copy(paste0("Structure/1 - Whole System/EnBalanceData", unit, ".xlsx"), file)
     })  
   
   output$SimplifiedFlowSubtitle <- renderText({
@@ -474,9 +474,13 @@ EnBalance <- function(input, output, session) {
   })
   
   output$SimplifiedFlow.png <- downloadHandler(
-    filename = "SimplifiedFlow.png",
+    filename = function(filename){
+      unit <- as.character(BalanceDropdown$Unit)
+      filename <- paste0("SimplifiedFlow", unit, ".png")},
     content = function(file) {
-      writePNG(readPNG("Structure/1 - Whole System/SimplifiedFlow.png"), file) 
+      unit <- as.character(BalanceDropdown$Unit)
+      
+      writePNG(readPNG(paste0("Structure/1 - Whole System/SimplifiedFlow", unit, ".png")), file) 
     }
   ) 
   

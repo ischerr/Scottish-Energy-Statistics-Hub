@@ -14,7 +14,7 @@
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
    width="568.93176"
    height="319.22357"
-   inkscape:export-filename="C:\Users\ische\OneDrive\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\SimplifiedFlow.png"
+   inkscape:export-filename="C:\Users\ische\OneDrive\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\SimplifiedFlowPJ.png"
    inkscape:export-xdpi="299.98212"
    inkscape:export-ydpi="299.98212">
   <metadata
@@ -42,9 +42,9 @@
      inkscape:window-height="2066"
      id="namedview76"
      showgrid="false"
-     inkscape:zoom="1.8958381"
-     inkscape:cx="265.92852"
-     inkscape:cy="230.68473"
+     inkscape:zoom="5.3622399"
+     inkscape:cx="242.22186"
+     inkscape:cy="151.96903"
      inkscape:window-x="-11"
      inkscape:window-y="-11"
      inkscape:window-maximized="1"
@@ -1033,21 +1033,21 @@
          xml:space="preserve"
          id="flowRoot2800-4-9-0-5"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#1a5d38;fill-opacity:1;stroke:none"
-         transform="matrix(0.17628475,0,0,0.17628475,617.36099,-38.976379)"><flowRegion
+         transform="matrix(0.17628475,0,0,0.17628475,619.37879,-38.976379)"><flowRegion
            id="flowRegion2802-2-8-1-5"
            style="text-align:center;text-anchor:middle;fill:#1a5d38;fill-opacity:1"><rect
              id="rect2804-7-6-5-3"
-             width="869.29968"
-             height="689.27936"
+             width="937.53772"
+             height="664.21234"
              x="-2111.4285"
              y="1479.6626"
              style="text-align:center;text-anchor:middle;fill:#1a5d38;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#1a5d38;fill-opacity:1"
-           id="flowPara1261-6-5">Indigenous production &amp; imports - 1,243 TWh</flowPara></flowRoot>      <flowRoot
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;text-anchor:start;fill:#1a5d38;fill-opacity:1"
+           id="flowPara1261-6-5">Indigenous production &amp; imports - 4,476 PJ</flowPara></flowRoot>      <flowRoot
          xml:space="preserve"
          id="flowRoot2800-4-9-0-5-7"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#6f8a91;fill-opacity:1;stroke:none"
-         transform="matrix(0.17628475,0,0,0.17628475,816.30069,-38.879973)"><flowRegion
+         transform="matrix(0.17628475,0,0,0.17628475,841.31126,-38.879973)"><flowRegion
            id="flowRegion2802-2-8-1-5-6"
            style="text-align:center;text-anchor:middle;fill:#6f8a91;fill-opacity:1"><rect
              id="rect2804-7-6-5-3-9"
@@ -1056,12 +1056,12 @@
              x="-2111.4285"
              y="1479.6626"
              style="text-align:center;text-anchor:middle;fill:#6f8a91;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#6f8a91;fill-opacity:1"
-           id="flowPara1261-6-5-3">Final consumption - 162 TWh</flowPara></flowRoot>      <flowRoot
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;text-anchor:start;fill:#6f8a91;fill-opacity:1"
+           id="flowPara1261-6-5-3">Final consumption - 584 PJ</flowPara></flowRoot>      <flowRoot
          xml:space="preserve"
          id="flowRoot2800-4-9-0-5-2"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#262626;fill-opacity:1;stroke:none"
-         transform="matrix(0.17628475,0,0,0.17628475,961.52742,-38.879973)"><flowRegion
+         transform="matrix(0.17628475,0,0,0.17628475,987.17152,-38.879973)"><flowRegion
            id="flowRegion2802-2-8-1-5-9"
            style="text-align:center;text-anchor:middle;fill:#262626;fill-opacity:1"><rect
              id="rect2804-7-6-5-3-2"
@@ -1070,8 +1070,8 @@
              x="-2111.4285"
              y="1479.6626"
              style="text-align:center;text-anchor:middle;fill:#262626;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#262626;fill-opacity:1"
-           id="flowPara1261-6-5-34">Exports and losses - 1,081 TWh</flowPara></flowRoot>      <flowRoot
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;text-anchor:start;fill:#262626;fill-opacity:1"
+           id="flowPara1261-6-5-34">Exports and losses - 3,892 PJ</flowPara></flowRoot>      <flowRoot
          xml:space="preserve"
          id="flowRoot2800-4-9-0-5-0"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#254061;fill-opacity:1;stroke:none"
@@ -1243,7 +1243,7 @@
          xml:space="preserve"
          id="flowRoot2800-4-9-0-5-0-1-5"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#4f6228;fill-opacity:1;stroke:none"
-         transform="matrix(0.17628475,0,0,0.17628475,921.98042,-22.717134)"><flowRegion
+         transform="matrix(0.17628475,0,0,0.17628475,922.6828,-22.717134)"><flowRegion
            id="flowRegion2802-2-8-1-5-67-2-4"
            style="text-align:center;text-anchor:middle;fill:#4f6228;fill-opacity:1"><rect
              id="rect2804-7-6-5-3-5-18-2"
@@ -1286,13 +1286,13 @@
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;text-anchor:start;fill:#31859c;fill-opacity:1">Distribution losses</flowPara></flowRoot>      <path
          inkscape:connector-curvature="0"
          id="path1711"
-         d="M 245.37105,220.77449 H 398.24922"
-         style="fill:#1a5d38;fill-opacity:1;stroke:#1a5d38;stroke-width:0.66145831;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+         d="m 245.37105,220.77449 h 164.662"
+         style="fill:#1a5d38;fill-opacity:1;stroke:#1a5d38;stroke-width:0.66182927;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
       <path
          inkscape:connector-curvature="0"
          id="path1711-6"
-         d="M 245.37105,231.25169 H 398.24922"
-         style="fill:#1a5d38;fill-opacity:1;stroke:#1a5d38;stroke-width:0.66145831;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+         d="m 245.37105,231.25169 h 164.662"
+         style="fill:#1a5d38;fill-opacity:1;stroke:#1a5d38;stroke-width:0.66182927;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
       <path
          inkscape:connector-curvature="0"
          id="path1711-40"
