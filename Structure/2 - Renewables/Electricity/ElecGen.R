@@ -74,6 +74,14 @@ ElecGenOutput <- function(id) {
                fluidRow(
                  column(12, dataTableOutput(ns("ElecGenFuelTable"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+      tabPanel("Scotland Proportion",
+               fluidRow(
+                 column(10, h3("Data - Scottish electricity generation proportions", style = "color: #39ab2c;  font-weight:bold")),
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+               ),
+               fluidRow(
+                 column(12, dataTableOutput(ns("ElecGenFuelScotPropTable"))%>% withSpinner(color="#39ab2c"))),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("England & Wales",
                fluidRow(
                  column(10, h3("Data - England & Wales (GWh)", style = "color: #39ab2c;  font-weight:bold")),
@@ -1626,7 +1634,7 @@ output$ElecGenFuelTable = renderDataTable({
   
   DataScot$`Fossil Fuels` <- DataScot$Gas + DataScot$Coal + DataScot$Oil
   
-  DataScot <- DataScot[c(1,2,3,4,5,6,7,8,9,11,17,10,15,12,13,14,18,16)]
+  DataScot <- DataScot[c(1,2,3,4,5,6,7,8,9,11,17,12,13,14,18,10,15,16)]
   
   datatable(
     DataScot,
@@ -1662,8 +1670,90 @@ output$ElecGenFuelTable = renderDataTable({
     )
   ) %>%
     formatRound(2:ncol(DataScot), 0) %>% 
-    formatStyle(c(9, 11, 17, 18), fontStyle = "italic") %>% 
+    formatStyle(c(9, 11, 17, 16), fontStyle = "italic") %>% 
     formatStyle(18, fontWeight = "bold")
+})
+
+output$ElecGenFuelScotPropTable = renderDataTable({
+  
+  DataScot <-
+    read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Elec gen by fuel",
+      col_names = FALSE,
+      skip = 15,
+      n_max = 16
+    )
+  
+  DataScot <- as.data.frame(t(DataScot))
+  
+  DataScot <- setDT(DataScot, keep.rownames = FALSE)
+  
+  names(DataScot) <- as.character(unlist(DataScot[1, ]))
+  
+  DataScot <- tail(DataScot,-1)
+  
+  DataScot <- head(DataScot,-1)
+  
+  DataScot %<>% lapply(function(x)
+    as.numeric(as.character(x)))
+  
+  names(DataScot)[1] <- "Year"
+  
+  DataScot <- as_tibble(DataScot)
+  
+  YearList <- as.list(DataScot$Year[which(DataScot$Year >= 2009)])
+  
+  DataScot$`Low Carbon` <- DataScot$Renewables + DataScot$Nuclear
+  
+  DataScot$`Fossil Fuels` <- DataScot$Gas + DataScot$Coal + DataScot$Oil
+  
+  DataScot <- DataScot[c(1,9,11,17,18,16)]
+  
+  DataScot$RenewablesProp <- DataScot$Renewables / DataScot$Total
+  DataScot$NuclearProp <- DataScot$Nuclear / DataScot$Total
+  DataScot$LowCarbonProp <- DataScot$`Low Carbon` / DataScot$Total
+  DataScot$FossilProp <- DataScot$`Fossil Fuels` / DataScot$Total
+  
+  DataScot <- DataScot[c(1,2,7,3,8,4,9,5,10)]
+  
+  names(DataScot) <- c("Year", "Renewables (GWh)", "Renewables Proportion (%)", "Nuclear (GWh)", "Nuclear Proportion (%)", "Low Carbon (GWh)", "Low Carbon Proportion (%)", "Fossil Fuels (GWh)", "Fossil Fuels Proportion (%)")
+  
+  datatable(
+    DataScot,
+    extensions = 'Buttons',
+    
+    rownames = FALSE,
+    options = list(
+      paging = TRUE,
+      pageLength = -1,
+      searching = TRUE,
+      fixedColumns = FALSE,
+      autoWidth = TRUE,
+      ordering = TRUE,
+      order = list(list(0 , 'desc')),
+      title = "Scottish electricity generation proportions",
+      dom = 'ltBp',
+      buttons = list(
+        list(extend = 'copy'),
+        list(
+          extend = 'excel',
+          title = 'Scottish electricity generation proportions',
+          header = TRUE
+        ),
+        list(extend = 'csv',
+             title = 'Scottish electricity generation proportions')
+      ),
+      
+      # customize the length menu
+      lengthMenu = list( c(10, 20, -1) # declare values
+                         , c(10, 20, "All") # declare titles
+      ), # end of lengthMenu customization
+      pageLength = 10
+    )
+  ) %>%
+    formatRound(2:ncol(DataScot), 0) %>% 
+    formatPercentage(c(3,5,7,9), 1)
 })
 
 output$ElecGenFuelEWTable = renderDataTable({
@@ -1700,7 +1790,7 @@ output$ElecGenFuelEWTable = renderDataTable({
   
   DataEW$`Fossil Fuels` <- DataEW$Gas + DataEW$Coal + DataEW$Oil
   
-  DataEW <- DataEW[c(1,2,3,4,5,6,7,8,9,11,17,10,15,12,13,14,18,16)]
+  DataEW <- DataEW[c(1,2,3,4,5,6,7,8,9,11,17,12,13,14,18,10,15,16)]
   
   datatable(
     DataEW,
@@ -1736,7 +1826,7 @@ output$ElecGenFuelEWTable = renderDataTable({
     )
   ) %>%
     formatRound(2:ncol(DataEW), 0) %>% 
-    formatStyle(c(9, 11, 17, 18), fontStyle = "italic") %>% 
+    formatStyle(c(9, 11, 17, 16), fontStyle = "italic") %>% 
     formatStyle(18, fontWeight = "bold")
 })
 
