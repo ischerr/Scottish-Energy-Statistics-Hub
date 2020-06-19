@@ -68,6 +68,21 @@ RenElecCapacityOutput <- function(id) {
              #dygraphOutput(ns("RenElecCapacityPlot")),
 
              plotlyOutput(ns("RenElecOperationalSizePlot"), height = "600px")%>% withSpinner(color="#39ab2c"),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Operational capacity by Local Authority",
+             fluidRow(column(8,
+                             h3("Operational renewable capacity by Local Authority", style = "color: #39ab2c;  font-weight:bold"),
+                             h4(textOutput(ns('LACapacitySubtitle')), style = "color: #39ab2c;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('LACapacityMap.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+             #dygraphOutput(ns("RenElecCapacityPlot")),
+             
+             leafletOutput(ns("LACapacityMap"), height = "600px")%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     
     fluidRow(
@@ -96,7 +111,15 @@ RenElecCapacityOutput <- function(id) {
                ),
                fluidRow(
                  column(12, dataTableOutput(ns("RenElecOperationalSizeTable"))%>% withSpinner(color="#39ab2c"))),
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Capacity by Local Authority",
+             fluidRow(
+               column(10, h3("Data - Operational renewable capacity by Local Authority (MW)", style = "color: #39ab2c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("LARenCapPipelineTable"))%>% withSpinner(color="#39ab2c"))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
   
     fluidRow(
       column(2, p("Update expected:")),
@@ -1033,7 +1056,99 @@ RenElecCapacity <- function(input, output, session) {
   observeEvent(input$ToggleTable, {
     toggle("RenElecFuelCapTable")
   })
+  
+  observeEvent(input$ToggleTable4, {
+    toggle("LARenCapPipelineTable")
+  })
 
+  
+  output$LACapacitySubtitle <- renderText({
+    
+    Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                       sheet = "R - QTRCapacity", col_names = FALSE)
+    
+    Data <- as_tibble(t(Data))
+    
+    names(Data) <- c("Date", "Wind Onshore", "Wind Offshore", "Shoreline wave / tidal", "Solar Photovoltaics", "Small Hydro", "Large Hydro", "Landfill Gas", "Sewage", "Waste", "Animal Biomass", "Anaerobic Digestion", "Plant", "Total")
+    
+    Data <- Data[2,]
+    
+    Data$Date <- paste0(substr(Data$Date,1,4), " Q", substr(Data$Date, 8,8))
+    
+    paste("Scotland,", Data$Date)
+  })
+  
+  
+  output$LACapacityMap <- renderLeaflet({
+    
+    ### Load Packages
+    library(readr)
+    library("maptools")
+    library(tmaptools)
+    library(tmap)
+    library("sf")
+    library("leaflet")
+    library("rgeos")
+    library(readxl)
+    library(ggplot2)
+    
+    ### Add Simplified shape back to the Shapefile
+    LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/LocalAuthority2.shp")
+    
+    LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
+    ############ RENEWABLE ELECTRICITY ################################################
+    
+    LARenCapPipeline <- read_delim("Processed Data/Output/Renewable Capacity/LARenCapPipeline.txt", 
+                                   "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,2,7)]
+    
+    LARenCapPipeline <- LARenCapPipeline[c(1,2,ncol(LARenCapPipeline))]
+    
+    names(LARenCapPipeline) <- c("LocalAuthority", "CODE", "Capacity")
+    
+    LARenCapPipeline <- LARenCapPipeline[which(substr(LARenCapPipeline$CODE, 1,3)== "S12"),]
+    
+    LARenCapPipeline$Content <- paste0("<b>",LARenCapPipeline$LocalAuthority, "</b><br/>Renewable Electricity<br/>Capacity:<br/><em>", round(LARenCapPipeline$Capacity, digits = 0)," MW</em>" )
+    
+    LARenCapPipeline$Hover <- paste0(LARenCapPipeline$LocalAuthority, " - ", round(LARenCapPipeline$Capacity, digits = 2), " MW")
+    
+    ### Change LA$CODE to string
+    LA$CODE <- as.character(LA$CODE)
+    
+    ### Order LAs in Shapefile
+    LA <- LA[order(LA$CODE),]
+    
+    ### Order LAs in Data
+    LARenCapPipeline <- LARenCapPipeline[order(LARenCapPipeline$CODE),]
+    
+    ### Combine Data with Map data
+    LAMap <-
+      append_data(LA, LARenCapPipeline, key.shp = "CODE", key.data = "CODE")
+    
+    
+    pal <- colorNumeric(
+      palette = "Greens",
+      domain = LAMap$Capacity)
+    
+    l <-leaflet(LAMap) %>% 
+      addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
+      addPolygons(stroke = TRUE, 
+                  weight = 0.1,
+                  smoothFactor = 0.2,
+                  popup = ~Content,
+                  label = ~Hover,
+                  fillOpacity = 1,
+                  color = ~pal(Capacity),
+                  highlightOptions = list(color = "white", weight = 2,
+                                          bringToFront = TRUE)) %>%
+      leaflet::addLegend("bottomright", pal = pal, values = ~Capacity,
+                         title = "Renewable  Electricity<br/>Capacity (MW)",
+                         opacity = 1
+      ) 
+    
+    l
+    
+  })
+  
   output$RenElecFuel.png <- downloadHandler(
     filename = "RenElecFuel.png",
     content = function(file) {
@@ -1598,6 +1713,52 @@ RenElecCapacity <- function(input, output, session) {
     
     p
   })
+  
+  
+  output$LARenCapPipelineTable = renderDataTable({
+    
+    LARenCapPipeline <- read_delim("Processed Data/Output/Renewable Capacity/LARenCapPipeline.txt", 
+                                   "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,2,7)]
+    
+    
+    names(LARenCapPipeline) <- c("Local Authority", "LA Code", "Operational capacity (MW)")
+    
+    datatable(
+      LARenCapPipeline,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        order = list(list(0, 'asc')),
+        title = "Operational renewable capacity by Local Authority (MW)",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = "Operational renewable capacity by Local Authority (MW)",
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = "Operational renewable capacity by Local Authority (MW)")
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(3, 1) 
+  })
+  
   
   output$RenElecOperationalSize.png <- downloadHandler(
     filename = "RenElecOperationalSize.png",

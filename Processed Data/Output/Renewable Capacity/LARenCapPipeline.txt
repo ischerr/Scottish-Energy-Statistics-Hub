@@ -1,0 +1,33 @@
+"LA"	"LACode"	"Application Submitted"	"Awaiting Construction"	"Under Construction"	"Pipeline"	"Operational"
+"Aberdeen City"	"S12000033"	0	0.25	11.1	11.35	2.2
+"Aberdeenshire"	"S12000034"	52.95	64.9	2	119.85	437.172
+"Angus"	"S12000041"	0	76.37	9.99	86.36	28.4
+"Argyll and Bute"	"S12000035"	0	117.37	2	119.37	346.559
+"Clackmannanshire"	"S12000005"	0	10.8	0	10.8	42.99
+"Comhairle nan Eilean Siar"	"S12000013"	61.8	54.7	0	116.5	37.8
+"Dumfries and Galloway"	"S12000006"	72.98	413.7	34	520.68	393.32
+"Dundee City"	"S12000042"	0	0	0	0	22.8
+"East Ayrshire"	"S12000008"	82.5	38.8	30	151.3	49.69
+"East Dunbartonshire"	"S12000045"	0	0	0	0	0
+"East Lothian"	"S12000010"	0	0	25.6	25.6	81.6
+"East Renfrewshire"	"S12000011"	0	2.5	0	2.5	39.084
+"City of Edinburgh"	"S12000036"	0	0	0	0	2.4
+"Falkirk"	"S12000014"	0	4	21.5	25.5	40
+"Fife"	"S12000047"	1	31.45	0.23	32.68	130
+"Glasgow City"	"S12000049"	0	20	10	30	14.72
+"Highland"	"S12000017"	174.3	283.995	2	460.295	1044.645
+"Inverclyde"	"S12000018"	0	0	24	24	0
+"Midlothian"	"S12000019"	0	0	0	0	68.54
+"Moray"	"S12000020"	0	76.8	0	76.8	175.92
+"North Ayrshire"	"S12000021"	15	37.9	0	52.9	145.793
+"North Lanarkshire"	"S12000050"	15.5	116.2	25	156.7	64.022
+"Orkney Islands"	"S12000023"	0	40.82	0	40.82	39.1
+"Perth and Kinross"	"S12000048"	0	80.56	0	80.56	207.72
+"Renfrewshire"	"S12000038"	0	0	0	0	0
+"Scottish Borders"	"S12000026"	33.6	119	0	152.6	310.45
+"Shetland Islands"	"S12000027"	0	50.4	0	50.4	11.18
+"South Ayrshire"	"S12000028"	0	24	20	44	49.55
+"South Lanarkshire"	"S12000029"	129.6	172.7	1.6	303.9	296.69
+"Stirling"	"S12000030"	0	0	0	0	98.9
+"West Dunbartonshire"	"S12000039"	0	1.6	0	1.6	4.113
+"West Lothian"	"S12000040"	46	44.15	0	90.15	86.23
