@@ -486,6 +486,8 @@ ElecGen <- function(input, output, session) {
       formatStyle(c(4,5,9), fontStyle = "italic")
   })
   
+  
+  
   output$ElecGenFuel2Table = renderDataTable({
     
     Data <-
