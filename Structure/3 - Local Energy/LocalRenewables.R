@@ -584,9 +584,9 @@ LocalRenewables <- function(input, output, session) {
     
     CommunityOperatingOutputType$Target <- NA
     
-    CommunityOperatingOutputType$Date <- format(CommunityOperatingOutputType$Date, format = "%Y")
+
     
-    paste("Scotland,", min(CommunityOperatingOutputType$Date[which(CommunityOperatingOutputType$Capacity != 0)], na.rm = TRUE), "-", max(CommunityOperatingOutputType$Date[which(CommunityOperatingOutputType$Capacity != 0)], na.rm = TRUE))
+    paste("Scotland,", format(min(CommunityOperatingOutputType$Date[which(CommunityOperatingOutputType$Capacity != 0)], na.rm = TRUE), format = "%B %Y"), "-", format(max(CommunityOperatingOutputType$Date[which(CommunityOperatingOutputType$Capacity != 0)], na.rm = TRUE), format = "%B %Y"))
    })
   
   output$CommunityOperatingCapacityPlot <- renderPlotly  ({
@@ -625,7 +625,7 @@ LocalRenewables <- function(input, output, session) {
           "Progress: ",
           CommunityOperatingOutputType$Capacity,
           " MW\nDate: ",
-          format(CommunityOperatingOutputType$Date, "%Y")
+          format(CommunityOperatingOutputType$Date, "%b %Y")
         ),
         hoverinfo = 'text',
         line = list(
@@ -646,7 +646,7 @@ LocalRenewables <- function(input, output, session) {
                                   CommunityOperatingOutputType$Capacity < 0), ][-1, ]$Capacity,
           " MW\nDate: ",
           format(CommunityOperatingOutputType[which(CommunityOperatingOutputType$Capacity > 0 |
-                                 CommunityOperatingOutputType$Capacity < 0), ][-1, ]$Date, "%Y")
+                                 CommunityOperatingOutputType$Capacity < 0), ][-1, ]$Date, "%b %Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -665,7 +665,7 @@ LocalRenewables <- function(input, output, session) {
           "Target: ",
           CommunityOperatingOutputType$Target,
           " MW\nDate: ",
-          format(CommunityOperatingOutputType$Date, "%Y")
+          format(CommunityOperatingOutputType$Date, "%b %Y")
         ),
         hoverinfo = 'text',
         mode = 'markers',
@@ -685,7 +685,8 @@ LocalRenewables <- function(input, output, session) {
         hovername = 'text',
         xaxis = list(
           title = "",
-          showgrid = FALSE,
+          tickformat = "%b %Y",
+          showgrid = TRUE,
           range = c(min(CommunityOperatingOutputType$Date) - 100, max(CommunityOperatingOutputType$Date) +
                       100)
         ),

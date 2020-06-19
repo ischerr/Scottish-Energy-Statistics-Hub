@@ -1,10 +1,4 @@
-<p><strong>Electricity demand has reduced significantly</strong></p>
-<p>The first chart above compares average weekday daily electricity demand pre and post lockdown for 2020, and how this compares against previous years.&nbsp; To do this, a comparison is made between the first three weeks of March (blue bars) and the subsequent weeks since lockdown (orange bars) for each year since 2013.&nbsp; It shows that:</p>
-<ul>
-<li>Before lockdown, average weekday daily consumption is similar to previous years</li>
-<li>After lockdown, weekday consumption dropped by <strong>23%</strong> compared to the start of March. Even though more people are working from home, the presumed increase in domestic* consumption is more than offset by the inactivity from non-essential commercial and industrial premises.&nbsp;</li>
-</ul>
-<p>The second chart shows daily electricity demand from the start of March in 2020 (blue line) and 2019 (orange line).&nbsp; Daily demand levels are similar until Friday 20<sup>th</sup> March when pubs, clubs, restaurants and gyms closed.&nbsp; From then, electricity demand reduced and was consistently lower from the lockdown onwards.&nbsp;</p>
+<p>As a result of the covid-19 lockdown, electricity use in Scotland declined significantly.&nbsp; Since lockdown, average daily electricity demand in Scotland in <strong>2020</strong> is <strong>16%</strong> <strong>lower</strong> than the equivalent period in <strong>2019</strong>.&nbsp; In <strong>2020</strong>, average daily demand is <strong>23%</strong> lower after lockdown than before.&nbsp; Even though more people are working from home, the presumed increase in domestic* consumption is more than offset by the inactivity from non-essential commercial and industrial premises.</p>
 <blockquote>
 <p>*Please note that it is <strong>not</strong> possible to disaggregate domestic and non-domestic consumption from this analysis.</p>
 </blockquote>

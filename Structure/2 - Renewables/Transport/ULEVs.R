@@ -135,13 +135,14 @@ ULEVsOutput <- function(id) {
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
-             DateLookup(c("DFTLicenced", "DFTULEVs", "ChargePlace"))),
+             DateLookup(c("DFTLicenced", "DFTULEVs", "ChargePlace", "TransportScotland13"))),
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
         SourceLookup("DFTLicenced"),
         SourceLookup("DFTULEVs"),
-        SourceLookup("ChargePlace")
+        SourceLookup("ChargePlace"),
+        SourceLookup("TransportScotland13")
         
       )
     )
@@ -967,9 +968,9 @@ output$ULEVRegOutput.png <- downloadHandler(
     
     AverageBillMap <- AverageBillMap[which(substr(AverageBillMap$CODE, 1,3)== "S12"),]
     
-    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Amount Charged:<br/><em>", format(round(AverageBillMap$AmountCharged, digits = 0), big.mark = ",")," GWh</em>" )
+    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Amount Charged:<br/><em>", format(round(AverageBillMap$AmountCharged, digits = 0), big.mark = ",")," MWh</em>" )
     
-    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - ", format(round(AverageBillMap$AmountCharged, digits = 2), big.mark = ","), " GWh")
+    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - ", format(round(AverageBillMap$AmountCharged, digits = 2), big.mark = ","), " MWh")
     
     ### Change LA$CODE to string
     LA$CODE <- as.character(LA$CODE)
@@ -1001,7 +1002,7 @@ output$ULEVRegOutput.png <- downloadHandler(
                   highlightOptions = list(color = "white", weight = 2,
                                           bringToFront = TRUE)) %>%
       leaflet::addLegend("bottomright", pal = pal, values = ~AmountCharged,
-                         title = "Amount<br/>Charged<br/>(GWh)",
+                         title = "Amount<br/>Charged<br/>(MWh)",
                          opacity = 1
       ) 
     
@@ -1108,7 +1109,7 @@ output$ULEVRegOutput.png <- downloadHandler(
   
   output$ChargeProvidedDataSubtitle <- renderUI({
     
-    column(10, h3(paste("Data - Charge Provided (GWh),", TableYear) , style = "color: #39ab2c;  font-weight:bold"))
+    column(10, h3(paste("Data - Charge Provided (MWh),", TableYear) , style = "color: #39ab2c;  font-weight:bold"))
     
   })
   
@@ -1121,7 +1122,7 @@ output$ULEVRegOutput.png <- downloadHandler(
     
     ChargingPoint <- ChargingPoint[c(1,2,6)]
     
-    names(ChargingPoint) <- c("Local Authority", "LA Code", "Charge Provided (GWh)")
+    names(ChargingPoint) <- c("Local Authority", "LA Code", "Charge Provided (MWh)")
     
     datatable(
       ChargingPoint,
@@ -1134,17 +1135,17 @@ output$ULEVRegOutput.png <- downloadHandler(
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = paste("Total electric vehicle charge provided (GWh) by local authority,",TableYear),
+        title = paste("Total electric vehicle charge provided (MWh) by local authority,",TableYear),
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = paste("Total electric vehicle charging events by local authority,",TableYear),
+            title = paste("Total electric vehicle charge provided (MWh) by local authority,",TableYear),
             header = TRUE
           ),
           list(extend = 'csv',
-               title = paste("Total electric vehicle charging events by local authority,",TableYear))
+               title = paste("Total electric vehicle charge provided (MWh) by local authority,",TableYear))
         ),
         
         # customize the length menu

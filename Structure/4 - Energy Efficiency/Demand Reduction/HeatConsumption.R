@@ -289,6 +289,8 @@ HeatConsumption <- function(input, output, session) {
     
     Data <- Data[-1,]
     
+    Data$Total <- Data$Domestic+Data$`Non-Domestic`
+    
     datatable(
       Data,
       extensions = 'Buttons',
@@ -629,7 +631,8 @@ HeatConsumption <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:7, 0)
+      formatRound(2:7, 0) %>% 
+      formatStyle(c(7), fontWeight = 'bold')
     
   })
   

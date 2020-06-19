@@ -170,13 +170,42 @@ observe({
     }
   
   
-  if(input$MainNav == "ConsumerEngagement"){
 
-      updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$ConsumerEngagement), mode = "push")
+  if(input$MainNav == "ConsumerEngagement"){
     
-    callModule(match.fun(input$ConsumerEngagement), input$ConsumerEngagement)
-    
+    if(input$ConsumerEngagement == "Bills"){
+      
+      updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$ConsumerEngagement,"&Chart=",input$Bills), mode = "push")
+      
+      callModule(match.fun(input$Bills), input$Bills)
     }
+    
+    if(input$ConsumerEngagement == "VulnerabilityTab"){
+      
+      updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$ConsumerEngagement,"&Chart=",input$VulnerabilityTab), mode = "push")
+      
+      callModule(match.fun(input$VulnerabilityTab), input$VulnerabilityTab)
+      
+    }
+    
+    if(input$ConsumerEngagement == "ConsumerChoice"){
+      
+      updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$ConsumerEngagement,"&Chart=",input$ConsumerChoice), mode = "push")
+      
+      callModule(match.fun(input$ConsumerChoice), input$ConsumerChoice)
+      
+    }
+    
+    if(input$ConsumerEngagement == "Meters"){
+      
+      updateQueryString(paste0("?Section=",input$MainNav,"&Subsection=",input$ConsumerEngagement,"&Chart=",input$Meters), mode = "push")
+      
+      callModule(match.fun(input$Meters), input$Meters)
+      
+    }
+    
+    
+  }
   
   
   if(input$MainNav == "SystemSecurity"){
@@ -295,7 +324,7 @@ output$HomeTab <- renderUI({
     style = "padding: 10px; margin-top: 20px;"
   ),
   fluidRow(
-    column(width = 3,
+    column(width = 4,
            actionLink(
              "GoToTotalEnergyTab",
              label = div(
@@ -309,7 +338,7 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
-    column(width = 3,
+    column(width = 4,
            actionLink(
              "GoToRenLowCarbonTab",
              label = div(
@@ -323,7 +352,7 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
-    column(width = 3,
+    column(width = 4,
            actionLink(
              "GoToLocalEnergyTab",
              label = div(
@@ -337,7 +366,11 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
-    column(width = 3,
+
+    style = "padding: 10px; margin-top: 20px;"
+  ),
+  fluidRow( 
+    column(width = 4,
            actionLink(
              "GoToEnergyEfficiencyTab",
              label = div(
@@ -351,10 +384,7 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
-    style = "padding: 10px; margin-top: 20px;"
-  ),
-  fluidRow(
-    column(width = 3,
+    column(width = 4,
            actionLink(
              "GoToConsumerTab",
              label = div(
@@ -368,11 +398,11 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
-    column(width = 3,
+    column(width = 4,
            actionLink(
              "GoToSystemSecurityTab",
              label = div(
-               tags$h3("System Security", style = "color: black;"),
+               tags$h3("Electricity and Gas Systems", style = "color: black;"),
                tags$p(
                  " ",
                  style = "color: black;"
@@ -382,7 +412,12 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )), 
-    column(width = 3,
+    
+    style = "padding: 10px; margin-top: 20px;"
+  ),
+fluidRow(
+  column(width = 2),
+  column(width = 4,
            actionLink(
              "GoToOilGasTab",
              label = div(
@@ -396,7 +431,7 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
-    column(width = 3,
+    column(width = 4,
            actionLink(
              "GoToOtherTab",
              label = div(
@@ -410,9 +445,8 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
-    style = "padding: 10px; margin-top: 20px;"
-  )
-  )
+  style = "padding: 10px; margin-top: 20px;"
+  ))
 })
 
   
@@ -464,9 +498,6 @@ ui <- shinyUI(fluidPage(
                    tabPanel(title = "Covid 19 Electricity Half Hourly Demand",
                             value = "C19Settlement",
                             C19SettlementOutput("C19Settlement")),
-                   tabPanel(title = "Covid 19 Gas Demand",
-                            value = "C19Gas",
-                            C19GasOutput("C19Gas")),
                    tabPanel(title = "Covid 19 Vulnerable consumers research",
                             value = "C19Survey",
                             C19SurveyOutput("C19Survey"))
@@ -491,9 +522,6 @@ ui <- shinyUI(fluidPage(
         tabPanel(title = "Energy Balance",
                  value = "EnBalance",
                  EnBalanceOutput("EnBalance")),
-        tabPanel(title = "Generation and Supply",
-                 value = "ScotGenSupply",
-                 ScotGenSupplyOutput("ScotGenSupply")),
         tabPanel(title = "Energy Economy",
                  value = "EnEconomy",
                  EnEconomyOutput("EnEconomy"))
@@ -560,12 +588,13 @@ ui <- shinyUI(fluidPage(
         title = "Transport",
         navlistPanel(id = "RenTransport",
                      widths = c(3, 8),
-                     tabPanel(title ="Biofuels in Transport", 
-                              value = "Biofuels",
-                              BiofuelsOutput("Biofuels")),
                      tabPanel(title ="ULEVs", 
                               value = "ULEVs",
-                              ULEVsOutput("ULEVs"))
+                              ULEVsOutput("ULEVs")),
+                     tabPanel(title ="Biofuels in Transport", 
+                              value = "Biofuels",
+                              BiofuelsOutput("Biofuels"))
+                     
         )
       ),
       tabPanel(
@@ -665,8 +694,12 @@ ui <- shinyUI(fluidPage(
     tabPanel(
       value = "ConsumerEngagement",
       title = tags$div(img(src = "ConsumerIcon.svg", height = "30px",   display= "block"), " Consumer Engagement", style = "font-family: 'Century Gothic'; font-weight: 400 "),
-      navlistPanel(id = "ConsumerEngagement",
-                   widths = c(3, 8),
+      tabsetPanel(id = "ConsumerEngagement",
+                  tabPanel(
+                    value = "Bills",
+                    title = "Bills",
+                    navlistPanel(id = "Bills",
+                                 widths = c(3,8),
                    tabPanel(title = "Energy Bill Payment Methods",
                             value = "BillPayments",
                             BillPaymentsOutput("BillPayments")),
@@ -684,19 +717,28 @@ ui <- shinyUI(fluidPage(
                             DualFuelBreakdownOutput("DualFuelBreakdown")),
                    tabPanel(title = "Fixed Tariffs",
                             value = "FixedTariffs",
-                            FixedTariffsOutput("FixedTariffs")),
+                            FixedTariffsOutput("FixedTariffs"))
+                    )),
+                              tabPanel(
+                                value = "VulnerabilityTab",
+                                title = "Vulnerability",
+                                navlistPanel(id = "VulnerabilityTab",
+                                             widths = c(3,8),
                    tabPanel(title = "Fuel Poverty",
                             value = "FuelPoverty",
                             FuelPovertyOutput("FuelPoverty")),
                    tabPanel(title = "Vulnerability",
                             value = "Vulnerability",
-                            VulnerabilityOutput("Vulnerability")),
+                            VulnerabilityOutput("Vulnerability"))
+                                )),
+                               tabPanel(
+                                 value = "ConsumerChoice",
+                                 title = "Consumer Choice",
+                                 navlistPanel(id = "ConsumerChoice",
+                                              widths = c(3,8),
                    tabPanel(title = "Primary Heating Fuel",
                             value = "PrimaryHeating",
                             PrimaryHeatingOutput("PrimaryHeating")),                   
-                   tabPanel(title = "Households not on the Gas Grid",
-                            value = "NonGasGrid",
-                            NonGasGridOutput("NonGasGrid")),
                    tabPanel(title = "Energy Supplier Switching",
                             value = "EnSupplySwitch",
                             EnSupplySwitchOutput("EnSupplySwitch")),
@@ -705,24 +747,31 @@ ui <- shinyUI(fluidPage(
                             MarketStructureOutput("MarketStructure")),
                    tabPanel(title = "Energy Customers on Non-home Supplier",
                             value = "EnergyNonHome",
-                            EnergyNonHomeOutput("EnergyNonHome")),
+                            EnergyNonHomeOutput("EnergyNonHome"))
+                                 )),
+                               tabPanel(
+                                 value = "Meters",
+                                 title = "Meters",
+                                 navlistPanel(id = "Meters",
+                                              widths = c(3,8),
                    tabPanel(title = "Smart Meter Installations",
                             value = "SmartMeters",
                             SmartMetersOutput("SmartMeters")),
                    tabPanel(title = "Restricted and Prepayment meters",
                             value = "RestrictedPPM",
                             RestrictedPPMOutput("RestrictedPPM"))
+                                 ))
     )),
-    ###### Section - System Security and Flexibility #######
+    ###### Section - Electricity and Gas Systems #######
     tabPanel(
       value = "SystemSecurity",
-      title = tags$div(img(src = "SystemIcon.svg", height = "30px",   display= "block"), " System Security", style = "font-family: 'Century Gothic'; font-weight: 400 "),
+      title = tags$div(img(src = "SystemIcon.svg", height = "30px",   display= "block"), " Electricity & Gas Systems", style = "font-family: 'Century Gothic'; font-weight: 400 "),
       navlistPanel(id = "SystemSecurity",
                    widths = c(3, 8),
                    tabPanel(title = "Daily Energy Demand",
                             value = "DailyDemand",
                             DailyDemandOutput("DailyDemand")),
-                   tabPanel(title = "Maximum Supply Capacity and Peak Electricity Demand",
+                   tabPanel(title = "Electricity System Security",
                             value = "MaxSupplyPeakDemand",
                             MaxSupplyPeakDemandOutput("MaxSupplyPeakDemand")),
                    tabPanel(title = "Electricity Imports and Exports",
@@ -731,9 +780,15 @@ ui <- shinyUI(fluidPage(
                    tabPanel(title = "Scottish Generation Meeting Demand",
                             value = "ScotGenDemand", 
                             ScotGenDemandOutput("ScotGenDemand")),
+                   tabPanel(title = "Generation and Supply",
+                            value = "ScotGenSupply",
+                            ScotGenSupplyOutput("ScotGenSupply")),
                    tabPanel(title = "Electricity Storage",
                             value = "ElecStorage",
                             ElecStorageOutput("ElecStorage")),
+                   tabPanel(title = "Households not on the Gas Grid",
+                            value = "NonGasGrid",
+                            NonGasGridOutput("NonGasGrid")),
                    tabPanel(title = "Gas Security",
                             value = "GasSecurity",
                             GasSecurityOutput("GasSecurity"))
@@ -774,7 +829,7 @@ ui <- shinyUI(fluidPage(
                             value = "CoalProd",
                             CoalProdOutput("CoalProd"))
                    )),
-                   ###### Section - System Security and Flexibility #######
+                   ###### Section - Target Tracker #######
                    tabPanel(value = "TargetTracker",
                             title = tags$div(img(src = "TargetIcon.svg", height = "30px",   display= "block"), " Target Tracker", style = "font-family: 'Century Gothic'; font-weight: 400 "),
                             TargetTrackerOutput("TargetTracker")
