@@ -1098,7 +1098,7 @@ RenElecCapacity <- function(input, output, session) {
     LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
     ############ RENEWABLE ELECTRICITY ################################################
     
-    LARenCapPipeline <- read_delim("Processed Data/Output/Renewable Capacity/LARenCapPipeline.txt", 
+    LARenCapPipeline <- read_delim("Processed Data/Output/Renewable Capacity/LARenCap.txt", 
                                    "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,2,7)]
     
     LARenCapPipeline <- LARenCapPipeline[c(1,2,ncol(LARenCapPipeline))]
@@ -1717,7 +1717,7 @@ RenElecCapacity <- function(input, output, session) {
   
   output$LARenCapPipelineTable = renderDataTable({
     
-    LARenCapPipeline <- read_delim("Processed Data/Output/Renewable Capacity/LARenCapPipeline.txt", 
+    LARenCapPipeline <- read_delim("Processed Data/Output/Renewable Capacity/LARenCap.txt", 
                                    "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,2,7)]
     
     
