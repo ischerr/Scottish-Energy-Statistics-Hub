@@ -264,6 +264,8 @@ C19Elec <- function(input, output, session) {
         x1 = x, 
         line = list(color = color, dash = "dash")
       )
+      
+
     }
     
     
@@ -320,9 +322,29 @@ C19Elec <- function(input, output, session) {
         textposistion = "bottom right",
         showarrow = FALSE
       ) %>% 
+      add_annotations(
+        x = dmy("2/06/2020"),
+        y = .4,
+        yref = "paper",
+        text = "<b>28/05</b>\nPhase 1",
+        font = list(color = "#02818a",
+                    family = "Century Gothic"),
+        textposistion = "bottom right",
+        showarrow = FALSE
+      ) %>% 
+      add_annotations(
+        x = dmy("23/06/2020"),
+        y = .4,
+        yref = "paper",
+        text = "<b>19/06</b>\nPhase 2",
+        font = list(color = "#02818a",
+                    family = "Century Gothic"),
+        textposistion = "bottom right",
+        showarrow = FALSE
+      ) %>% 
       layout(
         barmode = 'stack',
-        shapes = list(vline1(dmy("23/03/2020")), vline2(dmy("20/03/2020"))),
+        shapes = list(vline1(dmy("23/03/2020")), vline2(dmy("20/03/2020")),vline2(dmy("28/05/2020")),vline2(dmy("19/06/2020"))),
         bargap = 0.66,
         legend = list(font = list(color = "#126992"),
                       orientation = 'h'),
