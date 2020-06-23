@@ -673,7 +673,7 @@ C19Elec <- function(input, output, session) {
       library(plotly)
       
       plottitle <-
-        "Average daily electricity demand before lockdown, after lockdown and in the\nphases as lockdown is lifted compared with equivalent time period\nin previous years."
+        "Average daily electricity demand before lockdown, after lockdown and in\nthe phases as lockdown is lifted compared with equivalent time period\nin previous years."
       sourcecaption <- "Source: National Grid"
       
       DailyDemand <- read_delim("CovidAnalysis/DailyDemand.txt", 
@@ -772,7 +772,7 @@ C19Elec <- function(input, output, session) {
       ggsave(
         file,
         plot = WeekdayElecDemandChart,
-        width = 24,
+        width = 26,
         height = 16,
         units = "cm",
         dpi = 300
