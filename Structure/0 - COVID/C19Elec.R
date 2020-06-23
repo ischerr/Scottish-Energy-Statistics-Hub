@@ -14,7 +14,7 @@ C19ElecOutput <- function(id) {
     tabsetPanel(
       tabPanel("Weekday demand",
     fluidRow(column(8,
-                    h3("Average daily electricity demand in equivalent post-lockdown period", style = "color: #5d8be1;  font-weight:bold"),
+                    h3("Average daily electricity demand post-lockdown and in equivalent periods in previous years", style = "color: #5d8be1;  font-weight:bold"),
                     h4(textOutput(ns('C19ElecSubtitle')), style = "color: #5d8be1;")
     ),
              column(
@@ -53,7 +53,7 @@ C19ElecOutput <- function(id) {
     tabsetPanel(
       tabPanel("Weekday demand",
     fluidRow(
-    column(10, h3("Data - Average daily electricity demand in equivalent post-lockdown periods (GWh)", style = "color: #5d8be1;  font-weight:bold")),
+    column(10, h3("Data - Average daily electricity demand post-lockdown and in equivalent periods in previous years (GWh)", style = "color: #5d8be1;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -159,11 +159,11 @@ C19Elec <- function(input, output, session) {
       #           line = list(width = 4)
       # ) %>% 
       add_trace(y = ~ `PostLockdown`,
-                name = "Last week of March to second week of June",
+                name = "Last week of March to third week of June",
                 type = 'bar',
                 legendgroup = "2",
                 text = paste0(
-                  "Average weekday electricity consumption in from the last week in March to second week of June: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
+                  "Average weekday electricity consumption in from the last week in March to third week of June: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
                   "Year: ", WeekdayElecDemand$Year, "\n"),
                 hoverinfo = 'text',
                 line = list(width = 4)
@@ -391,7 +391,7 @@ C19Elec <- function(input, output, session) {
     
     WeekdayElecDemand <- dcast(WeekdayElecDemand, Year ~ PostLockdown)
     
-    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "Last week of March to second week of June (GWh)")
+    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "Last week of March to third week of June (GWh)")
     datatable(
       WeekdayElecDemand,
       extensions = 'Buttons',
@@ -405,17 +405,17 @@ C19Elec <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Average daily electricity demand in equivalent post-lockdown periods (GWh)",
+        title = "Average daily electricity demand post-lockdown and in equivalent periods in previous years (GWh)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Average daily electricity demand in equivalent post-lockdown periods (GWh)',
+            title = 'Average daily electricity demand post-lockdown and in equivalent periods in previous years (GWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Average daily electricity demand in equivalent post-lockdown periods (GWh)')
+               title = 'Average daily electricity demand post-lockdown and in equivalent periods in previous years (GWh)')
         ),
         
         # customize the length menu
@@ -539,7 +539,7 @@ C19Elec <- function(input, output, session) {
       library(plotly)
       
       plottitle <-
-        "Average daily electricity demand in equivalent post-lockdown periods"
+        "Average daily electricity demand post-lockdown\nand in equivalent periods in previous years"
       sourcecaption <- "Source: National Grid"
       
       DailyDemand <- read_delim("CovidAnalysis/DailyDemand.txt", 
