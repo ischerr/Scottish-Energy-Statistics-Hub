@@ -1416,7 +1416,7 @@ RenElecGen <- function(input, output, session) {
       ### variables
       ChartColours <- c("#39ab2c", "#78c679", "#a3d65c")
       sourcecaption = "Source: Eurostat, BEIS"
-      plottitle = "Scottish wind generation compared to European countries"
+      plottitle = "Scottish wind generation compared to\nEuropean countries"
       
       
       EUWind <- EUWind[order(EUWind$Renewables),]
@@ -1756,7 +1756,7 @@ RenElecGen <- function(input, output, session) {
       ### variables
       ChartColours <- c("#39ab2c", "#78c679", "#a3d65c")
       sourcecaption = "Source: Eurostat, BEIS"
-      plottitle = "Scottish hydro generation compared to European countries"
+      plottitle = "Scottish hydro generation compared to\nEuropean countries"
       
       
       EUHydro <- EUHydro[order(EUHydro$Renewables),]
