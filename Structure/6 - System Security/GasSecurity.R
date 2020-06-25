@@ -458,7 +458,7 @@ GasSecurity <- function(input, output, session) {
   StFergusFlowRolling <- read_delim("Processed Data/Output/Gas Distribution/StFergusFlowRolling.txt", 
                                     "\t", escape_double = FALSE, trim_ws = TRUE)
   
-  names(StFergusFlowRolling) <- c("Date", "Scottish Demand (GWh)","% Scottish demand from St. Fergus", "Transfers to N.I. (GWh)","% N.I. transfers from St. Fergus" , "Transfers to England (GWh)","% Englannd transfers from St. Fergus" , "ST. Fergus (GWh)", "UK Demand (GWh)", "Proportion of U.K. gas supply from ST. Fergus" )
+  names(StFergusFlowRolling) <- c("Date", "Average Daily Scottish Demand (GWh)","Average % Scottish demand from St. Fergus", "Average Daily Transfers to N.I. (GWh)","Average % N.I. transfers from St. Fergus" , "Average Daily Transfers to England (GWh)","Average % Englannd transfers from St. Fergus" , "Average Daily ST. Fergus (GWh)", "Average Daily UK Demand (GWh)", "Average Proportion of U.K. gas supply from ST. Fergus" )
   
   StFergusFlowRolling$Date <- as.Date(StFergusFlowRolling$Date, format = "%d/%m/%Y")
   
@@ -468,6 +468,7 @@ GasSecurity <- function(input, output, session) {
   StFergusFlowRolling <- StFergusFlowRolling[rev(order(StFergusFlowRolling$`12 month ending`)),]
   
   StFergusFlowRolling$`12 month ending` <- format(StFergusFlowRolling$`12 month ending`, format = "%B %Y")
+
   
   
   output$GasSecurityTable = renderDataTable({
