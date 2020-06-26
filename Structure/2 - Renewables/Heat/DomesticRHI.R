@@ -219,7 +219,7 @@ DomesticRHI <- function(input, output, session) {
                 text = paste0(
                   "Total: ",
                   format(round(DomRHIInstallationsOutputTech$`Total`, digits = 0), big.mark = ","),
-                  " GWh\nYear: ",
+                  "\nYear: ",
                   format(DomRHIInstallationsOutputTech$Year, "%Y")
                 ),
                 hoverinfo = 'text',
@@ -233,7 +233,7 @@ DomesticRHI <- function(input, output, session) {
                 text = paste0(
                   "Air Source: ",
                   format(round(DomRHIInstallationsOutputTech$`Air Source`, digits = 0), big.mark = ","),
-                  " GWh\nYear: ",
+                  "\nYear: ",
                   format(DomRHIInstallationsOutputTech$Year, "%Y")
                 ),
                 hoverinfo = 'text',
@@ -247,7 +247,7 @@ DomesticRHI <- function(input, output, session) {
                 text = paste0(
                   "Ground Source: ",
                   format(round(DomRHIInstallationsOutputTech$`Ground Source`, digits = 0), big.mark = ","),
-                  " GWh\nYear: ",
+                  "\nYear: ",
                   format(DomRHIInstallationsOutputTech$Year, "%Y")
                 ),
                 hoverinfo = 'text',
@@ -261,7 +261,7 @@ DomesticRHI <- function(input, output, session) {
                 text = paste0(
                   "Biomass: ",
                   format(round(DomRHIInstallationsOutputTech$`Biomass`, digits = 0), big.mark = ","),
-                  " GWh\nYear: ",
+                  "\nYear: ",
                   format(DomRHIInstallationsOutputTech$Year, "%Y")
                 ),
                 hoverinfo = 'text',
@@ -275,7 +275,7 @@ DomesticRHI <- function(input, output, session) {
                 text = paste0(
                   "Solar Thermal: ",
                   format(round(DomRHIInstallationsOutputTech$`Solar Thermal`, digits = 0), big.mark = ","),
-                  " GWh\nYear: ",
+                  "\nYear: ",
                   format(DomRHIInstallationsOutputTech$Year, "%Y")
                 ),
                 hoverinfo = 'text',
@@ -290,7 +290,7 @@ DomesticRHI <- function(input, output, session) {
         text = paste0(
           "Total: ",
           format(tail(DomRHIInstallationsOutputTech[which(DomRHIInstallationsOutputTech$`Total` != 0),], 1)$`Total`, big.mark = ","),
-          " GWh\nYear: ",
+          "\nYear: ",
           format(tail(DomRHIInstallationsOutputTech[which(DomRHIInstallationsOutputTech$`Total` != 0),], 1)$Year, "%Y")
         ),
         hoverinfo = 'text',
@@ -309,7 +309,7 @@ DomesticRHI <- function(input, output, session) {
         text = paste0(
           "Air Source: ",
           format(tail(DomRHIInstallationsOutputTech[which(DomRHIInstallationsOutputTech$`Air Source` != 0),], 1)$`Air Source`, big.mark = ","),
-          " GWh\nYear: ",
+          "\nYear: ",
           format(tail(DomRHIInstallationsOutputTech[which(DomRHIInstallationsOutputTech$`Air Source` != 0),], 1)$Year, "%Y")
         ),
         hoverinfo = 'text',
@@ -328,7 +328,7 @@ DomesticRHI <- function(input, output, session) {
         text = paste0(
           "Ground Source: ",
           format(tail(DomRHIInstallationsOutputTech[which(DomRHIInstallationsOutputTech$`Ground Source` != 0),], 1)$`Ground Source`, big.mark = ","),
-          " GWh\nYear: ",
+          "\nYear: ",
           format(tail(DomRHIInstallationsOutputTech[which(DomRHIInstallationsOutputTech$`Ground Source` != 0),], 1)$Year, "%Y")
         ),
         hoverinfo = 'text',
@@ -347,7 +347,7 @@ DomesticRHI <- function(input, output, session) {
         text = paste0(
           "Biomass: ",
           format(tail(DomRHIInstallationsOutputTech[which(DomRHIInstallationsOutputTech$`Biomass` != 0),], 1)$`Biomass`, big.mark = ","),
-          " GWh\nYear: ",
+          "\nYear: ",
           format(tail(DomRHIInstallationsOutputTech[which(DomRHIInstallationsOutputTech$`Biomass` != 0),], 1)$Year, "%Y")
         ),
         hoverinfo = 'text',
@@ -366,7 +366,7 @@ DomesticRHI <- function(input, output, session) {
         text = paste0(
           "Solar Thermal: ",
           format(tail(DomRHIInstallationsOutputTech[which(DomRHIInstallationsOutputTech$`Solar Thermal` != 0),], 1)$`Solar Thermal`, big.mark = ","),
-          " GWh\nYear: ",
+          "\nYear: ",
           format(tail(DomRHIInstallationsOutputTech[which(DomRHIInstallationsOutputTech$`Solar Thermal` != 0),], 1)$Year, "%Y")
         ),
         hoverinfo = 'text',
@@ -387,7 +387,7 @@ DomesticRHI <- function(input, output, session) {
         xaxis = list(title = "",
                      showgrid = FALSE),
         yaxis = list(
-          title = "GWh",
+          title = "",
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
