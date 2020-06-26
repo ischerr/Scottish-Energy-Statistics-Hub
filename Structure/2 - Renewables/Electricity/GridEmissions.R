@@ -142,6 +142,15 @@ GridEmissions <- function(input, output, session) {
         marker = list(size = 18, 
                       color = ChartColours[1])
       ) %>% 
+      add_annotations(
+        x = dmy("01/01/2002"),
+        y = 50,
+        text = "<b>Ambition:\n50 gCO2e/kWh</b>",
+        font = list(color = ChartColours[2],
+                    family = "Century Gothic"),
+        textposistion = "bottom right",
+        showarrow = FALSE
+      ) %>% 
       layout(
         barmode = 'stack',
         bargap = 0.66,
@@ -150,6 +159,17 @@ GridEmissions <- function(input, output, session) {
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
         hovername = 'text',
+        shapes = list(list(
+          type = "line",
+          x0 = 0,
+          x1 = 1, 
+          xref = "paper",
+          y0 = 50, 
+          y1 = 50, 
+          line = list(color = ChartColours[2],
+                      dash = "dash")
+        )
+        ),
         xaxis = list(title = "",
                      showgrid = FALSE,
                      range = c(min(GridEmissions$Year)-100, max(GridEmissions$Year)+100)),
@@ -358,7 +378,19 @@ GridEmissions <- function(input, output, session) {
       
       GridEmissionsChart <- GridEmissionsChart +
         xlim(min(GridEmissions$Year)-1.5,max(GridEmissions$Year)+1.5)+
-        ylim(-17,max(GridEmissions$Renewables)+22)
+        ylim(-17,max(GridEmissions$Renewables)+22) +
+        geom_hline(yintercept = 50,
+                   color = ChartColours[2],
+                   linetype = 5)+
+        annotate(
+          "text",
+          x = 2001,
+          y = 50,
+          label = "Ambition:\n50 gCO2e/kWh",
+          fontface = 2,
+          color = ChartColours[2],
+          family = "Century Gothic"
+        )
       
       GridEmissionsChart
       
