@@ -12,23 +12,37 @@ C19ElecOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("Weekday demand",
-    fluidRow(column(8,
-                    h3("Average daily electricity demand in equivalent post-lockdown period", style = "color: #5d8be1;  font-weight:bold"),
-                    h4(textOutput(ns('C19ElecSubtitle')), style = "color: #5d8be1;")
+    tabPanel("Average Demand since lockdown",
+             fluidRow(column(8,
+                             h3("Average daily electricity demand post-lockdown and in equivalent periods in previous years", style = "color: #5d8be1;  font-weight:bold"),
+                             h4(textOutput(ns('C19Elec2Subtitle')), style = "color: #5d8be1;")
+             ),
+             column(
+               4, style = 'padding:15px;', downloadButton(ns('C19Elec2.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
+             #dygraphOutput(ns("C19ElecPlot")),
+             plotlyOutput(ns("C19Elec2Plot"), height = "600px")%>% withSpinner(color="#5d8be1"),
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")
     ),
+    tabPanel("Average Demand by phase",
+             fluidRow(column(8,
+                             h3("Average daily electricity demand before lockdown, after lockdown and in the phases as lockdown is lifted compared with equivalent time period in previous years.", style = "color: #5d8be1;  font-weight:bold"),
+                             h4(textOutput(ns('C19ElecSubtitle')), style = "color: #5d8be1;")
+             ),
              column(
                4, style = 'padding:15px;', downloadButton(ns('C19Elec.png'), 'Download Graph', style="float:right")
              )),
-    
-    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
-    #dygraphOutput(ns("C19ElecPlot")),
-    plotlyOutput(ns("C19ElecPlot"), height = "600px")%>% withSpinner(color="#5d8be1"),
-    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")
+             
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
+             #dygraphOutput(ns("C19ElecPlot")),
+             plotlyOutput(ns("C19ElecPlot"), height = "600px")%>% withSpinner(color="#5d8be1"),
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")
     ),
     tabPanel("Daily demand",
              fluidRow(column(8,
-                             h3("Daily electricity demand from start of March - 2020 vs 2019", style = "color: #5d8be1;  font-weight:bold"),
+                             h3("Daily electricity demand - 2020 vs 2019", style = "color: #5d8be1;  font-weight:bold"),
                              h4(textOutput(ns('C19ElecRollingSubtitle')), style = "color: #5d8be1;")
              ),
              column(
@@ -53,7 +67,7 @@ C19ElecOutput <- function(id) {
     tabsetPanel(
       tabPanel("Weekday demand",
     fluidRow(
-    column(10, h3("Data - Average daily electricity demand in equivalent post-lockdown periods (GWh)", style = "color: #5d8be1;  font-weight:bold")),
+    column(10, h3("Data - Average daily electricity demand post-lockdown and in equivalent periods in previous years (GWh)", style = "color: #5d8be1;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -61,7 +75,7 @@ C19ElecOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
     tabPanel("Daily demand",
              fluidRow(
-               column(10, h3("Data - Daily electricity demand from start of March - 2020 vs 2019 (GWh)", style = "color: #5d8be1;  font-weight:bold")),
+               column(10, h3("Data - Daily electricity demand - 2020 vs 2019 (GWh)", style = "color: #5d8be1;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -100,7 +114,124 @@ C19Elec <- function(input, output, session) {
     paste("Scotland, 2013 - 2020")
   })
   
+  output$C19Ele2cSubtitle <- renderText({
+    
+    paste("Scotland, 2013 - 2020")
+  })
+  
   output$C19ElecPlot <- renderPlotly  ({
+    
+    library(readr)
+    library(ISOweek)
+    library(lubridate)
+    library(zoo)
+    library(plotly)
+    
+    DailyDemand <- read_delim("CovidAnalysis/DailyDemand.txt", 
+                              "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    DailyDemand$Date <- ymd(DailyDemand$Date)
+    
+    DailyDemand$Year <-year(DailyDemand$Date)
+    
+    DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013),]
+    
+    DailyDemand$Month <-month(DailyDemand$Date)
+    
+    DailyDemand$Week <- isoweek(DailyDemand$Date)
+    
+    DailyDemand$Weekday <- weekdays(DailyDemand$Date)
+    
+    DailyDemand$DayofYear <- yday(DailyDemand$Date)
+    
+    DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "PostLockdown", "BeforeLockdown")
+    
+    DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 23, "Phase 1", DailyDemand$PostLockdown)
+    
+    WeekdayElecDemand <- DailyDemand
+    
+    #WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Weekday %in%c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")),]
+    
+    WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Month >= 3),]
+    
+    maxweek <- max(WeekdayElecDemand[which(WeekdayElecDemand$Year ==max(WeekdayElecDemand$Year)),]$Week)
+    
+    WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Week <= maxweek),]
+    
+    WeekdayElecDemand <- WeekdayElecDemand %>% group_by(Year, PostLockdown) %>% 
+      summarise(Electricity = mean(Electricity))
+    
+    WeekdayElecDemand <- dcast(WeekdayElecDemand, Year ~ PostLockdown)
+    
+    ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
+    BarColours <- c("#045a8d", "#a6bddb", "#3690c0",  "#8da0cb")
+    
+    WeekdayElecDemand$YearFormat <- paste0("<b>", WeekdayElecDemand$Year, "</b>")
+    
+    p1 <-  plot_ly(WeekdayElecDemand, x = ~ Year ) %>%  
+      add_trace(y = ~ `BeforeLockdown`,
+                name = "Before Lockdown",
+                type = 'bar',
+                legendgroup = "1",
+                marker = list(color = BarColours[1]), 
+                text = paste0(
+                  "Before Lockdown: ", format(round(WeekdayElecDemand$`BeforeLockdown`, 2), big.mark = ",")," GWh\n",
+                  "Year: ", WeekdayElecDemand$Year, "\n"),
+                hoverinfo = 'text',
+                line = list(width = 4)
+      ) %>%
+      add_trace(y = ~ `PostLockdown`,
+                name = "After Lockdown",
+                type = 'bar',
+                legendgroup = "2",
+                marker = list(color = BarColours[2]),
+                text = paste0(
+                  "After Lockdown: ", format(round(WeekdayElecDemand$`PostLockdown`, 2), big.mark = ",")," GWh\n",
+                  "Year: ", WeekdayElecDemand$Year, "\n"),
+                hoverinfo = 'text',
+                line = list(width = 4)
+      ) %>% 
+      
+      add_trace(y = ~ `Phase 1`,
+                name = "Phase 1",
+                type = 'bar',
+                legendgroup = "3",
+                marker = list(color = BarColours[3]),
+                text = paste0(
+                  "Phase 1: ", format(round(WeekdayElecDemand$`Phase 1`, 2), big.mark = ",")," GWh\n",
+                  "Year: ", WeekdayElecDemand$Year, "\n"),
+                hoverinfo = 'text',
+                line = list(width = 4)
+      ) %>% 
+      layout(
+        legend = list(font = list(color = "#126992"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        yaxis = list(title = "GWh",
+                     zeroline = FALSE,
+                     tickformat = "",
+                     showgrid = TRUE,
+                     x = 0.5
+                     
+        ),
+        xaxis = list(
+          title = "",
+          showgrid = FALSE,
+          zeroline = FALSE
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    
+    p1
+
+    
+    
+   
+  })
+  
+  output$C19Elec2Plot <- renderPlotly  ({
     
     library(readr)
     library(ISOweek)
@@ -148,22 +279,13 @@ C19Elec <- function(input, output, session) {
     WeekdayElecDemand$YearFormat <- paste0("<b>", WeekdayElecDemand$Year, "</b>")
     
     p1 <-  plot_ly(WeekdayElecDemand, x = ~ Year ) %>%  
-      # add_trace(y = ~ `BeforeLockdown`, 
-      #           name = "First three weeks of March",
-      #           type = 'bar',
-      #           legendgroup = "1",
-      #           text = paste0(
-      #             "Average weekday electricity consumption in first three weeks of March: ", format(round(WeekdayElecDemand$`BeforeLockdown`, 0.1), big.mark = ",")," GWh\n",
-      #             "Year: ", WeekdayElecDemand$Year, "\n"),
-      #           hoverinfo = 'text',
-      #           line = list(width = 4)
-      # ) %>% 
+
       add_trace(y = ~ `PostLockdown`,
-                name = "Last week of March to second week of June",
+                name = "Electricity Demand After Lockdown",
                 type = 'bar',
                 legendgroup = "2",
                 text = paste0(
-                  "Average weekday electricity consumption in from the last week in March to second week of June: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
+                  "Electricity Demand After Lockdown: ", format(round(WeekdayElecDemand$`PostLockdown`, 2), big.mark = ",")," GWh\n",
                   "Year: ", WeekdayElecDemand$Year, "\n"),
                 hoverinfo = 'text',
                 line = list(width = 4)
@@ -190,10 +312,10 @@ C19Elec <- function(input, output, session) {
       config(displayModeBar = F)
     
     p1
-
     
     
-   
+    
+    
   })
   
   output$C19ElecRollingSubtitle <- renderText({
@@ -230,7 +352,7 @@ C19Elec <- function(input, output, session) {
     
     DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "PostLockdown", "BeforeLockdown")
     
-    DailyDemandFromMarch <- DailyDemand[which(DailyDemand$Week >= 10 & DailyDemand$Week <= 51),]
+    DailyDemandFromMarch <- DailyDemand[which(DailyDemand$Week >= 2 & DailyDemand$Week <= 51),]
     
     DailyDemandFromMarch <- DailyDemandFromMarch[c(5,6,7,9,1,8,4)]
     
@@ -239,7 +361,7 @@ C19Elec <- function(input, output, session) {
     
     DailyDemandFromMarch  <- dcast(DailyDemandFromMarch, id ~ Year, value.var = 'Electricity')
     
-    DailyDemandFromMarch$Date <- ymd("2020/03/01") + DailyDemandFromMarch$id
+    DailyDemandFromMarch$Date <- ymd("2020/01/05") + DailyDemandFromMarch$id
     
     DailyDemandFromMarch <- DailyDemandFromMarch[complete.cases(DailyDemandFromMarch),]
     
@@ -264,6 +386,8 @@ C19Elec <- function(input, output, session) {
         x1 = x, 
         line = list(color = color, dash = "dash")
       )
+      
+
     }
     
     
@@ -301,17 +425,7 @@ C19Elec <- function(input, output, session) {
                 line = list(width = 4)
       )  %>% 
       add_annotations(
-        x = dmy("13/03/2020"),
-        y = .4,
-        yref = "paper",
-        text = "<b>20/03</b>\nClosure of pubs, gyms\netc.",
-        font = list(color = "#67a9cf",
-                    family = "Century Gothic"),
-        textposistion = "bottom right",
-        showarrow = FALSE
-      ) %>% 
-      add_annotations(
-        x = dmy("29/03/2020"),
+        x = dmy("31/03/2020"),
         y = .4,
         yref = "paper",
         text = "<b>23/03</b>\nLockdown",
@@ -320,9 +434,29 @@ C19Elec <- function(input, output, session) {
         textposistion = "bottom right",
         showarrow = FALSE
       ) %>% 
+      add_annotations(
+        x = dmy("4/06/2020"),
+        y = .4,
+        yref = "paper",
+        text = "<b>28/05</b>\nPhase 1",
+        font = list(color = "#02818a",
+                    family = "Century Gothic"),
+        textposistion = "bottom right",
+        showarrow = FALSE
+      ) %>% 
+      add_annotations(
+        x = dmy("25/06/2020"),
+        y = .4,
+        yref = "paper",
+        text = "<b>19/06</b>\nPhase 2",
+        font = list(color = "#02818a",
+                    family = "Century Gothic"),
+        textposistion = "bottom right",
+        showarrow = FALSE
+      ) %>% 
       layout(
         barmode = 'stack',
-        shapes = list(vline1(dmy("23/03/2020")), vline2(dmy("20/03/2020"))),
+        shapes = list( vline1(dmy("23/03/2020")),vline2(dmy("28/05/2020")),vline2(dmy("19/06/2020"))),
         bargap = 0.66,
         legend = list(font = list(color = "#126992"),
                       orientation = 'h'),
@@ -391,7 +525,7 @@ C19Elec <- function(input, output, session) {
     
     WeekdayElecDemand <- dcast(WeekdayElecDemand, Year ~ PostLockdown)
     
-    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "Last week of March to second week of June (GWh)")
+    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "Last week of March to third week of June (GWh)")
     datatable(
       WeekdayElecDemand,
       extensions = 'Buttons',
@@ -405,17 +539,17 @@ C19Elec <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Average daily electricity demand in equivalent post-lockdown periods (GWh)",
+        title = "Average daily electricity demand post-lockdown and in equivalent periods in previous years (GWh)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Average daily electricity demand in equivalent post-lockdown periods (GWh)',
+            title = 'Average daily electricity demand post-lockdown and in equivalent periods in previous years (GWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Average daily electricity demand in equivalent post-lockdown periods (GWh)')
+               title = 'Average daily electricity demand post-lockdown and in equivalent periods in previous years (GWh)')
         ),
         
         # customize the length menu
@@ -479,17 +613,17 @@ C19Elec <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Daily electricity demand from start of March - 2020 vs 2019 (GWh)",
+        title = "Daily electricity demand - 2020 vs 2019 (GWh)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Daily electricity demand from start of March - 2020 vs 2019 (GWh)',
+            title = 'Daily electricity demand - 2020 vs 2019 (GWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Daily electricity demand from start of March - 2020 vs 2019 (GWh)')
+               title = 'Daily electricity demand - 2020 vs 2019 (GWh)')
         ),
         
         # customize the length menu
@@ -539,7 +673,127 @@ C19Elec <- function(input, output, session) {
       library(plotly)
       
       plottitle <-
-        "Average daily electricity demand in equivalent post-lockdown periods"
+        "Average daily electricity demand before lockdown, after lockdown and in\nthe phases as lockdown is lifted compared with equivalent time period\nin previous years."
+      sourcecaption <- "Source: National Grid"
+      
+      DailyDemand <- read_delim("CovidAnalysis/DailyDemand.txt", 
+                                "\t", escape_double = FALSE, trim_ws = TRUE)
+      
+      DailyDemand$Date <- ymd(DailyDemand$Date)
+      
+      DailyDemand$Year <-year(DailyDemand$Date)
+      
+      DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013),]
+      
+      DailyDemand$Month <-month(DailyDemand$Date)
+      
+      DailyDemand$Week <- isoweek(DailyDemand$Date)
+      
+      DailyDemand$Weekday <- weekdays(DailyDemand$Date)
+      
+      DailyDemand$DayofYear <- yday(DailyDemand$Date)
+      
+      DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "Post-Lockdown", "Pre-Lockdown")
+      
+      DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 23, "Phase 1", DailyDemand$PostLockdown)
+      
+      WeekdayElecDemand <- DailyDemand
+      
+      #WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Weekday %in%c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")),]
+      
+      WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Month >= 3),]
+      
+      maxweek <- max(WeekdayElecDemand[which(WeekdayElecDemand$Year ==max(WeekdayElecDemand$Year)),]$Week)
+      
+      WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Week <= maxweek),]
+      
+      WeekdayElecDemand <- WeekdayElecDemand %>% group_by(Year, PostLockdown) %>% 
+        summarise(Electricity = mean(Electricity))
+      
+      #WeekdayElecDemand <- as.data.frame(dcast(WeekdayElecDemand, Year ~ PostLockdown))
+      
+      ChartColours <- c("#126992", "#2078b4", "#ff7f0e", "#8da0cb")
+      BarColours <- c("#045a8d", "#a6bddb", "#3690c0",  "#8da0cb")
+      
+      WeekdayElecDemandChart <- WeekdayElecDemand  %>%
+        ggplot(aes(x = Year, y = Electricity, fill = PostLockdown), family = "Century Gothic") +
+        scale_fill_manual(
+          "variable",
+          values = c(
+            "Post-Lockdown" = BarColours[2],
+            "Pre-Lockdown" = BarColours[1],
+            "Phase 1" = BarColours[3]
+          )
+        ) +
+        geom_bar(position = "dodge",
+                 stat = "identity",
+                 width = -.8) +
+        geom_text(position = position_dodge(width = -.8),
+                  aes(
+                    y = Electricity + 4,
+                    fill = PostLockdown,
+                    label = paste(format(round(Electricity, digits = 1), big.mark = ","), "\nGWh")
+                  ),
+                  fontface = 2,
+                  colour =  ChartColours[1],
+                  family = "Century Gothic",
+                  size = 3) +
+        geom_text(position = position_dodge(width = -.8),
+                  aes(
+                    y = 1,
+                    fill = PostLockdown,
+                    angle = 90,
+                    label = PostLockdown,
+                    hjust = 0
+                  ),
+                  fontface = 2,
+                  colour =  "White",
+                  family = "Century Gothic",
+                  size = 3) +
+        annotate(
+          "text",
+          x = WeekdayElecDemand$Year,
+          y = -3,
+          label = WeekdayElecDemand$Year,
+          family = "Century Gothic",
+          fontface = 2,
+          colour =  ChartColours[1]
+        )
+      
+      WeekdayElecDemandChart <-
+        StackedArea(WeekdayElecDemandChart,
+                    WeekdayElecDemand,
+                    plottitle,
+                    sourcecaption,
+                    ChartColours)
+      
+      WeekdayElecDemandChart
+      
+      ggsave(
+        file,
+        plot = WeekdayElecDemandChart,
+        width = 26,
+        height = 16,
+        units = "cm",
+        dpi = 300
+      )
+    }
+  )
+  
+  
+  output$C19Elec2.png <- downloadHandler(
+    filename = "C19ElecAverage.png",
+    content = function(file) {
+      
+      
+      library(readr)
+      library(ISOweek)
+      library(lubridate)
+      library(zoo)
+      library(plotly)
+      
+      plottitle <-
+        "Average daily electricity demand post-lockdown\nand in equivalent periods in previous years"
       sourcecaption <- "Source: National Grid"
       
       DailyDemand <- read_delim("CovidAnalysis/DailyDemand.txt", 
@@ -596,7 +850,7 @@ C19Elec <- function(input, output, session) {
                   aes(
                     y = Electricity + 4,
                     fill = PostLockdown,
-                    label = paste(format(round(Electricity, digits = 0), big.mark = ","), "\nGWh")
+                    label = paste(format(round(Electricity, digits = 1), big.mark = ","), "\nGWh")
                   ),
                   fontface = 2,
                   colour =  ChartColours[1],
@@ -663,7 +917,7 @@ output$C19ElecRolling.png <- downloadHandler(
     
     DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "PostLockdown", "BeforeLockdown")
     
-    DailyDemandFromMarch <- DailyDemand[which(DailyDemand$Week >= 10 & DailyDemand$Week <= 51),]
+    DailyDemandFromMarch <- DailyDemand[which(DailyDemand$Week >= 2 & DailyDemand$Week <= 51),]
     
     DailyDemandFromMarch <- DailyDemandFromMarch[c(5,6,7,9,1,8,4)]
     
@@ -672,7 +926,7 @@ output$C19ElecRolling.png <- downloadHandler(
     
     DailyDemandFromMarch  <- dcast(DailyDemandFromMarch, id ~ Year, value.var = 'Electricity')
     
-    DailyDemandFromMarch$Year <- ymd("2020/03/01") + DailyDemandFromMarch$id
+    DailyDemandFromMarch$Year <- ymd("2020/01/05") + DailyDemandFromMarch$id
     
     DailyDemandFromMarch <- DailyDemandFromMarch[complete.cases(DailyDemandFromMarch),]
     
@@ -815,41 +1069,6 @@ output$C19ElecRolling.png <- downloadHandler(
         alpha = 0.4,
         linetype = 2
       ) +
-      annotate(
-        "segment",
-        x = dmy("20/03/2020"),
-        xend = dmy("20/03/2020"),
-        y = -1000,
-        yend = 1000,
-        colour = "#68a9cf",
-        alpha = 0.9,
-        linetype = 2
-      )+
-      geom_text(
-        aes(
-          x = dmy("19/03/2020"),
-          y = 50,
-          label = "20/03",
-          fontface = 2
-        ),
-        hjust = 1,
-        vjust = -.2,
-        colour = "#68a9cf",
-        family = "Century Gothic",
-        size = 3
-      )+
-      geom_text(
-        aes(
-          x = dmy("19/03/2020"),
-          y = 50,
-          label = "Closure of pubs, gyms\netc."
-        ),
-        vjust = 1.1,
-        hjust = 1,
-        colour = "#68a9cf",
-        family = "Century Gothic",
-        size = 3
-      )+
       geom_text(
         aes(
           x = dmy("24/03/2020"),
@@ -883,12 +1102,82 @@ output$C19ElecRolling.png <- downloadHandler(
         yend = 1000,
         colour = "#07818a",
         alpha = 0.9
+      ) +
+      geom_text(
+        aes(
+          x = dmy("29/05/2020"),
+          y = 40,
+          label = "28/05",
+          fontface = 2
+        ),
+        vjust = -.2,
+        hjust = 0,
+        colour = "#07818a",
+        family = "Century Gothic",
+        size = 3
+      )+
+      geom_text(
+        aes(
+          x = dmy("29/05/2020"),
+          y = 40,
+          label = "Phase 1 "
+        ),
+        vjust = 1.1,
+        hjust = 0,
+        colour = "#07818a",
+        family = "Century Gothic",
+        size = 3
+      )+
+      annotate(
+        "segment",
+        x = dmy("28/05/2020"),
+        xend = dmy("28/05/2020"),
+        y = -1000,
+        yend = 1000,
+        colour = "#07818a",
+        alpha = 0.9,
+        linetype = 2
+      ) +
+      geom_text(
+        aes(
+          x = dmy("20/06/2020"),
+          y = 40,
+          label = "19/06",
+          fontface = 2
+        ),
+        vjust = -.2,
+        hjust = 0,
+        colour = "#07818a",
+        family = "Century Gothic",
+        size = 3
+      )+
+      geom_text(
+        aes(
+          x = dmy("20/06/2020"),
+          y = 40,
+          label = "Phase 2 "
+        ),
+        vjust = 1.1,
+        hjust = 0,
+        colour = "#07818a",
+        family = "Century Gothic",
+        size = 3
+      )+
+      annotate(
+        "segment",
+        x = dmy("19/06/2020"),
+        xend = dmy("19/06/2020"),
+        y = -1000,
+        yend = 1000,
+        colour = "#07818a",
+        alpha = 0.9,
+        linetype = 2
       ) 
     
     
     DailyDemandFromMarchChart
     
-    plottitle = "Daily electricity demand from start of March - 2020 vs 2019"
+    plottitle = "Daily electricity demand - 2020 vs 2019"
     sourcecaption = "Source: National Grid"
     
     DailyDemandFromMarchChart <-
