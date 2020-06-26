@@ -47,6 +47,11 @@ RenElecPipelineOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+    fluidRow(
+      column(10, h3("Scottish extract of Planning Table", style = "color: #39ab2c;  font-weight:bold")),
+      column(2, style = "padding:15px",  downloadButton(ns("PlanningTable"), "Planning Table", style = "float:right; "))
+    ),
+    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     tabsetPanel(
     tabPanel("Pipeline capacity",
              fluidRow(
@@ -2237,5 +2242,23 @@ RenElecPipeline <- function(input, output, session) {
     ) %>%
       formatRound(2:ncol(RenElecCapacity), 1)
   })
+  
+  
+  output$PlanningTable <- downloadHandler(
+    filename = "DataTable.csv",
+    content = function(file){
+
+      DataTable <- read_delim("Processed Data/Output/REPD (Operational Corrections)/DataTable.txt", 
+                              "\t", escape_double = FALSE, trim_ws = TRUE)
+      
+      DataTable[which(DataTable$TurbineAmount == 0),]$TurbineAmount <- NA
+      
+      names(DataTable) <- c("Reference", "Local Authority", "Site Name", "Technology", "Capacity (MW)", "Status", "Wind Turbines")
+      
+      write.csv(DataTable, 
+                file,
+                row.names = FALSE)
+    }
+  )
   
 }
