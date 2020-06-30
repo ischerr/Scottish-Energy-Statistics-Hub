@@ -73,7 +73,15 @@ DomesticRHIOutput <- function(id) {
     ),
     fluidRow(
       column(12, dataTableOutput(ns("DomesticRHITable"))%>% withSpinner(color="#39ab2c"))),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
+    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Urban/Rural and On/Off grid",
+             fluidRow(
+               uiOutput(ns("SubtitleYearText2")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("DomRHIUrbanRuralTable"))%>% withSpinner(color="#39ab2c"))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
 
     ),
     fluidRow(
@@ -184,6 +192,11 @@ DomesticRHI <- function(input, output, session) {
   
   output$SubtitleYearText <- renderUI({
     column(10, h3(paste("Data - Number of accredited installations by Local Authority -", format(max(SubtitleYear$Year), "%b %Y")) , style = "color: #39ab2c;  font-weight:bold"))
+    
+  })
+  
+  output$SubtitleYearText2 <- renderUI({
+    column(10, h3(paste("Number of full accreditations on/off the gas grid by aggregated rural/urban classification, Domestic -", "November 2011 to December 2019") , style = "color: #39ab2c;  font-weight:bold"))
     
   })
   
@@ -545,6 +558,47 @@ names(Data)[1] <- "LA Code"
       formatRound(c(3), 0)
   })
   
+  output$DomRHIUrbanRuralTable = renderDataTable({
+    
+    DomUrbanRural <- read_delim("Processed Data/Output/RHI/DomUrbanRural.txt", 
+                                "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    datatable(
+      DomUrbanRural,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = paste("Number of full accreditations on/off the gas grid by aggregated rural/urban classification, Domestic", "November 2011 to December 2019"),
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = paste("Number of full accreditations on/off the gas grid by aggregated rural/urban classification, Domestic", "November 2011 to December 2019"),
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = paste("Number of full accreditations on/off the gas grid by aggregated rural/urban classification, Domestic", "November 2011 to December 2019"))
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(c(2:10), 0) %>% 
+      formatStyle(c(6:9), fontStyle = "italic") %>% 
+      formatStyle(10, fontWeight = "bold")
+  })
+  
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
@@ -563,6 +617,10 @@ names(Data)[1] <- "LA Code"
   
   observeEvent(input$ToggleTable3, {
     toggle("DomRHIInstallationsOutputTable")
+  })
+  
+  observeEvent(input$ToggleTable4, {
+    toggle("DomRHIUrbanRuralTable")
   })
 
   
