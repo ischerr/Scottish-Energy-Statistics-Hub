@@ -164,7 +164,7 @@ LocalRenewablesOutput <- function(id) {
     )%>% withSpinner(color="#a3d65c"))),
     tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
     
-    tabPanel("By Technology",
+    tabPanel("Technology",
              fluidRow(
                column(10, h3("Data - Capacity of operational community and locally owned renewable installations by technology", style = "color: #a3d65c;  font-weight:bold")),
                column(
@@ -178,7 +178,7 @@ LocalRenewablesOutput <- function(id) {
              )%>% withSpinner(color="#a3d65c"))),
              tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
     
-    tabPanel("By output",
+    tabPanel("Output",
              fluidRow(
                column(10, h3("Data - Estimated capacity of operational community and locally owned renewable installations by type of output", style = "color: #a3d65c;  font-weight:bold")),
                column(
@@ -205,7 +205,7 @@ LocalRenewablesOutput <- function(id) {
              )%>% withSpinner(color="#a3d65c"))),
              tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
     
-    tabPanel("By ownership category",
+    tabPanel("Ownership category",
              fluidRow(
                column(10, h3("Data - Estimated capacity of operational community and locally owned renewable installations by ownership category", style = "color: #a3d65c;  font-weight:bold")),
                column(
@@ -1568,7 +1568,7 @@ LocalRenewables <- function(input, output, session) {
                                                sheet = "Comm & locally owned ren", col_names = TRUE, 
                                                skip = 46, n_max = 4)
     
-    CommunityOperatingOutputType <- CommunityOperatingOutputType[11:13]
+    CommunityOperatingOutputType <- CommunityOperatingOutputType[c(11,14,15)]
     
     names(CommunityOperatingOutputType) <- c("Type", "Generation", "%")
     
@@ -1642,7 +1642,7 @@ LocalRenewables <- function(input, output, session) {
       
       
       plottitle <-
-        "Estimated generation of operational community and\nlocally owned renewable installations\nby type of output (GWh)"
+        "Estimated generation of operational community\nand locally owned renewable installations\nby type of output (GWh)"
       sourcecaption <- "Source: EST"
       
       ChartColours <- c("#a3d65c", "#FF8500")
@@ -1687,7 +1687,7 @@ LocalRenewables <- function(input, output, session) {
       ComCapTypeChart <-
         ComCapTypeChart +
         coord_flip() +
-        ylim(-125, max(ComCapType$Generation))+
+        ylim(-250, max(ComCapType$Generation))+
         scale_x_discrete(limits = rev(levels(ComCapType$Tech)))+ 
         labs (subtitle = "Scotland, June 2019")
       
