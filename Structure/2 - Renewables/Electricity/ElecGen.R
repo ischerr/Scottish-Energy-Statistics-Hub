@@ -1642,7 +1642,6 @@ output$ElecGenFuelTable = renderDataTable({
     
     rownames = FALSE,
     options = list(
-      scrollX=T,
       paging = TRUE,
       pageLength = -1,
       searching = TRUE,
