@@ -327,7 +327,6 @@ LowCarbonEconomy <- function(input, output, session) {
         options = list(
           columnDefs = list(list(className = 'dt-right', targets = 1:5)),
           paging = TRUE,
-		  scrollX = TRUE,
           pageLength = -1,
           searching = TRUE,
           fixedColumns = FALSE,
@@ -378,7 +377,6 @@ LowCarbonEconomy <- function(input, output, session) {
         options = list(
           columnDefs = list(list(className = 'dt-right', targets = 1:5)),
           paging = TRUE,
-		  scrollX = TRUE,
           pageLength = -1,
           searching = TRUE,
           fixedColumns = FALSE,
@@ -429,7 +427,6 @@ LowCarbonEconomy <- function(input, output, session) {
         options = list(
           columnDefs = list(list(className = 'dt-right', targets = 1:5)),
           paging = TRUE,
-		  scrollX = TRUE,
           pageLength = -1,
           searching = TRUE,
           fixedColumns = FALSE,
@@ -480,7 +477,6 @@ LowCarbonEconomy <- function(input, output, session) {
         options = list(
           columnDefs = list(list(className = 'dt-right', targets = 1:5)),
           paging = TRUE,
-		  scrollX = TRUE,
           pageLength = -1,
           searching = TRUE,
           fixedColumns = FALSE,

@@ -369,7 +369,6 @@ ULEVs <- function(input, output, session) {
       rownames = FALSE,
       options = list(
         paging = TRUE,
-		scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
@@ -419,7 +418,6 @@ ULEVs <- function(input, output, session) {
       rownames = FALSE,
       options = list(
         paging = TRUE,
-		scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
@@ -1027,7 +1025,6 @@ output$ULEVRegOutput.png <- downloadHandler(
       rownames = FALSE,
       options = list(
         paging = TRUE,
-		scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
@@ -1083,7 +1080,6 @@ output$ULEVRegOutput.png <- downloadHandler(
       rownames = FALSE,
       options = list(
         paging = TRUE,
-		scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
@@ -1135,7 +1131,6 @@ output$ULEVRegOutput.png <- downloadHandler(
       rownames = FALSE,
       options = list(
         paging = TRUE,
-		scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,

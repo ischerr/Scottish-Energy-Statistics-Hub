@@ -220,7 +220,6 @@ supplied - All fossil fuels (tonnes of CO2 per GWh)")
       rownames = FALSE,
       options = list(
         paging = TRUE,
-		scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,

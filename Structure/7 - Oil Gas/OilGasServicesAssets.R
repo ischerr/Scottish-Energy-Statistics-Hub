@@ -181,7 +181,6 @@ OilGasServicesAssets <- function(input, output, session) {
       rownames = FALSE,
       options = list(
         paging = TRUE,
-		scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
@@ -419,7 +418,6 @@ OilGasServicesAssets <- function(input, output, session) {
       rownames = FALSE,
       options = list(
         paging = TRUE,
-		scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
