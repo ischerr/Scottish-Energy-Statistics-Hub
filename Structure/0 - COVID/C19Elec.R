@@ -146,7 +146,7 @@ C19Elec <- function(input, output, session) {
     
     DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "PostLockdown", "BeforeLockdown")
     
-    DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 23, "Phase 1", DailyDemand$PostLockdown)
+    DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 23, "Phase 1 & 2", DailyDemand$PostLockdown)
     
     WeekdayElecDemand <- DailyDemand
     
@@ -192,13 +192,13 @@ C19Elec <- function(input, output, session) {
                 line = list(width = 4)
       ) %>% 
       
-      add_trace(y = ~ `Phase 1`,
-                name = "Phase 1",
+      add_trace(y = ~ `Phase 1 & 2`,
+                name = "Phase 1 & 2",
                 type = 'bar',
                 legendgroup = "3",
                 marker = list(color = BarColours[3]),
                 text = paste0(
-                  "Phase 1: ", format(round(WeekdayElecDemand$`Phase 1`, 2), big.mark = ",")," GWh\n",
+                  "Phase 1 & 2: ", format(round(WeekdayElecDemand$`Phase 1 & 2`, 2), big.mark = ",")," GWh\n",
                   "Year: ", WeekdayElecDemand$Year, "\n"),
                 hoverinfo = 'text',
                 line = list(width = 4)
@@ -438,7 +438,7 @@ C19Elec <- function(input, output, session) {
         x = dmy("4/06/2020"),
         y = .4,
         yref = "paper",
-        text = "<b>28/05</b>\nPhase 1",
+        text = "<b>28/05</b>\nPhase 1 & 2",
         font = list(color = "#02818a",
                     family = "Century Gothic"),
         textposistion = "bottom right",
@@ -695,7 +695,7 @@ C19Elec <- function(input, output, session) {
       
       DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "Post-Lockdown", "Pre-Lockdown")
       
-      DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 23, "Phase 1", DailyDemand$PostLockdown)
+      DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 23, "Phase 1 & 2", DailyDemand$PostLockdown)
       
       WeekdayElecDemand <- DailyDemand
       
@@ -722,7 +722,7 @@ C19Elec <- function(input, output, session) {
           values = c(
             "Post-Lockdown" = BarColours[2],
             "Pre-Lockdown" = BarColours[1],
-            "Phase 1" = BarColours[3]
+            "Phase 1 & 2" = BarColours[3]
           )
         ) +
         geom_bar(position = "dodge",
@@ -1120,7 +1120,7 @@ output$C19ElecRolling.png <- downloadHandler(
         aes(
           x = dmy("29/05/2020"),
           y = 40,
-          label = "Phase 1 "
+          label = "Phase 1 & 2 "
         ),
         vjust = 1.1,
         hjust = 0,

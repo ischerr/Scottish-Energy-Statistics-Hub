@@ -145,7 +145,7 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly  <- dcast(ElecDemandHalfHourly, id + SettlementPeriod + Weekday ~ Year, value.var = 'Total')
     
-    ElecDemandHalfHourly$Date <- ymd("2020/05/25")
+    ElecDemandHalfHourly$Date <- ymd("2020/06/22")
     
     ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date) + 1
     ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date) + 2
@@ -270,7 +270,7 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly  <- dcast(ElecDemandHalfHourly, id + SettlementPeriod + Weekday ~ Year, value.var = 'Total')
     
-    ElecDemandHalfHourly$Date <- ymd("2020/05/25")
+    ElecDemandHalfHourly$Date <- ymd("2020/06/22")
     
     ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date) + 1
     ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date) + 2
@@ -625,7 +625,7 @@ C19Settlement <- function(input, output, session) {
       
       ElecDemandHalfHourly  <- dcast(ElecDemandHalfHourly, id + SettlementPeriod + Weekday ~ Year, value.var = 'Total')
       
-      ElecDemandHalfHourly$Date <- ymd("2020/05/25")
+      ElecDemandHalfHourly$Date <- ymd("2020/06/22")
       
       ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date) + 1
       ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date) + 2
@@ -656,7 +656,7 @@ C19Settlement <- function(input, output, session) {
           y = mean(ElecDemandHalfHourly$`2019`),
           label = "2019",
           hjust = 0.5,
-          vjust = -5,
+          vjust = -6,
           colour = ChartColours[3],
           fontface = 2,
           family = "Century Gothic"
