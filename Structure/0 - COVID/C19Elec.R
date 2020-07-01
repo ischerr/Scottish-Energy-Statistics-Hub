@@ -438,7 +438,7 @@ C19Elec <- function(input, output, session) {
         x = dmy("4/06/2020"),
         y = .4,
         yref = "paper",
-        text = "<b>28/05</b>\nPhase 1 & 2",
+        text = "<b>28/05</b>\nPhase 1",
         font = list(color = "#02818a",
                     family = "Century Gothic"),
         textposistion = "bottom right",
@@ -1120,7 +1120,7 @@ output$C19ElecRolling.png <- downloadHandler(
         aes(
           x = dmy("29/05/2020"),
           y = 40,
-          label = "Phase 1 & 2 "
+          label = "Phase 1"
         ),
         vjust = 1.1,
         hjust = 0,
