@@ -385,6 +385,7 @@ DailyDemand <- function(input, output, session) {
       rownames = FALSE,
       options = list(
         paging = TRUE,
+		scrollX = TRUE,
         pageLength = 10,
         searching = TRUE,
         fixedColumns = FALSE,

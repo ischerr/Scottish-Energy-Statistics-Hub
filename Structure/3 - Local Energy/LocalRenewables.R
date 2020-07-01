@@ -561,7 +561,8 @@ LocalRenewables <- function(input, output, session) {
       extensions = 'Buttons',
       
       rownames = FALSE,
-      options = list(
+          options = list(
+		  scrollX = TRUE,
         paging = TRUE,
         pageLength = -1,
         searching = TRUE,
@@ -914,8 +915,9 @@ LocalRenewables <- function(input, output, session) {
       extensions = 'Buttons',
       
       rownames = FALSE,
-      options = list(
-        paging = TRUE,
+          options = list(
+		paging = TRUE,
+		scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
@@ -1114,8 +1116,9 @@ LocalRenewables <- function(input, output, session) {
       extensions = 'Buttons',
       
       rownames = FALSE,
-      options = list(
+          options = list(
         paging = TRUE,
+		scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
@@ -1312,8 +1315,9 @@ LocalRenewables <- function(input, output, session) {
       extensions = 'Buttons',
       
       rownames = FALSE,
-      options = list(
+          options = list(
         paging = TRUE,
+		scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
@@ -1507,8 +1511,9 @@ LocalRenewables <- function(input, output, session) {
       extensions = 'Buttons',
       
       rownames = FALSE,
-      options = list(
+          options = list(
         paging = TRUE,
+		scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
@@ -1720,8 +1725,9 @@ LocalRenewables <- function(input, output, session) {
       extensions = 'Buttons',
       
       rownames = FALSE,
-      options = list(
+          options = list(
         paging = TRUE,
+		scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,

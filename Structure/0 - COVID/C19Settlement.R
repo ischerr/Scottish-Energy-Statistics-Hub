@@ -294,6 +294,7 @@ C19Settlement <- function(input, output, session) {
       rownames = FALSE,
       options = list(
         paging = TRUE,
+		scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
@@ -529,6 +530,7 @@ C19Settlement <- function(input, output, session) {
       rownames = FALSE,
       options = list(
         paging = TRUE,
+		scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,

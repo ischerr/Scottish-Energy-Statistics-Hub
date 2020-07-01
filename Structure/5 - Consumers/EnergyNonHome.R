@@ -199,8 +199,9 @@ EnergyNonHome <- function(input, output, session) {
       extensions = 'Buttons',
       
       rownames = FALSE,
-      options = list(
+      options = list(paging = TRUE,
         paging = TRUE,
+		scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
@@ -251,8 +252,9 @@ EnergyNonHome <- function(input, output, session) {
       extensions = 'Buttons',
       
       rownames = FALSE,
-      options = list(
+      options = list(paging = TRUE,
         paging = TRUE,
+		scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
@@ -377,8 +379,9 @@ EnergyNonHome <- function(input, output, session) {
       extensions = 'Buttons',
       
       rownames = FALSE,
-      options = list(
+      options = list(paging = TRUE,
         paging = TRUE,
+		scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
@@ -427,8 +430,9 @@ EnergyNonHome <- function(input, output, session) {
       extensions = 'Buttons',
       
       rownames = FALSE,
-      options = list(
+      options = list(paging = TRUE,
         paging = TRUE,
+		scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
