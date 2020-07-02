@@ -165,13 +165,13 @@ ULEVs <- function(input, output, session) {
   
   output$ULEVsSubtitle <- renderText({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "ULEVs", 
-        skip = 17)
+    Data <- read_delim("Processed Data/Output/Vehicles/ULEV.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Data <- Data[c(1,3,4,2)]
+    
+    names(Data) <- c("Year", 'Battery Electric Vehicles',"Hybrid Electric Vehicles","All ULEVs",'Other ULEVs')
+    
+    Data <- Data[which(nchar(Data$Year)>4),]
     
     Data$Year <- as.yearqtr(Data$Year)
     
@@ -359,18 +359,32 @@ ULEVs <- function(input, output, session) {
   
   output$ULEVsTable = renderDataTable({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "ULEVs", col_names = TRUE, 
-        skip = 17)
+    ULEV <- read_delim("Processed Data/Output/Vehicles/ULEV.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Data <- Data[c(1:4,6:7)]
+    AllVehicles <- read_delim("Processed Data/Output/Vehicles/AllVehicles.txt", 
+                              "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    ULEVs <- Data
+    AllVehicles <- AllVehicles[c(1,9)]
+    
+    AllVehicles$Total <- AllVehicles$Total * 1000
+    
+    AllVehicles <- rbind(read_csv("Processed Data/Output/Vehicles/VehicleTotal2014.csv"), AllVehicles)
+    
+    names(AllVehicles) <- c("Quarter", "All Vehicles")
+    
+    AllVehicles <- merge(ULEV, AllVehicles)
+    
+    names(AllVehicles)[4] <- "All ULEVs"
+    
+    AllVehicles$`Proportion of Vehicles which are ULEVs` <- AllVehicles$`All ULEVs`/ AllVehicles$`All Vehicles`
+    
+    AllVehicles <- AllVehicles[c(1, 4,3,2,5,6,7)]
+    
+    AllVehicles <- AllVehicles[which(nchar(AllVehicles$Quarter)>4),]
     
     datatable(
-      ULEVs,
+      AllVehicles,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -403,7 +417,7 @@ ULEVs <- function(input, output, session) {
       )
     ) %>%
       formatRound(c(2:6), 0) %>% 
-      formatPercentage(6,2)
+      formatPercentage(7,2)
   })
   
   output$ULEVRegOutputTable = renderDataTable({
@@ -505,7 +519,7 @@ ULEVs <- function(input, output, session) {
       
       
       ### variables
-      ChartColours <- c("#005a32", "#41ab5d", "#addd8e")
+      ChartColours <- c("#39ab2c", "#005a32", "#41ab5d", "#addd8e")
       sourcecaption = "Source: DfT"
       plottitle = "Number of ultra low emission vehicles\nlicenced"
       
@@ -522,9 +536,9 @@ ULEVs <- function(input, output, session) {
         scale_fill_manual(
           "variable",
           values = c(
-            "Battery Electric Vehicles" = ChartColours[1],
-            "Hybrid Electric Vehicles" = ChartColours[2],
-            "Other ULEVs" = ChartColours[3]
+            "Battery Electric Vehicles" = ChartColours[2],
+            "Hybrid Electric Vehicles" = ChartColours[3],
+            "Other ULEVs" = ChartColours[4]
           )
         ) +
         geom_area(posistion = "fill") +
@@ -540,7 +554,7 @@ ULEVs <- function(input, output, session) {
             ),
             hjust = ifelse(Year == min(Year), 0, 1),
             vjust = 1.5,
-            colour = ChartColours[1],
+            colour = ChartColours[2],
             fontface = 2,
             family = "Century Gothic"
           )
@@ -563,7 +577,7 @@ ULEVs <- function(input, output, session) {
           label = format(ElecVehiclesMin$`Hybrid Electric Vehicles`,big.mark = ","),
           hjust = -.1,
           vjust = -1,
-          colour = ChartColours[3],
+          colour = ChartColours[4],
           fontface = 2,
           family = "Century Gothic"
         ) +
@@ -633,7 +647,7 @@ ULEVs <- function(input, output, session) {
           label = "Other ULEVs",
           hjust = .5,
           vjust = 2,
-          colour = ChartColours[3],
+          colour = ChartColours[4],
           fontface = 2,
           family = "Century Gothic"
         ) +
@@ -647,7 +661,7 @@ ULEVs <- function(input, output, session) {
           ),
           hjust = 0,
           vjust = -3,
-          colour = ChartColours[1],
+          colour = ChartColours[2],
           fontface = 2,
           family = "Century Gothic"
         ) +
@@ -661,7 +675,7 @@ ULEVs <- function(input, output, session) {
           ),
           hjust = 1.3,
           vjust = 1,
-          colour = ChartColours[1],
+          colour = ChartColours[2],
           fontface = 2,
           family = "Century Gothic"
         )
