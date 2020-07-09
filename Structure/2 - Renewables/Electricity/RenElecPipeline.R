@@ -277,7 +277,7 @@ RenElecPipeline <- function(input, output, session) {
  output$Text <- renderUI({
    tagList(column(12,
                   HTML(
-                    paste(readtext("Structure/2 - Renewables/Electricity/RenElecCapacity.txt")[2])
+                    paste(readtext("Structure/2 - Renewables/Electricity/RenElecPipeline.txt")[2])
                     
                   )))
  })
