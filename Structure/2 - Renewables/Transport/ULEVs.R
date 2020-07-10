@@ -165,13 +165,13 @@ ULEVs <- function(input, output, session) {
   
   output$ULEVsSubtitle <- renderText({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "ULEVs", 
-        skip = 17)
+    Data <- read_delim("Processed Data/Output/Vehicles/ULEV.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Data <- Data[c(1,3,4,2)]
+    
+    names(Data) <- c("Year", 'Battery Electric Vehicles',"Hybrid Electric Vehicles","All ULEVs",'Other ULEVs')
+    
+    Data <- Data[which(nchar(Data$Year)>4),]
     
     Data$Year <- as.yearqtr(Data$Year)
     
@@ -180,19 +180,19 @@ ULEVs <- function(input, output, session) {
   
   output$ULEVsPlot <- renderPlotly  ({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "ULEVs", 
-        skip = 17)
+    Data <- read_delim("Processed Data/Output/Vehicles/ULEV.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Data <- Data[c(1,3,4,2)]
+    
+    names(Data) <- c("Year", 'Battery Electric Vehicles',"Hybrid Electric Vehicles","All ULEVs",'Other ULEVs')
+    
+    Data <- Data[which(nchar(Data$Year)>4),]
     
     Data$Year <- as.yearqtr(Data$Year)
     
     Data2 <- rbind(head(Data,1), tail(Data,1))
     
-    ChartColours <- c("#39ab2c", "#238b45", "#a1d99b")
+    ChartColours <- c("#005a32", "#41ab5d", "#addd8e")
     
     p <-  plot_ly(Data, 
                   x = ~Year, 
@@ -205,6 +205,13 @@ ULEVs <- function(input, output, session) {
                   hoverinfo = "text",
                   text = paste0("Battery Electric Vehicles: ", Data$`Battery Electric Vehicles`, "\nAs Of: ", Data$Year)
     )%>%
+      add_trace(
+        y = ~ `Hybrid Electric Vehicles`, 
+        name = 'Hybrid Electric Vehicles',
+        fillcolor = ChartColours[2],
+        hoverinfo = "text",
+        text = paste0("Hybrid Electric Vehicles: ", Data$`Hybrid Electric Vehicles`, "\nAs Of: ", Data$Year)
+      ) %>% 
       add_trace(
         y = ~ `Other ULEVs`, 
         name = 'Other ULEVs',
@@ -352,18 +359,32 @@ ULEVs <- function(input, output, session) {
   
   output$ULEVsTable = renderDataTable({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "ULEVs", col_names = TRUE, 
-        skip = 17)
+    ULEV <- read_delim("Processed Data/Output/Vehicles/ULEV.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Data <- Data[c(1:4,6:7)]
+    AllVehicles <- read_delim("Processed Data/Output/Vehicles/AllVehicles.txt", 
+                              "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    ULEVs <- Data
+    AllVehicles <- AllVehicles[c(1,9)]
+    
+    AllVehicles$Total <- AllVehicles$Total * 1000
+    
+    AllVehicles <- rbind(read_csv("Processed Data/Output/Vehicles/VehicleTotal2014.csv"), AllVehicles)
+    
+    names(AllVehicles) <- c("Quarter", "All Vehicles")
+    
+    AllVehicles <- merge(ULEV, AllVehicles)
+    
+    names(AllVehicles)[4] <- "All ULEVs"
+    
+    AllVehicles$`Proportion of Vehicles which are ULEVs` <- AllVehicles$`All ULEVs`/ AllVehicles$`All Vehicles`
+    
+    AllVehicles <- AllVehicles[c(1, 4,3,2,5,6,7)]
+    
+    AllVehicles <- AllVehicles[which(nchar(AllVehicles$Quarter)>4),]
     
     datatable(
-      ULEVs,
+      AllVehicles,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -396,7 +417,7 @@ ULEVs <- function(input, output, session) {
       )
     ) %>%
       formatRound(c(2:6), 0) %>% 
-      formatPercentage(6,2)
+      formatPercentage(7,2)
   })
   
   output$ULEVRegOutputTable = renderDataTable({
@@ -474,9 +495,15 @@ ULEVs <- function(input, output, session) {
     filename = "ULEVs.png",
     content = function(file) {
 
-      ElecVehicles <- read_excel("Structure/CurrentWorking.xlsx", 
-                                 sheet = "ULEVs", col_names = TRUE, 
-                                 skip = 17)[c(1,3,4)]
+      ElecVehicles <- read_delim("Processed Data/Output/Vehicles/ULEV.txt", 
+                         "\t", escape_double = FALSE, trim_ws = TRUE)
+      
+      
+      names(ElecVehicles) <- c("Year", 'Battery Electric Vehicles',"Hybrid Electric Vehicles","All ULEVs",'Other ULEVs')
+      
+      ElecVehicles$`All ULEVs` <- NULL
+      
+      ElecVehicles <- ElecVehicles[which(nchar(ElecVehicles$Year)>4),]
       
       ElecVehicles$Year <-
         as.yearqtr(ElecVehicles$Year, format = "%Y Q%q")
@@ -492,7 +519,7 @@ ULEVs <- function(input, output, session) {
       
       
       ### variables
-      ChartColours <- c("#39ab2c", "#238b45", "#a1d99b")
+      ChartColours <- c("#39ab2c", "#005a32", "#41ab5d", "#addd8e")
       sourcecaption = "Source: DfT"
       plottitle = "Number of ultra low emission vehicles\nlicenced"
       
@@ -510,7 +537,8 @@ ULEVs <- function(input, output, session) {
           "variable",
           values = c(
             "Battery Electric Vehicles" = ChartColours[2],
-            "Other ULEVs" = ChartColours[3]
+            "Hybrid Electric Vehicles" = ChartColours[3],
+            "Other ULEVs" = ChartColours[4]
           )
         ) +
         geom_area(posistion = "fill") +
@@ -526,7 +554,7 @@ ULEVs <- function(input, output, session) {
             ),
             hjust = ifelse(Year == min(Year), 0, 1),
             vjust = 1.5,
-            colour = ChartColours[1],
+            colour = ChartColours[2],
             fontface = 2,
             family = "Century Gothic"
           )
@@ -545,11 +573,11 @@ ULEVs <- function(input, output, session) {
         annotate(
           "text",
           x = ElecVehiclesMin$Year,
-          y = (ElecVehiclesMin$`Other ULEVs` * 0.5) + ElecVehiclesMin$`Battery Electric Vehicles`,
-          label = format(ElecVehiclesMin$`Other ULEVs`,big.mark = ","),
+          y = (ElecVehiclesMin$`Hybrid Electric Vehicles` * 0.5) + ElecVehiclesMin$`Battery Electric Vehicles`,
+          label = format(ElecVehiclesMin$`Hybrid Electric Vehicles`,big.mark = ","),
           hjust = -.1,
           vjust = -1,
-          colour = ChartColours[3],
+          colour = ChartColours[4],
           fontface = 2,
           family = "Century Gothic"
         ) +
@@ -567,8 +595,8 @@ ULEVs <- function(input, output, session) {
         annotate(
           "text",
           x = ElecVehiclesMax$Year,
-          y = (ElecVehiclesMax$`Other ULEVs` * 0.5) + ElecVehiclesMax$`Battery Electric Vehicles`,
-          label = format(ElecVehiclesMax$`Other ULEVs`, big.mark = ","),
+          y = (ElecVehiclesMax$`Hybrid Electric Vehicles` * 0.5) + ElecVehiclesMax$`Battery Electric Vehicles`,
+          label = format(ElecVehiclesMax$`Hybrid Electric Vehicles`, big.mark = ","),
           hjust = 1.1,
           vjust = 0,
           colour = "white",
@@ -581,9 +609,25 @@ ULEVs <- function(input, output, session) {
           y = (
             ElecVehiclesMax$`Battery Electric Vehicles` + ElecVehiclesMin$`Battery Electric Vehicles`
           ) * .25,
-          label = "Battery Electric\nVehicles",
+          label = "Battery Electric",
           hjust = .5,
-          vjust = 1,
+          vjust = 3.5,
+          colour = "white",
+          fontface = 2,
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = mean(ElecVehicles$Year),
+          y = ((ElecVehiclesMax$`Hybrid Electric Vehicles` + ElecVehiclesMin$`Hybrid Electric Vehicles`) *
+                 .25
+          ) + ((
+            ElecVehiclesMax$`Battery Electric Vehicles` + ElecVehiclesMin$`Battery Electric Vehicles`
+          ) * .5
+          ),
+          label = "Hybrid Electric",
+          hjust = .5,
+          vjust = 8.1,
           colour = "white",
           fontface = 2,
           family = "Century Gothic"
@@ -593,42 +637,45 @@ ULEVs <- function(input, output, session) {
           x = mean(ElecVehicles$Year),
           y = ((ElecVehiclesMax$`Other ULEVs` + ElecVehiclesMin$`Other ULEVs`) *
                  .25
+          ) +
+            ((ElecVehiclesMax$`Hybrid Electric Vehicles` + ElecVehiclesMin$`Hybrid Electric Vehicles`) *
+                 .5
           ) + ((
             ElecVehiclesMax$`Battery Electric Vehicles` + ElecVehiclesMin$`Battery Electric Vehicles`
           ) * .5
           ),
           label = "Other ULEVs",
           hjust = .5,
-          vjust = 8.1,
-          colour = "white",
+          vjust = 2,
+          colour = ChartColours[4],
           fontface = 2,
           family = "Century Gothic"
         ) +
         annotate(
           "text",
           x = ElecVehiclesMin$Year,
-          y = ElecVehiclesMin$`Battery Electric Vehicles` + ElecVehiclesMin$`Other ULEVs`,
+          y = ElecVehiclesMin$`Battery Electric Vehicles` + ElecVehiclesMin$`Hybrid Electric Vehicles` + ElecVehiclesMin$`Other ULEVs`,
           label = paste0(
             "Total: ",
-            format(ElecVehiclesMin$`Battery Electric Vehicles` + ElecVehiclesMin$`Other ULEVs`, big.mark = ",")
+            format(ElecVehiclesMin$`Battery Electric Vehicles` + ElecVehiclesMin$`Hybrid Electric Vehicles` + ElecVehiclesMin$`Other ULEVs`, big.mark = ",")
           ),
           hjust = 0,
           vjust = -3,
-          colour = ChartColours[1],
+          colour = ChartColours[2],
           fontface = 2,
           family = "Century Gothic"
         ) +
         annotate(
           "text",
           x = ElecVehiclesMax$Year,
-          y = ElecVehiclesMax$`Battery Electric Vehicles` + ElecVehiclesMax$`Other ULEVs`,
+          y = ElecVehiclesMax$`Battery Electric Vehicles` + ElecVehiclesMax$`Hybrid Electric Vehicles` + ElecVehiclesMax$`Other ULEVs`,
           label = paste0(
             "Total: ",
-            format(ElecVehiclesMax$`Battery Electric Vehicles` + ElecVehiclesMax$`Other ULEVs`,big.mark = ",")
+            format(ElecVehiclesMax$`Battery Electric Vehicles` + ElecVehiclesMax$`Hybrid Electric Vehicles` + ElecVehiclesMax$`Other ULEVs`,big.mark = ",")
           ),
           hjust = 1.3,
           vjust = 1,
-          colour = ChartColours[1],
+          colour = ChartColours[2],
           fontface = 2,
           family = "Century Gothic"
         )
@@ -645,7 +692,7 @@ ULEVs <- function(input, output, session) {
       
       
       ElecVehiclesChart <- ElecVehiclesChart +
-        ylim(-100, max(ElecVehiclesMax$`Battery Electric Vehicles`)+max(ElecVehiclesMax$`Other ULEVs`))
+        ylim(-100, max(ElecVehiclesMax$`Battery Electric Vehicles`)+max(ElecVehiclesMax$`Other ULEVs`)+max(ElecVehiclesMax$`Hybrid Electric Vehicles`))
       
 
 

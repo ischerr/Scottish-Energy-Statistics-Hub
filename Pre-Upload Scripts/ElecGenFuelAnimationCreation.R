@@ -548,7 +548,7 @@ geom_segment(mapping = aes(
   transition_time(Year) +
   ease_aes('linear') 
 
-animate(ElecGenFuelChart, height = (650), width = (1200), res = 75, end_pause = 20)
+animate(ElecGenFuelChart, height = (650), width = (1200), res = 75, end_pause = 20, detail = 200)
 
 anim_save("Structure/2 - Renewables/Electricity/ElecGenAnimation.gif")
 

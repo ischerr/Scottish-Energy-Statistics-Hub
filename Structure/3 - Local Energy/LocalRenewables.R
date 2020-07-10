@@ -1642,7 +1642,7 @@ LocalRenewables <- function(input, output, session) {
       
       
       plottitle <-
-        "Estimated generation of operational community\nand locally owned renewable installations\nby type of output (GWh)"
+        "Estimated generation of operational\ncommunity and locally owned renewable\ninstallations by type of output (GWh)"
       sourcecaption <- "Source: EST"
       
       ChartColours <- c("#a3d65c", "#FF8500")

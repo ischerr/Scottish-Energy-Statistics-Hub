@@ -14,7 +14,7 @@ ElecGenOutput <- function(id) {
       tabPanel("Charts",
                fluidRow(column(8,
                                h3("Proportion of electricity generation by fuel", style = "color: #39ab2c;  font-weight:bold"),
-                               selectInput(ns("YearSelect"), "Year:", c(2018, 2017,2016,2015,2014,2013,2012,2011,2010,2009), selected = 2018, multiple = FALSE,
+                               selectInput(ns("YearSelect"), "Year:", c(2018:2004), selected = 2018, multiple = FALSE,
                                            selectize = TRUE, width = NULL, size = NULL)
                ),
                column(
@@ -72,7 +72,11 @@ ElecGenOutput <- function(id) {
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
-                 column(12, dataTableOutput(ns("ElecGenFuelTable"))%>% withSpinner(color="#39ab2c"))),
+                 column(12, DT::dataTableOutput(ns("ElecGenFuelTable"))%>% withSpinner(color="#39ab2c"))),
+               fluidRow(
+                 column(12, HTML("<blockquote>
+                          <p>* Renewables figures by type are taken from Energy Trends 6.1,whereas the total is taken from Electricity generation and supply figures. These totals may not match exactly in some years.  Coal includes a small quantity of non-renewable wastes and other thermal.</p>
+                          </blockquote>"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("England & Wales",
                fluidRow(
@@ -80,7 +84,11 @@ ElecGenOutput <- function(id) {
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
-                 column(12, dataTableOutput(ns("ElecGenFuelEWTable"))%>% withSpinner(color="#39ab2c"))),
+                 column(12, DT::dataTableOutput(ns("ElecGenFuelEWTable"), width = 200)%>% withSpinner(color="#39ab2c"))),
+               fluidRow(
+                 column(12, HTML("<blockquote>
+                          <p>* Renewables figures by type are taken from Energy Trends 6.1,whereas the total is taken from Electricity generation and supply figures. These totals may not match exactly in some years.  Coal includes a small quantity of non-renewable wastes and other thermal.</p>
+                          </blockquote>"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
       column(2, p("Update expected:")),
@@ -420,7 +428,7 @@ ElecGen <- function(input, output, session) {
   })
   
   
-  output$ElecGenLCFFTable = renderDataTable({
+  output$ElecGenLCFFTable = DT::renderDataTable({
     
     Data <-
       read_excel(
@@ -486,7 +494,7 @@ ElecGen <- function(input, output, session) {
       formatStyle(c(4,5,9), fontStyle = "italic")
   })
   
-  output$ElecGenFuel2Table = renderDataTable({
+  output$ElecGenFuel2Table = DT::renderDataTable({
     
     Data <-
       read_excel(
@@ -1635,6 +1643,7 @@ output$ElecGenFuelTable = renderDataTable({
     rownames = FALSE,
     options = list(
       paging = TRUE,
+      scrollX = TRUE,
       pageLength = -1,
       searching = TRUE,
       fixedColumns = FALSE,
@@ -1709,6 +1718,7 @@ output$ElecGenFuelEWTable = renderDataTable({
     rownames = FALSE,
     options = list(
       paging = TRUE,
+      scrollX = TRUE,
       pageLength = -1,
       searching = TRUE,
       fixedColumns = FALSE,
