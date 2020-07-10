@@ -290,7 +290,7 @@ supplied - All fossil fuels (tonnes of CO2 per GWh)")
       Displacement$Renewables <-
         round(Displacement$Renewables, digits = 1)
       
-      plottitle <- "Estimated million tonnes of CO2 emissions displaced by renewables"
+      plottitle <- "Estimated million tonnes of CO2 emissions\ndisplaced by renewables"
       sourcecaption <- "Source: BEIS"
       ChartColours <- c("#39ab2c", "#FF8500")
       
@@ -371,7 +371,7 @@ supplied - All fossil fuels (tonnes of CO2 per GWh)")
       ggsave(
         file,
         plot = DisplacementChart,
-        width = 26,
+        width = 13,
         height = 10,
         units = "cm",
         dpi = 300
