@@ -432,7 +432,7 @@ Boilers <- function(input, output, session) {
           aes(
             x = Year,
             y = `New Boilers (post-1998)`,
-            label = ifelse(Year == min(Year[which(BoilerProportion$`New Boilers (post-1998)` > 0)]), percent(`New Boilers (post-1998)`), ""),
+            label = ifelse(Year == min(Year[which(BoilerProportion$`New Boilers (post-1998)` > 0)]), percent(`New Boilers (post-1998)`,1), ""),
             hjust = 0.5,
             vjust = -.8,
             colour = ChartColours[2],
@@ -444,7 +444,7 @@ Boilers <- function(input, output, session) {
           aes(
             x = Year,
             y = `New Boilers (post-1998)`,
-            label = ifelse(Year == max(Year), percent(`New Boilers (post-1998)`), ""),
+            label = ifelse(Year == max(Year), percent(`New Boilers (post-1998)`,1), ""),
             hjust = .5,
             vjust = 1.5,
             colour = ChartColours[2],
@@ -488,7 +488,7 @@ Boilers <- function(input, output, session) {
           aes(
             x = Year,
             y = `Condensing Boilers`,
-            label = ifelse(Year == min(Year), percent(`Condensing Boilers`), ""),
+            label = ifelse(Year == min(Year), percent(`Condensing Boilers`, 1), ""),
             hjust = 0.5,
             vjust = -1,
             colour = ChartColours[3],
@@ -500,7 +500,7 @@ Boilers <- function(input, output, session) {
           aes(
             x = Year,
             y = `Condensing Boilers`,
-            label = ifelse(Year == max(Year), percent(`Condensing Boilers`), ""),
+            label = ifelse(Year == max(Year), percent(`Condensing Boilers`, 1), ""),
             hjust = 0.5,
             vjust = 2,
             colour = ChartColours[3],
@@ -544,7 +544,7 @@ Boilers <- function(input, output, session) {
           aes(
             x = Year,
             y = `Standards Compliant Boilers`,
-            label = ifelse(Year == min(Year[which(BoilerProportion$`Standards Compliant Boilers` > 0)]), percent(`Standards Compliant Boilers`), ""),
+            label = ifelse(Year == min(Year[which(BoilerProportion$`Standards Compliant Boilers` > 0)]), percent(`Standards Compliant Boilers`,1), ""),
             hjust = 0.5,
             vjust = 1.2,
             colour = ChartColours[4],
@@ -556,7 +556,7 @@ Boilers <- function(input, output, session) {
           aes(
             x = Year,
             y = `Standards Compliant Boilers`,
-            label = ifelse(Year == max(Year), percent(`Standards Compliant Boilers`), ""),
+            label = ifelse(Year == max(Year), percent(`Standards Compliant Boilers`,1), ""),
             hjust = 0.5,
             vjust = 2,
             colour = ChartColours[4],
