@@ -88,11 +88,11 @@ LocalRenewablesOutput <- function(id) {
                plotlyOutput(ns("CommunityOperatingOutputTypePlot"))%>% withSpinner(color="#a3d65c"),
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
       
-      tabPanel("Operating generation by output",
+      tabPanel("Estimated generation by output",
                fluidRow(
                  column(
                    8,
-                   h3("Capacity of operational community and locally owned renewable installations by type of output", style = "color: #a3d65c;  font-weight:bold"),
+                   h3("Estimated generation of operational community and locally owned renewable installations by type of output (GWh)", style = "color: #a3d65c;  font-weight:bold"),
                    h4(textOutput(ns('CommunityOperatingOutputTypeGenSubtitle')), style = "color: #a3d65c;")
                  ),
                  column(
@@ -745,11 +745,13 @@ LocalRenewables <- function(input, output, session) {
       
       names(Data) <- c("Year", "Renewables")
       
+      Data$Date <- Data$Year
+      
       Data$Year <- as.numeric(substr(Data$Year,1,4))
       
       Data <- Data[complete.cases(Data$Year),]
       
-      Data2 <- data.frame(Year = c(2020, 2030 ), `Renewables` = NA, Target = c(1000,2000))
+      Data2 <- data.frame(Year = c(2020, 2030 ), `Renewables` = NA, Target = c(1000,2000), `Date` = c(dmy("01/01/2020"), dmy("01/01/2030")))
       
       Data <- rbind.fill(Data, Data2)
       
@@ -809,8 +811,8 @@ LocalRenewables <- function(input, output, session) {
           aes(
             x = Year,
             y = 0,
-            label = ifelse(Year == max(Year[which(Renewables > 0)]), Year, ""),
-            hjust = 0.75,
+            label = ifelse(Year == max(Year[which(Renewables > 0)]), format(Date, "%b %Y"), ""),
+            hjust = 1,
             vjust = 1.5,
             colour = ChartColours[1],
             fontface = 2
@@ -821,7 +823,7 @@ LocalRenewables <- function(input, output, session) {
           aes(
             x = Year,
             y = 0,
-            label = ifelse(Year == min(Year), Year, ""),
+            label = ifelse(Year == min(Year), format(Date, "%b %Y"), ""),
             hjust = 0.5,
             vjust = 1.5,
             colour = ChartColours[1],
@@ -857,7 +859,7 @@ LocalRenewables <- function(input, output, session) {
           aes(
             x = Year,
             y = 0,
-            label = ifelse(Year == Year[which(Target > 0)], Year, ""),
+            label = ifelse(Year == Year[which(Target > 0)], format(Date, "%b %Y"), ""),
             hjust = 0.5,
             vjust = 1.5,
             colour = ChartColours[2],
@@ -888,7 +890,7 @@ LocalRenewables <- function(input, output, session) {
       ggsave(
         file,
         plot = ComCapOperatingChart,
-        width = 15,
+        width = 20,
         height = 15,
         units = "cm",
         dpi = 300
