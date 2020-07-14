@@ -48,14 +48,7 @@ EnergyNonHomeOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     tabsetPanel(
-      tabPanel("Elec - Payment Methods",
-    fluidRow(
-    column(10, h3("Data - Proportion of domestic electricity customers on non-home supplier by payment method", style = "color: #68c3ea;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
-    ),
-    fluidRow(
-      column(12, dataTableOutput(ns("ElecNonHomeTable"))%>% withSpinner(color="#68c3ea"))),
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+     
     tabPanel("Elec - Time Series",
              fluidRow(
                column(10, h3("Data - Proportion of electricity customers not with their home supplier", style = "color: #68c3ea;  font-weight:bold")),
@@ -63,6 +56,23 @@ EnergyNonHomeOutput <- function(id) {
              ),
              fluidRow(
                column(12, dataTableOutput(ns("ElecNonHomeTimeSeriesTable"))%>% withSpinner(color="#68c3ea"))),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")), 
+    tabPanel("Elec - Payment Methods",
+    fluidRow(
+    column(10, h3("Data - Proportion of domestic electricity customers on non-home supplier by payment method", style = "color: #68c3ea;  font-weight:bold")),
+    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+    ),
+    fluidRow(
+      column(12, dataTableOutput(ns("ElecNonHomeTable"))%>% withSpinner(color="#68c3ea"))),
+    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    
+    tabPanel("Gas - Time Series",
+             fluidRow(
+               column(10, h3("Data - Proportion of gas customers not with their home supplier", style = "color: #68c3ea;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("GasNonHomeTimeSeriesTable"))%>% withSpinner(color="#68c3ea"))),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Gas - Payment Methods",
              fluidRow(
@@ -71,14 +81,6 @@ EnergyNonHomeOutput <- function(id) {
              ),
              fluidRow(
                column(12, dataTableOutput(ns("GasNonHomeTable"))%>% withSpinner(color="#68c3ea"))),
-             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-    tabPanel("Gas - Time Series",
-             fluidRow(
-               column(10, h3("Data - Proportion of gas customers not with their home supplier", style = "color: #68c3ea;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
-             ),
-             fluidRow(
-               column(12, dataTableOutput(ns("GasNonHomeTimeSeriesTable"))%>% withSpinner(color="#68c3ea"))),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     fluidRow(
       column(2, p("Update expected:")),
