@@ -97,13 +97,15 @@ GridEmissions <- function(input, output, session) {
     
     Data <- as_tibble(sapply( Data, as.numeric ))
     
-    names(Data) <- c("Year", "Renewables")
+    Data <- Data[c(1,2,6)]
+    
+    names(Data) <- c("Year", "Renewables", "UKEmissions")
     
     GridEmissions <- Data
     
     plottitle <- "Average greenhouse gas emissions per kilowatt hour of electricity"
     sourcecaption <- "Source: BEIS, SG"
-    ChartColours <- c("#39ab2c", "#FF8500")
+    ChartColours <- c("#39ab2c", "#FF8500", "#2b8cbe")
     
     GridEmissions$Year <- paste0("01/01/", GridEmissions$Year)
     
@@ -112,25 +114,38 @@ GridEmissions <- function(input, output, session) {
     
     p <-  plot_ly(GridEmissions,x = ~ Year ) %>% 
       add_trace(y = ~ Renewables,
-                name = "GridEmissions",
+                name = "Scotland",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "1",
-                text = paste0(
+                text = paste0("Scotland: ",
                   round(GridEmissions$Renewables, digits = 1),
                   " gCO2e/kWh\nYear: ",
                   format(GridEmissions$Year, "%Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = ChartColours[1], dash = "none")
+      ) %>%      
+      add_trace(y = ~ UKEmissions,
+                name = "UK",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "2",
+                text = paste0("UK: ",
+                  round(GridEmissions$UKEmissions, digits = 1),
+                  " gCO2e/kWh\nYear: ",
+                  format(GridEmissions$Year, "%Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[3], dash = "none")
       ) %>% 
       add_trace(
         data = tail(GridEmissions[which(GridEmissions$Renewables > 0 | GridEmissions$Renewables < 0),], 1),
         x = ~ Year,
         y = ~ `Renewables`,
-        name = "GridEmissions",
+        name = "Scotland",
         legendgroup = "1",
-        text = paste0(
+        text = paste0("Scotland: ",
           round(GridEmissions[which(GridEmissions$Renewables > 0 | GridEmissions$Renewables < 0),][-1,]$Renewables, digits = 1),
           " gCO2e/kWh\nYear: ",
           format(GridEmissions[which(GridEmissions$Renewables > 0 | GridEmissions$Renewables < 0),][-1,]$Year, "%Y")
@@ -139,8 +154,27 @@ GridEmissions <- function(input, output, session) {
         showlegend = FALSE ,
         type = "scatter",
         mode = 'markers',
-        marker = list(size = 18, 
+        marker = list(size = 18,
                       color = ChartColours[1])
+      ) %>%
+
+      add_trace(
+        data = tail(GridEmissions[which(GridEmissions$UKEmissions > 0 | GridEmissions$UKEmissions < 0),], 1),
+        x = ~ Year,
+        y = ~ `UKEmissions`,
+        name = "UK",
+        legendgroup = "2",
+        text = paste0("UK: ",
+          round(GridEmissions[which(GridEmissions$UKEmissions > 0 | GridEmissions$UKEmissions < 0),][-1,]$UKEmissions, digits = 1),
+          " gCO2e/kWh\nYear: ",
+          format(GridEmissions[which(GridEmissions$UKEmissions > 0 | GridEmissions$UKEmissions < 0),][-1,]$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[3])
       ) %>% 
       add_annotations(
         x = dmy("01/01/2002"),
@@ -203,7 +237,9 @@ GridEmissions <- function(input, output, session) {
     
     Data <- as_tibble(sapply( Data, as.numeric ))
     
-    names(Data) <- c("Year", "Grid emissions (gCO2e/kWh)")
+    Data[3] <- NULL
+    
+    names(Data) <- c("Year", "Scottish Grid emissions (gCO2e/kWh)", "UK Energy supply emissions (MtCO2e)", "UK Electricity generated (GWh)", "UK Grid emissions (gCO2e/kWh)" )
     
     GridEmissions <- Data
     
@@ -225,10 +261,11 @@ GridEmissions <- function(input, output, session) {
     
     GridEmissions <- merge(GridEmissions, EnSupplyEmissions)
     
-    names(GridEmissions) <- c("Year", "Grid emissions (gCO2e/kWh)", "Electricity generated (GWh)", "Energy supply emissions (MtCO2e)")
+    names(GridEmissions) <- c("Year", "Scottish Grid emissions (gCO2e/kWh)", "UK Energy supply emissions (MtCO2e)", "UK Electricity generated (GWh)", "UK Grid emissions (gCO2e/kWh)", 
+                              "Scottish Electricity generated (GWh)", "Scottish Energy supply emissions (MtCO2e)")
     
     datatable(
-      GridEmissions,
+      GridEmissions[c(1,2,6,7,5,4,3)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -260,8 +297,8 @@ GridEmissions <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:4, 1) %>% 
-      formatRound(3,0)
+      formatRound(2:7, 1) %>% 
+      formatRound(c(3,6),0)
   })
   
   
@@ -298,16 +335,21 @@ GridEmissions <- function(input, output, session) {
       
       Data <- as_tibble(sapply( Data, as.numeric ))
       
-      names(Data) <- c("Year", "Renewables")
+      Data <- Data[c(1,2,6)]
+      
+      names(Data) <- c("Year", "Renewables", "UKRenewables")
       
       GridEmissions <- Data
       
       GridEmissions$Renewables <-
         round(GridEmissions$Renewables, digits = 1)
       
+      GridEmissions$UKRenewables <-
+        round(GridEmissions$UKRenewables, digits = 1)
+      
       plottitle <- "Average greenhouse gas emissions per kilowatt hour of electricity"
       sourcecaption <- "Source: BEIS, SG"
-      ChartColours <- c("#39ab2c", "#FF8500")
+      ChartColours <- c("#39ab2c", "#FF8500", "#2b8cbe")
       
       GridEmissionsChart <-
         GridEmissions %>%  ggplot(aes(x = Year), family = "Century Gothic") +
@@ -315,8 +357,8 @@ GridEmissions <- function(input, output, session) {
         ### Line of Values
         geom_line(
           aes(y = Renewables,
-              colour = ChartColours[1],
-              label = Renewables),
+              
+              label = Renewables),colour = ChartColours[1],
           size = 1.5,
           family = "Century Gothic"
         ) +
@@ -325,9 +367,9 @@ GridEmissions <- function(input, output, session) {
             x = Year-1,
             y = Renewables,
             label = ifelse(Year == min(Year), paste(Renewables,"\ngCO2e/kWh"), ""),
-            colour = ChartColours[1],
+            
             fontface = 2
-          ),
+          ),colour = ChartColours[1],
           family = "Century Gothic"
         )+
         geom_text(
@@ -335,9 +377,9 @@ GridEmissions <- function(input, output, session) {
             x = Year+1,
             y = Renewables,
             label = ifelse(Year == max(Year), paste(sprintf("%.1f", Renewables),"\ngCO2e/kWh"), ""),
-            colour = ChartColours[1],
+            
             fontface = 2
-          ),
+          ),colour = ChartColours[1],
           family = "Century Gothic",
           vjust = -.5
         ) +
@@ -346,24 +388,84 @@ GridEmissions <- function(input, output, session) {
           aes(
             x = Year,
             y = Renewables,
-            colour = ChartColours[1],
+            
             label = Renewables,
             show_guide = FALSE
-          ),
+          ),colour = ChartColours[1],
           size = 4,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = mean(Year),
+            y = mean(Renewables),
+            label = "Scotland",
+            
+            fontface = 2
+          ),colour = ChartColours[1],
+          vjust = 1,
+          family = "Century Gothic"
+        ) +
+        geom_line(
+          aes(y = UKRenewables,
+              
+              label = Renewables),colour = ChartColours[3],
+          size = 1.5,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year-1,
+            y = UKRenewables,
+            label = ifelse(Year == 2004, paste(UKRenewables,"\ngCO2e/kWh"), ""),
+            
+            fontface = 2
+          ),colour = ChartColours[3],
+          family = "Century Gothic"
+        )+
+        geom_text(
+          aes(
+            x = Year+1,
+            y = UKRenewables,
+            label = ifelse(Year == max(Year), paste(sprintf("%.1f", UKRenewables),"\ngCO2e/kWh"), ""),
+            
+            fontface = 2
+          ),colour = ChartColours[3],
+          family = "Century Gothic",
+          vjust = -.5
+        ) +
+        geom_point(
+          data = tail(GridEmissions, 1),
+          aes(
+            x = Year,
+            y = UKRenewables,
+            
+            label = UKRenewables,
+            show_guide = FALSE
+          ),colour = ChartColours[3],
+          size = 4,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = mean(Year),
+            y = mean(UKRenewables, na.rm = TRUE),
+            label = "UK",
+            fontface = 2
+          ),colour = ChartColours[3],
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
             x = Year,
             y = 0,
-            label = ifelse(Year == max(Year) |
+            label = ifelse(Year == max(Year) | Year == 2004 |
                              Year == min(Year), Year, ""),
             hjust = 0.5,
             vjust = 1.5,
-            colour = ChartColours[1],
+           
             fontface = 2
-          ),
+          ), colour = ChartColours[1],
           family = "Century Gothic"
         )
       
@@ -378,7 +480,7 @@ GridEmissions <- function(input, output, session) {
       
       GridEmissionsChart <- GridEmissionsChart +
         xlim(min(GridEmissions$Year)-1.5,max(GridEmissions$Year)+1.5)+
-        ylim(-17,max(GridEmissions$Renewables)+22) +
+        ylim(-17,max(GridEmissions$UKRenewables)+22) +
         geom_hline(yintercept = 50,
                    color = ChartColours[2],
                    linetype = 5)+
