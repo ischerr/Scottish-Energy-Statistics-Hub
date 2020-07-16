@@ -1444,13 +1444,20 @@ RenElecCapacity <- function(input, output, session) {
 
   output$RenElecOperationalSizeTable = renderDataTable({
     
-    OperationalSize <- read_delim("Processed Data/Output/Capacity by Size/CapacitySizeTech.txt", 
-                  "\t", escape_double = FALSE, trim_ws = TRUE)
+    CapacitySizeTech <- read_delim("Processed Data/Output/Capacity by Size/CapacitySizeTech.txt", 
+                                   "\t", escape_double = FALSE, col_names = FALSE, 
+                                   trim_ws = TRUE)
     
-    names(OperationalSize) <- c("Technology Type", "Total capacity of installations below  5MW", "Total capacity of installations between 5 - 10MW", "Total capacity of installations between 10-50MW", "Total capacity of installations above 50MW", "All Installation Sizes")
+    CapacitySizeTech <- as_tibble(t(CapacitySizeTech))
+    
+    names(CapacitySizeTech) <- unlist(CapacitySizeTech[1,])
+    
+    names(CapacitySizeTech)[1] <- c("Capacity")
+    
+    CapacitySizeTech <- CapacitySizeTech[-1,]
     
     datatable(
-      OperationalSize[1:5],
+      CapacitySizeTech[c(1,2,3,4,6,7,5,8)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -1481,7 +1488,7 @@ RenElecCapacity <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:ncol(OperationalSize), 0)
+      formatRound(2:ncol(CapacitySizeTech), 0)
   })
   
   output$RenElecOperationalSizeSubtitle <- renderText({
@@ -1692,7 +1699,7 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 6.95,
+            x = 5.95,
             y = max(OperationalSize$top)*0.05,
             label = "Installations\nbelow\n5 MW",
             fontface = 2
@@ -1702,7 +1709,7 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 6.95,
+            x = 5.95,
             y = max(OperationalSize$top)*0.33,
             label = "Installations\nbetween\n5 MW - 10 MW",
             fontface = 2
@@ -1712,7 +1719,7 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 6.95,
+            x = 5.95,
             y = max(OperationalSize$top)*0.63,
             label = "Installations\nbetween\n10 MW - 50 MW",
             fontface = 2
@@ -1723,7 +1730,7 @@ RenElecCapacity <- function(input, output, session) {
         
         geom_text(
           aes(
-            x = 6.95,
+            x = 5.95,
             y = max(OperationalSize$top)*0.9,
             label = "Installations\nabove\n50 MW",
             fontface = 2
@@ -1733,7 +1740,7 @@ RenElecCapacity <- function(input, output, session) {
         )+
         geom_text(
           aes(
-            x = 6.95,
+            x = 5.95,
             y = max(OperationalSize$top)*1.08,
             label = "Total\nCapacity",
             fontface = 2
@@ -1743,7 +1750,7 @@ RenElecCapacity <- function(input, output, session) {
         )+
         geom_text(
           aes(
-            x = 7.45,
+            x = 6.45,
             y = .5,
             label = "",
             fontface = 2
