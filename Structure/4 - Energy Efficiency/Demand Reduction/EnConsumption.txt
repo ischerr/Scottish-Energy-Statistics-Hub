@@ -2,7 +2,7 @@
 <ul>
 <li>Energy consumption in <strong>industry </strong>makes up approximately a third of all Scottish consumption (<strong>49.1 TWh</strong>). This is a <strong>21.8% reduction</strong> from the 2005-07 baseline, but is a rise of <strong>4.9%</strong> on <strong>2016</strong>.&nbsp;&nbsp;</li>
 <li>Energy consumption in the <strong>domestic sector </strong>is next largest at <strong>44.7 TWh</strong>.&nbsp; This is a <strong>decrease</strong> of <strong>15.9%</strong> from <strong>2005-07</strong>, which may reflect improvements in energy efficiency in the domestic building stock in this time.&nbsp;&nbsp;</li>
-<li>Consumption in the <strong>commerical </strong>sector <strong>rose </strong>by <strong>8.2% </strong>from the baseline to <strong>16.4 TWh </strong>in <strong>2017.&nbsp; </strong>Energy consumption in <strong>transport </strong>also <strong>rose&nbsp;</strong>in this period, up&nbsp;<strong>1.1%</strong>.</li>
+<li>Consumption in the <strong>commercial </strong>sector <strong>rose </strong>by <strong>8.2% </strong>from the baseline to <strong>16.4 TWh </strong>in <strong>2017.&nbsp; </strong>Energy consumption in <strong>transport </strong>also <strong>rose&nbsp;</strong>in this period, up&nbsp;<strong>1.1%</strong>.</li>
 </ul>
 <p>The changes in consumption of different <span style="text-decoration: underline;"><strong>fuels</strong></span> in Scotland has also changed over time:&nbsp;</p>
 <ul>
