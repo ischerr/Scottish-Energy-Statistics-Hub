@@ -615,7 +615,7 @@ EnergyConsumption <- function(input, output, session) {
             )[1, 4]
           ),
           label = percent((
-            subset(FinalConsumptionMax, variable == "Comercial")[1, 3]
+            subset(FinalConsumptionMax, variable == "Commercial")[1, 3]
           ), accuracy = .1),
           fontface = 2,
           color = BarColours[3],
