@@ -1448,16 +1448,14 @@ RenElecCapacity <- function(input, output, session) {
                                    "\t", escape_double = FALSE, col_names = FALSE, 
                                    trim_ws = TRUE)
     
-    CapacitySizeTech <- as_tibble(t(CapacitySizeTech))
     
     names(CapacitySizeTech) <- unlist(CapacitySizeTech[1,])
     
-    names(CapacitySizeTech)[1] <- c("Capacity")
     
     CapacitySizeTech <- CapacitySizeTech[-1,]
     
     datatable(
-      CapacitySizeTech[c(1,2,3,4,6,7,5,8)],
+      CapacitySizeTech[c(1,3,2,4:7),],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -1466,6 +1464,7 @@ RenElecCapacity <- function(input, output, session) {
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
+        columnDefs = list(list(className = 'dt-right', targets = 1:5)),
         autoWidth = TRUE,
 
         title = "Operational renewable capacity by installation size (MW)",
