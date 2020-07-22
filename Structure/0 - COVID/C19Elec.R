@@ -146,7 +146,7 @@ C19Elec <- function(input, output, session) {
     
     DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "PostLockdown", "BeforeLockdown")
     
-    DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 23, "Phase 1 & 2", DailyDemand$PostLockdown)
+    DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 23, "Phase 1, 2 & 3", DailyDemand$PostLockdown)
     
     WeekdayElecDemand <- DailyDemand
     
@@ -192,13 +192,13 @@ C19Elec <- function(input, output, session) {
                 line = list(width = 4)
       ) %>% 
       
-      add_trace(y = ~ `Phase 1 & 2`,
-                name = "Phase 1 & 2",
+      add_trace(y = ~ `Phase 1, 2 & 3`,
+                name = "Phase 1, 2 & 3",
                 type = 'bar',
                 legendgroup = "3",
                 marker = list(color = BarColours[3]),
                 text = paste0(
-                  "Phase 1 & 2: ", format(round(WeekdayElecDemand$`Phase 1 & 2`, 2), big.mark = ",")," GWh\n",
+                  "Phase 1, 2 & 3: ", format(round(WeekdayElecDemand$`Phase 1, 2 & 3`, 2), big.mark = ",")," GWh\n",
                   "Year: ", WeekdayElecDemand$Year, "\n"),
                 hoverinfo = 'text',
                 line = list(width = 4)
@@ -445,7 +445,7 @@ C19Elec <- function(input, output, session) {
         showarrow = FALSE
       ) %>% 
       add_annotations(
-        x = dmy("25/06/2020"),
+        x = dmy("26/06/2020"),
         y = .4,
         yref = "paper",
         text = "<b>19/06</b>\nPhase 2",
@@ -454,9 +454,19 @@ C19Elec <- function(input, output, session) {
         textposistion = "bottom right",
         showarrow = FALSE
       ) %>% 
+      add_annotations(
+        x = dmy("17/07/2020"),
+        y = .4,
+        yref = "paper",
+        text = "<b>10/07</b>\nPhase 3",
+        font = list(color = "#02818a",
+                    family = "Century Gothic"),
+        textposistion = "bottom right",
+        showarrow = FALSE
+      ) %>% 
       layout(
         barmode = 'stack',
-        shapes = list( vline1(dmy("23/03/2020")),vline2(dmy("28/05/2020")),vline2(dmy("19/06/2020"))),
+        shapes = list( vline1(dmy("23/03/2020")),vline2(dmy("28/05/2020")),vline2(dmy("19/06/2020")),vline2(dmy("10/07/2020"))),
         bargap = 0.66,
         legend = list(font = list(color = "#126992"),
                       orientation = 'h'),
@@ -525,7 +535,7 @@ C19Elec <- function(input, output, session) {
     
     WeekdayElecDemand <- dcast(WeekdayElecDemand, Year ~ PostLockdown)
     
-    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "fourth week of March to second week of July (GWh)")
+    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "fourth week of March to third week of July (GWh)")
     datatable(
       WeekdayElecDemand,
       extensions = 'Buttons',
@@ -695,7 +705,7 @@ C19Elec <- function(input, output, session) {
       
       DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "Post-Lockdown", "Pre-Lockdown")
       
-      DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 23, "Phase 1 & 2", DailyDemand$PostLockdown)
+      DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 23, "Phase 1, 2 & 3", DailyDemand$PostLockdown)
       
       WeekdayElecDemand <- DailyDemand
       
@@ -722,7 +732,7 @@ C19Elec <- function(input, output, session) {
           values = c(
             "Post-Lockdown" = BarColours[2],
             "Pre-Lockdown" = BarColours[1],
-            "Phase 1 & 2" = BarColours[3]
+            "Phase 1, 2 & 3" = BarColours[3]
           )
         ) +
         geom_bar(position = "dodge",
@@ -1167,6 +1177,41 @@ output$C19ElecRolling.png <- downloadHandler(
         "segment",
         x = dmy("19/06/2020"),
         xend = dmy("19/06/2020"),
+        y = -1000,
+        yend = 1000,
+        colour = "#07818a",
+        alpha = 0.9,
+        linetype = 2
+      ) +
+      geom_text(
+        aes(
+          x = dmy("11/07/2020"),
+          y = 40,
+          label = "10/07",
+          fontface = 2
+        ),
+        vjust = -.2,
+        hjust = 0,
+        colour = "#07818a",
+        family = "Century Gothic",
+        size = 3
+      )+
+      geom_text(
+        aes(
+          x = dmy("11/07/2020"),
+          y = 40,
+          label = "Phase 3 "
+        ),
+        vjust = 1.1,
+        hjust = 0,
+        colour = "#07818a",
+        family = "Century Gothic",
+        size = 3
+      )+
+      annotate(
+        "segment",
+        x = dmy("10/07/2020"),
+        xend = dmy("10/07/2020"),
         y = -1000,
         yend = 1000,
         colour = "#07818a",
