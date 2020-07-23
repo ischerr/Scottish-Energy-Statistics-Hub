@@ -324,14 +324,20 @@ RenElecSources <- function(input, output, session) {
   
   RenTurnover$variable[RenTurnover$variable == "Solar photovoltaic"] <- "Solar PV"
   
+  RenSites <- as_tibble(read_delim("Processed Data/Output/Renewable Generation/RenewableSites.txt", 
+                     "\t", escape_double = FALSE, trim_ws = TRUE))
+  
+  
   OnshoreWindTable <- as_tibble(cbind("Onshore Wind",
                                       RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Onshore Wind`,
                                       RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Onshore Wind`,
                                       RenElecPipeline$`Wind Onshore`,
                                       RenEmployees[which(RenEmployees$variable == "Onshore wind"),]$value,
-                                      RenTurnover[which(RenTurnover$variable == "Onshore wind"),]$value
+                                      RenTurnover[which(RenTurnover$variable == "Onshore wind"),]$value,
+                                      RenSites[which(RenSites$Year == max(RenSites$Year)),]$`Onshore Wind`
+                                      
   ))
-  names(OnshoreWindTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3bn)")
+  names(OnshoreWindTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3bn)", "Number of Sites")
   
   
   OffshoreWindTable <- as_tibble(cbind("Offshore Wind",
@@ -339,51 +345,61 @@ RenElecSources <- function(input, output, session) {
                                        RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Offshore Wind`,
                                        RenElecPipeline$`Wind Offshore`,
                                        RenEmployees[which(RenEmployees$variable == "Offshore wind"),]$value,
-                                       RenTurnover[which(RenTurnover$variable == "Offshore wind"),]$value
+                                       RenTurnover[which(RenTurnover$variable == "Offshore wind"),]$value,
+                                       RenSites[which(RenSites$Year == max(RenSites$Year)),]$`Offshore Wind`
   ))
-  names(OffshoreWindTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3bn)")
+  names(OffshoreWindTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3bn)", "Number of Sites")
   
   HydroTable <- as_tibble(cbind("Hydro",
                                 RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Hydro`,
                                 RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Hydro`,
                                 RenElecPipeline$`Hydro`,
                                 RenEmployees[which(RenEmployees$variable == "Hydro"),]$value,
-                                RenTurnover[which(RenTurnover$variable == "Hydro"),]$value
+                                RenTurnover[which(RenTurnover$variable == "Hydro"),]$value,
+                                RenSites[which(RenSites$Year == max(RenSites$Year)),]$`Hydro`
   ))
-  names(HydroTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3bn)")
+  names(HydroTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3bn)", "Number of Sites")
   
   SolarPVTable <- as_tibble(cbind("Solar PV",
                                   RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Solar PV`,
                                   RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Solar PV`,
                                   RenElecPipeline$`Solar Photovoltaics`,
                                   RenEmployees[which(RenEmployees$variable == "Solar PV"),]$value,
-                                  RenTurnover[which(RenTurnover$variable == "Solar PV"),]$value
+                                  RenTurnover[which(RenTurnover$variable == "Solar PV"),]$value,
+                                  RenSites[which(RenSites$Year == max(RenSites$Year)),]$`Solar PV`
   ))
-  names(SolarPVTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3bn)")
+  names(SolarPVTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3bn)", "Number of Sites")
   
   BioenergyTable <- as_tibble(cbind("Bioenergy",
                                     RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Bioenergy`,
                                     RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Bioenergy`,
-                                    RenElecPipeline$`Bioenergy`
+                                    RenElecPipeline$`Bioenergy`,
+                                    (
+                                        RenSites[which(RenSites$Year == max(RenSites$Year)),]$`Landfill gas` +
+                                        RenSites[which(RenSites$Year == max(RenSites$Year)),]$`Sewage gas` +
+                                        RenSites[which(RenSites$Year == max(RenSites$Year)),]$`Other Bioenergy`
+                                    )
   ))
-  names(BioenergyTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)")
+  names(BioenergyTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Number of Sites")
   
   
   WaveTidalTable <- as_tibble(cbind("Wave and Tidal",
                                     RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Wave and tidal`,
                                     RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Wave and tidal`,
-                                    RenElecPipeline$`Shoreline wave / tidal`
+                                    RenElecPipeline$`Shoreline wave / tidal`,
+                                    RenSites[which(RenSites$Year == max(RenSites$Year)),]$`Wave and tidal`
   ))
-  names(WaveTidalTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)")
+  names(WaveTidalTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Number of Sites")
   
   TotalTable <- as_tibble(cbind("Total",
                                 RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Total`,
                                 RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Total`,
                                 RenElecPipeline$`Total`,
                                 RenEmployees[which(RenEmployees$variable == "Other"),]$value,
-                                RenTurnover[which(RenTurnover$variable == "Other"),]$value
+                                RenTurnover[which(RenTurnover$variable == "Other"),]$value,
+                                RenSites[which(RenSites$Year == max(RenSites$Year)),]$`Total`
   ))
-  names(TotalTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3bn)")
+  names(TotalTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3bn)", "Number of Sites")
   
   TechTable <- rbind.fill(OnshoreWindTable, OffshoreWindTable, HydroTable, SolarPVTable, BioenergyTable, WaveTidalTable, TotalTable)
   
@@ -397,8 +413,8 @@ RenElecSources <- function(input, output, session) {
     as.numeric(as.character(x)))
   
   Stacked <- as_tibble(Stacked)
-  Stacked$Unit <- c("GWh", "MW", "MW", "FTE", "bn")
-  Stacked$Prefix <- c("","","","","\u00A3")
+  Stacked$Unit <- c("GWh", "MW", "MW", "FTE", "bn", "")
+  Stacked$Prefix <- c("","","","","\u00A3", "")
   
   Stacked2 <- Stacked
   
@@ -407,8 +423,9 @@ RenElecSources <- function(input, output, session) {
   Stacked[3,1] <- paste0("<b>", Stacked[3,1], "</b>" , "\n", max(RenElecCapFuel$Year))
   Stacked[4,1] <- paste0("<b>", Stacked[4,1], "</b>" , "\n", RenEconomyYear)
   Stacked[5,1] <- paste0("<b>", Stacked[5,1], "</b>" , "\n", RenEconomyYear)
+  Stacked[6,1] <- paste0("<b>", Stacked[6,1], "</b>" , "\n", max(RenSites$Year))
   
-  Stacked2$Time <- c(max(RenElecGenFuel$Year), max(RenElecCapFuel$Year),max(RenElecCapFuel$Year),RenEconomyYear,RenEconomyYear)
+  Stacked2$Time <- c(max(RenElecGenFuel$Year), max(RenElecCapFuel$Year),max(RenElecCapFuel$Year),RenEconomyYear,RenEconomyYear, max(RenSites$Year))
 
   
   #Stacked$Tech <- factor(Stacked$Tech, levels = unique(Stacked$Tech)[order(row.names(Stacked), decreasing = FALSE)])
@@ -1823,6 +1840,7 @@ RenElecSources <- function(input, output, session) {
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
+        columnDefs = list(list(className = 'dt-right', targets = 1:6)),
         autoWidth = TRUE,
         title = "Renewable Sources",
         dom = 'ltBp',
@@ -1844,8 +1862,8 @@ RenElecSources <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:(ncol(TechTable)-1), 0) %>% 
-      formatRound(ncol(TechTable), 2)
+      formatRound(2:(ncol(TechTable)), 0) %>% 
+      formatRound(ncol(TechTable)-1, 2)
   })
   
   output$AllWindTable = renderDataTable({
