@@ -196,7 +196,7 @@ DomesticRHI <- function(input, output, session) {
   })
   
   output$SubtitleYearText2 <- renderUI({
-    column(10, h3(paste("Number of full accreditations on/off the gas grid by aggregated rural/urban classification, Domestic -", "November 2011 to December 2019") , style = "color: #39ab2c;  font-weight:bold"))
+    column(10, h3(paste("Number of full accreditations on/off the gas grid by aggregated rural/urban classification, Domestic -", "April 2014 to December 2019") , style = "color: #39ab2c;  font-weight:bold"))
     
   })
   
