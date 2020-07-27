@@ -38,7 +38,21 @@ DomesticRHIOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     #dygraphOutput(ns("DomesticRHIPlot")),
     plotlyOutput(ns("DomesticRHIPlot"))%>% withSpinner(color="#39ab2c"),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
+    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Urban/Rural",
+             fluidRow(column(8,
+                             h3("Proportion of full accreditations by rural/urban classification", style = "color: #39ab2c;  font-weight:bold"),
+                             h4(textOutput(ns('DomRHIUrbanRuralSubtitle')), style = "color: #39ab2c;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('DomRHIUrbanRural.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+             #dygraphOutput(ns("DomesticRHIPlot")),
+             plotlyOutput(ns("DomRHIUrbanRuralPlot"))%>% withSpinner(color="#39ab2c"),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
 
     ),
     fluidRow(
@@ -1092,6 +1106,268 @@ output$DomRHIInstallationsOutput.png <- downloadHandler(
     
   }
 )
+
+output$DomRHIUrbanRuralSubtitle <- renderText({
+  
+  paste("Scotland,","April 2014 to December 2019")
+})
+
+output$DomRHIUrbanRuralPlot <- renderPlotly  ({
+  
+  DomUrbanRural <- read_delim("Processed Data/Output/RHI/DomUrbanRural.txt", 
+                              "\t", escape_double = FALSE, trim_ws = TRUE)
+  
+  DomUrbanRural$UrbanProp <- DomUrbanRural$`Total Urban` / DomUrbanRural$Total
+  
+  DomUrbanRural$RuralProp <- DomUrbanRural$`Total Rural` / DomUrbanRural$Total
+  
+  DomUrbanRural <- DomUrbanRural[c(1,11,12)]
+  
+  DomUrbanRural$Tech <- paste0("<b>", DomUrbanRural$Tech, "</b>")
+  
+  DomUrbanRural$Tech <- factor(DomUrbanRural$Tech, levels = c(as.character(DomUrbanRural$Tech)))
+  
+  ChartColours <- c("#004529", "#78c679")
+  
+  p <- plot_ly(
+    data = DomUrbanRural,
+    y = ~Tech,
+    x = ~UrbanProp,
+    text = paste0(DomUrbanRural$Tech,
+                  "\nProportion of accreddited installations with urban classification: ",
+                  percent(DomUrbanRural$UrbanProp,.1), ""
+    ),
+    name = "Urban",
+    type = "bar",
+    hoverinfo = "text",
+    orientation = 'h',
+    legendgroup = '1',
+    marker = list(color =  ChartColours[1])
+  )  %>% 
+    add_trace(
+      y = ~Tech,
+      x = ~RuralProp,
+      text = paste0(DomUrbanRural$Tech,
+                    "\nProportion of accreddited installations with rural classification: ",
+                    percent(DomUrbanRural$RuralProp,.1), ""
+      ),
+      name = "Rural",
+      type = "bar",
+      hoverinfo = "text",
+      orientation = 'h',
+      legendgroup = '2',
+      marker = list(color =  ChartColours[2])
+    ) %>% 
+    layout(
+      barmode = 'stack',
+      legend = list(font = list(color = "#39ab2c"),
+                    orientation = 'h'),
+      hoverlabel = list(font = list(color = "white"),
+                        hovername = 'text'),
+      hovername = 'text',
+      yaxis = list(title = "",
+                   autorange = "reversed",
+                   showgrid = FALSE),
+      xaxis = list(
+        title = "",
+        tickformat = "%",
+        showgrid = TRUE,
+        zeroline = TRUE,
+        zerolinecolor = ChartColours[1],
+        zerolinewidth = 2,
+        rangemode = "tozero"
+      )
+    ) %>% 
+    config(displayModeBar = F)
+  
+  p
+  
+  
+  
+  
+})
+
+output$DomRHIUrbanRural.png <- downloadHandler(
+  filename = "DomRHIUrbanRural.png",
+  content = function(file) {
+    
+    Data <- read_delim("Processed Data/Output/RHI/DomUrbanRural.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    Data$RuralProp <- Data$`Total Rural` / Data$Total
+    Data$UrbanProp <- Data$`Total Urban` / Data$Total
+    
+    Data <- Data[c(1,11,12)]
+    
+    ChartColours <- "#39ab2c"
+    BarColours <- c("#004529", "#78c679")
+    
+    Data$Tech <-
+      factor(Data$Tech,
+             levels = rev(unique(Data$Tech)),
+             ordered = TRUE)
+    
+    Data <- melt(Data, id.vars = "Tech")
+    
+    
+    Data$variable <-
+      factor(
+        Data$variable,
+        levels = unique(Data$variable),
+        ordered = TRUE
+      )
+    
+    Data <- Data %>%
+      group_by(Tech) %>%
+      mutate(pos = cumsum(value) - value / 2) %>%
+      mutate(top = sum(value))
+    
+    
+    ### variables
+    sourcecaption = "Source: BEIS"
+    plottitle = "Proportion of full accreditations by rural/urban classification"
+    
+    DataChart <- Data %>%
+      ggplot(aes(x = Tech, y = value, fill = variable, color = variable), family = "Century Gothic") +
+      scale_fill_manual(
+        "variable",
+        values = c(
+          "UrbanProp" = BarColours[1],
+          "RuralProp" = BarColours[2]
+        )
+      ) +
+      scale_colour_manual(values=c(BarColours[2],BarColours[1] )) +
+      geom_bar(position = "stack",
+               stat = "identity",
+               width = .8) +
+      coord_flip() +
+      geom_text(aes(
+        y = (top - pos),
+        label = percent(value, .1),
+        
+      ),
+      fontface = 2,
+      colour = "white",
+      size = 3,
+      family = "Century Gothic") +
+      geom_text(
+        y = -0.175,
+        label = str_wrap(Data$Tech, 20),
+        fontface = 2,
+        family = "Century Gothic",
+        vjust = .5,
+        color = ChartColours[1]
+      ) +
+      geom_text(
+        aes(x = 5.7,
+            y = 0,
+            label = "Urban"),
+        fontface = 2,
+        colour = BarColours[1],
+        family = "Century Gothic",
+        hjust = 0
+      ) +
+      geom_text(
+        aes(x = 5.7,
+            y = 1,
+            label = "Rural"),
+        fontface = 2,
+        colour = BarColours[2],
+        family = "Century Gothic",
+        hjust = 1
+      ) +
+      geom_text(
+        aes(x = 6.2,
+            y = 0.29,
+            label = " "),
+        fontface = 2,
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        hjust = 0.5
+      ) +
+      theme(
+        text = element_text(family = "Century Gothic")
+        ,
+        panel.background = element_rect(fill = "transparent") # bg of the panel
+        ,
+        plot.background = element_rect(fill = "transparent", color = NA) # bg of the plot
+        ,
+        legend.background = element_rect(fill = "transparent") # get rid of legend bg
+        ,
+        legend.box.background = element_rect(fill = "transparent") # get rid of legend panel bg
+        ,
+        legend.title = ggplot2::element_blank()
+        ,
+        axis.text.x = element_blank()
+        ,
+        axis.text.y = element_blank()
+        ,
+        axis.title = ggplot2::element_blank()
+        ,
+        legend.text = element_text(colour = "black", family = "Century Gothic")
+        ,
+        axis.ticks = ggplot2::element_blank()
+        ,
+        panel.grid.major = ggplot2::element_blank()
+        ,
+        legend.position = "none"
+        ,
+        title = element_text(colour = ChartColours[1], size = 14)
+        ,
+        plot.title = ggplot2::element_text(face = "bold")
+      ) + ### Label Plot
+      labs(y = "Percentage", caption = sourcecaption) +
+      labs(title = plottitle,
+           face = "bold",
+           subtitle = "Scotland, April - June 2020") +
+      ### 0 Axis
+      
+      #geom_hline(yintercept=.52, color = ChartColours[2], alpha = 0.7)+
+      
+      
+      ### Plot Borders
+      annotate(
+        geom = 'segment',
+        x = Inf,
+        xend = Inf,
+        color = ChartColours[1],
+        y = -Inf,
+        yend = Inf,
+        size = 1.5
+      ) +
+      annotate(
+        geom = 'segment',
+        x = -Inf,
+        xend = -Inf,
+        color = ChartColours[1],
+        y = -Inf,
+        yend = Inf,
+        size = 1
+      ) +
+      ylim(-.3,1)
+    
+    DataChart
+    
+    DataChart <-
+      DataChart +
+      labs(subtitle = paste("Scotland, April 2014 to December 2019")) 
+    
+    DataChart
+    
+    ggsave(
+      file,
+      plot = DataChart,
+      width = 22,
+      height = 14,
+      units = "cm",
+      dpi = 300
+    )
+    
+    
+    
+  }
+)
+
 }
     
     
