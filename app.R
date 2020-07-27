@@ -305,8 +305,7 @@ output$HomeTab <- renderUI({
   setZoom(id = "SetEffects"),
   setShadow(id = "SetEffects"),
   fluidRow(
-    column(width = 3),
-    column(width = 6,
+    column(width = 4,
            actionLink(
              "GoToCovidTab",
              label = div(
@@ -319,11 +318,7 @@ output$HomeTab <- renderUI({
                style = "border: solid 2px #000000; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px; ",
                id = "SetEffects"
              )
-           )),
-    column(width = 3),
-    style = "padding: 10px; margin-top: 20px;"
-  ),
-  fluidRow(
+           )),    
     column(width = 4,
            actionLink(
              "GoToTotalEnergyTab",
@@ -337,7 +332,7 @@ output$HomeTab <- renderUI({
                style = "border: solid 2px #269356; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px; ",
                id = "SetEffects"
              )
-           )),
+           )),    
     column(width = 4,
            actionLink(
              "GoToRenLowCarbonTab",
@@ -352,6 +347,9 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
+    style = "padding: 10px; margin-top: 20px;"
+  ),
+  fluidRow(
     column(width = 4,
            actionLink(
              "GoToLocalEnergyTab",
@@ -365,11 +363,7 @@ output$HomeTab <- renderUI({
                style = "border: solid 2px #A3D65C; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px;",
                id = "SetEffects"
              )
-           )),
-
-    style = "padding: 10px; margin-top: 20px;"
-  ),
-  fluidRow( 
+           )), 
     column(width = 4,
            actionLink(
              "GoToEnergyEfficiencyTab",
@@ -398,6 +392,10 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
+
+    style = "padding: 10px; margin-top: 20px;"
+  ),
+  fluidRow( 
     column(width = 4,
            actionLink(
              "GoToSystemSecurityTab",
@@ -412,11 +410,6 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )), 
-    
-    style = "padding: 10px; margin-top: 20px;"
-  ),
-fluidRow(
-  column(width = 2),
   column(width = 4,
            actionLink(
              "GoToOilGasTab",
