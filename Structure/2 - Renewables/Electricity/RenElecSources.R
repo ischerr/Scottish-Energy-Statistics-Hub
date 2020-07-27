@@ -1828,6 +1828,18 @@ RenElecSources <- function(input, output, session) {
   
   output$RenSourcesTable = renderDataTable({
     
+    names(TechTable)[2] <- paste(names(TechTable)[1],"-", max(RenElecGenFuel$Year))
+
+    names(TechTable)[3] <- paste(names(TechTable)[3],"-",  max(RenElecCapFuel$Year))
+    
+    names(TechTable)[4] <- paste(names(TechTable)[4],"-",  max(RenElecCapFuel$Year))
+    
+    names(TechTable)[5] <- paste(names(TechTable)[5],"-",  RenEconomyYear)
+    
+    names(TechTable)[6] <- paste(names(TechTable)[6],"-",  RenEconomyYear)
+    
+    names(TechTable)[7] <- paste(names(TechTable)[7],"-",  max(RenSites$Year))
+    
     TechTableOutput <- head(TechTable, -1)
     
     datatable(
