@@ -65,7 +65,7 @@ C19ElecOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:;background-color:#5d8be1;"),
     tabsetPanel(
-      tabPanel("Weekday demand",
+      tabPanel("Average daily demand",
     fluidRow(
     column(10, h3("Data - Average daily electricity demand post-lockdown and in equivalent periods in previous years (GWh)", style = "color: #5d8be1;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
@@ -522,8 +522,6 @@ C19Elec <- function(input, output, session) {
     
     WeekdayElecDemand <- DailyDemand
     
-    WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Weekday %in%c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")),]
-    
     WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Month >= 3),]
     
     maxweek <- max(WeekdayElecDemand[which(WeekdayElecDemand$Year ==max(WeekdayElecDemand$Year)),]$Week)
@@ -569,7 +567,7 @@ C19Elec <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:5, 0) 
+      formatRound(2:5, 2) 
   })
   
   output$C19ElecRollingTable = renderDataTable({
