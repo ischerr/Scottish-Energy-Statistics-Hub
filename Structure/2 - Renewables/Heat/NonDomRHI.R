@@ -53,9 +53,9 @@ NonDomRHIOutput <- function(id) {
     #dygraphOutput(ns("NonDomRHIPlot")),
     plotlyOutput(ns("NonDomRHIPlot"))%>% withSpinner(color="#39ab2c"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Urban/Rural",
+    tabPanel("On/Off-grid",
              fluidRow(column(8,
-                             h3("Proportion of full accreditations by rural/urban classification", style = "color: #39ab2c;  font-weight:bold"),
+                             h3("Proportion of full accreditations which are on-grid and off-grid", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('NonDomRHIUrbanRuralSubtitle')), style = "color: #39ab2c;")
              ),
              column(
@@ -97,7 +97,7 @@ NonDomRHIOutput <- function(id) {
       
       tabPanel("Heat generated, installed capacity & installations paid ",
     fluidRow(
-    column(10, h3("Data - Heat generated, installed capacity and number of installations receiving payment, Nov 2011 - June 2019", style = "color: #39ab2c;  font-weight:bold")),
+    column(10, h3("Data - Heat generated, installed capacity and number of installations receiving payment, Nov 2011 - May 2020", style = "color: #39ab2c;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -143,7 +143,7 @@ NonDomRHI <- function(input, output, session) {
   
   output$NonDomRHISubtitle <- renderText({
     
-    paste("Scotland, Nov 2011 - June 2019")
+    paste("Scotland, Nov 2011 - May 2020")
   })
   
   output$NonDomRHIPlot <- renderPlotly  ({
@@ -453,17 +453,17 @@ NonDomRHI <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - June 2019",
+        title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - May 2020",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - June 2019",
+            title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - May 2020",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - June 2019")
+               title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - May 2020")
         ),
         
         # customize the length menu
@@ -759,7 +759,7 @@ NonDomRHI <- function(input, output, session) {
       
       NonDomRHIChart <-
         NonDomRHIChart +
-        labs(subtitle = "Scotland, Nov 2011 - June 2019") +
+        labs(subtitle = "Scotland, Nov 2011 - May 2020") +
         ylim(-.1, .7)+
         coord_flip()
       
@@ -1037,9 +1037,9 @@ output$NonDomRHIUrbanRuralPlot <- renderPlotly  ({
   
   DomUrbanRural <- DomUrbanRural[which(DomUrbanRural$Total > 0),]
   
-  DomUrbanRural$UrbanProp <- DomUrbanRural$`Total Urban` / DomUrbanRural$Total
+  DomUrbanRural$OnGridProp <- DomUrbanRural$`Total on-grid` / DomUrbanRural$Total
   
-  DomUrbanRural$RuralProp <- DomUrbanRural$`Total Rural` / DomUrbanRural$Total
+  DomUrbanRural$OffGridProp <- DomUrbanRural$`Total off-grid` / DomUrbanRural$Total
   
   DomUrbanRural <- DomUrbanRural[c(1,11,12)]
   
@@ -1052,10 +1052,10 @@ output$NonDomRHIUrbanRuralPlot <- renderPlotly  ({
   p <- plot_ly(
     data = DomUrbanRural,
     y = ~Tech,
-    x = ~UrbanProp,
+    x = ~OnGridProp,
     text = paste0(DomUrbanRural$Tech,
-                  "\nProportion of accreddited installations with urban classification: ",
-                  percent(DomUrbanRural$UrbanProp,.1), ""
+                  "\nProportion of accreddited installations that are on-grid: ",
+                  percent(DomUrbanRural$OnGridProp,.1), ""
     ),
     name = "Urban",
     type = "bar",
@@ -1066,10 +1066,10 @@ output$NonDomRHIUrbanRuralPlot <- renderPlotly  ({
   )  %>% 
     add_trace(
       y = ~Tech,
-      x = ~RuralProp,
+      x = ~OffGridProp,
       text = paste0(DomUrbanRural$Tech,
-                    "\nProportion of accreddited installations with rural classification: ",
-                    percent(DomUrbanRural$RuralProp,.1), ""
+                    "\nPProportion of accreddited installations that are off-grid: ",
+                    percent(DomUrbanRural$OffGridProp,.1), ""
       ),
       name = "Rural",
       type = "bar",
@@ -1116,8 +1116,8 @@ output$NonDomRHIUrbanRural.png <- downloadHandler(
     
     Data <- Data[which(Data$Total > 0),]
     
-    Data$RuralProp <- Data$`Total Rural` / Data$Total
-    Data$UrbanProp <- Data$`Total Urban` / Data$Total
+    Data$OffGridProp <- Data$`Total off-grid` / Data$Total
+    Data$OnGridProp <- Data$`Total on-grid` / Data$Total
     
     Data <- Data[c(1,11,12)]
     
@@ -1147,15 +1147,15 @@ output$NonDomRHIUrbanRural.png <- downloadHandler(
     
     ### variables
     sourcecaption = "Source: BEIS"
-    plottitle = "Proportion of full accreditations by rural/urban classification"
+    plottitle = "Proportion of full accreditations which are on-grid and off-grid"
     
     DataChart <- Data %>%
       ggplot(aes(x = Tech, y = value, fill = variable, color = variable), family = "Century Gothic") +
       scale_fill_manual(
         "variable",
         values = c(
-          "UrbanProp" = BarColours[1],
-          "RuralProp" = BarColours[2]
+          "OnGridProp" = BarColours[1],
+          "OffGridProp" = BarColours[2]
         )
       ) +
       scale_colour_manual(values=c(BarColours[2],BarColours[1] )) +
