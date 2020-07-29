@@ -30,3 +30,6 @@ GenSupplyReadable <- read_delim("Processed Data/Output/Renewable Generation/GenS
 BalanceMultipliers <- read_excel("Structure/1 - Whole System/BalanceMultipliers.xlsx")
 
 BalanceDropdown <- reactiveValues(Unit = "ktoe")
+
+LARenGen <- read_delim("Processed Data/Output/Renewable Generation/LARenGen.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
