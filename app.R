@@ -454,6 +454,23 @@ ui <- shinyUI(fluidPage(
   extendShinyjs(text = js_code, functions = 'browseURL'),
   title = "Scottish Energy Statistics Hub",
   tags$head(tags$link(rel = "shortcut icon", href = "https://www.gov.scot/favicon.ico")),
+  tags$head(
+    tags$style(type="text/css", 
+               "label.control-label, .selectize-control.single { 
+         display: table-cell; 
+         text-align: center; 
+         vertical-align: middle; 
+      } 
+      label.control-label {
+        padding-right: 10px;
+      }
+      .form-group { 
+        display: table-row;
+      }
+      .selectize-control.single div.item {
+        padding-right: 15px;
+      }")
+  ),
   #' tags$head(HTML("<meta charset='utf-8'>
   #'   <title>Emoji</title>
   #'   <style>
