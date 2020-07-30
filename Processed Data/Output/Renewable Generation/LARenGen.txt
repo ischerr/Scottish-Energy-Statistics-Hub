@@ -1,4 +1,4 @@
-"Year"	"LACode"	"LAName"	"Onshore Wind"	"Offshore Wind"	"Hydro"	"Solar photovoltaics"	"Shoreline wave / tidal"	"Biomass and Energy from Waste"	"Total"
+"Year"	"LACode"	"LAName"	"Onshore Wind"	"Offshore Wind"	"Hydro"	"Solar photovoltaics"	"Shoreline wave / tidal"	"Biomass and Energy from Waste"	"Overall Total"
 "2014"	"S12000033"	"Aberdeen City"	1.839675	0	2.279552	3.88283	0	17.702	25.704058
 "2014"	"S12000034"	"Aberdeenshire"	822.422604	0	0.99841	13.956729	0	38.667795	876.045539
 "2014"	"S12000041"	"Angus"	32.869596	0	4.76329	6.412352	0	11.598538	55.643776
