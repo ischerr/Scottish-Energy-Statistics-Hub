@@ -269,7 +269,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Elec capacity and peak demand", col_names = TRUE, 
-        skip = 37)[c(1:11)]
+        skip = 38)[c(1:11)]
     
     names(Data)[1:2] <- c("Year", "Period")
     
@@ -302,7 +302,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Elec capacity and peak demand", col_names = TRUE, 
-        skip = 37)[c(1:11)]
+        skip = 38)[c(1:11)]
     
     names(Data)[1:2] <- c("Year", "Period")
     
@@ -474,7 +474,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Elec capacity and peak demand", col_names = TRUE, 
-        skip = 37)[c(1:11)]
+        skip = 38)[c(1:11)]
     
     names(Data)[1:2] <- c("Year", "Period")
     
@@ -682,7 +682,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         read_excel(
           "Structure/CurrentWorking.xlsx",
           sheet = "Elec capacity and peak demand", col_names = TRUE, 
-          skip = 37)[c(1:11)]
+          skip = 38)[c(1:11)]
       
       names(Data)[1:2] <- c("Year", "Period")
       
@@ -766,7 +766,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.3,
+            x = 11.3,
             y = 13000 * (.5 / 8),
             label = "CCGT"
           ),
@@ -778,7 +778,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.3,
+            x = 11.3,
             y = 13000 * (1.5 / 8),
             label = "Coal"
           ),
@@ -790,7 +790,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.3,
+            x = 11.3,
             y = 13000 * (2.5 / 8),
             label = "Nuclear"
           ),
@@ -802,7 +802,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.3,
+            x = 11.3,
             y = 13000 * (3.5 / 8),
             label = "Large\nHydro"
           ),
@@ -814,7 +814,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.3,
+            x = 11.3,
             y = 13000 * (4.5 / 8),
             label = "Pumped\nStorage"
           ),
@@ -826,7 +826,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.3,
+            x = 11.3,
             y = 13000 * (5.5 / 8),
             label = "Diesel"
           ),
@@ -838,7 +838,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.3,
+            x = 11.3,
             y = 13000 * (6.5 / 8),
             label = "Moyle\nInterconnector"
           ),
@@ -850,7 +850,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.3,
+            x = 11.3,
             y = 13000 * (7.5 / 8),
             label = "Secure\nImport"
           ),
@@ -861,7 +861,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
           size = 3
         ) +
         geom_text(
-          aes(x = 10.8,
+          aes(x = 11.8,
               y = 13000 * (8 / 8),
               label = " "),
           fontface = 2,
@@ -896,7 +896,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 9.7 ,
+            x = 10.7 ,
             y = (MaxSupply$top - MaxSupply$value[which(MaxSupply$variable == "Moyle Interconnector")] - MaxSupply$value[which(
               MaxSupply$variable == "Secure import capability of GB Transmission Network into Scotland"
             )]) * .5,
@@ -952,8 +952,8 @@ MaxSupplyPeakDemand <- function(input, output, session) {
           colour =  ChartColours[1]
         ) +
         geom_segment(
-          x = 9.47,
-          xend = 9.47,
+          x = 10.47,
+          xend = 10.47,
           y = 0,
           yend = ifelse(
             MaxSupply$Year == max(MaxSupply$Year),
@@ -999,7 +999,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Elec capacity and peak demand", col_names = TRUE, 
-        skip = 37)[c(1:11)]
+        skip = 38)[c(1:11)]
     
     names(Data)[1:2] <- c("Year", "Period")
     
@@ -1032,7 +1032,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Elec capacity and peak demand", col_names = TRUE, 
-        skip = 37)[c(1:11)]
+        skip = 38)[c(1:11)]
     
     names(Data)[1:2] <- c("Year", "Period")
     
@@ -1133,7 +1133,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         read_excel(
           "Structure/CurrentWorking.xlsx",
           sheet = "Elec capacity and peak demand", col_names = TRUE, 
-          skip = 37)[c(1:11)]
+          skip = 38)[c(1:11)]
       
       names(Data)[1:2] <- c("Year", "Period")
       
@@ -1243,7 +1243,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.1,
+            x = 11.1,
             y = 4500,
             label = "Scottish generation"
           ),
@@ -1255,7 +1255,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.1,
+            x = 11.1,
             y = 10500,
             label = "Imports"
           ),
@@ -1266,7 +1266,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
           size = 3
         ) +
         geom_text(
-          aes(x = 10.5,
+          aes(x = 11.5,
               y = 13000 * (8 / 8),
               label = " "),
           fontface = 2,
