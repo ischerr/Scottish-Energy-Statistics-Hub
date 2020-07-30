@@ -65,8 +65,8 @@ RenElecGenOutput <- function(id) {
              )),
              fluidRow(column(6,selectInput(ns("YearSelect"), "Year:", c(max(LARenGen$Year):min(LARenGen$Year)), selected = max(LARenGen$Year), multiple = FALSE,
                                            selectize = TRUE, width = NULL, size = NULL) ),
-                      column(6,selectInput(ns("TechSelect"), "Tech:", c(unique(names(LARenGen[4:10]))), selected = "Total", multiple = FALSE,
-                                           selectize = TRUE, width = NULL, size = NULL))),
+                      column(6, align = 'right', selectInput(ns("TechSelect"), "Tech:", c(unique(names(LARenGen[4:10]))), selected = "Overall Total", multiple = FALSE,
+                                           selectize = TRUE, width = "300px", size = NULL))),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
              #dygraphOutput(ns("ElecGenFuelPlot")),
              leafletOutput(ns("LAGenMap"), height = "675px")%>% withSpinner(color="#39ab2c"),
@@ -137,6 +137,10 @@ RenElecGenOutput <- function(id) {
              fluidRow(
                column(10, h3("Data - LocalAuthority", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12,selectInput(ns("YearSelect2"), "Year:", c(max(LARenGen$Year):min(LARenGen$Year)), selected = max(LARenGen$Year), multiple = FALSE,
+                                    selectize = TRUE, width = "200px", size = NULL) )
              ),
              fluidRow(
                column(12, dataTableOutput(ns("LAGenTable"))%>% withSpinner(color="#39ab2c"))),
@@ -2411,7 +2415,11 @@ RenElecGen <- function(input, output, session) {
     LARenGen <- read_delim("Processed Data/Output/Renewable Generation/LARenGen.txt", 
                            "\t", escape_double = FALSE, trim_ws = TRUE)
     
+    Year2 = as.numeric(input$YearSelect2)
+    
     LARenGen <- LARenGen[which(substr(LARenGen$LACode,1,3) == "S12"),]
+    
+    LARenGen <- LARenGen[which(LARenGen$Year == Year2),]
     
     LARenGen <- LARenGen[order(-LARenGen$Year, LARenGen$LAName),]
     
