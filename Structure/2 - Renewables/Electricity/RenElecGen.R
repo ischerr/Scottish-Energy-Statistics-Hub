@@ -56,7 +56,7 @@ RenElecGenOutput <- function(id) {
     ),
     tabPanel("Local Authorities",
              fluidRow(column(8,
-                             h3("Local Authorities", style = "color: #39ab2c;  font-weight:bold"),
+                             h3("Renewable electricity generation at Local Authority Level", style = "color: #39ab2c;  font-weight:bold"),
                              
              ),
              column(
@@ -65,7 +65,7 @@ RenElecGenOutput <- function(id) {
              )),
              fluidRow(column(6,selectInput(ns("YearSelect"), "Year:", c(max(LARenGen$Year):min(LARenGen$Year)), selected = max(LARenGen$Year), multiple = FALSE,
                                            selectize = TRUE, width = NULL, size = NULL) ),
-                      column(6, align = 'right', selectInput(ns("TechSelect"), "Tech:", c(unique(names(LARenGen[4:10]))), selected = "Overall Total", multiple = FALSE,
+                      column(6, align = 'right', selectInput(ns("TechSelect"), "Tech:", c(unique(names(LARenGen[4:10]))), selected = "Total Renewable", multiple = FALSE,
                                            selectize = TRUE, width = "300px", size = NULL))),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
              #dygraphOutput(ns("ElecGenFuelPlot")),
@@ -135,7 +135,7 @@ RenElecGenOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Local Authority",
              fluidRow(
-               column(10, h3("Data - LocalAuthority", style = "color: #39ab2c;  font-weight:bold")),
+               column(10, h3("Data - Renewable electricity generation at Local Authority Level (GWh)", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -171,7 +171,8 @@ RenElecGenOutput <- function(id) {
       column(7, align = "right",
         SourceLookup("BEISRenElec"),
         SourceLookup("EURORenEn"),
-        SourceLookup("BEISSubNatEnergy")
+        SourceLookup("BEISSubNatEnergy"),
+        SourceLookup("BEISRenElecLA")
         
       )
     )
@@ -2434,17 +2435,17 @@ RenElecGen <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Local Authorities (GWh)",
+        title = "Renewable electricity generation at Local Authority Level (GWh)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Local Authorities (GWh)',
+            title = 'Renewable electricity generation at Local Authority Level (GWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Local Authorities (GWh)')
+               title = 'Renewable electricity generation at Local Authority Level (GWh)')
         ),
         
         # customize the length menu
@@ -2458,7 +2459,12 @@ RenElecGen <- function(input, output, session) {
   })
   
   
-  
+  output$LAGenMap.png <- downloadHandler(
+    filename = "LAGenMap.png",
+    content = function(file) {
+      writePNG(readPNG("Structure/2 - Renewables/Electricity/LARenGen.png"), file) 
+    }
+  )
   
   
   
