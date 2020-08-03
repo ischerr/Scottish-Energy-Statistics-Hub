@@ -115,13 +115,12 @@ RenHeatTech <- function(input, output, session) {
   
   output$RenHeatTechPlot <- renderPlotly  ({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Renewable heat by tech type", col_names = FALSE, 
-        skip = 13, n_max = 6)
+    Data <- read_delim("Processed Data/Output/Renewable Heat/RenHeatCapOutput.txt", 
+                                   "\t", escape_double = FALSE, trim_ws = TRUE)[1:3]
     
-    Data <- as.data.frame(t(Data))
+    Data <- dcast(Data, Year ~ Technology)
+    
+    Data$Total <- NULL
     names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar")
     Data %<>% lapply(function(x) as.numeric(as.character(x)))
     Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
@@ -577,24 +576,13 @@ RenHeatTech <- function(input, output, session) {
   
   output$RenHeatTechTable = renderDataTable({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Renewable heat by tech type", col_names = FALSE, 
-        skip = 13, n_max = 7)
+    RenHeatCapOutput <- read_delim("Processed Data/Output/Renewable Heat/RenHeatCapOutput.txt", 
+                                    "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Data <- as.data.frame(t(Data))
-    names(Data) <- c("Year", "Biomass", "Biomass CHP", "Energy from waste", "Heat pumps", "Solar thermal", "Total")
-    Data %<>% lapply(function(x) as.numeric(as.character(x)))
-    Data <- as_tibble(Data)
-    Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
-    Data <- Data[complete.cases(Data),]
-    Data <- arrange(Data, -row_number())
-    
-    RenHeatTech <- Data
+
     
     datatable(
-      RenHeatTech,
+      RenHeatCapOutput[c(1,2,3,5,7)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -606,17 +594,17 @@ RenHeatTech <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Renewable heat capacity by technology type (GW)",
+        title = "Renewable heat output and capacity",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Renewable heat capacity by technology type (GW)",
+            title = "Renewable heat output and capacity",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Renewable heat capacity by technology type (GW)")
+               title = "Renewable heat output and capacity")
         ),
         
         # customize the length menu
@@ -626,30 +614,17 @@ RenHeatTech <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(c(2:7), 3)
+      formatRound(c(3), 3) %>%
+      formatRound(c(4:5), 0)
   })
   
   output$RenHeatOutputTable = renderDataTable({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Renewable heat by tech type", col_names = FALSE, 
-        skip = 13, n_max = 7)
-    
-    Data <- as.data.frame(t(Data))
-    names(Data) <- c("Year", "Biomass", "Biomass CHP", "Energy from waste", "Heat pumps", "Solar thermal", "Total")
-    Data %<>% lapply(function(x) as.numeric(as.character(x)))
-    Data <- as_tibble(Data)
-    Data <- arrange(Data, -row_number())
-    Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
-    Data <- Data[complete.cases(Data),]
-    Data <- arrange(Data, -row_number())
-    
-    RenHeatOutputTech <- Data
+    RenHeatEnergyFromWaste <- read_delim("Processed Data/Output/Renewable Heat/RenHeatEnergyFromWaste.txt", 
+                                         "\t", escape_double = FALSE, trim_ws = TRUE)
     
     datatable(
-      RenHeatOutputTech,
+      RenHeatEnergyFromWaste[c(2,3,5)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -659,8 +634,6 @@ RenHeatTech <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        ordering = TRUE,
-        order = list(list(0, 'desc')),
         title = "Renewable heat output by technology type (GWh)",
         dom = 'ltBp',
         buttons = list(
@@ -681,7 +654,8 @@ RenHeatTech <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(c(2:7), 0)
+      formatRound(c(2), 3) %>%
+      formatRound(c(3), 0)
   })
   
   output$Text <- renderUI({
