@@ -10,8 +10,6 @@ source("Structure/Global.R")
 RenHeatTechOutput <- function(id) {
   ns <- NS(id)
   tagList(
-    tabsetPanel(
-      tabPanel("Capacity",
     fluidRow(column(8,
                     h3("Renewable heat capacity by technology type", style = "color: #39ab2c;  font-weight:bold"),
                     h4(textOutput(ns('RenHeatTechSubtitle')), style = "color: #39ab2c;")
@@ -24,22 +22,7 @@ RenHeatTechOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     #dygraphOutput(ns("RenHeatTechPlot")),
     plotlyOutput(ns("RenHeatTechPlot"))%>% withSpinner(color="#39ab2c"),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Output",
-             fluidRow(column(8,
-                             h3("Renewable heat output by technology type", style = "color: #39ab2c;  font-weight:bold"),
-                             h4(textOutput(ns('RenHeatOutputSubtitle')), style = "color: #39ab2c;")
-             ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('RenHeatOutput.png'), 'Download Graph', style="float:right")
-             )),
-             
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-             #dygraphOutput(ns("RenHeatTechPlot")),
-             plotlyOutput(ns("RenHeatOutputPlot"))%>% withSpinner(color="#39ab2c"),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
-    ),
+    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
@@ -116,217 +99,143 @@ RenHeatTech <- function(input, output, session) {
   output$RenHeatTechPlot <- renderPlotly  ({
     
     Data <- read_delim("Processed Data/Output/Renewable Heat/RenHeatCapOutput.txt", 
-                                   "\t", escape_double = FALSE, trim_ws = TRUE)[1:3]
+                       "\t", escape_double = FALSE, trim_ws = TRUE)[1:3]
     
     Data <- dcast(Data, Year ~ Technology)
     
-    Data$Total <- NULL
-    names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar")
+    names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar", "Total")
     Data %<>% lapply(function(x) as.numeric(as.character(x)))
     Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
     Data <- Data[complete.cases(Data),]
     
-    RenHeatCapTech <- Data
+    ChartColours <- c("39ab2c", "#FF8500")
     
-    plottitle <- "Renewable heat statistics by technology type"
-    sourcecaption <- "Source: EST"
-    ChartColours <- c("#39ab2c", "#FF8500", "#FFFFFF")
-    LineColours <- c("#fc4e2a","#feb24c","#fed976","#addd8e","#41ab5d")
+    BarColours <-
+      c("#006837",
+        "#1a9850",
+        "#66bd63",
+        "#fee08b",
+        "#fdae61",
+        "#f46d43",
+        "#d73027")
     
-    RenHeatCapTech$Year <- paste0("01/01/",  RenHeatCapTech$Year)
+    Data$Year <- paste0("<b>",Data$Year,"</b>")
     
-    RenHeatCapTech$Year <- dmy(RenHeatCapTech$Year)
-    
-    p <-  plot_ly(RenHeatCapTech, x = ~ Year ) %>% 
-      add_trace(y = ~ Biomass,
-                name = "Biomass",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "1",
-                text = paste0(
-                  "Biomass: ",
-                  round(RenHeatCapTech$Biomass, digits = 3),
-                  " GW\nYear: ",
-                  format(RenHeatCapTech$Year, "%Y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 6, color = LineColours[1], dash = "none")
-      ) %>% 
-      add_trace(y = ~ CHP,
-                name = "Biomass CHP",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "2",
-                text = paste0(
-                  "Biomass CHP: ",
-                  round(RenHeatCapTech$CHP, digits = 3),
-                  " GW\nYear: ",
-                  format(RenHeatCapTech$Year, "%Y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 6, color = LineColours[2], dash = "none")
-      ) %>% 
-      add_trace(y = ~ Waste,
-                name = "Energy from waste",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "3",
-                text = paste0(
-                  "Energy from waste: ",
-                  round(RenHeatCapTech$Waste, digits = 3),
-                  " GW\nYear: ",
-                  format(RenHeatCapTech$Year, "%Y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 6, color = LineColours[3], dash = "none")
-      ) %>% 
-      add_trace(y = ~ Pumps,
-                name = "Heat pumps",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "4",
-                text = paste0(
-                  "Heat pumps: ",
-                  round(RenHeatCapTech$Pumps, digits = 3),
-                  " GW\nYear: ",
-                  format(RenHeatCapTech$Year, "%Y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 6, color = LineColours[4], dash = "none")
-      ) %>% 
-      add_trace(y = ~ Solar,
-                name = "Solar thermal",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "5",
-                text = paste0(
-                  "Solar thermal: ",
-                  round(RenHeatCapTech$Solar, digits = 3),
-                  " GW\nYear: ",
-                  format(RenHeatCapTech$Year, "%Y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 6, color = LineColours[5], dash = "none")
-      ) %>% 
+    p <- plot_ly(data = Data, y = ~ `Year`) %>%
+      
       add_trace(
-        data = tail(RenHeatCapTech[which(RenHeatCapTech$`Biomass` != 0),], 1),
-        x = ~ Year,
-        y = ~ `Biomass`,
+        data = Data,
+        x = ~ `Biomass`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
         name = "Biomass",
-        legendgroup = "1",
-        text = paste0(
-          "Biomass: ",
-          round(tail(RenHeatCapTech[which(RenHeatCapTech$`Biomass` != 0),], 1)$Biomass, digits = 3),
-          " GW\nYear: ",
-          format(tail(RenHeatCapTech[which(RenHeatCapTech$`Biomass` != 0),], 1)$Year, "%Y")
-        ),
+        text = paste0("Biomass: ", round(Data$`Biomass`, 3), " GW"),
         hoverinfo = 'text',
-        showlegend = FALSE ,
-        type = "scatter",
-        mode = 'markers',
-        marker = list(size = 18, 
-                      color = LineColours[1])
-      ) %>% 
+        marker = list(color = BarColours[1]),
+        legendgroup = 1
+      ) %>%
       add_trace(
-        data = tail(RenHeatCapTech[which(RenHeatCapTech$`CHP` != 0),], 1),
-        x = ~ Year,
-        y = ~ `CHP`,
-        name = "Biomass CHP",
-        legendgroup = "2",
-        text = paste0(
-          "Biomass CHP: ",
-          round(tail(RenHeatCapTech[which(RenHeatCapTech$`CHP` != 0),], 1)$CHP, digits = 3),
-          " GW\nYear: ",
-          format(tail(RenHeatCapTech[which(RenHeatCapTech$`CHP` != 0),], 1)$Year, "%Y")
-        ),
+        data = Data,
+        x = ~ `CHP`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "CHP",
+        text = paste0("CHP: ", round(Data$`CHP`, 3), " GW"),
         hoverinfo = 'text',
-        showlegend = FALSE ,
-        type = "scatter",
-        mode = 'markers',
-        marker = list(size = 18, 
-                      color = LineColours[2])
-      ) %>% 
+        marker = list(color = BarColours[2]),
+        legendgroup = 2
+      ) %>%
       add_trace(
-        data = tail(RenHeatCapTech[which(RenHeatCapTech$`Waste` != 0),], 1),
-        x = ~ Year,
-        y = ~ `Waste`,
-        name = "Energy from waste",
-        legendgroup = "3",
-        text = paste0(
-          "Energy from waste: ",
-          round(tail(RenHeatCapTech[which(RenHeatCapTech$`Waste` != 0),], 1)$Waste, digits = 3),
-          " GW\nYear: ",
-          format(tail(RenHeatCapTech[which(RenHeatCapTech$`Waste` != 0),], 1)$Year, "%Y")
-        ),
+        data = Data,
+        x = ~ `Waste`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Waste",
+        text = paste0("Waste: ", round(Data$`Waste`, 3), " GW"),
         hoverinfo = 'text',
-        showlegend = FALSE ,
-        type = "scatter",
-        mode = 'markers',
-        marker = list(size = 18, 
-                      color = LineColours[3])
-      ) %>% 
+        marker = list(color = BarColours[3]),
+        legendgroup = 3
+      ) %>%
       add_trace(
-        data = tail(RenHeatCapTech[which(RenHeatCapTech$`Pumps` != 0),], 1),
-        x = ~ Year,
-        y = ~ `Pumps`,
-        name = "Heat pumps",
-        legendgroup = "4",
-        text = paste0(
-          "Heat pumps: ",
-          round(tail(RenHeatCapTech[which(RenHeatCapTech$`Pumps` != 0),], 1)$Pumps, digits = 3),
-          " GW\nYear: ",
-          format(tail(RenHeatCapTech[which(RenHeatCapTech$`Pumps` != 0),], 1)$Year, "%Y")
-        ),
+        data = Data,
+        x = ~ `Pumps`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Pumps",
+        text = paste0("Pumps: ", round(Data$`Pumps`, 3), " GW"),
         hoverinfo = 'text',
-        showlegend = FALSE ,
-        type = "scatter",
-        mode = 'markers',
-        marker = list(size = 18, 
-                      color = LineColours[4])
-      ) %>% 
+        marker = list(color = BarColours[4]),
+        legendgroup = 4
+      ) %>%
       add_trace(
-        data = tail(RenHeatCapTech[which(RenHeatCapTech$`Solar` != 0),], 1),
-        x = ~ Year,
-        y = ~ `Solar`,
-        name = "Solar thermal",
-        legendgroup = "5",
-        text = paste0(
-          "Solar thermal: ",
-          round(tail(RenHeatCapTech[which(RenHeatCapTech$`Solar` != 0),], 1)$Solar, digits = 3),
-          " GW\nYear: ",
-          format(tail(RenHeatCapTech[which(RenHeatCapTech$`Solar` != 0),], 1)$Year, "%Y")
-        ),
+        data = Data,
+        x = ~ `Solar`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Solar",
+        text = paste0("Solar: ", round(Data$`Solar`, 3), " GW"),
         hoverinfo = 'text',
-        showlegend = FALSE ,
-        type = "scatter",
-        mode = 'markers',
-        marker = list(size = 18, 
-                      color = LineColours[5])
-      ) %>% 
+        marker = list(color = BarColours[5]),
+        legendgroup = 5
+      ) %>%
+      add_trace(
+        x = (Data$Total) * 1.01,
+        showlegend = FALSE,
+        type = 'scatter',
+        mode = 'text',
+        text = paste("<b>",format(round((Data$Total), digits = 3), big.mark = ","),"GW</b>"),
+        textposition = 'middle right',
+        textfont = list(color = ChartColours[1]),
+        hoverinfo = 'skip',
+        marker = list(
+          size = 0.00001
+        )
+      ) %>%
+      add_trace(
+        x = (Data$Total) * 1.1,
+        showlegend = FALSE,
+        type = 'scatter',
+        mode = 'text',
+        text = paste(" "),
+        textposition = 'middle right',
+        textfont = list(color = ChartColours[1]),
+        hoverinfo = 'skip',
+        marker = list(
+          size = 0.00001
+        )
+      ) %>%
       layout(
         barmode = 'stack',
-        bargap = 0.66,
-        legend = list(font = list(color = "#39ab2c"),
+        legend = list(font = list(color = "#1A5D38"),
                       orientation = 'h'),
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
         hovername = 'text',
-        xaxis = list(title = "",
+        yaxis = list(title = "",
                      showgrid = FALSE,
-                     range = c(min(RenHeatCapTech$Year)-100, max(RenHeatCapTech$Year)+100)),
-        yaxis = list(
-          title = "GW",
+                     type = "category",
+                     autorange = "reversed",
+                     ticktext = as.list(Data$`Year`),
+                     tickmode = "array",
+                     tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
+        ),
+        xaxis = list(
+          ticksuffix = " GW",
+          tickformat = "",
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
-          zerolinewidth = 2,
-          rangemode = "tozero"
+          zerolinewidth = 2
         )
       ) %>% 
       config(displayModeBar = F)
+    
     p
-    
-    
     
   })
   
@@ -579,8 +488,16 @@ RenHeatTech <- function(input, output, session) {
     RenHeatCapOutput <- read_delim("Processed Data/Output/Renewable Heat/RenHeatCapOutput.txt", 
                                     "\t", escape_double = FALSE, trim_ws = TRUE)
     
+    RenHeatCapOutput <- melt(RenHeatCapOutput, id.vars = c("Year", "Technology"))
+    
+    RenHeatCapOutput$variable <- paste0(RenHeatCapOutput$variable, " - ", RenHeatCapOutput$Year)
+    
+    RenHeatCapOutput$Year <- NULL
+    
+    RenHeatCapOutput <- dcast(RenHeatCapOutput, Technology ~ variable)
+    
     datatable(
-      RenHeatCapOutput[c(1,2,3,5,7)],
+      RenHeatCapOutput[c(1,13,12,9,8,11,10)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -590,8 +507,6 @@ RenHeatTech <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        ordering = TRUE,
-        order = list(list(0, 'desc')),
         title = "Renewable heat output and capacity",
         dom = 'ltBp',
         buttons = list(
@@ -612,8 +527,8 @@ RenHeatTech <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(c(3), 3) %>%
-      formatRound(c(4:5), 0)
+      formatRound(c(2:3), 3) %>%
+      formatRound(c(4:7), 0)
   })
   
   output$RenHeatOutputTable = renderDataTable({
@@ -682,273 +597,194 @@ RenHeatTech <- function(input, output, session) {
     filename = "RenHeatTech.png",
     content = function(file) {
 
-      Data <-
-        read_excel(
-          "Structure/CurrentWorking.xlsx",
-          sheet = "Renewable heat by tech type", col_names = FALSE, 
-          skip = 13, n_max = 6)
+      Data <- read_delim("Processed Data/Output/Renewable Heat/RenHeatCapOutput.txt", 
+                         "\t", escape_double = FALSE, trim_ws = TRUE)[1:3]
       
-      Data <- as.data.frame(t(Data))
-      names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar")
+      Data <- dcast(Data, Year ~ Technology)
+      
+      names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar", "Total")
+      
+      Data$Total <- NULL
+      
       Data %<>% lapply(function(x) as.numeric(as.character(x)))
       Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
       Data <- Data[complete.cases(Data),]
       
-      RenHeatCapTech <- Data
+      DomesticEPC <- as_tibble(Data)
       
-      plottitle <- "Renewable heat capacity by technology type"
-      sourcecaption <- "Source: EST"
-      ChartColours <- c("#39ab2c", "#FF8500", "#FFFFFF")
-      LineColours <- c("#fc4e2a","#feb24c","#fed976","#addd8e","#41ab5d")
+      DomesticEPC <-
+        DomesticEPC[c(1, ncol(DomesticEPC):2)]
       
-      RenHeatCapTechChart <-
-        RenHeatCapTech %>%  ggplot(aes(x = Year), family = "Century Gothic") +
-        
-        ### Line of Values
-        geom_line(
-          aes(y = Biomass,
-              label = Biomass),
-          colour = LineColours[1],
-          size = 1.5,
-          family = "Century Gothic"
+      DomesticEPC <-
+        arrange(DomesticEPC,-row_number())
+      
+      DomesticEPC$Year <-
+        factor(DomesticEPC$Year,
+               levels = unique(DomesticEPC$Year))
+      
+      DomesticEPC <-
+        melt(DomesticEPC, id.vars = "Year")
+      
+      
+      DomesticEPC$variable <-
+        factor(DomesticEPC$variable,
+               levels = unique(DomesticEPC$variable))
+      
+      DomesticEPC <- DomesticEPC %>%
+        group_by(Year) %>%
+        mutate(pos = cumsum(value) - value / 2) %>%
+        mutate(top = sum(value))
+      length <- max(DomesticEPC$top)
+      height <- max(as.numeric(as.character(DomesticEPC$Year))) - min(as.numeric(as.character(DomesticEPC$Year))) + 1
+      
+      plottitle <-
+        "EPC Band (SAP 2012) distribution for fuel poor\nhouseholds (new definition)"
+      sourcecaption <- "Source: SG"
+      
+      ChartColours <- c("#34d1a3", "#FF8500")
+      BarColours <-
+        c("#006837",
+          "#1a9850",
+          "#66bd63",
+          "#fee08b",
+          "#fdae61",
+          "#f46d43",
+          "#d73027")
+      
+      
+      DomesticEPCChart <- DomesticEPC %>%
+        ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
+        scale_fill_manual(
+          "variable",
+          values = c(
+            "Biomass" = BarColours[1],
+            "CHP"     = BarColours[2],
+            "Waste"   = BarColours[3],
+            "Pumps"   = BarColours[4],
+            "Solar"   = BarColours[5]
+          )
+        ) +
+        geom_bar(stat = "identity", width = .8) +
+        annotate(
+          "text",
+          x = DomesticEPC$Year,
+          y = -.15,
+          label = ifelse(
+            DomesticEPC$Year == "z",
+            "",
+            str_wrap(DomesticEPC$Year, width = 8)
+          ),
+          family = "Century Gothic",
+          fontface = 2,
+          colour = ChartColours[1]
         ) +
         geom_text(
-          aes(
-            x = Year-.1,
-            y = Biomass,
-            label = ifelse(Year == min(Year), paste(round(Biomass, digits = 3), "GW"), ""),
-            hjust = 1,
-            
-            fontface = 2
-          ),
-          colour = LineColours[1],
-          family = "Century Gothic"
+          aes(x = height * 1.25,
+              y = length * (0.5 / 5.2),
+              label = "Biomass"),
+          fontface = 2,
+          colour = BarColours[2],
+          family = "Century Gothic",
+          hjust = 0.5
         ) +
         geom_text(
-          aes(
-            x = Year+1.2,
-            y = Biomass,
-            label = ifelse(Year == max(Year), paste0("Biomass\n",round(Biomass, digits = 3), " GW"), ""),
-            fontface = 2
-          ),
-          colour = LineColours[1],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(RenHeatCapTech, 1),
-          aes(
-            x = Year,
-            y = Biomass,
-            label = Biomass,
-            show_guide = FALSE
-          ), 
-          colour = LineColours[1],
-          size = 4,
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = CHP,
-              
-              label = CHP),
-          size = 1.5,
-          colour = LineColours[2],
-          family = "Century Gothic"
+          aes(x = height * 1.25,
+              y = length * (1.5 / 5.2),
+              label = "CHP"),
+          fontface = 2,
+          colour = BarColours[3],
+          family = "Century Gothic",
+          hjust = 0.5
         ) +
         geom_text(
-          aes(
-            x = Year-.1,
-            y = CHP,
-            label = ifelse(Year == min(Year), paste(round(CHP, digits = 3),"GW"), ""),
-            hjust = 1,
-            
-            fontface = 2
-          ),
-          colour = LineColours[2],
-          family = "Century Gothic"
+          aes(x = height * 1.25,
+              y = length * (2.5 / 5.2),
+              label = "Waste"),
+          fontface = 2,
+          colour = BarColours[4],
+          family = "Century Gothic",
+          hjust = 0.5
         ) +
         geom_text(
-          aes(
-            x = Year+1.2,
-            y = CHP,
-            label = ifelse(Year == max(Year), paste0("Biomass CHP\n",round(CHP, digits = 3), " GW"), ""),
-            fontface = 2
-          ),
-          colour = LineColours[2],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(RenHeatCapTech, 1),
-          aes(
-            x = Year,
-            y = CHP,
-            label = CHP,
-            show_guide = FALSE
-          ),
-          colour = LineColours[2],
-          size = 4,
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = Waste,
-              label = Waste),
-          size = 1.5,
-          colour = LineColours[3],
-          family = "Century Gothic"
+          aes(x = height * 1.25,
+              y = length * (3.5 /5.2),
+              label = "Pumps"),
+          fontface = 2,
+          colour = BarColours[5],
+          family = "Century Gothic",
+          hjust = 0.5
         ) +
         geom_text(
-          aes(
-            x = Year-.1,
-            y = Waste,
-            label = ifelse(Year == min(Year), paste(sprintf("%.3f", round(Waste, digits = 3)),"GW"), ""),
-            hjust = 1,
-            fontface = 2
+          aes(x = height * 1.25,
+              y = length * (4.5 / 5.2),
+              label = "Solar"),
+          fontface = 2,
+          colour = BarColours[6],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        annotate(
+          "text",
+          x = DomesticEPC$Year,
+          y = DomesticEPC$top +.05,
+          label = paste0(
+            round(DomesticEPC$top, 3),
+            " GW"
           ),
-          colour = LineColours[3],
-          family = "Century Gothic"
+          family = "Century Gothic",
+          hjust = 0,
+          fontface = 2,
+          colour = ChartColours[1]
         ) +
         geom_text(
-          aes(
-            x = Year+1.2,
-            y = Waste,
-            label = ifelse(Year == max(Year), paste0("Waste\n",round(Waste, digits = 3), " GW"), ""),
-            fontface = 2,
-            vjust = 0.25
-          ),
-          colour = LineColours[3],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(RenHeatCapTech, 1),
-          aes(
-            x = Year,
-            y = Waste,
-            label = Waste,
-            show_guide = FALSE
-          ),
-          colour = LineColours[3],
-          size = 4,
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = Pumps,
-              label = Pumps),
-          size = 1.5,
-          colour = LineColours[4],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year-.1,
-            y = Pumps,
-            label = ifelse(Year == min(Year), paste(round(Pumps, digits = 3), "GW"), ""),
-            hjust = 1,
-            vjust= -1.5,
-            fontface = 2
-          ),
-          colour = LineColours[4],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year+1.2,
-            y = Pumps,
-            label = ifelse(Year == max(Year), paste0("Heat pumps\n", round(Pumps, digits = 3)," GW"), ""),
-            vjust = -0.2,
-            fontface = 2
-          ),
-          colour = LineColours[4],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(RenHeatCapTech, 1),
-          aes(
-            x = Year,
-            y = Pumps,
-            label = Pumps,
-            show_guide = FALSE
-          ),
-          colour = LineColours[4],
-          size = 4,
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = Solar,
-              label = Solar),
-          size = 1.5,
-          colour = LineColours[5],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year-.1,
-            y = Solar,
-            label = ifelse(Year == min(Year), paste(round(Solar, digits = 3),"GW"), ""),
-            hjust = 1,
-            vjust = -.8,
-            fontface = 2
-          ),
-          colour = LineColours[5],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year+1.2,
-            y = Solar,
-            label = ifelse(Year == max(Year), paste0("Solar thermal\n",round(Solar, digits = 3)," GW"), ""),
-            fontface = 2,
-            vjust = 0.3
-          ),
-          colour = LineColours[5],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(RenHeatCapTech, 1),
-          aes(
-            x = Year,
-            y = Solar,
-            label = Solar,
-            show_guide = FALSE
-          ),
-          colour = LineColours[5],
-          size = 4,
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year,
-            y = 0,
-            label = ifelse(Year == max(Year) |
-                             Year == min(Year), Year, ""),
-            hjust = 0.5,
-            vjust = 1.5,
-            fontface = 2
-          ),
+          aes(x = height * 1.25,
+              y = length * (5.5 / 5.2),
+              label = "Total"),
+          fontface = 2,
           colour = ChartColours[1],
-          family = "Century Gothic"
+          family = "Century Gothic",
+          hjust = 0.5
+        )+
+        geom_text(
+          aes(x = height *1.30,
+              y = 1.05,
+              label = " "),
+          fontface = 2,
+          colour = ChartColours[1],
+          family = "Century Gothic",
+          hjust = 0.5
         )
       
-      
-      RenHeatCapTechChart
-      
-      RenHeatCapTechChart <-
-        LinePercentChart(RenHeatCapTechChart,
-                         RenHeatCapTech,
-                         plottitle,
-                         sourcecaption,
-                         ChartColours)
+      DomesticEPCChart
       
       
-      RenHeatCapTechChart
-
+      DomesticEPCChart <-
+        StackedBars(
+          DomesticEPCChart,
+          DomesticEPC,
+          plottitle,
+          sourcecaption,
+          ChartColours
+        )
       
-      RenHeatCapTechChart <- RenHeatCapTechChart +
-        ylim(-.008, max(RenHeatCapTech$Biomass))+
-        xlim(min(RenHeatCapTech$Year-1.2), max(RenHeatCapTech$Year+1.9))
+      DomesticEPCChart <-
+        DomesticEPCChart +
+        coord_flip() +
+        labs(subtitle = paste("Scotland",
+                              min(as.numeric(as.character(DomesticEPC$Year))),
+                              "-",
+                              max(as.numeric(as.character(DomesticEPC$Year)))
+        )) +
+        ylim(-.2, max(DomesticEPC$top)*1.1)
+      
+      DomesticEPCChart
+      
+      
       ggsave(
-       file,
-       plot = RenHeatCapTechChart,
-        width = 16,
-        height = 16,
+        file,
+        plot = DomesticEPCChart,
+        width = 19,
+        height = 15.5,
         units = "cm",
         dpi = 300
       )
