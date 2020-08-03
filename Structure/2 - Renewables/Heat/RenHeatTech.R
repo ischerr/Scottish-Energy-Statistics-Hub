@@ -49,7 +49,7 @@ RenHeatTechOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     tabsetPanel(
-      tabPanel("Capacity",
+      tabPanel("Output and Capacity",
     fluidRow(
     column(10, h3("Data - Capacity (GW)", style = "color: #39ab2c;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
@@ -57,7 +57,7 @@ RenHeatTechOutput <- function(id) {
     fluidRow(
       column(12, dataTableOutput(ns("RenHeatTechTable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Output",
+    tabPanel("Energy from Waste",
       fluidRow(
         column(10, h3("Data - Output (GWh)", style = "color: #39ab2c;  font-weight:bold")),
         column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
@@ -578,8 +578,6 @@ RenHeatTech <- function(input, output, session) {
     
     RenHeatCapOutput <- read_delim("Processed Data/Output/Renewable Heat/RenHeatCapOutput.txt", 
                                     "\t", escape_double = FALSE, trim_ws = TRUE)
-    
-
     
     datatable(
       RenHeatCapOutput[c(1,2,3,5,7)],
