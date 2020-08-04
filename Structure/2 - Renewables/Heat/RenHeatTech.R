@@ -79,21 +79,10 @@ RenHeatTech <- function(input, output, session) {
   
   output$RenHeatTechSubtitle <- renderText({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Renewable heat by tech type", col_names = FALSE, 
-        skip = 13, n_max = 6)
+    Data <- read_delim("Processed Data/Output/Renewable Heat/RenHeatCapOutput.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)[1:3]
     
-    Data <- as.data.frame(t(Data))
-    names(Data) <- c("Year", "Biomass", "CHP", "Energy from waste", "Pumps", "Solar")
-    Data %<>% lapply(function(x) as.numeric(as.character(x)))
-    Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
-    Data <- Data[complete.cases(Data),]
-    
-    RenHeatCapTech <- Data
-    
-    paste("Scotland,", min(RenHeatCapTech$Year),"-", max(RenHeatCapTech$Year))
+    paste("Scotland,", min(Data$Year),"-", max(Data$Year))
   })
   
   output$RenHeatTechPlot <- renderPlotly  ({
@@ -227,6 +216,7 @@ RenHeatTech <- function(input, output, session) {
         xaxis = list(
           ticksuffix = " GW",
           tickformat = "",
+          title = "",
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
@@ -638,10 +628,10 @@ RenHeatTech <- function(input, output, session) {
       height <- max(as.numeric(as.character(DomesticEPC$Year))) - min(as.numeric(as.character(DomesticEPC$Year))) + 1
       
       plottitle <-
-        "EPC Band (SAP 2012) distribution for fuel poor\nhouseholds (new definition)"
-      sourcecaption <- "Source: SG"
+        "Renewable heat capacity by technology type"
+      sourcecaption <- "Source: EST, SG"
       
-      ChartColours <- c("#34d1a3", "#FF8500")
+      ChartColours <- c("#39ab2c", "#FF8500")
       BarColours <-
         c("#006837",
           "#1a9850",
