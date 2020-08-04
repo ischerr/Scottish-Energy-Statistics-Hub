@@ -309,7 +309,7 @@ output$HomeTab <- renderUI({
            actionLink(
              "GoToCovidTab",
              label = div(
-               tags$h3("Energy demand in Scotland since Covid-19 lockdown", style = "color: black;"),
+               tags$h3("Covid-19 energy analysis", style = "color: black;"),
                tags$p(
                  " ",
                  style = "color: black;"
