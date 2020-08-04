@@ -12,8 +12,10 @@ RenHeatTechOutput <- function(id) {
   tagList(
     fluidRow(column(8,
                     h3("Renewable heat capacity by technology type", style = "color: #39ab2c;  font-weight:bold"),
-                    h4(textOutput(ns('RenHeatTechSubtitle')), style = "color: #39ab2c;")
-    ),
+                    h4(textOutput(ns('RenHeatTechSubtitle')), style = "color: #39ab2c;"), 
+                    selectInput(ns("MeasureSelect"), "Unit:", c("Capacity", "Generation", "Number of Installations"), selected = "Capacity", multiple = FALSE,
+                                                                                                      selectize = TRUE, width = NULL, size = NULL),
+                    ),
              column(
                4, style = 'padding:15px;',
                downloadButton(ns('RenHeatTech.png'), 'Download Graph', style="float:right")
@@ -75,6 +77,23 @@ RenHeatTech <- function(input, output, session) {
   }
   
   print("RenHeatTech.R")
+
+  
+  observe({
+    RenHeatDropdown$Measure <- input$UnitSelect
+  })
+  
+  observe({
+    RenHeatDropdown$Measure <- input$UnitSelect2
+  })
+  
+  observe(
+    {
+      updateSelectInput(session, 'MeasureSelect', selected = RenHeatDropdown$Measure)
+      updateSelectInput(session, 'MeasureSelect2', selected = RenHeatDropdown$Measure)
+    }
+  )
+
 
   
   output$RenHeatTechSubtitle <- renderText({
@@ -479,9 +498,15 @@ RenHeatTech <- function(input, output, session) {
                                     "\t", escape_double = FALSE, trim_ws = TRUE)
     
     RenHeatCapOutput <- melt(RenHeatCapOutput, id.vars = c("Year", "Technology"))
+<<<<<<< Updated upstream
     
     RenHeatCapOutput$variable <- paste0(RenHeatCapOutput$variable, " - ", RenHeatCapOutput$Year)
     
+=======
+    
+    RenHeatCapOutput$variable <- paste0(RenHeatCapOutput$variable, " - ", RenHeatCapOutput$Year)
+    
+>>>>>>> Stashed changes
     RenHeatCapOutput$Year <- NULL
     
     RenHeatCapOutput <- dcast(RenHeatCapOutput, Technology ~ variable)
@@ -601,6 +626,7 @@ RenHeatTech <- function(input, output, session) {
       Data <- Data[complete.cases(Data),]
       
       DomesticEPC <- as_tibble(Data)
+<<<<<<< Updated upstream
       
       DomesticEPC <-
         DomesticEPC[c(1, ncol(DomesticEPC):2)]
@@ -614,7 +640,50 @@ RenHeatTech <- function(input, output, session) {
       
       DomesticEPC <-
         melt(DomesticEPC, id.vars = "Year")
+=======
       
+      DomesticEPC <-
+        DomesticEPC[c(1, ncol(DomesticEPC):2)]
+      
+      DomesticEPC <-
+        arrange(DomesticEPC,-row_number())
+      
+      DomesticEPC$Year <-
+        factor(DomesticEPC$Year,
+               levels = unique(DomesticEPC$Year))
+>>>>>>> Stashed changes
+      
+      DomesticEPC <-
+        melt(DomesticEPC, id.vars = "Year")
+      
+<<<<<<< Updated upstream
+      DomesticEPC$variable <-
+        factor(DomesticEPC$variable,
+               levels = unique(DomesticEPC$variable))
+      
+      DomesticEPC <- DomesticEPC %>%
+        group_by(Year) %>%
+        mutate(pos = cumsum(value) - value / 2) %>%
+        mutate(top = sum(value))
+      length <- max(DomesticEPC$top)
+      height <- max(as.numeric(as.character(DomesticEPC$Year))) - min(as.numeric(as.character(DomesticEPC$Year))) + 1
+      
+      plottitle <-
+        "Renewable heat capacity by technology type"
+      sourcecaption <- "Source: EST, SG"
+      
+      ChartColours <- c("#39ab2c", "#FF8500")
+      BarColours <-
+        c("#006837",
+          "#1a9850",
+          "#66bd63",
+          "#fee08b",
+          "#fdae61",
+          "#f46d43",
+          "#d73027")
+      
+      
+=======
       
       DomesticEPC$variable <-
         factor(DomesticEPC$variable,
@@ -642,6 +711,7 @@ RenHeatTech <- function(input, output, session) {
           "#d73027")
       
       
+>>>>>>> Stashed changes
       DomesticEPCChart <- DomesticEPC %>%
         ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
         scale_fill_manual(
@@ -676,6 +746,15 @@ RenHeatTech <- function(input, output, session) {
           colour = BarColours[2],
           family = "Century Gothic",
           hjust = 0.5
+<<<<<<< Updated upstream
+        ) +
+        geom_text(
+          aes(x = height * 1.25,
+              y = length * (1.5 / 5.2),
+              label = "CHP"),
+          fontface = 2,
+          colour = BarColours[3],
+=======
         ) +
         geom_text(
           aes(x = height * 1.25,
@@ -701,17 +780,40 @@ RenHeatTech <- function(input, output, session) {
               label = "Pumps"),
           fontface = 2,
           colour = BarColours[5],
+>>>>>>> Stashed changes
           family = "Century Gothic",
           hjust = 0.5
         ) +
         geom_text(
           aes(x = height * 1.25,
+<<<<<<< Updated upstream
+              y = length * (2.5 / 5.2),
+              label = "Waste"),
+          fontface = 2,
+          colour = BarColours[4],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = height * 1.25,
+              y = length * (3.5 /5.2),
+              label = "Pumps"),
+          fontface = 2,
+          colour = BarColours[5],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = height * 1.25,
+=======
+>>>>>>> Stashed changes
               y = length * (4.5 / 5.2),
               label = "Solar"),
           fontface = 2,
           colour = BarColours[6],
           family = "Century Gothic",
           hjust = 0.5
+<<<<<<< Updated upstream
         ) +
         annotate(
           "text",
@@ -726,6 +828,22 @@ RenHeatTech <- function(input, output, session) {
           fontface = 2,
           colour = ChartColours[1]
         ) +
+=======
+        ) +
+        annotate(
+          "text",
+          x = DomesticEPC$Year,
+          y = DomesticEPC$top +.05,
+          label = paste0(
+            round(DomesticEPC$top, 3),
+            " GW"
+          ),
+          family = "Century Gothic",
+          hjust = 0,
+          fontface = 2,
+          colour = ChartColours[1]
+        ) +
+>>>>>>> Stashed changes
         geom_text(
           aes(x = height * 1.25,
               y = length * (5.5 / 5.2),
