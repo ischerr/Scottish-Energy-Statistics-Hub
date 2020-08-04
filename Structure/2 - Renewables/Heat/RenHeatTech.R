@@ -10,6 +10,8 @@ source("Structure/Global.R")
 RenHeatTechOutput <- function(id) {
   ns <- NS(id)
   tagList(
+    tabsetPanel(
+    tabPanel("1",
     fluidRow(column(8,
                     h3("Renewable heat capacity by technology type", style = "color: #39ab2c;  font-weight:bold"),
                     h4(textOutput(ns('RenHeatTechSubtitle')), style = "color: #39ab2c;"), 
@@ -24,7 +26,23 @@ RenHeatTechOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     #dygraphOutput(ns("RenHeatTechPlot")),
     plotlyOutput(ns("RenHeatTechPlot"))%>% withSpinner(color="#39ab2c"),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("2",
+                fluidRow(column(8,
+                                h3("Renewable heat capacity by technology type", style = "color: #39ab2c;  font-weight:bold"),
+                                h4(textOutput(ns('RenHeatSizeSubtitle')), style = "color: #39ab2c;"), 
+                                selectInput(ns("MeasureSelect2"), "Unit:", c("Capacity", "Generation", "Number of Installations"), selected = "Capacity", multiple = FALSE,
+                                            selectize = TRUE, width = NULL, size = NULL),
+                ),
+                column(
+                  4, style = 'padding:15px;',
+                  downloadButton(ns('RenHeatSize.png'), 'Download Graph', style="float:right")
+                )),
+                
+                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+                #dygraphOutput(ns("RenHeatTechPlot")),
+                plotlyOutput(ns("RenHeatSizePlot"))%>% withSpinner(color="#39ab2c"),
+                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
@@ -78,14 +96,14 @@ RenHeatTech <- function(input, output, session) {
   
   print("RenHeatTech.R")
 
-  
   observe({
-    RenHeatDropdown$Measure <- input$UnitSelect
+    
+    RenHeatDropdown$Measure <- input$MeasureSelect
   })
   
-  observe({
-    RenHeatDropdown$Measure <- input$UnitSelect2
-  })
+   observe({
+     RenHeatDropdown$Measure <- input$MeasureSelect2
+   })
   
   observe(
     {
@@ -106,8 +124,28 @@ RenHeatTech <- function(input, output, session) {
   
   output$RenHeatTechPlot <- renderPlotly  ({
     
+
+    if (RenHeatDropdown$Measure == "Capacity"){
+      x <- 3
+      unit <- "GW"
+      }
+    
+    if (RenHeatDropdown$Measure == "Generation"){
+      x <- 5
+      unit <- "GWh"
+      }
+    
+    if (RenHeatDropdown$Measure == "Number of Installations"){
+      x <- 7
+      unit <- ""
+      }
+    
     Data <- read_delim("Processed Data/Output/Renewable Heat/RenHeatCapOutput.txt", 
-                       "\t", escape_double = FALSE, trim_ws = TRUE)[1:3]
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    
+    
+    Data <- Data[c(1,2,x)]
     
     Data <- dcast(Data, Year ~ Technology)
     
@@ -138,7 +176,7 @@ RenHeatTech <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Biomass",
-        text = paste0("Biomass: ", round(Data$`Biomass`, 3), " GW"),
+        text = paste0("Biomass: ", format(round(Data$`Biomass`, 3), big.mark = ","), unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[1]),
         legendgroup = 1
@@ -150,7 +188,7 @@ RenHeatTech <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "CHP",
-        text = paste0("CHP: ", round(Data$`CHP`, 3), " GW"),
+        text = paste0("CHP: ", format(round(Data$`CHP`, 3), big.mark = ","), unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[2]),
         legendgroup = 2
@@ -162,7 +200,7 @@ RenHeatTech <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Waste",
-        text = paste0("Waste: ", round(Data$`Waste`, 3), " GW"),
+        text = paste0("Waste: ", format(round(Data$`Waste`, 3), big.mark = ","), unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 3
@@ -174,7 +212,7 @@ RenHeatTech <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Pumps",
-        text = paste0("Pumps: ", round(Data$`Pumps`, 3), " GW"),
+        text = paste0("Pumps: ", format(round(Data$`Pumps`, 3), big.mark = ","), unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[4]),
         legendgroup = 4
@@ -186,7 +224,7 @@ RenHeatTech <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Solar",
-        text = paste0("Solar: ", round(Data$`Solar`, 3), " GW"),
+        text = paste0("Solar: ", format(round(Data$`Solar`, 3), big.mark = ","), unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[5]),
         legendgroup = 5
@@ -196,7 +234,7 @@ RenHeatTech <- function(input, output, session) {
         showlegend = FALSE,
         type = 'scatter',
         mode = 'text',
-        text = paste("<b>",format(round((Data$Total), digits = 3), big.mark = ","),"GW</b>"),
+        text = paste0("<b>",format(round((Data$Total), digits = 3), big.mark = ","), unit, "</b>"),
         textposition = 'middle right',
         textfont = list(color = ChartColours[1]),
         hoverinfo = 'skip',
@@ -205,7 +243,7 @@ RenHeatTech <- function(input, output, session) {
         )
       ) %>%
       add_trace(
-        x = (Data$Total) * 1.1,
+        x = (Data$Total) * 1.2,
         showlegend = FALSE,
         type = 'scatter',
         mode = 'text',
@@ -233,7 +271,7 @@ RenHeatTech <- function(input, output, session) {
                      tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
         ),
         xaxis = list(
-          ticksuffix = " GW",
+          ticksuffix = unit,
           tickformat = "",
           title = "",
           showgrid = TRUE,
@@ -498,15 +536,10 @@ RenHeatTech <- function(input, output, session) {
                                     "\t", escape_double = FALSE, trim_ws = TRUE)
     
     RenHeatCapOutput <- melt(RenHeatCapOutput, id.vars = c("Year", "Technology"))
-<<<<<<< Updated upstream
     
     RenHeatCapOutput$variable <- paste0(RenHeatCapOutput$variable, " - ", RenHeatCapOutput$Year)
     
-=======
-    
-    RenHeatCapOutput$variable <- paste0(RenHeatCapOutput$variable, " - ", RenHeatCapOutput$Year)
-    
->>>>>>> Stashed changes
+
     RenHeatCapOutput$Year <- NULL
     
     RenHeatCapOutput <- dcast(RenHeatCapOutput, Technology ~ variable)
@@ -626,7 +659,6 @@ RenHeatTech <- function(input, output, session) {
       Data <- Data[complete.cases(Data),]
       
       DomesticEPC <- as_tibble(Data)
-<<<<<<< Updated upstream
       
       DomesticEPC <-
         DomesticEPC[c(1, ncol(DomesticEPC):2)]
@@ -640,7 +672,7 @@ RenHeatTech <- function(input, output, session) {
       
       DomesticEPC <-
         melt(DomesticEPC, id.vars = "Year")
-=======
+
       
       DomesticEPC <-
         DomesticEPC[c(1, ncol(DomesticEPC):2)]
@@ -648,15 +680,7 @@ RenHeatTech <- function(input, output, session) {
       DomesticEPC <-
         arrange(DomesticEPC,-row_number())
       
-      DomesticEPC$Year <-
-        factor(DomesticEPC$Year,
-               levels = unique(DomesticEPC$Year))
->>>>>>> Stashed changes
-      
-      DomesticEPC <-
-        melt(DomesticEPC, id.vars = "Year")
-      
-<<<<<<< Updated upstream
+
       DomesticEPC$variable <-
         factor(DomesticEPC$variable,
                levels = unique(DomesticEPC$variable))
@@ -683,35 +707,6 @@ RenHeatTech <- function(input, output, session) {
           "#d73027")
       
       
-=======
-      
-      DomesticEPC$variable <-
-        factor(DomesticEPC$variable,
-               levels = unique(DomesticEPC$variable))
-      
-      DomesticEPC <- DomesticEPC %>%
-        group_by(Year) %>%
-        mutate(pos = cumsum(value) - value / 2) %>%
-        mutate(top = sum(value))
-      length <- max(DomesticEPC$top)
-      height <- max(as.numeric(as.character(DomesticEPC$Year))) - min(as.numeric(as.character(DomesticEPC$Year))) + 1
-      
-      plottitle <-
-        "Renewable heat capacity by technology type"
-      sourcecaption <- "Source: EST, SG"
-      
-      ChartColours <- c("#39ab2c", "#FF8500")
-      BarColours <-
-        c("#006837",
-          "#1a9850",
-          "#66bd63",
-          "#fee08b",
-          "#fdae61",
-          "#f46d43",
-          "#d73027")
-      
-      
->>>>>>> Stashed changes
       DomesticEPCChart <- DomesticEPC %>%
         ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
         scale_fill_manual(
@@ -746,7 +741,6 @@ RenHeatTech <- function(input, output, session) {
           colour = BarColours[2],
           family = "Century Gothic",
           hjust = 0.5
-<<<<<<< Updated upstream
         ) +
         geom_text(
           aes(x = height * 1.25,
@@ -754,39 +748,9 @@ RenHeatTech <- function(input, output, session) {
               label = "CHP"),
           fontface = 2,
           colour = BarColours[3],
-=======
         ) +
         geom_text(
           aes(x = height * 1.25,
-              y = length * (1.5 / 5.2),
-              label = "CHP"),
-          fontface = 2,
-          colour = BarColours[3],
-          family = "Century Gothic",
-          hjust = 0.5
-        ) +
-        geom_text(
-          aes(x = height * 1.25,
-              y = length * (2.5 / 5.2),
-              label = "Waste"),
-          fontface = 2,
-          colour = BarColours[4],
-          family = "Century Gothic",
-          hjust = 0.5
-        ) +
-        geom_text(
-          aes(x = height * 1.25,
-              y = length * (3.5 /5.2),
-              label = "Pumps"),
-          fontface = 2,
-          colour = BarColours[5],
->>>>>>> Stashed changes
-          family = "Century Gothic",
-          hjust = 0.5
-        ) +
-        geom_text(
-          aes(x = height * 1.25,
-<<<<<<< Updated upstream
               y = length * (2.5 / 5.2),
               label = "Waste"),
           fontface = 2,
@@ -805,15 +769,13 @@ RenHeatTech <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height * 1.25,
-=======
->>>>>>> Stashed changes
               y = length * (4.5 / 5.2),
               label = "Solar"),
           fontface = 2,
           colour = BarColours[6],
           family = "Century Gothic",
           hjust = 0.5
-<<<<<<< Updated upstream
+
         ) +
         annotate(
           "text",
@@ -828,22 +790,6 @@ RenHeatTech <- function(input, output, session) {
           fontface = 2,
           colour = ChartColours[1]
         ) +
-=======
-        ) +
-        annotate(
-          "text",
-          x = DomesticEPC$Year,
-          y = DomesticEPC$top +.05,
-          label = paste0(
-            round(DomesticEPC$top, 3),
-            " GW"
-          ),
-          family = "Century Gothic",
-          hjust = 0,
-          fontface = 2,
-          colour = ChartColours[1]
-        ) +
->>>>>>> Stashed changes
         geom_text(
           aes(x = height * 1.25,
               y = length * (5.5 / 5.2),
@@ -1182,6 +1128,185 @@ output$RenHeatOutput.png <- downloadHandler(
     
   }
 )
+
+output$RenHeatSizeSubtitle <- renderText({
+  
+  Data <- read_delim("Processed Data/Output/Renewable Heat/RenHeatSize.txt", 
+                     "\t", escape_double = FALSE, trim_ws = TRUE)[1:3]
+  
+  paste("Scotland,", min(Data$Year),"-", max(Data$Year))
+})
+
+output$RenHeatSizePlot <- renderPlotly  ({
+  
+  if (RenHeatDropdown$Measure == "Capacity"){
+    x <- 3
+    unit <- "GW"
+  }
+  
+  if (RenHeatDropdown$Measure == "Generation"){
+    x <- 5
+    unit <- "GWh"
+  }
+  
+  if (RenHeatDropdown$Measure == "Number of Installations"){
+    x <- 7
+    unit <- ""
+  }
+  
+  Data <- read_delim("Processed Data/Output/Renewable Heat/RenHeatSize.txt", 
+                     "\t", escape_double = FALSE, trim_ws = TRUE)
+  
+  Data <- Data[c(1,2,x)]
+  
+  Data <- dcast(Data, Year ~ Technology)
+  
+  names(Data) <- c("Year", "Bioenergy","Large", "Micro", "Small to medium", "Total", "Unknown")
+  
+  Data %<>% lapply(function(x) as.numeric(as.character(x)))
+  
+  Data <- Data[c(1, 3, 5, 4, 2, 7 ,6)]
+  
+  Data <- as_tibble(Data)
+  
+  Data[is.na(Data)] <- 0
+  
+  Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
+  
+  Data <- Data[complete.cases(Data),]
+  
+  ChartColours <- c("39ab2c", "#FF8500")
+  
+  BarColours <-
+    c("#006837",
+      "#1a9850",
+      "#66bd63",
+      "#fee08b",
+      "#fdae61",
+      "#f46d43",
+      "#d73027")
+  
+  Data$Year <- paste0("<b>",Data$Year,"</b>")
+  
+  p <- plot_ly(data = Data, y = ~ `Year`) %>%
+    
+    add_trace(
+      data = Data,
+      x = ~ `Large`,
+      type = 'bar',
+      width = 0.7,
+      orientation = 'h',
+      name = "Large",
+      text = paste0("Large: ", format(round(Data$`Large`, 3), big.mark = ","), unit),
+      hoverinfo = 'text',
+      marker = list(color = BarColours[1]),
+      legendgroup = 1
+    ) %>%
+    add_trace(
+      data = Data,
+      x = ~ `Small to medium`,
+      type = 'bar',
+      width = 0.7,
+      orientation = 'h',
+      name = "Small to medium",
+      text = paste0("Small to medium: ", format(round(Data$`Small to medium`, 3), big.mark = ","), unit),
+      hoverinfo = 'text',
+      marker = list(color = BarColours[2]),
+      legendgroup = 2
+    ) %>%
+    add_trace(
+      data = Data,
+      x = ~ `Micro`,
+      type = 'bar',
+      width = 0.7,
+      orientation = 'h',
+      name = "Micro",
+      text = paste0("Micro: ", format(round(Data$`Micro`, 3), big.mark = ","), unit),
+      hoverinfo = 'text',
+      marker = list(color = BarColours[3]),
+      legendgroup = 3
+    ) %>%
+    add_trace(
+      data = Data,
+      x = ~ `Bioenergy`,
+      type = 'bar',
+      width = 0.7,
+      orientation = 'h',
+      name = "Bioenergy",
+      text = paste0("Bioenergy: ", format(round(Data$`Bioenergy`, 3), big.mark = ","), unit),
+      hoverinfo = 'text',
+      marker = list(color = BarColours[4]),
+      legendgroup = 4
+    ) %>%
+    add_trace(
+      data = Data,
+      x = ~ `Unknown`,
+      type = 'bar',
+      width = 0.7,
+      orientation = 'h',
+      name = "Unknown",
+      text = paste0("Unknown: ", format(round(Data$`Unknown`, 3), big.mark = ","), unit),
+      hoverinfo = 'text',
+      marker = list(color = BarColours[5]),
+      legendgroup = 5
+    ) %>%
+    add_trace(
+      x = (Data$Total) * 1.01,
+      showlegend = FALSE,
+      type = 'scatter',
+      mode = 'text',
+      text = paste0("<b>",format(round((Data$Total), digits = 3), big.mark = ","), unit, "</b>"),
+      textposition = 'middle right',
+      textfont = list(color = ChartColours[1]),
+      hoverinfo = 'skip',
+      marker = list(
+        size = 0.00001
+      )
+    ) %>%
+    add_trace(
+      x = (Data$Total) * 1.2,
+      showlegend = FALSE,
+      type = 'scatter',
+      mode = 'text',
+      text = paste(" "),
+      textposition = 'middle right',
+      textfont = list(color = ChartColours[1]),
+      hoverinfo = 'skip',
+      marker = list(
+        size = 0.00001
+      )
+    ) %>%
+    layout(
+      barmode = 'stack',
+      legend = list(font = list(color = "#1A5D38"),
+                    orientation = 'h'),
+      hoverlabel = list(font = list(color = "white"),
+                        hovername = 'text'),
+      hovername = 'text',
+      yaxis = list(title = "",
+                   showgrid = FALSE,
+                   type = "category",
+                   autorange = "reversed",
+                   ticktext = as.list(Data$`Year`),
+                   tickmode = "array",
+                   tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
+      ),
+      xaxis = list(
+        ticksuffix = unit,
+        tickformat = "",
+        title = "",
+        showgrid = TRUE,
+        zeroline = TRUE,
+        zerolinecolor = ChartColours[1],
+        zerolinewidth = 2
+      )
+    ) %>% 
+    config(displayModeBar = F)
+  
+  p
+  
+})
+
 }
     
     
