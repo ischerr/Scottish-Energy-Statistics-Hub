@@ -1,5 +1,5 @@
 "Year"	"Tech"	"Renewable Heat Capacity (GW)"	"% Renewable heat capacity"	"Annual Output (GWh)"	"% Annual output"
 2018	"Energy from waste - advanced conversion technologies"	0.105	0.05	935	0.18
-2018	"Energy from waste – incineration"	0.014	0.01	77	0.01
+2018	"Energy from waste - incineration"	0.014	0.01	77	0.01
 2018	"Energy from waste - advanced conversion technologies"	0.004	1e-04	15	0.0099
 2018	"Total"	0.123	0.0601	1027	0.1999

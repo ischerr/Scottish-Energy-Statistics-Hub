@@ -13,27 +13,24 @@ RenHeatTechOutput <- function(id) {
     tabsetPanel(
     tabPanel("Tech",
     fluidRow(column(8,
-                    h3("Renewable heat capacity by technology type", style = "color: #39ab2c;  font-weight:bold"),
+                    h3("Renewable heat by technology type", style = "color: #39ab2c;  font-weight:bold"),
                     h4(textOutput(ns('RenHeatTechSubtitle')), style = "color: #39ab2c;"),
+                    selectInput(ns("MeasureSelect"), "Measure:", c("Capacity", "Generation", "Number of Installations"), selected = "Capacity", multiple = FALSE,
+                                selectize = TRUE, width = NULL, size = NULL)
                       ),
              column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('RenHeatTech.png'), 'Download Graph', style="float:right")
+               4, align = 'right', style = 'padding:15px;',
+               downloadButton(ns('RenHeatTech.png'), 'Download Graph', style="float:right"),
              )),
-    fluidRow(column(6,  ),
-             column(6,selectInput(ns("MeasureSelect"), "Unit:", c("Capacity", "Generation", "Number of Installations"), selected = "Capacity", multiple = FALSE,
-                                  selectize = TRUE, width = NULL, size = NULL),)
-             ),
-    
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     #dygraphOutput(ns("RenHeatTechPlot")),
     plotlyOutput(ns("RenHeatTechPlot"))%>% withSpinner(color="#39ab2c"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Size",
                 fluidRow(column(8,
-                                h3("Renewable heat capacity by technology type", style = "color: #39ab2c;  font-weight:bold"),
+                                h3("Renewable heat by installation size", style = "color: #39ab2c;  font-weight:bold"),
                                 h4(textOutput(ns('RenHeatSizeSubtitle')), style = "color: #39ab2c;"), 
-                                selectInput(ns("MeasureSelect2"), "Unit:", c("Capacity", "Generation", "Number of Installations"), selected = "Capacity", multiple = FALSE,
+                                selectInput(ns("MeasureSelect2"), "Measure:", c("Capacity", "Generation", "Number of Installations"), selected = "Capacity", multiple = FALSE,
                                             selectize = TRUE, width = NULL, size = NULL),
                 ),
                 column(
@@ -56,7 +53,7 @@ RenHeatTechOutput <- function(id) {
     tabsetPanel(
       tabPanel("Tech",
     fluidRow(
-    column(10, h3("Data - Capacity (GW)", style = "color: #39ab2c;  font-weight:bold")),
+    column(10, h3("Data - Renewable heat by technology type", style = "color: #39ab2c;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -64,7 +61,7 @@ RenHeatTechOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Size",
              fluidRow(
-               column(10, h3("Data - Capacity (GW)", style = "color: #39ab2c;  font-weight:bold")),
+               column(10, h3("Data - Renewable heat by installation size", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -72,7 +69,7 @@ RenHeatTechOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Energy from Waste",
       fluidRow(
-        column(10, h3("Data - Output (GWh)", style = "color: #39ab2c;  font-weight:bold")),
+        column(10, h3("Data - Energy from Waste", style = "color: #39ab2c;  font-weight:bold")),
         column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
       ),
       fluidRow(
@@ -137,12 +134,12 @@ RenHeatTech <- function(input, output, session) {
 
     if (RenHeatDropdown$Measure == "Capacity"){
       x <- 3
-      unit <- "GW"
+      unit <- " GW"
       }
     
     if (RenHeatDropdown$Measure == "Generation"){
       x <- 5
-      unit <- "GWh"
+      unit <- " GWh"
       }
     
     if (RenHeatDropdown$Measure == "Number of Installations"){
@@ -296,250 +293,6 @@ RenHeatTech <- function(input, output, session) {
     
   })
   
-  output$RenHeatOutputSubtitle <- renderText({
-    
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Renewable heat by tech type", col_names = FALSE, 
-        skip = 13, n_max = 6)
-    
-    Data <- as.data.frame(t(Data))
-    names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar")
-    Data %<>% lapply(function(x) as.numeric(as.character(x)))
-    Data <- as_tibble(Data)
-    Data <- arrange(Data, -row_number())
-    Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
-    Data <- Data[complete.cases(Data),]
-    Data <- arrange(Data, -row_number())
-    
-    RenHeatOutputTech <- Data
-    
-    paste("Scotland,", min(RenHeatOutputTech$Year),"-", max(RenHeatOutputTech$Year))
-  })
-  
-  output$RenHeatOutputPlot <- renderPlotly  ({
-    
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Renewable heat by tech type", col_names = FALSE, 
-        skip = 13, n_max = 6)
-    
-    Data <- as.data.frame(t(Data))
-    names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar")
-    Data %<>% lapply(function(x) as.numeric(as.character(x)))
-    Data <- as_tibble(Data)
-    Data <- arrange(Data, -row_number())
-    Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
-    Data <- Data[complete.cases(Data),]
-    Data <- arrange(Data, -row_number())
-    
-    RenHeatOutputTech <- Data
-    
-    plottitle <- "Renewable heat output by technology type"
-    sourcecaption <- "Source: EST"
-    ChartColours <- c("#39ab2c", "#FF8500", "#FFFFFF")
-    LineColours <- c("#fc4e2a","#feb24c","#fed976","#addd8e","#41ab5d")
-    
-    RenHeatOutputTech$Year <- paste0("01/01/",  RenHeatOutputTech$Year)
-    
-    RenHeatOutputTech$Year <- dmy(RenHeatOutputTech$Year)
-    
-    p <-  plot_ly(RenHeatOutputTech, x = ~ Year ) %>% 
-      add_trace(y = ~ Biomass,
-                name = "Biomass",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "1",
-                text = paste0(
-                  "Biomass: ",
-                  format(round(RenHeatOutputTech$Biomass, digits = 0), big.mark = ","),
-                  " GWh\nYear: ",
-                  format(RenHeatOutputTech$Year, "%Y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 6, color = LineColours[1], dash = "none")
-      ) %>% 
-      add_trace(y = ~ CHP,
-                name = "Biomass CHP",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "2",
-                text = paste0(
-                  "Biomass CHP: ",
-                  format(round(RenHeatOutputTech$CHP, digits = 0), big.mark = ","),
-                  " GWh\nYear: ",
-                  format(RenHeatOutputTech$Year, "%Y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 6, color = LineColours[2], dash = "none")
-      ) %>% 
-      add_trace(y = ~ Waste,
-                name = "Energy from waste",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "3",
-                text = paste0(
-                  "Energy from waste: ",
-                  format(round(RenHeatOutputTech$Waste, digits = 0), big.mark = ","),
-                  " GWh\nYear: ",
-                  format(RenHeatOutputTech$Year, "%Y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 6, color = LineColours[3], dash = "none")
-      ) %>% 
-      add_trace(y = ~ Pumps,
-                name = "Heat pumps",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "4",
-                text = paste0(
-                  "Heat pumps: ",
-                  format(round(RenHeatOutputTech$Pumps, digits = 0), big.mark = ","),
-                  " GWh\nYear: ",
-                  format(RenHeatOutputTech$Year, "%Y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 6, color = LineColours[4], dash = "none")
-      ) %>% 
-      add_trace(y = ~ Solar,
-                name = "Solar thermal",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "5",
-                text = paste0(
-                  "Solar thermal: ",
-                  format(round(RenHeatOutputTech$Solar, digits = 0), big.mark = ","),
-                  " GWh\nYear: ",
-                  format(RenHeatOutputTech$Year, "%Y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 6, color = LineColours[5], dash = "none")
-      ) %>% 
-      add_trace(
-        data = tail(RenHeatOutputTech[which(RenHeatOutputTech$`Biomass` != 0),], 1),
-        x = ~ Year,
-        y = ~ `Biomass`,
-        name = "Biomass",
-        legendgroup = "1",
-        text = paste0(
-          "Biomass: ",
-          format(tail(RenHeatOutputTech[which(RenHeatOutputTech$`Biomass` != 0),], 1)$Biomass, big.mark = ","),
-          " GWh\nYear: ",
-          format(tail(RenHeatOutputTech[which(RenHeatOutputTech$`Biomass` != 0),], 1)$Year, "%Y")
-        ),
-        hoverinfo = 'text',
-        showlegend = FALSE ,
-        type = "scatter",
-        mode = 'markers',
-        marker = list(size = 18, 
-                      color = LineColours[1])
-      ) %>% 
-      add_trace(
-        data = tail(RenHeatOutputTech[which(RenHeatOutputTech$`CHP` != 0),], 1),
-        x = ~ Year,
-        y = ~ `CHP`,
-        name = "Biomass CHP",
-        legendgroup = "2",
-        text = paste0(
-          "Biomass CHP: ",
-          format(tail(RenHeatOutputTech[which(RenHeatOutputTech$`CHP` != 0),], 1)$CHP, big.mark = ","),
-          " GWh\nYear: ",
-          format(tail(RenHeatOutputTech[which(RenHeatOutputTech$`CHP` != 0),], 1)$Year, "%Y")
-        ),
-        hoverinfo = 'text',
-        showlegend = FALSE ,
-        type = "scatter",
-        mode = 'markers',
-        marker = list(size = 18, 
-                      color = LineColours[2])
-      ) %>% 
-      add_trace(
-        data = tail(RenHeatOutputTech[which(RenHeatOutputTech$`Waste` != 0),], 1),
-        x = ~ Year,
-        y = ~ `Waste`,
-        name = "Energy from waste",
-        legendgroup = "3",
-        text = paste0(
-          "Energy from waste: ",
-          format(tail(RenHeatOutputTech[which(RenHeatOutputTech$`Waste` != 0),], 1)$Waste, big.mark = ","),
-          " GWh\nYear: ",
-          format(tail(RenHeatOutputTech[which(RenHeatOutputTech$`Waste` != 0),], 1)$Year, "%Y")
-        ),
-        hoverinfo = 'text',
-        showlegend = FALSE ,
-        type = "scatter",
-        mode = 'markers',
-        marker = list(size = 18, 
-                      color = LineColours[3])
-      ) %>% 
-      add_trace(
-        data = tail(RenHeatOutputTech[which(RenHeatOutputTech$`Pumps` != 0),], 1),
-        x = ~ Year,
-        y = ~ `Pumps`,
-        name = "Heat pumps",
-        legendgroup = "4",
-        text = paste0(
-          "Heat pumps: ",
-          format(tail(RenHeatOutputTech[which(RenHeatOutputTech$`Pumps` != 0),], 1)$Pumps, big.mark = ","),
-          " GWh\nYear: ",
-          format(tail(RenHeatOutputTech[which(RenHeatOutputTech$`Pumps` != 0),], 1)$Year, "%Y")
-        ),
-        hoverinfo = 'text',
-        showlegend = FALSE ,
-        type = "scatter",
-        mode = 'markers',
-        marker = list(size = 18, 
-                      color = LineColours[4])
-      ) %>% 
-      add_trace(
-        data = tail(RenHeatOutputTech[which(RenHeatOutputTech$`Solar` != 0),], 1),
-        x = ~ Year,
-        y = ~ `Solar`,
-        name = "Solar thermal",
-        legendgroup = "5",
-        text = paste0(
-          "Solar thermal: ",
-          format(tail(RenHeatOutputTech[which(RenHeatOutputTech$`Solar` != 0),], 1)$Solar, big.mark = ","),
-          " GWh\nYear: ",
-          format(tail(RenHeatOutputTech[which(RenHeatOutputTech$`Solar` != 0),], 1)$Year, "%Y")
-        ),
-        hoverinfo = 'text',
-        showlegend = FALSE ,
-        type = "scatter",
-        mode = 'markers',
-        marker = list(size = 18, 
-                      color = LineColours[5])
-      ) %>% 
-      layout(
-        barmode = 'stack',
-        bargap = 0.66,
-        legend = list(font = list(color = "#39ab2c"),
-                      orientation = 'h'),
-        hoverlabel = list(font = list(color = "white"),
-                          hovername = 'text'),
-        hovername = 'text',
-        xaxis = list(title = "",
-                     showgrid = FALSE,
-                     range = c(min(RenHeatOutputTech$Year)-100, max(RenHeatOutputTech$Year)+100)),
-        yaxis = list(
-          title = "GWh",
-          showgrid = TRUE,
-          zeroline = TRUE,
-          zerolinecolor = ChartColours[1],
-          zerolinewidth = 2,
-          rangemode = "tozero"
-        )
-      ) %>% 
-      config(displayModeBar = F)
-    p
-    
-    
-    
-  })
-  
-  
   output$RenHeatTechTable = renderDataTable({
     
     RenHeatCapOutput <- read_delim("Processed Data/Output/Renewable Heat/RenHeatCapOutput.txt", 
@@ -565,17 +318,17 @@ RenHeatTech <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Renewable heat output and capacity",
+        title = "Renewable heat by technology type",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Renewable heat output and capacity",
+            title = "Renewable heat by technology type",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Renewable heat output and capacity")
+               title = "Renewable heat by technology type")
         ),
         
         # customize the length menu
@@ -587,69 +340,7 @@ RenHeatTech <- function(input, output, session) {
     ) %>%
       formatRound(c(2:3), 3) %>%
       formatRound(c(4:7), 0)
-  })
-  
-  output$RenHeatOutputTable = renderDataTable({
-    
-    RenHeatEnergyFromWaste <- read_delim("Processed Data/Output/Renewable Heat/RenHeatEnergyFromWaste.txt", 
-                                         "\t", escape_double = FALSE, trim_ws = TRUE)
-    
-    datatable(
-      RenHeatEnergyFromWaste[c(2,3,5)],
-      extensions = 'Buttons',
-      
-      rownames = FALSE,
-      options = list(
-        paging = TRUE,
-        pageLength = -1,
-        searching = TRUE,
-        fixedColumns = FALSE,
-        autoWidth = TRUE,
-        title = "Renewable heat output by technology type (GWh)",
-        dom = 'ltBp',
-        buttons = list(
-          list(extend = 'copy'),
-          list(
-            extend = 'excel',
-            title = "Renewable heat output by technology type (GWh)",
-            header = TRUE
-          ),
-          list(extend = 'csv',
-               title = "Renewable heat output by technology type (GWh)")
-        ),
-        
-        # customize the length menu
-        lengthMenu = list( c(10, 20, -1) # declare values
-                           , c(10, 20, "All") # declare titles
-        ), # end of lengthMenu customization
-        pageLength = 10
-      )
-    ) %>%
-      formatRound(c(2), 3) %>%
-      formatRound(c(3), 0)
-  })
-  
-  output$Text <- renderUI({
-    tagList(column(12,
-                   HTML(
-                     paste(readtext("Structure/2 - Renewables/Heat/RenHeatTech.txt")[2])
-                     
-                   )))
-  })
-  
- observeEvent(input$ToggleTable1, {
-    toggle("RenHeatTechTable")
-  })
-  
-  observeEvent(input$ToggleTable2, {
-    toggle("RenHeatOutputTable")
-  })
-
-  
-  observeEvent(input$ToggleText, {
-    toggle("Text")
-  })
-  
+  }) 
   
   output$RenHeatTech.png <- downloadHandler(
     filename = "RenHeatTech.png",
@@ -657,17 +348,29 @@ RenHeatTech <- function(input, output, session) {
 
       if (RenHeatDropdown$Measure == "Capacity"){
         x <- 3
+        
         unit <- " GW"
+        
+        plottitle <-
+          "Renewable heat capacity by technology type"
       }
 
       if (RenHeatDropdown$Measure == "Generation"){
         x <- 5
+        
         unit <- " GWh"
+        
+        plottitle <-
+          "Renewable heat generation by technology type"
       }
 
       if (RenHeatDropdown$Measure == "Number of Installations"){
         x <- 7
+        
         unit <- ""
+        
+        plottitle <-
+          "Number of Renewable heat installations by technology type"
       }
       
       Data <- read_delim("Processed Data/Output/Renewable Heat/RenHeatCapOutput.txt", 
@@ -727,9 +430,7 @@ RenHeatTech <- function(input, output, session) {
       
       
       height <- max(as.numeric(as.character(DomesticEPC$Year))) - min(as.numeric(as.character(DomesticEPC$Year))) + 1
-      
-      plottitle <-
-        "Renewable heat capacity by technology type"
+    
       sourcecaption <- "Source: EST, SG"
       
       ChartColours <- c("#39ab2c", "#FF8500")
@@ -881,308 +582,81 @@ RenHeatTech <- function(input, output, session) {
     }
   )
 
-
-
-output$RenHeatOutput.png <- downloadHandler(
-  filename = "RenHeatOutput.png",
-  content = function(file) {
+  output$RenHeatOutputTable = renderDataTable({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Renewable heat by tech type", col_names = FALSE, 
-        skip = 13, n_max = 6)
+    RenHeatEnergyFromWaste <- read_delim("Processed Data/Output/Renewable Heat/RenHeatEnergyFromWaste.txt", 
+                                         "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Data <- as.data.frame(t(Data))
-    names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar")
-    Data %<>% lapply(function(x) as.numeric(as.character(x)))
-    Data <- as_tibble(Data)
-    Data <- arrange(Data, -row_number())
-    Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
-    Data <- Data[complete.cases(Data),]
-    Data <- arrange(Data, -row_number())
-    
-    RenHeatOutputTech <- Data
-    
-    plottitle <- "Renewable heat output by technology type"
-    sourcecaption <- "Source: EST"
-    ChartColours <- c("#39ab2c", "#FF8500", "#FFFFFF")
-    LineColours <- c("#fc4e2a","#feb24c","#fed976","#addd8e","#41ab5d")
-    
-    RenHeatOutputTechChart <-
-      RenHeatOutputTech %>%  ggplot(aes(x = Year), family = "Century Gothic") +
+    datatable(
+      RenHeatEnergyFromWaste[c(2,3,5)],
+      extensions = 'Buttons',
       
-      ### Line of Values
-      geom_line(
-        aes(y = Biomass,
-            label = Biomass),
-        colour = LineColours[1],
-        size = 1.5,
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = Year-.1,
-          y = Biomass,
-          label = ifelse(Year == min(Year), paste(format(round(Biomass, digits = 0), big.mark = ","), "GWh"), ""),
-          hjust = 1,
-          vjust= 0,
-          fontface = 2
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "Renewable heat from Waste",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = "Renewable heat from Waste",
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = "Renewable heat from Waste")
         ),
-        colour = LineColours[1],
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = Year+1.2,
-          y = Biomass,
-          label = ifelse(Year == max(Year), paste0("Biomass\n",format(round(Biomass, digits = 0), big.mark = ","), " GWh"), ""),
-          fontface = 2
-        ),
-        colour = LineColours[1],
-        family = "Century Gothic"
-      ) +
-      geom_point(
-        data = tail(RenHeatOutputTech, 1),
-        aes(
-          x = Year,
-          y = Biomass,
-          label = Biomass,
-          show_guide = FALSE
-        ), 
-        colour = LineColours[1],
-        size = 4,
-        family = "Century Gothic"
-      ) +
-      geom_line(
-        aes(y = CHP,
-            
-            label = CHP),
-        size = 1.5,
-        colour = LineColours[2],
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = Year-.1,
-          y = CHP,
-          label = ifelse(Year == min(Year), paste(round(CHP, digits = 0),"GWh"), ""),
-          hjust = 1,
-          vjust = 1,
-          fontface = 2
-        ),
-        colour = LineColours[2],
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = Year+1.2,
-          y = CHP,
-          label = ifelse(Year == max(Year), paste0("Biomass CHP\n",round(CHP, digits = 0), " GWh"), ""),
-          fontface = 2,
-        ),
-        colour = LineColours[2],
-        family = "Century Gothic"
-      ) +
-      geom_point(
-        data = tail(RenHeatOutputTech, 1),
-        aes(
-          x = Year,
-          y = CHP,
-          label = CHP,
-          show_guide = FALSE
-        ),
-        colour = LineColours[2],
-        size = 4,
-        family = "Century Gothic"
-      ) +
-      geom_line(
-        aes(y = Waste,
-            label = Waste),
-        size = 1.5,
-        colour = LineColours[3],
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = Year-.1,
-          y = Waste,
-          label = ifelse(Year == min(Year), paste(round(Waste, digits = 0),"GWh"), ""),
-          hjust = 1,
-          vjust = -.9,
-          fontface = 2
-        ),
-        colour = LineColours[3],
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = Year+1.2,
-          y = Waste,
-          label = ifelse(Year == max(Year), paste0("Energy from waste\n",round(Waste, digits = 0), " GWh"), ""),
-          fontface = 2,
-          vjust =-.3
-        ),
-        colour = LineColours[3],
-        family = "Century Gothic"
-      ) +
-      geom_point(
-        data = tail(RenHeatOutputTech, 1),
-        aes(
-          x = Year,
-          y = Waste,
-          label = Waste,
-          show_guide = FALSE
-        ),
-        colour = LineColours[3],
-        size = 4,
-        family = "Century Gothic"
-      ) +
-      geom_line(
-        aes(y = Pumps,
-            label = Pumps),
-        size = 1.5,
-        colour = LineColours[4],
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = Year-.1,
-          y = Pumps,
-          label = ifelse(Year == min(Year), paste(round(Pumps, digits = 0), "GWh"), ""),
-          hjust = 1,
-          vjust= 0,
-          fontface = 2
-        ),
-        colour = LineColours[4],
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = Year+1.2,
-          y = Pumps,
-          label = ifelse(Year == max(Year), paste0("Heat pumps\n", round(Pumps, digits = 0)," GWh"), ""),
-          vjust = .5,
-          fontface = 2
-        ),
-        colour = LineColours[4],
-        family = "Century Gothic"
-      ) +
-      geom_point(
-        data = tail(RenHeatOutputTech, 1),
-        aes(
-          x = Year,
-          y = Pumps,
-          label = Pumps,
-          show_guide = FALSE
-        ),
-        colour = LineColours[4],
-        size = 4,
-        family = "Century Gothic"
-      ) +
-      geom_line(
-        aes(y = Solar,
-            label = Solar),
-        size = 1.5,
-        colour = LineColours[5],
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = Year-.1,
-          y = Solar,
-          label = ifelse(Year == min(Year), paste(round(Solar, digits = 0),"GWh"), ""),
-          hjust = 1,
-          vjust = 0,
-          fontface = 2
-        ),
-        colour = LineColours[5],
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = Year+1.2,
-          y = Solar,
-          label = ifelse(Year == max(Year), paste0("Solar thermal\n",format(round(Solar, digits = 0), big.mark = ",")," GWh"), ""),
-          fontface = 2,
-          vjust = 0
-        ),
-        colour = LineColours[5],
-        family = "Century Gothic"
-      ) +
-      geom_point(
-        data = tail(RenHeatOutputTech, 1),
-        aes(
-          x = Year,
-          y = Solar,
-          label = Solar,
-          show_guide = FALSE
-        ),
-        colour = LineColours[5],
-        size = 4,
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = Year,
-          y = 0,
-          label = ifelse(Year == max(Year) |
-                           Year == min(Year), Year, ""),
-          hjust = 0.5,
-          vjust = 1.5,
-          fontface = 2
-        ),
-        colour = ChartColours[1],
-        family = "Century Gothic"
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
       )
-    
-    
-    RenHeatOutputTechChart
-    
-    RenHeatOutputTechChart <-
-      LinePercentChart(RenHeatOutputTechChart,
-                       RenHeatOutputTech,
-                       plottitle,
-                       sourcecaption,
-                       ChartColours)
-    
-    
-    RenHeatOutputTechChart
+    ) %>%
+      formatRound(c(2), 3) %>%
+      formatRound(c(3), 0)
+  })
 
-    
-    RenHeatOutputTechChart <- RenHeatOutputTechChart +
-      ylim(-.008, max(RenHeatOutputTech$Biomass))+
-      xlim(min(RenHeatOutputTech$Year-1.2), max(RenHeatOutputTech$Year+2.1))
-    ggsave(
-      file,
-      plot = RenHeatOutputTechChart,
-      width = 16,
-      height = 16,
-      units = "cm",
-      dpi = 300
-    )
-    
-  }
-)
-
-output$RenHeatSizeSubtitle <- renderText({
+  output$Text <- renderUI({
+    tagList(column(12,
+                   HTML(
+                     paste(readtext("Structure/2 - Renewables/Heat/RenHeatTech.txt")[2])
+                     
+                   )))
+  })
+  
+ observeEvent(input$ToggleTable1, {
+    toggle("RenHeatTechTable")
+  })
+  
+  observeEvent(input$ToggleText, {
+    toggle("Text")
+  })
+  
+  
+  output$RenHeatSizeSubtitle <- renderText({
   
   Data <- read_delim("Processed Data/Output/Renewable Heat/RenHeatSize.txt", 
                      "\t", escape_double = FALSE, trim_ws = TRUE)[1:3]
   
   paste("Scotland,", min(Data$Year),"-", max(Data$Year))
 })
-
-output$RenHeatSizePlot <- renderPlotly  ({
+  
+  output$RenHeatSizePlot <- renderPlotly  ({
   
   if (RenHeatDropdown$Measure == "Capacity"){
     x <- 3
-    unit <- "GW"
+    unit <- " GW"
   }
   
   if (RenHeatDropdown$Measure == "Generation"){
     x <- 5
-    unit <- "GWh"
+    unit <- " GWh"
   }
   
   if (RenHeatDropdown$Measure == "Number of Installations"){
@@ -1342,24 +816,36 @@ output$RenHeatSizePlot <- renderPlotly  ({
   p
   
 })
-
-output$RenHeatSize.png <- downloadHandler(
+  
+  output$RenHeatSize.png <- downloadHandler(
   filename = "RenHeatSize.png",
   content = function(file) {
     
     if (RenHeatDropdown$Measure == "Capacity"){
       x <- 3
+      
       unit <- " GW"
+      
+      plottitle <-
+        "Renewable heat capacity by installation size"
     }
-
+    
     if (RenHeatDropdown$Measure == "Generation"){
       x <- 5
+      
       unit <- " GWh"
+      
+      plottitle <-
+        "Renewable heat generation by installation size"
     }
-
+    
     if (RenHeatDropdown$Measure == "Number of Installations"){
       x <- 7
+      
       unit <- ""
+      
+      plottitle <-
+        "Number of Renewable heat installations by installation size"
     }
     
 
@@ -1429,9 +915,7 @@ output$RenHeatSize.png <- downloadHandler(
     
     
     height <- max(as.numeric(as.character(DomesticEPC$Year))) - min(as.numeric(as.character(DomesticEPC$Year))) + 1
-    
-    plottitle <-
-      "Renewable heat capacity by technology type"
+
     sourcecaption <- "Source: EST, SG"
     
     ChartColours <- c("#39ab2c", "#FF8500")
@@ -1583,8 +1067,7 @@ output$RenHeatSize.png <- downloadHandler(
     
   }
 )
-
-output$RenHeatSizeTable = renderDataTable({
+  output$RenHeatSizeTable = renderDataTable({
   
   RenHeatSize <- read_delim("Processed Data/Output/Renewable Heat/RenHeatSize.txt", 
                             "\t", escape_double = FALSE, trim_ws = TRUE)
