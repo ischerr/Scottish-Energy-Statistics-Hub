@@ -370,7 +370,7 @@ RenHeatTech <- function(input, output, session) {
         unit <- ""
         
         plottitle <-
-          "Number of Renewable heat installations by technology type"
+          "Number of Renewable heat installations\nby technology type"
       }
       
       Data <- read_delim("Processed Data/Output/Renewable Heat/RenHeatCapOutput.txt", 
@@ -845,7 +845,7 @@ RenHeatTech <- function(input, output, session) {
       unit <- ""
       
       plottitle <-
-        "Number of Renewable heat installations by installation size"
+        "Number of Renewable heat installations\nby installation size"
     }
     
 
