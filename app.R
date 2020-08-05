@@ -309,7 +309,7 @@ output$HomeTab <- renderUI({
            actionLink(
              "GoToCovidTab",
              label = div(
-               tags$h3("Energy demand in Scotland since Covid-19 lockdown", style = "color: black;"),
+               tags$h3("Covid-19 energy analysis", style = "color: black;"),
                tags$p(
                  " ",
                  style = "color: black;"
@@ -586,7 +586,7 @@ ui <- shinyUI(fluidPage(
           tabPanel(title ="Renewable Heat Target", 
                    value = "RenHeat",
                    RenHeatOutput("RenHeat")),
-          tabPanel(title ="Renewable Heat by Tech Type", 
+          tabPanel(title ="Renewable Heat", 
                    value = "RenHeatTech",
                    RenHeatTechOutput("RenHeatTech")),
           tabPanel(title ="Domestic RHI", 
