@@ -11,23 +11,25 @@ RenHeatTechOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-    tabPanel("1",
+    tabPanel("Tech",
     fluidRow(column(8,
                     h3("Renewable heat capacity by technology type", style = "color: #39ab2c;  font-weight:bold"),
-                    h4(textOutput(ns('RenHeatTechSubtitle')), style = "color: #39ab2c;"), 
-                    selectInput(ns("MeasureSelect"), "Unit:", c("Capacity", "Generation", "Number of Installations"), selected = "Capacity", multiple = FALSE,
-                                                                                                      selectize = TRUE, width = NULL, size = NULL),
-                    ),
+                    h4(textOutput(ns('RenHeatTechSubtitle')), style = "color: #39ab2c;"),
+                      ),
              column(
                4, style = 'padding:15px;',
                downloadButton(ns('RenHeatTech.png'), 'Download Graph', style="float:right")
              )),
+    fluidRow(column(6,  ),
+             column(6,selectInput(ns("MeasureSelect"), "Unit:", c("Capacity", "Generation", "Number of Installations"), selected = "Capacity", multiple = FALSE,
+                                  selectize = TRUE, width = NULL, size = NULL),)
+             ),
     
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     #dygraphOutput(ns("RenHeatTechPlot")),
     plotlyOutput(ns("RenHeatTechPlot"))%>% withSpinner(color="#39ab2c"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("2",
+    tabPanel("Size",
                 fluidRow(column(8,
                                 h3("Renewable heat capacity by technology type", style = "color: #39ab2c;  font-weight:bold"),
                                 h4(textOutput(ns('RenHeatSizeSubtitle')), style = "color: #39ab2c;"), 
@@ -52,7 +54,7 @@ RenHeatTechOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     tabsetPanel(
-      tabPanel("Output and Capacity",
+      tabPanel("Tech",
     fluidRow(
     column(10, h3("Data - Capacity (GW)", style = "color: #39ab2c;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
@@ -60,6 +62,14 @@ RenHeatTechOutput <- function(id) {
     fluidRow(
       column(12, dataTableOutput(ns("RenHeatTechTable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Size",
+             fluidRow(
+               column(10, h3("Data - Capacity (GW)", style = "color: #39ab2c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("RenHeatSizeTable"))%>% withSpinner(color="#39ab2c"))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Energy from Waste",
       fluidRow(
         column(10, h3("Data - Output (GWh)", style = "color: #39ab2c;  font-weight:bold")),
@@ -645,12 +655,33 @@ RenHeatTech <- function(input, output, session) {
     filename = "RenHeatTech.png",
     content = function(file) {
 
+      if (RenHeatDropdown$Measure == "Capacity"){
+        x <- 3
+        unit <- " GW"
+      }
+
+      if (RenHeatDropdown$Measure == "Generation"){
+        x <- 5
+        unit <- " GWh"
+      }
+
+      if (RenHeatDropdown$Measure == "Number of Installations"){
+        x <- 7
+        unit <- ""
+      }
+      
       Data <- read_delim("Processed Data/Output/Renewable Heat/RenHeatCapOutput.txt", 
-                         "\t", escape_double = FALSE, trim_ws = TRUE)[1:3]
+                         "\t", escape_double = FALSE, trim_ws = TRUE)
+      
+      
+      
+      Data <- Data[c(1,2,x)]
       
       Data <- dcast(Data, Year ~ Technology)
       
       names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar", "Total")
+      
+      TotalData <- Data[c(1,7)]
       
       Data$Total <- NULL
       
@@ -672,7 +703,7 @@ RenHeatTech <- function(input, output, session) {
       
       DomesticEPC <-
         melt(DomesticEPC, id.vars = "Year")
-
+      
       
       DomesticEPC <-
         DomesticEPC[c(1, ncol(DomesticEPC):2)]
@@ -680,16 +711,21 @@ RenHeatTech <- function(input, output, session) {
       DomesticEPC <-
         arrange(DomesticEPC,-row_number())
       
-
+      
       DomesticEPC$variable <-
         factor(DomesticEPC$variable,
-               levels = unique(DomesticEPC$variable))
+               levels = rev(unique(DomesticEPC$variable)))
       
       DomesticEPC <- DomesticEPC %>%
         group_by(Year) %>%
         mutate(pos = cumsum(value) - value / 2) %>%
         mutate(top = sum(value))
+      
+      DomesticEPC <- merge(DomesticEPC, TotalData)
+      
       length <- max(DomesticEPC$top)
+      
+      
       height <- max(as.numeric(as.character(DomesticEPC$Year))) - min(as.numeric(as.character(DomesticEPC$Year))) + 1
       
       plottitle <-
@@ -723,7 +759,7 @@ RenHeatTech <- function(input, output, session) {
         annotate(
           "text",
           x = DomesticEPC$Year,
-          y = -.15,
+          y = -length*0.075,
           label = ifelse(
             DomesticEPC$Year == "z",
             "",
@@ -735,24 +771,33 @@ RenHeatTech <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height * 1.25,
-              y = length * (0.5 / 5.2),
+              y = length * (0.5 / 5)*.95,
               label = "Biomass"),
           fontface = 2,
-          colour = BarColours[2],
+          colour = BarColours[1],
           family = "Century Gothic",
           hjust = 0.5
         ) +
         geom_text(
           aes(x = height * 1.25,
-              y = length * (1.5 / 5.2),
+              y = length * (1.5 / 5)*.95,
               label = "CHP"),
           fontface = 2,
-          colour = BarColours[3],
+          colour = BarColours[2],
         ) +
         geom_text(
           aes(x = height * 1.25,
-              y = length * (2.5 / 5.2),
+              y = length * (2.5 / 5)*.95,
               label = "Waste"),
+          fontface = 2,
+          colour = BarColours[3],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = height * 1.25,
+              y = length * (3.5 /5)*.95,
+              label = "Pumps"),
           fontface = 2,
           colour = BarColours[4],
           family = "Century Gothic",
@@ -760,30 +805,21 @@ RenHeatTech <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height * 1.25,
-              y = length * (3.5 /5.2),
-              label = "Pumps"),
+              y = length * (4.5 / 5)*.95,
+              label = "Solar"),
           fontface = 2,
           colour = BarColours[5],
           family = "Century Gothic",
           hjust = 0.5
-        ) +
-        geom_text(
-          aes(x = height * 1.25,
-              y = length * (4.5 / 5.2),
-              label = "Solar"),
-          fontface = 2,
-          colour = BarColours[6],
-          family = "Century Gothic",
-          hjust = 0.5
-
+          
         ) +
         annotate(
           "text",
           x = DomesticEPC$Year,
-          y = DomesticEPC$top +.05,
+          y = DomesticEPC$top + length*0.015,
           label = paste0(
-            round(DomesticEPC$top, 3),
-            " GW"
+            format(round(DomesticEPC$Total, 3), big.mark =","),
+            unit
           ),
           family = "Century Gothic",
           hjust = 0,
@@ -792,7 +828,7 @@ RenHeatTech <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height * 1.25,
-              y = length * (5.5 / 5.2),
+              y = length * (5.5 / 5)*.95,
               label = "Total"),
           fontface = 2,
           colour = ChartColours[1],
@@ -800,8 +836,8 @@ RenHeatTech <- function(input, output, session) {
           hjust = 0.5
         )+
         geom_text(
-          aes(x = height *1.30,
-              y = 1.05,
+          aes(x = height * 1.20,
+              y = length * 2,
               label = " "),
           fontface = 2,
           colour = ChartColours[1],
@@ -829,7 +865,7 @@ RenHeatTech <- function(input, output, session) {
                               "-",
                               max(as.numeric(as.character(DomesticEPC$Year)))
         )) +
-        ylim(-.2, max(DomesticEPC$top)*1.1)
+        ylim(-length*0.1, length*1.15)
       
       DomesticEPCChart
       
@@ -838,7 +874,7 @@ RenHeatTech <- function(input, output, session) {
         file,
         plot = DomesticEPCChart,
         width = 19,
-        height = 15.5,
+        height =10.5,
         units = "cm",
         dpi = 300
       )
@@ -1307,6 +1343,298 @@ output$RenHeatSizePlot <- renderPlotly  ({
   
 })
 
+output$RenHeatSize.png <- downloadHandler(
+  filename = "RenHeatSize.png",
+  content = function(file) {
+    
+    if (RenHeatDropdown$Measure == "Capacity"){
+      x <- 3
+      unit <- " GW"
+    }
+
+    if (RenHeatDropdown$Measure == "Generation"){
+      x <- 5
+      unit <- " GWh"
+    }
+
+    if (RenHeatDropdown$Measure == "Number of Installations"){
+      x <- 7
+      unit <- ""
+    }
+    
+
+    
+    Data <- read_delim("Processed Data/Output/Renewable Heat/RenHeatSize.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    Data <- Data[c(1,2,x)]
+    
+    Data <- dcast(Data, Year ~ Technology)
+    
+    names(Data) <- c("Year", "Bioenergy","Large", "Micro", "Small to medium", "Total", "Unknown")
+    
+    TotalData <- Data[c(1,6)]
+    
+    
+    
+    Data %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data <- Data[c(1, 3, 5, 4, 2, 7 ,6)]
+    
+    Data[7] <- NULL
+    
+    Data <- as_tibble(Data)
+    
+    Data[is.na(Data)] <- 0
+    
+    Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
+    
+    Data <- Data[complete.cases(Data),]
+    
+    DomesticEPC <- as_tibble(Data)
+    
+    DomesticEPC <-
+      DomesticEPC[c(1, ncol(DomesticEPC):2)]
+    
+    DomesticEPC <-
+      arrange(DomesticEPC,-row_number())
+    
+    DomesticEPC$Year <-
+      factor(DomesticEPC$Year,
+             levels = unique(DomesticEPC$Year))
+    
+    DomesticEPC <-
+      melt(DomesticEPC, id.vars = "Year")
+    
+    
+    DomesticEPC <-
+      DomesticEPC[c(1, ncol(DomesticEPC):2)]
+    
+    DomesticEPC <-
+      arrange(DomesticEPC,-row_number())
+    
+    
+    DomesticEPC$variable <-
+      factor(DomesticEPC$variable,
+             levels = rev(unique(DomesticEPC$variable)))
+    
+    DomesticEPC <- DomesticEPC %>%
+      group_by(Year) %>%
+      mutate(pos = cumsum(value) - value / 2) %>%
+      mutate(top = sum(value))
+    
+    DomesticEPC <- merge(DomesticEPC, TotalData)
+    
+    length <- max(DomesticEPC$top)
+    
+    
+    height <- max(as.numeric(as.character(DomesticEPC$Year))) - min(as.numeric(as.character(DomesticEPC$Year))) + 1
+    
+    plottitle <-
+      "Renewable heat capacity by technology type"
+    sourcecaption <- "Source: EST, SG"
+    
+    ChartColours <- c("#39ab2c", "#FF8500")
+    BarColours <-
+      c("#006837",
+        "#1a9850",
+        "#66bd63",
+        "#fee08b",
+        "#fdae61",
+        "#f46d43",
+        "#d73027")
+    
+    
+    DomesticEPCChart <- DomesticEPC %>%
+      ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
+      scale_fill_manual(
+        "variable",
+        values = c(
+          "Large" = BarColours[1],
+          "Small to medium"     = BarColours[2],
+          "Micro"   = BarColours[3],
+          "Bioenergy"   = BarColours[4],
+          "Unknown"   = BarColours[5]
+        )
+      ) +
+      geom_bar(stat = "identity", width = .8) +
+      annotate(
+        "text",
+        x = DomesticEPC$Year,
+        y = -length*0.075,
+        label = ifelse(
+          DomesticEPC$Year == "z",
+          "",
+          str_wrap(DomesticEPC$Year, width = 8)
+        ),
+        family = "Century Gothic",
+        fontface = 2,
+        colour = ChartColours[1]
+      ) +
+      geom_text(
+        aes(x = height * 1.3,
+            y = length * (0.5 / 5)*.95,
+            label = "Large"),
+        fontface = 2,
+        colour = BarColours[1],
+        family = "Century Gothic",
+        hjust = 0.5
+      ) +
+      geom_text(
+        aes(x = height * 1.3,
+            y = length * (1.5 / 5)*.95,
+            label = "Small to\nmedium"),
+        fontface = 2,
+        colour = BarColours[2],
+      ) +
+      geom_text(
+        aes(x = height * 1.3,
+            y = length * (2.5 / 5)*.95,
+            label = "Micro"),
+        fontface = 2,
+        colour = BarColours[3],
+        family = "Century Gothic",
+        hjust = 0.5
+      ) +
+      geom_text(
+        aes(x = height * 1.3,
+            y = length * (3.5 /5)*.95,
+            label = "Bioenergy"),
+        fontface = 2,
+        colour = BarColours[4],
+        family = "Century Gothic",
+        hjust = 0.5
+      ) +
+      geom_text(
+        aes(x = height * 1.3,
+            y = length * (4.5 / 5)*.95,
+            label = "Unknown"),
+        fontface = 2,
+        colour = BarColours[5],
+        family = "Century Gothic",
+        hjust = 0.5
+        
+      ) +
+      annotate(
+        "text",
+        x = DomesticEPC$Year,
+        y = DomesticEPC$top + length*0.015,
+        label = paste0(
+          format(round(DomesticEPC$Total, 3), big.mark =","),
+          unit
+        ),
+        family = "Century Gothic",
+        hjust = 0,
+        fontface = 2,
+        colour = ChartColours[1]
+      ) +
+      geom_text(
+        aes(x = height * 1.3,
+            y = length * (5.5 / 5)*.95,
+            label = "Total"),
+        fontface = 2,
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        hjust = 0.5
+      )+
+      geom_text(
+        aes(x = height * 1.40,
+            y = length * 2,
+            label = " "),
+        fontface = 2,
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        hjust = 0.5
+      )
+    
+    DomesticEPCChart
+    
+    
+    DomesticEPCChart <-
+      StackedBars(
+        DomesticEPCChart,
+        DomesticEPC,
+        plottitle,
+        sourcecaption,
+        ChartColours
+      )
+    
+    DomesticEPCChart <-
+      DomesticEPCChart +
+      coord_flip() +
+      labs(subtitle = paste("Scotland",
+                            min(as.numeric(as.character(DomesticEPC$Year))),
+                            "-",
+                            max(as.numeric(as.character(DomesticEPC$Year)))
+      )) +
+      ylim(-length*0.1, length*1.15)
+    
+    DomesticEPCChart
+    
+    
+    ggsave(
+      file,
+      plot = DomesticEPCChart,
+      width = 19,
+      height =10.5,
+      units = "cm",
+      dpi = 300
+    )
+    
+  }
+)
+
+output$RenHeatSizeTable = renderDataTable({
+  
+  RenHeatSize <- read_delim("Processed Data/Output/Renewable Heat/RenHeatSize.txt", 
+                            "\t", escape_double = FALSE, trim_ws = TRUE)
+  
+  RenHeatSize <- melt(RenHeatSize, id.vars = c("Year", "Technology"))
+  
+  RenHeatSize$variable <- paste0(RenHeatSize$variable, " - ", RenHeatSize$Year)
+  
+  RenHeatSize$Year <- NULL
+  
+  RenHeatSize <- dcast(RenHeatSize, Technology ~ variable)
+  
+  RenHeatSize[RenHeatSize <= 0.01] <- "< 0.1"
+  
+  RenHeatSize <- RenHeatSize[c(2,4,3,1,6,5),]
+  
+  datatable(
+    RenHeatSize[c(1,13,12,9,8,11,10)],
+    extensions = 'Buttons',
+    
+    rownames = FALSE,
+    options = list(
+      paging = TRUE,
+      pageLength = -1,
+      searching = TRUE,
+      fixedColumns = FALSE,
+      autoWidth = TRUE,
+      title = "Renewable heat output and capacity",
+      dom = 'ltBp',
+      buttons = list(
+        list(extend = 'copy'),
+        list(
+          extend = 'excel',
+          title = "Renewable heat output and capacity",
+          header = TRUE
+        ),
+        list(extend = 'csv',
+             title = "Renewable heat output and capacity")
+      ),
+      
+      # customize the length menu
+      lengthMenu = list( c(10, 20, -1) # declare values
+                         , c(10, 20, "All") # declare titles
+      ), # end of lengthMenu customization
+      pageLength = 10
+    )
+  ) %>%
+    
+    formatRound(c(4:7), 0)
+})
+
 }
-    
-    
+
