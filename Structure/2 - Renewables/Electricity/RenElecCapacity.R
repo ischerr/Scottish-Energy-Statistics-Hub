@@ -41,7 +41,7 @@ RenElecCapacityOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Local Authorities",
                fluidRow(column(8,
-                               h3("Renewable electricity generation at Local Authority Level", style = "color: #39ab2c;  font-weight:bold"),
+                               h3("Renewable electricity capacity at Local Authority Level", style = "color: #39ab2c;  font-weight:bold"),
                                
                ),
                column(
@@ -124,7 +124,7 @@ RenElecCapacityOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Local Authority",
                fluidRow(
-                 column(10, h3("Data - Renewable electricity generation at Local Authority Level (GWh)", style = "color: #39ab2c;  font-weight:bold")),
+                 column(10, h3("Data - Renewable electricity capacity at Local Authority Level (GWh)", style = "color: #39ab2c;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
@@ -2441,9 +2441,9 @@ RenElecCapacity <- function(input, output, session) {
     
     LARenCap <- LARenCap[which(LARenCap$variable == Tech),]
     
-    LARenCap$Content <- paste0("<b>",LARenCap$LAName, "</b><br/>", LARenCap$variable[1], " Generation:<br/><em>", round(LARenCap$value, digits = 0)," GWh</em>" )
+    LARenCap$Content <- paste0("<b>",LARenCap$LAName, "</b><br/>", LARenCap$variable[1], " Capacity:<br/><em>", round(LARenCap$value, digits = 1)," MW</em>" )
     
-    LARenCap$Hover <- paste0(LARenCap$LAName, " - ", round(LARenCap$value, digits = 2), " GWh")
+    LARenCap$Hover <- paste0(LARenCap$LAName, " - ", round(LARenCap$value, digits = 1), " MW")
     
     ### Change LA$CODE to string
     LA$CODE <- as.character(LA$CODE)
@@ -2475,7 +2475,7 @@ RenElecCapacity <- function(input, output, session) {
                   highlightOptions = list(color = "white", weight = 2,
                                           bringToFront = TRUE)) %>%
       leaflet::addLegend("bottomright", pal = pal, values = ~value,
-                         title = paste0(LARenCap$variable[1], " Generation (GWh)"),
+                         title = paste0(LARenCap$variable[1], " Capacity (MW)"),
                          opacity = 1
       ) 
     
@@ -2531,7 +2531,7 @@ RenElecCapacity <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(4:ncol(LARenCap), 0) 
+      formatRound(4:ncol(LARenCap), 1) 
   })
   
   
