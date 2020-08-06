@@ -1,0 +1,3201 @@
+"Quarter"	"LAName"	"LACode"	"variable"	"value"
+"2020 Q1"	"Aberdeen City"	"S12000033"	"Battery"	311
+"2020 Q1"	"Aberdeenshire"	"S12000034"	"Battery"	467
+"2020 Q1"	"Angus"	"S12000041"	"Battery"	220
+"2020 Q1"	"Argyll and Bute"	"S12000035"	"Battery"	127
+"2020 Q1"	"City of Edinburgh"	"S12000036"	"Battery"	888
+"2020 Q1"	"Clackmannanshire"	"S12000005"	"Battery"	52
+"2020 Q1"	"Dumfries and Galloway"	"S12000006"	"Battery"	138
+"2020 Q1"	"Dundee City"	"S12000042"	"Battery"	382
+"2020 Q1"	"East Ayrshire"	"S12000008"	"Battery"	135
+"2020 Q1"	"East Dunbartonshire"	"S12000045"	"Battery"	195
+"2020 Q1"	"East Lothian"	"S12000010"	"Battery"	232
+"2020 Q1"	"East Renfrewshire"	"S12000011"	"Battery"	217
+"2020 Q1"	"Falkirk"	"S12000014"	"Battery"	198
+"2020 Q1"	"Fife"	"S12000047"	"Battery"	598
+"2020 Q1"	"Glasgow City"	"S12000049"	"Battery"	514
+"2020 Q1"	"Highland"	"S12000017"	"Battery"	316
+"2020 Q1"	"Inverclyde"	"S12000018"	"Battery"	89
+"2020 Q1"	"Midlothian"	"S12000019"	"Battery"	184
+"2020 Q1"	"Moray"	"S12000020"	"Battery"	92
+"2020 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	32
+"2020 Q1"	"North Ayrshire"	"S12000021"	"Battery"	97
+"2020 Q1"	"North Lanarkshire"	"S12000050"	"Battery"	228
+"2020 Q1"	"Orkney Islands"	"S12000023"	"Battery"	221
+"2020 Q1"	"Perth and Kinross"	"S12000048"	"Battery"	316
+"2020 Q1"	"Renfrewshire"	"S12000038"	"Battery"	1014
+"2020 Q1"	"Scottish Borders"	"S12000026"	"Battery"	210
+"2020 Q1"	"Shetland Islands"	"S12000027"	"Battery"	26
+"2020 Q1"	"South Ayrshire"	"S12000028"	"Battery"	135
+"2020 Q1"	"South Lanarkshire"	"S12000029"	"Battery"	376
+"2020 Q1"	"Stirling"	"S12000030"	"Battery"	400
+"2020 Q1"	"West Dunbartonshire"	"S12000039"	"Battery"	73
+"2020 Q1"	"West Lothian"	"S12000040"	"Battery"	226
+"2019 Q4"	"Aberdeen City"	"S12000033"	"Battery"	269
+"2019 Q4"	"Aberdeenshire"	"S12000034"	"Battery"	404
+"2019 Q4"	"Angus"	"S12000041"	"Battery"	195
+"2019 Q4"	"Argyll and Bute"	"S12000035"	"Battery"	115
+"2019 Q4"	"City of Edinburgh"	"S12000036"	"Battery"	773
+"2019 Q4"	"Clackmannanshire"	"S12000005"	"Battery"	44
+"2019 Q4"	"Dumfries and Galloway"	"S12000006"	"Battery"	108
+"2019 Q4"	"Dundee City"	"S12000042"	"Battery"	350
+"2019 Q4"	"East Ayrshire"	"S12000008"	"Battery"	116
+"2019 Q4"	"East Dunbartonshire"	"S12000045"	"Battery"	173
+"2019 Q4"	"East Lothian"	"S12000010"	"Battery"	213
+"2019 Q4"	"East Renfrewshire"	"S12000011"	"Battery"	189
+"2019 Q4"	"Falkirk"	"S12000014"	"Battery"	168
+"2019 Q4"	"Fife"	"S12000047"	"Battery"	531
+"2019 Q4"	"Glasgow City"	"S12000049"	"Battery"	381
+"2019 Q4"	"Highland"	"S12000017"	"Battery"	280
+"2019 Q4"	"Inverclyde"	"S12000018"	"Battery"	70
+"2019 Q4"	"Midlothian"	"S12000019"	"Battery"	157
+"2019 Q4"	"Moray"	"S12000020"	"Battery"	75
+"2019 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	28
+"2019 Q4"	"North Ayrshire"	"S12000021"	"Battery"	74
+"2019 Q4"	"North Lanarkshire"	"S12000050"	"Battery"	203
+"2019 Q4"	"Orkney Islands"	"S12000023"	"Battery"	212
+"2019 Q4"	"Perth and Kinross"	"S12000048"	"Battery"	272
+"2019 Q4"	"Renfrewshire"	"S12000038"	"Battery"	869
+"2019 Q4"	"Scottish Borders"	"S12000026"	"Battery"	197
+"2019 Q4"	"Shetland Islands"	"S12000027"	"Battery"	24
+"2019 Q4"	"South Ayrshire"	"S12000028"	"Battery"	115
+"2019 Q4"	"South Lanarkshire"	"S12000029"	"Battery"	338
+"2019 Q4"	"Stirling"	"S12000030"	"Battery"	310
+"2019 Q4"	"West Dunbartonshire"	"S12000039"	"Battery"	64
+"2019 Q4"	"West Lothian"	"S12000040"	"Battery"	207
+"2019 Q3"	"Aberdeen City"	"S12000033"	"Battery"	245
+"2019 Q3"	"Aberdeenshire"	"S12000034"	"Battery"	358
+"2019 Q3"	"Angus"	"S12000041"	"Battery"	180
+"2019 Q3"	"Argyll and Bute"	"S12000035"	"Battery"	100
+"2019 Q3"	"City of Edinburgh"	"S12000036"	"Battery"	696
+"2019 Q3"	"Clackmannanshire"	"S12000005"	"Battery"	41
+"2019 Q3"	"Dumfries and Galloway"	"S12000006"	"Battery"	97
+"2019 Q3"	"Dundee City"	"S12000042"	"Battery"	324
+"2019 Q3"	"East Ayrshire"	"S12000008"	"Battery"	102
+"2019 Q3"	"East Dunbartonshire"	"S12000045"	"Battery"	147
+"2019 Q3"	"East Lothian"	"S12000010"	"Battery"	178
+"2019 Q3"	"East Renfrewshire"	"S12000011"	"Battery"	167
+"2019 Q3"	"Falkirk"	"S12000014"	"Battery"	128
+"2019 Q3"	"Fife"	"S12000047"	"Battery"	471
+"2019 Q3"	"Glasgow City"	"S12000049"	"Battery"	344
+"2019 Q3"	"Highland"	"S12000017"	"Battery"	244
+"2019 Q3"	"Inverclyde"	"S12000018"	"Battery"	69
+"2019 Q3"	"Midlothian"	"S12000019"	"Battery"	143
+"2019 Q3"	"Moray"	"S12000020"	"Battery"	62
+"2019 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	24
+"2019 Q3"	"North Ayrshire"	"S12000021"	"Battery"	70
+"2019 Q3"	"North Lanarkshire"	"S12000050"	"Battery"	175
+"2019 Q3"	"Orkney Islands"	"S12000023"	"Battery"	210
+"2019 Q3"	"Perth and Kinross"	"S12000048"	"Battery"	247
+"2019 Q3"	"Renfrewshire"	"S12000038"	"Battery"	729
+"2019 Q3"	"Scottish Borders"	"S12000026"	"Battery"	181
+"2019 Q3"	"Shetland Islands"	"S12000027"	"Battery"	21
+"2019 Q3"	"South Ayrshire"	"S12000028"	"Battery"	105
+"2019 Q3"	"South Lanarkshire"	"S12000029"	"Battery"	299
+"2019 Q3"	"Stirling"	"S12000030"	"Battery"	257
+"2019 Q3"	"West Dunbartonshire"	"S12000039"	"Battery"	58
+"2019 Q3"	"West Lothian"	"S12000040"	"Battery"	189
+"2019 Q2"	"Aberdeen City"	"S12000033"	"Battery"	219
+"2019 Q2"	"Aberdeenshire"	"S12000034"	"Battery"	319
+"2019 Q2"	"Angus"	"S12000041"	"Battery"	162
+"2019 Q2"	"Argyll and Bute"	"S12000035"	"Battery"	92
+"2019 Q2"	"City of Edinburgh"	"S12000036"	"Battery"	597
+"2019 Q2"	"Clackmannanshire"	"S12000005"	"Battery"	41
+"2019 Q2"	"Dumfries and Galloway"	"S12000006"	"Battery"	92
+"2019 Q2"	"Dundee City"	"S12000042"	"Battery"	309
+"2019 Q2"	"East Ayrshire"	"S12000008"	"Battery"	101
+"2019 Q2"	"East Dunbartonshire"	"S12000045"	"Battery"	118
+"2019 Q2"	"East Lothian"	"S12000010"	"Battery"	152
+"2019 Q2"	"East Renfrewshire"	"S12000011"	"Battery"	147
+"2019 Q2"	"Falkirk"	"S12000014"	"Battery"	115
+"2019 Q2"	"Fife"	"S12000047"	"Battery"	405
+"2019 Q2"	"Glasgow City"	"S12000049"	"Battery"	303
+"2019 Q2"	"Highland"	"S12000017"	"Battery"	211
+"2019 Q2"	"Inverclyde"	"S12000018"	"Battery"	60
+"2019 Q2"	"Midlothian"	"S12000019"	"Battery"	132
+"2019 Q2"	"Moray"	"S12000020"	"Battery"	55
+"2019 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	21
+"2019 Q2"	"North Ayrshire"	"S12000021"	"Battery"	65
+"2019 Q2"	"North Lanarkshire"	"S12000050"	"Battery"	166
+"2019 Q2"	"Orkney Islands"	"S12000023"	"Battery"	203
+"2019 Q2"	"Perth and Kinross"	"S12000048"	"Battery"	215
+"2019 Q2"	"Renfrewshire"	"S12000038"	"Battery"	567
+"2019 Q2"	"Scottish Borders"	"S12000026"	"Battery"	156
+"2019 Q2"	"Shetland Islands"	"S12000027"	"Battery"	19
+"2019 Q2"	"South Ayrshire"	"S12000028"	"Battery"	90
+"2019 Q2"	"South Lanarkshire"	"S12000029"	"Battery"	259
+"2019 Q2"	"Stirling"	"S12000030"	"Battery"	204
+"2019 Q2"	"West Dunbartonshire"	"S12000039"	"Battery"	53
+"2019 Q2"	"West Lothian"	"S12000040"	"Battery"	168
+"2019 Q1"	"Aberdeen City"	"S12000033"	"Battery"	210
+"2019 Q1"	"Aberdeenshire"	"S12000034"	"Battery"	296
+"2019 Q1"	"Angus"	"S12000041"	"Battery"	150
+"2019 Q1"	"Argyll and Bute"	"S12000035"	"Battery"	91
+"2019 Q1"	"City of Edinburgh"	"S12000036"	"Battery"	554
+"2019 Q1"	"Clackmannanshire"	"S12000005"	"Battery"	39
+"2019 Q1"	"Dumfries and Galloway"	"S12000006"	"Battery"	79
+"2019 Q1"	"Dundee City"	"S12000042"	"Battery"	305
+"2019 Q1"	"East Ayrshire"	"S12000008"	"Battery"	90
+"2019 Q1"	"East Dunbartonshire"	"S12000045"	"Battery"	106
+"2019 Q1"	"East Lothian"	"S12000010"	"Battery"	134
+"2019 Q1"	"East Renfrewshire"	"S12000011"	"Battery"	142
+"2019 Q1"	"Falkirk"	"S12000014"	"Battery"	108
+"2019 Q1"	"Fife"	"S12000047"	"Battery"	385
+"2019 Q1"	"Glasgow City"	"S12000049"	"Battery"	298
+"2019 Q1"	"Highland"	"S12000017"	"Battery"	196
+"2019 Q1"	"Inverclyde"	"S12000018"	"Battery"	58
+"2019 Q1"	"Midlothian"	"S12000019"	"Battery"	125
+"2019 Q1"	"Moray"	"S12000020"	"Battery"	53
+"2019 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	15
+"2019 Q1"	"North Ayrshire"	"S12000021"	"Battery"	60
+"2019 Q1"	"North Lanarkshire"	"S12000050"	"Battery"	163
+"2019 Q1"	"Orkney Islands"	"S12000023"	"Battery"	198
+"2019 Q1"	"Perth and Kinross"	"S12000048"	"Battery"	198
+"2019 Q1"	"Renfrewshire"	"S12000038"	"Battery"	437
+"2019 Q1"	"Scottish Borders"	"S12000026"	"Battery"	153
+"2019 Q1"	"Shetland Islands"	"S12000027"	"Battery"	17
+"2019 Q1"	"South Ayrshire"	"S12000028"	"Battery"	82
+"2019 Q1"	"South Lanarkshire"	"S12000029"	"Battery"	248
+"2019 Q1"	"Stirling"	"S12000030"	"Battery"	189
+"2019 Q1"	"West Dunbartonshire"	"S12000039"	"Battery"	51
+"2019 Q1"	"West Lothian"	"S12000040"	"Battery"	160
+"2018 Q4"	"Aberdeen City"	"S12000033"	"Battery"	195
+"2018 Q4"	"Aberdeenshire"	"S12000034"	"Battery"	266
+"2018 Q4"	"Angus"	"S12000041"	"Battery"	139
+"2018 Q4"	"Argyll and Bute"	"S12000035"	"Battery"	81
+"2018 Q4"	"City of Edinburgh"	"S12000036"	"Battery"	504
+"2018 Q4"	"Clackmannanshire"	"S12000005"	"Battery"	39
+"2018 Q4"	"Dumfries and Galloway"	"S12000006"	"Battery"	69
+"2018 Q4"	"Dundee City"	"S12000042"	"Battery"	291
+"2018 Q4"	"East Ayrshire"	"S12000008"	"Battery"	80
+"2018 Q4"	"East Dunbartonshire"	"S12000045"	"Battery"	93
+"2018 Q4"	"East Lothian"	"S12000010"	"Battery"	116
+"2018 Q4"	"East Renfrewshire"	"S12000011"	"Battery"	128
+"2018 Q4"	"Falkirk"	"S12000014"	"Battery"	99
+"2018 Q4"	"Fife"	"S12000047"	"Battery"	360
+"2018 Q4"	"Glasgow City"	"S12000049"	"Battery"	289
+"2018 Q4"	"Highland"	"S12000017"	"Battery"	177
+"2018 Q4"	"Inverclyde"	"S12000018"	"Battery"	40
+"2018 Q4"	"Midlothian"	"S12000019"	"Battery"	107
+"2018 Q4"	"Moray"	"S12000020"	"Battery"	46
+"2018 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	14
+"2018 Q4"	"North Ayrshire"	"S12000021"	"Battery"	57
+"2018 Q4"	"North Lanarkshire"	"S12000050"	"Battery"	160
+"2018 Q4"	"Orkney Islands"	"S12000023"	"Battery"	191
+"2018 Q4"	"Perth and Kinross"	"S12000048"	"Battery"	182
+"2018 Q4"	"Renfrewshire"	"S12000038"	"Battery"	328
+"2018 Q4"	"Scottish Borders"	"S12000026"	"Battery"	140
+"2018 Q4"	"Shetland Islands"	"S12000027"	"Battery"	19
+"2018 Q4"	"South Ayrshire"	"S12000028"	"Battery"	78
+"2018 Q4"	"South Lanarkshire"	"S12000029"	"Battery"	240
+"2018 Q4"	"Stirling"	"S12000030"	"Battery"	149
+"2018 Q4"	"West Dunbartonshire"	"S12000039"	"Battery"	46
+"2018 Q4"	"West Lothian"	"S12000040"	"Battery"	151
+"2018 Q3"	"Aberdeen City"	"S12000033"	"Battery"	177
+"2018 Q3"	"Aberdeenshire"	"S12000034"	"Battery"	249
+"2018 Q3"	"Angus"	"S12000041"	"Battery"	140
+"2018 Q3"	"Argyll and Bute"	"S12000035"	"Battery"	67
+"2018 Q3"	"City of Edinburgh"	"S12000036"	"Battery"	475
+"2018 Q3"	"Clackmannanshire"	"S12000005"	"Battery"	39
+"2018 Q3"	"Dumfries and Galloway"	"S12000006"	"Battery"	57
+"2018 Q3"	"Dundee City"	"S12000042"	"Battery"	294
+"2018 Q3"	"East Ayrshire"	"S12000008"	"Battery"	75
+"2018 Q3"	"East Dunbartonshire"	"S12000045"	"Battery"	86
+"2018 Q3"	"East Lothian"	"S12000010"	"Battery"	106
+"2018 Q3"	"East Renfrewshire"	"S12000011"	"Battery"	117
+"2018 Q3"	"Falkirk"	"S12000014"	"Battery"	95
+"2018 Q3"	"Fife"	"S12000047"	"Battery"	359
+"2018 Q3"	"Glasgow City"	"S12000049"	"Battery"	282
+"2018 Q3"	"Highland"	"S12000017"	"Battery"	153
+"2018 Q3"	"Inverclyde"	"S12000018"	"Battery"	35
+"2018 Q3"	"Midlothian"	"S12000019"	"Battery"	105
+"2018 Q3"	"Moray"	"S12000020"	"Battery"	43
+"2018 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	13
+"2018 Q3"	"North Ayrshire"	"S12000021"	"Battery"	55
+"2018 Q3"	"North Lanarkshire"	"S12000050"	"Battery"	153
+"2018 Q3"	"Orkney Islands"	"S12000023"	"Battery"	186
+"2018 Q3"	"Perth and Kinross"	"S12000048"	"Battery"	171
+"2018 Q3"	"Renfrewshire"	"S12000038"	"Battery"	300
+"2018 Q3"	"Scottish Borders"	"S12000026"	"Battery"	130
+"2018 Q3"	"Shetland Islands"	"S12000027"	"Battery"	20
+"2018 Q3"	"South Ayrshire"	"S12000028"	"Battery"	69
+"2018 Q3"	"South Lanarkshire"	"S12000029"	"Battery"	219
+"2018 Q3"	"Stirling"	"S12000030"	"Battery"	144
+"2018 Q3"	"West Dunbartonshire"	"S12000039"	"Battery"	43
+"2018 Q3"	"West Lothian"	"S12000040"	"Battery"	150
+"2018 Q2"	"Aberdeen City"	"S12000033"	"Battery"	168
+"2018 Q2"	"Aberdeenshire"	"S12000034"	"Battery"	236
+"2018 Q2"	"Angus"	"S12000041"	"Battery"	117
+"2018 Q2"	"Argyll and Bute"	"S12000035"	"Battery"	58
+"2018 Q2"	"City of Edinburgh"	"S12000036"	"Battery"	442
+"2018 Q2"	"Clackmannanshire"	"S12000005"	"Battery"	38
+"2018 Q2"	"Dumfries and Galloway"	"S12000006"	"Battery"	53
+"2018 Q2"	"Dundee City"	"S12000042"	"Battery"	279
+"2018 Q2"	"East Ayrshire"	"S12000008"	"Battery"	60
+"2018 Q2"	"East Dunbartonshire"	"S12000045"	"Battery"	82
+"2018 Q2"	"East Lothian"	"S12000010"	"Battery"	98
+"2018 Q2"	"East Renfrewshire"	"S12000011"	"Battery"	103
+"2018 Q2"	"Falkirk"	"S12000014"	"Battery"	88
+"2018 Q2"	"Fife"	"S12000047"	"Battery"	323
+"2018 Q2"	"Glasgow City"	"S12000049"	"Battery"	265
+"2018 Q2"	"Highland"	"S12000017"	"Battery"	127
+"2018 Q2"	"Inverclyde"	"S12000018"	"Battery"	35
+"2018 Q2"	"Midlothian"	"S12000019"	"Battery"	91
+"2018 Q2"	"Moray"	"S12000020"	"Battery"	38
+"2018 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	11
+"2018 Q2"	"North Ayrshire"	"S12000021"	"Battery"	53
+"2018 Q2"	"North Lanarkshire"	"S12000050"	"Battery"	144
+"2018 Q2"	"Orkney Islands"	"S12000023"	"Battery"	173
+"2018 Q2"	"Perth and Kinross"	"S12000048"	"Battery"	160
+"2018 Q2"	"Renfrewshire"	"S12000038"	"Battery"	253
+"2018 Q2"	"Scottish Borders"	"S12000026"	"Battery"	112
+"2018 Q2"	"Shetland Islands"	"S12000027"	"Battery"	18
+"2018 Q2"	"South Ayrshire"	"S12000028"	"Battery"	58
+"2018 Q2"	"South Lanarkshire"	"S12000029"	"Battery"	190
+"2018 Q2"	"Stirling"	"S12000030"	"Battery"	134
+"2018 Q2"	"West Dunbartonshire"	"S12000039"	"Battery"	40
+"2018 Q2"	"West Lothian"	"S12000040"	"Battery"	130
+"2018 Q1"	"Aberdeen City"	"S12000033"	"Battery"	165
+"2018 Q1"	"Aberdeenshire"	"S12000034"	"Battery"	217
+"2018 Q1"	"Angus"	"S12000041"	"Battery"	99
+"2018 Q1"	"Argyll and Bute"	"S12000035"	"Battery"	56
+"2018 Q1"	"City of Edinburgh"	"S12000036"	"Battery"	403
+"2018 Q1"	"Clackmannanshire"	"S12000005"	"Battery"	35
+"2018 Q1"	"Dumfries and Galloway"	"S12000006"	"Battery"	53
+"2018 Q1"	"Dundee City"	"S12000042"	"Battery"	257
+"2018 Q1"	"East Ayrshire"	"S12000008"	"Battery"	60
+"2018 Q1"	"East Dunbartonshire"	"S12000045"	"Battery"	75
+"2018 Q1"	"East Lothian"	"S12000010"	"Battery"	94
+"2018 Q1"	"East Renfrewshire"	"S12000011"	"Battery"	102
+"2018 Q1"	"Falkirk"	"S12000014"	"Battery"	88
+"2018 Q1"	"Fife"	"S12000047"	"Battery"	309
+"2018 Q1"	"Glasgow City"	"S12000049"	"Battery"	240
+"2018 Q1"	"Highland"	"S12000017"	"Battery"	116
+"2018 Q1"	"Inverclyde"	"S12000018"	"Battery"	33
+"2018 Q1"	"Midlothian"	"S12000019"	"Battery"	84
+"2018 Q1"	"Moray"	"S12000020"	"Battery"	32
+"2018 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	11
+"2018 Q1"	"North Ayrshire"	"S12000021"	"Battery"	51
+"2018 Q1"	"North Lanarkshire"	"S12000050"	"Battery"	143
+"2018 Q1"	"Orkney Islands"	"S12000023"	"Battery"	162
+"2018 Q1"	"Perth and Kinross"	"S12000048"	"Battery"	159
+"2018 Q1"	"Renfrewshire"	"S12000038"	"Battery"	236
+"2018 Q1"	"Scottish Borders"	"S12000026"	"Battery"	105
+"2018 Q1"	"Shetland Islands"	"S12000027"	"Battery"	17
+"2018 Q1"	"South Ayrshire"	"S12000028"	"Battery"	55
+"2018 Q1"	"South Lanarkshire"	"S12000029"	"Battery"	196
+"2018 Q1"	"Stirling"	"S12000030"	"Battery"	130
+"2018 Q1"	"West Dunbartonshire"	"S12000039"	"Battery"	36
+"2018 Q1"	"West Lothian"	"S12000040"	"Battery"	118
+"2017 Q4"	"Aberdeen City"	"S12000033"	"Battery"	154
+"2017 Q4"	"Aberdeenshire"	"S12000034"	"Battery"	201
+"2017 Q4"	"Angus"	"S12000041"	"Battery"	86
+"2017 Q4"	"Argyll and Bute"	"S12000035"	"Battery"	51
+"2017 Q4"	"City of Edinburgh"	"S12000036"	"Battery"	379
+"2017 Q4"	"Clackmannanshire"	"S12000005"	"Battery"	34
+"2017 Q4"	"Dumfries and Galloway"	"S12000006"	"Battery"	43
+"2017 Q4"	"Dundee City"	"S12000042"	"Battery"	236
+"2017 Q4"	"East Ayrshire"	"S12000008"	"Battery"	54
+"2017 Q4"	"East Dunbartonshire"	"S12000045"	"Battery"	58
+"2017 Q4"	"East Lothian"	"S12000010"	"Battery"	87
+"2017 Q4"	"East Renfrewshire"	"S12000011"	"Battery"	91
+"2017 Q4"	"Falkirk"	"S12000014"	"Battery"	76
+"2017 Q4"	"Fife"	"S12000047"	"Battery"	289
+"2017 Q4"	"Glasgow City"	"S12000049"	"Battery"	225
+"2017 Q4"	"Highland"	"S12000017"	"Battery"	103
+"2017 Q4"	"Inverclyde"	"S12000018"	"Battery"	31
+"2017 Q4"	"Midlothian"	"S12000019"	"Battery"	75
+"2017 Q4"	"Moray"	"S12000020"	"Battery"	29
+"2017 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	9
+"2017 Q4"	"North Ayrshire"	"S12000021"	"Battery"	47
+"2017 Q4"	"North Lanarkshire"	"S12000050"	"Battery"	134
+"2017 Q4"	"Orkney Islands"	"S12000023"	"Battery"	153
+"2017 Q4"	"Perth and Kinross"	"S12000048"	"Battery"	133
+"2017 Q4"	"Renfrewshire"	"S12000038"	"Battery"	225
+"2017 Q4"	"Scottish Borders"	"S12000026"	"Battery"	93
+"2017 Q4"	"Shetland Islands"	"S12000027"	"Battery"	16
+"2017 Q4"	"South Ayrshire"	"S12000028"	"Battery"	51
+"2017 Q4"	"South Lanarkshire"	"S12000029"	"Battery"	196
+"2017 Q4"	"Stirling"	"S12000030"	"Battery"	124
+"2017 Q4"	"West Dunbartonshire"	"S12000039"	"Battery"	30
+"2017 Q4"	"West Lothian"	"S12000040"	"Battery"	107
+"2017 Q3"	"Aberdeen City"	"S12000033"	"Battery"	143
+"2017 Q3"	"Aberdeenshire"	"S12000034"	"Battery"	187
+"2017 Q3"	"Angus"	"S12000041"	"Battery"	86
+"2017 Q3"	"Argyll and Bute"	"S12000035"	"Battery"	41
+"2017 Q3"	"City of Edinburgh"	"S12000036"	"Battery"	342
+"2017 Q3"	"Clackmannanshire"	"S12000005"	"Battery"	35
+"2017 Q3"	"Dumfries and Galloway"	"S12000006"	"Battery"	36
+"2017 Q3"	"Dundee City"	"S12000042"	"Battery"	228
+"2017 Q3"	"East Ayrshire"	"S12000008"	"Battery"	50
+"2017 Q3"	"East Dunbartonshire"	"S12000045"	"Battery"	51
+"2017 Q3"	"East Lothian"	"S12000010"	"Battery"	78
+"2017 Q3"	"East Renfrewshire"	"S12000011"	"Battery"	86
+"2017 Q3"	"Falkirk"	"S12000014"	"Battery"	74
+"2017 Q3"	"Fife"	"S12000047"	"Battery"	277
+"2017 Q3"	"Glasgow City"	"S12000049"	"Battery"	220
+"2017 Q3"	"Highland"	"S12000017"	"Battery"	95
+"2017 Q3"	"Inverclyde"	"S12000018"	"Battery"	28
+"2017 Q3"	"Midlothian"	"S12000019"	"Battery"	71
+"2017 Q3"	"Moray"	"S12000020"	"Battery"	28
+"2017 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	10
+"2017 Q3"	"North Ayrshire"	"S12000021"	"Battery"	43
+"2017 Q3"	"North Lanarkshire"	"S12000050"	"Battery"	131
+"2017 Q3"	"Orkney Islands"	"S12000023"	"Battery"	140
+"2017 Q3"	"Perth and Kinross"	"S12000048"	"Battery"	127
+"2017 Q3"	"Renfrewshire"	"S12000038"	"Battery"	220
+"2017 Q3"	"Scottish Borders"	"S12000026"	"Battery"	82
+"2017 Q3"	"Shetland Islands"	"S12000027"	"Battery"	17
+"2017 Q3"	"South Ayrshire"	"S12000028"	"Battery"	48
+"2017 Q3"	"South Lanarkshire"	"S12000029"	"Battery"	188
+"2017 Q3"	"Stirling"	"S12000030"	"Battery"	122
+"2017 Q3"	"West Dunbartonshire"	"S12000039"	"Battery"	29
+"2017 Q3"	"West Lothian"	"S12000040"	"Battery"	99
+"2017 Q2"	"Aberdeen City"	"S12000033"	"Battery"	124
+"2017 Q2"	"Aberdeenshire"	"S12000034"	"Battery"	157
+"2017 Q2"	"Angus"	"S12000041"	"Battery"	73
+"2017 Q2"	"Argyll and Bute"	"S12000035"	"Battery"	39
+"2017 Q2"	"City of Edinburgh"	"S12000036"	"Battery"	300
+"2017 Q2"	"Clackmannanshire"	"S12000005"	"Battery"	32
+"2017 Q2"	"Dumfries and Galloway"	"S12000006"	"Battery"	32
+"2017 Q2"	"Dundee City"	"S12000042"	"Battery"	211
+"2017 Q2"	"East Ayrshire"	"S12000008"	"Battery"	48
+"2017 Q2"	"East Dunbartonshire"	"S12000045"	"Battery"	47
+"2017 Q2"	"East Lothian"	"S12000010"	"Battery"	62
+"2017 Q2"	"East Renfrewshire"	"S12000011"	"Battery"	73
+"2017 Q2"	"Falkirk"	"S12000014"	"Battery"	68
+"2017 Q2"	"Fife"	"S12000047"	"Battery"	252
+"2017 Q2"	"Glasgow City"	"S12000049"	"Battery"	206
+"2017 Q2"	"Highland"	"S12000017"	"Battery"	88
+"2017 Q2"	"Inverclyde"	"S12000018"	"Battery"	21
+"2017 Q2"	"Midlothian"	"S12000019"	"Battery"	64
+"2017 Q2"	"Moray"	"S12000020"	"Battery"	24
+"2017 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	10
+"2017 Q2"	"North Ayrshire"	"S12000021"	"Battery"	41
+"2017 Q2"	"North Lanarkshire"	"S12000050"	"Battery"	121
+"2017 Q2"	"Orkney Islands"	"S12000023"	"Battery"	122
+"2017 Q2"	"Perth and Kinross"	"S12000048"	"Battery"	112
+"2017 Q2"	"Renfrewshire"	"S12000038"	"Battery"	206
+"2017 Q2"	"Scottish Borders"	"S12000026"	"Battery"	73
+"2017 Q2"	"Shetland Islands"	"S12000027"	"Battery"	16
+"2017 Q2"	"South Ayrshire"	"S12000028"	"Battery"	47
+"2017 Q2"	"South Lanarkshire"	"S12000029"	"Battery"	183
+"2017 Q2"	"Stirling"	"S12000030"	"Battery"	112
+"2017 Q2"	"West Dunbartonshire"	"S12000039"	"Battery"	29
+"2017 Q2"	"West Lothian"	"S12000040"	"Battery"	83
+"2017 Q1"	"Aberdeen City"	"S12000033"	"Battery"	120
+"2017 Q1"	"Aberdeenshire"	"S12000034"	"Battery"	135
+"2017 Q1"	"Angus"	"S12000041"	"Battery"	61
+"2017 Q1"	"Argyll and Bute"	"S12000035"	"Battery"	41
+"2017 Q1"	"City of Edinburgh"	"S12000036"	"Battery"	254
+"2017 Q1"	"Clackmannanshire"	"S12000005"	"Battery"	28
+"2017 Q1"	"Dumfries and Galloway"	"S12000006"	"Battery"	30
+"2017 Q1"	"Dundee City"	"S12000042"	"Battery"	196
+"2017 Q1"	"East Ayrshire"	"S12000008"	"Battery"	42
+"2017 Q1"	"East Dunbartonshire"	"S12000045"	"Battery"	43
+"2017 Q1"	"East Lothian"	"S12000010"	"Battery"	54
+"2017 Q1"	"East Renfrewshire"	"S12000011"	"Battery"	59
+"2017 Q1"	"Falkirk"	"S12000014"	"Battery"	63
+"2017 Q1"	"Fife"	"S12000047"	"Battery"	236
+"2017 Q1"	"Glasgow City"	"S12000049"	"Battery"	189
+"2017 Q1"	"Highland"	"S12000017"	"Battery"	81
+"2017 Q1"	"Inverclyde"	"S12000018"	"Battery"	19
+"2017 Q1"	"Midlothian"	"S12000019"	"Battery"	64
+"2017 Q1"	"Moray"	"S12000020"	"Battery"	20
+"2017 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	9
+"2017 Q1"	"North Ayrshire"	"S12000021"	"Battery"	48
+"2017 Q1"	"North Lanarkshire"	"S12000050"	"Battery"	123
+"2017 Q1"	"Orkney Islands"	"S12000023"	"Battery"	105
+"2017 Q1"	"Perth and Kinross"	"S12000048"	"Battery"	101
+"2017 Q1"	"Renfrewshire"	"S12000038"	"Battery"	202
+"2017 Q1"	"Scottish Borders"	"S12000026"	"Battery"	69
+"2017 Q1"	"Shetland Islands"	"S12000027"	"Battery"	15
+"2017 Q1"	"South Ayrshire"	"S12000028"	"Battery"	54
+"2017 Q1"	"South Lanarkshire"	"S12000029"	"Battery"	168
+"2017 Q1"	"Stirling"	"S12000030"	"Battery"	98
+"2017 Q1"	"West Dunbartonshire"	"S12000039"	"Battery"	28
+"2017 Q1"	"West Lothian"	"S12000040"	"Battery"	77
+"2016 Q4"	"Aberdeen City"	"S12000033"	"Battery"	109
+"2016 Q4"	"Aberdeenshire"	"S12000034"	"Battery"	114
+"2016 Q4"	"Angus"	"S12000041"	"Battery"	60
+"2016 Q4"	"Argyll and Bute"	"S12000035"	"Battery"	36
+"2016 Q4"	"City of Edinburgh"	"S12000036"	"Battery"	230
+"2016 Q4"	"Clackmannanshire"	"S12000005"	"Battery"	30
+"2016 Q4"	"Dumfries and Galloway"	"S12000006"	"Battery"	24
+"2016 Q4"	"Dundee City"	"S12000042"	"Battery"	188
+"2016 Q4"	"East Ayrshire"	"S12000008"	"Battery"	33
+"2016 Q4"	"East Dunbartonshire"	"S12000045"	"Battery"	35
+"2016 Q4"	"East Lothian"	"S12000010"	"Battery"	47
+"2016 Q4"	"East Renfrewshire"	"S12000011"	"Battery"	52
+"2016 Q4"	"Falkirk"	"S12000014"	"Battery"	52
+"2016 Q4"	"Fife"	"S12000047"	"Battery"	216
+"2016 Q4"	"Glasgow City"	"S12000049"	"Battery"	182
+"2016 Q4"	"Highland"	"S12000017"	"Battery"	78
+"2016 Q4"	"Inverclyde"	"S12000018"	"Battery"	21
+"2016 Q4"	"Midlothian"	"S12000019"	"Battery"	52
+"2016 Q4"	"Moray"	"S12000020"	"Battery"	16
+"2016 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	8
+"2016 Q4"	"North Ayrshire"	"S12000021"	"Battery"	45
+"2016 Q4"	"North Lanarkshire"	"S12000050"	"Battery"	116
+"2016 Q4"	"Orkney Islands"	"S12000023"	"Battery"	96
+"2016 Q4"	"Perth and Kinross"	"S12000048"	"Battery"	90
+"2016 Q4"	"Renfrewshire"	"S12000038"	"Battery"	168
+"2016 Q4"	"Scottish Borders"	"S12000026"	"Battery"	64
+"2016 Q4"	"Shetland Islands"	"S12000027"	"Battery"	12
+"2016 Q4"	"South Ayrshire"	"S12000028"	"Battery"	46
+"2016 Q4"	"South Lanarkshire"	"S12000029"	"Battery"	149
+"2016 Q4"	"Stirling"	"S12000030"	"Battery"	82
+"2016 Q4"	"West Dunbartonshire"	"S12000039"	"Battery"	26
+"2016 Q4"	"West Lothian"	"S12000040"	"Battery"	71
+"2016 Q3"	"Aberdeen City"	"S12000033"	"Battery"	107
+"2016 Q3"	"Aberdeenshire"	"S12000034"	"Battery"	102
+"2016 Q3"	"Angus"	"S12000041"	"Battery"	54
+"2016 Q3"	"Argyll and Bute"	"S12000035"	"Battery"	36
+"2016 Q3"	"City of Edinburgh"	"S12000036"	"Battery"	210
+"2016 Q3"	"Clackmannanshire"	"S12000005"	"Battery"	23
+"2016 Q3"	"Dumfries and Galloway"	"S12000006"	"Battery"	23
+"2016 Q3"	"Dundee City"	"S12000042"	"Battery"	179
+"2016 Q3"	"East Ayrshire"	"S12000008"	"Battery"	31
+"2016 Q3"	"East Dunbartonshire"	"S12000045"	"Battery"	38
+"2016 Q3"	"East Lothian"	"S12000010"	"Battery"	44
+"2016 Q3"	"East Renfrewshire"	"S12000011"	"Battery"	44
+"2016 Q3"	"Falkirk"	"S12000014"	"Battery"	50
+"2016 Q3"	"Fife"	"S12000047"	"Battery"	193
+"2016 Q3"	"Glasgow City"	"S12000049"	"Battery"	175
+"2016 Q3"	"Highland"	"S12000017"	"Battery"	74
+"2016 Q3"	"Inverclyde"	"S12000018"	"Battery"	17
+"2016 Q3"	"Midlothian"	"S12000019"	"Battery"	54
+"2016 Q3"	"Moray"	"S12000020"	"Battery"	15
+"2016 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	8
+"2016 Q3"	"North Ayrshire"	"S12000021"	"Battery"	44
+"2016 Q3"	"North Lanarkshire"	"S12000050"	"Battery"	105
+"2016 Q3"	"Orkney Islands"	"S12000023"	"Battery"	89
+"2016 Q3"	"Perth and Kinross"	"S12000048"	"Battery"	88
+"2016 Q3"	"Renfrewshire"	"S12000038"	"Battery"	165
+"2016 Q3"	"Scottish Borders"	"S12000026"	"Battery"	68
+"2016 Q3"	"Shetland Islands"	"S12000027"	"Battery"	11
+"2016 Q3"	"South Ayrshire"	"S12000028"	"Battery"	47
+"2016 Q3"	"South Lanarkshire"	"S12000029"	"Battery"	144
+"2016 Q3"	"Stirling"	"S12000030"	"Battery"	67
+"2016 Q3"	"West Dunbartonshire"	"S12000039"	"Battery"	27
+"2016 Q3"	"West Lothian"	"S12000040"	"Battery"	65
+"2016 Q2"	"Aberdeen City"	"S12000033"	"Battery"	93
+"2016 Q2"	"Aberdeenshire"	"S12000034"	"Battery"	93
+"2016 Q2"	"Angus"	"S12000041"	"Battery"	51
+"2016 Q2"	"Argyll and Bute"	"S12000035"	"Battery"	33
+"2016 Q2"	"City of Edinburgh"	"S12000036"	"Battery"	188
+"2016 Q2"	"Clackmannanshire"	"S12000005"	"Battery"	22
+"2016 Q2"	"Dumfries and Galloway"	"S12000006"	"Battery"	21
+"2016 Q2"	"Dundee City"	"S12000042"	"Battery"	167
+"2016 Q2"	"East Ayrshire"	"S12000008"	"Battery"	32
+"2016 Q2"	"East Dunbartonshire"	"S12000045"	"Battery"	32
+"2016 Q2"	"East Lothian"	"S12000010"	"Battery"	43
+"2016 Q2"	"East Renfrewshire"	"S12000011"	"Battery"	43
+"2016 Q2"	"Falkirk"	"S12000014"	"Battery"	46
+"2016 Q2"	"Fife"	"S12000047"	"Battery"	169
+"2016 Q2"	"Glasgow City"	"S12000049"	"Battery"	171
+"2016 Q2"	"Highland"	"S12000017"	"Battery"	63
+"2016 Q2"	"Inverclyde"	"S12000018"	"Battery"	17
+"2016 Q2"	"Midlothian"	"S12000019"	"Battery"	47
+"2016 Q2"	"Moray"	"S12000020"	"Battery"	15
+"2016 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	8
+"2016 Q2"	"North Ayrshire"	"S12000021"	"Battery"	45
+"2016 Q2"	"North Lanarkshire"	"S12000050"	"Battery"	97
+"2016 Q2"	"Orkney Islands"	"S12000023"	"Battery"	81
+"2016 Q2"	"Perth and Kinross"	"S12000048"	"Battery"	73
+"2016 Q2"	"Renfrewshire"	"S12000038"	"Battery"	151
+"2016 Q2"	"Scottish Borders"	"S12000026"	"Battery"	63
+"2016 Q2"	"Shetland Islands"	"S12000027"	"Battery"	9
+"2016 Q2"	"South Ayrshire"	"S12000028"	"Battery"	48
+"2016 Q2"	"South Lanarkshire"	"S12000029"	"Battery"	134
+"2016 Q2"	"Stirling"	"S12000030"	"Battery"	57
+"2016 Q2"	"West Dunbartonshire"	"S12000039"	"Battery"	24
+"2016 Q2"	"West Lothian"	"S12000040"	"Battery"	64
+"2016 Q1"	"Aberdeen City"	"S12000033"	"Battery"	82
+"2016 Q1"	"Aberdeenshire"	"S12000034"	"Battery"	85
+"2016 Q1"	"Angus"	"S12000041"	"Battery"	50
+"2016 Q1"	"Argyll and Bute"	"S12000035"	"Battery"	33
+"2016 Q1"	"City of Edinburgh"	"S12000036"	"Battery"	166
+"2016 Q1"	"Clackmannanshire"	"S12000005"	"Battery"	16
+"2016 Q1"	"Dumfries and Galloway"	"S12000006"	"Battery"	18
+"2016 Q1"	"Dundee City"	"S12000042"	"Battery"	161
+"2016 Q1"	"East Ayrshire"	"S12000008"	"Battery"	28
+"2016 Q1"	"East Dunbartonshire"	"S12000045"	"Battery"	28
+"2016 Q1"	"East Lothian"	"S12000010"	"Battery"	40
+"2016 Q1"	"East Renfrewshire"	"S12000011"	"Battery"	39
+"2016 Q1"	"Falkirk"	"S12000014"	"Battery"	44
+"2016 Q1"	"Fife"	"S12000047"	"Battery"	159
+"2016 Q1"	"Glasgow City"	"S12000049"	"Battery"	209
+"2016 Q1"	"Highland"	"S12000017"	"Battery"	59
+"2016 Q1"	"Inverclyde"	"S12000018"	"Battery"	15
+"2016 Q1"	"Midlothian"	"S12000019"	"Battery"	45
+"2016 Q1"	"Moray"	"S12000020"	"Battery"	14
+"2016 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	6
+"2016 Q1"	"North Ayrshire"	"S12000021"	"Battery"	46
+"2016 Q1"	"North Lanarkshire"	"S12000050"	"Battery"	98
+"2016 Q1"	"Orkney Islands"	"S12000023"	"Battery"	76
+"2016 Q1"	"Perth and Kinross"	"S12000048"	"Battery"	61
+"2016 Q1"	"Renfrewshire"	"S12000038"	"Battery"	92
+"2016 Q1"	"Scottish Borders"	"S12000026"	"Battery"	59
+"2016 Q1"	"Shetland Islands"	"S12000027"	"Battery"	10
+"2016 Q1"	"South Ayrshire"	"S12000028"	"Battery"	47
+"2016 Q1"	"South Lanarkshire"	"S12000029"	"Battery"	129
+"2016 Q1"	"Stirling"	"S12000030"	"Battery"	50
+"2016 Q1"	"West Dunbartonshire"	"S12000039"	"Battery"	12
+"2016 Q1"	"West Lothian"	"S12000040"	"Battery"	60
+"2015 Q4"	"Aberdeen City"	"S12000033"	"Battery"	77
+"2015 Q4"	"Aberdeenshire"	"S12000034"	"Battery"	82
+"2015 Q4"	"Angus"	"S12000041"	"Battery"	46
+"2015 Q4"	"Argyll and Bute"	"S12000035"	"Battery"	27
+"2015 Q4"	"City of Edinburgh"	"S12000036"	"Battery"	144
+"2015 Q4"	"Clackmannanshire"	"S12000005"	"Battery"	14
+"2015 Q4"	"Dumfries and Galloway"	"S12000006"	"Battery"	20
+"2015 Q4"	"Dundee City"	"S12000042"	"Battery"	151
+"2015 Q4"	"East Ayrshire"	"S12000008"	"Battery"	22
+"2015 Q4"	"East Dunbartonshire"	"S12000045"	"Battery"	24
+"2015 Q4"	"East Lothian"	"S12000010"	"Battery"	32
+"2015 Q4"	"East Renfrewshire"	"S12000011"	"Battery"	32
+"2015 Q4"	"Falkirk"	"S12000014"	"Battery"	40
+"2015 Q4"	"Fife"	"S12000047"	"Battery"	127
+"2015 Q4"	"Glasgow City"	"S12000049"	"Battery"	224
+"2015 Q4"	"Highland"	"S12000017"	"Battery"	55
+"2015 Q4"	"Inverclyde"	"S12000018"	"Battery"	13
+"2015 Q4"	"Midlothian"	"S12000019"	"Battery"	50
+"2015 Q4"	"Moray"	"S12000020"	"Battery"	14
+"2015 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	5
+"2015 Q4"	"North Ayrshire"	"S12000021"	"Battery"	41
+"2015 Q4"	"North Lanarkshire"	"S12000050"	"Battery"	87
+"2015 Q4"	"Orkney Islands"	"S12000023"	"Battery"	67
+"2015 Q4"	"Perth and Kinross"	"S12000048"	"Battery"	52
+"2015 Q4"	"Renfrewshire"	"S12000038"	"Battery"	87
+"2015 Q4"	"Scottish Borders"	"S12000026"	"Battery"	51
+"2015 Q4"	"Shetland Islands"	"S12000027"	"Battery"	5
+"2015 Q4"	"South Ayrshire"	"S12000028"	"Battery"	39
+"2015 Q4"	"South Lanarkshire"	"S12000029"	"Battery"	122
+"2015 Q4"	"Stirling"	"S12000030"	"Battery"	35
+"2015 Q4"	"West Dunbartonshire"	"S12000039"	"Battery"	11
+"2015 Q4"	"West Lothian"	"S12000040"	"Battery"	57
+"2015 Q3"	"Aberdeen City"	"S12000033"	"Battery"	67
+"2015 Q3"	"Aberdeenshire"	"S12000034"	"Battery"	69
+"2015 Q3"	"Angus"	"S12000041"	"Battery"	45
+"2015 Q3"	"Argyll and Bute"	"S12000035"	"Battery"	23
+"2015 Q3"	"City of Edinburgh"	"S12000036"	"Battery"	126
+"2015 Q3"	"Clackmannanshire"	"S12000005"	"Battery"	12
+"2015 Q3"	"Dumfries and Galloway"	"S12000006"	"Battery"	18
+"2015 Q3"	"Dundee City"	"S12000042"	"Battery"	138
+"2015 Q3"	"East Ayrshire"	"S12000008"	"Battery"	19
+"2015 Q3"	"East Dunbartonshire"	"S12000045"	"Battery"	26
+"2015 Q3"	"East Lothian"	"S12000010"	"Battery"	33
+"2015 Q3"	"East Renfrewshire"	"S12000011"	"Battery"	28
+"2015 Q3"	"Falkirk"	"S12000014"	"Battery"	35
+"2015 Q3"	"Fife"	"S12000047"	"Battery"	112
+"2015 Q3"	"Glasgow City"	"S12000049"	"Battery"	204
+"2015 Q3"	"Highland"	"S12000017"	"Battery"	43
+"2015 Q3"	"Inverclyde"	"S12000018"	"Battery"	14
+"2015 Q3"	"Midlothian"	"S12000019"	"Battery"	38
+"2015 Q3"	"Moray"	"S12000020"	"Battery"	13
+"2015 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	5
+"2015 Q3"	"North Ayrshire"	"S12000021"	"Battery"	38
+"2015 Q3"	"North Lanarkshire"	"S12000050"	"Battery"	75
+"2015 Q3"	"Orkney Islands"	"S12000023"	"Battery"	62
+"2015 Q3"	"Perth and Kinross"	"S12000048"	"Battery"	41
+"2015 Q3"	"Renfrewshire"	"S12000038"	"Battery"	76
+"2015 Q3"	"Scottish Borders"	"S12000026"	"Battery"	49
+"2015 Q3"	"Shetland Islands"	"S12000027"	"Battery"	5
+"2015 Q3"	"South Ayrshire"	"S12000028"	"Battery"	36
+"2015 Q3"	"South Lanarkshire"	"S12000029"	"Battery"	111
+"2015 Q3"	"Stirling"	"S12000030"	"Battery"	32
+"2015 Q3"	"West Dunbartonshire"	"S12000039"	"Battery"	12
+"2015 Q3"	"West Lothian"	"S12000040"	"Battery"	53
+"2015 Q2"	"Aberdeen City"	"S12000033"	"Battery"	59
+"2015 Q2"	"Aberdeenshire"	"S12000034"	"Battery"	61
+"2015 Q2"	"Angus"	"S12000041"	"Battery"	42
+"2015 Q2"	"Argyll and Bute"	"S12000035"	"Battery"	19
+"2015 Q2"	"City of Edinburgh"	"S12000036"	"Battery"	123
+"2015 Q2"	"Clackmannanshire"	"S12000005"	"Battery"	11
+"2015 Q2"	"Dumfries and Galloway"	"S12000006"	"Battery"	17
+"2015 Q2"	"Dundee City"	"S12000042"	"Battery"	141
+"2015 Q2"	"East Ayrshire"	"S12000008"	"Battery"	17
+"2015 Q2"	"East Dunbartonshire"	"S12000045"	"Battery"	24
+"2015 Q2"	"East Lothian"	"S12000010"	"Battery"	28
+"2015 Q2"	"East Renfrewshire"	"S12000011"	"Battery"	19
+"2015 Q2"	"Falkirk"	"S12000014"	"Battery"	32
+"2015 Q2"	"Fife"	"S12000047"	"Battery"	100
+"2015 Q2"	"Glasgow City"	"S12000049"	"Battery"	217
+"2015 Q2"	"Highland"	"S12000017"	"Battery"	39
+"2015 Q2"	"Inverclyde"	"S12000018"	"Battery"	13
+"2015 Q2"	"Midlothian"	"S12000019"	"Battery"	39
+"2015 Q2"	"Moray"	"S12000020"	"Battery"	15
+"2015 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	0
+"2015 Q2"	"North Ayrshire"	"S12000021"	"Battery"	36
+"2015 Q2"	"North Lanarkshire"	"S12000050"	"Battery"	76
+"2015 Q2"	"Orkney Islands"	"S12000023"	"Battery"	58
+"2015 Q2"	"Perth and Kinross"	"S12000048"	"Battery"	37
+"2015 Q2"	"Renfrewshire"	"S12000038"	"Battery"	66
+"2015 Q2"	"Scottish Borders"	"S12000026"	"Battery"	47
+"2015 Q2"	"Shetland Islands"	"S12000027"	"Battery"	5
+"2015 Q2"	"South Ayrshire"	"S12000028"	"Battery"	33
+"2015 Q2"	"South Lanarkshire"	"S12000029"	"Battery"	96
+"2015 Q2"	"Stirling"	"S12000030"	"Battery"	32
+"2015 Q2"	"West Dunbartonshire"	"S12000039"	"Battery"	11
+"2015 Q2"	"West Lothian"	"S12000040"	"Battery"	49
+"2015 Q1"	"Aberdeen City"	"S12000033"	"Battery"	53
+"2015 Q1"	"Aberdeenshire"	"S12000034"	"Battery"	53
+"2015 Q1"	"Angus"	"S12000041"	"Battery"	34
+"2015 Q1"	"Argyll and Bute"	"S12000035"	"Battery"	14
+"2015 Q1"	"City of Edinburgh"	"S12000036"	"Battery"	113
+"2015 Q1"	"Clackmannanshire"	"S12000005"	"Battery"	10
+"2015 Q1"	"Dumfries and Galloway"	"S12000006"	"Battery"	16
+"2015 Q1"	"Dundee City"	"S12000042"	"Battery"	136
+"2015 Q1"	"East Ayrshire"	"S12000008"	"Battery"	14
+"2015 Q1"	"East Dunbartonshire"	"S12000045"	"Battery"	23
+"2015 Q1"	"East Lothian"	"S12000010"	"Battery"	22
+"2015 Q1"	"East Renfrewshire"	"S12000011"	"Battery"	17
+"2015 Q1"	"Falkirk"	"S12000014"	"Battery"	30
+"2015 Q1"	"Fife"	"S12000047"	"Battery"	88
+"2015 Q1"	"Glasgow City"	"S12000049"	"Battery"	218
+"2015 Q1"	"Highland"	"S12000017"	"Battery"	42
+"2015 Q1"	"Inverclyde"	"S12000018"	"Battery"	14
+"2015 Q1"	"Midlothian"	"S12000019"	"Battery"	32
+"2015 Q1"	"Moray"	"S12000020"	"Battery"	17
+"2015 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	0
+"2015 Q1"	"North Ayrshire"	"S12000021"	"Battery"	30
+"2015 Q1"	"North Lanarkshire"	"S12000050"	"Battery"	67
+"2015 Q1"	"Orkney Islands"	"S12000023"	"Battery"	50
+"2015 Q1"	"Perth and Kinross"	"S12000048"	"Battery"	34
+"2015 Q1"	"Renfrewshire"	"S12000038"	"Battery"	53
+"2015 Q1"	"Scottish Borders"	"S12000026"	"Battery"	47
+"2015 Q1"	"Shetland Islands"	"S12000027"	"Battery"	5
+"2015 Q1"	"South Ayrshire"	"S12000028"	"Battery"	33
+"2015 Q1"	"South Lanarkshire"	"S12000029"	"Battery"	87
+"2015 Q1"	"Stirling"	"S12000030"	"Battery"	33
+"2015 Q1"	"West Dunbartonshire"	"S12000039"	"Battery"	10
+"2015 Q1"	"West Lothian"	"S12000040"	"Battery"	43
+"2014"	"Aberdeen City"	"S12000033"	"Battery"	46
+"2014"	"Aberdeenshire"	"S12000034"	"Battery"	46
+"2014"	"Angus"	"S12000041"	"Battery"	31
+"2014"	"Argyll and Bute"	"S12000035"	"Battery"	14
+"2014"	"City of Edinburgh"	"S12000036"	"Battery"	89
+"2014"	"Clackmannanshire"	"S12000005"	"Battery"	10
+"2014"	"Dumfries and Galloway"	"S12000006"	"Battery"	14
+"2014"	"Dundee City"	"S12000042"	"Battery"	133
+"2014"	"East Ayrshire"	"S12000008"	"Battery"	13
+"2014"	"East Dunbartonshire"	"S12000045"	"Battery"	20
+"2014"	"East Lothian"	"S12000010"	"Battery"	18
+"2014"	"East Renfrewshire"	"S12000011"	"Battery"	17
+"2014"	"Falkirk"	"S12000014"	"Battery"	23
+"2014"	"Fife"	"S12000047"	"Battery"	81
+"2014"	"Glasgow City"	"S12000049"	"Battery"	176
+"2014"	"Highland"	"S12000017"	"Battery"	32
+"2014"	"Inverclyde"	"S12000018"	"Battery"	12
+"2014"	"Midlothian"	"S12000019"	"Battery"	31
+"2014"	"Moray"	"S12000020"	"Battery"	14
+"2014"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	0
+"2014"	"North Ayrshire"	"S12000021"	"Battery"	27
+"2014"	"North Lanarkshire"	"S12000050"	"Battery"	63
+"2014"	"Orkney Islands"	"S12000023"	"Battery"	44
+"2014"	"Perth and Kinross"	"S12000048"	"Battery"	30
+"2014"	"Renfrewshire"	"S12000038"	"Battery"	48
+"2014"	"Scottish Borders"	"S12000026"	"Battery"	43
+"2014"	"Shetland Islands"	"S12000027"	"Battery"	5
+"2014"	"South Ayrshire"	"S12000028"	"Battery"	31
+"2014"	"South Lanarkshire"	"S12000029"	"Battery"	74
+"2014"	"Stirling"	"S12000030"	"Battery"	27
+"2014"	"West Dunbartonshire"	"S12000039"	"Battery"	9
+"2014"	"West Lothian"	"S12000040"	"Battery"	35
+"2013"	"Aberdeen City"	"S12000033"	"Battery"	23
+"2013"	"Aberdeenshire"	"S12000034"	"Battery"	23
+"2013"	"Angus"	"S12000041"	"Battery"	18
+"2013"	"Argyll and Bute"	"S12000035"	"Battery"	11
+"2013"	"City of Edinburgh"	"S12000036"	"Battery"	62
+"2013"	"Clackmannanshire"	"S12000005"	"Battery"	6
+"2013"	"Dumfries and Galloway"	"S12000006"	"Battery"	7
+"2013"	"Dundee City"	"S12000042"	"Battery"	83
+"2013"	"East Ayrshire"	"S12000008"	"Battery"	10
+"2013"	"East Dunbartonshire"	"S12000045"	"Battery"	10
+"2013"	"East Lothian"	"S12000010"	"Battery"	11
+"2013"	"East Renfrewshire"	"S12000011"	"Battery"	5
+"2013"	"Falkirk"	"S12000014"	"Battery"	15
+"2013"	"Fife"	"S12000047"	"Battery"	53
+"2013"	"Glasgow City"	"S12000049"	"Battery"	111
+"2013"	"Highland"	"S12000017"	"Battery"	26
+"2013"	"Inverclyde"	"S12000018"	"Battery"	7
+"2013"	"Midlothian"	"S12000019"	"Battery"	14
+"2013"	"Moray"	"S12000020"	"Battery"	11
+"2013"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	0
+"2013"	"North Ayrshire"	"S12000021"	"Battery"	10
+"2013"	"North Lanarkshire"	"S12000050"	"Battery"	33
+"2013"	"Orkney Islands"	"S12000023"	"Battery"	9
+"2013"	"Perth and Kinross"	"S12000048"	"Battery"	18
+"2013"	"Renfrewshire"	"S12000038"	"Battery"	32
+"2013"	"Scottish Borders"	"S12000026"	"Battery"	28
+"2013"	"Shetland Islands"	"S12000027"	"Battery"	0
+"2013"	"South Ayrshire"	"S12000028"	"Battery"	17
+"2013"	"South Lanarkshire"	"S12000029"	"Battery"	28
+"2013"	"Stirling"	"S12000030"	"Battery"	18
+"2013"	"West Dunbartonshire"	"S12000039"	"Battery"	0
+"2013"	"West Lothian"	"S12000040"	"Battery"	8
+"2012"	"Aberdeen City"	"S12000033"	"Battery"	14
+"2012"	"Aberdeenshire"	"S12000034"	"Battery"	19
+"2012"	"Angus"	"S12000041"	"Battery"	7
+"2012"	"Argyll and Bute"	"S12000035"	"Battery"	8
+"2012"	"City of Edinburgh"	"S12000036"	"Battery"	52
+"2012"	"Clackmannanshire"	"S12000005"	"Battery"	6
+"2012"	"Dumfries and Galloway"	"S12000006"	"Battery"	7
+"2012"	"Dundee City"	"S12000042"	"Battery"	74
+"2012"	"East Ayrshire"	"S12000008"	"Battery"	6
+"2012"	"East Dunbartonshire"	"S12000045"	"Battery"	6
+"2012"	"East Lothian"	"S12000010"	"Battery"	9
+"2012"	"East Renfrewshire"	"S12000011"	"Battery"	0
+"2012"	"Falkirk"	"S12000014"	"Battery"	10
+"2012"	"Fife"	"S12000047"	"Battery"	48
+"2012"	"Glasgow City"	"S12000049"	"Battery"	98
+"2012"	"Highland"	"S12000017"	"Battery"	21
+"2012"	"Inverclyde"	"S12000018"	"Battery"	5
+"2012"	"Midlothian"	"S12000019"	"Battery"	6
+"2012"	"Moray"	"S12000020"	"Battery"	6
+"2012"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	0
+"2012"	"North Ayrshire"	"S12000021"	"Battery"	6
+"2012"	"North Lanarkshire"	"S12000050"	"Battery"	22
+"2012"	"Orkney Islands"	"S12000023"	"Battery"	0
+"2012"	"Perth and Kinross"	"S12000048"	"Battery"	13
+"2012"	"Renfrewshire"	"S12000038"	"Battery"	23
+"2012"	"Scottish Borders"	"S12000026"	"Battery"	19
+"2012"	"Shetland Islands"	"S12000027"	"Battery"	5
+"2012"	"South Ayrshire"	"S12000028"	"Battery"	9
+"2012"	"South Lanarkshire"	"S12000029"	"Battery"	16
+"2012"	"Stirling"	"S12000030"	"Battery"	11
+"2012"	"West Dunbartonshire"	"S12000039"	"Battery"	0
+"2012"	"West Lothian"	"S12000040"	"Battery"	7
+"2011"	"Aberdeen City"	"S12000033"	"Battery"	16
+"2011"	"Aberdeenshire"	"S12000034"	"Battery"	13
+"2011"	"Angus"	"S12000041"	"Battery"	0
+"2011"	"Argyll and Bute"	"S12000035"	"Battery"	6
+"2011"	"City of Edinburgh"	"S12000036"	"Battery"	37
+"2011"	"Clackmannanshire"	"S12000005"	"Battery"	0
+"2011"	"Dumfries and Galloway"	"S12000006"	"Battery"	5
+"2011"	"Dundee City"	"S12000042"	"Battery"	44
+"2011"	"East Ayrshire"	"S12000008"	"Battery"	7
+"2011"	"East Dunbartonshire"	"S12000045"	"Battery"	0
+"2011"	"East Lothian"	"S12000010"	"Battery"	10
+"2011"	"East Renfrewshire"	"S12000011"	"Battery"	0
+"2011"	"Falkirk"	"S12000014"	"Battery"	0
+"2011"	"Fife"	"S12000047"	"Battery"	30
+"2011"	"Glasgow City"	"S12000049"	"Battery"	71
+"2011"	"Highland"	"S12000017"	"Battery"	17
+"2011"	"Inverclyde"	"S12000018"	"Battery"	5
+"2011"	"Midlothian"	"S12000019"	"Battery"	0
+"2011"	"Moray"	"S12000020"	"Battery"	0
+"2011"	"Na h-Eileanan Siar"	"S12000013"	"Battery"	0
+"2011"	"North Ayrshire"	"S12000021"	"Battery"	0
+"2011"	"North Lanarkshire"	"S12000050"	"Battery"	23
+"2011"	"Orkney Islands"	"S12000023"	"Battery"	0
+"2011"	"Perth and Kinross"	"S12000048"	"Battery"	0
+"2011"	"Renfrewshire"	"S12000038"	"Battery"	17
+"2011"	"Scottish Borders"	"S12000026"	"Battery"	13
+"2011"	"Shetland Islands"	"S12000027"	"Battery"	0
+"2011"	"South Ayrshire"	"S12000028"	"Battery"	5
+"2011"	"South Lanarkshire"	"S12000029"	"Battery"	11
+"2011"	"Stirling"	"S12000030"	"Battery"	0
+"2011"	"West Dunbartonshire"	"S12000039"	"Battery"	0
+"2011"	"West Lothian"	"S12000040"	"Battery"	6
+"2020 Q1"	"Aberdeen City"	"S12000033"	"Hybrid"	255
+"2020 Q1"	"Aberdeenshire"	"S12000034"	"Hybrid"	417
+"2020 Q1"	"Angus"	"S12000041"	"Hybrid"	110
+"2020 Q1"	"Argyll and Bute"	"S12000035"	"Hybrid"	101
+"2020 Q1"	"City of Edinburgh"	"S12000036"	"Hybrid"	711
+"2020 Q1"	"Clackmannanshire"	"S12000005"	"Hybrid"	52
+"2020 Q1"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	129
+"2020 Q1"	"Dundee City"	"S12000042"	"Hybrid"	96
+"2020 Q1"	"East Ayrshire"	"S12000008"	"Hybrid"	86
+"2020 Q1"	"East Dunbartonshire"	"S12000045"	"Hybrid"	146
+"2020 Q1"	"East Lothian"	"S12000010"	"Hybrid"	144
+"2020 Q1"	"East Renfrewshire"	"S12000011"	"Hybrid"	173
+"2020 Q1"	"Falkirk"	"S12000014"	"Hybrid"	122
+"2020 Q1"	"Fife"	"S12000047"	"Hybrid"	330
+"2020 Q1"	"Glasgow City"	"S12000049"	"Hybrid"	396
+"2020 Q1"	"Highland"	"S12000017"	"Hybrid"	219
+"2020 Q1"	"Inverclyde"	"S12000018"	"Hybrid"	44
+"2020 Q1"	"Midlothian"	"S12000019"	"Hybrid"	109
+"2020 Q1"	"Moray"	"S12000020"	"Hybrid"	78
+"2020 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	17
+"2020 Q1"	"North Ayrshire"	"S12000021"	"Hybrid"	99
+"2020 Q1"	"North Lanarkshire"	"S12000050"	"Hybrid"	196
+"2020 Q1"	"Orkney Islands"	"S12000023"	"Hybrid"	42
+"2020 Q1"	"Perth and Kinross"	"S12000048"	"Hybrid"	243
+"2020 Q1"	"Renfrewshire"	"S12000038"	"Hybrid"	2662
+"2020 Q1"	"Scottish Borders"	"S12000026"	"Hybrid"	158
+"2020 Q1"	"Shetland Islands"	"S12000027"	"Hybrid"	30
+"2020 Q1"	"South Ayrshire"	"S12000028"	"Hybrid"	106
+"2020 Q1"	"South Lanarkshire"	"S12000029"	"Hybrid"	304
+"2020 Q1"	"Stirling"	"S12000030"	"Hybrid"	1135
+"2020 Q1"	"West Dunbartonshire"	"S12000039"	"Hybrid"	83
+"2020 Q1"	"West Lothian"	"S12000040"	"Hybrid"	195
+"2019 Q4"	"Aberdeen City"	"S12000033"	"Hybrid"	239
+"2019 Q4"	"Aberdeenshire"	"S12000034"	"Hybrid"	386
+"2019 Q4"	"Angus"	"S12000041"	"Hybrid"	102
+"2019 Q4"	"Argyll and Bute"	"S12000035"	"Hybrid"	99
+"2019 Q4"	"City of Edinburgh"	"S12000036"	"Hybrid"	633
+"2019 Q4"	"Clackmannanshire"	"S12000005"	"Hybrid"	48
+"2019 Q4"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	124
+"2019 Q4"	"Dundee City"	"S12000042"	"Hybrid"	93
+"2019 Q4"	"East Ayrshire"	"S12000008"	"Hybrid"	80
+"2019 Q4"	"East Dunbartonshire"	"S12000045"	"Hybrid"	137
+"2019 Q4"	"East Lothian"	"S12000010"	"Hybrid"	134
+"2019 Q4"	"East Renfrewshire"	"S12000011"	"Hybrid"	157
+"2019 Q4"	"Falkirk"	"S12000014"	"Hybrid"	112
+"2019 Q4"	"Fife"	"S12000047"	"Hybrid"	302
+"2019 Q4"	"Glasgow City"	"S12000049"	"Hybrid"	366
+"2019 Q4"	"Highland"	"S12000017"	"Hybrid"	199
+"2019 Q4"	"Inverclyde"	"S12000018"	"Hybrid"	40
+"2019 Q4"	"Midlothian"	"S12000019"	"Hybrid"	104
+"2019 Q4"	"Moray"	"S12000020"	"Hybrid"	77
+"2019 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	16
+"2019 Q4"	"North Ayrshire"	"S12000021"	"Hybrid"	88
+"2019 Q4"	"North Lanarkshire"	"S12000050"	"Hybrid"	191
+"2019 Q4"	"Orkney Islands"	"S12000023"	"Hybrid"	41
+"2019 Q4"	"Perth and Kinross"	"S12000048"	"Hybrid"	230
+"2019 Q4"	"Renfrewshire"	"S12000038"	"Hybrid"	2570
+"2019 Q4"	"Scottish Borders"	"S12000026"	"Hybrid"	148
+"2019 Q4"	"Shetland Islands"	"S12000027"	"Hybrid"	30
+"2019 Q4"	"South Ayrshire"	"S12000028"	"Hybrid"	93
+"2019 Q4"	"South Lanarkshire"	"S12000029"	"Hybrid"	274
+"2019 Q4"	"Stirling"	"S12000030"	"Hybrid"	1059
+"2019 Q4"	"West Dunbartonshire"	"S12000039"	"Hybrid"	69
+"2019 Q4"	"West Lothian"	"S12000040"	"Hybrid"	172
+"2019 Q3"	"Aberdeen City"	"S12000033"	"Hybrid"	225
+"2019 Q3"	"Aberdeenshire"	"S12000034"	"Hybrid"	350
+"2019 Q3"	"Angus"	"S12000041"	"Hybrid"	100
+"2019 Q3"	"Argyll and Bute"	"S12000035"	"Hybrid"	95
+"2019 Q3"	"City of Edinburgh"	"S12000036"	"Hybrid"	567
+"2019 Q3"	"Clackmannanshire"	"S12000005"	"Hybrid"	41
+"2019 Q3"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	121
+"2019 Q3"	"Dundee City"	"S12000042"	"Hybrid"	82
+"2019 Q3"	"East Ayrshire"	"S12000008"	"Hybrid"	79
+"2019 Q3"	"East Dunbartonshire"	"S12000045"	"Hybrid"	119
+"2019 Q3"	"East Lothian"	"S12000010"	"Hybrid"	122
+"2019 Q3"	"East Renfrewshire"	"S12000011"	"Hybrid"	160
+"2019 Q3"	"Falkirk"	"S12000014"	"Hybrid"	105
+"2019 Q3"	"Fife"	"S12000047"	"Hybrid"	278
+"2019 Q3"	"Glasgow City"	"S12000049"	"Hybrid"	353
+"2019 Q3"	"Highland"	"S12000017"	"Hybrid"	184
+"2019 Q3"	"Inverclyde"	"S12000018"	"Hybrid"	39
+"2019 Q3"	"Midlothian"	"S12000019"	"Hybrid"	98
+"2019 Q3"	"Moray"	"S12000020"	"Hybrid"	74
+"2019 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	16
+"2019 Q3"	"North Ayrshire"	"S12000021"	"Hybrid"	86
+"2019 Q3"	"North Lanarkshire"	"S12000050"	"Hybrid"	190
+"2019 Q3"	"Orkney Islands"	"S12000023"	"Hybrid"	38
+"2019 Q3"	"Perth and Kinross"	"S12000048"	"Hybrid"	213
+"2019 Q3"	"Renfrewshire"	"S12000038"	"Hybrid"	2375
+"2019 Q3"	"Scottish Borders"	"S12000026"	"Hybrid"	137
+"2019 Q3"	"Shetland Islands"	"S12000027"	"Hybrid"	30
+"2019 Q3"	"South Ayrshire"	"S12000028"	"Hybrid"	86
+"2019 Q3"	"South Lanarkshire"	"S12000029"	"Hybrid"	258
+"2019 Q3"	"Stirling"	"S12000030"	"Hybrid"	998
+"2019 Q3"	"West Dunbartonshire"	"S12000039"	"Hybrid"	63
+"2019 Q3"	"West Lothian"	"S12000040"	"Hybrid"	160
+"2019 Q2"	"Aberdeen City"	"S12000033"	"Hybrid"	218
+"2019 Q2"	"Aberdeenshire"	"S12000034"	"Hybrid"	329
+"2019 Q2"	"Angus"	"S12000041"	"Hybrid"	95
+"2019 Q2"	"Argyll and Bute"	"S12000035"	"Hybrid"	87
+"2019 Q2"	"City of Edinburgh"	"S12000036"	"Hybrid"	511
+"2019 Q2"	"Clackmannanshire"	"S12000005"	"Hybrid"	42
+"2019 Q2"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	118
+"2019 Q2"	"Dundee City"	"S12000042"	"Hybrid"	81
+"2019 Q2"	"East Ayrshire"	"S12000008"	"Hybrid"	80
+"2019 Q2"	"East Dunbartonshire"	"S12000045"	"Hybrid"	109
+"2019 Q2"	"East Lothian"	"S12000010"	"Hybrid"	118
+"2019 Q2"	"East Renfrewshire"	"S12000011"	"Hybrid"	147
+"2019 Q2"	"Falkirk"	"S12000014"	"Hybrid"	96
+"2019 Q2"	"Fife"	"S12000047"	"Hybrid"	265
+"2019 Q2"	"Glasgow City"	"S12000049"	"Hybrid"	332
+"2019 Q2"	"Highland"	"S12000017"	"Hybrid"	168
+"2019 Q2"	"Inverclyde"	"S12000018"	"Hybrid"	36
+"2019 Q2"	"Midlothian"	"S12000019"	"Hybrid"	86
+"2019 Q2"	"Moray"	"S12000020"	"Hybrid"	66
+"2019 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	15
+"2019 Q2"	"North Ayrshire"	"S12000021"	"Hybrid"	78
+"2019 Q2"	"North Lanarkshire"	"S12000050"	"Hybrid"	174
+"2019 Q2"	"Orkney Islands"	"S12000023"	"Hybrid"	34
+"2019 Q2"	"Perth and Kinross"	"S12000048"	"Hybrid"	200
+"2019 Q2"	"Renfrewshire"	"S12000038"	"Hybrid"	2172
+"2019 Q2"	"Scottish Borders"	"S12000026"	"Hybrid"	128
+"2019 Q2"	"Shetland Islands"	"S12000027"	"Hybrid"	29
+"2019 Q2"	"South Ayrshire"	"S12000028"	"Hybrid"	79
+"2019 Q2"	"South Lanarkshire"	"S12000029"	"Hybrid"	238
+"2019 Q2"	"Stirling"	"S12000030"	"Hybrid"	929
+"2019 Q2"	"West Dunbartonshire"	"S12000039"	"Hybrid"	56
+"2019 Q2"	"West Lothian"	"S12000040"	"Hybrid"	149
+"2019 Q1"	"Aberdeen City"	"S12000033"	"Hybrid"	211
+"2019 Q1"	"Aberdeenshire"	"S12000034"	"Hybrid"	322
+"2019 Q1"	"Angus"	"S12000041"	"Hybrid"	86
+"2019 Q1"	"Argyll and Bute"	"S12000035"	"Hybrid"	81
+"2019 Q1"	"City of Edinburgh"	"S12000036"	"Hybrid"	454
+"2019 Q1"	"Clackmannanshire"	"S12000005"	"Hybrid"	39
+"2019 Q1"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	112
+"2019 Q1"	"Dundee City"	"S12000042"	"Hybrid"	76
+"2019 Q1"	"East Ayrshire"	"S12000008"	"Hybrid"	71
+"2019 Q1"	"East Dunbartonshire"	"S12000045"	"Hybrid"	101
+"2019 Q1"	"East Lothian"	"S12000010"	"Hybrid"	115
+"2019 Q1"	"East Renfrewshire"	"S12000011"	"Hybrid"	151
+"2019 Q1"	"Falkirk"	"S12000014"	"Hybrid"	88
+"2019 Q1"	"Fife"	"S12000047"	"Hybrid"	256
+"2019 Q1"	"Glasgow City"	"S12000049"	"Hybrid"	297
+"2019 Q1"	"Highland"	"S12000017"	"Hybrid"	156
+"2019 Q1"	"Inverclyde"	"S12000018"	"Hybrid"	36
+"2019 Q1"	"Midlothian"	"S12000019"	"Hybrid"	78
+"2019 Q1"	"Moray"	"S12000020"	"Hybrid"	65
+"2019 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	13
+"2019 Q1"	"North Ayrshire"	"S12000021"	"Hybrid"	77
+"2019 Q1"	"North Lanarkshire"	"S12000050"	"Hybrid"	165
+"2019 Q1"	"Orkney Islands"	"S12000023"	"Hybrid"	34
+"2019 Q1"	"Perth and Kinross"	"S12000048"	"Hybrid"	186
+"2019 Q1"	"Renfrewshire"	"S12000038"	"Hybrid"	1974
+"2019 Q1"	"Scottish Borders"	"S12000026"	"Hybrid"	115
+"2019 Q1"	"Shetland Islands"	"S12000027"	"Hybrid"	29
+"2019 Q1"	"South Ayrshire"	"S12000028"	"Hybrid"	71
+"2019 Q1"	"South Lanarkshire"	"S12000029"	"Hybrid"	230
+"2019 Q1"	"Stirling"	"S12000030"	"Hybrid"	891
+"2019 Q1"	"West Dunbartonshire"	"S12000039"	"Hybrid"	47
+"2019 Q1"	"West Lothian"	"S12000040"	"Hybrid"	137
+"2018 Q4"	"Aberdeen City"	"S12000033"	"Hybrid"	201
+"2018 Q4"	"Aberdeenshire"	"S12000034"	"Hybrid"	310
+"2018 Q4"	"Angus"	"S12000041"	"Hybrid"	82
+"2018 Q4"	"Argyll and Bute"	"S12000035"	"Hybrid"	75
+"2018 Q4"	"City of Edinburgh"	"S12000036"	"Hybrid"	411
+"2018 Q4"	"Clackmannanshire"	"S12000005"	"Hybrid"	37
+"2018 Q4"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	103
+"2018 Q4"	"Dundee City"	"S12000042"	"Hybrid"	67
+"2018 Q4"	"East Ayrshire"	"S12000008"	"Hybrid"	65
+"2018 Q4"	"East Dunbartonshire"	"S12000045"	"Hybrid"	89
+"2018 Q4"	"East Lothian"	"S12000010"	"Hybrid"	105
+"2018 Q4"	"East Renfrewshire"	"S12000011"	"Hybrid"	150
+"2018 Q4"	"Falkirk"	"S12000014"	"Hybrid"	72
+"2018 Q4"	"Fife"	"S12000047"	"Hybrid"	248
+"2018 Q4"	"Glasgow City"	"S12000049"	"Hybrid"	261
+"2018 Q4"	"Highland"	"S12000017"	"Hybrid"	145
+"2018 Q4"	"Inverclyde"	"S12000018"	"Hybrid"	32
+"2018 Q4"	"Midlothian"	"S12000019"	"Hybrid"	67
+"2018 Q4"	"Moray"	"S12000020"	"Hybrid"	59
+"2018 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	11
+"2018 Q4"	"North Ayrshire"	"S12000021"	"Hybrid"	77
+"2018 Q4"	"North Lanarkshire"	"S12000050"	"Hybrid"	148
+"2018 Q4"	"Orkney Islands"	"S12000023"	"Hybrid"	31
+"2018 Q4"	"Perth and Kinross"	"S12000048"	"Hybrid"	175
+"2018 Q4"	"Renfrewshire"	"S12000038"	"Hybrid"	1737
+"2018 Q4"	"Scottish Borders"	"S12000026"	"Hybrid"	109
+"2018 Q4"	"Shetland Islands"	"S12000027"	"Hybrid"	27
+"2018 Q4"	"South Ayrshire"	"S12000028"	"Hybrid"	78
+"2018 Q4"	"South Lanarkshire"	"S12000029"	"Hybrid"	221
+"2018 Q4"	"Stirling"	"S12000030"	"Hybrid"	813
+"2018 Q4"	"West Dunbartonshire"	"S12000039"	"Hybrid"	43
+"2018 Q4"	"West Lothian"	"S12000040"	"Hybrid"	127
+"2018 Q3"	"Aberdeen City"	"S12000033"	"Hybrid"	185
+"2018 Q3"	"Aberdeenshire"	"S12000034"	"Hybrid"	279
+"2018 Q3"	"Angus"	"S12000041"	"Hybrid"	77
+"2018 Q3"	"Argyll and Bute"	"S12000035"	"Hybrid"	73
+"2018 Q3"	"City of Edinburgh"	"S12000036"	"Hybrid"	367
+"2018 Q3"	"Clackmannanshire"	"S12000005"	"Hybrid"	32
+"2018 Q3"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	100
+"2018 Q3"	"Dundee City"	"S12000042"	"Hybrid"	57
+"2018 Q3"	"East Ayrshire"	"S12000008"	"Hybrid"	57
+"2018 Q3"	"East Dunbartonshire"	"S12000045"	"Hybrid"	71
+"2018 Q3"	"East Lothian"	"S12000010"	"Hybrid"	99
+"2018 Q3"	"East Renfrewshire"	"S12000011"	"Hybrid"	95
+"2018 Q3"	"Falkirk"	"S12000014"	"Hybrid"	68
+"2018 Q3"	"Fife"	"S12000047"	"Hybrid"	223
+"2018 Q3"	"Glasgow City"	"S12000049"	"Hybrid"	232
+"2018 Q3"	"Highland"	"S12000017"	"Hybrid"	134
+"2018 Q3"	"Inverclyde"	"S12000018"	"Hybrid"	31
+"2018 Q3"	"Midlothian"	"S12000019"	"Hybrid"	50
+"2018 Q3"	"Moray"	"S12000020"	"Hybrid"	48
+"2018 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	11
+"2018 Q3"	"North Ayrshire"	"S12000021"	"Hybrid"	71
+"2018 Q3"	"North Lanarkshire"	"S12000050"	"Hybrid"	131
+"2018 Q3"	"Orkney Islands"	"S12000023"	"Hybrid"	29
+"2018 Q3"	"Perth and Kinross"	"S12000048"	"Hybrid"	163
+"2018 Q3"	"Renfrewshire"	"S12000038"	"Hybrid"	1476
+"2018 Q3"	"Scottish Borders"	"S12000026"	"Hybrid"	103
+"2018 Q3"	"Shetland Islands"	"S12000027"	"Hybrid"	25
+"2018 Q3"	"South Ayrshire"	"S12000028"	"Hybrid"	74
+"2018 Q3"	"South Lanarkshire"	"S12000029"	"Hybrid"	183
+"2018 Q3"	"Stirling"	"S12000030"	"Hybrid"	755
+"2018 Q3"	"West Dunbartonshire"	"S12000039"	"Hybrid"	38
+"2018 Q3"	"West Lothian"	"S12000040"	"Hybrid"	114
+"2018 Q2"	"Aberdeen City"	"S12000033"	"Hybrid"	184
+"2018 Q2"	"Aberdeenshire"	"S12000034"	"Hybrid"	260
+"2018 Q2"	"Angus"	"S12000041"	"Hybrid"	64
+"2018 Q2"	"Argyll and Bute"	"S12000035"	"Hybrid"	67
+"2018 Q2"	"City of Edinburgh"	"S12000036"	"Hybrid"	321
+"2018 Q2"	"Clackmannanshire"	"S12000005"	"Hybrid"	30
+"2018 Q2"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	96
+"2018 Q2"	"Dundee City"	"S12000042"	"Hybrid"	49
+"2018 Q2"	"East Ayrshire"	"S12000008"	"Hybrid"	52
+"2018 Q2"	"East Dunbartonshire"	"S12000045"	"Hybrid"	66
+"2018 Q2"	"East Lothian"	"S12000010"	"Hybrid"	89
+"2018 Q2"	"East Renfrewshire"	"S12000011"	"Hybrid"	71
+"2018 Q2"	"Falkirk"	"S12000014"	"Hybrid"	60
+"2018 Q2"	"Fife"	"S12000047"	"Hybrid"	211
+"2018 Q2"	"Glasgow City"	"S12000049"	"Hybrid"	202
+"2018 Q2"	"Highland"	"S12000017"	"Hybrid"	120
+"2018 Q2"	"Inverclyde"	"S12000018"	"Hybrid"	27
+"2018 Q2"	"Midlothian"	"S12000019"	"Hybrid"	46
+"2018 Q2"	"Moray"	"S12000020"	"Hybrid"	47
+"2018 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	10
+"2018 Q2"	"North Ayrshire"	"S12000021"	"Hybrid"	64
+"2018 Q2"	"North Lanarkshire"	"S12000050"	"Hybrid"	115
+"2018 Q2"	"Orkney Islands"	"S12000023"	"Hybrid"	25
+"2018 Q2"	"Perth and Kinross"	"S12000048"	"Hybrid"	141
+"2018 Q2"	"Renfrewshire"	"S12000038"	"Hybrid"	1298
+"2018 Q2"	"Scottish Borders"	"S12000026"	"Hybrid"	94
+"2018 Q2"	"Shetland Islands"	"S12000027"	"Hybrid"	25
+"2018 Q2"	"South Ayrshire"	"S12000028"	"Hybrid"	66
+"2018 Q2"	"South Lanarkshire"	"S12000029"	"Hybrid"	153
+"2018 Q2"	"Stirling"	"S12000030"	"Hybrid"	653
+"2018 Q2"	"West Dunbartonshire"	"S12000039"	"Hybrid"	34
+"2018 Q2"	"West Lothian"	"S12000040"	"Hybrid"	100
+"2018 Q1"	"Aberdeen City"	"S12000033"	"Hybrid"	169
+"2018 Q1"	"Aberdeenshire"	"S12000034"	"Hybrid"	238
+"2018 Q1"	"Angus"	"S12000041"	"Hybrid"	55
+"2018 Q1"	"Argyll and Bute"	"S12000035"	"Hybrid"	64
+"2018 Q1"	"City of Edinburgh"	"S12000036"	"Hybrid"	286
+"2018 Q1"	"Clackmannanshire"	"S12000005"	"Hybrid"	27
+"2018 Q1"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	90
+"2018 Q1"	"Dundee City"	"S12000042"	"Hybrid"	45
+"2018 Q1"	"East Ayrshire"	"S12000008"	"Hybrid"	50
+"2018 Q1"	"East Dunbartonshire"	"S12000045"	"Hybrid"	59
+"2018 Q1"	"East Lothian"	"S12000010"	"Hybrid"	76
+"2018 Q1"	"East Renfrewshire"	"S12000011"	"Hybrid"	69
+"2018 Q1"	"Falkirk"	"S12000014"	"Hybrid"	55
+"2018 Q1"	"Fife"	"S12000047"	"Hybrid"	190
+"2018 Q1"	"Glasgow City"	"S12000049"	"Hybrid"	177
+"2018 Q1"	"Highland"	"S12000017"	"Hybrid"	111
+"2018 Q1"	"Inverclyde"	"S12000018"	"Hybrid"	24
+"2018 Q1"	"Midlothian"	"S12000019"	"Hybrid"	49
+"2018 Q1"	"Moray"	"S12000020"	"Hybrid"	37
+"2018 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	12
+"2018 Q1"	"North Ayrshire"	"S12000021"	"Hybrid"	51
+"2018 Q1"	"North Lanarkshire"	"S12000050"	"Hybrid"	95
+"2018 Q1"	"Orkney Islands"	"S12000023"	"Hybrid"	23
+"2018 Q1"	"Perth and Kinross"	"S12000048"	"Hybrid"	124
+"2018 Q1"	"Renfrewshire"	"S12000038"	"Hybrid"	1026
+"2018 Q1"	"Scottish Borders"	"S12000026"	"Hybrid"	88
+"2018 Q1"	"Shetland Islands"	"S12000027"	"Hybrid"	25
+"2018 Q1"	"South Ayrshire"	"S12000028"	"Hybrid"	54
+"2018 Q1"	"South Lanarkshire"	"S12000029"	"Hybrid"	142
+"2018 Q1"	"Stirling"	"S12000030"	"Hybrid"	529
+"2018 Q1"	"West Dunbartonshire"	"S12000039"	"Hybrid"	31
+"2018 Q1"	"West Lothian"	"S12000040"	"Hybrid"	95
+"2017 Q4"	"Aberdeen City"	"S12000033"	"Hybrid"	154
+"2017 Q4"	"Aberdeenshire"	"S12000034"	"Hybrid"	213
+"2017 Q4"	"Angus"	"S12000041"	"Hybrid"	47
+"2017 Q4"	"Argyll and Bute"	"S12000035"	"Hybrid"	56
+"2017 Q4"	"City of Edinburgh"	"S12000036"	"Hybrid"	264
+"2017 Q4"	"Clackmannanshire"	"S12000005"	"Hybrid"	24
+"2017 Q4"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	84
+"2017 Q4"	"Dundee City"	"S12000042"	"Hybrid"	39
+"2017 Q4"	"East Ayrshire"	"S12000008"	"Hybrid"	45
+"2017 Q4"	"East Dunbartonshire"	"S12000045"	"Hybrid"	46
+"2017 Q4"	"East Lothian"	"S12000010"	"Hybrid"	72
+"2017 Q4"	"East Renfrewshire"	"S12000011"	"Hybrid"	63
+"2017 Q4"	"Falkirk"	"S12000014"	"Hybrid"	48
+"2017 Q4"	"Fife"	"S12000047"	"Hybrid"	162
+"2017 Q4"	"Glasgow City"	"S12000049"	"Hybrid"	157
+"2017 Q4"	"Highland"	"S12000017"	"Hybrid"	97
+"2017 Q4"	"Inverclyde"	"S12000018"	"Hybrid"	21
+"2017 Q4"	"Midlothian"	"S12000019"	"Hybrid"	43
+"2017 Q4"	"Moray"	"S12000020"	"Hybrid"	32
+"2017 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	10
+"2017 Q4"	"North Ayrshire"	"S12000021"	"Hybrid"	43
+"2017 Q4"	"North Lanarkshire"	"S12000050"	"Hybrid"	92
+"2017 Q4"	"Orkney Islands"	"S12000023"	"Hybrid"	19
+"2017 Q4"	"Perth and Kinross"	"S12000048"	"Hybrid"	116
+"2017 Q4"	"Renfrewshire"	"S12000038"	"Hybrid"	808
+"2017 Q4"	"Scottish Borders"	"S12000026"	"Hybrid"	81
+"2017 Q4"	"Shetland Islands"	"S12000027"	"Hybrid"	21
+"2017 Q4"	"South Ayrshire"	"S12000028"	"Hybrid"	51
+"2017 Q4"	"South Lanarkshire"	"S12000029"	"Hybrid"	125
+"2017 Q4"	"Stirling"	"S12000030"	"Hybrid"	467
+"2017 Q4"	"West Dunbartonshire"	"S12000039"	"Hybrid"	23
+"2017 Q4"	"West Lothian"	"S12000040"	"Hybrid"	86
+"2017 Q3"	"Aberdeen City"	"S12000033"	"Hybrid"	141
+"2017 Q3"	"Aberdeenshire"	"S12000034"	"Hybrid"	191
+"2017 Q3"	"Angus"	"S12000041"	"Hybrid"	44
+"2017 Q3"	"Argyll and Bute"	"S12000035"	"Hybrid"	43
+"2017 Q3"	"City of Edinburgh"	"S12000036"	"Hybrid"	229
+"2017 Q3"	"Clackmannanshire"	"S12000005"	"Hybrid"	22
+"2017 Q3"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	78
+"2017 Q3"	"Dundee City"	"S12000042"	"Hybrid"	43
+"2017 Q3"	"East Ayrshire"	"S12000008"	"Hybrid"	40
+"2017 Q3"	"East Dunbartonshire"	"S12000045"	"Hybrid"	40
+"2017 Q3"	"East Lothian"	"S12000010"	"Hybrid"	65
+"2017 Q3"	"East Renfrewshire"	"S12000011"	"Hybrid"	68
+"2017 Q3"	"Falkirk"	"S12000014"	"Hybrid"	43
+"2017 Q3"	"Fife"	"S12000047"	"Hybrid"	158
+"2017 Q3"	"Glasgow City"	"S12000049"	"Hybrid"	138
+"2017 Q3"	"Highland"	"S12000017"	"Hybrid"	91
+"2017 Q3"	"Inverclyde"	"S12000018"	"Hybrid"	17
+"2017 Q3"	"Midlothian"	"S12000019"	"Hybrid"	41
+"2017 Q3"	"Moray"	"S12000020"	"Hybrid"	29
+"2017 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	10
+"2017 Q3"	"North Ayrshire"	"S12000021"	"Hybrid"	46
+"2017 Q3"	"North Lanarkshire"	"S12000050"	"Hybrid"	86
+"2017 Q3"	"Orkney Islands"	"S12000023"	"Hybrid"	19
+"2017 Q3"	"Perth and Kinross"	"S12000048"	"Hybrid"	106
+"2017 Q3"	"Renfrewshire"	"S12000038"	"Hybrid"	687
+"2017 Q3"	"Scottish Borders"	"S12000026"	"Hybrid"	72
+"2017 Q3"	"Shetland Islands"	"S12000027"	"Hybrid"	19
+"2017 Q3"	"South Ayrshire"	"S12000028"	"Hybrid"	42
+"2017 Q3"	"South Lanarkshire"	"S12000029"	"Hybrid"	121
+"2017 Q3"	"Stirling"	"S12000030"	"Hybrid"	414
+"2017 Q3"	"West Dunbartonshire"	"S12000039"	"Hybrid"	21
+"2017 Q3"	"West Lothian"	"S12000040"	"Hybrid"	72
+"2017 Q2"	"Aberdeen City"	"S12000033"	"Hybrid"	132
+"2017 Q2"	"Aberdeenshire"	"S12000034"	"Hybrid"	179
+"2017 Q2"	"Angus"	"S12000041"	"Hybrid"	40
+"2017 Q2"	"Argyll and Bute"	"S12000035"	"Hybrid"	40
+"2017 Q2"	"City of Edinburgh"	"S12000036"	"Hybrid"	210
+"2017 Q2"	"Clackmannanshire"	"S12000005"	"Hybrid"	21
+"2017 Q2"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	67
+"2017 Q2"	"Dundee City"	"S12000042"	"Hybrid"	37
+"2017 Q2"	"East Ayrshire"	"S12000008"	"Hybrid"	40
+"2017 Q2"	"East Dunbartonshire"	"S12000045"	"Hybrid"	34
+"2017 Q2"	"East Lothian"	"S12000010"	"Hybrid"	57
+"2017 Q2"	"East Renfrewshire"	"S12000011"	"Hybrid"	61
+"2017 Q2"	"Falkirk"	"S12000014"	"Hybrid"	38
+"2017 Q2"	"Fife"	"S12000047"	"Hybrid"	142
+"2017 Q2"	"Glasgow City"	"S12000049"	"Hybrid"	132
+"2017 Q2"	"Highland"	"S12000017"	"Hybrid"	80
+"2017 Q2"	"Inverclyde"	"S12000018"	"Hybrid"	15
+"2017 Q2"	"Midlothian"	"S12000019"	"Hybrid"	34
+"2017 Q2"	"Moray"	"S12000020"	"Hybrid"	25
+"2017 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	10
+"2017 Q2"	"North Ayrshire"	"S12000021"	"Hybrid"	40
+"2017 Q2"	"North Lanarkshire"	"S12000050"	"Hybrid"	85
+"2017 Q2"	"Orkney Islands"	"S12000023"	"Hybrid"	18
+"2017 Q2"	"Perth and Kinross"	"S12000048"	"Hybrid"	91
+"2017 Q2"	"Renfrewshire"	"S12000038"	"Hybrid"	494
+"2017 Q2"	"Scottish Borders"	"S12000026"	"Hybrid"	63
+"2017 Q2"	"Shetland Islands"	"S12000027"	"Hybrid"	19
+"2017 Q2"	"South Ayrshire"	"S12000028"	"Hybrid"	37
+"2017 Q2"	"South Lanarkshire"	"S12000029"	"Hybrid"	110
+"2017 Q2"	"Stirling"	"S12000030"	"Hybrid"	345
+"2017 Q2"	"West Dunbartonshire"	"S12000039"	"Hybrid"	21
+"2017 Q2"	"West Lothian"	"S12000040"	"Hybrid"	67
+"2017 Q1"	"Aberdeen City"	"S12000033"	"Hybrid"	125
+"2017 Q1"	"Aberdeenshire"	"S12000034"	"Hybrid"	164
+"2017 Q1"	"Angus"	"S12000041"	"Hybrid"	40
+"2017 Q1"	"Argyll and Bute"	"S12000035"	"Hybrid"	34
+"2017 Q1"	"City of Edinburgh"	"S12000036"	"Hybrid"	178
+"2017 Q1"	"Clackmannanshire"	"S12000005"	"Hybrid"	18
+"2017 Q1"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	61
+"2017 Q1"	"Dundee City"	"S12000042"	"Hybrid"	37
+"2017 Q1"	"East Ayrshire"	"S12000008"	"Hybrid"	37
+"2017 Q1"	"East Dunbartonshire"	"S12000045"	"Hybrid"	29
+"2017 Q1"	"East Lothian"	"S12000010"	"Hybrid"	55
+"2017 Q1"	"East Renfrewshire"	"S12000011"	"Hybrid"	53
+"2017 Q1"	"Falkirk"	"S12000014"	"Hybrid"	36
+"2017 Q1"	"Fife"	"S12000047"	"Hybrid"	131
+"2017 Q1"	"Glasgow City"	"S12000049"	"Hybrid"	122
+"2017 Q1"	"Highland"	"S12000017"	"Hybrid"	72
+"2017 Q1"	"Inverclyde"	"S12000018"	"Hybrid"	14
+"2017 Q1"	"Midlothian"	"S12000019"	"Hybrid"	30
+"2017 Q1"	"Moray"	"S12000020"	"Hybrid"	20
+"2017 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	9
+"2017 Q1"	"North Ayrshire"	"S12000021"	"Hybrid"	36
+"2017 Q1"	"North Lanarkshire"	"S12000050"	"Hybrid"	80
+"2017 Q1"	"Orkney Islands"	"S12000023"	"Hybrid"	16
+"2017 Q1"	"Perth and Kinross"	"S12000048"	"Hybrid"	77
+"2017 Q1"	"Renfrewshire"	"S12000038"	"Hybrid"	423
+"2017 Q1"	"Scottish Borders"	"S12000026"	"Hybrid"	64
+"2017 Q1"	"Shetland Islands"	"S12000027"	"Hybrid"	17
+"2017 Q1"	"South Ayrshire"	"S12000028"	"Hybrid"	34
+"2017 Q1"	"South Lanarkshire"	"S12000029"	"Hybrid"	94
+"2017 Q1"	"Stirling"	"S12000030"	"Hybrid"	299
+"2017 Q1"	"West Dunbartonshire"	"S12000039"	"Hybrid"	19
+"2017 Q1"	"West Lothian"	"S12000040"	"Hybrid"	58
+"2016 Q4"	"Aberdeen City"	"S12000033"	"Hybrid"	115
+"2016 Q4"	"Aberdeenshire"	"S12000034"	"Hybrid"	148
+"2016 Q4"	"Angus"	"S12000041"	"Hybrid"	33
+"2016 Q4"	"Argyll and Bute"	"S12000035"	"Hybrid"	27
+"2016 Q4"	"City of Edinburgh"	"S12000036"	"Hybrid"	153
+"2016 Q4"	"Clackmannanshire"	"S12000005"	"Hybrid"	14
+"2016 Q4"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	56
+"2016 Q4"	"Dundee City"	"S12000042"	"Hybrid"	27
+"2016 Q4"	"East Ayrshire"	"S12000008"	"Hybrid"	31
+"2016 Q4"	"East Dunbartonshire"	"S12000045"	"Hybrid"	25
+"2016 Q4"	"East Lothian"	"S12000010"	"Hybrid"	48
+"2016 Q4"	"East Renfrewshire"	"S12000011"	"Hybrid"	43
+"2016 Q4"	"Falkirk"	"S12000014"	"Hybrid"	31
+"2016 Q4"	"Fife"	"S12000047"	"Hybrid"	118
+"2016 Q4"	"Glasgow City"	"S12000049"	"Hybrid"	114
+"2016 Q4"	"Highland"	"S12000017"	"Hybrid"	65
+"2016 Q4"	"Inverclyde"	"S12000018"	"Hybrid"	14
+"2016 Q4"	"Midlothian"	"S12000019"	"Hybrid"	26
+"2016 Q4"	"Moray"	"S12000020"	"Hybrid"	19
+"2016 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	8
+"2016 Q4"	"North Ayrshire"	"S12000021"	"Hybrid"	33
+"2016 Q4"	"North Lanarkshire"	"S12000050"	"Hybrid"	73
+"2016 Q4"	"Orkney Islands"	"S12000023"	"Hybrid"	13
+"2016 Q4"	"Perth and Kinross"	"S12000048"	"Hybrid"	61
+"2016 Q4"	"Renfrewshire"	"S12000038"	"Hybrid"	350
+"2016 Q4"	"Scottish Borders"	"S12000026"	"Hybrid"	55
+"2016 Q4"	"Shetland Islands"	"S12000027"	"Hybrid"	15
+"2016 Q4"	"South Ayrshire"	"S12000028"	"Hybrid"	32
+"2016 Q4"	"South Lanarkshire"	"S12000029"	"Hybrid"	86
+"2016 Q4"	"Stirling"	"S12000030"	"Hybrid"	235
+"2016 Q4"	"West Dunbartonshire"	"S12000039"	"Hybrid"	15
+"2016 Q4"	"West Lothian"	"S12000040"	"Hybrid"	55
+"2016 Q3"	"Aberdeen City"	"S12000033"	"Hybrid"	103
+"2016 Q3"	"Aberdeenshire"	"S12000034"	"Hybrid"	136
+"2016 Q3"	"Angus"	"S12000041"	"Hybrid"	28
+"2016 Q3"	"Argyll and Bute"	"S12000035"	"Hybrid"	27
+"2016 Q3"	"City of Edinburgh"	"S12000036"	"Hybrid"	134
+"2016 Q3"	"Clackmannanshire"	"S12000005"	"Hybrid"	12
+"2016 Q3"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	53
+"2016 Q3"	"Dundee City"	"S12000042"	"Hybrid"	28
+"2016 Q3"	"East Ayrshire"	"S12000008"	"Hybrid"	25
+"2016 Q3"	"East Dunbartonshire"	"S12000045"	"Hybrid"	23
+"2016 Q3"	"East Lothian"	"S12000010"	"Hybrid"	43
+"2016 Q3"	"East Renfrewshire"	"S12000011"	"Hybrid"	39
+"2016 Q3"	"Falkirk"	"S12000014"	"Hybrid"	29
+"2016 Q3"	"Fife"	"S12000047"	"Hybrid"	110
+"2016 Q3"	"Glasgow City"	"S12000049"	"Hybrid"	107
+"2016 Q3"	"Highland"	"S12000017"	"Hybrid"	64
+"2016 Q3"	"Inverclyde"	"S12000018"	"Hybrid"	12
+"2016 Q3"	"Midlothian"	"S12000019"	"Hybrid"	23
+"2016 Q3"	"Moray"	"S12000020"	"Hybrid"	19
+"2016 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	8
+"2016 Q3"	"North Ayrshire"	"S12000021"	"Hybrid"	30
+"2016 Q3"	"North Lanarkshire"	"S12000050"	"Hybrid"	69
+"2016 Q3"	"Orkney Islands"	"S12000023"	"Hybrid"	10
+"2016 Q3"	"Perth and Kinross"	"S12000048"	"Hybrid"	61
+"2016 Q3"	"Renfrewshire"	"S12000038"	"Hybrid"	320
+"2016 Q3"	"Scottish Borders"	"S12000026"	"Hybrid"	48
+"2016 Q3"	"Shetland Islands"	"S12000027"	"Hybrid"	13
+"2016 Q3"	"South Ayrshire"	"S12000028"	"Hybrid"	33
+"2016 Q3"	"South Lanarkshire"	"S12000029"	"Hybrid"	77
+"2016 Q3"	"Stirling"	"S12000030"	"Hybrid"	201
+"2016 Q3"	"West Dunbartonshire"	"S12000039"	"Hybrid"	14
+"2016 Q3"	"West Lothian"	"S12000040"	"Hybrid"	48
+"2016 Q2"	"Aberdeen City"	"S12000033"	"Hybrid"	97
+"2016 Q2"	"Aberdeenshire"	"S12000034"	"Hybrid"	125
+"2016 Q2"	"Angus"	"S12000041"	"Hybrid"	25
+"2016 Q2"	"Argyll and Bute"	"S12000035"	"Hybrid"	26
+"2016 Q2"	"City of Edinburgh"	"S12000036"	"Hybrid"	114
+"2016 Q2"	"Clackmannanshire"	"S12000005"	"Hybrid"	6
+"2016 Q2"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	48
+"2016 Q2"	"Dundee City"	"S12000042"	"Hybrid"	23
+"2016 Q2"	"East Ayrshire"	"S12000008"	"Hybrid"	20
+"2016 Q2"	"East Dunbartonshire"	"S12000045"	"Hybrid"	19
+"2016 Q2"	"East Lothian"	"S12000010"	"Hybrid"	42
+"2016 Q2"	"East Renfrewshire"	"S12000011"	"Hybrid"	36
+"2016 Q2"	"Falkirk"	"S12000014"	"Hybrid"	23
+"2016 Q2"	"Fife"	"S12000047"	"Hybrid"	98
+"2016 Q2"	"Glasgow City"	"S12000049"	"Hybrid"	96
+"2016 Q2"	"Highland"	"S12000017"	"Hybrid"	49
+"2016 Q2"	"Inverclyde"	"S12000018"	"Hybrid"	9
+"2016 Q2"	"Midlothian"	"S12000019"	"Hybrid"	18
+"2016 Q2"	"Moray"	"S12000020"	"Hybrid"	16
+"2016 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	7
+"2016 Q2"	"North Ayrshire"	"S12000021"	"Hybrid"	27
+"2016 Q2"	"North Lanarkshire"	"S12000050"	"Hybrid"	55
+"2016 Q2"	"Orkney Islands"	"S12000023"	"Hybrid"	8
+"2016 Q2"	"Perth and Kinross"	"S12000048"	"Hybrid"	53
+"2016 Q2"	"Renfrewshire"	"S12000038"	"Hybrid"	262
+"2016 Q2"	"Scottish Borders"	"S12000026"	"Hybrid"	46
+"2016 Q2"	"Shetland Islands"	"S12000027"	"Hybrid"	13
+"2016 Q2"	"South Ayrshire"	"S12000028"	"Hybrid"	31
+"2016 Q2"	"South Lanarkshire"	"S12000029"	"Hybrid"	67
+"2016 Q2"	"Stirling"	"S12000030"	"Hybrid"	169
+"2016 Q2"	"West Dunbartonshire"	"S12000039"	"Hybrid"	14
+"2016 Q2"	"West Lothian"	"S12000040"	"Hybrid"	42
+"2016 Q1"	"Aberdeen City"	"S12000033"	"Hybrid"	90
+"2016 Q1"	"Aberdeenshire"	"S12000034"	"Hybrid"	112
+"2016 Q1"	"Angus"	"S12000041"	"Hybrid"	24
+"2016 Q1"	"Argyll and Bute"	"S12000035"	"Hybrid"	23
+"2016 Q1"	"City of Edinburgh"	"S12000036"	"Hybrid"	105
+"2016 Q1"	"Clackmannanshire"	"S12000005"	"Hybrid"	0
+"2016 Q1"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	47
+"2016 Q1"	"Dundee City"	"S12000042"	"Hybrid"	23
+"2016 Q1"	"East Ayrshire"	"S12000008"	"Hybrid"	19
+"2016 Q1"	"East Dunbartonshire"	"S12000045"	"Hybrid"	14
+"2016 Q1"	"East Lothian"	"S12000010"	"Hybrid"	40
+"2016 Q1"	"East Renfrewshire"	"S12000011"	"Hybrid"	27
+"2016 Q1"	"Falkirk"	"S12000014"	"Hybrid"	19
+"2016 Q1"	"Fife"	"S12000047"	"Hybrid"	90
+"2016 Q1"	"Glasgow City"	"S12000049"	"Hybrid"	231
+"2016 Q1"	"Highland"	"S12000017"	"Hybrid"	43
+"2016 Q1"	"Inverclyde"	"S12000018"	"Hybrid"	7
+"2016 Q1"	"Midlothian"	"S12000019"	"Hybrid"	19
+"2016 Q1"	"Moray"	"S12000020"	"Hybrid"	13
+"2016 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	7
+"2016 Q1"	"North Ayrshire"	"S12000021"	"Hybrid"	25
+"2016 Q1"	"North Lanarkshire"	"S12000050"	"Hybrid"	52
+"2016 Q1"	"Orkney Islands"	"S12000023"	"Hybrid"	7
+"2016 Q1"	"Perth and Kinross"	"S12000048"	"Hybrid"	44
+"2016 Q1"	"Renfrewshire"	"S12000038"	"Hybrid"	32
+"2016 Q1"	"Scottish Borders"	"S12000026"	"Hybrid"	38
+"2016 Q1"	"Shetland Islands"	"S12000027"	"Hybrid"	14
+"2016 Q1"	"South Ayrshire"	"S12000028"	"Hybrid"	32
+"2016 Q1"	"South Lanarkshire"	"S12000029"	"Hybrid"	58
+"2016 Q1"	"Stirling"	"S12000030"	"Hybrid"	138
+"2016 Q1"	"West Dunbartonshire"	"S12000039"	"Hybrid"	11
+"2016 Q1"	"West Lothian"	"S12000040"	"Hybrid"	34
+"2015 Q4"	"Aberdeen City"	"S12000033"	"Hybrid"	77
+"2015 Q4"	"Aberdeenshire"	"S12000034"	"Hybrid"	92
+"2015 Q4"	"Angus"	"S12000041"	"Hybrid"	20
+"2015 Q4"	"Argyll and Bute"	"S12000035"	"Hybrid"	20
+"2015 Q4"	"City of Edinburgh"	"S12000036"	"Hybrid"	90
+"2015 Q4"	"Clackmannanshire"	"S12000005"	"Hybrid"	0
+"2015 Q4"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	37
+"2015 Q4"	"Dundee City"	"S12000042"	"Hybrid"	18
+"2015 Q4"	"East Ayrshire"	"S12000008"	"Hybrid"	15
+"2015 Q4"	"East Dunbartonshire"	"S12000045"	"Hybrid"	13
+"2015 Q4"	"East Lothian"	"S12000010"	"Hybrid"	29
+"2015 Q4"	"East Renfrewshire"	"S12000011"	"Hybrid"	16
+"2015 Q4"	"Falkirk"	"S12000014"	"Hybrid"	16
+"2015 Q4"	"Fife"	"S12000047"	"Hybrid"	74
+"2015 Q4"	"Glasgow City"	"S12000049"	"Hybrid"	216
+"2015 Q4"	"Highland"	"S12000017"	"Hybrid"	39
+"2015 Q4"	"Inverclyde"	"S12000018"	"Hybrid"	5
+"2015 Q4"	"Midlothian"	"S12000019"	"Hybrid"	14
+"2015 Q4"	"Moray"	"S12000020"	"Hybrid"	13
+"2015 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	7
+"2015 Q4"	"North Ayrshire"	"S12000021"	"Hybrid"	19
+"2015 Q4"	"North Lanarkshire"	"S12000050"	"Hybrid"	40
+"2015 Q4"	"Orkney Islands"	"S12000023"	"Hybrid"	6
+"2015 Q4"	"Perth and Kinross"	"S12000048"	"Hybrid"	38
+"2015 Q4"	"Renfrewshire"	"S12000038"	"Hybrid"	24
+"2015 Q4"	"Scottish Borders"	"S12000026"	"Hybrid"	35
+"2015 Q4"	"Shetland Islands"	"S12000027"	"Hybrid"	12
+"2015 Q4"	"South Ayrshire"	"S12000028"	"Hybrid"	20
+"2015 Q4"	"South Lanarkshire"	"S12000029"	"Hybrid"	52
+"2015 Q4"	"Stirling"	"S12000030"	"Hybrid"	98
+"2015 Q4"	"West Dunbartonshire"	"S12000039"	"Hybrid"	11
+"2015 Q4"	"West Lothian"	"S12000040"	"Hybrid"	26
+"2015 Q3"	"Aberdeen City"	"S12000033"	"Hybrid"	69
+"2015 Q3"	"Aberdeenshire"	"S12000034"	"Hybrid"	75
+"2015 Q3"	"Angus"	"S12000041"	"Hybrid"	18
+"2015 Q3"	"Argyll and Bute"	"S12000035"	"Hybrid"	18
+"2015 Q3"	"City of Edinburgh"	"S12000036"	"Hybrid"	77
+"2015 Q3"	"Clackmannanshire"	"S12000005"	"Hybrid"	0
+"2015 Q3"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	36
+"2015 Q3"	"Dundee City"	"S12000042"	"Hybrid"	16
+"2015 Q3"	"East Ayrshire"	"S12000008"	"Hybrid"	14
+"2015 Q3"	"East Dunbartonshire"	"S12000045"	"Hybrid"	11
+"2015 Q3"	"East Lothian"	"S12000010"	"Hybrid"	22
+"2015 Q3"	"East Renfrewshire"	"S12000011"	"Hybrid"	16
+"2015 Q3"	"Falkirk"	"S12000014"	"Hybrid"	11
+"2015 Q3"	"Fife"	"S12000047"	"Hybrid"	69
+"2015 Q3"	"Glasgow City"	"S12000049"	"Hybrid"	173
+"2015 Q3"	"Highland"	"S12000017"	"Hybrid"	34
+"2015 Q3"	"Inverclyde"	"S12000018"	"Hybrid"	0
+"2015 Q3"	"Midlothian"	"S12000019"	"Hybrid"	13
+"2015 Q3"	"Moray"	"S12000020"	"Hybrid"	10
+"2015 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	5
+"2015 Q3"	"North Ayrshire"	"S12000021"	"Hybrid"	18
+"2015 Q3"	"North Lanarkshire"	"S12000050"	"Hybrid"	37
+"2015 Q3"	"Orkney Islands"	"S12000023"	"Hybrid"	6
+"2015 Q3"	"Perth and Kinross"	"S12000048"	"Hybrid"	32
+"2015 Q3"	"Renfrewshire"	"S12000038"	"Hybrid"	22
+"2015 Q3"	"Scottish Borders"	"S12000026"	"Hybrid"	28
+"2015 Q3"	"Shetland Islands"	"S12000027"	"Hybrid"	11
+"2015 Q3"	"South Ayrshire"	"S12000028"	"Hybrid"	19
+"2015 Q3"	"South Lanarkshire"	"S12000029"	"Hybrid"	45
+"2015 Q3"	"Stirling"	"S12000030"	"Hybrid"	73
+"2015 Q3"	"West Dunbartonshire"	"S12000039"	"Hybrid"	8
+"2015 Q3"	"West Lothian"	"S12000040"	"Hybrid"	21
+"2015 Q2"	"Aberdeen City"	"S12000033"	"Hybrid"	56
+"2015 Q2"	"Aberdeenshire"	"S12000034"	"Hybrid"	62
+"2015 Q2"	"Angus"	"S12000041"	"Hybrid"	15
+"2015 Q2"	"Argyll and Bute"	"S12000035"	"Hybrid"	14
+"2015 Q2"	"City of Edinburgh"	"S12000036"	"Hybrid"	59
+"2015 Q2"	"Clackmannanshire"	"S12000005"	"Hybrid"	0
+"2015 Q2"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	30
+"2015 Q2"	"Dundee City"	"S12000042"	"Hybrid"	11
+"2015 Q2"	"East Ayrshire"	"S12000008"	"Hybrid"	11
+"2015 Q2"	"East Dunbartonshire"	"S12000045"	"Hybrid"	9
+"2015 Q2"	"East Lothian"	"S12000010"	"Hybrid"	18
+"2015 Q2"	"East Renfrewshire"	"S12000011"	"Hybrid"	12
+"2015 Q2"	"Falkirk"	"S12000014"	"Hybrid"	9
+"2015 Q2"	"Fife"	"S12000047"	"Hybrid"	55
+"2015 Q2"	"Glasgow City"	"S12000049"	"Hybrid"	147
+"2015 Q2"	"Highland"	"S12000017"	"Hybrid"	30
+"2015 Q2"	"Inverclyde"	"S12000018"	"Hybrid"	0
+"2015 Q2"	"Midlothian"	"S12000019"	"Hybrid"	12
+"2015 Q2"	"Moray"	"S12000020"	"Hybrid"	10
+"2015 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	0
+"2015 Q2"	"North Ayrshire"	"S12000021"	"Hybrid"	13
+"2015 Q2"	"North Lanarkshire"	"S12000050"	"Hybrid"	36
+"2015 Q2"	"Orkney Islands"	"S12000023"	"Hybrid"	0
+"2015 Q2"	"Perth and Kinross"	"S12000048"	"Hybrid"	26
+"2015 Q2"	"Renfrewshire"	"S12000038"	"Hybrid"	19
+"2015 Q2"	"Scottish Borders"	"S12000026"	"Hybrid"	24
+"2015 Q2"	"Shetland Islands"	"S12000027"	"Hybrid"	7
+"2015 Q2"	"South Ayrshire"	"S12000028"	"Hybrid"	13
+"2015 Q2"	"South Lanarkshire"	"S12000029"	"Hybrid"	31
+"2015 Q2"	"Stirling"	"S12000030"	"Hybrid"	63
+"2015 Q2"	"West Dunbartonshire"	"S12000039"	"Hybrid"	5
+"2015 Q2"	"West Lothian"	"S12000040"	"Hybrid"	17
+"2015 Q1"	"Aberdeen City"	"S12000033"	"Hybrid"	44
+"2015 Q1"	"Aberdeenshire"	"S12000034"	"Hybrid"	47
+"2015 Q1"	"Angus"	"S12000041"	"Hybrid"	11
+"2015 Q1"	"Argyll and Bute"	"S12000035"	"Hybrid"	11
+"2015 Q1"	"City of Edinburgh"	"S12000036"	"Hybrid"	51
+"2015 Q1"	"Clackmannanshire"	"S12000005"	"Hybrid"	0
+"2015 Q1"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	23
+"2015 Q1"	"Dundee City"	"S12000042"	"Hybrid"	9
+"2015 Q1"	"East Ayrshire"	"S12000008"	"Hybrid"	10
+"2015 Q1"	"East Dunbartonshire"	"S12000045"	"Hybrid"	9
+"2015 Q1"	"East Lothian"	"S12000010"	"Hybrid"	13
+"2015 Q1"	"East Renfrewshire"	"S12000011"	"Hybrid"	11
+"2015 Q1"	"Falkirk"	"S12000014"	"Hybrid"	0
+"2015 Q1"	"Fife"	"S12000047"	"Hybrid"	40
+"2015 Q1"	"Glasgow City"	"S12000049"	"Hybrid"	110
+"2015 Q1"	"Highland"	"S12000017"	"Hybrid"	24
+"2015 Q1"	"Inverclyde"	"S12000018"	"Hybrid"	0
+"2015 Q1"	"Midlothian"	"S12000019"	"Hybrid"	7
+"2015 Q1"	"Moray"	"S12000020"	"Hybrid"	8
+"2015 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	0
+"2015 Q1"	"North Ayrshire"	"S12000021"	"Hybrid"	12
+"2015 Q1"	"North Lanarkshire"	"S12000050"	"Hybrid"	25
+"2015 Q1"	"Orkney Islands"	"S12000023"	"Hybrid"	0
+"2015 Q1"	"Perth and Kinross"	"S12000048"	"Hybrid"	23
+"2015 Q1"	"Renfrewshire"	"S12000038"	"Hybrid"	11
+"2015 Q1"	"Scottish Borders"	"S12000026"	"Hybrid"	21
+"2015 Q1"	"Shetland Islands"	"S12000027"	"Hybrid"	5
+"2015 Q1"	"South Ayrshire"	"S12000028"	"Hybrid"	14
+"2015 Q1"	"South Lanarkshire"	"S12000029"	"Hybrid"	25
+"2015 Q1"	"Stirling"	"S12000030"	"Hybrid"	41
+"2015 Q1"	"West Dunbartonshire"	"S12000039"	"Hybrid"	0
+"2015 Q1"	"West Lothian"	"S12000040"	"Hybrid"	9
+"2014"	"Aberdeen City"	"S12000033"	"Hybrid"	29
+"2014"	"Aberdeenshire"	"S12000034"	"Hybrid"	32
+"2014"	"Angus"	"S12000041"	"Hybrid"	7
+"2014"	"Argyll and Bute"	"S12000035"	"Hybrid"	11
+"2014"	"City of Edinburgh"	"S12000036"	"Hybrid"	42
+"2014"	"Clackmannanshire"	"S12000005"	"Hybrid"	0
+"2014"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	15
+"2014"	"Dundee City"	"S12000042"	"Hybrid"	0
+"2014"	"East Ayrshire"	"S12000008"	"Hybrid"	7
+"2014"	"East Dunbartonshire"	"S12000045"	"Hybrid"	5
+"2014"	"East Lothian"	"S12000010"	"Hybrid"	8
+"2014"	"East Renfrewshire"	"S12000011"	"Hybrid"	5
+"2014"	"Falkirk"	"S12000014"	"Hybrid"	0
+"2014"	"Fife"	"S12000047"	"Hybrid"	35
+"2014"	"Glasgow City"	"S12000049"	"Hybrid"	71
+"2014"	"Highland"	"S12000017"	"Hybrid"	18
+"2014"	"Inverclyde"	"S12000018"	"Hybrid"	0
+"2014"	"Midlothian"	"S12000019"	"Hybrid"	5
+"2014"	"Moray"	"S12000020"	"Hybrid"	8
+"2014"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	0
+"2014"	"North Ayrshire"	"S12000021"	"Hybrid"	6
+"2014"	"North Lanarkshire"	"S12000050"	"Hybrid"	12
+"2014"	"Orkney Islands"	"S12000023"	"Hybrid"	0
+"2014"	"Perth and Kinross"	"S12000048"	"Hybrid"	12
+"2014"	"Renfrewshire"	"S12000038"	"Hybrid"	7
+"2014"	"Scottish Borders"	"S12000026"	"Hybrid"	16
+"2014"	"Shetland Islands"	"S12000027"	"Hybrid"	0
+"2014"	"South Ayrshire"	"S12000028"	"Hybrid"	8
+"2014"	"South Lanarkshire"	"S12000029"	"Hybrid"	9
+"2014"	"Stirling"	"S12000030"	"Hybrid"	28
+"2014"	"West Dunbartonshire"	"S12000039"	"Hybrid"	0
+"2014"	"West Lothian"	"S12000040"	"Hybrid"	7
+"2013"	"Aberdeen City"	"S12000033"	"Hybrid"	10
+"2013"	"Aberdeenshire"	"S12000034"	"Hybrid"	0
+"2013"	"Angus"	"S12000041"	"Hybrid"	0
+"2013"	"Argyll and Bute"	"S12000035"	"Hybrid"	0
+"2013"	"City of Edinburgh"	"S12000036"	"Hybrid"	12
+"2013"	"Clackmannanshire"	"S12000005"	"Hybrid"	0
+"2013"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	0
+"2013"	"Dundee City"	"S12000042"	"Hybrid"	0
+"2013"	"East Ayrshire"	"S12000008"	"Hybrid"	0
+"2013"	"East Dunbartonshire"	"S12000045"	"Hybrid"	0
+"2013"	"East Lothian"	"S12000010"	"Hybrid"	0
+"2013"	"East Renfrewshire"	"S12000011"	"Hybrid"	0
+"2013"	"Falkirk"	"S12000014"	"Hybrid"	0
+"2013"	"Fife"	"S12000047"	"Hybrid"	0
+"2013"	"Glasgow City"	"S12000049"	"Hybrid"	10
+"2013"	"Highland"	"S12000017"	"Hybrid"	7
+"2013"	"Inverclyde"	"S12000018"	"Hybrid"	0
+"2013"	"Midlothian"	"S12000019"	"Hybrid"	0
+"2013"	"Moray"	"S12000020"	"Hybrid"	5
+"2013"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	0
+"2013"	"North Ayrshire"	"S12000021"	"Hybrid"	0
+"2013"	"North Lanarkshire"	"S12000050"	"Hybrid"	0
+"2013"	"Orkney Islands"	"S12000023"	"Hybrid"	0
+"2013"	"Perth and Kinross"	"S12000048"	"Hybrid"	0
+"2013"	"Renfrewshire"	"S12000038"	"Hybrid"	0
+"2013"	"Scottish Borders"	"S12000026"	"Hybrid"	8
+"2013"	"Shetland Islands"	"S12000027"	"Hybrid"	0
+"2013"	"South Ayrshire"	"S12000028"	"Hybrid"	0
+"2013"	"South Lanarkshire"	"S12000029"	"Hybrid"	0
+"2013"	"Stirling"	"S12000030"	"Hybrid"	6
+"2013"	"West Dunbartonshire"	"S12000039"	"Hybrid"	0
+"2013"	"West Lothian"	"S12000040"	"Hybrid"	0
+"2012"	"Aberdeen City"	"S12000033"	"Hybrid"	5
+"2012"	"Aberdeenshire"	"S12000034"	"Hybrid"	0
+"2012"	"Angus"	"S12000041"	"Hybrid"	0
+"2012"	"Argyll and Bute"	"S12000035"	"Hybrid"	0
+"2012"	"City of Edinburgh"	"S12000036"	"Hybrid"	5
+"2012"	"Clackmannanshire"	"S12000005"	"Hybrid"	0
+"2012"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	0
+"2012"	"Dundee City"	"S12000042"	"Hybrid"	0
+"2012"	"East Ayrshire"	"S12000008"	"Hybrid"	0
+"2012"	"East Dunbartonshire"	"S12000045"	"Hybrid"	0
+"2012"	"East Lothian"	"S12000010"	"Hybrid"	0
+"2012"	"East Renfrewshire"	"S12000011"	"Hybrid"	0
+"2012"	"Falkirk"	"S12000014"	"Hybrid"	0
+"2012"	"Fife"	"S12000047"	"Hybrid"	0
+"2012"	"Glasgow City"	"S12000049"	"Hybrid"	0
+"2012"	"Highland"	"S12000017"	"Hybrid"	0
+"2012"	"Inverclyde"	"S12000018"	"Hybrid"	0
+"2012"	"Midlothian"	"S12000019"	"Hybrid"	0
+"2012"	"Moray"	"S12000020"	"Hybrid"	0
+"2012"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	0
+"2012"	"North Ayrshire"	"S12000021"	"Hybrid"	0
+"2012"	"North Lanarkshire"	"S12000050"	"Hybrid"	0
+"2012"	"Orkney Islands"	"S12000023"	"Hybrid"	0
+"2012"	"Perth and Kinross"	"S12000048"	"Hybrid"	0
+"2012"	"Renfrewshire"	"S12000038"	"Hybrid"	0
+"2012"	"Scottish Borders"	"S12000026"	"Hybrid"	5
+"2012"	"Shetland Islands"	"S12000027"	"Hybrid"	0
+"2012"	"South Ayrshire"	"S12000028"	"Hybrid"	0
+"2012"	"South Lanarkshire"	"S12000029"	"Hybrid"	0
+"2012"	"Stirling"	"S12000030"	"Hybrid"	0
+"2012"	"West Dunbartonshire"	"S12000039"	"Hybrid"	0
+"2012"	"West Lothian"	"S12000040"	"Hybrid"	0
+"2011"	"Aberdeen City"	"S12000033"	"Hybrid"	0
+"2011"	"Aberdeenshire"	"S12000034"	"Hybrid"	0
+"2011"	"Angus"	"S12000041"	"Hybrid"	0
+"2011"	"Argyll and Bute"	"S12000035"	"Hybrid"	0
+"2011"	"City of Edinburgh"	"S12000036"	"Hybrid"	0
+"2011"	"Clackmannanshire"	"S12000005"	"Hybrid"	0
+"2011"	"Dumfries and Galloway"	"S12000006"	"Hybrid"	0
+"2011"	"Dundee City"	"S12000042"	"Hybrid"	0
+"2011"	"East Ayrshire"	"S12000008"	"Hybrid"	0
+"2011"	"East Dunbartonshire"	"S12000045"	"Hybrid"	0
+"2011"	"East Lothian"	"S12000010"	"Hybrid"	0
+"2011"	"East Renfrewshire"	"S12000011"	"Hybrid"	0
+"2011"	"Falkirk"	"S12000014"	"Hybrid"	0
+"2011"	"Fife"	"S12000047"	"Hybrid"	0
+"2011"	"Glasgow City"	"S12000049"	"Hybrid"	0
+"2011"	"Highland"	"S12000017"	"Hybrid"	0
+"2011"	"Inverclyde"	"S12000018"	"Hybrid"	0
+"2011"	"Midlothian"	"S12000019"	"Hybrid"	0
+"2011"	"Moray"	"S12000020"	"Hybrid"	0
+"2011"	"Na h-Eileanan Siar"	"S12000013"	"Hybrid"	0
+"2011"	"North Ayrshire"	"S12000021"	"Hybrid"	0
+"2011"	"North Lanarkshire"	"S12000050"	"Hybrid"	0
+"2011"	"Orkney Islands"	"S12000023"	"Hybrid"	0
+"2011"	"Perth and Kinross"	"S12000048"	"Hybrid"	0
+"2011"	"Renfrewshire"	"S12000038"	"Hybrid"	0
+"2011"	"Scottish Borders"	"S12000026"	"Hybrid"	0
+"2011"	"Shetland Islands"	"S12000027"	"Hybrid"	0
+"2011"	"South Ayrshire"	"S12000028"	"Hybrid"	0
+"2011"	"South Lanarkshire"	"S12000029"	"Hybrid"	0
+"2011"	"Stirling"	"S12000030"	"Hybrid"	0
+"2011"	"West Dunbartonshire"	"S12000039"	"Hybrid"	0
+"2011"	"West Lothian"	"S12000040"	"Hybrid"	0
+"2020 Q1"	"Aberdeen City"	"S12000033"	"Total"	571
+"2020 Q1"	"Aberdeenshire"	"S12000034"	"Total"	887
+"2020 Q1"	"Angus"	"S12000041"	"Total"	332
+"2020 Q1"	"Argyll and Bute"	"S12000035"	"Total"	231
+"2020 Q1"	"City of Edinburgh"	"S12000036"	"Total"	1630
+"2020 Q1"	"Clackmannanshire"	"S12000005"	"Total"	105
+"2020 Q1"	"Dumfries and Galloway"	"S12000006"	"Total"	268
+"2020 Q1"	"Dundee City"	"S12000042"	"Total"	479
+"2020 Q1"	"East Ayrshire"	"S12000008"	"Total"	221
+"2020 Q1"	"East Dunbartonshire"	"S12000045"	"Total"	346
+"2020 Q1"	"East Lothian"	"S12000010"	"Total"	381
+"2020 Q1"	"East Renfrewshire"	"S12000011"	"Total"	392
+"2020 Q1"	"Falkirk"	"S12000014"	"Total"	324
+"2020 Q1"	"Fife"	"S12000047"	"Total"	937
+"2020 Q1"	"Glasgow City"	"S12000049"	"Total"	917
+"2020 Q1"	"Highland"	"S12000017"	"Total"	538
+"2020 Q1"	"Inverclyde"	"S12000018"	"Total"	134
+"2020 Q1"	"Midlothian"	"S12000019"	"Total"	294
+"2020 Q1"	"Moray"	"S12000020"	"Total"	170
+"2020 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Total"	49
+"2020 Q1"	"North Ayrshire"	"S12000021"	"Total"	198
+"2020 Q1"	"North Lanarkshire"	"S12000050"	"Total"	427
+"2020 Q1"	"Orkney Islands"	"S12000023"	"Total"	263
+"2020 Q1"	"Perth and Kinross"	"S12000048"	"Total"	561
+"2020 Q1"	"Renfrewshire"	"S12000038"	"Total"	3727
+"2020 Q1"	"Scottish Borders"	"S12000026"	"Total"	371
+"2020 Q1"	"Shetland Islands"	"S12000027"	"Total"	56
+"2020 Q1"	"South Ayrshire"	"S12000028"	"Total"	244
+"2020 Q1"	"South Lanarkshire"	"S12000029"	"Total"	681
+"2020 Q1"	"Stirling"	"S12000030"	"Total"	1549
+"2020 Q1"	"West Dunbartonshire"	"S12000039"	"Total"	159
+"2020 Q1"	"West Lothian"	"S12000040"	"Total"	425
+"2019 Q4"	"Aberdeen City"	"S12000033"	"Total"	513
+"2019 Q4"	"Aberdeenshire"	"S12000034"	"Total"	793
+"2019 Q4"	"Angus"	"S12000041"	"Total"	300
+"2019 Q4"	"Argyll and Bute"	"S12000035"	"Total"	217
+"2019 Q4"	"City of Edinburgh"	"S12000036"	"Total"	1432
+"2019 Q4"	"Clackmannanshire"	"S12000005"	"Total"	93
+"2019 Q4"	"Dumfries and Galloway"	"S12000006"	"Total"	233
+"2019 Q4"	"Dundee City"	"S12000042"	"Total"	444
+"2019 Q4"	"East Ayrshire"	"S12000008"	"Total"	196
+"2019 Q4"	"East Dunbartonshire"	"S12000045"	"Total"	315
+"2019 Q4"	"East Lothian"	"S12000010"	"Total"	352
+"2019 Q4"	"East Renfrewshire"	"S12000011"	"Total"	348
+"2019 Q4"	"Falkirk"	"S12000014"	"Total"	284
+"2019 Q4"	"Fife"	"S12000047"	"Total"	840
+"2019 Q4"	"Glasgow City"	"S12000049"	"Total"	756
+"2019 Q4"	"Highland"	"S12000017"	"Total"	482
+"2019 Q4"	"Inverclyde"	"S12000018"	"Total"	111
+"2019 Q4"	"Midlothian"	"S12000019"	"Total"	262
+"2019 Q4"	"Moray"	"S12000020"	"Total"	152
+"2019 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Total"	44
+"2019 Q4"	"North Ayrshire"	"S12000021"	"Total"	164
+"2019 Q4"	"North Lanarkshire"	"S12000050"	"Total"	396
+"2019 Q4"	"Orkney Islands"	"S12000023"	"Total"	253
+"2019 Q4"	"Perth and Kinross"	"S12000048"	"Total"	504
+"2019 Q4"	"Renfrewshire"	"S12000038"	"Total"	3491
+"2019 Q4"	"Scottish Borders"	"S12000026"	"Total"	348
+"2019 Q4"	"Shetland Islands"	"S12000027"	"Total"	54
+"2019 Q4"	"South Ayrshire"	"S12000028"	"Total"	211
+"2019 Q4"	"South Lanarkshire"	"S12000029"	"Total"	613
+"2019 Q4"	"Stirling"	"S12000030"	"Total"	1384
+"2019 Q4"	"West Dunbartonshire"	"S12000039"	"Total"	136
+"2019 Q4"	"West Lothian"	"S12000040"	"Total"	383
+"2019 Q3"	"Aberdeen City"	"S12000033"	"Total"	476
+"2019 Q3"	"Aberdeenshire"	"S12000034"	"Total"	711
+"2019 Q3"	"Angus"	"S12000041"	"Total"	283
+"2019 Q3"	"Argyll and Bute"	"S12000035"	"Total"	198
+"2019 Q3"	"City of Edinburgh"	"S12000036"	"Total"	1291
+"2019 Q3"	"Clackmannanshire"	"S12000005"	"Total"	83
+"2019 Q3"	"Dumfries and Galloway"	"S12000006"	"Total"	219
+"2019 Q3"	"Dundee City"	"S12000042"	"Total"	407
+"2019 Q3"	"East Ayrshire"	"S12000008"	"Total"	181
+"2019 Q3"	"East Dunbartonshire"	"S12000045"	"Total"	271
+"2019 Q3"	"East Lothian"	"S12000010"	"Total"	305
+"2019 Q3"	"East Renfrewshire"	"S12000011"	"Total"	329
+"2019 Q3"	"Falkirk"	"S12000014"	"Total"	237
+"2019 Q3"	"Fife"	"S12000047"	"Total"	756
+"2019 Q3"	"Glasgow City"	"S12000049"	"Total"	706
+"2019 Q3"	"Highland"	"S12000017"	"Total"	432
+"2019 Q3"	"Inverclyde"	"S12000018"	"Total"	109
+"2019 Q3"	"Midlothian"	"S12000019"	"Total"	242
+"2019 Q3"	"Moray"	"S12000020"	"Total"	136
+"2019 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Total"	40
+"2019 Q3"	"North Ayrshire"	"S12000021"	"Total"	158
+"2019 Q3"	"North Lanarkshire"	"S12000050"	"Total"	367
+"2019 Q3"	"Orkney Islands"	"S12000023"	"Total"	248
+"2019 Q3"	"Perth and Kinross"	"S12000048"	"Total"	462
+"2019 Q3"	"Renfrewshire"	"S12000038"	"Total"	3159
+"2019 Q3"	"Scottish Borders"	"S12000026"	"Total"	322
+"2019 Q3"	"Shetland Islands"	"S12000027"	"Total"	51
+"2019 Q3"	"South Ayrshire"	"S12000028"	"Total"	195
+"2019 Q3"	"South Lanarkshire"	"S12000029"	"Total"	558
+"2019 Q3"	"Stirling"	"S12000030"	"Total"	1272
+"2019 Q3"	"West Dunbartonshire"	"S12000039"	"Total"	124
+"2019 Q3"	"West Lothian"	"S12000040"	"Total"	353
+"2019 Q2"	"Aberdeen City"	"S12000033"	"Total"	443
+"2019 Q2"	"Aberdeenshire"	"S12000034"	"Total"	650
+"2019 Q2"	"Angus"	"S12000041"	"Total"	260
+"2019 Q2"	"Argyll and Bute"	"S12000035"	"Total"	182
+"2019 Q2"	"City of Edinburgh"	"S12000036"	"Total"	1137
+"2019 Q2"	"Clackmannanshire"	"S12000005"	"Total"	84
+"2019 Q2"	"Dumfries and Galloway"	"S12000006"	"Total"	211
+"2019 Q2"	"Dundee City"	"S12000042"	"Total"	391
+"2019 Q2"	"East Ayrshire"	"S12000008"	"Total"	181
+"2019 Q2"	"East Dunbartonshire"	"S12000045"	"Total"	233
+"2019 Q2"	"East Lothian"	"S12000010"	"Total"	275
+"2019 Q2"	"East Renfrewshire"	"S12000011"	"Total"	296
+"2019 Q2"	"Falkirk"	"S12000014"	"Total"	215
+"2019 Q2"	"Fife"	"S12000047"	"Total"	677
+"2019 Q2"	"Glasgow City"	"S12000049"	"Total"	644
+"2019 Q2"	"Highland"	"S12000017"	"Total"	383
+"2019 Q2"	"Inverclyde"	"S12000018"	"Total"	97
+"2019 Q2"	"Midlothian"	"S12000019"	"Total"	219
+"2019 Q2"	"Moray"	"S12000020"	"Total"	121
+"2019 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Total"	36
+"2019 Q2"	"North Ayrshire"	"S12000021"	"Total"	145
+"2019 Q2"	"North Lanarkshire"	"S12000050"	"Total"	342
+"2019 Q2"	"Orkney Islands"	"S12000023"	"Total"	237
+"2019 Q2"	"Perth and Kinross"	"S12000048"	"Total"	417
+"2019 Q2"	"Renfrewshire"	"S12000038"	"Total"	2795
+"2019 Q2"	"Scottish Borders"	"S12000026"	"Total"	288
+"2019 Q2"	"Shetland Islands"	"S12000027"	"Total"	48
+"2019 Q2"	"South Ayrshire"	"S12000028"	"Total"	173
+"2019 Q2"	"South Lanarkshire"	"S12000029"	"Total"	498
+"2019 Q2"	"Stirling"	"S12000030"	"Total"	1150
+"2019 Q2"	"West Dunbartonshire"	"S12000039"	"Total"	111
+"2019 Q2"	"West Lothian"	"S12000040"	"Total"	322
+"2019 Q1"	"Aberdeen City"	"S12000033"	"Total"	427
+"2019 Q1"	"Aberdeenshire"	"S12000034"	"Total"	621
+"2019 Q1"	"Angus"	"S12000041"	"Total"	239
+"2019 Q1"	"Argyll and Bute"	"S12000035"	"Total"	176
+"2019 Q1"	"City of Edinburgh"	"S12000036"	"Total"	1038
+"2019 Q1"	"Clackmannanshire"	"S12000005"	"Total"	79
+"2019 Q1"	"Dumfries and Galloway"	"S12000006"	"Total"	192
+"2019 Q1"	"Dundee City"	"S12000042"	"Total"	382
+"2019 Q1"	"East Ayrshire"	"S12000008"	"Total"	161
+"2019 Q1"	"East Dunbartonshire"	"S12000045"	"Total"	212
+"2019 Q1"	"East Lothian"	"S12000010"	"Total"	255
+"2019 Q1"	"East Renfrewshire"	"S12000011"	"Total"	294
+"2019 Q1"	"Falkirk"	"S12000014"	"Total"	200
+"2019 Q1"	"Fife"	"S12000047"	"Total"	648
+"2019 Q1"	"Glasgow City"	"S12000049"	"Total"	606
+"2019 Q1"	"Highland"	"S12000017"	"Total"	355
+"2019 Q1"	"Inverclyde"	"S12000018"	"Total"	95
+"2019 Q1"	"Midlothian"	"S12000019"	"Total"	204
+"2019 Q1"	"Moray"	"S12000020"	"Total"	118
+"2019 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Total"	28
+"2019 Q1"	"North Ayrshire"	"S12000021"	"Total"	139
+"2019 Q1"	"North Lanarkshire"	"S12000050"	"Total"	331
+"2019 Q1"	"Orkney Islands"	"S12000023"	"Total"	232
+"2019 Q1"	"Perth and Kinross"	"S12000048"	"Total"	386
+"2019 Q1"	"Renfrewshire"	"S12000038"	"Total"	2470
+"2019 Q1"	"Scottish Borders"	"S12000026"	"Total"	272
+"2019 Q1"	"Shetland Islands"	"S12000027"	"Total"	46
+"2019 Q1"	"South Ayrshire"	"S12000028"	"Total"	156
+"2019 Q1"	"South Lanarkshire"	"S12000029"	"Total"	479
+"2019 Q1"	"Stirling"	"S12000030"	"Total"	1097
+"2019 Q1"	"West Dunbartonshire"	"S12000039"	"Total"	100
+"2019 Q1"	"West Lothian"	"S12000040"	"Total"	302
+"2018 Q4"	"Aberdeen City"	"S12000033"	"Total"	403
+"2018 Q4"	"Aberdeenshire"	"S12000034"	"Total"	579
+"2018 Q4"	"Angus"	"S12000041"	"Total"	224
+"2018 Q4"	"Argyll and Bute"	"S12000035"	"Total"	160
+"2018 Q4"	"City of Edinburgh"	"S12000036"	"Total"	945
+"2018 Q4"	"Clackmannanshire"	"S12000005"	"Total"	77
+"2018 Q4"	"Dumfries and Galloway"	"S12000006"	"Total"	173
+"2018 Q4"	"Dundee City"	"S12000042"	"Total"	359
+"2018 Q4"	"East Ayrshire"	"S12000008"	"Total"	145
+"2018 Q4"	"East Dunbartonshire"	"S12000045"	"Total"	188
+"2018 Q4"	"East Lothian"	"S12000010"	"Total"	227
+"2018 Q4"	"East Renfrewshire"	"S12000011"	"Total"	279
+"2018 Q4"	"Falkirk"	"S12000014"	"Total"	175
+"2018 Q4"	"Fife"	"S12000047"	"Total"	615
+"2018 Q4"	"Glasgow City"	"S12000049"	"Total"	561
+"2018 Q4"	"Highland"	"S12000017"	"Total"	326
+"2018 Q4"	"Inverclyde"	"S12000018"	"Total"	73
+"2018 Q4"	"Midlothian"	"S12000019"	"Total"	176
+"2018 Q4"	"Moray"	"S12000020"	"Total"	105
+"2018 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Total"	25
+"2018 Q4"	"North Ayrshire"	"S12000021"	"Total"	136
+"2018 Q4"	"North Lanarkshire"	"S12000050"	"Total"	310
+"2018 Q4"	"Orkney Islands"	"S12000023"	"Total"	222
+"2018 Q4"	"Perth and Kinross"	"S12000048"	"Total"	359
+"2018 Q4"	"Renfrewshire"	"S12000038"	"Total"	2126
+"2018 Q4"	"Scottish Borders"	"S12000026"	"Total"	254
+"2018 Q4"	"Shetland Islands"	"S12000027"	"Total"	46
+"2018 Q4"	"South Ayrshire"	"S12000028"	"Total"	159
+"2018 Q4"	"South Lanarkshire"	"S12000029"	"Total"	462
+"2018 Q4"	"Stirling"	"S12000030"	"Total"	979
+"2018 Q4"	"West Dunbartonshire"	"S12000039"	"Total"	91
+"2018 Q4"	"West Lothian"	"S12000040"	"Total"	282
+"2018 Q3"	"Aberdeen City"	"S12000033"	"Total"	369
+"2018 Q3"	"Aberdeenshire"	"S12000034"	"Total"	531
+"2018 Q3"	"Angus"	"S12000041"	"Total"	220
+"2018 Q3"	"Argyll and Bute"	"S12000035"	"Total"	144
+"2018 Q3"	"City of Edinburgh"	"S12000036"	"Total"	872
+"2018 Q3"	"Clackmannanshire"	"S12000005"	"Total"	72
+"2018 Q3"	"Dumfries and Galloway"	"S12000006"	"Total"	158
+"2018 Q3"	"Dundee City"	"S12000042"	"Total"	352
+"2018 Q3"	"East Ayrshire"	"S12000008"	"Total"	132
+"2018 Q3"	"East Dunbartonshire"	"S12000045"	"Total"	163
+"2018 Q3"	"East Lothian"	"S12000010"	"Total"	211
+"2018 Q3"	"East Renfrewshire"	"S12000011"	"Total"	213
+"2018 Q3"	"Falkirk"	"S12000014"	"Total"	167
+"2018 Q3"	"Fife"	"S12000047"	"Total"	588
+"2018 Q3"	"Glasgow City"	"S12000049"	"Total"	525
+"2018 Q3"	"Highland"	"S12000017"	"Total"	291
+"2018 Q3"	"Inverclyde"	"S12000018"	"Total"	67
+"2018 Q3"	"Midlothian"	"S12000019"	"Total"	157
+"2018 Q3"	"Moray"	"S12000020"	"Total"	91
+"2018 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Total"	24
+"2018 Q3"	"North Ayrshire"	"S12000021"	"Total"	128
+"2018 Q3"	"North Lanarkshire"	"S12000050"	"Total"	286
+"2018 Q3"	"Orkney Islands"	"S12000023"	"Total"	215
+"2018 Q3"	"Perth and Kinross"	"S12000048"	"Total"	336
+"2018 Q3"	"Renfrewshire"	"S12000038"	"Total"	1838
+"2018 Q3"	"Scottish Borders"	"S12000026"	"Total"	238
+"2018 Q3"	"Shetland Islands"	"S12000027"	"Total"	45
+"2018 Q3"	"South Ayrshire"	"S12000028"	"Total"	146
+"2018 Q3"	"South Lanarkshire"	"S12000029"	"Total"	403
+"2018 Q3"	"Stirling"	"S12000030"	"Total"	916
+"2018 Q3"	"West Dunbartonshire"	"S12000039"	"Total"	83
+"2018 Q3"	"West Lothian"	"S12000040"	"Total"	268
+"2018 Q2"	"Aberdeen City"	"S12000033"	"Total"	361
+"2018 Q2"	"Aberdeenshire"	"S12000034"	"Total"	500
+"2018 Q2"	"Angus"	"S12000041"	"Total"	184
+"2018 Q2"	"Argyll and Bute"	"S12000035"	"Total"	129
+"2018 Q2"	"City of Edinburgh"	"S12000036"	"Total"	792
+"2018 Q2"	"Clackmannanshire"	"S12000005"	"Total"	69
+"2018 Q2"	"Dumfries and Galloway"	"S12000006"	"Total"	150
+"2018 Q2"	"Dundee City"	"S12000042"	"Total"	329
+"2018 Q2"	"East Ayrshire"	"S12000008"	"Total"	112
+"2018 Q2"	"East Dunbartonshire"	"S12000045"	"Total"	154
+"2018 Q2"	"East Lothian"	"S12000010"	"Total"	192
+"2018 Q2"	"East Renfrewshire"	"S12000011"	"Total"	175
+"2018 Q2"	"Falkirk"	"S12000014"	"Total"	152
+"2018 Q2"	"Fife"	"S12000047"	"Total"	541
+"2018 Q2"	"Glasgow City"	"S12000049"	"Total"	477
+"2018 Q2"	"Highland"	"S12000017"	"Total"	252
+"2018 Q2"	"Inverclyde"	"S12000018"	"Total"	63
+"2018 Q2"	"Midlothian"	"S12000019"	"Total"	139
+"2018 Q2"	"Moray"	"S12000020"	"Total"	85
+"2018 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Total"	21
+"2018 Q2"	"North Ayrshire"	"S12000021"	"Total"	119
+"2018 Q2"	"North Lanarkshire"	"S12000050"	"Total"	261
+"2018 Q2"	"Orkney Islands"	"S12000023"	"Total"	198
+"2018 Q2"	"Perth and Kinross"	"S12000048"	"Total"	303
+"2018 Q2"	"Renfrewshire"	"S12000038"	"Total"	1613
+"2018 Q2"	"Scottish Borders"	"S12000026"	"Total"	211
+"2018 Q2"	"Shetland Islands"	"S12000027"	"Total"	43
+"2018 Q2"	"South Ayrshire"	"S12000028"	"Total"	127
+"2018 Q2"	"South Lanarkshire"	"S12000029"	"Total"	344
+"2018 Q2"	"Stirling"	"S12000030"	"Total"	806
+"2018 Q2"	"West Dunbartonshire"	"S12000039"	"Total"	76
+"2018 Q2"	"West Lothian"	"S12000040"	"Total"	233
+"2018 Q1"	"Aberdeen City"	"S12000033"	"Total"	344
+"2018 Q1"	"Aberdeenshire"	"S12000034"	"Total"	458
+"2018 Q1"	"Angus"	"S12000041"	"Total"	157
+"2018 Q1"	"Argyll and Bute"	"S12000035"	"Total"	124
+"2018 Q1"	"City of Edinburgh"	"S12000036"	"Total"	714
+"2018 Q1"	"Clackmannanshire"	"S12000005"	"Total"	63
+"2018 Q1"	"Dumfries and Galloway"	"S12000006"	"Total"	145
+"2018 Q1"	"Dundee City"	"S12000042"	"Total"	303
+"2018 Q1"	"East Ayrshire"	"S12000008"	"Total"	110
+"2018 Q1"	"East Dunbartonshire"	"S12000045"	"Total"	140
+"2018 Q1"	"East Lothian"	"S12000010"	"Total"	174
+"2018 Q1"	"East Renfrewshire"	"S12000011"	"Total"	172
+"2018 Q1"	"Falkirk"	"S12000014"	"Total"	146
+"2018 Q1"	"Fife"	"S12000047"	"Total"	506
+"2018 Q1"	"Glasgow City"	"S12000049"	"Total"	429
+"2018 Q1"	"Highland"	"S12000017"	"Total"	232
+"2018 Q1"	"Inverclyde"	"S12000018"	"Total"	57
+"2018 Q1"	"Midlothian"	"S12000019"	"Total"	134
+"2018 Q1"	"Moray"	"S12000020"	"Total"	69
+"2018 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Total"	23
+"2018 Q1"	"North Ayrshire"	"S12000021"	"Total"	104
+"2018 Q1"	"North Lanarkshire"	"S12000050"	"Total"	240
+"2018 Q1"	"Orkney Islands"	"S12000023"	"Total"	185
+"2018 Q1"	"Perth and Kinross"	"S12000048"	"Total"	286
+"2018 Q1"	"Renfrewshire"	"S12000038"	"Total"	1325
+"2018 Q1"	"Scottish Borders"	"S12000026"	"Total"	199
+"2018 Q1"	"Shetland Islands"	"S12000027"	"Total"	42
+"2018 Q1"	"South Ayrshire"	"S12000028"	"Total"	111
+"2018 Q1"	"South Lanarkshire"	"S12000029"	"Total"	340
+"2018 Q1"	"Stirling"	"S12000030"	"Total"	678
+"2018 Q1"	"West Dunbartonshire"	"S12000039"	"Total"	69
+"2018 Q1"	"West Lothian"	"S12000040"	"Total"	216
+"2017 Q4"	"Aberdeen City"	"S12000033"	"Total"	318
+"2017 Q4"	"Aberdeenshire"	"S12000034"	"Total"	417
+"2017 Q4"	"Angus"	"S12000041"	"Total"	136
+"2017 Q4"	"Argyll and Bute"	"S12000035"	"Total"	111
+"2017 Q4"	"City of Edinburgh"	"S12000036"	"Total"	665
+"2017 Q4"	"Clackmannanshire"	"S12000005"	"Total"	59
+"2017 Q4"	"Dumfries and Galloway"	"S12000006"	"Total"	129
+"2017 Q4"	"Dundee City"	"S12000042"	"Total"	277
+"2017 Q4"	"East Ayrshire"	"S12000008"	"Total"	99
+"2017 Q4"	"East Dunbartonshire"	"S12000045"	"Total"	111
+"2017 Q4"	"East Lothian"	"S12000010"	"Total"	161
+"2017 Q4"	"East Renfrewshire"	"S12000011"	"Total"	155
+"2017 Q4"	"Falkirk"	"S12000014"	"Total"	126
+"2017 Q4"	"Fife"	"S12000047"	"Total"	457
+"2017 Q4"	"Glasgow City"	"S12000049"	"Total"	390
+"2017 Q4"	"Highland"	"S12000017"	"Total"	204
+"2017 Q4"	"Inverclyde"	"S12000018"	"Total"	52
+"2017 Q4"	"Midlothian"	"S12000019"	"Total"	119
+"2017 Q4"	"Moray"	"S12000020"	"Total"	61
+"2017 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Total"	19
+"2017 Q4"	"North Ayrshire"	"S12000021"	"Total"	92
+"2017 Q4"	"North Lanarkshire"	"S12000050"	"Total"	228
+"2017 Q4"	"Orkney Islands"	"S12000023"	"Total"	172
+"2017 Q4"	"Perth and Kinross"	"S12000048"	"Total"	250
+"2017 Q4"	"Renfrewshire"	"S12000038"	"Total"	1089
+"2017 Q4"	"Scottish Borders"	"S12000026"	"Total"	180
+"2017 Q4"	"Shetland Islands"	"S12000027"	"Total"	37
+"2017 Q4"	"South Ayrshire"	"S12000028"	"Total"	104
+"2017 Q4"	"South Lanarkshire"	"S12000029"	"Total"	323
+"2017 Q4"	"Stirling"	"S12000030"	"Total"	607
+"2017 Q4"	"West Dunbartonshire"	"S12000039"	"Total"	55
+"2017 Q4"	"West Lothian"	"S12000040"	"Total"	196
+"2017 Q3"	"Aberdeen City"	"S12000033"	"Total"	291
+"2017 Q3"	"Aberdeenshire"	"S12000034"	"Total"	382
+"2017 Q3"	"Angus"	"S12000041"	"Total"	131
+"2017 Q3"	"Argyll and Bute"	"S12000035"	"Total"	88
+"2017 Q3"	"City of Edinburgh"	"S12000036"	"Total"	588
+"2017 Q3"	"Clackmannanshire"	"S12000005"	"Total"	57
+"2017 Q3"	"Dumfries and Galloway"	"S12000006"	"Total"	116
+"2017 Q3"	"Dundee City"	"S12000042"	"Total"	272
+"2017 Q3"	"East Ayrshire"	"S12000008"	"Total"	91
+"2017 Q3"	"East Dunbartonshire"	"S12000045"	"Total"	96
+"2017 Q3"	"East Lothian"	"S12000010"	"Total"	143
+"2017 Q3"	"East Renfrewshire"	"S12000011"	"Total"	155
+"2017 Q3"	"Falkirk"	"S12000014"	"Total"	119
+"2017 Q3"	"Fife"	"S12000047"	"Total"	441
+"2017 Q3"	"Glasgow City"	"S12000049"	"Total"	363
+"2017 Q3"	"Highland"	"S12000017"	"Total"	189
+"2017 Q3"	"Inverclyde"	"S12000018"	"Total"	45
+"2017 Q3"	"Midlothian"	"S12000019"	"Total"	113
+"2017 Q3"	"Moray"	"S12000020"	"Total"	57
+"2017 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Total"	20
+"2017 Q3"	"North Ayrshire"	"S12000021"	"Total"	91
+"2017 Q3"	"North Lanarkshire"	"S12000050"	"Total"	219
+"2017 Q3"	"Orkney Islands"	"S12000023"	"Total"	159
+"2017 Q3"	"Perth and Kinross"	"S12000048"	"Total"	235
+"2017 Q3"	"Renfrewshire"	"S12000038"	"Total"	954
+"2017 Q3"	"Scottish Borders"	"S12000026"	"Total"	158
+"2017 Q3"	"Shetland Islands"	"S12000027"	"Total"	36
+"2017 Q3"	"South Ayrshire"	"S12000028"	"Total"	91
+"2017 Q3"	"South Lanarkshire"	"S12000029"	"Total"	311
+"2017 Q3"	"Stirling"	"S12000030"	"Total"	549
+"2017 Q3"	"West Dunbartonshire"	"S12000039"	"Total"	51
+"2017 Q3"	"West Lothian"	"S12000040"	"Total"	174
+"2017 Q2"	"Aberdeen City"	"S12000033"	"Total"	263
+"2017 Q2"	"Aberdeenshire"	"S12000034"	"Total"	340
+"2017 Q2"	"Angus"	"S12000041"	"Total"	113
+"2017 Q2"	"Argyll and Bute"	"S12000035"	"Total"	83
+"2017 Q2"	"City of Edinburgh"	"S12000036"	"Total"	523
+"2017 Q2"	"Clackmannanshire"	"S12000005"	"Total"	53
+"2017 Q2"	"Dumfries and Galloway"	"S12000006"	"Total"	101
+"2017 Q2"	"Dundee City"	"S12000042"	"Total"	249
+"2017 Q2"	"East Ayrshire"	"S12000008"	"Total"	89
+"2017 Q2"	"East Dunbartonshire"	"S12000045"	"Total"	86
+"2017 Q2"	"East Lothian"	"S12000010"	"Total"	119
+"2017 Q2"	"East Renfrewshire"	"S12000011"	"Total"	135
+"2017 Q2"	"Falkirk"	"S12000014"	"Total"	108
+"2017 Q2"	"Fife"	"S12000047"	"Total"	399
+"2017 Q2"	"Glasgow City"	"S12000049"	"Total"	346
+"2017 Q2"	"Highland"	"S12000017"	"Total"	170
+"2017 Q2"	"Inverclyde"	"S12000018"	"Total"	36
+"2017 Q2"	"Midlothian"	"S12000019"	"Total"	99
+"2017 Q2"	"Moray"	"S12000020"	"Total"	49
+"2017 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Total"	20
+"2017 Q2"	"North Ayrshire"	"S12000021"	"Total"	83
+"2017 Q2"	"North Lanarkshire"	"S12000050"	"Total"	208
+"2017 Q2"	"Orkney Islands"	"S12000023"	"Total"	140
+"2017 Q2"	"Perth and Kinross"	"S12000048"	"Total"	205
+"2017 Q2"	"Renfrewshire"	"S12000038"	"Total"	732
+"2017 Q2"	"Scottish Borders"	"S12000026"	"Total"	138
+"2017 Q2"	"Shetland Islands"	"S12000027"	"Total"	35
+"2017 Q2"	"South Ayrshire"	"S12000028"	"Total"	85
+"2017 Q2"	"South Lanarkshire"	"S12000029"	"Total"	295
+"2017 Q2"	"Stirling"	"S12000030"	"Total"	468
+"2017 Q2"	"West Dunbartonshire"	"S12000039"	"Total"	51
+"2017 Q2"	"West Lothian"	"S12000040"	"Total"	153
+"2017 Q1"	"Aberdeen City"	"S12000033"	"Total"	249
+"2017 Q1"	"Aberdeenshire"	"S12000034"	"Total"	302
+"2017 Q1"	"Angus"	"S12000041"	"Total"	101
+"2017 Q1"	"Argyll and Bute"	"S12000035"	"Total"	79
+"2017 Q1"	"City of Edinburgh"	"S12000036"	"Total"	442
+"2017 Q1"	"Clackmannanshire"	"S12000005"	"Total"	46
+"2017 Q1"	"Dumfries and Galloway"	"S12000006"	"Total"	92
+"2017 Q1"	"Dundee City"	"S12000042"	"Total"	235
+"2017 Q1"	"East Ayrshire"	"S12000008"	"Total"	79
+"2017 Q1"	"East Dunbartonshire"	"S12000045"	"Total"	76
+"2017 Q1"	"East Lothian"	"S12000010"	"Total"	109
+"2017 Q1"	"East Renfrewshire"	"S12000011"	"Total"	113
+"2017 Q1"	"Falkirk"	"S12000014"	"Total"	101
+"2017 Q1"	"Fife"	"S12000047"	"Total"	370
+"2017 Q1"	"Glasgow City"	"S12000049"	"Total"	317
+"2017 Q1"	"Highland"	"S12000017"	"Total"	155
+"2017 Q1"	"Inverclyde"	"S12000018"	"Total"	33
+"2017 Q1"	"Midlothian"	"S12000019"	"Total"	95
+"2017 Q1"	"Moray"	"S12000020"	"Total"	40
+"2017 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Total"	18
+"2017 Q1"	"North Ayrshire"	"S12000021"	"Total"	85
+"2017 Q1"	"North Lanarkshire"	"S12000050"	"Total"	205
+"2017 Q1"	"Orkney Islands"	"S12000023"	"Total"	121
+"2017 Q1"	"Perth and Kinross"	"S12000048"	"Total"	180
+"2017 Q1"	"Renfrewshire"	"S12000038"	"Total"	645
+"2017 Q1"	"Scottish Borders"	"S12000026"	"Total"	135
+"2017 Q1"	"Shetland Islands"	"S12000027"	"Total"	32
+"2017 Q1"	"South Ayrshire"	"S12000028"	"Total"	88
+"2017 Q1"	"South Lanarkshire"	"S12000029"	"Total"	263
+"2017 Q1"	"Stirling"	"S12000030"	"Total"	404
+"2017 Q1"	"West Dunbartonshire"	"S12000039"	"Total"	48
+"2017 Q1"	"West Lothian"	"S12000040"	"Total"	137
+"2016 Q4"	"Aberdeen City"	"S12000033"	"Total"	231
+"2016 Q4"	"Aberdeenshire"	"S12000034"	"Total"	264
+"2016 Q4"	"Angus"	"S12000041"	"Total"	93
+"2016 Q4"	"Argyll and Bute"	"S12000035"	"Total"	67
+"2016 Q4"	"City of Edinburgh"	"S12000036"	"Total"	389
+"2016 Q4"	"Clackmannanshire"	"S12000005"	"Total"	44
+"2016 Q4"	"Dumfries and Galloway"	"S12000006"	"Total"	81
+"2016 Q4"	"Dundee City"	"S12000042"	"Total"	217
+"2016 Q4"	"East Ayrshire"	"S12000008"	"Total"	65
+"2016 Q4"	"East Dunbartonshire"	"S12000045"	"Total"	65
+"2016 Q4"	"East Lothian"	"S12000010"	"Total"	95
+"2016 Q4"	"East Renfrewshire"	"S12000011"	"Total"	95
+"2016 Q4"	"Falkirk"	"S12000014"	"Total"	84
+"2016 Q4"	"Fife"	"S12000047"	"Total"	336
+"2016 Q4"	"Glasgow City"	"S12000049"	"Total"	298
+"2016 Q4"	"Highland"	"S12000017"	"Total"	145
+"2016 Q4"	"Inverclyde"	"S12000018"	"Total"	35
+"2016 Q4"	"Midlothian"	"S12000019"	"Total"	78
+"2016 Q4"	"Moray"	"S12000020"	"Total"	35
+"2016 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Total"	16
+"2016 Q4"	"North Ayrshire"	"S12000021"	"Total"	78
+"2016 Q4"	"North Lanarkshire"	"S12000050"	"Total"	190
+"2016 Q4"	"Orkney Islands"	"S12000023"	"Total"	109
+"2016 Q4"	"Perth and Kinross"	"S12000048"	"Total"	152
+"2016 Q4"	"Renfrewshire"	"S12000038"	"Total"	530
+"2016 Q4"	"Scottish Borders"	"S12000026"	"Total"	121
+"2016 Q4"	"Shetland Islands"	"S12000027"	"Total"	27
+"2016 Q4"	"South Ayrshire"	"S12000028"	"Total"	78
+"2016 Q4"	"South Lanarkshire"	"S12000029"	"Total"	236
+"2016 Q4"	"Stirling"	"S12000030"	"Total"	322
+"2016 Q4"	"West Dunbartonshire"	"S12000039"	"Total"	42
+"2016 Q4"	"West Lothian"	"S12000040"	"Total"	128
+"2016 Q3"	"Aberdeen City"	"S12000033"	"Total"	215
+"2016 Q3"	"Aberdeenshire"	"S12000034"	"Total"	241
+"2016 Q3"	"Angus"	"S12000041"	"Total"	82
+"2016 Q3"	"Argyll and Bute"	"S12000035"	"Total"	66
+"2016 Q3"	"City of Edinburgh"	"S12000036"	"Total"	349
+"2016 Q3"	"Clackmannanshire"	"S12000005"	"Total"	35
+"2016 Q3"	"Dumfries and Galloway"	"S12000006"	"Total"	77
+"2016 Q3"	"Dundee City"	"S12000042"	"Total"	208
+"2016 Q3"	"East Ayrshire"	"S12000008"	"Total"	56
+"2016 Q3"	"East Dunbartonshire"	"S12000045"	"Total"	63
+"2016 Q3"	"East Lothian"	"S12000010"	"Total"	87
+"2016 Q3"	"East Renfrewshire"	"S12000011"	"Total"	83
+"2016 Q3"	"Falkirk"	"S12000014"	"Total"	80
+"2016 Q3"	"Fife"	"S12000047"	"Total"	305
+"2016 Q3"	"Glasgow City"	"S12000049"	"Total"	285
+"2016 Q3"	"Highland"	"S12000017"	"Total"	139
+"2016 Q3"	"Inverclyde"	"S12000018"	"Total"	29
+"2016 Q3"	"Midlothian"	"S12000019"	"Total"	77
+"2016 Q3"	"Moray"	"S12000020"	"Total"	34
+"2016 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Total"	16
+"2016 Q3"	"North Ayrshire"	"S12000021"	"Total"	74
+"2016 Q3"	"North Lanarkshire"	"S12000050"	"Total"	175
+"2016 Q3"	"Orkney Islands"	"S12000023"	"Total"	99
+"2016 Q3"	"Perth and Kinross"	"S12000048"	"Total"	149
+"2016 Q3"	"Renfrewshire"	"S12000038"	"Total"	491
+"2016 Q3"	"Scottish Borders"	"S12000026"	"Total"	118
+"2016 Q3"	"Shetland Islands"	"S12000027"	"Total"	24
+"2016 Q3"	"South Ayrshire"	"S12000028"	"Total"	80
+"2016 Q3"	"South Lanarkshire"	"S12000029"	"Total"	222
+"2016 Q3"	"Stirling"	"S12000030"	"Total"	272
+"2016 Q3"	"West Dunbartonshire"	"S12000039"	"Total"	42
+"2016 Q3"	"West Lothian"	"S12000040"	"Total"	113
+"2016 Q2"	"Aberdeen City"	"S12000033"	"Total"	193
+"2016 Q2"	"Aberdeenshire"	"S12000034"	"Total"	220
+"2016 Q2"	"Angus"	"S12000041"	"Total"	76
+"2016 Q2"	"Argyll and Bute"	"S12000035"	"Total"	60
+"2016 Q2"	"City of Edinburgh"	"S12000036"	"Total"	304
+"2016 Q2"	"Clackmannanshire"	"S12000005"	"Total"	28
+"2016 Q2"	"Dumfries and Galloway"	"S12000006"	"Total"	69
+"2016 Q2"	"Dundee City"	"S12000042"	"Total"	191
+"2016 Q2"	"East Ayrshire"	"S12000008"	"Total"	52
+"2016 Q2"	"East Dunbartonshire"	"S12000045"	"Total"	53
+"2016 Q2"	"East Lothian"	"S12000010"	"Total"	85
+"2016 Q2"	"East Renfrewshire"	"S12000011"	"Total"	79
+"2016 Q2"	"Falkirk"	"S12000014"	"Total"	70
+"2016 Q2"	"Fife"	"S12000047"	"Total"	269
+"2016 Q2"	"Glasgow City"	"S12000049"	"Total"	269
+"2016 Q2"	"Highland"	"S12000017"	"Total"	112
+"2016 Q2"	"Inverclyde"	"S12000018"	"Total"	26
+"2016 Q2"	"Midlothian"	"S12000019"	"Total"	65
+"2016 Q2"	"Moray"	"S12000020"	"Total"	31
+"2016 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Total"	15
+"2016 Q2"	"North Ayrshire"	"S12000021"	"Total"	72
+"2016 Q2"	"North Lanarkshire"	"S12000050"	"Total"	153
+"2016 Q2"	"Orkney Islands"	"S12000023"	"Total"	89
+"2016 Q2"	"Perth and Kinross"	"S12000048"	"Total"	126
+"2016 Q2"	"Renfrewshire"	"S12000038"	"Total"	416
+"2016 Q2"	"Scottish Borders"	"S12000026"	"Total"	111
+"2016 Q2"	"Shetland Islands"	"S12000027"	"Total"	22
+"2016 Q2"	"South Ayrshire"	"S12000028"	"Total"	79
+"2016 Q2"	"South Lanarkshire"	"S12000029"	"Total"	202
+"2016 Q2"	"Stirling"	"S12000030"	"Total"	230
+"2016 Q2"	"West Dunbartonshire"	"S12000039"	"Total"	39
+"2016 Q2"	"West Lothian"	"S12000040"	"Total"	106
+"2016 Q1"	"Aberdeen City"	"S12000033"	"Total"	174
+"2016 Q1"	"Aberdeenshire"	"S12000034"	"Total"	197
+"2016 Q1"	"Angus"	"S12000041"	"Total"	74
+"2016 Q1"	"Argyll and Bute"	"S12000035"	"Total"	56
+"2016 Q1"	"City of Edinburgh"	"S12000036"	"Total"	272
+"2016 Q1"	"Clackmannanshire"	"S12000005"	"Total"	20
+"2016 Q1"	"Dumfries and Galloway"	"S12000006"	"Total"	65
+"2016 Q1"	"Dundee City"	"S12000042"	"Total"	184
+"2016 Q1"	"East Ayrshire"	"S12000008"	"Total"	47
+"2016 Q1"	"East Dunbartonshire"	"S12000045"	"Total"	42
+"2016 Q1"	"East Lothian"	"S12000010"	"Total"	80
+"2016 Q1"	"East Renfrewshire"	"S12000011"	"Total"	66
+"2016 Q1"	"Falkirk"	"S12000014"	"Total"	63
+"2016 Q1"	"Fife"	"S12000047"	"Total"	249
+"2016 Q1"	"Glasgow City"	"S12000049"	"Total"	442
+"2016 Q1"	"Highland"	"S12000017"	"Total"	102
+"2016 Q1"	"Inverclyde"	"S12000018"	"Total"	22
+"2016 Q1"	"Midlothian"	"S12000019"	"Total"	64
+"2016 Q1"	"Moray"	"S12000020"	"Total"	27
+"2016 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Total"	13
+"2016 Q1"	"North Ayrshire"	"S12000021"	"Total"	71
+"2016 Q1"	"North Lanarkshire"	"S12000050"	"Total"	150
+"2016 Q1"	"Orkney Islands"	"S12000023"	"Total"	83
+"2016 Q1"	"Perth and Kinross"	"S12000048"	"Total"	105
+"2016 Q1"	"Renfrewshire"	"S12000038"	"Total"	124
+"2016 Q1"	"Scottish Borders"	"S12000026"	"Total"	97
+"2016 Q1"	"Shetland Islands"	"S12000027"	"Total"	24
+"2016 Q1"	"South Ayrshire"	"S12000028"	"Total"	79
+"2016 Q1"	"South Lanarkshire"	"S12000029"	"Total"	187
+"2016 Q1"	"Stirling"	"S12000030"	"Total"	190
+"2016 Q1"	"West Dunbartonshire"	"S12000039"	"Total"	23
+"2016 Q1"	"West Lothian"	"S12000040"	"Total"	94
+"2015 Q4"	"Aberdeen City"	"S12000033"	"Total"	154
+"2015 Q4"	"Aberdeenshire"	"S12000034"	"Total"	174
+"2015 Q4"	"Angus"	"S12000041"	"Total"	66
+"2015 Q4"	"Argyll and Bute"	"S12000035"	"Total"	47
+"2015 Q4"	"City of Edinburgh"	"S12000036"	"Total"	234
+"2015 Q4"	"Clackmannanshire"	"S12000005"	"Total"	18
+"2015 Q4"	"Dumfries and Galloway"	"S12000006"	"Total"	57
+"2015 Q4"	"Dundee City"	"S12000042"	"Total"	169
+"2015 Q4"	"East Ayrshire"	"S12000008"	"Total"	37
+"2015 Q4"	"East Dunbartonshire"	"S12000045"	"Total"	37
+"2015 Q4"	"East Lothian"	"S12000010"	"Total"	61
+"2015 Q4"	"East Renfrewshire"	"S12000011"	"Total"	48
+"2015 Q4"	"Falkirk"	"S12000014"	"Total"	56
+"2015 Q4"	"Fife"	"S12000047"	"Total"	201
+"2015 Q4"	"Glasgow City"	"S12000049"	"Total"	441
+"2015 Q4"	"Highland"	"S12000017"	"Total"	94
+"2015 Q4"	"Inverclyde"	"S12000018"	"Total"	18
+"2015 Q4"	"Midlothian"	"S12000019"	"Total"	64
+"2015 Q4"	"Moray"	"S12000020"	"Total"	27
+"2015 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Total"	12
+"2015 Q4"	"North Ayrshire"	"S12000021"	"Total"	60
+"2015 Q4"	"North Lanarkshire"	"S12000050"	"Total"	127
+"2015 Q4"	"Orkney Islands"	"S12000023"	"Total"	73
+"2015 Q4"	"Perth and Kinross"	"S12000048"	"Total"	90
+"2015 Q4"	"Renfrewshire"	"S12000038"	"Total"	111
+"2015 Q4"	"Scottish Borders"	"S12000026"	"Total"	86
+"2015 Q4"	"Shetland Islands"	"S12000027"	"Total"	17
+"2015 Q4"	"South Ayrshire"	"S12000028"	"Total"	59
+"2015 Q4"	"South Lanarkshire"	"S12000029"	"Total"	174
+"2015 Q4"	"Stirling"	"S12000030"	"Total"	133
+"2015 Q4"	"West Dunbartonshire"	"S12000039"	"Total"	22
+"2015 Q4"	"West Lothian"	"S12000040"	"Total"	83
+"2015 Q3"	"Aberdeen City"	"S12000033"	"Total"	136
+"2015 Q3"	"Aberdeenshire"	"S12000034"	"Total"	144
+"2015 Q3"	"Angus"	"S12000041"	"Total"	63
+"2015 Q3"	"Argyll and Bute"	"S12000035"	"Total"	41
+"2015 Q3"	"City of Edinburgh"	"S12000036"	"Total"	203
+"2015 Q3"	"Clackmannanshire"	"S12000005"	"Total"	16
+"2015 Q3"	"Dumfries and Galloway"	"S12000006"	"Total"	54
+"2015 Q3"	"Dundee City"	"S12000042"	"Total"	154
+"2015 Q3"	"East Ayrshire"	"S12000008"	"Total"	33
+"2015 Q3"	"East Dunbartonshire"	"S12000045"	"Total"	37
+"2015 Q3"	"East Lothian"	"S12000010"	"Total"	55
+"2015 Q3"	"East Renfrewshire"	"S12000011"	"Total"	44
+"2015 Q3"	"Falkirk"	"S12000014"	"Total"	46
+"2015 Q3"	"Fife"	"S12000047"	"Total"	181
+"2015 Q3"	"Glasgow City"	"S12000049"	"Total"	378
+"2015 Q3"	"Highland"	"S12000017"	"Total"	77
+"2015 Q3"	"Inverclyde"	"S12000018"	"Total"	18
+"2015 Q3"	"Midlothian"	"S12000019"	"Total"	51
+"2015 Q3"	"Moray"	"S12000020"	"Total"	23
+"2015 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Total"	10
+"2015 Q3"	"North Ayrshire"	"S12000021"	"Total"	56
+"2015 Q3"	"North Lanarkshire"	"S12000050"	"Total"	112
+"2015 Q3"	"Orkney Islands"	"S12000023"	"Total"	68
+"2015 Q3"	"Perth and Kinross"	"S12000048"	"Total"	73
+"2015 Q3"	"Renfrewshire"	"S12000038"	"Total"	98
+"2015 Q3"	"Scottish Borders"	"S12000026"	"Total"	77
+"2015 Q3"	"Shetland Islands"	"S12000027"	"Total"	16
+"2015 Q3"	"South Ayrshire"	"S12000028"	"Total"	55
+"2015 Q3"	"South Lanarkshire"	"S12000029"	"Total"	156
+"2015 Q3"	"Stirling"	"S12000030"	"Total"	105
+"2015 Q3"	"West Dunbartonshire"	"S12000039"	"Total"	20
+"2015 Q3"	"West Lothian"	"S12000040"	"Total"	74
+"2015 Q2"	"Aberdeen City"	"S12000033"	"Total"	115
+"2015 Q2"	"Aberdeenshire"	"S12000034"	"Total"	123
+"2015 Q2"	"Angus"	"S12000041"	"Total"	57
+"2015 Q2"	"Argyll and Bute"	"S12000035"	"Total"	33
+"2015 Q2"	"City of Edinburgh"	"S12000036"	"Total"	182
+"2015 Q2"	"Clackmannanshire"	"S12000005"	"Total"	13
+"2015 Q2"	"Dumfries and Galloway"	"S12000006"	"Total"	47
+"2015 Q2"	"Dundee City"	"S12000042"	"Total"	152
+"2015 Q2"	"East Ayrshire"	"S12000008"	"Total"	28
+"2015 Q2"	"East Dunbartonshire"	"S12000045"	"Total"	33
+"2015 Q2"	"East Lothian"	"S12000010"	"Total"	46
+"2015 Q2"	"East Renfrewshire"	"S12000011"	"Total"	31
+"2015 Q2"	"Falkirk"	"S12000014"	"Total"	41
+"2015 Q2"	"Fife"	"S12000047"	"Total"	155
+"2015 Q2"	"Glasgow City"	"S12000049"	"Total"	364
+"2015 Q2"	"Highland"	"S12000017"	"Total"	69
+"2015 Q2"	"Inverclyde"	"S12000018"	"Total"	14
+"2015 Q2"	"Midlothian"	"S12000019"	"Total"	51
+"2015 Q2"	"Moray"	"S12000020"	"Total"	25
+"2015 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Total"	8
+"2015 Q2"	"North Ayrshire"	"S12000021"	"Total"	49
+"2015 Q2"	"North Lanarkshire"	"S12000050"	"Total"	112
+"2015 Q2"	"Orkney Islands"	"S12000023"	"Total"	62
+"2015 Q2"	"Perth and Kinross"	"S12000048"	"Total"	63
+"2015 Q2"	"Renfrewshire"	"S12000038"	"Total"	85
+"2015 Q2"	"Scottish Borders"	"S12000026"	"Total"	71
+"2015 Q2"	"Shetland Islands"	"S12000027"	"Total"	12
+"2015 Q2"	"South Ayrshire"	"S12000028"	"Total"	46
+"2015 Q2"	"South Lanarkshire"	"S12000029"	"Total"	127
+"2015 Q2"	"Stirling"	"S12000030"	"Total"	95
+"2015 Q2"	"West Dunbartonshire"	"S12000039"	"Total"	16
+"2015 Q2"	"West Lothian"	"S12000040"	"Total"	66
+"2015 Q1"	"Aberdeen City"	"S12000033"	"Total"	97
+"2015 Q1"	"Aberdeenshire"	"S12000034"	"Total"	100
+"2015 Q1"	"Angus"	"S12000041"	"Total"	45
+"2015 Q1"	"Argyll and Bute"	"S12000035"	"Total"	25
+"2015 Q1"	"City of Edinburgh"	"S12000036"	"Total"	164
+"2015 Q1"	"Clackmannanshire"	"S12000005"	"Total"	12
+"2015 Q1"	"Dumfries and Galloway"	"S12000006"	"Total"	39
+"2015 Q1"	"Dundee City"	"S12000042"	"Total"	145
+"2015 Q1"	"East Ayrshire"	"S12000008"	"Total"	24
+"2015 Q1"	"East Dunbartonshire"	"S12000045"	"Total"	32
+"2015 Q1"	"East Lothian"	"S12000010"	"Total"	35
+"2015 Q1"	"East Renfrewshire"	"S12000011"	"Total"	28
+"2015 Q1"	"Falkirk"	"S12000014"	"Total"	34
+"2015 Q1"	"Fife"	"S12000047"	"Total"	128
+"2015 Q1"	"Glasgow City"	"S12000049"	"Total"	328
+"2015 Q1"	"Highland"	"S12000017"	"Total"	66
+"2015 Q1"	"Inverclyde"	"S12000018"	"Total"	15
+"2015 Q1"	"Midlothian"	"S12000019"	"Total"	39
+"2015 Q1"	"Moray"	"S12000020"	"Total"	25
+"2015 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Total"	8
+"2015 Q1"	"North Ayrshire"	"S12000021"	"Total"	42
+"2015 Q1"	"North Lanarkshire"	"S12000050"	"Total"	92
+"2015 Q1"	"Orkney Islands"	"S12000023"	"Total"	54
+"2015 Q1"	"Perth and Kinross"	"S12000048"	"Total"	57
+"2015 Q1"	"Renfrewshire"	"S12000038"	"Total"	64
+"2015 Q1"	"Scottish Borders"	"S12000026"	"Total"	68
+"2015 Q1"	"Shetland Islands"	"S12000027"	"Total"	10
+"2015 Q1"	"South Ayrshire"	"S12000028"	"Total"	47
+"2015 Q1"	"South Lanarkshire"	"S12000029"	"Total"	112
+"2015 Q1"	"Stirling"	"S12000030"	"Total"	74
+"2015 Q1"	"West Dunbartonshire"	"S12000039"	"Total"	11
+"2015 Q1"	"West Lothian"	"S12000040"	"Total"	52
+"2014"	"Aberdeen City"	"S12000033"	"Total"	75
+"2014"	"Aberdeenshire"	"S12000034"	"Total"	78
+"2014"	"Angus"	"S12000041"	"Total"	38
+"2014"	"Argyll and Bute"	"S12000035"	"Total"	25
+"2014"	"City of Edinburgh"	"S12000036"	"Total"	131
+"2014"	"Clackmannanshire"	"S12000005"	"Total"	10
+"2014"	"Dumfries and Galloway"	"S12000006"	"Total"	29
+"2014"	"Dundee City"	"S12000042"	"Total"	137
+"2014"	"East Ayrshire"	"S12000008"	"Total"	20
+"2014"	"East Dunbartonshire"	"S12000045"	"Total"	25
+"2014"	"East Lothian"	"S12000010"	"Total"	26
+"2014"	"East Renfrewshire"	"S12000011"	"Total"	22
+"2014"	"Falkirk"	"S12000014"	"Total"	27
+"2014"	"Fife"	"S12000047"	"Total"	116
+"2014"	"Glasgow City"	"S12000049"	"Total"	247
+"2014"	"Highland"	"S12000017"	"Total"	50
+"2014"	"Inverclyde"	"S12000018"	"Total"	13
+"2014"	"Midlothian"	"S12000019"	"Total"	36
+"2014"	"Moray"	"S12000020"	"Total"	22
+"2014"	"Na h-Eileanan Siar"	"S12000013"	"Total"	7
+"2014"	"North Ayrshire"	"S12000021"	"Total"	33
+"2014"	"North Lanarkshire"	"S12000050"	"Total"	75
+"2014"	"Orkney Islands"	"S12000023"	"Total"	45
+"2014"	"Perth and Kinross"	"S12000048"	"Total"	42
+"2014"	"Renfrewshire"	"S12000038"	"Total"	55
+"2014"	"Scottish Borders"	"S12000026"	"Total"	59
+"2014"	"Shetland Islands"	"S12000027"	"Total"	8
+"2014"	"South Ayrshire"	"S12000028"	"Total"	39
+"2014"	"South Lanarkshire"	"S12000029"	"Total"	83
+"2014"	"Stirling"	"S12000030"	"Total"	55
+"2014"	"West Dunbartonshire"	"S12000039"	"Total"	10
+"2014"	"West Lothian"	"S12000040"	"Total"	42
+"2013"	"Aberdeen City"	"S12000033"	"Total"	33
+"2013"	"Aberdeenshire"	"S12000034"	"Total"	27
+"2013"	"Angus"	"S12000041"	"Total"	18
+"2013"	"Argyll and Bute"	"S12000035"	"Total"	13
+"2013"	"City of Edinburgh"	"S12000036"	"Total"	74
+"2013"	"Clackmannanshire"	"S12000005"	"Total"	6
+"2013"	"Dumfries and Galloway"	"S12000006"	"Total"	9
+"2013"	"Dundee City"	"S12000042"	"Total"	85
+"2013"	"East Ayrshire"	"S12000008"	"Total"	10
+"2013"	"East Dunbartonshire"	"S12000045"	"Total"	10
+"2013"	"East Lothian"	"S12000010"	"Total"	12
+"2013"	"East Renfrewshire"	"S12000011"	"Total"	6
+"2013"	"Falkirk"	"S12000014"	"Total"	17
+"2013"	"Fife"	"S12000047"	"Total"	56
+"2013"	"Glasgow City"	"S12000049"	"Total"	121
+"2013"	"Highland"	"S12000017"	"Total"	33
+"2013"	"Inverclyde"	"S12000018"	"Total"	7
+"2013"	"Midlothian"	"S12000019"	"Total"	15
+"2013"	"Moray"	"S12000020"	"Total"	16
+"2013"	"Na h-Eileanan Siar"	"S12000013"	"Total"	0
+"2013"	"North Ayrshire"	"S12000021"	"Total"	12
+"2013"	"North Lanarkshire"	"S12000050"	"Total"	35
+"2013"	"Orkney Islands"	"S12000023"	"Total"	9
+"2013"	"Perth and Kinross"	"S12000048"	"Total"	20
+"2013"	"Renfrewshire"	"S12000038"	"Total"	35
+"2013"	"Scottish Borders"	"S12000026"	"Total"	36
+"2013"	"Shetland Islands"	"S12000027"	"Total"	0
+"2013"	"South Ayrshire"	"S12000028"	"Total"	19
+"2013"	"South Lanarkshire"	"S12000029"	"Total"	28
+"2013"	"Stirling"	"S12000030"	"Total"	24
+"2013"	"West Dunbartonshire"	"S12000039"	"Total"	0
+"2013"	"West Lothian"	"S12000040"	"Total"	9
+"2012"	"Aberdeen City"	"S12000033"	"Total"	19
+"2012"	"Aberdeenshire"	"S12000034"	"Total"	19
+"2012"	"Angus"	"S12000041"	"Total"	7
+"2012"	"Argyll and Bute"	"S12000035"	"Total"	11
+"2012"	"City of Edinburgh"	"S12000036"	"Total"	57
+"2012"	"Clackmannanshire"	"S12000005"	"Total"	6
+"2012"	"Dumfries and Galloway"	"S12000006"	"Total"	8
+"2012"	"Dundee City"	"S12000042"	"Total"	74
+"2012"	"East Ayrshire"	"S12000008"	"Total"	6
+"2012"	"East Dunbartonshire"	"S12000045"	"Total"	6
+"2012"	"East Lothian"	"S12000010"	"Total"	9
+"2012"	"East Renfrewshire"	"S12000011"	"Total"	0
+"2012"	"Falkirk"	"S12000014"	"Total"	12
+"2012"	"Fife"	"S12000047"	"Total"	50
+"2012"	"Glasgow City"	"S12000049"	"Total"	102
+"2012"	"Highland"	"S12000017"	"Total"	23
+"2012"	"Inverclyde"	"S12000018"	"Total"	5
+"2012"	"Midlothian"	"S12000019"	"Total"	6
+"2012"	"Moray"	"S12000020"	"Total"	10
+"2012"	"Na h-Eileanan Siar"	"S12000013"	"Total"	0
+"2012"	"North Ayrshire"	"S12000021"	"Total"	7
+"2012"	"North Lanarkshire"	"S12000050"	"Total"	23
+"2012"	"Orkney Islands"	"S12000023"	"Total"	0
+"2012"	"Perth and Kinross"	"S12000048"	"Total"	13
+"2012"	"Renfrewshire"	"S12000038"	"Total"	24
+"2012"	"Scottish Borders"	"S12000026"	"Total"	24
+"2012"	"Shetland Islands"	"S12000027"	"Total"	5
+"2012"	"South Ayrshire"	"S12000028"	"Total"	10
+"2012"	"South Lanarkshire"	"S12000029"	"Total"	16
+"2012"	"Stirling"	"S12000030"	"Total"	13
+"2012"	"West Dunbartonshire"	"S12000039"	"Total"	0
+"2012"	"West Lothian"	"S12000040"	"Total"	7
+"2011"	"Aberdeen City"	"S12000033"	"Total"	16
+"2011"	"Aberdeenshire"	"S12000034"	"Total"	13
+"2011"	"Angus"	"S12000041"	"Total"	0
+"2011"	"Argyll and Bute"	"S12000035"	"Total"	6
+"2011"	"City of Edinburgh"	"S12000036"	"Total"	37
+"2011"	"Clackmannanshire"	"S12000005"	"Total"	0
+"2011"	"Dumfries and Galloway"	"S12000006"	"Total"	5
+"2011"	"Dundee City"	"S12000042"	"Total"	44
+"2011"	"East Ayrshire"	"S12000008"	"Total"	7
+"2011"	"East Dunbartonshire"	"S12000045"	"Total"	0
+"2011"	"East Lothian"	"S12000010"	"Total"	10
+"2011"	"East Renfrewshire"	"S12000011"	"Total"	0
+"2011"	"Falkirk"	"S12000014"	"Total"	0
+"2011"	"Fife"	"S12000047"	"Total"	30
+"2011"	"Glasgow City"	"S12000049"	"Total"	71
+"2011"	"Highland"	"S12000017"	"Total"	17
+"2011"	"Inverclyde"	"S12000018"	"Total"	5
+"2011"	"Midlothian"	"S12000019"	"Total"	0
+"2011"	"Moray"	"S12000020"	"Total"	0
+"2011"	"Na h-Eileanan Siar"	"S12000013"	"Total"	0
+"2011"	"North Ayrshire"	"S12000021"	"Total"	0
+"2011"	"North Lanarkshire"	"S12000050"	"Total"	23
+"2011"	"Orkney Islands"	"S12000023"	"Total"	0
+"2011"	"Perth and Kinross"	"S12000048"	"Total"	0
+"2011"	"Renfrewshire"	"S12000038"	"Total"	17
+"2011"	"Scottish Borders"	"S12000026"	"Total"	13
+"2011"	"Shetland Islands"	"S12000027"	"Total"	0
+"2011"	"South Ayrshire"	"S12000028"	"Total"	5
+"2011"	"South Lanarkshire"	"S12000029"	"Total"	11
+"2011"	"Stirling"	"S12000030"	"Total"	0
+"2011"	"West Dunbartonshire"	"S12000039"	"Total"	0
+"2011"	"West Lothian"	"S12000040"	"Total"	6
+"2020 Q1"	"Aberdeen City"	"S12000033"	"Other"	5
+"2020 Q1"	"Aberdeenshire"	"S12000034"	"Other"	3
+"2020 Q1"	"Angus"	"S12000041"	"Other"	2
+"2020 Q1"	"Argyll and Bute"	"S12000035"	"Other"	3
+"2020 Q1"	"City of Edinburgh"	"S12000036"	"Other"	31
+"2020 Q1"	"Clackmannanshire"	"S12000005"	"Other"	1
+"2020 Q1"	"Dumfries and Galloway"	"S12000006"	"Other"	1
+"2020 Q1"	"Dundee City"	"S12000042"	"Other"	1
+"2020 Q1"	"East Ayrshire"	"S12000008"	"Other"	0
+"2020 Q1"	"East Dunbartonshire"	"S12000045"	"Other"	5
+"2020 Q1"	"East Lothian"	"S12000010"	"Other"	5
+"2020 Q1"	"East Renfrewshire"	"S12000011"	"Other"	2
+"2020 Q1"	"Falkirk"	"S12000014"	"Other"	4
+"2020 Q1"	"Fife"	"S12000047"	"Other"	9
+"2020 Q1"	"Glasgow City"	"S12000049"	"Other"	7
+"2020 Q1"	"Highland"	"S12000017"	"Other"	3
+"2020 Q1"	"Inverclyde"	"S12000018"	"Other"	1
+"2020 Q1"	"Midlothian"	"S12000019"	"Other"	1
+"2020 Q1"	"Moray"	"S12000020"	"Other"	0
+"2020 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2020 Q1"	"North Ayrshire"	"S12000021"	"Other"	2
+"2020 Q1"	"North Lanarkshire"	"S12000050"	"Other"	3
+"2020 Q1"	"Orkney Islands"	"S12000023"	"Other"	0
+"2020 Q1"	"Perth and Kinross"	"S12000048"	"Other"	2
+"2020 Q1"	"Renfrewshire"	"S12000038"	"Other"	51
+"2020 Q1"	"Scottish Borders"	"S12000026"	"Other"	3
+"2020 Q1"	"Shetland Islands"	"S12000027"	"Other"	0
+"2020 Q1"	"South Ayrshire"	"S12000028"	"Other"	3
+"2020 Q1"	"South Lanarkshire"	"S12000029"	"Other"	1
+"2020 Q1"	"Stirling"	"S12000030"	"Other"	14
+"2020 Q1"	"West Dunbartonshire"	"S12000039"	"Other"	3
+"2020 Q1"	"West Lothian"	"S12000040"	"Other"	4
+"2019 Q4"	"Aberdeen City"	"S12000033"	"Other"	5
+"2019 Q4"	"Aberdeenshire"	"S12000034"	"Other"	3
+"2019 Q4"	"Angus"	"S12000041"	"Other"	3
+"2019 Q4"	"Argyll and Bute"	"S12000035"	"Other"	3
+"2019 Q4"	"City of Edinburgh"	"S12000036"	"Other"	26
+"2019 Q4"	"Clackmannanshire"	"S12000005"	"Other"	1
+"2019 Q4"	"Dumfries and Galloway"	"S12000006"	"Other"	1
+"2019 Q4"	"Dundee City"	"S12000042"	"Other"	1
+"2019 Q4"	"East Ayrshire"	"S12000008"	"Other"	0
+"2019 Q4"	"East Dunbartonshire"	"S12000045"	"Other"	5
+"2019 Q4"	"East Lothian"	"S12000010"	"Other"	5
+"2019 Q4"	"East Renfrewshire"	"S12000011"	"Other"	2
+"2019 Q4"	"Falkirk"	"S12000014"	"Other"	4
+"2019 Q4"	"Fife"	"S12000047"	"Other"	7
+"2019 Q4"	"Glasgow City"	"S12000049"	"Other"	9
+"2019 Q4"	"Highland"	"S12000017"	"Other"	3
+"2019 Q4"	"Inverclyde"	"S12000018"	"Other"	1
+"2019 Q4"	"Midlothian"	"S12000019"	"Other"	1
+"2019 Q4"	"Moray"	"S12000020"	"Other"	0
+"2019 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2019 Q4"	"North Ayrshire"	"S12000021"	"Other"	2
+"2019 Q4"	"North Lanarkshire"	"S12000050"	"Other"	2
+"2019 Q4"	"Orkney Islands"	"S12000023"	"Other"	0
+"2019 Q4"	"Perth and Kinross"	"S12000048"	"Other"	2
+"2019 Q4"	"Renfrewshire"	"S12000038"	"Other"	52
+"2019 Q4"	"Scottish Borders"	"S12000026"	"Other"	3
+"2019 Q4"	"Shetland Islands"	"S12000027"	"Other"	0
+"2019 Q4"	"South Ayrshire"	"S12000028"	"Other"	3
+"2019 Q4"	"South Lanarkshire"	"S12000029"	"Other"	1
+"2019 Q4"	"Stirling"	"S12000030"	"Other"	15
+"2019 Q4"	"West Dunbartonshire"	"S12000039"	"Other"	3
+"2019 Q4"	"West Lothian"	"S12000040"	"Other"	4
+"2019 Q3"	"Aberdeen City"	"S12000033"	"Other"	6
+"2019 Q3"	"Aberdeenshire"	"S12000034"	"Other"	3
+"2019 Q3"	"Angus"	"S12000041"	"Other"	3
+"2019 Q3"	"Argyll and Bute"	"S12000035"	"Other"	3
+"2019 Q3"	"City of Edinburgh"	"S12000036"	"Other"	28
+"2019 Q3"	"Clackmannanshire"	"S12000005"	"Other"	1
+"2019 Q3"	"Dumfries and Galloway"	"S12000006"	"Other"	1
+"2019 Q3"	"Dundee City"	"S12000042"	"Other"	1
+"2019 Q3"	"East Ayrshire"	"S12000008"	"Other"	0
+"2019 Q3"	"East Dunbartonshire"	"S12000045"	"Other"	5
+"2019 Q3"	"East Lothian"	"S12000010"	"Other"	5
+"2019 Q3"	"East Renfrewshire"	"S12000011"	"Other"	2
+"2019 Q3"	"Falkirk"	"S12000014"	"Other"	4
+"2019 Q3"	"Fife"	"S12000047"	"Other"	7
+"2019 Q3"	"Glasgow City"	"S12000049"	"Other"	9
+"2019 Q3"	"Highland"	"S12000017"	"Other"	4
+"2019 Q3"	"Inverclyde"	"S12000018"	"Other"	1
+"2019 Q3"	"Midlothian"	"S12000019"	"Other"	1
+"2019 Q3"	"Moray"	"S12000020"	"Other"	0
+"2019 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2019 Q3"	"North Ayrshire"	"S12000021"	"Other"	2
+"2019 Q3"	"North Lanarkshire"	"S12000050"	"Other"	2
+"2019 Q3"	"Orkney Islands"	"S12000023"	"Other"	0
+"2019 Q3"	"Perth and Kinross"	"S12000048"	"Other"	2
+"2019 Q3"	"Renfrewshire"	"S12000038"	"Other"	55
+"2019 Q3"	"Scottish Borders"	"S12000026"	"Other"	4
+"2019 Q3"	"Shetland Islands"	"S12000027"	"Other"	0
+"2019 Q3"	"South Ayrshire"	"S12000028"	"Other"	4
+"2019 Q3"	"South Lanarkshire"	"S12000029"	"Other"	1
+"2019 Q3"	"Stirling"	"S12000030"	"Other"	17
+"2019 Q3"	"West Dunbartonshire"	"S12000039"	"Other"	3
+"2019 Q3"	"West Lothian"	"S12000040"	"Other"	4
+"2019 Q2"	"Aberdeen City"	"S12000033"	"Other"	6
+"2019 Q2"	"Aberdeenshire"	"S12000034"	"Other"	2
+"2019 Q2"	"Angus"	"S12000041"	"Other"	3
+"2019 Q2"	"Argyll and Bute"	"S12000035"	"Other"	3
+"2019 Q2"	"City of Edinburgh"	"S12000036"	"Other"	29
+"2019 Q2"	"Clackmannanshire"	"S12000005"	"Other"	1
+"2019 Q2"	"Dumfries and Galloway"	"S12000006"	"Other"	1
+"2019 Q2"	"Dundee City"	"S12000042"	"Other"	1
+"2019 Q2"	"East Ayrshire"	"S12000008"	"Other"	0
+"2019 Q2"	"East Dunbartonshire"	"S12000045"	"Other"	6
+"2019 Q2"	"East Lothian"	"S12000010"	"Other"	5
+"2019 Q2"	"East Renfrewshire"	"S12000011"	"Other"	2
+"2019 Q2"	"Falkirk"	"S12000014"	"Other"	4
+"2019 Q2"	"Fife"	"S12000047"	"Other"	7
+"2019 Q2"	"Glasgow City"	"S12000049"	"Other"	9
+"2019 Q2"	"Highland"	"S12000017"	"Other"	4
+"2019 Q2"	"Inverclyde"	"S12000018"	"Other"	1
+"2019 Q2"	"Midlothian"	"S12000019"	"Other"	1
+"2019 Q2"	"Moray"	"S12000020"	"Other"	0
+"2019 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2019 Q2"	"North Ayrshire"	"S12000021"	"Other"	2
+"2019 Q2"	"North Lanarkshire"	"S12000050"	"Other"	2
+"2019 Q2"	"Orkney Islands"	"S12000023"	"Other"	0
+"2019 Q2"	"Perth and Kinross"	"S12000048"	"Other"	2
+"2019 Q2"	"Renfrewshire"	"S12000038"	"Other"	56
+"2019 Q2"	"Scottish Borders"	"S12000026"	"Other"	4
+"2019 Q2"	"Shetland Islands"	"S12000027"	"Other"	0
+"2019 Q2"	"South Ayrshire"	"S12000028"	"Other"	4
+"2019 Q2"	"South Lanarkshire"	"S12000029"	"Other"	1
+"2019 Q2"	"Stirling"	"S12000030"	"Other"	17
+"2019 Q2"	"West Dunbartonshire"	"S12000039"	"Other"	2
+"2019 Q2"	"West Lothian"	"S12000040"	"Other"	5
+"2019 Q1"	"Aberdeen City"	"S12000033"	"Other"	6
+"2019 Q1"	"Aberdeenshire"	"S12000034"	"Other"	3
+"2019 Q1"	"Angus"	"S12000041"	"Other"	3
+"2019 Q1"	"Argyll and Bute"	"S12000035"	"Other"	4
+"2019 Q1"	"City of Edinburgh"	"S12000036"	"Other"	30
+"2019 Q1"	"Clackmannanshire"	"S12000005"	"Other"	1
+"2019 Q1"	"Dumfries and Galloway"	"S12000006"	"Other"	1
+"2019 Q1"	"Dundee City"	"S12000042"	"Other"	1
+"2019 Q1"	"East Ayrshire"	"S12000008"	"Other"	0
+"2019 Q1"	"East Dunbartonshire"	"S12000045"	"Other"	5
+"2019 Q1"	"East Lothian"	"S12000010"	"Other"	6
+"2019 Q1"	"East Renfrewshire"	"S12000011"	"Other"	1
+"2019 Q1"	"Falkirk"	"S12000014"	"Other"	4
+"2019 Q1"	"Fife"	"S12000047"	"Other"	7
+"2019 Q1"	"Glasgow City"	"S12000049"	"Other"	11
+"2019 Q1"	"Highland"	"S12000017"	"Other"	3
+"2019 Q1"	"Inverclyde"	"S12000018"	"Other"	1
+"2019 Q1"	"Midlothian"	"S12000019"	"Other"	1
+"2019 Q1"	"Moray"	"S12000020"	"Other"	0
+"2019 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2019 Q1"	"North Ayrshire"	"S12000021"	"Other"	2
+"2019 Q1"	"North Lanarkshire"	"S12000050"	"Other"	3
+"2019 Q1"	"Orkney Islands"	"S12000023"	"Other"	0
+"2019 Q1"	"Perth and Kinross"	"S12000048"	"Other"	2
+"2019 Q1"	"Renfrewshire"	"S12000038"	"Other"	59
+"2019 Q1"	"Scottish Borders"	"S12000026"	"Other"	4
+"2019 Q1"	"Shetland Islands"	"S12000027"	"Other"	0
+"2019 Q1"	"South Ayrshire"	"S12000028"	"Other"	3
+"2019 Q1"	"South Lanarkshire"	"S12000029"	"Other"	1
+"2019 Q1"	"Stirling"	"S12000030"	"Other"	17
+"2019 Q1"	"West Dunbartonshire"	"S12000039"	"Other"	2
+"2019 Q1"	"West Lothian"	"S12000040"	"Other"	5
+"2018 Q4"	"Aberdeen City"	"S12000033"	"Other"	7
+"2018 Q4"	"Aberdeenshire"	"S12000034"	"Other"	3
+"2018 Q4"	"Angus"	"S12000041"	"Other"	3
+"2018 Q4"	"Argyll and Bute"	"S12000035"	"Other"	4
+"2018 Q4"	"City of Edinburgh"	"S12000036"	"Other"	30
+"2018 Q4"	"Clackmannanshire"	"S12000005"	"Other"	1
+"2018 Q4"	"Dumfries and Galloway"	"S12000006"	"Other"	1
+"2018 Q4"	"Dundee City"	"S12000042"	"Other"	1
+"2018 Q4"	"East Ayrshire"	"S12000008"	"Other"	0
+"2018 Q4"	"East Dunbartonshire"	"S12000045"	"Other"	6
+"2018 Q4"	"East Lothian"	"S12000010"	"Other"	6
+"2018 Q4"	"East Renfrewshire"	"S12000011"	"Other"	1
+"2018 Q4"	"Falkirk"	"S12000014"	"Other"	4
+"2018 Q4"	"Fife"	"S12000047"	"Other"	7
+"2018 Q4"	"Glasgow City"	"S12000049"	"Other"	11
+"2018 Q4"	"Highland"	"S12000017"	"Other"	4
+"2018 Q4"	"Inverclyde"	"S12000018"	"Other"	1
+"2018 Q4"	"Midlothian"	"S12000019"	"Other"	2
+"2018 Q4"	"Moray"	"S12000020"	"Other"	0
+"2018 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2018 Q4"	"North Ayrshire"	"S12000021"	"Other"	2
+"2018 Q4"	"North Lanarkshire"	"S12000050"	"Other"	2
+"2018 Q4"	"Orkney Islands"	"S12000023"	"Other"	0
+"2018 Q4"	"Perth and Kinross"	"S12000048"	"Other"	2
+"2018 Q4"	"Renfrewshire"	"S12000038"	"Other"	61
+"2018 Q4"	"Scottish Borders"	"S12000026"	"Other"	5
+"2018 Q4"	"Shetland Islands"	"S12000027"	"Other"	0
+"2018 Q4"	"South Ayrshire"	"S12000028"	"Other"	3
+"2018 Q4"	"South Lanarkshire"	"S12000029"	"Other"	1
+"2018 Q4"	"Stirling"	"S12000030"	"Other"	17
+"2018 Q4"	"West Dunbartonshire"	"S12000039"	"Other"	2
+"2018 Q4"	"West Lothian"	"S12000040"	"Other"	4
+"2018 Q3"	"Aberdeen City"	"S12000033"	"Other"	7
+"2018 Q3"	"Aberdeenshire"	"S12000034"	"Other"	3
+"2018 Q3"	"Angus"	"S12000041"	"Other"	3
+"2018 Q3"	"Argyll and Bute"	"S12000035"	"Other"	4
+"2018 Q3"	"City of Edinburgh"	"S12000036"	"Other"	30
+"2018 Q3"	"Clackmannanshire"	"S12000005"	"Other"	1
+"2018 Q3"	"Dumfries and Galloway"	"S12000006"	"Other"	1
+"2018 Q3"	"Dundee City"	"S12000042"	"Other"	1
+"2018 Q3"	"East Ayrshire"	"S12000008"	"Other"	0
+"2018 Q3"	"East Dunbartonshire"	"S12000045"	"Other"	6
+"2018 Q3"	"East Lothian"	"S12000010"	"Other"	6
+"2018 Q3"	"East Renfrewshire"	"S12000011"	"Other"	1
+"2018 Q3"	"Falkirk"	"S12000014"	"Other"	4
+"2018 Q3"	"Fife"	"S12000047"	"Other"	6
+"2018 Q3"	"Glasgow City"	"S12000049"	"Other"	11
+"2018 Q3"	"Highland"	"S12000017"	"Other"	4
+"2018 Q3"	"Inverclyde"	"S12000018"	"Other"	1
+"2018 Q3"	"Midlothian"	"S12000019"	"Other"	2
+"2018 Q3"	"Moray"	"S12000020"	"Other"	0
+"2018 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2018 Q3"	"North Ayrshire"	"S12000021"	"Other"	2
+"2018 Q3"	"North Lanarkshire"	"S12000050"	"Other"	2
+"2018 Q3"	"Orkney Islands"	"S12000023"	"Other"	0
+"2018 Q3"	"Perth and Kinross"	"S12000048"	"Other"	2
+"2018 Q3"	"Renfrewshire"	"S12000038"	"Other"	62
+"2018 Q3"	"Scottish Borders"	"S12000026"	"Other"	5
+"2018 Q3"	"Shetland Islands"	"S12000027"	"Other"	0
+"2018 Q3"	"South Ayrshire"	"S12000028"	"Other"	3
+"2018 Q3"	"South Lanarkshire"	"S12000029"	"Other"	1
+"2018 Q3"	"Stirling"	"S12000030"	"Other"	17
+"2018 Q3"	"West Dunbartonshire"	"S12000039"	"Other"	2
+"2018 Q3"	"West Lothian"	"S12000040"	"Other"	4
+"2018 Q2"	"Aberdeen City"	"S12000033"	"Other"	9
+"2018 Q2"	"Aberdeenshire"	"S12000034"	"Other"	4
+"2018 Q2"	"Angus"	"S12000041"	"Other"	3
+"2018 Q2"	"Argyll and Bute"	"S12000035"	"Other"	4
+"2018 Q2"	"City of Edinburgh"	"S12000036"	"Other"	29
+"2018 Q2"	"Clackmannanshire"	"S12000005"	"Other"	1
+"2018 Q2"	"Dumfries and Galloway"	"S12000006"	"Other"	1
+"2018 Q2"	"Dundee City"	"S12000042"	"Other"	1
+"2018 Q2"	"East Ayrshire"	"S12000008"	"Other"	0
+"2018 Q2"	"East Dunbartonshire"	"S12000045"	"Other"	6
+"2018 Q2"	"East Lothian"	"S12000010"	"Other"	5
+"2018 Q2"	"East Renfrewshire"	"S12000011"	"Other"	1
+"2018 Q2"	"Falkirk"	"S12000014"	"Other"	4
+"2018 Q2"	"Fife"	"S12000047"	"Other"	7
+"2018 Q2"	"Glasgow City"	"S12000049"	"Other"	10
+"2018 Q2"	"Highland"	"S12000017"	"Other"	5
+"2018 Q2"	"Inverclyde"	"S12000018"	"Other"	1
+"2018 Q2"	"Midlothian"	"S12000019"	"Other"	2
+"2018 Q2"	"Moray"	"S12000020"	"Other"	0
+"2018 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2018 Q2"	"North Ayrshire"	"S12000021"	"Other"	2
+"2018 Q2"	"North Lanarkshire"	"S12000050"	"Other"	2
+"2018 Q2"	"Orkney Islands"	"S12000023"	"Other"	0
+"2018 Q2"	"Perth and Kinross"	"S12000048"	"Other"	2
+"2018 Q2"	"Renfrewshire"	"S12000038"	"Other"	62
+"2018 Q2"	"Scottish Borders"	"S12000026"	"Other"	5
+"2018 Q2"	"Shetland Islands"	"S12000027"	"Other"	0
+"2018 Q2"	"South Ayrshire"	"S12000028"	"Other"	3
+"2018 Q2"	"South Lanarkshire"	"S12000029"	"Other"	1
+"2018 Q2"	"Stirling"	"S12000030"	"Other"	19
+"2018 Q2"	"West Dunbartonshire"	"S12000039"	"Other"	2
+"2018 Q2"	"West Lothian"	"S12000040"	"Other"	3
+"2018 Q1"	"Aberdeen City"	"S12000033"	"Other"	10
+"2018 Q1"	"Aberdeenshire"	"S12000034"	"Other"	3
+"2018 Q1"	"Angus"	"S12000041"	"Other"	3
+"2018 Q1"	"Argyll and Bute"	"S12000035"	"Other"	4
+"2018 Q1"	"City of Edinburgh"	"S12000036"	"Other"	25
+"2018 Q1"	"Clackmannanshire"	"S12000005"	"Other"	1
+"2018 Q1"	"Dumfries and Galloway"	"S12000006"	"Other"	2
+"2018 Q1"	"Dundee City"	"S12000042"	"Other"	1
+"2018 Q1"	"East Ayrshire"	"S12000008"	"Other"	0
+"2018 Q1"	"East Dunbartonshire"	"S12000045"	"Other"	6
+"2018 Q1"	"East Lothian"	"S12000010"	"Other"	4
+"2018 Q1"	"East Renfrewshire"	"S12000011"	"Other"	1
+"2018 Q1"	"Falkirk"	"S12000014"	"Other"	3
+"2018 Q1"	"Fife"	"S12000047"	"Other"	7
+"2018 Q1"	"Glasgow City"	"S12000049"	"Other"	12
+"2018 Q1"	"Highland"	"S12000017"	"Other"	5
+"2018 Q1"	"Inverclyde"	"S12000018"	"Other"	0
+"2018 Q1"	"Midlothian"	"S12000019"	"Other"	1
+"2018 Q1"	"Moray"	"S12000020"	"Other"	0
+"2018 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2018 Q1"	"North Ayrshire"	"S12000021"	"Other"	2
+"2018 Q1"	"North Lanarkshire"	"S12000050"	"Other"	2
+"2018 Q1"	"Orkney Islands"	"S12000023"	"Other"	0
+"2018 Q1"	"Perth and Kinross"	"S12000048"	"Other"	3
+"2018 Q1"	"Renfrewshire"	"S12000038"	"Other"	63
+"2018 Q1"	"Scottish Borders"	"S12000026"	"Other"	6
+"2018 Q1"	"Shetland Islands"	"S12000027"	"Other"	0
+"2018 Q1"	"South Ayrshire"	"S12000028"	"Other"	2
+"2018 Q1"	"South Lanarkshire"	"S12000029"	"Other"	2
+"2018 Q1"	"Stirling"	"S12000030"	"Other"	19
+"2018 Q1"	"West Dunbartonshire"	"S12000039"	"Other"	2
+"2018 Q1"	"West Lothian"	"S12000040"	"Other"	3
+"2017 Q4"	"Aberdeen City"	"S12000033"	"Other"	10
+"2017 Q4"	"Aberdeenshire"	"S12000034"	"Other"	3
+"2017 Q4"	"Angus"	"S12000041"	"Other"	3
+"2017 Q4"	"Argyll and Bute"	"S12000035"	"Other"	4
+"2017 Q4"	"City of Edinburgh"	"S12000036"	"Other"	22
+"2017 Q4"	"Clackmannanshire"	"S12000005"	"Other"	1
+"2017 Q4"	"Dumfries and Galloway"	"S12000006"	"Other"	2
+"2017 Q4"	"Dundee City"	"S12000042"	"Other"	2
+"2017 Q4"	"East Ayrshire"	"S12000008"	"Other"	0
+"2017 Q4"	"East Dunbartonshire"	"S12000045"	"Other"	7
+"2017 Q4"	"East Lothian"	"S12000010"	"Other"	2
+"2017 Q4"	"East Renfrewshire"	"S12000011"	"Other"	1
+"2017 Q4"	"Falkirk"	"S12000014"	"Other"	2
+"2017 Q4"	"Fife"	"S12000047"	"Other"	6
+"2017 Q4"	"Glasgow City"	"S12000049"	"Other"	8
+"2017 Q4"	"Highland"	"S12000017"	"Other"	4
+"2017 Q4"	"Inverclyde"	"S12000018"	"Other"	0
+"2017 Q4"	"Midlothian"	"S12000019"	"Other"	1
+"2017 Q4"	"Moray"	"S12000020"	"Other"	0
+"2017 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2017 Q4"	"North Ayrshire"	"S12000021"	"Other"	2
+"2017 Q4"	"North Lanarkshire"	"S12000050"	"Other"	2
+"2017 Q4"	"Orkney Islands"	"S12000023"	"Other"	0
+"2017 Q4"	"Perth and Kinross"	"S12000048"	"Other"	1
+"2017 Q4"	"Renfrewshire"	"S12000038"	"Other"	56
+"2017 Q4"	"Scottish Borders"	"S12000026"	"Other"	6
+"2017 Q4"	"Shetland Islands"	"S12000027"	"Other"	0
+"2017 Q4"	"South Ayrshire"	"S12000028"	"Other"	2
+"2017 Q4"	"South Lanarkshire"	"S12000029"	"Other"	2
+"2017 Q4"	"Stirling"	"S12000030"	"Other"	16
+"2017 Q4"	"West Dunbartonshire"	"S12000039"	"Other"	2
+"2017 Q4"	"West Lothian"	"S12000040"	"Other"	3
+"2017 Q3"	"Aberdeen City"	"S12000033"	"Other"	7
+"2017 Q3"	"Aberdeenshire"	"S12000034"	"Other"	4
+"2017 Q3"	"Angus"	"S12000041"	"Other"	1
+"2017 Q3"	"Argyll and Bute"	"S12000035"	"Other"	4
+"2017 Q3"	"City of Edinburgh"	"S12000036"	"Other"	17
+"2017 Q3"	"Clackmannanshire"	"S12000005"	"Other"	0
+"2017 Q3"	"Dumfries and Galloway"	"S12000006"	"Other"	2
+"2017 Q3"	"Dundee City"	"S12000042"	"Other"	1
+"2017 Q3"	"East Ayrshire"	"S12000008"	"Other"	1
+"2017 Q3"	"East Dunbartonshire"	"S12000045"	"Other"	5
+"2017 Q3"	"East Lothian"	"S12000010"	"Other"	0
+"2017 Q3"	"East Renfrewshire"	"S12000011"	"Other"	1
+"2017 Q3"	"Falkirk"	"S12000014"	"Other"	2
+"2017 Q3"	"Fife"	"S12000047"	"Other"	6
+"2017 Q3"	"Glasgow City"	"S12000049"	"Other"	5
+"2017 Q3"	"Highland"	"S12000017"	"Other"	3
+"2017 Q3"	"Inverclyde"	"S12000018"	"Other"	0
+"2017 Q3"	"Midlothian"	"S12000019"	"Other"	1
+"2017 Q3"	"Moray"	"S12000020"	"Other"	0
+"2017 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2017 Q3"	"North Ayrshire"	"S12000021"	"Other"	2
+"2017 Q3"	"North Lanarkshire"	"S12000050"	"Other"	2
+"2017 Q3"	"Orkney Islands"	"S12000023"	"Other"	0
+"2017 Q3"	"Perth and Kinross"	"S12000048"	"Other"	2
+"2017 Q3"	"Renfrewshire"	"S12000038"	"Other"	47
+"2017 Q3"	"Scottish Borders"	"S12000026"	"Other"	4
+"2017 Q3"	"Shetland Islands"	"S12000027"	"Other"	0
+"2017 Q3"	"South Ayrshire"	"S12000028"	"Other"	1
+"2017 Q3"	"South Lanarkshire"	"S12000029"	"Other"	2
+"2017 Q3"	"Stirling"	"S12000030"	"Other"	13
+"2017 Q3"	"West Dunbartonshire"	"S12000039"	"Other"	1
+"2017 Q3"	"West Lothian"	"S12000040"	"Other"	3
+"2017 Q2"	"Aberdeen City"	"S12000033"	"Other"	7
+"2017 Q2"	"Aberdeenshire"	"S12000034"	"Other"	4
+"2017 Q2"	"Angus"	"S12000041"	"Other"	0
+"2017 Q2"	"Argyll and Bute"	"S12000035"	"Other"	4
+"2017 Q2"	"City of Edinburgh"	"S12000036"	"Other"	13
+"2017 Q2"	"Clackmannanshire"	"S12000005"	"Other"	0
+"2017 Q2"	"Dumfries and Galloway"	"S12000006"	"Other"	2
+"2017 Q2"	"Dundee City"	"S12000042"	"Other"	1
+"2017 Q2"	"East Ayrshire"	"S12000008"	"Other"	1
+"2017 Q2"	"East Dunbartonshire"	"S12000045"	"Other"	5
+"2017 Q2"	"East Lothian"	"S12000010"	"Other"	0
+"2017 Q2"	"East Renfrewshire"	"S12000011"	"Other"	1
+"2017 Q2"	"Falkirk"	"S12000014"	"Other"	2
+"2017 Q2"	"Fife"	"S12000047"	"Other"	5
+"2017 Q2"	"Glasgow City"	"S12000049"	"Other"	8
+"2017 Q2"	"Highland"	"S12000017"	"Other"	2
+"2017 Q2"	"Inverclyde"	"S12000018"	"Other"	0
+"2017 Q2"	"Midlothian"	"S12000019"	"Other"	1
+"2017 Q2"	"Moray"	"S12000020"	"Other"	0
+"2017 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2017 Q2"	"North Ayrshire"	"S12000021"	"Other"	2
+"2017 Q2"	"North Lanarkshire"	"S12000050"	"Other"	2
+"2017 Q2"	"Orkney Islands"	"S12000023"	"Other"	0
+"2017 Q2"	"Perth and Kinross"	"S12000048"	"Other"	2
+"2017 Q2"	"Renfrewshire"	"S12000038"	"Other"	32
+"2017 Q2"	"Scottish Borders"	"S12000026"	"Other"	2
+"2017 Q2"	"Shetland Islands"	"S12000027"	"Other"	0
+"2017 Q2"	"South Ayrshire"	"S12000028"	"Other"	1
+"2017 Q2"	"South Lanarkshire"	"S12000029"	"Other"	2
+"2017 Q2"	"Stirling"	"S12000030"	"Other"	11
+"2017 Q2"	"West Dunbartonshire"	"S12000039"	"Other"	1
+"2017 Q2"	"West Lothian"	"S12000040"	"Other"	3
+"2017 Q1"	"Aberdeen City"	"S12000033"	"Other"	4
+"2017 Q1"	"Aberdeenshire"	"S12000034"	"Other"	3
+"2017 Q1"	"Angus"	"S12000041"	"Other"	0
+"2017 Q1"	"Argyll and Bute"	"S12000035"	"Other"	4
+"2017 Q1"	"City of Edinburgh"	"S12000036"	"Other"	10
+"2017 Q1"	"Clackmannanshire"	"S12000005"	"Other"	0
+"2017 Q1"	"Dumfries and Galloway"	"S12000006"	"Other"	1
+"2017 Q1"	"Dundee City"	"S12000042"	"Other"	2
+"2017 Q1"	"East Ayrshire"	"S12000008"	"Other"	0
+"2017 Q1"	"East Dunbartonshire"	"S12000045"	"Other"	4
+"2017 Q1"	"East Lothian"	"S12000010"	"Other"	0
+"2017 Q1"	"East Renfrewshire"	"S12000011"	"Other"	1
+"2017 Q1"	"Falkirk"	"S12000014"	"Other"	2
+"2017 Q1"	"Fife"	"S12000047"	"Other"	3
+"2017 Q1"	"Glasgow City"	"S12000049"	"Other"	6
+"2017 Q1"	"Highland"	"S12000017"	"Other"	2
+"2017 Q1"	"Inverclyde"	"S12000018"	"Other"	0
+"2017 Q1"	"Midlothian"	"S12000019"	"Other"	1
+"2017 Q1"	"Moray"	"S12000020"	"Other"	0
+"2017 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2017 Q1"	"North Ayrshire"	"S12000021"	"Other"	1
+"2017 Q1"	"North Lanarkshire"	"S12000050"	"Other"	2
+"2017 Q1"	"Orkney Islands"	"S12000023"	"Other"	0
+"2017 Q1"	"Perth and Kinross"	"S12000048"	"Other"	2
+"2017 Q1"	"Renfrewshire"	"S12000038"	"Other"	20
+"2017 Q1"	"Scottish Borders"	"S12000026"	"Other"	2
+"2017 Q1"	"Shetland Islands"	"S12000027"	"Other"	0
+"2017 Q1"	"South Ayrshire"	"S12000028"	"Other"	0
+"2017 Q1"	"South Lanarkshire"	"S12000029"	"Other"	1
+"2017 Q1"	"Stirling"	"S12000030"	"Other"	7
+"2017 Q1"	"West Dunbartonshire"	"S12000039"	"Other"	1
+"2017 Q1"	"West Lothian"	"S12000040"	"Other"	2
+"2016 Q4"	"Aberdeen City"	"S12000033"	"Other"	7
+"2016 Q4"	"Aberdeenshire"	"S12000034"	"Other"	2
+"2016 Q4"	"Angus"	"S12000041"	"Other"	0
+"2016 Q4"	"Argyll and Bute"	"S12000035"	"Other"	4
+"2016 Q4"	"City of Edinburgh"	"S12000036"	"Other"	6
+"2016 Q4"	"Clackmannanshire"	"S12000005"	"Other"	0
+"2016 Q4"	"Dumfries and Galloway"	"S12000006"	"Other"	1
+"2016 Q4"	"Dundee City"	"S12000042"	"Other"	2
+"2016 Q4"	"East Ayrshire"	"S12000008"	"Other"	1
+"2016 Q4"	"East Dunbartonshire"	"S12000045"	"Other"	5
+"2016 Q4"	"East Lothian"	"S12000010"	"Other"	0
+"2016 Q4"	"East Renfrewshire"	"S12000011"	"Other"	0
+"2016 Q4"	"Falkirk"	"S12000014"	"Other"	1
+"2016 Q4"	"Fife"	"S12000047"	"Other"	2
+"2016 Q4"	"Glasgow City"	"S12000049"	"Other"	2
+"2016 Q4"	"Highland"	"S12000017"	"Other"	2
+"2016 Q4"	"Inverclyde"	"S12000018"	"Other"	0
+"2016 Q4"	"Midlothian"	"S12000019"	"Other"	0
+"2016 Q4"	"Moray"	"S12000020"	"Other"	0
+"2016 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2016 Q4"	"North Ayrshire"	"S12000021"	"Other"	0
+"2016 Q4"	"North Lanarkshire"	"S12000050"	"Other"	1
+"2016 Q4"	"Orkney Islands"	"S12000023"	"Other"	0
+"2016 Q4"	"Perth and Kinross"	"S12000048"	"Other"	1
+"2016 Q4"	"Renfrewshire"	"S12000038"	"Other"	12
+"2016 Q4"	"Scottish Borders"	"S12000026"	"Other"	2
+"2016 Q4"	"Shetland Islands"	"S12000027"	"Other"	0
+"2016 Q4"	"South Ayrshire"	"S12000028"	"Other"	0
+"2016 Q4"	"South Lanarkshire"	"S12000029"	"Other"	1
+"2016 Q4"	"Stirling"	"S12000030"	"Other"	5
+"2016 Q4"	"West Dunbartonshire"	"S12000039"	"Other"	1
+"2016 Q4"	"West Lothian"	"S12000040"	"Other"	2
+"2016 Q3"	"Aberdeen City"	"S12000033"	"Other"	5
+"2016 Q3"	"Aberdeenshire"	"S12000034"	"Other"	3
+"2016 Q3"	"Angus"	"S12000041"	"Other"	0
+"2016 Q3"	"Argyll and Bute"	"S12000035"	"Other"	3
+"2016 Q3"	"City of Edinburgh"	"S12000036"	"Other"	5
+"2016 Q3"	"Clackmannanshire"	"S12000005"	"Other"	0
+"2016 Q3"	"Dumfries and Galloway"	"S12000006"	"Other"	1
+"2016 Q3"	"Dundee City"	"S12000042"	"Other"	1
+"2016 Q3"	"East Ayrshire"	"S12000008"	"Other"	0
+"2016 Q3"	"East Dunbartonshire"	"S12000045"	"Other"	2
+"2016 Q3"	"East Lothian"	"S12000010"	"Other"	0
+"2016 Q3"	"East Renfrewshire"	"S12000011"	"Other"	0
+"2016 Q3"	"Falkirk"	"S12000014"	"Other"	1
+"2016 Q3"	"Fife"	"S12000047"	"Other"	2
+"2016 Q3"	"Glasgow City"	"S12000049"	"Other"	3
+"2016 Q3"	"Highland"	"S12000017"	"Other"	1
+"2016 Q3"	"Inverclyde"	"S12000018"	"Other"	0
+"2016 Q3"	"Midlothian"	"S12000019"	"Other"	0
+"2016 Q3"	"Moray"	"S12000020"	"Other"	0
+"2016 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2016 Q3"	"North Ayrshire"	"S12000021"	"Other"	0
+"2016 Q3"	"North Lanarkshire"	"S12000050"	"Other"	1
+"2016 Q3"	"Orkney Islands"	"S12000023"	"Other"	0
+"2016 Q3"	"Perth and Kinross"	"S12000048"	"Other"	0
+"2016 Q3"	"Renfrewshire"	"S12000038"	"Other"	6
+"2016 Q3"	"Scottish Borders"	"S12000026"	"Other"	2
+"2016 Q3"	"Shetland Islands"	"S12000027"	"Other"	0
+"2016 Q3"	"South Ayrshire"	"S12000028"	"Other"	0
+"2016 Q3"	"South Lanarkshire"	"S12000029"	"Other"	1
+"2016 Q3"	"Stirling"	"S12000030"	"Other"	4
+"2016 Q3"	"West Dunbartonshire"	"S12000039"	"Other"	1
+"2016 Q3"	"West Lothian"	"S12000040"	"Other"	0
+"2016 Q2"	"Aberdeen City"	"S12000033"	"Other"	3
+"2016 Q2"	"Aberdeenshire"	"S12000034"	"Other"	2
+"2016 Q2"	"Angus"	"S12000041"	"Other"	0
+"2016 Q2"	"Argyll and Bute"	"S12000035"	"Other"	1
+"2016 Q2"	"City of Edinburgh"	"S12000036"	"Other"	2
+"2016 Q2"	"Clackmannanshire"	"S12000005"	"Other"	0
+"2016 Q2"	"Dumfries and Galloway"	"S12000006"	"Other"	0
+"2016 Q2"	"Dundee City"	"S12000042"	"Other"	1
+"2016 Q2"	"East Ayrshire"	"S12000008"	"Other"	0
+"2016 Q2"	"East Dunbartonshire"	"S12000045"	"Other"	2
+"2016 Q2"	"East Lothian"	"S12000010"	"Other"	0
+"2016 Q2"	"East Renfrewshire"	"S12000011"	"Other"	0
+"2016 Q2"	"Falkirk"	"S12000014"	"Other"	1
+"2016 Q2"	"Fife"	"S12000047"	"Other"	2
+"2016 Q2"	"Glasgow City"	"S12000049"	"Other"	2
+"2016 Q2"	"Highland"	"S12000017"	"Other"	0
+"2016 Q2"	"Inverclyde"	"S12000018"	"Other"	0
+"2016 Q2"	"Midlothian"	"S12000019"	"Other"	0
+"2016 Q2"	"Moray"	"S12000020"	"Other"	0
+"2016 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2016 Q2"	"North Ayrshire"	"S12000021"	"Other"	0
+"2016 Q2"	"North Lanarkshire"	"S12000050"	"Other"	1
+"2016 Q2"	"Orkney Islands"	"S12000023"	"Other"	0
+"2016 Q2"	"Perth and Kinross"	"S12000048"	"Other"	0
+"2016 Q2"	"Renfrewshire"	"S12000038"	"Other"	3
+"2016 Q2"	"Scottish Borders"	"S12000026"	"Other"	2
+"2016 Q2"	"Shetland Islands"	"S12000027"	"Other"	0
+"2016 Q2"	"South Ayrshire"	"S12000028"	"Other"	0
+"2016 Q2"	"South Lanarkshire"	"S12000029"	"Other"	1
+"2016 Q2"	"Stirling"	"S12000030"	"Other"	4
+"2016 Q2"	"West Dunbartonshire"	"S12000039"	"Other"	1
+"2016 Q2"	"West Lothian"	"S12000040"	"Other"	0
+"2016 Q1"	"Aberdeen City"	"S12000033"	"Other"	2
+"2016 Q1"	"Aberdeenshire"	"S12000034"	"Other"	0
+"2016 Q1"	"Angus"	"S12000041"	"Other"	0
+"2016 Q1"	"Argyll and Bute"	"S12000035"	"Other"	0
+"2016 Q1"	"City of Edinburgh"	"S12000036"	"Other"	1
+"2016 Q1"	"Clackmannanshire"	"S12000005"	"Other"	0
+"2016 Q1"	"Dumfries and Galloway"	"S12000006"	"Other"	0
+"2016 Q1"	"Dundee City"	"S12000042"	"Other"	0
+"2016 Q1"	"East Ayrshire"	"S12000008"	"Other"	0
+"2016 Q1"	"East Dunbartonshire"	"S12000045"	"Other"	0
+"2016 Q1"	"East Lothian"	"S12000010"	"Other"	0
+"2016 Q1"	"East Renfrewshire"	"S12000011"	"Other"	0
+"2016 Q1"	"Falkirk"	"S12000014"	"Other"	0
+"2016 Q1"	"Fife"	"S12000047"	"Other"	0
+"2016 Q1"	"Glasgow City"	"S12000049"	"Other"	2
+"2016 Q1"	"Highland"	"S12000017"	"Other"	0
+"2016 Q1"	"Inverclyde"	"S12000018"	"Other"	0
+"2016 Q1"	"Midlothian"	"S12000019"	"Other"	0
+"2016 Q1"	"Moray"	"S12000020"	"Other"	0
+"2016 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2016 Q1"	"North Ayrshire"	"S12000021"	"Other"	0
+"2016 Q1"	"North Lanarkshire"	"S12000050"	"Other"	0
+"2016 Q1"	"Orkney Islands"	"S12000023"	"Other"	0
+"2016 Q1"	"Perth and Kinross"	"S12000048"	"Other"	0
+"2016 Q1"	"Renfrewshire"	"S12000038"	"Other"	0
+"2016 Q1"	"Scottish Borders"	"S12000026"	"Other"	0
+"2016 Q1"	"Shetland Islands"	"S12000027"	"Other"	0
+"2016 Q1"	"South Ayrshire"	"S12000028"	"Other"	0
+"2016 Q1"	"South Lanarkshire"	"S12000029"	"Other"	0
+"2016 Q1"	"Stirling"	"S12000030"	"Other"	2
+"2016 Q1"	"West Dunbartonshire"	"S12000039"	"Other"	0
+"2016 Q1"	"West Lothian"	"S12000040"	"Other"	0
+"2015 Q4"	"Aberdeen City"	"S12000033"	"Other"	0
+"2015 Q4"	"Aberdeenshire"	"S12000034"	"Other"	0
+"2015 Q4"	"Angus"	"S12000041"	"Other"	0
+"2015 Q4"	"Argyll and Bute"	"S12000035"	"Other"	0
+"2015 Q4"	"City of Edinburgh"	"S12000036"	"Other"	0
+"2015 Q4"	"Clackmannanshire"	"S12000005"	"Other"	0
+"2015 Q4"	"Dumfries and Galloway"	"S12000006"	"Other"	0
+"2015 Q4"	"Dundee City"	"S12000042"	"Other"	0
+"2015 Q4"	"East Ayrshire"	"S12000008"	"Other"	0
+"2015 Q4"	"East Dunbartonshire"	"S12000045"	"Other"	0
+"2015 Q4"	"East Lothian"	"S12000010"	"Other"	0
+"2015 Q4"	"East Renfrewshire"	"S12000011"	"Other"	0
+"2015 Q4"	"Falkirk"	"S12000014"	"Other"	0
+"2015 Q4"	"Fife"	"S12000047"	"Other"	0
+"2015 Q4"	"Glasgow City"	"S12000049"	"Other"	1
+"2015 Q4"	"Highland"	"S12000017"	"Other"	0
+"2015 Q4"	"Inverclyde"	"S12000018"	"Other"	0
+"2015 Q4"	"Midlothian"	"S12000019"	"Other"	0
+"2015 Q4"	"Moray"	"S12000020"	"Other"	0
+"2015 Q4"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2015 Q4"	"North Ayrshire"	"S12000021"	"Other"	0
+"2015 Q4"	"North Lanarkshire"	"S12000050"	"Other"	0
+"2015 Q4"	"Orkney Islands"	"S12000023"	"Other"	0
+"2015 Q4"	"Perth and Kinross"	"S12000048"	"Other"	0
+"2015 Q4"	"Renfrewshire"	"S12000038"	"Other"	0
+"2015 Q4"	"Scottish Borders"	"S12000026"	"Other"	0
+"2015 Q4"	"Shetland Islands"	"S12000027"	"Other"	0
+"2015 Q4"	"South Ayrshire"	"S12000028"	"Other"	0
+"2015 Q4"	"South Lanarkshire"	"S12000029"	"Other"	0
+"2015 Q4"	"Stirling"	"S12000030"	"Other"	0
+"2015 Q4"	"West Dunbartonshire"	"S12000039"	"Other"	0
+"2015 Q4"	"West Lothian"	"S12000040"	"Other"	0
+"2015 Q3"	"Aberdeen City"	"S12000033"	"Other"	0
+"2015 Q3"	"Aberdeenshire"	"S12000034"	"Other"	0
+"2015 Q3"	"Angus"	"S12000041"	"Other"	0
+"2015 Q3"	"Argyll and Bute"	"S12000035"	"Other"	0
+"2015 Q3"	"City of Edinburgh"	"S12000036"	"Other"	0
+"2015 Q3"	"Clackmannanshire"	"S12000005"	"Other"	0
+"2015 Q3"	"Dumfries and Galloway"	"S12000006"	"Other"	0
+"2015 Q3"	"Dundee City"	"S12000042"	"Other"	0
+"2015 Q3"	"East Ayrshire"	"S12000008"	"Other"	0
+"2015 Q3"	"East Dunbartonshire"	"S12000045"	"Other"	0
+"2015 Q3"	"East Lothian"	"S12000010"	"Other"	0
+"2015 Q3"	"East Renfrewshire"	"S12000011"	"Other"	0
+"2015 Q3"	"Falkirk"	"S12000014"	"Other"	0
+"2015 Q3"	"Fife"	"S12000047"	"Other"	0
+"2015 Q3"	"Glasgow City"	"S12000049"	"Other"	1
+"2015 Q3"	"Highland"	"S12000017"	"Other"	0
+"2015 Q3"	"Inverclyde"	"S12000018"	"Other"	0
+"2015 Q3"	"Midlothian"	"S12000019"	"Other"	0
+"2015 Q3"	"Moray"	"S12000020"	"Other"	0
+"2015 Q3"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2015 Q3"	"North Ayrshire"	"S12000021"	"Other"	0
+"2015 Q3"	"North Lanarkshire"	"S12000050"	"Other"	0
+"2015 Q3"	"Orkney Islands"	"S12000023"	"Other"	0
+"2015 Q3"	"Perth and Kinross"	"S12000048"	"Other"	0
+"2015 Q3"	"Renfrewshire"	"S12000038"	"Other"	0
+"2015 Q3"	"Scottish Borders"	"S12000026"	"Other"	0
+"2015 Q3"	"Shetland Islands"	"S12000027"	"Other"	0
+"2015 Q3"	"South Ayrshire"	"S12000028"	"Other"	0
+"2015 Q3"	"South Lanarkshire"	"S12000029"	"Other"	0
+"2015 Q3"	"Stirling"	"S12000030"	"Other"	0
+"2015 Q3"	"West Dunbartonshire"	"S12000039"	"Other"	0
+"2015 Q3"	"West Lothian"	"S12000040"	"Other"	0
+"2015 Q2"	"Aberdeen City"	"S12000033"	"Other"	0
+"2015 Q2"	"Aberdeenshire"	"S12000034"	"Other"	0
+"2015 Q2"	"Angus"	"S12000041"	"Other"	0
+"2015 Q2"	"Argyll and Bute"	"S12000035"	"Other"	0
+"2015 Q2"	"City of Edinburgh"	"S12000036"	"Other"	0
+"2015 Q2"	"Clackmannanshire"	"S12000005"	"Other"	0
+"2015 Q2"	"Dumfries and Galloway"	"S12000006"	"Other"	0
+"2015 Q2"	"Dundee City"	"S12000042"	"Other"	0
+"2015 Q2"	"East Ayrshire"	"S12000008"	"Other"	0
+"2015 Q2"	"East Dunbartonshire"	"S12000045"	"Other"	0
+"2015 Q2"	"East Lothian"	"S12000010"	"Other"	0
+"2015 Q2"	"East Renfrewshire"	"S12000011"	"Other"	0
+"2015 Q2"	"Falkirk"	"S12000014"	"Other"	0
+"2015 Q2"	"Fife"	"S12000047"	"Other"	0
+"2015 Q2"	"Glasgow City"	"S12000049"	"Other"	0
+"2015 Q2"	"Highland"	"S12000017"	"Other"	0
+"2015 Q2"	"Inverclyde"	"S12000018"	"Other"	0
+"2015 Q2"	"Midlothian"	"S12000019"	"Other"	0
+"2015 Q2"	"Moray"	"S12000020"	"Other"	0
+"2015 Q2"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2015 Q2"	"North Ayrshire"	"S12000021"	"Other"	0
+"2015 Q2"	"North Lanarkshire"	"S12000050"	"Other"	0
+"2015 Q2"	"Orkney Islands"	"S12000023"	"Other"	0
+"2015 Q2"	"Perth and Kinross"	"S12000048"	"Other"	0
+"2015 Q2"	"Renfrewshire"	"S12000038"	"Other"	0
+"2015 Q2"	"Scottish Borders"	"S12000026"	"Other"	0
+"2015 Q2"	"Shetland Islands"	"S12000027"	"Other"	0
+"2015 Q2"	"South Ayrshire"	"S12000028"	"Other"	0
+"2015 Q2"	"South Lanarkshire"	"S12000029"	"Other"	0
+"2015 Q2"	"Stirling"	"S12000030"	"Other"	0
+"2015 Q2"	"West Dunbartonshire"	"S12000039"	"Other"	0
+"2015 Q2"	"West Lothian"	"S12000040"	"Other"	0
+"2015 Q1"	"Aberdeen City"	"S12000033"	"Other"	0
+"2015 Q1"	"Aberdeenshire"	"S12000034"	"Other"	0
+"2015 Q1"	"Angus"	"S12000041"	"Other"	0
+"2015 Q1"	"Argyll and Bute"	"S12000035"	"Other"	0
+"2015 Q1"	"City of Edinburgh"	"S12000036"	"Other"	0
+"2015 Q1"	"Clackmannanshire"	"S12000005"	"Other"	0
+"2015 Q1"	"Dumfries and Galloway"	"S12000006"	"Other"	0
+"2015 Q1"	"Dundee City"	"S12000042"	"Other"	0
+"2015 Q1"	"East Ayrshire"	"S12000008"	"Other"	0
+"2015 Q1"	"East Dunbartonshire"	"S12000045"	"Other"	0
+"2015 Q1"	"East Lothian"	"S12000010"	"Other"	0
+"2015 Q1"	"East Renfrewshire"	"S12000011"	"Other"	0
+"2015 Q1"	"Falkirk"	"S12000014"	"Other"	0
+"2015 Q1"	"Fife"	"S12000047"	"Other"	0
+"2015 Q1"	"Glasgow City"	"S12000049"	"Other"	0
+"2015 Q1"	"Highland"	"S12000017"	"Other"	0
+"2015 Q1"	"Inverclyde"	"S12000018"	"Other"	0
+"2015 Q1"	"Midlothian"	"S12000019"	"Other"	0
+"2015 Q1"	"Moray"	"S12000020"	"Other"	0
+"2015 Q1"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2015 Q1"	"North Ayrshire"	"S12000021"	"Other"	0
+"2015 Q1"	"North Lanarkshire"	"S12000050"	"Other"	0
+"2015 Q1"	"Orkney Islands"	"S12000023"	"Other"	0
+"2015 Q1"	"Perth and Kinross"	"S12000048"	"Other"	0
+"2015 Q1"	"Renfrewshire"	"S12000038"	"Other"	0
+"2015 Q1"	"Scottish Borders"	"S12000026"	"Other"	0
+"2015 Q1"	"Shetland Islands"	"S12000027"	"Other"	0
+"2015 Q1"	"South Ayrshire"	"S12000028"	"Other"	0
+"2015 Q1"	"South Lanarkshire"	"S12000029"	"Other"	0
+"2015 Q1"	"Stirling"	"S12000030"	"Other"	0
+"2015 Q1"	"West Dunbartonshire"	"S12000039"	"Other"	0
+"2015 Q1"	"West Lothian"	"S12000040"	"Other"	0
+"2014"	"Aberdeen City"	"S12000033"	"Other"	0
+"2014"	"Aberdeenshire"	"S12000034"	"Other"	0
+"2014"	"Angus"	"S12000041"	"Other"	0
+"2014"	"Argyll and Bute"	"S12000035"	"Other"	0
+"2014"	"City of Edinburgh"	"S12000036"	"Other"	0
+"2014"	"Clackmannanshire"	"S12000005"	"Other"	0
+"2014"	"Dumfries and Galloway"	"S12000006"	"Other"	0
+"2014"	"Dundee City"	"S12000042"	"Other"	0
+"2014"	"East Ayrshire"	"S12000008"	"Other"	0
+"2014"	"East Dunbartonshire"	"S12000045"	"Other"	0
+"2014"	"East Lothian"	"S12000010"	"Other"	0
+"2014"	"East Renfrewshire"	"S12000011"	"Other"	0
+"2014"	"Falkirk"	"S12000014"	"Other"	0
+"2014"	"Fife"	"S12000047"	"Other"	0
+"2014"	"Glasgow City"	"S12000049"	"Other"	0
+"2014"	"Highland"	"S12000017"	"Other"	0
+"2014"	"Inverclyde"	"S12000018"	"Other"	0
+"2014"	"Midlothian"	"S12000019"	"Other"	0
+"2014"	"Moray"	"S12000020"	"Other"	0
+"2014"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2014"	"North Ayrshire"	"S12000021"	"Other"	0
+"2014"	"North Lanarkshire"	"S12000050"	"Other"	0
+"2014"	"Orkney Islands"	"S12000023"	"Other"	0
+"2014"	"Perth and Kinross"	"S12000048"	"Other"	0
+"2014"	"Renfrewshire"	"S12000038"	"Other"	0
+"2014"	"Scottish Borders"	"S12000026"	"Other"	0
+"2014"	"Shetland Islands"	"S12000027"	"Other"	0
+"2014"	"South Ayrshire"	"S12000028"	"Other"	0
+"2014"	"South Lanarkshire"	"S12000029"	"Other"	0
+"2014"	"Stirling"	"S12000030"	"Other"	0
+"2014"	"West Dunbartonshire"	"S12000039"	"Other"	0
+"2014"	"West Lothian"	"S12000040"	"Other"	0
+"2013"	"Aberdeen City"	"S12000033"	"Other"	0
+"2013"	"Aberdeenshire"	"S12000034"	"Other"	0
+"2013"	"Angus"	"S12000041"	"Other"	0
+"2013"	"Argyll and Bute"	"S12000035"	"Other"	0
+"2013"	"City of Edinburgh"	"S12000036"	"Other"	0
+"2013"	"Clackmannanshire"	"S12000005"	"Other"	0
+"2013"	"Dumfries and Galloway"	"S12000006"	"Other"	0
+"2013"	"Dundee City"	"S12000042"	"Other"	0
+"2013"	"East Ayrshire"	"S12000008"	"Other"	0
+"2013"	"East Dunbartonshire"	"S12000045"	"Other"	0
+"2013"	"East Lothian"	"S12000010"	"Other"	0
+"2013"	"East Renfrewshire"	"S12000011"	"Other"	0
+"2013"	"Falkirk"	"S12000014"	"Other"	0
+"2013"	"Fife"	"S12000047"	"Other"	0
+"2013"	"Glasgow City"	"S12000049"	"Other"	0
+"2013"	"Highland"	"S12000017"	"Other"	0
+"2013"	"Inverclyde"	"S12000018"	"Other"	0
+"2013"	"Midlothian"	"S12000019"	"Other"	0
+"2013"	"Moray"	"S12000020"	"Other"	0
+"2013"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2013"	"North Ayrshire"	"S12000021"	"Other"	0
+"2013"	"North Lanarkshire"	"S12000050"	"Other"	0
+"2013"	"Orkney Islands"	"S12000023"	"Other"	0
+"2013"	"Perth and Kinross"	"S12000048"	"Other"	0
+"2013"	"Renfrewshire"	"S12000038"	"Other"	0
+"2013"	"Scottish Borders"	"S12000026"	"Other"	0
+"2013"	"Shetland Islands"	"S12000027"	"Other"	0
+"2013"	"South Ayrshire"	"S12000028"	"Other"	0
+"2013"	"South Lanarkshire"	"S12000029"	"Other"	0
+"2013"	"Stirling"	"S12000030"	"Other"	0
+"2013"	"West Dunbartonshire"	"S12000039"	"Other"	0
+"2013"	"West Lothian"	"S12000040"	"Other"	0
+"2012"	"Aberdeen City"	"S12000033"	"Other"	0
+"2012"	"Aberdeenshire"	"S12000034"	"Other"	0
+"2012"	"Angus"	"S12000041"	"Other"	0
+"2012"	"Argyll and Bute"	"S12000035"	"Other"	0
+"2012"	"City of Edinburgh"	"S12000036"	"Other"	0
+"2012"	"Clackmannanshire"	"S12000005"	"Other"	0
+"2012"	"Dumfries and Galloway"	"S12000006"	"Other"	0
+"2012"	"Dundee City"	"S12000042"	"Other"	0
+"2012"	"East Ayrshire"	"S12000008"	"Other"	0
+"2012"	"East Dunbartonshire"	"S12000045"	"Other"	0
+"2012"	"East Lothian"	"S12000010"	"Other"	0
+"2012"	"East Renfrewshire"	"S12000011"	"Other"	0
+"2012"	"Falkirk"	"S12000014"	"Other"	0
+"2012"	"Fife"	"S12000047"	"Other"	0
+"2012"	"Glasgow City"	"S12000049"	"Other"	0
+"2012"	"Highland"	"S12000017"	"Other"	0
+"2012"	"Inverclyde"	"S12000018"	"Other"	0
+"2012"	"Midlothian"	"S12000019"	"Other"	0
+"2012"	"Moray"	"S12000020"	"Other"	0
+"2012"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2012"	"North Ayrshire"	"S12000021"	"Other"	0
+"2012"	"North Lanarkshire"	"S12000050"	"Other"	0
+"2012"	"Orkney Islands"	"S12000023"	"Other"	0
+"2012"	"Perth and Kinross"	"S12000048"	"Other"	0
+"2012"	"Renfrewshire"	"S12000038"	"Other"	0
+"2012"	"Scottish Borders"	"S12000026"	"Other"	0
+"2012"	"Shetland Islands"	"S12000027"	"Other"	0
+"2012"	"South Ayrshire"	"S12000028"	"Other"	0
+"2012"	"South Lanarkshire"	"S12000029"	"Other"	0
+"2012"	"Stirling"	"S12000030"	"Other"	0
+"2012"	"West Dunbartonshire"	"S12000039"	"Other"	0
+"2012"	"West Lothian"	"S12000040"	"Other"	0
+"2011"	"Aberdeen City"	"S12000033"	"Other"	0
+"2011"	"Aberdeenshire"	"S12000034"	"Other"	0
+"2011"	"Angus"	"S12000041"	"Other"	0
+"2011"	"Argyll and Bute"	"S12000035"	"Other"	0
+"2011"	"City of Edinburgh"	"S12000036"	"Other"	0
+"2011"	"Clackmannanshire"	"S12000005"	"Other"	0
+"2011"	"Dumfries and Galloway"	"S12000006"	"Other"	0
+"2011"	"Dundee City"	"S12000042"	"Other"	0
+"2011"	"East Ayrshire"	"S12000008"	"Other"	0
+"2011"	"East Dunbartonshire"	"S12000045"	"Other"	0
+"2011"	"East Lothian"	"S12000010"	"Other"	0
+"2011"	"East Renfrewshire"	"S12000011"	"Other"	0
+"2011"	"Falkirk"	"S12000014"	"Other"	0
+"2011"	"Fife"	"S12000047"	"Other"	0
+"2011"	"Glasgow City"	"S12000049"	"Other"	0
+"2011"	"Highland"	"S12000017"	"Other"	0
+"2011"	"Inverclyde"	"S12000018"	"Other"	0
+"2011"	"Midlothian"	"S12000019"	"Other"	0
+"2011"	"Moray"	"S12000020"	"Other"	0
+"2011"	"Na h-Eileanan Siar"	"S12000013"	"Other"	0
+"2011"	"North Ayrshire"	"S12000021"	"Other"	0
+"2011"	"North Lanarkshire"	"S12000050"	"Other"	0
+"2011"	"Orkney Islands"	"S12000023"	"Other"	0
+"2011"	"Perth and Kinross"	"S12000048"	"Other"	0
+"2011"	"Renfrewshire"	"S12000038"	"Other"	0
+"2011"	"Scottish Borders"	"S12000026"	"Other"	0
+"2011"	"Shetland Islands"	"S12000027"	"Other"	0
+"2011"	"South Ayrshire"	"S12000028"	"Other"	0
+"2011"	"South Lanarkshire"	"S12000029"	"Other"	0
+"2011"	"Stirling"	"S12000030"	"Other"	0
+"2011"	"West Dunbartonshire"	"S12000039"	"Other"	0
+"2011"	"West Lothian"	"S12000040"	"Other"	0
