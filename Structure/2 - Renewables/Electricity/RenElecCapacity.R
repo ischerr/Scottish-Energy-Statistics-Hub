@@ -46,15 +46,15 @@ RenElecCapacityOutput <- function(id) {
                ),
                column(
                  4, style = 'padding:15px;',
-                 downloadButton(ns('LAGenMap.png'), 'Download Graph', style="float:right")
+                 downloadButton(ns('LACapMap.png'), 'Download Graph', style="float:right")
                )),
                fluidRow(column(6,selectInput(ns("YearSelect"), "Year:", c(max(LARenCap$Year):min(LARenCap$Year)), selected = max(LARenCap$Year), multiple = FALSE,
                                              selectize = TRUE, width = NULL, size = NULL) ),
-                        column(6, align = 'right', selectInput(ns("TechSelect"), "Tech:", c(unique(names(LARenCap[4:15]))), selected = "Total", multiple = FALSE,
+                        column(6, align = 'right', selectInput(ns("TechSelect"), "Tech:", c(unique(names(LARenCap[4:10]))), selected = "Total Renewable", multiple = FALSE,
                                                                selectize = TRUE, width = "300px", size = NULL))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
                #dygraphOutput(ns("ElecGenFuelPlot")),
-               leafletOutput(ns("LAGenMap"), height = "675px")%>% withSpinner(color="#39ab2c"),
+               leafletOutput(ns("LACapMap"), height = "675px")%>% withSpinner(color="#39ab2c"),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Operational capacity tech",
              fluidRow(column(8,
@@ -121,6 +121,18 @@ RenElecCapacityOutput <- function(id) {
                ),
                fluidRow(
                  column(12, dataTableOutput(ns("RenElecOperationalSizeTable"))%>% withSpinner(color="#39ab2c"))),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+      tabPanel("Local Authority",
+               fluidRow(
+                 column(10, h3("Data - Renewable electricity generation at Local Authority Level (GWh)", style = "color: #39ab2c;  font-weight:bold")),
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
+               ),
+               fluidRow(
+                 column(12,selectInput(ns("YearSelect2"), "Year:", c(max(LARenCap$Year):min(LARenCap$Year)), selected = max(LARenCap$Year), multiple = FALSE,
+                                       selectize = TRUE, width = "200px", size = NULL) )
+               ),
+               fluidRow(
+                 column(12, dataTableOutput(ns("LACapTable"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
   
     fluidRow(
@@ -2393,7 +2405,7 @@ RenElecCapacity <- function(input, output, session) {
   
   
   
-  output$LAGenMap <- renderLeaflet({
+  output$LACapMap <- renderLeaflet({
     
     ### Load Packages
     library(readr)
@@ -2416,7 +2428,7 @@ RenElecCapacity <- function(input, output, session) {
     
     Tech = as.character(input$TechSelect)
     
-    LARenCap <- read_delim("Processed Data/Output/Renewable Capacity/LARenCapTechTime.txt", 
+    LARenCap <- read_delim("Processed Data/Output/Renewable Capacity/LARenCapSimple.txt", 
                            "\t", escape_double = FALSE, trim_ws = TRUE)
     
     LARenCap <-  melt(LARenCap, id.vars = c("LACode", "LAName", "Year"))
@@ -2475,9 +2487,9 @@ RenElecCapacity <- function(input, output, session) {
   
   
   
-  output$LAGenTable = renderDataTable({
+  output$LACapTable = renderDataTable({
     
-    LARenCap <- read_delim("Processed Data/Output/Renewable Capacity/LARenCapTechTime.txt", 
+    LARenCap <- read_delim("Processed Data/Output/Renewable Capacity/LARenCapSimple.txt", 
                            "\t", escape_double = FALSE, trim_ws = TRUE)
     
     Year2 = as.numeric(input$YearSelect2)
@@ -2523,8 +2535,8 @@ RenElecCapacity <- function(input, output, session) {
   })
   
   
-  output$LAGenMap.png <- downloadHandler(
-    filename = "LAGenMap.png",
+  output$LACapMap.png <- downloadHandler(
+    filename = "LACapMap.png",
     content = function(file) {
       writePNG(readPNG("Structure/2 - Renewables/Electricity/LARenCap.png"), file) 
     }

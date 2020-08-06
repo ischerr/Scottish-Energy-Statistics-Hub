@@ -34,7 +34,7 @@ BalanceDropdown <- reactiveValues(Unit = "ktoe")
 LARenGen <- read_delim("Processed Data/Output/Renewable Generation/LARenGen.txt", 
                        "\t", escape_double = FALSE, trim_ws = TRUE)
 
-LARenCap <- read_delim("Processed Data/Output/Renewable Capacity/LARenCapTechTime.txt", 
+LARenCap <- read_delim("Processed Data/Output/Renewable Capacity/LARenCapSimple.txt", 
                        "\t", escape_double = FALSE, trim_ws = TRUE)
 
 RenHeatDropdown <- reactiveValues(Measure = "Capacity")
