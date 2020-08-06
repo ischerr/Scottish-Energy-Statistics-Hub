@@ -81,13 +81,21 @@ RenElecCapacityOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     tabsetPanel(
 
-      tabPanel("Capacity by technology",
+      tabPanel("Quarterly Capacity by technology",
                fluidRow(
-                 column(10, h3("Data - Operational renewable capacity by technology (MW)", style = "color: #39ab2c;  font-weight:bold")),
+                 column(10, h3("Data - Quarterly operational renewable capacity by technology (MW)", style = "color: #39ab2c;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
                  column(12, dataTableOutput(ns("RenElecBreakdownCapTable"))%>% withSpinner(color="#39ab2c"))),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+      tabPanel("Annual Capacity by technology",
+               fluidRow(
+                 column(10, h3("Data - Annual operational renewable capacity by technology (MW)", style = "color: #39ab2c;  font-weight:bold")),
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+               ),
+               fluidRow(
+                 column(12, dataTableOutput(ns("AnnualRenElecBreakdownCapTable"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Renewable sites",
                fluidRow(
@@ -280,6 +288,62 @@ RenElecCapacity <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
+        title = "Operational renewable capacity by technology (MW)",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Operational renewable capacity by technology (MW)',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Operational renewable capacity by technology (MW)')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(2:ncol(Data), 0) %>% 
+      formatStyle(12, fontWeight = "bold")
+  })
+  
+  output$AnnualRenElecBreakdownCapTable = renderDataTable({
+    
+    Data <- read_delim("Processed Data/Output/Renewable Capacity/AnnualCapacityScotland.txt", 
+                                              "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    names(Data) <- c("Date", "Wind Onshore", "Wind Offshore", "Shoreline wave / tidal", "Solar P.V.", "Small Hydro", "Large Hydro", "Landfill Gas", "Sewage", "Waste", "Animal Biomass", "Anaerobic Digestion", "Plant",                      "Total")
+    
+    Data$Biomass <- Data$`Animal Biomass` + Data$Plant
+    
+    Data$`Animal Biomass` <- NULL
+    
+    Data$Plant <- NULL
+    
+    Data$`Anaerobic Digestion` <- Data$`Anaerobic Digestion` + Data$Sewage
+    
+    Data$Sewage <- NULL
+    
+    names(Data)[1] <- "Year"
+    
+    Data<- Data[seq(dim(Data)[1],1),]
+    
+    datatable(
+      Data[c(1:10,12,11)],
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
         title = "Operational renewable capacity by technology (MW)",
         dom = 'ltBp',
         buttons = list(
