@@ -973,19 +973,10 @@ ElecConsumption <- function(input, output, session) {
   
   output$ElecConsumptionLATable = renderDataTable({
 
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Elec consump household",
-      col_names = TRUE,
-      skip = 12
-    )
-    
-    Year <- max(as.numeric(Data$Year), na.rm = TRUE)
-    
     ElectricityConsumption <- read_csv("Processed Data/Output/Consumption/ElectricityConsumption.csv")
     
     
-    ElectricityConsumption <- ElectricityConsumption[which(ElectricityConsumption$Year == Year),]
+    ElectricityConsumption <- ElectricityConsumption[which(ElectricityConsumption$Year ==max(ElectricityConsumption$Year)),]
     
     ElectricityConsumption <-  ElectricityConsumption[c(3,2,25,14)]
     
