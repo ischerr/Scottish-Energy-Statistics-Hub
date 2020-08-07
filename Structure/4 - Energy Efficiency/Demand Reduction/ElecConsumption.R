@@ -83,7 +83,7 @@ ElecConsumptionOutput <- function(id) {
              ),
     tabPanel("Data LA",
              fluidRow(
-               column(10, h3("Data - Total final energy consumption by consuming sector (GWh), by local authority in Scotland, 2018", style = "color: #34d1a3;  font-weight:bold")),
+               column(10, h3("Data - Average annual household consumption of electricity by local authority, 2018", style = "color: #34d1a3;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -972,17 +972,29 @@ ElecConsumption <- function(input, output, session) {
   }, deleteFile = TRUE)
   
   output$ElecConsumptionLATable = renderDataTable({
-    
-    ElecConsumptionLA <- read_excel(
+
+    Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
-      sheet = "Elec consump hhold LA",
-      skip = 12,
-      n_max = 34
+      sheet = "Elec consump household",
+      col_names = TRUE,
+      skip = 12
     )
     
-    names(ElecConsumptionLA)[1:2] <- c("Geography Code", "Local Authority")
+    Year <- max(as.numeric(Data$Year), na.rm = TRUE)
+    
+    ElectricityConsumption <- read_csv("Processed Data/Output/Consumption/ElectricityConsumption.csv")
+    
+    
+    ElectricityConsumption <- ElectricityConsumption[which(ElectricityConsumption$Year == Year),]
+    
+    ElectricityConsumption <-  ElectricityConsumption[c(3,2,25,14)]
+    
+    names(ElectricityConsumption) <- c("Geography Code","Local Authority", "Average household consumption (kWh)", "Total Consumption (GWh)")
+    
+    ElectricityConsumption <- ElectricityConsumption[complete.cases(ElectricityConsumption),]
+    
     datatable(
-      ElecConsumptionLA,
+      ElectricityConsumption,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -992,17 +1004,17 @@ ElecConsumption <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Total final energy consumption by consuming sector (GWh), by local authority in Scotland, 2018",
+        title = "Average annual household consumption of electricity by local authority, 2018",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Total final energy consumption by consuming sector (GWh), by local authority in Scotland, 2018',
+            title = 'Average annual household consumption of electricity by local authority, 2018',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Total final energy consumption by consuming sector (GWh), by local authority in Scotland, 2018')
+               title = 'Average annual household consumption of electricity by local authority, 2018')
         ),
         
         # customize the length menu
@@ -1012,7 +1024,7 @@ ElecConsumption <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(3, 0)
+      formatRound(3:4, 0)
   })
   
   observeEvent(input$ToggleTable3, {
