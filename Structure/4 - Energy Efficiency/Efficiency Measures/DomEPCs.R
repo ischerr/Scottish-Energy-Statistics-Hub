@@ -52,6 +52,7 @@ DomEPCsOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
              #dygraphOutput(ns("StockEPCPlot")),
              plotlyOutput(ns("EPCTenurePlot"))%>% withSpinner(color="#34d1a3"),
+             HTML("<blockquote><p>*based on SAP 2012 RdSAP v9.93&nbsp;</p></blockquote>"),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
@@ -85,6 +86,7 @@ DomEPCsOutput <- function(id) {
              ),
              fluidRow(
                column(12, dataTableOutput(ns("EPCTenureTable"))%>% withSpinner(color="#34d1a3"))),
+             HTML("<blockquote><p>*based on SAP 2012 RdSAP v9.93&nbsp;</p></blockquote>"),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
       column(2, p("Update expected:")),
@@ -705,8 +707,10 @@ DomEPCs <- function(input, output, session) {
     
     Data$`C or Better` <- Data$A + Data$B + Data$C
     
+    Table <- Data
+    
     datatable(
-      Data,
+      Table,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -716,19 +720,17 @@ DomEPCs <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        ordering = TRUE,
-        order = list(list(7, 'desc')),
-        title = "Distribution of Scottish housing stock by EPC band and housing tenure",
+        title = "Distribution of Scottish housing stock by EPC band and housing tenure (based on SAP 2012 RdSAP v9.93)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Distribution of Scottish housing stock by EPC band and housing tenure',
+            title = 'Distribution of Scottish housing stock by EPC band and housing tenure (based on SAP 2012 RdSAP v9.93)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Distribution of Scottish housing stock by EPC band and housing tenure')
+               title = 'Distribution of Scottish housing stock by EPC band and housing tenure (based on SAP 2012 RdSAP v9.93)')
         ),
         
         # customize the length menu
@@ -738,7 +740,7 @@ DomEPCs <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:9, 0)
+      formatPercentage(2:8, 0)
   })
   
   output$Text <- renderUI({
@@ -983,7 +985,7 @@ DomEPCs <- function(input, output, session) {
       mutate(top = sum(value))
     
     plottitle <-
-      "Distribution of housing stock by EPC band"
+      "Distribution of housing stock by EPC band "
     sourcecaption <- "Source: SG"
     
     ChartColours <- c("#34d1a3", "#FF8500")
@@ -1211,7 +1213,7 @@ DomEPCs <- function(input, output, session) {
         mutate(top = sum(value))
       
       plottitle <-
-        "Domestic EPC by housing tenure"
+        "Domestic EPC by housing tenure\n(based on SAP 2012 RdSAP v9.93)"
       sourcecaption <- "Source: SG"
       
       ChartColours <- c("#34d1a3", "#FF8500")

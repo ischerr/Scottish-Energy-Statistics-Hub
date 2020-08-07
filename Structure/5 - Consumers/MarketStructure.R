@@ -395,7 +395,7 @@ MarketStructure <- function(input, output, session) {
     Data <- read_delim("Processed Data/Output/Domestic Suppliers/DomesticSuppliers.txt", 
                        "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    paste("Great Britain, ", format(min(Data$Date), format = "%B %Y")," - " ,format(max(Data$Date), format = "%B %Y"))
+    paste("Scotland, ", format(min(Data$Date), format = "%B %Y")," - " ,format(max(Data$Date), format = "%B %Y"))
   })
   
   output$MarketSupplierPlot <- renderPlotly({
@@ -736,7 +736,7 @@ MarketStructure <- function(input, output, session) {
           title = plottitle,
           face = 2,
           subtitle = paste(
-            "Great Britain,",
+            "Scotland,",
             format(min(Data$Year), format = "%b %Y"),
             "-",
             format(max(Data$Year), format = "%b %Y")

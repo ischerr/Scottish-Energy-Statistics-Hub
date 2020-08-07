@@ -121,7 +121,7 @@ FixedTariffs <- function(input, output, session) {
     
     names(Data)[1] <- "Year"
     
-    
+    Data$Year <- dmy(Data$Year)
     
     ElecPayments <- Data
     
@@ -274,6 +274,8 @@ FixedTariffs <- function(input, output, session) {
     
     names(Data) <- c("Year", "North Scotland", "South Scotland", "Great Britain")
     
+    Data$Year <- dmy(Data$Year)
+    
     Data$Year <- as.yearqtr(Data$Year)
     
     Data$Year <- format(Data$Year, "%Y Q%q")
@@ -344,7 +346,7 @@ FixedTariffs <- function(input, output, session) {
     
     names(Data)[1] <- "Year"
     
-    
+    Data$Year <- dmy(Data$Year)
 
     ElecPayments <- Data
     
@@ -570,6 +572,8 @@ FixedTariffs <- function(input, output, session) {
       
       names(ElectricityBillPaymentMethods) <- c("Year", "North Scotland", "South Scotland", "Great Britain")
       
+      ElectricityBillPaymentMethods$Year <- dmy(ElectricityBillPaymentMethods$Year)
+      
       ElectricityBillPaymentMethods$Year <- as.yearqtr(ElectricityBillPaymentMethods$Year)
       
       ### variables
@@ -714,6 +718,7 @@ FixedTariffs <- function(input, output, session) {
             y = `Great Britain`,
             label = ifelse(Year == max(Year), percent(`Great Britain`,  accuracy = 1), ""),
             hjust = 0.5,
+            vjust = 0,
             fontface = 2
           ),
           colour = BarColours[3],
@@ -790,6 +795,8 @@ FixedTariffs <- function(input, output, session) {
                                            "\t", escape_double = FALSE, trim_ws = TRUE)
       
       names(GasBillPaymentMethods) <- c("Year", "North Scotland", "South Scotland", "Great Britain")
+      
+      GasBillPaymentMethods$Year <- dmy(GasBillPaymentMethods$Year)
       
       GasBillPaymentMethods$Year <- as.yearqtr(GasBillPaymentMethods$Year)
       
@@ -935,6 +942,7 @@ FixedTariffs <- function(input, output, session) {
             y = `Great Britain`,
             label = ifelse(Year == max(Year), percent(`Great Britain`,  accuracy = 1), ""),
             hjust = 0.5,
+            vjust = 0,
             fontface = 2
           ),
           colour = BarColours[3],

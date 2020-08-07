@@ -305,12 +305,11 @@ output$HomeTab <- renderUI({
   setZoom(id = "SetEffects"),
   setShadow(id = "SetEffects"),
   fluidRow(
-    column(width = 3),
-    column(width = 6,
+    column(width = 4,
            actionLink(
              "GoToCovidTab",
              label = div(
-               tags$h3("Energy demand in Scotland since Covid-19 lockdown", style = "color: black;"),
+               tags$h3("Covid-19 energy analysis", style = "color: black;"),
                tags$p(
                  " ",
                  style = "color: black;"
@@ -319,11 +318,7 @@ output$HomeTab <- renderUI({
                style = "border: solid 2px #000000; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px; ",
                id = "SetEffects"
              )
-           )),
-    column(width = 3),
-    style = "padding: 10px; margin-top: 20px;"
-  ),
-  fluidRow(
+           )),    
     column(width = 4,
            actionLink(
              "GoToTotalEnergyTab",
@@ -337,7 +332,7 @@ output$HomeTab <- renderUI({
                style = "border: solid 2px #269356; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px; ",
                id = "SetEffects"
              )
-           )),
+           )),    
     column(width = 4,
            actionLink(
              "GoToRenLowCarbonTab",
@@ -352,6 +347,9 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
+    style = "padding: 10px; margin-top: 20px;"
+  ),
+  fluidRow(
     column(width = 4,
            actionLink(
              "GoToLocalEnergyTab",
@@ -365,11 +363,7 @@ output$HomeTab <- renderUI({
                style = "border: solid 2px #A3D65C; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px;",
                id = "SetEffects"
              )
-           )),
-
-    style = "padding: 10px; margin-top: 20px;"
-  ),
-  fluidRow( 
+           )), 
     column(width = 4,
            actionLink(
              "GoToEnergyEfficiencyTab",
@@ -398,6 +392,10 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
+
+    style = "padding: 10px; margin-top: 20px;"
+  ),
+  fluidRow( 
     column(width = 4,
            actionLink(
              "GoToSystemSecurityTab",
@@ -412,11 +410,6 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )), 
-    
-    style = "padding: 10px; margin-top: 20px;"
-  ),
-fluidRow(
-  column(width = 2),
   column(width = 4,
            actionLink(
              "GoToOilGasTab",
@@ -461,6 +454,23 @@ ui <- shinyUI(fluidPage(
   extendShinyjs(text = js_code, functions = 'browseURL'),
   title = "Scottish Energy Statistics Hub",
   tags$head(tags$link(rel = "shortcut icon", href = "https://www.gov.scot/favicon.ico")),
+  tags$head(
+    tags$style(type="text/css", 
+               "label.control-label, .selectize-control.single { 
+         display: table-cell; 
+         text-align: center; 
+         vertical-align: middle; 
+      } 
+      label.control-label {
+        padding-right: 10px;
+      }
+      .form-group { 
+        display: table-row;
+      }
+      .selectize-control.single div.item {
+        padding-right: 15px;
+      }")
+  ),
   #' tags$head(HTML("<meta charset='utf-8'>
   #'   <title>Emoji</title>
   #'   <style>
@@ -576,7 +586,7 @@ ui <- shinyUI(fluidPage(
           tabPanel(title ="Renewable Heat Target", 
                    value = "RenHeat",
                    RenHeatOutput("RenHeat")),
-          tabPanel(title ="Renewable Heat by Tech Type", 
+          tabPanel(title ="Renewable Heat", 
                    value = "RenHeatTech",
                    RenHeatTechOutput("RenHeatTech")),
           tabPanel(title ="Renewable Heat by Size", 

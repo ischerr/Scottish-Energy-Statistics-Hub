@@ -88,6 +88,25 @@ LocalRenewablesOutput <- function(id) {
                plotlyOutput(ns("CommunityOperatingOutputTypePlot"))%>% withSpinner(color="#a3d65c"),
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
       
+      tabPanel("Estimated generation by output",
+               fluidRow(
+                 column(
+                   8,
+                   h3("Estimated generation of operational community and locally owned renewable installations by type of output (GWh)", style = "color: #a3d65c;  font-weight:bold"),
+                   h4(textOutput(ns('CommunityOperatingOutputTypeGenSubtitle')), style = "color: #a3d65c;")
+                 ),
+                 column(
+                   4,
+                   style = 'padding:15px;',
+                   downloadButton(ns('CommunityOperatingOutputTypeGen.png'), 'Download Graph', style =
+                                    "float:right")
+                 )
+               ),
+               
+               tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
+               plotlyOutput(ns("CommunityOperatingOutputTypeGenPlot"))%>% withSpinner(color="#a3d65c"),
+               tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
+      
       tabPanel("Operating capacity by ownership",
                fluidRow(
                  column(
@@ -145,7 +164,7 @@ LocalRenewablesOutput <- function(id) {
     )%>% withSpinner(color="#a3d65c"))),
     tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
     
-    tabPanel("By Technology",
+    tabPanel("Technology",
              fluidRow(
                column(10, h3("Data - Capacity of operational community and locally owned renewable installations by technology", style = "color: #a3d65c;  font-weight:bold")),
                column(
@@ -159,7 +178,7 @@ LocalRenewablesOutput <- function(id) {
              )%>% withSpinner(color="#a3d65c"))),
              tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
     
-    tabPanel("By output",
+    tabPanel("Output",
              fluidRow(
                column(10, h3("Data - Estimated capacity of operational community and locally owned renewable installations by type of output", style = "color: #a3d65c;  font-weight:bold")),
                column(
@@ -172,8 +191,21 @@ LocalRenewablesOutput <- function(id) {
                ns("CommunityOperatingOutputTypeTable")
              )%>% withSpinner(color="#a3d65c"))),
              tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
+    tabPanel("Output, estimated generation",
+             fluidRow(
+               column(10, h3("Data - Estimated generation of operational community and locally owned renewable installations by type of output", style = "color: #a3d65c;  font-weight:bold")),
+               column(
+                 2,
+                 style = "padding:15px",
+                 actionButton(ns("ToggleTable6"), "Show/Hide Table", style = "float:right; ")
+               )
+             ),
+             fluidRow(column(12, dataTableOutput(
+               ns("CommunityOperatingOutputTypeGenTable")
+             )%>% withSpinner(color="#a3d65c"))),
+             tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
     
-    tabPanel("By ownership category",
+    tabPanel("Ownership category",
              fluidRow(
                column(10, h3("Data - Estimated capacity of operational community and locally owned renewable installations by ownership category", style = "color: #a3d65c;  font-weight:bold")),
                column(
@@ -713,11 +745,13 @@ LocalRenewables <- function(input, output, session) {
       
       names(Data) <- c("Year", "Renewables")
       
+      Data$Date <- Data$Year
+      
       Data$Year <- as.numeric(substr(Data$Year,1,4))
       
       Data <- Data[complete.cases(Data$Year),]
       
-      Data2 <- data.frame(Year = c(2020, 2030 ), `Renewables` = NA, Target = c(1000,2000))
+      Data2 <- data.frame(Year = c(2020, 2030 ), `Renewables` = NA, Target = c(1000,2000), `Date` = c(dmy("01/01/2020"), dmy("01/01/2030")))
       
       Data <- rbind.fill(Data, Data2)
       
@@ -777,8 +811,8 @@ LocalRenewables <- function(input, output, session) {
           aes(
             x = Year,
             y = 0,
-            label = ifelse(Year == max(Year[which(Renewables > 0)]), Year, ""),
-            hjust = 0.75,
+            label = ifelse(Year == max(Year[which(Renewables > 0)]), format(Date, "%b %Y"), ""),
+            hjust = 1,
             vjust = 1.5,
             colour = ChartColours[1],
             fontface = 2
@@ -789,7 +823,7 @@ LocalRenewables <- function(input, output, session) {
           aes(
             x = Year,
             y = 0,
-            label = ifelse(Year == min(Year), Year, ""),
+            label = ifelse(Year == min(Year), format(Date, "%b %Y"), ""),
             hjust = 0.5,
             vjust = 1.5,
             colour = ChartColours[1],
@@ -825,7 +859,7 @@ LocalRenewables <- function(input, output, session) {
           aes(
             x = Year,
             y = 0,
-            label = ifelse(Year == Year[which(Target > 0)], Year, ""),
+            label = ifelse(Year == Year[which(Target > 0)], format(Date, "%b %Y"), ""),
             hjust = 0.5,
             vjust = 1.5,
             colour = ChartColours[2],
@@ -856,7 +890,7 @@ LocalRenewables <- function(input, output, session) {
       ggsave(
         file,
         plot = ComCapOperatingChart,
-        width = 15,
+        width = 20,
         height = 15,
         units = "cm",
         dpi = 300
@@ -1523,6 +1557,201 @@ LocalRenewables <- function(input, output, session) {
   
   observeEvent(input$ToggleText, {
     toggle("Text")
+  })
+  
+  
+  output$CommunityOperatingOutputTypeGenSubtitle <- renderText({
+    paste(QuarterSubtitle)
+  })
+  
+  output$CommunityOperatingOutputTypeGenPlot <- renderPlotly  ({
+    
+    CommunityOperatingOutputType <- read_excel("Structure/CurrentWorking.xlsx", 
+                                               sheet = "Comm & locally owned ren", col_names = TRUE, 
+                                               skip = 46, n_max = 4)
+    
+    CommunityOperatingOutputType <- CommunityOperatingOutputType[c(11,14,15)]
+    
+    names(CommunityOperatingOutputType) <- c("Type", "Generation", "%")
+    
+    CommunityOperatingOutputType$Generation <- as.numeric(CommunityOperatingOutputType$Generation)
+    
+    CommunityOperatingOutputType[is.na( CommunityOperatingOutputType)] <- 0.99
+    
+    CommunityOperatingOutputType$Type <- paste0("<b>", str_wrap(CommunityOperatingOutputType$Type, 16), "</b>")
+    
+    ChartColours <- c("#a3d65c", "#FF8500")
+    
+    p <- plot_ly(
+      data = CommunityOperatingOutputType,
+      y = ~Type,
+      x = ~Generation,
+      text = paste0(CommunityOperatingOutputType$Type,
+                    "\nGeneration: ",
+                    ifelse(CommunityOperatingOutputType$Generation <1, "<1", CommunityOperatingOutputType$Generation), " GWh"
+      ),
+      name = "Generation",
+      type = "bar",
+      hoverinfo = "text",
+      orientation = 'h',
+      marker = list(color =  ChartColours[1])
+    )  %>% 
+      layout(
+        barmode = 'stack',
+        legend = list(font = list(color = "#39ab2c"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        yaxis = list(title = "",
+                     autorange = "reversed",
+                     ticktext = as.list(CommunityOperatingOutputType$Type),
+                     tickmode = "array",
+                     tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16),
+                     showgrid = FALSE),
+        
+        xaxis = list(
+          title = "",
+          tickformat = "",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    
+    p
+    
+  })
+  
+  output$CommunityOperatingOutputTypeGen.png <- downloadHandler(
+    filename = "CommunityOperatingOutputGenType.png",
+    content = function(file) {
+      
+      Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                         sheet = "Comm & locally owned ren", skip = 46, n_max = 4)[c(11,14)]
+      
+      names(Data) <- c("Tech", "Generation")
+      
+      Data[3,1] <- "CHP"
+      
+      ComCapType <- Data
+      
+      ComCapType$Tech <-
+        factor(ComCapType$Tech, levels = ComCapType$Tech, ordered = TRUE)
+      
+      
+      plottitle <-
+        "Estimated generation of operational\ncommunity and locally owned renewable\ninstallations by type of output (GWh)"
+      sourcecaption <- "Source: EST"
+      
+      ChartColours <- c("#a3d65c", "#FF8500")
+      BarColours <- c("#a1d99b", "#74c476", "#41ab5d", "#238b45", "#005a32")
+      
+      
+      ComCapTypeChart <-
+        ComCapType %>%  ggplot(aes(x = Tech, y = Generation, fill = ChartColours[1]), family = "Century Gothic") +
+        geom_bar(stat = "identity", width = 0.8, fill = ChartColours[1]) +
+        annotate(
+          "text",
+          x = ComCapType$Tech,
+          y = -5,
+          label = ComCapType$Tech,
+          family = "Century Gothic",
+          fontface = 2,
+          colour = ChartColours[1],
+          hjust = 1
+        ) +
+        annotate(
+          "text",
+          x = ComCapType$Tech,
+          y = ifelse(ComCapType$Generation > 30, 3, ComCapType$Generation+3),
+          label = ComCapType$Generation,
+          family = "Century Gothic",
+          fontface = 2,
+          colour = ifelse(ComCapType$Generation > 30, "white", ChartColours[1]),
+          hjust = 0
+        )
+      
+      
+      ComCapTypeChart
+      
+      
+      ComCapTypeChart <-
+        StackedBars(ComCapTypeChart,
+                    ComCapType,
+                    plottitle,
+                    sourcecaption,
+                    ChartColours)
+      
+      ComCapTypeChart <-
+        ComCapTypeChart +
+        coord_flip() +
+        ylim(-250, max(ComCapType$Generation))+
+        scale_x_discrete(limits = rev(levels(ComCapType$Tech)))+ 
+        labs (subtitle = "Scotland, June 2019")
+      
+      ComCapTypeChart
+      
+      ggsave(
+        file,
+        plot = ComCapTypeChart,
+        width = 14.3,
+        height = 7.5,
+        units = "cm",
+        dpi = 300
+      )
+    }
+  )
+  
+  output$CommunityOperatingOutputTypeGenTable = renderDataTable({
+    CommunityOperatingOutputType <- read_excel("Structure/CurrentWorking.xlsx", 
+                                               sheet = "Comm & locally owned ren", col_names = TRUE, 
+                                               skip = 46, n_max = 5)
+    
+    CommunityOperatingOutputType <- CommunityOperatingOutputType[c(11,14,15)]
+    
+    CommunityOperatingOutputType[5,1] <- "Total"
+    
+    names(CommunityOperatingOutputType) <- c("Output", "Estimated generation (GWh)", "%")
+    
+    datatable(
+      CommunityOperatingOutputType,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        title = "Estimated generation of operational community and locally owned renewable installations by type of output",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Estimated generation of operational community and locally owned renewable installations by type of output',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Estimated generation of operational community and locally owned renewable installations by type of output')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10 
+      ) 
+    ) %>% 
+      formatPercentage(c(3), 1)
+    
+    
   })
   
   

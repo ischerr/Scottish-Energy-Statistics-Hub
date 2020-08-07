@@ -308,6 +308,15 @@ ElecStorage <- function(input, output, session) {
   output$ElecStorage.png <- downloadHandler(
     filename = "ElecStorage.png",
     content = function(file) {
+      
+      Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                         sheet = "Renewable elec pipeline", col_names = TRUE,
+                         skip = 26, n_max = 1)
+      Quarter <- substr(Data[1,1], 8,8)
+      
+      Quarter <- as.numeric(Quarter)*3
+      
+      Year <- substr(Data[1,1], 1,4)
 
       ### Load Packages and Functions
       Data <- read_excel("Structure/CurrentWorking.xlsx",
@@ -457,7 +466,7 @@ ElecStorage <- function(input, output, session) {
       
       EnergyStorageTechChart <-
         EnergyStorageTechChart +
-        labs(subtitle = "Scotland, March 2019") +
+        labs(subtitle = paste("Scotland,", month.name[Quarter], Year)) +
         ylim(-1000, max(EnergyStorageTech$top)+800)+
         coord_flip()
       
@@ -644,6 +653,17 @@ ElecStorage <- function(input, output, session) {
     filename = "ElecStorageCap.png",
     content = function(file) {
       
+      Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                         sheet = "Renewable elec pipeline", col_names = TRUE,
+                         skip = 26, n_max = 1)
+      Quarter <- substr(Data[1,1], 8,8)
+      
+      Quarter <- as.numeric(Quarter)*3
+      
+      Year <- substr(Data[1,1], 1,4)
+      
+      paste("Scotland,", month.name[Quarter], Year)
+      
       ### Load Packages and Functions
       Data <- read_excel("Structure/CurrentWorking.xlsx",
                          sheet = "Electricity storage", skip = 14)[1:2]
@@ -752,7 +772,7 @@ ElecStorage <- function(input, output, session) {
       
       EnergyStorageTechChart <-
         EnergyStorageTechChart +
-        labs(subtitle = "Scotland, September 2019") +
+        labs(subtitle = paste("Scotland,", month.name[Quarter], Year)) +
         ylim(-150, max(EnergyStorageTech$top))+
         coord_flip()
       

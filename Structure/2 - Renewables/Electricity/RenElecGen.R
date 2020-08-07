@@ -2250,6 +2250,8 @@ RenElecGen <- function(input, output, session) {
     
     names(Data) <- c("Quarter", "Onshore wind", "Offshore wind", "Shoreline wave / tidal", "Solar PV", "Hydro", "Landfill gas", "Sewage sludge digestion", "Other biomass (inc. co-firing)", "Total")
     
+    Data <- Data[which(Data$Total > 0),]
+    
     Data$Quarter <- paste0(substr(Data$Quarter,1,4), " Q", substr(Data$Quarter,8,8))
     
     datatable(

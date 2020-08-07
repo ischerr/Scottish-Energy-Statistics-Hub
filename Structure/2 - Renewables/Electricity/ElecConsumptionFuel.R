@@ -89,9 +89,11 @@ ElecConsumptionFuel <- function(input, output, session) {
         n_max = 1
       )
     
-    Time <- paste0(Time[1, ncol(Time)-4], " - ", Time[1, ncol(Time)-1])
+    Time <- Time[1, ncol(Time)]
     
-    Time
+    Time <- ymd(paste0(substr(Time,1,4), "/", as.numeric(substr(Time,7,7))*3, "/01"))
+    
+    paste0(format(Time[length(Time)] - months(11),"%B %Y"), " - ", format(Time[length(Time)], "%B %Y"))
   })
   
   output$ElecConsumptionFuelPlot <- renderPlotly  ({
@@ -547,13 +549,27 @@ ElecConsumptionFuel <- function(input, output, session) {
     DataScot[,2:10] %<>% lapply(function(x)
       as.numeric(as.character(x)))
     
-    names(DataScot)[1] <- "Rolling 4 Quarters - Ending"
+    names(DataScot)[1] <- "Twelve Months Ending"
     
     DataScot <- as_tibble(DataScot)
     DataScot <- DataScot[complete.cases(DataScot),]
     
+    DataScot$`Twelve Months Ending` <- ymd(paste0(substr(DataScot$`Twelve Months Ending`,1,4), "/", as.numeric(substr(DataScot$`Twelve Months Ending`,7,7))*3, "/01"))
+
+    DataScot$`Twelve Months Ending` <- paste0(format(DataScot$`Twelve Months Ending` - months(11),"%B %Y"), " - ", format(DataScot$`Twelve Months Ending`, "%B %Y"))
+    
+    
+    
+    DataScot <- DataScot[seq(dim(DataScot)[1],1),]
+    
+    DataScot$Renewables <- DataScot$Wind + DataScot$Hydro + DataScot$Biomass + DataScot$Solar
+    
+    DataScot$`Low Carbon` <- DataScot$Renewables + DataScot$Nuclear
+    
+    DataScot$`Fossil Fuels` <- DataScot$Gas + DataScot$Coal
+    
     datatable(
-      DataScot,
+      DataScot[c(1,2,3,4,5,11,6,12,9,10,13,7,8)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -564,7 +580,6 @@ ElecConsumptionFuel <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        order = list(list(0 , 'desc')),
         title = "Electricity Consumption - Scotland",
         dom = 'ltBp',
         buttons = list(
@@ -585,7 +600,8 @@ ElecConsumptionFuel <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:ncol(DataScot), 1) 
+      formatPercentage(2:ncol(DataScot), 1) %>% 
+      formatStyle(c(6,8,11), fontStyle = "italic")
   })
   
   output$ElecConsumptionFuelEWTable = renderDataTable({
@@ -608,14 +624,27 @@ ElecConsumptionFuel <- function(input, output, session) {
     DataEW[,2:10] %<>% lapply(function(x)
       as.numeric(as.character(x)))
     
-    names(DataEW)[1] <- "Rolling 4 Quarters - Ending"
+    names(DataEW)[1] <- "Twelve Months Ending"
     
     DataEW <- as_tibble(DataEW)
-    
     DataEW <- DataEW[complete.cases(DataEW),]
     
+    DataEW$`Twelve Months Ending` <- ymd(paste0(substr(DataEW$`Twelve Months Ending`,1,4), "/", as.numeric(substr(DataEW$`Twelve Months Ending`,7,7))*3, "/01"))
+    
+    DataEW$`Twelve Months Ending` <- paste0(format(DataEW$`Twelve Months Ending` - months(11),"%B %Y"), " - ", format(DataEW$`Twelve Months Ending`, "%B %Y"))
+    
+    
+    
+    DataEW <- DataEW[seq(dim(DataEW)[1],1),]
+    
+    DataEW$Renewables <- DataEW$Wind + DataEW$Hydro + DataEW$Biomass + DataEW$Solar
+    
+    DataEW$`Low Carbon` <- DataEW$Renewables + DataEW$Nuclear
+    
+    DataEW$`Fossil Fuels` <- DataEW$Gas + DataEW$Coal
+    
     datatable(
-      DataEW,
+      DataEW[c(1,2,3,4,5,11,6,12,9,10,13,7,8)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -626,7 +655,6 @@ ElecConsumptionFuel <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        order = list(list(0 , 'desc')),
         title = "Electricity Consumption - England and Wales",
         dom = 'ltBp',
         buttons = list(
@@ -665,7 +693,11 @@ ElecConsumptionFuel <- function(input, output, session) {
           n_max = 1
         )
       
-      Time <- paste0(Time[1, ncol(Time)-4], " - ", Time[1, ncol(Time)-1])
+      Time <- Time[1, ncol(Time)]
+      
+      Time <- ymd(paste0(substr(Time,1,4), "/", as.numeric(substr(Time,7,7))*3, "/01"))
+      
+      Time <- paste0(format(Time[length(Time)] - months(11),"%B %Y"), " - ", format(Time[length(Time)], "%B %Y"))
       
       ### Load Packages and Functions
       
