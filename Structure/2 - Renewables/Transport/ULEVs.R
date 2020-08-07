@@ -25,6 +25,24 @@ ULEVsOutput <- function(id) {
     #dygraphOutput(ns("ULEVsPlot")),
     plotlyOutput(ns("ULEVsPlot"))%>% withSpinner(color="#39ab2c"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Vehicles licenced by LA",
+             fluidRow(column(8,
+                             h3("Number of ultra low emission vehicles licenced by Local Authority", style = "color: #39ab2c;  font-weight:bold"),
+                             
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('ULEVbyLAmap.png'), 'Download Graph', style="float:right")
+             )),
+             fluidRow(column(6,selectInput(ns("YearSelect"), "Year:", c(unique(ULEVbyLA$Quarter)), selected = max(ULEVbyLA$Quarter), multiple = FALSE,
+                                           selectize = TRUE, width = NULL, size = NULL) ),
+                      column(6, align = 'right', selectInput(ns("TechSelect"), "Vehicle Type:", unique(ULEVbyLA$variable), selected = "Total ULEVs", multiple = FALSE,
+                                                             selectize = TRUE, width = "300px", size = NULL))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+             #dygraphOutput(ns("ElecGenFuelPlot")),
+             leafletOutput(ns("ULEVbyLAmap"), height = "675px")%>% withSpinner(color="#39ab2c"),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    
     tabPanel("First time registrations",
              fluidRow(column(8,
                              h3("Proportion of ULEVs registered for the first time", style = "color: #39ab2c;  font-weight:bold"),
@@ -39,23 +57,7 @@ ULEVsOutput <- function(id) {
              #dygraphOutput(ns("ULEVsPlot")),
              plotlyOutput(ns("ULEVRegOutputPlot"))%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Local Authorities",
-             fluidRow(column(8,
-                             h3("Renewable electricity capacity at Local Authority Level", style = "color: #39ab2c;  font-weight:bold"),
-                             
-             ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('ULEVbyLAmap.png'), 'Download Graph', style="float:right")
-             )),
-             fluidRow(column(6,selectInput(ns("YearSelect"), "Year:", c(unique(ULEVbyLA$Quarter)), selected = max(ULEVbyLA$Quarter), multiple = FALSE,
-                                           selectize = TRUE, width = NULL, size = NULL) ),
-                      column(6, align = 'right', selectInput(ns("TechSelect"), "Tech:", unique(ULEVbyLA$variable), selected = "Total", multiple = FALSE,
-                                                             selectize = TRUE, width = "300px", size = NULL))),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-             #dygraphOutput(ns("ElecGenFuelPlot")),
-             leafletOutput(ns("ULEVbyLAmap"), height = "675px")%>% withSpinner(color="#39ab2c"),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    
     tabPanel("Charging Points",
              fluidRow(column(8,
                              h3("Total electric vehicle charging points by local authority", style = "color: #39ab2c;  font-weight:bold"),
@@ -70,6 +72,7 @@ ULEVsOutput <- function(id) {
              #dygraphOutput(ns("ULEVsPlot")),
              leafletOutput(ns("ChargingPointMap"), height = "700px")%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    
     tabPanel("Charging Events",
              fluidRow(column(8,
                              h3("Total electric vehicle charging events by local authority", style = "color: #39ab2c;  font-weight:bold"),
@@ -84,6 +87,7 @@ ULEVsOutput <- function(id) {
              #dygraphOutput(ns("ULEVsPlot")),
              leafletOutput(ns("ChargingEventsMap"), height = "700px")%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    
     tabPanel("Charge Provided",
              fluidRow(column(8,
                              h3("Total electric vehicle charge drawn by local authority", style = "color: #39ab2c;  font-weight:bold"),
@@ -116,6 +120,18 @@ ULEVsOutput <- function(id) {
     fluidRow(
       column(12, dataTableOutput(ns("ULEVsTable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Local Authority",
+             fluidRow(
+               column(10, h3("Data - Renewable electricity generation at Local Authority Level (GWh)", style = "color: #39ab2c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12,selectInput(ns("YearSelect2"), "Year:", c(unique(ULEVbyLA$Quarter)), selected = max(ULEVbyLA$Quarter), multiple = FALSE,
+                                     selectize = TRUE, width = "200px", size = NULL) )
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("LAGenTable"))%>% withSpinner(color="#39ab2c"))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("First Time Registrations",
       fluidRow(
         column(10, h3("Data - All ULEVs registered for the first time in Scotland", style = "color: #39ab2c;  font-weight:bold")),
@@ -1279,9 +1295,9 @@ output$ULEVRegOutput.png <- downloadHandler(
     
     ULEVbyLA <- ULEVbyLA[which(ULEVbyLA$variable == Tech),]
     
-    ULEVbyLA$Content <- paste0("<b>",ULEVbyLA$LAName, "</b><br/>", ULEVbyLA$variable[1], " Capacity:<br/><em>", round(ULEVbyLA$value, digits = 1)," MW</em>" )
+    ULEVbyLA$Content <- paste0("<b>",ULEVbyLA$LAName, "</b><br/>", ULEVbyLA$variable[1], " licenced:<br/><em>", round(ULEVbyLA$value, digits = 1),"</em>" )
     
-    ULEVbyLA$Hover <- paste0(ULEVbyLA$LAName, " - ", round(ULEVbyLA$value, digits = 1), " MW")
+    ULEVbyLA$Hover <- paste0(ULEVbyLA$LAName, " - ", round(ULEVbyLA$value, digits = 1), "")
     
     ### Change LA$CODE to string
     LA$CODE <- as.character(LA$CODE)
@@ -1313,7 +1329,7 @@ output$ULEVRegOutput.png <- downloadHandler(
                   highlightOptions = list(color = "white", weight = 2,
                                           bringToFront = TRUE)) %>%
       leaflet::addLegend("bottomright", pal = pal, values = ~value,
-                         title = paste0(ULEVbyLA$variable[1], " Capacity (MW)"),
+                         title = paste0(ULEVbyLA$variable[1], " licenced"),
                          opacity = 1
       ) 
     
@@ -1321,6 +1337,58 @@ output$ULEVRegOutput.png <- downloadHandler(
     
   })
   
+  output$LAGenTable = renderDataTable({
+    
+    LARenGen <- read_delim("Processed Data/Output/Vehicles/ULEVbyLA.txt", 
+                           "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    Year2 = input$YearSelect2
+    
+    LARenGen <- LARenGen[which(LARenGen$Quarter == Year2),]
+    
+    LARenGen <- dcast(LARenGen, Quarter + LAName + LACode ~ variable, value.var = "value")
+    
+    datatable(
+      LARenGen,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "Number of ultra low emission vehicles licenced by Local Authority",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Number of ultra low emission vehicles licenced by Local Authority',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Number of ultra low emission vehicles licenced by Local Authority')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(4:ncol(LARenGen), 0) %>% 
+      formatStyle(ncol(LARenGen), fontWeight = "bold")
+  })
+  
+  output$ULEVbyLAmap.png <- downloadHandler(
+    filename = "ULEVbyLAmap.png",
+    content = function(file) {
+      writePNG(readPNG("Structure/2 - Renewables/Transport/ULEVsLA.png"), file) 
+    }
+  )
 
 }
     
