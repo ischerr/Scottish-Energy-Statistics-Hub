@@ -81,9 +81,9 @@ GasConsumptionOutput <- function(id) {
                column(12, dataTableOutput(ns("GasConsumptionHHoldTable"))%>% withSpinner(color="#34d1a3"))),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")        
     ),
-    tabPanel("LA",
+    tabPanel("Local Authority",
              fluidRow(
-               column(10, h3("Data", style = "color: #34d1a3;  font-weight:bold")),
+               column(10, h3("Data - Average annual household consumption of gas by local authority, 2018", style = "color: #34d1a3;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -990,21 +990,22 @@ GasConsumption <- function(input, output, session) {
   
   output$GasConsumptionLATable = renderDataTable({
     
-    GasConsumptionLA <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Gas consump hhold LA",
-      skip = 12,
-      n_max = 34
-    )
+
+    GasConsumption <- read_csv("Processed Data/Output/Consumption/GasConsumption.csv")
     
-    names(GasConsumptionLA)[1:2] <- c("Geography Code", "Local Authority")
     
-    GasConsumptionLA <- GasConsumptionLA[1:3]
+    GasConsumption <- GasConsumption[which(GasConsumption$Year == max(GasConsumption$Year)),]
     
-    GasConsumptionLA <- GasConsumptionLA[complete.cases(GasConsumptionLA),]
+    GasConsumption <-  GasConsumption[c(3,2,11,10)]
+    
+    names(GasConsumption) <- c("Geography Code","Local Authority", "Average household consumption (kWh)", "Total Consumption (GWh)")
+    
+    GasConsumption <- GasConsumption[which(substr(GasConsumption$`Geography Code`,1,1) == "S"),]
+    
+    GasConsumption <- GasConsumption[complete.cases(GasConsumption),]
     
     datatable(
-      GasConsumptionLA,
+      GasConsumption,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -1014,17 +1015,17 @@ GasConsumption <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Average annual household consumption of gas by local authority (kWh)",
+        title = "Average annual household consumption of gas by local authority, 2018",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Average annual household consumption of gas by local authority (kWh)',
+            title = 'Average annual household consumption of gas by local authority, 2018',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Average annual household consumption of gas by local authority (kWh)')
+               title = 'Average annual household consumption of gas by local authority, 2018')
         ),
         
         # customize the length menu
@@ -1034,7 +1035,7 @@ GasConsumption <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(3, 0)
+      formatRound(3:4, 0)
   })
   
   observeEvent(input$ToggleTable3, {
