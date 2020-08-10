@@ -998,11 +998,21 @@ GasConsumption <- function(input, output, session) {
     
     GasConsumption <-  GasConsumption[c(3,2,11,10)]
     
+
+    
     names(GasConsumption) <- c("Geography Code","Local Authority", "Average household consumption (kWh)", "Total Consumption (GWh)")
     
     GasConsumption <- GasConsumption[which(substr(GasConsumption$`Geography Code`,1,1) == "S"),]
     
     GasConsumption <- GasConsumption[complete.cases(GasConsumption),]
+    
+    
+    LALookup <- read_excel("Structure/LALookup.xlsx", 
+                           sheet = "Code to LA")
+    
+    names(LALookup) <- c("Geography Code","Local Authority")
+    
+    GasConsumption <- merge(GasConsumption, LALookup, all = TRUE)
     
     datatable(
       GasConsumption,
