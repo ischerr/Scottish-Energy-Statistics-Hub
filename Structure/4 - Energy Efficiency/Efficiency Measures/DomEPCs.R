@@ -24,6 +24,7 @@ DomEPCsOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     #dygraphOutput(ns("StockEPCPlot")),
     plotlyOutput(ns("StockEPCPlot"))%>% withSpinner(color="#34d1a3"),
+    HTML("<blockquote><p>*based on SAP 2012 RdSAP v9.93&nbsp;</p></blockquote>"),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
     tabPanel("Properties above Band C",
              fluidRow(column(8,
@@ -53,6 +54,20 @@ DomEPCsOutput <- function(id) {
              #dygraphOutput(ns("StockEPCPlot")),
              plotlyOutput(ns("EPCTenurePlot"))%>% withSpinner(color="#34d1a3"),
              HTML("<blockquote><p>*based on SAP 2012 RdSAP v9.93&nbsp;</p></blockquote>"),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("EER",
+             fluidRow(column(8,
+                             h3("Proportion of domestic properties rated EER band C or above", style = "color: #34d1a3;  font-weight:bold"),
+                             h4(textOutput(ns('EERProportionsSubtitle')), style = "color: #34d1a3;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('EERProportions.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+             #dygraphOutput(ns("StockEPCPlot")),
+             plotlyOutput(ns("EERProportionsPlot"))%>% withSpinner(color="#34d1a3"),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
@@ -70,6 +85,7 @@ DomEPCsOutput <- function(id) {
     ),
     fluidRow(
       column(12, dataTableOutput(ns("StockEPCTable"))%>% withSpinner(color="#34d1a3"))),
+    HTML("<blockquote><p>*based on SAP 2012 RdSAP v9.93&nbsp;</p></blockquote>"),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
     tabPanel("Properties above EPC C",
              fluidRow(
@@ -87,6 +103,14 @@ DomEPCsOutput <- function(id) {
              fluidRow(
                column(12, dataTableOutput(ns("EPCTenureTable"))%>% withSpinner(color="#34d1a3"))),
              HTML("<blockquote><p>*based on SAP 2012 RdSAP v9.93&nbsp;</p></blockquote>"),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("EER Bands",
+             fluidRow(
+               column(10, h3("Data - Proportion of domestic properties rated EER band C or above", style = "color: #34d1a3;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("EERProportionsTable"))%>% withSpinner(color="#34d1a3"))),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
       column(2, p("Update expected:")),
@@ -669,7 +693,6 @@ DomEPCs <- function(input, output, session) {
         yaxis = list(title = "",
                      showgrid = FALSE,
                      type = "category",
-                     autorange = "reversed",
                      ticktext = as.list(Data$`Year`),
                      tickmode = "array",
                      tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
@@ -985,7 +1008,7 @@ DomEPCs <- function(input, output, session) {
       mutate(top = sum(value))
     
     plottitle <-
-      "Distribution of housing stock by EPC band "
+      "Distribution of housing stock by EPC band\n(based on SAP 2012 RdSAP v9.93)"
     sourcecaption <- "Source: SG"
     
     ChartColours <- c("#34d1a3", "#FF8500")
@@ -1197,7 +1220,7 @@ DomEPCs <- function(input, output, session) {
       
       DomesticEPC$Type <-
         factor(DomesticEPC$Type,
-               levels = unique(DomesticEPC$Type))
+               levels = unique(rev(DomesticEPC$Type)))
       
       DomesticEPC <-
         melt(DomesticEPC, id.vars = "Type")
@@ -1373,5 +1396,448 @@ DomEPCs <- function(input, output, session) {
       
     }
   )  
+  
+  output$EERProportionsSubtitle <- renderText({
+    
+    Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[12:14]
+    
+    Data <- tail(Data, -1)
+    
+    names(Data) <- c("Year", "SAP 2012", "SAP 2009")
+    
+    Data <- Data[which(Data$Year > 0),]
+    
+    paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
+  })
+  
+  output$EERProportionsPlot <- renderPlotly  ({
+    
+    Data  <- read_excel("Structure/CurrentWorking.xlsx", 
+                        sheet = "Domestic EPCs", skip = 34)
+    
+    
+    
+    names(Data) <- c("Year","SAP 2012 v2", "SAP 2012", "SAP 2009")
+    
+    Data <- Data[which(Data$Year > 0),]
+    
+    Data[2:4] %<>% lapply(function(x) as.numeric(as.character(x))/100)
+    
+    EER <- Data
+    
+    ### variables
+    ChartColours <- c("#34d1a3", "#0868ac", "#4eb3d3", "#a8ddb5")
+    
+    EER$Year <- paste0("01/01/", EER$Year)
+    
+    EER$Year <- dmy(EER$Year)
+    
+    
+    
+    p <-  plot_ly(EER,x = ~ Year ) %>% 
+      add_trace(data = EER,
+                x = ~ Year,
+                y = ~ `SAP 2012`,
+                name = "SAP 2012 rdSAP v9.92",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "1",
+                text = paste0(
+                  "SAP 2012 rdSAP v9.92: ",
+                  percent(EER$`SAP 2012`, accuracy = 0.1),
+                  "\nYear: ",
+                  format(EER$Year, "%Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[1], dash = "none")
+      ) %>% 
+      add_trace(
+        data = tail(EER[which(EER$`SAP 2012` > 0 | EER$`SAP 2012` < 0),], 1),
+        x = ~ Year,
+        y = ~ `SAP 2012`,
+        legendgroup = "1",
+        name = "SAP 2012 rdSAP v9.92",
+        text = paste0(
+          "SAP 2012 rdSAP v9.92: ",
+          percent(EER[which(EER$`SAP 2012` > 0 | EER$`SAP 2012` < 0),][-1,]$`SAP 2012`, accuracy = 0.1),
+          "\nYear: ",
+          format(EER[which(EER$`SAP 2012` > 0 | EER$`SAP 2012` < 0),][-1,]$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[1])
+      ) %>% 
+      add_trace(
+        data = tail(EER[which(EER$`SAP 2012 v2` > 0 | EER$`SAP 2012 v2` < 0),], 1),
+        x = ~ Year,
+        y = ~ `SAP 2012 v2`,
+        legendgroup = "2",
+        name = "SAP 2012 rdSAP v9.93",
+        text = paste0(
+          "SAP 2012 rdSAP v9.93: ",
+          percent(EER[which(EER$`SAP 2012 v2` > 0 | EER$`SAP 2012 v2` < 0),][-1,]$`SAP 2012 v2`, accuracy = 0.1),
+          "\nYear: ",
+          format(EER[which(EER$`SAP 2012 v2` > 0 | EER$`SAP 2012 v2` < 0),][-1,]$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = TRUE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 12, 
+                      color = ChartColours[3])
+      ) %>% 
+      add_trace(data = EER,
+                x = ~ Year,
+                y = ~ `SAP 2009`,
+                name = "SAP 2009",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "3",
+                text = paste0(
+                  "SAP 2009: ",
+                  percent(EER$`SAP 2009`, accuracy = 0.1),
+                  "\nYear: ",
+                  format(EER$Year, "%Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[2], dash = "dash")
+      ) %>% 
+      add_trace(
+        data = tail(EER[which(EER$`SAP 2009` > 0 | EER$`SAP 2009` < 0),], 1),
+        x = ~ Year,
+        y = ~ `SAP 2009`,
+        legendgroup = "3",
+        name = "SAP 2009",
+        text = paste0(
+          "SAP 2009: ",
+          percent(EER[which(EER$`SAP 2009` > 0 | EER$`SAP 2009` < 0),][-1,]$`SAP 2009`, accuracy = 0.1),
+          "\nYear: ",
+          format(EER[which(EER$`SAP 2009` > 0 | EER$`SAP 2009` < 0),][-1,]$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[2])
+      ) %>% 
+      layout(
+        barmode = 'stack',
+        bargap = 0.66,
+        legend = list(font = list(color = "#34d1a3"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        
+        xaxis = list(title = "",
+                     showgrid = FALSE,
+                     range = c(min(EER$Year)-100, max(EER$Year)+100)),
+        yaxis = list(
+          title = "",
+          tickformat = "%",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    p
+    
+  })
+  
+  output$EERProportionsTable = renderDataTable({
+    
+    
+    Data  <- read_excel("Structure/CurrentWorking.xlsx", 
+                        sheet = "Domestic EPCs", skip = 34)
+    
+    
+    
+    names(Data) <- c("Year","SAP 2012 RdSAP v9.92", "SAP 2012 RdSAP v9.93", "SAP 2009")
+    
+    Data <- Data[which(Data$Year > 0),]
+    
+    Data[2:4] %<>% lapply(function(x) as.numeric(as.character(x))/100)
+    
+    datatable(
+      Data,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        order = list(list(0, 'desc')),
+        title = "Proportion of domestic properties rated EER band C or above",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Proportion of domestic properties rated EER band C or above',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Proportion of domestic properties rated EER band C or above')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatPercentage(2:9, 0)
+  })
+  
+  output$EERProportions.png <- downloadHandler(
+    filename = "EERProportions.png",
+    content = function(file) {
+      
+      
+      Data  <- read_excel("Structure/CurrentWorking.xlsx", 
+                          sheet = "Domestic EPCs", skip = 34)
+      
+      
+      
+      names(Data) <- c("Year","SAP 2012 v2", "SAP 2012", "SAP 2009")
+      
+      EERProportion <- Data
+      ### variables
+      ChartColours <- c("#34d1a3", "#0868ac", "#4eb3d3", "#a8ddb5")
+      sourcecaption = "Source: SG"
+      plottitle = "Proportion of domestic properties rated\nEER band C or above"
+      
+      Length <- max(EERProportion$Year) - min(EERProportion$Year)
+      Height <- max(EERProportion$`SAP 2009`)
+      
+      #EERProportion$`Low Carbon`Percentage <- PercentLabel(EERProportion$`Low Carbon`)
+      
+      EERProportion$`SAP 2012`
+      
+      EERProportionChart <- EERProportion %>%
+        ggplot(aes(x = Year), family = "Century Gothic") +
+        geom_line(
+          aes(
+            y = `SAP 2009`,
+            colour = ChartColours[3],
+            label = paste0(`SAP 2009` * 100, "%")
+          ),
+          size = 1.5,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = `SAP 2009`,
+            label = ifelse(Year == min(Year), percent(`SAP 2009`/100, accuracy = 1), ""),
+            hjust = 1,
+            vjust = 0.5,
+            colour = ChartColours[3],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = `SAP 2009`,
+            label = ifelse(Year == max(Year), percent(`SAP 2009`/100, accuracy = 1), ""),
+            hjust = 0.5,
+            vjust = -1,
+            colour = ChartColours[3],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(EERProportion, 1),
+          aes(
+            x = Year,
+            y = `SAP 2009`,
+            colour = ChartColours[3],
+            show_guide = FALSE
+          ),
+          size = 4,
+          family = "Century Gothic"
+        ) +
+        
+        geom_text(
+          aes(
+            x = mean(Year[which(EERProportion$`SAP 2009` > 0)]),
+            y = mean(`SAP 2009`, na.rm = TRUE),
+            label = "SAP 2009",
+            hjust = 0.5,
+            vjust = -1.8,
+            colour = ChartColours[3],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_line(
+          aes(
+            y = `SAP 2012`,
+            colour = ChartColours[2],
+            label = percent(`SAP 2012`)
+          ),
+          size = 1.5,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = `SAP 2012`,
+            label = ifelse(Year == min(Year[which(EERProportion$`SAP 2012` > 0)]), percent(`SAP 2012`/100, accuracy = 1), ""),
+            hjust = 0.5,
+            vjust = 1.5,
+            colour = ChartColours[2],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = `SAP 2012`,
+            label = ifelse(Year == max(Year), percent(`SAP 2012`/100, accuracy = 1), ""),
+            hjust = .5,
+            vjust = 2,
+            colour = ChartColours[2],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(EERProportion, 1),
+          aes(
+            x = Year,
+            y = `SAP 2012`,
+            colour = ChartColours[2],
+            show_guide = FALSE
+          ),
+          size = 4,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = mean(Year[which(EERProportion$`SAP 2012` > 0)]),
+            y = mean(`SAP 2012`, na.rm = TRUE),
+            label = "SAP 2012\nRdSAP v9.92",
+            vjust = 1.5,
+            colour = ChartColours[2],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = `SAP 2012 v2`,
+            label = ifelse(Year == max(Year), percent(`SAP 2012 v2`/100, accuracy = 1), ""),
+            hjust = -0.5,
+            colour = ChartColours[4],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(EERProportion, 1),
+          aes(
+            x = Year,
+            y = `SAP 2012 v2`,
+            colour = ChartColours[4],
+            show_guide = FALSE
+          ),
+          size = 3,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = max(Year[which(EERProportion$`SAP 2012 v2` > 0)])+Length*0.275,
+            y = mean(`SAP 2012 v2`, na.rm = TRUE),
+            label = "SAP 2012\nRdSAP v9.93",
+            hjust = 0.5,
+            vjust = .5,
+            colour = ChartColours[4],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = EERProportion$Year,
+          y = 0,
+          label = ifelse(
+            EERProportion$Year == max(EERProportion$Year) |
+              EERProportion$Year == min(EERProportion$Year[which(EERProportion$`SAP 2012` > 0)]) |
+              EERProportion$Year == min(EERProportion$Year[which(EERProportion$`SAP 2009` > 0)]),
+            EERProportion$Year,
+            ""
+          ),
+          hjust = 0.5,
+          vjust = 1.5,
+          colour = ChartColours[1],
+          fontface = 2,
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = max(EERProportion$Year)+Length*0.35,
+          y = Height*1.05,
+          label = "",
+          hjust = 0.5,
+          vjust = 1.5,
+          colour = ChartColours[1],
+          fontface = 2,
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = min(EERProportion$Year) - Length*0.02,
+          y = Height*1.05,
+          label = "",
+          hjust = 0.5,
+          vjust = 1.5,
+          colour = ChartColours[1],
+          fontface = 2,
+          family = "Century Gothic"
+        )
+      
+      
+      EERProportionChart <-
+        LinePercentChart(EERProportionChart,
+                         EERProportion,
+                         plottitle,
+                         sourcecaption,
+                         ChartColours)
+      
+      EERProportionChart
+      
+      ggsave(
+        file,
+        plot =  EERProportionChart,
+        width = 14,
+        height = 14,
+        units = "cm",
+        dpi = 300
+      )
+      
+      
+    }
+  )
+  
+  
   
 }
