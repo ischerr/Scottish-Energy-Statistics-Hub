@@ -55,7 +55,7 @@ DomEPCsOutput <- function(id) {
              plotlyOutput(ns("EPCTenurePlot"))%>% withSpinner(color="#34d1a3"),
              HTML("<blockquote><p>*based on SAP 2012 RdSAP v9.93&nbsp;</p></blockquote>"),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
-    tabPanel("EER",
+    tabPanel("EER Bands",
              fluidRow(column(8,
                              h3("Proportion of domestic properties rated EER band C or above", style = "color: #34d1a3;  font-weight:bold"),
                              h4(textOutput(ns('EERProportionsSubtitle')), style = "color: #34d1a3;")
@@ -1460,7 +1460,7 @@ DomEPCs <- function(input, output, session) {
         name = "SAP 2012 rdSAP v9.92",
         text = paste0(
           "SAP 2012 rdSAP v9.92: ",
-          percent(EER[which(EER$`SAP 2012` > 0 | EER$`SAP 2012` < 0),][-1,]$`SAP 2012`, accuracy = 0.1),
+          percent(EER[which(EER$`SAP 2012` > 0 | EER$`SAP 2012` < 0),][-1,]$`SAP 2012`, accuracy = 1),
           "\nYear: ",
           format(EER[which(EER$`SAP 2012` > 0 | EER$`SAP 2012` < 0),][-1,]$Year, "%Y")
         ),
@@ -1479,9 +1479,9 @@ DomEPCs <- function(input, output, session) {
         name = "SAP 2012 rdSAP v9.93",
         text = paste0(
           "SAP 2012 rdSAP v9.93: ",
-          percent(EER[which(EER$`SAP 2012 v2` > 0 | EER$`SAP 2012 v2` < 0),][-1,]$`SAP 2012 v2`, accuracy = 0.1),
+          percent(EER[which(EER$`SAP 2012 v2` > 0 | EER$`SAP 2012 v2` < 0),]$`SAP 2012 v2`, accuracy = 1),
           "\nYear: ",
-          format(EER[which(EER$`SAP 2012 v2` > 0 | EER$`SAP 2012 v2` < 0),][-1,]$Year, "%Y")
+          format(EER[which(EER$`SAP 2012 v2` > 0 | EER$`SAP 2012 v2` < 0),]$Year, "%Y")
         ),
         hoverinfo = 'text',
         showlegend = TRUE ,
@@ -1499,7 +1499,7 @@ DomEPCs <- function(input, output, session) {
                 legendgroup = "3",
                 text = paste0(
                   "SAP 2009: ",
-                  percent(EER$`SAP 2009`, accuracy = 0.1),
+                  percent(EER$`SAP 2009`, accuracy = 1),
                   "\nYear: ",
                   format(EER$Year, "%Y")
                 ),
@@ -1514,7 +1514,7 @@ DomEPCs <- function(input, output, session) {
         name = "SAP 2009",
         text = paste0(
           "SAP 2009: ",
-          percent(EER[which(EER$`SAP 2009` > 0 | EER$`SAP 2009` < 0),][-1,]$`SAP 2009`, accuracy = 0.1),
+          percent(EER[which(EER$`SAP 2009` > 0 | EER$`SAP 2009` < 0),][-1,]$`SAP 2009`, accuracy = 1),
           "\nYear: ",
           format(EER[which(EER$`SAP 2009` > 0 | EER$`SAP 2009` < 0),][-1,]$Year, "%Y")
         ),
