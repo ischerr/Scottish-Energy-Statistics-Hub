@@ -1760,8 +1760,6 @@ RenElecCapacity <- function(input, output, session) {
       
       OperationalSize <- OperationalSize[order(OperationalSize$Total),]
       
-      OperationalSize <- head(OperationalSize, -1)
-      
       OperationalSize <- OperationalSize[which(OperationalSize$Total > 250),]
       
       
@@ -1821,7 +1819,7 @@ RenElecCapacity <- function(input, output, session) {
         geom_text(
           aes(
             y = pos,
-            label = ifelse(OperationalSize$value > 800,paste0(format(round(value, 0), big.mark = ",", trim = TRUE),"\nMW"), ""),
+            label = ifelse(OperationalSize$value > 800 & OperationalSize$Type == "All Technologies", paste0(format(round(value, 0), big.mark = ",", trim = TRUE),"\nMW"), ""),
             
             fontface = 2
           ),
@@ -1841,7 +1839,7 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 5.95,
+            x = 6.95,
             y = max(OperationalSize$top)*0.05,
             label = "Installations\nbelow\n5 MW",
             fontface = 2
@@ -1851,7 +1849,7 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 5.95,
+            x = 6.95,
             y = max(OperationalSize$top)*0.33,
             label = "Installations\nbetween\n5 MW - 10 MW",
             fontface = 2
@@ -1861,7 +1859,7 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 5.95,
+            x = 6.95,
             y = max(OperationalSize$top)*0.63,
             label = "Installations\nbetween\n10 MW - 50 MW",
             fontface = 2
@@ -1872,7 +1870,7 @@ RenElecCapacity <- function(input, output, session) {
         
         geom_text(
           aes(
-            x = 5.95,
+            x = 6.95,
             y = max(OperationalSize$top)*0.9,
             label = "Installations\nabove\n50 MW",
             fontface = 2
@@ -1882,7 +1880,7 @@ RenElecCapacity <- function(input, output, session) {
         )+
         geom_text(
           aes(
-            x = 5.95,
+            x = 6.95,
             y = max(OperationalSize$top)*1.08,
             label = "Total\nCapacity",
             fontface = 2
@@ -1892,7 +1890,7 @@ RenElecCapacity <- function(input, output, session) {
         )+
         geom_text(
           aes(
-            x = 6.45,
+            x = 7.45,
             y = .5,
             label = "",
             fontface = 2
