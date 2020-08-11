@@ -486,7 +486,7 @@ ElecConsumption <- function(input, output, session) {
           )[1, 4]),
           label = percent((
             subset(ElecConsumptiontionMax, variable == "Domestic")[1, 3]
-          )),
+          ),.1),
           fontface = 2,
           color = BarColours[1],
           family = "Century Gothic"
@@ -509,7 +509,7 @@ ElecConsumption <- function(input, output, session) {
           ),
           label = percent((
             subset(ElecConsumptiontionMax, variable == "Non-domestic")[1, 3]
-          )),
+          ),.1),
           fontface = 2,
           color = BarColours[3],
           family = "Century Gothic"
@@ -523,7 +523,7 @@ ElecConsumption <- function(input, output, session) {
           )[1, 5]),
           label = percent((
             subset(ElecConsumptiontionMax, variable == "Total")[1, 3]
-          )),
+          ), .1),
           fontface = 2,
           color = ChartColours[1],
           family = "Century Gothic",
