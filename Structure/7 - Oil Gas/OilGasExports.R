@@ -494,7 +494,7 @@ OilGasExports <- function(input, output, session) {
             x = mean(Year),
             y = mean(Total),
             label = "Total",
-            hjust = 1.5,
+            hjust = 1.7,
             vjust = -5.5,
             colour = ChartColours[1],
             fontface = 2
@@ -572,8 +572,8 @@ OilGasExports <- function(input, output, session) {
       ggsave(
         file,
         plot =  OilGasSupplyChart,
-        width = 21,
-        height = 10,
+        width = 30,
+        height = 13.5,
         units = "cm",
         dpi = 300
       )
