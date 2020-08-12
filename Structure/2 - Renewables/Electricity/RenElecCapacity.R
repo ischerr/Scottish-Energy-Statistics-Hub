@@ -1656,8 +1656,6 @@ RenElecCapacity <- function(input, output, session) {
     
     names(OperationalSize) <- c("Technology Type", "Tiny", "Small", "Medium", "Large", "Total")
     
-    OperationalSize <- head(OperationalSize, -1)
-    
     OperationalSize <- OperationalSize[order(-OperationalSize$Total),]
        
     OperationalSize$Year <- paste("<b>", OperationalSize$`Technology Type`, "</b>")

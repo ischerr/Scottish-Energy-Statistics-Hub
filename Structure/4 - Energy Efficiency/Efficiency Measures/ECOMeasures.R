@@ -51,7 +51,7 @@ ECOMeasuresOutput <- function(id) {
              
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
              #dygraphOutput(ns("ECOMeasuresPlot")),
-             plotlyOutput(ns("ECOObligationPlot"))%>% withSpinner(color="#34d1a3"),
+             plotlyOutput(ns("ECOObligationPlot"), height = "450px")%>% withSpinner(color="#34d1a3"),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
@@ -489,42 +489,47 @@ ECOMeasures <- function(input, output, session) {
                        sheet = "ECO", skip = 18, col_names = FALSE, n_max = 2)
     
     Data <- as_tibble(t(Data))
-      
-    names(Data) <- c("Scheme", "Value")
     
-    ChartColours <- c("#34d1a3", "#FF8500")
+    names(Data) <- c("variable", "value")
     
-    Data$Value <- as.numeric(as.character(Data$Value))
+    ChartColours <- c("#fc9272", "#2b8cbe", "#34d1a3", "#02818a")
     
-    Data$Scheme <- paste0("<b>",str_wrap(Data$Scheme,15), "</b>")
+    Data$value <- as.numeric(as.character(Data$value))
+    
+    Data$variable <- paste0("<b>",Data$variable, "</b>")
+    
+    Data <- Data[1:3,]
+    
+    Data <- Data[order(Data$value),]
     
     p <- plot_ly(
       data = Data,
-      y = ~Scheme,
-      x = ~Value,
-      text = paste0(Data$Scheme,
-                    "\n",
-                    format(round(Data$Value, 0), big.mark = ",")
+      labels = ~variable,
+      type = 'pie',
+      values = ~value,
+      text = paste0(
+        Data$variable,
+        ": ", format(round(Data$value, 0), big.mark = ","), "" 
       ),
-      name = "Value",
-      type = "bar",
-      hoverinfo = "text",
-      orientation = 'h',
-      marker = list(color =  ChartColours[1])
+      textposition = 'outside',
+      textinfo = 'label+percent',
+      insidetextfont = list(color = '#FFFFFF'),
+      hoverinfo = 'text',
+      marker = list(colors = ChartColours,
+                    line = list(color = '#FFFFFF', width = 1))
     )  %>% 
       layout(
         barmode = 'stack',
-        legend = list(font = list(color = "#39ab2c"),
+        legend = list(font = list(color = "#1A5D38"),
                       orientation = 'h'),
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
         hovername = 'text',
         yaxis = list(title = "",
-                     autorange = "reversed",
                      showgrid = FALSE),
         xaxis = list(
           title = "",
-          tickformat = "",
+          tickformat = "%",
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
@@ -535,6 +540,9 @@ ECOMeasures <- function(input, output, session) {
       config(displayModeBar = F)
     
     p
+    
+    #library(orca)
+    #orca(p, "StaticCharts/ECOMeasuresPie.svg")
   })
   
   output$ECOObligationSubtitle <- renderText({
@@ -1262,101 +1270,12 @@ ECOMeasures <- function(input, output, session) {
     filename = "ECOObligation.png",
     content = function(file) {
       
-      
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "ECO", skip = 18, col_names = FALSE, n_max = 2)
-      
-      Data <- as_tibble(t(Data))
-      
-      names(Data) <- c("Scheme", "Value")
-      
-      Data$Value <- as.numeric(as.character(Data$Value))
-      
-      plottitle <-
-        "ECO measure by obligation"
-      sourcecaption <- "Source: BEIS"
-      
-      ChartColours <- c("#34d1a3", "#FF8500")
-      BarColours <-
-        c(
-          "#31a354",
-          "#0868ac",
-          "#43a2ca",
-          "#7bccc4",
-          "#a6bddb",
-          "#d0d1e6",
-          "#bdbdbd",
-          "#969696"
-        )
-      
-      
-      ECOObligationChart <- Data %>%
-        ggplot(aes(x = Scheme, y = Value), family = "Century Gothic") +
-        geom_bar(stat = "identity", width = .4, fill = ChartColours[1]) +
-        geom_text(
-          aes(
-            x = Scheme,
-            y = -(max(Data$Value)*.05),
-            label = str_wrap(Scheme, 22),
-            fontface = 2
-          ),
-          colour = ChartColours[1],
-          family = "Century Gothic",
-          hjust = 1
-        ) +
-        geom_text(
-          aes(
-            x = Scheme,
-            y = Value+ (max(Data$Value)*0.14)  ,
-            label = paste0(format(round(Value, digits = 0), big.mark = ","), " MW"),
-            fontface = 2
-          ),
-          colour = ChartColours[1],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = 1.7,
-            y = (3.5/4) * 15,
-            label = " ",
-            fontface = 2
-          ),
-          colour = BarColours[4],
-          family = "Century Gothic"
-        )
-      
-      
-      
-      ECOObligationChart
-      
-      
-      ECOObligationChart <-
-        StackedBars(ECOObligationChart,
-                    PipelineTotal,
-                    plottitle,
-                    sourcecaption,
-                    ChartColours)
-      
-      ECOObligationChart <-
-        ECOObligationChart +
-        labs(subtitle = paste("Scotland,", ObligationDate)) +
-        ylim(-(max(Data$Value)*0.4), max(Data$Value)*1.2) +
-        scale_x_discrete(limits = rev(unique(sort(Data$Scheme))))+
-        coord_flip()
-      
-      ECOObligationChart
-      
-      ggsave(
-        file,
-        plot = ECOObligationChart,
-        width = 17.5,
-        height = 10,
-        units = "cm",
-        dpi = 300
-      )
-      
-      
+      writePNG(
+        readPNG(
+          "Structure/4 - Energy Efficiency/Efficiency Measures/ECOObligationPieChart.png"
+        ),
+        file)
     }
-  )  
+  )
   
 }
