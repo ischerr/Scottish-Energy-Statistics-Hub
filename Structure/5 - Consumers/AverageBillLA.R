@@ -25,7 +25,7 @@ AverageBillLAOutput <- function(id) {
     #dygraphOutput(ns("AverageBillLAPlot")),
     leafletOutput(ns("AverageBillLAPlot"), height = "700px")%>% withSpinner(color="#68c3ea"),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-    tabPanel("ELectricity",
+    tabPanel("Electricity",
              fluidRow(column(8,
                              h3("Average annual electricity bill prices by local authority", style = "color: #68c3ea;  font-weight:bold"),
                              h4(textOutput(ns('AverageBillLAElecSubtitle')), style = "color: #68c3ea;")
@@ -163,9 +163,9 @@ AverageBillLA <- function(input, output, session) {
     
     AverageBillMap <- AverageBillMap[which(substr(AverageBillMap$CODE, 1,3)== "S12"),]
     
-    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Average total bill:<br/><em>\u00A3", round(AverageBillMap$Total, digits = 2),"</em>" )
+    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Average total bill:<br/><em>\u00A3", round(AverageBillMap$Total, digits = 0),"</em>" )
     
-    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - \u00A3", round(AverageBillMap$Total, digits = 2))
+    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - \u00A3", round(AverageBillMap$Total, digits = 0))
     
     ### Change LA$CODE to string
     LA$CODE <- as.character(LA$CODE)
@@ -414,9 +414,9 @@ AverageBillLA <- function(input, output, session) {
     
     AverageBillMap <- AverageBillMap[which(substr(AverageBillMap$CODE, 1,3)== "S12"),]
     
-    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Average total bill:<br/><em>\u00A3", round(AverageBillMap$Total, digits = 2),"</em>" )
+    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Average total bill:<br/><em>\u00A3", round(AverageBillMap$`Average Electricity Bill`, digits = 0),"</em>" )
     
-    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - \u00A3", round(AverageBillMap$Total, digits = 2))
+    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - \u00A3", round(AverageBillMap$`Average Electricity Bill`, digits = 0))
     
     ### Change LA$CODE to string
     LA$CODE <- as.character(LA$CODE)
@@ -434,7 +434,7 @@ AverageBillLA <- function(input, output, session) {
     
     pal <- colorNumeric(
       palette = "Blues",
-      domain = LAMap$Total)
+      domain = LAMap$`Average Electricity Bill`)
     
     leaflet(LAMap) %>% 
       addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
@@ -444,10 +444,10 @@ AverageBillLA <- function(input, output, session) {
                   popup = ~Content,
                   label = ~Hover,
                   fillOpacity = 1,
-                  color = ~pal(Total),
+                  color = ~pal(`Average Electricity Bill`),
                   highlightOptions = list(color = "white", weight = 2,
                                           bringToFront = TRUE)) %>%
-      leaflet::addLegend("bottomright", pal = pal, values = ~Total,
+      leaflet::addLegend("bottomright", pal = pal, values = ~`Average Electricity Bill`,
                          title = "Average total<br/>bill",
                          labFormat = labelFormat(prefix = "\u00A3"),
                          opacity = 1
@@ -506,9 +506,9 @@ AverageBillLA <- function(input, output, session) {
     
     AverageBillMap <- AverageBillMap[which(substr(AverageBillMap$CODE, 1,3)== "S12"),]
     
-    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Average total bill:<br/><em>\u00A3", round(AverageBillMap$Total, digits = 2),"</em>" )
+    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Average total bill:<br/><em>\u00A3", round(AverageBillMap$`Average Gas Bill`, digits = 0),"</em>" )
     
-    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - \u00A3", round(AverageBillMap$Total, digits = 2))
+    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - \u00A3", round(AverageBillMap$`Average Gas Bill`, digits = 0))
     
     ### Change LA$CODE to string
     LA$CODE <- as.character(LA$CODE)
@@ -526,7 +526,12 @@ AverageBillLA <- function(input, output, session) {
     
     pal <- colorNumeric(
       palette = "Blues",
-      domain = LAMap$Total)
+      domain = LAMap$`Average Gas Bill`)
+    
+    palWithoutNA <- colorNumeric(
+      palette = "Blues",
+      domain = LAMap$`Average Gas Bill`,
+      na.color=rgb(0,0,0,0))
     
     leaflet(LAMap) %>% 
       addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
@@ -536,10 +541,10 @@ AverageBillLA <- function(input, output, session) {
                   popup = ~Content,
                   label = ~Hover,
                   fillOpacity = 1,
-                  color = ~pal(Total),
+                  color = ~pal(`Average Gas Bill`),
                   highlightOptions = list(color = "white", weight = 2,
                                           bringToFront = TRUE)) %>%
-      leaflet::addLegend("bottomright", pal = pal, values = ~Total,
+      leaflet::addLegend("bottomright", pal = palWithoutNA, values = ~`Average Gas Bill`,
                          title = "Average total<br/>bill",
                          labFormat = labelFormat(prefix = "\u00A3"),
                          opacity = 1
