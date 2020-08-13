@@ -46,7 +46,7 @@ AverageBillLAOutput <- function(id) {
              ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('AverageBillGasLA.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('AverageBillLAGas.png'), 'Download Graph', style="float:right")
              )),
              
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
@@ -366,7 +366,7 @@ AverageBillLA <- function(input, output, session) {
   output$AverageBillLA.png <- downloadHandler(
     filename = "AverageBillLA.png",
     content = function(file) {
-      writePNG(readPNG("Structure/5 - Consumers/AverageBillLAChart.png"), file) 
+      file.copy("Structure/5 - Consumers/AverageBillLAChart.png", file) 
     }
   )
 
@@ -458,7 +458,7 @@ AverageBillLA <- function(input, output, session) {
   output$AverageBillLAElec.png <- downloadHandler(
     filename = "AverageBillElecLA.png",
     content = function(file) {
-      writePNG(readPNG("Structure/5 - Consumers/AverageBillLAElecChart.png"), file) 
+      file.copy("Structure/5 - Consumers/AverageBillLAElecChart.png", file) 
     }
   )
   
@@ -555,7 +555,7 @@ AverageBillLA <- function(input, output, session) {
   output$AverageBillLAGas.png <- downloadHandler(
     filename = "AverageBillGasLA.png",
     content = function(file) {
-      writePNG(readPNG("Structure/5 - Consumers/AverageBillLAGasChart.png"), file) 
+      file.copy("Structure/5 - Consumers/AverageBillLAGasChart.png", file) 
     }
   )
   
