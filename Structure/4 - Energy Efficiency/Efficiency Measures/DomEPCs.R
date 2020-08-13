@@ -368,13 +368,15 @@ DomEPCs <- function(input, output, session) {
   output$EPCProportionsSubtitle <- renderText({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[12:14]
+                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[12:13]
     
     Data <- tail(Data, -1)
     
-    names(Data) <- c("Year", "SAP 2012", "SAP 2009")
+    names(Data) <- c("Year", "SAP 2012")
     
     Data <- Data[which(Data$Year > 0),]
+    
+    Data <- Data[complete.cases(Data),]
     
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
@@ -382,15 +384,17 @@ DomEPCs <- function(input, output, session) {
   output$EPCProportionsPlot <- renderPlotly  ({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[12:14]
+                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[12:13]
     
-    Data <- tail(Data, -1)
     
-    names(Data) <- c("Year", "SAP 2012", "SAP 2009")
+    
+    names(Data) <- c("Year", "SAP 2012")
     
     Data <- Data[which(Data$Year > 0),]
     
-    Data[2:3] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data <- Data[complete.cases(Data),]
+    
+    Data[2] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     EPC <- Data
     
@@ -438,41 +442,6 @@ DomEPCs <- function(input, output, session) {
         mode = 'markers',
         marker = list(size = 18, 
                       color = ChartColours[1])
-      ) %>% 
-      add_trace(data = EPC,
-                x = ~ Year,
-                y = ~ `SAP 2009`,
-                name = "SAP 2009",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "2",
-                text = paste0(
-                  "SAP 2009: ",
-                  percent(EPC$`SAP 2009`, accuracy = 0.1),
-                  "\nYear: ",
-                  format(EPC$Year, "%Y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 6, color = ChartColours[2], dash = "dash")
-      ) %>% 
-      add_trace(
-        data = tail(EPC[which(EPC$`SAP 2009` > 0 | EPC$`SAP 2009` < 0),], 1),
-        x = ~ Year,
-        y = ~ `SAP 2009`,
-        legendgroup = "2",
-        name = "SAP 2009",
-        text = paste0(
-          "SAP 2009: ",
-          percent(EPC[which(EPC$`SAP 2009` > 0 | EPC$`SAP 2009` < 0),][-1,]$`SAP 2009`, accuracy = 0.1),
-          "\nYear: ",
-          format(EPC[which(EPC$`SAP 2009` > 0 | EPC$`SAP 2009` < 0),][-1,]$Year, "%Y")
-        ),
-        hoverinfo = 'text',
-        showlegend = FALSE ,
-        type = "scatter",
-        mode = 'markers',
-        marker = list(size = 18, 
-                      color = ChartColours[2])
       ) %>% 
       layout(
         barmode = 'stack',
@@ -796,11 +765,13 @@ DomEPCs <- function(input, output, session) {
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 13, col_names = TRUE)[12:14]
+                       sheet = "Domestic EPCs", skip = 13, col_names = TRUE)[12:13]
     
-    names(Data) <- c("Year", "SAP 2012", "SAP 2009")
+    names(Data) <- c("Year", "SAP 2012")
     
     EPCProportion <- Data[which(Data$Year > 0),]
+    
+    EPCProportion <- EPCProportion[complete.cases(EPCProportion),]
     ### variables
     ChartColours <- c("#34d1a3", "#0868ac", "#4eb3d3", "#a8ddb5")
     sourcecaption = "Source: SG"
@@ -864,62 +835,6 @@ DomEPCs <- function(input, output, session) {
           label = "SAP 2012\nRdSAP v9.92",
           vjust = 3,
           colour = ChartColours[2],
-          fontface = 2
-        ),
-        family = "Century Gothic"
-      ) +
-      geom_line(
-        aes(
-          y = `SAP 2009`,
-          colour = ChartColours[3],
-          label = paste0(`SAP 2009` * 100, "%")
-        ),
-        size = 1.5,
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = Year,
-          y = `SAP 2009`,
-          label = ifelse(Year == min(Year), percent(`SAP 2009`, accuracy = 1), ""),
-          hjust = 0.5,
-          vjust = -1.6,
-          colour = ChartColours[3],
-          fontface = 2
-        ),
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = Year,
-          y = `SAP 2009`,
-          label = ifelse(Year == max(Year), percent(`SAP 2009`, accuracy = 1), ""),
-          hjust = 0.5,
-          vjust = 2,
-          colour = ChartColours[3],
-          fontface = 2
-        ),
-        family = "Century Gothic"
-      ) +
-      geom_point(
-        data = tail(EPCProportion, 1),
-        aes(
-          x = Year,
-          y = `SAP 2009`,
-          colour = ChartColours[3],
-          show_guide = FALSE
-        ),
-        size = 4,
-        family = "Century Gothic"
-      ) +
-      geom_text(
-        aes(
-          x = mean(Year[which(EPCProportion$`SAP 2009` > 0)]),
-          y = mean(`SAP 2009`, na.rm = TRUE),
-          label = "SAP 2009",
-          hjust = 0.5,
-          vjust = -3.8,
-          colour = ChartColours[3],
           fontface = 2
         ),
         family = "Century Gothic"
