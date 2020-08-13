@@ -247,7 +247,7 @@ AverageBillLA <- function(input, output, session) {
       )
     ) %>%
       formatPercentage(2, 1) %>% 
-      formatCurrency(3:5, currency = "\u00A3")
+      formatCurrency(3:5, currency = "\u00A3", digits = 0)
   })
   
   output$Text <- renderUI({
@@ -414,7 +414,7 @@ AverageBillLA <- function(input, output, session) {
     
     AverageBillMap <- AverageBillMap[which(substr(AverageBillMap$CODE, 1,3)== "S12"),]
     
-    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Average total bill:<br/><em>\u00A3", round(AverageBillMap$`Average Electricity Bill`, digits = 0),"</em>" )
+    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Average electricity bill:<br/><em>\u00A3", round(AverageBillMap$`Average Electricity Bill`, digits = 0),"</em>" )
     
     AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - \u00A3", round(AverageBillMap$`Average Electricity Bill`, digits = 0))
     
@@ -448,7 +448,7 @@ AverageBillLA <- function(input, output, session) {
                   highlightOptions = list(color = "white", weight = 2,
                                           bringToFront = TRUE)) %>%
       leaflet::addLegend("bottomright", pal = pal, values = ~`Average Electricity Bill`,
-                         title = "Average total<br/>bill",
+                         title = "Average electricity<br/>bill",
                          labFormat = labelFormat(prefix = "\u00A3"),
                          opacity = 1
       ) 
@@ -506,7 +506,9 @@ AverageBillLA <- function(input, output, session) {
     
     AverageBillMap <- AverageBillMap[which(substr(AverageBillMap$CODE, 1,3)== "S12"),]
     
-    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Average total bill:<br/><em>\u00A3", round(AverageBillMap$`Average Gas Bill`, digits = 0),"</em>" )
+    AverageBillMap <- AverageBillMap[which(AverageBillMap$`Average Gas Bill` > 0),]
+    
+    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Average gas bill:<br/><em>\u00A3", round(AverageBillMap$`Average Gas Bill`, digits = 0),"</em>" )
     
     AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - \u00A3", round(AverageBillMap$`Average Gas Bill`, digits = 0))
     
@@ -545,7 +547,7 @@ AverageBillLA <- function(input, output, session) {
                   highlightOptions = list(color = "white", weight = 2,
                                           bringToFront = TRUE)) %>%
       leaflet::addLegend("bottomright", pal = palWithoutNA, values = ~`Average Gas Bill`,
-                         title = "Average total<br/>bill",
+                         title = "Average gas<br/>bill",
                          labFormat = labelFormat(prefix = "\u00A3"),
                          opacity = 1
       ) 
