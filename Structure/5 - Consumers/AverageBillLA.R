@@ -10,6 +10,8 @@ source("Structure/Global.R")
 AverageBillLAOutput <- function(id) {
   ns <- NS(id)
   tagList(
+    tabsetPanel(
+      tabPanel("Energy",
     fluidRow(column(8,
                     h3("Average annual energy bill prices by local authority", style = "color: #68c3ea;  font-weight:bold"),
                     h4(textOutput(ns('AverageBillLASubtitle')), style = "color: #68c3ea;")
@@ -21,8 +23,36 @@ AverageBillLAOutput <- function(id) {
     
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     #dygraphOutput(ns("AverageBillLAPlot")),
-    leafletOutput(ns("RestrictedMeterMap"), height = "700px")%>% withSpinner(color="#68c3ea"),
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+    leafletOutput(ns("AverageBillLAPlot"), height = "700px")%>% withSpinner(color="#68c3ea"),
+    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("ELectricity",
+             fluidRow(column(8,
+                             h3("Average annual electricity bill prices by local authority", style = "color: #68c3ea;  font-weight:bold"),
+                             h4(textOutput(ns('AverageBillLAElecSubtitle')), style = "color: #68c3ea;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('AverageBillLAElec.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+             #dygraphOutput(ns("AverageBillLAPlot")),
+             leafletOutput(ns("AverageBillLAElecPlot"), height = "700px")%>% withSpinner(color="#68c3ea"),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Gas",
+             fluidRow(column(8,
+                             h3("Average annual gas bill prices by local authority", style = "color: #68c3ea;  font-weight:bold"),
+                             h4(textOutput(ns('AverageBillLAGasSubtitle')), style = "color: #68c3ea;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('AverageBillGasLA.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+             #dygraphOutput(ns("AverageBillLAPlot")),
+             leafletOutput(ns("AverageBillLAGasPlot"), height = "700px")%>% withSpinner(color="#68c3ea"),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
@@ -95,22 +125,84 @@ AverageBillLA <- function(input, output, session) {
   
     })
   
-  output$AverageBillLAPlot <- renderImage({
+  output$AverageBillLAPlot <- renderLeaflet({
     
-    # A temp file to save the output. It will be deleted after renderImage
-    # sends it, because deleteFile=TRUE.
-    outfile <- tempfile(fileext='.png')
-   
-     writePNG(readPNG("Structure/5 - Consumers/AverageBillLAOutput.png"),outfile) 
+    ### Load Packages
+    library(readr)
+    library("maptools")
+    library(tmaptools)
+    library(tmap)
+    library("sf")
+    library("leaflet")
+    library("rgeos")
+    library(readxl)
+    library(ggplot2)
     
-    # Generate a png
+    print("MapsandGasGrid")
+    
+    # This is unlikely to change from 2012
+    yearstart <- 2012
+    
+    ### Set the final year for the loop as the current year ###
+    yearend <- format(Sys.Date(), "%Y")
     
     
-    # Return a list
-    list(src = outfile,
-         alt = "This is alternate text")
-  }, deleteFile = TRUE)
-  
+    ### Add Simplified shape back to the Shapefile
+    LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/LocalAuthority2.shp")
+    
+    LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
+    ############ RENEWABLE ELECTRICITY ################################################
+    
+    AverageBillMap <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Average Bill",
+      skip = 22
+    )[c(2,1,4,5,6)]
+    
+    names(AverageBillMap) <- c("LocalAuthority", "CODE", "Average Electricity Bill", "Average Gas Bill", "Total")
+    
+    AverageBillMap <- AverageBillMap[which(substr(AverageBillMap$CODE, 1,3)== "S12"),]
+    
+    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Average total bill:<br/><em>\u00A3", round(AverageBillMap$Total, digits = 2),"</em>" )
+    
+    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - \u00A3", round(AverageBillMap$Total, digits = 2))
+    
+    ### Change LA$CODE to string
+    LA$CODE <- as.character(LA$CODE)
+    
+    ### Order LAs in Shapefile
+    LA <- LA[order(LA$CODE),]
+    
+    ### Order LAs in Data
+    AverageBillMap <- AverageBillMap[order(AverageBillMap$CODE),]
+    
+    ### Combine Data with Map data
+    LAMap <-
+      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+    
+    
+    pal <- colorNumeric(
+      palette = "Blues",
+      domain = LAMap$Total)
+    
+    leaflet(LAMap) %>% 
+      addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
+      addPolygons(stroke = TRUE, 
+                  weight = 0.1,
+                  smoothFactor = 0.2,
+                  popup = ~Content,
+                  label = ~Hover,
+                  fillOpacity = 1,
+                  color = ~pal(Total),
+                  highlightOptions = list(color = "white", weight = 2,
+                                          bringToFront = TRUE)) %>%
+      leaflet::addLegend("bottomright", pal = pal, values = ~Total,
+                         title = "Average total<br/>bill",
+                         labFormat = labelFormat(prefix = "\u00A3"),
+                         opacity = 1
+      ) 
+    
+  }) 
   
   output$AverageBillLATable = renderDataTable({
     
@@ -158,61 +250,6 @@ AverageBillLA <- function(input, output, session) {
       formatCurrency(3:5, currency = "\u00A3")
   })
   
-  output$AverageBillLATimeSeriesTable = renderDataTable({
-    
-    AverageBillLA <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Non-home supplier elec",
-      skip = 13
-    )
-    
-    names(AverageBillLA)[1] <- "Quarter"#
-    
-    AverageBillLA <- AverageBillLA[complete.cases(AverageBillLA),]
-    
-    AverageBillLA$Quarter <- as.Date(as.numeric(AverageBillLA$Quarter), origin = "1899-12-30")
-    
-    AverageBillLA$Quarter <- as.character(as.yearqtr(AverageBillLA$Quarter))
-    
-    
-    datatable(
-      AverageBillLA,
-      extensions = 'Buttons',
-      
-      rownames = FALSE,
-      options = list(
-        paging = TRUE,
-        pageLength = -1,
-        searching = TRUE,
-        fixedColumns = FALSE,
-        autoWidth = TRUE,
-        ordering = TRUE,
-        order = list(list(0, 'desc')),
-        title = "Proportion of households not on the gas grid by local authority (estimates), Scotland, 2018",
-        dom = 'ltBp',
-        buttons = list(
-          list(extend = 'copy'),
-          list(
-            extend = 'excel',
-            title = 'Proportion of households not on the gas grid by local authority (estimates), Scotland, 2018',
-            header = TRUE
-          ),
-          list(extend = 'csv',
-               title = 'Proportion of households not on the gas grid by local authority (estimates), Scotland, 2018')
-        ),
-        
-        # customize the length menu
-        lengthMenu = list( c(10, 20, -1) # declare values
-                           , c(10, 20, "All") # declare titles
-        ), # end of lengthMenu customization
-        pageLength = 10
-      )
-    ) %>%
-      formatPercentage(2:9, 1)
-  })
-  
-  
-  
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
@@ -220,7 +257,6 @@ AverageBillLA <- function(input, output, session) {
                      
                    )))
   })
-  
   
   observeEvent(input$ToggleTable, {
     toggle("AverageBillLATable")
@@ -234,7 +270,6 @@ AverageBillLA <- function(input, output, session) {
     toggle("GasUnitTable")
   })
   
-
   output$ElecUnitTable = renderDataTable({
     
 
@@ -328,16 +363,20 @@ AverageBillLA <- function(input, output, session) {
     toggle("Text")
   })
   
-  
   output$AverageBillLA.png <- downloadHandler(
     filename = "AverageBillLA.png",
     content = function(file) {
       writePNG(readPNG("Structure/5 - Consumers/AverageBillLAChart.png"), file) 
     }
   )
+
+  output$AverageBillLAElecSubtitle <- renderText({
+    
+    paste("Scotland, 2018")
+    
+  })
   
-  
-  output$RestrictedMeterMap <- renderLeaflet({
+  output$AverageBillLAElecPlot <- renderLeaflet({
     
     ### Load Packages
     library(readr)
@@ -379,7 +418,7 @@ AverageBillLA <- function(input, output, session) {
     
     AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - \u00A3", round(AverageBillMap$Total, digits = 2))
     
-      ### Change LA$CODE to string
+    ### Change LA$CODE to string
     LA$CODE <- as.character(LA$CODE)
     
     ### Order LAs in Shapefile
@@ -415,5 +454,104 @@ AverageBillLA <- function(input, output, session) {
       ) 
     
   }) 
+  
+  output$AverageBillLAElec.png <- downloadHandler(
+    filename = "AverageBillElecLA.png",
+    content = function(file) {
+      writePNG(readPNG("Structure/5 - Consumers/AverageBillLAElecChart.png"), file) 
+    }
+  )
+  
+  output$AverageBillLAGasSubtitle <- renderText({
+    
+    paste("Scotland, 2018")
+    
+  })
+  
+  output$AverageBillLAGasPlot <- renderLeaflet({
+    
+    ### Load Packages
+    library(readr)
+    library("maptools")
+    library(tmaptools)
+    library(tmap)
+    library("sf")
+    library("leaflet")
+    library("rgeos")
+    library(readxl)
+    library(ggplot2)
+    
+    print("MapsandGasGrid")
+    
+    # This is unlikely to change from 2012
+    yearstart <- 2012
+    
+    ### Set the final year for the loop as the current year ###
+    yearend <- format(Sys.Date(), "%Y")
+    
+    
+    ### Add Simplified shape back to the Shapefile
+    LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/LocalAuthority2.shp")
+    
+    LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
+    ############ RENEWABLE ELECTRICITY ################################################
+    
+    AverageBillMap <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Average Bill",
+      skip = 22
+    )[c(2,1,4,5,6)]
+    
+    names(AverageBillMap) <- c("LocalAuthority", "CODE", "Average Electricity Bill", "Average Gas Bill", "Total")
+    
+    AverageBillMap <- AverageBillMap[which(substr(AverageBillMap$CODE, 1,3)== "S12"),]
+    
+    AverageBillMap$Content <- paste0("<b>",AverageBillMap$LocalAuthority, "</b><br/>Average total bill:<br/><em>\u00A3", round(AverageBillMap$Total, digits = 2),"</em>" )
+    
+    AverageBillMap$Hover <- paste0(AverageBillMap$LocalAuthority, " - \u00A3", round(AverageBillMap$Total, digits = 2))
+    
+    ### Change LA$CODE to string
+    LA$CODE <- as.character(LA$CODE)
+    
+    ### Order LAs in Shapefile
+    LA <- LA[order(LA$CODE),]
+    
+    ### Order LAs in Data
+    AverageBillMap <- AverageBillMap[order(AverageBillMap$CODE),]
+    
+    ### Combine Data with Map data
+    LAMap <-
+      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+    
+    
+    pal <- colorNumeric(
+      palette = "Blues",
+      domain = LAMap$Total)
+    
+    leaflet(LAMap) %>% 
+      addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
+      addPolygons(stroke = TRUE, 
+                  weight = 0.1,
+                  smoothFactor = 0.2,
+                  popup = ~Content,
+                  label = ~Hover,
+                  fillOpacity = 1,
+                  color = ~pal(Total),
+                  highlightOptions = list(color = "white", weight = 2,
+                                          bringToFront = TRUE)) %>%
+      leaflet::addLegend("bottomright", pal = pal, values = ~Total,
+                         title = "Average total<br/>bill",
+                         labFormat = labelFormat(prefix = "\u00A3"),
+                         opacity = 1
+      ) 
+    
+  }) 
+  
+  output$AverageBillLAGas.png <- downloadHandler(
+    filename = "AverageBillGasLA.png",
+    content = function(file) {
+      writePNG(readPNG("Structure/5 - Consumers/AverageBillLAGasChart.png"), file) 
+    }
+  )
   
 }
