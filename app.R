@@ -37,7 +37,6 @@ server <- function(input, output, session) {
   ### Pass Each list item to Source() command ###
   sapply(SourceList, source)
 
-
   observe_helpers()
 
   
