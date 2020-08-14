@@ -11,7 +11,7 @@ RestrictedPPMOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-    tabPanel("Economy 7 meter proportion by LA",
+    tabPanel("Local Authorities",
     fluidRow(column(8,
                     h3("Proportion of Economy 7 meters by local authority", style = "color: #68c3ea;  font-weight:bold"),
                     h4(textOutput(ns('RestrictedMeterPropSubtitle')), style = "color: #68c3ea;")
@@ -25,7 +25,7 @@ RestrictedPPMOutput <- function(id) {
     #imageOutput(ns("RestrictedMeterPlot"), height = "700px")%>% withSpinner(color="#68c3ea"),
     leafletOutput(ns("RestrictedMeterPropMap"), height = "800px")%>% withSpinner(color="#68c3ea"),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-        tabPanel("Economy 7 meter proportion",
+        tabPanel("Proportion time series",
              fluidRow(column(8,
                              h3("Proportion of Economy 7 meters in Scotland", style = "color: #68c3ea;  font-weight:bold"),
                              h4(textOutput(ns('RestrictedMetersPropTSSubtitle')), style = "color: #68c3ea;")
@@ -39,7 +39,7 @@ RestrictedPPMOutput <- function(id) {
              #dygraphOutput(ns("RestrictedMeterPlot")),
              plotlyOutput(ns("RestrictedMetersPropTSPlot"))%>% withSpinner(color="#68c3ea"),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-    tabPanel("Economy 7 meter amount",
+    tabPanel("Amount time series",
              fluidRow(column(8,
                              h3("Proportion of Economy 7 meters in Scotland", style = "color: #68c3ea;  font-weight:bold"),
                              h4(textOutput(ns('RestrictedMetersTSSubtitle')), style = "color: #68c3ea;")
