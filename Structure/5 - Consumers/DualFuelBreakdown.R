@@ -933,7 +933,7 @@ DualFuelBreakdown <- function(input, output, session) {
       
       NorthDualFuelBreakdownChart <-
         NorthDualFuelBreakdownChart +
-        ylim(-.38,1.01) +
+        ylim(-.42,1.01) +
         coord_flip() +
         labs(subtitle =     paste("Scotland,",
                                   str_sub(tail(NorthDualFuelBreakdown,1)$Dates,-4,-1),
@@ -1099,7 +1099,7 @@ DualFuelBreakdown <- function(input, output, session) {
       
       SouthDualFuelBreakdownChart <-
         SouthDualFuelBreakdownChart +
-        ylim(-.38,1.01) +
+        ylim(-.42,1.01) +
         coord_flip() +
         labs(subtitle =     paste("Scotland,",
                                   str_sub(tail(SouthDualFuelBreakdown,1)$Dates,-4,-1),
