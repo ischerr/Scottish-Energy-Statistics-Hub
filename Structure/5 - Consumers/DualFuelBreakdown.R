@@ -519,7 +519,7 @@ DualFuelBreakdown <- function(input, output, session) {
     
     
     datatable(
-      NorthScotlandDualFuelBreakdown[1:6],
+      NorthScotlandDualFuelBreakdown[1:7],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -559,7 +559,7 @@ DualFuelBreakdown <- function(input, output, session) {
                                                  "\t", escape_double = FALSE, trim_ws = TRUE)
     
     datatable(
-      SouthScotlandDualFuelBreakdown[1:6],
+      SouthScotlandDualFuelBreakdown[1:7],
       extensions = 'Buttons',
       
       rownames = FALSE,
