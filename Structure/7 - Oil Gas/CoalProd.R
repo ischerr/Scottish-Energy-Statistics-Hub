@@ -537,7 +537,7 @@ CoalProd <- function(input, output, session) {
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Coal production", skip = 12, col_names = FALSE)
     
-    Data <- as_tibble(t(Data))[1:3]
+    Data <- as_tibble(t(Data))[c(1, 7:8)]
     
     Data <- Data[-1,]
     
