@@ -516,7 +516,7 @@ DualFuelBreakdown <- function(input, output, session) {
     NorthScotlandDualFuelBreakdown <- read_delim("Processed Data/Output/Energy Bills/NorthScotlandDualFuelBreakdown.txt", 
                                                  "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    
+    NorthScotlandDualFuelBreakdown <- rbind(NorthScotlandDualFuelBreakdown,c("April 2015 - September 2015",	0.450785585238946,	0.261135156074665,	0.091990188767057,	0.177089062071332,	0.0190000078479999, 0, 0))
     
     datatable(
       NorthScotlandDualFuelBreakdown[1:7],
@@ -557,6 +557,8 @@ DualFuelBreakdown <- function(input, output, session) {
     
     SouthScotlandDualFuelBreakdown <- read_delim("Processed Data/Output/Energy Bills/SouthScotlandDualFuelBreakdown.txt", 
                                                  "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    SouthScotlandDualFuelBreakdown <- rbind(SouthScotlandDualFuelBreakdown,c("April 2015 - September 2015",	0.462706502598415,	0.242183563345471,	0.0944366540135878,	0.181673272194526,	0.0190000078479999,0,0))
     
     datatable(
       SouthScotlandDualFuelBreakdown[1:7],
