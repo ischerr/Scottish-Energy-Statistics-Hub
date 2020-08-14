@@ -484,7 +484,11 @@ MaxSupplyPeakDemand <- function(input, output, session) {
     
     Data <- as_tibble(Data)
     
-    MaxSupplyCapacityTech <- Data[c(2:11)]
+    Data$`Total Scottish Generation` <- Data$CCGT+ Data$Coal + Data$Nuclear + Data$`Large Hydro` + Data$`Pumped Storage` + Data$Diesel
+    
+    Data$`Total Imports` <- Data$`Moyle Interconnector` + Data$`Secure import capability of GB Transmission Network into Scotland`
+    
+    MaxSupplyCapacityTech <- Data[c(2:8,12,9,10,13,11)]
     
     datatable(
       MaxSupplyCapacityTech,
@@ -519,8 +523,9 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:10, 0) %>% 
-      formatStyle(10, fontWeight = "bold")
+      formatRound(2:12, 0) %>% 
+      formatStyle(12, fontWeight = "bold") %>% 
+      formatStyle(c(8,11), fontStyle = "Italic")
   })
   
   output$Text <- renderUI({
