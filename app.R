@@ -769,7 +769,7 @@ ui <- shinyUI(fluidPage(
                    tabPanel(title = "Smart Meter Installations",
                             value = "SmartMeters",
                             SmartMetersOutput("SmartMeters")),
-                   tabPanel(title = "Restricted and Prepayment meters",
+                   tabPanel(title = "Restricted meters",
                             value = "RestrictedPPM",
                             RestrictedPPMOutput("RestrictedPPM"))
                                  ))
