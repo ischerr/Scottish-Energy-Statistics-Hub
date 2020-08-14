@@ -67,11 +67,11 @@ MarketStructureOutput <- function(id) {
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
-             DateLookup(c("Xoserve", "Ofgem"))),
+             DateLookup(c("OFGEMSuppliers"))),
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
-        SourceLookup("Ofgem")
+        SourceLookup("OFGEMSuppliers")
         
       )
     )
@@ -392,14 +392,14 @@ MarketStructure <- function(input, output, session) {
   
   output$MarketSupplierSubtitle <- renderText({
     
-    Data <- read_delim("Processed Data/Output/Domestic Suppliers/DomesticSuppliers.txt", 
+    Data <- read_delim("Processed Data/Output/Domestic Sales/DomesticSuppliers.txt", 
                        "\t", escape_double = FALSE, trim_ws = TRUE)
     
     paste("Scotland, ", format(min(Data$Date), format = "%B %Y")," - " ,format(max(Data$Date), format = "%B %Y"))
   })
   
   output$MarketSupplierPlot <- renderPlotly({
-    Data <- read_delim("Processed Data/Output/Domestic Suppliers/DomesticSuppliers.txt", 
+    Data <- read_delim("Processed Data/Output/Domestic Sales/DomesticSuppliers.txt", 
                        "\t", escape_double = FALSE, trim_ws = TRUE)
     
     ChartColours <- c("#081d58", "#225ea8", "#41b6c4", "#41ab5d")
@@ -483,7 +483,7 @@ MarketStructure <- function(input, output, session) {
   
   output$MarketSupplierTable = renderDataTable({
     
-    MarketSupplier <- read_delim("Processed Data/Output/Domestic Suppliers/DomesticSuppliers.txt", 
+    MarketSupplier <- read_delim("Processed Data/Output/Domestic Sales/DomesticSuppliers.txt", 
                        "\t", escape_double = FALSE, trim_ws = TRUE)
     
     MarketSupplier$Date <- as.character(as.yearmon(MarketSupplier$Date))
@@ -527,7 +527,7 @@ MarketStructure <- function(input, output, session) {
     filename = "MarketSupplier.png",
     content = function(file) {
       
-      Data <- read_delim("Processed Data/Output/Domestic Suppliers/DomesticSuppliers.txt", 
+      Data <- read_delim("Processed Data/Output/Domestic Sales/DomesticSuppliers.txt", 
                          "\t", escape_double = FALSE, trim_ws = TRUE)
       
       names(Data)[1] <- "Year"
@@ -536,7 +536,7 @@ MarketStructure <- function(input, output, session) {
       
       DataMax <- tail(Data, 1)
       
-      ChartColours <- c("#081d58", "#225ea8", "#41b6c4", "#41ab5d")
+      ChartColours <- c("#68c3ea", "#081d58", "#225ea8", "#41b6c4", "#41ab5d")
       
       Data$Year <- ymd(Data$Year)
       
@@ -559,9 +559,9 @@ MarketStructure <- function(input, output, session) {
         scale_fill_manual(
           "variable",
           values = c(
-            "Dual" = ChartColours[1],
-            "Electricity" = ChartColours[2],
-            "Gas" = ChartColours[3]
+            "Dual" = ChartColours[2],
+            "Electricity" = ChartColours[3],
+            "Gas" = ChartColours[4]
           )
         ) +
         geom_bar(stat = "identity") +
@@ -585,7 +585,7 @@ MarketStructure <- function(input, output, session) {
                  x = Data$Year,
                  y = Data$Total,
                  size = 1.5,
-                 colour = ChartColours[4],
+                 colour = ChartColours[5],
                  family = "Century Gothic"
         ) +
         annotate("text",
@@ -594,7 +594,7 @@ MarketStructure <- function(input, output, session) {
                  size = 3,
                  label = ifelse(Data$Year %in% c(min(Data$Year)), paste0("Total\nsuppliers:\n", Data$Total), " "),
                  vjust = -.2,
-                 colour = ChartColours[4],
+                 colour = ChartColours[5],
                  family = "Century Gothic",
                  fontface = 2
         ) +
@@ -604,7 +604,7 @@ MarketStructure <- function(input, output, session) {
                  size = 3,
                  label = ifelse(Data$Year %in% c(max(Data$Year)), paste0("Total\nsuppliers:\n", Data$Total), " "),
                  vjust = 0,
-                 colour = ChartColours[4],
+                 colour = ChartColours[5],
                  family = "Century Gothic",
                  fontface = 2
         ) +
@@ -689,7 +689,7 @@ MarketStructure <- function(input, output, session) {
             fontface = 2
           ),
           hjust = 0,
-          colour = ChartColours[1],
+          colour = ChartColours[2],
           family = "Century Gothic",
           size = 3
         ) +
@@ -701,7 +701,7 @@ MarketStructure <- function(input, output, session) {
             fontface = 2
           ),
           hjust = 0,
-          colour = ChartColours[2],
+          colour = ChartColours[3],
           family = "Century Gothic",
           size = 3
         ) +
@@ -713,7 +713,7 @@ MarketStructure <- function(input, output, session) {
             fontface = 2
           ),
           hjust = 0,
-          colour = ChartColours[3],
+          colour = ChartColours[4],
           family = "Century Gothic",
           size = 3
         )
