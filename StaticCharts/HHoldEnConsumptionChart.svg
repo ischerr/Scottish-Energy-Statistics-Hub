@@ -14,7 +14,7 @@
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
    width="400.00415"
    height="395.77661"
-   inkscape:export-filename="C:\Users\ische\OneDrive\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\EnConsumptionSectorChart.png"
+   inkscape:export-filename="C:\Users\ische\Documents\Github\Scottish-Energy-Statistics-Hub\Structure\4 - Energy Efficiency\Demand Reduction\HHoldEnConsumptionChart.png"
    inkscape:export-xdpi="300.04529"
    inkscape:export-ydpi="300.04529">
   <metadata
@@ -44,7 +44,7 @@
      showgrid="false"
      inkscape:zoom="1.8958381"
      inkscape:cx="221.63125"
-     inkscape:cy="272.09782"
+     inkscape:cy="208.80128"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -316,7 +316,8 @@
                    transform="translate(-194.43133,0.92147551)">
                   <g
                      class="slice"
-                     id="g127">
+                     id="g127"
+                     transform="translate(0,9.8823456)">
                     <path
                        inkscape:connector-curvature="0"
                        class="surface"
@@ -326,7 +327,8 @@
                   </g>
                   <g
                      class="slice"
-                     id="g141">
+                     id="g141"
+                     transform="translate(0,9.8823456)">
                     <path
                        inkscape:connector-curvature="0"
                        class="surface"
@@ -337,11 +339,11 @@
                   <path
                      id="path143"
                      style="fill:#fd8d3c;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-                     d="M 375,214.5 188.53516,180.71963 a 189.5,189.5 0 0 1 56.0458,-103.700991 z"
+                     d="M 375,224.38236 188.53516,190.60199 a 189.5,189.5 0 0 1 56.0458,-103.701007 z"
                      class="surface"
                      inkscape:connector-curvature="0" />
                   <flowRoot
-                     transform="matrix(0.49703026,0,0,0.49703026,24.552492,70.752302)"
+                     transform="matrix(0.49703026,0,0,0.49703026,24.552492,80.634646)"
                      style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none"
                      id="flowRoot400"
                      xml:space="preserve"><flowRegion
@@ -360,7 +362,8 @@
                        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle;fill:#ffffff"
                        id="flowPara408">12.1%</flowPara></flowRoot>                  <g
                      class="slice"
-                     id="g169">
+                     id="g169"
+                     transform="translate(0,9.8823456)">
                     <path
                        inkscape:connector-curvature="0"
                        class="surface"
@@ -369,7 +372,7 @@
                        id="path157" />
                   </g>
                   <flowRoot
-                     transform="matrix(0.49703026,0,0,0.49703026,164.4267,218.50468)"
+                     transform="matrix(0.49703026,0,0,0.49703026,164.4267,228.38704)"
                      style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-linejoin:round"
                      id="flowRoot400-1"
                      xml:space="preserve"><flowRegion
@@ -387,37 +390,37 @@
                        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle;fill:#ffffff">heating</flowPara><flowPara
                        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle;fill:#ffffff"
                        id="flowPara408-1">74.9%</flowPara></flowRoot>                  <flowRoot
-                     transform="matrix(0.49703026,0,0,0.49703026,-147.9535,66.461222)"
-                     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#fd8d3c;fill-opacity:1;stroke:none;stroke-linejoin:round;"
+                     transform="matrix(0.49703026,0,0,0.49703026,-147.9535,76.343566)"
+                     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#fd8d3c;fill-opacity:1;stroke:none;stroke-linejoin:round"
                      id="flowRoot400-0"
                      xml:space="preserve"><flowRegion
                        id="flowRegion402-1"
-                       style="fill:#fd8d3c;fill-opacity:1;"><rect
-                         style="fill:#fd8d3c;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;fill-opacity:1;"
+                       style="fill:#fd8d3c;fill-opacity:1"><rect
+                         style="fill:#fd8d3c;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
                          y="-34.51115"
                          x="452.0499"
                          height="248.40366"
                          width="311.06403"
                          id="rect404-8" /></flowRegion><flowPara
                        id="flowPara430-0"
-                       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle;fill:#fd8d3c;fill-opacity:1;">Lights, appliances &amp; renewables</flowPara><flowPara
-                       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle;fill:#fd8d3c;fill-opacity:1;"
+                       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle;fill:#fd8d3c;fill-opacity:1">Lights, appliances &amp; renewables</flowPara><flowPara
+                       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle;fill:#fd8d3c;fill-opacity:1"
                        id="flowPara408-8">10.1%</flowPara></flowRoot>                  <flowRoot
-                     transform="matrix(0.49703026,0,0,0.49703026,-161.77564,189.01747)"
-                     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#feb24c;fill-opacity:1;stroke:none;stroke-linejoin:round;"
+                     transform="matrix(0.49703026,0,0,0.49703026,-161.77564,198.89983)"
+                     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#feb24c;fill-opacity:1;stroke:none;stroke-linejoin:round"
                      id="flowRoot400-16"
                      xml:space="preserve"><flowRegion
                        id="flowRegion402-3"
-                       style="fill:#feb24c;fill-opacity:1;"><rect
-                         style="fill:#feb24c;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;fill-opacity:1;"
+                       style="fill:#feb24c;fill-opacity:1"><rect
+                         style="fill:#feb24c;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
                          y="-34.51115"
                          x="452.0499"
                          height="248.40366"
                          width="311.06403"
                          id="rect404-6" /></flowRegion><flowPara
                        id="flowPara430-04"
-                       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle;fill:#feb24c;fill-opacity:1;">Cooking</flowPara><flowPara
-                       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle;fill:#feb24c;fill-opacity:1;"
+                       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle;fill:#feb24c;fill-opacity:1">Cooking</flowPara><flowPara
+                       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle;fill:#feb24c;fill-opacity:1"
                        id="flowPara408-13">2.9%</flowPara></flowRoot>                </g>
               </g>
             </g>
