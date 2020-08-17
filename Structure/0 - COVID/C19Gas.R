@@ -313,7 +313,7 @@ C19Gas <- function(input, output, session) {
       DailyDemand$DayofYear <- yday(DailyDemand$Date)
       
       DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "First three weeks of March", 
-                                                                 "4th week March to first week of August")
+                                                                 "4th week Mar. to 1st week of Aug.")
       
       WeekdayElecDemand <- DailyDemand
       

@@ -58,7 +58,7 @@ C19SettlementOutput <- function(id) {
     fluidRow(
       column(12, dataTableOutput(ns("C19SettlementTable"))%>% withSpinner(color="#5d8be1"))),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
-    tabPanel("Demand by settlement period",
+    tabPanel("Average demand weekday/weekend",
              fluidRow(
                column(10, h3("Data - Average electricity demand by weekday/weekend, post lockdown", style = "color: #5d8be1;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
@@ -570,7 +570,9 @@ C19Settlement <- function(input, output, session) {
     toggle("C19SettlementTable")
   })
   
-
+  observeEvent(input$ToggleTable2, {
+    toggle("C19SettlementRollingTable")
+  })
   
   observeEvent(input$ToggleText, {
     toggle("Text")
