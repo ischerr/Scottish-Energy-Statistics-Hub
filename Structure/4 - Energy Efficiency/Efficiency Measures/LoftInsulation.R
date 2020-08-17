@@ -589,6 +589,8 @@ LoftInsulation <- function(input, output, session) {
     
     LoftInsulationData <- LoftInsulationData[-1,]
     
+    LoftInsulationData[1] <- NULL
+    
     names(LoftInsulationData) <- c("Year", "CERT + ECO (000s)")
     
     LoftInsulationData <- LoftInsulationData[complete.cases(LoftInsulationData),]
