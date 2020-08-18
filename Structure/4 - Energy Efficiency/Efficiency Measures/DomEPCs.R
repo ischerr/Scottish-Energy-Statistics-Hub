@@ -81,7 +81,7 @@ DomEPCsOutput <- function(id) {
       tabPanel("Housing stock EPC",
     fluidRow(
     column(10, h3("Data - Housing stock by EPC (SAP 2012 RdSAP v9.93)", style = "color: #34d1a3;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+    column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("StockEPCTable"))%>% withSpinner(color="#34d1a3"))),
@@ -107,7 +107,7 @@ DomEPCsOutput <- function(id) {
     tabPanel("EER Bands",
              fluidRow(
                column(10, h3("Data - Proportion of domestic properties rated EER band C or above", style = "color: #34d1a3;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("EERProportionsTable"))%>% withSpinner(color="#34d1a3"))),
@@ -743,7 +743,7 @@ DomEPCs <- function(input, output, session) {
                    )))
   })
  
-  observeEvent(input$ToggleTable, {
+  observeEvent(input$ToggleTable1, {
     toggle("StockEPCTable")
   })
   
@@ -753,6 +753,10 @@ DomEPCs <- function(input, output, session) {
   
   observeEvent(input$ToggleTable3, {
     toggle("EPCTenureTable")
+  })
+  
+  observeEvent(input$ToggleTable4, {
+    toggle("EERProportionsTable")
   })
   
   observeEvent(input$ToggleText, {

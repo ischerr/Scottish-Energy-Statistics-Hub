@@ -136,7 +136,7 @@ tabsetPanel(
   tabPanel("Renewable sources",
                fluidRow(
                  column(10, h3("Data - Latest Figures", style = "color: #39ab2c;  font-weight:bold")),
-                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
                  column(12, dataTableOutput(ns("RenSourcesTable"))%>% withSpinner(color="#39ab2c"))),
@@ -144,7 +144,7 @@ tabsetPanel(
   tabPanel("Wind Summary",
            fluidRow(
              column(10, uiOutput(ns("TurbineDataDate"))),
-             column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Tables", style = "float:right; "))
+             column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Tables", style = "float:right; "))
            ),
            fluidRow(
              column(10, h4("All Wind", style = "color: #39ab2c;  font-weight:bold"))
@@ -2055,4 +2055,13 @@ RenElecSources <- function(input, output, session) {
     Data[c(1,2,3,5,4)]
     
   }
+  
+  observeEvent(input$ToggleTable1, {
+    toggle("RenSourcesTable")
+  })
+  observeEvent(input$ToggleTable2, {
+    toggle("AllWindTable")
+    toggle("OnshoreWindTable")
+    toggle("OffshoreWindTable")
+  })
 }

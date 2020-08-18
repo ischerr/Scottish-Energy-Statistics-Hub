@@ -59,7 +59,7 @@ MarketStructureOutput <- function(id) {
     tabPanel("Market Suppliers",
              fluidRow(
                column(10, h3("Data - Number of active domestic suppliers by fuel type", style = "color: #68c3ea;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("MarketSupplierTable"))%>% withSpinner(color="#68c3ea"))),
@@ -243,6 +243,10 @@ MarketStructure <- function(input, output, session) {
   
   observeEvent(input$ToggleTable, {
     toggle("MarketStructureTable")
+  })
+  
+  observeEvent(input$ToggleTable2, {
+    toggle("MarketSupplierTable")
   })
   
   
