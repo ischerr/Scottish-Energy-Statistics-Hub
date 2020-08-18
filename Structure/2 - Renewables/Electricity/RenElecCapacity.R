@@ -39,7 +39,7 @@ RenElecCapacityOutput <- function(id) {
                #dygraphOutput(ns("RenElecFuelPlot")),
                plotlyOutput(ns("RenElecFuelPlot"), height = "900px")%>% withSpinner(color="#39ab2c"),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-      tabPanel("Local Authorities",
+      tabPanel("Operational capacity by Local Authority",
                fluidRow(column(8,
                                h3("Renewable electricity capacity at Local Authority Level", style = "color: #39ab2c;  font-weight:bold"),
                                
@@ -85,21 +85,6 @@ RenElecCapacityOutput <- function(id) {
              #dygraphOutput(ns("RenElecCapacityPlot")),
 
              plotlyOutput(ns("RenElecOperationalSizePlot"), height = "600px")%>% withSpinner(color="#39ab2c"),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Operational capacity by Local Authority",
-             fluidRow(column(8,
-                             h3("Operational renewable capacity by Local Authority", style = "color: #39ab2c;  font-weight:bold"),
-                             h4(textOutput(ns('LACapacitySubtitle')), style = "color: #39ab2c;")
-             ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('LACapacityMap.png'), 'Download Graph', style="float:right")
-             )),
-             
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-             #dygraphOutput(ns("RenElecCapacityPlot")),
-             
-             leafletOutput(ns("LACapacityMap"), height = "600px")%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     
     fluidRow(
@@ -115,7 +100,7 @@ RenElecCapacityOutput <- function(id) {
       tabPanel("Quarterly Capacity by technology",
                fluidRow(
                  column(10, h3("Data - Quarterly operational renewable capacity by technology (MW)", style = "color: #39ab2c;  font-weight:bold")),
-                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
                  column(12, dataTableOutput(ns("RenElecBreakdownCapTable"))%>% withSpinner(color="#39ab2c"))),
@@ -131,7 +116,7 @@ RenElecCapacityOutput <- function(id) {
       tabPanel("Renewable sites",
                fluidRow(
                  column(10, h3("Data - Annual operational number of sites generating electricity from renewable sources", style = "color: #39ab2c;  font-weight:bold")),
-                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
                  column(12, dataTableOutput(ns("RenSitesTable"))%>% withSpinner(color="#39ab2c"))),
@@ -140,7 +125,7 @@ RenElecCapacityOutput <- function(id) {
       tabPanel("Capacity by installation size",
                fluidRow(
                  column(10, h3("Data - Operational renewable capacity by installation size (MW)", style = "color: #39ab2c;  font-weight:bold")),
-                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
                  column(12, dataTableOutput(ns("RenElecOperationalSizeTable"))%>% withSpinner(color="#39ab2c"))),
@@ -421,8 +406,24 @@ RenElecCapacity <- function(input, output, session) {
  })
  
   
-  observeEvent(input$ToggleTable2, {
+  observeEvent(input$ToggleTable1, {
     toggle("RenElecBreakdownCapTable")
+  })
+  
+  observeEvent(input$ToggleTable2, {
+    toggle("AnnualRenElecBreakdownCapTable")
+  })
+  
+  observeEvent(input$ToggleTable3, {
+    toggle("RenSitesTable")
+  })
+  
+  observeEvent(input$ToggleTable4, {
+    toggle("RenElecOperationalSizeTable")
+  })
+  
+  observeEvent(input$ToggleTable5, {
+    toggle("LACapTable")
   })
   
   observeEvent(input$ToggleText, {
@@ -1123,15 +1124,7 @@ RenElecCapacity <- function(input, output, session) {
       formatRound(2:ncol(RenElecCapFuel), 0)
   })
   
-  observeEvent(input$ToggleTable, {
-    toggle("RenElecFuelCapTable")
-  })
-  
-  observeEvent(input$ToggleTable4, {
-    toggle("LARenCapPipelineTable")
-  })
 
-  
   output$LACapacitySubtitle <- renderText({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
@@ -1199,6 +1192,11 @@ RenElecCapacity <- function(input, output, session) {
       palette = "Greens",
       domain = LAMap$Capacity)
     
+    palWithoutNA <- colorNumeric(
+      palette = "Greens",
+      domain = LAMap$Capacity,
+      na.color=rgb(0,0,0,0))
+    
     l <-leaflet(LAMap) %>% 
       addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
       addPolygons(stroke = TRUE, 
@@ -1210,7 +1208,7 @@ RenElecCapacity <- function(input, output, session) {
                   color = ~pal(Capacity),
                   highlightOptions = list(color = "white", weight = 2,
                                           bringToFront = TRUE)) %>%
-      leaflet::addLegend("bottomright", pal = pal, values = ~Capacity,
+      leaflet::addLegend("bottomright", pal =  palWithoutNA, values = ~Capacity,
                          title = "Renewable  Electricity<br/>Capacity (MW)",
                          opacity = 1
       ) 
@@ -1576,10 +1574,6 @@ RenElecCapacity <- function(input, output, session) {
     }
   )
 
-  observeEvent(input$ToggleTable3, {
-    toggle("RenElecOperationalSizeTable")
-  })
-
   ######
   Time <- read_excel("Structure/CurrentWorking.xlsx", 
                      sheet = "Renewable elec pipeline", col_names = TRUE,
@@ -1720,7 +1714,6 @@ RenElecCapacity <- function(input, output, session) {
     }
   )
   
-
   output$RenElecOperationalSizeTable = renderDataTable({
     
     CapacitySizeTech <- read_delim("Processed Data/Output/Capacity by Size/CapacitySizeTech.txt", 
@@ -2366,9 +2359,6 @@ RenElecCapacity <- function(input, output, session) {
       formatRound(2:ncol(RenSites), 0)
   })
   
-  observeEvent(input$ToggleTable, {
-    toggle("RenSitesTable")
-  })
   
   output$RenSites.png <- downloadHandler(
     filename = "RenSites.png",
@@ -2677,6 +2667,11 @@ RenElecCapacity <- function(input, output, session) {
       palette = "Greens",
       domain = LAMap$value)
     
+    palWithoutNA <- colorNumeric(
+      palette = "Greens",
+      domain = LAMap$value,
+      na.color=rgb(0,0,0,0))
+    
     l <-leaflet(LAMap) %>% 
       addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
       addPolygons(stroke = TRUE, 
@@ -2688,7 +2683,7 @@ RenElecCapacity <- function(input, output, session) {
                   color = ~pal(value),
                   highlightOptions = list(color = "white", weight = 2,
                                           bringToFront = TRUE)) %>%
-      leaflet::addLegend("bottomright", pal = pal, values = ~value,
+      leaflet::addLegend("bottomright", pal = palWithoutNA, values = ~value,
                          title = paste0(LARenCap$variable[1], " Capacity (MW)"),
                          opacity = 1
       ) 
