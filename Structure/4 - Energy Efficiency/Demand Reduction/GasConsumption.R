@@ -1140,6 +1140,11 @@ GasConsumption <- function(input, output, session) {
       palette = "Greens",
       domain = LAMap$Total)
     
+    palWithoutNA <- colorNumeric(
+      palette = "Greens",
+      domain = LAMap$Total,
+      na.color=rgb(0,0,0,0))
+    
     leaflet(LAMap) %>% 
       addProviderTiles("Esri.WorldGrayCanvas" ) %>% 
       addPolygons(stroke = TRUE, 
@@ -1151,7 +1156,7 @@ GasConsumption <- function(input, output, session) {
                   color = ~pal(Total),
                   highlightOptions = list(color = "white", weight = 2,
                                           bringToFront = TRUE)) %>%
-      leaflet::addLegend("bottomright", pal = pal, values = ~Total,
+      leaflet::addLegend("bottomright", pal = palWithoutNA, values = ~Total,
                          title = "Gas consumption",
                          labFormat = labelFormat(suffix = " kWh"),
                          opacity = 1
