@@ -123,7 +123,7 @@ ULEVsOutput <- function(id) {
     tabPanel("Local Authority",
              fluidRow(
                column(10, h3("Data - Renewable electricity generation at Local Authority Level (GWh)", style = "color: #39ab2c;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12,selectInput(ns("YearSelect2"), "Year:", c(unique(ULEVbyLA$Quarter)), selected = max(ULEVbyLA$Quarter), multiple = FALSE,
@@ -135,7 +135,7 @@ ULEVsOutput <- function(id) {
     tabPanel("First Time Registrations",
       fluidRow(
         column(10, h3("Data - All ULEVs registered for the first time in Scotland", style = "color: #39ab2c;  font-weight:bold")),
-        column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+        column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
       ),
       fluidRow(
         column(12, dataTableOutput(ns("ULEVRegOutputTable"))%>% withSpinner(color="#39ab2c"))),
@@ -143,7 +143,7 @@ ULEVsOutput <- function(id) {
     tabPanel("Charging Points",
              fluidRow(
                column(10, h3("Data - Charging Points", style = "color: #39ab2c;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("ChargingPointTable"))%>% withSpinner(color="#39ab2c"))),
@@ -151,7 +151,7 @@ ULEVsOutput <- function(id) {
     tabPanel("Charging Events",
              fluidRow(
                uiOutput(ns("ChargingEventsDataSubtitle")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("ChargingEventsTable"))%>% withSpinner(color="#39ab2c"))),
@@ -159,7 +159,7 @@ ULEVsOutput <- function(id) {
     tabPanel("Charge Provided",
              fluidRow(
                uiOutput(ns("ChargeProvidedDataSubtitle")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable6"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("ChargeProvidedTable"))%>% withSpinner(color="#39ab2c"))),
@@ -515,7 +515,23 @@ ULEVs <- function(input, output, session) {
   })
   
   observeEvent(input$ToggleTable2, {
+    toggle("LAGenTable")
+  })
+  
+  observeEvent(input$ToggleTable3, {
     toggle("ULEVRegOutputTable")
+  })
+  
+  observeEvent(input$ToggleTable4, {
+    toggle("ChargingPointTable")
+  })
+  
+  observeEvent(input$ToggleTable5, {
+    toggle("ChargingEventsTable")
+  })
+  
+  observeEvent(input$ToggleTable6, {
+    toggle("ChargeProvidedTable")
   })
 
   
