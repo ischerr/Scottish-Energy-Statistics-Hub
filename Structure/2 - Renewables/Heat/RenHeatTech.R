@@ -62,7 +62,7 @@ RenHeatTechOutput <- function(id) {
     tabPanel("Size",
              fluidRow(
                column(10, h3("Data - Renewable heat by installation size", style = "color: #39ab2c;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("RenHeatSizeTable"))%>% withSpinner(color="#39ab2c"))),
@@ -70,7 +70,7 @@ RenHeatTechOutput <- function(id) {
     tabPanel("Energy from Waste",
       fluidRow(
         column(10, h3("Data - Energy from Waste", style = "color: #39ab2c;  font-weight:bold")),
-        column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+        column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
       ),
       fluidRow(
         column(12, dataTableOutput(ns("RenHeatOutputTable"))%>% withSpinner(color="#39ab2c"))),
@@ -634,6 +634,13 @@ RenHeatTech <- function(input, output, session) {
     toggle("RenHeatTechTable")
   })
   
+ observeEvent(input$ToggleTable2, {
+   toggle("RenHeatSizeTable")
+ })
+ 
+ observeEvent(input$ToggleTable3, {
+   toggle("RenHeatOutputTable")
+ })
   observeEvent(input$ToggleText, {
     toggle("Text")
   })

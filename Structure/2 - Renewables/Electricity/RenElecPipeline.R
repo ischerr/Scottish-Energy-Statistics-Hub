@@ -1628,10 +1628,9 @@ RenElecPipeline <- function(input, output, session) {
       
       names(Data2)[1] <- "Type"
       
+      Data2 <- Data2[order(Data2$Total),]
+      
       RenElecCapTech <- Data2[1:4]
-      
-      
-      RenElecCapTech <- arrange(RenElecCapTech,-row_number())
       
       RenElecCapTech$Type <-
         factor(RenElecCapTech$Type,
