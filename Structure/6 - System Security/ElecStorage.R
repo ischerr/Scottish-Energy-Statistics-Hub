@@ -54,7 +54,7 @@ ElecStorageOutput <- function(id) {
       tabPanel("Capacity",
                fluidRow(
                  column(10, h3("Data- Electricity storage capacity by technology (MW)", style = "color: #5d8be1;  font-weight:bold")),
-                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
                  column(12, dataTableOutput(ns("ElecStorageCapTable"))%>% withSpinner(color="#5d8be1"))),
@@ -63,7 +63,7 @@ ElecStorageOutput <- function(id) {
       tabPanel("Pipeline",
                fluidRow(
                  column(10, h3("Data - Pipeline storage capacity by technology (MW)", style = "color: #5d8be1;  font-weight:bold")),
-                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
                  column(12, dataTableOutput(ns("ElecStorageTable"))%>% withSpinner(color="#5d8be1"))),
@@ -295,7 +295,11 @@ ElecStorage <- function(input, output, session) {
  })
  
  
-  observeEvent(input$ToggleTable, {
+  observeEvent(input$ToggleTable1, {
+    toggle("ElecStorageCapTable")
+  })
+  
+  observeEvent(input$ToggleTable2, {
     toggle("ElecStorageTable")
   })
   

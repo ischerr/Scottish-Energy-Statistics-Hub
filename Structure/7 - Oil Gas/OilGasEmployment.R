@@ -307,6 +307,10 @@ OilGasEmployment <- function(input, output, session) {
  observeEvent(input$ToggleTable1, {
     toggle("OilGasEmploymentTable")
   })
+ 
+ observeEvent(input$ToggleTable2, {
+   toggle("OilGasEmploymentUKTable")
+ })
   
   observeEvent(input$ToggleText, {
     toggle("Text")
@@ -557,10 +561,7 @@ OilGasEmployment <- function(input, output, session) {
     ) %>%
       formatPercentage(2, 0)
   })
-  
-  observeEvent(input$ToggleTable2, {
-    toggle("OilGasEmploymentUKTable")
-  })
+
 }
     
     
