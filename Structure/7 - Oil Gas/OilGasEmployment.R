@@ -32,12 +32,12 @@ OilGasEmploymentOutput <- function(id) {
               ),
               column(
                 4, style = 'padding:15px;',
-                downloadButton(ns('OilGasEmploymentRegion.png'), 'Download Graph', style="float:right")
+                downloadButton(ns('OilGasEmploymentRegionMap.png'), 'Download Graph', style="float:right")
               )),
               
               tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
               #dygraphOutput(ns("OilGasEmploymentPlot")),
-              plotlyOutput(ns("OilGasEmploymentRegionPlot"), height = "600px")%>% withSpinner(color="#126992"),
+              imageOutput(ns("OilGasEmploymentRegionMapPlot"), height = "750px")%>% withSpinner(color="#126992"),
               tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #126992;  font-weight:bold")),
@@ -561,6 +561,32 @@ OilGasEmployment <- function(input, output, session) {
     ) %>%
       formatPercentage(2, 0)
   })
+  
+  output$OilGasEmploymentRegionMapPlot <- renderImage({
+    
+    
+    # A temp file to save the output. It will be deleted after renderImage
+    # sends it, because deleteFile=TRUE.
+    outfile <- tempfile(fileext='.png')
+    
+    writePNG(readPNG("Structure/7 - Oil Gas/OilGasEmploymentOutput.png"),outfile) 
+    
+    # Generate a png
+    
+    
+    # Return a list
+    list(src = outfile,
+         alt = "This is alternate text")
+  }, deleteFile = TRUE)
+  
+  output$OilGasEmploymentRegionMap.png <- downloadHandler(
+    filename = "OilGasEmploymentRegionMap.png",
+    content = function(file) {
+      
+      writePNG(readPNG("Structure/7 - Oil Gas/OilGasEmploymentMap.png"), file) 
+      
+    }
+  ) 
 
 }
     
