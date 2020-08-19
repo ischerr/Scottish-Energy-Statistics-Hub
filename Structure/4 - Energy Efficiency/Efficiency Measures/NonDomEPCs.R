@@ -480,7 +480,7 @@ NonDomEPCs <- function(input, output, session) {
           label = ifelse(
             HouseholdEnergyEfficiency$Type == "z",
             "",
-            percent(HouseholdEnergyEfficiency$value[which(HouseholdEnergyEfficiency$variable == "Total")])
+            percent(HouseholdEnergyEfficiency$value[which(HouseholdEnergyEfficiency$variable == "Total")], 0.1)
           ),
           family = "Century Gothic",
           fontface = 2,
@@ -515,7 +515,7 @@ NonDomEPCs <- function(input, output, session) {
         HouseholdEnergyEfficiencyChart +
         coord_flip() +
         labs(subtitle = "2017") +
-        ylim(-.2, 1.06)
+        ylim(-.25, 1.06)
       
       HouseholdEnergyEfficiencyChart
       

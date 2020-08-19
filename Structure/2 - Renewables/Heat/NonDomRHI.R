@@ -770,7 +770,7 @@ NonDomRHI <- function(input, output, session) {
         file,
         plot = NonDomRHIChart,
         width = 20,
-        height = 12,
+        height = 15,
         units = "cm",
         dpi = 300
       )
@@ -834,7 +834,7 @@ output$NonDomRHIAccreditedInstallations.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year+101,
+          x = Year+110,
           y = `Applications`,
           label = ifelse(Year == max(Year), format(`Applications`, big.mark = ","), ""),
           hjust = 0.5,
@@ -957,7 +957,7 @@ output$NonDomRHIInstallationCap.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year+101,
+          x = Year+110,
           y = `Capacity`,
           label = ifelse(Year == max(Year), paste(round(Capacity, digits = 1), "\nMW"), ""),
           hjust = 0.5,
