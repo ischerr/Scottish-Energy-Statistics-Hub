@@ -51,7 +51,7 @@ CoalProdOutput <- function(id) {
       tabPanel("Production",
                fluidRow(
     column(10, h3("Data", style = "color: #126992;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+    column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("CoalProdTable"))%>% withSpinner(color="#126992"))),
@@ -399,10 +399,13 @@ CoalProd <- function(input, output, session) {
  })
  
  
-  observeEvent(input$ToggleTable, {
+  observeEvent(input$ToggleTable1, {
     toggle("CoalProdTable")
   })
   
+  observeEvent(input$ToggleTable2, {
+    toggle("CoalEmploymentTable")
+  })
   
   observeEvent(input$ToggleText, {
     toggle("Text")
