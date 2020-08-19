@@ -996,7 +996,7 @@ FuelPoverty <- function(input, output, session) {
           "EPC Band (SAP 2012) distribution for fuel poor\nhouseholds (new definition)"
         sourcecaption <- "Source: SG"
         
-        ChartColours <- c("#34d1a3", "#FF8500")
+        ChartColours <- c("#68c3ea", "#FF8500")
         BarColours <-
           c("#006837",
             "#1a9850",
@@ -1034,7 +1034,7 @@ FuelPoverty <- function(input, output, session) {
             ),
             family = "Century Gothic",
             fontface = 2,
-            colour = ChartColours[1]
+            colour = BarColours[1]
           ) +
           geom_text(
             aes(x = length + 0.7,
@@ -1101,14 +1101,14 @@ FuelPoverty <- function(input, output, session) {
             ),
             family = "Century Gothic",
             fontface = 2,
-            colour = ChartColours[1]
+            colour = BarColours[1]
           ) +
           geom_text(
             aes(x = length + 0.7,
                 y = 1.1,
                 label = "C\nor better"),
             fontface = 2,
-            colour = ChartColours[1],
+            colour = BarColours[1],
             family = "Century Gothic",
             hjust = 0.5
           )+

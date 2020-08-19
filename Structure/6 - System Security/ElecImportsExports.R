@@ -51,7 +51,7 @@ ElecImportsExportsOutput <- function(id) {
       tabPanel("Annual",
     fluidRow(
     column(10, h3("Data - Electricity imports and exports (GWh)", style = "color: #5d8be1;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+    column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("ElecImportsExportsTable"))%>% withSpinner(color="#5d8be1"))),
@@ -67,7 +67,7 @@ ElecImportsExportsOutput <- function(id) {
     tabPanel("Wholesale exports",
     fluidRow(
       column(10, h3("Data - Wholesale value of electricity exports", style = "color: #5d8be1;  font-weight:bold")),
-      column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+      column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("WholesaleExportsTable"))%>% withSpinner(color="#5d8be1"))),
@@ -371,12 +371,17 @@ ElecImportsExports <- function(input, output, session) {
                    )))
   })
  
-  observeEvent(input$ToggleTable, {
+  observeEvent(input$ToggleTable1, {
     toggle("ElecImportsExportsTable")
   })
   
   observeEvent(input$ToggleTable2, {
     toggle("ElecImportsExportsQuarterTable")
+  })
+  
+  
+  observeEvent(input$ToggleTable3, {
+    toggle("WholesaleExportsTable")
   })
   
   observeEvent(input$ToggleText, {
@@ -750,11 +755,6 @@ ElecImportsExports <- function(input, output, session) {
     ) %>%
       formatRound(2:8, 0)
   }) 
-  
-  observeEvent(input$ToggleTable3, {
-    toggle("WholesaleExportsTable")
-  })
-  
   
   
   output$WholesaleExports.png <- downloadHandler(
