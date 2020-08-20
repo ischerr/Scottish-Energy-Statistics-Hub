@@ -141,6 +141,7 @@ RenElecCapacityOutput <- function(id) {
                ),
                fluidRow(
                  column(12, dataTableOutput(ns("LACapTable"))%>% withSpinner(color="#39ab2c"))),
+               HTML("<blockquote><p>*The sum of local authorities will not add up to overall Scottish capacity because some sites have not been allocated a local authority.</p></blockquote>"),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
 
   
@@ -211,7 +212,7 @@ RenElecCapacity <- function(input, output, session) {
     ChartColours <- c("#39ab2c", "#238b45", "#a1d99b")
     LineColours <- c("#39ab2c", "#238b45", "#a1d99b")
     sourcecaption = "Source: BEIS"
-    plottitle = "Opertional renewable capacity"
+    plottitle = "Operational renewable capacity"
     
     
     
@@ -343,27 +344,35 @@ RenElecCapacity <- function(input, output, session) {
   
   output$AnnualRenElecBreakdownCapTable = renderDataTable({
     
-    Data <- read_delim("Processed Data/Output/Renewable Capacity/AnnualCapacityScotland.txt", 
-                                              "\t", escape_double = FALSE, trim_ws = TRUE)
+    Data <- read_excel("Structure/CurrentWorking.xlsx",
+                       sheet = "Renewable elec by fuel",
+                       col_names = TRUE,
+                       skip = 12
+    )
     
-    names(Data) <- c("Date", "Wind Onshore", "Wind Offshore", "Shoreline wave / tidal", "Solar P.V.", "Small Hydro", "Large Hydro", "Landfill Gas", "Sewage", "Waste", "Animal Biomass", "Anaerobic Digestion", "Plant",                      "Total")
+    Data<- Data[complete.cases(Data),]
     
-    Data$Biomass <- Data$`Animal Biomass` + Data$Plant
+    Data <- distinct(Data, Year, .keep_all = TRUE)
     
-    Data$`Animal Biomass` <- NULL
+    Data <- head(Data, -1)
     
-    Data$Plant <- NULL
+    Data %<>% lapply(function(x)
+      as.numeric(as.character(x)))
     
-    Data$`Anaerobic Digestion` <- Data$`Anaerobic Digestion` + Data$Sewage
     
-    Data$Sewage <- NULL
     
-    names(Data)[1] <- "Year"
+    RenElecCapFuel <- as_tibble(Data)
     
-    Data<- Data[seq(dim(Data)[1],1),]
+    RenElecCapFuel[is.na(RenElecCapFuel)] <- 0
+    
+    RenElecCapFuel <- arrange(RenElecCapFuel,-row_number())
+    
+    RenElecCapFuel$Total <- RenElecCapFuel$`Other bioenergy` + RenElecCapFuel$`Sewage gas` + RenElecCapFuel$`Wave and tidal` + RenElecCapFuel$`Landfill gas` + RenElecCapFuel$`Solar PV` + RenElecCapFuel$Hydro + RenElecCapFuel$`Offshore Wind` + RenElecCapFuel$`Onshore Wind`
+    
+    RenElecCapFuel<-RenElecCapFuel[seq(dim(RenElecCapFuel)[1],1),]
     
     datatable(
-      Data[c(1:10,12,11)],
+      RenElecCapFuel[],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -393,8 +402,8 @@ RenElecCapacity <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:ncol(Data), 0) %>% 
-      formatStyle(12, fontWeight = "bold")
+      formatRound(2:ncol(RenElecCapFuel), 0) %>% 
+      formatStyle(10, fontWeight = "bold")
   })
   
  output$Text <- renderUI({

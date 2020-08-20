@@ -79,7 +79,7 @@ RenHeatTechOutput <- function(id) {
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
-             DateLookup(c("ESTRenHEat"))),
+             DateLookup(c("ESTRenHeat"))),
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
@@ -194,8 +194,8 @@ RenHeatTech <- function(input, output, session) {
         type = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "CHP",
-        text = paste0("CHP: ", format(round(Data$`CHP`, 3), big.mark = ","), unit),
+        name = "Biomass CHP",
+        text = paste0("Biomass CHP: ", format(round(Data$`CHP`, 3), big.mark = ","), unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[2]),
         legendgroup = 2
@@ -206,8 +206,8 @@ RenHeatTech <- function(input, output, session) {
         type = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "Waste",
-        text = paste0("Waste: ", format(round(Data$`Waste`, 3), big.mark = ","), unit),
+        name = "Energy from waste",
+        text = paste0("Energy from waste: ", format(round(Data$`Waste`, 3), big.mark = ","), unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 3
@@ -218,8 +218,8 @@ RenHeatTech <- function(input, output, session) {
         type = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "Pumps",
-        text = paste0("Pumps: ", format(round(Data$`Pumps`, 3), big.mark = ","), unit),
+        name = "Heat pumps",
+        text = paste0("Heat pumps: ", format(round(Data$`Pumps`, 3), big.mark = ","), unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[4]),
         legendgroup = 4
@@ -230,8 +230,8 @@ RenHeatTech <- function(input, output, session) {
         type = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "Solar",
-        text = paste0("Solar: ", format(round(Data$`Solar`, 3), big.mark = ","), unit),
+        name = "Solar thermal",
+        text = paste0("Solar thermal: ", format(round(Data$`Solar`, 3), big.mark = ","), unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[5]),
         legendgroup = 5
@@ -471,7 +471,7 @@ RenHeatTech <- function(input, output, session) {
           colour = ChartColours[1]
         ) +
         geom_text(
-          aes(x = height * 1.25,
+          aes(x = height * 1.3,
               y = length * (0.5 / 5)*.95,
               label = "Biomass"),
           fontface = 2,
@@ -480,34 +480,34 @@ RenHeatTech <- function(input, output, session) {
           hjust = 0.5
         ) +
         geom_text(
-          aes(x = height * 1.25,
+          aes(x = height * 1.3,
               y = length * (1.5 / 5)*.95,
-              label = "CHP"),
+              label = "Biomass\nCHP"),
           fontface = 2,
           colour = BarColours[2],
         ) +
         geom_text(
-          aes(x = height * 1.25,
+          aes(x = height * 1.3,
               y = length * (2.5 / 5)*.95,
-              label = "Waste"),
+              label = "Energy\nfrom waste"),
           fontface = 2,
           colour = BarColours[3],
           family = "Century Gothic",
           hjust = 0.5
         ) +
         geom_text(
-          aes(x = height * 1.25,
+          aes(x = height * 1.3,
               y = length * (3.5 /5)*.95,
-              label = "Pumps"),
+              label = "Heat\npumps"),
           fontface = 2,
           colour = BarColours[4],
           family = "Century Gothic",
           hjust = 0.5
         ) +
         geom_text(
-          aes(x = height * 1.25,
+          aes(x = height * 1.3,
               y = length * (4.5 / 5)*.95,
-              label = "Solar"),
+              label = "Solar\n thermal"),
           fontface = 2,
           colour = BarColours[5],
           family = "Century Gothic",
@@ -528,7 +528,7 @@ RenHeatTech <- function(input, output, session) {
           colour = ChartColours[1]
         ) +
         geom_text(
-          aes(x = height * 1.25,
+          aes(x = height * 1.3,
               y = length * (5.5 / 5)*.95,
               label = "Total"),
           fontface = 2,
@@ -537,7 +537,7 @@ RenHeatTech <- function(input, output, session) {
           hjust = 0.5
         )+
         geom_text(
-          aes(x = height * 1.20,
+          aes(x = height * 1.40,
               y = length * 2,
               label = " "),
           fontface = 2,

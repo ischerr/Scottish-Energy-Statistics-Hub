@@ -640,7 +640,7 @@ LocalRenewables <- function(input, output, session) {
     
     CommunityOperatingOutputType$Target <- NA
     
-   RenEn2 <- data.frame(Date = c(ymd("2020-01-01"), ymd("2030-01-01") ), `Capacity` = NA, Target = c(1000,2000))
+   RenEn2 <- data.frame(Date = c(ymd("2020-12-01"), ymd("2030-12-01") ), `Capacity` = NA, Target = c(1000,2000))
    
    CommunityOperatingOutputType <- rbind(CommunityOperatingOutputType, RenEn2)
    
@@ -751,7 +751,7 @@ LocalRenewables <- function(input, output, session) {
       
       Data <- Data[complete.cases(Data$Year),]
       
-      Data2 <- data.frame(Year = c(2020, 2030 ), `Renewables` = NA, Target = c(1000,2000), `Date` = c(dmy("01/01/2020"), dmy("01/01/2030")))
+      Data2 <- data.frame(Year = c(2020, 2030 ), `Renewables` = NA, Target = c(1000,2000), `Date` = c(dmy("01/12/2020"), dmy("01/12/2030")))
       
       Data <- rbind.fill(Data, Data2)
       

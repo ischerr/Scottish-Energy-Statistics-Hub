@@ -1842,6 +1842,8 @@ RenElecSources <- function(input, output, session) {
     
     TechTableOutput <- head(TechTable, -1)
     
+    names(TechTableOutput)[2] <- "Generation - 2019 (GWh)"
+    
     datatable(
       TechTableOutput,
       extensions = 'Buttons',

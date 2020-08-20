@@ -144,6 +144,7 @@ RenElecGenOutput <- function(id) {
              ),
              fluidRow(
                column(12, dataTableOutput(ns("LAGenTable"))%>% withSpinner(color="#39ab2c"))),
+             HTML("<blockquote><p>*The sum of local authorities will not add up to overall Scottish generation because some sites have not been allocated a local authority.</p></blockquote>"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Wind",
              fluidRow(
