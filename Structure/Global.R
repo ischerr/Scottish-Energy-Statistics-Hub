@@ -1,9 +1,22 @@
 Sources <- read_excel("Structure/Sources.xlsx")
 
+Sources$HTML <- "Hi"
+
+for (i in 1:nrow(Sources)){print(i)
+  
+  ifelse(substr(Sources[i,]$`Direct URL`,1,1) == "h", Sources[i,9] <- paste(a(Sources[i,]$Source, href = Sources[i,]$`Direct URL`, target="_blank")),Sources[i,9] <-  paste(p(Sources[i,]$Source, "(Unpublished)")))
+  }    
+
+
 SourceLookup <- function(x){
+  
+  
+    
   tagList(
-    a(Sources[which(Sources$Code == x),][2], href = Sources[which(Sources$Code == x),][3], target="_blank"),
-    br()
+    
+    
+   HTML(Sources[which(Sources$Code == x),]$HTML),
+    br(),
   )
 }
 
