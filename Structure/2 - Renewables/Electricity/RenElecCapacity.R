@@ -132,7 +132,7 @@ RenElecCapacityOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Local Authority",
                fluidRow(
-                 column(10, h3("Data - Renewable electricity capacity at Local Authority Level (GWh)", style = "color: #39ab2c;  font-weight:bold")),
+                 column(10, h3("Data - Renewable electricity capacity at Local Authority Level (MW)", style = "color: #39ab2c;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
@@ -2632,7 +2632,7 @@ RenElecCapacity <- function(input, output, session) {
     
     Tech = as.character(input$TechSelect)
     
-    LARenCap <- read_delim("Processed Data/Output/Renewable Capacity/LARenCapSimple.txt", 
+    LARenCap <- read_delim("Processed Data/Output/Renewable Capacity/LAOperationalRenCap.txt", 
                            "\t", escape_double = FALSE, trim_ws = TRUE)
     
     LARenCap <-  melt(LARenCap, id.vars = c("LACode", "LAName", "Year"))
@@ -2698,7 +2698,7 @@ RenElecCapacity <- function(input, output, session) {
   
   output$LACapTable = renderDataTable({
     
-    LARenCap <- read_delim("Processed Data/Output/Renewable Capacity/LARenCapSimple.txt", 
+    LARenCap <- read_delim("Processed Data/Output/Renewable Capacity/LAOperationalRenCap.txt", 
                            "\t", escape_double = FALSE, trim_ws = TRUE)
     
     Year2 = as.numeric(input$YearSelect2)
@@ -2747,7 +2747,7 @@ RenElecCapacity <- function(input, output, session) {
   output$LACapMap.png <- downloadHandler(
     filename = "LACapMap.png",
     content = function(file) {
-      writePNG(readPNG("Structure/2 - Renewables/Electricity/LARenCap.png"), file) 
+      file.copy(("Structure/2 - Renewables/Electricity/LARenCap.png"), file) 
     }
   )
 

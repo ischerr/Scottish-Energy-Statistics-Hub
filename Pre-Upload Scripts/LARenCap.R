@@ -17,7 +17,7 @@ LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
 ############ RENEWABLE ELECTRICITY ################################################
 
 
-LARenGen <- read_delim("Processed Data/Output/Renewable Capacity/LARenCapSimple.txt", 
+LARenGen <- read_delim("Processed Data/Output/Renewable Capacity/LAOperationalRenCap.txt", 
                        "\t", escape_double = FALSE, trim_ws = TRUE)
 
 LARenGen <-  melt(LARenGen, id.vars = c("LACode", "LAName", "Year"))
