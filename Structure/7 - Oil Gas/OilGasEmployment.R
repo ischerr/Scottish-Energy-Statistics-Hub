@@ -586,6 +586,8 @@ OilGasEmployment <- function(input, output, session) {
     
     AverageBillMap$Hover <- paste0(AverageBillMap$Name, " - ", percent(AverageBillMap$Amount))
     
+    AverageBillMap$Amount <- AverageBillMap$Amount *100
+    
     ### Change LA$nuts118cd to string
     LA$nuts118cd <- as.character(LA$nuts118cd)
     
@@ -601,7 +603,7 @@ OilGasEmployment <- function(input, output, session) {
     
     
     pal <- colorNumeric(
-      palette = "Greens",
+      palette = "Blues",
       domain = LAMap$Amount)
     
     l <-leaflet(LAMap) %>% 
@@ -615,8 +617,8 @@ OilGasEmployment <- function(input, output, session) {
                   color = ~pal(Amount),
                   highlightOptions = list(color = "white", weight = 2,
                                           bringToFront = TRUE)) %>%
-      leaflet::addLegend("bottomright", pal = pal, values = ~Amount,
-                         title = "Charging Amount",
+      leaflet::addLegend("bottomright", pal = pal, values = ~Amount, labFormat = labelFormat(suffix = "%"),
+                         title = "Proportion employed",
                          opacity = 1
       ) 
     
