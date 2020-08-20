@@ -32,12 +32,12 @@ OilGasEmploymentOutput <- function(id) {
               ),
               column(
                 4, style = 'padding:15px;',
-                downloadButton(ns('OilGasEmploymentRegion.png'), 'Download Graph', style="float:right")
+                downloadButton(ns('OilGasEmploymentRegionMap.png'), 'Download Graph', style="float:right")
               )),
               
               tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"),
               #dygraphOutput(ns("OilGasEmploymentPlot")),
-              plotlyOutput(ns("OilGasEmploymentRegionPlot"), height = "600px")%>% withSpinner(color="#126992"),
+              leafletOutput(ns("OilGasEmploymentRegionMapPlot"), height = "750px")%>% withSpinner(color="#126992"),
               tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #126992;  font-weight:bold")),
@@ -561,6 +561,77 @@ OilGasEmployment <- function(input, output, session) {
     ) %>%
       formatPercentage(2, 0)
   })
+  
+  output$OilGasEmploymentRegionMapPlot <- renderLeaflet({
+    ### Load Packages
+    library(readr)
+    library("maptools")
+    library(tmaptools)
+    library(tmap)
+    library("sf")
+    library("leaflet")
+    library("rgeos")
+    library(readxl)
+    library(ggplot2)
+    
+    ### Add Simplified shape back to the Shapefile
+    LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/NUTS1Simple.shp")
+    
+    LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
+    ############ RENEWABLE ELECTRICITY ################################################
+    
+    AverageBillMap <- read_excel("Structure/7 - Oil Gas/RegionalOilGasEmploymentforMap.xlsx")
+    
+    AverageBillMap$Content <- paste0("<b>",AverageBillMap$Name, "</b><br/>Employment:<br/><em>", percent(AverageBillMap$Amount),"</em>" )
+    
+    AverageBillMap$Hover <- paste0(AverageBillMap$Name, " - ", percent(AverageBillMap$Amount))
+    
+    ### Change LA$nuts118cd to string
+    LA$nuts118cd <- as.character(LA$nuts118cd)
+    
+    ### Order LAs in Shapefile
+    LA <- LA[order(LA$nuts118cd),]
+    
+    ### Order LAs in Data
+    AverageBillMap <- AverageBillMap[order(AverageBillMap$nuts118cd),]
+    
+    ### Combine Data with Map data
+    LAMap <-
+      append_data(LA, AverageBillMap, key.shp = "nuts118cd", key.data = "nuts118cd")
+    
+    
+    pal <- colorNumeric(
+      palette = "Greens",
+      domain = LAMap$Amount)
+    
+    l <-leaflet(LAMap) %>% 
+      addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
+      addPolygons(stroke = TRUE, 
+                  weight = 0.1,
+                  smoothFactor = 0.2,
+                  popup = ~Content,
+                  label = ~Hover,
+                  fillOpacity = 1,
+                  color = ~pal(Amount),
+                  highlightOptions = list(color = "white", weight = 2,
+                                          bringToFront = TRUE)) %>%
+      leaflet::addLegend("bottomright", pal = pal, values = ~Amount,
+                         title = "Charging Amount",
+                         opacity = 1
+      ) 
+    
+    l
+    
+  })
+    
+  output$OilGasEmploymentRegionMap.png <- downloadHandler(
+    filename = "OilGasEmploymentRegionMap.png",
+    content = function(file) {
+      
+      writePNG(readPNG("Structure/7 - Oil Gas/OilGasEmploymentMap.png"), file) 
+      
+    }
+  ) 
 
 }
     
