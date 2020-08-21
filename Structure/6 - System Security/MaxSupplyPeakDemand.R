@@ -484,9 +484,9 @@ MaxSupplyPeakDemand <- function(input, output, session) {
     
     Data <- as_tibble(Data)
     
-    Data$`Total Scottish Generation` <- Data$CCGT+ Data$Coal + Data$Nuclear + Data$`Large Hydro` + Data$`Pumped Storage` + Data$Diesel
+    Data$`Maximum Scottish generated capacity` <- Data$CCGT+ Data$Coal + Data$Nuclear + Data$`Large Hydro` + Data$`Pumped Storage` + Data$Diesel
     
-    Data$`Total Imports` <- Data$`Moyle Interconnector` + Data$`Secure import capability of GB Transmission Network into Scotland`
+    Data$`Maximum import capacity` <- Data$`Moyle Interconnector` + Data$`Secure import capability of GB Transmission Network into Scotland`
     
     MaxSupplyCapacityTech <- Data[c(2:8,12,9,10,13,11)]
     

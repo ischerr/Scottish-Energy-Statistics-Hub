@@ -1844,8 +1844,11 @@ RenElecSources <- function(input, output, session) {
     
     names(TechTableOutput)[2] <- "Generation - 2019 (GWh)"
     
+    TechTableOutput[2:7] %<>% lapply(function(x)
+      as.numeric(as.character(x)))
+    
     datatable(
-      TechTableOutput,
+      as_tibble(TechTableOutput),
       extensions = 'Buttons',
       
       rownames = FALSE,

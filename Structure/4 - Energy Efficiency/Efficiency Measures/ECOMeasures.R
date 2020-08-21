@@ -251,6 +251,8 @@ ECOMeasures <- function(input, output, session) {
     
     Data<- Data[seq(dim(Data)[1],1),]
     
+    Data <- Data[-1,]
+    
     datatable(
       Data,
       extensions = 'Buttons',

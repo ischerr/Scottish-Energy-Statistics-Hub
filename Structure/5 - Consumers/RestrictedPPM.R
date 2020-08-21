@@ -25,10 +25,12 @@ RestrictedPPMOutput <- function(id) {
     #imageOutput(ns("RestrictedMeterPlot"), height = "700px")%>% withSpinner(color="#68c3ea"),
     leafletOutput(ns("RestrictedMeterPropMap"), height = "800px")%>% withSpinner(color="#68c3ea"),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-        tabPanel("Proportion time series",
+        tabPanel("Time Series",
              fluidRow(column(8,
-                             h3("Proportion of Economy 7 meters in Scotland", style = "color: #68c3ea;  font-weight:bold"),
-                             h4(textOutput(ns('RestrictedMetersPropTSSubtitle')), style = "color: #68c3ea;")
+                             h3("Economy 7 meters in Scotland", style = "color: #68c3ea;  font-weight:bold"),
+                             h4(textOutput(ns('RestrictedMetersPropTSSubtitle')), style = "color: #68c3ea;"),
+                             selectInput(ns("ChartSelect"), "Measure:", c("Proportion", "Amount"), selected ="Proportion", multiple = FALSE,
+                                         selectize = TRUE, width = NULL, size = NULL)
              ),
              column(
                4, style = 'padding:15px;',
@@ -38,20 +40,6 @@ RestrictedPPMOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
              #dygraphOutput(ns("RestrictedMeterPlot")),
              plotlyOutput(ns("RestrictedMetersPropTSPlot"))%>% withSpinner(color="#68c3ea"),
-             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-    tabPanel("Amount time series",
-             fluidRow(column(8,
-                             h3("Proportion of Economy 7 meters in Scotland", style = "color: #68c3ea;  font-weight:bold"),
-                             h4(textOutput(ns('RestrictedMetersTSSubtitle')), style = "color: #68c3ea;")
-             ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('RestrictedMetersTS.png'), 'Download Graph', style="float:right")
-             )),
-             
-             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
-             #dygraphOutput(ns("RestrictedMeterPlot")),
-             plotlyOutput(ns("RestrictedMetersTSPlot"))%>% withSpinner(color="#68c3ea"),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))
 ),
    
@@ -108,6 +96,7 @@ RestrictedPPM <- function(input, output, session) {
   ###### Renewable Energy ###### ######
   
   ### From ESD ###
+ 
   
   output$RestrictedMeterPropSubtitle <- renderText({
     
@@ -234,99 +223,10 @@ RestrictedPPM <- function(input, output, session) {
   
   output$RestrictedMetersPropTSPlot <- renderPlotly  ({
     
-    RestrictedMetersProp <- read_delim("Processed Data/Output/Restricted Meters/RestrictedMetersProp.txt", 
-                                       "\t", escape_double = FALSE, col_names = FALSE, 
-                                       trim_ws = TRUE)
+    Chart <- as.character(input$ChartSelect)
     
-    
-    
-    RestrictedMetersProp <- as_tibble(t(RestrictedMetersProp[which(RestrictedMetersProp[2] == "LA Code" | RestrictedMetersProp[2] == "S92000003"),]))
-    
-    RestrictedMetersProp <- tail(RestrictedMetersProp, -2)
-    
-    names(RestrictedMetersProp) <- c("Year", "Proportion")
-    
-    RestrictedMetersProp$Year <- as.numeric(as.character(RestrictedMetersProp$Year))  
-    
-    RestrictedMetersProp$Proportion <- as.numeric(as.character(RestrictedMetersProp$Proportion))
-    
-    plottitle <-
-      "Coal Proportion (million tonnes)"
-    sourcecaption <- "Source: BEIS"
-    
-    ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
-    BarColours <-
-      c(    "#0868ac","#43a2ca","#7bccc4"
-      )
-    
-    p <-  plot_ly(RestrictedMetersProp,x = ~ Year ) %>% 
-      add_trace(data = RestrictedMetersProp,
-                x = ~ Year,
-                y = ~ Proportion,
-                name = "Proportion",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "1",
-                text = paste0(
-                  "Proportion: ",
-                  percent(RestrictedMetersProp$Proportion, accuracy = 0.1),
-                  "\nYear: ",
-                  paste(RestrictedMetersProp$Year)
-                ),
-                hoverinfo = 'text',
-                line = list(width = 6, color = ChartColours[1], dash = "none")
-      )  %>% 
-      add_trace(
-        data = tail(RestrictedMetersProp[which(RestrictedMetersProp$Proportion > 0 | RestrictedMetersProp$Proportion < 0),], 1),
-        x = ~ Year,
-        y = ~ Proportion,
-        legendgroup = "1",
-        name = "Total",
-        text = paste0(
-          "Proportion: ",
-          percent(RestrictedMetersProp[which(RestrictedMetersProp$Proportion > 0 | RestrictedMetersProp$Proportion < 0),][-1,]$Proportion, accuracy = 0.1),
-          "\nYear: ",
-          paste(RestrictedMetersProp[which(RestrictedMetersProp$Proportion > 0 | RestrictedMetersProp$Proportion < 0),][-1,]$Year)
-        ),
-        hoverinfo = 'text',
-        showlegend = FALSE ,
-        type = "scatter",
-        mode = 'markers',
-        marker = list(size = 18, 
-                      color = ChartColours[1])
-      )  %>%  
-      layout(
-        barmode = 'stack',
-        bargap = 0.66,
-        legend = list(font = list(color = "#68c3ea"),
-                      orientation = 'h'),
-        hoverlabel = list(font = list(color = "white"),
-                          hovername = 'text'),
-        hovername = 'text',
-        
-        xaxis = list(title = "",
-                     showgrid = FALSE),
-        yaxis = list(
-          title = "",
-          tickformat = "%",
-          showgrid = TRUE,
-          zeroline = TRUE,
-          zerolinecolor = ChartColours[1],
-          zerolinewidth = 2,
-          rangemode = "tozero"
-        )
-      ) %>% 
-      config(displayModeBar = F)
-    p
-    
-    
-  })
-  
-  output$RestrictedMetersPropTS.png <- downloadHandler(
-    filename = "RestrictedMetersProp.png",
-    content = function(file) {
-      
-      
+    if (Chart == "Proportion")
+    {
       RestrictedMetersProp <- read_delim("Processed Data/Output/Restricted Meters/RestrictedMetersProp.txt", 
                                          "\t", escape_double = FALSE, col_names = FALSE, 
                                          trim_ws = TRUE)
@@ -344,113 +244,440 @@ RestrictedPPM <- function(input, output, session) {
       RestrictedMetersProp$Proportion <- as.numeric(as.character(RestrictedMetersProp$Proportion))
       
       plottitle <-
-        "Proportion of Economy 7 meters\nin Scotland"
+        "Coal Proportion (million tonnes)"
       sourcecaption <- "Source: BEIS"
-      
       
       ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
       BarColours <-
         c(    "#0868ac","#43a2ca","#7bccc4"
         )
       
+      p <-  plot_ly(RestrictedMetersProp,x = ~ Year ) %>% 
+        add_trace(data = RestrictedMetersProp,
+                  x = ~ Year,
+                  y = ~ Proportion,
+                  name = "Proportion",
+                  type = 'scatter',
+                  mode = 'lines',
+                  legendgroup = "1",
+                  text = paste0(
+                    "Proportion: ",
+                    percent(RestrictedMetersProp$Proportion, accuracy = 0.1),
+                    "\nYear: ",
+                    paste(RestrictedMetersProp$Year)
+                  ),
+                  hoverinfo = 'text',
+                  line = list(width = 6, color = ChartColours[1], dash = "none")
+        )  %>% 
+        add_trace(
+          data = tail(RestrictedMetersProp[which(RestrictedMetersProp$Proportion > 0 | RestrictedMetersProp$Proportion < 0),], 1),
+          x = ~ Year,
+          y = ~ Proportion,
+          legendgroup = "1",
+          name = "Total",
+          text = paste0(
+            "Proportion: ",
+            percent(RestrictedMetersProp[which(RestrictedMetersProp$Proportion > 0 | RestrictedMetersProp$Proportion < 0),][-1,]$Proportion, accuracy = 0.1),
+            "\nYear: ",
+            paste(RestrictedMetersProp[which(RestrictedMetersProp$Proportion > 0 | RestrictedMetersProp$Proportion < 0),][-1,]$Year)
+          ),
+          hoverinfo = 'text',
+          showlegend = FALSE ,
+          type = "scatter",
+          mode = 'markers',
+          marker = list(size = 18, 
+                        color = ChartColours[1])
+        )  %>%  
+        layout(
+          barmode = 'stack',
+          bargap = 0.66,
+          legend = list(font = list(color = "#68c3ea"),
+                        orientation = 'h'),
+          hoverlabel = list(font = list(color = "white"),
+                            hovername = 'text'),
+          hovername = 'text',
+          
+          xaxis = list(title = "",
+                       showgrid = FALSE),
+          yaxis = list(
+            title = "",
+            tickformat = "%",
+            showgrid = TRUE,
+            zeroline = TRUE,
+            zerolinecolor = ChartColours[1],
+            zerolinewidth = 2,
+            rangemode = "tozero"
+          )
+        ) %>% 
+        config(displayModeBar = F)
+    }
+    
+    if (Chart == "Amount")
+    {
+      RestrictedMetersProp <- read_delim("Processed Data/Output/Restricted Meters/RestrictedMeters.txt", 
+                                         "\t", escape_double = FALSE, col_names = FALSE, 
+                                         trim_ws = TRUE)
       
-      RestrictedMetersPropChart <- RestrictedMetersProp %>%
-        ggplot(aes(x = Year), family = "Century Gothic") +
-      geom_line(
-        aes(
-          y = Proportion,
-          colour = ChartColours[2],
-          label = percent(Proportion, 0.1)
-        ),
-        size = 1.5,
-        family = "Century Gothic"
-      ) +
-        geom_text(
-          aes(
-            x = Year,
-            y = Proportion,
-            label = ifelse(Year == min(Year), percent(Proportion, accuracy = 0.1), ""),
-            hjust = 0.5,
-            vjust = 2.2,
-            colour = ChartColours[2],
-            fontface = 2
-          ),
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year,
-            y = Proportion,
-            label = ifelse(Year == max(Year), percent(Proportion, accuracy = 0.1), ""),
-            hjust = 0.5,
-            vjust = -1,
-            colour = ChartColours[2],
-            fontface = 2
-          ),
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(RestrictedMetersProp, 1),
-          aes(
-            x = Year,
-            y = Proportion,
-            colour = ChartColours[2],
-            show_guide = FALSE
-          ),
-          size = 4,
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year,
-            y = 0,
-            label = ifelse(Year == max(Year) |
-                             Year == min(Year), Year, ""),
-            hjust = 0.5,
-            vjust = 1.5,
-            fontface = 2
-          ),
-          colour = ChartColours[1],
-          family = "Century Gothic"
+      
+      
+      RestrictedMetersProp <- as_tibble(t(RestrictedMetersProp[which(RestrictedMetersProp[2] == "LA Code" | RestrictedMetersProp[2] == "S92000003"),]))
+      
+      RestrictedMetersProp <- tail(RestrictedMetersProp, -2)
+      
+      names(RestrictedMetersProp) <- c("Year", "Proportion")
+      
+      RestrictedMetersProp$Year <- as.numeric(as.character(RestrictedMetersProp$Year))  
+      
+      RestrictedMetersProp$Proportion <- as.numeric(as.character(RestrictedMetersProp$Proportion))
+      
+      plottitle <-
+        "Coal Proportion (million tonnes)"
+      sourcecaption <- "Source: BEIS"
+      
+      ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
+      BarColours <-
+        c(    "#0868ac","#43a2ca","#7bccc4"
         )
       
-      RestrictedMetersPropChart <-
-        LinePercentChart(RestrictedMetersPropChart,
-                         RestrictedMetersProp,
-                         plottitle,
-                         sourcecaption,
-                         ChartColours)
+      p <-  plot_ly(RestrictedMetersProp,x = ~ Year ) %>% 
+        add_trace(data = RestrictedMetersProp,
+                  x = ~ Year,
+                  y = ~ Proportion,
+                  name = "Amount",
+                  type = 'scatter',
+                  mode = 'lines',
+                  legendgroup = "1",
+                  text = paste0(
+                    "Amount: ",
+                    format(RestrictedMetersProp$Proportion, big.mark = ","),
+                    "\nYear: ",
+                    paste(RestrictedMetersProp$Year)
+                  ),
+                  hoverinfo = 'text',
+                  line = list(width = 6, color = ChartColours[1], dash = "none")
+        )  %>% 
+        add_trace(
+          data = tail(RestrictedMetersProp[which(RestrictedMetersProp$Proportion > 0 | RestrictedMetersProp$Proportion < 0),], 1),
+          x = ~ Year,
+          y = ~ Proportion,
+          legendgroup = "1",
+          name = "Total",
+          text = paste0(
+            "Amount: ",
+            format(RestrictedMetersProp[which(RestrictedMetersProp$Proportion > 0 | RestrictedMetersProp$Proportion < 0),][-1,]$Proportion, big.mark = ","),
+            "\nYear: ",
+            paste(RestrictedMetersProp[which(RestrictedMetersProp$Proportion > 0 | RestrictedMetersProp$Proportion < 0),][-1,]$Year)
+          ),
+          hoverinfo = 'text',
+          showlegend = FALSE ,
+          type = "scatter",
+          mode = 'markers',
+          marker = list(size = 18, 
+                        color = ChartColours[1])
+        )  %>%  
+        layout(
+          barmode = 'stack',
+          bargap = 0.66,
+          legend = list(font = list(color = "#68c3ea"),
+                        orientation = 'h'),
+          hoverlabel = list(font = list(color = "white"),
+                            hovername = 'text'),
+          hovername = 'text',
+          
+          xaxis = list(title = "",
+                       showgrid = FALSE),
+          yaxis = list(
+            title = "",
+            tickformat = "",
+            showgrid = TRUE,
+            zeroline = TRUE,
+            zerolinecolor = ChartColours[1],
+            zerolinewidth = 2,
+            rangemode = "tozero"
+          )
+        ) %>% 
+        config(displayModeBar = F)
+    }
+    
+   
+    p
+    
+    
+  })
+  
+  output$RestrictedMetersPropTS.png <- downloadHandler(
+    filename = "RestrictedMetersProp.png",
+    content = function(file) {
+      
+      Chart <- as.character(input$ChartSelect)
+      
+      if (Chart == "Proportion")
+      {
+        RestrictedMetersProp <- read_delim("Processed Data/Output/Restricted Meters/RestrictedMetersProp.txt", 
+                                           "\t", escape_double = FALSE, col_names = FALSE, 
+                                           trim_ws = TRUE)
+        
+        
+        
+        RestrictedMetersProp <- as_tibble(t(RestrictedMetersProp[which(RestrictedMetersProp[2] == "LA Code" | RestrictedMetersProp[2] == "S92000003"),]))
+        
+        RestrictedMetersProp <- tail(RestrictedMetersProp, -2)
+        
+        names(RestrictedMetersProp) <- c("Year", "Proportion")
+        
+        RestrictedMetersProp$Year <- as.numeric(as.character(RestrictedMetersProp$Year))  
+        
+        RestrictedMetersProp$Proportion <- as.numeric(as.character(RestrictedMetersProp$Proportion))
+        
+        plottitle <-
+          "Proportion of Economy 7 meters\nin Scotland"
+        sourcecaption <- "Source: BEIS"
+        
+        
+        ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
+        BarColours <-
+          c(    "#0868ac","#43a2ca","#7bccc4"
+          )
+        
+        
+        RestrictedMetersPropChart <- RestrictedMetersProp %>%
+          ggplot(aes(x = Year), family = "Century Gothic") +
+          geom_line(
+            aes(
+              y = Proportion,
+              colour = ChartColours[2],
+              label = percent(Proportion, 0.1)
+            ),
+            size = 1.5,
+            family = "Century Gothic"
+          ) +
+          geom_text(
+            aes(
+              x = Year,
+              y = Proportion,
+              label = ifelse(Year == min(Year), percent(Proportion, accuracy = 0.1), ""),
+              hjust = 0.5,
+              vjust = 2.2,
+              colour = ChartColours[2],
+              fontface = 2
+            ),
+            family = "Century Gothic"
+          ) +
+          geom_text(
+            aes(
+              x = Year,
+              y = Proportion,
+              label = ifelse(Year == max(Year), percent(Proportion, accuracy = 0.1), ""),
+              hjust = 0.5,
+              vjust = -1,
+              colour = ChartColours[2],
+              fontface = 2
+            ),
+            family = "Century Gothic"
+          ) +
+          geom_point(
+            data = tail(RestrictedMetersProp, 1),
+            aes(
+              x = Year,
+              y = Proportion,
+              colour = ChartColours[2],
+              show_guide = FALSE
+            ),
+            size = 4,
+            family = "Century Gothic"
+          ) +
+          geom_text(
+            aes(
+              x = Year,
+              y = 0,
+              label = ifelse(Year == max(Year) |
+                               Year == min(Year), Year, ""),
+              hjust = 0.5,
+              vjust = 1.5,
+              fontface = 2
+            ),
+            colour = ChartColours[1],
+            family = "Century Gothic"
+          )
+        
+        RestrictedMetersPropChart <-
+          LinePercentChart(RestrictedMetersPropChart,
+                           RestrictedMetersProp,
+                           plottitle,
+                           sourcecaption,
+                           ChartColours)
+        
+        
+        RestrictedMetersPropChart
+        
+        ggsave(
+          file,
+          plot = RestrictedMetersPropChart,
+          width = 12.5,
+          height = 14,
+          units = "cm",
+          dpi = 300
+        )
+      }
+      
+            if (Chart == "Amount")
+      {
+              RestrictedMetersProp <- read_delim("Processed Data/Output/Restricted Meters/RestrictedMeters.txt", 
+                                                 "\t", escape_double = FALSE, col_names = FALSE, 
+                                                 trim_ws = TRUE)
+              
+              
+              
+              RestrictedMetersProp <- as_tibble(t(RestrictedMetersProp[which(RestrictedMetersProp[2] == "LA Code" | RestrictedMetersProp[2] == "S92000003"),]))
+              
+              RestrictedMetersProp <- tail(RestrictedMetersProp, -2)
+              
+              names(RestrictedMetersProp) <- c("Year", "Proportion")
+              
+              RestrictedMetersProp$Year <- as.numeric(as.character(RestrictedMetersProp$Year))  
+              
+              RestrictedMetersProp$Proportion <- as.numeric(as.character(RestrictedMetersProp$Proportion))
+              
+              length <- max(RestrictedMetersProp$Year)- min(RestrictedMetersProp$Year)
+              
+              plottitle <-
+                "Amount of Economy 7 meters\nin Scotland"
+              sourcecaption <- "Source: BEIS"
+              
+              
+              ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
+              BarColours <-
+                c(    "#0868ac","#43a2ca","#7bccc4"
+                )
+              
+              
+              RestrictedMetersPropChart <- RestrictedMetersProp %>%
+                ggplot(aes(x = Year), family = "Century Gothic") +
+                geom_line(
+                  aes(
+                    y = Proportion,
+                    colour = ChartColours[2],
+                    label = format(Proportion, big.mark = ",")
+                  ),
+                  size = 1.5,
+                  family = "Century Gothic"
+                ) +
+                geom_text(
+                  aes(
+                    x = Year,
+                    y = Proportion,
+                    label = ifelse(Year == min(Year), format(Proportion, big.mark = ","), ""),
+                    hjust = 0.5,
+                    vjust = 2.2,
+                    colour = ChartColours[2],
+                    fontface = 2
+                  ),
+                  family = "Century Gothic"
+                ) +
+                geom_text(
+                  aes(
+                    x = Year,
+                    y = Proportion,
+                    label = ifelse(Year == max(Year), format(Proportion, big.mark = ","), ""),
+                    hjust = 0.5,
+                    vjust = -1,
+                    colour = ChartColours[2],
+                    fontface = 2
+                  ),
+                  family = "Century Gothic"
+                ) +
+                geom_point(
+                  data = tail(RestrictedMetersProp, 1),
+                  aes(
+                    x = Year,
+                    y = Proportion,
+                    colour = ChartColours[2],
+                    show_guide = FALSE
+                  ),
+                  size = 4,
+                  family = "Century Gothic"
+                ) +
+                geom_text(
+                  aes(
+                    x = Year,
+                    y = 0,
+                    label = ifelse(Year == max(Year) |
+                                     Year == min(Year), Year, ""),
+                    hjust = 0.5,
+                    vjust = 1.5,
+                    fontface = 2
+                  ),
+                  colour = ChartColours[1],
+                  family = "Century Gothic"
+                )
+              
+              RestrictedMetersPropChart <-
+                LinePercentChart(RestrictedMetersPropChart,
+                                 RestrictedMetersProp,
+                                 plottitle,
+                                 sourcecaption,
+                                 ChartColours)
+              
+              
+              RestrictedMetersPropChart <- RestrictedMetersPropChart +
+                xlim(min(RestrictedMetersProp$Year)-(length*0.08), max(RestrictedMetersProp$Year)+(length*0.08))
+              
+              ggsave(
+                file,
+                plot = RestrictedMetersPropChart,
+                width = 12.5,
+                height = 14,
+                units = "cm",
+                dpi = 300
+              )
+      }
       
       
-      RestrictedMetersPropChart
       
-      ggsave(
-        file,
-        plot = RestrictedMetersPropChart,
-        width = 12.5,
-        height = 14,
-        units = "cm",
-        dpi = 300
-      )
+
       
       
 })
   
   output$RestrictedMetersPropTSSubtitle <- renderText({
     
-    RestrictedMetersProp <- read_delim("Processed Data/Output/Restricted Meters/RestrictedMetersProp.txt", 
-                                       "\t", escape_double = FALSE, col_names = FALSE, 
-                                       trim_ws = TRUE)
+    Chart <- as.character(input$ChartSelect)
     
+    if (Chart == "Proportion")
+    {
+      RestrictedMetersProp <- read_delim("Processed Data/Output/Restricted Meters/RestrictedMetersProp.txt", 
+                                         "\t", escape_double = FALSE, col_names = FALSE, 
+                                         trim_ws = TRUE)
+      
+      
+      
+      RestrictedMetersProp <- as_tibble(t(RestrictedMetersProp[which(RestrictedMetersProp[2] == "LA Code" | RestrictedMetersProp[2] == "S92000003"),]))
+      
+      RestrictedMetersProp <- tail(RestrictedMetersProp, -2)
+      
+      names(RestrictedMetersProp) <- c("Year", "Proportion")
+      
+      RestrictedMetersProp$Year <- as.numeric(as.character(RestrictedMetersProp$Year))  
+    }
     
-    
-    RestrictedMetersProp <- as_tibble(t(RestrictedMetersProp[which(RestrictedMetersProp[2] == "LA Code" | RestrictedMetersProp[2] == "S92000003"),]))
-    
-    RestrictedMetersProp <- tail(RestrictedMetersProp, -2)
-    
-    names(RestrictedMetersProp) <- c("Year", "Proportion")
-    
-    RestrictedMetersProp$Year <- as.numeric(as.character(RestrictedMetersProp$Year))  
+    if (Chart == "Amount")
+    {
+      RestrictedMetersProp <- read_delim("Processed Data/Output/Restricted Meters/RestrictedMeters.txt", 
+                                         "\t", escape_double = FALSE, col_names = FALSE, 
+                                         trim_ws = TRUE)
+      
+      
+      
+      RestrictedMetersProp <- as_tibble(t(RestrictedMetersProp[which(RestrictedMetersProp[2] == "LA Code" | RestrictedMetersProp[2] == "S92000003"),]))
+      
+      RestrictedMetersProp <- tail(RestrictedMetersProp, -2)
+      
+      names(RestrictedMetersProp) <- c("Year", "Proportion")
+      
+      RestrictedMetersProp$Year <- as.numeric(as.character(RestrictedMetersProp$Year))  
+      
+      
+    }
     
     paste0("Scotland, ", min(RestrictedMetersProp$Year)," - ",  max(RestrictedMetersProp$Year))
   })
@@ -537,231 +764,6 @@ RestrictedPPM <- function(input, output, session) {
     
   }) 
   
-  output$RestrictedMetersTSPlot <- renderPlotly  ({
-    
-    RestrictedMetersProp <- read_delim("Processed Data/Output/Restricted Meters/RestrictedMeters.txt", 
-                                       "\t", escape_double = FALSE, col_names = FALSE, 
-                                       trim_ws = TRUE)
-    
-    
-    
-    RestrictedMetersProp <- as_tibble(t(RestrictedMetersProp[which(RestrictedMetersProp[2] == "LA Code" | RestrictedMetersProp[2] == "S92000003"),]))
-    
-    RestrictedMetersProp <- tail(RestrictedMetersProp, -2)
-    
-    names(RestrictedMetersProp) <- c("Year", "Proportion")
-    
-    RestrictedMetersProp$Year <- as.numeric(as.character(RestrictedMetersProp$Year))  
-    
-    RestrictedMetersProp$Proportion <- as.numeric(as.character(RestrictedMetersProp$Proportion))
-    
-    plottitle <-
-      "Coal Proportion (million tonnes)"
-    sourcecaption <- "Source: BEIS"
-    
-    ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
-    BarColours <-
-      c(    "#0868ac","#43a2ca","#7bccc4"
-      )
-    
-    p <-  plot_ly(RestrictedMetersProp,x = ~ Year ) %>% 
-      add_trace(data = RestrictedMetersProp,
-                x = ~ Year,
-                y = ~ Proportion,
-                name = "Amount",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "1",
-                text = paste0(
-                  "Amount: ",
-                  format(RestrictedMetersProp$Proportion, big.mark = ","),
-                  "\nYear: ",
-                  paste(RestrictedMetersProp$Year)
-                ),
-                hoverinfo = 'text',
-                line = list(width = 6, color = ChartColours[1], dash = "none")
-      )  %>% 
-      add_trace(
-        data = tail(RestrictedMetersProp[which(RestrictedMetersProp$Proportion > 0 | RestrictedMetersProp$Proportion < 0),], 1),
-        x = ~ Year,
-        y = ~ Proportion,
-        legendgroup = "1",
-        name = "Total",
-        text = paste0(
-          "Amount: ",
-          format(RestrictedMetersProp[which(RestrictedMetersProp$Proportion > 0 | RestrictedMetersProp$Proportion < 0),][-1,]$Proportion, big.mark = ","),
-          "\nYear: ",
-          paste(RestrictedMetersProp[which(RestrictedMetersProp$Proportion > 0 | RestrictedMetersProp$Proportion < 0),][-1,]$Year)
-        ),
-        hoverinfo = 'text',
-        showlegend = FALSE ,
-        type = "scatter",
-        mode = 'markers',
-        marker = list(size = 18, 
-                      color = ChartColours[1])
-      )  %>%  
-      layout(
-        barmode = 'stack',
-        bargap = 0.66,
-        legend = list(font = list(color = "#68c3ea"),
-                      orientation = 'h'),
-        hoverlabel = list(font = list(color = "white"),
-                          hovername = 'text'),
-        hovername = 'text',
-        
-        xaxis = list(title = "",
-                     showgrid = FALSE),
-        yaxis = list(
-          title = "",
-          tickformat = "",
-          showgrid = TRUE,
-          zeroline = TRUE,
-          zerolinecolor = ChartColours[1],
-          zerolinewidth = 2,
-          rangemode = "tozero"
-        )
-      ) %>% 
-      config(displayModeBar = F)
-    p
-    
-    
-  })
-  
-  output$RestrictedMetersTS.png <- downloadHandler(
-    filename = "RestrictedMetersTS.png",
-    content = function(file) {
-      
-      
-      RestrictedMetersProp <- read_delim("Processed Data/Output/Restricted Meters/RestrictedMeters.txt", 
-                                         "\t", escape_double = FALSE, col_names = FALSE, 
-                                         trim_ws = TRUE)
-      
-      
-      
-      RestrictedMetersProp <- as_tibble(t(RestrictedMetersProp[which(RestrictedMetersProp[2] == "LA Code" | RestrictedMetersProp[2] == "S92000003"),]))
-      
-      RestrictedMetersProp <- tail(RestrictedMetersProp, -2)
-      
-      names(RestrictedMetersProp) <- c("Year", "Proportion")
-      
-      RestrictedMetersProp$Year <- as.numeric(as.character(RestrictedMetersProp$Year))  
-      
-      RestrictedMetersProp$Proportion <- as.numeric(as.character(RestrictedMetersProp$Proportion))
-      
-      length <- max(RestrictedMetersProp$Year)- min(RestrictedMetersProp$Year)
-      
-      plottitle <-
-        "Amount of Economy 7 meters\nin Scotland"
-      sourcecaption <- "Source: BEIS"
-      
-      
-      ChartColours <- c("#68c3ea", "#66c2a5", "#fc8d62", "#8da0cb")
-      BarColours <-
-        c(    "#0868ac","#43a2ca","#7bccc4"
-        )
-      
-      
-      RestrictedMetersPropChart <- RestrictedMetersProp %>%
-        ggplot(aes(x = Year), family = "Century Gothic") +
-        geom_line(
-          aes(
-            y = Proportion,
-            colour = ChartColours[2],
-            label = format(Proportion, big.mark = ",")
-          ),
-          size = 1.5,
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year,
-            y = Proportion,
-            label = ifelse(Year == min(Year), format(Proportion, big.mark = ","), ""),
-            hjust = 0.5,
-            vjust = 2.2,
-            colour = ChartColours[2],
-            fontface = 2
-          ),
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year,
-            y = Proportion,
-            label = ifelse(Year == max(Year), format(Proportion, big.mark = ","), ""),
-            hjust = 0.5,
-            vjust = -1,
-            colour = ChartColours[2],
-            fontface = 2
-          ),
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(RestrictedMetersProp, 1),
-          aes(
-            x = Year,
-            y = Proportion,
-            colour = ChartColours[2],
-            show_guide = FALSE
-          ),
-          size = 4,
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year,
-            y = 0,
-            label = ifelse(Year == max(Year) |
-                             Year == min(Year), Year, ""),
-            hjust = 0.5,
-            vjust = 1.5,
-            fontface = 2
-          ),
-          colour = ChartColours[1],
-          family = "Century Gothic"
-        )
-      
-      RestrictedMetersPropChart <-
-        LinePercentChart(RestrictedMetersPropChart,
-                         RestrictedMetersProp,
-                         plottitle,
-                         sourcecaption,
-                         ChartColours)
-      
-      
-      RestrictedMetersPropChart <- RestrictedMetersPropChart +
-        xlim(min(RestrictedMetersProp$Year)-(length*0.08), max(RestrictedMetersProp$Year)+(length*0.08))
-      
-      ggsave(
-        file,
-        plot = RestrictedMetersPropChart,
-        width = 12.5,
-        height = 14,
-        units = "cm",
-        dpi = 300
-      )
-      
-      
-    })
-  
-  output$RestrictedMetersTSSubtitle <- renderText({
-    
-    RestrictedMetersProp <- read_delim("Processed Data/Output/Restricted Meters/RestrictedMeters.txt", 
-                                       "\t", escape_double = FALSE, col_names = FALSE, 
-                                       trim_ws = TRUE)
-    
-    
-    
-    RestrictedMetersProp <- as_tibble(t(RestrictedMetersProp[which(RestrictedMetersProp[2] == "LA Code" | RestrictedMetersProp[2] == "S92000003"),]))
-    
-    RestrictedMetersProp <- tail(RestrictedMetersProp, -2)
-    
-    names(RestrictedMetersProp) <- c("Year", "Proportion")
-    
-    RestrictedMetersProp$Year <- as.numeric(as.character(RestrictedMetersProp$Year))  
-    
-    paste0("Scotland, ", min(RestrictedMetersProp$Year)," - ",  max(RestrictedMetersProp$Year))
-  })
   
   
 }

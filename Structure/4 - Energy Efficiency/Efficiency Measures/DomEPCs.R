@@ -57,7 +57,7 @@ DomEPCsOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
     tabPanel("EER Bands",
              fluidRow(column(8,
-                             h3("Proportion of domestic properties rated EER band C or above", style = "color: #34d1a3;  font-weight:bold"),
+                             h3("Average EER Rating", style = "color: #34d1a3;  font-weight:bold"),
                              h4(textOutput(ns('EERProportionsSubtitle')), style = "color: #34d1a3;")
              ),
              column(
@@ -106,7 +106,7 @@ DomEPCsOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
     tabPanel("EER Bands",
              fluidRow(
-               column(10, h3("Data - Proportion of domestic properties rated EER band C or above", style = "color: #34d1a3;  font-weight:bold")),
+               column(10, h3("Data - Average EER Rating", style = "color: #34d1a3;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -1341,7 +1341,7 @@ DomEPCs <- function(input, output, session) {
     
     Data <- Data[which(Data$Year > 0),]
     
-    Data[2:4] %<>% lapply(function(x) as.numeric(as.character(x))/100)
+    Data[2:4] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     EER <- Data
     
@@ -1364,7 +1364,7 @@ DomEPCs <- function(input, output, session) {
                 legendgroup = "1",
                 text = paste0(
                   "SAP 2012 rdSAP v9.92: ",
-                  percent(EER$`SAP 2012`, accuracy = 0.1),
+                  EER$`SAP 2012`,
                   "\nYear: ",
                   format(EER$Year, "%Y")
                 ),
@@ -1379,7 +1379,7 @@ DomEPCs <- function(input, output, session) {
         name = "SAP 2012 rdSAP v9.92",
         text = paste0(
           "SAP 2012 rdSAP v9.92: ",
-          percent(EER[which(EER$`SAP 2012` > 0 | EER$`SAP 2012` < 0),][-1,]$`SAP 2012`, accuracy = 1),
+          EER[which(EER$`SAP 2012` > 0 | EER$`SAP 2012` < 0),][-1,]$`SAP 2012`,
           "\nYear: ",
           format(EER[which(EER$`SAP 2012` > 0 | EER$`SAP 2012` < 0),][-1,]$Year, "%Y")
         ),
@@ -1398,7 +1398,7 @@ DomEPCs <- function(input, output, session) {
         name = "SAP 2012 rdSAP v9.93",
         text = paste0(
           "SAP 2012 rdSAP v9.93: ",
-          percent(EER[which(EER$`SAP 2012 v2` > 0 | EER$`SAP 2012 v2` < 0),]$`SAP 2012 v2`, accuracy = 1),
+          EER[which(EER$`SAP 2012 v2` > 0 | EER$`SAP 2012 v2` < 0),]$`SAP 2012 v2`,
           "\nYear: ",
           format(EER[which(EER$`SAP 2012 v2` > 0 | EER$`SAP 2012 v2` < 0),]$Year, "%Y")
         ),
@@ -1418,7 +1418,7 @@ DomEPCs <- function(input, output, session) {
                 legendgroup = "3",
                 text = paste0(
                   "SAP 2009: ",
-                  percent(EER$`SAP 2009`, accuracy = 1),
+                  EER$`SAP 2009`,
                   "\nYear: ",
                   format(EER$Year, "%Y")
                 ),
@@ -1433,7 +1433,7 @@ DomEPCs <- function(input, output, session) {
         name = "SAP 2009",
         text = paste0(
           "SAP 2009: ",
-          percent(EER[which(EER$`SAP 2009` > 0 | EER$`SAP 2009` < 0),][-1,]$`SAP 2009`, accuracy = 1),
+          EER[which(EER$`SAP 2009` > 0 | EER$`SAP 2009` < 0),][-1,]$`SAP 2009`,
           "\nYear: ",
           format(EER[which(EER$`SAP 2009` > 0 | EER$`SAP 2009` < 0),][-1,]$Year, "%Y")
         ),
@@ -1458,7 +1458,7 @@ DomEPCs <- function(input, output, session) {
                      range = c(min(EER$Year)-100, max(EER$Year)+100)),
         yaxis = list(
           title = "",
-          tickformat = "%",
+          tickformat = "",
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
@@ -1483,7 +1483,7 @@ DomEPCs <- function(input, output, session) {
     
     Data <- Data[which(Data$Year > 0),]
     
-    Data[2:4] %<>% lapply(function(x) as.numeric(as.character(x))/100)
+    Data[2:4] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     datatable(
       Data,
@@ -1498,17 +1498,17 @@ DomEPCs <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Proportion of domestic properties rated EER band C or above",
+        title = "Average EER Rating",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Proportion of domestic properties rated EER band C or above',
+            title = 'Average EER Rating',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Proportion of domestic properties rated EER band C or above')
+               title = 'Average EER Rating')
         ),
         
         # customize the length menu
@@ -1518,7 +1518,7 @@ DomEPCs <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:9, 0)
+      formatRound(2:9, 0)
   })
   
   output$EERProportions.png <- downloadHandler(
@@ -1537,7 +1537,7 @@ DomEPCs <- function(input, output, session) {
       ### variables
       ChartColours <- c("#34d1a3", "#0868ac", "#4eb3d3", "#a8ddb5")
       sourcecaption = "Source: SG"
-      plottitle = "Proportion of domestic properties rated\nEER band C or above"
+      plottitle = "Average EER Rating"
       
       Length <- max(EERProportion$Year) - min(EERProportion$Year)
       Height <- max(EERProportion$`SAP 2009`)
@@ -1561,7 +1561,7 @@ DomEPCs <- function(input, output, session) {
           aes(
             x = Year,
             y = `SAP 2009`,
-            label = ifelse(Year == min(Year), percent(`SAP 2009`/100, accuracy = 1), ""),
+            label = ifelse(Year == min(Year), `SAP 2009`, ""),
             hjust = 1,
             vjust = 0.5,
             colour = ChartColours[3],
@@ -1573,7 +1573,7 @@ DomEPCs <- function(input, output, session) {
           aes(
             x = Year,
             y = `SAP 2009`,
-            label = ifelse(Year == max(Year), percent(`SAP 2009`/100, accuracy = 1), ""),
+            label = ifelse(Year == max(Year), `SAP 2009`, ""),
             hjust = 0.5,
             vjust = -1,
             colour = ChartColours[3],
@@ -1618,7 +1618,7 @@ DomEPCs <- function(input, output, session) {
           aes(
             x = Year,
             y = `SAP 2012`,
-            label = ifelse(Year == min(Year[which(EERProportion$`SAP 2012` > 0)]), percent(`SAP 2012`/100, accuracy = 1), ""),
+            label = ifelse(Year == min(Year[which(EERProportion$`SAP 2012` > 0)]),`SAP 2012`, ""),
             hjust = 0.5,
             vjust = 1.5,
             colour = ChartColours[2],
@@ -1630,7 +1630,7 @@ DomEPCs <- function(input, output, session) {
           aes(
             x = Year,
             y = `SAP 2012`,
-            label = ifelse(Year == max(Year), percent(`SAP 2012`/100, accuracy = 1), ""),
+            label = ifelse(Year == max(Year),`SAP 2012`, ""),
             hjust = .5,
             vjust = 2,
             colour = ChartColours[2],
@@ -1664,7 +1664,7 @@ DomEPCs <- function(input, output, session) {
           aes(
             x = Year,
             y = `SAP 2012 v2`,
-            label = ifelse(Year == max(Year), percent(`SAP 2012 v2`/100, accuracy = 1), ""),
+            label = ifelse(Year == max(Year), `SAP 2012 v2`, ""),
             hjust = -0.5,
             colour = ChartColours[4],
             fontface = 2

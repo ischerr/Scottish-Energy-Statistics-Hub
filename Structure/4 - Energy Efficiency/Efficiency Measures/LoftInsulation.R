@@ -279,7 +279,7 @@ LoftInsulation <- function(input, output, session) {
     
     Data[1:5] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    Data$`300mm or better` <- Data$`300mm or more` + Data$`200mm-299mm`
+    Data$`200mm or better` <- Data$`300mm or more` + Data$`200mm-299mm`
     
     datatable(
       Data[complete.cases(Data),],
