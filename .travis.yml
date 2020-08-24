@@ -27,6 +27,7 @@ git:
 r_packages:
 - ISOweek
 - coda
+- reshape2
  
 r_github_packages: 
 - rensa/ggflags
