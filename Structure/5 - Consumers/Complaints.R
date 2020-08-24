@@ -25,9 +25,9 @@ ComplaintsOutput <- function(id) {
     #dygraphOutput(ns("ComplaintsPropPlot")),
     plotlyOutput(ns("ComplaintsPropPlot"), height = "500px")%>% withSpinner(color="#68c3ea"),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-    tabPanel("Market Suppliers",
+    tabPanel("Complaints by region",
              fluidRow(column(8,
-                             h3("Number of active domestic suppliers by fuel type", style = "color: #68c3ea;  font-weight:bold"),
+                             h3("Complaint Volumes by District of Scotland", style = "color: #68c3ea;  font-weight:bold"),
                              h4(textOutput(ns('ComplaintsAreaSubtitle')), style = "color: #68c3ea;")
              ),
              column(
@@ -38,6 +38,34 @@ ComplaintsOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
              #dygraphOutput(ns("ComplaintsPropPlot")),
              plotlyOutput(ns("ComplaintsAreaPlot"), height = "800px")%>% withSpinner(color="#68c3ea"),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Complaints by type",
+             fluidRow(column(8,
+                             h3("Proportion of complaints by type", style = "color: #68c3ea;  font-weight:bold"),
+                             h4(textOutput(ns('ComplaintsTypeSubtitle')), style = "color: #68c3ea;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('ComplaintsType.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+             #dygraphOutput(ns("ComplaintsPropPlot")),
+             plotlyOutput(ns("ComplaintsTypePlot"), height = "800px")%>% withSpinner(color="#68c3ea"),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Complaints by outcome",
+             fluidRow(column(8,
+                             h3("Proportion of complaints by outcome", style = "color: #68c3ea;  font-weight:bold"),
+                             h4(textOutput(ns('ComplaintsOutcomeSubtitle')), style = "color: #68c3ea;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('ComplaintsOutcome.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+             #dygraphOutput(ns("ComplaintsPropPlot")),
+             plotlyOutput(ns("ComplaintsOutcomePlot"), height = "800px")%>% withSpinner(color="#68c3ea"),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),
@@ -48,21 +76,37 @@ ComplaintsOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     tabsetPanel(
-      tabPanel("Market Shares",
+      tabPanel("Complaints volume",
     fluidRow(
-    column(10, h3("Data - Market shares, combined electricity and gas", style = "color: #68c3ea;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+    column(10, h3("Data - Volume of complaints in Scotland and elsewhere", style = "color: #68c3ea;  font-weight:bold")),
+    column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("ComplaintsPropTable"))%>% withSpinner(color="#68c3ea"))),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-    tabPanel("Market Suppliers",
+    tabPanel("Complaints by region",
              fluidRow(
-               column(10, h3("Data - Number of active domestic suppliers by fuel type", style = "color: #68c3ea;  font-weight:bold")),
+               column(10, h3("Data - Complaint Volumes by District of Scotland", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("ComplaintsAreaTable"))%>% withSpinner(color="#68c3ea"))),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Complaints by type",
+             fluidRow(
+               column(10, h3("Data - Proportion of complaints by type", style = "color: #68c3ea;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("ComplaintsTypeTable"))%>% withSpinner(color="#68c3ea"))),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Complaints by outcome",
+             fluidRow(
+               column(10, h3("Data - Proportion of complaints by outcome", style = "color: #68c3ea;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("ComplaintsOutcomeTable"))%>% withSpinner(color="#68c3ea"))),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     fluidRow(
       column(2, p("Update expected:")),
@@ -218,7 +262,7 @@ Complaints <- function(input, output, session) {
   })
   
   
-  observeEvent(input$ToggleTable, {
+  observeEvent(input$ToggleTable1, {
     toggle("ComplaintsPropTable")
   })
   
@@ -226,6 +270,13 @@ Complaints <- function(input, output, session) {
     toggle("ComplaintsAreaTable")
   })
   
+  observeEvent(input$ToggleTable3, {
+    toggle("ComplaintsTypeTable")
+  })
+  
+  observeEvent(input$ToggleTable4, {
+    toggle("ComplaintsOutcomeTable")
+  })
   
   observeEvent(input$ToggleText, {
     toggle("Text")
@@ -236,138 +287,7 @@ Complaints <- function(input, output, session) {
     filename = "ComplaintsProp.png",
     content = function(file) {
       
-      ComplaintsPropStatic <- ComplaintsProp
-      
-      plottitle = "Market Shares, combined electricity and gas"
-      
-      ComplaintsPropStatic <- arrange(ComplaintsPropStatic,row_number())
-      
-      ComplaintsPropStatic$Region <-
-        factor(ComplaintsPropStatic$Region,
-               levels = unique(ComplaintsPropStatic$Region),
-               ordered = TRUE)
-      
-      ComplaintsPropStatic <- melt(ComplaintsPropStatic, id.vars = "Region")
-      
-      
-      ComplaintsPropStatic$variable <-
-        factor(ComplaintsPropStatic$variable,
-               levels = rev(unique(ComplaintsPropStatic$variable)),
-               ordered = TRUE)
-      
-      ComplaintsPropStatic <- ComplaintsPropStatic %>%
-        group_by(Region) %>%
-        mutate(pos = cumsum(value) - value / 2) %>%
-        mutate(top = sum(value))
-      
-      sourcecaption <- "Source: Xoserve, Ofgem"
-      
-      ChartColours <- c("#68c3ea", "#FF8500")
-      BarColours <-
-        c(
-          "#31a354",
-          "#0868ac",
-          "#43a2ca",
-          "#7bccc4",
-          "#a6bddb",
-          "#d0d1e6",
-          "#bdbdbd",
-          "#969696"
-        )
-      
-      
-      ComplaintsPropStaticChart <- ComplaintsPropStatic %>%
-        ggplot(aes(x = Region, y = value, fill = variable), family = "Century Gothic") +
-        scale_fill_manual(
-          "variable",
-          values = c(
-            "Large" = BarColours[2],
-            "Medium" = BarColours[3],
-            "Small" = BarColours[4]
-          )
-        ) +
-        geom_bar(stat = "identity", width = .8) +
-        geom_text(
-          aes(
-            x = Region,
-            y = -0.08,
-            label = str_wrap(Region, 10),
-            fontface = 2
-          ),
-          colour = ChartColours[1],
-          family = "Century Gothic",
-        ) +
-        geom_text(
-          aes(
-            x = 2.5,
-            y = ((0/3) *1),
-            label = "Large Suppliers",
-            fontface = 2
-          ),
-          colour = BarColours[2],
-          hjust = 0,
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = 2.5,
-            y = ((1.5/3) *1),
-            label = "Medium Suppliers",
-            fontface = 2
-          ),
-          colour = BarColours[3],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = 2.5,
-            y = ((3/3) *1),
-            label = "Small Suppliers",
-            fontface = 2
-          ),
-          colour = BarColours[4],
-          hjust = 1,
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Region,
-            y = pos,
-            label = ifelse(value > 0, percent(value, 0.1),""),
-            fontface = 2
-          ),
-          colour = "white",
-          family = "Century Gothic"
-        )
-      
-      
-      ComplaintsPropStaticChart
-      
-      
-      ComplaintsPropStaticChart <-
-        StackedBars(ComplaintsPropStaticChart,
-                    ComplaintsPropStatic,
-                    plottitle,
-                    sourcecaption,
-                    ChartColours)
-      
-      ComplaintsPropStaticChart <-
-        ComplaintsPropStaticChart +
-        labs(subtitle = "Scotland, December 2019") +
-        ylim(-0.1,1) +
-        scale_x_discrete(limits = rev(levels(ComplaintsPropStatic$Region)))+
-        coord_flip()
-      
-      ComplaintsPropStaticChart
-      
-      ggsave(
-        file,
-        plot = ComplaintsPropStaticChart,
-        width = 19,
-        height = 12,
-        units = "cm",
-        dpi = 300
-      )
+      writePNG(readPNG("Structure/5 - Consumers/ComplaintsVolume.png"), file)
       
     }
   )
@@ -378,99 +298,70 @@ Complaints <- function(input, output, session) {
   })
   
   output$ComplaintsAreaPlot <- renderPlotly({
-    Data <- read_delim("Processed Data/Output/Domestic Sales/DomesticSuppliers.txt", 
-                       "\t", escape_double = FALSE, trim_ws = TRUE)
+    ChartColours <- c("#2b8cbe", "#fc9272", "#34d1a3", "#02818a")
+    BarColours <- c("#2b8cbe", "#fc9272", "#34d1a3", "#02818a")
     
-    ChartColours <- c("#081d58", "#225ea8", "#41b6c4", "#41ab5d")
+    ComplaintsArea <- read_delim("Processed Data/Output/Consumers/EnergyComplaintsDistrict.csv", 
+                                   "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Data$Date <- ymd(Data$Date)
+    names(ComplaintsArea) <- c("Region", "Renewables", "Proportion")
     
-    p <- plot_ly(data = Data, x = ~ Date) %>%
-      add_trace(
-        data = Data,
-        y = ~ Dual,
-        type = 'bar',
-        name = "Dual fuel suppliers",
-        text = paste0("Dual fuel suppliers: ", Data$Dual, "\n", format(Data$Date, format = "%B %Y")),
-        hoverinfo = 'text',
-        hoveron = 'points+fills',
-        marker = list(color = ChartColours[1]),
-        legendgroup = 1
-      ) %>% 
-      add_trace(
-        data = Data,
-        y = ~ Electricity,
-        type = 'bar',
-        name = "Electricity only suppliers",
-        text = paste0("Electricity only suppliers: ", Data$Electricity, "\n", format(Data$Date, format = "%B %Y")),
-        hoverinfo = 'text',
-        hoveron = 'points+fills',
-        marker = list(color = ChartColours[2]),
-        legendgroup = 2
-      ) %>% 
-      add_trace(
-        data = Data,
-        y = ~ Gas,
-        type = 'bar',
-        name = "Gas only suppliers",
-        text = paste0("Gas only suppliers: ", Data$Gas, "\n", format(Data$Date, format = "%B %Y")),
-        hoverinfo = 'text',
-        hoveron = 'points+fills',
-        marker = list(color = ChartColours[3]),
-        legendgroup = 3
-      ) %>% 
-      add_trace(data = Data,
-                x = ~ Date,
-                y = ~ Total,
-                name = "Total Suppliers",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "4",
+    ComplaintsArea <- ComplaintsArea[order(ComplaintsArea$Renewables),]
+    
+    ComplaintsArea$RegionFormat <- paste0("<b>",ComplaintsArea$Region, "</b>")
+    
+    p <-  plot_ly(ComplaintsArea, y = ~ RegionFormat ) %>%  
+      add_trace(x = ~ `Renewables`, 
+                orientation = 'h',
+                name = "Renewables",
+                type = 'bar',
+                legendgroup = "1",
                 text = paste0(
-                  "Total Suppliers: ",
-                  Data$Total,
-                  "\n",
-                  Data$Date
-                ),
+                  format(ComplaintsArea$`Renewables`, big.mark = ",", trim = TRUE)," Complaints\n",
+                  percent(ComplaintsArea$Proportion,0.1), "\n",
+                  ComplaintsArea$Region, "\n"),
                 hoverinfo = 'text',
-                line = list(width = 3, color = ChartColours[4], dash = "dash")
+                marker = list(color = BarColours[1])
       ) %>% 
       layout(
         barmode = 'stack',
-        bargap = 0.1,
         legend = list(font = list(color = "#126992"),
                       orientation = 'h'),
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
         hovername = 'text',
-        
         xaxis = list(title = "",
-                     showgrid = FALSE),
+                     zeroline = FALSE,
+                     tickformat = "",
+                     showgrid = TRUE,
+                     x = 0.5
+                     
+        ),
         yaxis = list(
           title = "",
           tickformat = "",
-          showgrid = TRUE,
-          zeroline = TRUE,
-          zerolinecolor = ChartColours[1],
-          zerolinewidth = 2,
+          ticktext = as.list(ComplaintsArea$`Region`),
+          tickmode = "array",
+          tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16),
+          showgrid = FALSE,
+          zeroline = FALSE,
           rangemode = "tozero"
         )
       ) %>% 
       config(displayModeBar = F)
+    
     p
   })
   
   output$ComplaintsAreaTable = renderDataTable({
     
-    ComplaintsArea <- read_delim("Processed Data/Output/Domestic Sales/DomesticSuppliers.txt", 
-                       "\t", escape_double = FALSE, trim_ws = TRUE)
+    ComplaintsArea <- read_delim("Processed Data/Output/Consumers/EnergyComplaintsDistrict.csv", 
+                                      "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    ComplaintsArea$Date <- as.character(as.yearmon(ComplaintsArea$Date))
-    
-    ComplaintsArea <- ComplaintsArea[seq(dim(ComplaintsArea)[1],1),]
+    names(ComplaintsArea) <- c("Region", "Number of Complaints", "Proportion of Complaints")
     
     datatable(
-      ComplaintsArea[c(1,4,3,2,5)],
+      ComplaintsArea,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -480,17 +371,17 @@ Complaints <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Number of active domestic suppliers by fuel type (GB)",
+        title = "Complaint Volumes by District of Scotland",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Number of active domestic suppliers by fuel type (GB)',
+            title = "Complaint Volumes by District of Scotland",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Number of active domestic suppliers by fuel type (GB)')
+               title = "Complaint Volumes by District of Scotland")
         ),
         
         # customize the length menu
@@ -499,238 +390,569 @@ Complaints <- function(input, output, session) {
         ), # end of lengthMenu customization
         pageLength = 10
       )
-    ) 
+    ) %>%
+      formatRound(2,0) %>% 
+      formatPercentage(3, 1)
   })
   
   output$ComplaintsArea.png <- downloadHandler(
     filename = "ComplaintsArea.png",
     content = function(file) {
       
-      Data <- read_delim("Processed Data/Output/Domestic Sales/DomesticSuppliers.txt", 
-                         "\t", escape_double = FALSE, trim_ws = TRUE)
+      ComplaintsArea  <- read_delim("Processed Data/Output/Consumers/EnergyComplaintsDistrict.csv", 
+                                      "\t", escape_double = FALSE, trim_ws = TRUE)
       
-      names(Data)[1] <- "Year"
+      names(ComplaintsArea) <- c("Region", "Renewables")
       
-      DataMin <- head(Data, 1)
+      ComplaintsArea <- ComplaintsArea[order(ComplaintsArea$Renewables),]
+      ### variables
+      ChartColours <- c("#2b8cbe", "#fc9272", "#34d1a3", "#02818a")
+      sourcecaption = "Source: Ombudsman Services"
+      plottitle = "Complaint Volumes by District of Scotland"
       
-      DataMax <- tail(Data, 1)
+      length <- max(ComplaintsArea$Renewables)
       
-      ChartColours <- c("#68c3ea", "#081d58", "#225ea8", "#41b6c4", "#41ab5d")
       
-      Data$Year <- ymd(Data$Year)
+      ComplaintsArea$Region <-
+        factor(ComplaintsArea$Region, levels = ComplaintsArea$Region)
       
-      DataMelt <- Data[1:4]
-      
-      DataMelt <- melt(DataMelt, id.vars = "Year")
-      
-      plottitle = "Number of active domestic suppliers by fuel type"
-      sourcecaption = "Source: Ofgem"
-      
-      width = max(Data$Year)- min(Data$Year)
-      
-      DataChart <- DataMelt %>%
-        ggplot(aes(
-          x = Year,
-          y = value,
-          group = variable,
-          fill = variable
-        )) +
-        scale_fill_manual(
-          "variable",
-          values = c(
-            "Dual" = ChartColours[2],
-            "Electricity" = ChartColours[3],
-            "Gas" = ChartColours[4]
-          )
-        ) +
-        geom_bar(stat = "identity") +
+      ComplaintsAreaChart <-
+        ComplaintsArea %>%  ggplot(aes(x = Region, y = Renewables)) +
+        #scale_country()+
+        #scale_size(range = c(15,30), guide = FALSE)+
+        geom_bar(stat = "identity", fill = ChartColours[1]) +
+        coord_flip() +
         geom_text(
-          aes(
-            x = Year,
-            y = 0,
-            label = ifelse(
-              Year == max(Year) |
-                Year == min(Year),
-              format(Year, format = "%b\n%Y"),
-              ""
-            ),
-            vjust = 1.2,
-            colour = "white",
-            fontface = 2,
-            family = "Century Gothic"
-          )
-        ) +
-        annotate("line",
-                 x = Data$Year,
-                 y = Data$Total,
-                 size = 1.5,
-                 colour = ChartColours[5],
-                 family = "Century Gothic"
-        ) +
-        annotate("text",
-                 x = Data$Year,
-                 y = Data$Total,
-                 size = 3,
-                 label = ifelse(Data$Year %in% c(min(Data$Year)), paste0("Total\nsuppliers:\n", Data$Total), " "),
-                 vjust = -.2,
-                 colour = ChartColours[5],
-                 family = "Century Gothic",
-                 fontface = 2
-        ) +
-        annotate("text",
-                 x = max(Data$Year)+(width*0.04),
-                 y = Data$Total,
-                 size = 3,
-                 label = ifelse(Data$Year %in% c(max(Data$Year)), paste0("Total\nsuppliers:\n", Data$Total), " "),
-                 vjust = 0,
-                 colour = ChartColours[5],
-                 family = "Century Gothic",
-                 fontface = 2
-        ) +
-        annotate(
-          "segment",
-          x = min(Data$Year)-100,
-          xend = max(Data$Year)+10,
-          y = 0,
-          yend = 0,
-          colour = "grey",
-          alpha = 0.8,
-          linetype = 2
-        ) +
-        geom_text(
-          aes(
-            x = min(Year)-(width*0.05),
-            y = 25,
-            label = "25",
-            fontface = 2
-          ),
-          colour = ChartColours[1],
+          y = -(length*0.01),
+          label = ComplaintsArea$Region,
+          fontface = 2,
           family = "Century Gothic",
-          size = 3
-        )+
-        annotate(
-          "segment",
-          x = min(Data$Year)-100,
-          xend = max(Data$Year)+10,
-          y = 25,
-          yend = 25,
-          colour = "grey",
-          alpha = 0.4,
-          linetype = 2
+          hjust = 1,
+          vjust = .5,
+          color = ChartColours[1]
         ) +
         geom_text(
-          aes(
-            x = min(Year)-(width*0.05),
-            y = 50,
-            label = "50",
-            fontface = 2
-          ),
-          colour = ChartColours[1],
+          y = ComplaintsArea$Renewables + (length*0.01),
+          label = format(ComplaintsArea$Renewables, big.mark = ",", trim = TRUE),
+          fontface = 2,
           family = "Century Gothic",
-          size = 3
-        )+
-        annotate(
-          "segment",
-          x = min(Data$Year)-100,
-          xend = max(Data$Year)+10,
-          y = 75,
-          yend = 75,
-          colour = "grey",
-          alpha = 0.4,
-          linetype = 2
-        ) +
-        geom_text(
-          aes(
-            x = min(Year)-(width*0.05),
-            y = 75,
-            label = "75",
-            fontface = 2
-          ),
-          colour = ChartColours[1],
-          family = "Century Gothic",
-          size = 3
-        )+
-        annotate(
-          "segment",
-          x = min(Data$Year)-100,
-          xend = max(Data$Year)+10,
-          y = 50,
-          yend = 50,
-          colour = "grey",
-          alpha = 0.4,
-          linetype = 2
-        ) +
-        geom_text(
-          aes(
-            x = max(Year)+(width*0.015),
-            y = DataMax$Dual/2,
-            label = "Dual fuel",
-            fontface = 2
-          ),
           hjust = 0,
-          colour = ChartColours[2],
-          family = "Century Gothic",
-          size = 3
+          vjust = .5,
+          color = ChartColours[1]
         ) +
-        geom_text(
-          aes(
-            x = max(Year)+(width*0.015),
-            y = DataMax$Dual + (DataMax$Electricity/2),
-            label = "Electricity",
-            fontface = 2
-          ),
-          hjust = 0,
-          colour = ChartColours[3],
-          family = "Century Gothic",
-          size = 3
+        theme(
+          text = element_text(family = "Century Gothic")
+          ,
+          panel.background = element_rect(fill = "transparent") # bg of the panel
+          ,
+          plot.background = element_rect(fill = "transparent", color = NA) # bg of the plot
+          ,
+          legend.background = element_rect(fill = "transparent") # get rid of legend bg
+          ,
+          legend.box.background = element_rect(fill = "transparent") # get rid of legend panel bg
+          ,
+          legend.title = ggplot2::element_blank()
+          ,
+          axis.text.x = element_blank()
+          ,
+          axis.text.y = element_blank()
+          ,
+          axis.title = ggplot2::element_blank()
+          ,
+          legend.text = element_text(colour = "black", family = "Century Gothic")
+          ,
+          axis.ticks = ggplot2::element_blank()
+          ,
+          panel.grid.major = ggplot2::element_blank()
+          ,
+          legend.position = "none"
+          ,
+          title = element_text(colour = ChartColours[1], size = 14)
+          ,
+          plot.title = ggplot2::element_text(face = "bold")
+        ) + ### Label Plot
+        labs(y = "Percentage", caption = sourcecaption) +
+        labs(title = plottitle,
+             face = "bold",
+             subtitle = "Scotland, 2019") +
+        ### 0 Axis
+        
+        #geom_hline(yintercept=.52, color = ChartColours[2], alpha = 0.7)+
+        
+        
+        ### Plot Borders
+        annotate(
+          geom = 'segment',
+          x = Inf,
+          xend = Inf,
+          color = ChartColours[1],
+          y = -Inf,
+          yend = Inf,
+          size = 1.5
         ) +
-        geom_text(
-          aes(
-            x = max(Year)+(width*0.015),
-            y = DataMax$Dual + DataMax$Electricity + (DataMax$Gas/2),
-            label = "Gas",
-            fontface = 2
-          ),
-          hjust = 0,
-          colour = ChartColours[4],
-          family = "Century Gothic",
-          size = 3
-        )
+        annotate(
+          geom = 'segment',
+          x = -Inf,
+          xend = -Inf,
+          color = ChartColours[1],
+          y = -Inf,
+          yend = Inf,
+          size = 1
+        )  +
+        ylim(-(length*0.6), (length*1.1))
       
-      
-      DataChart
-      
-      
-      DataChart <-
-        DailyChart(DataChart,
-                   Data,
-                   plottitle,
-                   sourcecaption,
-                   ChartColours)
-      
-      DataChart <- DataChart +
-        coord_cartesian(xlim = c(min(DataMelt$Year)-(width*0.01), max(DataMelt$Year)+(width*0.1))) +
-        ylim(-4,76) +
-        labs(
-          title = plottitle,
-          face = 2,
-          subtitle = paste(
-            "Scotland,",
-            format(min(Data$Year), format = "%b %Y"),
-            "-",
-            format(max(Data$Year), format = "%b %Y")
-          )
-        ) 
-      
-      DataChart <- DataChart 
-      
-      DataChart
-      
+      ComplaintsAreaChart
       
       ggsave(
         file,
-        plot =  DataChart,
-        width = 20,
+        plot =  ComplaintsAreaChart,
+        width = 16,
+        height = 16,
+        units = "cm",
+        dpi = 300
+      )
+      
+    }
+  )
+  
+  
+  output$ComplaintsTypeSubtitle <- renderText({
+    
+    paste("Scotland, 2019")
+  })
+  
+  output$ComplaintsTypePlot <- renderPlotly({
+    ChartColours <- c("#2b8cbe", "#fc9272", "#34d1a3", "#02818a")
+    BarColours <- c("#2b8cbe", "#fc9272", "#34d1a3", "#02818a")
+    
+    ComplaintsType <- read_delim("Processed Data/Output/Consumers/EnergyComplaintsType.csv", 
+                                 "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    names(ComplaintsType) <- c("Region", "Renewables")
+    
+    ComplaintsType <- ComplaintsType[order(ComplaintsType$Renewables),]
+    
+    ComplaintsType$RegionFormat <- paste0("<b>",ComplaintsType$Region, "</b>")
+    
+    p <-  plot_ly(ComplaintsType, y = ~ RegionFormat ) %>%  
+      add_trace(x = ~ `Renewables`, 
+                orientation = 'h',
+                name = "Renewables",
+                type = 'bar',
+                legendgroup = "1",
+                text = paste0(
+                  ComplaintsType$Region,"\n",
+                  percent(ComplaintsType$`Renewables`, 0.1)),
+                hoverinfo = 'text',
+                marker = list(color = BarColours[1])
+      ) %>% 
+      layout(
+        barmode = 'stack',
+        legend = list(font = list(color = "#126992"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        xaxis = list(title = "",
+                     zeroline = FALSE,
+                     tickformat = "%",
+                     showgrid = TRUE,
+                     x = 0.5
+                     
+        ),
+        yaxis = list(
+          title = "",
+          tickformat = "",
+          ticktext = as.list(ComplaintsType$`Region`),
+          tickmode = "array",
+          tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16),
+          showgrid = FALSE,
+          zeroline = FALSE,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    
+    p
+  })
+  
+  output$ComplaintsTypeTable = renderDataTable({
+    
+    ComplaintsType <- read_delim("Processed Data/Output/Consumers/EnergyComplaintsType.csv", 
+                                 "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    names(ComplaintsType) <- c("Complaint Type", "Proportion of Cases")
+    
+    datatable(
+      ComplaintsType,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "Proportion of complaints by type",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = "Proportion of complaints by type",
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = "Proportion of complaints by type")
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatPercentage(2, 1)
+  })
+  
+  output$ComplaintsType.png <- downloadHandler(
+    filename = "ComplaintsType.png",
+    content = function(file) {
+      
+      ComplaintsType  <- read_delim("Processed Data/Output/Consumers/EnergyComplaintsType.csv", 
+                                    "\t", escape_double = FALSE, trim_ws = TRUE)
+      
+      names(ComplaintsType) <- c("Region", "Renewables")
+      
+      ComplaintsType <- ComplaintsType[order(ComplaintsType$Renewables),]
+      ### variables
+      ChartColours <- c("#2b8cbe", "#fc9272", "#34d1a3", "#02818a")
+      sourcecaption = "Source: Ombudsman Services"
+      plottitle = "Proportion of complaints by type"
+      
+      length <- max(ComplaintsType$Renewables)
+      
+      
+      ComplaintsType$Region <-
+        factor(ComplaintsType$Region, levels = ComplaintsType$Region)
+      
+      ComplaintsTypeChart <-
+        ComplaintsType %>%  ggplot(aes(x = Region, y = Renewables)) +
+        #scale_country()+
+        #scale_size(range = c(15,30), guide = FALSE)+
+        geom_bar(stat = "identity", fill = ChartColours[1]) +
+        coord_flip() +
+        geom_text(
+          y = -(length*0.01),
+          label = ComplaintsType$Region,
+          fontface = 2,
+          family = "Century Gothic",
+          hjust = 1,
+          vjust = .5,
+          color = ChartColours[1]
+        ) +
+        geom_text(
+          y = ComplaintsType$Renewables + (length*0.01),
+          label = percent(ComplaintsType$Renewables, 0.1),
+          fontface = 2,
+          family = "Century Gothic",
+          hjust = 0,
+          vjust = .5,
+          color = ChartColours[1]
+        ) +
+        theme(
+          text = element_text(family = "Century Gothic")
+          ,
+          panel.background = element_rect(fill = "transparent") # bg of the panel
+          ,
+          plot.background = element_rect(fill = "transparent", color = NA) # bg of the plot
+          ,
+          legend.background = element_rect(fill = "transparent") # get rid of legend bg
+          ,
+          legend.box.background = element_rect(fill = "transparent") # get rid of legend panel bg
+          ,
+          legend.title = ggplot2::element_blank()
+          ,
+          axis.text.x = element_blank()
+          ,
+          axis.text.y = element_blank()
+          ,
+          axis.title = ggplot2::element_blank()
+          ,
+          legend.text = element_text(colour = "black", family = "Century Gothic")
+          ,
+          axis.ticks = ggplot2::element_blank()
+          ,
+          panel.grid.major = ggplot2::element_blank()
+          ,
+          legend.position = "none"
+          ,
+          title = element_text(colour = ChartColours[1], size = 14)
+          ,
+          plot.title = ggplot2::element_text(face = "bold")
+        ) + ### Label Plot
+        labs(y = "Percentage", caption = sourcecaption) +
+        labs(title = plottitle,
+             face = "bold",
+             subtitle = "Scotland, 2019") +
+        ### 0 Axis
+        
+        #geom_hline(yintercept=.52, color = ChartColours[2], alpha = 0.7)+
+        
+        
+        ### Plot Borders
+        annotate(
+          geom = 'segment',
+          x = Inf,
+          xend = Inf,
+          color = ChartColours[1],
+          y = -Inf,
+          yend = Inf,
+          size = 1.5
+        ) +
+        annotate(
+          geom = 'segment',
+          x = -Inf,
+          xend = -Inf,
+          color = ChartColours[1],
+          y = -Inf,
+          yend = Inf,
+          size = 1
+        )  +
+        ylim(-(length*0.4), (length*1.1))
+      
+      ComplaintsTypeChart
+      
+      ggsave(
+        file,
+        plot =  ComplaintsTypeChart,
+        width = 16,
+        height = 16,
+        units = "cm",
+        dpi = 300
+      )
+      
+    }
+  )
+  
+  
+  
+  
+  output$ComplaintsOutcomeSubtitle <- renderText({
+    
+    paste("Scotland, 2019")
+  })
+  
+  output$ComplaintsOutcomePlot <- renderPlotly({
+    ChartColours <- c("#2b8cbe", "#fc9272", "#34d1a3", "#02818a")
+    BarColours <- c("#2b8cbe", "#fc9272", "#34d1a3", "#02818a")
+    
+    ComplaintsOutcome <- read_delim("Processed Data/Output/Consumers/EnergyComplaintsOutcomes.csv", 
+                                 "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    names(ComplaintsOutcome) <- c("Region", "Renewables")
+    
+    ComplaintsOutcome <- ComplaintsOutcome[order(ComplaintsOutcome$Renewables),]
+    
+    ComplaintsOutcome$RegionFormat <- paste0("<b>",ComplaintsOutcome$Region, "</b>")
+    
+    p <-  plot_ly(ComplaintsOutcome, y = ~ RegionFormat ) %>%  
+      add_trace(x = ~ `Renewables`, 
+                orientation = 'h',
+                name = "Renewables",
+                type = 'bar',
+                legendgroup = "1",
+                text = paste0(
+                  ComplaintsOutcome$Region,"\n",
+                  percent(ComplaintsOutcome$`Renewables`, 0.1)),
+                hoverinfo = 'text',
+                marker = list(color = BarColours[1])
+      ) %>% 
+      layout(
+        barmode = 'stack',
+        legend = list(font = list(color = "#126992"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        xaxis = list(title = "",
+                     zeroline = FALSE,
+                     tickformat = "%",
+                     showgrid = TRUE,
+                     x = 0.5
+                     
+        ),
+        yaxis = list(
+          title = "",
+          tickformat = "",
+          ticktext = as.list(ComplaintsOutcome$`Region`),
+          tickmode = "array",
+          tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16),
+          showgrid = FALSE,
+          zeroline = FALSE,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    
+    p
+  })
+  
+  output$ComplaintsOutcomeTable = renderDataTable({
+    
+    ComplaintsOutcome <- read_delim("Processed Data/Output/Consumers/EnergyComplaintsOutcomes.csv", 
+                                 "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    names(ComplaintsOutcome) <- c("Outcome", "Proportion of Cases")
+    
+    datatable(
+      ComplaintsOutcome,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "Proportion of complaints by outcome",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = "Proportion of complaints by outcome",
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = "Proportion of complaints by outcome")
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatPercentage(2, 1)
+  })
+  
+  output$ComplaintsOutcome.png <- downloadHandler(
+    filename = "ComplaintsOutcome.png",
+    content = function(file) {
+      
+      ComplaintsOutcome  <- read_delim("Processed Data/Output/Consumers/EnergyComplaintsOutcomes.csv", 
+                                    "\t", escape_double = FALSE, trim_ws = TRUE)
+      
+      names(ComplaintsOutcome) <- c("Region", "Renewables")
+      
+      ComplaintsOutcome <- ComplaintsOutcome[order(ComplaintsOutcome$Renewables),]
+      ### variables
+      ChartColours <- c("#2b8cbe", "#fc9272", "#34d1a3", "#02818a")
+      sourcecaption = "Source: Ombudsman Services"
+      plottitle = "Proportion of complaints by outcome"
+      
+      length <- max(ComplaintsOutcome$Renewables)
+      
+      
+      ComplaintsOutcome$Region <-
+        factor(ComplaintsOutcome$Region, levels = ComplaintsOutcome$Region)
+      
+      ComplaintsOutcomeChart <-
+        ComplaintsOutcome %>%  ggplot(aes(x = Region, y = Renewables)) +
+        #scale_country()+
+        #scale_size(range = c(15,30), guide = FALSE)+
+        geom_bar(stat = "identity", fill = ChartColours[1]) +
+        coord_flip() +
+        geom_text(
+          y = -(length*0.01),
+          label = ComplaintsOutcome$Region,
+          fontface = 2,
+          family = "Century Gothic",
+          hjust = 1,
+          vjust = .5,
+          color = ChartColours[1]
+        ) +
+        geom_text(
+          y = ComplaintsOutcome$Renewables + (length*0.01),
+          label = percent(ComplaintsOutcome$Renewables, 0.1),
+          fontface = 2,
+          family = "Century Gothic",
+          hjust = 0,
+          vjust = .5,
+          color = ChartColours[1]
+        ) +
+        theme(
+          text = element_text(family = "Century Gothic")
+          ,
+          panel.background = element_rect(fill = "transparent") # bg of the panel
+          ,
+          plot.background = element_rect(fill = "transparent", color = NA) # bg of the plot
+          ,
+          legend.background = element_rect(fill = "transparent") # get rid of legend bg
+          ,
+          legend.box.background = element_rect(fill = "transparent") # get rid of legend panel bg
+          ,
+          legend.title = ggplot2::element_blank()
+          ,
+          axis.text.x = element_blank()
+          ,
+          axis.text.y = element_blank()
+          ,
+          axis.title = ggplot2::element_blank()
+          ,
+          legend.text = element_text(colour = "black", family = "Century Gothic")
+          ,
+          axis.ticks = ggplot2::element_blank()
+          ,
+          panel.grid.major = ggplot2::element_blank()
+          ,
+          legend.position = "none"
+          ,
+          title = element_text(colour = ChartColours[1], size = 14)
+          ,
+          plot.title = ggplot2::element_text(face = "bold")
+        ) + ### Label Plot
+        labs(y = "Percentage", caption = sourcecaption) +
+        labs(title = plottitle,
+             face = "bold",
+             subtitle = "Scotland, 2019") +
+        ### 0 Axis
+        
+        #geom_hline(yintercept=.52, color = ChartColours[2], alpha = 0.7)+
+        
+        
+        ### Plot Borders
+        annotate(
+          geom = 'segment',
+          x = Inf,
+          xend = Inf,
+          color = ChartColours[1],
+          y = -Inf,
+          yend = Inf,
+          size = 1.5
+        ) +
+        annotate(
+          geom = 'segment',
+          x = -Inf,
+          xend = -Inf,
+          color = ChartColours[1],
+          y = -Inf,
+          yend = Inf,
+          size = 1
+        )  +
+        ylim(-(length*0.2), (length*1.1))
+      
+      ComplaintsOutcomeChart
+      
+      ggsave(
+        file,
+        plot =  ComplaintsOutcomeChart,
+        width = 16,
         height = 16,
         units = "cm",
         dpi = 300
