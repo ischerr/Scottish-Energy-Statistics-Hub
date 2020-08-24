@@ -11,9 +11,9 @@ ComplaintsOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("Market Shares",
+      tabPanel("Complaints volume",
     fluidRow(column(8,
-                    h3("Market shares, combined electricity and gas", style = "color: #68c3ea;  font-weight:bold"),
+                    h3("Volume of complaints in Scotland and elsewhere", style = "color: #68c3ea;  font-weight:bold"),
                     h4(textOutput(ns('ComplaintsPropSubtitle')), style = "color: #68c3ea;")
     ),
              column(
@@ -169,6 +169,10 @@ Complaints <- function(input, output, session) {
   
   output$ComplaintsPropTable = renderDataTable({
     
+    ComplaintsProp <- read_delim("Processed Data/Output/Consumers/EnergyComplaintsScotProp.csv", 
+                                 "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    ComplaintsProp <- ComplaintsProp[seq(dim(ComplaintsProp)[1],1),]
 
     datatable(
       ComplaintsProp,
@@ -182,17 +186,17 @@ Complaints <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Proportion of customers who have switched energy supplier",
+        title = "Volume of complaints in Scotland and elsewhere",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Proportion of customers who have switched energy supplier',
+            title = 'Volume of complaints in Scotland and elsewhere',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Proportion of customers who have switched energy supplier')
+               title = 'Volume of complaints in Scotland and elsewhere')
         ),
         
         # customize the length menu
@@ -202,7 +206,7 @@ Complaints <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(c(2:5), 1)
+      formatPercentage(c(3), 1)
   })
   
   output$Text <- renderUI({
