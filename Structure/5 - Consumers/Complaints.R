@@ -185,6 +185,11 @@ Complaints <- function(input, output, session) {
       layout(
         barmode = 'stack',
         sort = 'false',
+        margin = list(l = 1,
+                      r = 1,
+                      b = 20,
+                      t = 40,
+                      pad = 1),
         legend = list(font = list(color = "#1A5D38"),
                       orientation = 'h'),
         hoverlabel = list(font = list(color = "white"),
