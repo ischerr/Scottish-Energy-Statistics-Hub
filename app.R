@@ -762,7 +762,12 @@ ui <- shinyUI(fluidPage(
                             MarketStructureOutput("MarketStructure")),
                    tabPanel(title = "Energy Customers on Non-home Supplier",
                             value = "EnergyNonHome",
-                            EnergyNonHomeOutput("EnergyNonHome"))
+                            EnergyNonHomeOutput("EnergyNonHome")),
+                   tabPanel(title = "Complaints",
+                            value = "Complaints",
+                            ComplaintsOutput("Complaints")
+                     
+                   )
                                  )),
                                tabPanel(
                                  value = "Meters",
