@@ -39,6 +39,7 @@ r_github_packages:
 - cran/reshape2
 - cran/devtools
 - cran/visNetwork
+- cran/foreach
 
 script:
   - Rscript deploy.r
