@@ -28,7 +28,7 @@ git:
   depth: false
  
 r_packages:
-- devtools
+
  
 r_github_packages: 
 - rensa/ggflags
@@ -37,6 +37,7 @@ r_github_packages:
 - r-spatial/lwgeom
 - cran/coda
 - cran/reshape2
+- cran/devtools
 
 script:
   - Rscript deploy.r
