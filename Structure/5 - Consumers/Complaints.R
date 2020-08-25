@@ -65,7 +65,7 @@ ComplaintsOutput <- function(id) {
              
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
              #dygraphOutput(ns("ComplaintsPropPlot")),
-             plotlyOutput(ns("ComplaintsOutcomePlot"), height = "800px")%>% withSpinner(color="#68c3ea"),
+             plotlyOutput(ns("ComplaintsOutcomePlot"), height = "500px")%>% withSpinner(color="#68c3ea"),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),
@@ -752,57 +752,62 @@ Complaints <- function(input, output, session) {
   
   output$ComplaintsOutcomePlot <- renderPlotly({
     ChartColours <- c("#2b8cbe", "#fc9272", "#34d1a3", "#02818a")
-    BarColours <- c("#2b8cbe", "#fc9272", "#34d1a3", "#02818a")
+    BarColours <- c("#081d58", "#225ea8", "#41b6c4", "#feb24c")
     
     ComplaintsOutcome <- read_delim("Processed Data/Output/Consumers/EnergyComplaintsOutcomes.csv", 
                                  "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    names(ComplaintsOutcome) <- c("Region", "Renewables")
+    names(ComplaintsOutcome) <- c("variable", "value")
     
-    ComplaintsOutcome <- ComplaintsOutcome[order(ComplaintsOutcome$Renewables),]
     
-    ComplaintsOutcome$RegionFormat <- paste0("<b>",ComplaintsOutcome$Region, "</b>")
+    ComplaintsOutcome$variable <- paste0("<b>", ComplaintsOutcome$variable, "</b>")
     
-    p <-  plot_ly(ComplaintsOutcome, y = ~ RegionFormat ) %>%  
-      add_trace(x = ~ `Renewables`, 
-                orientation = 'h',
-                name = "Renewables",
-                type = 'bar',
-                legendgroup = "1",
-                text = paste0(
-                  ComplaintsOutcome$Region,"\n",
-                  percent(ComplaintsOutcome$`Renewables`, 0.1)),
-                hoverinfo = 'text',
-                marker = list(color = BarColours[1])
-      ) %>% 
+    p <- plot_ly(
+      data = ComplaintsOutcome,
+      labels = ~variable,
+      type = 'pie',
+      values = ~value,
+      text = paste0(
+        ComplaintsOutcome$variable,
+        ": ", percent(ComplaintsOutcome$value, 0.1), "" 
+      ),
+      textposition = 'outside',
+      textinfo = 'label+percent',
+      insidetextfont = list(color = '#FFFFFF'),
+      hoverinfo = 'text',
+      marker = list(colors = BarColours,
+                    line = list(color = '#FFFFFF', width = 1))
+    )  %>% 
       layout(
         barmode = 'stack',
-        legend = list(font = list(color = "#126992"),
+        sort = 'false',
+        margin = list(l = 1,
+                      r = 1,
+                      b = 20,
+                      t = 40,
+                      pad = 1),
+        legend = list(font = list(color = "#1A5D38"),
                       orientation = 'h'),
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
         hovername = 'text',
-        xaxis = list(title = "",
-                     zeroline = FALSE,
-                     tickformat = "%",
-                     showgrid = TRUE,
-                     x = 0.5
-                     
-        ),
-        yaxis = list(
+        yaxis = list(title = "",
+                     showgrid = FALSE),
+        xaxis = list(
           title = "",
-          tickformat = "",
-          ticktext = as.list(ComplaintsOutcome$`Region`),
-          tickmode = "array",
-          tickvalues = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16),
-          showgrid = FALSE,
-          zeroline = FALSE,
+          tickformat = "%",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
           rangemode = "tozero"
         )
       ) %>% 
       config(displayModeBar = F)
     
     p
+    
+    #orca(p, "StaticCharts/ComplaintsOutcomeSectorPie.svg")
   })
   
   output$ComplaintsOutcomeTable = renderDataTable({
@@ -850,118 +855,7 @@ Complaints <- function(input, output, session) {
     filename = "ComplaintsOutcome.png",
     content = function(file) {
       
-      ComplaintsOutcome  <- read_delim("Processed Data/Output/Consumers/EnergyComplaintsOutcomes.csv", 
-                                    "\t", escape_double = FALSE, trim_ws = TRUE)
-      
-      names(ComplaintsOutcome) <- c("Region", "Renewables")
-      
-      ComplaintsOutcome <- ComplaintsOutcome[order(ComplaintsOutcome$Renewables),]
-      ### variables
-      ChartColours <- c("#2b8cbe", "#fc9272", "#34d1a3", "#02818a")
-      sourcecaption = "Source: Ombudsman Services"
-      plottitle = "Proportion of complaints by outcome"
-      
-      length <- max(ComplaintsOutcome$Renewables)
-      
-      
-      ComplaintsOutcome$Region <-
-        factor(ComplaintsOutcome$Region, levels = ComplaintsOutcome$Region)
-      
-      ComplaintsOutcomeChart <-
-        ComplaintsOutcome %>%  ggplot(aes(x = Region, y = Renewables)) +
-        #scale_country()+
-        #scale_size(range = c(15,30), guide = FALSE)+
-        geom_bar(stat = "identity", fill = ChartColours[1]) +
-        coord_flip() +
-        geom_text(
-          y = -(length*0.01),
-          label = ComplaintsOutcome$Region,
-          fontface = 2,
-          family = "Century Gothic",
-          hjust = 1,
-          vjust = .5,
-          color = ChartColours[1]
-        ) +
-        geom_text(
-          y = ComplaintsOutcome$Renewables + (length*0.01),
-          label = percent(ComplaintsOutcome$Renewables, 0.1),
-          fontface = 2,
-          family = "Century Gothic",
-          hjust = 0,
-          vjust = .5,
-          color = ChartColours[1]
-        ) +
-        theme(
-          text = element_text(family = "Century Gothic")
-          ,
-          panel.background = element_rect(fill = "transparent") # bg of the panel
-          ,
-          plot.background = element_rect(fill = "transparent", color = NA) # bg of the plot
-          ,
-          legend.background = element_rect(fill = "transparent") # get rid of legend bg
-          ,
-          legend.box.background = element_rect(fill = "transparent") # get rid of legend panel bg
-          ,
-          legend.title = ggplot2::element_blank()
-          ,
-          axis.text.x = element_blank()
-          ,
-          axis.text.y = element_blank()
-          ,
-          axis.title = ggplot2::element_blank()
-          ,
-          legend.text = element_text(colour = "black", family = "Century Gothic")
-          ,
-          axis.ticks = ggplot2::element_blank()
-          ,
-          panel.grid.major = ggplot2::element_blank()
-          ,
-          legend.position = "none"
-          ,
-          title = element_text(colour = ChartColours[1], size = 14)
-          ,
-          plot.title = ggplot2::element_text(face = "bold")
-        ) + ### Label Plot
-        labs(y = "Percentage", caption = sourcecaption) +
-        labs(title = plottitle,
-             face = "bold",
-             subtitle = "Scotland, 2019") +
-        ### 0 Axis
-        
-        #geom_hline(yintercept=.52, color = ChartColours[2], alpha = 0.7)+
-        
-        
-        ### Plot Borders
-        annotate(
-          geom = 'segment',
-          x = Inf,
-          xend = Inf,
-          color = ChartColours[1],
-          y = -Inf,
-          yend = Inf,
-          size = 1.5
-        ) +
-        annotate(
-          geom = 'segment',
-          x = -Inf,
-          xend = -Inf,
-          color = ChartColours[1],
-          y = -Inf,
-          yend = Inf,
-          size = 1
-        )  +
-        ylim(-(length*0.2), (length*1.1))
-      
-      ComplaintsOutcomeChart
-      
-      ggsave(
-        file,
-        plot =  ComplaintsOutcomeChart,
-        width = 16,
-        height = 16,
-        units = "cm",
-        dpi = 300
-      )
+      writePNG(readPNG("Structure/5 - Consumers/ComplaintsOutcome.png"), file)
       
     }
   )

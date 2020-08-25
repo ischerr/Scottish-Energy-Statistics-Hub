@@ -1,6 +1,7 @@
+<p>Data from Ombudsman Services for 2019 found that:</p>
 <ul>
-<li>Scotland accounted for 11% of Ombudsman Services Energy complaints resolved in 2019 which equates to 6211 cases.</li>
-<li>Glasgow, Edinburgh and Motherwell made up 51% of Scotland complaints when viewing by district.</li>
-<li>Billing complaints accounted for 58% of complaints, followed by Meter (9%) and Transfer (also 9%).</li>
-<li>60% of cases resulted in an outcome where we found in favour of the complainant (Upheld).</li>
+<li>Scotland accounted for <strong>11%</strong> of Ombudsman Services Energy complaints <strong>resolved</strong> in <strong>2019</strong> which equates to <strong>6,211</strong> cases.</li>
+<li><strong>Glasgow, Edinburgh</strong> and <strong>Motherwell</strong> made up <strong>51%</strong> of Scotland complaints when viewing by district.</li>
+<li><strong>Billing</strong> complaints accounted for <strong>58%</strong> of complaints, followed by <strong>Meter (9%)</strong> and <strong>Transfer (also 9%)</strong>.</li>
+<li><strong>60%</strong> of cases resulted in an outcome where we found <strong>in favour of the complainant</strong> <strong>(Upheld)</strong>.</li>
 </ul>
