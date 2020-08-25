@@ -6,7 +6,7 @@ require("DT")
 
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 DailyDemandOutput <- function(id) {
   ns <- NS(id)

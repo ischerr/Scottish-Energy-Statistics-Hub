@@ -2,7 +2,7 @@ Sources <- read_excel("Structure/Sources.xlsx")
 
 Sources$HTML <- "Hi"
 
-for (i in 1:nrow(Sources)){print(i)
+for (i in 1:nrow(Sources)){
   
   ifelse(substr(Sources[i,]$`Direct URL`,1,1) == "h", Sources[i,9] <- paste(a(Sources[i,]$Source, href = Sources[i,]$`Direct URL`, target="_blank")),Sources[i,9] <-  paste(p(Sources[i,]$Source, "(Unpublished)")))
   }    

@@ -80,6 +80,23 @@ library("readxl")
 library("ggplot2")
 library("foreach")
 library("doSNOW")
+library("ggthemes")
+library(ggrepel)
+library(gganimate)
+library(LearnBayes)
+library(deldir)
+library(expm)
+library(gdata)
+library(gmodels)
+library(goftest)
+library(gtools)
+library(polyclip)
+library(spData)
+library(spatialEco)
+library(spatstat)
+
+
+
 
 
 

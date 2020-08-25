@@ -6,7 +6,7 @@ require("DT")
 
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 C19ElecOutput <- function(id) {
   ns <- NS(id)

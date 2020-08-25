@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 PrimaryHeatingOutput <- function(id) {
   ns <- NS(id)

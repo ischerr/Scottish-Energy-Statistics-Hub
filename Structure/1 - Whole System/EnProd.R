@@ -5,8 +5,6 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
-
 EnProdOutput <- function(id) {
   ns <- NS(id)
   tagList(

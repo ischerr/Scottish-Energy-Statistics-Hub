@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 CoalProdOutput <- function(id) {
   ns <- NS(id)
