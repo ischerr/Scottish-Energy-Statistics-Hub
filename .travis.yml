@@ -42,6 +42,17 @@ r_github_packages:
 - cran/foreach
 - cran/doSNOW
 - cran/LearnBayes
+- cran/LearnBayes
+- cran/deldir
+- cran/expm
+- cran/gdata
+- cran/gmodels
+- cran/goftest
+- cran/gtools
+- cran/polyclip
+- cran/spData
+- cran/spatialEco
+- cran/spatstat
 
 script:
   - Rscript deploy.r
