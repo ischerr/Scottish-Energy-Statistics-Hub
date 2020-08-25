@@ -372,7 +372,7 @@ C19Survey <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:10, 0) 
+      formatPercentage(2:7, 0) 
   })
  
   output$C19SurveyRollingSubtitle <- renderText({

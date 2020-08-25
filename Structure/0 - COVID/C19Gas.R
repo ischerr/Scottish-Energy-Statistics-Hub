@@ -253,7 +253,7 @@ C19Gas <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:5, 0) 
+      formatRound(2:3, 0) 
   })
   
   output$Text <- renderUI({
@@ -487,7 +487,7 @@ output$C19GasRollingTable = renderDataTable({
       pageLength = 10
     )
   ) %>%
-    formatRound(2:5, 1) 
+    formatRound(2:3, 1) 
 })
 
 }
