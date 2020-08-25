@@ -41,6 +41,7 @@ r_github_packages:
 - cran/visNetwork
 - cran/foreach
 - cran/doSNOW
+- cran/LearnBayes
 
 script:
   - Rscript deploy.r
