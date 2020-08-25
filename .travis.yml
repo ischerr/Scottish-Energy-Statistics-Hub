@@ -26,7 +26,7 @@ git:
   depth: false
  
 r_packages:
-
+- devtools
  
 r_github_packages: 
 - rensa/ggflags
