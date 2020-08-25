@@ -35,7 +35,7 @@ r_github_packages:
 - rstudio/DT
 - r-spatial/sf
 - r-spatial/lwgeom
-
+- cran/ISOweek
 
 script:
   - Rscript deploy.r
