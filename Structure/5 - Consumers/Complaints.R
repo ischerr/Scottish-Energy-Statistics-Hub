@@ -111,12 +111,11 @@ ComplaintsOutput <- function(id) {
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
-             DateLookup(c("OFGEMSuppliers"))),
+             DateLookup(c("Ombudsman"))),
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
-             SourceLookup("XOServe"),
-        SourceLookup("OFGEMSuppliers")
+        SourceLookup("Ombudsman")
         
       )
     )
