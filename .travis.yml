@@ -26,10 +26,7 @@ git:
   depth: false
  
 r_packages:
-- ISOweek
-- coda
-- reshape2
-- visNetwork
+
  
 r_github_packages: 
 - rensa/ggflags
