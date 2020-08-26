@@ -599,7 +599,7 @@ OilGasEmployment <- function(input, output, session) {
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, AverageBillMap, key.shp = "nuts118cd", key.data = "nuts118cd")
+      merge(LA, AverageBillMap)
     
     
     pal <- colorNumeric(

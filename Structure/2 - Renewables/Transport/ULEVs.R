@@ -921,7 +921,7 @@ output$ULEVRegOutput.png <- downloadHandler(
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+      merge(LA, AverageBillMap)
     
     
     pal <- colorNumeric(
@@ -999,7 +999,7 @@ output$ULEVRegOutput.png <- downloadHandler(
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+      merge(LA, AverageBillMap)
     
     
     pal <- colorNumeric(
@@ -1079,7 +1079,7 @@ output$ULEVRegOutput.png <- downloadHandler(
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+      merge(LA, AverageBillMap)
     
     
     pal <- colorNumeric(
@@ -1326,7 +1326,7 @@ output$ULEVRegOutput.png <- downloadHandler(
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, ULEVbyLA, key.shp = "CODE", key.data = "CODE")
+      merge(LA, ULEVbyLA)
     
     
     pal <- colorNumeric(

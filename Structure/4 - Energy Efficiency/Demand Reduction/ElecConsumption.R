@@ -1096,7 +1096,7 @@ ElecConsumption <- function(input, output, session) {
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, ElecConsumptionLAMap, key.shp = "CODE", key.data = "CODE")
+     merge(LA, ElecConsumptionLAMap)
     
     pal <- colorNumeric(
       palette = "Greens",

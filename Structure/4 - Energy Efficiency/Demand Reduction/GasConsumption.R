@@ -1134,7 +1134,7 @@ GasConsumption <- function(input, output, session) {
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, GasConsumptionLAMap, key.shp = "CODE", key.data = "CODE")
+      merge(LA, GasConsumptionLAMap)
     
     pal <- colorNumeric(
       palette = "Greens",
