@@ -506,9 +506,9 @@ RenEnTgt <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:ncol(TotalTarget), 0) %>% 
-      formatPercentage(c(3:7), 1) %>% 
-      formatStyle(c(4:7), fontStyle = "italic") %>% 
+      formatRound(2:6, 0) %>% 
+      formatPercentage(c(3:6), 1) %>% 
+      formatStyle(c(4:6), fontStyle = "italic") %>% 
       formatStyle(c(3), fontWeight = "bold")
     
   })
@@ -564,7 +564,7 @@ RenEnTgt <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:ncol(ElectricityTarget), 0) %>% 
+      formatRound(2:4, 0) %>% 
       formatPercentage(c(3,4), 1) %>% 
       formatStyle(c(4), fontStyle = "italic")
     
@@ -620,7 +620,7 @@ RenEnTgt <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:ncol(HeatTarget), 0) %>% 
+      formatRound(2:4, 0) %>% 
       formatPercentage(c(3,4), 1) %>% 
       formatStyle(c(4), fontStyle = "italic")
     
@@ -674,7 +674,7 @@ RenEnTgt <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:ncol(TransportTarget), 0) %>% 
+      formatRound(2:4, 0) %>% 
       formatPercentage(c(3,4), 1) %>% 
       formatStyle(c(4), fontStyle = "italic")
     
