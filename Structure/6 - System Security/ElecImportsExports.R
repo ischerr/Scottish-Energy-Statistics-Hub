@@ -753,7 +753,7 @@ ElecImportsExports <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:8, 0)
+      formatRound(2:4, 0)
   }) 
   
   

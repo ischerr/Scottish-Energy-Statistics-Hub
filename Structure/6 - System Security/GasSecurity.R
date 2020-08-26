@@ -547,7 +547,7 @@ GasSecurity <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:6, 1) %>% 
+      formatRound(2:4, 1) %>% 
       formatPercentage(c(4), 1)
   })
   
