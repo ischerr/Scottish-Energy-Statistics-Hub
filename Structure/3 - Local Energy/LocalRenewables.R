@@ -1341,7 +1341,7 @@ LocalRenewables <- function(input, output, session) {
         pageLength = 10 
       ) 
     ) %>% 
-      formatPercentage(c(3,5), 1)
+      formatPercentage(c(3), 1)
     
     
   })
