@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 319.88266 419.7766"
+   version="1.1"
+   id="svg74"
+   sodipodi:docname="ComplaintsOutcomeSectorPieChart.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   width="319.88266"
+   height="419.77661"
+   inkscape:export-filename="C:\Users\ische\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\5 - Consumers\ComplaintsOutcome.png"
+   inkscape:export-xdpi="300.04529"
+   inkscape:export-ydpi="300.04529">
+  <metadata
+     id="metadata78">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:window-width="3840"
+     inkscape:window-height="2066"
+     id="namedview76"
+     showgrid="false"
+     inkscape:zoom="2.68112"
+     inkscape:cx="-48.115388"
+     inkscape:cy="100.79086"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g4896"
+     fit-margin-top="5"
+     fit-margin-left="5"
+     fit-margin-right="5"
+     fit-margin-bottom="5" />
+  <defs
+     id="defs4">
+    <style
+       type="text/css"
+       id="style2"><![CDATA[
+    line, polyline, polygon, path, rect, circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+  ]]></style>
+    <clipPath
+       id="cpOC4yMnw2MTguMTR8MjQ1LjIyfDQ0Ljk3-1">
+      <rect
+         x="8.2200003"
+         y="44.970001"
+         width="609.91998"
+         height="200.25"
+         id="rect10-9"
+         style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
+    </clipPath>
+    <g
+       id="g864"
+       class="clips" />
+    <g
+       id="g866"
+       class="gradients" />
+    <g
+       id="g953"
+       class="clips" />
+    <clipPath
+       id="legendc81dc4">
+      <rect
+         id="rect955"
+         y="0"
+         x="0"
+         height="29"
+         width="385" />
+    </clipPath>
+  </defs>
+  <defs
+     id="defs13">
+    <clipPath
+       id="cpOC4yMnw2MTguMTR8MjQ1LjIyfDQ0Ljk3">
+      <rect
+         x="8.2200003"
+         y="44.970001"
+         width="609.91998"
+         height="200.25"
+         id="rect10"
+         style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
+    </clipPath>
+  </defs>
+  <defs
+     id="defs60">
+    <clipPath
+       id="cpMC4wMHw2MjMuNjJ8MjY5LjI5fDAuMDA=">
+      <rect
+         x="0"
+         y="0"
+         width="623.62"
+         height="269.29001"
+         id="rect57"
+         style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
+    </clipPath>
+  </defs>
+  <g
+     class="pielayer"
+     id="g85"
+     transform="translate(-873.49228,-116.38247)">
+    <g
+       class="trace"
+       style="opacity:1;stroke-linejoin:round"
+       id="g83">
+      <g
+         class="slice"
+         id="g81">
+        <g
+           id="g966"
+           transform="matrix(0.75106653,0,0,0.75106653,771.72764,174.72128)">
+          <g
+             id="g39-8"
+             class="slice"
+             style="opacity:1;stroke-linejoin:round">
+            <path
+               inkscape:connector-curvature="0"
+               id="path27-8"
+               style="fill:#081d58;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
+               d="M 350,235.5 V 40 A 195.5,195.5 0 1 1 238.83374,396.31764 Z"
+               class="surface" />
+          </g>
+          <g
+             id="g53-0"
+             class="slice"
+             style="opacity:1;stroke-linejoin:round">
+            <path
+               inkscape:connector-curvature="0"
+               id="path41-5"
+               style="fill:#225ea8;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
+               d="M 350,235.5 154.81123,224.47295 A 195.5,195.5 0 0 1 350,40 Z"
+               class="surface" />
+          </g>
+          <g
+             id="g67"
+             class="slice"
+             style="opacity:1;stroke-linejoin:round">
+            <path
+               inkscape:connector-curvature="0"
+               id="path55"
+               style="fill:#41b6c4;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
+               d="M 350,235.5 183.73814,338.34572 A 195.5,195.5 0 0 1 154.81123,224.47295 Z"
+               class="surface" />
+          </g>
+          <path
+             inkscape:connector-curvature="0"
+             id="path69"
+             style="fill:#feb24c;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
+             d="M 350,235.5 238.83374,396.31764 a 195.5,195.5 0 0 1 -55.0956,-57.97192 z"
+             class="surface" />
+        </g>
+      </g>
+    </g>
+  </g>
+  <flowRoot
+     xml:space="preserve"
+     id="flowRoot1106"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     transform="translate(1.9999994,26.292316)"><flowRegion
+       id="flowRegion1108"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"><rect
+         id="rect1110"
+         width="313.6749"
+         height="382.30292"
+         x="-261.45792"
+         y="-66.533241"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       id="flowPara1118"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;line-height:12.2078743px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'" /></flowRoot>  <flowRoot
+     xml:space="preserve"
+     id="flowRoot4827"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     transform="translate(1.9999994,26.292316)"><flowRegion
+       id="flowRegion4829"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"><rect
+         id="rect4831"
+         width="372.6055"
+         height="392.74634"
+         x="-309.9451"
+         y="-75.484726"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       id="flowPara4833" /></flowRoot>  <g
+     id="g4896"
+     transform="translate(2.947994,-5.4885812e-6)">
+    <path
+       transform="matrix(0.49840363,0,0,1,0.90346509,24.043763)"
+       inkscape:connector-curvature="0"
+       id="line53"
+       clip-path="url(#cpOC4yMnw2MTguMTR8MjQ1LjIyfDQ0Ljk3)"
+       d="m 8.2207031,43.369141 v 3.201171 H 618.14062 v -3.201171 z"
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#68c3ea;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+    <flowRoot
+       transform="translate(223.89355,244.55678)"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#68c3ea;fill-opacity:1;stroke:none"
+       id="flowRoot901-8"
+       xml:space="preserve"><flowRegion
+         style="fill:#68c3ea;fill-opacity:1"
+         id="flowRegion903-3"><rect
+           style="fill:#68c3ea;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+           y="-218.56583"
+           x="-219.31134"
+           height="373.72443"
+           width="483.75308"
+           id="rect905-1" /></flowRegion><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#68c3ea;fill-opacity:1"
+         id="flowPara907-9">2019</flowPara></flowRoot>    <flowRoot
+       transform="translate(45.124957,596.64747)"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#68c3ea;fill-opacity:1;stroke:none"
+       id="flowRoot901-8-4"
+       xml:space="preserve"><flowRegion
+         style="fill:#68c3ea;fill-opacity:1"
+         id="flowRegion903-3-8"><rect
+           style="fill:#68c3ea;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+           y="-218.56583"
+           x="-219.31134"
+           height="373.72443"
+           width="483.75308"
+           id="rect905-1-6" /></flowRegion><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.19999981px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:end;text-anchor:end;fill:#68c3ea;fill-opacity:1"
+         id="flowPara907-9-7">Source: Ombudsman Services</flowPara></flowRoot>    <path
+       transform="matrix(0.49840363,0,0,1,0.90346509,351.74396)"
+       inkscape:connector-curvature="0"
+       id="line53-3"
+       clip-path="url(#cpOC4yMnw2MTguMTR8MjQ1LjIyfDQ0Ljk3-1)"
+       d="m 8.2207031,43.369141 v 3.201171 H 618.14062 v -3.201171 z"
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#68c3ea;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+    <flowRoot
+       transform="translate(-1750.4811,228.7659)"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';letter-spacing:0px;word-spacing:0px;fill:#68c3ea;fill-opacity:1;stroke:none"
+       id="flowRoot4835"
+       xml:space="preserve"><flowRegion
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#68c3ea;fill-opacity:1"
+         id="flowRegion4837"><rect
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#68c3ea;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+           y="-226.71194"
+           x="1755.4242"
+           height="2363.071"
+           width="2922.1904"
+           id="rect4839" /></flowRegion><flowPara
+         id="flowPara1062">Proportion of energy complaints</flowPara><flowPara
+         id="flowPara1080">by outcome</flowPara></flowRoot>    <g
+       class="bglayer"
+       id="g869"
+       transform="translate(-750.13381,-193.12357)" />
+    <g
+       class="layer-below"
+       id="g875"
+       transform="translate(-750.13381,-193.12357)">
+      <g
+         class="imagelayer"
+         id="g871" />
+      <g
+         class="shapelayer"
+         id="g873" />
+    </g>
+    <g
+       class="cartesianlayer"
+       id="g877"
+       transform="translate(-750.13381,-193.12357)" />
+    <g
+       class="polarlayer"
+       id="g879"
+       transform="translate(-750.13381,-193.12357)" />
+    <g
+       class="ternarylayer"
+       id="g881"
+       transform="translate(-750.13381,-193.12357)" />
+    <g
+       class="geolayer"
+       id="g883"
+       transform="translate(-750.13381,-193.12357)" />
+    <g
+       class="funnelarealayer"
+       id="g885"
+       transform="translate(-750.13381,-193.12357)" />
+    <g
+       style="stroke-linejoin:round"
+       id="g57"
+       class="pielayer"
+       transform="matrix(0.74424011,0,0,0.73813844,-81.369049,134.9616)" />
+    <flowRoot
+       transform="matrix(0.33924417,0,0,0.33924417,25.276129,198.62867)"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-linejoin:round"
+       id="flowRoot994"
+       xml:space="preserve"><flowRegion
+         style="fill:#ffffff"
+         id="flowRegion996"><rect
+           style="fill:#ffffff;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+           y="71.909363"
+           x="363.95511"
+           height="332.30685"
+           width="396.39459"
+           id="rect998" /></flowRegion><flowPara
+         id="flowPara1010"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff"><flowSpan
+           id="flowSpan1010"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">Upheld</flowSpan></flowPara><flowPara
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff"
+         id="flowPara1008">59.6%</flowPara></flowRoot>    <g
+       class="treemaplayer"
+       id="g947"
+       transform="translate(-750.13381,-193.12357)" />
+    <g
+       class="sunburstlayer"
+       id="g949"
+       transform="translate(-750.13381,-193.12357)" />
+    <g
+       class="glimages"
+       id="g951"
+       transform="translate(-750.13381,-193.12357)" />
+    <g
+       class="layer-above"
+       id="g963"
+       transform="translate(-750.13381,-193.12357)">
+      <g
+         class="imagelayer"
+         id="g959" />
+      <g
+         class="shapelayer"
+         id="g961" />
+    </g>
+    <flowRoot
+       transform="matrix(0.33924417,0,0,0.33924417,-94.786039,129.05817)"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-linejoin:round"
+       id="flowRoot994-2"
+       xml:space="preserve"><flowRegion
+         style="fill:#ffffff"
+         id="flowRegion996-1"><rect
+           style="fill:#ffffff;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+           y="71.909363"
+           x="363.95511"
+           height="332.30685"
+           width="396.39459"
+           id="rect998-7" /></flowRegion><flowPara
+         id="flowPara1010-7"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">Settled</flowPara><flowPara
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff"
+         id="flowPara1008-0">24.1%</flowPara></flowRoot>    <flowRoot
+       transform="matrix(0.33924417,0,0,0.33924417,-119.40073,212.32364)"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-linejoin:round"
+       id="flowRoot994-22"
+       xml:space="preserve"><flowRegion
+         style="fill:#ffffff"
+         id="flowRegion996-5"><rect
+           style="fill:#ffffff;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+           y="71.909363"
+           x="363.95511"
+           height="332.30685"
+           width="396.39459"
+           id="rect998-8" /></flowRegion><flowPara
+         id="flowPara1010-2"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">Maintained</flowPara><flowPara
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff"
+         id="flowPara1008-2">9.7%</flowPara></flowRoot>    <flowRoot
+       transform="matrix(0.33924417,0,0,0.33924417,-149.17313,316.99695)"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#feb24c;fill-opacity:1;stroke:none;stroke-linejoin:round"
+       id="flowRoot994-6"
+       xml:space="preserve"><flowRegion
+         style="fill:#feb24c;fill-opacity:1"
+         id="flowRegion996-0"><rect
+           style="fill:#feb24c;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+           y="71.909363"
+           x="363.95511"
+           height="332.30685"
+           width="396.39459"
+           id="rect998-0" /></flowRegion><flowPara
+         id="flowPara1010-0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#feb24c;fill-opacity:1"><flowSpan
+           id="flowSpan1010-97"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#feb24c;fill-opacity:1">Not</flowSpan></flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#feb24c;fill-opacity:1"
+         id="flowPara1074"><flowSpan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#feb24c;fill-opacity:1"
+           id="flowSpan1076">Upheld</flowSpan></flowPara><flowPara
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#feb24c;fill-opacity:1"
+         id="flowPara1008-7">6.6%</flowPara></flowRoot>  </g>
+  <image
+     y="-8.5666132"
+     x="403.49432"
+     id="image4861"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAQ2CAIAAABEOk43AAAAAXNSR0IArs4c6QAAAARnQU1BAACx jwv8YQUAAAAJcEhZcwAALiMAAC4jAXilP3YAABESaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8 P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4 bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1 LjYtYzE0MiA3OS4xNjA5MjQsIDIwMTcvMDcvMTMtMDE6MDY6MzkgICAgICAgICI+IDxyZGY6UkRG IHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+ IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2Jl LmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9t bS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3Vy Y2VSZWYjIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jl c291cmNlRXZlbnQjIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8i IHhtbG5zOnBkZj0iaHR0cDovL25zLmFkb2JlLmNvbS9wZGYvMS4zLyIgeG1sbnM6cGhvdG9zaG9w PSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp0aWZmPSJodHRwOi8v bnMuYWRvYmUuY29tL3RpZmYvMS4wLyIgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9l eGlmLzEuMC8iIHhtcDpDcmVhdGVEYXRlPSIyMDE3LTAxLTI1VDA5OjAzOjI2WiIgeG1wOk1ldGFk YXRhRGF0ZT0iMjAxOS0wMS0yNVQxMToyMToxMVoiIHhtcDpNb2RpZnlEYXRlPSIyMDE5LTAxLTI1 VDExOjIxOjExWiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOCAoV2lu ZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NTM3NWVhNzItMTZhNi1lNzRiLWJiNDct ZDRkZGE1Zjg4ZDE2IiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6M2IzMDg4YzUt ZDUxZi00OWI0LThhZDQtNGU1NTUxN2Q4YTY2IiB4bXBNTTpEb2N1bWVudElEPSJhZG9iZTpkb2Np ZDpwaG90b3Nob3A6ZGU1NDg0NjYtN2MzMi04MzRjLWE4NTQtODlkNjI3ZDg1N2MyIiB4bXBNTTpS ZW5kaXRpb25DbGFzcz0icHJvb2Y6cGRmIiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGRmOlByb2R1 Y2VyPSJBZG9iZSBQREYgTGlicmFyeSAxNS4wIiBwZGY6VHJhcHBlZD0iRmFsc2UiIHBob3Rvc2hv cDpMZWdhY3lJUFRDRGlnZXN0PSJDRENGRkE3REE4QzdCRTA5MDU3MDc2QUVBRjA1QzM0RSIgcGhv dG9zaG9wOkNvbG9yTW9kZT0iMyIgcGhvdG9zaG9wOklDQ1Byb2ZpbGU9InNSR0IgSUVDNjE5NjYt Mi4xIiB0aWZmOkltYWdlV2lkdGg9IjQ5NjEiIHRpZmY6SW1hZ2VMZW5ndGg9IjM1MDgiIHRpZmY6 UGhvdG9tZXRyaWNJbnRlcnByZXRhdGlvbj0iMiIgdGlmZjpPcmllbnRhdGlvbj0iMSIgdGlmZjpT YW1wbGVzUGVyUGl4ZWw9IjMiIHRpZmY6WFJlc29sdXRpb249IjMwMDAwMDAvMTAwMDAiIHRpZmY6 WVJlc29sdXRpb249IjMwMDAwMDAvMTAwMDAiIHRpZmY6UmVzb2x1dGlvblVuaXQ9IjIiIGV4aWY6 RXhpZlZlcnNpb249IjAyMjEiIGV4aWY6Q29sb3JTcGFjZT0iMSIgZXhpZjpQaXhlbFhEaW1lbnNp b249Ijc5ODEiIGV4aWY6UGl4ZWxZRGltZW5zaW9uPSI0NTMyIj4gPHhtcE1NOkRlcml2ZWRGcm9t IHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ZTRkNzdmY2UtNDFmYi00YTQwLWEwYWItZmQ2MmFk ZjJlNzE5IiBzdFJlZjpkb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6M2U1ZjI3MGYt YmJmOS01YjQ2LWJkNTctMGY4N2U0YWQ1YTVlIiBzdFJlZjpvcmlnaW5hbERvY3VtZW50SUQ9Inht cC5kaWQ6M2IzMDg4YzUtZDUxZi00OWI0LThhZDQtNGU1NTUxN2Q4YTY2IiBzdFJlZjpyZW5kaXRp b25DbGFzcz0icHJvb2Y6cGRmIi8+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBz dEV2dDphY3Rpb249ImNvbnZlcnRlZCIgc3RFdnQ6cGFyYW1ldGVycz0iZnJvbSBhcHBsaWNhdGlv bi94LWluZGVzaWduIHRvIGFwcGxpY2F0aW9uL3BkZiIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRv YmUgSW5EZXNpZ24gQ0MgMjAxNyAoTWFjaW50b3NoKSIgc3RFdnQ6Y2hhbmdlZD0iLyIgc3RFdnQ6 d2hlbj0iMjAxNy0wMS0yNVQwOTowMzoyNloiLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNvbnZl cnRlZCIgc3RFdnQ6cGFyYW1ldGVycz0iZnJvbSBhcHBsaWNhdGlvbi9wZGYgdG8gYXBwbGljYXRp b24vdm5kLmFkb2JlLnBob3Rvc2hvcCIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iZGVyaXZlZCIg c3RFdnQ6cGFyYW1ldGVycz0iY29udmVydGVkIGZyb20gYXBwbGljYXRpb24vdm5kLmFkb2JlLnBo b3Rvc2hvcCB0byBpbWFnZS9qcGVnIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RF dnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDplN2YyOGJhMy02ZThlLTQ4NzQtYmFjMC1kODQ4NDlkYjcw NjIiIHN0RXZ0OndoZW49IjIwMTctMDEtMjVUMDk6MDU6MDRaIiBzdEV2dDpzb2Z0d2FyZUFnZW50 PSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNyAoTWFjaW50b3NoKSIgc3RFdnQ6Y2hhbmdlZD0iLyIv PiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6 MTJhNWU0NzItMDEyOS1hODQwLThlOGQtNzRlNzc1YTgzZDA3IiBzdEV2dDp3aGVuPSIyMDE5LTAx LTIxVDE2OjM0OjU5WiIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIENDIDIw MTggKFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJj b252ZXJ0ZWQiIHN0RXZ0OnBhcmFtZXRlcnM9ImZyb20gaW1hZ2UvanBlZyB0byBhcHBsaWNhdGlv bi92bmQuYWRvYmUucGhvdG9zaG9wIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJkZXJpdmVkIiBz dEV2dDpwYXJhbWV0ZXJzPSJjb252ZXJ0ZWQgZnJvbSBpbWFnZS9qcGVnIHRvIGFwcGxpY2F0aW9u L3ZuZC5hZG9iZS5waG90b3Nob3AiLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2 dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjE4NDI3YmUxLWI0NjQtNDE0NS1hZWU0LTYxYWRmZGNjZWQy MyIgc3RFdnQ6d2hlbj0iMjAxOS0wMS0yMVQxNjozNDo1OVoiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9 IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE4IChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8 cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6ZTRk NzdmY2UtNDFmYi00YTQwLWEwYWItZmQ2MmFkZjJlNzE5IiBzdEV2dDp3aGVuPSIyMDE5LTAxLTI1 VDExOjIxOjExWiIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTgg KFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjb252 ZXJ0ZWQiIHN0RXZ0OnBhcmFtZXRlcnM9ImZyb20gYXBwbGljYXRpb24vdm5kLmFkb2JlLnBob3Rv c2hvcCB0byBpbWFnZS9wbmciLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImRlcml2ZWQiIHN0RXZ0 OnBhcmFtZXRlcnM9ImNvbnZlcnRlZCBmcm9tIGFwcGxpY2F0aW9uL3ZuZC5hZG9iZS5waG90b3No b3AgdG8gaW1hZ2UvcG5nIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5z dGFuY2VJRD0ieG1wLmlpZDo1Mzc1ZWE3Mi0xNmE2LWU3NGItYmI0Ny1kNGRkYTVmODhkMTYiIHN0 RXZ0OndoZW49IjIwMTktMDEtMjVUMTE6MjE6MTFaIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9i ZSBQaG90b3Nob3AgQ0MgMjAxOCAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPC9yZGY6 U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDx4bXBNTTpJbmdyZWRpZW50cz4gPHJkZjpCYWc+IDxyZGY6 bGkgc3RSZWY6bGlua0Zvcm09IlJlZmVyZW5jZVN0cmVhbSIgc3RSZWY6ZmlsZVBhdGg9ImNsb3Vk LWFzc2V0Oi8vY2MtYXBpLXN0b3JhZ2UuYWRvYmUuaW8vYXNzZXRzL2Fkb2JlLWxpYnJhcmllcy9j MDlmZjEyYi04NzNjLTRhOTktYTkxNC0wYTdmMThhZDg4YWQ7bm9kZT0zNDk1M2FjMy1jMDEwLTRm ZjMtYjllOS1iNzc3YjQ5YWE1ZDQiIHN0UmVmOkRvY3VtZW50SUQ9InV1aWQ6ZGE0ZjYyYjMtNzU5 MC00OTBjLWE2ZDktY2YwZjY5MmMzMzdkIi8+IDwvcmRmOkJhZz4gPC94bXBNTTpJbmdyZWRpZW50 cz4gPHRpZmY6Qml0c1BlclNhbXBsZT4gPHJkZjpTZXE+IDxyZGY6bGk+ODwvcmRmOmxpPiA8cmRm OmxpPjg8L3JkZjpsaT4gPHJkZjpsaT44PC9yZGY6bGk+IDwvcmRmOlNlcT4gPC90aWZmOkJpdHNQ ZXJTYW1wbGU+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hw YWNrZXQgZW5kPSJyIj8+NZ9nhQAAFEZJREFUeF7t2aHrn1UYh+G9toWFIRYFweBgQUFE0KHZsCqK 4LQJCjbb8ppNULC5DUSxLpiVKYgIGgYzCIIWkYWFxWN56tvuN3x/XFc5nz/h5jzbWuscAACdx+YF ACAisAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAm sAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAA YgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgIL ACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAm sAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAA YgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgIL ACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAm sAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAA YgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgIL ACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAm sAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAA YgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgIL ACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAm sAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAA YgILACAmsAAAYgILACAmsAAAYgILACC2rbVmAifrqXdfmcXB/r754yyAfX6wAABiAgsAICawAABi AgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsA ICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICaw AABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABi AgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsA ICawAABiAgsAICawAABi21prJnCyvvn+ziwO9uZrV2cB7BNYAAAxJ0IAgJjAAgCICSwAgJjAAgCI CSwAgJjAAgCICSwAgJjAAgCICSwAgJjAAgCICSwAgJjAAgCICSwAgJjAAgCICSwAgJjAAgCICSwA gJjAAgCICSwAgJjAAgCICSwAgJjAAgCICSwAgJjAAgCICSwAgJjAAgCICSwAgJjAAgCICSwAgJjA AgCICSwAgJjAAgCICSwAgJjAAgCICSwAgJjAAgCICSwAgJjAAgCIbWutmcDJ+vqPW7M42FvPXpsF sE9gwVlw5dvnZnGwu2/8PgtgnxMhAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQW AEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBM YAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEA xAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQW AEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBsW2vNBACg4AcL ACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAm sAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAA YgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgILACAmsAAAYgIL ACC2rbVmAifrzp/XZ3Gwq8/cmAWwT2DBWXD73rVZHOydy7dmAexzIgQAiAksAICYwAIAiAksAICY wAIAiAksAICYwAIAiAksAICYwAIAiAksAICYwAIAiAksAICYwAIAiAksAICYwAIAiAksAICYwAIA iAksAICYwAIAiAksAICYwAIAiAksAICYwAIAiAksAICYwAIAiAksAICYwAIAiAksAICYwAIAiAks AICYwAIAiAksAICYwAIAiAksAICYwAIAiAksAICYwAIAiAksAICYwAIAiAksAICYwAIAiAksAICY wAIAiAksAICYwAIAiAksAICYwAIAiAksAICYwAIAiAksAICYwAIAiAksAICYwAIAiAksAICYwAIA iAksAIDYttaaCZysu/98MYuDXXny/VkA+wQWAEDMiRAAICawAABiAgsAICawAABiAgsAICawAABi AgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsA ICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICaw AABiAgsAICawAABiAgsAICawAABiAgsAICawAABi21prJnCy7j96MIuDXTp/cRbAPoEFZ8FLv92e xcF+fv6dWQD7nAgBAGICCwAgJrAAAGICCwAgJrAAAGICCwAgJrAAAGICCwAgJrAAAGICCwAgJrAA AGICCwAgJrAAAGICCwAgJrAAAGICCwAgJrAAAGICCwAgJrAAAGICCwAgJrAAAGICCwAgJrAAAGIC CwAgJrAAAGICCwAgJrAAAGICCwAgJrAAAGICCwAgJrAAAGICCwAgJrAAAGICCwAgJrAAAGICCwAg JrAAAGICCwAgJrAAAGICCwAgJrAAAGICCwAgJrAAAGICCwAgJrAAAGICCwAgJrAAAGICCwAgJrAA AGICCwAgJrAAAGICCwAgJrAAAGICCwAgJrAAAGICCwAgJrAAAGLbWmsmcLLuP3owi4NdOn9xFsA+ gQUAEHMiBACICSwAgJjAAgCICSwAgJjAAgCICSwAgJjAAgCICSwAgJjAAgCICSwAgJjAAgCICSwA gJjAAgCICSwAgJjAAgCICSwAgJjAAgCICSwAgJjAAgCICSwAgJjAAgCICSwAgJjAAgCICSwAgJjA AgCICSwAgJjAAgCICSwAgJjAAgCICSwAgJjAAgCICSwAgJjAAgCICSwAgJjAAgCICSwAgJjAAgCI CSwAgNi21poJnKwv7z+cxcHeu3RhFsA+gQVnwQc//DuLg33+6hOzAPY5EQIAxAQWAEBMYAEAxAQW AEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBM YAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEA xAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQW AEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBM YAEAxAQWAEBsW2vNBE7WjV8fzOJg11+4OAtgn8ACAIg5EQIAxAQWAEBMYAEAxAQWAEBMYAEAxAQW AEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBM YAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEA xAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxAQWAEBMYAEAxLa11kzgZL37yV+zONjNj5+eBbDP DxYAQExgAQDEBBYAQExgAQDEBBYAQExgAQDEBBYAQExgAQDEBBYAQExgAQDEBBYAQExgAQDEBBYA QExgAQDEBBYAQExgAQDEBBYAQExgAQDEBBYAQExgAQDEBBYAQExgAQDEBBYAQExgAQDEBBYAQExg AQDEBBYAQExgAQDEBBYAQExgAQDEBBYAQExgAQDEBBYAQExgAQDEBBYAQExgAQDEBBYAQExgAQDE BBYAQExgAQDEBBYAQExgAQDEBBYAQExgAQDEBBYAQExgAQDEBBYAQExgAQDEBBYAQExgAQDEBBYA QExgAQDEBBYAQExgAQDEBBYAQExgAQDEBBYAQGxba80ETtZ3vzycxcFef/HCLIB9AgsAIOZECAAQ E1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gA ADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGB BQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAADGBBQAQE1gAALFtrTUT OFlf/XRvFgd7++XLswD2CSw4Cx7/8NNZHOy/zz6aBbDPiRAAICawAABiAgsAICawAABiAgsAICaw AABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABi AgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsA ICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICaw AABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABiAgsAICawAABi AgsAILattWYCAFDwgwUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAx gQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUA EBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNY AAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAx gQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUA EBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNY AAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAx gQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUA EBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNY AAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAx gQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUA EBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNY AAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAx gQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUA EBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNY AAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAx gQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUA EBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNY AAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAxgQUAEBNYAAAx gQUAEBNYAAAxgQUAEBNYAAAxgQUAkDp37n/X1IYJX9wn6QAAAABJRU5ErkJggg== "
+     preserveAspectRatio="none"
+     height="344.95999"
+     width="256" />
+</svg>
