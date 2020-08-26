@@ -549,7 +549,7 @@ DualFuelBreakdown <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:9, 1)
+      formatPercentage(2:7, 1)
   })
   
   output$SouthDualFuelBreakdownTable = renderDataTable({
@@ -561,7 +561,7 @@ DualFuelBreakdown <- function(input, output, session) {
     SouthScotlandDualFuelBreakdown <- rbind(SouthScotlandDualFuelBreakdown,c("April 2015 - September 2015",	0.462706502598415,	0.242183563345471,	0.0944366540135878,	0.181673272194526,	0.0190000078479999,0,0))
     
     datatable(
-      SouthScotlandDualFuelBreakdown[1:7],
+      as_tibble(SouthScotlandDualFuelBreakdown[1:7]),
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -591,7 +591,7 @@ DualFuelBreakdown <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:9, 1)
+      formatPercentage(2:7, 1)
   })
   
   

@@ -311,7 +311,7 @@ AverageBillLA <- function(input, output, session) {
       )
     ) %>%
       formatRound(2:9, 2) %>% 
-      formatRound(c(2,4,6,8,10), 3)
+      formatRound(c(2,4,6,8), 3)
   })
   
   output$GasUnitTable = renderDataTable({
@@ -356,7 +356,7 @@ AverageBillLA <- function(input, output, session) {
       )
     ) %>%
       formatRound(2:9, 2) %>% 
-      formatRound(c(2,4,6,8,10), 3)
+      formatRound(c(2,4,6,8), 3)
   })
   
   observeEvent(input$ToggleText, {

@@ -527,7 +527,7 @@ FuelPoverty <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:5, 1)
+      formatPercentage(2:3, 1)
   })
    
   output$ExtremeFuelPoverty.png <- downloadHandler(

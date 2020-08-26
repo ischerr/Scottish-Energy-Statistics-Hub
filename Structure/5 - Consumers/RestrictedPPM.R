@@ -146,7 +146,7 @@ RestrictedPPM <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:100, 1)
+      formatPercentage(3:(ncol(RestrictedMeter)), 1)
   })
   
   output$RestrictedMeterAmountTable = renderDataTable({
@@ -191,7 +191,7 @@ RestrictedPPM <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:100, 0)
+      formatRound(3:(ncol(RestrictedMeter)), 0)
   })
 
   output$Text <- renderUI({
