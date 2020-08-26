@@ -155,6 +155,8 @@ EnergyConsumption <- function(input, output, session) {
     
     Data[1:7] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data$Year <- as.character(Data$Year)
+    
     Data[2,1] <- "Baseline\n2005/2007"
     
     Data[3,1] <- " "
@@ -349,7 +351,10 @@ EnergyConsumption <- function(input, output, session) {
     EnConsumption <- tail(EnConsumption, -1)
     
     EnConsumption[1:6] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
     EnConsumption <- as_tibble(EnConsumption)
+    
+    EnConsumption$Year <- as.character(EnConsumption$Year)
     
     EnConsumption[1,1] <- " Baseline 2005 - 2007"
     
@@ -386,7 +391,7 @@ EnergyConsumption <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:7, 0)%>% 
+      formatRound(2:6, 0)%>% 
       formatStyle(c(6), fontWeight = 'bold')
   })
   
@@ -424,7 +429,7 @@ EnergyConsumption <- function(input, output, session) {
       names(Data)[1] <- "Year"
       Data <- tail(Data, -1)
       
-      Data[1,1] <- 2003
+      Data[1,1] <- "2003"
       
       Data$Year <- as.numeric(Data$Year)
       Data[nrow(Data),1] <- max(Data$Year + 1, na.rm =  TRUE)
@@ -773,6 +778,8 @@ EnergyConsumption <- function(input, output, session) {
     
     Data[1:8] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data$Year <- as.character(Data$Year)
+    
     Data[2,1] <- "Baseline\n2005/2007"
     
     Data[3,1] <- " "
@@ -981,6 +988,8 @@ EnergyConsumption <- function(input, output, session) {
     
     Data[1:8] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data$Year <- as.character(Data$Year)
+    
     Data[2,1] <- " Baseline\n2005/2007"
     
     Data[3,1] <- " "
@@ -1131,11 +1140,11 @@ EnergyConsumption <- function(input, output, session) {
       names(Data)[1] <- "Year"
       Data <- tail(Data, -1)
       
-      Data[1,1] <- 2003
+      Data[1,1] <- "2003"
       
       Data <- Data[complete.cases(Data),]
       
-      Data[nrow(Data),1] <- max(as.numeric(Data$Year),na.rm = TRUE)+1
+      Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE) + 1)
       
       Data <- as_tibble(sapply( Data, as.numeric ))
       
@@ -1526,10 +1535,10 @@ EnergyConsumption <- function(input, output, session) {
     
     ### Order LAs in Data
     EnConsumptionLAMap <- EnConsumptionLAMap[order(EnConsumptionLAMap$CODE),]
-    
+
     ### Combine Data with Map data
-    LAMap <-
-      append_data(LA, EnConsumptionLAMap, key.shp = "CODE", key.data = "CODE")
+    LAMap <- merge(LA, EnConsumptionLAMap)
+      #append_data(LA, EnConsumptionLAMap, key.shp = "CODE", key.data = "CODE")
     
     pal <- colorNumeric(
       palette = "Greens",
