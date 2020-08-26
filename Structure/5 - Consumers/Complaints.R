@@ -13,7 +13,7 @@ ComplaintsOutput <- function(id) {
     tabsetPanel(
       tabPanel("Complaints volume",
     fluidRow(column(8,
-                    h3("Volume of complaints in Scotland and elsewhere", style = "color: #68c3ea;  font-weight:bold"),
+                    h3("Volume of energy complaints to Ombudsman Services in Scotland and elsewhere", style = "color: #68c3ea;  font-weight:bold"),
                     h4(textOutput(ns('ComplaintsPropSubtitle')), style = "color: #68c3ea;")
     ),
              column(
@@ -27,7 +27,7 @@ ComplaintsOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Complaints by type",
              fluidRow(column(8,
-                             h3("Proportion of complaints by type", style = "color: #68c3ea;  font-weight:bold"),
+                             h3("Proportion of energy complaints by type", style = "color: #68c3ea;  font-weight:bold"),
                              h4(textOutput(ns('ComplaintsTypeSubtitle')), style = "color: #68c3ea;")
              ),
              column(
@@ -41,7 +41,7 @@ ComplaintsOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Complaints by outcome",
              fluidRow(column(8,
-                             h3("Proportion of complaints by outcome", style = "color: #68c3ea;  font-weight:bold"),
+                             h3("Proportion of energy complaints by outcome", style = "color: #68c3ea;  font-weight:bold"),
                              h4(textOutput(ns('ComplaintsOutcomeSubtitle')), style = "color: #68c3ea;")
              ),
              column(
@@ -55,7 +55,7 @@ ComplaintsOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Complaints by region",
              fluidRow(column(8,
-                             h3("Complaint Volumes by District of Scotland", style = "color: #68c3ea;  font-weight:bold"),
+                             h3("Energy complaint volume by District of Scotland", style = "color: #68c3ea;  font-weight:bold"),
                              h4(textOutput(ns('ComplaintsAreaSubtitle')), style = "color: #68c3ea;")
              ),
              column(
@@ -78,7 +78,7 @@ ComplaintsOutput <- function(id) {
     tabsetPanel(
       tabPanel("Complaints volume",
     fluidRow(
-    column(10, h3("Data - Volume of complaints in Scotland and elsewhere", style = "color: #68c3ea;  font-weight:bold")),
+    column(10, h3("Data - Volume of energy complaints to Ombudsman Services in Scotland and elsewhere", style = "color: #68c3ea;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -86,7 +86,7 @@ ComplaintsOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Complaints by type",
              fluidRow(
-               column(10, h3("Data - Proportion of complaints by type", style = "color: #68c3ea;  font-weight:bold")),
+               column(10, h3("Data - Proportion of energy complaints by type", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -94,7 +94,7 @@ ComplaintsOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Complaints by outcome",
              fluidRow(
-               column(10, h3("Data - Proportion of complaints by outcome", style = "color: #68c3ea;  font-weight:bold")),
+               column(10, h3("Data - Proportion of energy complaints by outcome", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -102,7 +102,7 @@ ComplaintsOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Complaints by region",
              fluidRow(
-               column(10, h3("Data - Complaint Volumes by District of Scotland", style = "color: #68c3ea;  font-weight:bold")),
+               column(10, h3("Data - Energy complaint volume by District of Scotland", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -234,17 +234,17 @@ Complaints <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Volume of complaints in Scotland and elsewhere",
+        title = "Volume of energy complaints to Ombudsman Services in Scotland and elsewhere",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Volume of complaints in Scotland and elsewhere',
+            title = 'Volume of energy complaints to Ombudsman Services in Scotland and elsewhere',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Volume of complaints in Scotland and elsewhere')
+               title = 'Volume of energy complaints to Ombudsman Services in Scotland and elsewhere')
         ),
         
         # customize the length menu
@@ -375,17 +375,17 @@ Complaints <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Complaint Volumes by District of Scotland",
+        title = "Energy complaint volume by District of Scotland",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Complaint Volumes by District of Scotland",
+            title = "Energy complaint volume by District of Scotland",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Complaint Volumes by District of Scotland")
+               title = "Energy complaint volume by District of Scotland")
         ),
         
         # customize the length menu
@@ -412,7 +412,7 @@ Complaints <- function(input, output, session) {
       ### variables
       ChartColours <- c("#2b8cbe", "#fc9272", "#34d1a3", "#02818a")
       sourcecaption = "Source: Ombudsman Services"
-      plottitle = "Complaint Volumes by District of Scotland"
+      plottitle = "Energy complaint volume by District of Scotland"
       
       length <- max(ComplaintsArea$Renewables)
       
@@ -598,17 +598,17 @@ Complaints <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Proportion of complaints by type",
+        title = "Proportion of energy complaints by type",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Proportion of complaints by type",
+            title = "Proportion of energy complaints by type",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Proportion of complaints by type")
+               title = "Proportion of energy complaints by type")
         ),
         
         # customize the length menu
@@ -634,7 +634,7 @@ Complaints <- function(input, output, session) {
       ### variables
       ChartColours <- c("#2b8cbe", "#fc9272", "#34d1a3", "#02818a")
       sourcecaption = "Source: Ombudsman Services"
-      plottitle = "Proportion of complaints by type"
+      plottitle = "Proportion of energy complaints by type"
       
       length <- max(ComplaintsType$Renewables)
       
@@ -827,17 +827,17 @@ Complaints <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Proportion of complaints by outcome",
+        title = "Proportion of energy complaints by outcome",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Proportion of complaints by outcome",
+            title = "Proportion of energy complaints by outcome",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Proportion of complaints by outcome")
+               title = "Proportion of energy complaints by outcome")
         ),
         
         # customize the length menu
