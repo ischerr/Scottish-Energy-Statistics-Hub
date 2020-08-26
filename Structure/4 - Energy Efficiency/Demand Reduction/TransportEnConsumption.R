@@ -97,6 +97,8 @@ TransportEnConsumption <- function(input, output, session) {
     
     Data[1:5] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data$Year <- as.character(Data$Year)
+    
     Data[2,1] <- "Baseline\n2005/2007"
     
     Data[3,1] <- " "
@@ -346,11 +348,11 @@ TransportEnConsumption <- function(input, output, session) {
       names(Data)[1] <- "Year"
       Data <- tail(Data, -1)
       
-      Data[1,1] <- 2003
+      Data[1,1] <- "2003"
       
       Data <- Data[complete.cases(Data),]
       
-      Data[nrow(Data),1] <- max(as.numeric(Data$Year),na.rm = TRUE)+1
+      Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE)+1)
       
       Data <- as_tibble(sapply( Data, as.numeric ))
       

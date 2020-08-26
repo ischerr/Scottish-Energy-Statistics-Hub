@@ -153,6 +153,8 @@ GasConsumption <- function(input, output, session) {
     
     Data[1:6] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data$Year <- as.character(Data$Year)
+    
     Data[2,1] <- "Baseline\n2005/2007"
     
     Data[3,1] <- ""
@@ -298,6 +300,8 @@ GasConsumption <- function(input, output, session) {
     
     Data[1:4] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data$Year <- as.character(Data$Year)
+    
     Data[2,1] <- " Baseline\n2005/2007"
     
     Data[nrow(Data),1] <- "% Change\nfrom baseline"
@@ -374,13 +378,13 @@ GasConsumption <- function(input, output, session) {
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "Gas consump", skip = 17, col_names = FALSE)[c(1,3,2,6)]
       
-      Data[1,1] <- 2003
+      Data[1,1] <- "2003"
       
       names(Data) <- c("Year", "Non-domestic", "Domestic", "Total")
       
       Data <- Data[complete.cases(Data),]
       
-      Data[nrow(Data),1] <- max(as.numeric(Data$Year),na.rm = TRUE)+1
+      Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE)+1)
       
       Data$Year <- as.numeric(Data$Year)
       
@@ -616,6 +620,8 @@ GasConsumption <- function(input, output, session) {
     
     Data[1:2] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data$Year <- as.character(Data$Year)
+    
     Data[1,1] <- "Baseline\n2005/2007"
     
     Data[2,1] <- " "
@@ -722,6 +728,8 @@ GasConsumption <- function(input, output, session) {
     
     Data[1:2] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data$Year <- as.character(Data$Year)
+    
     Data[1,1] <- "Baseline\n2005/2007"
     
     
@@ -778,13 +786,13 @@ GasConsumption <- function(input, output, session) {
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "Gas consump by household", skip = 13, col_names = FALSE)
       
-      Data[1,1] <- 2003
+      Data[1,1] <- "2003"
       
       names(Data) <- c("Year", "Consumption")
       
       Data <- Data[complete.cases(Data),]
       
-      Data[nrow(Data),1] <- max(as.numeric(Data$Year),na.rm = TRUE)+1
+      Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE)+1)
       
       Data$Total <- Data$Consumption
       
