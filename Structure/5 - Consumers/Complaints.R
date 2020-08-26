@@ -25,20 +25,6 @@ ComplaintsOutput <- function(id) {
     #dygraphOutput(ns("ComplaintsPropPlot")),
     plotlyOutput(ns("ComplaintsPropPlot"), height = "500px")%>% withSpinner(color="#68c3ea"),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-    tabPanel("Complaints by region",
-             fluidRow(column(8,
-                             h3("Complaint Volumes by District of Scotland", style = "color: #68c3ea;  font-weight:bold"),
-                             h4(textOutput(ns('ComplaintsAreaSubtitle')), style = "color: #68c3ea;")
-             ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('ComplaintsArea.png'), 'Download Graph', style="float:right")
-             )),
-             
-             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
-             #dygraphOutput(ns("ComplaintsPropPlot")),
-             plotlyOutput(ns("ComplaintsAreaPlot"), height = "800px")%>% withSpinner(color="#68c3ea"),
-             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Complaints by type",
              fluidRow(column(8,
                              h3("Proportion of complaints by type", style = "color: #68c3ea;  font-weight:bold"),
@@ -66,6 +52,20 @@ ComplaintsOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
              #dygraphOutput(ns("ComplaintsPropPlot")),
              plotlyOutput(ns("ComplaintsOutcomePlot"), height = "500px")%>% withSpinner(color="#68c3ea"),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Complaints by region",
+             fluidRow(column(8,
+                             h3("Complaint Volumes by District of Scotland", style = "color: #68c3ea;  font-weight:bold"),
+                             h4(textOutput(ns('ComplaintsAreaSubtitle')), style = "color: #68c3ea;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('ComplaintsArea.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+             #dygraphOutput(ns("ComplaintsPropPlot")),
+             plotlyOutput(ns("ComplaintsAreaPlot"), height = "800px")%>% withSpinner(color="#68c3ea"),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),
@@ -84,14 +84,6 @@ ComplaintsOutput <- function(id) {
     fluidRow(
       column(12, dataTableOutput(ns("ComplaintsPropTable"))%>% withSpinner(color="#68c3ea"))),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-    tabPanel("Complaints by region",
-             fluidRow(
-               column(10, h3("Data - Complaint Volumes by District of Scotland", style = "color: #68c3ea;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
-             ),
-             fluidRow(
-               column(12, dataTableOutput(ns("ComplaintsAreaTable"))%>% withSpinner(color="#68c3ea"))),
-             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Complaints by type",
              fluidRow(
                column(10, h3("Data - Proportion of complaints by type", style = "color: #68c3ea;  font-weight:bold")),
@@ -107,6 +99,14 @@ ComplaintsOutput <- function(id) {
              ),
              fluidRow(
                column(12, dataTableOutput(ns("ComplaintsOutcomeTable"))%>% withSpinner(color="#68c3ea"))),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Complaints by region",
+             fluidRow(
+               column(10, h3("Data - Complaint Volumes by District of Scotland", style = "color: #68c3ea;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("ComplaintsAreaTable"))%>% withSpinner(color="#68c3ea"))),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     fluidRow(
       column(2, p("Update expected:")),
