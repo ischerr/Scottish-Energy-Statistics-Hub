@@ -6,7 +6,7 @@ require("DT")
 
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 C19GasOutput <- function(id) {
   ns <- NS(id)
@@ -140,11 +140,11 @@ C19Gas <- function(input, output, session) {
                 line = list(width = 4)
       ) %>% 
       add_trace(y = ~ `PostLockdown`, 
-                name = "Last week of March to first week of June",
+                name = "Fourth week of March to third week of August",
                 type = 'bar',
                 legendgroup = "2",
                 text = paste0(
-                  "Average weekday gas consumption in from the last week in March to first week of June: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
+                  "Average weekday gas consumption in from the fourth week in March to third week of August: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
                   "Year: ", WeekdayElecDemand$Year, "\n"),
                 hoverinfo = 'text',
                 line = list(width = 4)
@@ -219,7 +219,7 @@ C19Gas <- function(input, output, session) {
     
     WeekdayElecDemand <- dcast(WeekdayElecDemand, Year ~ PostLockdown)
     
-    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "Last week of March to first week of June (GWh)")
+    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "Fourth week of March to third week of August (GWh)")
     datatable(
       WeekdayElecDemand,
       extensions = 'Buttons',
@@ -253,7 +253,7 @@ C19Gas <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:5, 0) 
+      formatRound(2:3, 0) 
   })
   
   output$Text <- renderUI({
@@ -312,7 +312,8 @@ C19Gas <- function(input, output, session) {
       
       DailyDemand$DayofYear <- yday(DailyDemand$Date)
       
-      DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "First three weeks of March", "Last week of March to first week of June")
+      DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "First three weeks of March", 
+                                                                 "4th week Mar. to 3rd week Aug.")
       
       WeekdayElecDemand <- DailyDemand
       
@@ -338,13 +339,13 @@ C19Gas <- function(input, output, session) {
           "variable",
           values = c(
             "First three weeks of March" = BarColours[3],
-            "Last week of March to first week of June" = BarColours[2]
+            "4th week Mar. to 3rd week Aug." = BarColours[2]
           )
         ) +
         geom_bar(position = "dodge",
                  stat = "identity",
-                 width = -.8) +
-        geom_text(position = position_dodge(width = -.8),
+                 width = .8) +
+        geom_text(position = position_dodge(width = .8),
                   aes(
                     y = Gas + 12,
                     fill = PostLockdown,
@@ -354,7 +355,7 @@ C19Gas <- function(input, output, session) {
                   colour =  ChartColours[1],
                   family = "Century Gothic",
                   size = 3) +
-        geom_text(position = position_dodge(width = .8),
+        geom_text(position = position_dodge(width = -.8),
                   aes(
                     y = 5,
                     fill = PostLockdown,
@@ -486,7 +487,7 @@ output$C19GasRollingTable = renderDataTable({
       pageLength = 10
     )
   ) %>%
-    formatRound(2:5, 1) 
+    formatRound(2:3, 1) 
 })
 
 }

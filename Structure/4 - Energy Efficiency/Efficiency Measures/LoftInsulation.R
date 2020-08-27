@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 LoftInsulationOutput <- function(id) {
   ns <- NS(id)
@@ -74,7 +74,7 @@ LoftInsulationOutput <- function(id) {
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
-             p("March 2019")),
+             DateLookup(c("SGSHCS", "BEISNEED", "BEISHHoldEE"))),
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
@@ -108,7 +108,7 @@ LoftInsulation <- function(input, output, session) {
       sheet = "Loft insulation",
       col_names = FALSE,
       skip = 19,
-      n_max = 5
+      n_max = 6
     )
     
     Data <- as_tibble(t(Data))
@@ -118,6 +118,8 @@ LoftInsulation <- function(input, output, session) {
     names(Data)[1] <- "Year"
     
     Data[1:5] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data <- Data[complete.cases(Data),]
     
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
@@ -129,7 +131,7 @@ LoftInsulation <- function(input, output, session) {
       sheet = "Loft insulation",
       col_names = FALSE,
       skip = 19,
-      n_max = 5
+      n_max = 6
     )
     
     Data <- as_tibble(t(Data))
@@ -140,26 +142,40 @@ LoftInsulation <- function(input, output, session) {
     
     Data <- Data[-1,]
     
-    Data[1:5] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data[1:6] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     Data$Year <- paste("<b>", Data$Year, "</b>")
     
+    Data <- Data[complete.cases(Data),]
+    
     ChartColours <- c("#34d1a3", "#FF8500")
-    BarColours <- c("#1a9850", "#a6d96a", "#f46d43", "#d73027")
+    BarColours <- c("#1a9850", "#a6d96a", "#ffeda0", "#f46d43", "#d73027")
     
     p <- plot_ly(data = Data, y = ~ Year) %>%
       
       add_trace(
         data = Data,
-        x = ~ `200mm or more`,
+        x = ~ `300mm or more`,
         type = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "200mm or more",
-        text = paste0("200mm or more: ", percent(Data$`200mm or more`, accuracy = 0.1)),
+        name = "300mm or more",
+        text = paste0("300mm or more: ", percent(Data$`300mm or more`, accuracy = 0.1)),
         hoverinfo = 'text',
         marker = list(color = BarColours[1]),
         legendgroup = 1
+      ) %>%
+      add_trace(
+        data = Data,
+        x = ~ `200mm-299mm`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "200mm-299mm",
+        text = paste0("200mm-299mm: ", percent(Data$`200mm-299mm`, accuracy = 0.1)),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[2]),
+        legendgroup = 2
       ) %>%
       add_trace(
         data = Data,
@@ -170,8 +186,8 @@ LoftInsulation <- function(input, output, session) {
         name = "100mm-199mm",
         text = paste0("100mm-199mm: ", percent(Data$`100mm-199mm`, accuracy = 0.1)),
         hoverinfo = 'text',
-        marker = list(color = BarColours[2]),
-        legendgroup = 2
+        marker = list(color = BarColours[3]),
+        legendgroup = 3
       ) %>%
       add_trace(
         data = Data,
@@ -182,8 +198,8 @@ LoftInsulation <- function(input, output, session) {
         name = "1mm-99mm",
         text = paste0("1mm-99mm: ", percent(Data$`1mm-99mm`, accuracy = 0.1)),
         hoverinfo = 'text',
-        marker = list(color = BarColours[3]),
-        legendgroup = 3
+        marker = list(color = BarColours[4]),
+        legendgroup = 4
       ) %>%
       add_trace(
         data = Data,
@@ -194,19 +210,19 @@ LoftInsulation <- function(input, output, session) {
         name = "None",
         text = paste0("None: ", percent(Data$`None`, accuracy = 0.1)),
         hoverinfo = 'text',
-        marker = list(color = BarColours[4]),
-        legendgroup = 4
+        marker = list(color = BarColours[5]),
+        legendgroup = 5
       ) %>%
       add_trace(
         data = Data,
         x = ~ 1.05 ,
         showlegend = TRUE,
-        name = '100m or better',
+        name = '200m or better',
         mode = 'text',
         type = 'scatter',
         hoverinfo = 'skip',
         textfont = list(color = ChartColours[1]),
-        text =  paste0("<b>", percent(Data$`200mm or more`+Data$`100mm-199mm`, accuracy = 0.1), "</b>"),
+        text =  paste0("<b>", percent(Data$`300mm or more`+Data$`200mm-299mm`, accuracy = 0.1), "</b>"),
         legendgroup = 8
       ) %>%
       layout(
@@ -263,12 +279,10 @@ LoftInsulation <- function(input, output, session) {
     
     Data[1:5] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    Data$`100mm or better` <- Data$`200mm or more` + Data$`100mm-199mm`
-    
-    Data$`300mm or more` <- c(NA,NA,NA,.05,.10,.17,.24,.27,.32,.30,.30,.30)
+    Data$`200mm or better` <- Data$`300mm or more` + Data$`200mm-299mm`
     
     datatable(
-      Data,
+      Data[complete.cases(Data),],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -300,8 +314,7 @@ LoftInsulation <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:7, 1) %>% 
-      formatStyle(7, fontStyle = "italic") %>% 
+      formatPercentage(2:6, 0) %>% 
       formatStyle(6, fontWeight = "bold")
   })
   
@@ -333,21 +346,21 @@ LoftInsulation <- function(input, output, session) {
 
 
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Loft insulation", skip = 19, n_max = 5, col_names = FALSE)
+                         sheet = "Loft insulation", skip = 19, n_max = 6, col_names = FALSE)
       
       Data <- as_tibble(t(Data))
       
-      Data <- tail(Data[c(1,5:2)], -1)
+      Data <- tail(Data[c(1,6:2)], -1)
       
-      names(Data) <- c("Year", "None", "1mm-99mm", "100mm-199mm", "200mm or more")
+      names(Data) <- c("Year", "None", "1mm-99mm", "100mm-199mm", "200mm-299mm", "300mm or more")
       
       Data <- as_tibble(sapply( Data, as.numeric ))
       
-      Data$Total <- Data$`100mm-199mm` + Data$`200mm or more`
+      Data$Total <- Data$`200mm-299mm` + Data$`300mm or more`
       
-      Data <- Data[c(1,6,2:5)]
+      Data <- Data[c(1,7,2:6)]
       
-      InsulationThickness <- Data
+      InsulationThickness <- Data[complete.cases(Data),]
       
       InsulationThickness <-
         InsulationThickness[order(InsulationThickness$Year),]
@@ -369,18 +382,18 @@ LoftInsulation <- function(input, output, session) {
       sourcecaption <- "Source: SG"
       
       ChartColours <- c("#34d1a3", "#FF8500")
-      BarColours <- c("#1a9850", "#a6d96a", "#f46d43", "#d73027")
-      
+      BarColours <- c("#1a9850", "#a6d96a", "#ffeda0", "#f46d43", "#d73027")
       
       InsulationThicknessChart <- InsulationThickness %>%
         ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
         scale_fill_manual(
           "variable",
           values = c(
-            "200mm or more" = BarColours[1],
-            "100mm-199mm" = BarColours[2],
-            "1mm-99mm" = BarColours[3],
-            "None" = BarColours[4],
+            "300mm or more" = BarColours[1],
+            "200mm-299mm" = BarColours[2],
+            "100mm-199mm" = BarColours[3],
+            "1mm-99mm" = BarColours[4],
+            "None" = BarColours[5],
             "Total" = "white"
           )
         ) +
@@ -396,38 +409,47 @@ LoftInsulation <- function(input, output, session) {
           family = "Century Gothic"
         ) +
         geom_text(
-          aes(x = 2006,
-              y = 0.08824,
-              label = "200mm\nor more"),
+          aes(x = 2009,
+              y = 0.025,
+              label = "300mm\nor more"),
           fontface = 2,
           colour = BarColours[1],
           family = "Century Gothic",
           hjust = 0.5
         ) +
         geom_text(
-          aes(x = 2006,
-              y = 0.45294,
-              label = "100mm\n- 199mm"),
+          aes(x = 2009,
+              y = 0.2,
+              label = "200mm\n- 299mm"),
           fontface = 2,
           colour = BarColours[2],
           family = "Century Gothic",
           hjust = 0.5
         ) +
         geom_text(
-          aes(x = 2006,
-              y = 0.83697,
-              label = "1mm\n- 99mm"),
+          aes(x = 2009,
+              y = 0.57,
+              label = "100mm\n- 199mm"),
           fontface = 2,
           colour = BarColours[3],
           family = "Century Gothic",
           hjust = 0.5
         ) +
         geom_text(
-          aes(x = 2006,
-              y = 0.97227,
-              label = "None"),
+          aes(x = 2009,
+              y = 0.89697,
+              label = "1mm\n- 99mm"),
           fontface = 2,
           colour = BarColours[4],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 2009,
+              y = 0.99227,
+              label = "None"),
+          fontface = 2,
+          colour = BarColours[5],
           family = "Century Gothic",
           hjust = 0.5
         ) +
@@ -445,9 +467,9 @@ LoftInsulation <- function(input, output, session) {
           colour = ChartColours[1]
         ) +
         geom_text(
-          aes(x = 2006,
+          aes(x = 2009,
               y = 1.11,
-              label = "100m\nor better"),
+              label = "200m\nor better"),
           fontface = 2,
           colour = ChartColours[1],
           family = "Century Gothic",
@@ -459,13 +481,13 @@ LoftInsulation <- function(input, output, session) {
             ifelse(
               InsulationThickness$Year == min(InsulationThickness$Year) |
                 InsulationThickness$Year ==  max(InsulationThickness$Year),
-              percent(InsulationThickness$value,0.1),
+              ifelse(InsulationThickness$value >= .05, percent(InsulationThickness$value,1), " "),
               ""
             ),
-          hjust = ifelse(InsulationThickness$value > .05, .5,-0.1),
+          hjust = .5,
           family = "Century Gothic",
           fontface = 2,
-          color = ifelse(InsulationThickness$value > .05, "white", BarColours[4])
+          color = "White"
         )
       
       
@@ -566,6 +588,8 @@ LoftInsulation <- function(input, output, session) {
     
     LoftInsulationData <- LoftInsulationData[-1,]
     
+    LoftInsulationData[1] <- NULL
+    
     names(LoftInsulationData) <- c("Year", "CERT + ECO (000s)")
     
     LoftInsulationData <- LoftInsulationData[complete.cases(LoftInsulationData),]
@@ -605,7 +629,7 @@ LoftInsulation <- function(input, output, session) {
           pageLength = 10
         )
       ) %>%
-        formatRound(c(2:4), 0)
+        formatRound(c(2), 0)
     })
     
     output$LoftInsulationSchemesPlot <- renderPlotly  ({

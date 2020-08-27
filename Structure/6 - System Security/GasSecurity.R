@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 GasSecurityOutput <- function(id) {
   ns <- NS(id)
@@ -70,14 +70,14 @@ GasSecurityOutput <- function(id) {
       tabPanel("Flows",
     fluidRow(
     column(10, h3("Data - Flows into St. Fergus, 12 month rolling average (GWh)", style = "color: #5d8be1;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+    column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("GasSecurityTable"))%>% withSpinner(color="#5d8be1")))),
     tabPanel("UK Proportion",
              fluidRow(
                column(10, h3("Data - Proportion of St. Fergus in UK gas, 12 month rolling average (GWh)", style = "color: #5d8be1;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("UKFergusTable"))%>% withSpinner(color="#5d8be1"))))),
@@ -458,7 +458,7 @@ GasSecurity <- function(input, output, session) {
   StFergusFlowRolling <- read_delim("Processed Data/Output/Gas Distribution/StFergusFlowRolling.txt", 
                                     "\t", escape_double = FALSE, trim_ws = TRUE)
   
-  names(StFergusFlowRolling) <- c("Date", "Scottish Demand (GWh)","% Scottish demand from St. Fergus", "Transfers to N.I. (GWh)","% N.I. transfers from St. Fergus" , "Transfers to England (GWh)","% Englannd transfers from St. Fergus" , "ST. Fergus (GWh)", "UK Demand (GWh)", "Proportion of U.K. gas supply from ST. Fergus" )
+  names(StFergusFlowRolling) <- c("Date", "Average Daily Scottish Demand (GWh)","Average % Scottish demand from St. Fergus", "Average Daily Transfers to N.I. (GWh)","Average % N.I. transfers from St. Fergus" , "Average Daily Transfers to England (GWh)","Average % Englannd transfers from St. Fergus" , "Average Daily ST. Fergus (GWh)", "Average Daily UK Demand (GWh)", "Average Proportion of U.K. gas supply from ST. Fergus" )
   
   StFergusFlowRolling$Date <- as.Date(StFergusFlowRolling$Date, format = "%d/%m/%Y")
   
@@ -468,6 +468,7 @@ GasSecurity <- function(input, output, session) {
   StFergusFlowRolling <- StFergusFlowRolling[rev(order(StFergusFlowRolling$`12 month ending`)),]
   
   StFergusFlowRolling$`12 month ending` <- format(StFergusFlowRolling$`12 month ending`, format = "%B %Y")
+
   
   
   output$GasSecurityTable = renderDataTable({
@@ -546,7 +547,7 @@ GasSecurity <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:6, 1) %>% 
+      formatRound(2:4, 1) %>% 
       formatPercentage(c(4), 1)
   })
   
@@ -560,11 +561,13 @@ GasSecurity <- function(input, output, session) {
   })
  
  
-  observeEvent(input$ToggleTable, {
+  observeEvent(input$ToggleTable1, {
     toggle("GasSecurityTable")
   })
   
-
+  observeEvent(input$ToggleTable2, {
+    toggle("UKFergusTable")
+  })
   
   observeEvent(input$ToggleText, {
     toggle("Text")
@@ -1102,7 +1105,7 @@ output$GasSecurityProportion.png <- downloadHandler(
           y = GasSecurityRolling$FergusProp[which(GasSecurityRolling$Year == min(GasSecurityRolling$Year))],
           label = percent(GasSecurityRolling$FergusProp[which(GasSecurityRolling$Year == min(GasSecurityRolling$Year))], accuracy = 0.1),
           hjust = 0.5,
-          vjust = 1.1,
+          vjust = 1.3,
           fontface = 2
         ),
         colour = ChartColours[1],
@@ -1114,7 +1117,7 @@ output$GasSecurityProportion.png <- downloadHandler(
           y = GasSecurityRolling$FergusProp[which(GasSecurityRolling$Year == max(GasSecurityRolling$Year))],
           label = percent(GasSecurityRolling$FergusProp[which(GasSecurityRolling$Year == max(GasSecurityRolling$Year))], accuracy = 0.1),
           hjust = 0.5,
-          vjust = 1.1,
+          vjust = 1.3,
           fontface = 2
         ),
         colour = ChartColours[1],

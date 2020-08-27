@@ -1,0 +1,1692 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 667.88835 395.22356"
+   version="1.1"
+   id="svg74"
+   sodipodi:docname="EnergyBalanceChartPJ.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   width="667.88837"
+   height="395.22357"
+   inkscape:export-filename="C:\Users\ische\Documents\Github\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\EnBalancePJ.png"
+   inkscape:export-xdpi="300.71082"
+   inkscape:export-ydpi="300.71082">
+  <metadata
+     id="metadata78">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview76"
+     showgrid="false"
+     inkscape:zoom="2.68112"
+     inkscape:cx="295.7526"
+     inkscape:cy="69.627189"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg74"
+     fit-margin-top="5"
+     fit-margin-left="5"
+     fit-margin-right="5"
+     fit-margin-bottom="5" />
+  <defs
+     id="defs4">
+    <style
+       type="text/css"
+       id="style2"><![CDATA[
+    line, polyline, polygon, path, rect, circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+  ]]></style>
+    <clipPath
+       id="cpOC4yMnw2MTguMTR8MjQ1LjIyfDQ0Ljk3-1">
+      <rect
+         x="8.2200003"
+         y="44.970001"
+         width="609.91998"
+         height="200.25"
+         id="rect10-9"
+         style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
+    </clipPath>
+    <g
+       id="g864"
+       class="clips" />
+    <g
+       id="g866"
+       class="gradients" />
+    <g
+       id="g953"
+       class="clips" />
+    <clipPath
+       id="legendc81dc4">
+      <rect
+         id="rect955"
+         y="0"
+         x="0"
+         height="29"
+         width="385"
+         style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4614">
+      <rect
+         style="fill:#02808a;fill-opacity:1;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="rect4616"
+         width="3827.3311"
+         height="2076.1267"
+         x="-3415.9033"
+         y="184.10693" />
+    </clipPath>
+  </defs>
+  <defs
+     id="defs13">
+    <clipPath
+       id="cpOC4yMnw2MTguMTR8MjQ1LjIyfDQ0Ljk3">
+      <rect
+         x="8.2200003"
+         y="44.970001"
+         width="609.91998"
+         height="200.25"
+         id="rect10"
+         style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
+    </clipPath>
+  </defs>
+  <defs
+     id="defs60">
+    <clipPath
+       id="cpMC4wMHw2MjMuNjJ8MjY5LjI5fDAuMDA=">
+      <rect
+         x="0"
+         y="0"
+         width="623.62"
+         height="269.29001"
+         id="rect57"
+         style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
+    </clipPath>
+  </defs>
+  <flowRoot
+     xml:space="preserve"
+     id="flowRoot1106"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     transform="translate(1729.7173,1090.9929)"><flowRegion
+       id="flowRegion1108"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"><rect
+         id="rect1110"
+         width="313.6749"
+         height="382.30292"
+         x="-261.45792"
+         y="-66.533241"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       id="flowPara1118"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;line-height:12.2078743px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'" /></flowRoot>  <flowRoot
+     xml:space="preserve"
+     id="flowRoot4827"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     transform="translate(1729.7173,1090.9929)"><flowRegion
+       id="flowRegion4829"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"><rect
+         id="rect4831"
+         width="372.6055"
+         height="392.74634"
+         x="-309.9451"
+         y="-75.484726"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       id="flowPara4833" /></flowRoot>  <path
+     style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#1a5d38;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+     d="m 8.2207031,43.369141 v 3.201171 H 618.14062 v -3.201171 z"
+     clip-path="url(#cpOC4yMnw2MTguMTR8MjQ1LjIyfDQ0Ljk3)"
+     id="line53"
+     inkscape:connector-curvature="0"
+     transform="matrix(1.0676268,0,0,0.81044606,0.06933102,0.98324028)"
+     inkscape:export-filename="C:\Users\ische\OneDrive\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\EnBalance.png"
+     inkscape:export-xdpi="30.75"
+     inkscape:export-ydpi="30.75" />
+  <flowRoot
+     xml:space="preserve"
+     id="flowRoot901-8"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#1a5d38;fill-opacity:1;stroke:none"
+     transform="matrix(0.81044606,0,0,0.81044606,186.24682,179.69715)"
+     inkscape:export-filename="C:\Users\ische\OneDrive\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\EnBalance.png"
+     inkscape:export-xdpi="30.75"
+     inkscape:export-ydpi="30.75"><flowRegion
+       id="flowRegion903-3"
+       style="fill:#1a5d38;fill-opacity:1"><rect
+         id="rect905-1"
+         width="483.75308"
+         height="373.72443"
+         x="-219.31134"
+         y="-218.56583"
+         style="fill:#1a5d38;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       id="flowPara907-9"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#1a5d38;fill-opacity:1">2018</flowPara></flowRoot>  <flowRoot
+     xml:space="preserve"
+     id="flowRoot901-8-4"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#1a5d38;fill-opacity:1;stroke:none"
+     transform="matrix(0.81044606,0,0,0.81044606,446.20634,537.02176)"
+     inkscape:export-filename="C:\Users\ische\OneDrive\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\EnBalance.png"
+     inkscape:export-xdpi="30.75"
+     inkscape:export-ydpi="30.75"><flowRegion
+       id="flowRegion903-3-8"
+       style="fill:#1a5d38;fill-opacity:1"><rect
+         id="rect905-1-6"
+         width="483.75308"
+         height="373.72443"
+         x="-219.31134"
+         y="-218.56583"
+         style="fill:#1a5d38;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       id="flowPara907-9-7"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.19999981px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:end;text-anchor:end;fill:#1a5d38;fill-opacity:1">Source: BEIS, SG, HMRC</flowPara></flowRoot>  <path
+     style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#1a5d38;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+     d="m 8.2207031,43.369141 v 3.201171 H 618.14062 v -3.201171 z"
+     clip-path="url(#cpOC4yMnw2MTguMTR8MjQ1LjIyfDQ0Ljk3-1)"
+     id="line53-3"
+     inkscape:connector-curvature="0"
+     transform="matrix(1.0676268,0,0,0.81044606,0.06933102,338.54066)"
+     inkscape:export-filename="C:\Users\ische\OneDrive\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\EnBalance.png"
+     inkscape:export-xdpi="30.75"
+     inkscape:export-ydpi="30.75" />
+  <flowRoot
+     xml:space="preserve"
+     id="flowRoot4835"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';letter-spacing:0px;word-spacing:0px;fill:#1a5d38;fill-opacity:1;stroke:none"
+     transform="matrix(0.81044606,0,0,0.81044606,-1413.8773,186.35019)"
+     inkscape:export-filename="C:\Users\ische\OneDrive\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\EnBalance.png"
+     inkscape:export-xdpi="30.75"
+     inkscape:export-ydpi="30.75"><flowRegion
+       id="flowRegion4837"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#1a5d38;fill-opacity:1"><rect
+         id="rect4839"
+         width="2922.1904"
+         height="2363.071"
+         x="1755.4242"
+         y="-226.71194"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#1a5d38;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       id="flowPara4851">Scottish energy balance</flowPara></flowRoot>  <g
+     transform="matrix(4.9770294,0,0,4.9770294,-3744.3238,-1100.5155)"
+     id="g869"
+     class="bglayer" />
+  <g
+     transform="matrix(4.9770294,0,0,4.9770294,-3744.3238,-1100.5155)"
+     id="g875"
+     class="layer-below">
+    <g
+       id="g871"
+       class="imagelayer" />
+    <g
+       id="g873"
+       class="shapelayer" />
+  </g>
+  <g
+     transform="matrix(4.9770294,0,0,4.9770294,-3744.3238,-1100.5155)"
+     id="g877"
+     class="cartesianlayer" />
+  <g
+     transform="matrix(4.9770294,0,0,4.9770294,-3744.3238,-1100.5155)"
+     id="g879"
+     class="polarlayer" />
+  <g
+     transform="matrix(4.9770294,0,0,4.9770294,-3744.3238,-1100.5155)"
+     id="g881"
+     class="ternarylayer" />
+  <g
+     transform="matrix(4.9770294,0,0,4.9770294,-3744.3238,-1100.5155)"
+     id="g883"
+     class="geolayer" />
+  <g
+     transform="matrix(4.9770294,0,0,4.9770294,-3744.3238,-1100.5155)"
+     id="g885"
+     class="funnelarealayer" />
+  <g
+     transform="matrix(3.1481189,0,0,3.1481189,-429.51152,130.90106)"
+     id="g945"
+     class="pielayer">
+    <g
+       id="g943"
+       style="opacity:1;stroke-linejoin:round"
+       class="trace">
+      <g
+         transform="matrix(1.1669625,0,0,1.1669625,-54.589849,3.6578162)"
+         id="g1306" />
+    </g>
+  </g>
+  <g
+     transform="matrix(4.9770294,0,0,4.9770294,-3744.3238,-1100.5155)"
+     id="g947"
+     class="treemaplayer" />
+  <g
+     transform="matrix(4.9770294,0,0,4.9770294,-3744.3238,-1100.5155)"
+     id="g949"
+     class="sunburstlayer" />
+  <g
+     transform="matrix(4.9770294,0,0,4.9770294,-3744.3238,-1100.5155)"
+     id="g951"
+     class="glimages" />
+  <g
+     transform="matrix(4.9770294,0,0,4.9770294,-3744.3238,-1100.5155)"
+     id="g963"
+     class="layer-above">
+    <g
+       id="g959"
+       class="imagelayer" />
+    <g
+       id="g961"
+       class="shapelayer" />
+  </g>
+  <g
+     id="g4425"
+     transform="matrix(1.1991141,0,0,0.9798678,-39.988038,24.54273)">
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3023"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 56.276594,293.6395 c 71.283686,0 71.283686,-58.64416 142.567376,-58.64416 -71.28369,0 -71.28369,58.64416 -142.567376,58.64416 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3025"
+       style="opacity:0.69795921;fill:#28220b;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 56.276594,293.6395 c 71.283686,0 71.283686,-58.64416 142.567376,-58.64416 -71.28369,0 -71.28369,58.64416 -142.567376,58.64416 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3029"
+       style="opacity:0.6928839;fill:#17ace5;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,234.79623 c 71.28369,0 71.28369,36.55332 142.56738,36.55332 v 0.1931 c -71.28369,0 -71.28369,-36.55331 -142.56738,-36.55331 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3031"
+       style="fill:none;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 210.09928,234.79623 c 71.28369,0 71.28369,36.55332 142.56738,36.55332 v 0.1931 c -71.28369,0 -71.28369,-36.55331 -142.56738,-36.55331 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3033"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,234.70113 c 71.28369,0 71.28369,19.75282 142.56738,19.75282 v 0.0951 c -71.28369,0 -71.28369,-19.75282 -142.56738,-19.75282 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3035"
+       style="opacity:0.7;fill:#21deff;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 210.09928,234.70113 c 71.28369,0 71.28369,19.75282 142.56738,19.75282 v 0.0951 c -71.28369,0 -71.28369,-19.75282 -142.56738,-19.75282 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3037"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,234.99467 c 71.28369,0 71.28369,67.97576 142.56738,67.97576 v 6.7e-4 c -71.28369,0 -71.28369,-67.97576 -142.56738,-67.97576 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3039"
+       style="opacity:0.72244903;fill:#0753b9;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 210.09928,234.99467 c 71.28369,0 71.28369,67.97576 142.56738,67.97576 v 6.7e-4 c -71.28369,0 -71.28369,-67.97576 -142.56738,-67.97576 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3041"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,234.98934 c 71.28369,0 71.28369,52.01437 142.56738,52.01437 v 0.005 c -71.28369,0 -71.28369,-52.01438 -142.56738,-52.01438 v -0.005 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3043"
+       style="opacity:0.75918364;fill:#1181d1;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 210.09928,234.98934 c 71.28369,0 71.28369,52.01437 142.56738,52.01437 v 0.005 c -71.28369,0 -71.28369,-52.01438 -142.56738,-52.01438 v -0.005 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3061"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 56.276594,312.00558 c 71.283686,0 71.283686,-181.51679 142.567376,-181.51679 v 0.10649 c -71.28369,0 -71.28369,181.51678 -142.567376,181.51678 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3075"
+       style="opacity:0.71428576;fill:#0328a9;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,310.99722 c 71.28369,0 71.28369,12.63432 142.56738,12.63432 v 2.15091 c -71.28369,0 -71.28369,-12.63432 -142.56738,-12.63432 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3077"
+       style="opacity:0.6928839;fill:#17ace5;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,300.64153 c 71.28369,0 71.28369,-28.93453 142.56738,-28.93453 v 0.7408 c -71.28369,0 -71.28369,28.93452 -142.56738,28.93452 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3079"
+       style="fill:none;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 210.09928,300.64153 c 71.28369,0 71.28369,-28.93453 142.56738,-28.93453 v 0.7408 c -71.28369,0 -71.28369,28.93452 -142.56738,28.93452 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3081"
+       style="opacity:0.7;fill:#21deff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,296.85416 c 71.28369,0 71.28369,-41.99167 142.56738,-41.99167 v 0.54502 c -71.28369,0 -71.28369,41.99167 -142.56738,41.99167 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3083"
+       style="fill:none;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 210.09928,296.85416 c 71.28369,0 71.28369,-41.99167 142.56738,-41.99167 v 0.54502 c -71.28369,0 -71.28369,41.99167 -142.56738,41.99167 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3085"
+       style="opacity:0.72244903;fill:#0753b9;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,301.93737 c 71.28369,0 71.28369,1.17477 142.56738,1.17477 v 9.05985 c -71.28369,0 -71.28369,-1.17477 -142.56738,-1.17477 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3087"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,301.38232 c 71.28369,0 71.28369,-14.12292 142.56738,-14.12292 v 0.55506 c -71.28369,0 -71.28369,14.12291 -142.56738,14.12291 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3089"
+       style="opacity:0.75918364;fill:#1181d1;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 210.09928,301.38232 c 71.28369,0 71.28369,-14.12292 142.56738,-14.12292 v 0.55506 c -71.28369,0 -71.28369,14.12291 -142.56738,14.12291 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3099"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,222.56331 c 71.28369,0 71.28369,100.94208 142.56738,100.94208 v 0.12615 c -71.28369,0 -71.28369,-100.94208 -142.56738,-100.94208 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3101"
+       style="opacity:0.71428576;fill:#0328a9;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 210.09928,222.56331 c 71.28369,0 71.28369,100.94208 142.56738,100.94208 v 0.12615 c -71.28369,0 -71.28369,-100.94208 -142.56738,-100.94208 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3103"
+       style="opacity:0.6928839;fill:#17ace5;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,218.94112 c 71.28369,0 71.28369,50.55401 142.56738,50.55401 v 1.85442 c -71.28369,0 -71.28369,-50.55405 -142.56738,-50.55405 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3105"
+       style="opacity:0.7;fill:#21deff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,204.41464 c 71.28369,0 71.28369,44.9922 142.56738,44.9922 v 5.04711 c -71.28369,0 -71.28369,-44.99221 -142.56738,-44.99221 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3107"
+       style="opacity:0.75918364;fill:#1181d1;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,220.7955 c 71.28369,0 71.28369,64.44041 142.56738,64.44041 v 1.7678 c -71.28369,0 -71.28369,-64.4404 -142.56738,-64.4404 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3113"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 56.276594,293.6395 c 71.283686,0 71.283686,-22.40432 142.567376,-22.40432 v 0.47067 c -71.28369,0 -71.28369,22.4043 -142.567376,22.4043 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3117"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,269.48494 c 148.19504,0 148.19504,-43.71527 296.39007,-43.71527 v 0.0584 c -148.19503,0 -148.19503,43.71525 -296.39007,43.71525 v -0.0584 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3121"
+       style="opacity:0.72244903;fill:#17ace5;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,271.15012 c 71.28369,0 71.28369,0.39253 142.56738,0.39253 v 0.16435 c -71.28369,0 -71.28369,-0.39253 -142.56738,-0.39253 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3123"
+       style="opacity:0.6928839;fill:none;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 210.09928,271.15012 c 71.28369,0 71.28369,0.39253 142.56738,0.39253 v 0.16435 c -71.28369,0 -71.28369,-0.39253 -142.56738,-0.39253 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3125"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,269.54331 c 71.28369,0 71.28369,-14.99426 142.56738,-14.99426 v 0.31344 c -71.28369,0 -71.28369,14.99429 -142.56738,14.99429 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3127"
+       style="opacity:0.7;fill:#21deff;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 210.09928,269.54331 c 71.28369,0 71.28369,-14.99426 142.56738,-14.99426 v 0.31344 c -71.28369,0 -71.28369,14.99429 -142.56738,14.99429 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3129"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,271.56481 c 71.28369,0 71.28369,31.40629 142.56738,31.40629 v 0.14104 c -71.28369,0 -71.28369,-31.40629 -142.56738,-31.40629 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3131"
+       style="opacity:0.72244903;fill:#0753b9;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 210.09928,271.56481 c 71.28369,0 71.28369,31.40629 142.56738,31.40629 v 0.14104 c -71.28369,0 -71.28369,-31.40629 -142.56738,-31.40629 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3133"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,271.31447 c 71.28369,0 71.28369,15.69458 142.56738,15.69458 v 0.25035 c -71.28369,0 -71.28369,-15.69459 -142.56738,-15.69459 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3135"
+       style="opacity:0.75918364;fill:#1181d1;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 210.09928,271.31447 c 71.28369,0 71.28369,15.69458 142.56738,15.69458 v 0.25035 c -71.28369,0 -71.28369,-15.69459 -142.56738,-15.69459 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3143"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 56.276594,300.50256 c 71.283686,0 71.283686,35.73278 142.567376,35.73278 v 0.2477 c -71.28369,0 -71.28369,-35.73278 -142.567376,-35.73278 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3151"
+       style="opacity:0.6928839;fill:#17ace5;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,341.97518 c 71.28369,0 71.28369,-69.50689 142.56738,-69.50689 v 1.51231 c -71.28369,0 -71.28369,69.5069 -142.56738,69.5069 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3153"
+       style="opacity:0.7;fill:#21deff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,338.77378 c 71.28369,0 71.28369,-83.31557 142.56738,-83.31557 v 2.25761 c -71.28369,0 -71.28369,83.31558 -142.56738,83.31558 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3155"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,345.08503 c 71.28369,0 71.28369,-32.91304 142.56738,-32.91304 v 0.0781 c -71.28369,0 -71.28369,32.91303 -142.56738,32.91303 v -0.0781 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3157"
+       style="opacity:0.72244903;fill:#0753b9;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 210.09928,345.08503 c 71.28369,0 71.28369,-32.91304 142.56738,-32.91304 v 0.0781 c -71.28369,0 -71.28369,32.91303 -142.56738,32.91303 v -0.0781 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3159"
+       style="opacity:0.75918364;fill:#1181d1;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,343.4875 c 71.28369,0 71.28369,-55.67304 142.56738,-55.67304 v 1.59752 c -71.28369,0 -71.28369,55.67305 -142.56738,55.67305 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3163"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 56.276594,300.25489 c 71.283686,0 71.283686,24.22609 142.567376,24.22609 v 0.24768 c -71.28369,0 -71.28369,-24.2261 -142.567376,-24.2261 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3165"
+       style="fill:none;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 56.276594,300.25489 c 71.283686,0 71.283686,24.22609 142.567376,24.22609 v 0.24768 c -71.28369,0 -71.28369,-24.2261 -142.567376,-24.2261 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3167"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 56.276594,336.23184 c 71.283686,0 71.283686,-11.50318 142.567376,-11.50318 v 0.25136 c -71.28369,0 -71.28369,11.50318 -142.567376,11.50318 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3169"
+       style="fill:none;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 56.276594,336.23184 c 71.283686,0 71.283686,-11.50318 142.567376,-11.50318 v 0.25136 c -71.28369,0 -71.28369,11.50318 -142.567376,11.50318 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3171"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,324.60548 c 71.28369,0 71.28369,1.17697 142.56738,1.17697 v 0.12686 c -71.28369,0 -71.28369,-1.17697 -142.56738,-1.17697 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3173"
+       style="opacity:0.71428576;fill:#0328a9;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 210.09928,324.60548 c 71.28369,0 71.28369,1.17697 142.56738,1.17697 v 0.12686 c -71.28369,0 -71.28369,-1.17697 -142.56738,-1.17697 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3175"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,324.58499 c 71.28369,0 71.28369,-52.13719 142.56738,-52.13719 v 0.0205 c -71.28369,0 -71.28369,52.13718 -142.56738,52.13718 v -0.0205 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3177"
+       style="opacity:0.6928839;fill:#17ace5;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 210.09928,324.58499 c 71.28369,0 71.28369,-52.13719 142.56738,-52.13719 v 0.0205 c -71.28369,0 -71.28369,52.13718 -142.56738,52.13718 v -0.0205 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3179"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,324.48098 c 71.28369,0 71.28369,-69.07347 142.56738,-69.07347 v 0.0507 c -71.28369,0 -71.28369,69.07347 -142.56738,69.07347 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3181"
+       style="opacity:0.7;fill:#21deff;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 210.09928,324.48098 c 71.28369,0 71.28369,-69.07347 142.56738,-69.07347 v 0.0507 c -71.28369,0 -71.28369,69.07347 -142.56738,69.07347 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3183"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,324.53168 c 148.19504,0 148.19504,-20.27503 296.39007,-20.27503 v 0.0534 c -148.19503,0 -148.19503,20.27501 -296.39007,20.27501 v -0.0533 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3185"
+       style="opacity:0.6857143;fill:#bc5fd3;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 210.09928,324.53168 c 148.19504,0 148.19504,-20.27503 296.39007,-20.27503 v 0.0534 c -148.19503,0 -148.19503,20.27501 -296.39007,20.27501 v -0.0533 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3187"
+       style="fill:#000000;fill-opacity:0.19607843;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 56.276594,345.14861 c 71.283686,0 71.283686,-1.5e-4 142.567376,-1.5e-4 v 0.0145 c -71.28369,0 -71.28369,1.6e-4 -142.567376,1.6e-4 v -0.0145 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3189"
+       style="opacity:0.71020406;fill:#87aade;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+       d="m 56.276594,345.14861 c 71.283686,0 71.283686,-1.5e-4 142.567376,-1.5e-4 v 0.0145 c -71.28369,0 -71.28369,1.6e-4 -142.567376,1.6e-4 v -0.0145 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3193"
+       style="fill:#d40000;fill-opacity:0.8;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="M 45.021275,75.035461 H 56.276594 V 242.07649 H 45.021275 Z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3195"
+       style="fill:#0f82d1;fill-opacity:1;stroke:#000000;stroke-width:0.75035459;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       d="M 45.021275,75.035461 H 56.276594 V 242.07649 H 45.021275 Z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3197"
+       style="fill:#d40000;fill-opacity:0;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="M 37.517729,69.407802 H 63.78014 V 247.70415 H 37.517729 Z" />
+    <g
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       id="g3321"
+       transform="matrix(0.75035459,0,0,0.75035459,45.021275,253.33247)"
+       style="fill:#fdbd6f;fill-opacity:1">
+      <path
+         d="M 0,0 H 15 V 63.194286 H 0 Z"
+         style="fill:#fdbd6f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="path3323"
+         inkscape:connector-curvature="0" />
+      <path
+         d="M 0,0 H 15 V 63.194286 H 0 Z"
+         style="fill:#fdbd6f;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path3325"
+         inkscape:connector-curvature="0" />
+    </g>
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3373"
+       style="fill:#fdbd6f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 506.48935,75.360367 h 11.25532 V 242.25914 h -11.25532 z" />
+    <g
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       id="g8389">
+      <g
+         id="g8381">
+        <path
+           inkscape:connector-curvature="0"
+           id="path3069"
+           style="opacity:0.69795921;fill:#fdbd6f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+           d="m 210.09928,282.96117 c 148.19504,0 148.19504,-57.13311 296.39007,-57.13311 v 13.89299 c -148.19503,0 -148.19503,57.13311 -296.39007,57.13311 z" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path3027"
+           style="opacity:0.69795921;fill:#fdbd6f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+           d="m 210.09928,233.94477 c 148.19504,0 148.19504,-8.93145 296.39007,-8.93145 v 0.75635 c -148.19503,0 -148.19503,8.93146 -296.39007,8.93146 z" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path3059"
+           style="opacity:0.69795921;fill:#fdbd6f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+           d="m 210.09928,18.758865 c 148.19504,0 148.19504,56.60184 296.39007,56.60184 v 87.088565 c -148.19503,0 -148.19503,-56.60183 -296.39007,-56.60183 z" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path3097"
+           style="opacity:0.69795921;fill:#fdbd6f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+           d="m 210.09928,141.8506 c 148.19504,0 148.19504,20.59867 296.39007,20.59867 v 62.56405 c -148.19503,0 -148.19503,-20.59868 -296.39007,-20.59868 z" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path3119"
+           style="opacity:0.69795921;fill:#fdbd6f;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+           d="m 210.09928,269.48494 c 148.19504,0 148.19504,-43.71527 296.39007,-43.71527 v 0.0584 c -148.19503,0 -148.19503,43.71525 -296.39007,43.71525 v -0.0584 z" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path3147"
+           style="opacity:0.69795921;fill:#fdbd6f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+           d="m 210.09928,336.23534 c 148.19504,0 148.19504,-96.51429 296.39007,-96.51429 v 2.53845 c -148.19503,0 -148.19503,96.51428 -296.39007,96.51428 z" />
+      </g>
+      <path
+         d="m 506.48935,75.360367 h 11.25532 V 242.25914 h -11.25532 z"
+         style="fill:#fdbd6f;fill-opacity:1;stroke:#000000;stroke-width:0.75035459;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path3375"
+         inkscape:connector-curvature="0" />
+    </g>
+    <path
+       inkscape:connector-curvature="0"
+       id="path3141"
+       style="opacity:0.6857143;fill:#369e30;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,246.25066 c 148.19504,0 148.19504,41.49134 296.39007,41.49134 v 11.97895 c -148.19503,0 -148.19503,-41.49132 -296.39007,-41.49132 z" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3065"
+       style="opacity:0.6857143;fill:#369e30;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,105.84744 c 148.19504,0 148.19504,147.66738 296.39007,147.66738 v 24.74779 c -148.19503,0 -148.19503,-147.66736 -296.39007,-147.66736 z" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3071"
+       style="opacity:0.6857143;fill:#369e30;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,297.39918 c 148.19504,0 148.19504,3.61511 296.39007,3.61511 v 2.01328 c -148.19503,0 -148.19503,-3.61512 -296.39007,-3.61512 z" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3091"
+       style="opacity:0.6857143;fill:#369e30;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,299.41245 c 148.19504,0 148.19504,3.61512 296.39007,3.61512 v 1.22908 c -148.19503,0 -148.19503,-3.61512 -296.39007,-3.61512 z" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3109"
+       style="opacity:0.6857143;fill:#369e30;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,209.46174 c 148.19504,0 148.19504,68.80087 296.39007,68.80087 v 9.47939 c -148.19503,0 -148.19503,-68.80088 -296.39007,-68.80088 z" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3137"
+       style="opacity:0.6857143;fill:#369e30;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,269.85678 c 148.19504,0 148.19504,29.86417 296.39007,29.86417 v 1.29334 c -148.19503,0 -148.19503,-29.86417 -296.39007,-29.86417 z" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3161"
+       style="opacity:0.6857143;fill:#369e30;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 210.09928,341.0314 c 148.19504,0 148.19504,-36.72142 296.39007,-36.72142 v 0.94376 c -148.19503,0 -148.19503,36.72144 -296.39007,36.72144 z" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3423"
+       style="fill:#369e30;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 506.48935,253.51479 h 11.25532 v 51.73894 h -11.25532 z" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3425"
+       style="fill:#369e30;fill-opacity:1;stroke:#000000;stroke-width:0.75035459;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       d="m 506.48935,253.51479 h 11.25532 v 51.73894 h -11.25532 z" />
+    <g
+       id="g3631"
+       transform="matrix(0.75035459,0,0,0.75035459,45.021275,312.00568)"
+       style="fill:#369e30;fill-opacity:1">
+      <path
+         d="M 0,0 H 15 V 44.189148 H 0 Z"
+         style="fill:#369e30;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="path3633"
+         inkscape:connector-curvature="0" />
+      <path
+         d="M 0,0 H 15 V 44.189148 H 0 Z"
+         style="fill:#369e30;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path3635"
+         inkscape:connector-curvature="0" />
+    </g>
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3803"
+       style="fill:#0055d4;fill-opacity:0.8;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 352.66666,323.50562 h 11.25532 v 2.4039 h -11.25532 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3805"
+       style="fill:#0328a9;fill-opacity:1;stroke:#000000;stroke-width:0.75035459;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       d="m 352.66666,323.50562 h 11.25532 v 2.4039 h -11.25532 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3807"
+       style="fill:#0055d4;fill-opacity:0;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 345.16311,317.87796 h 26.26241 v 13.65922 h -26.26241 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3891"
+       style="fill:#2ad4ff;fill-opacity:0.8;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 352.66666,269.49512 h 11.25532 v 4.48547 h -11.25532 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3893"
+       style="fill:#17ace5;fill-opacity:1;stroke:#000000;stroke-width:0.75035459;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       d="m 352.66666,269.49512 h 11.25532 v 4.48547 h -11.25532 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3895"
+       style="fill:#2ad4ff;fill-opacity:0;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 345.16311,263.86746 h 26.26241 v 15.74079 h -26.26241 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3947"
+       style="fill:#21deff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 352.66666,249.40662 h 11.25532 v 8.30898 h -11.25532 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3949"
+       style="fill:none;stroke:#000000;stroke-width:0.75035459;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       d="m 352.66666,249.40662 h 11.25532 v 8.30898 h -11.25532 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path3951"
+       style="fill:#000000;fill-opacity:0;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 345.16311,243.77896 h 26.26241 v 19.5643 h -26.26241 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path4003"
+       style="fill:#2a7fff;fill-opacity:0.8;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 352.66666,302.97064 h 11.25532 v 9.27964 h -11.25532 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path4005"
+       style="fill:#0753b9;fill-opacity:1;stroke:#000000;stroke-width:0.75035459;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       d="m 352.66666,302.97064 h 11.25532 v 9.27964 h -11.25532 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path4007"
+       style="fill:#2a7fff;fill-opacity:0;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 345.16311,297.34298 h 26.26241 v 20.53496 h -26.26241 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path4065"
+       style="fill:#5fbcd3;fill-opacity:0.8;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 352.66666,285.23602 h 11.25532 v 4.17607 h -11.25532 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path4067"
+       style="fill:#1181d1;fill-opacity:1;stroke:#000000;stroke-width:0.75035459;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       d="m 352.66666,285.23602 h 11.25532 v 4.17607 h -11.25532 z" />
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path4069"
+       style="fill:#5fbcd3;fill-opacity:0;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 345.16311,279.60836 h 26.26241 v 15.43138 h -26.26241 z" />
+    <g
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       id="g7970">
+      <path
+         d="m 363.92198,323.50539 c 71.28368,0 71.28368,19.25383 142.56737,19.25383 v 2.40389 c -71.28369,0 -71.28369,-19.2538 -142.56737,-19.2538 z"
+         style="opacity:0.51836733;fill:#0f82d1;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="path3045"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 363.92198,269.49513 c 71.28368,0 71.28368,55.3229 142.56737,55.3229 v 4.48548 c -71.28369,0 -71.28369,-55.32291 -142.56737,-55.32291 z"
+         style="opacity:0.51836733;fill:#0f82d1;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="path3047"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 363.92198,249.40684 c 71.28368,0 71.28368,67.10222 142.56737,67.10222 v 8.30897 c -71.28369,0 -71.28369,-67.10221 -142.56737,-67.10221 z"
+         style="opacity:0.51836733;fill:#0f82d1;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="path3049"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 363.92198,302.97043 c 71.28368,0 71.28368,30.50915 142.56737,30.50915 v 9.27964 c -71.28369,0 -71.28369,-30.50914 -142.56737,-30.50914 z"
+         style="opacity:0.51836733;fill:#0f82d1;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="path3051"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 363.92198,285.23591 c 71.28368,0 71.28368,44.0676 142.56737,44.0676 v 4.17607 c -71.28369,0 -71.28369,-44.0676 -142.56737,-44.0676 z"
+         style="opacity:0.51836733;fill:#0f82d1;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="path3053"
+         inkscape:connector-curvature="0" />
+      <g
+         style="fill:#0f82d1;fill-opacity:1"
+         transform="matrix(0.75035459,0,0,0.75035459,506.48935,316.50934)"
+         id="g4101">
+        <path
+           inkscape:connector-curvature="0"
+           id="path4103"
+           style="fill:#0f82d1;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+           d="M 0,0 H 15 V 38.18734 H 0 Z" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path4105"
+           style="fill:#0f82d1;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,0 H 15 V 38.18734 H 0 Z" />
+      </g>
+    </g>
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path4209"
+       style="fill:#28220b;fill-opacity:0.8;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 198.84396,233.94479 h 11.25532 v 1.05057 h -11.25532 z" />
+    <g
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       id="g8000"
+       style="fill:#e22021;fill-opacity:1">
+      <path
+         d="m 56.276594,227.29703 c 71.283686,0 71.283686,6.64774 142.567376,6.64774 v 1.05057 c -71.28369,0 -71.28369,-6.64772 -142.567376,-6.64772 z"
+         style="opacity:0.69795921;fill:#e22021;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="path3021"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 198.84396,233.94479 h 11.25532 v 1.05057 h -11.25532 z"
+         style="fill:#e22021;fill-opacity:1;stroke:#000000;stroke-width:0.75035459;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path4211"
+         inkscape:connector-curvature="0" />
+    </g>
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path4213"
+       style="fill:#28220b;fill-opacity:0;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 191.34041,228.31713 h 26.26241 v 12.30589 h -26.26241 z" />
+    <g
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       id="g7988"
+       style="fill:#b0de89;fill-opacity:1">
+      <path
+         d="m 56.276594,75.035797 c 71.283686,0 71.283686,-56.276932 142.567376,-56.276932 V 119.35578 c -71.28369,0 -71.28369,56.27693 -142.567376,56.27693 z"
+         style="opacity:0.69387758;fill:#b0de89;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="path3055"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 56.276594,253.33215 c 71.283686,0 71.283686,-133.97637 142.567376,-133.97637 v 11.13301 c -71.28369,0 -71.28369,133.97635 -142.567376,133.97635 z"
+         style="opacity:0.69387758;fill:#b0de89;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="path3057"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 56.276594,312.00558 c 71.283686,0 71.283686,-181.51679 142.567376,-181.51679 v 0.10649 c -71.28369,0 -71.28369,181.51678 -142.567376,181.51678 z"
+         style="opacity:0.69387758;fill:#b0de89;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+         id="path3063"
+         inkscape:connector-curvature="0" />
+      <g
+         style="fill:#b0de89;fill-opacity:1"
+         transform="matrix(0.75035459,0,0,0.75035459,198.84396,18.758865)"
+         id="g4239">
+        <path
+           inkscape:connector-curvature="0"
+           id="path4241"
+           style="fill:#b0de89;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+           d="M 0,0 H 15 V 149.04475 H 0 Z" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path4243"
+           style="fill:#b0de89;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,0 H 15 V 149.04475 H 0 Z" />
+      </g>
+    </g>
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path4315"
+       style="fill:#aa00d4;fill-opacity:0.8;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 198.84396,282.96094 h 11.25532 v 30.26448 h -11.25532 z" />
+    <g
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       id="g8022"
+       style="fill:#6a3f99;fill-opacity:1">
+      <path
+         d="m 56.276594,294.11015 c 71.283686,0 71.283686,-11.14898 142.567376,-11.14898 v 6.14472 c -71.28369,0 -71.28369,11.149 -142.567376,11.149 z"
+         style="opacity:0.69387758;fill:#6a3f99;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="path3067"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 56.276594,312.11206 c 71.283686,0 71.283686,-23.00617 142.567376,-23.00617 v 24.11977 c -71.28369,0 -71.28369,23.00618 -142.567376,23.00618 z"
+         style="opacity:0.69387758;fill:#6a3f99;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="path3073"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 198.84396,282.96094 h 11.25532 v 30.26448 h -11.25532 z"
+         style="fill:#6a3f99;fill-opacity:1;stroke:#000000;stroke-width:0.75035459;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path4317"
+         inkscape:connector-curvature="0" />
+    </g>
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path4319"
+       style="fill:#aa00d4;fill-opacity:0;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 191.34041,277.33328 h 26.26241 v 41.5198 h -26.26241 z" />
+    <g
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       id="g7980"
+       style="fill:#fb9998;fill-opacity:1">
+      <path
+         d="m 56.276594,175.63271 c 71.283686,0 71.283686,-33.78211 142.567376,-33.78211 v 51.66433 c -71.28369,0 -71.28369,33.7821 -142.567376,33.7821 z"
+         style="opacity:0.69387758;fill:#fb9998;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="path3093"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 56.276594,264.46514 c 71.283686,0 71.283686,-70.95021 142.567376,-70.95021 v 29.17435 c -71.28369,0 -71.28369,70.95022 -142.567376,70.95022 z"
+         style="opacity:0.69387758;fill:#fb9998;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="path3095"
+         inkscape:connector-curvature="0" />
+      <g
+         style="fill:#fb9998;fill-opacity:1"
+         transform="matrix(0.75035459,0,0,0.75035459,198.84396,141.85078)"
+         id="g4357">
+        <path
+           inkscape:connector-curvature="0"
+           id="path4359"
+           style="fill:#fb9998;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+           d="M 0,0 H 15 V 107.7342 H 0 Z" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path4361"
+           style="fill:#fb9998;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,0 H 15 V 107.7342 H 0 Z" />
+      </g>
+    </g>
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path4429"
+       style="fill:#aa8800;fill-opacity:0.8;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 198.84396,269.48462 h 11.25532 v 2.22091 h -11.25532 z" />
+    <g
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       id="g8014"
+       style="fill:#ff7e01;fill-opacity:1">
+      <path
+         d="m 56.276594,240.32657 c 71.283686,0 71.283686,29.15837 142.567376,29.15837 v 1.75024 c -71.28369,0 -71.28369,-29.15835 -142.567376,-29.15835 z"
+         style="opacity:0.71428576;fill:#ff7e01;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="path3111"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 56.276594,293.6395 c 71.283686,0 71.283686,-22.40432 142.567376,-22.40432 v 0.47067 c -71.28369,0 -71.28369,22.4043 -142.567376,22.4043 z"
+         style="opacity:0.71428576;fill:#ff7e01;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+         id="path3115"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 198.84396,269.48462 h 11.25532 v 2.22091 h -11.25532 z"
+         style="fill:#ff7e01;fill-opacity:1;stroke:#000000;stroke-width:0.75035459;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path4431"
+         inkscape:connector-curvature="0" />
+    </g>
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path4433"
+       style="fill:#aa8800;fill-opacity:0;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 191.34041,263.85696 h 26.26241 v 13.47623 h -26.26241 z" />
+    <g
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       id="g8004"
+       style="fill:#c9b0d5;fill-opacity:1">
+      <path
+         d="m 56.276594,228.34762 c 71.283686,0 71.283686,17.90304 142.567376,17.90304 v 11.97897 c -71.28369,0 -71.28369,-17.90306 -142.567376,-17.90306 z"
+         style="opacity:0.70204079;fill:#c9b0d5;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="path3139"
+         inkscape:connector-curvature="0" />
+      <g
+         style="fill:#c9b0d5;fill-opacity:1"
+         transform="matrix(0.75035459,0,0,0.75035459,198.84396,246.25061)"
+         id="g4535">
+        <path
+           inkscape:connector-curvature="0"
+           id="path4537"
+           style="fill:#c9b0d5;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+           d="M 0,0 H 15 V 15.964401 H 0 Z" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path4539"
+           style="fill:#c9b0d5;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,0 H 15 V 15.964401 H 0 Z" />
+      </g>
+    </g>
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path4655"
+       style="fill:#87aade;fill-opacity:0.8;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 198.84396,336.23541 h 11.25532 v 8.92776 h -11.25532 z" />
+    <g
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       id="g8030"
+       style="fill:#ffff98;fill-opacity:1">
+      <path
+         d="m 56.276594,300.50256 c 71.283686,0 71.283686,35.73278 142.567376,35.73278 v 0.2477 c -71.28369,0 -71.28369,-35.73278 -142.567376,-35.73278 z"
+         style="opacity:0.71020406;fill:#ffff98;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:0.19607843"
+         id="path3145"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 56.276594,336.4832 c 71.283686,0 71.283686,-1.6e-4 142.567376,-1.6e-4 v 8.66542 c -71.28369,0 -71.28369,1.5e-4 -142.567376,1.5e-4 z"
+         style="opacity:0.71020406;fill:#ffff98;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="path3149"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 198.84396,336.23541 h 11.25532 v 8.92776 h -11.25532 z"
+         style="fill:#ffff98;fill-opacity:1;stroke:#000000;stroke-width:0.75035459;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path4657"
+         inkscape:connector-curvature="0" />
+    </g>
+    <path
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       inkscape:connector-curvature="0"
+       id="path4659"
+       style="fill:#87aade;fill-opacity:0;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       d="m 191.34041,330.60775 h 26.26241 v 20.18308 h -26.26241 z" />
+    <g
+       inkscape:export-ydpi="172.58127"
+       inkscape:export-xdpi="172.58127"
+       inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+       id="g4727"
+       transform="matrix(0.75035459,0,0,0.75035459,198.84396,324.48108)">
+      <path
+         d="M 0,0 H 15 V 0.6650967 H 0 Z"
+         style="fill:#bcbd22;fill-opacity:0.8;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="path4729"
+         inkscape:connector-curvature="0" />
+      <path
+         d="M 0,0 H 15 V 0.6650967 H 0 Z"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path4731"
+         inkscape:connector-curvature="0" />
+      <path
+         d="M -10,-7.5 H 25 V 8.1650963 h -35 z"
+         style="fill:#000000;fill-opacity:0;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         id="path4733"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <flowRoot
+     transform="matrix(0.18346296,0,0,0.18346296,36.147665,80.46071)"
+     style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.8;stroke:none"
+     id="flowRoot6670"
+     xml:space="preserve"
+     inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+     inkscape:export-xdpi="172.58127"
+     inkscape:export-ydpi="172.58127"><flowRegion
+       id="flowRegion6672"
+       style="font-family:sans-serif"><rect
+         style="font-family:sans-serif;fill:#000000;fill-opacity:0.8;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+         y="495.09543"
+         x="-1.7787859"
+         height="169.57759"
+         width="738.78912"
+         id="rect6674" /></flowRegion><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start;fill:#000000;fill-opacity:0.8"
+       id="flowPara6676">Indigenous Production</flowPara><flowPara
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start;fill:#000000;fill-opacity:0.8"
+       id="flowPara6678">3,485 PJ</flowPara></flowRoot>  <flowRoot
+     transform="matrix(0.18346296,0,0,0.18346296,36.196036,196.57482)"
+     style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     id="flowRoot6670-4"
+     xml:space="preserve"
+     inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+     inkscape:export-xdpi="172.58127"
+     inkscape:export-ydpi="172.58127"><flowRegion
+       id="flowRegion6672-0"
+       style="font-family:sans-serif"><rect
+         y="495.09543"
+         x="-1.7787859"
+         height="169.57759"
+         width="738.78912"
+         id="rect6674-3"
+         style="font-family:sans-serif;fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6676-1">Imports</flowPara><flowPara
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6678-7">991 PJ</flowPara></flowRoot>  <flowRoot
+     transform="matrix(0.18346296,0,0,0.18346296,36.319656,242.54432)"
+     style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     id="flowRoot6670-4-8"
+     xml:space="preserve"
+     inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+     inkscape:export-xdpi="172.58127"
+     inkscape:export-ydpi="172.58127"><flowRegion
+       id="flowRegion6672-0-5"
+       style="font-family:sans-serif"><rect
+         y="495.09543"
+         x="-1.7787859"
+         height="169.57759"
+         width="738.78912"
+         id="rect6674-3-3"
+         style="font-family:sans-serif;fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6676-1-8">Transfers &amp;</flowPara><flowPara
+       id="flowPara7012"
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start">Transformation In</flowPara><flowPara
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6678-7-7">634 PJ</flowPara></flowRoot>  <flowRoot
+     transform="matrix(0.18346296,0,0,0.18346296,217.30275,-1.6945907)"
+     style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     id="flowRoot6670-9"
+     xml:space="preserve"
+     inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+     inkscape:export-xdpi="172.58127"
+     inkscape:export-ydpi="172.58127"><flowRegion
+       id="flowRegion6672-7"
+       style="font-family:sans-serif"><rect
+         y="495.09543"
+         x="-1.7787859"
+         height="169.57759"
+         width="738.78912"
+         id="rect6674-7"
+         style="font-family:sans-serif;fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6676-7">Primary Oils</flowPara><flowPara
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6678-2">2,473 PJ</flowPara></flowRoot>  <flowRoot
+     transform="matrix(0.18346296,0,0,0.18346296,217.29738,103.7451)"
+     style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     id="flowRoot6670-3"
+     xml:space="preserve"
+     inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+     inkscape:export-xdpi="172.58127"
+     inkscape:export-ydpi="172.58127"><flowRegion
+       id="flowRegion6672-2"
+       style="font-family:sans-serif"><rect
+         y="495.09543"
+         x="-1.7787859"
+         height="169.57759"
+         width="738.78912"
+         id="rect6674-2"
+         style="font-family:sans-serif;fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6676-8">Natural Gas</flowPara><flowPara
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6678-4">1,599 PJ</flowPara></flowRoot>  <flowRoot
+     transform="matrix(0.18346296,0,0,0.18346296,217.39232,154.17597)"
+     style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     id="flowRoot6670-2"
+     xml:space="preserve"
+     inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+     inkscape:export-xdpi="172.58127"
+     inkscape:export-ydpi="172.58127"><flowRegion
+       id="flowRegion6672-3"
+       style="font-family:sans-serif"><rect
+         y="495.09543"
+         x="-1.7787859"
+         height="169.57759"
+         width="738.78912"
+         id="rect6674-34"
+         style="font-family:sans-serif;fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6676-9">Coal</flowPara><flowPara
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6678-9">17 PJ</flowPara></flowRoot>  <flowRoot
+     transform="matrix(0.18346296,0,0,0.18346296,217.1845,171.27021)"
+     style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     id="flowRoot6670-0"
+     xml:space="preserve"
+     inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+     inkscape:export-xdpi="172.58127"
+     inkscape:export-ydpi="172.58127"><flowRegion
+       id="flowRegion6672-9"
+       style="font-family:sans-serif"><rect
+         y="495.09543"
+         x="-1.7787859"
+         height="169.57759"
+         width="738.78912"
+         id="rect6674-0"
+         style="font-family:sans-serif;fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6676-0">Primary Electricity</flowPara><flowPara
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6678-97">211 PJ</flowPara></flowRoot>  <flowRoot
+     transform="matrix(0.18346296,0,0,0.18346296,217.30095,190.35978)"
+     style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     id="flowRoot6670-33"
+     xml:space="preserve"
+     inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+     inkscape:export-xdpi="172.58127"
+     inkscape:export-ydpi="172.58127"><flowRegion
+       id="flowRegion6672-4"
+       style="font-family:sans-serif"><rect
+         y="495.09543"
+         x="-1.7787859"
+         height="169.57759"
+         width="738.78912"
+         id="rect6674-36"
+         style="font-family:sans-serif;fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6676-6">Bioenergy &amp; Wastes</flowPara><flowPara
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6678-1">42 PJ</flowPara></flowRoot>  <flowRoot
+     transform="matrix(0.18346296,0,0,0.18346296,217.14509,217.20512)"
+     style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     id="flowRoot6670-7"
+     xml:space="preserve"
+     inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+     inkscape:export-xdpi="172.58127"
+     inkscape:export-ydpi="172.58127"><flowRegion
+       id="flowRegion6672-6"
+       style="font-family:sans-serif"><rect
+         y="495.09543"
+         x="-1.7787859"
+         height="169.57759"
+         width="738.78912"
+         id="rect6674-5"
+         style="font-family:sans-serif;fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6676-07">Petrol</flowPara><flowPara
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6678-28">590 PJ</flowPara></flowRoot>  <flowRoot
+     transform="matrix(0.18346296,0,0,0.18346296,217.30992,243.49942)"
+     style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     id="flowRoot6670-20"
+     xml:space="preserve"
+     inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+     inkscape:export-xdpi="172.58127"
+     inkscape:export-ydpi="172.58127"><flowRegion
+       id="flowRegion6672-62"
+       style="font-family:sans-serif"><rect
+         y="495.09543"
+         x="-1.7787859"
+         height="169.57759"
+         width="738.78912"
+         id="rect6674-8"
+         style="font-family:sans-serif;fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6676-06">Manufactured Fuels</flowPara><flowPara
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6678-94">5 PJ</flowPara></flowRoot>  <flowRoot
+     transform="matrix(0.18346296,0,0,0.18346296,217.20062,261.44838)"
+     style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     id="flowRoot6670-1"
+     xml:space="preserve"
+     inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+     inkscape:export-xdpi="172.58127"
+     inkscape:export-ydpi="172.58127"><flowRegion
+       id="flowRegion6672-64"
+       style="font-family:sans-serif"><rect
+         y="495.09543"
+         x="-1.7787859"
+         height="169.57759"
+         width="738.78912"
+         id="rect6674-08"
+         style="font-family:sans-serif;fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6676-4">Electricity</flowPara><flowPara
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6678-5">178 PJ</flowPara></flowRoot>  <flowRoot
+     transform="matrix(0.18346296,0,0,0.18346296,400.03756,173.05882)"
+     style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+     id="flowRoot6670-1-0"
+     xml:space="preserve"
+     inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+     inkscape:export-xdpi="172.58127"
+     inkscape:export-ydpi="172.58127"><flowRegion
+       id="flowRegion6672-64-1"
+       style="font-family:sans-serif"><rect
+         style="font-family:sans-serif;fill:none;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+         y="495.09543"
+         x="-1.7787859"
+         height="169.57759"
+         width="738.78912"
+         id="rect6674-08-4" /></flowRegion><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start;stroke:none;stroke-width:0;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+       id="flowPara6676-4-9">Domestic</flowPara><flowPara
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start;stroke:none;stroke-width:0;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+       id="flowPara6678-5-1">164 PJ</flowPara></flowRoot>  <flowRoot
+     transform="matrix(0.18346296,0,0,0.18346296,399.97665,190.43898)"
+     style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+     id="flowRoot6670-1-1"
+     xml:space="preserve"
+     inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+     inkscape:export-xdpi="172.58127"
+     inkscape:export-ydpi="172.58127"><flowRegion
+       id="flowRegion6672-64-0"
+       style="font-family:sans-serif"><rect
+         style="font-family:sans-serif;fill:none;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+         y="495.09543"
+         x="-1.7787859"
+         height="169.57759"
+         width="738.78912"
+         id="rect6674-08-3" /></flowRegion><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start;stroke:none;stroke-width:0;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+       id="flowPara6676-4-1">Industry</flowPara><flowPara
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start;stroke:none;stroke-width:0;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+       id="flowPara6678-5-3">84 PJ</flowPara></flowRoot>  <flowRoot
+     transform="matrix(0.18346296,0,0,0.18346296,399.97665,206.25116)"
+     style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+     id="flowRoot6670-1-8"
+     xml:space="preserve"
+     inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+     inkscape:export-xdpi="172.58127"
+     inkscape:export-ydpi="172.58127"><flowRegion
+       id="flowRegion6672-64-2"
+       style="font-family:sans-serif"><rect
+         style="font-family:sans-serif;fill:none;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+         y="495.09543"
+         x="-1.7787859"
+         height="169.57759"
+         width="738.78912"
+         id="rect6674-08-6" /></flowRegion><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start;stroke:none;stroke-width:0;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+       id="flowPara6676-4-19">Other</flowPara><flowPara
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start;stroke:none;stroke-width:0;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+       id="flowPara6678-5-7">93 PJ</flowPara></flowRoot>  <flowRoot
+     transform="matrix(0.18346296,0,0,0.18346296,399.93541,226.054)"
+     style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+     id="flowRoot6670-1-82"
+     xml:space="preserve"
+     inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+     inkscape:export-xdpi="172.58127"
+     inkscape:export-ydpi="172.58127"><flowRegion
+       id="flowRegion6672-64-24"
+       style="font-family:sans-serif"><rect
+         style="font-family:sans-serif;fill:none;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+         y="495.09543"
+         x="-1.7787859"
+         height="169.57759"
+         width="738.78912"
+         id="rect6674-08-0" /></flowRegion><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start;stroke:none;stroke-width:0;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+       id="flowPara6676-4-2">Transport</flowPara><flowPara
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start;stroke:none;stroke-width:0;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+       id="flowPara6678-5-8">192 PJ</flowPara></flowRoot>  <flowRoot
+     transform="matrix(0.18346296,0,0,0.18346296,399.7957,243.29269)"
+     style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+     id="flowRoot6670-1-7"
+     xml:space="preserve"
+     inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+     inkscape:export-xdpi="172.58127"
+     inkscape:export-ydpi="172.58127"><flowRegion
+       id="flowRegion6672-64-6"
+       style="font-family:sans-serif"><rect
+         style="font-family:sans-serif;fill:none;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+         y="495.09543"
+         x="-1.7787859"
+         height="169.57759"
+         width="738.78912"
+         id="rect6674-08-2" /></flowRegion><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start;stroke:none;stroke-width:0;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+       id="flowPara6676-4-26">Non-Energy Use</flowPara><flowPara
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start;stroke:none;stroke-width:0;stroke-miterlimit:5.19999981;stroke-dasharray:none;stroke-opacity:1"
+       id="flowPara6678-5-9">52 PJ</flowPara></flowRoot>  <flowRoot
+     transform="matrix(0.18346296,0,0,0.18346296,587.18339,83.21585)"
+     style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     id="flowRoot6670-1-3"
+     xml:space="preserve"
+     inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+     inkscape:export-xdpi="172.58127"
+     inkscape:export-ydpi="172.58127"><flowRegion
+       id="flowRegion6672-64-5"
+       style="font-family:sans-serif"><rect
+         y="495.09543"
+         x="-1.7787859"
+         height="169.57759"
+         width="738.78912"
+         id="rect6674-08-7"
+         style="font-family:sans-serif;fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6676-4-3">Exports</flowPara><flowPara
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6678-5-71">3,526 PJ</flowPara></flowRoot>  <flowRoot
+     transform="matrix(0.18346296,0,0,0.18346296,587.70655,190.58499)"
+     style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     id="flowRoot6670-1-6"
+     xml:space="preserve"
+     inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+     inkscape:export-xdpi="172.58127"
+     inkscape:export-ydpi="172.58127"><flowRegion
+       id="flowRegion6672-64-11"
+       style="font-family:sans-serif"><rect
+         y="495.09543"
+         x="-1.7787859"
+         height="253.50029"
+         width="734.88574"
+         id="rect6674-08-5"
+         style="font-family:sans-serif;fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6676-4-92">Transfers, </flowPara><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara8664">Transformation</flowPara><flowPara
+       id="flowPara7010"
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start">and losses</flowPara><flowPara
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6678-5-94">1,004 PJ</flowPara></flowRoot>  <flowRoot
+     transform="matrix(0.18346296,0,0,0.18346296,587.15651,249.13881)"
+     style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     id="flowRoot6670-1-64"
+     xml:space="preserve"
+     inkscape:export-filename="J:\ENERGY BRANCH\Statistics\Energy Balance Generator\R Sankey\Test.png"
+     inkscape:export-xdpi="172.58127"
+     inkscape:export-ydpi="172.58127"><flowRegion
+       id="flowRegion6672-64-3"
+       style="font-family:sans-serif"><rect
+         y="495.09543"
+         x="-1.7787859"
+         height="169.57759"
+         width="738.78912"
+         id="rect6674-08-66"
+         style="font-family:sans-serif;fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       style="font-weight:bold;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6676-4-8">Final Consumption</flowPara><flowPara
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start"
+       id="flowPara6678-5-0">584 PJ</flowPara></flowRoot></svg>

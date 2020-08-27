@@ -1,39 +1,41 @@
-dist: bionic
+dist: focal
+
+language: r
+
+r:
+- 4.0.0
 
 sudo: false
 
 latex: false
 
-language: r
-
-r:
-- 3.6.1
-
 warnings_are_errors: false
 
-#repos: 
-#  CRAN: https://cran.rstudio.com
-#  rforge: http://R-Forge.R-project.org
+repos: 
+  CRAN: https://cran.rstudio.com
+  rforge: http://R-Forge.R-project.org
 
-#apt_packages:
-#  - libgdal-dev
-#  - libudunits2-dev
-#  - cargo
-#  - libpoppler-cpp-dev
+apt_packages:
+  - libgdal-dev
+  - libudunits2-dev
+  - cargo
+  - libpoppler-cpp-dev
   
-#cache:
-#  packages
+cache:
+  packages
   
-#git:
-#  depth: false
+git:
+  depth: false
  
 r_packages:
 
  
-#r_github_packages: 
-#- rensa/ggflags
-#- rstudio/DT
-#- r-spatial/sf
+r_github_packages: 
+- rensa/ggflags
+- rstudio/DT
+- r-spatial/sf
+- r-spatial/lwgeom
+- cran/ISOweek
 
 script:
   - Rscript deploy.r

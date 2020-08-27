@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 ScotGenSupplyOutput <- function(id) {
   ns <- NS(id)
@@ -53,7 +53,7 @@ ScotGenSupplyOutput <- function(id) {
       column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, DTOutput(ns("ScotGenSupplyTable1"))%>% withSpinner(color="#5d8be1"))),
+      column(12, DT::dataTableOutput(ns("ScotGenSupplyTable1"), width = "100%")%>% withSpinner(color="#5d8be1"))),
         tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
       column(2, p("Update expected:")),
@@ -167,7 +167,7 @@ ScotGenSupply <- function(input, output, session) {
   })
   
   
-  output$ScotGenSupplyTable1 = renderDT({
+  output$ScotGenSupplyTable1 = DT::renderDataTable({
     
     GenSupplyReadableProcessed <- GenSupplyReadable[which(GenSupplyReadable$Country == "Scotland"),]
     
@@ -198,6 +198,7 @@ ScotGenSupply <- function(input, output, session) {
       rownames = FALSE,
       options = list(
         paging = TRUE,
+        scrollX = TRUE,
         pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
@@ -205,7 +206,7 @@ ScotGenSupply <- function(input, output, session) {
         ordering = TRUE,
         order = list(list(0, 'desc')),
         title = "Scottish electricity generation and supply (GWh)",
-        dom = '',
+        dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(

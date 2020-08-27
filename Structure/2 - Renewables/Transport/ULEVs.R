@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 ULEVsOutput <- function(id) {
   ns <- NS(id)
@@ -25,6 +25,24 @@ ULEVsOutput <- function(id) {
     #dygraphOutput(ns("ULEVsPlot")),
     plotlyOutput(ns("ULEVsPlot"))%>% withSpinner(color="#39ab2c"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Vehicles licenced by LA",
+             fluidRow(column(8,
+                             h3("Number of ultra low emission vehicles licenced by Local Authority", style = "color: #39ab2c;  font-weight:bold"),
+                             
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('ULEVbyLAmap.png'), 'Download Graph', style="float:right")
+             )),
+             fluidRow(column(6,selectInput(ns("YearSelect"), "Year:", c(unique(ULEVbyLA$Quarter)), selected = max(ULEVbyLA$Quarter), multiple = FALSE,
+                                           selectize = TRUE, width = NULL, size = NULL) ),
+                      column(6, align = 'right', selectInput(ns("TechSelect"), "Vehicle Type:", unique(ULEVbyLA$variable), selected = "Total ULEVs", multiple = FALSE,
+                                                             selectize = TRUE, width = "300px", size = NULL))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+             #dygraphOutput(ns("ElecGenFuelPlot")),
+             leafletOutput(ns("ULEVbyLAmap"), height = "675px")%>% withSpinner(color="#39ab2c"),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    
     tabPanel("First time registrations",
              fluidRow(column(8,
                              h3("Proportion of ULEVs registered for the first time", style = "color: #39ab2c;  font-weight:bold"),
@@ -39,6 +57,7 @@ ULEVsOutput <- function(id) {
              #dygraphOutput(ns("ULEVsPlot")),
              plotlyOutput(ns("ULEVRegOutputPlot"))%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    
     tabPanel("Charging Points",
              fluidRow(column(8,
                              h3("Total electric vehicle charging points by local authority", style = "color: #39ab2c;  font-weight:bold"),
@@ -53,6 +72,7 @@ ULEVsOutput <- function(id) {
              #dygraphOutput(ns("ULEVsPlot")),
              leafletOutput(ns("ChargingPointMap"), height = "700px")%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    
     tabPanel("Charging Events",
              fluidRow(column(8,
                              h3("Total electric vehicle charging events by local authority", style = "color: #39ab2c;  font-weight:bold"),
@@ -67,6 +87,7 @@ ULEVsOutput <- function(id) {
              #dygraphOutput(ns("ULEVsPlot")),
              leafletOutput(ns("ChargingEventsMap"), height = "700px")%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    
     tabPanel("Charge Provided",
              fluidRow(column(8,
                              h3("Total electric vehicle charge drawn by local authority", style = "color: #39ab2c;  font-weight:bold"),
@@ -99,10 +120,22 @@ ULEVsOutput <- function(id) {
     fluidRow(
       column(12, dataTableOutput(ns("ULEVsTable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Local Authority",
+             fluidRow(
+               column(10, h3("Data - Renewable electricity generation at Local Authority Level (GWh)", style = "color: #39ab2c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12,selectInput(ns("YearSelect2"), "Year:", c(unique(ULEVbyLA$Quarter)), selected = max(ULEVbyLA$Quarter), multiple = FALSE,
+                                     selectize = TRUE, width = "200px", size = NULL) )
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("LAGenTable"))%>% withSpinner(color="#39ab2c"))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("First Time Registrations",
       fluidRow(
         column(10, h3("Data - All ULEVs registered for the first time in Scotland", style = "color: #39ab2c;  font-weight:bold")),
-        column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+        column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
       ),
       fluidRow(
         column(12, dataTableOutput(ns("ULEVRegOutputTable"))%>% withSpinner(color="#39ab2c"))),
@@ -110,7 +143,7 @@ ULEVsOutput <- function(id) {
     tabPanel("Charging Points",
              fluidRow(
                column(10, h3("Data - Charging Points", style = "color: #39ab2c;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("ChargingPointTable"))%>% withSpinner(color="#39ab2c"))),
@@ -118,7 +151,7 @@ ULEVsOutput <- function(id) {
     tabPanel("Charging Events",
              fluidRow(
                uiOutput(ns("ChargingEventsDataSubtitle")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("ChargingEventsTable"))%>% withSpinner(color="#39ab2c"))),
@@ -126,7 +159,7 @@ ULEVsOutput <- function(id) {
     tabPanel("Charge Provided",
              fluidRow(
                uiOutput(ns("ChargeProvidedDataSubtitle")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable6"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("ChargeProvidedTable"))%>% withSpinner(color="#39ab2c"))),
@@ -165,13 +198,13 @@ ULEVs <- function(input, output, session) {
   
   output$ULEVsSubtitle <- renderText({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "ULEVs", 
-        skip = 17)
+    Data <- read_delim("Processed Data/Output/Vehicles/ULEV.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Data <- Data[c(1,3,4,2)]
+    
+    names(Data) <- c("Year", 'Battery Electric Vehicles',"Hybrid Electric Vehicles","All ULEVs",'Other ULEVs')
+    
+    Data <- Data[which(nchar(Data$Year)>4),]
     
     Data$Year <- as.yearqtr(Data$Year)
     
@@ -180,19 +213,19 @@ ULEVs <- function(input, output, session) {
   
   output$ULEVsPlot <- renderPlotly  ({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "ULEVs", 
-        skip = 17)
+    Data <- read_delim("Processed Data/Output/Vehicles/ULEV.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Data <- Data[c(1,3,4,2)]
+    
+    names(Data) <- c("Year", 'Battery Electric Vehicles',"Hybrid Electric Vehicles","All ULEVs",'Other ULEVs')
+    
+    Data <- Data[which(nchar(Data$Year)>4),]
     
     Data$Year <- as.yearqtr(Data$Year)
     
     Data2 <- rbind(head(Data,1), tail(Data,1))
     
-    ChartColours <- c("#39ab2c", "#238b45", "#a1d99b")
+    ChartColours <- c("#005a32", "#41ab5d", "#addd8e")
     
     p <-  plot_ly(Data, 
                   x = ~Year, 
@@ -205,6 +238,13 @@ ULEVs <- function(input, output, session) {
                   hoverinfo = "text",
                   text = paste0("Battery Electric Vehicles: ", Data$`Battery Electric Vehicles`, "\nAs Of: ", Data$Year)
     )%>%
+      add_trace(
+        y = ~ `Hybrid Electric Vehicles`, 
+        name = 'Hybrid Electric Vehicles',
+        fillcolor = ChartColours[2],
+        hoverinfo = "text",
+        text = paste0("Hybrid Electric Vehicles: ", Data$`Hybrid Electric Vehicles`, "\nAs Of: ", Data$Year)
+      ) %>% 
       add_trace(
         y = ~ `Other ULEVs`, 
         name = 'Other ULEVs',
@@ -352,18 +392,32 @@ ULEVs <- function(input, output, session) {
   
   output$ULEVsTable = renderDataTable({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "ULEVs", col_names = TRUE, 
-        skip = 17)
+    ULEV <- read_delim("Processed Data/Output/Vehicles/ULEV.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Data <- Data[c(1:4,6:7)]
+    AllVehicles <- read_delim("Processed Data/Output/Vehicles/AllVehicles.txt", 
+                              "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    ULEVs <- Data
+    AllVehicles <- AllVehicles[c(1,9)]
+    
+    AllVehicles$Total <- AllVehicles$Total * 1000
+    
+    #AllVehicles <- rbind(read_csv("Processed Data/Output/Vehicles/VehicleTotal2014.csv"), AllVehicles)
+    
+    names(AllVehicles) <- c("Quarter", "All Vehicles")
+    
+    AllVehicles <- merge(ULEV, AllVehicles)
+    
+    names(AllVehicles)[4] <- "All ULEVs"
+    
+    AllVehicles$`Proportion of Vehicles which are ULEVs` <- AllVehicles$`All ULEVs`/ AllVehicles$`All Vehicles`
+    
+    AllVehicles <- AllVehicles[c(1, 4,3,2,5,6,7)]
+    
+    AllVehicles <- AllVehicles[which(nchar(AllVehicles$Quarter)>4),]
     
     datatable(
-      ULEVs,
+      AllVehicles,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -396,7 +450,7 @@ ULEVs <- function(input, output, session) {
       )
     ) %>%
       formatRound(c(2:6), 0) %>% 
-      formatPercentage(6,2)
+      formatPercentage(7,2)
   })
   
   output$ULEVRegOutputTable = renderDataTable({
@@ -461,7 +515,23 @@ ULEVs <- function(input, output, session) {
   })
   
   observeEvent(input$ToggleTable2, {
+    toggle("LAGenTable")
+  })
+  
+  observeEvent(input$ToggleTable3, {
     toggle("ULEVRegOutputTable")
+  })
+  
+  observeEvent(input$ToggleTable4, {
+    toggle("ChargingPointTable")
+  })
+  
+  observeEvent(input$ToggleTable5, {
+    toggle("ChargingEventsTable")
+  })
+  
+  observeEvent(input$ToggleTable6, {
+    toggle("ChargeProvidedTable")
   })
 
   
@@ -474,9 +544,15 @@ ULEVs <- function(input, output, session) {
     filename = "ULEVs.png",
     content = function(file) {
 
-      ElecVehicles <- read_excel("Structure/CurrentWorking.xlsx", 
-                                 sheet = "ULEVs", col_names = TRUE, 
-                                 skip = 17)[c(1,3,4)]
+      ElecVehicles <- read_delim("Processed Data/Output/Vehicles/ULEV.txt", 
+                         "\t", escape_double = FALSE, trim_ws = TRUE)
+      
+      
+      names(ElecVehicles) <- c("Year", 'Battery Electric Vehicles',"Hybrid Electric Vehicles","All ULEVs",'Other ULEVs')
+      
+      ElecVehicles$`All ULEVs` <- NULL
+      
+      ElecVehicles <- ElecVehicles[which(nchar(ElecVehicles$Year)>4),]
       
       ElecVehicles$Year <-
         as.yearqtr(ElecVehicles$Year, format = "%Y Q%q")
@@ -492,7 +568,7 @@ ULEVs <- function(input, output, session) {
       
       
       ### variables
-      ChartColours <- c("#39ab2c", "#238b45", "#a1d99b")
+      ChartColours <- c("#39ab2c", "#005a32", "#41ab5d", "#addd8e")
       sourcecaption = "Source: DfT"
       plottitle = "Number of ultra low emission vehicles\nlicenced"
       
@@ -510,7 +586,8 @@ ULEVs <- function(input, output, session) {
           "variable",
           values = c(
             "Battery Electric Vehicles" = ChartColours[2],
-            "Other ULEVs" = ChartColours[3]
+            "Hybrid Electric Vehicles" = ChartColours[3],
+            "Other ULEVs" = ChartColours[4]
           )
         ) +
         geom_area(posistion = "fill") +
@@ -526,7 +603,7 @@ ULEVs <- function(input, output, session) {
             ),
             hjust = ifelse(Year == min(Year), 0, 1),
             vjust = 1.5,
-            colour = ChartColours[1],
+            colour = ChartColours[2],
             fontface = 2,
             family = "Century Gothic"
           )
@@ -545,11 +622,11 @@ ULEVs <- function(input, output, session) {
         annotate(
           "text",
           x = ElecVehiclesMin$Year,
-          y = (ElecVehiclesMin$`Other ULEVs` * 0.5) + ElecVehiclesMin$`Battery Electric Vehicles`,
-          label = format(ElecVehiclesMin$`Other ULEVs`,big.mark = ","),
+          y = (ElecVehiclesMin$`Hybrid Electric Vehicles` * 0.5) + ElecVehiclesMin$`Battery Electric Vehicles`,
+          label = format(ElecVehiclesMin$`Hybrid Electric Vehicles`,big.mark = ","),
           hjust = -.1,
           vjust = -1,
-          colour = ChartColours[3],
+          colour = ChartColours[4],
           fontface = 2,
           family = "Century Gothic"
         ) +
@@ -567,8 +644,8 @@ ULEVs <- function(input, output, session) {
         annotate(
           "text",
           x = ElecVehiclesMax$Year,
-          y = (ElecVehiclesMax$`Other ULEVs` * 0.5) + ElecVehiclesMax$`Battery Electric Vehicles`,
-          label = format(ElecVehiclesMax$`Other ULEVs`, big.mark = ","),
+          y = (ElecVehiclesMax$`Hybrid Electric Vehicles` * 0.5) + ElecVehiclesMax$`Battery Electric Vehicles`,
+          label = format(ElecVehiclesMax$`Hybrid Electric Vehicles`, big.mark = ","),
           hjust = 1.1,
           vjust = 0,
           colour = "white",
@@ -581,9 +658,25 @@ ULEVs <- function(input, output, session) {
           y = (
             ElecVehiclesMax$`Battery Electric Vehicles` + ElecVehiclesMin$`Battery Electric Vehicles`
           ) * .25,
-          label = "Battery Electric\nVehicles",
+          label = "Battery Electric",
           hjust = .5,
-          vjust = 1,
+          vjust = 3.5,
+          colour = "white",
+          fontface = 2,
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = mean(ElecVehicles$Year),
+          y = ((ElecVehiclesMax$`Hybrid Electric Vehicles` + ElecVehiclesMin$`Hybrid Electric Vehicles`) *
+                 .25
+          ) + ((
+            ElecVehiclesMax$`Battery Electric Vehicles` + ElecVehiclesMin$`Battery Electric Vehicles`
+          ) * .5
+          ),
+          label = "Hybrid Electric",
+          hjust = .5,
+          vjust = 8.1,
           colour = "white",
           fontface = 2,
           family = "Century Gothic"
@@ -593,42 +686,45 @@ ULEVs <- function(input, output, session) {
           x = mean(ElecVehicles$Year),
           y = ((ElecVehiclesMax$`Other ULEVs` + ElecVehiclesMin$`Other ULEVs`) *
                  .25
+          ) +
+            ((ElecVehiclesMax$`Hybrid Electric Vehicles` + ElecVehiclesMin$`Hybrid Electric Vehicles`) *
+                 .5
           ) + ((
             ElecVehiclesMax$`Battery Electric Vehicles` + ElecVehiclesMin$`Battery Electric Vehicles`
           ) * .5
           ),
           label = "Other ULEVs",
           hjust = .5,
-          vjust = 8.1,
-          colour = "white",
+          vjust = 2,
+          colour = ChartColours[4],
           fontface = 2,
           family = "Century Gothic"
         ) +
         annotate(
           "text",
           x = ElecVehiclesMin$Year,
-          y = ElecVehiclesMin$`Battery Electric Vehicles` + ElecVehiclesMin$`Other ULEVs`,
+          y = ElecVehiclesMin$`Battery Electric Vehicles` + ElecVehiclesMin$`Hybrid Electric Vehicles` + ElecVehiclesMin$`Other ULEVs`,
           label = paste0(
             "Total: ",
-            format(ElecVehiclesMin$`Battery Electric Vehicles` + ElecVehiclesMin$`Other ULEVs`, big.mark = ",")
+            format(ElecVehiclesMin$`Battery Electric Vehicles` + ElecVehiclesMin$`Hybrid Electric Vehicles` + ElecVehiclesMin$`Other ULEVs`, big.mark = ",")
           ),
           hjust = 0,
           vjust = -3,
-          colour = ChartColours[1],
+          colour = ChartColours[2],
           fontface = 2,
           family = "Century Gothic"
         ) +
         annotate(
           "text",
           x = ElecVehiclesMax$Year,
-          y = ElecVehiclesMax$`Battery Electric Vehicles` + ElecVehiclesMax$`Other ULEVs`,
+          y = ElecVehiclesMax$`Battery Electric Vehicles` + ElecVehiclesMax$`Hybrid Electric Vehicles` + ElecVehiclesMax$`Other ULEVs`,
           label = paste0(
             "Total: ",
-            format(ElecVehiclesMax$`Battery Electric Vehicles` + ElecVehiclesMax$`Other ULEVs`,big.mark = ",")
+            format(ElecVehiclesMax$`Battery Electric Vehicles` + ElecVehiclesMax$`Hybrid Electric Vehicles` + ElecVehiclesMax$`Other ULEVs`,big.mark = ",")
           ),
           hjust = 1.3,
           vjust = 1,
-          colour = ChartColours[1],
+          colour = ChartColours[2],
           fontface = 2,
           family = "Century Gothic"
         )
@@ -645,7 +741,7 @@ ULEVs <- function(input, output, session) {
       
       
       ElecVehiclesChart <- ElecVehiclesChart +
-        ylim(-100, max(ElecVehiclesMax$`Battery Electric Vehicles`)+max(ElecVehiclesMax$`Other ULEVs`))
+        ylim(-100, max(ElecVehiclesMax$`Battery Electric Vehicles`)+max(ElecVehiclesMax$`Other ULEVs`)+max(ElecVehiclesMax$`Hybrid Electric Vehicles`))
       
 
 
@@ -825,7 +921,7 @@ output$ULEVRegOutput.png <- downloadHandler(
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+      merge(LA, AverageBillMap)
     
     
     pal <- colorNumeric(
@@ -903,7 +999,7 @@ output$ULEVRegOutput.png <- downloadHandler(
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+      merge(LA, AverageBillMap)
     
     
     pal <- colorNumeric(
@@ -983,7 +1079,7 @@ output$ULEVRegOutput.png <- downloadHandler(
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+      merge(LA, AverageBillMap)
     
     
     pal <- colorNumeric(
@@ -1049,7 +1145,7 @@ output$ULEVRegOutput.png <- downloadHandler(
         pageLength = 10
       )
     ) %>%
-      formatRound(c(3:5), 0) 
+      formatRound(c(3), 0) 
   })
   
   
@@ -1104,7 +1200,7 @@ output$ULEVRegOutput.png <- downloadHandler(
         pageLength = 10
       )
     ) %>%
-      formatRound(c(3:5), 0) 
+      formatRound(c(3), 0) 
   })
   
   output$ChargeProvidedDataSubtitle <- renderUI({
@@ -1155,7 +1251,7 @@ output$ULEVRegOutput.png <- downloadHandler(
         pageLength = 10
       )
     ) %>%
-      formatRound(c(3:5), 0) 
+      formatRound(c(3), 0) 
   })
   
   output$ChargingPointStatic <- downloadHandler(
@@ -1181,6 +1277,134 @@ output$ULEVRegOutput.png <- downloadHandler(
     }
   )
   
+  output$ULEVbyLAmap <- renderLeaflet({
+    
+    ### Load Packages
+    library(readr)
+    library("maptools")
+    library(tmaptools)
+    library(tmap)
+    library("sf")
+    library("leaflet")
+    library("rgeos")
+    library(readxl)
+    library(ggplot2)
+    
+    ### Add Simplified shape back to the Shapefile
+    LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/LocalAuthority2.shp")
+    
+    LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
+    ############ RENEWABLE ELECTRICITY ################################################
+    
+    Year =  input$YearSelect
+    
+    Tech =  as.character(input$TechSelect)
+    
+    ULEVbyLA <- read_delim("Processed Data/Output/Vehicles/ULEVbyLA.txt", 
+                           "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    names(ULEVbyLA)[3] <- "CODE"
+    
+    ULEVbyLA <- ULEVbyLA[which(ULEVbyLA$Quarter == Year),]
+    
+    ULEVbyLA <- ULEVbyLA[which(substr(ULEVbyLA$CODE,1,3) == "S12"),]
+    
+    ULEVbyLA <- ULEVbyLA[which(ULEVbyLA$variable == Tech),]
+    
+    ULEVbyLA$Content <- paste0("<b>",ULEVbyLA$LAName, "</b><br/>", ULEVbyLA$variable[1], " licenced:<br/><em>", round(ULEVbyLA$value, digits = 1),"</em>" )
+    
+    ULEVbyLA$Hover <- paste0(ULEVbyLA$LAName, " - ", round(ULEVbyLA$value, digits = 1), "")
+    
+    ### Change LA$CODE to string
+    LA$CODE <- as.character(LA$CODE)
+    
+    ### Order LAs in Shapefile
+    LA <- LA[order(LA$CODE),]
+    
+    ### Order LAs in Data
+    ULEVbyLA <- ULEVbyLA[order(ULEVbyLA$CODE),]
+    
+    ### Combine Data with Map data
+    LAMap <-
+      merge(LA, ULEVbyLA)
+    
+    
+    pal <- colorNumeric(
+      palette = "Greens",
+      domain = LAMap$value)
+    
+    l <-leaflet(LAMap) %>% 
+      addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
+      addPolygons(stroke = TRUE, 
+                  weight = 0.1,
+                  smoothFactor = 0.2,
+                  popup = ~Content,
+                  label = ~Hover,
+                  fillOpacity = 1,
+                  color = ~pal(value),
+                  highlightOptions = list(color = "white", weight = 2,
+                                          bringToFront = TRUE)) %>%
+      leaflet::addLegend("bottomright", pal = pal, values = ~value,
+                         title = paste0(ULEVbyLA$variable[1], " licenced"),
+                         opacity = 1
+      ) 
+    
+    l
+    
+  })
+  
+  output$LAGenTable = renderDataTable({
+    
+    LARenGen <- read_delim("Processed Data/Output/Vehicles/ULEVbyLA.txt", 
+                           "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    Year2 = input$YearSelect2
+    
+    LARenGen <- LARenGen[which(LARenGen$Quarter == Year2),]
+    
+    LARenGen <- dcast(LARenGen, Quarter + LAName + LACode ~ variable, value.var = "value")
+    
+    datatable(
+      LARenGen,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "Number of ultra low emission vehicles licenced by Local Authority",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Number of ultra low emission vehicles licenced by Local Authority',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Number of ultra low emission vehicles licenced by Local Authority')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(4:ncol(LARenGen), 0) %>% 
+      formatStyle(ncol(LARenGen), fontWeight = "bold")
+  })
+  
+  output$ULEVbyLAmap.png <- downloadHandler(
+    filename = "ULEVbyLAmap.png",
+    content = function(file) {
+      writePNG(readPNG("Structure/2 - Renewables/Transport/ULEVsLA.png"), file) 
+    }
+  )
 
 }
     

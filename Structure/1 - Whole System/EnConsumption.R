@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 EnConsumptionOutput <- function(id) {
   ns <- NS(id)
@@ -67,7 +67,7 @@ EnConsumptionOutput <- function(id) {
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
-             p("March 2019")),
+             DateLookup(c("BEISSubNatEnergy", "BEISUKConsump", "BEISElecGen"))),
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",

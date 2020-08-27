@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 RenEnTgtOutput <- function(id) {
   ns <- NS(id)
@@ -476,7 +476,7 @@ RenEnTgt <- function(input, output, session) {
     TotalTarget <- as_tibble(TotalTarget)
     
     datatable(
-      TotalTarget,
+      TotalTarget[c(1,2,4,5,6,7)],
       extensions = 'Buttons',
       rownames = FALSE,
       options = list(
@@ -506,10 +506,10 @@ RenEnTgt <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:ncol(TotalTarget), 0) %>% 
-      formatPercentage(c(4:7), 1) %>% 
-      formatStyle(c(5:7), fontStyle = "italic") %>% 
-      formatStyle(c(4), fontWeight = "bold")
+      formatRound(2:6, 0) %>% 
+      formatPercentage(c(3:6), 1) %>% 
+      formatStyle(c(4:6), fontStyle = "italic") %>% 
+      formatStyle(c(3), fontWeight = "bold")
     
   })
   
@@ -533,7 +533,7 @@ RenEnTgt <- function(input, output, session) {
     )
     
     datatable(
-      ElectricityTarget,
+      ElectricityTarget[c(1,2,4,5)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -564,9 +564,9 @@ RenEnTgt <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:ncol(ElectricityTarget), 0) %>% 
-      formatPercentage(c(4,5), 1) %>% 
-      formatStyle(c(5), fontStyle = "italic")
+      formatRound(2:4, 0) %>% 
+      formatPercentage(c(3,4), 1) %>% 
+      formatStyle(c(4), fontStyle = "italic")
     
   })
   
@@ -589,7 +589,7 @@ RenEnTgt <- function(input, output, session) {
     
   
     datatable(
-      HeatTarget,
+      HeatTarget[c(1,2,4,5)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -620,9 +620,9 @@ RenEnTgt <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:ncol(HeatTarget), 0) %>% 
-      formatPercentage(c(4,5), 1) %>% 
-      formatStyle(c(5), fontStyle = "italic")
+      formatRound(2:4, 0) %>% 
+      formatPercentage(c(3,4), 1) %>% 
+      formatStyle(c(4), fontStyle = "italic")
     
   })
   
@@ -643,7 +643,7 @@ RenEnTgt <- function(input, output, session) {
     )
     
     datatable(
-      TransportTarget,
+      TransportTarget[c(1,2,4,5)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -674,9 +674,9 @@ RenEnTgt <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:ncol(TransportTarget), 0) %>% 
-      formatPercentage(c(4,5), 1) %>% 
-      formatStyle(c(5), fontStyle = "italic")
+      formatRound(2:4, 0) %>% 
+      formatPercentage(c(3,4), 1) %>% 
+      formatStyle(c(4), fontStyle = "italic")
     
   })
   

@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 ElecBillPricesOutput <- function(id) {
   ns <- NS(id)
@@ -229,7 +229,7 @@ ElecBillPrices <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatCurrency(c(2:7), currency = "\u00A3", digits = 0)
+      formatCurrency(c(2:4), currency = "\u00A3", digits = 0)
   })
   
   output$AverageElecBillsSubtitle <- renderText({
@@ -471,7 +471,7 @@ ElecBillPrices <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatCurrency(c(2:7), currency = "\u00A3", digits = 0)
+      formatCurrency(c(2:4), currency = "\u00A3", digits = 0)
   })
   
   output$Text <- renderUI({

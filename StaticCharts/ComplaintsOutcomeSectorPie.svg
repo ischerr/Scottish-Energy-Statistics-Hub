@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   class="main-svg"
+   width="700"
+   height="500"
+   style=""
+   viewBox="0 0 700 500"
+   version="1.1"
+   id="svg199"
+   sodipodi:docname="ComplaintsOutcomeSectorPie.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+  <metadata
+     id="metadata203">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2880"
+     inkscape:window-height="1526"
+     id="namedview201"
+     showgrid="false"
+     inkscape:zoom="1.888"
+     inkscape:cx="463.53922"
+     inkscape:cy="235.38151"
+     inkscape:window-x="-32000"
+     inkscape:window-y="-32000"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg199" />
+  <rect
+     x="0"
+     y="0"
+     width="700"
+     height="500"
+     style="fill: rgb(255, 255, 255); fill-opacity: 1;"
+     id="rect2" />
+  <defs
+     id="defs-8a279e">
+    <g
+       class="clips"
+       id="g4" />
+    <g
+       class="gradients"
+       id="g6" />
+  </defs>
+  <g
+     class="bglayer"
+     id="g9" />
+  <g
+     class="layer-below"
+     id="g15">
+    <g
+       class="imagelayer"
+       id="g11" />
+    <g
+       class="shapelayer"
+       id="g13" />
+  </g>
+  <g
+     class="cartesianlayer"
+     id="g17" />
+  <g
+     class="polarlayer"
+     id="g19" />
+  <g
+     class="ternarylayer"
+     id="g21" />
+  <g
+     class="geolayer"
+     id="g23" />
+  <g
+     class="funnelarealayer"
+     id="g25" />
+  <g
+     class="pielayer"
+     id="g85"
+     transform="translate(16.949153,-51.377119)">
+    <g
+       class="trace"
+       style="opacity:1;stroke-linejoin:round"
+       id="g83">
+      <g
+         class="slice"
+         id="g39">
+        <path
+           class="surface"
+           d="M 350,235.5 V 40 A 195.5,195.5 0 1 1 238.83374,396.31764 Z"
+           style="fill:#081d58;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-opacity:1"
+           id="path27"
+           inkscape:connector-curvature="0" />
+        <g
+           class="slicetext"
+           id="g37">
+          <text
+             data-notex="1"
+             class="slicetext"
+             transform="translate(567.77654,291.9278)"
+             x="0"
+             y="0"
+             style="font-size:12px;font-family:'Open Sans', verdana, arial, sans-serif;text-anchor:middle;white-space:pre;fill:#444444;fill-opacity:1"
+             id="text35">
+            <tspan
+               class="line"
+               dy="0em"
+               x="0"
+               y="0"
+               id="tspan31">
+              <tspan
+                 style="font-weight:bold"
+                 id="tspan29">Upheld</tspan>
+            </tspan>
+            <tspan
+               class="line"
+               dy="1.3em"
+               x="0"
+               y="0"
+               id="tspan33">59.6%</tspan>
+          </text>
+        </g>
+      </g>
+      <g
+         class="slice"
+         id="g53">
+        <path
+           class="surface"
+           d="M 350,235.5 154.81123,224.47295 A 195.5,195.5 0 0 1 350,40 Z"
+           style="fill:#225ea8;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-opacity:1"
+           id="path41"
+           inkscape:connector-curvature="0" />
+        <g
+           class="slicetext"
+           id="g51">
+          <text
+             data-notex="1"
+             class="slicetext"
+             transform="translate(184.19242,82.277516)"
+             x="0"
+             y="0"
+             style="font-size:12px;font-family:'Open Sans', verdana, arial, sans-serif;text-anchor:middle;white-space:pre;fill:#444444;fill-opacity:1"
+             id="text49">
+            <tspan
+               class="line"
+               dy="0em"
+               x="0"
+               y="0"
+               id="tspan45">
+              <tspan
+                 style="font-weight:bold"
+                 id="tspan43">Settled</tspan>
+            </tspan>
+            <tspan
+               class="line"
+               dy="1.3em"
+               x="0"
+               y="0"
+               id="tspan47">24.1%</tspan>
+          </text>
+        </g>
+      </g>
+      <g
+         class="slice"
+         id="g67">
+        <path
+           class="surface"
+           d="M 350,235.5 183.73814,338.34572 A 195.5,195.5 0 0 1 154.81123,224.47295 Z"
+           style="fill:#41b6c4;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-opacity:1"
+           id="path55"
+           inkscape:connector-curvature="0" />
+        <g
+           class="slicetext"
+           id="g65">
+          <text
+             data-notex="1"
+             class="slicetext"
+             transform="translate(115.68216,281.41094)"
+             x="0"
+             y="0"
+             style="font-size:12px;font-family:'Open Sans', verdana, arial, sans-serif;text-anchor:middle;white-space:pre;fill:#444444;fill-opacity:1"
+             id="text63">
+            <tspan
+               class="line"
+               dy="0em"
+               x="0"
+               y="0"
+               id="tspan59">
+              <tspan
+                 style="font-weight:bold"
+                 id="tspan57">Maintained</tspan>
+            </tspan>
+            <tspan
+               class="line"
+               dy="1.3em"
+               x="0"
+               y="0"
+               id="tspan61">9.71%</tspan>
+          </text>
+        </g>
+      </g>
+      <g
+         class="slice"
+         id="g81">
+        <path
+           class="surface"
+           d="M 350,235.5 238.83374,396.31764 a 195.5,195.5 0 0 1 -55.0956,-57.97192 z"
+           style="fill:#edf8b1;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-opacity:1"
+           id="path69"
+           inkscape:connector-curvature="0" />
+        <g
+           class="slicetext"
+           id="g79">
+          <text
+             data-notex="1"
+             class="slicetext"
+             transform="translate(163.157,374.22393)"
+             x="0"
+             y="0"
+             style="font-size:12px;font-family:'Open Sans', verdana, arial, sans-serif;text-anchor:middle;white-space:pre;fill:#444444;fill-opacity:1"
+             id="text77">
+            <tspan
+               class="line"
+               dy="0em"
+               x="0"
+               y="0"
+               id="tspan73">
+              <tspan
+                 style="font-weight:bold"
+                 id="tspan71">Not Upheld</tspan>
+            </tspan>
+            <tspan
+               class="line"
+               dy="1.3em"
+               x="0"
+               y="0"
+               id="tspan75">6.56%</tspan>
+          </text>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g
+     class="treemaplayer"
+     id="g87" />
+  <g
+     class="sunburstlayer"
+     id="g89" />
+  <g
+     class="glimages"
+     id="g91" />
+  <defs
+     id="topdefs-8a279e">
+    <g
+       class="clips"
+       id="g93" />
+    <clipPath
+       id="legend8a279e">
+      <rect
+         width="425"
+         height="29"
+         x="0"
+         y="0"
+         id="rect95" />
+    </clipPath>
+  </defs>
+  <g
+     class="layer-above"
+     id="g103">
+    <g
+       class="imagelayer"
+       id="g99" />
+    <g
+       class="shapelayer"
+       id="g101" />
+  </g>
+  <g
+     class="infolayer"
+     id="g197">
+    <g
+       class="legend"
+       pointer-events="all"
+       transform="translate(1, 470.1)"
+       id="g193">
+      <rect
+         class="bg"
+         shape-rendering="crispEdges"
+         style="stroke: rgb(68, 68, 68); stroke-opacity: 1; fill: rgb(255, 255, 255); fill-opacity: 1; stroke-width: 0px;"
+         width="425"
+         height="29"
+         x="0"
+         y="0"
+         id="rect105" />
+      <g
+         class="scrollbox"
+         transform="translate(0, 0)"
+         clip-path="url('#legend8a279e')"
+         id="g189">
+        <g
+           class="groups"
+           id="g187">
+          <g
+             class="traces"
+             style="opacity: 1;"
+             transform="translate(0, 14.5)"
+             id="g125">
+            <text
+               class="legendtext user-select-none"
+               text-anchor="start"
+               x="40"
+               y="4.680000000000001"
+               style="font-family: 'Open Sans', verdana, arial, sans-serif; font-size: 12px; fill: rgb(26, 93, 56); fill-opacity: 1; white-space: pre;"
+               id="text109">
+              <tspan
+                 style="font-weight:bold"
+                 id="tspan107">Upheld</tspan>
+            </text>
+            <g
+               class="layers"
+               style="opacity: 1;"
+               id="g121">
+              <g
+                 class="legendfill"
+                 id="g111" />
+              <g
+                 class="legendlines"
+                 id="g113" />
+              <g
+                 class="legendsymbols"
+                 id="g119">
+                <g
+                   class="legendpoints"
+                   id="g117">
+                  <path
+                     class="legendpie"
+                     d="M6,6H-6V-6H6Z"
+                     transform="translate(20,0)"
+                     style="stroke-width: 1; fill: rgb(8, 29, 88); fill-opacity: 1; stroke: rgb(255, 255, 255); stroke-opacity: 1;"
+                     id="path115" />
+                </g>
+              </g>
+            </g>
+            <rect
+               class="legendtoggle"
+               pointer-events="all"
+               x="0"
+               y="-9.5"
+               width="89.65625"
+               height="19"
+               style="cursor: pointer; fill: rgb(0, 0, 0); fill-opacity: 0;"
+               id="rect123" />
+          </g>
+          <g
+             class="traces"
+             style="opacity: 1;"
+             transform="translate(92.15625, 14.5)"
+             id="g145">
+            <text
+               class="legendtext user-select-none"
+               text-anchor="start"
+               x="40"
+               y="4.680000000000001"
+               style="font-family: 'Open Sans', verdana, arial, sans-serif; font-size: 12px; fill: rgb(26, 93, 56); fill-opacity: 1; white-space: pre;"
+               id="text129">
+              <tspan
+                 style="font-weight:bold"
+                 id="tspan127">Settled</tspan>
+            </text>
+            <g
+               class="layers"
+               style="opacity: 1;"
+               id="g141">
+              <g
+                 class="legendfill"
+                 id="g131" />
+              <g
+                 class="legendlines"
+                 id="g133" />
+              <g
+                 class="legendsymbols"
+                 id="g139">
+                <g
+                   class="legendpoints"
+                   id="g137">
+                  <path
+                     class="legendpie"
+                     d="M6,6H-6V-6H6Z"
+                     transform="translate(20,0)"
+                     style="stroke-width: 1; fill: rgb(34, 94, 168); fill-opacity: 1; stroke: rgb(255, 255, 255); stroke-opacity: 1;"
+                     id="path135" />
+                </g>
+              </g>
+            </g>
+            <rect
+               class="legendtoggle"
+               pointer-events="all"
+               x="0"
+               y="-9.5"
+               width="90.390625"
+               height="19"
+               style="cursor: pointer; fill: rgb(0, 0, 0); fill-opacity: 0;"
+               id="rect143" />
+          </g>
+          <g
+             class="traces"
+             style="opacity: 1;"
+             transform="translate(185.046875, 14.5)"
+             id="g165">
+            <text
+               class="legendtext user-select-none"
+               text-anchor="start"
+               x="40"
+               y="4.680000000000001"
+               style="font-family: 'Open Sans', verdana, arial, sans-serif; font-size: 12px; fill: rgb(26, 93, 56); fill-opacity: 1; white-space: pre;"
+               id="text149">
+              <tspan
+                 style="font-weight:bold"
+                 id="tspan147">Maintained</tspan>
+            </text>
+            <g
+               class="layers"
+               style="opacity: 1;"
+               id="g161">
+              <g
+                 class="legendfill"
+                 id="g151" />
+              <g
+                 class="legendlines"
+                 id="g153" />
+              <g
+                 class="legendsymbols"
+                 id="g159">
+                <g
+                   class="legendpoints"
+                   id="g157">
+                  <path
+                     class="legendpie"
+                     d="M6,6H-6V-6H6Z"
+                     transform="translate(20,0)"
+                     style="stroke-width: 1; fill: rgb(65, 182, 196); fill-opacity: 1; stroke: rgb(255, 255, 255); stroke-opacity: 1;"
+                     id="path155" />
+                </g>
+              </g>
+            </g>
+            <rect
+               class="legendtoggle"
+               pointer-events="all"
+               x="0"
+               y="-9.5"
+               width="117.03125"
+               height="19"
+               style="cursor: pointer; fill: rgb(0, 0, 0); fill-opacity: 0;"
+               id="rect163" />
+          </g>
+          <g
+             class="traces"
+             style="opacity: 1;"
+             transform="translate(304.578125, 14.5)"
+             id="g185">
+            <text
+               class="legendtext user-select-none"
+               text-anchor="start"
+               x="40"
+               y="4.680000000000001"
+               style="font-family: 'Open Sans', verdana, arial, sans-serif; font-size: 12px; fill: rgb(26, 93, 56); fill-opacity: 1; white-space: pre;"
+               id="text169">
+              <tspan
+                 style="font-weight:bold"
+                 id="tspan167">Not Upheld</tspan>
+            </text>
+            <g
+               class="layers"
+               style="opacity: 1;"
+               id="g181">
+              <g
+                 class="legendfill"
+                 id="g171" />
+              <g
+                 class="legendlines"
+                 id="g173" />
+              <g
+                 class="legendsymbols"
+                 id="g179">
+                <g
+                   class="legendpoints"
+                   id="g177">
+                  <path
+                     class="legendpie"
+                     d="M6,6H-6V-6H6Z"
+                     transform="translate(20,0)"
+                     style="stroke-width: 1; fill: rgb(237, 248, 177); fill-opacity: 1; stroke: rgb(255, 255, 255); stroke-opacity: 1;"
+                     id="path175" />
+                </g>
+              </g>
+            </g>
+            <rect
+               class="legendtoggle"
+               pointer-events="all"
+               x="0"
+               y="-9.5"
+               width="117.625"
+               height="19"
+               style="cursor: pointer; fill: rgb(0, 0, 0); fill-opacity: 0;"
+               id="rect183" />
+          </g>
+        </g>
+      </g>
+      <rect
+         class="scrollbar"
+         rx="20"
+         ry="3"
+         width="0"
+         height="0"
+         style="fill: rgb(128, 139, 164); fill-opacity: 1;"
+         x="0"
+         y="0"
+         id="rect191" />
+    </g>
+    <g
+       class="g-gtitle"
+       id="g195" />
+  </g>
+</svg>

@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 NonGasGridOutput <- function(id) {
   ns <- NS(id)
@@ -278,7 +278,7 @@ NonGasGrid <- function(input, output, session) {
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, GasGridMap, key.shp = "CODE", key.data = "CODE")
+      merge(LA, GasGridMap)
     
     
     pal <- colorNumeric(

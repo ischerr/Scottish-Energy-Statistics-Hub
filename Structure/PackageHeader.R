@@ -1312,4 +1312,6 @@ EUFlagLookup <- read_csv("Structure/EUFlagLookup.csv")
 
 ##########################################################################################################
 
+source("Structure/Global.R")
+
 PackageHeader <- 1

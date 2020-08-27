@@ -6,7 +6,7 @@ require("DT")
 
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 DailyDemandOutput <- function(id) {
   ns <- NS(id)
@@ -543,18 +543,17 @@ DailyDemand <- function(input, output, session) {
         )+
         annotate(
           "segment",
-          x = DailyDemand$Year[which(DailyDemand$Gas == max(DailyDemand$Gas))]-2,
-          xend = DailyDemand$Year[which(DailyDemand$Gas == max(DailyDemand$Gas))] - 30,
-          y = max(DailyDemand$Gas),
-          yend = max(DailyDemand$Gas),
+          x = DailyDemand$Year[which(DailyDemand$Gas == max(DailyDemand$Gas[which(DailyDemand$Year > dmy("01/08/19"))]))],
+          xend = DailyDemand$Year[which(DailyDemand$Gas == max(DailyDemand$Gas[which(DailyDemand$Year > dmy("01/08/19"))]))],
+          y = max(DailyDemand$Gas[which(DailyDemand$Year > dmy("01/08/19"))])+2,
+          yend = max(DailyDemand$Gas[which(DailyDemand$Year > dmy("01/08/19"))])+10,
           colour = "#3690c0"
         ) +
         annotate(
           "text",
-          x = DailyDemand$Year[which(DailyDemand$Gas == max(DailyDemand$Gas))] - 35,
-          y = max(DailyDemand$Gas),
-          label = paste(round(max(DailyDemand$Gas), digits = 0), "GWh"),
-          hjust = 1,
+          x = DailyDemand$Year[which(DailyDemand$Gas == max(DailyDemand$Gas[which(DailyDemand$Year > dmy("01/08/19"))]))] ,
+          y = max(DailyDemand$Gas[which(DailyDemand$Year > dmy("01/08/19"))])+ 20,
+          label = paste(round(max(DailyDemand$Gas[which(DailyDemand$Year > dmy("01/08/19"))]), digits = 0), "GWh"),
           fontface = 2,
           size = 4,
           colour = ChartColours[2],
@@ -562,18 +561,17 @@ DailyDemand <- function(input, output, session) {
         )+
         annotate(
           "segment",
-          x = DailyDemand$Year[which(DailyDemand$Electricity == max(DailyDemand$Electricity[which(DailyDemand$Year > dmy("01/08/18"))]))]+2,
-          xend = DailyDemand$Year[which(DailyDemand$Electricity == max(DailyDemand$Electricity[which(DailyDemand$Year > dmy("01/08/18"))]))] + 30,
-          y = max(DailyDemand$Electricity[which(DailyDemand$Year > dmy("01/08/18"))]),
-          yend = max(DailyDemand$Electricity[which(DailyDemand$Year > dmy("01/08/18"))]),
+          x = DailyDemand$Year[which(DailyDemand$Electricity == max(DailyDemand$Electricity[which(DailyDemand$Year > dmy("01/08/19"))]))],
+          xend = DailyDemand$Year[which(DailyDemand$Electricity == max(DailyDemand$Electricity[which(DailyDemand$Year > dmy("01/08/19"))]))],
+          y = max(DailyDemand$Electricity[which(DailyDemand$Year > dmy("01/08/19"))])+2,
+          yend = max(DailyDemand$Electricity[which(DailyDemand$Year > dmy("01/08/19"))])+10,
           colour = "#3690c0"
         ) +
         annotate(
           "text",
-          x = DailyDemand$Year[which(DailyDemand$Electricity == max(DailyDemand$Electricity[which(DailyDemand$Year > dmy("01/08/18"))]))] + 35,
-          y = max(DailyDemand$Electricity[which(DailyDemand$Year > dmy("01/08/18"))]),
-          label = paste(round(max(DailyDemand$Electricity[which(DailyDemand$Year > dmy("01/08/18"))]), digits = 0), "GWh"),
-          hjust = 0,
+          x = DailyDemand$Year[which(DailyDemand$Electricity == max(DailyDemand$Electricity[which(DailyDemand$Year > dmy("01/08/19"))]))],
+          y = max(DailyDemand$Electricity[which(DailyDemand$Year > dmy("01/08/19"))])+20,
+          label = paste(round(max(DailyDemand$Electricity[which(DailyDemand$Year > dmy("01/08/19"))]), digits = 0), "GWh"),
           fontface = 2,
           size = 4,
           colour = ChartColours[3],
@@ -591,7 +589,7 @@ DailyDemand <- function(input, output, session) {
                    ChartColours)
       
       DailyDemandChart <- DailyDemandChart +
-        coord_cartesian(xlim = c(min(DailyDemand$Year), max(DailyDemand$Year)+130)) +
+        coord_cartesian(xlim = c(min(DailyDemand$Year), max(DailyDemand$Year)+20)) +
         
         ylim(-15, 352) +
         geom_hline(

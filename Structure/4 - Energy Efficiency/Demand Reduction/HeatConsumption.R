@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 HeatConsumptionOutput <- function(id) {
   ns <- NS(id)
@@ -132,6 +132,8 @@ HeatConsumption <- function(input, output, session) {
     names(Data)[1] <- "Year"
     
     Data[1:4] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data$Year <- as.character(Data$Year)
     
     Data[2,1] <- "Baseline\n2005/2007"
     
@@ -283,6 +285,8 @@ HeatConsumption <- function(input, output, session) {
     
     Data[1:3] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data$Year <- as.character(Data$Year)
+    
     Data[2,1] <- " Baseline\n2005/2007"
     
     Data <- head(Data, -2)
@@ -366,7 +370,7 @@ HeatConsumption <- function(input, output, session) {
       
       Data <- head(Data, -1)
       
-      Data [1,1] <- 2003
+      Data [1,1] <- "2003"
       
       Data <- as_tibble(sapply( Data, as.numeric ))
       
@@ -591,6 +595,8 @@ HeatConsumption <- function(input, output, session) {
   
   HeatConsumptionFuelBaseline <- as.data.frame.list(colMeans(HeatConsumptionFuel[which(HeatConsumptionFuel$Year %in% c(2005,2006,2007)),] ))
   
+  HeatConsumptionFuelBaseline$Year <- as.character(HeatConsumptionFuelBaseline$Year)
+  
   HeatConsumptionFuelBaseline[1,1] <- "Baseline 2005/2007"
   
   names(HeatConsumptionFuelBaseline) <- names(HeatConsumptionFuel)
@@ -661,6 +667,7 @@ HeatConsumption <- function(input, output, session) {
     
     Data <- Data[c(1,nrow(Data), 2:(nrow(Data)-1)),]
     
+    Data$Year <- as.character(Data$Year)
     
     Data[1,1] <- "Baseline\n2005/2007"
     
@@ -836,11 +843,11 @@ HeatConsumption <- function(input, output, session) {
       
       Data <- rbind(Data, DataCalc)
       
-      Data[1,1] <- 2003
+      Data[1,1] <- "2003"
       
       Data <- Data[complete.cases(Data),]
       
-      Data[nrow(Data),1] <- max(as.numeric(Data$Year),na.rm = TRUE)+1
+      Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE)+1)
       
       Data <- as_tibble(sapply( Data, as.numeric ))
       

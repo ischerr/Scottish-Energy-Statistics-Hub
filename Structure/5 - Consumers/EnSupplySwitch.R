@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 EnSupplySwitchOutput <- function(id) {
   ns <- NS(id)
@@ -292,6 +292,8 @@ EnSupplySwitch <- function(input, output, session) {
   names(MarketSwitchTable)[1] <- "Month"
   
   MarketSwitchTable$Month <- as.character(format(MarketSwitchTable$Month, "%B %Y"))
+  
+  MarketSwitchTable <- MarketSwitchTable[seq(dim(MarketSwitchTable)[1],1),]
 
     datatable(
       MarketSwitchTable,

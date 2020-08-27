@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 EnEconomyOutput <- function(id) {
   ns <- NS(id)
@@ -82,6 +82,24 @@ EnEconomyOutput <- function(id) {
                
                tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
                plotlyOutput(ns("EnergySectorExports"))%>% withSpinner(color="#1A5D38"),
+               tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")),
+      tabPanel("Total exports associated with the energy sector",
+               fluidRow(
+                 column(
+                   8,
+                   h3("Energy sector exports", style = "color: #1A5D38;  font-weight:bold"),
+                   h4(textOutput(ns('EnergySectorTotalExportsSubtitle')))
+                 ),
+                 column(
+                   4,
+                   style = 'padding:15px;',
+                   downloadButton(ns('EnergySectorTotalExports.png'), 'Download Graph', style =
+                                    "float:right")
+                 )
+               ),
+               
+               tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
+               plotlyOutput(ns("EnergySectorTotalExports"))%>% withSpinner(color="#1A5D38"),
                tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"))
     ),
     fluidRow(
@@ -107,12 +125,12 @@ EnEconomyOutput <- function(id) {
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
-             p("March 2019")),
+             DateLookup(c("SGGrowth"))),
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
-        SourceLookup("SGGrowth")
-        
+             SourceLookup("SGGrowth")
+             
       )
     )
   )
@@ -134,35 +152,35 @@ EnEconomy <- function(input, output, session) {
   print("EnEconomy.R")
   ###### Energy Sector Emplyment ######
   
-    output$EnergySectorEmploymentSubtitle <- renderText({
-      
-      EnergySectorEmployment <-
-        read_excel(
-          "Structure/CurrentWorking.xlsx",
-          sheet = "Energy economy",
-          col_names = FALSE,
-          skip = 12,
-          n_max = 4
-        )
-      
-      EnergySectorEmployment <- as.data.frame(t(EnergySectorEmployment))
-      
-      EnergySectorEmployment <-
-        tail(EnergySectorEmployment[c(1, 3:4)], -1)
-      EnergySectorEmployment %<>% lapply(function(x)
-        as.numeric(as.character(x)))
-      EnergySectorEmployment <- as.data.frame(EnergySectorEmployment)
-      EnergySectorEmployment[EnergySectorEmployment == 0] <- NA
-      names(EnergySectorEmployment) <-
-        c("Year", "Excluding PAYE", "Including PAYE")
-      
-      EnergySectorEmployment <-
-        EnergySectorEmployment[which(EnergySectorEmployment$Year >= 2009), ]
-      
+  output$EnergySectorEmploymentSubtitle <- renderText({
+    
+    EnergySectorEmployment <-
+      read_excel(
+        "Structure/CurrentWorking.xlsx",
+        sheet = "Energy economy",
+        col_names = FALSE,
+        skip = 12,
+        n_max = 4
+      )
+    
+    EnergySectorEmployment <- as.data.frame(t(EnergySectorEmployment))
+    
+    EnergySectorEmployment <-
+      tail(EnergySectorEmployment[c(1, 3:4)], -1)
+    EnergySectorEmployment %<>% lapply(function(x)
+      as.numeric(as.character(x)))
+    EnergySectorEmployment <- as.data.frame(EnergySectorEmployment)
+    EnergySectorEmployment[EnergySectorEmployment == 0] <- NA
+    names(EnergySectorEmployment) <-
+      c("Year", "Excluding PAYE", "Including PAYE")
+    
+    EnergySectorEmployment <-
+      EnergySectorEmployment[which(EnergySectorEmployment$Year >= 2009), ]
+    
     paste("Scotland,", min(EnergySectorEmployment$Year),"-", max(EnergySectorEmployment$Year))
   })
   
- 
+  
   output$EnergySectorEmploymentPlot <- renderPlotly  ({
     
     EnergySectorEmployment <-
@@ -292,6 +310,10 @@ EnEconomy <- function(input, output, session) {
     
     EnergySectorTurnover$Year <- as.numeric(substr(EnergySectorTurnover$Year, 1,4))
     
+    EnergySectorTurnover[EnergySectorTurnover == 0] <- NA
+    
+    EnergySectorTurnover <- EnergySectorTurnover[complete.cases(EnergySectorTurnover),]
+    
     paste("Scotland,", min(EnergySectorTurnover$Year),"-", max(EnergySectorTurnover$Year))
     
     
@@ -407,6 +429,10 @@ EnEconomy <- function(input, output, session) {
     EnergySectorGVA$Year <- as.numeric(substr(EnergySectorGVA$Year, 1,4))
     
     EnergySectorGVA$GVA <- EnergySectorGVA$GVA /1000
+    
+    EnergySectorGVA[EnergySectorGVA == 0] <- NA
+    
+    EnergySectorGVA <- EnergySectorGVA[complete.cases(EnergySectorGVA),]
     
     paste("Scotland,", min(EnergySectorGVA$Year),"-", max(EnergySectorGVA$Year))
   })
@@ -582,18 +608,6 @@ EnEconomy <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = mean(Year),
-            y = mean(GVA),
-            label = "GVA",
-            hjust = 0.5,
-            vjust = 1,
-            colour = ChartColours[2],
-            fontface = 2
-          ),
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
             x = Year,
             y = 0,
             label = ifelse(Year == max(Year) |
@@ -631,7 +645,7 @@ EnEconomy <- function(input, output, session) {
     }
   )
   
-
+  
   output$EnergySectorExportsSubtitle <- renderText({
     GrowthExports <- read_delim("Processed Data/Output/Growth Exports/GrowthExports.txt", 
                                 "\t", escape_double = FALSE, trim_ws = TRUE)
@@ -717,6 +731,81 @@ EnEconomy <- function(input, output, session) {
     
   })
   
+  output$EnergySectorTotalExportsSubtitle <- renderText({
+    GrowthExports <- read_delim("Processed Data/Output/Growth Exports/GrowthExports.txt", 
+                                "\t", escape_double = FALSE, trim_ws = TRUE)
+    paste("Scotland,", min(GrowthExports$Year),"-", max(GrowthExports$Year))
+  })
+  
+  output$EnergySectorTotalExports <- renderPlotly  ({
+    TotalExports <- read_delim("Processed Data/Output/Growth Exports/GrowthExports.txt", 
+                               "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    ChartColours <- c("#1a5d38", "#fc8d62", "#8da0cb")
+    
+    TotalExports$Year <-
+      paste0("01/01/", TotalExports$Year)
+    
+    TotalExports$Year <- dmy(TotalExports$Year)
+    
+    TotalExports$Total <- TotalExports$UKExports+TotalExports$EUExports+TotalExports$NonEUExports
+    
+    p <-  plot_ly(
+      TotalExports,
+      x = ~ Year,
+      y = ~ Total,
+      name = "Total",
+      type = 'scatter',
+      mode = 'lines',
+      text = paste0(
+        "Total: \u00A3",
+        round(TotalExports$Total, digits = 1),
+        " billion\nYear: ",
+        format(TotalExports$Year, "%Y")
+      ),
+      hoverinfo = 'text',
+      line = list(width = 6, color = ChartColours[1], dash = "none")
+    ) %>%
+      add_trace(
+        data = TotalExports[nrow(TotalExports), ],
+        x = ~ Year,
+        y = ~ `Total`,
+        name = "Total",
+        text = paste0(
+          "Total: \u00A3",
+          round(TotalExports$Total, digits = 1),
+          " billion\nYear: ",
+          format(TotalExports$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        mode = 'markers',
+        marker = list(size = 18, color = ChartColours[1])
+      ) %>%
+      layout(
+        legend = list(font = list(color = "#1A5D38"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        xaxis = list(title = "",
+                     showgrid = FALSE,
+                     range = c(min(TotalExports$Year)-100, max(TotalExports$Year)+100)),
+        yaxis = list(
+          title = "\u00A3 billion",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          rangemode = "tozero"
+        )
+      ) %>%
+      config(displayModeBar = F)
+    p
+    
+    
+  })
+  
   output$EnEconomyTable = renderDataTable({
     EnergySectorExports <- read_excel("Structure/CurrentWorking.xlsx", 
                                       sheet = "Energy economy", col_names = FALSE, 
@@ -741,11 +830,13 @@ EnEconomy <- function(input, output, session) {
     EnergySectorExports[EnergySectorExports == 0] <- NA
     
     GrowthExports <- read_delim("Processed Data/Output/Growth Exports/GrowthExports.txt", 
-                                           "\t", escape_double = FALSE, trim_ws = TRUE)
+                                "\t", escape_double = FALSE, trim_ws = TRUE)
     
     EnergySectorExports <- merge(EnergySectorExports[1:5], GrowthExports)
     
-    names(EnergySectorExports) <- c("Year", "Employment - Excluding additional units registered for PAYE only", "Employment - Including additional PAYE only units", "Turnover (\u00A3b)", "GVA (\u00A3b)",  "Exports to rest of the U.K. (\u00A3b)", "Exports to EU Countries (\u00A3b)", "Exports to Non-EU Countries (\u00A3b)")
+    EnergySectorExports$TotalExports <- EnergySectorExports$UKExports + EnergySectorExports$EUExports + EnergySectorExports$NonEUExports
+    
+    names(EnergySectorExports) <- c("Year", "Employment - Excluding additional units registered for PAYE only", "Employment - Including additional PAYE only units", "Turnover (\u00A3b)", "GVA (\u00A3b)",  "Exports to rest of the U.K. (\u00A3b)", "Exports to EU Countries (\u00A3b)", "Exports to Non-EU Countries (\u00A3b)", "Total Exports (\u00A3b)")
     
     datatable(
       EnergySectorExports,
@@ -782,7 +873,8 @@ EnEconomy <- function(input, output, session) {
     ) %>% 
       
       formatRound(2:3, 0) %>% 
-      formatRound(4:8, 3) 
+      formatRound(4:9, 3) %>% 
+      formatStyle(9, fontWeight = "bold")
     
     
   })
@@ -815,8 +907,8 @@ EnEconomy <- function(input, output, session) {
     content = function(file) {
       
       EnergySectorEmployment <- read_excel("Structure/CurrentWorking.xlsx", 
-                                         sheet = "Energy economy", col_names = FALSE, 
-                                         skip = 12, n_max = 9)
+                                           sheet = "Energy economy", col_names = FALSE, 
+                                           skip = 12, n_max = 9)
       
       EnergySectorEmployment <- as.data.frame(t(EnergySectorEmployment))
       
@@ -834,6 +926,8 @@ EnEconomy <- function(input, output, session) {
       ChartColours <- c("#1a5d38", "#41ab5d", "#1a5d38")
       sourcecaption = "Source: Scottish Government"
       plottitle = "Employment in the energy sector"  
+      
+      length <- max(EnergySectorEmployment$Year) - min(EnergySectorEmployment$Year)
       
       EnergySectorEmploymentChart <- EnergySectorEmployment %>%
         ggplot(aes(x = Year), family = "Century Gothic") +
@@ -992,7 +1086,8 @@ EnEconomy <- function(input, output, session) {
           ChartColours
         )
       
-      EnergySectorEmploymentChart
+      EnergySectorEmploymentChart <- EnergySectorEmploymentChart +
+        xlim(min(EnergySectorEmployment$Year)-(length*0.03), max(EnergySectorEmployment$Year)+(length*0.03))
       
       ggsave(
         file,
@@ -1317,5 +1412,104 @@ EnEconomy <- function(input, output, session) {
   )
   
   
-
+  output$EnergySectorTotalExports.png <- downloadHandler(
+    filename = "EnergySectorTotalExports.png",
+    content = function(file) {
+      
+      EnergySectorTotal <- read_delim("Processed Data/Output/Growth Exports/GrowthExports.txt", 
+                                      "\t", escape_double = FALSE, trim_ws = TRUE)
+      
+      ChartColours <- c("#1a5d38", "#fc8d62", "#8da0cb")
+      
+      EnergySectorTotal$Total <- EnergySectorTotal$UKExports+EnergySectorTotal$EUExports+EnergySectorTotal$NonEUExports
+      
+      sourcecaption <- "Source: SG"
+      plottitle <- "Total energy sector exports"
+      
+      
+      EnergySectorTotalChart <- EnergySectorTotal %>%
+        ggplot(aes(x = Year), family = "Century Gothic") +
+        geom_line(
+          aes(
+            y = Total,
+            colour = ChartColours[2],
+            label = percent(Total)
+          ),
+          size = 1.5,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year-.99,
+            y = Total,
+            label = ifelse(Year == min(Year), paste0("\u00A3", format(round(Total, digits = 3),nsmall = 0, big.mark = ",", trim = TRUE), "\nbillion"), ""),
+            hjust = 0.5,
+            colour = ChartColours[2],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year+1.08,
+            y = Total,
+            label = ifelse(Year == max(Year), paste0("\u00A3", format(round(Total, digits = 3),nsmall = 0, big.mark = ",", trim = TRUE), "\nbillion"), ""),
+            hjust = 0.5,
+            colour = ChartColours[2],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(EnergySectorTotal, 1),
+          aes(
+            x = Year,
+            y = Total,
+            colour = ChartColours[2],
+            show_guide = FALSE
+          ),
+          size = 4,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = 0,
+            label = ifelse(Year == max(Year) |
+                             Year == min(Year), Year, ""),
+            hjust = 0.5,
+            vjust = 1.5,
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic"
+        )
+      
+      
+      EnergySectorTotalChart <-
+        LinePercentChart(EnergySectorTotalChart,
+                         EnergySectorTotal,
+                         plottitle,
+                         sourcecaption,
+                         ChartColours)
+      
+      
+      EnergySectorTotalChart <- EnergySectorTotalChart +
+        xlim(min(EnergySectorTotal$Year) -1.4 , max(EnergySectorTotal$Year) +1.4)+
+        ylim(-.15, max(EnergySectorTotal$Total+1))
+      
+      
+      ggsave(
+        file,
+        plot =  EnergySectorTotalChart,
+        width = 14,
+        height = 16,
+        units = "cm",
+        dpi = 300
+      )
+    }
+  )
+  
+  
+  
 }

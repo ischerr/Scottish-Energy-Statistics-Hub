@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 DualFuelBreakdownOutput <- function(id) {
   ns <- NS(id)
@@ -81,11 +81,11 @@ DualFuelBreakdownOutput <- function(id) {
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
-             DateLookup(c("OFGEMConsumers"))),
+             DateLookup(c("OFGEMTariff"))),
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
-        SourceLookup("OFGEMConsumers")
+        SourceLookup("OFGEMTariff")
         
       )
     )
@@ -111,7 +111,7 @@ DualFuelBreakdown <- function(input, output, session) {
     NorthScotlandDualFuelBreakdown <- read_delim("Processed Data/Output/Energy Bills/NorthScotlandDualFuelBreakdown.txt", 
                                                  "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    NorthScotlandDualFuelBreakdown <- tail(NorthScotlandDualFuelBreakdown,1)
+    NorthScotlandDualFuelBreakdown <- head(NorthScotlandDualFuelBreakdown,1)
     
     paste("Scotland,", NorthScotlandDualFuelBreakdown$Dates)
   })
@@ -121,7 +121,7 @@ DualFuelBreakdown <- function(input, output, session) {
     NorthScotlandDualFuelBreakdown <- read_delim("Processed Data/Output/Energy Bills/NorthScotlandDualFuelBreakdown.txt", 
                                                  "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    NorthScotlandDualFuelBreakdown <- tail(NorthScotlandDualFuelBreakdown,1)
+    NorthScotlandDualFuelBreakdown <- head(NorthScotlandDualFuelBreakdown,1)
     
     NorthScotlandDualFuelBreakdown$Region <- "North Scotland"
     
@@ -129,7 +129,7 @@ DualFuelBreakdown <- function(input, output, session) {
     SouthScotlandDualFuelBreakdown <- read_delim("Processed Data/Output/Energy Bills/SouthScotlandDualFuelBreakdown.txt", 
                                                  "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    SouthScotlandDualFuelBreakdown <- tail(SouthScotlandDualFuelBreakdown,1)
+    SouthScotlandDualFuelBreakdown <- head(SouthScotlandDualFuelBreakdown,1)
     
     SouthScotlandDualFuelBreakdown$Region <- "South Scotland"
     
@@ -204,6 +204,18 @@ DualFuelBreakdown <- function(input, output, session) {
         marker = list(color = BarColours[5]),
         legendgroup = 5
       ) %>%
+      add_trace(
+        data = AllScotlandDualFuelBreakdown,
+        x = ~ `Adjustment allowance`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Adjustment allowance",
+        text = paste0("Adjustment allowance: ", percent(AllScotlandDualFuelBreakdown$`Adjustment allowance`, accuracy = 0.1)),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[6]),
+        legendgroup = 6
+      ) %>%
       layout(
         barmode = 'stack',
         legend = list(font = list(color = "#1A5D38"),
@@ -244,9 +256,9 @@ DualFuelBreakdown <- function(input, output, session) {
     
     
     paste("Scotland,",
-          str_sub(head(NorthScotlandDualFuelBreakdown,1)$Dates,-4,-1),
+          str_sub(tail(NorthScotlandDualFuelBreakdown,1)$Dates,-4,-1),
           "-",
-          str_sub(tail(NorthScotlandDualFuelBreakdown,1)$Dates,-4,-1))
+          str_sub(head(NorthScotlandDualFuelBreakdown,1)$Dates,-4,-1))
   })
   
   output$NorthDualFuelBreakdownPlot <- renderPlotly  ({
@@ -325,6 +337,18 @@ DualFuelBreakdown <- function(input, output, session) {
         marker = list(color = BarColours[5]),
         legendgroup = 5
       ) %>%
+      add_trace(
+        data = NorthScotlandDualFuelBreakdown,
+        x = ~ `Adjustment allowance`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Adjustment allowance",
+        text = paste0("Adjustment allowance: ", percent(NorthScotlandDualFuelBreakdown$`Adjustment allowance`, accuracy = 0.1)),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[5]),
+        legendgroup = 6
+      ) %>%
       layout(
         barmode = 'stack',
         legend = list(font = list(color = "#1A5D38"),
@@ -363,9 +387,9 @@ DualFuelBreakdown <- function(input, output, session) {
     
     
     paste("Scotland,",
-          str_sub(head(SouthScotlandDualFuelBreakdown,1)$Dates,-4,-1),
+          str_sub(tail(SouthScotlandDualFuelBreakdown,1)$Dates,-4,-1),
           "-",
-          str_sub(tail(SouthScotlandDualFuelBreakdown,1)$Dates,-4,-1))
+          str_sub(head(SouthScotlandDualFuelBreakdown,1)$Dates,-4,-1))
   })
   
   output$SouthDualFuelBreakdownPlot <- renderPlotly  ({
@@ -444,6 +468,18 @@ DualFuelBreakdown <- function(input, output, session) {
         marker = list(color = BarColours[5]),
         legendgroup = 5
       ) %>%
+      add_trace(
+        data = SouthScotlandDualFuelBreakdown,
+        x = ~ `Adjustment allowance`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Adjustment allowance",
+        text = paste0("Adjustment allowance: ", percent(SouthScotlandDualFuelBreakdown$`Adjustment allowance`, accuracy = 0.1)),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[6]),
+        legendgroup = 6
+      ) %>%
       layout(
         barmode = 'stack',
         legend = list(font = list(color = "#1A5D38"),
@@ -480,10 +516,10 @@ DualFuelBreakdown <- function(input, output, session) {
     NorthScotlandDualFuelBreakdown <- read_delim("Processed Data/Output/Energy Bills/NorthScotlandDualFuelBreakdown.txt", 
                                                  "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    
+    NorthScotlandDualFuelBreakdown <- rbind(NorthScotlandDualFuelBreakdown,c("April 2015 - September 2015",	0.450785585238946,	0.261135156074665,	0.091990188767057,	0.177089062071332,	0.0190000078479999, 0, 0))
     
     datatable(
-      NorthScotlandDualFuelBreakdown[1:6],
+      NorthScotlandDualFuelBreakdown[1:7],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -513,7 +549,7 @@ DualFuelBreakdown <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:9, 1)
+      formatPercentage(2:7, 1)
   })
   
   output$SouthDualFuelBreakdownTable = renderDataTable({
@@ -522,8 +558,10 @@ DualFuelBreakdown <- function(input, output, session) {
     SouthScotlandDualFuelBreakdown <- read_delim("Processed Data/Output/Energy Bills/SouthScotlandDualFuelBreakdown.txt", 
                                                  "\t", escape_double = FALSE, trim_ws = TRUE)
     
+    SouthScotlandDualFuelBreakdown <- rbind(SouthScotlandDualFuelBreakdown,c("April 2015 - September 2015",	0.462706502598415,	0.242183563345471,	0.0944366540135878,	0.181673272194526,	0.0190000078479999,0,0))
+    
     datatable(
-      SouthScotlandDualFuelBreakdown[1:6],
+      as_tibble(SouthScotlandDualFuelBreakdown[1:7]),
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -553,7 +591,7 @@ DualFuelBreakdown <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:9, 1)
+      formatPercentage(2:7, 1)
   })
   
   
@@ -586,7 +624,7 @@ DualFuelBreakdown <- function(input, output, session) {
       NorthScotlandDualFuelBreakdown <- read_delim("Processed Data/Output/Energy Bills/NorthScotlandDualFuelBreakdown.txt", 
                                                    "\t", escape_double = FALSE, trim_ws = TRUE)
       
-      NorthScotlandDualFuelBreakdown <- tail(NorthScotlandDualFuelBreakdown,1)
+      NorthScotlandDualFuelBreakdown <- head(NorthScotlandDualFuelBreakdown,1)
       
       NorthScotlandDualFuelBreakdown$Region <- "North Scotland"
       
@@ -594,11 +632,11 @@ DualFuelBreakdown <- function(input, output, session) {
       SouthScotlandDualFuelBreakdown <- read_delim("Processed Data/Output/Energy Bills/SouthScotlandDualFuelBreakdown.txt", 
                                                    "\t", escape_double = FALSE, trim_ws = TRUE)
       
-      SouthScotlandDualFuelBreakdown <- tail(SouthScotlandDualFuelBreakdown,1)
+      SouthScotlandDualFuelBreakdown <- head(SouthScotlandDualFuelBreakdown,1)
       
       SouthScotlandDualFuelBreakdown$Region <- "South Scotland"
       
-      DualFuelBreakdown <- rbind(NorthScotlandDualFuelBreakdown, SouthScotlandDualFuelBreakdown)[c(2:6,8)]
+      DualFuelBreakdown <- rbind(NorthScotlandDualFuelBreakdown, SouthScotlandDualFuelBreakdown)[c(2:7,9)]
       
       DualFuelBreakdown <- melt(DualFuelBreakdown, id.vars = "Region")
       
@@ -630,7 +668,8 @@ DualFuelBreakdown <- function(input, output, session) {
             "Network costs" = BarColours[2],
             "Policy costs" = BarColours[3],
             "Operating costs" = BarColours[4],
-            "EBIT" = BarColours[5]
+            "EBIT" = BarColours[5],
+            "Adjustment allowance" = BarColours[6]
           )
         ) +
         geom_bar(stat = "identity", width = .8) +
@@ -646,7 +685,7 @@ DualFuelBreakdown <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = 2.7,
-              y = (0.5/5)*1,
+              y = (0.5/6)*1,
               label = "Wholesale\nCosts"),
           fontface = 2,
           colour = BarColours[1],
@@ -655,7 +694,7 @@ DualFuelBreakdown <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = 2.7,
-              y = (1.5/5)*1,
+              y = (1.5/6)*1,
               label = "Network\nCosts"),
           fontface = 2,
           colour = BarColours[2],
@@ -664,7 +703,7 @@ DualFuelBreakdown <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = 2.7,
-              y = (2.5/5)*1,
+              y = (2.5/6)*1,
               label = "Policy\ncosts"),
           fontface = 2,
           colour = BarColours[3],
@@ -673,7 +712,7 @@ DualFuelBreakdown <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = 2.7,
-              y = (3.5/5)*1,
+              y = (3.5/6)*1,
               label = "Operating\ncosts"),
           fontface = 2,
           colour = BarColours[4],
@@ -682,10 +721,19 @@ DualFuelBreakdown <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = 2.7,
-              y = (4.5/5)*1,
+              y = (4.5/6)*1,
               label = "EBIT"),
           fontface = 2,
           colour = BarColours[5],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 2.7,
+              y = (5.5/6)*1,
+              label = "Adjustment\nallowance"),
+          fontface = 2,
+          colour = BarColours[6],
           family = "Century Gothic",
           hjust = 0.5
         ) +
@@ -747,7 +795,7 @@ DualFuelBreakdown <- function(input, output, session) {
       
       
       NorthDualFuelBreakdown <- read_delim("Processed Data/Output/Energy Bills/NorthScotlandDualFuelBreakdown.txt", 
-                                           "\t", escape_double = FALSE, trim_ws = TRUE)[1:6]
+                                           "\t", escape_double = FALSE, trim_ws = TRUE)[1:7]
       
       height <- nrow(NorthDualFuelBreakdown)
       
@@ -782,7 +830,8 @@ DualFuelBreakdown <- function(input, output, session) {
             "Network costs" = BarColours[2],
             "Policy costs" = BarColours[3],
             "Operating costs" = BarColours[4],
-            "EBIT" = BarColours[5]
+            "EBIT" = BarColours[5],
+            "Adjustment allowance" = BarColours[6]
           )
         ) +
         geom_bar(stat = "identity", width = .8) +
@@ -799,7 +848,7 @@ DualFuelBreakdown <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height *1.11,
-              y = (0.5/5)*1,
+              y = (0.5/6)*1,
               label = "Wholesale\nCosts"),
           fontface = 2,
           colour = BarColours[1],
@@ -808,7 +857,7 @@ DualFuelBreakdown <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height *1.11,
-              y = (1.5/5)*1,
+              y = (1.5/6)*1,
               label = "Network\nCosts"),
           fontface = 2,
           colour = BarColours[2],
@@ -817,7 +866,7 @@ DualFuelBreakdown <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height *1.11,
-              y = (2.5/5)*1,
+              y = (2.5/6)*1,
               label = "Policy\ncosts"),
           fontface = 2,
           colour = BarColours[3],
@@ -826,7 +875,7 @@ DualFuelBreakdown <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height *1.11,
-              y = (3.5/5)*1,
+              y = (3.5/6)*1,
               label = "Operating\ncosts"),
           fontface = 2,
           colour = BarColours[4],
@@ -835,10 +884,19 @@ DualFuelBreakdown <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height *1.11,
-              y = (4.5/5)*1,
+              y = (4.5/6)*1,
               label = "EBIT"),
           fontface = 2,
           colour = BarColours[5],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = height *1.11,
+              y = (5.5/6)*1,
+              label = "Adjustment\nallowance"),
+          fontface = 2,
+          colour = BarColours[6],
           family = "Century Gothic",
           hjust = 0.5
         ) +
@@ -875,12 +933,12 @@ DualFuelBreakdown <- function(input, output, session) {
       
       NorthDualFuelBreakdownChart <-
         NorthDualFuelBreakdownChart +
-        ylim(-.38,1.01) +
+        ylim(-.42,1.01) +
         coord_flip() +
         labs(subtitle =     paste("Scotland,",
-                                  str_sub(head(NorthDualFuelBreakdown,1)$Dates,-4,-1),
+                                  str_sub(tail(NorthDualFuelBreakdown,1)$Dates,-4,-1),
                                   "-",
-                                  str_sub(tail(NorthDualFuelBreakdown,1)$Dates,-4,-1)))
+                                  str_sub(head(NorthDualFuelBreakdown,1)$Dates,-4,-1)))
       
       NorthDualFuelBreakdownChart
       
@@ -903,7 +961,7 @@ DualFuelBreakdown <- function(input, output, session) {
       
       
       SouthDualFuelBreakdown <- read_delim("Processed Data/Output/Energy Bills/SouthScotlandDualFuelBreakdown.txt", 
-                                           "\t", escape_double = FALSE, trim_ws = TRUE)[1:6]
+                                           "\t", escape_double = FALSE, trim_ws = TRUE)[1:7]
       
       height <- nrow(SouthDualFuelBreakdown)
       
@@ -938,7 +996,8 @@ DualFuelBreakdown <- function(input, output, session) {
             "Network costs" = BarColours[2],
             "Policy costs" = BarColours[3],
             "Operating costs" = BarColours[4],
-            "EBIT" = BarColours[5]
+            "EBIT" = BarColours[5],
+            "Adjustment allowance" = BarColours[6]
           )
         ) +
         geom_bar(stat = "identity", width = .8) +
@@ -955,7 +1014,7 @@ DualFuelBreakdown <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height *1.11,
-              y = (0.5/5)*1,
+              y = (0.5/6)*1,
               label = "Wholesale\nCosts"),
           fontface = 2,
           colour = BarColours[1],
@@ -964,7 +1023,7 @@ DualFuelBreakdown <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height *1.11,
-              y = (1.5/5)*1,
+              y = (1.5/6)*1,
               label = "Network\nCosts"),
           fontface = 2,
           colour = BarColours[2],
@@ -973,7 +1032,7 @@ DualFuelBreakdown <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height *1.11,
-              y = (2.5/5)*1,
+              y = (2.5/6)*1,
               label = "Policy\ncosts"),
           fontface = 2,
           colour = BarColours[3],
@@ -982,7 +1041,7 @@ DualFuelBreakdown <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height *1.11,
-              y = (3.5/5)*1,
+              y = (3.5/6)*1,
               label = "Operating\ncosts"),
           fontface = 2,
           colour = BarColours[4],
@@ -991,10 +1050,19 @@ DualFuelBreakdown <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height *1.11,
-              y = (4.5/5)*1,
+              y = (4.5/6)*1,
               label = "EBIT"),
           fontface = 2,
           colour = BarColours[5],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = height *1.11,
+              y = (5.5/6)*1,
+              label = "Adjustment\nallowance"),
+          fontface = 2,
+          colour = BarColours[6],
           family = "Century Gothic",
           hjust = 0.5
         ) +
@@ -1031,12 +1099,12 @@ DualFuelBreakdown <- function(input, output, session) {
       
       SouthDualFuelBreakdownChart <-
         SouthDualFuelBreakdownChart +
-        ylim(-.38,1.01) +
+        ylim(-.42,1.01) +
         coord_flip() +
         labs(subtitle =     paste("Scotland,",
-                                  str_sub(head(SouthDualFuelBreakdown,1)$Dates,-4,-1),
+                                  str_sub(tail(SouthDualFuelBreakdown,1)$Dates,-4,-1),
                                   "-",
-                                  str_sub(tail(SouthDualFuelBreakdown,1)$Dates,-4,-1)))
+                                  str_sub(head(SouthDualFuelBreakdown,1)$Dates,-4,-1)))
       
       SouthDualFuelBreakdownChart
       

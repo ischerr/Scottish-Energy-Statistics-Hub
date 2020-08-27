@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 MaxSupplyPeakDemandOutput <- function(id) {
   ns <- NS(id)
@@ -269,7 +269,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Elec capacity and peak demand", col_names = TRUE, 
-        skip = 37)[c(1:11)]
+        skip = 38)[c(1:11)]
     
     names(Data)[1:2] <- c("Year", "Period")
     
@@ -302,7 +302,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Elec capacity and peak demand", col_names = TRUE, 
-        skip = 37)[c(1:11)]
+        skip = 38)[c(1:11)]
     
     names(Data)[1:2] <- c("Year", "Period")
     
@@ -474,7 +474,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Elec capacity and peak demand", col_names = TRUE, 
-        skip = 37)[c(1:11)]
+        skip = 38)[c(1:11)]
     
     names(Data)[1:2] <- c("Year", "Period")
     
@@ -484,7 +484,11 @@ MaxSupplyPeakDemand <- function(input, output, session) {
     
     Data <- as_tibble(Data)
     
-    MaxSupplyCapacityTech <- Data[c(2:11)]
+    Data$`Maximum Scottish generated capacity` <- Data$CCGT+ Data$Coal + Data$Nuclear + Data$`Large Hydro` + Data$`Pumped Storage` + Data$Diesel
+    
+    Data$`Maximum import capacity` <- Data$`Moyle Interconnector` + Data$`Secure import capability of GB Transmission Network into Scotland`
+    
+    MaxSupplyCapacityTech <- Data[c(2:8,12,9,10,13,11)]
     
     datatable(
       MaxSupplyCapacityTech,
@@ -519,8 +523,9 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:10, 0) %>% 
-      formatStyle(10, fontWeight = "bold")
+      formatRound(2:12, 0) %>% 
+      formatStyle(12, fontWeight = "bold") %>% 
+      formatStyle(c(8,11), fontStyle = "Italic")
   })
   
   output$Text <- renderUI({
@@ -682,7 +687,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         read_excel(
           "Structure/CurrentWorking.xlsx",
           sheet = "Elec capacity and peak demand", col_names = TRUE, 
-          skip = 37)[c(1:11)]
+          skip = 38)[c(1:11)]
       
       names(Data)[1:2] <- c("Year", "Period")
       
@@ -766,7 +771,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.3,
+            x = 11.3,
             y = 13000 * (.5 / 8),
             label = "CCGT"
           ),
@@ -778,7 +783,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.3,
+            x = 11.3,
             y = 13000 * (1.5 / 8),
             label = "Coal"
           ),
@@ -790,7 +795,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.3,
+            x = 11.3,
             y = 13000 * (2.5 / 8),
             label = "Nuclear"
           ),
@@ -802,7 +807,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.3,
+            x = 11.3,
             y = 13000 * (3.5 / 8),
             label = "Large\nHydro"
           ),
@@ -814,7 +819,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.3,
+            x = 11.3,
             y = 13000 * (4.5 / 8),
             label = "Pumped\nStorage"
           ),
@@ -826,7 +831,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.3,
+            x = 11.3,
             y = 13000 * (5.5 / 8),
             label = "Diesel"
           ),
@@ -838,7 +843,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.3,
+            x = 11.3,
             y = 13000 * (6.5 / 8),
             label = "Moyle\nInterconnector"
           ),
@@ -850,7 +855,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.3,
+            x = 11.3,
             y = 13000 * (7.5 / 8),
             label = "Secure\nImport"
           ),
@@ -861,7 +866,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
           size = 3
         ) +
         geom_text(
-          aes(x = 10.8,
+          aes(x = 11.8,
               y = 13000 * (8 / 8),
               label = " "),
           fontface = 2,
@@ -896,7 +901,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 9.7 ,
+            x = 10.7 ,
             y = (MaxSupply$top - MaxSupply$value[which(MaxSupply$variable == "Moyle Interconnector")] - MaxSupply$value[which(
               MaxSupply$variable == "Secure import capability of GB Transmission Network into Scotland"
             )]) * .5,
@@ -952,8 +957,8 @@ MaxSupplyPeakDemand <- function(input, output, session) {
           colour =  ChartColours[1]
         ) +
         geom_segment(
-          x = 9.47,
-          xend = 9.47,
+          x = 10.47,
+          xend = 10.47,
           y = 0,
           yend = ifelse(
             MaxSupply$Year == max(MaxSupply$Year),
@@ -999,7 +1004,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Elec capacity and peak demand", col_names = TRUE, 
-        skip = 37)[c(1:11)]
+        skip = 38)[c(1:11)]
     
     names(Data)[1:2] <- c("Year", "Period")
     
@@ -1032,7 +1037,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Elec capacity and peak demand", col_names = TRUE, 
-        skip = 37)[c(1:11)]
+        skip = 38)[c(1:11)]
     
     names(Data)[1:2] <- c("Year", "Period")
     
@@ -1133,7 +1138,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         read_excel(
           "Structure/CurrentWorking.xlsx",
           sheet = "Elec capacity and peak demand", col_names = TRUE, 
-          skip = 37)[c(1:11)]
+          skip = 38)[c(1:11)]
       
       names(Data)[1:2] <- c("Year", "Period")
       
@@ -1243,7 +1248,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.1,
+            x = 11.1,
             y = 4500,
             label = "Scottish generation"
           ),
@@ -1255,7 +1260,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 10.1,
+            x = 11.1,
             y = 10500,
             label = "Imports"
           ),
@@ -1266,7 +1271,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
           size = 3
         ) +
         geom_text(
-          aes(x = 10.5,
+          aes(x = 11.5,
               y = 13000 * (8 / 8),
               label = " "),
           fontface = 2,

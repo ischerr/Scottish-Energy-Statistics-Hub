@@ -5,8 +5,6 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
-
 EnProdOutput <- function(id) {
   ns <- NS(id)
   tagList(
@@ -59,7 +57,7 @@ EnProdOutput <- function(id) {
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
-             p("March 2019")),
+             DateLookup(c("SGQNAS", "BEISSubNatEnergy", "BEISSubNatElec", "BEISSubNatGas", "BEISLocalRoad"))),
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
@@ -390,7 +388,7 @@ EnProd <- function(input, output, session) {
       )
     ) %>%
       formatPercentage(3:4, 1) %>% 
-      formatRound(5:7, 0) %>% 
+      formatRound(5:6, 0) %>% 
       formatRound(2,3)
   })
   
@@ -806,7 +804,8 @@ EnProd <- function(input, output, session) {
                          ChartColours)
       
       EnProdHistChart <- EnProdHistChart +
-        xlim(min(EnProdHist$Year)-0.5,max(EnProdHist$Year)+0.5)
+        xlim(min(EnProdHist$Year)-0.5,max(EnProdHist$Year)+0.5)+
+        ylim(-0.0025, .32)
       
       EnProdHistChart
       

@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 DisplacedEmissionsOutput <- function(id) {
   ns <- NS(id)
@@ -190,8 +190,8 @@ DisplacedEmissions <- function(input, output, session) {
     
     Displacement <- Data
     
-    RenFuel <- read_excel("Structure/CurrentWorking.xlsx", 
-                          sheet = "Fuel Readable", skip = 1)[c(1,3)]
+    RenFuel <-  read_excel("Structure/CurrentWorking.xlsx", 
+                          sheet = "Renewable elec target", skip = 15)[1:2]
     
     names(RenFuel) <- c("Year", "Renewables")
     

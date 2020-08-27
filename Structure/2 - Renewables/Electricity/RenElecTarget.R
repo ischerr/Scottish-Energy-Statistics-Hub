@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 RenElecTargetOutput <- function(id) {
   ns <- NS(id)
@@ -297,7 +297,7 @@ RenElecTarget <- function(input, output, session) {
     RenElec <- as_tibble(RenElec)
     
     datatable(
-      RenElec,
+      RenElec[c(1,2,4)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -329,8 +329,8 @@ RenElecTarget <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(4, 1) %>% 
-      formatRound(2:3, 0)
+      formatPercentage(3, 1) %>% 
+      formatRound(2, 0)
   })
   
   
