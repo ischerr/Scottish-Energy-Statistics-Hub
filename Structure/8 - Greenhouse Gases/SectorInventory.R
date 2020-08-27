@@ -120,7 +120,7 @@ SectorInventory <- function(input, output, session) {
     plottitle <- "Net source greenhouse gas emissions from the energy supply sector (MtCO2e)"
     sourcecaption <- "Source: BEIS"
     ChartColours <- c("#39ab2c", "#FF8500")
-    LineColours <- c( "#39ab2c","#006837", "#41ab5d", "#addd8e")
+    LineColours <- c( "#7f0000","#b30000", "#a63603", "#fee6ce", "#fdd0a2", "#fdae6b", "#fd8d3c", "#f16913", "#d94801", "#238b45")
     
     SectorInventory$Year <- paste0("01/01/", SectorInventory$Year)
     
@@ -345,7 +345,7 @@ SectorInventory <- function(input, output, session) {
               name = "Waste Management",
               type = 'scatter',
               mode = 'lines',
-              legendgroup = "1",
+              legendgroup = "7",
               text = paste0(
                 "Waste Management: ",
                 round(SectorInventory$`Waste Management`, digits = 1),
@@ -353,7 +353,7 @@ SectorInventory <- function(input, output, session) {
                 format(SectorInventory$Year, "%Y")
               ),
               hoverinfo = 'text',
-              line = list(width = 6, color = LineColours[1], dash = "none")
+              line = list(width = 6, color = LineColours[7], dash = "none")
     ) %>% 
       add_trace(
         data = SectorInventory[which(SectorInventory$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(SectorInventory$Year))),],
@@ -370,34 +370,34 @@ SectorInventory <- function(input, output, session) {
         showlegend = FALSE ,
         type = "scatter",
         mode = 'markers',
-        legendgroup = "1",
+        legendgroup = "7",
         marker = list(size = 18, 
-                      color = LineColours[1])
+                      color = LineColours[7])
       ) %>%  ##################
     add_trace(data = SectorInventory,
               x = ~ Year,
-              y = ~ `Agriculture`,
-              name = "Agriculture",
+              y = ~ `Public`,
+              name = "Public",
               type = 'scatter',
               mode = 'lines',
-              legendgroup = "1",
+              legendgroup = "8",
               text = paste0(
-                "Agriculture: ",
-                round(SectorInventory$`Agriculture`, digits = 1),
+                "Public: ",
+                round(SectorInventory$`Public`, digits = 1),
                 " MtCO2e\nYear: ",
                 format(SectorInventory$Year, "%Y")
               ),
               hoverinfo = 'text',
-              line = list(width = 6, color = LineColours[1], dash = "none")
+              line = list(width = 6, color = LineColours[8], dash = "none")
     ) %>% 
       add_trace(
         data = SectorInventory[which(SectorInventory$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(SectorInventory$Year))),],
         x = ~ Year,
-        y = ~ `Agriculture`,
-        name = "Agriculture",
+        y = ~ `Public`,
+        name = "Public",
         text = paste0(
-          "Agriculture: ",
-          round(SectorInventory[which(SectorInventory$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(SectorInventory$Year))),]$`Agriculture`, digits = 1),
+          "Public: ",
+          round(SectorInventory[which(SectorInventory$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(SectorInventory$Year))),]$`Public`, digits = 1),
           " MtCO2e\nYear: ",
           format(SectorInventory[which(SectorInventory$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(SectorInventory$Year))),]$Year, "%Y")
         ),
@@ -405,34 +405,34 @@ SectorInventory <- function(input, output, session) {
         showlegend = FALSE ,
         type = "scatter",
         mode = 'markers',
-        legendgroup = "1",
+        legendgroup = "8",
         marker = list(size = 18, 
-                      color = LineColours[1])
+                      color = LineColours[8])
       ) %>%  ##################
     add_trace(data = SectorInventory,
               x = ~ Year,
-              y = ~ `Agriculture`,
-              name = "Agriculture",
+              y = ~ `International Aviation and Shipping`,
+              name = "International Aviation and Shipping",
               type = 'scatter',
               mode = 'lines',
-              legendgroup = "1",
+              legendgroup = "9",
               text = paste0(
-                "Agriculture: ",
-                round(SectorInventory$`Agriculture`, digits = 1),
+                "International Aviation and Shipping: ",
+                round(SectorInventory$`International Aviation and Shipping`, digits = 1),
                 " MtCO2e\nYear: ",
                 format(SectorInventory$Year, "%Y")
               ),
               hoverinfo = 'text',
-              line = list(width = 6, color = LineColours[1], dash = "none")
+              line = list(width = 6, color = LineColours[9], dash = "none")
     ) %>% 
       add_trace(
         data = SectorInventory[which(SectorInventory$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(SectorInventory$Year))),],
         x = ~ Year,
-        y = ~ `Agriculture`,
-        name = "Agriculture",
+        y = ~ `International Aviation and Shipping`,
+        name = "International Aviation and Shipping",
         text = paste0(
-          "Agriculture: ",
-          round(SectorInventory[which(SectorInventory$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(SectorInventory$Year))),]$`Agriculture`, digits = 1),
+          "International Aviation and Shipping: ",
+          round(SectorInventory[which(SectorInventory$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(SectorInventory$Year))),]$`International Aviation and Shipping`, digits = 1),
           " MtCO2e\nYear: ",
           format(SectorInventory[which(SectorInventory$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(SectorInventory$Year))),]$Year, "%Y")
         ),
@@ -440,34 +440,34 @@ SectorInventory <- function(input, output, session) {
         showlegend = FALSE ,
         type = "scatter",
         mode = 'markers',
-        legendgroup = "1",
+        legendgroup = "9",
         marker = list(size = 18, 
-                      color = LineColours[1])
+                      color = LineColours[9])
       ) %>%  ##################
     add_trace(data = SectorInventory,
               x = ~ Year,
-              y = ~ `Agriculture`,
-              name = "Agriculture",
+              y = ~ `Forestry`,
+              name = "Forestry",
               type = 'scatter',
               mode = 'lines',
-              legendgroup = "1",
+              legendgroup = "10",
               text = paste0(
-                "Agriculture: ",
-                round(SectorInventory$`Agriculture`, digits = 1),
+                "Forestry: ",
+                round(SectorInventory$`Forestry`, digits = 1),
                 " MtCO2e\nYear: ",
                 format(SectorInventory$Year, "%Y")
               ),
               hoverinfo = 'text',
-              line = list(width = 6, color = LineColours[1], dash = "none")
+              line = list(width = 6, color = LineColours[10], dash = "none")
     ) %>% 
       add_trace(
         data = SectorInventory[which(SectorInventory$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(SectorInventory$Year))),],
         x = ~ Year,
-        y = ~ `Agriculture`,
-        name = "Agriculture",
+        y = ~ `Forestry`,
+        name = "Forestry",
         text = paste0(
-          "Agriculture: ",
-          round(SectorInventory[which(SectorInventory$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(SectorInventory$Year))),]$`Agriculture`, digits = 1),
+          "Forestry: ",
+          round(SectorInventory[which(SectorInventory$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(SectorInventory$Year))),]$`Forestry`, digits = 1),
           " MtCO2e\nYear: ",
           format(SectorInventory[which(SectorInventory$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(SectorInventory$Year))),]$Year, "%Y")
         ),
@@ -475,9 +475,9 @@ SectorInventory <- function(input, output, session) {
         showlegend = FALSE ,
         type = "scatter",
         mode = 'markers',
-        legendgroup = "1",
+        legendgroup = "10",
         marker = list(size = 18, 
-                      color = LineColours[1])
+                      color = LineColours[10])
       ) %>%  ##################
     
       
