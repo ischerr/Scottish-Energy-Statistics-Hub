@@ -318,7 +318,7 @@ C19Settlement <- function(input, output, session) {
         pageLength = -1
       ) 
     ) %>%
-        formatRound(2:5, 0) %>% 
+        formatRound(2:3, 0) %>% 
       formatDate(1,
                  method =  "toLocaleString")
   }) 
