@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 RenElecCapacityOutput <- function(id) {
   ns <- NS(id)
@@ -1194,7 +1194,7 @@ RenElecCapacity <- function(input, output, session) {
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, LARenCapPipeline, key.shp = "CODE", key.data = "CODE")
+      merge(LA, LARenCapPipeline)
     
     
     pal <- colorNumeric(
@@ -2669,7 +2669,7 @@ RenElecCapacity <- function(input, output, session) {
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, LARenCap, key.shp = "CODE", key.data = "CODE")
+      merge(LA, LARenCap)
     
     
     pal <- colorNumeric(

@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 NonDomEPCsOutput <- function(id) {
   ns <- NS(id)
@@ -90,9 +90,13 @@ NonDomEPCs <- function(input, output, session) {
     
     Data[2:9] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data[2,1] <- " "
+    
     Data[is.na(Data)] <- 0
     
-    Data[2,1] <- " "
+   
+    
+    
     
     Data$`Building type` <- paste("<b>",str_wrap(Data$`Building type`, 20),"</b>")
     

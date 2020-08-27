@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 AverageBillLAOutput <- function(id) {
   ns <- NS(id)
@@ -178,7 +178,7 @@ AverageBillLA <- function(input, output, session) {
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+      merge(LA, AverageBillMap)
     
     
     pal <- colorNumeric(
@@ -311,7 +311,7 @@ AverageBillLA <- function(input, output, session) {
       )
     ) %>%
       formatRound(2:9, 2) %>% 
-      formatRound(c(2,4,6,8,10), 3)
+      formatRound(c(2,4,6,8), 3)
   })
   
   output$GasUnitTable = renderDataTable({
@@ -356,7 +356,7 @@ AverageBillLA <- function(input, output, session) {
       )
     ) %>%
       formatRound(2:9, 2) %>% 
-      formatRound(c(2,4,6,8,10), 3)
+      formatRound(c(2,4,6,8), 3)
   })
   
   observeEvent(input$ToggleText, {
@@ -429,7 +429,7 @@ AverageBillLA <- function(input, output, session) {
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+      merge(LA, AverageBillMap)
     
     
     pal <- colorNumeric(
@@ -523,7 +523,7 @@ AverageBillLA <- function(input, output, session) {
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+      merge(LA, AverageBillMap)
     
     
     pal <- colorNumeric(

@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 LoftInsulationOutput <- function(id) {
   ns <- NS(id)
@@ -314,8 +314,7 @@ LoftInsulation <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:7, 0) %>% 
-      formatStyle(7, fontStyle = "italic") %>% 
+      formatPercentage(2:6, 0) %>% 
       formatStyle(6, fontWeight = "bold")
   })
   
@@ -630,7 +629,7 @@ LoftInsulation <- function(input, output, session) {
           pageLength = 10
         )
       ) %>%
-        formatRound(c(2:4), 0)
+        formatRound(c(2), 0)
     })
     
     output$LoftInsulationSchemesPlot <- renderPlotly  ({

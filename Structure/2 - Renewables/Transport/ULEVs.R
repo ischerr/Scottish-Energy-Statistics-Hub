@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 ULEVsOutput <- function(id) {
   ns <- NS(id)
@@ -402,7 +402,7 @@ ULEVs <- function(input, output, session) {
     
     AllVehicles$Total <- AllVehicles$Total * 1000
     
-    AllVehicles <- rbind(read_csv("Processed Data/Output/Vehicles/VehicleTotal2014.csv"), AllVehicles)
+    #AllVehicles <- rbind(read_csv("Processed Data/Output/Vehicles/VehicleTotal2014.csv"), AllVehicles)
     
     names(AllVehicles) <- c("Quarter", "All Vehicles")
     
@@ -921,7 +921,7 @@ output$ULEVRegOutput.png <- downloadHandler(
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+      merge(LA, AverageBillMap)
     
     
     pal <- colorNumeric(
@@ -999,7 +999,7 @@ output$ULEVRegOutput.png <- downloadHandler(
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+      merge(LA, AverageBillMap)
     
     
     pal <- colorNumeric(
@@ -1079,7 +1079,7 @@ output$ULEVRegOutput.png <- downloadHandler(
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+      merge(LA, AverageBillMap)
     
     
     pal <- colorNumeric(
@@ -1145,7 +1145,7 @@ output$ULEVRegOutput.png <- downloadHandler(
         pageLength = 10
       )
     ) %>%
-      formatRound(c(3:5), 0) 
+      formatRound(c(3), 0) 
   })
   
   
@@ -1200,7 +1200,7 @@ output$ULEVRegOutput.png <- downloadHandler(
         pageLength = 10
       )
     ) %>%
-      formatRound(c(3:5), 0) 
+      formatRound(c(3), 0) 
   })
   
   output$ChargeProvidedDataSubtitle <- renderUI({
@@ -1251,7 +1251,7 @@ output$ULEVRegOutput.png <- downloadHandler(
         pageLength = 10
       )
     ) %>%
-      formatRound(c(3:5), 0) 
+      formatRound(c(3), 0) 
   })
   
   output$ChargingPointStatic <- downloadHandler(
@@ -1326,7 +1326,7 @@ output$ULEVRegOutput.png <- downloadHandler(
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, ULEVbyLA, key.shp = "CODE", key.data = "CODE")
+      merge(LA, ULEVbyLA)
     
     
     pal <- colorNumeric(

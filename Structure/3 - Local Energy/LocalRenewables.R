@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 LocalRenewablesOutput <- function(id) {
   ns <- NS(id)
@@ -1341,7 +1341,7 @@ LocalRenewables <- function(input, output, session) {
         pageLength = 10 
       ) 
     ) %>% 
-      formatPercentage(c(3,5), 1)
+      formatPercentage(c(3), 1)
     
     
   })

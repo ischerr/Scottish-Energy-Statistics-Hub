@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 DomesticRHIOutput <- function(id) {
   ns <- NS(id)
@@ -472,7 +472,7 @@ DomesticRHI <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(c(2:5), 0) %>% 
+      formatRound(c(2:4), 0) %>% 
       formatPercentage(c(3), 1)
   })
   

@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######percent
 
-source("Structure/Global.R")
+
 
 ElecGenOutput <- function(id) {
   ns <- NS(id)

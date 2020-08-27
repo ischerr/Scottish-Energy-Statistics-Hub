@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 PrimaryOilGasOutput <- function(id) {
   ns <- NS(id)
@@ -299,7 +299,7 @@ PrimaryOilGas <- function(input, output, session) {
         pageLength = -1
       )
     ) %>%
-      formatRound(2:9, 1) 
+      formatRound(2:8, 1) 
   })
   
   
@@ -633,7 +633,7 @@ PrimaryOilGas <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:9, 1) 
+      formatPercentage(2:7, 1) 
   })
   
   observeEvent(input$ToggleTable, {

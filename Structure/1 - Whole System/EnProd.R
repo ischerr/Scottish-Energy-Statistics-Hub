@@ -5,8 +5,6 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
-
 EnProdOutput <- function(id) {
   ns <- NS(id)
   tagList(
@@ -390,7 +388,7 @@ EnProd <- function(input, output, session) {
       )
     ) %>%
       formatPercentage(3:4, 1) %>% 
-      formatRound(5:7, 0) %>% 
+      formatRound(5:6, 0) %>% 
       formatRound(2,3)
   })
   

@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 RenElecSourcesOutput <- function(id) {
   ns <- NS(id)
@@ -1921,7 +1921,7 @@ RenElecSources <- function(input, output, session) {
         pageLength = 10
       )
     ) %>% 
-      formatRound(2:7, 0) 
+      formatRound(2:4, 0) 
     
   })
   
@@ -1977,7 +1977,7 @@ RenElecSources <- function(input, output, session) {
         pageLength = 10
       )
     ) %>% 
-      formatRound(2:7, 0)
+      formatRound(2:4, 0)
     
     
   })
@@ -2037,7 +2037,7 @@ RenElecSources <- function(input, output, session) {
         pageLength = 10
       )
     ) %>% 
-      formatRound(2:7, 0)
+      formatRound(2:4, 0)
     
   })
   

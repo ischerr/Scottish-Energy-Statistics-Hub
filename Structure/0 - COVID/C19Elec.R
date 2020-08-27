@@ -6,7 +6,7 @@ require("DT")
 
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 C19ElecOutput <- function(id) {
   ns <- NS(id)
@@ -567,7 +567,7 @@ C19Elec <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:5, 2) 
+      formatRound(2:3, 2) 
   })
   
   output$C19ElecRollingTable = renderDataTable({
@@ -641,7 +641,7 @@ C19Elec <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:5, 1) 
+      formatRound(2:3, 1) 
   })
   
   output$Text <- renderUI({

@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 OilGasEmploymentOutput <- function(id) {
   ns <- NS(id)
@@ -599,7 +599,7 @@ OilGasEmployment <- function(input, output, session) {
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, AverageBillMap, key.shp = "nuts118cd", key.data = "nuts118cd")
+      merge(LA, AverageBillMap)
     
     
     pal <- colorNumeric(

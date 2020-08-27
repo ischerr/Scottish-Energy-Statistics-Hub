@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 GasSecurityOutput <- function(id) {
   ns <- NS(id)
@@ -547,7 +547,7 @@ GasSecurity <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:6, 1) %>% 
+      formatRound(2:4, 1) %>% 
       formatPercentage(c(4), 1)
   })
   

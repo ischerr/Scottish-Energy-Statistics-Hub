@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 DomEPCsOutput <- function(id) {
   ns <- NS(id)
@@ -517,7 +517,7 @@ DomEPCs <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:9, 1)
+      formatPercentage(2:3, 1)
   })
   
   output$EPCTenureSubtitle <- renderText({
@@ -1518,7 +1518,7 @@ DomEPCs <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:9, 0)
+      formatRound(2:4, 0)
   })
   
   output$EERProportions.png <- downloadHandler(

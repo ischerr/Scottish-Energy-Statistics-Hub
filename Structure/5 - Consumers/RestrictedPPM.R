@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 RestrictedPPMOutput <- function(id) {
   ns <- NS(id)
@@ -146,7 +146,7 @@ RestrictedPPM <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:100, 1)
+      formatPercentage(3:(ncol(RestrictedMeter)), 1)
   })
   
   output$RestrictedMeterAmountTable = renderDataTable({
@@ -191,7 +191,7 @@ RestrictedPPM <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:100, 0)
+      formatRound(3:(ncol(RestrictedMeter)), 0)
   })
 
   output$Text <- renderUI({
@@ -738,7 +738,7 @@ RestrictedPPM <- function(input, output, session) {
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, EconomyMeter, key.shp = "CODE", key.data = "CODE")
+      merge(LA, EconomyMeter)
   
     
     pal <- colorNumeric(

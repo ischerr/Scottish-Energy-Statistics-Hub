@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 RenElecGenOutput <- function(id) {
   ns <- NS(id)
@@ -2381,7 +2381,7 @@ RenElecGen <- function(input, output, session) {
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, LARenGen, key.shp = "CODE", key.data = "CODE")
+      merge(LA, LARenGen)
     
     
     pal <- colorNumeric(

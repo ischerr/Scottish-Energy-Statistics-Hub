@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 MarketStructureOutput <- function(id) {
   ns <- NS(id)
@@ -209,17 +209,17 @@ MarketStructure <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Proportion of customers who have switched energy supplier",
+        title = "Market shares, combined electricity and gas",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Proportion of customers who have switched energy supplier',
+            title = 'Market shares, combined electricity and gas',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Proportion of customers who have switched energy supplier')
+               title = 'Market shares, combined electricity and gas')
         ),
         
         # customize the length menu
@@ -229,7 +229,7 @@ MarketStructure <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(c(2:5), 1)
+      formatPercentage(c(2:4), 1)
   })
   
   output$Text <- renderUI({

@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 ChargingPointsOutput <- function(id) {
   ns <- NS(id)
@@ -167,7 +167,7 @@ ChargingPoints <- function(input, output, session) {
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+      merge(LA, AverageBillMap)
     
     
     pal <- colorNumeric(
@@ -245,7 +245,7 @@ ChargingPoints <- function(input, output, session) {
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+      merge(LA, AverageBillMap)
     
     
     pal <- colorNumeric(
@@ -325,7 +325,7 @@ ChargingPoints <- function(input, output, session) {
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, AverageBillMap, key.shp = "CODE", key.data = "CODE")
+      merge(LA, AverageBillMap)
     
     
     pal <- colorNumeric(

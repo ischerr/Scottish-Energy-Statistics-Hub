@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 ElecConsumptionOutput <- function(id) {
   ns <- NS(id)
@@ -145,6 +145,8 @@ ElecConsumption <- function(input, output, session) {
     names(Data)[1] <- "Year"
     
     Data[1:4] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data$Year <- as.character(Data$Year)
     
     Data[2,1] <- "Baseline\n2005/2007"
     
@@ -291,6 +293,8 @@ ElecConsumption <- function(input, output, session) {
     
     Data[1:4] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data$Year <- as.character(Data$Year)
+    
     Data[2,1] <- " Baseline\n2005/2007"
     
     Data[nrow(Data),1] <- "% Change\nfrom baseline"
@@ -366,11 +370,11 @@ ElecConsumption <- function(input, output, session) {
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "Elec consump", skip = 12, col_names = TRUE)
       
-      Data[1,1] <- 2003
+      Data[1,1] <- "2003"
       
       Data <- Data[complete.cases(Data),]
       
-      Data[nrow(Data),1] <- max(as.numeric(Data$Year),na.rm = TRUE)+1
+      Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE)+1)
       
       Data$Year <- as.numeric(Data$Year)
       
@@ -599,6 +603,8 @@ ElecConsumption <- function(input, output, session) {
     
     Data[1:2] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data$Year <- as.character(Data$Year)
+    
     Data[1,1] <- "Baseline\n2005/2007"
     
     Data[2,1] <- " "
@@ -707,6 +713,8 @@ ElecConsumption <- function(input, output, session) {
     
     Data[1:2] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data$Year <- as.character(Data$Year)
+    
     Data[1,1] <- " Baseline\n2005/2007"
     
     
@@ -765,13 +773,13 @@ ElecConsumption <- function(input, output, session) {
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "Elec consump household", skip = 12, col_names = TRUE)
       
-      Data[1,1] <- 2003
+      Data[1,1] <- "2003"
       
       names(Data) <- c("Year", "Consumption")
       
       Data <- Data[complete.cases(Data),]
       
-      Data[nrow(Data),1] <- max(as.numeric(Data$Year),na.rm = TRUE)+1
+      Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE)+1)
       
       Data$Total <- Data$Consumption
       
@@ -1096,7 +1104,7 @@ ElecConsumption <- function(input, output, session) {
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, ElecConsumptionLAMap, key.shp = "CODE", key.data = "CODE")
+     merge(LA, ElecConsumptionLAMap)
     
     pal <- colorNumeric(
       palette = "Greens",

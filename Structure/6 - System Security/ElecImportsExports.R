@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 ElecImportsExportsOutput <- function(id) {
   ns <- NS(id)
@@ -753,7 +753,7 @@ ElecImportsExports <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:8, 0)
+      formatRound(2:4, 0)
   }) 
   
   
