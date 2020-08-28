@@ -518,7 +518,7 @@ CoalProd <- function(input, output, session) {
         xaxis = list(title = "",
                      showgrid = FALSE),
         yaxis = list(
-          title = "million tonnes",
+          title = "employees",
           tickformat = "",
           showgrid = TRUE,
           zeroline = TRUE,
