@@ -9,7 +9,7 @@ setAccountInfo(name   = Sys.getenv("shinyapps_name"),
                secret = Sys.getenv("shinyapps_secret"))
 
 # Deploy the application to the development server
-deployApp(appName = "R4Test",
+deployApp(appName = "Reorganised",
           account = Sys.getenv("shinyapps_name"),
           lint = TRUE)
 
