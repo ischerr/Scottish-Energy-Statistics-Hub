@@ -1157,7 +1157,7 @@ SectorInventory <- function(input, output, session) {
         labs(subtitle = paste("Scotland, 1990 -", max(EnergySectorInventory$Year)))
       
       ggsave(
-        "C:/Users/ische/Pictures/chart.png",
+        file,
         plot = EnergySectorInventoryChart,
         width = 30,
         height = 20,
