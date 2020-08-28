@@ -120,7 +120,18 @@ SectorInventory <- function(input, output, session) {
     plottitle <- "Net source greenhouse gas emissions from the energy supply sector (MtCO2e)"
     sourcecaption <- "Source: BEIS"
     ChartColours <- c("#39ab2c", "#FF8500")
-    LineColours <- c( "#7f0000", "#b30000", "#d7301f", "#993404", "#cc4c02", "#ec7014", "#fe9929", "#fec44f", "#fee391", "#238b45")
+    LineColours <- c( 
+      "#a6cee3",
+      "#1f78b4",
+      "#b2df8a",
+      "#33a02c",
+      "#fb9a99",
+      "#e31a1c",
+      "#fdbf6f",
+      "#ff7f00",
+      "#cab2d6",
+      "#6a3d9a"
+      )
     
     SectorInventory$Year <- paste0("01/01/", SectorInventory$Year)
     
@@ -512,40 +523,23 @@ SectorInventory <- function(input, output, session) {
   
   output$SectorInventoryTable = renderDataTable({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Energy supply emissions", skip = 12)
+    Data <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Data <- as.data.frame(t(Data))
+    names(Data) <- c("Year", "Agriculture", "Business", "Energy Supply", "Industrial Processes", "International Aviation and Shipping", "Forestry", "Public", "Residential", "Transport excluding international", "Waste Management")
     
-    colnames(Data) <- as.character(unlist(Data[1,]))
-    Data = Data[-1, ]
-    Data <- setDT(Data, keep.rownames = TRUE)[]
-    names(Data) <- c("Year", "Greenhouse Gas", "Energy Supply", "Electricity Production", "Other Energy")
-    Data[1,1] <- 1988
+    Data <- rbind(Data, c(" ", NA, NA, NA, NA, NA, NA, NA, NA, NA, NA))
     
-    Data<- rbind(Data, setNames(data.frame(1989,NA,NA,NA,NA),names(Data)))
-    Data <- Data[order(Data$Year)]
-    Data$Year <- as.numeric(as.character(Data$Year))
-    Data$`Greenhouse Gas` <- as.numeric(as.character(Data$`Greenhouse Gas`))
-    Data$`Energy Supply` <- as.numeric(as.character(Data$`Energy Supply`))
-    Data$`Electricity Production` <- as.numeric(as.character(Data$`Electricity Production`))
-    Data$`Other Energy` <- as.numeric(as.character(Data$`Other Energy`))
+    Data <- rbind(Data, c(" ", NA, NA, NA, NA, NA, NA, NA, NA, NA, NA))
     
-    Data$Year <- as.character(Data$Year)
-    Data[1,1] <- " Baseline"
-    Data$Year <- factor(Data$Year, ordered = TRUE)
-    
-    SectorInventory <- Data[complete.cases(Data)]
+    Data <- Data[order(Data$Year),]
     
     
-    plottitle <- "Net source greenhouse gas emissions from the energy supply sector (MtCO2e)"
-    sourcecaption <- "Source: BEIS"
-    ChartColours <- c("#39ab2c", "#FF8500")
-    LineColours <- c( "#39ab2c","#006837", "#41ab5d", "#addd8e")
+    EnergySectorInventory <- Data
     
 
     datatable(
-      SectorInventory,
+      EnergySectorInventory,
       extensions = 'Buttons',
      # container = sketch,
       rownames = FALSE,
@@ -577,7 +571,7 @@ SectorInventory <- function(input, output, session) {
         pageLength = -1
       )
     ) %>%
-      formatRound(2:5, 1)
+      formatRound(2:11, 1)
   })
   
   
@@ -625,7 +619,18 @@ SectorInventory <- function(input, output, session) {
       plottitle <- "Net source greenhouse gas emissions from the energy supply sector (MtCO2e)"
       sourcecaption <- "Source: BEIS"
       ChartColours <- c("#39ab2c", "#FF8500")
-      LineColours <- c( "#7f0000", "#b30000", "#d7301f", "#993404", "#cc4c02", "#ec7014", "#fe9929", "#fec44f", "#fee391", "#238b45")
+      LineColours <- c( 
+        "#a6cee3",
+        "#1f78b4",
+        "#b2df8a",
+        "#33a02c",
+        "#fb9a99",
+        "#e31a1c",
+        "#fdbf6f",
+        "#ff7f00",
+        "#cab2d6",
+        "#6a3d9a"
+      )
       
       EnergySectorInventoryChart <-
         EnergySectorInventory %>%  ggplot(aes(x = Year), family = "Century Gothic") +
