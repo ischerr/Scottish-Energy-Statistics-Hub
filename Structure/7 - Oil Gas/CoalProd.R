@@ -235,6 +235,8 @@ CoalProd <- function(input, output, session) {
     
     CoalProd <- as_tibble(Data)
     
+    
+    
     datatable(
       CoalProd,
       extensions = 'Buttons',
@@ -251,13 +253,16 @@ CoalProd <- function(input, output, session) {
         title = "Scottish Coal Production",
         dom = 'ltBp',
         buttons = list(
-          list(extend = 'copy'),
+          list(extend = 'copy',
+               exportOptions = list(orthogonal = "export")),
           list(
             extend = 'excel',
+            exportOptions = list(orthogonal = "export"),
             title = 'Scottish Coal Production',
             header = TRUE
           ),
           list(extend = 'csv',
+               exportOptions = list(orthogonal = "export"),
                title = 'Scottish Coal Production')
         ),
         
@@ -269,7 +274,7 @@ CoalProd <- function(input, output, session) {
       )
     ) %>%
       formatRound(c(2), 3) %>% 
-      formatPercentage(3,1)
+      formatPercentage(3,1) 
   })
   
   output$CoalProd.png <- downloadHandler(
