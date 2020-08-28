@@ -268,7 +268,7 @@ CoalProd <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(c(2), 1) %>% 
+      formatRound(c(2), 3) %>% 
       formatPercentage(3,1)
   })
   
