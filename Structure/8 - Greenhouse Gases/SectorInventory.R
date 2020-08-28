@@ -21,7 +21,7 @@ SectorInventoryOutput <- function(id) {
     
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     #dygraphOutput(ns("SectorInventoryPlot")),
-    plotlyOutput(ns("SectorInventoryPlot"))%>% withSpinner(color="#39ab2c"),
+    plotlyOutput(ns("SectorInventoryPlot"), height = "700px")%>% withSpinner(color="#39ab2c"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
@@ -120,7 +120,7 @@ SectorInventory <- function(input, output, session) {
     plottitle <- "Net source greenhouse gas emissions from the energy supply sector (MtCO2e)"
     sourcecaption <- "Source: BEIS"
     ChartColours <- c("#39ab2c", "#FF8500")
-    LineColours <- c( "#7f0000","#b30000", "#a63603", "#fee6ce", "#fdd0a2", "#fdae6b", "#fd8d3c", "#f16913", "#d94801", "#238b45")
+    LineColours <- c( "#7f0000", "#b30000", "#d7301f", "#993404", "#cc4c02", "#ec7014", "#fe9929", "#fec44f", "#fee391", "#238b45")
     
     SectorInventory$Year <- paste0("01/01/", SectorInventory$Year)
     
@@ -607,25 +607,16 @@ SectorInventory <- function(input, output, session) {
     filename = "SectorInventory.png",
     content = function(file) {
 
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Energy supply emissions", skip = 12)
+      Data <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
+                         "\t", escape_double = FALSE, trim_ws = TRUE)
       
-      Data <- as.data.frame(t(Data))
+      names(Data) <- c("Year", "Agriculture", "Business", "Energy Supply", "Industrial Processes", "International Aviation and Shipping", "Forestry", "Public", "Residential", "Transport excluding international", "Waste Management")
       
-      colnames(Data) <- as.character(unlist(Data[1,]))
-      Data = Data[-1, ]
-      Data <- setDT(Data, keep.rownames = TRUE)[]
-      names(Data) <- c("Year", "Greenhouse Gas", "Energy Supply", "Electricity Production", "Other Energy")
-      Data[1,1] <- 1988
+      Data <- rbind(Data, c(1991, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA))
       
-      Data<- rbind(Data, setNames(data.frame(1989,NA,NA,NA,NA),names(Data)))
-      Data <- Data[order(Data$Year)]
-      Data$Year <- as.numeric(as.character(Data$Year))
-      Data$`Greenhouse Gas` <- as.numeric(as.character(Data$`Greenhouse Gas`))
-      Data$`Energy Supply` <- as.numeric(as.character(Data$`Energy Supply`))
-      Data$`Electricity Production` <- as.numeric(as.character(Data$`Electricity Production`))
-      Data$`Other Energy` <- as.numeric(as.character(Data$`Other Energy`))
+      Data <- rbind(Data, c(1996, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA))
       
+      Data <- Data[order(Data$Year),]
       
       
       EnergySectorInventory <- Data
@@ -634,16 +625,16 @@ SectorInventory <- function(input, output, session) {
       plottitle <- "Net source greenhouse gas emissions from the energy supply sector (MtCO2e)"
       sourcecaption <- "Source: BEIS"
       ChartColours <- c("#39ab2c", "#FF8500")
-      LineColours <- c( "#39ab2c","#006837", "#41ab5d", "#addd8e")
+      LineColours <- c( "#7f0000", "#b30000", "#d7301f", "#993404", "#cc4c02", "#ec7014", "#fe9929", "#fec44f", "#fee391", "#238b45")
       
       EnergySectorInventoryChart <-
         EnergySectorInventory %>%  ggplot(aes(x = Year), family = "Century Gothic") +
         
         ### Line of Values
         geom_line(
-          aes(y = `Greenhouse Gas`,
+          aes(y = `Transport excluding international`,
               
-              label = `Greenhouse Gas`),
+              label = `Transport excluding international`),
           size = 1.5,
           colour = LineColours[1],
           family = "Century Gothic"
@@ -651,10 +642,10 @@ SectorInventory <- function(input, output, session) {
         geom_text(
           aes(
             x = Year,
-            y = `Greenhouse Gas`,
-            label = ifelse(Year %in% c(1988,1990,1995, 1998), round(`Greenhouse Gas`, digits= 1), ""),
+            y = `Transport excluding international`,
+            label = ifelse(Year %in% c(1990,1995, 1998), round(`Transport excluding international`, digits= 1), ""),
             hjust = 0.5,
-            vjust = 2,
+            vjust = -0.6,
             fontface = 2
           ),
           colour = LineColours[1],
@@ -663,8 +654,8 @@ SectorInventory <- function(input, output, session) {
         geom_text(
           aes(
             x = Year+0.75,
-            y = `Greenhouse Gas`,
-            label = ifelse(Year == max(Year), round(`Greenhouse Gas`, digits= 1), ""),
+            y = `Transport excluding international`,
+            label = ifelse(Year == max(Year), round(`Transport excluding international`, digits= 1), ""),
             hjust = 0.5,
             fontface = 2
           ),
@@ -674,10 +665,10 @@ SectorInventory <- function(input, output, session) {
         geom_text(
           aes(
             x = mean(c(1998,max(Year))),
-            y = mean(`Greenhouse Gas`, na.rm = TRUE),
-            label = "Total greenhouse gas emissions",
+            y = mean(`Transport excluding international`, na.rm = TRUE),
+            label = "Transport\n(excluding international)",
             hjust = 0.5,
-            vjust = -3,
+            vjust = -1,
             fontface = 2
           ),
           colour = LineColours[1],
@@ -687,8 +678,8 @@ SectorInventory <- function(input, output, session) {
           data = tail(EnergySectorInventory, 1),
           aes(
             x = Year,
-            y = `Greenhouse Gas`,
-            label = round(`Greenhouse Gas`, digits = 1),
+            y = `Transport excluding international`,
+            label = round(`Transport excluding international`, digits = 1),
             show_guide = FALSE
           ),
           size = 4,
@@ -696,32 +687,37 @@ SectorInventory <- function(input, output, session) {
           family = "Century Gothic"
         ) +
         geom_point(
-          data = EnergySectorInventory[which(EnergySectorInventory$Year %in% c(1988,1990,1995,1998)),],
+          data = EnergySectorInventory[which(EnergySectorInventory$Year %in% c(1990,1995,1998)),],
           aes(
             x = Year,
-            y = `Greenhouse Gas`,
-            label = round(`Greenhouse Gas`, digits = 1),
+            y = `Transport excluding international`,
+            label = round(`Transport excluding international`, digits = 1),
             show_guide = FALSE
           ),
           size = 3,
           colour = LineColours[1],
           family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = `Energy Supply`,
-              
-              label = `Energy Supply`),
-          size = 1.5,
-          colour = LineColours[2],
-          family = "Century Gothic"
-        ) +
+        ) + #######
+      
+      
+      
+      
+      
+      geom_line(
+        aes(y = `Business`,
+            
+            label = `Business`),
+        size = 1.5,
+        colour = LineColours[2],
+        family = "Century Gothic"
+      ) +
         geom_text(
           aes(
             x = Year,
-            y = `Energy Supply`,
-            label = ifelse(Year %in% c(1988,1990,1995, 1998), round(`Energy Supply`, digits= 1), ""),
+            y = `Business`,
+            label = ifelse(Year %in% c(1990,1995, 1998), round(`Business`, digits= 1), ""),
             hjust = 0.5,
-            vjust = 2,
+            vjust = ifelse(Year == 1990, 2, -0.6),
             fontface = 2
           ),
           colour = LineColours[2],
@@ -730,25 +726,167 @@ SectorInventory <- function(input, output, session) {
         geom_text(
           aes(
             x = Year+0.75,
-            y = `Energy Supply`,
-            label = ifelse(Year == max(Year), sprintf("%.1f", round(`Energy Supply`, digits= 1)), ""),
+            y = `Business`,
+            label = ifelse(Year == max(Year), round(`Business`, digits= 1), ""),
             hjust = 0.5,
-            vjust = 0.1,
             fontface = 2
           ),
           colour = LineColours[2],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = mean(c(1998,max(Year))),
+            y = mean(`Business`, na.rm = TRUE),
+            label = "Business",
+            hjust = 0.5,
+            vjust = -1,
+            fontface = 2
+          ),
+          colour = LineColours[2],
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(EnergySectorInventory, 1),
+          aes(
+            x = Year,
+            y = `Business`,
+            label = round(`Business`, digits = 1),
+            show_guide = FALSE
+          ),
+          size = 4,
+          colour = LineColours[2],
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = EnergySectorInventory[which(EnergySectorInventory$Year %in% c(1990,1995,1998)),],
+          aes(
+            x = Year,
+            y = `Business`,
+            label = round(`Business`, digits = 1),
+            show_guide = FALSE
+          ),
+          size = 3,
+          colour = LineColours[2],
+          family = "Century Gothic"
+        ) + #######
+      
+      
+      
+      
+      
+      geom_line(
+        aes(y = `Agriculture`,
+            
+            label = `Agriculture`),
+        size = 1.5,
+        colour = LineColours[3],
+        family = "Century Gothic"
+      ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = `Agriculture`,
+            label = ifelse(Year %in% c(1990,1995, 1998), round(`Agriculture`, digits= 1), ""),
+            hjust = 0.5,
+            vjust = -0.6,
+            fontface = 2
+          ),
+          colour = LineColours[3],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year+0.75,
+            y = `Agriculture`,
+            label = ifelse(Year == max(Year), round(`Agriculture`, digits= 1), ""),
+            hjust = 0.5,
+            fontface = 2
+          ),
+          colour = LineColours[3],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = mean(c(1998,max(Year))),
+            y = mean(`Agriculture`, na.rm = TRUE),
+            label = "Agriculture",
+            hjust = 1,
+            vjust = -.5,
+            fontface = 2
+          ),
+          colour = LineColours[3],
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(EnergySectorInventory, 1),
+          aes(
+            x = Year,
+            y = `Agriculture`,
+            label = round(`Agriculture`, digits = 1),
+            show_guide = FALSE
+          ),
+          size = 4,
+          colour = LineColours[3],
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = EnergySectorInventory[which(EnergySectorInventory$Year %in% c(1990,1995,1998)),],
+          aes(
+            x = Year,
+            y = `Agriculture`,
+            label = round(`Agriculture`, digits = 1),
+            show_guide = FALSE
+          ),
+          size = 3,
+          colour = LineColours[3],
+          family = "Century Gothic"
+        ) + #######
+      
+      
+      
+      
+      geom_line(
+        aes(y = `Energy Supply`,
+            
+            label = `Energy Supply`),
+        size = 1.5,
+        colour = LineColours[4],
+        family = "Century Gothic"
+      ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = `Energy Supply`,
+            label = ifelse(Year %in% c(1990,1995, 1998), round(`Energy Supply`, digits= 1), ""),
+            hjust = 0.5,
+            vjust = -.6,
+            fontface = 2
+          ),
+          colour = LineColours[4],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year+0.75,
+            y = `Energy Supply`,
+            label = ifelse(Year == max(Year), round(`Energy Supply`, digits= 1), ""),
+            hjust = 0.5,
+            fontface = 2
+          ),
+          colour = LineColours[4],
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
             x = mean(c(1998,max(Year))),
             y = mean(`Energy Supply`, na.rm = TRUE),
-            label = "Total energy supply emissions",
-            hjust = 0.5,
-            vjust = -3,
+            label = "Energy\nSupply",
+            hjust = 0,
+            vjust = -1.5,
             fontface = 2
           ),
-          colour = LineColours[2],
+          colour = LineColours[4],
           family = "Century Gothic"
         ) +
         geom_point(
@@ -760,11 +898,11 @@ SectorInventory <- function(input, output, session) {
             show_guide = FALSE
           ),
           size = 4,
-          colour = LineColours[2],
+          colour = LineColours[4],
           family = "Century Gothic"
         ) +
         geom_point(
-          data = EnergySectorInventory[which(EnergySectorInventory$Year %in% c(1988,1990,1995,1998)),],
+          data = EnergySectorInventory[which(EnergySectorInventory$Year %in% c(1990,1995,1998)),],
           aes(
             x = Year,
             y = `Energy Supply`,
@@ -772,169 +910,236 @@ SectorInventory <- function(input, output, session) {
             show_guide = FALSE
           ),
           size = 3,
-          colour = LineColours[2],
+          colour = LineColours[4],
           family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = `Electricity Production`,
-              
-              label = `Electricity Production`),
-          size = 1.5,
-          colour = LineColours[3],
-          family = "Century Gothic"
-        ) +
+        ) + #######
+      
+      
+      
+      
+      geom_line(
+        aes(y = `Residential`,
+            
+            label = `Residential`),
+        size = 1.5,
+        colour = LineColours[5],
+        family = "Century Gothic"
+      ) +
         geom_text(
           aes(
             x = Year,
-            y = `Electricity Production`,
-            label = ifelse(Year %in% c(1988,1990,1995, 1998), round(`Electricity Production`, digits= 1), ""),
+            y = `Residential`,
+            label = ifelse(Year %in% c(1990,1995, 1998), round(`Residential`, digits= 1), ""),
             hjust = 0.5,
             vjust = 2,
             fontface = 2
           ),
-          colour = LineColours[3],
+          colour = LineColours[5],
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
             x = Year+0.75,
-            y = `Electricity Production`,
-            label = ifelse(Year == max(Year), round(`Electricity Production`, digits= 1), ""),
+            y = `Residential`,
+            label = ifelse(Year == max(Year), round(`Residential`, digits= 1), ""),
             hjust = 0.5,
-            vjust = 0.3,
             fontface = 2
           ),
-          colour = LineColours[3],
+          colour = LineColours[5],
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
             x = mean(c(1998,max(Year))),
-            y = mean(`Electricity Production`, na.rm = TRUE),
-            label = "Electricity supply emissions",
+            y = mean(`Residential`, na.rm = TRUE),
+            label = "Residential",
             hjust = 0.5,
-            vjust = 2.5,
+            vjust = 1.5,
             fontface = 2
           ),
-          colour = LineColours[3],
+          colour = LineColours[5],
           family = "Century Gothic"
         ) +
         geom_point(
           data = tail(EnergySectorInventory, 1),
           aes(
             x = Year,
-            y = `Electricity Production`,
-            label = round(`Electricity Production`, digits = 1),
+            y = `Residential`,
+            label = round(`Residential`, digits = 1),
             show_guide = FALSE
           ),
           size = 4,
-          colour = LineColours[3],
+          colour = LineColours[5],
           family = "Century Gothic"
         ) +
         geom_point(
-          data = EnergySectorInventory[which(EnergySectorInventory$Year %in% c(1988,1990,1995,1998)),],
+          data = EnergySectorInventory[which(EnergySectorInventory$Year %in% c(1990,1995,1998)),],
           aes(
             x = Year,
-            y = `Electricity Production`,
-            label = round(`Electricity Production`, digits = 1),
+            y = `Residential`,
+            label = round(`Residential`, digits = 1),
             show_guide = FALSE
           ),
           size = 3,
-          colour = LineColours[3],
+          colour = LineColours[5],
           family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(y = `Other Energy`,
-              
-              label = `Other Energy`),
-          size = 1.5,
-          colour = LineColours[4],
-          family = "Century Gothic"
-        ) +
+        ) + #######
+      
+      
+      
+      
+      geom_line(
+        aes(y = `Waste Management`,
+            
+            label = `Waste Management`),
+        size = 1.5,
+        colour = LineColours[6],
+        family = "Century Gothic"
+      ) +
         geom_text(
           aes(
             x = Year,
-            y = `Other Energy`,
-            label = ifelse(Year %in% c(1988,1990,1995, 1998), sprintf("%.1f", round(`Other Energy`, digits= 1)), ""),
+            y = `Waste Management`,
+            label = ifelse(Year %in% c(1990,1995, 1998), round(`Waste Management`, digits= 1), ""),
             hjust = 0.5,
             vjust = 2,
             fontface = 2
           ),
-          colour = LineColours[4],
+          colour = LineColours[6],
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
             x = Year+0.75,
-            y = `Other Energy`,
-            label = ifelse(Year == max(Year), round(`Other Energy`, digits= 1), ""),
+            y = `Waste Management`,
+            label = ifelse(Year == max(Year), round(`Waste Management`, digits= 1), ""),
             hjust = 0.5,
-            vjust = 0.8,
             fontface = 2
           ),
-          colour = LineColours[4],
+          colour = LineColours[6],
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
             x = mean(c(1998,max(Year))),
-            y = mean(`Other Energy`, na.rm = TRUE),
-            label = "Other energy supply emissions",
+            y = mean(`Waste Management`, na.rm = TRUE),
+            label = "Waste Management",
             hjust = 0.5,
-            vjust = 1.8,
+            vjust = -.5,
             fontface = 2
           ),
-          colour = LineColours[4],
+          colour = LineColours[6],
           family = "Century Gothic"
         ) +
         geom_point(
           data = tail(EnergySectorInventory, 1),
           aes(
             x = Year,
-            y = `Other Energy`,
-            label = round(`Other Energy`, digits = 1),
+            y = `Waste Management`,
+            label = round(`Waste Management`, digits = 1),
             show_guide = FALSE
           ),
           size = 4,
-          colour = LineColours[4],
+          colour = LineColours[6],
           family = "Century Gothic"
         ) +
         geom_point(
-          data = EnergySectorInventory[which(EnergySectorInventory$Year %in% c(1988,1990,1995,1998)),],
+          data = EnergySectorInventory[which(EnergySectorInventory$Year %in% c(1990,1995,1998)),],
           aes(
             x = Year,
-            y = `Other Energy`,
-            label = round(`Other Energy`, digits = 1),
+            y = `Waste Management`,
+            label = round(`Waste Management`, digits = 1),
             show_guide = FALSE
           ),
           size = 3,
-          colour = LineColours[4],
+          colour = LineColours[6],
+          family = "Century Gothic"
+        ) + #######
+      
+      
+      
+      
+      geom_line(
+        aes(y = `Forestry`,
+            
+            label = `Forestry`),
+        size = 1.5,
+        colour = LineColours[10],
+        family = "Century Gothic"
+      ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = `Forestry`,
+            label = ifelse(Year %in% c(1990,1995, 1998), round(`Forestry`, digits= 1), ""),
+            hjust = 0.5,
+            vjust = 2,
+            fontface = 2
+          ),
+          colour = LineColours[10],
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
-            x = Year,
-            y = 0,
-            label = ifelse(Year %in% c(1990, 1995, 1998, max(Year)), Year, ""),
+            x = Year+0.75,
+            y = `Forestry`,
+            label = ifelse(Year == max(Year), round(`Forestry`, digits= 1), ""),
             hjust = 0.5,
-            vjust = 1.5,
-            colour = ChartColours[1],
             fontface = 2
           ),
+          colour = LineColours[10],
           family = "Century Gothic"
-        )+
+        ) +
         geom_text(
           aes(
-            x = 1988,
-            y = 0,
-            label = "Baseline",
+            x = mean(c(1998,max(Year))),
+            y = mean(`Forestry`, na.rm = TRUE),
+            label = "Forestry",
             hjust = 0.5,
-            vjust = 1.5,
-            colour = ChartColours[1],
+            vjust = -1,
             fontface = 2
           ),
+          colour = LineColours[10],
           family = "Century Gothic"
-        )
+        ) +
+        geom_point(
+          data = tail(EnergySectorInventory, 1),
+          aes(
+            x = Year,
+            y = `Forestry`,
+            label = round(`Forestry`, digits = 1),
+            show_guide = FALSE
+          ),
+          size = 4,
+          colour = LineColours[10],
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = EnergySectorInventory[which(EnergySectorInventory$Year %in% c(1990,1995,1998)),],
+          aes(
+            x = Year,
+            y = `Forestry`,
+            label = round(`Forestry`, digits = 1),
+            show_guide = FALSE
+          ),
+          size = 3,
+          colour = LineColours[10],
+          family = "Century Gothic"
+        ) + #######
+      
+      
+      geom_text(
+        aes(
+          x = Year,
+          y = 0,
+          label = ifelse(Year %in% c(1990, 1995, 1998, max(Year)), Year, ""),
+          hjust = 0.5,
+          vjust = -0.3,
+          colour = ChartColours[1],
+          fontface = 2
+        ),
+        family = "Century Gothic"
+      )
       
       
       EnergySectorInventoryChart <-
@@ -948,13 +1153,14 @@ SectorInventory <- function(input, output, session) {
       EnergySectorInventoryChart
       
       EnergySectorInventoryChart <- EnergySectorInventoryChart +
-        ylim(-3, max(EnergySectorInventory$`Greenhouse Gas`)) +
+        ylim(min(EnergySectorInventory$Forestry), max(EnergySectorInventory$`Energy Supply`)) +
         labs(subtitle = paste("Scotland, 1990 -", max(EnergySectorInventory$Year)))
+      
       ggsave(
-        file,
+        "C:/Users/ische/Pictures/chart.png",
         plot = EnergySectorInventoryChart,
         width = 30,
-        height = 14,
+        height = 20,
         units = "cm",
         dpi = 300
       )
