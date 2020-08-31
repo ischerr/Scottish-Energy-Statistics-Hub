@@ -309,7 +309,7 @@ EnSupplyEmissions <- function(input, output, session) {
     
 
     datatable(
-      EnSupplyEmissions[c(1,3:5)],
+      EnSupplyEmissions[,c(1,3:5)],
       extensions = 'Buttons',
      # container = sketch,
       rownames = FALSE,
@@ -402,52 +402,6 @@ EnSupplyEmissions <- function(input, output, session) {
       
       EnergyEnSupplyEmissionsChart <-
         EnergyEnSupplyEmissions %>%  ggplot(aes(x = Year), family = "Century Gothic") +
-        
-        ### Line of Values
-        geom_line(
-          aes(y = `Greenhouse Gas`,
-              
-              label = `Greenhouse Gas`),
-          size = 1.5,
-          colour = LineColours[1],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = mean(c(1998,max(Year))),
-            y = mean(`Greenhouse Gas`, na.rm = TRUE),
-            label = "Total greenhouse gas emissions",
-            hjust = 0.5,
-            vjust = -3,
-            fontface = 2
-          ),
-          colour = LineColours[1],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = tail(EnergyEnSupplyEmissions, 1),
-          aes(
-            x = Year,
-            y = `Greenhouse Gas`,
-            label = round(`Greenhouse Gas`, digits = 1),
-            show_guide = FALSE
-          ),
-          size = 4,
-          colour = LineColours[1],
-          family = "Century Gothic"
-        ) +
-        geom_point(
-          data = EnergyEnSupplyEmissions[which(EnergyEnSupplyEmissions$Year %in% c(1988,1990,1995,1998)),],
-          aes(
-            x = Year,
-            y = `Greenhouse Gas`,
-            label = round(`Greenhouse Gas`, digits = 1),
-            show_guide = FALSE
-          ),
-          size = 3,
-          colour = LineColours[1],
-          family = "Century Gothic"
-        ) +
         geom_line(
           aes(y = `Energy Supply`,
               
@@ -689,7 +643,7 @@ EnSupplyEmissions <- function(input, output, session) {
       EnergyEnSupplyEmissionsChart
       
       EnergyEnSupplyEmissionsChart <- EnergyEnSupplyEmissionsChart +
-        ylim(-3, max(EnergyEnSupplyEmissions$`Energy Supply`)) +
+        ylim(-3, max(EnergyEnSupplyEmissions$`Energy Supply`, na.rm = TRUE)) +
         labs(subtitle = paste("Scotland, 1990 -", max(EnergyEnSupplyEmissions$Year)))
       ggsave(
         file,
