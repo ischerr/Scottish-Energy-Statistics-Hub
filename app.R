@@ -892,12 +892,9 @@ ui <- shinyUI(fluidPage(
                           tabPanel(title = "Energy Supply Emissions",
                                    value = "EnSupplyEmissions",
                                    EnSupplyEmissionsOutput("EnSupplyEmissions")),
-                          tabPanel(title = "Greenhouse Gas Emissions",
+                          tabPanel(title = "SectorInventory",
                                    value = "GHGEmissions",
                                    GHGEmissionsOutput("GHGEmissions")),
-                          tabPanel(title = "Sector Inventory",
-                                   value = "SectorInventory",
-                                   SectorInventoryOutput("SectorInventory")),
                           tabPanel(title = "Carbon Productivity",
                                    value = "CarbonProd",
                                    CarbonProdOutput("CarbonProd"))

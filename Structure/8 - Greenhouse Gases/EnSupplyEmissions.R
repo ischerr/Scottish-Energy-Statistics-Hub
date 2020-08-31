@@ -137,41 +137,6 @@ EnSupplyEmissions <- function(input, output, session) {
     
     p <-  plot_ly(data = EnSupplyEmissions,
                   x = ~ Year ) %>% 
-      add_trace(data = EnSupplyEmissions,
-                x = ~ Year,
-                y = ~ `Greenhouse Gas`,
-                name = "Total greenhouse gas emissions",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "1",
-                text = paste0(
-                  "Total greenhouse gas emissions: ",
-                  round(EnSupplyEmissions$`Greenhouse Gas`, digits = 1),
-                  " MtCO2e\nYear: ",
-                  format(EnSupplyEmissions$Year, "%Y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 6, color = LineColours[1], dash = "none")
-      ) %>% 
-      add_trace(
-        data = EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))],
-        x = ~ Year,
-        y = ~ `Greenhouse Gas`,
-        name = "Total greenhouse gas emissions",
-        text = paste0(
-          "Total greenhouse gas emissions: ",
-          round(EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))]$`Greenhouse Gas`, digits = 1),
-          " MtCO2e\nYear: ",
-          format(EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))]$Year, "%Y")
-        ),
-        hoverinfo = 'text',
-        showlegend = FALSE ,
-        type = "scatter",
-        mode = 'markers',
-        legendgroup = "1",
-        marker = list(size = 18, 
-                      color = LineColours[1])
-      ) %>% 
       
       add_trace(data = EnSupplyEmissions,
                 x = ~ Year,
@@ -344,7 +309,7 @@ EnSupplyEmissions <- function(input, output, session) {
     
 
     datatable(
-      EnSupplyEmissions,
+      EnSupplyEmissions[c(1,3:5)],
       extensions = 'Buttons',
      # container = sketch,
       rownames = FALSE,
@@ -444,29 +409,6 @@ EnSupplyEmissions <- function(input, output, session) {
               
               label = `Greenhouse Gas`),
           size = 1.5,
-          colour = LineColours[1],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year,
-            y = `Greenhouse Gas`,
-            label = ifelse(Year %in% c(1988,1990,1995, 1998), round(`Greenhouse Gas`, digits= 1), ""),
-            hjust = 0.5,
-            vjust = 2,
-            fontface = 2
-          ),
-          colour = LineColours[1],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year+0.75,
-            y = `Greenhouse Gas`,
-            label = ifelse(Year == max(Year), round(`Greenhouse Gas`, digits= 1), ""),
-            hjust = 0.5,
-            fontface = 2
-          ),
           colour = LineColours[1],
           family = "Century Gothic"
         ) +
@@ -747,7 +689,7 @@ EnSupplyEmissions <- function(input, output, session) {
       EnergyEnSupplyEmissionsChart
       
       EnergyEnSupplyEmissionsChart <- EnergyEnSupplyEmissionsChart +
-        ylim(-3, max(EnergyEnSupplyEmissions$`Greenhouse Gas`)) +
+        ylim(-3, max(EnergyEnSupplyEmissions$`Energy Supply`)) +
         labs(subtitle = paste("Scotland, 1990 -", max(EnergyEnSupplyEmissions$Year)))
       ggsave(
         file,
