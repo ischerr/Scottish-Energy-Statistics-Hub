@@ -97,32 +97,34 @@ GHGEmissions <- function(input, output, session) {
   
   output$GHGEmissionsPlot <- renderPlotly  ({
     
-    GHGEmissions <- read_excel("Structure/CurrentWorking.xlsx", 
-                               sheet = "GHG emissions", skip = 12, col_names = FALSE)
+    GHGEmissions <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
+                                   "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    GHGEmissionsYear <- max(as.numeric(GHGEmissions[1,]), na.rm = TRUE)
+    GHGEmissions <- GHGEmissions[nrow(GHGEmissions),]
     
-    GHGEmissions <- GHGEmissions[c(ncol(GHGEmissions)-3):(ncol(GHGEmissions))]
+    GHGEmissions$refPeriod <- NULL
     
-    GHGEmissions <- as_tibble(t(GHGEmissions))
+    GHGEmissions <- melt(GHGEmissions)
     
-    names(GHGEmissions) <- as.character(unlist(GHGEmissions[1,]))
+    GHGEmissions$variable <- as.character(GHGEmissions$variable)
     
-    GHGEmissions <- GHGEmissions[-1,]
+    GHGEmissions$Type <- "Emissions"
     
-    names(GHGEmissions) <- c("Type", "Forestry", "Other", "Waste", "Development", "Residential", "Business/Industrial process", "Agriculture", "Energy Supply", "Transport", "Total" )
+    GHGEmissions <- rbind(GHGEmissions, c("Total", sum(GHGEmissions$value), "Total greenhouse gas emissions"))
     
-    GHGEmissions[2:11] %<>% lapply(function(x) as.numeric(as.character(x)))
+    GHGEmissions[which(GHGEmissions$value < 0),]$Type <- "Carbon sinks"
+    
+    GHGEmissions <- dcast(GHGEmissions, Type ~ variable, value.var = "value")
     
     GHGEmissions[is.na(GHGEmissions)] <- 0
     
-    GHGEmissions$Other <- GHGEmissions$Other + GHGEmissions$Waste + GHGEmissions$Development
+    GHGEmissions[2:12] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    GHGEmissions$Waste <- NULL
+    GHGEmissions <- as_tibble(GHGEmissions)
     
-    GHGEmissions$Development <- NULL
+    GHGEmissions <- GHGEmissions[c(3,1,2),]
     
-    GHGEmissions <- GHGEmissions[c(1,9,2:8)]
+    rownames(GHGEmissions) <- NULL
     
     GHGEmissionsPlotData <- GHGEmissions[c(1,3),]
     
@@ -132,13 +134,16 @@ GHGEmissions <- function(input, output, session) {
     BarColours <-
       c(
         "#016c59",
-        "#662506", 
-        "#993404",
-        "#cc4c02",
-        "#ec7014",
-        "#fe9929",
-        "#fec44f",
-        "#78c679"
+        "#9e0142",
+        "#d53e4f",
+        "#f46d43",
+        "#fdae61",
+        "#fee08b",
+        "#abdda4",
+        "#66c2a5",
+        "#3288bd",
+        "#5e4fa2"
+        
       )
     
     
@@ -149,6 +154,7 @@ GHGEmissions <- function(input, output, session) {
         type = 'bar',
         textinfo = 'text',
         textposition = "inside",
+        insidetextanchor = "middle",
         insidetextfont = list(color = "#FFFFFF",
                               font = "bold"),
         width = 0.3,
@@ -161,103 +167,156 @@ GHGEmissions <- function(input, output, session) {
       ) %>%
       add_trace(
         data = GHGEmissionsPlotData,
-        x = ~ Transport,
+        x = ~ `transport-excluding-international`,
         type = 'bar',
         textinfo = 'text',
         textposition = "inside",
+        insidetextanchor = "middle",
         insidetextfont = list(color = "#FFFFFF",
                               font = "bold"),
         width = 0.3,
         orientation = 'h',
-        name = "Transport",
-        text = paste0("Transport\n", round(GHGEmissionsPlotData$Transport, digits = 1), " MtCO2e"),
+        name = "Domestic Transport",
+        text = paste0("Domestic Transport\n", round(GHGEmissionsPlotData$`transport-excluding-international`, digits = 1), " MtCO2e"),
         hoverinfo = 'text',
         marker = list(color = BarColours[2]),
         legendgroup = 2
       )  %>%
       add_trace(
         data = GHGEmissionsPlotData,
-        x = ~ `Energy Supply`,
+        x = ~ `business`,
         type = 'bar',
         textinfo = 'text',
         textposition = "inside",
+        insidetextanchor = "middle",
         insidetextfont = list(color = "#FFFFFF",
                               font = "bold"),
         width = 0.3,
         orientation = 'h',
-        name = "Energy Supply",
-        text = paste0("Energy Supply\n", round(GHGEmissionsPlotData$`Energy Supply`, digits = 1), " MtCO2e"),
+        name = "Business",
+        text = paste0("Business\n", round(GHGEmissionsPlotData$`business`, digits = 1), " MtCO2e"),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 3
       )  %>%
       add_trace(
         data = GHGEmissionsPlotData,
-        x = ~ `Agriculture`,
+        x = ~ `agriculture`,
         type = 'bar',
         textinfo = 'text',
         textposition = "inside",
+        insidetextanchor = "middle",
         insidetextfont = list(color = "#FFFFFF",
                               font = "bold"),
         width = 0.3,
         orientation = 'h',
         name = "Agriculture",
-        text = paste0("Agriculture\n", round(GHGEmissionsPlotData$`Agriculture`, digits = 1), " MtCO2e"),
+        text = paste0("Agriculture\n", round(GHGEmissionsPlotData$`agriculture`, digits = 1), " MtCO2e"),
         hoverinfo = 'text',
         marker = list(color = BarColours[4]),
         legendgroup = 4
       ) %>%
       add_trace(
         data = GHGEmissionsPlotData,
-        x = ~ `Business/Industrial process`,
+        x = ~ `energy-supply`,
         type = 'bar',
         textinfo = 'text',
         textposition = "inside",
+        insidetextanchor = "middle",
         insidetextfont = list(color = "#FFFFFF",
                               font = "bold"),
         width = 0.3,
         orientation = 'h',
-        name = "Business/Industrial process",
-        text = paste0("Business/Industrial process\n", round(GHGEmissionsPlotData$`Business/Industrial process`, digits = 1), " MtCO2e"),
+        name = "Energy Supply",
+        text = paste0("Energy Supply\n", round(GHGEmissionsPlotData$`energy-supply`, digits = 1), " MtCO2e"),
         hoverinfo = 'text',
         marker = list(color = BarColours[5]),
         legendgroup = 5
       ) %>%
       add_trace(
         data = GHGEmissionsPlotData,
-        x = ~ `Residential`,
+        x = ~ `residential`,
         type = 'bar',
         textinfo = 'text',
         textposition = "inside",
+        insidetextanchor = "middle",
         insidetextfont = list(color = "#FFFFFF",
                               font = "bold"),
         width = 0.3,
         orientation = 'h',
         name = "Residential",
-        text = paste0("Residential\n", round(GHGEmissionsPlotData$`Residential`, digits = 1), " MtCO2e"),
+        text = paste0("Residential\n", round(GHGEmissionsPlotData$`residential`, digits = 1), " MtCO2e"),
         hoverinfo = 'text',
         marker = list(color = BarColours[6]),
         legendgroup = 6
       ) %>%
       add_trace(
         data = GHGEmissionsPlotData,
-        x = ~ `Other`,
+        x = ~ `international-aviation-and-shipping`,
         type = 'bar',
         textinfo = 'text',
         textposition = "inside",
-        insidetextfont = list(color = "#FFFFFF",
+        insidetextfont = list(color = BarColours[7],
                               font = "bold"),
         width = 0.3,
         orientation = 'h',
-        name = "Other",
-        text = paste0("Other\n", round(GHGEmissionsPlotData$`Other`, digits = 1), " MtCO2e"),
+        name = "International aviation and shipping",
+        text = paste0("International aviation and shipping\n", round(GHGEmissionsPlotData$`international-aviation-and-shipping`, digits = 1), " MtCO2e"),
         hoverinfo = 'text',
         marker = list(color = BarColours[7]),
         legendgroup = 7
       ) %>%
+      add_trace(
+        data = GHGEmissionsPlotData,
+        x = ~ `waste-management`,
+        type = 'bar',
+        textinfo = 'text',
+        textposition = "inside",
+        insidetextfont = list(color = BarColours[8],
+                              font = "bold"),
+        width = 0.3,
+        orientation = 'h',
+        name = "Waste management",
+        text = paste0("waste-management\n", round(GHGEmissionsPlotData$`waste-management`, digits = 1), " MtCO2e"),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[8]),
+        legendgroup = 8
+      ) %>%
+      add_trace(
+        data = GHGEmissionsPlotData,
+        x = ~ `public`,
+        type = 'bar',
+        textinfo = 'text',
+        textposition = "inside",
+        insidetextfont = list(color = BarColours[9],
+                              font = "bold"),
+        width = 0.3,
+        orientation = 'h',
+        name = "public",
+        text = paste0("Public\n", round(GHGEmissionsPlotData$`public`, digits = 1), " MtCO2e"),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[9]),
+        legendgroup = 9
+      ) %>%
+      add_trace(
+        data = GHGEmissionsPlotData,
+        x = ~ `industrial-processes`,
+        type = 'bar',
+        textinfo = 'text',
+        textposition = "inside",
+        insidetextfont = list(color = BarColours[10],
+                              font = "bold"),
+        width = 0.3,
+        orientation = 'h',
+        name = "industrial-processes",
+        text = paste0("Industrial processes\n", round(GHGEmissionsPlotData$`industrial-processes`, digits = 1), " MtCO2e"),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[10]),
+        legendgroup = 10
+      ) %>%
       add_annotations(
-        ax = rowSums(GHGEmissionsPlotData[2:9])[2],
-        x =rowSums(GHGEmissionsPlotData[2:9])[2] + min(GHGEmissions$Forestry),
+        ax = max(GHGEmissions$Total)- min(GHGEmissions$`land-use-land-use-change-and-forestry`),
+        x = max(GHGEmissions$Total),
         ay = 1.5,
         y = 1.5,
         xref = "x", yref = "y",
@@ -267,7 +326,7 @@ GHGEmissions <- function(input, output, session) {
         arrowsize = 1,
         arrowcolor = BarColours[8],
         hoverinfo = 'name',
-        legendgroup = 10,
+        legendgroup = 11,
         text = "",
         name = "Carbon sinks absorb more carbon than they generate",
         line = list(
@@ -279,13 +338,13 @@ GHGEmissions <- function(input, output, session) {
       ) %>%
       add_trace(
         mode = 'text',
-        x =rowSums(GHGEmissionsPlotData[2:9])[2] + (min(GHGEmissions$Forestry)/2),
+        x =max(GHGEmissions$Total) - (min(GHGEmissions$`land-use-land-use-change-and-forestry`)/2),
         y = 1.5,
         xref = "x", yref = "y",
         showlegend = FALSE ,
         hoverinfo = 'name',
         legendgroup = 10,
-        text = paste0("Forestry\n\n", round(min(GHGEmissions$Forestry),1)," MtCO2e"),
+        text = paste0("Forestry\n\n", round(min(GHGEmissions$`land-use-land-use-change-and-forestry`),1)," MtCO2e"),
         name = paste("Carbon sinks"),
         marker = list(
           size = 100,
