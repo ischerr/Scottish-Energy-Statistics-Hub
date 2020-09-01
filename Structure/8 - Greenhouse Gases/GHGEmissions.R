@@ -395,6 +395,7 @@ GHGEmissions <- function(input, output, session) {
       options = list(
         paging = TRUE,
         pageLength = -1,
+        scrollX = TRUE,
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
