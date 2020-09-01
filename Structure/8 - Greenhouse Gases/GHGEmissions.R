@@ -72,27 +72,10 @@ GHGEmissions <- function(input, output, session) {
   
   output$GHGEmissionsSubtitle <- renderText({
     
-    GHGEmissions <- read_excel("Structure/CurrentWorking.xlsx", 
-                               sheet = "GHG emissions", col_names = FALSE, 
-                               skip = 12)
+    GHGEmissions <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
+                               "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    GHGEmissions <- t(GHGEmissions)
-    
-    GHGEmissions <- as_tibble(GHGEmissions)
-    
-    names(GHGEmissions) <- unlist(GHGEmissions[1,])
-    
-    names(GHGEmissions)[1] <- "Year"
-    
-    GHGEmissions %<>% lapply(function(x) as.numeric(as.character(x)))
-    
-    GHGEmissions <- as_tibble(GHGEmissions)
-    
-    GHGEmissions[2,1] <- " Baseline Period"
-    
-    GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
-    
-    paste("Scotland,", max(GHGEmissions$Year))
+    paste("Scotland,", max(as.numeric(GHGEmissions$refPeriod), na.rm = TRUE))
   })
   
   output$GHGEmissionsPlot <- renderPlotly  ({
@@ -395,25 +378,14 @@ GHGEmissions <- function(input, output, session) {
   
   output$GHGEmissionsTable = renderDataTable({
     
-    GHGEmissions <- read_excel("Structure/CurrentWorking.xlsx", 
-                          sheet = "GHG emissions", col_names = FALSE, 
-                          skip = 12)
+    GHGEmissions <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
+                               "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    GHGEmissions <- t(GHGEmissions)
+    names(GHGEmissions) <- c("Year", "Agriculture", "Business", "Energy Supply", "Industrial Processes", "International Aviation and Shipping", "Forestry (Carbon Sink)", "Public",  "Residential", "Domestic Transport", "Waste Management" )
     
-    GHGEmissions <- as_tibble(GHGEmissions)
+    GHGEmissions <- GHGEmissions[c(1,10,3,2,4,9,6,11,8,5,7)]
     
-    names(GHGEmissions) <- unlist(GHGEmissions[1,])
-    
-    names(GHGEmissions)[1] <- "Year"
-    
-    GHGEmissions %<>% lapply(function(x) as.numeric(as.character(x)))
-    
-   GHGEmissions <- as_tibble(GHGEmissions)
-    
-   GHGEmissions[2,1] <- " Baseline Period"
-    
-GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
+    GHGEmissions$`Total Emissions` <- rowSums(GHGEmissions[2:11])
     
     datatable(
       GHGEmissions,
@@ -448,7 +420,8 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
         pageLength = 10
       )
     ) %>%
-      formatRound(2:11, 1) 
+      formatRound(2:12, 1) %>% 
+      formatStyle(11, fontStyle = "italic")
   })
   
   
@@ -631,7 +604,7 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
         ) +
         geom_text(
           aes( x = 2.4,
-               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(-1/6) - 3,
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(0/7) - 3,
                label = "Domestic\nTransport",
                family = "Century Gothic",
                fontface = 2
@@ -640,7 +613,7 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
         )  +
         geom_text(
           aes( x = 2.4,
-               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(1/6) - 3,
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(1/7) - 3,
                label = "Business",
                family = "Century Gothic",
                fontface = 2
@@ -649,7 +622,7 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
         )  +
         geom_text(
           aes( x = 2.4,
-               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(2/6) - 3,
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(2/7) - 3,
                label = "Agriculture",
                family = "Century Gothic",
                fontface = 2
