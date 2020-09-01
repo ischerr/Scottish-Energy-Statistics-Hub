@@ -897,7 +897,10 @@ ui <- shinyUI(fluidPage(
                                    GHGEmissionsOutput("GHGEmissions")),
                           tabPanel(title = "Carbon Productivity",
                                    value = "CarbonProd",
-                                   CarbonProdOutput("CarbonProd"))
+                                   CarbonProdOutput("CarbonProd")),
+                          tabPanel(title = "GHG Elec Heat Transport",
+                                   value = "GHGElecHeatTransport",
+                                   GHGElecHeatTransportOutput("GHGElecHeatTransport"))
              )),
                    ###### Section - Target Tracker #######
                    tabPanel(value = "TargetTracker",
