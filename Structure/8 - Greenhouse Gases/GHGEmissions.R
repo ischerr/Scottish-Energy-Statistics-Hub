@@ -479,7 +479,7 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
       GHGEmissions <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
                                  "\t", escape_double = FALSE, trim_ws = TRUE)
       
-      GHGEmissionsYear <- paste("Scotland," max(as.numeric(GHGEmissions$refPeriod), na.rm = TRUE))
+      GHGEmissionsYear <- paste("Scotland,", max(as.numeric(GHGEmissions$refPeriod), na.rm = TRUE))
       
       GHGEmissions <- GHGEmissions[nrow(GHGEmissions),]
       
