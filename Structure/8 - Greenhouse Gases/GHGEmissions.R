@@ -476,34 +476,51 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
     filename = "GHGEmissions.png",
     content = function(file) {
 
-      GHGEmissions <- read_excel("Structure/CurrentWorking.xlsx", 
-                                 sheet = "GHG emissions", skip = 12, col_names = FALSE)
+      GHGEmissions <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
+                                 "\t", escape_double = FALSE, trim_ws = TRUE)
       
-      GHGEmissionsYear <- max(as.numeric(GHGEmissions[1,]), na.rm = TRUE)
+      GHGEmissions <- GHGEmissions[nrow(GHGEmissions),]
       
-      GHGEmissions <- GHGEmissions[c(ncol(GHGEmissions)-3):(ncol(GHGEmissions))]
+      GHGEmissions$refPeriod <- NULL
       
-      GHGEmissions <- as_tibble(t(GHGEmissions))
+      GHGEmissions <- melt(GHGEmissions)
       
-      names(GHGEmissions) <- as.character(unlist(GHGEmissions[1,]))
+      GHGEmissions$variable <- as.character(GHGEmissions$variable)
       
-      GHGEmissions <- GHGEmissions[-1,]
+      GHGEmissions$Type <- "Emissions"
       
-      names(GHGEmissions) <- c("Type", "Forestry", "Other", "Waste", "Development", "Residential", "Business and Industrial process", "Agriculture and Related Land Use", "Energy Supply", "Transport", "Total" )
+      GHGEmissions <- rbind(GHGEmissions, c("Total", sum(GHGEmissions$value), "Total greenhouse gas emissions"))
       
-      GHGEmissions[2:11] %<>% lapply(function(x) as.numeric(as.character(x)))
+      GHGEmissions[which(GHGEmissions$value < 0),]$Type <- "Carbon sinks"
+      
+      GHGEmissions <- dcast(GHGEmissions, Type ~ variable, value.var = "value")
       
       GHGEmissions[is.na(GHGEmissions)] <- 0
       
-      GHGEmissions$Other <- GHGEmissions$Other + GHGEmissions$Waste + GHGEmissions$Development
+      GHGEmissions[2:12] %<>% lapply(function(x) as.numeric(as.character(x)))
       
-      GHGEmissions$Waste <- NULL
+      GHGEmissions <- as_tibble(GHGEmissions)
       
-      GHGEmissions$Development <- NULL
+      GHGEmissions <- GHGEmissions[c(3,1,2),]
       
-      GHGEmissions <- GHGEmissions[c(1,9,2:8)]
+      GHGEmissions <- GHGEmissions[c(1,10,7,5,8,12,6,9,4,2,3,11)]
       
-      # GHGEmissions <- arrange(GHGEmissions, -row_number())
+      ChartColours <- c("#39ab2c", "#FF8500")
+      BarColours <-
+        c(
+          "#016c59",
+          "#9e0142",
+          "#d53e4f",
+          "#f46d43",
+          "#fdae61",
+          "#fee08b",
+          "#abdda4",
+          "#66c2a5",
+          "#3288bd",
+          "#5e4fa2"
+          
+        )
+      
       
       GHGEmissions$Type <-
         factor(GHGEmissions$Type,
@@ -512,7 +529,7 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
       
       GHGEmissions <- melt(GHGEmissions, id.vars = "Type")
       
-      GHGCarbonSink <- min(GHGEmissions[which(GHGEmissions$variable == "Forestry"),]$value)
+      GHGCarbonSink <- min(GHGEmissions[which(GHGEmissions$variable == "land-use-land-use-change-and-forestry"),]$value)
       
       
       GHGEmissions <- subset(GHGEmissions, GHGEmissions$Type != "Carbon sinks" )
@@ -532,33 +549,22 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
         "Sources of Scottish greenhouse gas emissions"
       sourcecaption <- "Source: SG"
       
-      ChartColours <- c("#39ab2c", "#FF8500")
-      BarColours <-
-        c(
-          "#662506", 
-          "#993404",
-          "#cc4c02",
-          "#ec7014",
-          "#fe9929",
-          "#fec44f",
-          "#78c679",
-          "#016c59"
-        )
-      
-      
       GHGEmissionsChart <- GHGEmissions %>%
         ggplot(aes(x = Type, y = value, fill = variable), family = "Century Gothic") +
         scale_fill_manual(
           "variable",
           values = c(
-            "Transport" = BarColours[1],
-            "Energy Supply" = BarColours[2],
-            "Agriculture and Related Land Use" = BarColours[3],
-            "Business and Industrial process" = BarColours[4],
-            "Residential" = BarColours[5],
-            "Other" = BarColours[6],
-            "Forestry" = BarColours[7],
-            "Total" = BarColours[8]
+            "transport-excluding-international" = BarColours[2],
+            "business" = BarColours[3],
+            "agriculture" = BarColours[4],
+            "energy-supply" = BarColours[5],
+            "residential" = BarColours[6],
+            "international-aviation-and-shipping" = BarColours[7],
+            "waste-management" = BarColours[8],
+            "public" = BarColours[9],
+            "industrial-processes" = BarColours[10],
+            "land-use-land-use-change-and-forestry" = ChartColours[1],
+            "Total" = BarColours[1]
           )
         ) +
         geom_bar(stat = "identity",
@@ -577,7 +583,7 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
           aes(
             x = Type,
             y = top-pos,
-            label = ifelse(value > 0 & Type == "Emissions", sprintf("%.1f", round(value, digits = 1)), ""
+            label = ifelse(value > 1.5 & Type == "Emissions", sprintf("%.1f", round(value, digits = 1)), ""
             )),
           family = "Century Gothic",
           fontface = 2,
@@ -603,7 +609,7 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
           size = 1
         ) + 
         geom_text(
-          aes( x = 1.55,
+          aes( x = 1.6,
                y = GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top + (GHGCarbonSink/2),
                label = paste("Forestry: \n", round(GHGCarbonSink, digits = 1), "MtCO2e")
           ),
@@ -612,9 +618,9 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
           colour =   BarColours[7]
         ) +
         geom_text(
-          aes( x = 1.28,
+          aes( x = 1.3,
                y = GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top + (GHGCarbonSink/2),
-               label = "Carbon sinks absorb\nmore carbon than\nthey generate"
+               label = "Carbon sinks absorb more\ncarbon than they generate"
           ),
           family = "Century Gothic",
           fontface = 2,
@@ -622,60 +628,86 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
           size = 3
         ) +
         geom_text(
-          aes( x = 2.3,
-               y = GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Transport" ),]$top - GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Transport" ),]$pos,
-               label = "Transport",
-               family = "Century Gothic",
-               fontface = 2
-          ),
-          colour =  BarColours[1]
-        )  +
-        geom_text(
-          aes( x = 1.7,
-               y = GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Energy Supply" ),]$top - GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Energy Supply" ),]$pos,
-               label = "Energy Supply",
+          aes( x = 2.4,
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(0/7),
+               label = "Domestic\nTransport",
                family = "Century Gothic",
                fontface = 2
           ),
           colour =  BarColours[2]
         )  +
         geom_text(
-          aes( x = 2.3,
-               y = GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Agriculture and Related Land Use" ),]$top - GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Agriculture and Related Land Use" ),]$pos,
-               label = "Agriculture",
+          aes( x = 2.4,
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(1/7),
+               label = "Business",
                family = "Century Gothic",
                fontface = 2
           ),
           colour =  BarColours[3]
         )  +
         geom_text(
-          aes( x = 1.7,
-               y = GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Business and Industrial process" ),]$top - GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Business and Industrial process" ),]$pos,
-               label = "Business and Industrial",
+          aes( x = 2.4,
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(2/7),
+               label = "Agriculture",
                family = "Century Gothic",
                fontface = 2
           ),
           colour =  BarColours[4]
         )  +
         geom_text(
-          aes( x = 2.3,
-               y = GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Residential" ),]$top - GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Residential" ),]$pos,
-               label = "Residential",
+          aes( x = 2.4,
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(3/7),
+               label = "Energy\nSupply",
                family = "Century Gothic",
                fontface = 2
           ),
           colour =  BarColours[5]
-        )  +
+        ) +
         geom_text(
-          aes( x = 1.7,
-               y = GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Other" ),]$top - GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Other" ),]$pos,
-               label = "Other",
+          aes( x = 2.4,
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(4/7),
+               label = "Residential",
                family = "Century Gothic",
                fontface = 2
           ),
           colour =  BarColours[6]
-        ) 
-      
+        ) +
+        geom_text(
+          aes( x = 2.4,
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(5/7),
+               label = "International\naviation\nand shipping",
+               family = "Century Gothic",
+               fontface = 2
+          ),
+          colour =  BarColours[7]
+        )+
+        geom_text(
+          aes( x = 2.4,
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(6/7),
+               label = "Waste\nManagement",
+               family = "Century Gothic",
+               fontface = 2
+          ),
+          colour =  BarColours[8]
+        )+
+        geom_text(
+          aes( x = 2.4,
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(7/7),
+               label = "Public",
+               family = "Century Gothic",
+               fontface = 2
+          ),
+          colour =  BarColours[9]
+        )+
+        geom_text(
+          aes( x = 2.4,
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(8/7),
+               label = "Industrial\nProcesses",
+               family = "Century Gothic",
+               fontface = 2
+          ),
+          colour =  BarColours[10]
+        )
       
       GHGEmissionsChart
       
@@ -700,7 +732,7 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
       ggsave(
         file,
         plot = GHGEmissionsChart,
-        width = 24,
+        width = 27,
         height = 14,
         units = "cm",
         dpi = 300
