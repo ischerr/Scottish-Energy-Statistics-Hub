@@ -629,7 +629,7 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
         ) +
         geom_text(
           aes( x = 2.4,
-               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(0/7),
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(-1/6) - 3,
                label = "Domestic\nTransport",
                family = "Century Gothic",
                fontface = 2
@@ -638,7 +638,7 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
         )  +
         geom_text(
           aes( x = 2.4,
-               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(1/7),
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(1/6) - 3,
                label = "Business",
                family = "Century Gothic",
                fontface = 2
@@ -647,7 +647,7 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
         )  +
         geom_text(
           aes( x = 2.4,
-               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(2/7),
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(2/6) - 3,
                label = "Agriculture",
                family = "Century Gothic",
                fontface = 2
@@ -656,7 +656,7 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
         )  +
         geom_text(
           aes( x = 2.4,
-               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(3/7),
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(3/7) - 3,
                label = "Energy\nSupply",
                family = "Century Gothic",
                fontface = 2
@@ -665,7 +665,7 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
         ) +
         geom_text(
           aes( x = 2.4,
-               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(4/7),
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(4/7) - 3,
                label = "Residential",
                family = "Century Gothic",
                fontface = 2
@@ -674,7 +674,7 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
         ) +
         geom_text(
           aes( x = 2.4,
-               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(5/7),
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(5/7) - 3,
                label = "International\naviation\nand shipping",
                family = "Century Gothic",
                fontface = 2
@@ -683,7 +683,7 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
         )+
         geom_text(
           aes( x = 2.4,
-               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(6/7),
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(6/7) - 3,
                label = "Waste\nManagement",
                family = "Century Gothic",
                fontface = 2
@@ -692,7 +692,7 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
         )+
         geom_text(
           aes( x = 2.4,
-               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(7/7),
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(7/7) - 3,
                label = "Public",
                family = "Century Gothic",
                fontface = 2
@@ -701,7 +701,7 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
         )+
         geom_text(
           aes( x = 2.4,
-               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(8/7),
+               y = (GHGEmissions[which(GHGEmissions$Type == "Emissions" & GHGEmissions$variable == "Total"),]$top) *(8/7) - 3,
                label = "Industrial\nProcesses",
                family = "Century Gothic",
                fontface = 2
@@ -723,7 +723,7 @@ GHGEmissions <- GHGEmissions[complete.cases(GHGEmissions),]
         GHGEmissionsChart +
         labs(subtitle = GHGEmissionsYear)+
         coord_flip()+ 
-        ylim(-7,57)
+        ylim(-7,53)
       
       GHGEmissionsChart
       
