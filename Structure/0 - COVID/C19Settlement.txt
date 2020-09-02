@@ -4,7 +4,7 @@
 
 <li>With lockdown restrictions loosening, patterns of electricity demand in weekdays in 2020 now more closely resemble 2019.</li>
 
-<li>For the second week since lockdown, <strong>peak demand</strong> is higher in <strong>2020</strong> than the same week in <strong>2019</strong>&nbsp;(<strong>3,486 MW</strong> compared to <strong>3,422 MW</strong>). </li>
+<li>For the third week since lockdown, <strong>peak demand</strong> is higher in <strong>2020</strong> than the same week in <strong>2019</strong>&nbsp;(<strong>3,674 MW</strong> compared to <strong>3,521 MW</strong>). </li>
 </ul>
 
 <p>The profile of weekday demand post lockdown is similar to weekend demand in 2019.&nbsp; Given that, in normal times, industrial and commercial demand is lower at weekends, this seems to confirm a reduction of activity in those sectors in daytime hours during the week.</p>
