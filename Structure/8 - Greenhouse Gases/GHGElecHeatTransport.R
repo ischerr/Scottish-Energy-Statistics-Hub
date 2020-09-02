@@ -10,7 +10,7 @@ GHGElecHeatTransportOutput <- function(id) {
   tagList(
     fluidRow(
                      column(8,
-                      h3("Energy productivity target progress", style = "color: #1A5D38;  font-weight:bold"),
+                      h3("Electricity", style = "color: #1A5D38;  font-weight:bold"),
                       h4(textOutput(ns('GHGElectricitySubtitle')), style = "color: #1A5D38;")
                      ),
                       column(
@@ -158,12 +158,14 @@ GHGElecHeatTransport <- function(input, output, session) {
   
   output$GHGElectricitySubtitle <- renderText({
     
-    GHGElectricity <- read_delim("Processed Data/Output/Carbon Productivity/Carbon Productivity.txt", 
-                             "\t", escape_double = FALSE, trim_ws = TRUE)[c(1:4)]
+    GHGElectricity <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
+                                 "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,2)]
     
     names(GHGElectricity) <- c("Year", "Renewables")
     
-    GHGElectricity %<>% lapply(function(x) as.numeric(as.character(x)))
+    GHGElectricity$Year <- as.numeric(GHGElectricity$Year)
+    
+    GHGElectricity <- GHGElectricity[complete.cases(GHGElectricity),]
     
     paste("Scotland,", min(GHGElectricity$Year),"-", max(GHGElectricity$Year))
     
@@ -218,39 +220,20 @@ GHGElecHeatTransport <- function(input, output, session) {
       formatRound(3, 2)
   })
   
-  
-  output$Text <- renderUI({
-    tagList(column(12,
-                   
-                   HTML(
-                     paste(readtext("Structure/8 - Greenhouse Gases/GHGElecHeatTransport.txt")[2])
-                     
-                   )))
-  })
-  
-  observeEvent(input$ToggleTable, {
-    toggle("GHGElectricityTable")
-  })
-  
-  
-  
-  observeEvent(input$ToggleText, {
-    toggle("Text")
-  })
-  
-  
-  output$GHGElectricity.png <- downloadHandler(
+    output$GHGElectricity.png <- downloadHandler(
     filename = "GHGElectricity.png",
     content = function(file) {
       
-      GHGElectricity <- read_delim("Processed Data/Output/Carbon Productivity/Carbon Productivity.txt", 
-                               "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,4)]
+      GHGElectricity <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
+                                   "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,2)]
       
       names(GHGElectricity) <- c("Year", "Renewables")
       
       GHGElectricity %<>% lapply(function(x) as.numeric(as.character(x)))
       
       GHGElectricity <- as_tibble(GHGElectricity)
+      
+      GHGElectricity <- GHGElectricity[complete.cases(GHGElectricity),]
       
       ### Variables
       ChartColours <- c("#1a5d38", "#FF8500")
@@ -330,7 +313,7 @@ GHGElecHeatTransport <- function(input, output, session) {
       
       GHGElectricityChart <- GHGElectricityChart +
         xlim(min(GHGElectricity$Year) -1 , max(GHGElectricity$Year) +1)+
-        ylim(-30,max(GHGElectricity$Renewables)*1.05)+
+        ylim(-.30,max(GHGElectricity$Renewables)*1.05)+
         labs(subtitle = paste0("Scotland, ",min(GHGElectricity$Year)," - ", max(GHGElectricity$Year)))
              
              GHGElectricityChart
@@ -347,4 +330,26 @@ GHGElecHeatTransport <- function(input, output, session) {
              
     }
         )
+    
+  output$Text <- renderUI({
+    tagList(column(12,
+                   
+                   HTML(
+                     paste(readtext("Structure/8 - Greenhouse Gases/GHGElecHeatTransport.txt")[2])
+                     
+                   )))
+  })
+  
+  observeEvent(input$ToggleTable, {
+    toggle("GHGElectricityTable")
+  })
+  
+  
+  
+  observeEvent(input$ToggleText, {
+    toggle("Text")
+  })
+  
+  
+
 }
