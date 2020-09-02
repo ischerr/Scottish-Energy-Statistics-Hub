@@ -313,7 +313,7 @@ C19Gas <- function(input, output, session) {
       DailyDemand$DayofYear <- yday(DailyDemand$Date)
       
       DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "First three weeks of March", 
-                                                                 "4th week Mar. to 3rd week Aug.")
+                                                                 "4th week Mar. to 4th week Aug.")
       
       WeekdayElecDemand <- DailyDemand
       
@@ -339,7 +339,7 @@ C19Gas <- function(input, output, session) {
           "variable",
           values = c(
             "First three weeks of March" = BarColours[3],
-            "4th week Mar. to 3rd week Aug." = BarColours[2]
+            "4th week Mar. to 4th week Aug." = BarColours[2]
           )
         ) +
         geom_bar(position = "dodge",
