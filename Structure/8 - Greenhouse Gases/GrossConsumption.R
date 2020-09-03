@@ -116,7 +116,7 @@ GrossConsumption <- function(input, output, session) {
         width = 0.3,
         orientation = 'h',
         name = "Consumption",
-        text = paste0("Consumption\n", round(GrossConsumptionPlotData$Consumption, digits = 1), " MtCO2e"),
+        text = paste0("Consumption\n", round(GrossConsumptionPlotData$Consumption, digits = 1), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[1]),
         legendgroup = 1
@@ -133,7 +133,7 @@ GrossConsumption <- function(input, output, session) {
         width = 0.3,
         orientation = 'h',
         name = "Renewables",
-        text = paste0("Renewables\n", round(GrossConsumptionPlotData$`Renewables`, digits = 1), " MtCO2e"),
+        text = paste0("Renewables\n", round(GrossConsumptionPlotData$`Renewables`, digits = 1), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[2]),
         legendgroup = 2
@@ -150,7 +150,7 @@ GrossConsumption <- function(input, output, session) {
         width = 0.3,
         orientation = 'h',
         name = "Non-renewable",
-        text = paste0("Non-renewable\n", round(GrossConsumptionPlotData$`Non-renewable`, digits = 1), " MtCO2e"),
+        text = paste0("Non-renewable\n", round(GrossConsumptionPlotData$`Non-renewable`, digits = 1), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 3
@@ -185,7 +185,7 @@ GrossConsumption <- function(input, output, session) {
         showlegend = FALSE ,
         hoverinfo = 'name',
         legendgroup = 10,
-        text = paste0("Exports\n\n", round(min(GrossConsumption$`Exports`),1)," MtCO2e"),
+        text = paste0("Exports\n\n", round(min(GrossConsumption$`Exports`),1)," GWh"),
         name = paste("Exports"),
         marker = list(
           size = 100,
@@ -259,17 +259,17 @@ GrossConsumption <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Sources of Scottish Greenhouse Gas Emissions (MtCO2e)",
+        title = "Sources of Scottish Greenhouse Gas Emissions (GWh)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Sources of Scottish Greenhouse Gas Emissions (MtCO2e)',
+            title = 'Sources of Scottish Greenhouse Gas Emissions (GWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Sources of Scottish Greenhouse Gas Emissions (MtCO2e)')
+               title = 'Sources of Scottish Greenhouse Gas Emissions (GWh)')
         ),
         
         # customize the length menu
@@ -308,48 +308,25 @@ GrossConsumption <- function(input, output, session) {
     filename = "GrossConsumption.png",
     content = function(file) {
 
-      GrossConsumption <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                                 "\t", escape_double = FALSE, trim_ws = TRUE)
+      GrossConsumption <- read_excel("Processed Data/TestConsumption.xlsx")
       
-      GrossConsumptionYear <- paste("Scotland,", max(as.numeric(GrossConsumption$refPeriod), na.rm = TRUE))
+      GrossConsumptionPlotData <- GrossConsumption[c(1,3),]
       
-      GrossConsumption <- GrossConsumption[nrow(GrossConsumption),]
+      GrossConsumptionPlotData$Type <- as.numeric(rownames(GrossConsumptionPlotData))
       
-      GrossConsumption$refPeriod <- NULL
-      
-      GrossConsumption <- melt(GrossConsumption)
-      
-      GrossConsumption$variable <- as.character(GrossConsumption$variable)
-      
-      GrossConsumption$Type <- "Emissions"
-      
-      GrossConsumption <- rbind(GrossConsumption, c("Total", sum(GrossConsumption$value), "Total greenhouse gas emissions"))
-      
-      GrossConsumption[which(GrossConsumption$value < 0),]$Type <- "Carbon sinks"
-      
-      GrossConsumption <- dcast(GrossConsumption, Type ~ variable, value.var = "value")
-      
-      GrossConsumption[is.na(GrossConsumption)] <- 0
-      
-      GrossConsumption[2:12] %<>% lapply(function(x) as.numeric(as.character(x)))
-      
-      GrossConsumption <- as_tibble(GrossConsumption)
-      
-      GrossConsumption <- GrossConsumption[c(3,1,2),]
-      
-      GrossConsumption <- GrossConsumption[c(1,10,7,5,8,12,6,9,4,2,3,11)]
+      GrossConsumptionYear <- 2018
       
       ChartColours <- c("#39ab2c", "#FF8500")
       BarColours <-
         c(
-          "#016c59",
-          "#9e0142",
-          "#d53e4f",
+          "#045a8d",
+          "#238b45",
+          "#d7301f",
           "#f46d43",
           "#fdae61",
           "#fee08b",
           "#abdda4",
-          "#66c2a5",
+          "#016c59",
           "#3288bd",
           "#5e4fa2"
           
@@ -363,14 +340,14 @@ GrossConsumption <- function(input, output, session) {
       
       GrossConsumption <- melt(GrossConsumption, id.vars = "Type")
       
-      GHGCarbonSink <- min(GrossConsumption[which(GrossConsumption$variable == "land-use-land-use-change-and-forestry"),]$value)
+      GHGCarbonSink <- min(GrossConsumption[which(GrossConsumption$variable == "Exports"),]$value)
       
       
-      GrossConsumption <- subset(GrossConsumption, GrossConsumption$Type != "Carbon sinks" )
+      GrossConsumption <- subset(GrossConsumption, GrossConsumption$Type != "Exports" )
       GrossConsumption$variable <-
         factor(
           GrossConsumption$variable,
-          levels = unique(GrossConsumption$variable),
+          levels = unique(rev(GrossConsumption$variable)),
           ordered = TRUE
         )
       
@@ -388,17 +365,10 @@ GrossConsumption <- function(input, output, session) {
         scale_fill_manual(
           "variable",
           values = c(
-            "transport-excluding-international" = BarColours[2],
-            "business" = BarColours[3],
-            "agriculture" = BarColours[4],
-            "energy-supply" = BarColours[5],
-            "residential" = BarColours[6],
-            "international-aviation-and-shipping" = BarColours[7],
-            "waste-management" = BarColours[8],
-            "public" = BarColours[9],
-            "industrial-processes" = BarColours[10],
-            "land-use-land-use-change-and-forestry" = ChartColours[1],
-            "Total" = BarColours[1]
+            "Renewables" = BarColours[2],
+            "Non-renewable" = BarColours[3],
+            "Exports" = ChartColours[1],
+            "Consumption" = BarColours[1]
           )
         ) +
         geom_bar(stat = "identity",
@@ -407,7 +377,7 @@ GrossConsumption <- function(input, output, session) {
           aes(
             x = Type,
             y = ifelse(top > 0, -4.5,7),
-            label = ifelse(GrossConsumption$variable != "Total", "", str_wrap(GrossConsumption$Type, width = 13))
+            label = ifelse(GrossConsumption$variable != "Consumption", "", str_wrap(GrossConsumption$Type, width = 13))
           ),
           family = "Century Gothic",
           fontface = 2,
@@ -416,8 +386,8 @@ GrossConsumption <- function(input, output, session) {
         geom_text(
           aes(
             x = Type,
-            y = top-pos,
-            label = ifelse(value > 1.5 & Type == "Emissions", sprintf("%.1f", round(value, digits = 1)), ""
+            y = pos,
+            label = ifelse(value > 1.5 & Type == "Generation", sprintf("%.1f", round(value, digits = 1)), ""
             )),
           family = "Century Gothic",
           fontface = 2,
@@ -426,7 +396,7 @@ GrossConsumption <- function(input, output, session) {
         geom_text(
           aes( x = Type,
                y = top + ifelse(top > 0, +1,-1),
-               label = ifelse(GrossConsumption$variable != "Total", "", paste(round(top, digits = 1), "MtCO2e")),
+               label = ifelse(GrossConsumption$variable != "Consumption", "", paste(round(top, digits = 1), "GWh")),
                hjust = ifelse(top > 0, 0, 1)
           ),
           family = "Century Gothic",
@@ -436,35 +406,25 @@ GrossConsumption <- function(input, output, session) {
         geom_segment(
           x = 1.44,
           xend = 1.44,
-          y = GrossConsumption[which(GrossConsumption$Type == "Emissions" & GrossConsumption$variable == "Total"),]$top,
-          yend = GrossConsumption[which(GrossConsumption$Type == "Emissions" & GrossConsumption$variable == "Total"),]$top + GHGCarbonSink,
+          y = GrossConsumption[which(GrossConsumption$Type == "Generation" & GrossConsumption$variable == "Consumption"),]$top,
+          yend = GrossConsumption[which(GrossConsumption$Type == "Generation" & GrossConsumption$variable == "Consumption"),]$top + GHGCarbonSink,
           colour =   BarColours[7],
           arrow = arrow(length = unit(0.4, "cm")),
           size = 1
         ) + 
         geom_text(
           aes( x = 1.6,
-               y = GrossConsumption[which(GrossConsumption$Type == "Emissions" & GrossConsumption$variable == "Total"),]$top + (GHGCarbonSink/2),
-               label = paste("Forestry: \n", round(GHGCarbonSink, digits = 1), "MtCO2e")
+               y = GrossConsumption[which(GrossConsumption$Type == "Generation" & GrossConsumption$variable == "Consumption"),]$top + (GHGCarbonSink/2),
+               label = paste("Exports: \n", round(GHGCarbonSink, digits = 1), "GWh")
           ),
           family = "Century Gothic",
           fontface = 2,
           colour =   BarColours[7]
         ) +
         geom_text(
-          aes( x = 1.3,
-               y = GrossConsumption[which(GrossConsumption$Type == "Emissions" & GrossConsumption$variable == "Total"),]$top + (GHGCarbonSink/2),
-               label = "Carbon sinks absorb more\ncarbon than they generate"
-          ),
-          family = "Century Gothic",
-          fontface = 2,
-          colour =  BarColours[7],
-          size = 3
-        ) +
-        geom_text(
           aes( x = 2.4,
-               y = (GrossConsumption[which(GrossConsumption$Type == "Emissions" & GrossConsumption$variable == "Total"),]$top) *(0/7) - 3,
-               label = "Domestic\nTransport",
+               y = 13000,
+               label = "Renewable",
                family = "Century Gothic",
                fontface = 2
           ),
@@ -472,76 +432,13 @@ GrossConsumption <- function(input, output, session) {
         )  +
         geom_text(
           aes( x = 2.4,
-               y = (GrossConsumption[which(GrossConsumption$Type == "Emissions" & GrossConsumption$variable == "Total"),]$top) *(1/7) - 3,
-               label = "Business",
+               y = 36000,
+               label = "Non-Renewable",
                family = "Century Gothic",
                fontface = 2
           ),
           colour =  BarColours[3]
-        )  +
-        geom_text(
-          aes( x = 2.4,
-               y = (GrossConsumption[which(GrossConsumption$Type == "Emissions" & GrossConsumption$variable == "Total"),]$top) *(2/7) - 3,
-               label = "Agriculture",
-               family = "Century Gothic",
-               fontface = 2
-          ),
-          colour =  BarColours[4]
-        )  +
-        geom_text(
-          aes( x = 2.4,
-               y = (GrossConsumption[which(GrossConsumption$Type == "Emissions" & GrossConsumption$variable == "Total"),]$top) *(3/7) - 3,
-               label = "Energy\nSupply",
-               family = "Century Gothic",
-               fontface = 2
-          ),
-          colour =  BarColours[5]
-        ) +
-        geom_text(
-          aes( x = 2.4,
-               y = (GrossConsumption[which(GrossConsumption$Type == "Emissions" & GrossConsumption$variable == "Total"),]$top) *(4/7) - 3,
-               label = "Residential",
-               family = "Century Gothic",
-               fontface = 2
-          ),
-          colour =  BarColours[6]
-        ) +
-        geom_text(
-          aes( x = 2.4,
-               y = (GrossConsumption[which(GrossConsumption$Type == "Emissions" & GrossConsumption$variable == "Total"),]$top) *(5/7) - 3,
-               label = "International\naviation\nand shipping",
-               family = "Century Gothic",
-               fontface = 2
-          ),
-          colour =  BarColours[7]
-        )+
-        geom_text(
-          aes( x = 2.4,
-               y = (GrossConsumption[which(GrossConsumption$Type == "Emissions" & GrossConsumption$variable == "Total"),]$top) *(6/7) - 3,
-               label = "Waste\nManagement",
-               family = "Century Gothic",
-               fontface = 2
-          ),
-          colour =  BarColours[8]
-        )+
-        geom_text(
-          aes( x = 2.4,
-               y = (GrossConsumption[which(GrossConsumption$Type == "Emissions" & GrossConsumption$variable == "Total"),]$top) *(7/7) - 3,
-               label = "Public",
-               family = "Century Gothic",
-               fontface = 2
-          ),
-          colour =  BarColours[9]
-        )+
-        geom_text(
-          aes( x = 2.4,
-               y = (GrossConsumption[which(GrossConsumption$Type == "Emissions" & GrossConsumption$variable == "Total"),]$top) *(8/7) - 3,
-               label = "Industrial\nProcesses",
-               family = "Century Gothic",
-               fontface = 2
-          ),
-          colour =  BarColours[10]
-        )
+        ) 
       
       GrossConsumptionChart
       
@@ -557,7 +454,7 @@ GrossConsumption <- function(input, output, session) {
         GrossConsumptionChart +
         labs(subtitle = GrossConsumptionYear)+
         coord_flip()+ 
-        ylim(-7,53)
+        ylim(-700,53000)
       
       GrossConsumptionChart
       
