@@ -341,7 +341,7 @@ EnSupplyEmissions <- function(input, output, session) {
         pageLength = -1
       )
     ) %>%
-      formatRound(2:5, 1)
+      formatRound(2:4, 1)
   })
   
   

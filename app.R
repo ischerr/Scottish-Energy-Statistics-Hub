@@ -883,7 +883,7 @@ ui <- shinyUI(fluidPage(
                    )),
     ###### Section - Greenhouse Gases #######
     tabPanel(value = "Emissions",
-             title = tags$div(img(src = "Emissions.svg", height = "30px",   display= "block"), " Emissions", style = "font-family: 'Century Gothic'; font-weight: 400 "),
+             title = tags$div(img(src = "Emissions.svg", height = "30px",   display= "block"), " New Stuff", style = "font-family: 'Century Gothic'; font-weight: 400 "),
              navlistPanel(id = "Emissions",
                           widths = c(3, 8),
                           tabPanel(title = "Adjusted Emissions",
@@ -900,7 +900,10 @@ ui <- shinyUI(fluidPage(
                                    CarbonProdOutput("CarbonProd")),
                           tabPanel(title = "GHG Elec Heat Transport",
                                    value = "GHGElecHeatTransport",
-                                   GHGElecHeatTransportOutput("GHGElecHeatTransport"))
+                                   GHGElecHeatTransportOutput("GHGElecHeatTransport")),
+                          tabPanel(title = "GrossConsumption",
+                                   value = "GrossConsumption",
+                                   GrossConsumptionOutput("GrossConsumption"))
              )),
                    ###### Section - Target Tracker #######
                    tabPanel(value = "TargetTracker",
