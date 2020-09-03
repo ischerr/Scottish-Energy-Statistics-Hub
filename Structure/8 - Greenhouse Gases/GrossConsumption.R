@@ -116,7 +116,7 @@ GrossConsumption <- function(input, output, session) {
         width = 0.3,
         orientation = 'h',
         name = "Consumption",
-        text = paste0("Consumption\n", round(GrossConsumptionPlotData$Consumption, digits = 1), " GWh"),
+        text = paste0("Consumption\n", format(round(GrossConsumptionPlotData$Consumption, digits = 1), big.mark = ","), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[1]),
         legendgroup = 1
@@ -133,7 +133,7 @@ GrossConsumption <- function(input, output, session) {
         width = 0.3,
         orientation = 'h',
         name = "Renewables",
-        text = paste0("Renewables\n", round(GrossConsumptionPlotData$`Renewables`, digits = 1), " GWh"),
+        text = paste0("Renewables\n", format(round(GrossConsumptionPlotData$`Renewables`, digits = 1), big.mark = ","), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[2]),
         legendgroup = 2
@@ -150,7 +150,7 @@ GrossConsumption <- function(input, output, session) {
         width = 0.3,
         orientation = 'h',
         name = "Non-renewable",
-        text = paste0("Non-renewable\n", round(GrossConsumptionPlotData$`Non-renewable`, digits = 1), " GWh"),
+        text = paste0("Non-renewable\n", format(round(GrossConsumptionPlotData$`Non-renewable`, digits = 1), big.mark=","), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 3
@@ -185,7 +185,7 @@ GrossConsumption <- function(input, output, session) {
         showlegend = FALSE ,
         hoverinfo = 'name',
         legendgroup = 10,
-        text = paste0("Exports\n\n", round(min(GrossConsumption$`Exports`),1)," GWh"),
+        text = paste0("Exports\n\n", format(round(min(GrossConsumption$`Exports`),1), big.mark = ",")," GWh"),
         name = paste("Exports"),
         marker = list(
           size = 100,
