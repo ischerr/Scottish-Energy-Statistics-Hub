@@ -282,7 +282,7 @@ NonDomRHI <- function(input, output, session) {
                   "Accredited full applications: ",
                   format(round(NonDomRHIAccreditedInstallations$`Accredited full applications`, digits = 0), big.mark = ","),
                   "\nYear: ",
-                  format(NonDomRHIAccreditedInstallations$Year, "%Y")
+                  format(NonDomRHIAccreditedInstallations$Year, "%b %Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = LineColours[1], dash = "none")
@@ -297,7 +297,7 @@ NonDomRHI <- function(input, output, session) {
           "Accredited full applications: ",
           format(tail(NonDomRHIAccreditedInstallations[which(NonDomRHIAccreditedInstallations$`Accredited full applications` != 0),], 1)$`Accredited full applications`, big.mark = ","),
           "\nYear: ",
-          format(tail(NonDomRHIAccreditedInstallations[which(NonDomRHIAccreditedInstallations$`Accredited full applications` != 0),], 1)$Year, "%Y")
+          format(tail(NonDomRHIAccreditedInstallations[which(NonDomRHIAccreditedInstallations$`Accredited full applications` != 0),], 1)$Year, "%b %Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -375,7 +375,7 @@ NonDomRHI <- function(input, output, session) {
                   "Capacity of accredited full applications: ",
                   format(round(NonDomRHInstallationCapacity$`Capacity of accredited full applications`, digits = 0), big.mark = ","),
                   " MW\nYear: ",
-                  format(NonDomRHInstallationCapacity$Year, "%Y")
+                  format(NonDomRHInstallationCapacity$Year, "%b %Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = LineColours[1], dash = "none")
@@ -390,7 +390,7 @@ NonDomRHI <- function(input, output, session) {
           "Capacity of accredited full applications: ",
           format(round(tail(NonDomRHInstallationCapacity[which(NonDomRHInstallationCapacity$`Capacity of accredited full applications` != 0),], 1)$`Capacity of accredited full applications`, digits = 0), big.mark = ","),
           " MW\nYear: ",
-          format(tail(NonDomRHInstallationCapacity[which(NonDomRHInstallationCapacity$`Capacity of accredited full applications` != 0),], 1)$Year, "%Y")
+          format(tail(NonDomRHInstallationCapacity[which(NonDomRHInstallationCapacity$`Capacity of accredited full applications` != 0),], 1)$Year, "%b %Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
