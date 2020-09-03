@@ -357,8 +357,10 @@ GrossConsumption <- function(input, output, session) {
         mutate(top = sum(value))
       
       plottitle <-
-        "Sources of Scottish greenhouse gas emissions"
+        "Gross Consumption"
       sourcecaption <- "Source: SG"
+      
+      length <-max(GrossConsumption$top)
       
       GrossConsumptionChart <- GrossConsumption %>%
         ggplot(aes(x = Type, y = value, fill = variable), family = "Century Gothic") +
@@ -376,7 +378,7 @@ GrossConsumption <- function(input, output, session) {
         geom_text(
           aes(
             x = Type,
-            y = ifelse(top > 0, -4.5,7),
+            y = ifelse(top > 0, length*-.08,7),
             label = ifelse(GrossConsumption$variable != "Consumption", "", str_wrap(GrossConsumption$Type, width = 13))
           ),
           family = "Century Gothic",
@@ -387,7 +389,7 @@ GrossConsumption <- function(input, output, session) {
           aes(
             x = Type,
             y = pos,
-            label = ifelse(value > 1.5 & Type == "Generation", sprintf("%.1f", round(value, digits = 1)), ""
+            label = ifelse(value > 1.5 & Type == "Generation", paste(format(round(value, digits = 0), big.mark = ","), "GWh"), ""
             )),
           family = "Century Gothic",
           fontface = 2,
@@ -395,8 +397,8 @@ GrossConsumption <- function(input, output, session) {
         ) + 
         geom_text(
           aes( x = Type,
-               y = top + ifelse(top > 0, +1,-1),
-               label = ifelse(GrossConsumption$variable != "Consumption", "", paste(round(top, digits = 1), "GWh")),
+               y = top + ifelse(top > 0, length*.02,-1),
+               label = ifelse(GrossConsumption$variable != "Consumption", "", paste(format(round(top, digits = 0), big.mark = ","), "GWh")),
                hjust = ifelse(top > 0, 0, 1)
           ),
           family = "Century Gothic",
@@ -415,7 +417,7 @@ GrossConsumption <- function(input, output, session) {
         geom_text(
           aes( x = 1.6,
                y = GrossConsumption[which(GrossConsumption$Type == "Generation" & GrossConsumption$variable == "Consumption"),]$top + (GHGCarbonSink/2),
-               label = paste("Exports: \n", round(GHGCarbonSink, digits = 1), "GWh")
+               label = paste("Exports: \n", format(round(GHGCarbonSink, digits = 0), big.mark = ","), "GWh")
           ),
           family = "Century Gothic",
           fontface = 2,
@@ -454,7 +456,7 @@ GrossConsumption <- function(input, output, session) {
         GrossConsumptionChart +
         labs(subtitle = GrossConsumptionYear)+
         coord_flip()+ 
-        ylim(-700,53000)
+        ylim(length*-.12,length*1.15)
       
       GrossConsumptionChart
       
