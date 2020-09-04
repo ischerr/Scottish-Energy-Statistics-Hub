@@ -13,48 +13,48 @@ AdjustedEmissionsOutput <- function(id) {
     tabsetPanel(
       tabPanel("Percentage Reduction Targets",
     fluidRow(column(8,
-                    h3("Percentage reduction targets - based on adjusted emissions", style = "color: #39ab2c;  font-weight:bold"),
-                    h4(textOutput(ns('AdjustedEmissionsPercentageReductionTargetsSubtitle')), style = "color: #39ab2c;")
+                    h3("Percentage reduction targets - based on adjusted emissions", style = "color: #1A5D38;  font-weight:bold"),
+                    h4(textOutput(ns('AdjustedEmissionsPercentageReductionTargetsSubtitle')), style = "color: #1A5D38;")
     ),
              column(
                4, style = 'padding:15px;',
                downloadButton(ns('AdjustedEmissionsPercentageReductionTargets.png'), 'Download Graph', style="float:right")
              )),
     
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+    tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     #dygraphOutput(ns("AdjustedEmissionsPlot")),
-    plotlyOutput(ns("AdjustedEmissionsPercentageReductionTargetsPlot"))%>% withSpinner(color="#39ab2c"),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    plotlyOutput(ns("AdjustedEmissionsPercentageReductionTargetsPlot"))%>% withSpinner(color="#1A5D38"),
+    tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")),
     tabPanel("Sector Inventory",
              fluidRow(column(8,
-                             h3("Net source greenhouse gas emissions from the energy supply sector (MtCO2e)", style = "color: #39ab2c;  font-weight:bold"),
-                             h4(textOutput(ns('SectorInventorySubtitle')), style = "color: #39ab2c;")
+                             h3("Net source greenhouse gas emissions from the energy supply sector (MtCO2e)", style = "color: #1A5D38;  font-weight:bold"),
+                             h4(textOutput(ns('SectorInventorySubtitle')), style = "color: #1A5D38;")
              ),
              column(
                4, style = 'padding:15px;',
                downloadButton(ns('SectorInventory.png'), 'Download Graph', style="float:right")
              )),
              
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+             tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
              #dygraphOutput(ns("SectorInventoryPlot")),
-             plotlyOutput(ns("SectorInventoryPlot"), height = "700px")%>% withSpinner(color="#39ab2c"),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
+             plotlyOutput(ns("SectorInventoryPlot"), height = "700px")%>% withSpinner(color="#1A5D38"),
+             tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"))
     ),
     fluidRow(
-    column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
+    column(10,h3("Commentary", style = "color: #1A5D38;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
     
     fluidRow(
     uiOutput(ns("Text"))
     ),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+    tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     fluidRow(
-      column(10, h3("Data", style = "color: #39ab2c;  font-weight:bold")),
+      column(10, h3("Data", style = "color: #1A5D38;  font-weight:bold")),
       column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("SectorInventoryTable"))%>% withSpinner(color="#39ab2c"))),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+      column(12, dataTableOutput(ns("SectorInventoryTable"))%>% withSpinner(color="#1A5D38"))),
+    tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     fluidRow(
       column(1,
              p("Next update:")),
@@ -113,8 +113,8 @@ AdjustedEmissions <- function(input, output, session) {
     
     plottitle <- "Percentage reduction targets - based on adjusted emissions (MtCO2e)"
     sourcecaption <- "Source: BEIS"
-    ChartColours <- c("#39ab2c", "#FF8500")
-    LineColours <- c( "#39ab2c","#2b8cbe", "#FF8500", "#addd8e")
+    ChartColours <- c("#1A5D38", "#FF8500")
+    LineColours <- c( "#1A5D38","#2b8cbe", "#FF8500", "#addd8e")
     
     AdjustedEmissions$Year <- paste0("01/01/", AdjustedEmissions$Year)
     
@@ -161,7 +161,7 @@ AdjustedEmissions <- function(input, output, session) {
       layout(
         barmode = 'stack',
         bargap = 0.66,
-        legend = list(font = list(color = "#39ab2c"),
+        legend = list(font = list(color = "#1A5D38"),
                       orientation = 'h'),
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
@@ -276,52 +276,38 @@ AdjustedEmissions <- function(input, output, session) {
     filename = "AdjustedEmissionsPercentageReductionTargets.png",
     content = function(file) {
       
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Adjusted emissions", skip = 12)
+      AdjustedEmissions <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
+                                      "\t", escape_double = FALSE, trim_ws = TRUE)
       
-      Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
+      AdjustedEmissions$Total <- rowSums(AdjustedEmissions[2:11])
       
-      colnames(Data) <- as.character(unlist(Data[1,]))
-      Data = Data[-1, ]
-      Data <- setDT(Data, keep.rownames = TRUE)[]
-      Data[1,1] <- 1990
-      Data[is.na(Data)] <- 0
+      names(AdjustedEmissions)[1] <- "Year"
       
-      Data <- Data %>% unite(Targets,5:6, sep = "", remove = TRUE)
-      
-      Data <- as_tibble(sapply( Data, as.numeric ))
-      
-      Data[Data == 0] <- NA
-      
-      Data <- Data[,c(1,3,5,2,4)]
-      
-      names(Data) <- c("Year", "Renewables", "Tgt", "2008Inventory", "FixedTargets")
-      
-      AdjustedEmissions <- Data
+      AdjustedEmissions <- merge(AdjustedEmissions, (data.frame("Year" = c(1991,1996))), all = TRUE)
       
       plottitle <- "Percentage reduction targets - based on adjusted emissions (MtCO2e)"
       sourcecaption <- "Source: BEIS"
-      ChartColours <- c("#39ab2c", "#FF8500")
-      LineColours <- c( "#39ab2c","#2b8cbe", "#FF8500", "#addd8e")
+      ChartColours <- c("#1A5D38", "#FF8500")
+      LineColours <- c( "#1A5D38","#2b8cbe", "#FF8500", "#addd8e")
       
       AdjustedEmissionsChart <-
         AdjustedEmissions %>%  ggplot(aes(x = Year), family = "Century Gothic") +
         
         ### Line of Values
         geom_line(
-          aes(y = Renewables,
+          aes(y = Total,
               
-              label = Renewables),
+              label = Total),
           size = 1.5,
           colour = LineColours[1],
           family = "Century Gothic"
         ) +
         geom_point(
-          data = AdjustedEmissions[which(AdjustedEmissions$Year == max(AdjustedEmissions[which(AdjustedEmissions$Renewables > 0),]$Year)),],
+          data = AdjustedEmissions[which(AdjustedEmissions$Year == max(AdjustedEmissions[which(AdjustedEmissions$Total > 0),]$Year)),],
           aes(
             x = Year,
-            y = Renewables,
-            label = round(`2008Inventory`, digits = 1),
+            y = Total,
+            label = round(`Total`, digits = 1),
             show_guide = FALSE
           ),
           size = 4,
@@ -329,11 +315,11 @@ AdjustedEmissions <- function(input, output, session) {
           family = "Century Gothic"
         ) +
         geom_text(
-          data = AdjustedEmissions[which(AdjustedEmissions$Year == max(AdjustedEmissions[which(AdjustedEmissions$Renewables > 0),]$Year)),],
+          data = AdjustedEmissions[which(AdjustedEmissions$Year == max(AdjustedEmissions[which(AdjustedEmissions$Total > 0),]$Year)),],
           aes(
             x = Year,
-            y = Renewables,
-            label = round(Renewables, digits = 1),
+            y = Total,
+            label = round(Total, digits = 1),
             show_guide = FALSE
           ),
           fontface = 2,
@@ -344,8 +330,8 @@ AdjustedEmissions <- function(input, output, session) {
         geom_text(
           aes(
             x = Year,
-            y = Renewables,
-            label = ifelse(Year %in% c(1990,1995, 1998), round(Renewables, digits= 1), ""),
+            y = Total,
+            label = ifelse(Year %in% c(1990,1995, 1998), round(Total, digits= 1), ""),
             hjust = 0.5,
             vjust = -1,
             fontface = 2
@@ -353,24 +339,12 @@ AdjustedEmissions <- function(input, output, session) {
           colour = LineColours[1],
           family = "Century Gothic"
         ) +
-        geom_text(
-          aes(
-            x = Year+0.75,
-            y = Renewables,
-            label = ifelse(Year == max(AdjustedEmissions$Year[which(AdjustedEmissions$FixedTargets > 0)]), round(Renewables, digits= 1), ""),
-            hjust = 0.5,
-            fontface = 2
-          ),
-          colour = LineColours[1],
-          family = "Century Gothic"
-        ) +
-        
         geom_point(
           data = tail(AdjustedEmissions, 1),
           aes(
             x = Year,
-            y = Renewables,
-            label = round(Renewables, digits = 1),
+            y = Total,
+            label = round(Total, digits = 1),
             show_guide = FALSE
           ),
           size = 4,
@@ -381,8 +355,8 @@ AdjustedEmissions <- function(input, output, session) {
           data = AdjustedEmissions[which(AdjustedEmissions$Year %in% c(1990,1995,1998)),],
           aes(
             x = Year,
-            y = Renewables,
-            label = round(Renewables, digits = 1),
+            y = Total,
+            label = round(Total, digits = 1),
             show_guide = FALSE
           ),
           size = 3,
@@ -393,7 +367,7 @@ AdjustedEmissions <- function(input, output, session) {
           aes(
             x = Year,
             y = 0,
-            label = ifelse(Year %in% c(1995, 1998, max(AdjustedEmissions[which(AdjustedEmissions$Renewables > 0),]$Year)), Year, ""),
+            label = ifelse(Year %in% c(1990, 1995, 1998, max(AdjustedEmissions[which(AdjustedEmissions$Total > 0),]$Year)), Year, ""),
             hjust = 0.5,
             vjust = 1.5,
             colour = ChartColours[1],
@@ -412,39 +386,6 @@ AdjustedEmissions <- function(input, output, session) {
           colour = ChartColours[2],
           fontface = 2,
           family = "Century Gothic"
-        )+
-        geom_text(
-          aes(
-            x = 1990,
-            y = 0,
-            label = "Baseline",
-            hjust = 0.5,
-            vjust = 1.5,
-            colour = ChartColours[1],
-            fontface = 2
-          ),
-          family = "Century Gothic"
-        )+ geom_point(
-          aes(
-            x = Year,
-            y = Tgt,
-            label = round(`2008Inventory`, digits = 1),
-            show_guide = FALSE
-          ),
-          size = 6,
-          shape = 18,
-          colour = LineColours[3],
-          family = "Century Gothic" ) +
-        geom_text(
-          aes(
-            x = Year,
-            y = Tgt,
-            label = paste0("Target: ", round(Tgt, digits = 1), "\n(Reduction of ", percent(1 - ( Tgt / AdjustedEmissions$Renewables[which(AdjustedEmissions$Year == 1990)]), accuracy = 1), ")"),
-            show_guide = FALSE
-          ),
-          colour = LineColours[3],
-          family = "Century Gothic",
-          vjust = 1.5
         )
       
       AdjustedEmissionsChart <-
@@ -517,7 +458,7 @@ AdjustedEmissions <- function(input, output, session) {
     
     SectorInventoryPlotData$Type <- as.numeric(rownames(SectorInventoryPlotData))
     
-    ChartColours <- c("#39ab2c", "#FF8500")
+    ChartColours <- c("#1A5D38", "#FF8500")
     BarColours <-
       c(
         "#016c59",
@@ -814,7 +755,7 @@ AdjustedEmissions <- function(input, output, session) {
       
       SectorInventory <- SectorInventory[c(1,10,7,5,8,12,6,9,4,2,3,11)]
       
-      ChartColours <- c("#39ab2c", "#FF8500")
+      ChartColours <- c("#1A5D38", "#FF8500")
       BarColours <-
         c(
           "#016c59",

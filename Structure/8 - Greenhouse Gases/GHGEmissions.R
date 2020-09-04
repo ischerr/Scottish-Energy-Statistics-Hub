@@ -11,33 +11,33 @@ SectorInventoryOutput <- function(id) {
   ns <- NS(id)
   tagList(
     fluidRow(column(8,
-                    h3("Sources of Scottish greenhouse gas emissions", style = "color: #39ab2c;  font-weight:bold"),
-                    h4(textOutput(ns('SectorInventorySubtitle')), style = "color: #39ab2c;")
+                    h3("Sources of Scottish greenhouse gas emissions", style = "color: #1A5D38;  font-weight:bold"),
+                    h4(textOutput(ns('SectorInventorySubtitle')), style = "color: #1A5D38;")
     ),
              column(
                4, style = 'padding:15px;',
                downloadButton(ns('SectorInventory.png'), 'Download Graph', style="float:right")
              )),
     
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+    tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     #dygraphOutput(ns("SectorInventoryPlot")),
-    plotlyOutput(ns("SectorInventoryPlot"))%>% withSpinner(color="#39ab2c"),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+    plotlyOutput(ns("SectorInventoryPlot"))%>% withSpinner(color="#1A5D38"),
+    tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     fluidRow(
-    column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
+    column(10,h3("Commentary", style = "color: #1A5D38;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
     
     fluidRow(
     uiOutput(ns("Text"))
     ),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+    tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     fluidRow(
-    column(10, h3("Data", style = "color: #39ab2c;  font-weight:bold")),
+    column(10, h3("Data", style = "color: #1A5D38;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
-      column(12, dataTableOutput(ns("SectorInventoryTable"))%>% withSpinner(color="#39ab2c"))),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+      column(12, dataTableOutput(ns("SectorInventoryTable"))%>% withSpinner(color="#1A5D38"))),
+    tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     fluidRow(
       column(1,
              p("Next update:")),
@@ -113,7 +113,7 @@ SectorInventory <- function(input, output, session) {
     
     SectorInventoryPlotData$Type <- as.numeric(rownames(SectorInventoryPlotData))
     
-    ChartColours <- c("#39ab2c", "#FF8500")
+    ChartColours <- c("#1A5D38", "#FF8500")
     BarColours <-
       c(
         "#016c59",
@@ -410,7 +410,7 @@ SectorInventory <- function(input, output, session) {
       
       SectorInventory <- SectorInventory[c(1,10,7,5,8,12,6,9,4,2,3,11)]
       
-      ChartColours <- c("#39ab2c", "#FF8500")
+      ChartColours <- c("#1A5D38", "#FF8500")
       BarColours <-
         c(
           "#016c59",
