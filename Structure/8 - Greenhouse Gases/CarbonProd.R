@@ -103,9 +103,9 @@ CarbonProd <- function(input, output, session) {
       type = 'scatter',
       mode = 'lines',
       text = paste0(
-        "Progress: ",
+        "Carbon Productivity: ",
         format(round(CarbonProd$Renewables, 0), big.mark = ","),
-        "\nYear: ",
+        " \u00A3GVA per tonne of CO2e\nYear: ",
         format(CarbonProd$Year, "%Y")
       ),
       hoverinfo = 'text',
@@ -117,9 +117,9 @@ CarbonProd <- function(input, output, session) {
         y = ~ `Renewables`,
         name = "Renewables",
         text = paste0(
-          "Progress: ",
+          "Carbon Productivity: ",
           format(round(tail(CarbonProd[which(CarbonProd$Renewables > 0 | CarbonProd$Renewables < 0),],1)$Renewables, 0), big.mark = ","),
-          "\nYear: ",
+          " \u00A3GVA per tonne of CO2e\nYear: ",
           format(tail(CarbonProd[which(CarbonProd$Renewables > 0 | CarbonProd$Renewables < 0),],1)$Year, "%Y")
         ),
         hoverinfo = 'text',
@@ -138,7 +138,7 @@ CarbonProd <- function(input, output, session) {
                      showgrid = FALSE,
                      range = c(min(CarbonProd$Year)-100, max(CarbonProd$Year)+100)),
         yaxis = list(
-          title = "",
+          title = "\u00A3GVA per tonne of CO2e",
           tickformat = "",
           showgrid = TRUE,
           zeroline = TRUE,
@@ -179,6 +179,7 @@ CarbonProd <- function(input, output, session) {
     
     CarbonProdData <- as_tibble(CarbonProdData)
     
+    names(CarbonProdData) <- c("Year", "GVA (\u00A3 million)", "Emissions (Million tonnes of CO2 equivalent)", "Carbon Productivity (\u00A3GVA per tonne of CO2e)")
     
     datatable(
       CarbonProdData,
@@ -273,9 +274,9 @@ CarbonProd <- function(input, output, session) {
           aes(
             x = Year,
             y = Renewables,
-            label = ifelse(Year == min(Year), paste0(format(round(Renewables, digits = 0), big.mark = ",", trim = TRUE), " GVA per MtCO2e"), ""),
+            label = ifelse(Year == min(Year), paste0(format(round(Renewables, digits = 0), big.mark = ",", trim = TRUE), " \u00A3GVA\nper tonne of CO2e"), ""),
             hjust = 0.5,
-            vjust = 2.2,
+            vjust = 1.1,
             colour = ChartColours[2],
             fontface = 2
           ),
@@ -285,9 +286,9 @@ CarbonProd <- function(input, output, session) {
           aes(
             x = Year,
             y = Renewables,
-            label = ifelse(Year == max(Year), paste0(format(round(Renewables, digits = 0), big.mark = ",", trim = TRUE), " GVA per MtCO2e"), ""),
+            label = ifelse(Year == max(Year), paste0(format(round(Renewables, digits = 0), big.mark = ",", trim = TRUE), " \u00A3GVA\nper tonne of CO2e"), ""),
             hjust = 0.5,
-            vjust = -1,
+            vjust = -.6,
             colour = ChartColours[2],
             fontface = 2
           ),
@@ -329,7 +330,7 @@ CarbonProd <- function(input, output, session) {
       
       CarbonProdChart <- CarbonProdChart +
         xlim(min(CarbonProd$Year) -1 , max(CarbonProd$Year) +1)+
-        ylim(-30,max(CarbonProd$Renewables)*1.05)+
+        ylim(-30,max(CarbonProd$Renewables)*1.16)+
         labs(subtitle = paste0("Scotland, ",min(CarbonProd$Year)," - ", max(CarbonProd$Year)))
              
              CarbonProdChart

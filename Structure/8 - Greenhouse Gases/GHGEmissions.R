@@ -7,22 +7,39 @@ require("DT")
 
 source("Structure/Global.R")
 
-SectorInventoryOutput <- function(id) {
+GHGEmissionsOutput <- function(id) {
   ns <- NS(id)
   tagList(
+    tabsetPanel(
+      tabPanel("Total emissions",
     fluidRow(column(8,
-                    h3("Sources of Scottish greenhouse gas emissions", style = "color: #1A5D38;  font-weight:bold"),
-                    h4(textOutput(ns('SectorInventorySubtitle')), style = "color: #1A5D38;")
+                    h3("Greenhouse gas emissions", style = "color: #1A5D38;  font-weight:bold"),
+                    h4(textOutput(ns('GHGEmissionsPercentageReductionTargetsSubtitle')), style = "color: #1A5D38;")
     ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('GHGEmissionsPercentageReductionTargets.png'), 'Download Graph', style="float:right")
+             )),
+    
+    tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
+    #dygraphOutput(ns("GHGEmissionsPlot")),
+    plotlyOutput(ns("GHGEmissionsPercentageReductionTargetsPlot"))%>% withSpinner(color="#1A5D38"),
+    tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")),
+    tabPanel("Sector Inventory",
+             fluidRow(column(8,
+                             h3("Greenhouse gas emissions by source sector", style = "color: #1A5D38;  font-weight:bold"),
+                             h4(textOutput(ns('SectorInventorySubtitle')), style = "color: #1A5D38;")
+             ),
              column(
                4, style = 'padding:15px;',
                downloadButton(ns('SectorInventory.png'), 'Download Graph', style="float:right")
              )),
-    
-    tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
-    #dygraphOutput(ns("SectorInventoryPlot")),
-    plotlyOutput(ns("SectorInventoryPlot"))%>% withSpinner(color="#1A5D38"),
-    tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
+             
+             tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
+             #dygraphOutput(ns("SectorInventoryPlot")),
+             plotlyOutput(ns("SectorInventoryPlot"), height = "700px")%>% withSpinner(color="#1A5D38"),
+             tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"))
+    ),
     fluidRow(
     column(10,h3("Commentary", style = "color: #1A5D38;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
@@ -32,8 +49,8 @@ SectorInventoryOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     fluidRow(
-    column(10, h3("Data", style = "color: #1A5D38;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+      column(10, h3("Data -  Scottish greenhouse gas emissions by source sector (MtCO2e)", style = "color: #1A5D38;  font-weight:bold")),
+      column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("SectorInventoryTable"))%>% withSpinner(color="#1A5D38"))),
@@ -50,7 +67,7 @@ SectorInventoryOutput <- function(id) {
         align = "right",
         SourceLookup("BEISFinalConsump"),
         SourceLookup("ETElecGen"),
-        SourceLookup("ESTSectorInventory")
+        SourceLookup("ESTRenHeat")
         
       )
     )
@@ -61,19 +78,347 @@ SectorInventoryOutput <- function(id) {
 
 
 ###### Server ######
-SectorInventory <- function(input, output, session) {
+GHGEmissions <- function(input, output, session) {
   
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
+
+  print("GHGEmissions.R")
   
-  print("SectorInventory.R")
+    output$GHGEmissionsPercentageReductionTargetsSubtitle <- renderText({
+      
+      GHGEmissions <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
+                                      "\t", escape_double = FALSE, trim_ws = TRUE)
+      
+      GHGEmissions$Total <- rowSums(GHGEmissions[2:11])
+      
+      names(GHGEmissions)[1] <- "Year"
+      ### variables
+      
+      paste("Scotland,", min(GHGEmissions$Year),"-", max(GHGEmissions$Year))
+    })
+  
+  output$GHGEmissionsPercentageReductionTargetsPlot <- renderPlotly  ({
+    
+    GHGEmissions <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
+                                    "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    GHGEmissions$Total <- rowSums(GHGEmissions[2:11])
+    
+    names(GHGEmissions)[1] <- "Year"
+    
+    GHGEmissions <- merge(GHGEmissions, (data.frame("Year" = c(1991,1996))), all = TRUE)
+    
+    plottitle <- "Percentage reduction targets - based on adjusted emissions (MtCO2e)"
+    sourcecaption <- "Source: BEIS"
+    ChartColours <- c("#1A5D38", "#FF8500")
+    LineColours <- c( "#1A5D38","#2b8cbe", "#FF8500", "#addd8e")
+    
+    GHGEmissions$Year <- paste0("01/01/", GHGEmissions$Year)
+    
+    GHGEmissions$Year <- dmy(GHGEmissions$Year)
+    
+    
+    p <-  plot_ly(data = GHGEmissions,
+                  x = ~ Year ) %>% 
+      add_trace(data = GHGEmissions,
+                x = ~ Year,
+                y = ~ `Total`,
+                name = "Total",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "1",
+                text = paste0(
+                  "Total Emissions: ",
+                  round(GHGEmissions$`Total`, digits = 1),
+                  " MtCO2e\nYear: ",
+                  format(GHGEmissions$Year, "%Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = LineColours[1], dash = "none")
+      ) %>% 
+      add_trace(
+        data = GHGEmissions[which(GHGEmissions$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(GHGEmissions[which(GHGEmissions$Total != 0),]$Year))),],
+        x = ~ Year,
+        y = ~ `Total`,
+        name = "Total greenhouse gas emissions",
+        text = paste0(
+          "Total Emissions: ",
+          round(GHGEmissions[which(GHGEmissions$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(GHGEmissions[which(GHGEmissions$Total != 0),]$Year))),]$`Total`, digits = 1),
+          " MtCO2e\nYear: ",
+          format(GHGEmissions[which(GHGEmissions$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(GHGEmissions[which(GHGEmissions$Total != 0),]$Year))),]$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        legendgroup = "1",
+        marker = list(size = 18, 
+                      color = LineColours[1])
+      ) %>% 
+      layout(
+        barmode = 'stack',
+        bargap = 0.66,
+        legend = list(font = list(color = "#1A5D38"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        xaxis = list(title = "",
+                     showgrid = FALSE
+        ),
+        yaxis = list(
+          title = "MtCO2e",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    p
+    
+    
+    
+  })
+  
+  
+  output$GHGEmissionsTable = renderDataTable({
+    
+    Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                       sheet = "Adjusted emissions", skip = 12)
+    
+    Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
+    
+    colnames(Data) <- as.character(unlist(Data[1,]))
+    Data = Data[-1, ]
+    Data <- setDT(Data, keep.rownames = TRUE)[]
+    Data[1,1] <- 1990
+    Data[is.na(Data)] <- 0
+    
+    Data <- Data %>% unite(Targets,5:6, sep = "", remove = TRUE)
+    
+    Data <- as_tibble(sapply( Data, as.numeric ))
+    
+    Data <- Data[,c(1,3,5,2,4)]
+    
+    names(Data) <- c("Year", "1990 - 2016 Inventory", "Reduction Target", "1990 - 2008 Inventory", "Fixed Annual Targets")
+    
+    Data$CheckRow <- Data$`1990 - 2016 Inventory` + Data$`Reduction Target` +Data$`1990 - 2008 Inventory` + Data$`Fixed Annual Targets`
+    
+    Data <- Data[which(Data$CheckRow > 0),]
+    
+    Data[Data == 0] <- NA
+    
+    GHGEmissions <- Data[c(1,4,2,5,3)]
+    datatable(
+      GHGEmissions,
+      extensions = 'Buttons',
+     # container = sketch,
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        order = list(list(0, 'asc')),
+        title = "Scottish Greenhouse Gas Emissions (MtCO2e)",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Scottish Greenhouse Gas Emissions (MtCO2e)',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Scottish Greenhouse Gas Emissions (MtCO2e)')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = -1
+      )
+    ) %>%
+      formatRound(2:5, 1)
+  })
+  
+  
+  
+  
+  output$Text <- renderUI({
+    tagList(column(12,
+                   HTML(
+                     paste(readtext("Structure/8 - Greenhouse Gases/GHGEmissions.txt")[2])
+                     
+                   )))
+  })
+  
+  
+  observeEvent(input$ToggleTable, {
+    toggle("GHGEmissionsTable")
+  })
+  
+
+  
+  observeEvent(input$ToggleText, {
+    toggle("Text")
+  })
+  
+  output$GHGEmissionsPercentageReductionTargets.png <- downloadHandler(
+    filename = "GHGEmissionsPercentageReductionTargets.png",
+    content = function(file) {
+      
+      GHGEmissions <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
+                                      "\t", escape_double = FALSE, trim_ws = TRUE)
+      
+      GHGEmissions$Total <- rowSums(GHGEmissions[2:11])
+      
+      names(GHGEmissions)[1] <- "Year"
+      
+      GHGEmissions <- merge(GHGEmissions, (data.frame("Year" = c(1991,1996))), all = TRUE)
+      
+      plottitle <- "Greenhouse gas emissions"
+      sourcecaption <- "Source: SG"
+      ChartColours <- c("#1A5D38", "#FF8500")
+      LineColours <- c( "#1A5D38","#2b8cbe", "#FF8500", "#addd8e")
+      
+      GHGEmissionsChart <-
+        GHGEmissions %>%  ggplot(aes(x = Year), family = "Century Gothic") +
+        
+        ### Line of Values
+        geom_line(
+          aes(y = Total,
+              
+              label = Total),
+          size = 1.5,
+          colour = LineColours[1],
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = GHGEmissions[which(GHGEmissions$Year == max(GHGEmissions[which(GHGEmissions$Total > 0),]$Year)),],
+          aes(
+            x = Year,
+            y = Total,
+            label = round(`Total`, digits = 1),
+            show_guide = FALSE
+          ),
+          size = 4,
+          colour = LineColours[1],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          data = GHGEmissions[which(GHGEmissions$Year == max(GHGEmissions[which(GHGEmissions$Total > 0),]$Year)),],
+          aes(
+            x = Year,
+            y = Total,
+            label = round(Total, digits = 1),
+            show_guide = FALSE
+          ),
+          fontface = 2,
+          vjust = -1,
+          colour = LineColours[1],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = Total,
+            label = ifelse(Year %in% c(1990,1995, 1998), round(Total, digits= 1), ""),
+            hjust = 0.5,
+            vjust = -1,
+            fontface = 2
+          ),
+          colour = LineColours[1],
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(GHGEmissions, 1),
+          aes(
+            x = Year,
+            y = Total,
+            label = round(Total, digits = 1),
+            show_guide = FALSE
+          ),
+          size = 4,
+          colour = LineColours[1],
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = GHGEmissions[which(GHGEmissions$Year %in% c(1990,1995,1998)),],
+          aes(
+            x = Year,
+            y = Total,
+            label = round(Total, digits = 1),
+            show_guide = FALSE
+          ),
+          size = 3,
+          colour = LineColours[1],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = 0,
+            label = ifelse(Year %in% c(1990, 1995, 1998, max(GHGEmissions[which(GHGEmissions$Total > 0),]$Year)), Year, ""),
+            hjust = 0.5,
+            vjust = 1.5,
+            colour = ChartColours[1],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        )+
+        geom_text(
+          aes(
+            x = Year,
+            y = 0,
+            label = ifelse(Year %in% GHGEmissions$Year[which(GHGEmissions$Tgt > 0)], Year, ""),
+            hjust = 0.5,
+            vjust = 1.5
+          ),
+          colour = ChartColours[2],
+          fontface = 2,
+          family = "Century Gothic"
+        )
+      
+      GHGEmissionsChart <-
+        LinePercentChart(GHGEmissionsChart,
+                         GHGEmissions,
+                         plottitle,
+                         sourcecaption,
+                         ChartColours)
+      
+      
+      GHGEmissionsChart
+      
+      GHGEmissionsChart <- GHGEmissionsChart +
+        labs(subtitle = paste("Scotland,", min(GHGEmissions$Year),"-", max(GHGEmissions$Year))) +
+        xlim(min(GHGEmissions$Year), max(GHGEmissions$Year) + 2)+
+        ylim(0,79)
+      
+      
+      ggsave(
+        file,
+        plot = GHGEmissionsChart,
+        width = 26,
+        height = 15,
+        units = "cm",
+        dpi = 300
+      )
+    }
+  )
   
   output$SectorInventorySubtitle <- renderText({
     
     SectorInventory <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                               "\t", escape_double = FALSE, trim_ws = TRUE)
+                                  "\t", escape_double = FALSE, trim_ws = TRUE)
     
     paste("Scotland,", max(as.numeric(SectorInventory$refPeriod), na.rm = TRUE))
   })
@@ -81,7 +426,7 @@ SectorInventory <- function(input, output, session) {
   output$SectorInventoryPlot <- renderPlotly  ({
     
     SectorInventory <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                                   "\t", escape_double = FALSE, trim_ws = TRUE)
+                                  "\t", escape_double = FALSE, trim_ws = TRUE)
     
     SectorInventory <- SectorInventory[nrow(SectorInventory),]
     
@@ -378,9 +723,9 @@ SectorInventory <- function(input, output, session) {
   output$SectorInventory.png <- downloadHandler(
     filename = "SectorInventory.png",
     content = function(file) {
-
+      
       SectorInventory <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                                 "\t", escape_double = FALSE, trim_ws = TRUE)
+                                    "\t", escape_double = FALSE, trim_ws = TRUE)
       
       SectorInventoryYear <- paste("Scotland,", max(as.numeric(SectorInventory$refPeriod), na.rm = TRUE))
       
@@ -451,7 +796,7 @@ SectorInventory <- function(input, output, session) {
         mutate(top = sum(value))
       
       plottitle <-
-        "Sources of Scottish greenhouse gas emissions"
+        "Greenhouse gas emissions by source sector"
       sourcecaption <- "Source: SG"
       
       SectorInventoryChart <- SectorInventory %>%
@@ -648,7 +993,7 @@ SectorInventory <- function(input, output, session) {
   output$SectorInventoryTable = renderDataTable({
     
     SectorInventory <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                               "\t", escape_double = FALSE, trim_ws = TRUE)
+                                  "\t", escape_double = FALSE, trim_ws = TRUE)
     
     names(SectorInventory) <- c("Year", "Agriculture", "Business", "Energy Supply", "Industrial Processes", "International Aviation and Shipping", "Forestry (Carbon Sink)", "Public",  "Residential", "Domestic Transport", "Waste Management" )
     
@@ -657,7 +1002,7 @@ SectorInventory <- function(input, output, session) {
     SectorInventory$`Total Emissions` <- rowSums(SectorInventory[2:11])
     
     datatable(
-      SectorInventory,
+      SectorInventory[c(1,12,2:11)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -670,17 +1015,17 @@ SectorInventory <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Sources of Scottish Greenhouse Gas Emissions (MtCO2e)",
+        title = "Scottish greenhouse gas Emissions by source sector (MtCO2e)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Sources of Scottish Greenhouse Gas Emissions (MtCO2e)',
+            title = 'Scottish greenhouse gas Emissions by source sector (MtCO2e)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Sources of Scottish Greenhouse Gas Emissions (MtCO2e)')
+               title = 'Scottish greenhouse gas Emissions by source sector (MtCO2e)')
         ),
         
         # customize the length menu
@@ -691,29 +1036,9 @@ SectorInventory <- function(input, output, session) {
       )
     ) %>%
       formatRound(2:12, 1) %>% 
-      formatStyle(11, fontStyle = "italic")
+      formatStyle(12, fontStyle = "italic") %>% 
+      formatStyle(2, fontWeight = "bold")
   })
-  
-  
-  
-  output$Text <- renderUI({
-    tagList(column(12,
-                   HTML(
-                     paste(readtext("Structure/8 - Greenhouse Gases/SectorInventory.txt")[2])
-                     
-                   )))
-  })
-  
-  observeEvent(input$ToggleTable, {
-    toggle("SectorInventoryTable")
-  })
-  
-
-  
-  observeEvent(input$ToggleText, {
-    toggle("Text")
-  })
-  
   
   
 }
