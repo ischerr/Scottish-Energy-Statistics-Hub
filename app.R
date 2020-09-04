@@ -482,7 +482,7 @@ fluidRow(
 
 
 ui <- shinyUI(fluidPage(
-  theme = shinytheme("cosmo"),
+  #theme = shinytheme("cosmo"),
   includeCSS("style.css"),
   useShinyjs(),
   extendShinyjs(text = js_code, functions = 'browseURL'),
