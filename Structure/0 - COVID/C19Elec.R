@@ -114,7 +114,7 @@ C19Elec <- function(input, output, session) {
     paste("Scotland, 2013 - 2020")
   })
   
-  output$C19Ele2cSubtitle <- renderText({
+  output$C19Elec2Subtitle <- renderText({
     
     paste("Scotland, 2013 - 2020")
   })
@@ -533,7 +533,7 @@ C19Elec <- function(input, output, session) {
     
     WeekdayElecDemand <- dcast(WeekdayElecDemand, Year ~ PostLockdown)
     
-    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "fourth week of March to last week of August (GWh)")
+    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "fourth week of March to first week of September (GWh)")
     datatable(
       WeekdayElecDemand,
       extensions = 'Buttons',
