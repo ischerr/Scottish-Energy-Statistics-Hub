@@ -102,53 +102,73 @@ GHGEmissions <- function(input, output, session) {
   
   output$GHGEmissionsPercentageReductionTargetsPlot <- renderPlotly  ({
     
-    GHGEmissions <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                                    "\t", escape_double = FALSE, trim_ws = TRUE)
+    Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                       sheet = "Adjusted emissions", skip = 12)
     
-    GHGEmissions$Total <- rowSums(GHGEmissions[2:11])
+    Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
     
-    names(GHGEmissions)[1] <- "Year"
+    colnames(Data) <- as.character(unlist(Data[1,]))
+    Data = Data[-1, ]
+    Data <- setDT(Data, keep.rownames = TRUE)[]
+    Data[1,1] <- 1986
+    Data[2,1] <- 1989
+    Data[is.na(Data)] <- 0
     
-    GHGEmissions <- merge(GHGEmissions, (data.frame("Year" = c(1991,1996))), all = TRUE)
+    Data <- Data %>% unite(Targets,5:6, sep = "", remove = TRUE)
+    
+    Data <- as_tibble(sapply( Data, as.numeric ))
+    
+    Data[Data == 0] <- NA
+    
+    Data <- Data[,c(1,3,5,2,4)]
+    
+    names(Data) <- c("Year", "Renewables", "Tgt", "2008Inventory", "FixedTargets")
+    
+    Data[which(Data$Year == 2045),]$Tgt <- 0.000000000000000000000000000000000000000001
+    AdjustedEmissions <- Data
     
     plottitle <- "Percentage reduction targets - based on adjusted emissions (MtCO2e)"
     sourcecaption <- "Source: BEIS"
-    ChartColours <- c("#1A5D38", "#FF8500")
-    LineColours <- c( "#1A5D38","#2b8cbe", "#FF8500", "#addd8e")
+    ChartColours <- c("#39ab2c", "#FF8500")
+    LineColours <- c( "#39ab2c","#2b8cbe", "#FF8500", "#addd8e")
     
-    GHGEmissions$Year <- paste0("01/01/", GHGEmissions$Year)
+    AdjustedEmissions$Year <- paste0("01/01/", AdjustedEmissions$Year)
     
-    GHGEmissions$Year <- dmy(GHGEmissions$Year)
+    AdjustedEmissions$Year <- dmy(AdjustedEmissions$Year)
+    
+    AdjustedEmissions$YearDisplay <- as.character(format(AdjustedEmissions$Year, "%Y"))
+    
+    AdjustedEmissions[1,6] <- "Baseline"
     
     
-    p <-  plot_ly(data = GHGEmissions,
+    p <-  plot_ly(data = AdjustedEmissions,
                   x = ~ Year ) %>% 
-      add_trace(data = GHGEmissions,
+      add_trace(data = AdjustedEmissions,
                 x = ~ Year,
-                y = ~ `Total`,
-                name = "Total",
+                y = ~ `Renewables`,
+                name = "Greenhouse gas emissions",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "1",
                 text = paste0(
-                  "Total Emissions: ",
-                  round(GHGEmissions$`Total`, digits = 1),
+                  "Greenhouse gas emissions: ",
+                  round(AdjustedEmissions$`Renewables`, digits = 1),
                   " MtCO2e\nYear: ",
-                  format(GHGEmissions$Year, "%Y")
+                  AdjustedEmissions$YearDisplay
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = LineColours[1], dash = "none")
       ) %>% 
       add_trace(
-        data = GHGEmissions[which(GHGEmissions$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(GHGEmissions[which(GHGEmissions$Total != 0),]$Year))),],
+        data = AdjustedEmissions[which(AdjustedEmissions$Year %in% c(ymd("1986-01-01"), ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(AdjustedEmissions[which(AdjustedEmissions$Renewables != 0),]$Year))),],
         x = ~ Year,
-        y = ~ `Total`,
+        y = ~ `Renewables`,
         name = "Total greenhouse gas emissions",
         text = paste0(
-          "Total Emissions: ",
-          round(GHGEmissions[which(GHGEmissions$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(GHGEmissions[which(GHGEmissions$Total != 0),]$Year))),]$`Total`, digits = 1),
+          "Greenhouse gas emissions: ",
+          round(AdjustedEmissions[which(AdjustedEmissions$Year %in% c(ymd("1986-01-01"), ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(AdjustedEmissions[which(AdjustedEmissions$Renewables != 0),]$Year))),]$`Renewables`, digits = 1),
           " MtCO2e\nYear: ",
-          format(GHGEmissions[which(GHGEmissions$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(GHGEmissions[which(GHGEmissions$Total != 0),]$Year))),]$Year, "%Y")
+          AdjustedEmissions[which(AdjustedEmissions$Year %in% c(ymd("1986-01-01"), ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(AdjustedEmissions[which(AdjustedEmissions$Renewables != 0),]$Year))),]$YearDisplay
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -158,17 +178,39 @@ GHGEmissions <- function(input, output, session) {
         marker = list(size = 18, 
                       color = LineColours[1])
       ) %>% 
+      add_trace(
+        data = AdjustedEmissions[which(AdjustedEmissions$Tgt != 0),],
+        x = ~ Year,
+        y = ~ `Tgt`,
+        name = "Targets",
+        text = paste0(
+          "Fixed Annual Target: ",
+          round(AdjustedEmissions[which(AdjustedEmissions$Tgt != 0),]$`Tgt`, digits = 1),
+          " MtCO2e\n(Reduction of ", percent(1 -( AdjustedEmissions[which(AdjustedEmissions$Tgt != 0),]$`Tgt` / AdjustedEmissions[which(AdjustedEmissions$Year == ymd("1990-01-01")),]$Renewables), accuracy = 1),
+          
+          
+          ")\nYear: ",
+          format(AdjustedEmissions[which(AdjustedEmissions$Tgt != 0),]$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        type = "scatter", 
+        legendgroup = "2",
+        mode = 'markers',
+        marker = list(size = 25,
+                      symbol = "diamond", 
+                      color = LineColours[3])
+      ) %>% 
       layout(
         barmode = 'stack',
         bargap = 0.66,
-        legend = list(font = list(color = "#1A5D38"),
+        legend = list(font = list(color = "#39ab2c"),
                       orientation = 'h'),
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
         hovername = 'text',
         xaxis = list(title = "",
-                     showgrid = FALSE
-        ),
+                     showgrid = FALSE,
+                     range = c(min(AdjustedEmissions$Year)-500, max(AdjustedEmissions[which(AdjustedEmissions$Tgt != 0),]$Year)+500)),
         yaxis = list(
           title = "MtCO2e",
           showgrid = TRUE,
@@ -276,38 +318,55 @@ GHGEmissions <- function(input, output, session) {
     filename = "GHGEmissionsPercentageReductionTargets.png",
     content = function(file) {
       
-      GHGEmissions <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                                      "\t", escape_double = FALSE, trim_ws = TRUE)
+      Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                         sheet = "Adjusted emissions", skip = 12)
       
-      GHGEmissions$Total <- rowSums(GHGEmissions[2:11])
+      Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
       
-      names(GHGEmissions)[1] <- "Year"
+      colnames(Data) <- as.character(unlist(Data[1,]))
+      Data = Data[-1, ]
+      Data <- setDT(Data, keep.rownames = TRUE)[]
+      Data[1,1] <- 1986
+      Data[2,1] <- 1989
+      Data[is.na(Data)] <- 0
       
-      GHGEmissions <- merge(GHGEmissions, (data.frame("Year" = c(1991,1996))), all = TRUE)
+      Data <- Data %>% unite(Targets,5:6, sep = "", remove = TRUE)
       
-      plottitle <- "Greenhouse gas emissions"
+      Data <- as_tibble(sapply( Data, as.numeric ))
+      
+      Data[Data == 0] <- NA
+      
+      Data <- Data[,c(1,3,5,2,4)]
+      
+      names(Data) <- c("Year", "Renewables", "Tgt", "2008Inventory", "FixedTargets")
+      
+      Data[which(Data$Year == 2045),]$Tgt <- 0.000000000000000000000000000000000000000001
+      
+      AdjustedEmissions <- Data
+      
+      plottitle <- "Greenhouse gas emissions and percentage reduction targets - based on\nadjusted emissions (MtCO2e)"
       sourcecaption <- "Source: SG"
-      ChartColours <- c("#1A5D38", "#FF8500")
-      LineColours <- c( "#1A5D38","#2b8cbe", "#FF8500", "#addd8e")
+      ChartColours <- c("#39ab2c", "#FF8500")
+      LineColours <- c( "#39ab2c","#2b8cbe", "#FF8500", "#addd8e")
       
-      GHGEmissionsChart <-
-        GHGEmissions %>%  ggplot(aes(x = Year), family = "Century Gothic") +
+      AdjustedEmissionsChart <-
+        AdjustedEmissions %>%  ggplot(aes(x = Year), family = "Century Gothic") +
         
         ### Line of Values
         geom_line(
-          aes(y = Total,
+          aes(y = Renewables,
               
-              label = Total),
+              label = Renewables),
           size = 1.5,
           colour = LineColours[1],
           family = "Century Gothic"
         ) +
         geom_point(
-          data = GHGEmissions[which(GHGEmissions$Year == max(GHGEmissions[which(GHGEmissions$Total > 0),]$Year)),],
+          data = AdjustedEmissions[which(AdjustedEmissions$Year == max(AdjustedEmissions[which(AdjustedEmissions$Renewables > 0),]$Year)),],
           aes(
             x = Year,
-            y = Total,
-            label = round(`Total`, digits = 1),
+            y = Renewables,
+            label = round(`2008Inventory`, digits = 1),
             show_guide = FALSE
           ),
           size = 4,
@@ -315,11 +374,11 @@ GHGEmissions <- function(input, output, session) {
           family = "Century Gothic"
         ) +
         geom_text(
-          data = GHGEmissions[which(GHGEmissions$Year == max(GHGEmissions[which(GHGEmissions$Total > 0),]$Year)),],
+          data = AdjustedEmissions[which(AdjustedEmissions$Year == max(AdjustedEmissions[which(AdjustedEmissions$Renewables > 0),]$Year)),],
           aes(
             x = Year,
-            y = Total,
-            label = round(Total, digits = 1),
+            y = Renewables,
+            label = round(Renewables, digits = 1),
             show_guide = FALSE
           ),
           fontface = 2,
@@ -330,8 +389,8 @@ GHGEmissions <- function(input, output, session) {
         geom_text(
           aes(
             x = Year,
-            y = Total,
-            label = ifelse(Year %in% c(1990,1995, 1998), round(Total, digits= 1), ""),
+            y = Renewables,
+            label = ifelse(Year %in% c(1986, 1990,1995, 1998), round(Renewables, digits= 1), ""),
             hjust = 0.5,
             vjust = -1,
             fontface = 2
@@ -339,12 +398,24 @@ GHGEmissions <- function(input, output, session) {
           colour = LineColours[1],
           family = "Century Gothic"
         ) +
+        geom_text(
+          aes(
+            x = Year+0.75,
+            y = Renewables,
+            label = ifelse(Year == max(AdjustedEmissions$Year[which(AdjustedEmissions$FixedTargets > 0)]), round(Renewables, digits= 1), ""),
+            hjust = 0.5,
+            fontface = 2
+          ),
+          colour = LineColours[1],
+          family = "Century Gothic"
+        ) +
+        
         geom_point(
-          data = tail(GHGEmissions, 1),
+          data = tail(AdjustedEmissions, 1),
           aes(
             x = Year,
-            y = Total,
-            label = round(Total, digits = 1),
+            y = Renewables,
+            label = round(Renewables, digits = 1),
             show_guide = FALSE
           ),
           size = 4,
@@ -352,11 +423,11 @@ GHGEmissions <- function(input, output, session) {
           family = "Century Gothic"
         ) +
         geom_point(
-          data = GHGEmissions[which(GHGEmissions$Year %in% c(1990,1995,1998)),],
+          data = AdjustedEmissions[which(AdjustedEmissions$Year %in% c(1986,1990,1995,1998)),],
           aes(
             x = Year,
-            y = Total,
-            label = round(Total, digits = 1),
+            y = Renewables,
+            label = round(Renewables, digits = 1),
             show_guide = FALSE
           ),
           size = 3,
@@ -367,9 +438,9 @@ GHGEmissions <- function(input, output, session) {
           aes(
             x = Year,
             y = 0,
-            label = ifelse(Year %in% c(1990, 1995, 1998, max(GHGEmissions[which(GHGEmissions$Total > 0),]$Year)), Year, ""),
+            label = ifelse(Year %in% c(1990, 1995, 1998, max(AdjustedEmissions[which(AdjustedEmissions$Renewables > 0),]$Year)), Year, ""),
             hjust = 0.5,
-            vjust = 1.5,
+            vjust = 1.7,
             colour = ChartColours[1],
             fontface = 2
           ),
@@ -379,39 +450,73 @@ GHGEmissions <- function(input, output, session) {
           aes(
             x = Year,
             y = 0,
-            label = ifelse(Year %in% GHGEmissions$Year[which(GHGEmissions$Tgt > 0)], Year, ""),
+            label = ifelse(Year %in% AdjustedEmissions$Year[which(AdjustedEmissions$Tgt > 0)], Year, ""),
             hjust = 0.5,
-            vjust = 1.5
+            vjust = 1.7
           ),
           colour = ChartColours[2],
           fontface = 2,
           family = "Century Gothic"
-        )
+        )+
+        geom_text(
+          aes(
+            x = 1986,
+            y = 0,
+            label = "Baseline",
+            hjust = 0.5,
+            vjust = 1.7,
+            colour = ChartColours[1],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        )+ geom_point(
+          aes(
+            x = Year,
+            y = Tgt,
+            label = round(`2008Inventory`, digits = 1),
+            show_guide = FALSE
+          ),
+          size = 6,
+          shape = 18,
+          colour = LineColours[3],
+          family = "Century Gothic" ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = Tgt,
+            label = paste0("Target: ", round(Tgt, digits = 1), "\n(-", percent(1 - ( Tgt / AdjustedEmissions$Renewables[which(AdjustedEmissions$Year == 1986)]), accuracy = 1), ")"),
+            show_guide = FALSE
+          ),
+          colour = LineColours[3],
+          family = "Century Gothic",
+          vjust = -0.5
+        ) 
       
-      GHGEmissionsChart <-
-        LinePercentChart(GHGEmissionsChart,
-                         GHGEmissions,
+      AdjustedEmissionsChart <-
+        LinePercentChart(AdjustedEmissionsChart,
+                         AdjustedEmissions,
                          plottitle,
                          sourcecaption,
                          ChartColours)
       
       
-      GHGEmissionsChart
+      AdjustedEmissionsChart
       
-      GHGEmissionsChart <- GHGEmissionsChart +
-        labs(subtitle = paste("Scotland,", min(GHGEmissions$Year),"-", max(GHGEmissions$Year))) +
-        xlim(min(GHGEmissions$Year), max(GHGEmissions$Year) + 2)+
+      AdjustedEmissionsChart <- AdjustedEmissionsChart +
+        labs(subtitle = paste("Scotland, 1990 -", max(AdjustedEmissions$Year[which(AdjustedEmissions$Renewables > 0)]))) +
+        xlim(min(AdjustedEmissions$Year), 2046)+
         ylim(0,79)
       
       
       ggsave(
         file,
-        plot = GHGEmissionsChart,
+        plot = AdjustedEmissionsChart,
         width = 26,
         height = 15,
         units = "cm",
         dpi = 300
       )
+      
     }
   )
   
