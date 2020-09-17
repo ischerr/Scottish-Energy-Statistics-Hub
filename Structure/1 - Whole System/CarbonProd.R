@@ -10,7 +10,7 @@ CarbonProdOutput <- function(id) {
   tagList(
     fluidRow(
                      column(8,
-                      h3("Energy productivity target progress", style = "color: #1A5D38;  font-weight:bold"),
+                      h3("Carbon productivity", style = "color: #1A5D38;  font-weight:bold"),
                       h4(textOutput(ns('CarbonProdSubtitle')), style = "color: #1A5D38;")
                      ),
                       column(
@@ -223,7 +223,7 @@ CarbonProd <- function(input, output, session) {
     tagList(column(12,
                    
                    HTML(
-                     paste(readtext("Structure/8 - Greenhouse Gases/CarbonProd.txt")[2])
+                     paste(readtext("Structure/1 - Whole System/CarbonProd.txt")[2])
                      
                    )))
   })

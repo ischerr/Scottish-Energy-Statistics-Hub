@@ -129,8 +129,8 @@ GHGEmissions <- function(input, output, session) {
     
     plottitle <- "Percentage reduction targets - based on adjusted emissions (MtCO2e)"
     sourcecaption <- "Source: BEIS"
-    ChartColours <- c("#39ab2c", "#FF8500")
-    LineColours <- c( "#39ab2c","#2b8cbe", "#FF8500", "#addd8e")
+    ChartColours <- c("#1A5D38", "#FF8500")
+    LineColours <- c( "#1A5D38","#2b8cbe", "#FF8500", "#addd8e")
     
     AdjustedEmissions$Year <- paste0("01/01/", AdjustedEmissions$Year)
     
@@ -203,7 +203,7 @@ GHGEmissions <- function(input, output, session) {
       layout(
         barmode = 'stack',
         bargap = 0.66,
-        legend = list(font = list(color = "#39ab2c"),
+        legend = list(font = list(color = "#1A5D38"),
                       orientation = 'h'),
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
@@ -214,6 +214,7 @@ GHGEmissions <- function(input, output, session) {
         yaxis = list(
           title = "MtCO2e",
           showgrid = TRUE,
+          range = c(-5,82),
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
           zerolinewidth = 2,
@@ -298,7 +299,7 @@ GHGEmissions <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/8 - Greenhouse Gases/GHGEmissions.txt")[2])
+                     paste(readtext("Structure/1 - Whole System/GHGEmissions.txt")[2])
                      
                    )))
   })
@@ -346,8 +347,8 @@ GHGEmissions <- function(input, output, session) {
       
       plottitle <- "Greenhouse gas emissions and percentage reduction targets - based on\nadjusted emissions (MtCO2e)"
       sourcecaption <- "Source: SG"
-      ChartColours <- c("#39ab2c", "#FF8500")
-      LineColours <- c( "#39ab2c","#2b8cbe", "#FF8500", "#addd8e")
+      ChartColours <- c("#1A5D38", "#FF8500")
+      LineColours <- c( "#1A5D38","#2b8cbe", "#FF8500", "#addd8e")
       
       AdjustedEmissionsChart <-
         AdjustedEmissions %>%  ggplot(aes(x = Year), family = "Century Gothic") +
