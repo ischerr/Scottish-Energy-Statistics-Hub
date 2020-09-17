@@ -1,5 +1,6 @@
 source("packages.R")
 
+
 js_code <- "
 shinyjs.browseURL = function(url) {
   window.open(url,'_blank');
