@@ -220,7 +220,8 @@ HouseholdIntensity <- function(input, output, session) {
     ) %>%
       formatRound(c(2:9), 0) %>% 
       formatPercentage(c(6,7,9,10),1) %>% 
-      formatRound(c(3,8),1)
+      formatRound(c(3,8),1) %>% 
+      formatRound(c(8),2)
   })
   
   
@@ -372,7 +373,7 @@ HouseholdIntensity <- function(input, output, session) {
                 legendgroup = "1",
                 text = paste0(
                   "Emissions intensity (tCO2 / households): ",
-                  format(round(Data$`Emissions intensity (tCO2 / households)`, digits = 1), big.mark = ","),
+                  format(round(Data$`Emissions intensity (tCO2 / households)`, digits = 2), big.mark = ","),
                   "\nYear: ",
                   paste(Data$Year)
                 ),
@@ -387,7 +388,7 @@ HouseholdIntensity <- function(input, output, session) {
         name = "Total",
         text = paste0(
           "Emissions intensity (tCO2 / households): ",
-          format(round(Data[which(Data$`Emissions intensity (tCO2 / households)` > 0 | Data$`Emissions intensity (tCO2 / households)` < 0),][-1,]$`Emissions intensity (tCO2 / households)`, digits = 1), big.mark = ","),
+          format(round(Data[which(Data$`Emissions intensity (tCO2 / households)` > 0 | Data$`Emissions intensity (tCO2 / households)` < 0),][-1,]$`Emissions intensity (tCO2 / households)`, digits = 2), big.mark = ","),
           "\nYear: ",
           paste(Data[which(Data$`Emissions intensity (tCO2 / households)` > 0 | Data$`Emissions intensity (tCO2 / households)` < 0),][-1,]$Year)
         ),
@@ -460,7 +461,7 @@ HouseholdIntensity <- function(input, output, session) {
           aes(
             x = Year,
             y = `Emissions intensity (tCO2 / households)`,
-            label = ifelse(Year == min(Year), paste0(format(round(`Emissions intensity (tCO2 / households)`, digits = 1),big.mark = ",")), ""),
+            label = ifelse(Year == min(Year), paste0(format(round(`Emissions intensity (tCO2 / households)`, digits = 2),big.mark = ",")), ""),
             hjust = 0.5,
             vjust = 2.7,
             colour = ChartColours[2],
@@ -472,7 +473,7 @@ HouseholdIntensity <- function(input, output, session) {
           aes(
             x = Year,
             y = `Emissions intensity (tCO2 / households)`,
-            label = ifelse(Year == max(Year), paste0(format(round(`Emissions intensity (tCO2 / households)`, digits = 1),big.mark = ",")), ""),
+            label = ifelse(Year == max(Year), paste0(format(round(`Emissions intensity (tCO2 / households)`, digits = 2),big.mark = ",")), ""),
             hjust = 0.5,
             vjust = -1.5,
             colour = ChartColours[2],
