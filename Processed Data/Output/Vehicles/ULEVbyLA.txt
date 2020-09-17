@@ -1,4 +1,36 @@
 "Quarter"	"LAName"	"LACode"	"variable"	"value"
+2020 Q2	"Aberdeen City"	"S12000033"	"Battery Electric Vehicles"	303
+2020 Q2	"Aberdeenshire"	"S12000034"	"Battery Electric Vehicles"	500
+2020 Q2	"Angus"	"S12000041"	"Battery Electric Vehicles"	218
+2020 Q2	"Argyll and Bute"	"S12000035"	"Battery Electric Vehicles"	133
+2020 Q2	"City of Edinburgh"	"S12000036"	"Battery Electric Vehicles"	923
+2020 Q2	"Clackmannanshire"	"S12000005"	"Battery Electric Vehicles"	56
+2020 Q2	"Dumfries and Galloway"	"S12000006"	"Battery Electric Vehicles"	147
+2020 Q2	"Dundee City"	"S12000042"	"Battery Electric Vehicles"	367
+2020 Q2	"East Ayrshire"	"S12000008"	"Battery Electric Vehicles"	142
+2020 Q2	"East Dunbartonshire"	"S12000045"	"Battery Electric Vehicles"	212
+2020 Q2	"East Lothian"	"S12000010"	"Battery Electric Vehicles"	249
+2020 Q2	"East Renfrewshire"	"S12000011"	"Battery Electric Vehicles"	216
+2020 Q2	"Falkirk"	"S12000014"	"Battery Electric Vehicles"	203
+2020 Q2	"Fife"	"S12000047"	"Battery Electric Vehicles"	615
+2020 Q2	"Glasgow City"	"S12000049"	"Battery Electric Vehicles"	545
+2020 Q2	"Highland"	"S12000017"	"Battery Electric Vehicles"	329
+2020 Q2	"Inverclyde"	"S12000018"	"Battery Electric Vehicles"	94
+2020 Q2	"Midlothian"	"S12000019"	"Battery Electric Vehicles"	189
+2020 Q2	"Moray"	"S12000020"	"Battery Electric Vehicles"	88
+2020 Q2	"Na h-Eileanan Siar"	"S12000013"	"Battery Electric Vehicles"	34
+2020 Q2	"North Ayrshire"	"S12000021"	"Battery Electric Vehicles"	100
+2020 Q2	"North Lanarkshire"	"S12000050"	"Battery Electric Vehicles"	227
+2020 Q2	"Orkney Islands"	"S12000023"	"Battery Electric Vehicles"	226
+2020 Q2	"Perth and Kinross"	"S12000048"	"Battery Electric Vehicles"	328
+2020 Q2	"Renfrewshire"	"S12000038"	"Battery Electric Vehicles"	1148
+2020 Q2	"Scottish Borders"	"S12000026"	"Battery Electric Vehicles"	220
+2020 Q2	"Shetland Islands"	"S12000027"	"Battery Electric Vehicles"	26
+2020 Q2	"South Ayrshire"	"S12000028"	"Battery Electric Vehicles"	134
+2020 Q2	"South Lanarkshire"	"S12000029"	"Battery Electric Vehicles"	390
+2020 Q2	"Stirling"	"S12000030"	"Battery Electric Vehicles"	457
+2020 Q2	"West Dunbartonshire"	"S12000039"	"Battery Electric Vehicles"	71
+2020 Q2	"West Lothian"	"S12000040"	"Battery Electric Vehicles"	236
 2020 Q1	"Aberdeen City"	"S12000033"	"Battery Electric Vehicles"	311
 2020 Q1	"Aberdeenshire"	"S12000034"	"Battery Electric Vehicles"	467
 2020 Q1	"Angus"	"S12000041"	"Battery Electric Vehicles"	220
@@ -671,6 +703,38 @@
 2015 Q1	"Stirling"	"S12000030"	"Battery Electric Vehicles"	33
 2015 Q1	"West Dunbartonshire"	"S12000039"	"Battery Electric Vehicles"	10
 2015 Q1	"West Lothian"	"S12000040"	"Battery Electric Vehicles"	43
+2020 Q2	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	251
+2020 Q2	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	423
+2020 Q2	"Angus"	"S12000041"	"Plug-in Hybrids"	109
+2020 Q2	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	104
+2020 Q2	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	715
+2020 Q2	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	51
+2020 Q2	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	133
+2020 Q2	"Dundee City"	"S12000042"	"Plug-in Hybrids"	97
+2020 Q2	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	88
+2020 Q2	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	147
+2020 Q2	"East Lothian"	"S12000010"	"Plug-in Hybrids"	145
+2020 Q2	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	170
+2020 Q2	"Falkirk"	"S12000014"	"Plug-in Hybrids"	126
+2020 Q2	"Fife"	"S12000047"	"Plug-in Hybrids"	331
+2020 Q2	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	395
+2020 Q2	"Highland"	"S12000017"	"Plug-in Hybrids"	229
+2020 Q2	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	45
+2020 Q2	"Midlothian"	"S12000019"	"Plug-in Hybrids"	113
+2020 Q2	"Moray"	"S12000020"	"Plug-in Hybrids"	78
+2020 Q2	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	17
+2020 Q2	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	99
+2020 Q2	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	206
+2020 Q2	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	42
+2020 Q2	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	245
+2020 Q2	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	2620
+2020 Q2	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	160
+2020 Q2	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	30
+2020 Q2	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	107
+2020 Q2	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	310
+2020 Q2	"Stirling"	"S12000030"	"Plug-in Hybrids"	1117
+2020 Q2	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	87
+2020 Q2	"West Lothian"	"S12000040"	"Plug-in Hybrids"	195
 2020 Q1	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	255
 2020 Q1	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	417
 2020 Q1	"Angus"	"S12000041"	"Plug-in Hybrids"	110
@@ -1343,6 +1407,38 @@
 2015 Q1	"Stirling"	"S12000030"	"Plug-in Hybrids"	41
 2015 Q1	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	0
 2015 Q1	"West Lothian"	"S12000040"	"Plug-in Hybrids"	9
+2020 Q2	"Aberdeen City"	"S12000033"	"Other ULEVs"	5
+2020 Q2	"Aberdeenshire"	"S12000034"	"Other ULEVs"	3
+2020 Q2	"Angus"	"S12000041"	"Other ULEVs"	2
+2020 Q2	"Argyll and Bute"	"S12000035"	"Other ULEVs"	3
+2020 Q2	"City of Edinburgh"	"S12000036"	"Other ULEVs"	31
+2020 Q2	"Clackmannanshire"	"S12000005"	"Other ULEVs"	1
+2020 Q2	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	1
+2020 Q2	"Dundee City"	"S12000042"	"Other ULEVs"	1
+2020 Q2	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
+2020 Q2	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	5
+2020 Q2	"East Lothian"	"S12000010"	"Other ULEVs"	5
+2020 Q2	"East Renfrewshire"	"S12000011"	"Other ULEVs"	2
+2020 Q2	"Falkirk"	"S12000014"	"Other ULEVs"	4
+2020 Q2	"Fife"	"S12000047"	"Other ULEVs"	8
+2020 Q2	"Glasgow City"	"S12000049"	"Other ULEVs"	8
+2020 Q2	"Highland"	"S12000017"	"Other ULEVs"	3
+2020 Q2	"Inverclyde"	"S12000018"	"Other ULEVs"	1
+2020 Q2	"Midlothian"	"S12000019"	"Other ULEVs"	0
+2020 Q2	"Moray"	"S12000020"	"Other ULEVs"	0
+2020 Q2	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
+2020 Q2	"North Ayrshire"	"S12000021"	"Other ULEVs"	2
+2020 Q2	"North Lanarkshire"	"S12000050"	"Other ULEVs"	3
+2020 Q2	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
+2020 Q2	"Perth and Kinross"	"S12000048"	"Other ULEVs"	2
+2020 Q2	"Renfrewshire"	"S12000038"	"Other ULEVs"	42
+2020 Q2	"Scottish Borders"	"S12000026"	"Other ULEVs"	3
+2020 Q2	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
+2020 Q2	"South Ayrshire"	"S12000028"	"Other ULEVs"	3
+2020 Q2	"South Lanarkshire"	"S12000029"	"Other ULEVs"	1
+2020 Q2	"Stirling"	"S12000030"	"Other ULEVs"	14
+2020 Q2	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	3
+2020 Q2	"West Lothian"	"S12000040"	"Other ULEVs"	4
 2020 Q1	"Aberdeen City"	"S12000033"	"Other ULEVs"	5
 2020 Q1	"Aberdeenshire"	"S12000034"	"Other ULEVs"	3
 2020 Q1	"Angus"	"S12000041"	"Other ULEVs"	2
@@ -2015,6 +2111,38 @@
 2015 Q1	"Stirling"	"S12000030"	"Other ULEVs"	0
 2015 Q1	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	0
 2015 Q1	"West Lothian"	"S12000040"	"Other ULEVs"	0
+2020 Q2	"Aberdeen City"	"S12000033"	"Total ULEVs"	559
+2020 Q2	"Aberdeenshire"	"S12000034"	"Total ULEVs"	926
+2020 Q2	"Angus"	"S12000041"	"Total ULEVs"	329
+2020 Q2	"Argyll and Bute"	"S12000035"	"Total ULEVs"	240
+2020 Q2	"City of Edinburgh"	"S12000036"	"Total ULEVs"	1669
+2020 Q2	"Clackmannanshire"	"S12000005"	"Total ULEVs"	108
+2020 Q2	"Dumfries and Galloway"	"S12000006"	"Total ULEVs"	281
+2020 Q2	"Dundee City"	"S12000042"	"Total ULEVs"	465
+2020 Q2	"East Ayrshire"	"S12000008"	"Total ULEVs"	230
+2020 Q2	"East Dunbartonshire"	"S12000045"	"Total ULEVs"	364
+2020 Q2	"East Lothian"	"S12000010"	"Total ULEVs"	399
+2020 Q2	"East Renfrewshire"	"S12000011"	"Total ULEVs"	388
+2020 Q2	"Falkirk"	"S12000014"	"Total ULEVs"	333
+2020 Q2	"Fife"	"S12000047"	"Total ULEVs"	954
+2020 Q2	"Glasgow City"	"S12000049"	"Total ULEVs"	948
+2020 Q2	"Highland"	"S12000017"	"Total ULEVs"	561
+2020 Q2	"Inverclyde"	"S12000018"	"Total ULEVs"	140
+2020 Q2	"Midlothian"	"S12000019"	"Total ULEVs"	302
+2020 Q2	"Moray"	"S12000020"	"Total ULEVs"	166
+2020 Q2	"Na h-Eileanan Siar"	"S12000013"	"Total ULEVs"	51
+2020 Q2	"North Ayrshire"	"S12000021"	"Total ULEVs"	201
+2020 Q2	"North Lanarkshire"	"S12000050"	"Total ULEVs"	436
+2020 Q2	"Orkney Islands"	"S12000023"	"Total ULEVs"	268
+2020 Q2	"Perth and Kinross"	"S12000048"	"Total ULEVs"	575
+2020 Q2	"Renfrewshire"	"S12000038"	"Total ULEVs"	3810
+2020 Q2	"Scottish Borders"	"S12000026"	"Total ULEVs"	383
+2020 Q2	"Shetland Islands"	"S12000027"	"Total ULEVs"	56
+2020 Q2	"South Ayrshire"	"S12000028"	"Total ULEVs"	244
+2020 Q2	"South Lanarkshire"	"S12000029"	"Total ULEVs"	701
+2020 Q2	"Stirling"	"S12000030"	"Total ULEVs"	1588
+2020 Q2	"West Dunbartonshire"	"S12000039"	"Total ULEVs"	161
+2020 Q2	"West Lothian"	"S12000040"	"Total ULEVs"	435
 2020 Q1	"Aberdeen City"	"S12000033"	"Total ULEVs"	571
 2020 Q1	"Aberdeenshire"	"S12000034"	"Total ULEVs"	887
 2020 Q1	"Angus"	"S12000041"	"Total ULEVs"	332
