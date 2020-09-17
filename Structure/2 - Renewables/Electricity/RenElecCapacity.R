@@ -148,12 +148,13 @@ RenElecCapacityOutput <- function(id) {
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
-             DateLookup(c("BEISRenElec", "BEISREPD"))),
+             DateLookup(c("BEISRenElec", "BEISREPD", "BEISRenElecLA"))),
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
         SourceLookup("BEISREPD"),
-        SourceLookup("BEISRenElec")
+        SourceLookup("BEISRenElec"),
+        SourceLookup("BEISRenElecLA")
         
       )
     )
@@ -369,7 +370,7 @@ RenElecCapacity <- function(input, output, session) {
     
     RenElecCapFuel$Total <- RenElecCapFuel$`Other bioenergy` + RenElecCapFuel$`Sewage gas` + RenElecCapFuel$`Wave and tidal` + RenElecCapFuel$`Landfill gas` + RenElecCapFuel$`Solar PV` + RenElecCapFuel$Hydro + RenElecCapFuel$`Offshore Wind` + RenElecCapFuel$`Onshore Wind`
     
-    RenElecCapFuel<-RenElecCapFuel[seq(dim(RenElecCapFuel)[1],1),]
+    #RenElecCapFuel<-RenElecCapFuel[seq(dim(RenElecCapFuel)[1],1),]
     
     datatable(
       RenElecCapFuel[],

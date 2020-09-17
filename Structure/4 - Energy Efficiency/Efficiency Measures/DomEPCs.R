@@ -55,7 +55,7 @@ DomEPCsOutput <- function(id) {
              plotlyOutput(ns("EPCTenurePlot"))%>% withSpinner(color="#34d1a3"),
              HTML("<blockquote><p>*based on SAP 2012 RdSAP v9.93&nbsp;</p></blockquote>"),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
-    tabPanel("EER Bands",
+    tabPanel("Average EER Rating",
              fluidRow(column(8,
                              h3("Average EER Rating", style = "color: #34d1a3;  font-weight:bold"),
                              h4(textOutput(ns('EERProportionsSubtitle')), style = "color: #34d1a3;")
@@ -104,7 +104,7 @@ DomEPCsOutput <- function(id) {
                column(12, dataTableOutput(ns("EPCTenureTable"))%>% withSpinner(color="#34d1a3"))),
              HTML("<blockquote><p>*based on SAP 2012 RdSAP v9.93&nbsp;</p></blockquote>"),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
-    tabPanel("EER Bands",
+    tabPanel("Average EER Rating",
              fluidRow(
                column(10, h3("Data - Average EER Rating", style = "color: #34d1a3;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
