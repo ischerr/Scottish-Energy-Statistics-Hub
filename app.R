@@ -578,7 +578,10 @@ ui <- shinyUI(fluidPage(
                  GHGEmissionsOutput("GHGEmissions")),
         tabPanel(title = "Carbon Productivity",
                  value = "CarbonProd",
-                 CarbonProdOutput("CarbonProd"))
+                 CarbonProdOutput("CarbonProd")),
+        tabPanel(title = "Energy Supply Emissions",
+                 value = "EnSupplyEmissions",
+                 EnSupplyEmissionsOutput("EnSupplyEmissions"))
       )
     ),
     ###### Section - Renewables and Low Carbon #######
@@ -893,9 +896,6 @@ ui <- shinyUI(fluidPage(
              title = tags$div(img(src = "Emissions.svg", height = "30px",   display= "block"), " New Stuff", style = "font-family: 'Century Gothic'; font-weight: 400 "),
              navlistPanel(id = "Emissions",
                           widths = c(3, 8),
-                          tabPanel(title = "Energy Supply Emissions",
-                                   value = "EnSupplyEmissions",
-                                   EnSupplyEmissionsOutput("EnSupplyEmissions")),
                           tabPanel(title = "GHG Elec Heat Transport",
                                    value = "GHGElecHeatTransport",
                                    GHGElecHeatTransportOutput("GHGElecHeatTransport")),

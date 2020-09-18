@@ -350,7 +350,7 @@ EnSupplyEmissions <- function(input, output, session) {
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
-                     paste(readtext("Structure/8 - Greenhouse Gases/EnSupplyEmissions.txt")[2])
+                     paste(readtext("Structure/1 - Whole System/EnSupplyEmissions.txt")[2])
                      
                    )))
   })
