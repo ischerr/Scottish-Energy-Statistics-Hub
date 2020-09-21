@@ -1,0 +1,1424 @@
+"Ref"	"LA"	"Site"	"TechType"	"Capacity"	"Status"	"TurbineAmount"
+880	"Aberdeen City"	"Altens Incinerator"	"EfW Incineration"	12	"Application Refused"	0
+5615	"Aberdeen City"	"East Tullos"	"EfW Incineration"	11.1	"Under Construction"	0
+7526	"Aberdeen City"	"Iron Mountain Howe Moss Drive"	"Solar Photovoltaics"	0.25	"Awaiting Construction"	0
+187	"Aberdeen City"	"Stoneywood Paper Mill"	"Biomass (dedicated)"	22	"Abandoned"	0
+691	"Aberdeen City"	"Tarbothill Landfill Site"	"Landfill Gas"	2.2	"Operational"	0
+3424	"Aberdeenshire"	"Ardlawhill Wood Wind Turbines"	"Wind Onshore"	1.35	"Application Withdrawn"	2
+3362	"Aberdeenshire"	"Ardlawhill Wood Wind Turbines - resubmission"	"Wind Onshore"	1	"Application Refused"	2
+3616	"Aberdeenshire"	"Auchenten"	"Wind Onshore"	2.4	"Application Refused"	3
+3806	"Aberdeenshire"	"Auchinderran Wind Farm"	"Wind Onshore"	2.4	"Operational"	3
+3838	"Aberdeenshire"	"Auchmacoy Estate Wind Cluster"	"Wind Onshore"	2.4	"Application Withdrawn"	3
+4338	"Aberdeenshire"	"Backfield Farm"	"Wind Onshore"	2.3	"Application Withdrawn"	1
+6736	"Aberdeenshire"	"Bilbo Solar Farm"	"Solar Photovoltaics"	36.6	"Awaiting Construction"	0
+6564	"Aberdeenshire"	"Birkhall Estate"	"Small Hydro"	2	"Under Construction"	0
+629	"Aberdeenshire"	"Black Dog"	"Landfill Gas"	2.2	"Operational"	0
+4346	"Aberdeenshire"	"Bogenlea Farm"	"Wind Onshore"	2.3	"Operational"	1
+2884	"Aberdeenshire"	"Bogmuir Farm Wind Turbine"	"Wind Onshore"	1	"Application Withdrawn"	2
+3920	"Aberdeenshire"	"Boy's Hill Wind Cluster"	"Wind Onshore"	6.9	"Application Refused"	3
+4671	"Aberdeenshire"	"Boyndie Airfield"	"Wind Onshore"	16.65	"Operational"	8
+99	"Aberdeenshire"	"Boyndie Airfield Biomass"	"Biomass (dedicated)"	4	"Abandoned"	0
+2691	"Aberdeenshire"	"Boyndie Airfield Extension"	"Wind Onshore"	2.3	"Operational"	1
+4498	"Aberdeenshire"	"Brackenhills Farm"	"Wind Onshore"	2.3	"Application Refused"	1
+5956	"Aberdeenshire"	"Brackenhills Farm (resubmission)"	"Wind Onshore"	2.3	"Awaiting Construction"	1
+4411	"Aberdeenshire"	"Brotherton (formerly Paul Matthew Hill wind turbines)"	"Wind Onshore"	4.6	"Operational"	2
+4348	"Aberdeenshire"	"BROWNIELEYS - 3 WIND TURBINES"	"Wind Onshore"	7.5	"Operational"	3
+4287	"Aberdeenshire"	"Brucklaywaird Wind Farm"	"Wind Onshore"	6.9	"Application Refused"	3
+5845	"Aberdeenshire"	"Bruxiehall Farm"	"Solar Photovoltaics"	2	"Under Construction"	0
+3402	"Aberdeenshire"	"Burnside of Idoch"	"Wind Onshore"	3.2	"Application Refused"	4
+3410	"Aberdeenshire"	"Burnside Wind Cluster"	"Wind Onshore"	6.9	"Application Withdrawn"	3
+2788	"Aberdeenshire"	"Burnside Wind Cluster ( Resubmission)"	"Wind Onshore"	6.9	"Application Withdrawn"	3
+3621	"Aberdeenshire"	"Burnside Wind Cluster (3rd Resubmission)"	"Wind Onshore"	4.6	"Application Refused"	2
+2877	"Aberdeenshire"	"Burnside Wind Cluster (Second Resubmission)"	"Wind Onshore"	6.9	"Application Refused"	3
+3401	"Aberdeenshire"	"Cairn Hill"	"Wind Onshore"	2.4	"Application Refused"	3
+4136	"Aberdeenshire"	"Cairnandrew"	"Wind Onshore"	1.5	"Application Refused"	3
+7600	"Aberdeenshire"	"Cairnandrew"	"Wind Onshore"	6	"Application Refused"	2
+6249	"Aberdeenshire"	"Cairnandrew Wind Farm (Resubmission)"	"Wind Onshore"	1.5	"Application Refused"	3
+3622	"Aberdeenshire"	"Cairnborrow"	"Wind Onshore"	25	"Application Refused"	10
+4350	"Aberdeenshire"	"Cairnborrow - resubmission"	"Wind Onshore"	10	"Operational"	5
+2783	"Aberdeenshire"	"Cairnbrogie Wind Farm (Resubmission)"	"Wind Onshore"	4.6	"Application Refused"	2
+2722	"Aberdeenshire"	"Cairncake"	"Wind Onshore"	4.6	"Application Refused"	2
+1358	"Aberdeenshire"	"Cairnhill Farm solar park"	"Solar Photovoltaics"	2.4	"Operational"	0
+3407	"Aberdeenshire"	"Cairnmore Extension"	"Wind Onshore"	4.25	"Application Refused"	5
+2724	"Aberdeenshire"	"Cairnmore Farm"	"Wind Onshore"	2.55	"Operational"	3
+4780	"Aberdeenshire"	"Cairnmore Solar Park"	"Solar Photovoltaics"	3.75	"Operational"	0
+5945	"Aberdeenshire"	"Cairnmore Solar Park (extension)"	"Solar Photovoltaics"	1.2	"Operational"	0
+6519	"Aberdeenshire"	"Cardinghill Wind Turbine"	"Wind Onshore"	1.5	"Application Refused"	1
+3718	"Aberdeenshire"	"Castle of Auchry Farm"	"Wind Onshore"	2.4	"Operational"	3
+3104	"Aberdeenshire"	"Clashindarroch"	"Wind Onshore"	129	"Application Refused"	40
+6373	"Aberdeenshire"	"Clashindarroch 2 (extension)"	"Wind Onshore"	70	"Application Submitted"	14
+4623	"Aberdeenshire"	"Clashindarroch 2 (Revised)"	"Wind Onshore"	37	"Operational"	18
+2839	"Aberdeenshire"	"Clochnahill Wind Farm"	"Wind Onshore"	5.2	"Operational"	4
+3265	"Aberdeenshire"	"Clochnahill Windfarm"	"Wind Onshore"	6	"Application Refused"	3
+2685	"Aberdeenshire"	"Cloffrickford"	"Wind Onshore"	9.2	"Application Withdrawn"	4
+3076	"Aberdeenshire"	"Cloffrickford Farm"	"Wind Onshore"	10	"Application Withdrawn"	9
+2882	"Aberdeenshire"	"Coldhome Wind Turbines"	"Wind Onshore"	1.5	"Application Withdrawn"	3
+3624	"Aberdeenshire"	"Cornabo"	"Wind Onshore"	2.7	"Awaiting Construction"	3
+2782	"Aberdeenshire"	"Courtstone Wind Turbine"	"Wind Onshore"	2.3	"Operational"	1
+6259	"Aberdeenshire"	"Craigneil Hill"	"Wind Onshore"	37.95	"Application Submitted"	11
+3403	"Aberdeenshire"	"Denhill"	"Wind Onshore"	2.3	"Operational"	1
+4360	"Aberdeenshire"	"Deuchries"	"Wind Onshore"	6.9	"Operational"	3
+7304	"Aberdeenshire"	"Deuchries Windfarm (extension)"	"Wind Onshore"	2	"Awaiting Construction"	2
+2856	"Aberdeenshire"	"Droop Hill Wind Farm"	"Wind Onshore"	3.9	"Application Withdrawn"	3
+3398	"Aberdeenshire"	"Droop Hill Wind Farm x"	"Wind Onshore"	4.6	"Operational"	2
+3200	"Aberdeenshire"	"Dummuie"	"Wind Onshore"	12.25	"Operational"	7
+4918	"Aberdeenshire"	"East Redhill Farms"	"Wind Onshore"	1.5	"Application Withdrawn"	3
+3819	"Aberdeenshire"	"Easter Melrose Wind Energy Project"	"Wind Onshore"	1.5	"Operational"	3
+4133	"Aberdeenshire"	"Easter Tolmauds"	"Wind Onshore"	1.6	"Operational"	2
+4365	"Aberdeenshire"	"Easter Tulloch Wind Farm (Tullo Extension)"	"Wind Onshore"	25	"Operational"	10
+6577	"Aberdeenshire"	"Fetteresso Wind Farm (Mid Hill 3)"	"Wind Onshore"	40	"Application Submitted"	10
+4540	"Aberdeenshire"	"Floors Farm Wind Turbines"	"Wind Onshore"	6.9	"Application Refused"	3
+7234	"Aberdeenshire"	"Fordtown Energy Storage"	"Battery"	20	"Abandoned"	0
+7764	"Aberdeenshire"	"Fordtown Energy Storage (Resubmission)"	"Battery"	29.9	"Awaiting Construction"	0
+7041	"Aberdeenshire"	"Fraserburgh Development"	"Battery"	25	"Awaiting Construction"	0
+3910	"Aberdeenshire"	"Fraserburgh Harbour Wind Turbines"	"Wind Onshore"	1.8	"Application Withdrawn"	2
+3405	"Aberdeenshire"	"Gairnieston Farm"	"Wind Onshore"	2.3	"Operational"	1
+4892	"Aberdeenshire"	"Gawnsmoss Cluster"	"Wind Onshore"	2.4	"Operational"	3
+6057	"Aberdeenshire"	"Glendye Estate"	"Wind Onshore"	104	"Application Submitted"	26
+3311	"Aberdeenshire"	"Glens of Foudland"	"Wind Onshore"	26	"Operational"	20
+5587	"Aberdeenshire"	"Glens of Foudland Wind Farm (Extension)"	"Wind Onshore"	14	"Application Withdrawn"	7
+3666	"Aberdeenshire"	"Gordonstown Hill Wind Farm"	"Wind Onshore"	12.5	"Operational"	5
+3698	"Aberdeenshire"	"Greenhill Croft"	"Wind Onshore"	4.6	"Operational"	2
+4137	"Aberdeenshire"	"Greenleys"	"Wind Onshore"	1.7	"Application Withdrawn"	2
+3404	"Aberdeenshire"	"Haddo"	"Wind Onshore"	4.6	"Operational"	2
+4375	"Aberdeenshire"	"Hassiewells"	"Wind Onshore"	6.9	"Application Refused"	3
+4005	"Aberdeenshire"	"Herscha Wind energy Project (Extension)"	"Wind Onshore"	1.6	"Awaiting Construction"	2
+2758	"Aberdeenshire"	"Hill of Balquhindachy extension"	"Wind Onshore"	1.7	"Operational"	2
+5479	"Aberdeenshire"	"Hill of Blairfowl Solar Farm"	"Solar Photovoltaics"	1.5	"Awaiting Construction"	0
+3551	"Aberdeenshire"	"Hill of Braco"	"Wind Onshore"	20	"Application Withdrawn"	8
+3923	"Aberdeenshire"	"Hill of Carlincraig wind turbines"	"Wind Onshore"	4.6	"Awaiting Construction"	2
+3320	"Aberdeenshire"	"Hill of Corksie - resubmission"	"Wind Onshore"	7.2	"Application Withdrawn"	8
+2693	"Aberdeenshire"	"Hill of Corskie"	"Wind Onshore"	8	"Application Refused"	4
+3348	"Aberdeenshire"	"Hill of Corskie - resubmission 2"	"Wind Onshore"	4.5	"Application Refused"	5
+3532	"Aberdeenshire"	"Hill of Easterton"	"Wind Onshore"	2.5	"Operational"	1
+4056	"Aberdeenshire"	"Hill of Easterton Extension"	"Wind Onshore"	2	"Operational"	2
+3812	"Aberdeenshire"	"Hill of Easterton Extension 2"	"Wind Onshore"	2.3	"Application Refused"	1
+2975	"Aberdeenshire"	"Hill of Fare Wind Farm"	"Wind Onshore"	150	"Abandoned"	0
+3968	"Aberdeenshire"	"Hill of Fiddes"	"Wind Onshore"	6.9	"Operational"	3
+3762	"Aberdeenshire"	"Hill of Fishrie"	"Wind Onshore"	11.3	"Application Refused"	5
+3166	"Aberdeenshire"	"Hill of Garvock Wind Energy Project"	"Wind Onshore"	15	"Application Withdrawn"	6
+3287	"Aberdeenshire"	"Hill of Garvock Wind Energy Project (2)"	"Wind Onshore"	15	"Application Refused"	6
+4495	"Aberdeenshire"	"Hill Of Rothmaise"	"Wind Onshore"	4.6	"Application Refused"	2
+4170	"Aberdeenshire"	"Hill of Skilmafilly Cloffrickford (Denmore) Wind Farm"	"Wind Onshore"	6.9	"Operational"	3
+3544	"Aberdeenshire"	"Hill of Snowy Slack"	"Wind Onshore"	22	"Application Withdrawn"	11
+3683	"Aberdeenshire"	"Hill of Tillymorgan"	"Wind Onshore"	6	"Application Withdrawn"	3
+3911	"Aberdeenshire"	"Hill of Tillymorgan (Kirkton Farm) Wind turbines (resubmission)"	"Wind Onshore"	9.6	"Operational"	3
+4319	"Aberdeenshire"	"Hill of Tillymorgan extension"	"Wind Onshore"	2.3	"Application Refused"	1
+2931	"Aberdeenshire"	"Hillhead of Auquhirie"	"Wind Onshore"	6	"Application Withdrawn"	3
+3701	"Aberdeenshire"	"Hillhead of Auquhirie, Resubmission"	"Wind Onshore"	6.9	"Operational"	3
+3805	"Aberdeenshire"	"Hillhead of Bonnykelly"	"Wind Onshore"	4.6	"Application Refused"	2
+3636	"Aberdeenshire"	"Hillhead of Bonnykelly - resubmission"	"Wind Onshore"	2.3	"Application Refused"	1
+3994	"Aberdeenshire"	"Hillhead of Turnerhall"	"Wind Onshore"	3	"Application Refused"	2
+3881	"Aberdeenshire"	"Holm and Hollymill Wind Turbines"	"Wind Onshore"	4.6	"Application Refused"	2
+2923	"Aberdeenshire"	"House O'Hill"	"Wind Onshore"	5	"Operational"	3
+4753	"Aberdeenshire"	"House O’Hill Solar Farm"	"Solar Photovoltaics"	1.6	"Operational"	0
+6884	"Aberdeenshire"	"Hywind 2"	"Battery"	1	"Operational"	0
+4511	"Aberdeenshire"	"Jacksbank Wind Farm (Glenbervie)"	"Wind Onshore"	6.8	"Operational"	3
+3419	"Aberdeenshire"	"Kempstone Hill Wind Turbines"	"Wind Onshore"	2.4	"Application Withdrawn"	3
+4114	"Aberdeenshire"	"Kildrummy Windfarm"	"Wind Onshore"	18.4	"Operational"	8
+6495	"Aberdeenshire"	"Land at Keihill"	"Biomass (dedicated)"	3	"Application Refused"	0
+3802	"Aberdeenshire"	"Land at Overside and Greenwellheads Farms"	"Wind Onshore"	9.2	"Operational"	4
+5459	"Aberdeenshire"	"Land South West Of Backfield Farm (Resubmission)"	"Wind Onshore"	2.3	"Application Refused"	1
+4987	"Aberdeenshire"	"Land to the north west of Hill of Petty"	"Wind Onshore"	3.6	"Awaiting Construction"	4
+3722	"Aberdeenshire"	"Little Byth"	"Wind Onshore"	4.5	"Operational"	3
+4212	"Aberdeenshire"	"Lodge Hill"	"Wind Onshore"	6.9	"Application Refused"	3
+5724	"Aberdeenshire"	"Logie Newton Wind Farm"	"Wind Onshore"	1.6	"Application Refused"	2
+1501	"Aberdeenshire"	"Mackies Dairy PV"	"Solar Photovoltaics"	1.8	"Operational"	0
+205	"Aberdeenshire"	"Macphie of Glenbervie"	"Biomass (dedicated)"	1.2	"Operational"	0
+2701	"Aberdeenshire"	"Mains of Cairnbrogie"	"Wind Onshore"	9.2	"Application Refused"	4
+2702	"Aberdeenshire"	"Mains of Cairnbrogie 2"	"Wind Onshore"	6.9	"Application Refused"	3
+3644	"Aberdeenshire"	"Mains Of Collithie"	"Wind Onshore"	2.4	"Application Refused"	3
+3980	"Aberdeenshire"	"Mains of Hatton"	"Wind Onshore"	2.4	"Operational"	3
+3573	"Aberdeenshire"	"Meikle Carewe"	"Wind Onshore"	14	"Application Refused"	14
+4109	"Aberdeenshire"	"Meikle Carewe (Re-Submission)"	"Wind Onshore"	10	"Operational"	12
+7264	"Aberdeenshire"	"Meikleton of Ardonald"	"Wind Onshore"	1	"Application Refused"	1
+4191	"Aberdeenshire"	"Meikleton Wind Farm"	"Wind Onshore"	12	"Application Refused"	4
+3548	"Aberdeenshire"	"Methlick Farmers Wind Energy Project"	"Wind Onshore"	12	"Operational"	6
+4627	"Aberdeenshire"	"Mid Hill - Phase II"	"Wind Onshore"	18.4	"Operational"	8
+4667	"Aberdeenshire"	"Mid Hill I"	"Wind Onshore"	57.5	"Operational"	25
+3809	"Aberdeenshire"	"Milton of Fisherie Wind Cluster"	"Wind Onshore"	4.6	"Operational"	2
+3863	"Aberdeenshire"	"Mormond Hill Windfarm"	"Wind Onshore"	27.6	"Application Refused"	12
+2822	"Aberdeenshire"	"Mornflake Oats Wind Turbine"	"Wind Onshore"	2.3	"Operational"	1
+3446	"Aberdeenshire"	"Moss Side Farm"	"Wind Onshore"	1	"Application Refused"	1
+5859	"Aberdeenshire"	"Mountwest Wind Cluster (resubmission)"	"Wind Onshore"	2.4	"Awaiting Construction"	3
+3594	"Aberdeenshire"	"Muirake"	"Wind Onshore"	4.6	"Operational"	2
+7762	"Aberdeenshire"	"Netherton"	"Wind Onshore"	0.9	"Awaiting Construction"	1
+6398	"Aberdeenshire"	"North Haddo"	"Wind Onshore"	1.6	"Awaiting Construction"	2
+2965	"Aberdeenshire"	"North Red Bog"	"Wind Onshore"	1.6	"Operational"	2
+2692	"Aberdeenshire"	"Pressendye"	"Wind Onshore"	16.1	"Application Refused"	7
+3650	"Aberdeenshire"	"Redhill Farms"	"Wind Onshore"	6	"Application Refused"	3
+3784	"Aberdeenshire"	"Shielburn Farm"	"Wind Onshore"	6.9	"Operational"	3
+6585	"Aberdeenshire"	"Skelmonae Farm"	"Solar Photovoltaics"	1	"Awaiting Construction"	0
+3075	"Aberdeenshire"	"Skelmonae Wind Farm"	"Wind Onshore"	3.2	"Operational"	4
+5785	"Aberdeenshire"	"South of Greenwellheads"	"Solar Photovoltaics"	5	"Awaiting Construction"	0
+2741	"Aberdeenshire"	"St Fergus Moss Wind Farm"	"Wind Onshore"	6	"Operational"	3
+7595	"Aberdeenshire"	"St Fergus Renewable Energy Park"	"Wind Onshore"	3	"Application Submitted"	2
+7596	"Aberdeenshire"	"St Fergus Renewable Energy Park"	"Solar Photovoltaics"	5	"Application Submitted"	0
+2999	"Aberdeenshire"	"St John's Well"	"Wind Onshore"	2.4	"Operational"	3
+2867	"Aberdeenshire"	"St John Hill"	"Wind Onshore"	7.65	"Operational"	3
+3840	"Aberdeenshire"	"St Johns Wells Wind Cluster Extension"	"Wind Onshore"	3.2	"Operational"	4
+4031	"Aberdeenshire"	"St. Johns Hill"	"Wind Onshore"	15.75	"Operational"	9
+3111	"Aberdeenshire"	"Stoneyhill"	"Wind Onshore"	30.6	"Application Withdrawn"	34
+788	"Aberdeenshire"	"Stoneyhill Landfill Site"	"Landfill Gas"	4.272	"Operational"	0
+4219	"Aberdeenshire"	"Stony Hill"	"Wind Onshore"	18	"Application Withdrawn"	5
+2922	"Aberdeenshire"	"Strath of Brydock"	"Wind Onshore"	4.6	"Operational"	2
+2708	"Aberdeenshire"	"Strath of Brydock - Extension"	"Wind Onshore"	2.3	"Operational"	1
+7057	"Aberdeenshire"	"Strichen North"	"Battery"	25	"Awaiting Construction"	0
+7056	"Aberdeenshire"	"Strichen South"	"Battery"	10	"Awaiting Construction"	0
+3872	"Aberdeenshire"	"Tibberchindy Wind Farm"	"Wind Onshore"	18	"Application Refused"	6
+3190	"Aberdeenshire"	"Tullo Farm"	"Wind Onshore"	17.5	"Operational"	7
+3818	"Aberdeenshire"	"Tullo Wind Farm North Extension (Shiels Wind Farm)"	"Wind Onshore"	7.5	"Operational"	3
+4422	"Aberdeenshire"	"Tullo Wind Farm South (Ext.)"	"Wind Onshore"	10	"Operational"	4
+3524	"Aberdeenshire"	"Upper Ardgrain Wind Farm"	"Wind Onshore"	2.4	"Operational"	3
+3414	"Aberdeenshire"	"Upper Kinknockie Wind Farm"	"Wind Onshore"	1.5	"Application Withdrawn"	2
+3776	"Aberdeenshire"	"Upper Wheedlemont Farm"	"Wind Onshore"	1.7	"Operational"	2
+3681	"Aberdeenshire"	"West Knock Wind Cluster"	"Wind Onshore"	2.4	"Operational"	3
+2700	"Aberdeenshire"	"Woodlands Farm - Elion"	"Wind Onshore"	2.3	"Application Refused"	1
+3723	"Aberdeenshire"	"Yonderton Farm"	"Wind Onshore"	1	"Operational"	2
+3654	"Aberdeenshire"	"Yonderton Farm (Re-submission)"	"Wind Onshore"	1	"Application Refused"	1
+3836	"Aberdeenshire"	"Yonderton Wind Cluster"	"Wind Onshore"	4.6	"Operational"	2
+3655	"Aberdeenshire"	"Yowlie Wind Cluster"	"Wind Onshore"	3.2	"Application Refused"	4
+3339	"Angus"	"Arbikie Wind Cluster"	"Wind Onshore"	2.4	"Application Withdrawn"	3
+4062	"Angus"	"Ark Hill"	"Wind Onshore"	6.4	"Operational"	8
+1882	"Angus"	"Ballochy Solar Farm"	"Solar Photovoltaics"	19	"Planning Permission Expired"	0
+2801	"Angus"	"Balnacake Farm"	"Wind Onshore"	1.2	"Application Withdrawn"	3
+3278	"Angus"	"Careston Estate"	"Wind Onshore"	52	"Application Withdrawn"	26
+2779	"Angus"	"Carrach Wind Farm"	"Wind Onshore"	7.2	"Application Refused"	9
+5631	"Angus"	"Carsebank Farm"	"Solar Photovoltaics"	5	"Under Construction"	0
+3875	"Angus"	"Corse Hill Wind Farm"	"Wind Onshore"	17.5	"Application Refused"	7
+3367	"Angus"	"Crofts Farm"	"Wind Onshore"	1	"Application Refused"	2
+3347	"Angus"	"Dodd Hill"	"Wind Onshore"	12.5	"Application Refused"	5
+5646	"Angus"	"Drummygar Solar Park"	"Solar Photovoltaics"	5	"Abandoned"	0
+4035	"Angus"	"Dusty Drum"	"Wind Onshore"	6	"Application Withdrawn"	3
+2684	"Angus"	"Dusty Drum (Resubmission)"	"Wind Onshore"	6	"Application Refused"	3
+7675	"Angus"	"East Ballochy"	"Battery"	10	"Application Submitted"	0
+7674	"Angus"	"East Ballochy (Resubmission)"	"Solar Photovoltaics"	39.9	"Application Submitted"	0
+3030	"Angus"	"East Skichen"	"Wind Onshore"	3.9	"Application Refused"	3
+5160	"Angus"	"Field 279M North East of 15 Tealing"	"Solar Photovoltaics"	5	"Abandoned"	0
+5655	"Angus"	"Field 730M West Of Queen Street"	"Solar Photovoltaics"	5	"Awaiting Construction"	0
+3876	"Angus"	"Finavon Wind Farm"	"Wind Onshore"	6.9	"Application Refused"	3
+2827	"Angus"	"Frawney Wind Farm"	"Wind Onshore"	10	"Application Withdrawn"	5
+4541	"Angus"	"Frawney Wind Farm - 2nd resubmission"	"Wind Onshore"	9.2	"Application Refused"	4
+3427	"Angus"	"Frawney Wind Farm - resubmission"	"Wind Onshore"	4	"Abandoned"	5
+2819	"Angus"	"Glaxo Smith Kline Wind Turbine"	"Wind Onshore"	5	"Application Refused"	2
+6021	"Angus"	"Govals Farm (Resubmission)"	"Wind Onshore"	4.8	"Application Refused"	6
+3888	"Angus"	"Govals Wind Farm"	"Wind Onshore"	4.8	"Awaiting Construction"	6
+2974	"Angus"	"Hanna Wind Farm"	"Wind Onshore"	81	"Abandoned"	30
+5464	"Angus"	"Land East of Sandyford"	"Solar Photovoltaics"	5	"Planning Permission Expired"	0
+763	"Angus"	"Lochhead Landfill Scheme"	"Landfill Gas"	2	"Operational"	0
+7638	"Angus"	"Lochhead Steading Concrete Block Manufacturing Plant"	"Solar Photovoltaics"	0.57	"Awaiting Construction"	0
+2840	"Angus"	"Macritch Hill Wind Farm"	"Wind Onshore"	59.4	"Application Withdrawn"	18
+2703	"Angus"	"Mile Hill"	"Wind Onshore"	13.8	"Application Withdrawn"	6
+3231	"Angus"	"Montreathmont Moor"	"Wind Onshore"	38	"Application Refused"	11
+5594	"Angus"	"Montreathmont Moor Forest"	"Solar Photovoltaics"	42	"Awaiting Construction"	0
+2918	"Angus"	"Mount Boy"	"Wind Onshore"	6	"Application Refused"	3
+4226	"Angus"	"Nathro Hill Wind Farm"	"Wind Onshore"	61	"Application Withdrawn"	17
+4844	"Angus"	"New Mains Of Guynd Farm"	"Solar Photovoltaics"	10	"Operational"	0
+7574	"Angus"	"Orchardbank Industrial Estate"	"Battery"	10	"Awaiting Construction"	0
+5914	"Angus"	"Parkhill Solar Farm"	"Solar Photovoltaics"	4.99	"Operational"	0
+4969	"Angus"	"Pressock Farm"	"Solar Photovoltaics"	5	"Operational"	0
+3418	"Angus"	"Saddle Hill Wind Farm"	"Wind Onshore"	35	"Application Refused"	14
+2295	"Angus"	"Tealing Airfield PV"	"Solar Photovoltaics"	31	"Planning Permission Expired"	0
+5333	"Angus"	"West Mains of Kinblethmont 
+"	"Solar Photovoltaics"	5	"Operational"	0
+2894	"Angus"	"Witton Farm wind cluster"	"Wind Onshore"	3	"Application Withdrawn"	2
+4331	"Argyll and Bute"	"A'Chruach (Phase 1)"	"Wind Onshore"	48.3	"Operational"	21
+4937	"Argyll and Bute"	"A'Chruach (Phase 2)"	"Wind Onshore"	4	"Awaiting Construction"	2
+6113	"Argyll and Bute"	"Achnabreck"	"Advanced Conversion Technologies"	5.5	"Awaiting Construction"	0
+6464	"Argyll and Bute"	"Airigh Wind Farm"	"Wind Onshore"	58.8	"Awaiting Construction"	14
+3758	"Argyll and Bute"	"Allt Dearg Wind Farmers LLP"	"Wind Onshore"	10.8	"Operational"	12
+6724	"Argyll and Bute"	"Allt Easach Hydro"	"Small Hydro"	2	"Awaiting Construction"	0
+420	"Argyll and Bute"	"Allt Hallater Hydro"	"Small Hydro"	2	"Application Refused"	0
+4334	"Argyll and Bute"	"Allt Rubha Wind Farm"	"Wind Onshore"	27	"Application Withdrawn"	9
+3545	"Argyll and Bute"	"Alt Dearg"	"Wind Onshore"	42	"Application Refused"	15
+3298	"Argyll and Bute"	"An Suidhe"	"Wind Onshore"	19.3	"Operational"	23
+4336	"Argyll and Bute"	"Ardchonnel Wind Farm"	"Wind Onshore"	45	"Application Refused"	15
+6336	"Argyll and Bute"	"Ardtaraig Wind Farm"	"Wind Onshore"	29.4	"Application Refused"	7
+3340	"Argyll and Bute"	"Ascog Farm Wind Turbines"	"Wind Onshore"	2.7	"Application Refused"	3
+4184	"Argyll and Bute"	"Auchadaduie Wind Farm"	"Wind Onshore"	6.9	"Operational"	3
+3007	"Argyll and Bute"	"Ballygroggan Farm"	"Wind Onshore"	9	"Application Refused"	30
+3292	"Argyll and Bute"	"Beinn an Tuirc"	"Wind Onshore"	30	"Operational"	46
+4525	"Argyll and Bute"	"Beinn an Tuirc Phase 2"	"Wind Onshore"	43.7	"Operational"	16
+3387	"Argyll and Bute"	"Beinn an Tuirc Windfarm Phase 3"	"Wind Onshore"	49.9	"Under Construction"	19
+3295	"Argyll and Bute"	"Beinn Ghlas Wind Farm"	"Wind Onshore"	7.837	"Operational"	14
+3009	"Argyll and Bute"	"Black Craig"	"Wind Onshore"	47.5	"Application Withdrawn"	16
+6405	"Argyll and Bute"	"Blarghour"	"Wind Onshore"	60	"Application Submitted"	16
+4605	"Argyll and Bute"	"Blary Hill Wind Farm"	"Wind Onshore"	35	"Under Construction"	14
+503	"Argyll and Bute"	"Braevallich"	"Small Hydro"	2.2	"Operational"	0
+6119	"Argyll and Bute"	"Bridge House, Muasdale, Tarbert, Strathclyde"	"Wind Onshore"	47.6	"Awaiting Construction"	14
+4619	"Argyll and Bute"	"Carraig Gheal"	"Wind Onshore"	46	"Operational"	20
+3448	"Argyll and Bute"	"Clachan Flats Wind Farm"	"Wind Onshore"	15	"Operational"	9
+3906	"Argyll and Bute"	"CLACHAN SEIL WIND FARM"	"Wind Onshore"	8.1	"Application Refused"	9
+3294	"Argyll and Bute"	"Cnoc Donn Arnicle"	"Wind Onshore"	15	"Operational"	26
+3010	"Argyll and Bute"	"Corlarach Hill"	"Wind Onshore"	42	"Application Refused"	16
+2913	"Argyll and Bute"	"Corriechreive"	"Wind Onshore"	30	"Application Refused"	30
+3772	"Argyll and Bute"	"Cour Wind Farm"	"Wind Onshore"	20.5	"Operational"	10
+3081	"Argyll and Bute"	"Cove Community Wind Farm"	"Wind Onshore"	11.5	"Application Withdrawn"	5
+7313	"Argyll and Bute"	"Craig Farm"	"Small Hydro"	0.42	"Under Construction"	0
+7459	"Argyll and Bute"	"Creag Dhubh"	"Wind Onshore"	27	"Application Submitted"	9
+4192	"Argyll and Bute"	"Creggan Wind Farm"	"Wind Onshore"	54	"Application Refused"	18
+4356	"Argyll and Bute"	"Cruach Brenfield Wind Farm"	"Wind Onshore"	59.4	"Application Withdrawn"	18
+3585	"Argyll and Bute"	"Cruach Mhor"	"Wind Onshore"	33.302	"Operational"	35
+6841	"Argyll and Bute"	"Cruachan"	"Pumped Storage Hydroelectricity"	440	"Operational"	0
+3554	"Argyll and Bute"	"Deucheran Hill"	"Wind Onshore"	15.75	"Operational"	9
+425	"Argyll and Bute"	"Douglas Water Hydro"	"Small Hydro"	3	"Operational"	0
+7165	"Argyll and Bute"	"Drumfad Wood"	"Battery"	29.9	"Awaiting Construction"	0
+5947	"Argyll and Bute"	"Eas a Ghaill"	"Small Hydro"	1.5	"Operational"	0
+5948	"Argyll and Bute"	"Eas a Ghaill"	"Small Hydro"	1.5	"Abandoned"	0
+5123	"Argyll and Bute"	"Eascairt Wind Farm"	"Wind Onshore"	26	"Awaiting Construction"	13
+445	"Argyll and Bute"	"Ederline Hydro"	"Small Hydro"	1.9	"Operational"	0
+3886	"Argyll and Bute"	"Freasdail Wind Farm"	"Wind Onshore"	22.5	"Operational"	11
+2912	"Argyll and Bute"	"Gartnagrenach"	"Wind Onshore"	24	"Application Withdrawn"	14
+7305	"Argyll and Bute"	"Garvie Burn"	"Small Hydro"	0.4	"Awaiting Construction"	0
+6849	"Argyll and Bute"	"Gigha Wind Farm Battery Project"	"Battery"	0.1	"Decommissioned"	0
+452	"Argyll and Bute"	"Glen Fyne 'Merk' Hydro"	"Small Hydro"	1	"Operational"	0
+6687	"Argyll and Bute"	"Glen Kinglass"	"Small Hydro"	1	"Under Construction"	0
+5962	"Argyll and Bute"	"Glen Noe River"	"Small Hydro"	2	"Under Construction"	0
+4376	"Argyll and Bute"	"Helensburgh Community Wind Farm"	"Wind Onshore"	4	"Application Withdrawn"	5
+7345	"Argyll and Bute"	"High Constellation Wind Farm"	"Wind Onshore"	65	"Awaiting Construction"	10
+2696	"Argyll and Bute"	"Hillcrest Farm"	"Wind Onshore"	1.7	"Application Withdrawn"	2
+437	"Argyll and Bute"	"Inver Hydro"	"Small Hydro"	1.97	"Operational"	0
+3127	"Argyll and Bute"	"Inverliever"	"Wind Onshore"	47.5	"Application Refused"	17
+7953	"Argyll and Bute"	"Isle of Luing Wind Farm"	"Wind Onshore"	0.225	"Application Submitted"	1
+3012	"Argyll and Bute"	"Kilchattan"	"Wind Onshore"	13.6	"Application Refused"	16
+6746	"Argyll and Bute"	"Killail Farm"	"Small Hydro"	0.15	"Awaiting Construction"	0
+6284	"Argyll and Bute"	"Killean"	"Wind Onshore"	56	"Application Refused"	17
+461	"Argyll and Bute"	"Kilmelfort"	"Small Hydro"	2	"Operational"	0
+3302	"Argyll and Bute"	"Laggan Windcluster"	"Wind Onshore"	2.977	"Application Refused"	0
+3451	"Argyll and Bute"	"Largie Wind Farm"	"Wind Onshore"	14.86	"Application Refused"	0
+3217	"Argyll and Bute"	"Largie Windfarm II"	"Wind Onshore"	21	"Application Refused"	19
+442	"Argyll and Bute"	"Leacann Hydro"	"Small Hydro"	1	"Operational"	0
+395	"Argyll and Bute"	"Loch Gair"	"Large Hydro"	6	"Operational"	0
+3364	"Argyll and Bute"	"Low Ugadale Farm"	"Wind Onshore"	1.5	"Application Withdrawn"	2
+466	"Argyll and Bute"	"Lussa"	"Small Hydro"	2.4	"Operational"	0
+3305	"Argyll and Bute"	"Meall Mhor Wind Farm"	"Wind Onshore"	2.233	"Application Withdrawn"	0
+4234	"Argyll and Bute"	"Musdale Wind Farm"	"Wind Onshore"	64	"Application Withdrawn"	16
+7472	"Argyll and Bute"	"Narachan Wind Farm"	"Wind Onshore"	95.2	"Application Submitted"	17
+2707	"Argyll and Bute"	"Raera Forest"	"Wind Onshore"	48	"Application Refused"	16
+447	"Argyll and Bute"	"River Lochy Hydro"	"Small Hydro"	2	"Operational"	0
+7585	"Argyll and Bute"	"Sheirdrim Renewable Energy Development - Battery"	"Battery"	38	"Application Submitted"	0
+7584	"Argyll and Bute"	"Sheirdrim Renewable Energy Development - Solar"	"Solar Photovoltaics"	20	"Application Submitted"	0
+7337	"Argyll and Bute"	"Sheirdrim Renewable Energy Development - Wind"	"Wind Onshore"	114	"Application Submitted"	19
+4045	"Argyll and Bute"	"Shira Wind Farm"	"Wind Onshore"	79	"Application Withdrawn"	36
+4328	"Argyll and Bute"	"Srondoire Community Wind Farm"	"Wind Onshore"	6	"Operational"	3
+4049	"Argyll and Bute"	"Stacain"	"Wind Onshore"	48	"Application Refused"	14
+397	"Argyll and Bute"	"Striven"	"Large Hydro"	8	"Operational"	0
+5556	"Argyll and Bute"	"Stronafian Community Forest Wind Turbines"	"Wind Onshore"	1.6	"Application Refused"	2
+3528	"Argyll and Bute"	"Strone Saul Hill"	"Wind Onshore"	20	"Application Refused"	8
+6734	"Argyll and Bute"	"Tangy 4 Wind Farm"	"Wind Onshore"	80	"Awaiting Construction"	16
+3916	"Argyll and Bute"	"Tangy Farm Wind Turbine"	"Wind Onshore"	2	"Application Withdrawn"	1
+4277	"Argyll and Bute"	"Tangy Wind Farm - repowering/Tangy 3"	"Wind Onshore"	36.8	"Planning Permission Expired"	16
+4024	"Argyll and Bute"	"Tangy Wind Farm Extension/Tangy 2"	"Wind Onshore"	5.95	"Operational"	7
+3467	"Argyll and Bute"	"Tangy Wind Farm/Tangy 1"	"Wind Onshore"	12.75	"Operational"	15
+3441	"Argyll and Bute"	"Tullich Wind Farm"	"Wind Onshore"	180	"Application Withdrawn"	60
+5122	"Argyll and Bute"	"Upper Sonachan Wind Farm"	"Wind Onshore"	64.6	"Application Refused"	19
+93	"City of Edinburgh"	"Forth Ports Ltd 4"	"Biomass (dedicated)"	120	"Application Withdrawn"	0
+5795	"Clackmannanshire"	"Balhearty Solar"	"Solar Photovoltaics"	4.99	"Operational"	0
+6324	"Clackmannanshire"	"Burnfoot East Wind Farm (further extension)"	"Wind Onshore"	10.8	"Under Construction"	3
+2902	"Clackmannanshire"	"Burnfoot Hill"	"Wind Onshore"	26	"Operational"	13
+3769	"Clackmannanshire"	"Forthbank"	"Wind Onshore"	5	"Application Refused"	2
+4223	"Clackmannanshire"	"Rhodders Wind Farm"	"Wind Onshore"	12	"Operational"	6
+4462	"Dumfries and Galloway"	"Airies Farm"	"Wind Onshore"	35	"Operational"	14
+4486	"Dumfries and Galloway"	"Annabaglish Wind Farm"	"Wind Onshore"	35	"Application Refused"	14
+4518	"Dumfries and Galloway"	"Artfield Fell"	"Wind Onshore"	19.5	"Operational"	15
+4547	"Dumfries and Galloway"	"Auchencairn Forest"	"Wind Onshore"	32	"Application Withdrawn"	16
+4461	"Dumfries and Galloway"	"AUCHLEAND FARM Wind Farm"	"Wind Onshore"	23.8	"Application Withdrawn"	7
+4445	"Dumfries and Galloway"	"Balmurrie Fell Wind Farm"	"Wind Onshore"	9.1	"Operational"	7
+3388	"Dumfries and Galloway"	"Balunton Wind Farm"	"Wind Onshore"	27	"Application Withdrawn"	9
+4515	"Dumfries and Galloway"	"Barcloy Hill Wind Farm"	"Wind Onshore"	12.5	"Application Refused"	5
+4435	"Dumfries and Galloway"	"Barlockhart Moor"	"Wind Onshore"	8.12	"Operational"	4
+4491	"Dumfries and Galloway"	"BARLOCKHART MOOR - extension"	"Wind Onshore"	8.2	"Awaiting Construction"	4
+4506	"Dumfries and Galloway"	"Barnbackle Windfarm"	"Wind Onshore"	5	"Application Refused"	2
+4032	"Dumfries and Galloway"	"Blackcraig"	"Wind Onshore"	53	"Operational"	23
+4453	"Dumfries and Galloway"	"Blackwood Wind Farm"	"Wind Onshore"	10.25	"Application Refused"	5
+4431	"Dumfries and Galloway"	"Brochloch Rig (formerly Windy Standard II)"	"Wind Onshore"	61.5	"Operational"	30
+4527	"Dumfries and Galloway"	"Brochloch Rig 1 (formerly Windy Standard)"	"Wind Onshore"	21.6	"Operational"	36
+4477	"Dumfries and Galloway"	"California Wind Farm"	"Wind Onshore"	21	"Application Refused"	7
+4501	"Dumfries and Galloway"	"Carscreugh Renewable Energy Park"	"Wind Onshore"	15.3	"Operational"	18
+4606	"Dumfries and Galloway"	"Chapmans Howe Wind Farm"	"Wind Onshore"	6.9	"Application Refused"	3
+7804	"Dumfries and Galloway"	"Clauchrie Windfarm Battery"	"Battery"	25	"Application Submitted"	0
+3560	"Dumfries and Galloway"	"Corbie Shank"	"Wind Onshore"	150	"Application Withdrawn"	0
+6433	"Dumfries and Galloway"	"Cornharrow Wind Farm"	"Wind Onshore"	36	"Application Refused"	11
+7654	"Dumfries and Galloway"	"Cornharrow Wind Farm (Resubmission)"	"Wind Onshore"	38.4	"Application Submitted"	8
+4524	"Dumfries and Galloway"	"Craig Wind Farm"	"Wind Onshore"	10	"Operational"	4
+4465	"Dumfries and Galloway"	"Craig Wind Farm (Extension)"	"Wind Onshore"	2.5	"Operational"	1
+4528	"Dumfries and Galloway"	"Craigenlee Wind Farm"	"Wind Onshore"	7.837	"Application Withdrawn"	14
+4633	"Dumfries and Galloway"	"Crossdykes"	"Wind Onshore"	48	"Awaiting Construction"	10
+4520	"Dumfries and Galloway"	"Dalswinton"	"Wind Onshore"	30	"Operational"	15
+993	"Dumfries and Galloway"	"Dargavel"	"Advanced Conversion Technologies"	7.2	"Decommissioned"	0
+4507	"Dumfries and Galloway"	"Doon Hill Windfarm"	"Wind Onshore"	4.9	"Application Refused"	2
+2193	"Dumfries and Galloway"	"East Culkae Farm"	"Solar Photovoltaics"	5	"Planning Permission Expired"	0
+994	"Dumfries and Galloway"	"Energy from Waste Glasgow Ltd"	"Advanced Conversion Technologies"	15	"Application Withdrawn"	0
+4015	"Dumfries and Galloway"	"Ewe Hill"	"Wind Onshore"	13.8	"Operational"	6
+3627	"Dumfries and Galloway"	"Ewe Hill (extension)"	"Wind Onshore"	36.8	"Operational"	16
+6459	"Dumfries and Galloway"	"Faw Side Community Wind Farm"	"Wind Onshore"	315	"Application Submitted"	45
+7398	"Dumfries and Galloway"	"Fell Wind Farm"	"Wind Onshore"	49	"Application Submitted"	9
+2858	"Dumfries and Galloway"	"Gass Wind Farm"	"Wind Onshore"	20.7	"Awaiting Construction"	9
+4638	"Dumfries and Galloway"	"Glenchamber Wind Farm"	"Wind Onshore"	27.5	"Operational"	11
+6871	"Dumfries and Galloway"	"Glenmuckloch"	"Pumped Storage Hydroelectricity"	210	"Awaiting Construction"	0
+4492	"Dumfries and Galloway"	"Glenmuckloch Wind Farm"	"Wind Onshore"	25.6	"Awaiting Construction"	8
+6444	"Dumfries and Galloway"	"Glenshimmeroch Wind Farm"	"Wind Onshore"	36	"Awaiting Construction"	10
+2879	"Dumfries and Galloway"	"GLENSTOCKDALE Wind Turbines"	"Wind Onshore"	3	"Application Withdrawn"	2
+4119	"Dumfries and Galloway"	"Harestanes"	"Wind Onshore"	136	"Operational"	68
+4590	"Dumfries and Galloway"	"Harestanes Wind Farm Extension"	"Wind Onshore"	14	"Application Refused"	7
+7395	"Dumfries and Galloway"	"Harestanes Windfarm"	"Battery"	100	"Awaiting Construction"	0
+4446	"Dumfries and Galloway"	"Hill of Ochiltree"	"Wind Onshore"	23	"Application Refused"	10
+6099	"Dumfries and Galloway"	"Hopsrig Wind Farm"	"Wind Onshore"	42	"Awaiting Construction"	12
+4386	"Dumfries and Galloway"	"Kilgallioch wind farm"	"Wind Onshore"	239	"Operational"	96
+7851	"Dumfries and Galloway"	"Kilgallioch Windfarm (Extension - Solar)"	"Solar Photovoltaics"	20	"Application Submitted"	0
+7340	"Dumfries and Galloway"	"Kilgallioch Windfarm (Extension)"	"Wind Onshore"	62	"Application Submitted"	11
+4459	"Dumfries and Galloway"	"Knockendurrick Wind Farm"	"Wind Onshore"	14	"Application Refused"	7
+4454	"Dumfries and Galloway"	"Knockman Hill Wind Farm"	"Wind Onshore"	5	"Awaiting Construction"	5
+4978	"Dumfries and Galloway"	"Land At Hartwood Hill"	"Wind Onshore"	21	"Application Withdrawn"	7
+5963	"Dumfries and Galloway"	"Land between Lorg Hill, Ewe Hill and Brown Hill"	"Wind Onshore"	32.4	"Awaiting Construction"	9
+4391	"Dumfries and Galloway"	"Larbrax Wind Farm"	"Wind Onshore"	20	"Application Withdrawn"	8
+5116	"Dumfries and Galloway"	"Larbrax Wind Farm (resubmission)"	"Wind Onshore"	20	"Awaiting Construction"	8
+6443	"Dumfries and Galloway"	"Little Hartfell Wind Farm"	"Wind Onshore"	36	"Awaiting Construction"	12
+4455	"Dumfries and Galloway"	"Loch Hill Wind Farm"	"Wind Onshore"	25.3	"Application Refused"	11
+5616	"Dumfries and Galloway"	"Loch Hill Wind Farm (resubmission)"	"Wind Onshore"	28.8	"Application Refused"	8
+4632	"Dumfries and Galloway"	"Loganhead Wind Farm"	"Wind Onshore"	25.6	"Awaiting Construction"	8
+4230	"Dumfries and Galloway"	"Longburn Wind Farm"	"Wind Onshore"	72	"Application Withdrawn"	20
+6176	"Dumfries and Galloway"	"Longburn Wind Farm"	"Wind Onshore"	23	"Application Refused"	10
+5181	"Dumfries and Galloway"	"Lowther Hills (North Lowther Energy Initiative)"	"Wind Onshore"	147	"Application Submitted"	30
+4505	"Dumfries and Galloway"	"Margree Windfarm"	"Wind Onshore"	34	"Abandoned"	17
+4452	"Dumfries and Galloway"	"Mayfield Community Wind Farm (resubmission)"	"Wind Onshore"	20.4	"Application Refused"	6
+4438	"Dumfries and Galloway"	"Mayfield wind farm"	"Wind Onshore"	21	"Application Withdrawn"	7
+4521	"Dumfries and Galloway"	"Minnygap"	"Wind Onshore"	30	"Application Refused"	15
+4437	"Dumfries and Galloway"	"Minnygap (Resubmission)"	"Wind Onshore"	25	"Operational"	10
+4517	"Dumfries and Galloway"	"Minsca"	"Wind Onshore"	36.8	"Operational"	16
+4466	"Dumfries and Galloway"	"Mochrum Fell Wind Farm"	"Wind Onshore"	24	"Awaiting Construction"	8
+4105	"Dumfries and Galloway"	"Newfield"	"Wind Onshore"	63	"Application Refused"	26
+4508	"Dumfries and Galloway"	"North Rhins"	"Wind Onshore"	22	"Operational"	11
+4447	"Dumfries and Galloway"	"Plascow wind cluster"	"Wind Onshore"	2.4	"Application Refused"	3
+4484	"Dumfries and Galloway"	"Plascow wind cluster (resubmission)"	"Wind Onshore"	2.4	"Operational"	3
+4182	"Dumfries and Galloway"	"Quantans Hill Wind Farm"	"Wind Onshore"	57	"Application Withdrawn"	19
+4574	"Dumfries and Galloway"	"Sandy Knowe Wind Farm"	"Wind Onshore"	90	"Application Refused"	30
+5392	"Dumfries and Galloway"	"Sandy Knowe Wind Farm (resubmission)"	"Wind Onshore"	49.4	"Awaiting Construction"	24
+6703	"Dumfries and Galloway"	"Sandy Knowe Wind Farm (S.36 resubmission)"	"Wind Onshore"	81.6	"Application Submitted"	24
+5227	"Dumfries and Galloway"	"Sanquhar 'Six' Community Wind Farm"	"Wind Onshore"	19.8	"Awaiting Construction"	6
+4441	"Dumfries and Galloway"	"Sanquhar Community Windfarm"	"Wind Onshore"	32.4	"Operational"	9
+6629	"Dumfries and Galloway"	"Sanquhar II Community Wind Farm"	"Wind Onshore"	350	"Application Submitted"	50
+3550	"Dumfries and Galloway"	"Shennanton Wind Farm"	"Wind Onshore"	30	"Application Refused"	12
+3417	"Dumfries and Galloway"	"Shepherd's Rig Wind Farm"	"Wind Onshore"	78.6	"Application Submitted"	30
+7179	"Dumfries and Galloway"	"Shepherd's Rig Wind Farm"	"Battery"	6	"Application Submitted"	0
+4500	"Dumfries and Galloway"	"Solway Bank"	"Wind Onshore"	42	"Application Withdrawn"	21
+4449	"Dumfries and Galloway"	"Solwaybank Wind Farm (resubmission)"	"Wind Onshore"	30	"Under Construction"	15
+4482	"Dumfries and Galloway"	"Spango Community Wind Farm"	"Wind Onshore"	49	"Application Withdrawn"	14
+4782	"Dumfries and Galloway"	"Spango Community Wind Farm"	"Wind Onshore"	49	"Application Refused"	12
+196	"Dumfries and Galloway"	"Stevens Croft"	"Biomass (dedicated)"	50.4	"Operational"	0
+6600	"Dumfries and Galloway"	"Stranoch 2"	"Wind Onshore"	84	"Application Submitted"	20
+4258	"Dumfries and Galloway"	"Stranoch Wind Farm"	"Wind Onshore"	72	"Awaiting Construction"	28
+4514	"Dumfries and Galloway"	"Sunnyside wind cluster"	"Wind Onshore"	1	"Operational"	2
+7601	"Dumfries and Galloway"	"Tesco Extra Dumfries"	"Solar Photovoltaics"	0.75	"Awaiting Construction"	0
+7608	"Dumfries and Galloway"	"Tesco Superstore Annan"	"Solar Photovoltaics"	0.23	"Awaiting Construction"	0
+4529	"Dumfries and Galloway"	"Torrs Hill"	"Wind Onshore"	4	"Under Construction"	2
+6432	"Dumfries and Galloway"	"Troston Loch"	"Wind Onshore"	67.2	"Application Submitted"	14
+7333	"Dumfries and Galloway"	"Troston Loch Wind Farm"	"Battery"	20	"Application Submitted"	0
+4457	"Dumfries and Galloway"	"Twentyshilling Hill Wind Farm"	"Wind Onshore"	27	"Abandoned"	9
+6590	"Dumfries and Galloway"	"Twentyshilling Hill Wind Farm (resubmission)"	"Wind Onshore"	36	"Awaiting Construction"	9
+4509	"Dumfries and Galloway"	"Ulzieside"	"Wind Onshore"	40	"Abandoned"	20
+359	"Dumfries and Galloway"	"West Roucan Farm"	"Anaerobic Digestion"	1.2	"Operational"	0
+4873	"Dumfries and Galloway"	"West Scales Wind Farm"	"Wind Onshore"	16.5	"Application Withdrawn"	5
+4519	"Dumfries and Galloway"	"Wether Hill"	"Wind Onshore"	18.2	"Operational"	14
+4487	"Dumfries and Galloway"	"Wether Hill WindFarm (extension)"	"Wind Onshore"	22	"Application Withdrawn"	11
+4502	"Dumfries and Galloway"	"Whiteside Hill"	"Wind Onshore"	25.3	"Operational"	11
+4430	"Dumfries and Galloway"	"Windy Rig Wind Farm"	"Wind Onshore"	40.8	"Abandoned"	12
+7562	"Dumfries and Galloway"	"Windy Rig Wind Farm (resubmission)"	"Wind Onshore"	48	"Awaiting Construction"	12
+4615	"Dumfries and Galloway"	"Windy Standard III Wind Farm (Brockloch Rig Phase 2)"	"Wind Onshore"	67.5	"Application Submitted"	25
+874	"Dundee City"	"Baldovie"	"EfW Incineration"	8.3	"Operational"	0
+6171	"Dundee City"	"Baldovie Industrial Estate (Forties Road)"	"EfW Incineration"	10	"Under Construction"	0
+7946	"Dundee City"	"Dundee Technology Park"	"Battery"	49.9	"Application Submitted"	0
+7591	"Dundee City"	"Dunsinane Industrial Estate"	"Battery"	49.9	"Awaiting Construction"	0
+4681	"Dundee City"	"Michelin Tyre Co Ltd - Dundee"	"Wind Onshore"	4	"Operational"	2
+176	"Dundee City"	"Port of Dundee"	"Biomass (dedicated)"	120	"Application Withdrawn"	0
+4262	"East Ayrshire"	"Afton Wind Farm"	"Wind Onshore"	50	"Operational"	25
+6022	"East Ayrshire"	"Alton Muirhouse Farm"	"Wind Onshore"	6.8	"Application Refused"	2
+6414	"East Ayrshire"	"Ashmark Hill Community Wind Farm"	"Wind Onshore"	21	"Application Refused"	7
+4451	"East Ayrshire"	"Ashmark Hill Wind Farm"	"Wind Onshore"	21	"Application Refused"	7
+3503	"East Ayrshire"	"Benbrack"	"Wind Onshore"	84	"Awaiting Construction"	18
+3342	"East Ayrshire"	"Blair Data Centre"	"Wind Onshore"	13.8	"Application Refused"	6
+2671	"East Ayrshire"	"Burnhead Wind Farm"	"Wind Onshore"	47.5	"Application Withdrawn"	19
+3839	"East Ayrshire"	"Burnhead Wind Farm (Resubmission)"	"Wind Onshore"	18.4	"Application Refused"	8
+3216	"East Ayrshire"	"Chalmerston"	"Wind Onshore"	50	"Application Withdrawn"	0
+3474	"East Ayrshire"	"Cowans Law"	"Wind Onshore"	49.9	"Application Refused"	25
+3476	"East Ayrshire"	"Cowans Law  - resubmitted"	"Wind Onshore"	49.9	"Application Refused"	20
+746	"East Ayrshire"	"Dunlop Landfill Gas Scheme"	"Landfill Gas"	2.41	"Operational"	0
+2761	"East Ayrshire"	"East Kingswell"	"Wind Onshore"	26	"Application Refused"	7
+3502	"East Ayrshire"	"Enoch Hill"	"Wind Onshore"	54.4	"Awaiting Construction"	16
+4368	"East Ayrshire"	"Galawhistle"	"Wind Onshore"	66	"Operational"	22
+690	"East Ayrshire"	"Garlaff Landfill"	"Landfill Gas"	1.3	"Operational"	0
+671	"East Ayrshire"	"Garlaff Landfill (Extension)"	"Landfill Gas"	3.03	"Operational"	0
+4607	"East Ayrshire"	"Garleffan Wind Farm"	"Wind Onshore"	21.6	"Application Refused"	6
+5693	"East Ayrshire"	"Glenouther Renewable Energy Park"	"Wind Onshore"	30	"Application Refused"	12
+6796	"East Ayrshire"	"Greenburn Wind Park"	"Wind Onshore"	67.2	"Application Submitted"	16
+7159	"East Ayrshire"	"Greenburn Wind Park"	"Battery"	10	"Application Submitted"	0
+7261	"East Ayrshire"	"Hare Craig Windfarm"	"Wind Onshore"	36	"Application Submitted"	8
+2711	"East Ayrshire"	"Hare Hill (East Ayrshire)"	"Wind Onshore"	13.2	"Operational"	20
+4157	"East Ayrshire"	"Hare Hill Extension"	"Wind Onshore"	29.75	"Operational"	35
+4228	"East Ayrshire"	"High Cumnock Wind Farm"	"Wind Onshore"	27.2	"Application Refused"	8
+4612	"East Ayrshire"	"Keirs Hill (Sclenteuch) Wind Farm"	"Wind Onshore"	57.8	"Application Refused"	17
+5467	"East Ayrshire"	"Killoch Depot"	"EfW Incineration"	12	"Awaiting Construction"	0
+4389	"East Ayrshire"	"Knockshinnoch Wind Farm"	"Wind Onshore"	4	"Awaiting Construction"	2
+3235	"East Ayrshire"	"Kyle Windfarm"	"Wind Onshore"	255	"Application Refused"	85
+4603	"East Ayrshire"	"Lethans Wind Farm"	"Wind Onshore"	88	"Abandoned"	22
+6827	"East Ayrshire"	"Lethans Wind Farm (resubmission)"	"Wind Onshore"	105.5	"Awaiting Construction"	22
+3639	"East Ayrshire"	"Linburn Farm (resubmission 2)"	"Wind Onshore"	1.7	"Planning Permission Expired"	2
+3640	"East Ayrshire"	"Linburn Farm (resubmission)"	"Wind Onshore"	1.7	"Application Withdrawn"	2
+3537	"East Ayrshire"	"Little Kilmain"	"Wind Onshore"	2.2338	"Application Withdrawn"	0
+6807	"East Ayrshire"	"Loch Doon Dam Compensation Set"	"Small Hydro"	0.3	"Awaiting Construction"	0
+6036	"East Ayrshire"	"Lorg Windfarm"	"Wind Onshore"	49.5	"Application Submitted"	15
+6607	"East Ayrshire"	"North Kyle Energy Project"	"Wind Onshore"	226.8	"Application Submitted"	54
+6175	"East Ayrshire"	"Over Hill Wind Farm"	"Wind Onshore"	33	"Awaiting Construction"	11
+5129	"East Ayrshire"	"Pencloe Wind Farm"	"Wind Onshore"	62.7	"Awaiting Construction"	19
+4611	"East Ayrshire"	"Polquhairn Wind Farm"	"Wind Onshore"	22.5	"Awaiting Construction"	9
+4050	"East Ayrshire"	"Skares Windfarm"	"Wind Onshore"	4	"Application Withdrawn"	4
+4128	"East Ayrshire"	"Sneddon Law Community Wind Farm"	"Wind Onshore"	45	"Under Construction"	15
+4586	"East Ayrshire"	"South Kyle Wind Farm"	"Wind Onshore"	240	"Awaiting Construction"	50
+3222	"East Ayrshire"	"Spireslack Windfarm"	"Wind Onshore"	59.6	"Application Withdrawn"	0
+3981	"East Ayrshire"	"Whitelee Windfarm Extension Phase 1"	"Wind Onshore"	108	"Operational"	36
+2757	"East Ayrshire"	"Whitelee Windfarm Extension phase 2"	"Wind Onshore"	109	"Operational"	39
+4232	"East Ayrshire"	"Whitelee Windfarm Extension Phase 3"	"Wind Onshore"	12	"Application Refused"	5
+4526	"East Lothian"	"Aikengall"	"Wind Onshore"	48	"Operational"	16
+4332	"East Lothian"	"Aikengall II, Wester Dod Community Wind Farm"	"Wind Onshore"	60.8	"Operational"	19
+794	"East Lothian"	"Dunbar"	"Landfill Gas"	2.2	"Operational"	0
+992	"East Lothian"	"Dunbar EfW (previously Oxwellmains EfW)"	"EfW Incineration"	25.6	"Operational"	0
+2100	"East Lothian"	"Dunbar Energy Park"	"Solar Photovoltaics"	2	"Planning Permission Expired"	0
+793	"East Lothian"	"Dunbar Power Plant"	"Landfill Gas"	14	"Operational"	0
+5386	"East Lothian"	"Ferneylea Farm"	"Wind Onshore"	18	"Application Withdrawn"	6
+6388	"East Lothian"	"Ferneylea Farm"	"Wind Onshore"	1.5	"Operational"	2
+7745	"East Lothian"	"Howden Farm"	"Solar Photovoltaics"	0.186	"Awaiting Construction"	0
+4442	"East Lothian"	"Keith Hill"	"Wind Onshore"	25	"Application Refused"	10
+4516	"East Lothian"	"Keith Hill (resubmission)"	"Wind Onshore"	4.5	"Operational"	5
+4434	"East Lothian"	"Pogbie Wind Farm 1"	"Wind Onshore"	5.1	"Operational"	6
+5637	"East Lothian"	"Pogbie Wind Farm 2"	"Wind Onshore"	4.8	"Operational"	6
+333	"East Lothian"	"Pure Malt Products AD"	"Anaerobic Digestion"	1.5	"Operational"	0
+6040	"East Lothian"	"Standalane near Ballencrieff"	"Anaerobic Digestion"	1	"Application Refused"	0
+4443	"East Lothian"	"Townhead Farm"	"Wind Onshore"	6	"Application Withdrawn"	3
+3925	"East Renfrewshire"	"Ardoch and Over Enoch Wind Farm (Ardoch)"	"Wind Onshore"	7.1665	"Operational"	3
+3855	"East Renfrewshire"	"Ardoch and Over Enoch Wind Farm (Over Enoch)"	"Wind Onshore"	4.2665	"Operational"	2
+4017	"East Renfrewshire"	"Ardoch Farm (East Renfrewshire)"	"Wind Onshore"	3.9	"Abandoned"	3
+4001	"East Renfrewshire"	"Harelaw Renewable Energy Park (Resubmission)"	"Wind Onshore"	117	"Application Refused"	39
+2903	"East Renfrewshire"	"Harelaw Renewable Energy Park Wind Turbines"	"Wind Onshore"	80	"Application Withdrawn"	40
+4947	"East Renfrewshire"	"Land East Of Shieldhill Farm"	"Wind Onshore"	18	"Application Refused"	6
+4396	"East Renfrewshire"	"Loganswell Farm"	"Wind Onshore"	16	"Application Withdrawn"	66
+3702	"East Renfrewshire"	"Middleton Wind Farm"	"Wind Onshore"	12	"Operational"	6
+3766	"East Renfrewshire"	"Moorhouse (Eaglesham)"	"Wind Onshore"	47.5	"Application Refused"	19
+7687	"East Renfrewshire"	"Moorshield Wind Farm"	"Wind Onshore"	15	"Application Submitted"	3
+3090	"East Renfrewshire"	"Myres Hill"	"Wind Onshore"	1.8	"Operational"	2
+7270	"East Renfrewshire"	"Myres Hill Wind Turbine Test Centre"	"Wind Onshore"	1	"Application Withdrawn"	2
+3093	"East Renfrewshire"	"National Wind Turbine Test Site"	"Wind Onshore"	4.651	"Operational"	2
+3383	"East Renfrewshire"	"Neilston Additional Wind Turbine"	"Wind Onshore"	2.5	"Awaiting Construction"	1
+3857	"East Renfrewshire"	"NEILSTON WIND FARM"	"Wind Onshore"	9.2	"Operational"	4
+4016	"East Renfrewshire"	"Over Enoch Farm"	"Wind Onshore"	6.5	"Abandoned"	5
+3489	"East Renfrewshire"	"Whitelee"	"Wind Onshore"	322	"Operational"	140
+7943	"Edinburgh City"	"City of Edinburgh Council Buildings"	"Solar Photovoltaics"	0.16	"Application Submitted"	0
+7763	"Edinburgh City"	"Claylands Road"	"Solar Photovoltaics"	0.2	"Awaiting Construction"	0
+686	"Edinburgh City"	"Kaimes Landfill Site"	"Landfill Gas"	2.4	"Operational"	0
+3990	"Falkirk"	"ASDA Distribution Centre"	"Wind Onshore"	2	"Planning Permission Expired"	1
+2964	"Falkirk"	"Asda Grangemouth Depot"	"Wind Onshore"	4	"Application Refused"	2
+6102	"Falkirk"	"Avondale Quarry (Pilot)"	"Advanced Conversion Technologies"	2	"Operational"	0
+4125	"Falkirk"	"Burnhead"	"Wind Onshore"	26	"Operational"	13
+5352	"Falkirk"	"CalaChem Fine Chemicals (Grangemouth)"	"EfW Incineration"	21.5	"Under Construction"	0
+7300	"Falkirk"	"Easter Drumclair Wood"	"Wind Onshore"	4	"Application Withdrawn"	2
+7422	"Falkirk"	"Easter Drumclair Wood (Resubmission)"	"Wind Onshore"	4	"Awaiting Construction"	2
+92	"Falkirk"	"Forth Ports Ltd 2 (Grangemouth)"	"Biomass (dedicated)"	85	"Planning Permission Expired"	0
+6436	"Falkirk"	"Greenhill Farm"	"Wind Onshore"	2	"Application Withdrawn"	1
+6960	"Falkirk"	"Land adjacent Bonnybridge Substation"	"Battery"	19.9	"Abandoned"	0
+7043	"Falkirk"	"Land To The East Of Wholeflats Road (Grangemouth)"	"Battery"	20	"Awaiting Construction"	0
+3763	"Falkirk"	"Rullie Community Windfarm"	"Wind Onshore"	25	"Application Withdrawn"	10
+3415	"Falkirk"	"Tod Hill Farm Wind Turbines"	"Wind Onshore"	12	"Operational"	4
+3514	"Fife"	"Auchtermuchty Wind Farm"	"Wind Onshore"	10	"Application Refused"	5
+7806	"Fife"	"Banbeath Industrial Estate"	"Solar Photovoltaics"	0.15	"Awaiting Construction"	0
+4270	"Fife"	"Blairadam Wind Farm"	"Wind Onshore"	22.55	"Application Refused"	11
+3847	"Fife"	"Bonerbo Wind Turbines"	"Wind Onshore"	2.7	"Application Refused"	3
+3370	"Fife"	"Bonerbo Wind Turbines (resubmission)"	"Wind Onshore"	1.5	"Operational"	3
+5338	"Fife"	"Cameron Reservoir     
+"	"Solar Photovoltaics"	5	"Abandoned"	0
+3180	"Fife"	"Clatto"	"Wind Onshore"	30	"Application Refused"	0
+2828	"Fife"	"Clatto Farm Turbines"	"Wind Onshore"	6	"Application Refused"	3
+4078	"Fife"	"Clentrie Wind Farm (Gevens)"	"Wind Onshore"	6.9	"Operational"	3
+4317	"Fife"	"Cuddyhouse Road"	"Wind Onshore"	1.5	"Application Withdrawn"	1
+2760	"Fife"	"Devon Wood"	"Wind Onshore"	12.5	"Application Refused"	5
+172	"Fife"	"Diageo Biomass Energy Project"	"Biomass (dedicated)"	5.5	"Operational"	0
+6726	"Fife"	"Dunfermline EDI4"	"Solar Photovoltaics"	1.9	"Awaiting Construction"	0
+4363	"Fife"	"Earlseat"	"Wind Onshore"	18.4	"Operational"	8
+2699	"Fife"	"Easter Muirhead Farm"	"Wind Onshore"	15	"Application Refused"	5
+7531	"Fife"	"Eden Campus"	"Solar Photovoltaics"	1	"Awaiting Construction"	0
+2704	"Fife"	"F M C Land, Pitreavie Business Park"	"Wind Onshore"	1.5	"Operational"	1
+6745	"Fife"	"Finmont Service Reservoir"	"Solar Photovoltaics"	0.25	"Under Construction"	0
+2687	"Fife"	"FMC Technologies"	"Wind Onshore"	1.5	"Operational"	2
+3513	"Fife"	"Gathercauld"	"Wind Onshore"	15.6	"Application Refused"	13
+4088	"Fife"	"Goathill Quarry Turbine"	"Wind Onshore"	2	"Operational"	1
+5899	"Fife"	"Inchdairnie"	"Anaerobic Digestion"	2	"Operational"	0
+3357	"Fife"	"J2a"	"Wind Onshore"	4.7	"Abandoned"	2
+6082	"Fife"	"Kenly Wind Farm (Resubmission)"	"Wind Onshore"	12.3	"Awaiting Construction"	6
+4635	"Fife"	"Kenly Wind Farm (University of St Andrew's)"	"Wind Onshore"	13.8	"Abandoned"	6
+3816	"Fife"	"Kingdom of Fife Community Wind Park"	"Wind Onshore"	12	"Application Refused"	4
+5800	"Fife"	"Land North of Balbeggie Avenue"	"Solar Photovoltaics"	12	"Awaiting Construction"	0
+7131	"Fife"	"Land North of Thornton Road"	"Battery"	19.9	"Awaiting Construction"	0
+5570	"Fife"	"Land to the North West of Sypsies Farm"	"Solar Photovoltaics"	5	"Abandoned"	0
+5326	"Fife"	"Land To The West Of Kirkton Barns Farm           
+"	"Solar Photovoltaics"	5	"Abandoned"	0
+3844	"Fife"	"Lingo Wind Farm"	"Wind Onshore"	12.5	"Application Refused"	5
+4034	"Fife"	"Little Raith Farm"	"Wind Onshore"	25	"Operational"	9
+4490	"Fife"	"Little Raith Farm - extension"	"Wind Onshore"	18	"Application Refused"	6
+683	"Fife"	"Lochhead"	"Landfill Gas"	2	"Operational"	0
+269	"Fife"	"Lochhead Landfill CHP"	"Anaerobic Digestion"	1.7	"Operational"	0
+157	"Fife"	"Longannet"	"Biomass (dedicated)"	25	"Abandoned"	0
+697	"Fife"	"Lower Melville Wood"	"Landfill Gas"	1	"Operational"	0
+155	"Fife"	"Markinch Biomass CHP Plant"	"Biomass (dedicated)"	65	"Operational"	0
+5797	"Fife"	"Middle Balbeggie"	"Solar Photovoltaics"	5	"Operational"	0
+4094	"Fife"	"Middle Balbeggie Wind Turbines"	"Wind Onshore"	6.4	"Operational"	2
+2780	"Fife"	"Mossmorran Wind Farm"	"Wind Onshore"	4.6	"Operational"	2
+3889	"Fife"	"Mossmorran Wind Farm  -resubmission"	"Wind Onshore"	6	"Application Withdrawn"	2
+5698	"Fife"	"Muirmealing Solar Farm"	"Solar Photovoltaics"	5	"Abandoned"	0
+4404	"Fife"	"Noble Foods"	"Wind Onshore"	1.5	"Operational"	1
+4608	"Fife"	"Outh Muir Wind Farm"	"Wind Onshore"	12.5	"Application Refused"	5
+7989	"Fife"	"Roaring Hill (Resubmission)"	"Battery"	30	"Awaiting Construction"	0
+91	"Fife"	"Rosyth"	"Biomass (dedicated)"	120	"Planning Permission Expired"	0
+3845	"Fife"	"Skeddoway Farm Wind Turbine"	"Wind Onshore"	1.5	"Operational"	1
+4093	"Fife"	"Skeddoway Farm Wind Turbine (Resubmission)"	"Wind Onshore"	1.5	"Operational"	1
+2763	"Fife"	"South Cassingray"	"Wind Onshore"	4.6	"Application Refused"	2
+7267	"Fife"	"St Margarets Bay"	"Solar Photovoltaics"	0.23	"Operational"	0
+7018	"Fife"	"STOR Field 9"	"Battery"	37	"Awaiting Construction"	0
+4730	"Fife"	"Sustainable Power and Research Campus"	"Biomass (dedicated)"	6.5	"Operational"	0
+2865	"Fife"	"Troywood Wind Turbine"	"Wind Onshore"	2.3	"Application Withdrawn"	1
+5727	"Fife"	"West Grange Solar Farm"	"Solar Photovoltaics"	5	"Application Withdrawn"	0
+6216	"Fife"	"West Grange Solar Farm (Resubmission)"	"Solar Photovoltaics"	5	"Awaiting Construction"	0
+5384	"Fife"	"West Strathore Solar Limited"	"Solar Photovoltaics"	5	"Operational"	0
+3353	"Fife"	"Wester Durie Farm"	"Wind Onshore"	2.3	"Application Refused"	1
+3684	"Fife"	"Westfield"	"Wind Onshore"	12.5	"Operational"	5
+62	"Fife"	"Westfield Biomass Power Station"	"Biomass (dedicated)"	12.5	"Operational"	0
+875	"Fife"	"Westfield MIW"	"EfW Incineration"	14.7	"Application Withdrawn"	0
+5513	"Fife"	"Wormit Solar Farm"	"Solar Photovoltaics"	4	"Operational"	0
+4060	"Glasgow City"	"Cathkin Braes Wind Farm (Castlemilk)"	"Wind Onshore"	3	"Operational"	1
+5098	"Glasgow City"	"Energy Recovery Facility South Street"	"Advanced Conversion Technologies"	12	"Application Refused"	0
+928	"Glasgow City"	"Glasgow Renewable Energy and Recycling Centre (ACT)"	"Advanced Conversion Technologies"	10	"Operational"	0
+286	"Glasgow City"	"Glasgow Renewable Energy and Recycling Centre (Waste AD)"	"Anaerobic Digestion"	5	"Operational"	0
+689	"Glasgow City"	"Greenoakhill"	"Landfill Gas"	3.94	"Operational"	0
+7758	"Glasgow City"	"Hutchesons Grammar School"	"Solar Photovoltaics"	0.175	"Awaiting Construction"	0
+1009	"Glasgow City"	"South Clyde Energy Centre"	"EfW Incineration"	20	"Awaiting Construction"	0
+734	"Glasgow City"	"Summerston Landfill"	"Landfill Gas"	2.78	"Operational"	0
+3371	"Highland"	"Aberarder Wind Farm"	"Wind Onshore"	49.9	"Awaiting Construction"	12
+498	"Highland"	"Abhainn Gleann Nam Fiadh"	"Small Hydro"	2	"Operational"	0
+497	"Highland"	"Abhainn Rath"	"Small Hydro"	2	"Application Withdrawn"	0
+443	"Highland"	"Abhainn Srath Coir an Easaidh on the Reay Forest Estate, Sutherland."	"Small Hydro"	1.25	"Abandoned"	0
+3285	"Highland"	"Achairn"	"Wind Onshore"	6.15	"Operational"	3
+468	"Highland"	"Achanalt"	"Small Hydro"	3	"Operational"	0
+3205	"Highland"	"Achany Wind Farm"	"Wind Onshore"	38	"Operational"	19
+5318	"Highland"	"Achlachan 2 Windfarm"	"Wind Onshore"	7.5	"Application Refused"	3
+4330	"Highland"	"Achlachan Wind Farm"	"Wind Onshore"	10	"Operational"	5
+4776	"Highland"	"Achlachan Wind Farm - Phase 2"	"Wind Onshore"	6.9	"Abandoned"	3
+398	"Highland"	"Aigas"	"Large Hydro"	20	"Operational"	0
+441	"Highland"	"Allt a Chraois Hydroelectric Scheme"	"Small Hydro"	2	"Abandoned"	0
+7328	"Highland"	"Allt an t-Sidhein Hydro Scheme"	"Small Hydro"	0.45	"Under Construction"	0
+440	"Highland"	"Allt Beithe"	"Small Hydro"	1.3	"Abandoned"	0
+6657	"Highland"	"Allt Charnan"	"Small Hydro"	1	"Awaiting Construction"	0
+502	"Highland"	"Allt Cheanna Mhuir Hydro"	"Small Hydro"	1.25	"Operational"	0
+457	"Highland"	"Allt Choire a Bhalachain Hydro"	"Small Hydro"	1.3	"Application Withdrawn"	0
+4581	"Highland"	"Allt Duine Wind Farm"	"Wind Onshore"	93	"Application Refused"	31
+7318	"Highland"	"Allt Eilidh"	"Small Hydro"	0.6	"Under Construction"	0
+6545	"Highland"	"Allt Garaidh Ghualaich Hydro Scheme Powerhouse"	"Small Hydro"	1.08	"Under Construction"	0
+454	"Highland"	"Allt Garbh hydro"	"Small Hydro"	1.5	"Operational"	0
+488	"Highland"	"Allt Ladaidh Hydro"	"Small Hydro"	1.3	"Operational"	0
+489	"Highland"	"Allt na Moine"	"Small Hydro"	1.95	"Awaiting Construction"	0
+7274	"Highland"	"Alness Academy"	"Solar Photovoltaics"	0.5	"Under Construction"	0
+482	"Highland"	"Ardtornish Estate-Upgrade to existing"	"Small Hydro"	1.5	"Operational"	0
+7842	"Highland"	"Auchteraw Energy Storage"	"Battery"	20	"Application Submitted"	0
+4646	"Highland"	"Bad a Cheo Wind Farm"	"Wind Onshore"	26.65	"Operational"	13
+490	"Highland"	"Badachro hydro scheme"	"Small Hydro"	1.5	"Application Withdrawn"	0
+491	"Highland"	"Badachro hydro scheme - resubmission"	"Small Hydro"	1.5	"Operational"	0
+4021	"Highland"	"Baillie Wind Farm"	"Wind Onshore"	52.5	"Operational"	21
+4537	"Highland"	"Balnacoil Wind Farm"	"Wind Onshore"	45	"Application Refused"	15
+6649	"Highland"	"Barr River, Loch Teacuis"	"Small Hydro"	1.65	"Awaiting Construction"	0
+3373	"Highland"	"Beinn Mheadhonach"	"Wind Onshore"	4	"Awaiting Construction"	4
+4340	"Highland"	"Beinn Mhor"	"Wind Onshore"	21	"Application Refused"	7
+2991	"Highland"	"Beinn Tharsuinn Extension (Beinn nan Oighrean)"	"Wind Onshore"	4.6	"Operational"	2
+4669	"Highland"	"Beinn Tharsuinn Windfarm Project"	"Wind Onshore"	29.75	"Operational"	17
+3787	"Highland"	"Beinneun"	"Wind Onshore"	85	"Operational"	25
+3619	"Highland"	"Beinneun Windfarm Extension"	"Wind Onshore"	23.8	"Operational"	7
+3135	"Highland"	"Ben Aketil"	"Wind Onshore"	23	"Operational"	10
+3668	"Highland"	"Ben Aketil Extension"	"Wind Onshore"	2.6	"Operational"	2
+3296	"Highland"	"Bendealt Wind Farm, Highland"	"Wind Onshore"	9	"Operational"	18
+4640	"Highland"	"Bhlaraidh (previously Balmacaan)"	"Wind Onshore"	110	"Operational"	32
+3207	"Highland"	"Bilbster Wind Farm"	"Wind Onshore"	3.9	"Operational"	3
+485	"Highland"	"Black Rock"	"Small Hydro"	3.5	"Operational"	0
+7226	"Highland"	"Blackpark Farm"	"Battery"	20	"Awaiting Construction"	0
+6730	"Highland"	"Blackwater Dam"	"Small Hydro"	0.8	"Awaiting Construction"	0
+3126	"Highland"	"Boulfruich"	"Wind Onshore"	13	"Operational"	15
+4265	"Highland"	"Braemore"	"Wind Onshore"	54	"Awaiting Construction"	18
+2937	"Highland"	"Broombank Farm"	"Wind Onshore"	2	"Application Refused"	1
+3284	"Highland"	"Broubster Forest"	"Wind Onshore"	116	"Application Withdrawn"	0
+4765	"Highland"	"Buckies Hill Wind Farm"	"Wind Onshore"	4.5	"Application Refused"	5
+4122	"Highland"	"Burn of Whilk"	"Wind Onshore"	22.5	"Operational"	9
+4349	"Highland"	"Cairn Duhie"	"Wind Onshore"	60	"Awaiting Construction"	20
+6177	"Highland"	"Cairnmore Hill"	"Wind Onshore"	35	"Application Submitted"	10
+3146	"Highland"	"Cambusmore"	"Wind Onshore"	49.535	"Application Withdrawn"	33
+4006	"Highland"	"Camster"	"Wind Onshore"	50	"Operational"	25
+4351	"Highland"	"Camster II"	"Wind Onshore"	38	"Application Submitted"	14
+3623	"Highland"	"Caplich Wind Farm"	"Wind Onshore"	68	"Application Refused"	23
+4481	"Highland"	"Carn Gorm Wind Farm"	"Wind Onshore"	42	"Application Refused"	14
+460	"Highland"	"Carnoch Hydro"	"Small Hydro"	1.35	"Operational"	0
+4768	"Highland"	"Carr Ban Wind Farm"	"Wind Onshore"	23.8	"Application Withdrawn"	7
+406	"Highland"	"Cassley"	"Large Hydro"	10	"Operational"	0
+3108	"Highland"	"Causeymire"	"Wind Onshore"	48.3	"Operational"	24
+402	"Highland"	"Ceannacroc"	"Large Hydro"	20	"Operational"	0
+4707	"Highland"	"Ceannacroc"	"Small Hydro"	1.6	"Operational"	0
+6684	"Highland"	"Chailleach Hydro"	"Small Hydro"	1.7	"Application Withdrawn"	0
+480	"Highland"	"Chonais Hydro"	"Small Hydro"	2	"Operational"	0
+475	"Highland"	"Cia Aig Hydro"	"Small Hydro"	3	"Operational"	0
+3853	"Highland"	"Clach Liath Wind Farm"	"Wind Onshore"	42.5	"Application Refused"	17
+6733	"Highland"	"Cloiche Wind Farm"	"Wind Onshore"	150	"Application Submitted"	36
+7209	"Highland"	"Clunas Reservoir"	"Small Hydro"	0.32	"Application Withdrawn"	0
+4807	"Highland"	"Cnoc an Eas Wind Farm"	"Wind Onshore"	44.2	"Application Refused"	13
+3345	"Highland"	"Cnoc Morail"	"Wind Onshore"	11.5	"Application Refused"	5
+4003	"Highland"	"Cogle Moss Wind Farm"	"Wind Onshore"	36	"Awaiting Construction"	12
+6870	"Highland"	"Coire Glas - Phase I"	"Pumped Storage Hydroelectricity"	600	"Awaiting Construction"	0
+6947	"Highland"	"Coire Glas - Phase II"	"Pumped Storage Hydroelectricity"	1500	"Application Submitted"	0
+3846	"Highland"	"Coire Na Cloiche Wind Farm"	"Wind Onshore"	29.9	"Operational"	13
+6793	"Highland"	"Coishletter"	"Wind Onshore"	36	"Application Submitted"	9
+102	"Highland"	"Corpach Biomass Energy Plant"	"Biomass (dedicated)"	20	"Abandoned"	0
+4664	"Highland"	"Corriegarth"	"Wind Onshore"	69.5	"Operational"	23
+4120	"Highland"	"Corriemoillie (Resubmission)"	"Wind Onshore"	54.4	"Operational"	17
+3497	"Highland"	"Corriemoillie Forest"	"Wind Onshore"	47.5	"Application Withdrawn"	19
+4300	"Highland"	"Creag Riabhach Wind Farm"	"Wind Onshore"	72.6	"Awaiting Construction"	22
+4134	"Highland"	"Croick Estate"	"Wind Onshore"	4.6	"Application Withdrawn"	2
+2876	"Highland"	"Cromarty Wind Farm"	"Wind Onshore"	2.4	"Application Refused"	3
+471	"Highland"	"Cuaich"	"Small Hydro"	2.5	"Operational"	0
+434	"Highland"	"Cuileig Hydro Scheme"	"Small Hydro"	3.3	"Operational"	0
+3926	"Highland"	"Culachy Wind Farm"	"Wind Onshore"	44	"Application Refused"	13
+3880	"Highland"	"Dalnessie Wind Farm"	"Wind Onshore"	67.5	"Application Withdrawn"	27
+3882	"Highland"	"Daviot Wind Farm"	"Wind Onshore"	32.5	"Application Refused"	13
+4359	"Highland"	"Dell Wind Farm"	"Wind Onshore"	42	"Awaiting Construction"	14
+474	"Highland"	"Derrydarroch"	"Small Hydro"	1.9	"Operational"	0
+6264	"Highland"	"Dounreay Trì Floating Wind Demonstration"	"Wind Offshore"	10	"Under Construction"	2
+3447	"Highland"	"Dounreay Windfarm"	"Wind Onshore"	17.5	"Application Refused"	10
+3742	"Highland"	"Druim Ba Wind Farm"	"Wind Onshore"	69	"Application Refused"	23
+5351	"Highland"	"Druim Ba Windfarm (resubmission)"	"Wind Onshore"	30	"Application Refused"	10
+3930	"Highland"	"Druim Fada"	"Wind Onshore"	10	"Planning Permission Expired"	4
+5618	"Highland"	"Drum Hollistan Wind Farm"	"Wind Onshore"	51	"Application Refused"	17
+7686	"Highland"	"Drum Hollistan Wind Farm (Resubmission)"	"Wind Onshore"	35	"Application Submitted"	7
+4274	"Highland"	"Dulater Hill Wind Farm"	"Wind Onshore"	57.8	"Application Refused"	17
+4043	"Highland"	"Dunbeath"	"Wind Onshore"	66	"Application Refused"	22
+4118	"Highland"	"Dunmaglass Wind Farm"	"Wind Onshore"	94	"Operational"	33
+6741	"Highland"	"Duror 2 Hydro Scheme"	"Small Hydro"	0.35	"Awaiting Construction"	0
+3070	"Highland"	"Durran Mains"	"Wind Onshore"	19.5	"Application Refused"	13
+4674	"Highland"	"Edinbane Wind Farm"	"Wind Onshore"	41.4	"Operational"	18
+4675	"Highland"	"Fairburn"	"Wind Onshore"	43	"Operational"	20
+3883	"Highland"	"Fairburn Extension"	"Wind Onshore"	36	"Application Withdrawn"	12
+4676	"Highland"	"Farr Wind Farm"	"Wind Onshore"	92	"Operational"	40
+390	"Highland"	"Fasnakyle Hydro Extension"	"Large Hydro"	7.5	"Operational"	0
+13	"Highland"	"Forestry Commission Depot"	"Biomass (dedicated)"	5	"Application Refused"	0
+2972	"Highland"	"Forse Wind Farm"	"Wind Onshore"	60	"Abandoned"	0
+3783	"Highland"	"Forss Extension (Forss III)"	"Wind Onshore"	6.5	"Application Refused"	5
+6636	"Highland"	"Forss Wind Farm"	"Wind Onshore"	2.6	"Operational"	2
+4679	"Highland"	"Forss Wind Farm (Extension)"	"Wind Onshore"	5.2	"Operational"	4
+6690	"Highland"	"Fort William Tail Race"	"Small Hydro"	1	"Application Refused"	0
+6842	"Highland"	"Foyers"	"Pumped Storage Hydroelectricity"	300	"Operational"	0
+403	"Highland"	"Foyers Falls"	"Large Hydro"	5.2	"Operational"	0
+6195	"Highland"	"Gaineamhach Hydro Scheme Powerhouse"	"Small Hydro"	2	"Application Withdrawn"	0
+6838	"Highland"	"Gaineamhach Hydro Scheme Powerhouse (resubmission)"	"Small Hydro"	2	"Awaiting Construction"	0
+479	"Highland"	"Garbhaig Hydro Scheme"	"Small Hydro"	1.995	"Operational"	0
+435	"Highland"	"Garrogie Hydro Scheme"	"Small Hydro"	2	"Operational"	0
+3569	"Highland"	"Gartymore Wind Farm"	"Wind Onshore"	10.5	"Application Refused"	14
+4961	"Highland"	"Georgemas"	"Biomass (dedicated)"	15	"Abandoned"	0
+193	"Highland"	"Georgmas CHP"	"Biomass (dedicated)"	4.7	"Abandoned"	0
+495	"Highland"	"Ghuilbinn Hydro Scheme"	"Small Hydro"	2	"Operational"	0
+6522	"Highland"	"Glasa Hydropower Cascade/Kildermorie Estate"	"Small Hydro"	4	"Awaiting Construction"	0
+2973	"Highland"	"Glen Calvie Wind Farm, Ardgay"	"Wind Onshore"	69	"Abandoned"	0
+6675	"Highland"	"Glen Etive Estate Phase I (Allt na Chaorainn)"	"Small Hydro"	1.36	"Awaiting Construction"	0
+6676	"Highland"	"Glen Etive Estate Phase II (Allt Mheuran & Allt na Meirleach)"	"Small Hydro"	0.885	"Awaiting Construction"	0
+4371	"Highland"	"Glen Kyllachy Wind Farm"	"Wind Onshore"	49.9	"Awaiting Construction"	20
+2859	"Highland"	"Glen Ullinish Wind Farm"	"Wind Onshore"	42	"Awaiting Construction"	14
+4585	"Highland"	"Glencassley Wind Farm"	"Wind Onshore"	69	"Application Refused"	23
+388	"Highland"	"Glendoe Hydro Scheme"	"Large Hydro"	100	"Operational"	0
+4020	"Highland"	"Glenkirk"	"Wind Onshore"	93	"Application Refused"	31
+4372	"Highland"	"Glenmorie Wind Farm"	"Wind Onshore"	134	"Application Refused"	34
+6518	"Highland"	"Glenshero Wind Farm"	"Wind Onshore"	168	"Application Submitted"	39
+3746	"Highland"	"Glenurquhart and Strathglass Wind Farm project"	"Wind Onshore"	10	"Operational"	5
+6266	"Highland"	"Golticlay Wind Farm"	"Wind Onshore"	64.6	"Application Submitted"	19
+3662	"Highland"	"Gordonbush"	"Wind Onshore"	70	"Operational"	35
+3435	"Highland"	"Gordonbush (extension)"	"Wind Onshore"	47	"Under Construction"	11
+387	"Highland"	"Great Glen Scheme"	"Large Hydro"	36	"Operational"	0
+493	"Highland"	"Grudie"	"Small Hydro"	2	"Operational"	0
+4636	"Highland"	"Halsary Wind Farm"	"Wind Onshore"	34	"Under Construction"	15
+3182	"Highland"	"Hill of Lieurary"	"Wind Onshore"	8	"Application Refused"	3
+3309	"Highland"	"Hill of Lybster"	"Wind Onshore"	4.9	"Operational"	4
+5187	"Highland"	"Hill of Lybster (Wind Turbine - Extension)"	"Wind Onshore"	1.5	"Application Refused"	1
+3436	"Highland"	"Hill Of Lychrobbie"	"Wind Onshore"	2.4	"Awaiting Construction"	3
+3635	"Highland"	"Hill of Nigg"	"Wind Onshore"	7.5	"Application Refused"	3
+3696	"Highland"	"Hill of Stroupster"	"Wind Onshore"	36	"Application Withdrawn"	12
+4121	"Highland"	"Hill of Stroupster Windfarm"	"Wind Onshore"	29.9	"Operational"	12
+6851	"Highland"	"Horse Island Microgrid Project"	"Battery"	0.012	"Operational"	0
+6235	"Highland"	"Hoy Farm"	"Wind Onshore"	2.3	"Application Refused"	1
+433	"Highland"	"Inverbroom Hydro Project"	"Small Hydro"	3.17	"Application Refused"	0
+3274	"Highland"	"Invercassley Windfarm"	"Wind Onshore"	55	"Application Refused"	23
+421	"Highland"	"Inverfarigaig"	"Small Hydro"	4	"Operational"	0
+404	"Highland"	"Invergarry"	"Large Hydro"	20	"Operational"	0
+7310	"Highland"	"Invergordon Academy"	"Solar Photovoltaics"	0.2	"Operational"	0
+971	"Highland"	"Invergordon EfW"	"EfW Incineration"	4	"Application Refused"	0
+28	"Highland"	"Invergordon Pellet Mill"	"Biomass (dedicated)"	5	"Operational"	0
+426	"Highland"	"Inverlael Hydro"	"Small Hydro"	2.5	"Operational"	0
+7729	"Highland"	"Inverness Royal Academy"	"Solar Photovoltaics"	0.28	"Awaiting Construction"	0
+6852	"Highland"	"Isle of Eigg Electrification Project"	"Battery"	0.06	"Operational"	0
+6853	"Highland"	"Isle of Muck Microgrid System"	"Battery"	0.045	"Operational"	0
+6854	"Highland"	"Isle of Rum Microgrid Project"	"Battery"	0.045	"Operational"	0
+7353	"Highland"	"Kerrow Farm"	"Battery"	20	"Application Withdrawn"	0
+3202	"Highland"	"Kilbraur Windfarm"	"Wind Onshore"	47.5	"Operational"	19
+2673	"Highland"	"Kilbraur Windfarm Farlary - Extension"	"Wind Onshore"	20	"Operational"	8
+408	"Highland"	"Kildermorie Estate"	"Large Hydro"	7.5	"Abandoned"	0
+399	"Highland"	"Kilmorack"	"Large Hydro"	20	"Operational"	0
+424	"Highland"	"Kingairloch"	"Small Hydro"	3.5	"Operational"	0
+391	"Highland"	"Kinlochleven Hydro Power Station"	"Large Hydro"	19.5	"Operational"	0
+6634	"Highland"	"Kirkan Wind Farm"	"Wind Onshore"	91.2	"Application Submitted"	19
+470	"Highland"	"Lairg"	"Small Hydro"	3.5	"Operational"	0
+2796	"Highland"	"Lairg Wind Farm"	"Wind Onshore"	7.5	"Operational"	3
+6728	"Highland"	"Lairg Wind Farm Extension (Lairg 2)"	"Wind Onshore"	34.5	"Awaiting Construction"	10
+6755	"Highland"	"Land at Tacher"	"Wind Onshore"	4.3	"Application Submitted"	1
+5028	"Highland"	"Land East of Allt Airdeasaidh"	"Small Hydro"	2	"Application Refused"	0
+2789	"Highland"	"Land North-West Of Seater Farm"	"Wind Onshore"	2.7	"Application Refused"	3
+5454	"Highland"	"Land North West Of Lower Lybster (Resubmission)"	"Wind Onshore"	1	"Application Refused"	1
+6823	"Highland"	"Land To West of Allt Na Lairig"	"Small Hydro"	2	"Application Withdrawn"	0
+494	"Highland"	"Langwell Estate hydro scheme"	"Small Hydro"	1.2	"Operational"	0
+2976	"Highland"	"Laudale Wind Farm"	"Wind Onshore"	75	"Abandoned"	0
+4393	"Highland"	"Limekiln Wind Farm"	"Wind Onshore"	72	"Application Refused"	24
+7708	"Highland"	"Limekiln Wind Farm (Extension)"	"Wind Onshore"	21	"Application Submitted"	5
+6005	"Highland"	"Limekiln Wind Farm (resubmission)"	"Wind Onshore"	63	"Awaiting Construction"	21
+405	"Highland"	"Livishie"	"Large Hydro"	15	"Operational"	0
+438	"Highland"	"Loch An Laoigh Hydro"	"Small Hydro"	1	"Operational"	0
+410	"Highland"	"Loch Eilde Mor Hydro (Kinlochleven extension)"	"Small Hydro"	2	"Operational"	0
+6601	"Highland"	"Lochaber"	"Large Hydro"	65	"Operational"	0
+7281	"Highland"	"Lochaber High School (Resubmission)"	"Solar Photovoltaics"	0.27	"Operational"	0
+6779	"Highland"	"Lochaber Hydro Development (Scheme 2)"	"Small Hydro"	1.1	"Awaiting Construction"	0
+6781	"Highland"	"Lochaber Hydro Development (Scheme 3)"	"Small Hydro"	2	"Awaiting Construction"	0
+6780	"Highland"	"Lochaber Hydro Development (Scheme 5)"	"Small Hydro"	1.6	"Application Withdrawn"	0
+4299	"Highland"	"Lochend Wind Farm"	"Wind Onshore"	9.2	"Operational"	4
+4123	"Highland"	"Lochluichart"	"Wind Onshore"	51	"Operational"	17
+4395	"Highland"	"Lochluichart (Extension)"	"Wind Onshore"	18	"Operational"	6
+6377	"Highland"	"Lochluichart Extention II"	"Wind Onshore"	24	"Application Submitted"	8
+3425	"Highland"	"Lower Rumster wind turbine"	"Wind Onshore"	1	"Application Refused"	1
+439	"Highland"	"Lower Suileag hydro"	"Small Hydro"	1	"Abandoned"	0
+6044	"Highland"	"Lower Thura"	"Wind Onshore"	4.6	"Application Refused"	2
+6757	"Highland"	"Luichart Power Station"	"Small Hydro"	2.6	"Awaiting Construction"	0
+4129	"Highland"	"Lyth Wind Farm"	"Wind Onshore"	24	"Application Refused"	10
+484	"Highland"	"Maldie Burn"	"Small Hydro"	4	"Operational"	0
+3297	"Highland"	"Meall an Tuirc Wind Farm"	"Wind Onshore"	17	"Operational"	34
+3929	"Highland"	"Melness"	"Wind Onshore"	2.55	"Abandoned"	3
+3598	"Highland"	"Millennium Extension"	"Wind Onshore"	10	"Operational"	4
+2723	"Highland"	"Millennium Extension II"	"Wind Onshore"	15	"Operational"	6
+4588	"Highland"	"Millennium South - Phase 3"	"Wind Onshore"	35	"Awaiting Construction"	10
+4682	"Highland"	"Millennium Windfarm"	"Wind Onshore"	40	"Operational"	16
+6158	"Highland"	"Moray Firth 2 (West)"	"Wind Offshore"	850	"Awaiting Construction"	85
+5703	"Highland"	"Morayhill AD"	"Anaerobic Digestion"	2	"Operational"	0
+3719	"Highland"	"Moy Wind Farm"	"Wind Onshore"	40	"Abandoned"	20
+3647	"Highland"	"Moy Wind Farm (2nd Application)"	"Wind Onshore"	66	"Operational"	20
+469	"Highland"	"Mucomir"	"Small Hydro"	2	"Operational"	0
+467	"Highland"	"Mullardoch Tunnel"	"Small Hydro"	2.4	"Operational"	0
+500	"Highland"	"Munerigie HydroPower Scheme"	"Small Hydro"	1	"Planning Permission Expired"	0
+6194	"Highland"	"Navidale"	"Wind Onshore"	15	"Application Refused"	5
+6159	"Highland"	"Navidale Estate"	"Wind Onshore"	1	"Awaiting Construction"	2
+496	"Highland"	"Nevis Range"	"Small Hydro"	1.1	"Operational"	0
+3960	"Highland"	"Nigg Hill"	"Wind Onshore"	10	"Application Refused"	5
+4013	"Highland"	"Novar Wind Farm (Extension)"	"Wind Onshore"	36.8	"Operational"	16
+400	"Highland"	"Orrin"	"Large Hydro"	18	"Operational"	0
+3380	"Highland"	"Phase 1 Bettyhill Wind Farm"	"Wind Onshore"	5	"Operational"	2
+6091	"Highland"	"Pulteney Distillery"	"Biomass (dedicated)"	3.5	"Operational"	0
+7046	"Highland"	"Red John Pumped Storage"	"Pumped Storage Hydroelectricity"	499	"Application Submitted"	0
+5418	"Highland"	"River Coiltie Hydro Scheme"	"Small Hydro"	1.9	"Operational"	0
+428	"Highland"	"River E Hydro Scheme"	"Small Hydro"	3	"Operational"	0
+5965	"Highland"	"River Pattack (resubmission)"	"Small Hydro"	2	"Operational"	0
+411	"Highland"	"River Pattack Hydro Scheme"	"Large Hydro"	9	"Abandoned"	0
+448	"Highland"	"River Taodail Hydro"	"Small Hydro"	1.35	"Operational"	0
+4051	"Highland"	"Rosehall Hill Forest Windfarm"	"Wind Onshore"	24.7	"Operational"	19
+3908	"Highland"	"Rumster Forest Community Wind Farm"	"Wind Onshore"	2.7	"Abandoned"	3
+4583	"Highland"	"Sallachy Wind Farm"	"Wind Onshore"	66	"Application Refused"	22
+4294	"Highland"	"Sanquhar Community Windfarm 2"	"Wind Onshore"	19.8	"Application Withdrawn"	6
+3206	"Highland"	"Scoolary"	"Wind Onshore"	120	"Application Withdrawn"	48
+459	"Highland"	"Sheildaig Hydro Project"	"Small Hydro"	2.1	"Application Refused"	0
+431	"Highland"	"Shieldaig/Slattadale Hydro Scheme"	"Small Hydro"	3.55	"Application Refused"	0
+6821	"Highland"	"South Kilbraur Wind Farm"	"Wind Onshore"	28	"Application Submitted"	7
+3203	"Highland"	"South Shebster"	"Wind Onshore"	10	"Application Refused"	5
+4040	"Highland"	"Spittal Hill"	"Wind Onshore"	75	"Application Refused"	30
+4471	"Highland"	"Spittal Hill (Resubmission)"	"Wind Onshore"	21	"Application Refused"	7
+396	"Highland"	"Sron Mor"	"Large Hydro"	5	"Operational"	0
+3183	"Highland"	"Strathbora"	"Wind Onshore"	46	"Application Withdrawn"	19
+7476	"Highland"	"Strathrory Wind Farm"	"Wind Onshore"	44.8	"Application Submitted"	8
+4625	"Highland"	"Strathy North"	"Wind Onshore"	67.65	"Operational"	33
+4418	"Highland"	"Strathy South"	"Wind Onshore"	117	"Awaiting Construction"	34
+4584	"Highland"	"Strathy Wood"	"Wind Onshore"	59.4	"Application Submitted"	20
+4597	"Highland"	"Stronelairg Wind Farm"	"Wind Onshore"	228	"Operational"	66
+389	"Highland"	"Stronelarig Hydro Scheme"	"Large Hydro"	10.7	"Application Withdrawn"	0
+3433	"Highland"	"Stroupster Wind Farm - additional turbine"	"Wind Onshore"	2.3	"Operational"	1
+4420	"Highland"	"Tom Nan Clach (redesign)"	"Wind Onshore"	39	"Operational"	13
+4267	"Highland"	"Tom Nan Clach Wind Farm"	"Wind Onshore"	39.1	"Abandoned"	13
+2698	"Highland"	"Tomatin"	"Wind Onshore"	25.5	"Application Refused"	17
+4814	"Highland"	"Tomfat"	"Wind Onshore"	1.6	"Application Refused"	2
+401	"Highland"	"Tor Achilty"	"Large Hydro"	15	"Operational"	0
+2896	"Highland"	"Tresdale Farm wind cluster"	"Wind Onshore"	6.9	"Application Refused"	3
+4421	"Highland"	"Tressady Wind Farm"	"Wind Onshore"	32.5	"Application Refused"	13
+444	"Highland"	"Uisge Dubh Hydro"	"Small Hydro"	2	"Operational"	0
+67	"Highland"	"Upper Geiselittle Biomass Plant"	"Biomass (dedicated)"	1	"Abandoned"	0
+2802	"Highland"	"Upper Smerral Wind Cluster"	"Wind Onshore"	3.2	"Application Refused"	4
+4489	"Highland"	"Upper Smerral Wind Cluster - resubmission"	"Wind Onshore"	2.7	"Application Refused"	3
+4425	"Highland"	"Wathegar 2 Wind Farm"	"Wind Onshore"	18.45	"Operational"	9
+3757	"Highland"	"Wathegar wind farm"	"Wind Onshore"	10	"Operational"	5
+3293	"Highland"	"West Garty Wind Farm"	"Wind Onshore"	12	"Application Refused"	16
+3919	"Highland"	"West Garty Windfarm (resubmission)"	"Wind Onshore"	54	"Application Refused"	18
+4308	"Highland"	"Woodlands Wind Farm"	"Wind Onshore"	15	"Application Withdrawn"	5
+7033	"Inverclyde"	"Berfern Farm"	"Battery"	5	"Awaiting Construction"	0
+3121	"Inverclyde"	"Greenock Wind Farm"	"Wind Onshore"	55	"Application Refused"	22
+4200	"Inverclyde"	"Inverclyde Wind Farm (Corlic Hill)"	"Wind Onshore"	24	"Under Construction"	8
+7162	"Inverclyde"	"Kip Water Hydro Scheme"	"Battery"	1	"Application Submitted"	0
+3473	"Inverclyde"	"Leapmoor Forest"	"Wind Onshore"	30	"Application Withdrawn"	10
+3085	"Inverclyde"	"Priestside Farm"	"Wind Onshore"	1.8	"Application Refused"	2
+3268	"Midlothian"	"Auchencorth Moss"	"Wind Onshore"	45	"Application Refused"	18
+747	"Midlothian"	"Bonnyrigg"	"Landfill Gas"	2.18	"Operational"	0
+3300	"Midlothian"	"Bowbeat Wind Farm"	"Wind Onshore"	31.2	"Operational"	24
+799	"Midlothian"	"Drummond Moor Landfill"	"Landfill Gas"	2	"Operational"	0
+3570	"Midlothian"	"Dun Law"	"Wind Onshore"	17.16	"Operational"	26
+7222	"Midlothian"	"Easter Bush"	"Solar Photovoltaics"	3	"Under Construction"	0
+3797	"Midlothian"	"Gilston Wind Farm (Lothian)"	"Wind Onshore"	18.45	"Application Refused"	9
+371	"Midlothian"	"Millerhill AD (Waste AD)"	"Anaerobic Digestion"	1.5	"Operational"	0
+944	"Midlothian"	"Millerhill EfW"	"EfW Incineration"	7.5	"Abandoned"	0
+5247	"Midlothian"	"Millerhill EfW (resubmission)"	"EfW Incineration"	12.5	"Operational"	0
+3610	"Midlothian"	"Mount Lothian Wind Farm"	"Wind Onshore"	20.7	"Application Withdrawn"	9
+4401	"Midlothian"	"Mount Lothian Wind Farm - resubmission"	"Wind Onshore"	20.7	"Application Refused"	9
+675	"Midlothian"	"Oatslie Landfill Gas"	"Landfill Gas"	2	"Operational"	0
+3099	"Moray"	"Aultmore Wind Farm"	"Wind Onshore"	62	"Application Withdrawn"	31
+4252	"Moray"	"Aultmore Wind Farm -resubmission"	"Wind Onshore"	29	"Awaiting Construction"	13
+4261	"Moray"	"Berry Burn"	"Wind Onshore"	66.7	"Operational"	29
+3620	"Moray"	"Bodinfinnoch Wind Farm"	"Wind Onshore"	13.8	"Application Refused"	6
+3833	"Moray"	"Brown Muir Wind Farm"	"Wind Onshore"	57	"Application Withdrawn"	19
+3343	"Moray"	"Brown Muir Wind Farm (resubmission)"	"Wind Onshore"	36	"Application Refused"	12
+3535	"Moray"	"Cairn Uish Wind Farm Extension"	"Wind Onshore"	21	"Application Withdrawn"	0
+6372	"Moray"	"Clash Gour"	"Wind Onshore"	256	"Application Submitted"	48
+5051	"Moray"	"Dorenell Wind Farm (extension/redesign)"	"Wind Onshore"	174.9	"Abandoned"	53
+4244	"Moray"	"Dorenell Wind Farm (Previously Site A and B Scaut Hill)"	"Wind Onshore"	177	"Operational"	59
+4072	"Moray"	"Edintore Wind Farm"	"Wind Onshore"	18	"Operational"	6
+7477	"Moray"	"Glenfiddich Distillery"	"Anaerobic Digestion"	1.5	"Operational"	0
+7512	"Moray"	"Glenfiddich Distillery AD (Extension)"	"Anaerobic Digestion"	2	"Awaiting Construction"	0
+4381	"Moray"	"Hill of Glaschyle Wind Farm"	"Wind Onshore"	27.6	"Operational"	12
+4014	"Moray"	"Hill of Towie (Drummuir)"	"Wind Onshore"	48	"Operational"	21
+4589	"Moray"	"Hill of Towie II Wind Farm"	"Wind Onshore"	48	"Awaiting Construction"	16
+4303	"Moray"	"KELLAS WIND FARM"	"Wind Onshore"	18.4	"Operational"	8
+5373	"Moray"	"Lurg Hill Wind Farm"	"Wind Onshore"	15	"Awaiting Construction"	5
+4305	"Moray"	"Meikle Hill wind farm"	"Wind Onshore"	13.8	"Awaiting Construction"	6
+6341	"Moray"	"Milltown Airfield (Speyslaw)"	"Solar Photovoltaics"	50	"Awaiting Construction"	0
+3804	"Moray"	"Myreton Crossroads"	"Wind Onshore"	1.6	"Operational"	2
+3691	"Moray"	"Netherton of Windyhills"	"Wind Onshore"	4.6	"Operational"	2
+3995	"Moray"	"Netherton Of Windyhills (extension)"	"Wind Onshore"	2.3	"Application Refused"	1
+4687	"Moray"	"Paul's Hill and Extension"	"Wind Onshore"	65	"Operational"	28
+6407	"Moray"	"Pauls Hill 2"	"Wind Onshore"	28	"Application Submitted"	7
+140	"Moray"	"Rothes Bio-Plant"	"Biomass (dedicated)"	8.32	"Operational"	0
+3534	"Moray"	"Rothes Wind (Cairn Uish)"	"Wind Onshore"	50.6	"Operational"	22
+3951	"Moray"	"Rothes Wind Farm (Extension) (II)"	"Wind Onshore"	41.4	"Operational"	18
+6275	"Moray"	"Rothes Wind Farm III"	"Wind Onshore"	150	"Application Submitted"	29
+186	"Moray"	"Speyside Biomass CHP Plant"	"Biomass (dedicated)"	12.5	"Operational"	0
+6416	"Moray"	"Speyslaw Solar Farm"	"Solar Photovoltaics"	20	"Awaiting Construction"	0
+3306	"Na h-Eileanan an Iar/Western Isles"	"Arnish Moor"	"Wind Onshore"	3.9	"Operational"	3
+6645	"Na h-Eileanan an Iar/Western Isles"	"Druim Leathann (resubmission)"	"Wind Onshore"	49.7	"Awaiting Construction"	14
+3891	"Na h-Eileanan an Iar/Western Isles"	"Druim Leathann Wind Farm"	"Wind Onshore"	42	"Planning Permission Expired"	14
+6323	"Na h-Eileanan an Iar/Western Isles"	"East of Beinn Ghrideag Wind Farm"	"Wind Onshore"	5	"Awaiting Construction"	1
+3820	"Na h-Eileanan an Iar/Western Isles"	"Kirkibost Wind Farm"	"Wind Onshore"	1.8	"Application Refused"	2
+2462	"Na h-Eileanan an Iar/Western Isles"	"Lewis Oyster Wave Array"	"Shoreline Wave"	50	"Planning Permission Expired"	0
+3139	"Na h-Eileanan an Iar/Western Isles"	"Lewis Wind Farm (Barvas Moor)"	"Wind Onshore"	652	"Application Refused"	176
+3988	"Na h-Eileanan an Iar/Western Isles"	"Loch Sminig Wind Project"	"Wind Onshore"	2.7	"Operational"	3
+3670	"Na h-Eileanan an Iar/Western Isles"	"Lochcarnan Community Windfarm"	"Wind Onshore"	6.9	"Operational"	3
+5964	"Na h-Eileanan an Iar/Western Isles"	"Lochdar Hill Wind Farm"	"Wind Onshore"	6.9	"Application Submitted"	3
+3922	"Na h-Eileanan an Iar/Western Isles"	"Locheport wind turbines"	"Wind Onshore"	1.8	"Application Refused"	2
+4629	"Na h-Eileanan an Iar/Western Isles"	"Monan Hill Wind Turbines"	"Wind Onshore"	1.5	"Operational"	3
+3036	"Na h-Eileanan an Iar/Western Isles"	"North Harris Community Trust"	"Wind Onshore"	2.5	"Abandoned"	3
+4025	"Na h-Eileanan an Iar/Western Isles"	"Pairc Windfarm"	"Wind Onshore"	94	"Application Withdrawn"	26
+4063	"Na h-Eileanan an Iar/Western Isles"	"Pentland Road Wind Farm"	"Wind Onshore"	13.8	"Operational"	6
+4272	"Na h-Eileanan an Iar/Western Isles"	"Point Wind / Beinn Ghrideag Farm"	"Wind Onshore"	9	"Operational"	3
+6673	"Na h-Eileanan an Iar/Western Isles"	"Sandwick East Community Wind Farm"	"Wind Onshore"	49.9	"Application Submitted"	10
+6178	"Na h-Eileanan an Iar/Western Isles"	"Sandwick North St Community wind turbine"	"Wind Onshore"	5	"Awaiting Construction"	1
+6665	"Na h-Eileanan an Iar/Western Isles"	"Stornoway Wind Farm (second resubmission)"	"Wind Onshore"	16	"Application Submitted"	-7
+4417	"Na h-Eileanan an Iar/Western Isles"	"Stornoway Wind Farm project (was Lewis Wind Farm - Resubmission)"	"Wind Onshore"	180	"Awaiting Construction"	42
+4448	"Na h-Eileanan an Iar/Western Isles"	"Uisenis/Eishken (Muaitheabhal) (East Extension)"	"Wind Onshore"	21.6	"Awaiting Construction"	6
+3901	"Na h-Eileanan an Iar/Western Isles"	"Uisenis/Eishken (Muaitheabhal) (Southern Extension)"	"Wind Onshore"	21.6	"Awaiting Construction"	6
+4523	"Na h-Eileanan an Iar/Western Isles"	"Uisenis/Eishken (Muaitheabhal) Wind Farm"	"Wind Onshore"	118.8	"Awaiting Construction"	33
+3584	"North Ayrshire"	"Ardeer"	"Wind Onshore"	22	"Application Withdrawn"	0
+7575	"North Ayrshire"	"Ardoch Farm"	"Battery"	20	"Awaiting Construction"	0
+3117	"North Ayrshire"	"Ardrossan"	"Wind Onshore"	24	"Operational"	12
+4668	"North Ayrshire"	"Ardrossan Extension"	"Wind Onshore"	6	"Operational"	3
+4774	"North Ayrshire"	"Auld Clay"	"Wind Onshore"	9.2	"Application Refused"	4
+5784	"North Ayrshire"	"Ballochmartin"	"Solar Photovoltaics"	5	"Awaiting Construction"	0
+2810	"North Ayrshire"	"Ballochmartin Farm Turbine"	"Wind Onshore"	2.3	"Application Withdrawn"	1
+266	"North Ayrshire"	"Barkip Anaerobic Digestor (Waste AD)"	"Anaerobic Digestion"	2.2	"Operational"	0
+682	"North Ayrshire"	"Barkip Landfill Site"	"Landfill Gas"	1.15	"Operational"	0
+7282	"North Ayrshire"	"Blackbarn Farm"	"Small Hydro"	1	"Awaiting Construction"	0
+3477	"North Ayrshire"	"Blackshaw Community Wind Farm"	"Wind Onshore"	21	"Application Refused"	6
+61	"North Ayrshire"	"Burnside Farm Biomass Plant"	"Biomass (dedicated)"	2.5	"Abandoned"	0
+34	"North Ayrshire"	"Caledonian Papermill"	"Biomass (dedicated)"	26.043	"Operational"	0
+5375	"North Ayrshire"	"Castlehill Solar Farm"	"Solar Photovoltaics"	5	"Abandoned"	0
+79	"North Ayrshire"	"Dyemill Forestry Plantation"	"Biomass (dedicated)"	5	"Application Withdrawn"	0
+343	"North Ayrshire"	"GlaxoSmithKline (Waste AD)"	"Anaerobic Digestion"	1	"Operational"	0
+7232	"North Ayrshire"	"Glaxosmithkline Shewalton Road"	"Solar Photovoltaics"	19.9	"Awaiting Construction"	0
+3841	"North Ayrshire"	"GlaxoSmithKline Wind Project"	"Wind Onshore"	7.5	"Operational"	3
+4370	"North Ayrshire"	"GlaxoSmithKline Wind Project (Turbine 4)"	"Wind Onshore"	2.5	"Operational"	1
+412	"North Ayrshire"	"Hunterston"	"Battery"	5	"Abandoned"	0
+2	"North Ayrshire"	"Hunterston - cofiring"	"Biomass (co-firing)"	170	"Application Withdrawn"	0
+4609	"North Ayrshire"	"Hunterston Test Centre"	"Wind Onshore"	13	"Decommissioned"	2
+6080	"North Ayrshire"	"Hunterston Test Centre (Phase 2)"	"Wind Onshore"	8	"Application Withdrawn"	1
+3142	"North Ayrshire"	"Hunterstone"	"Wind Onshore"	30	"Application Refused"	0
+3149	"North Ayrshire"	"Kelburn"	"Wind Onshore"	28	"Operational"	14
+5874	"North Ayrshire"	"Land at Hunterston Estate"	"Solar Photovoltaics"	5	"Abandoned"	0
+2997	"North Ayrshire"	"Millour Hill Community Windfarm"	"Wind Onshore"	18	"Application Refused"	6
+3646	"North Ayrshire"	"Millour Hill Community Windfarm (Extension)"	"Wind Onshore"	6	"Application Refused"	2
+4235	"North Ayrshire"	"Millour Hill Community Windfarm (Extension) resubmission"	"Wind Onshore"	6.4	"Operational"	2
+3690	"North Ayrshire"	"Millour Hill Community Windfarm (Re-submission)"	"Wind Onshore"	18	"Operational"	6
+5812	"North Ayrshire"	"Nethermains"	"Solar Photovoltaics"	5	"Abandoned"	0
+7133	"North Ayrshire"	"North West Of Jameston Farm"	"Battery"	19.9	"Awaiting Construction"	0
+6753	"North Ayrshire"	"Oldhall Industrial Estate"	"EfW Incineration"	15	"Awaiting Construction"	0
+7511	"North Ayrshire"	"Rigghill Wind Farm"	"Wind Onshore"	42	"Application Submitted"	10
+982	"North Ayrshire"	"Shewalton (Irvine Plant)"	"Advanced Conversion Technologies"	8	"Planning Permission Expired"	0
+5611	"North Ayrshire"	"Shewalton Landfill Site"	"Solar Photovoltaics"	3	"Abandoned"	0
+7376	"North Ayrshire"	"Shewalton Road"	"Wind Onshore"	3	"Awaiting Construction"	2
+5332	"North Ayrshire"	"Site To North East Of, Lochcraigs Farm
+"	"Solar Photovoltaics"	5	"Operational"	0
+4315	"North Ayrshire"	"Sorbie Farm"	"Wind Onshore"	9	"Awaiting Construction"	3
+3426	"North Ayrshire"	"Sorbie Farm wind cluster"	"Wind Onshore"	7.5	"Application Withdrawn"	3
+7236	"North Ayrshire"	"Standingstone Hill"	"Wind Onshore"	2.5	"Application Refused"	1
+4691	"North Ayrshire"	"Wardlaw Wood"	"Wind Onshore"	18	"Operational"	6
+3279	"North Ayrshire"	"Waterhead Moor"	"Wind Onshore"	72.5	"Application Withdrawn"	29
+4626	"North Ayrshire"	"Wings Law"	"Wind Onshore"	48	"Application Refused"	24
+716	"North Lanarkshire"	"Auchinlea Landfill Site"	"Landfill Gas"	2.272	"Operational"	0
+639	"North Lanarkshire"	"Avondale"	"Landfill Gas"	4	"Operational"	0
+4214	"North Lanarkshire"	"Benhar Windfarm"	"Wind Onshore"	15	"Application Refused"	5
+5902	"North Lanarkshire"	"Berryhill Farm Solar Array"	"Solar Photovoltaics"	4.8	"Awaiting Construction"	0
+3788	"North Lanarkshire"	"Birniehill"	"Wind Onshore"	4.5	"Application Refused"	3
+3136	"North Lanarkshire"	"Bracco / Black Hill"	"Wind Onshore"	72.5	"Application Withdrawn"	0
+6819	"North Lanarkshire"	"Brownhill Farm"	"Wind Onshore"	8.4	"Awaiting Construction"	2
+7991	"North Lanarkshire"	"Brownhill Farm (Resubmission)"	"Wind Onshore"	8.4	"Application Submitted"	2
+1007	"North Lanarkshire"	"Coatbridge Material Recovery and Renewable Energy Facility"	"Advanced Conversion Technologies"	25	"Under Construction"	0
+211	"North Lanarkshire"	"Cumbernauld BioPlant  (Waste AD)"	"Anaerobic Digestion"	2.4	"Operational"	0
+3747	"North Lanarkshire"	"Damhead Farm"	"Wind Onshore"	2.5	"Operational"	1
+2792	"North Lanarkshire"	"Damside Wind Farm"	"Wind Onshore"	20	"Application Refused"	8
+210	"North Lanarkshire"	"Deerdykes Composting and Organics Recycling Facility (Waste AD)"	"Anaerobic Digestion"	1	"Operational"	0
+231	"North Lanarkshire"	"Energen biogas cumbernauld"	"Anaerobic Digestion"	2.4	"Operational"	0
+5448	"North Lanarkshire"	"Forrestfield Wind Farm"	"Wind Onshore"	13.2	"Application Submitted"	4
+5909	"North Lanarkshire"	"Glenhead Farm (Upper)"	"Solar Photovoltaics"	5	"Awaiting Construction"	0
+5903	"North Lanarkshire"	"Glenhead Farm Lower Solar Array"	"Solar Photovoltaics"	4.1	"Awaiting Construction"	0
+969	"North Lanarkshire"	"Green Hills"	"EfW Incineration"	21	"Planning Permission Expired"	0
+3236	"North Lanarkshire"	"Greendykeside"	"Wind Onshore"	4	"Operational"	2
+4213	"North Lanarkshire"	"Greengairs East Wind Farm"	"Wind Onshore"	24	"Awaiting Construction"	8
+694	"North Lanarkshire"	"Greengairs Landfill Scheme Phase I"	"Landfill Gas"	1.89	"Operational"	0
+695	"North Lanarkshire"	"Greengairs Landfill Scheme Phase II"	"Landfill Gas"	1.89	"Operational"	0
+692	"North Lanarkshire"	"Greengairs Landfill Scheme Phase III"	"Landfill Gas"	1.96	"Operational"	0
+693	"North Lanarkshire"	"Greengairs Landfill Scheme Phase IV"	"Landfill Gas"	1.96	"Operational"	0
+760	"North Lanarkshire"	"Greengairs Landfill Scheme Phase V"	"Landfill Gas"	2.2	"Operational"	0
+687	"North Lanarkshire"	"Greengairs Landfill Scheme Phase VI"	"Landfill Gas"	2.2	"Operational"	0
+4106	"North Lanarkshire"	"Greengairs Wind Farm"	"Wind Onshore"	17.5	"Awaiting Construction"	9
+4030	"North Lanarkshire"	"Hartwood"	"Wind Onshore"	30	"Application Withdrawn"	15
+6312	"North Lanarkshire"	"Hartwood Windfarm"	"Wind Onshore"	21	"Awaiting Construction"	7
+7391	"North Lanarkshire"	"Henry Colbeck Office"	"Solar Photovoltaics"	0.15	"Operational"	0
+789	"North Lanarkshire"	"Kilgarth"	"Landfill Gas"	1	"Decommissioned"	0
+5062	"North Lanarkshire"	"Land South East Of Auchterhead"	"Wind Onshore"	2.3	"Application Submitted"	1
+6731	"North Lanarkshire"	"Liberty Steel Dalzell"	"Biomass (dedicated)"	17	"Operational"	0
+2681	"North Lanarkshire"	"Nether braco Farm"	"Wind Onshore"	21	"Application Withdrawn"	7
+3237	"North Lanarkshire"	"Salsburgh"	"Wind Onshore"	24	"Application Withdrawn"	10
+4002	"North Lanarkshire"	"Shotts wind farm"	"Wind Onshore"	18	"Application Refused"	6
+4747	"North Lanarkshire"	"Southrigg"	"Wind Onshore"	1.5	"Operational"	1
+6424	"North Lanarkshire"	"Southrigg 2"	"Wind Onshore"	1.5	"Abandoned"	1
+7370	"North Lanarkshire"	"Southrigg 2 (Resubmission)"	"Wind Onshore"	4.2	"Awaiting Construction"	1
+4257	"North Lanarkshire"	"Starryshaw Wind Farm"	"Wind Onshore"	12	"Application Refused"	4
+3799	"North Lanarkshire"	"Torrance Farm"	"Wind Onshore"	9	"Operational"	3
+4085	"North Lanarkshire"	"Torrance Farm Wind Park Extension"	"Wind Onshore"	5.7	"Operational"	2
+4307	"North Lanarkshire"	"West Benhar wind farm"	"Wind Onshore"	27.2	"Awaiting Construction"	8
+5925	"North Lanarkshire"	"West Torrance Farm"	"Wind Onshore"	1.5	"Application Withdrawn"	1
+2397	"Offshore"	"AR-1000 (FoW - EMEC)"	"Tidal Barrage and Tidal Stream"	1	"Decommissioned"	0
+2521	"Offshore"	"Beatrice"	"Wind Offshore"	588	"Operational"	84
+2485	"Offshore"	"Beatrice Demonstrator"	"Wind Offshore"	10	"Operational"	2
+2505	"Offshore"	"European Offshore Wind Deployment Centre (EOWDC) (Aberdeen Bay - Demonstration site)"	"Wind Offshore"	93.2	"Operational"	11
+5863	"Offshore"	"Forth of Firth (Methil)"	"Wind Offshore"	29.9	"Awaiting Construction"	2
+2420	"Offshore"	"Hammerfest (FoW - EMEC)"	"Tidal Barrage and Tidal Stream"	1	"Decommissioned"	0
+2479	"Offshore"	"Hywind Scotland Pilot Park (Hywind 2) Demonstrator"	"Wind Offshore"	30	"Operational"	5
+2527	"Offshore"	"Inch Cape"	"Wind Offshore"	784	"Awaiting Construction"	72
+2401	"Offshore"	"Kawasaki (FoW - EMEC)"	"Tidal Barrage and Tidal Stream"	1	"Decommissioned"	0
+6136	"Offshore"	"Kincardine Offshore Windfarm"	"Wind Offshore"	50	"Under Construction"	8
+2435	"Offshore"	"Kyle Rhea Tidal Stream Array"	"Tidal Barrage and Tidal Stream"	8	"Application Withdrawn"	0
+2405	"Offshore"	"Kylerhea"	"Tidal Barrage and Tidal Stream"	1.2	"Application Withdrawn"	0
+2528	"Offshore"	"Levenmouth demonstration turbine (Fife Energy Park)"	"Wind Offshore"	7	"Operational"	1
+2534	"Offshore"	"MacColl Offshore Windfarm (Moray East)"	"Wind Offshore"	313.5	"Under Construction"	33
+2423	"Offshore"	"Mull of Kintyre"	"Tidal Barrage and Tidal Stream"	3	"Awaiting Construction"	0
+2522	"Offshore"	"Neart na Gaoithe"	"Wind Offshore"	450	"Abandoned"	54
+6426	"Offshore"	"Neart na Gaoithe (Resubmission)"	"Wind Offshore"	450	"Awaiting Construction"	54
+2496	"Offshore"	"Robin Rigg East"	"Wind Offshore"	90	"Operational"	30
+2497	"Offshore"	"Robin Rigg West"	"Wind Offshore"	84	"Operational"	28
+2530	"Offshore"	"Seagreen Alpha"	"Wind Offshore"	525	"Awaiting Construction"	57
+2540	"Offshore"	"Seagreen Bravo"	"Wind Offshore"	525	"Awaiting Construction"	57
+6637	"Offshore"	"Shetland Tidal Array"	"Tidal Barrage and Tidal Stream"	0.5	"Operational"	0
+2456	"Offshore"	"Siadar Wave Energy Generating Scheme"	"Shoreline Wave"	4	"Abandoned"	0
+2415	"Offshore"	"Sound of Islay"	"Tidal Barrage and Tidal Stream"	10	"Awaiting Construction"	0
+2537	"Offshore"	"Stevenson Offshore Windfarm (Moray East)"	"Wind Offshore"	323	"Under Construction"	34
+2536	"Offshore"	"Telford Offshore Windfarm (Moray East)"	"Wind Offshore"	313.5	"Under Construction"	33
+2399	"Offshore"	"TGL (FoW - EMEC)"	"Tidal Barrage and Tidal Stream"	1	"Decommissioned"	0
+2400	"Offshore"	"Voith (FoW - EMEC)"	"Tidal Barrage and Tidal Stream"	1	"Decommissioned"	0
+2429	"Offshore"	"West Islay Tidal Array"	"Tidal Barrage and Tidal Stream"	30	"Awaiting Construction"	0
+3789	"Orkney Islands"	"Akla"	"Wind Onshore"	2.7	"Planning Permission Expired"	3
+3902	"Orkney Islands"	"Barns of Ayre Wind Turbines (2)"	"Wind Onshore"	1.8	"Operational"	2
+7568	"Orkney Islands"	"Billia Croo Wave Test Site (Extension)"	"Shoreline Wave"	20	"Application Submitted"	0
+2416	"Orkney Islands"	"Brims Tidal Array (Cantick Head)"	"Tidal Barrage and Tidal Stream"	200	"Application Submitted"	0
+4008	"Orkney Islands"	"Bu Farm"	"Wind Onshore"	2.7	"Operational"	3
+3444	"Orkney Islands"	"Bu Wind Farm Repowering"	"Wind Onshore"	2.55	"Abandoned"	3
+3307	"Orkney Islands"	"Burgar Hill"	"Wind Onshore"	5	"Operational"	2
+3408	"Orkney Islands"	"Burgar Hill (land Near), Evie"	"Wind Onshore"	2.3	"Operational"	1
+5188	"Orkney Islands"	"Costa Head Wind Farm"	"Wind Onshore"	16.32	"Awaiting Construction"	5
+3212	"Orkney Islands"	"Enyas Hill"	"Wind Onshore"	6	"Application Refused"	3
+3751	"Orkney Islands"	"Evie Wind Energy Project"	"Wind Onshore"	2.3	"Awaiting Construction"	1
+4678	"Orkney Islands"	"Flotta"	"Wind Onshore"	1.75	"Operational"	1
+3693	"Orkney Islands"	"Gallowhill"	"Wind Onshore"	1.8	"Operational"	2
+2914	"Orkney Islands"	"Gruf Hill"	"Wind Onshore"	7.5	"Application Refused"	3
+2697	"Orkney Islands"	"Hammar's Hill"	"Wind Onshore"	4.25	"Operational"	5
+7957	"Orkney Islands"	"Hammars Hill Wind Farm Extension"	"Wind Onshore"	8.4	"Application Submitted"	2
+5198	"Orkney Islands"	"Hesta Head Wind Farm"	"Wind Onshore"	20.4	"Awaiting Construction"	5
+2436	"Orkney Islands"	"Inner Sound Phase 1A (MeyGen)"	"Tidal Barrage and Tidal Stream"	6	"Operational"	0
+4980	"Orkney Islands"	"Inner Sound Phase 1B/1C (MeyGen)"	"Tidal Barrage and Tidal Stream"	86	"Awaiting Construction"	0
+6595	"Orkney Islands"	"Magallanes (FoW - EMEC)"	"Tidal Barrage and Tidal Stream"	2	"Operational"	0
+3321	"Orkney Islands"	"New Holland"	"Wind Onshore"	1	"Operational"	2
+6606	"Orkney Islands"	"Open Centre Turbines (FoW - EMEC)"	"Tidal Barrage and Tidal Stream"	2.5	"Abandoned"	0
+6862	"Orkney Islands"	"Orkney Storage Park Project"	"Battery"	2	"Operational"	0
+3529	"Orkney Islands"	"Rothiesholm"	"Wind Onshore"	2.7	"Operational"	3
+4004	"Orkney Islands"	"Rysa Wind Energy Project"	"Wind Onshore"	2.7	"Application Withdrawn"	3
+2445	"Orkney Islands"	"Seatricity Turbine (Billia Croo - EMEC)"	"Shoreline Wave"	1	"Decommissioned"	0
+2862	"Orkney Islands"	"Skeabrae Wind Energy Project"	"Wind Onshore"	1.5	"Application Withdrawn"	3
+4036	"Orkney Islands"	"Spurness Wind Farm"	"Wind Onshore"	11	"Decommissioned"	4
+3837	"Orkney Islands"	"Spurness Wind Farm Repowering"	"Wind Onshore"	10	"Operational"	5
+2402	"Orkney Islands"	"SR-2000 (FoW - EMEC)"	"Tidal Barrage and Tidal Stream"	2	"Operational"	0
+2411	"Orkney Islands"	"The Fall of Warness Tidal Scheme, (FoW - EMEC)"	"Tidal Barrage and Tidal Stream"	2	"Abandoned"	0
+3120	"Orkney Islands"	"Thorfinn Wind Farm - NM1500"	"Wind Onshore"	1.5	"Operational"	1
+3308	"Orkney Islands"	"Thorfinn Wind Farm - NM2000"	"Wind Onshore"	2.3	"Operational"	2
+2452	"Orkney Islands"	"Wello Penguin Device (Billia Croo - EMEC)"	"Shoreline Wave"	1	"Operational"	0
+2742	"Orkney Islands"	"West Hill, Flotta"	"Wind Onshore"	2	"Operational"	1
+3892	"Orkney Islands"	"Work Farm Wind Turbines"	"Wind Onshore"	1.8	"Awaiting Construction"	2
+3227	"Perth and Kinross"	"Abercairney"	"Wind Onshore"	66	"Application Refused"	24
+5094	"Perth and Kinross"	"Allt an Dubh Choirein"	"Small Hydro"	1.6	"Application Withdrawn"	0
+3822	"Perth and Kinross"	"Ardlebank Farm Wind Cluster"	"Wind Onshore"	2.4	"Application Refused"	3
+451	"Perth and Kinross"	"Ardtalnaig Hydro Scheme"	"Small Hydro"	1.7	"Application Withdrawn"	0
+476	"Perth and Kinross"	"Ardtalnaig Hydro Scheme (resubmission)"	"Small Hydro"	2	"Operational"	0
+7347	"Perth and Kinross"	"Aviva Headquarters"	"Solar Photovoltaics"	1.8	"Awaiting Construction"	0
+6784	"Perth and Kinross"	"Aviva Headquarters Perth"	"Wind Onshore"	0.85	"Application Refused"	1
+3187	"Perth and Kinross"	"Balado Windfarm"	"Wind Onshore"	5.5814	"Application Refused"	0
+4098	"Perth and Kinross"	"Bamff Wind Farm"	"Wind Onshore"	14	"Application Refused"	7
+4567	"Perth and Kinross"	"Bandirran Wind Farm"	"Wind Onshore"	20.4	"Application Withdrawn"	6
+453	"Perth and Kinross"	"Beinn Eagagach Hydro"	"Small Hydro"	1.1	"Operational"	0
+926	"Perth and Kinross"	"Binn Eco Park"	"Advanced Conversion Technologies"	4.64	"Awaiting Construction"	0
+4817	"Perth and Kinross"	"Binn Eco park Wind Farm"	"Wind Onshore"	10	"Planning Permission Expired"	4
+6664	"Perth and Kinross"	"Binn Eco Park Wind Farm (resubmission)"	"Wind Onshore"	10	"Application Refused"	4
+5951	"Perth and Kinross"	"Binn Farm AD (extension)"	"Anaerobic Digestion"	1.5	"Operational"	0
+715	"Perth and Kinross"	"Binn Landfill"	"Landfill Gas"	1.92	"Operational"	0
+478	"Perth and Kinross"	"Bruar Hydro Scheme"	"Small Hydro"	1.9	"Operational"	0
+4450	"Perth and Kinross"	"Burnfoot Hill Extension"	"Wind Onshore"	4	"Operational"	2
+4027	"Perth and Kinross"	"Calliachar"	"Wind Onshore"	32.2	"Operational"	14
+5569	"Perth and Kinross"	"Carey Solar Farm"	"Solar Photovoltaics"	10	"Awaiting Construction"	0
+407	"Perth and Kinross"	"Cashlie"	"Large Hydro"	11	"Operational"	0
+6594	"Perth and Kinross"	"Cordon Farm"	"Solar Photovoltaics"	10	"Awaiting Construction"	0
+4568	"Perth and Kinross"	"Creag A Bhaird"	"Wind Onshore"	29.9	"Application Refused"	13
+2845	"Perth and Kinross"	"Crossburns Wind Farm"	"Wind Onshore"	75	"Application Refused"	25
+462	"Perth and Kinross"	"Dalchonzie"	"Small Hydro"	4	"Operational"	0
+4009	"Perth and Kinross"	"Drumderg"	"Wind Onshore"	36.8	"Operational"	16
+7059	"Perth and Kinross"	"Easter Parkhead Farm"	"Battery"	19.9	"Abandoned"	0
+1930	"Perth and Kinross"	"Errol Estate"	"Solar Photovoltaics"	13	"Operational"	0
+3913	"Perth and Kinross"	"Frandy Hill"	"Wind Onshore"	14	"Application Refused"	7
+393	"Perth and Kinross"	"Gaur"	"Large Hydro"	6.4	"Operational"	0
+2967	"Perth and Kinross"	"Glen Tarken"	"Wind Onshore"	30	"Application Withdrawn"	20
+3629	"Perth and Kinross"	"Green Burn Wind Farm"	"Wind Onshore"	33	"Awaiting Construction"	11
+3487	"Perth and Kinross"	"Green Knowes"	"Wind Onshore"	27	"Operational"	18
+3488	"Perth and Kinross"	"Green Knowes Extension (Revised Application)"	"Wind Onshore"	31.5	"Application Refused"	18
+4810	"Perth and Kinross"	"Green knowes Windfarm Ext. (resubmission)"	"Wind Onshore"	10	"Application Withdrawn"	5
+4028	"Perth and Kinross"	"Griffin Wind farm"	"Wind Onshore"	156	"Operational"	52
+429	"Perth and Kinross"	"Innerhadden Burn Hydro"	"Small Hydro"	1.4	"Operational"	0
+472	"Perth and Kinross"	"Innerwick Hydro"	"Small Hydro"	1	"Operational"	0
+483	"Perth and Kinross"	"Invervar Hydro"	"Small Hydro"	1.2	"Abandoned"	0
+477	"Perth and Kinross"	"Invervar Hydro - resubmission"	"Small Hydro"	1.2	"Operational"	0
+7315	"Perth and Kinross"	"Jamesfield Organic Centre"	"Battery"	19	"Awaiting Construction"	0
+5471	"Perth and Kinross"	"Jamesfield Solar Farm"	"Solar Photovoltaics"	5	"Planning Permission Expired"	0
+504	"Perth and Kinross"	"Keltneyburn Hydro"	"Small Hydro"	2	"Operational"	0
+3219	"Perth and Kinross"	"Knowehead"	"Wind Onshore"	60	"Application Refused"	0
+4569	"Perth and Kinross"	"Knowes Farm"	"Wind Onshore"	7.65	"Application Refused"	9
+463	"Perth and Kinross"	"Lednock"	"Small Hydro"	3	"Operational"	0
+3526	"Perth and Kinross"	"Little Law Wind Farm"	"Wind Onshore"	27	"Application Refused"	18
+465	"Perth and Kinross"	"Loch Ericht"	"Small Hydro"	2.2	"Operational"	0
+3228	"Perth and Kinross"	"Lochelbank Wind Farm"	"Wind Onshore"	51	"Application Withdrawn"	0
+3581	"Perth and Kinross"	"Lochelbank Wind Farm II"	"Wind Onshore"	9.6	"Operational"	12
+2905	"Perth and Kinross"	"Logiealmond"	"Wind Onshore"	28	"Application Withdrawn"	14
+464	"Perth and Kinross"	"Lubreoch"	"Small Hydro"	4	"Operational"	0
+3561	"Perth and Kinross"	"Mellock Hill Wind Farm"	"Wind Onshore"	48	"Application Refused"	24
+3562	"Perth and Kinross"	"Mellock Hill Wind Farm II"	"Wind Onshore"	35	"Application Withdrawn"	14
+3350	"Perth and Kinross"	"Milnathort Community Wind Cluster"	"Wind Onshore"	2.4	"Application Refused"	3
+3866	"Perth and Kinross"	"Mull Hill Windfarm"	"Wind Onshore"	22.5	"Application Refused"	9
+4464	"Perth and Kinross"	"North Calliachar Wind Farm"	"Wind Onshore"	21	"Abandoned"	7
+5151	"Perth and Kinross"	"Parks of Kellour Wind Farm"	"Wind Onshore"	12	"Application Refused"	4
+7287	"Perth and Kinross"	"Perth Wastewater Treatment Works"	"Solar Photovoltaics"	0.42	"Awaiting Construction"	0
+7915	"Perth and Kinross"	"Perth Wastewater Treatment Works (Extension)"	"Solar Photovoltaics"	0.3	"Application Submitted"	0
+394	"Perth and Kinross"	"Pitlochry"	"Large Hydro"	15	"Operational"	0
+7217	"Perth and Kinross"	"Pleasance Road"	"Battery"	45	"Awaiting Construction"	0
+2980	"Perth and Kinross"	"Rannoch Wind Farm"	"Wind Onshore"	75	"Application Withdrawn"	30
+486	"Perth and Kinross"	"River Braan Hydro"	"Small Hydro"	3.4	"Application Withdrawn"	0
+449	"Perth and Kinross"	"River Braan Hydro (Re-submission)"	"Small Hydro"	2	"Planning Permission Expired"	0
+7573	"Perth and Kinross"	"Shindour Feddal Hill Wood Braco"	"Battery"	10	"Awaiting Construction"	0
+4950	"Perth and Kinross"	"Shire-End Farm"	"Solar Photovoltaics"	17	"Planning Permission Expired"	0
+858	"Perth and Kinross"	"Shore Road"	"Advanced Conversion Technologies"	16	"Application Refused"	0
+3283	"Perth and Kinross"	"Snowgoat Glen Wind Farm"	"Wind Onshore"	23.488	"Application Withdrawn"	0
+3273	"Perth and Kinross"	"Snowgoat Glen Wind Farm II"	"Wind Onshore"	13	"Application Refused"	10
+3397	"Perth and Kinross"	"Standingfauld Farm"	"Wind Onshore"	20	"Application Refused"	8
+2860	"Perth and Kinross"	"Strathallan Wind Farm"	"Wind Onshore"	20.7	"Awaiting Construction"	9
+4616	"Perth and Kinross"	"Talladh-a-Bheithe Wind Farm"	"Wind Onshore"	75	"Application Withdrawn"	24
+3271	"Perth and Kinross"	"Tillyrie"	"Wind Onshore"	4.186	"Application Refused"	0
+4599	"Perth and Kinross"	"Tullymurdoch Wind Farm"	"Wind Onshore"	14.4	"Operational"	7
+419	"Perth and Kinross"	"Turret water treatment works"	"Small Hydro"	1.9	"Operational"	0
+430	"Perth and Kinross"	"Urlar Hydro Scheme"	"Small Hydro"	1.4	"Application Withdrawn"	0
+3396	"Perth and Kinross"	"Welton Of Creuchies"	"Wind Onshore"	9.2	"Operational"	4
+5649	"Perth and Kinross"	"Welton of Creuchies (resubmission)"	"Wind Onshore"	9.2	"Application Withdrawn"	4
+7012	"Renfrewshire"	"Land off Shilton Lane"	"Battery"	19	"Abandoned"	0
+7134	"Renfrewshire"	"Land SW of Shilton Cottage"	"Battery"	29.9	"Awaiting Construction"	0
+7255	"Renfrewshire"	"River Calder Hydro Scheme"	"Small Hydro"	2	"Application Refused"	0
+5884	"Renfrewshire"	"Weels Farm Solar Array"	"Solar Photovoltaics"	4.9	"Application Refused"	0
+5893	"Renfrewshire"	"West Mitchelton Farm Solar Array"	"Solar Photovoltaics"	4.9	"Application Refused"	0
+7174	"Renfrewshire"	"Whitelee Wind Farm Battery Storage Extension"	"Battery"	50	"Awaiting Construction"	0
+4591	"Scottish Borders"	"Aikengall 3 Community Wind Farm"	"Wind Onshore"	75.5	"Awaiting Construction"	18
+4339	"Scottish Borders"	"Barrel Law Wind Farm"	"Wind Onshore"	24	"Application Refused"	8
+6347	"Scottish Borders"	"Barrel Law Wind Farm"	"Wind Onshore"	24.5	"Application Refused"	7
+4342	"Scottish Borders"	"Birneyknowe Wind Farm"	"Wind Onshore"	60	"Application Refused"	15
+3574	"Scottish Borders"	"Black Hill (Borders)"	"Wind Onshore"	28.6	"Operational"	22
+3411	"Scottish Borders"	"Blackburn Farm"	"Wind Onshore"	21	"Application Refused"	6
+2897	"Scottish Borders"	"Blinkbonny - resubmission"	"Wind Onshore"	4.6	"Application Withdrawn"	2
+2915	"Scottish Borders"	"Blinkbonny Heights"	"Wind Onshore"	5	"Application Withdrawn"	5
+3256	"Scottish Borders"	"Broadmeadows"	"Wind Onshore"	36	"Application Refused"	12
+2672	"Scottish Borders"	"Brockholes Wind Cluster"	"Wind Onshore"	2.4	"Operational"	3
+4077	"Scottish Borders"	"Brunta Hill Wind Farm"	"Wind Onshore"	18.4	"Application Refused"	8
+3214	"Scottish Borders"	"Carcant Windfarm"	"Wind Onshore"	6	"Operational"	3
+171	"Scottish Borders"	"Charlesfield Biomass CHP Plant"	"Advanced Conversion Technologies"	10	"Operational"	0
+4353	"Scottish Borders"	"Cloich Forest Wind Farm"	"Wind Onshore"	54	"Planning Permission Expired"	18
+3811	"Scottish Borders"	"Corsbie Moor Wind Farm"	"Wind Onshore"	27	"Application Refused"	9
+3536	"Scottish Borders"	"Crystal Rig Extension II"	"Wind Onshore"	20.7	"Operational"	9
+3114	"Scottish Borders"	"Crystal Rig Phase 1"	"Wind Onshore"	62.5	"Operational"	25
+3440	"Scottish Borders"	"Crystal Rig Wind Farm Phase 2a"	"Wind Onshore"	138	"Operational"	60
+4215	"Scottish Borders"	"Crystal Rig Wind Farm Phase III"	"Wind Onshore"	13.8	"Operational"	6
+4631	"Scottish Borders"	"Crystal Rig Wind Farm Phase IV"	"Wind Onshore"	48	"Application Submitted"	11
+4579	"Scottish Borders"	"Cummings Hill Wind Farm"	"Wind Onshore"	21	"Application Withdrawn"	7
+4023	"Scottish Borders"	"Drone Hill"	"Wind Onshore"	28.6	"Operational"	22
+3579	"Scottish Borders"	"Dun Law Extension"	"Wind Onshore"	29.75	"Operational"	35
+3213	"Scottish Borders"	"Dunion Hill Wind Farm"	"Wind Onshore"	18.4	"Application Refused"	8
+4364	"Scottish Borders"	"Earlshaugh Wind Farm"	"Wind Onshore"	55.2	"Abandoned"	22
+4819	"Scottish Borders"	"Easter Langlee EfW (ATT)"	"Advanced Conversion Technologies"	2.9	"Abandoned"	0
+3506	"Scottish Borders"	"Falahill"	"Wind Onshore"	6.744	"Application Refused"	0
+4059	"Scottish Borders"	"Fallago Rig"	"Wind Onshore"	144	"Operational"	48
+4964	"Scottish Borders"	"Fallago Rig 2 (extension)"	"Wind Onshore"	41	"Application Refused"	12
+6207	"Scottish Borders"	"Gilston Hill Wind Farm"	"Wind Onshore"	21	"Awaiting Construction"	7
+3909	"Scottish Borders"	"Gilston Wind Farm (Borders)"	"Wind Onshore"	14.35	"Application Refused"	7
+4582	"Scottish Borders"	"Girthgate Wind Farm"	"Wind Onshore"	81.6	"Application Withdrawn"	24
+3538	"Scottish Borders"	"Glenkerie Wind Farm"	"Wind Onshore"	22	"Operational"	11
+4578	"Scottish Borders"	"Glenkerie Wind Farm Extension"	"Wind Onshore"	15	"Awaiting Construction"	6
+4306	"Scottish Borders"	"Hag Law"	"Wind Onshore"	20	"Application Refused"	8
+5912	"Scottish Borders"	"Highlee Hill Wind Farm"	"Wind Onshore"	44.85	"Application Withdrawn"	13
+4575	"Scottish Borders"	"Hoprigshiels Community Wind Farm"	"Wind Onshore"	6.9	"Operational"	3
+3914	"Scottish Borders"	"HORN BURN WIND FARM - WIND TURBINES"	"Wind Onshore"	20	"Application Refused"	10
+6214	"Scottish Borders"	"Howpark Farm"	"Wind Onshore"	20	"Awaiting Construction"	8
+3431	"Scottish Borders"	"Inch Moor Wind Farm"	"Wind Onshore"	51.2	"Application Withdrawn"	16
+4770	"Scottish Borders"	"Kilrubie Wind Farm"	"Wind Onshore"	21	"Application Withdrawn"	7
+4126	"Scottish Borders"	"Kinegar Quarry"	"Wind Onshore"	5	"Application Refused"	2
+4601	"Scottish Borders"	"Kinegar Quarry (resubmission)"	"Wind Onshore"	5	"Operational"	2
+4620	"Scottish Borders"	"Langhope Rig"	"Wind Onshore"	16	"Operational"	10
+2906	"Scottish Borders"	"Leithope Forest"	"Wind Onshore"	70	"Application Withdrawn"	48
+3605	"Scottish Borders"	"Longpark"	"Wind Onshore"	38	"Operational"	19
+4576	"Scottish Borders"	"Longpark Wind Farm Extension"	"Wind Onshore"	14	"Application Withdrawn"	5
+3170	"Scottish Borders"	"Minch Moor"	"Wind Onshore"	21.6	"Application Refused"	12
+3151	"Scottish Borders"	"Monashee"	"Wind Onshore"	15	"Application Withdrawn"	0
+3884	"Scottish Borders"	"Monashee Wind Farm"	"Wind Onshore"	15	"Application Withdrawn"	6
+3429	"Scottish Borders"	"Moorhouse Farm"	"Wind Onshore"	1	"Operational"	2
+4071	"Scottish Borders"	"Muircleugh Farm"	"Wind Onshore"	4	"Application Withdrawn"	2
+4086	"Scottish Borders"	"Muircleugh Farm Resubmission"	"Wind Onshore"	12	"Application Withdrawn"	6
+4103	"Scottish Borders"	"Muircleugh Farm Resubmission 2"	"Wind Onshore"	21	"Application Refused"	7
+4600	"Scottish Borders"	"Penmanshiel Wind Farm"	"Wind Onshore"	28.7	"Operational"	14
+6147	"Scottish Borders"	"Pines Burn Wind Farm"	"Wind Onshore"	36	"Awaiting Construction"	12
+4179	"Scottish Borders"	"Quixwood Moor"	"Wind Onshore"	29.9	"Operational"	13
+3299	"Scottish Borders"	"Roughside Hill"	"Wind Onshore"	30	"Operational"	24
+3669	"Scottish Borders"	"Rowantree Wind Farm"	"Wind Onshore"	69	"Application Refused"	23
+3215	"Scottish Borders"	"Sell Moor Windfarm"	"Wind Onshore"	47.5	"Application Refused"	0
+4074	"Scottish Borders"	"Shaw Park Wind Farm"	"Wind Onshore"	20.7	"Application Refused"	9
+2765	"Scottish Borders"	"Spurlens Rig Wind Cluster"	"Wind Onshore"	12	"Application Refused"	6
+3457	"Scottish Borders"	"Toddleburn"	"Wind Onshore"	27.6	"Operational"	12
+3317	"Scottish Borders"	"Whitelaw Brae Wind Farm"	"Wind Onshore"	50.4	"Awaiting Construction"	14
+3689	"Scottish Borders"	"Whitton Farm"	"Wind Onshore"	15	"Application Refused"	5
+4577	"Scottish Borders"	"Windy Edge Wind Farm"	"Wind Onshore"	27	"Awaiting Construction"	9
+7429	"Scottish Borders"	"Wull Muir Wind Farm"	"Wind Onshore"	33.6	"Application Refused"	8
+7430	"Scottish Borders"	"Wull Muir Wind Farm"	"Battery"	4	"Application Refused"	0
+3516	"Shetland Islands"	"Beaw Field Wind Farm"	"Wind Onshore"	57.8	"Awaiting Construction"	17
+3310	"Shetland Islands"	"Burradale Hill"	"Wind Onshore"	3.68	"Operational"	5
+3912	"Shetland Islands"	"Culterfield Windfarm"	"Wind Onshore"	2.7	"Planning Permission Expired"	3
+5960	"Shetland Islands"	"Culterfield Windfarm (resubmission)"	"Wind Onshore"	2.7	"Awaiting Construction"	3
+6848	"Shetland Islands"	"Foula Community Electricity Scheme"	"Battery"	0.016	"Operational"	0
+4075	"Shetland Islands"	"Gremista Wind Farm"	"Wind Onshore"	3	"Operational"	1
+6384	"Shetland Islands"	"Mossy Hill"	"Wind Onshore"	46.8	"Awaiting Construction"	12
+3288	"Shetland Islands"	"Muckla Moor"	"Wind Onshore"	249	"Application Withdrawn"	83
+7266	"Shetland Islands"	"North Hoo Fields"	"Wind Onshore"	0.9	"Awaiting Construction"	1
+2978	"Shetland Islands"	"North Nesting Wind, Shetland"	"Wind Onshore"	250	"Abandoned"	0
+3745	"Shetland Islands"	"North Yell Wind Farm (Garth Community Wind Farm)"	"Wind Onshore"	4.5	"Operational"	5
+6855	"Shetland Islands"	"Northern Isles New Energy Solution (NINES) 1"	"Battery"	1	"Operational"	0
+7463	"Shetland Islands"	"Shetland Tidal Array (extension)"	"Tidal Barrage and Tidal Stream"	1.4	"Awaiting Construction"	0
+4622	"Shetland Islands"	"Viking Wind Farm"	"Wind Onshore"	370	"Abandoned"	103
+6828	"Shetland Islands"	"Viking Wind Farm (resubmission)"	"Wind Onshore"	443	"Awaiting Construction"	103
+4318	"Shetland Islands"	"Yell Wind Farm"	"Wind Onshore"	200	"Application Submitted"	29
+2847	"South Ayrshire"	"Altercannoch Wind Farm"	"Wind Onshore"	27.7	"Application Refused"	8
+6798	"South Ayrshire"	"Arecleoch Wind Farm (extension)"	"Wind Onshore"	73	"Application Submitted"	13
+7882	"South Ayrshire"	"Arecleoch Wind Farm (extension)"	"Battery"	20	"Application Submitted"	0
+3258	"South Ayrshire"	"Arecleoch Windfarm"	"Wind Onshore"	120	"Operational"	60
+4645	"South Ayrshire"	"Assel Valley Wind Farm"	"Wind Onshore"	25	"Operational"	11
+2686	"South Ayrshire"	"Breaker Hill"	"Wind Onshore"	19.5	"Application Refused"	15
+4102	"South Ayrshire"	"Breaker Hill (resubmission)"	"Wind Onshore"	7.2	"Application Refused"	9
+3631	"South Ayrshire"	"Chapelton Farm"	"Wind Onshore"	2.55	"Application Refused"	3
+20	"South Ayrshire"	"Chilton Bros Biomass Plant"	"Biomass (dedicated)"	2.5	"Application Withdrawn"	0
+2767	"South Ayrshire"	"Chirmorie Wind Farm"	"Wind Onshore"	76	"Awaiting Construction"	21
+7206	"South Ayrshire"	"Clauchrie Windfarm"	"Wind Onshore"	100	"Application Submitted"	18
+3999	"South Ayrshire"	"Corwar Wind Farm"	"Wind Onshore"	16.4	"Application Refused"	8
+4269	"South Ayrshire"	"Dersalloch"	"Wind Onshore"	69	"Operational"	23
+4593	"South Ayrshire"	"Glen App"	"Wind Onshore"	22	"Operational"	11
+3109	"South Ayrshire"	"Hadyard Hill"	"Wind Onshore"	120	"Operational"	52
+3375	"South Ayrshire"	"Hadyard Hill extension"	"Wind Onshore"	88	"Application Withdrawn"	22
+6138	"South Ayrshire"	"Harbour Road"	"Biomass (dedicated)"	2.55	"Operational"	0
+4988	"South Ayrshire"	"Kirk Hill Wind Farm"	"Wind Onshore"	24	"Awaiting Construction"	8
+4610	"South Ayrshire"	"Knockskae Wind Farm"	"Wind Onshore"	25.3	"Application Refused"	11
+2920	"South Ayrshire"	"Knoweside Hill"	"Wind Onshore"	19.5	"Application Withdrawn"	15
+4204	"South Ayrshire"	"Linfairn Wind Farm"	"Wind Onshore"	54.4	"Application Refused"	17
+3260	"South Ayrshire"	"Mark Hill"	"Wind Onshore"	56	"Operational"	24
+4205	"South Ayrshire"	"Millenderdale Wind Farm"	"Wind Onshore"	15	"Application Refused"	7
+3864	"South Ayrshire"	"Straid Farm Wind Park"	"Wind Onshore"	36.8	"Application Refused"	14
+4073	"South Ayrshire"	"Tralorg Wind Farm"	"Wind Onshore"	20	"Under Construction"	8
+4110	"South Lanarkshire"	"Andershaw"	"Wind Onshore"	36	"Operational"	14
+4337	"South Lanarkshire"	"Auchrobert Wind Farm"	"Wind Onshore"	36	"Operational"	12
+4055	"South Lanarkshire"	"Bankend Rig"	"Wind Onshore"	14.3	"Operational"	11
+5414	"South Lanarkshire"	"Bankend Rig II Wind Farm"	"Wind Onshore"	10.2	"Application Submitted"	3
+5174	"South Lanarkshire"	"Bankend Wind Farm (extension)"	"Wind Onshore"	10.2	"Application Submitted"	3
+3116	"South Lanarkshire"	"Black Law"	"Wind Onshore"	124	"Operational"	54
+4253	"South Lanarkshire"	"Black Law Extension - 1a"	"Wind Onshore"	48.43	"Operational"	29
+4580	"South Lanarkshire"	"Black Law Extension - 1b"	"Wind Onshore"	15	"Operational"	5
+3810	"South Lanarkshire"	"Blantyre Muir Wind Farm"	"Wind Onshore"	9	"Operational"	3
+4240	"South Lanarkshire"	"Blantyre Muir Wind Farm extension"	"Wind Onshore"	7.5	"Operational"	3
+2951	"South Lanarkshire"	"Bogside"	"Wind Onshore"	2.3	"Application Refused"	2
+6708	"South Lanarkshire"	"Broken Cross (Former Surface Mine)"	"Wind Onshore"	40	"Application Submitted"	10
+3688	"South Lanarkshire"	"Calder Water Community Wind Farm"	"Wind Onshore"	28	"Operational"	14
+4000	"South Lanarkshire"	"Calla Wind Farm"	"Wind Onshore"	18	"Application Refused"	6
+909	"South Lanarkshire"	"Carlisle Road RRF"	"Advanced Conversion Technologies"	7	"Planning Permission Expired"	0
+2771	"South Lanarkshire"	"Cartland Muir Wind Farm"	"Wind Onshore"	5	"Application Refused"	2
+3630	"South Lanarkshire"	"Castlemilk and Carmunnock Community Windpark Trust"	"Wind Onshore"	2.5	"Application Refused"	1
+4011	"South Lanarkshire"	"Clyde Wind Farm"	"Wind Onshore"	350	"Operational"	152
+4178	"South Lanarkshire"	"Clyde Wind Farm Extension (Clyde 2)"	"Wind Onshore"	172.8	"Operational"	54
+4314	"South Lanarkshire"	"Crofthill Wind Farm"	"Wind Onshore"	17	"Application Refused"	5
+4355	"South Lanarkshire"	"Crookedstane Farm"	"Wind Onshore"	11.4	"Awaiting Construction"	4
+3385	"South Lanarkshire"	"Crutherland Farm Wind Turbine"	"Wind Onshore"	2	"Application Refused"	1
+5455	"South Lanarkshire"	"Cumberhead Wind Farm"	"Wind Onshore"	48	"Application Submitted"	16
+4189	"South Lanarkshire"	"Dalquhandy Windfarm"	"Wind Onshore"	45	"Awaiting Construction"	15
+5393	"South Lanarkshire"	"Douglas West and Dalquhandy Renewable Energy Project"	"Wind Onshore"	49	"Awaiting Construction"	15
+6826	"South Lanarkshire"	"Douglas West Wind Farm (extension)"	"Wind Onshore"	78	"Application Submitted"	13
+7460	"South Lanarkshire"	"Douglas West Wind Farm (extension)"	"Battery"	20	"Application Submitted"	0
+7679	"South Lanarkshire"	"Draffanmarshill Farm"	"Wind Onshore"	4.2	"Application Submitted"	1
+4362	"South Lanarkshire"	"Dungavel Hill"	"Wind Onshore"	29.9	"Operational"	13
+3374	"South Lanarkshire"	"Dykehead Farm wind turbine 3"	"Wind Onshore"	2.3	"Application Withdrawn"	1
+5980	"South Lanarkshire"	"Fordmouth"	"Solar Photovoltaics"	5	"Application Refused"	0
+6878	"South Lanarkshire"	"Fordmouth, Carnwath"	"Fuel Cell (Hydrogen)"	2	"Application Refused"	0
+4594	"South Lanarkshire"	"Glentaggart Wind Farm"	"Wind Onshore"	17	"Application Withdrawn"	5
+3094	"South Lanarkshire"	"Goodbush Hill"	"Wind Onshore"	24	"Application Withdrawn"	60
+7572	"South Lanarkshire"	"Hagshaw Hill"	"Battery"	20	"Awaiting Construction"	0
+7456	"South Lanarkshire"	"Hagshaw Hill (Repowering)"	"Wind Onshore"	68.4	"Awaiting Construction"	1
+3593	"South Lanarkshire"	"Hagshaw Hill (S15) Wind Farm, Lanarkshire"	"Wind Onshore"	7.8	"Operational"	7
+3301	"South Lanarkshire"	"Hagshaw Hill Wind Farm"	"Wind Onshore"	7.8	"Operational"	6
+3220	"South Lanarkshire"	"Hagshaw Hill Wind Farm Extension"	"Wind Onshore"	26	"Operational"	20
+4894	"South Lanarkshire"	"Halls Burn"	"Wind Onshore"	2.5	"Application Withdrawn"	1
+3583	"South Lanarkshire"	"Harrow's Law"	"Wind Onshore"	111	"Application Withdrawn"	37
+2725	"South Lanarkshire"	"Harrow's Law Resubmission"	"Wind Onshore"	39	"Application Refused"	17
+6135	"South Lanarkshire"	"Harryburn Wind Farm"	"Wind Onshore"	67	"Application Refused"	16
+3445	"South Lanarkshire"	"Hazelside farm"	"Wind Onshore"	2.4	"Application Withdrawn"	3
+3633	"South Lanarkshire"	"Hazelside farm - resubmission"	"Wind Onshore"	1.6	"Under Construction"	2
+3430	"South Lanarkshire"	"Heathland Wind Farm"	"Wind Onshore"	57.8	"Awaiting Construction"	17
+7063	"South Lanarkshire"	"Highflat Battery Energy Storage"	"Battery"	19.9	"Application Withdrawn"	0
+5325	"South Lanarkshire"	"Hill Rig Community Wind Farm (resubmission)"	"Wind Onshore"	28	"Application Refused"	8
+4382	"South Lanarkshire"	"Hill Rig Community Windfarm"	"Wind Onshore"	28	"Application Refused"	8
+4385	"South Lanarkshire"	"Kennoxhead Wind Farm"	"Wind Onshore"	95	"Awaiting Construction"	19
+7204	"South Lanarkshire"	"Kennoxhead Wind Farm Extension"	"Wind Onshore"	40	"Application Submitted"	18
+5744	"South Lanarkshire"	"Kittymuir Farm"	"Wind Onshore"	1.6	"Planning Permission Expired"	2
+4643	"South Lanarkshire"	"Kype Muir Wind Farm"	"Wind Onshore"	88.4	"Operational"	26
+4628	"South Lanarkshire"	"Kype Muir Wind Farm Extension"	"Wind Onshore"	75	"Under Construction"	15
+3915	"South Lanarkshire"	"LADEHEAD FARM - WIND TURBINES"	"Wind Onshore"	2.4	"Operational"	3
+4697	"South Lanarkshire"	"Land associated with Lairfad"	"Wind Onshore"	1.5	"Application Withdrawn"	1
+4696	"South Lanarkshire"	"Land associated with Rawhead Farm"	"Wind Onshore"	1.5	"Application Withdrawn"	1
+4392	"South Lanarkshire"	"Leadhills Wind Farm"	"Wind Onshore"	49	"Application Refused"	14
+3259	"South Lanarkshire"	"Limmer Hill"	"Wind Onshore"	99	"Application Withdrawn"	33
+4394	"South Lanarkshire"	"Lion Hill Wind Farm (Crookedstane Farm 2)"	"Wind Onshore"	11.4	"Awaiting Construction"	4
+3453	"South Lanarkshire"	"Lochhead Farm"	"Wind Onshore"	6	"Operational"	3
+295	"South Lanarkshire"	"M74 Central Coalburn (Waste AD)"	"Anaerobic Digestion"	5	"Planning Permission Expired"	0
+6106	"South Lanarkshire"	"Marshill Farm"	"Wind Onshore"	1.5	"Operational"	1
+4440	"South Lanarkshire"	"Middle Muir Wind Farm"	"Wind Onshore"	51	"Operational"	15
+4683	"South Lanarkshire"	"Muirhall"	"Wind Onshore"	12.3	"Operational"	6
+3873	"South Lanarkshire"	"Muirhall Extension"	"Wind Onshore"	6.8	"Operational"	2
+4281	"South Lanarkshire"	"Muirhall South"	"Wind Onshore"	8.25	"Operational"	3
+6355	"South Lanarkshire"	"Neilson Biogas Park Farm AD (Resubmission)"	"Anaerobic Digestion"	1	"Application Withdrawn"	0
+3597	"South Lanarkshire"	"Nutberry"	"Wind Onshore"	60	"Application Withdrawn"	0
+3676	"South Lanarkshire"	"Nutberry Wind Farm"	"Wind Onshore"	15	"Operational"	6
+5749	"South Lanarkshire"	"Park Farm AD"	"Anaerobic Digestion"	1	"Application Withdrawn"	0
+3095	"South Lanarkshire"	"Penbreck & Carmacoup Forest"	"Wind Onshore"	27	"Application Refused"	18
+4079	"South Lanarkshire"	"Penbreck & Carmacoup Forest (Resubmission)"	"Wind Onshore"	27	"Awaiting Construction"	9
+3868	"South Lanarkshire"	"Poniel Wind Turbines"	"Wind Onshore"	9	"Awaiting Construction"	2
+6363	"South Lanarkshire"	"Priestgill Wind Farm"	"Wind Onshore"	22.4	"Awaiting Construction"	7
+7576	"South Lanarkshire"	"Shaws Farm"	"Battery"	5	"Awaiting Construction"	0
+726	"South Lanarkshire"	"South Cathkin Landfill Site"	"Landfill Gas"	7.39	"Operational"	0
+5306	"South Lanarkshire"	"South Priorhill Farm"	"Wind Onshore"	1.5	"Awaiting Construction"	1
+5876	"South Lanarkshire"	"Stoney Hill Farm"	"Wind Onshore"	2	"Awaiting Construction"	1
+3667	"South Lanarkshire"	"The Rosti Factory"	"Wind Onshore"	2.2	"Operational"	1
+4427	"South Lanarkshire"	"West Browncastle"	"Wind Onshore"	30	"Operational"	12
+7846	"South Lanarkshire"	"West Dykes"	"Wind Onshore"	3	"Application Submitted"	1
+6409	"South Lanarkshire"	"Whistleberry Road, Hamilton"	"Advanced Conversion Technologies"	18	"Application Refused"	0
+6894	"South Lanarkshire"	"Whitelaw Brae Wind farm"	"Battery"	4	"Awaiting Construction"	0
+6173	"South Lanarkshire"	"Woodlands Wind Farm"	"Wind Onshore"	2.55	"Operational"	3
+6061	"Stirling"	"Acharn Forest Killin Biomass Plant"	"Biomass (dedicated)"	5.6	"Operational"	0
+473	"Stirling"	"Allt Fionn - resubmission"	"Small Hydro"	2.1	"Operational"	0
+2909	"Stirling"	"Ballindalloch Muir"	"Wind Onshore"	20	"Application Refused"	9
+487	"Stirling"	"Ben Glas"	"Small Hydro"	1.3	"Operational"	0
+3119	"Stirling"	"Braes O'Doune"	"Wind Onshore"	72	"Operational"	36
+4797	"Stirling"	"Bruach Caorainn Hydro Scheme"	"Small Hydro"	1.1	"Operational"	0
+2800	"Stirling"	"Carron Valley (Cairnoch Hill) Wind Farm"	"Wind Onshore"	45	"Application Refused"	15
+492	"Stirling"	"Chaorach Hydro"	"Small Hydro"	2	"Operational"	0
+41	"Stirling"	"Cowie Biomass Facility"	"Biomass (dedicated)"	15	"Operational"	0
+6318	"Stirling"	"Craigannet Farm Wind Turbine"	"Wind Onshore"	1.5	"Operational"	1
+3907	"Stirling"	"CRAIGANNET WIND FARM"	"Wind Onshore"	15	"Application Refused"	6
+2940	"Stirling"	"Craigengelt"	"Wind Onshore"	20	"Operational"	8
+3625	"Stirling"	"Craigton and Spittalhill Wind Farm"	"Wind Onshore"	21	"Planning Permission Expired"	7
+450	"Stirling"	"Donich Water Hydro"	"Small Hydro"	1.35	"Operational"	0
+3201	"Stirling"	"Earlsburn"	"Wind Onshore"	37.5	"Operational"	14
+4247	"Stirling"	"Earlsburn North (Kingsburn) Wind Farm"	"Wind Onshore"	22.5	"Operational"	9
+5911	"Stirling"	"Farm at Lower Polmaise"	"Solar Photovoltaics"	5	"Planning Permission Expired"	0
+446	"Stirling"	"Glen Luss Hydro"	"Small Hydro"	2	"Abandoned"	0
+6190	"Stirling"	"Manor Powis"	"Solar Photovoltaics"	5	"Application Withdrawn"	0
+3959	"Stirling"	"Muirpark"	"Wind Onshore"	33	"Application Refused"	11
+7785	"Stirling"	"Patrickston Farm"	"Solar Photovoltaics"	15	"Awaiting Construction"	0
+3651	"Stirling"	"Rosehill Wind Turbines"	"Wind Onshore"	2.4	"Operational"	3
+7144	"Stirling"	"Unit 15, Borrowmeadow Road"	"Battery"	19	"Abandoned"	0
+688	"West Dunbartonshire"	"Auchencarroch Landfill"	"Landfill Gas"	2.113	"Operational"	0
+786	"West Dunbartonshire"	"Auchencarroch Landfill Extension"	"Landfill Gas"	2	"Operational"	0
+3123	"West Dunbartonshire"	"Kilpatrick Hills"	"Wind Onshore"	60	"Application Withdrawn"	0
+3778	"West Dunbartonshire"	"Merkins Wind Farm"	"Wind Onshore"	25	"Application Refused"	10
+5999	"West Dunbartonshire"	"North Clyde Recycling Centre (resubmission)"	"Anaerobic Digestion"	1.6	"Awaiting Construction"	0
+298	"West Dunbartonshire"	"North Clyde Recylcing Centre (Waste AD)"	"Anaerobic Digestion"	1.6	"Planning Permission Expired"	0
+5012	"West Lothian"	"Aldi Distribution Centre"	"Solar Photovoltaics"	1.28	"Operational"	0
+4722	"West Lothian"	"Blackburnhall Self Contained Hydro Generator"	"Small Hydro"	2	"Application Withdrawn"	0
+6910	"West Lothian"	"Broxburn"	"Battery"	20	"Operational"	0
+4199	"West Lothian"	"Camilty Wind Farm"	"Wind Onshore"	20.4	"Awaiting Construction"	6
+3086	"West Lothian"	"Cowdenhead Wind Turbines"	"Wind Onshore"	1.5	"Application Refused"	2
+4218	"West Lothian"	"Drumduff"	"Wind Onshore"	8.5	"Operational"	3
+4911	"West Lothian"	"Drumelzie"	"Wind Onshore"	1.5	"Awaiting Construction"	1
+6291	"West Lothian"	"Fauch Hill"	"Wind Onshore"	48	"Application Refused"	12
+4161	"West Lothian"	"Fauch Hill Wind Farm"	"Wind Onshore"	69	"Application Refused"	23
+4225	"West Lothian"	"Harburnhead Wind Farm"	"Wind Onshore"	51.7	"Operational"	22
+7259	"West Lothian"	"Iron Mountain Building"	"Solar Photovoltaics"	0.25	"Awaiting Construction"	0
+5200	"West Lothian"	"Levenseat EfW"	"Advanced Conversion Technologies"	12.5	"Operational"	0
+6215	"West Lothian"	"Levenseat Waste Management Facility"	"Advanced Conversion Technologies"	17	"Awaiting Construction"	0
+6327	"West Lothian"	"Longhill Burn Wind Farm"	"Wind Onshore"	36	"Awaiting Construction"	8
+3232	"West Lothian"	"Pates Hill"	"Wind Onshore"	14	"Operational"	7
+3363	"West Lothian"	"PATES HILL WIND FARM Extension"	"Wind Onshore"	6	"Application Withdrawn"	2
+4211	"West Lothian"	"Pearie Law Wind Farm"	"Wind Onshore"	19.2	"Operational"	6
+977	"West Lothian"	"Pond Green Energy Park"	"Advanced Conversion Technologies"	5	"Awaiting Construction"	0
+107	"West Lothian"	"Tesco Distribution Centre (Livingston)"	"Biomass (dedicated)"	6.5	"Abandoned"	0
+4263	"West Lothian"	"Tormywheel"	"Wind Onshore"	30.75	"Operational"	15
+6989	"West Lothian"	"Tormywheel Wind Farm"	"Battery"	1	"Awaiting Construction"	0
+6208	"West Lothian"	"Tormywheel Wind Farm Extension"	"Wind Onshore"	5	"Awaiting Construction"	2
