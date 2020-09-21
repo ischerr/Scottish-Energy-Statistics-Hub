@@ -620,7 +620,10 @@ ui <- shinyUI(fluidPage(
                  DisplacedEmissionsOutput("DisplacedEmissions")),
         tabPanel(title = "Grid Emissions",
                  value = "GridEmissions",
-                 GridEmissionsOutput("GridEmissions"))
+                 GridEmissionsOutput("GridEmissions")),
+        tabPanel(title = "GHG Elec",
+                 value = "GHGElec",
+                 GHGElecOutput("GHGElec"))
         )),
       tabPanel(
         value = "RenHeat",
@@ -638,7 +641,10 @@ ui <- shinyUI(fluidPage(
                    DomesticRHIOutput("DomesticRHI")),
           tabPanel(title ="Non-domestic RHI", 
                    value = "NonDomRHI",
-                   NonDomRHIOutput("NonDomRHI"))
+                   NonDomRHIOutput("NonDomRHI")),
+          tabPanel(title = "GHG Heat",
+                   value = "GHGHeat",
+                   GHGHeatOutput("GHGHeat"))
       )),
       tabPanel(
         value = "RenTransport",
@@ -650,7 +656,10 @@ ui <- shinyUI(fluidPage(
                               ULEVsOutput("ULEVs")),
                      tabPanel(title ="Biofuels in Transport", 
                               value = "Biofuels",
-                              BiofuelsOutput("Biofuels"))
+                              BiofuelsOutput("Biofuels")),
+                     tabPanel(title = "GHG Transport",
+                              value = "GHGTransport",
+                              GHGTransportOutput("GHGTransport"))
                      
         )
       ),
@@ -896,9 +905,6 @@ ui <- shinyUI(fluidPage(
              title = tags$div(img(src = "Emissions.svg", height = "30px",   display= "block"), " New Stuff", style = "font-family: 'Century Gothic'; font-weight: 400 "),
              navlistPanel(id = "Emissions",
                           widths = c(3, 8),
-                          tabPanel(title = "GHG Elec Heat Transport",
-                                   value = "GHGElecHeatTransport",
-                                   GHGElecHeatTransportOutput("GHGElecHeatTransport")),
                           tabPanel(title = "GrossConsumption",
                                    value = "GrossConsumption",
                                    GrossConsumptionOutput("GrossConsumption"))
