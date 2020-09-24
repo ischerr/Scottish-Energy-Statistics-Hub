@@ -15,7 +15,7 @@
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
    width="319.88266"
    height="419.77661"
-   inkscape:export-filename="C:\Users\ische\OneDrive\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\EnConsumptionSectorChart.png"
+   inkscape:export-filename="C:\Users\ische\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\EnConsumptionSectorChart.png"
    inkscape:export-xdpi="300.04529"
    inkscape:export-ydpi="300.04529">
   <metadata
@@ -39,17 +39,17 @@
      guidetolerance="10"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:window-width="3840"
-     inkscape:window-height="2066"
+     inkscape:window-width="1440"
+     inkscape:window-height="1515"
      id="namedview76"
      showgrid="false"
      inkscape:zoom="2.68112"
-     inkscape:cx="47.63038"
-     inkscape:cy="99.121495"
-     inkscape:window-x="-11"
-     inkscape:window-y="-11"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="g1306"
+     inkscape:cx="157.25573"
+     inkscape:cy="187.51549"
+     inkscape:window-x="5749"
+     inkscape:window-y="1598"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g4896"
      fit-margin-top="5"
      fit-margin-left="5"
      fit-margin-right="5"
@@ -173,7 +173,7 @@
            width="483.75308"
            id="rect905-1" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#1a5d38;fill-opacity:1"
-         id="flowPara907-9">2017</flowPara></flowRoot>    <flowRoot
+         id="flowPara907-9">2018</flowPara></flowRoot>    <flowRoot
        transform="translate(45.124957,596.64747)"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#1a5d38;fill-opacity:1;stroke:none"
        id="flowRoot901-8-4"
@@ -289,7 +289,7 @@
                  dy="15.599999"
                  x="600.40009"
                  y="230.12041"
-                 id="tspan893">51.1%</tspan>
+                 id="tspan893">50.5%</tspan>
             </text>
           </g>
           <path
@@ -425,7 +425,7 @@
                  class="line"
                  x="-39.524086"
                  y="408.68973"
-                 id="tspan935-3">2.2%</tspan>
+                 id="tspan935-3">2.9%</tspan>
             </text>
           </g>
         </g>
