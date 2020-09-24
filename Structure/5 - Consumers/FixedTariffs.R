@@ -121,7 +121,7 @@ FixedTariffs <- function(input, output, session) {
     
     names(Data)[1] <- "Year"
     
-    Data$Year <- ymd(Data$Year)
+    Data$Year <- dmy(Data$Year)
     
     ElecPayments <- Data
     
@@ -274,7 +274,7 @@ FixedTariffs <- function(input, output, session) {
     
     names(Data) <- c("Year", "North Scotland", "South Scotland", "Great Britain")
     
-    Data$Year <- ymd(Data$Year)
+    Data$Year <- dmy(Data$Year)
     
     Data$Year <- as.yearqtr(Data$Year)
     
@@ -346,7 +346,7 @@ FixedTariffs <- function(input, output, session) {
     
     names(Data)[1] <- "Year"
     
-    Data$Year <- ymd(Data$Year)
+    Data$Year <- dmy(Data$Year)
 
     ElecPayments <- Data
     
@@ -572,7 +572,7 @@ FixedTariffs <- function(input, output, session) {
       
       names(ElectricityBillPaymentMethods) <- c("Year", "North Scotland", "South Scotland", "Great Britain")
       
-      ElectricityBillPaymentMethods$Year <- ymd(ElectricityBillPaymentMethods$Year)
+      ElectricityBillPaymentMethods$Year <- dmy(ElectricityBillPaymentMethods$Year)
       
       ElectricityBillPaymentMethods$Year <- as.yearqtr(ElectricityBillPaymentMethods$Year)
       
@@ -796,7 +796,7 @@ FixedTariffs <- function(input, output, session) {
       
       names(GasBillPaymentMethods) <- c("Year", "North Scotland", "South Scotland", "Great Britain")
       
-      GasBillPaymentMethods$Year <- ymd(GasBillPaymentMethods$Year)
+      GasBillPaymentMethods$Year <- dmy(GasBillPaymentMethods$Year)
       
       GasBillPaymentMethods$Year <- as.yearqtr(GasBillPaymentMethods$Year)
       
