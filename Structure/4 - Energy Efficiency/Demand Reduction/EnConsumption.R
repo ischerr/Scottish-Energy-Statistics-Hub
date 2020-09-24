@@ -1045,7 +1045,7 @@ EnergyConsumption <- function(input, output, session) {
     
     
     
-    paste("Scotland, 2017")
+    paste("Scotland, 2018")
   })
   
   output$EnConsumptionLAPlot <- renderImage({
@@ -1066,7 +1066,7 @@ EnergyConsumption <- function(input, output, session) {
   
   EnConsumptionLA <- read_csv("Processed Data/Output/Consumption/CorrectedFinalConsumptionbyLA.csv")
   
-  Year <- 2017
+  Year <- max(EnConsumptionLA$Year)
   
   output$EnConsumptionLATable = renderDataTable({
     
@@ -1074,7 +1074,7 @@ EnergyConsumption <- function(input, output, session) {
     
     EnConsumptionLATable <- EnConsumptionLA[which(EnConsumptionLA$Year == Year),]
     
-    EnConsumptionLATable <- EnConsumptionLATable[c(3,1,26,27,28,25)]
+    EnConsumptionLATable <- EnConsumptionLATable[c(2,1,31,32,33,30)]
     
     names(EnConsumptionLATable) <- c("Local Authority", "Geography Code", "Industry & Commercial", "Domestic", "Transport", "Total consumption")
     
@@ -1501,13 +1501,13 @@ EnergyConsumption <- function(input, output, session) {
     
     EnConsumptionLA <- read_csv("Processed Data/Output/Consumption/CorrectedFinalConsumptionbyLA.csv")
     
-    Year <- 2017
+    Year <- max(EnConsumptionLA$Year)
     
       unique(EnConsumptionLA$Year)
       
       EnConsumptionLAMap <- EnConsumptionLA[which(EnConsumptionLA$Year == Year),]
       
-      EnConsumptionLAMap <- EnConsumptionLAMap[c(3,1,26,27,28,25)]
+      EnConsumptionLAMap <- EnConsumptionLAMap[c(2,1,31,32,33,30)]
       
       names(EnConsumptionLAMap) <- c("LocalAuthority", "CODE", "Industry & Commercial", "Domestic", "Transport", "Total")
       
