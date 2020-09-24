@@ -805,7 +805,7 @@ EnProd <- function(input, output, session) {
       
       EnProdHistChart <- EnProdHistChart +
         xlim(min(EnProdHist$Year)-0.5,max(EnProdHist$Year)+0.5)+
-        ylim(-0.0025, .32)
+        ylim(-0.0025, .33)
       
       EnProdHistChart
       
