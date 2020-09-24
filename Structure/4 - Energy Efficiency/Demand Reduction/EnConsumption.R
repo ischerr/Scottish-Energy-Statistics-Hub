@@ -1121,7 +1121,7 @@ EnergyConsumption <- function(input, output, session) {
   output$EnConsumptionLA.png <- downloadHandler(
     filename = "EnConsumptionLA.png",
     content = function(file) {
-      writePNG(readPNG("Structure/4 - Energy Efficiency/Demand Reduction/LAConsumptionMapChart.png"), file) 
+      file.copy("Structure/4 - Energy Efficiency/Demand Reduction/LAConsumptionMapChart.png", file) 
     }
   )
   
