@@ -516,7 +516,7 @@ RenElecGen <- function(input, output, session) {
         xaxis = list(
           title = "",
           tickformat = "",
-          range = c(0, 30500),
+          range = c(0, 35500),
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],

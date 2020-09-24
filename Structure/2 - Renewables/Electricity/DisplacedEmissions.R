@@ -367,7 +367,7 @@ supplied - All fossil fuels (tonnes of CO2 per GWh)")
       DisplacementChart
       
       DisplacementChart <- DisplacementChart +
-        ylim(-.5, max(Displacement$Renewables))
+        ylim(-.5, max(Displacement$Renewables)*1.05)
       ggsave(
         file,
         plot = DisplacementChart,
