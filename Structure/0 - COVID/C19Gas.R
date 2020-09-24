@@ -140,11 +140,11 @@ C19Gas <- function(input, output, session) {
                 line = list(width = 4)
       ) %>% 
       add_trace(y = ~ `PostLockdown`, 
-                name = "Fourth week of March to first week of September",
+                name = "Fourth week of March to third week of September",
                 type = 'bar',
                 legendgroup = "2",
                 text = paste0(
-                  "Average weekday gas consumption in from the fourth week in March to first week of September: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
+                  "Average weekday gas consumption in from the fourth week in March to third week of September: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
                   "Year: ", WeekdayElecDemand$Year, "\n"),
                 hoverinfo = 'text',
                 line = list(width = 4)
@@ -219,7 +219,7 @@ C19Gas <- function(input, output, session) {
     
     WeekdayElecDemand <- dcast(WeekdayElecDemand, Year ~ PostLockdown)
     
-    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "Fourth week of March to first week of September (GWh)")
+    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "Fourth week of March to third week of September (GWh)")
     datatable(
       WeekdayElecDemand,
       extensions = 'Buttons',
@@ -313,7 +313,7 @@ C19Gas <- function(input, output, session) {
       DailyDemand$DayofYear <- yday(DailyDemand$Date)
       
       DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "First three weeks of March", 
-                                                                 "4th week Mar. to 4th week Aug.")
+                                                                 "4th week Mar. to 3rd week Sep.")
       
       WeekdayElecDemand <- DailyDemand
       
@@ -339,7 +339,7 @@ C19Gas <- function(input, output, session) {
           "variable",
           values = c(
             "First three weeks of March" = BarColours[3],
-            "4th week Mar. to 4th week Aug." = BarColours[2]
+            "4th week Mar. to 3rd week Sep." = BarColours[2]
           )
         ) +
         geom_bar(position = "dodge",
