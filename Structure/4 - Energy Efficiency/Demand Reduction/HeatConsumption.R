@@ -317,10 +317,12 @@ HeatConsumption <- function(input, output, session) {
     
     Data <- Data[-1,]
     
+    Data$`Non-Domestic` <- +Data$`Industrial`+Data$`Commercial`
+    
     Data$Total <- Data$Domestic+Data$`Industrial`+Data$`Commercial`
     
     datatable(
-      Data,
+      Data[c(1,2,5,3,4,6)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -352,8 +354,9 @@ HeatConsumption <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:5, 0)%>% 
-      formatStyle(c(5), fontWeight = 'bold')
+      formatRound(2:6, 0)%>% 
+      formatStyle(c(6), fontWeight = 'bold') %>% 
+      formatStyle(c(4:5), fontStyle = 'italic')
   })
   
   
