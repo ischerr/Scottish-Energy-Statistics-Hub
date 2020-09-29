@@ -27,7 +27,7 @@ EnConsumptionLAMap <- EnConsumptionLA[which(EnConsumptionLA$Year == Year),]
 
 EnConsumptionLAMap <- EnConsumptionLAMap[c(2,1,31,32,33,30)]
 
-names(EnConsumptionLAMap) <- c("LocalAuthority", "CODE", "Industry & Commercial", "Domestic", "Transport", "Total")
+names(EnConsumptionLAMap) <- c("LAName", "CODE", "Industry & Commercial", "Domestic", "Transport", "Total")
 
 EnConsumptionLAMap[order(substr(EnConsumptionLAMap$`CODE`,1,3), EnConsumptionLAMap$`LocalAuthority`),]
 
@@ -61,7 +61,7 @@ LAMap <- merge(LA, EnConsumptionLAMap)
 ### Create Full Scotland Map
 ScotlandMap <- tm_shape(LAMap) +
   tm_fill(
-    "value",
+    "Total",
     title = "LA Renewable Percentages",
     palette = "Greens",
     breaks = c(0,5000,10000,15000,20000),
@@ -92,7 +92,7 @@ LACentral <-
 # Create Central Belt Map
 CentralMap <- tm_shape(LACentral) +
   tm_fill(
-    "value",
+    "Total",
     title = "LA Renewable Percentages",
     palette = "Greens",
     breaks = c(0,5000,10000,15000,20000),
