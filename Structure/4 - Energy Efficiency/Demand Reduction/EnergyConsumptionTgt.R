@@ -293,7 +293,7 @@ EnConsumptionTgt <- function(input, output, session) {
       plottitle = "Final energy consumption against\n2005-07 baseline"
       
       EnConsChart <-
-        TargetChart(EnCons, plottitle, sourcecaption, ChartColours)
+        TargetChart3(EnCons, plottitle, sourcecaption, ChartColours)
       
       EnConsChart <- EnConsChart +
         geom_hline(yintercept = -0.12,

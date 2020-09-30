@@ -107,7 +107,7 @@ LowCarbonEconomyOutput <- function(id) {
         fluidRow(
           column(
             10,
-            h3("Data - Turnover directly supported by the LCRE sector (\u00A3)", style = "color: #39ab2c;  font-weight:bold")
+            h3("Data - Turnover directly supported by the LCRE sector (\u00A3m)", style = "color: #39ab2c;  font-weight:bold")
           ),
           column(
             2,
@@ -360,8 +360,7 @@ LowCarbonEconomy <- function(input, output, session) {
     
     output$LowCarbonEconomyTurnoverTable = renderDataTable({
       
-      Data <- read_excel("Structure/2 - Renewables/Economy/EconomyTables.xlsx", 
-                         sheet = "Turnover", col_names = TRUE)
+      Data <- read_csv("Structure/2 - Renewables/Economy/EconomyTablesTurnover.csv")
       
       
       for (i in 2:6){
@@ -382,17 +381,17 @@ LowCarbonEconomy <- function(input, output, session) {
           fixedColumns = FALSE,
           autoWidth = TRUE,
           ordering = TRUE,
-          title = "Turnover directly supported by the LCRE sector (\u00A3)",
+          title = "Turnover directly supported by the LCRE sector (\u00A3m)",
           dom = 'ltBp',
           buttons = list(
             list(extend = 'copy'),
             list(
               extend = 'excel',
-              title = 'Turnover directly supported by the LCRE sector (\u00A3)',
+              title = 'Turnover directly supported by the LCRE sector (\u00A3m)',
               header = TRUE
             ),
             list(extend = 'csv',
-                 title = 'Turnover directly supported by the LCRE sector (\u00A3)')
+                 title = 'Turnover directly supported by the LCRE sector (\u00A3m)')
           ),
           
           # customize the length menu
@@ -405,7 +404,7 @@ LowCarbonEconomy <- function(input, output, session) {
         formatStyle(1,
                     target = 'row',
                     backgroundColor = styleEqual(c('Direct Activity',  'Renewable sector', 'Low carbon', 'Low carbon electricity', 'Low carbon heat', 'Energy from waste and biomass', 'Energy efficient products', 'Low carbon services', 'Low emission vehicles, infrastructure, fuels cells and energy storage'), c('#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd'))
-        ) 
+        )
     })
     
     output$LowCarbonEconomyExportsTable = renderDataTable({

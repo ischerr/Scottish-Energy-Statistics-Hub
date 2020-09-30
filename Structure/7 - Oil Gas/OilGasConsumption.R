@@ -78,7 +78,7 @@ OilGasConsumption <- function(input, output, session) {
   
   output$OilGasConsumptionSubtitle <- renderText({
     
-    paste("Scotland, 2017")
+    paste("Scotland, 2018")
 
       })
   
@@ -206,17 +206,17 @@ OilGasConsumption <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Oil and gas consumption - Scotland",
+        title = "Oil and gas consumption - Scotland, 2018",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Oil and gas consumption - Scotland",
+            title = "Oil and gas consumption - Scotland, 2018",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Oil and gas consumption - Scotland")
+               title = "Oil and gas consumption - Scotland, 2018")
         ),
         
         # customize the length menu
@@ -387,7 +387,7 @@ OilGasConsumption <- function(input, output, session) {
     
     OilGasConsumpChart <-
       OilGasConsumpChart +
-      labs(subtitle = "Scotland, 2017") +
+      labs(subtitle = "Scotland, 2018") +
       ylim(-.16,1) +
       coord_flip()
     

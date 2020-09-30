@@ -14,7 +14,7 @@
    id="svg1391"
    sodipodi:docname="LARenGenMap.svg"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   inkscape:export-filename="C:\Users\ische\OneDrive\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\2 - Renewables\Electricity\LARenGen.png"
+   inkscape:export-filename="C:\Users\ische\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\2 - Renewables\Electricity\LARenGen.png"
    inkscape:export-xdpi="60.005222"
    inkscape:export-ydpi="60.005222">
   <metadata
@@ -25,7 +25,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -46,13 +46,13 @@
      fit-margin-left="50"
      fit-margin-bottom="50"
      fit-margin-right="50"
-     inkscape:zoom="0.40968215"
-     inkscape:cx="2691.0886"
-     inkscape:cy="1574.0925"
+     inkscape:zoom="0.57937805"
+     inkscape:cx="1937.4243"
+     inkscape:cy="1584.7254"
      inkscape:window-x="-11"
      inkscape:window-y="-11"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g6235"
+     inkscape:current-layer="g4553"
      inkscape:pagecheckerboard="true" />
   <defs
      id="defs202">
@@ -5638,18 +5638,6 @@
        id="flowPara4050-2"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold'">0 GWh</flowPara></flowRoot>  <flowRoot
      xml:space="preserve"
-     id="flowRoot4044-3-8"
-     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-     transform="matrix(0.8639309,0,0,0.8639309,-286.67633,571.73796)"><flowRegion
-       id="flowRegion4046-5-2"><rect
-         id="rect4048-7-9"
-         width="485.00284"
-         height="186.40678"
-         x="709.38135"
-         y="-9.492939" /></flowRegion><flowPara
-       id="flowPara4050-2-3"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold'">3,500 GWh</flowPara></flowRoot>  <flowRoot
-     xml:space="preserve"
      id="flowRoot4044-3-3"
      style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
      transform="matrix(0.8639309,0,0,0.8639309,-287.94185,699.69057)"><flowRegion
@@ -5660,7 +5648,7 @@
          x="709.38135"
          y="-9.492939" /></flowRegion><flowPara
        id="flowPara4050-2-19"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold'">7,000 GWh</flowPara></flowRoot>  <g
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold'">7,500 GWh</flowPara></flowRoot>  <g
      id="g4553"
      transform="translate(-1452.142,816.37839)"
      style="fill:#39ab2c;fill-opacity:1">
@@ -5685,7 +5673,7 @@
            width="483.75308"
            id="rect905-1" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#39ab2c;fill-opacity:1"
-         id="flowPara907-9">Scotland, 2018</flowPara></flowRoot>    <flowRoot
+         id="flowPara907-9">Scotland, 2019</flowPara></flowRoot>    <flowRoot
        transform="matrix(5.0209624,0,0,5.0209624,-7310.8959,357.14177)"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';letter-spacing:0px;word-spacing:0px;fill:#39ab2c;fill-opacity:1;stroke:none"
        id="flowRoot4835"

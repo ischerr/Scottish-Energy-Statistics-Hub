@@ -122,7 +122,7 @@ HeatConsumption <- function(input, output, session) {
       sheet = "Heat consump",
       col_names = FALSE,
       skip = 16,
-      n_max = 4
+      n_max = 5
     )
     
     Data <- as_tibble(t(Data))
@@ -131,7 +131,7 @@ HeatConsumption <- function(input, output, session) {
     
     names(Data)[1] <- "Year"
     
-    Data[1:4] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data[1:5] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     Data$Year <- as.character(Data$Year)
     
@@ -174,12 +174,24 @@ HeatConsumption <- function(input, output, session) {
       ) %>%
       add_trace(
         data = Data,
-        x = ~ `Non-Domestic`,
+        x = ~ `Industrial`,
         type = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "Non-Domestic",
-        text = paste0("Non-Domestic: ", format(round(Data$`Non-Domestic`, digits = 0), big.mark = ","), " GWh"),
+        name = "Industrial",
+        text = paste0("Industrial: ", format(round(Data$`Industrial`, digits = 0), big.mark = ","), " GWh"),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[2]),
+        legendgroup = 3
+      ) %>%
+      add_trace(
+        data = Data,
+        x = ~ `Commercial`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Commercial",
+        text = paste0("Commercial: ", format(round(Data$`Commercial`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 3
@@ -187,11 +199,11 @@ HeatConsumption <- function(input, output, session) {
       add_trace(
         data = Data,
         y = ~ Year,
-        x = ~ (Data$`Domestic` + Data$`Non-Domestic`) + 0.1,
+        x = ~ (Data$`Domestic` + Data$`Industrial` + Data$`Commercial`) + 0.1,
         showlegend = FALSE,
         type = 'scatter',
         mode = 'text',
-        text = ifelse(Data$`Domestic` >0, paste("<b>",format(round((Data$`Domestic` + Data$`Non-Domestic`), digits = 0), big.mark = ","),"GWh</b>")," "),
+        text = ifelse(Data$`Domestic` >0, paste("<b>",format(round((Data$`Domestic` + Data$`Industrial`  + Data$`Commercial`), digits = 0), big.mark = ","),"GWh</b>")," "),
         textposition = 'middle right',
         textfont = list(color = ChartColours[1]),
         hoverinfo = 'skip',
@@ -213,13 +225,25 @@ HeatConsumption <- function(input, output, session) {
       add_trace(
         data = tail(Data,1),
         y = ~Year,
-        x =  mean(DataLatest$`Domestic`) + (mean(DataLatest$`Non-Domestic`)/2),
+        x =  mean(DataLatest$`Domestic`) + (mean(DataLatest$`Industrial`)/2),
+        showlegend = FALSE,
+        mode = 'text',
+        type = 'scatter',
+        hoverinfo = 'skip',
+        textfont = list(color = BarColours[2]),
+        text =  paste0("<b>", percent(DataTail$`Industrial`, accuracy = 0.1), "</b>")
+      ) %>% 
+      
+      add_trace(
+        data = tail(Data,1),
+        y = ~Year,
+        x =  mean(DataLatest$`Domestic`) + mean(DataLatest$`Industrial`) + (mean(DataLatest$`Commercial`)/2),
         showlegend = FALSE,
         mode = 'text',
         type = 'scatter',
         hoverinfo = 'skip',
         textfont = list(color = BarColours[3]),
-        text =  paste0("<b>", percent(DataTail$`Non-Domestic`, accuracy = 0.1), "</b>")
+        text =  paste0("<b>", percent(DataTail$`Commercial`, accuracy = 0.1), "</b>")
       ) %>% 
       add_trace(
         data = tail(Data,1),
@@ -274,7 +298,7 @@ HeatConsumption <- function(input, output, session) {
       sheet = "Heat consump",
       col_names = FALSE,
       skip = 16,
-      n_max = 3
+      n_max = 4
     )
     
     Data <- as_tibble(t(Data))
@@ -283,7 +307,7 @@ HeatConsumption <- function(input, output, session) {
     
     names(Data)[1] <- "Year"
     
-    Data[1:3] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data[1:4] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     Data$Year <- as.character(Data$Year)
     
@@ -293,10 +317,12 @@ HeatConsumption <- function(input, output, session) {
     
     Data <- Data[-1,]
     
-    Data$Total <- Data$Domestic+Data$`Non-Domestic`
+    Data$`Non-Domestic` <- +Data$`Industrial`+Data$`Commercial`
+    
+    Data$Total <- Data$Domestic+Data$`Industrial`+Data$`Commercial`
     
     datatable(
-      Data,
+      Data[c(1,2,5,3,4,6)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -328,8 +354,9 @@ HeatConsumption <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:4, 0)%>% 
-      formatStyle(c(4), fontWeight = 'bold')
+      formatRound(2:6, 0)%>% 
+      formatStyle(c(6), fontWeight = 'bold') %>% 
+      formatStyle(c(4:5), fontStyle = 'italic')
   })
   
   
@@ -362,7 +389,7 @@ HeatConsumption <- function(input, output, session) {
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "Heat consump", skip = 16, col_names = FALSE)
       
-      Data <- head(Data, 4)
+      Data <- head(Data, 5)
       
       Data <- as_tibble(t(Data))
       
@@ -374,11 +401,11 @@ HeatConsumption <- function(input, output, session) {
       
       Data <- as_tibble(sapply( Data, as.numeric ))
       
-      names(Data) <- c("Year", "Domestic", "Industrial/Commercial", "Total")
+      names(Data) <- c("Year", "Domestic", "Industrial", "Commercial", "Total")
       
       Data[nrow(Data),1] <- max(as.numeric(Data$Year),na.rm = TRUE)+1
       
-      HeatDemand <- Data[c(1,3,2,4)]
+      HeatDemand <- Data[c(1,4,3,2,5)]
       
       HeatDemand <- HeatDemand[order(-HeatDemand$Year),]
       
@@ -410,7 +437,8 @@ HeatConsumption <- function(input, output, session) {
         ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
         scale_fill_manual("variable",
                           values = c("Domestic" = BarColours[1],
-                                     "Industrial/Commercial" = BarColours[3])) +
+                                     "Industrial" = BarColours[2],
+                                     "Commercial" = BarColours[3])) +
         geom_bar(stat = "identity", width = .8) +
         geom_text(
           y = HeatDemand$top,
@@ -447,7 +475,7 @@ HeatConsumption <- function(input, output, session) {
                 HeatDemand$Year ==  max(HeatDemand$Year),
               paste0(format(
                 round(HeatDemand$value, digits = 0), big.mark = ","
-              ), " GWh"),
+              ), ""),
               ""
             ),
             ""
@@ -469,8 +497,17 @@ HeatConsumption <- function(input, output, session) {
         annotate(
           "text",
           x = 2004,
-          y = 69699,
-          label = "Industrial/Commercial",
+          y = 60000,
+          label = "Industrial",
+          fontface = 2,
+          color = BarColours[2],
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = 2004,
+          y = 88000,
+          label = "Commercial",
           fontface = 2,
           color = BarColours[3],
           family = "Century Gothic"
@@ -499,17 +536,40 @@ HeatConsumption <- function(input, output, session) {
             subset(
               HeatDemand,
               Year == max(HeatDemand$Year) &
-                variable == "Industrial/Commercial"
+                variable == "Industrial"
             )[1, 5]
           ) - as.numeric(
             subset(
               HeatDemand,
               Year == max(HeatDemand$Year) &
-                variable == "Industrial/Commercial"
+                variable == "Industrial"
             )[1, 4]
           ),
           label = percent((
-            subset(HeatDemandMax, variable == "Industrial/Commercial")[1, 3]
+            subset(HeatDemandMax, variable == "Industrial")[1, 3]
+          ),.1),
+          fontface = 2,
+          color = BarColours[2],
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = max(HeatDemand$Year) + 1.2,
+          y = as.numeric(
+            subset(
+              HeatDemand,
+              Year == max(HeatDemand$Year) &
+                variable == "Commercial"
+            )[1, 5]
+          ) - as.numeric(
+            subset(
+              HeatDemand,
+              Year == max(HeatDemand$Year) &
+                variable == "Commercial"
+            )[1, 4]
+          ),
+          label = percent((
+            subset(HeatDemandMax, variable == "Commercial")[1, 3]
           ),.1),
           fontface = 2,
           color = BarColours[3],
@@ -529,7 +589,8 @@ HeatConsumption <- function(input, output, session) {
           color = ChartColours[1],
           family = "Century Gothic",
           hjust = -.75
-        ) + annotate(
+        ) +
+        annotate(
           "text",
           x = max(HeatDemand$Year) + 1.2,
           y = -10000,
@@ -563,7 +624,7 @@ HeatConsumption <- function(input, output, session) {
       ggsave(
         file,
         plot = HeatDemandChart,
-        width = 20,
+        width = 21,
         height = 17.5,
         units = "cm",
         dpi = 300

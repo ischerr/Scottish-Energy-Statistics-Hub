@@ -929,7 +929,7 @@ RenElecPipeline <- function(input, output, session) {
         xaxis = list(
           title = "",
           tickformat = "",
-          range = c(0,13000),
+          range = c(0,14000),
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
@@ -2002,7 +2002,7 @@ RenElecPipeline <- function(input, output, session) {
           tickformat = "%",
           showgrid = FALSE,
           showticklabels = FALSE,
-          range = c(0,15),
+          range = c(0,17),
           zeroline = FALSE,
           zerolinecolor = ChartColours[1],
           zerolinewidth = 2,

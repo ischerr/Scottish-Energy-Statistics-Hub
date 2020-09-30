@@ -109,11 +109,12 @@ DomesticRHIOutput <- function(id) {
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
-             DateLookup(c("BEISRHI"))),
+             DateLookup(c("BEISRHI", "OGFGEMdrhi"))),
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
-        SourceLookup("BEISRHI")
+        SourceLookup("BEISRHI"),
+        SourceLookup("OGFGEMdrhi")
         
       )
     )
