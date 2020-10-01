@@ -38,6 +38,23 @@ HeatConsumptionOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
              #dygraphOutput(ns("HeatConsumptionPlot")),
              plotlyOutput(ns("HeatConsumptionFuelPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("Local Authorities",
+             fluidRow(column(8,
+                             h3("Non-electrical heat demand at Local Authority Level", style = "color: #34d1a3;  font-weight:bold"),
+                             
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('LAHeatMap.png'), 'Download Graph', style="float:right")
+             )),
+             fluidRow(column(6,selectInput(ns("YearSelect"), "Year:", c(max(LAHeatMap$Year):min(LAHeatMap$Year)), selected = max(LAHeatMap$Year), multiple = FALSE,
+                                           selectize = TRUE, width = NULL, size = NULL) ),
+                      column(6, align = 'right', selectInput(ns("TechSelect"), "Tech:", c(unique(as.character(names(LAHeatMap[4:21])))), selected = "Total", multiple = FALSE,
+                                                             selectize = TRUE, width = "300px", size = NULL))),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+             #dygraphOutput(ns("ElecGenFuelPlot")),
+             leafletOutput(ns("LAHeatMap"), height = "675px")%>% withSpinner(color="#34d1a3"),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
@@ -638,19 +655,21 @@ HeatConsumption <- function(input, output, session) {
   
   HeatConsumptionFuel <- HeatConsumptionFuel[which(HeatConsumptionFuel$`LA Code` == "S92000003"),]
   
-  HeatConsumptionFuel$Coal <- HeatConsumptionFuel$`Coal - Industrial & Commercial` + HeatConsumptionFuel$`Coal - Domestic`
+  HeatConsumptionFuel$Coal <- HeatConsumptionFuel$`Coal - Industrial`+  HeatConsumptionFuel$`Coal - Commercial` + HeatConsumptionFuel$`Coal - Domestic`
   
   HeatConsumptionFuel$`Manufactured fuels` <- HeatConsumptionFuel$`Manufactured fuels - Industrial` + HeatConsumptionFuel$`Manufactured fuels - Domestic`
   
-  HeatConsumptionFuel$`Petroleum products` <- HeatConsumptionFuel$`Petroleum products - Industrial & Commercial` + HeatConsumptionFuel$`Petroleum products - Domestic` + HeatConsumptionFuel$`Petroleum products - Public Sector` + HeatConsumptionFuel$`Petroleum products - Agriculture`
+  HeatConsumptionFuel$`Petroleum products` <- HeatConsumptionFuel$`Petroleum products - Industrial`+ HeatConsumptionFuel$`Petroleum products - Commercial` + HeatConsumptionFuel$`Petroleum products - Domestic` + HeatConsumptionFuel$`Petroleum products - Public Sector` + HeatConsumptionFuel$`Petroleum products - Agriculture`
   
-  HeatConsumptionFuel$Gas <- HeatConsumptionFuel$`Sales (GWh) - Non-domestic consumption` + HeatConsumptionFuel$`Sales (GWh) - Domestic consumption`
+  HeatConsumptionFuel$Gas <- HeatConsumptionFuel$`Gas - Industrial` + HeatConsumptionFuel$`Gas - Commercial` + HeatConsumptionFuel$`Gas - Domestic`
   
-  HeatConsumptionFuel$`Bioenergy & wastes` <- HeatConsumptionFuel$`Bioenergy & wastes - Total`
+  HeatConsumptionFuel$`Bioenergy & wastes` <- HeatConsumptionFuel$`Bioenergy & Wastes - Industrial` + HeatConsumptionFuel$`Bioenergy & Wastes - Commercial` + HeatConsumptionFuel$`Bioenergy & wastes - Domestic` 
   
-  HeatConsumptionFuel <- HeatConsumptionFuel[c(2, 19,20,21,17,18, 16)]
+  HeatConsumptionFuel <- HeatConsumptionFuel[c(2, 22:26, 21)]
   
-  HeatConsumptionFuel <- rbind(HeatConsumptionFuel, read_csv("Structure/4 - Energy Efficiency/Demand Reduction/HeatFuelExtra.csv"))
+  HeatConsumptionFuel <- HeatConsumptionFuel[duplicated(HeatConsumptionFuel$Year),]
+  
+  #HeatConsumptionFuel <- rbind(HeatConsumptionFuel, read_csv("Structure/4 - Energy Efficiency/Demand Reduction/HeatFuelExtra.csv"))
   
   HeatConsumptionFuel <- HeatConsumptionFuel[order(-HeatConsumptionFuel$Year),]
   
@@ -1219,5 +1238,84 @@ HeatConsumption <- function(input, output, session) {
       
     }
   )
+  
+  output$LAHeatMap <- renderLeaflet({
+    
+    ### Load Packages
+    library(readr)
+    library("maptools")
+    library(tmaptools)
+    library(tmap)
+    library("sf")
+    library("leaflet")
+    library("rgeos")
+    library(readxl)
+    library(ggplot2)
+    
+    ### Add Simplified shape back to the Shapefile
+    LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/LocalAuthority2.shp")
+    
+    LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
+    ############ RENEWABLE ELECTRICITY ################################################
+    
+    Year = as.numeric(input$YearSelect)
+    
+    Tech = as.character(input$TechSelect)
+    
+    LARenGen <- read_csv("Processed Data/Output/Consumption/HeatConsumptionbyLA.csv")
+    
+    names(LARenGen)[1:3] <- c("LACode", "Year", "LAName")
+    
+    LARenGen <-  melt(LARenGen, id.vars = c("LACode", "LAName", "Year"))
+    
+    names(LARenGen)[1] <- "CODE"
+    
+    LARenGen <- LARenGen[which(LARenGen$Year == Year),]
+    
+    LARenGen <- LARenGen[which(substr(LARenGen$CODE,1,3) == "S12"),]
+    
+    LARenGen <- LARenGen[which(LARenGen$variable == Tech),]
+    
+    LARenGen$Content <- paste0("<b>",LARenGen$LAName, "</b><br/>", LARenGen$variable[1], "Demand:<br/><em>", round(LARenGen$value, digits = 0)," GWh</em>" )
+    
+    LARenGen$Hover <- paste0(LARenGen$LAName, " - ", round(LARenGen$value, digits = 2), " GWh")
+    
+    ### Change LA$CODE to string
+    LA$CODE <- as.character(LA$CODE)
+    
+    ### Order LAs in Shapefile
+    LA <- LA[order(LA$CODE),]
+    
+    ### Order LAs in Data
+    LARenGen <- LARenGen[order(LARenGen$CODE),]
+    
+    ### Combine Data with Map data
+    LAMap <-
+      merge(LA, LARenGen)
+    
+    
+    pal <- colorNumeric(
+      palette = "Greens",
+      domain = LAMap$value)
+    
+    l <-leaflet(LAMap) %>% 
+      addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
+      addPolygons(stroke = TRUE, 
+                  weight = 0.1,
+                  smoothFactor = 0.2,
+                  popup = ~Content,
+                  label = ~Hover,
+                  fillOpacity = 1,
+                  color = ~pal(value),
+                  highlightOptions = list(color = "white", weight = 2,
+                                          bringToFront = TRUE)) %>%
+      leaflet::addLegend("bottomright", pal = pal, values = ~value,
+                         title = paste0(LARenGen$variable[1], "Demand (GWh)"),
+                         opacity = 1
+      ) 
+    
+    l
+    
+  })
   
 }
