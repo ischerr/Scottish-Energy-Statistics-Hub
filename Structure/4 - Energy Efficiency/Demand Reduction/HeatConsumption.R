@@ -80,6 +80,18 @@ HeatConsumptionOutput <- function(id) {
              ),
              fluidRow(
                column(12, dataTableOutput(ns("HeatConsumptionFuelTable"))%>% withSpinner(color="#34d1a3"))),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("Local Authority",
+             fluidRow(
+               column(10, h3("Data - Non-electrical heat demand at Local Authority Level (GWh)", style = "color: #34d1a3;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12,selectInput(ns("YearSelect2"), "Year:", c(max(LAHeatMap$Year):min(LAHeatMap$Year)), selected = max(LAHeatMap$Year), multiple = FALSE,
+                                     selectize = TRUE, width = "200px", size = NULL) )
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("LAHeatTable"))%>% withSpinner(color="#34d1a3"))),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))
     ),
     fluidRow(
@@ -1276,9 +1288,9 @@ HeatConsumption <- function(input, output, session) {
     
     LARenGen <- LARenGen[which(LARenGen$variable == Tech),]
     
-    LARenGen$Content <- paste0("<b>",LARenGen$LAName, "</b><br/>", LARenGen$variable[1], "Demand:<br/><em>", round(LARenGen$value, digits = 0)," GWh</em>" )
+    LARenGen$Content <- paste0("<b>",LARenGen$LAName, "</b><br/>", LARenGen$variable[1], " Demand:<br/><em>", format(round(LARenGen$value, digits = 0), big.mark = ",")," GWh</em>" )
     
-    LARenGen$Hover <- paste0(LARenGen$LAName, " - ", round(LARenGen$value, digits = 2), " GWh")
+    LARenGen$Hover <- paste0(LARenGen$LAName, " - ", format(round(LARenGen$value, digits = 0), big.mark = ","), " GWh")
     
     ### Change LA$CODE to string
     LA$CODE <- as.character(LA$CODE)
@@ -1316,6 +1328,60 @@ HeatConsumption <- function(input, output, session) {
     
     l
     
+  })
+  
+  output$LAHeatMap.png <- downloadHandler(
+    filename = "LAHeatMap.png",
+    content = function(file) {
+      writePNG(readPNG("Structure/4 - Energy Efficiency/Demand Reduction/LAHeatDemandMapChart.png"), file) 
+    }
+  )
+  
+  output$LAHeatTable = renderDataTable({
+    
+    LARenGen <- read_csv("Processed Data/Output/Consumption/HeatConsumptionbyLA.csv")
+    
+    Year2 = as.numeric(input$YearSelect2)
+    
+    LARenGen <- LARenGen[which(substr(LARenGen$`LA Code`,1,3) == "S12"),]
+    
+    LARenGen <- LARenGen[which(LARenGen$Year == Year2),]
+    
+    LARenGen <- LARenGen[order(-LARenGen$Year, LARenGen$Region),]
+    
+    datatable(
+      LARenGen,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        scrollX = TRUE,
+        title = "Non-electrical heat demand at Local Authority Level (GWh)",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Non-electrical heat demand at Local Authority Level (GWh)',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Non-electrical heat demand at Local Authority Level (GWh)')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(4:ncol(LARenGen), 0) 
   })
   
 }
