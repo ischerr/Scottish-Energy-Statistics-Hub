@@ -11,20 +11,6 @@ ElecImportsExportsOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("Imports and Exports Annual",
-    fluidRow(column(8,
-                    h3("Annual Electricity imports and exports", style = "color: #5d8be1;  font-weight:bold"),
-                    h4(textOutput(ns('ElecImportsExportsSubtitle')), style = "color: #5d8be1;")
-    ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('ElecImportsExports.png'), 'Download Graph', style="float:right")
-             )),
-    
-    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
-    #dygraphOutput(ns("ElecImportsExportsPlot")),
-    plotlyOutput(ns("ElecImportsExportsPlot"))%>% withSpinner(color="#5d8be1"),
-    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
     tabPanel("Imports and Exports Quarterly",
              fluidRow(column(8,
                              h3("Quarterly Electricity imports and exports", style = "color: #5d8be1;  font-weight:bold"),
@@ -38,6 +24,20 @@ ElecImportsExportsOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
              #dygraphOutput(ns("ElecImportsExportsPlot")),
              plotlyOutput(ns("QuarterlyElecImportsExportsPlot"), height = "750px")%>% withSpinner(color="#5d8be1"),
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
+    tabPanel("Imports and Exports Annual",
+             fluidRow(column(8,
+                             h3("Annual Electricity imports and exports", style = "color: #5d8be1;  font-weight:bold"),
+                             h4(textOutput(ns('ElecImportsExportsSubtitle')), style = "color: #5d8be1;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('ElecImportsExports.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
+             #dygraphOutput(ns("ElecImportsExportsPlot")),
+             plotlyOutput(ns("ElecImportsExportsPlot"))%>% withSpinner(color="#5d8be1"),
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
     tabPanel("Wholesale Export Value",
     fluidRow(column(8,
