@@ -23,7 +23,7 @@ ElecImportsExportsOutput <- function(id) {
              
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
              #dygraphOutput(ns("ElecImportsExportsPlot")),
-             plotlyOutput(ns("QuarterlyElecImportsExportsPlot"), height = "1000px")%>% withSpinner(color="#5d8be1"),
+             plotlyOutput(ns("QuarterlyElecImportsExportsPlot"), height = "2000px")%>% withSpinner(color="#5d8be1"),
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
     tabPanel("Imports and Exports Annual",
              fluidRow(column(8,
@@ -363,7 +363,7 @@ ElecImportsExports <- function(input, output, session) {
           tickformat = "",
           showgrid = TRUE,
           zeroline = TRUE,
-          range = c(ChartMin, ChartMin),
+          range = c(-2000, 20000),
           zerolinecolor = ChartColours[1],
           zerolinewidth = 2,
           rangemode = "tozero"
