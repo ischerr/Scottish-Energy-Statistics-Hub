@@ -55,3 +55,5 @@ RenHeatDropdown <- reactiveValues(Measure = "Capacity")
 ULEVbyLA <- read_delim("Processed Data/Output/Vehicles/ULEVbyLA.txt", 
                        "\t", escape_double = FALSE, trim_ws = TRUE)
 
+LAHeatMap <- read_csv("Processed Data/Output/Consumption/HeatConsumptionbyLA.csv")
+
