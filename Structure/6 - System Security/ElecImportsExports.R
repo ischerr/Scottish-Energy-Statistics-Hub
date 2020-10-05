@@ -278,19 +278,10 @@ ElecImportsExports <- function(input, output, session) {
   ###
   output$QuarterlyElecImportsExportsSubtitle <- renderText({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Elec imports & exports", skip = 12)[c(10,15,16)]
-    
-    Data <- Data[complete.cases(Data),]
-    
-    Data %<>% lapply(function(x) as.numeric(as.character(x)))
-    
-    names(Data) <- c("Year", "Exports", "Imports")
-    
-    ElecImportsExports <- as_tibble(Data)
+    ImportsExports <- read_csv("Processed Data/Output/Imports and Exports/ImportsExports.csv")
     
     
-    paste("Scotland,", min(ElecImportsExports$Year),"-", max(ElecImportsExports$Year))
+    paste("Scotland,", 2000,"-", max(as.numeric(substr(ImportsExports$Quarter,1,4), na.rm = TRUE)))
   })
   
   output$QuarterlyElecImportsExportsPlot <- renderPlotly  ({
@@ -341,7 +332,7 @@ ElecImportsExports <- function(input, output, session) {
       data = ImportsExports,
       y = ~Year,
       x = ~`Q1 ScotlandExports`,
-      legendgroup = 1,
+      legendgroup = 5,
       text = paste0(
         "Q1 Exports: ",
         format(round(ImportsExports$`Q1 ScotlandExports`, digits = 0),big.mark = ","),
@@ -358,7 +349,7 @@ ElecImportsExports <- function(input, output, session) {
         data = ImportsExports,
         y = ~Year,
         x = ~`Q2 ScotlandExports`,
-        legendgroup = 2,
+        legendgroup = 6,
         text = paste0(
           "Q2 Exports: ",
           format(round(ImportsExports$`Q2 ScotlandExports`, digits = 0),big.mark = ","),
@@ -375,7 +366,7 @@ ElecImportsExports <- function(input, output, session) {
         data = ImportsExports,
         y = ~Year,
         x = ~`Q3 ScotlandExports`,
-        legendgroup = 3,
+        legendgroup = 7,
         text = paste0(
           "Q3 Exports: ",
           format(round(ImportsExports$`Q3 ScotlandExports`, digits = 0),big.mark = ","),
@@ -392,7 +383,7 @@ ElecImportsExports <- function(input, output, session) {
         data = ImportsExports,
         y = ~Year,
         x = ~`Q4 ScotlandExports`,
-        legendgroup = 4,
+        legendgroup = 8,
         text = paste0(
           "Q4 Exports: ",
           format(round(ImportsExports$`Q4 ScotlandExports`, digits = 0),big.mark = ","),
@@ -410,7 +401,7 @@ ElecImportsExports <- function(input, output, session) {
         data = ImportsExports,
         y = ~Year,
         x = ~`Q1 ScotlandImports`,
-        legendgroup = 5,
+        legendgroup = 1,
         text = paste0(
           "Q1 Imports: ",
           format(round(-ImportsExports$`Q1 ScotlandImports`, digits = 0),big.mark = ","),
@@ -427,7 +418,7 @@ ElecImportsExports <- function(input, output, session) {
         data = ImportsExports,
         y = ~Year,
         x = ~`Q2 ScotlandImports`,
-        legendgroup = 6,
+        legendgroup = 2,
         text = paste0(
           "Q2 Imports: ",
           format(round(-ImportsExports$`Q2 ScotlandImports`, digits = 0),big.mark = ","),
@@ -444,7 +435,7 @@ ElecImportsExports <- function(input, output, session) {
         data = ImportsExports,
         y = ~Year,
         x = ~`Q3 ScotlandImports`,
-        legendgroup = 7,
+        legendgroup = 3,
         text = paste0(
           "Q3 Imports: ",
           format(round(-ImportsExports$`Q3 ScotlandImports`, digits = 0),big.mark = ","),
@@ -461,7 +452,7 @@ ElecImportsExports <- function(input, output, session) {
         data = ImportsExports,
         y = ~Year,
         x = ~`Q4 ScotlandImports`,
-        legendgroup = 8,
+        legendgroup = 4,
         text = paste0(
           "Q4 Imports: ",
           format(round(-ImportsExports$`Q4 ScotlandImports`, digits = 0),big.mark = ","),
