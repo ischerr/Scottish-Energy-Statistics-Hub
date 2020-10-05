@@ -23,7 +23,7 @@ ElecImportsExportsOutput <- function(id) {
              
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
              #dygraphOutput(ns("ElecImportsExportsPlot")),
-             plotlyOutput(ns("QuarterlyElecImportsExportsPlot"), height = "750px")%>% withSpinner(color="#5d8be1"),
+             plotlyOutput(ns("QuarterlyElecImportsExportsPlot"), height = "1000px")%>% withSpinner(color="#5d8be1"),
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
     tabPanel("Imports and Exports Annual",
              fluidRow(column(8,
@@ -295,24 +295,10 @@ ElecImportsExports <- function(input, output, session) {
     
     ImportsExports <- ImportsExports[c(1,18,19)] 
     
-    ImportsExports <- melt(ImportsExports)
-    
-    ImportsExports$Year <- as.numeric(substr(ImportsExports$Quarter,1,4))
-    
-    ImportsExports$Quarter <- substr(ImportsExports$Quarter,6,7)
-    
-    ImportsExports$variable <- paste(ImportsExports$Quarter, ImportsExports$variable)
-    
-    ImportsExports$Quarter <- NULL
-    
-    ImportsExports <- dcast(ImportsExports, Year ~ variable)
-    
-    ImportsExports <- ImportsExports[which(ImportsExports$Year >= 2000),]
-    
-    ChartMax <- max(ImportsExports$`Q1 ScotlandExports`+ImportsExports$`Q2 ScotlandExports`+ImportsExports$`Q3 ScotlandExports`+ImportsExports$`Q4 ScotlandExports`, na.rm = TRUE)
-    ChartMin <- min(ImportsExports$`Q1 ScotlandImports`+ImportsExports$`Q2 ScotlandImports`+ImportsExports$`Q3 ScotlandImports`+ImportsExports$`Q4 ScotlandImports`, na.rm = TRUE)
+    ImportsExports <- ImportsExports[which(as.numeric(substr(ImportsExports$Quarter,1,4)) >= 2000),]
     
     ChartColours <- c("#39ab2c", "#FF8500")
+    
     BarColours <-
       c(
         "#08519c",
@@ -326,20 +312,20 @@ ElecImportsExports <- function(input, output, session) {
         "#fdae6b"
       )
     
-    ImportsExports$Year <- paste0("<b>", ImportsExports$Year, "</b>")
+    ImportsExports$Year <- paste0("<b>", ImportsExports$Quarter, "</b>")
     
     p <- plot_ly(
       data = ImportsExports,
       y = ~Year,
-      x = ~`Q1 ScotlandExports`,
-      legendgroup = 5,
+      x = ~`ScotlandExports`,
+      legendgroup = 2,
       text = paste0(
-        "Q1 Exports: ",
-        format(round(ImportsExports$`Q1 ScotlandExports`, digits = 0),big.mark = ","),
+        "Exports: ",
+        format(round(ImportsExports$ScotlandExports, digits = 0),big.mark = ","),
         " GWh\nYear: ",
         ImportsExports$Year
       ),
-      name = "Q1 Exports",
+      name = "Exports",
       type = "bar",
       hoverinfo = "text",
       orientation = 'h',
@@ -348,126 +334,20 @@ ElecImportsExports <- function(input, output, session) {
       add_trace(
         data = ImportsExports,
         y = ~Year,
-        x = ~`Q2 ScotlandExports`,
-        legendgroup = 6,
-        text = paste0(
-          "Q2 Exports: ",
-          format(round(ImportsExports$`Q2 ScotlandExports`, digits = 0),big.mark = ","),
-          " GWh\nYear: ",
-          ImportsExports$Year
-        ),
-        name = "Q2 Exports",
-        type = "bar",
-        hoverinfo = "text",
-        orientation = 'h',
-        marker = list(color =  BarColours[2])
-      )  %>% 
-      add_trace(
-        data = ImportsExports,
-        y = ~Year,
-        x = ~`Q3 ScotlandExports`,
-        legendgroup = 7,
-        text = paste0(
-          "Q3 Exports: ",
-          format(round(ImportsExports$`Q3 ScotlandExports`, digits = 0),big.mark = ","),
-          " GWh\nYear: ",
-          ImportsExports$Year
-        ),
-        name = "Q3 Exports",
-        type = "bar",
-        hoverinfo = "text",
-        orientation = 'h',
-        marker = list(color =  BarColours[3])
-      )  %>% 
-      add_trace(
-        data = ImportsExports,
-        y = ~Year,
-        x = ~`Q4 ScotlandExports`,
-        legendgroup = 8,
-        text = paste0(
-          "Q4 Exports: ",
-          format(round(ImportsExports$`Q4 ScotlandExports`, digits = 0),big.mark = ","),
-          " GWh\nYear: ",
-          ImportsExports$Year
-        ),
-        name = "Q4 Exports",
-        type = "bar",
-        hoverinfo = "text",
-        orientation = 'h',
-        marker = list(color =  BarColours[4])
-      )  %>% 
-      
-      add_trace(
-        data = ImportsExports,
-        y = ~Year,
-        x = ~`Q1 ScotlandImports`,
+        x = ~`ScotlandImports`,
         legendgroup = 1,
         text = paste0(
-          "Q1 Imports: ",
-          format(round(-ImportsExports$`Q1 ScotlandImports`, digits = 0),big.mark = ","),
+          "QImports: ",
+          format(round(-ImportsExports$`ScotlandImports`, digits = 0),big.mark = ","),
           " GWh\nYear: ",
           ImportsExports$Year
         ),
-        name = "Q1 Imports",
+        name = "Imports",
         type = "bar",
         hoverinfo = "text",
         orientation = 'h',
         marker = list(color =  BarColours[5])
       ) %>% 
-      add_trace(
-        data = ImportsExports,
-        y = ~Year,
-        x = ~`Q2 ScotlandImports`,
-        legendgroup = 2,
-        text = paste0(
-          "Q2 Imports: ",
-          format(round(-ImportsExports$`Q2 ScotlandImports`, digits = 0),big.mark = ","),
-          " GWh\nYear: ",
-          ImportsExports$Year
-        ),
-        name = "Q2 Imports",
-        type = "bar",
-        hoverinfo = "text",
-        orientation = 'h',
-        marker = list(color =  BarColours[6])
-      )  %>% 
-      add_trace(
-        data = ImportsExports,
-        y = ~Year,
-        x = ~`Q3 ScotlandImports`,
-        legendgroup = 3,
-        text = paste0(
-          "Q3 Imports: ",
-          format(round(-ImportsExports$`Q3 ScotlandImports`, digits = 0),big.mark = ","),
-          " GWh\nYear: ",
-          ImportsExports$Year
-        ),
-        name = "Q3 Imports",
-        type = "bar",
-        hoverinfo = "text",
-        orientation = 'h',
-        marker = list(color =  BarColours[7])
-      )  %>% 
-      add_trace(
-        data = ImportsExports,
-        y = ~Year,
-        x = ~`Q4 ScotlandImports`,
-        legendgroup = 4,
-        text = paste0(
-          "Q4 Imports: ",
-          format(round(-ImportsExports$`Q4 ScotlandImports`, digits = 0),big.mark = ","),
-          " GWh\nYear: ",
-          ImportsExports$Year
-        ),
-        name = "Q4 Imports",
-        type = "bar",
-        hoverinfo = "text",
-        orientation = 'h',
-        marker = list(color =  BarColours[8])
-      )  %>% 
-      
-      
-      
       layout(
         barmode = 'relative',
         legend = list(font = list(color = "#39ab2c"),
