@@ -1322,7 +1322,7 @@ HeatConsumption <- function(input, output, session) {
                   highlightOptions = list(color = "white", weight = 2,
                                           bringToFront = TRUE)) %>%
       leaflet::addLegend("bottomright", pal = pal, values = ~value,
-                         title = paste0(LARenGen$variable[1], "Demand (GWh)"),
+                         title = paste0(LARenGen$variable[1], " Demand (GWh)"),
                          opacity = 1
       ) 
     
