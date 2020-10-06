@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 HouseholdIntensityOutput <- function(id) {
   ns <- NS(id)
@@ -220,7 +220,8 @@ HouseholdIntensity <- function(input, output, session) {
     ) %>%
       formatRound(c(2:9), 0) %>% 
       formatPercentage(c(6,7,9,10),1) %>% 
-      formatRound(c(3,8),1)
+      formatRound(c(3,8),1) %>% 
+      formatRound(c(8),2)
   })
   
   

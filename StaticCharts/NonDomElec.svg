@@ -14,7 +14,10 @@
    sodipodi:docname="NonDomElec.svg"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
    width="399.43701"
-   height="419.77661">
+   height="419.77661"
+   inkscape:export-filename="C:\Users\ische\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\5 - Consumers\ElecNonHomeChart.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300">
   <metadata
      id="metadata78">
     <rdf:RDF>
@@ -23,7 +26,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -36,17 +39,17 @@
      guidetolerance="10"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:window-width="2880"
-     inkscape:window-height="1526"
+     inkscape:window-width="3840"
+     inkscape:window-height="2066"
      id="namedview76"
      showgrid="false"
-     inkscape:zoom="2.6811199"
-     inkscape:cx="249.24859"
-     inkscape:cy="215.08489"
-     inkscape:window-x="5749"
-     inkscape:window-y="1587"
+     inkscape:zoom="3.7916762"
+     inkscape:cx="225.83192"
+     inkscape:cy="154.22794"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="svg74"
      fit-margin-top="5"
      fit-margin-left="5"
      fit-margin-right="5"
@@ -111,18 +114,18 @@
   <flowRoot
      xml:space="preserve"
      id="flowRoot901-8"
-     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#68c3ea;fill-opacity:1;stroke:none;"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#68c3ea;fill-opacity:1;stroke:none"
      transform="translate(223.89355,244.55678)"><flowRegion
        id="flowRegion903-3"
-       style="fill:#68c3ea;fill-opacity:1;"><rect
+       style="fill:#68c3ea;fill-opacity:1"><rect
          id="rect905-1"
          width="483.75308"
          height="373.72443"
          x="-219.31134"
          y="-218.56583"
-         style="fill:#68c3ea;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" /></flowRegion><flowPara
+         style="fill:#68c3ea;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
        id="flowPara907-9"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#68c3ea;fill-opacity:1;">Scotland, 2010 Q1 - 2019 Q4</flowPara></flowRoot>  <flowRoot
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#68c3ea;fill-opacity:1">Scotland, 2010 Q1 - 2020 Q2</flowPara></flowRoot>  <flowRoot
      xml:space="preserve"
      id="flowRoot901-8-4"
      style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#68c3ea;fill-opacity:1;stroke:none;"
@@ -186,7 +189,10 @@
        id="flowPara4851">Proportion of domestic electricity customers on non-home supplier</flowPara></flowRoot>  <g
      id="layer1"
      inkscape:label="Layer 1"
-     transform="matrix(2.0564364,0,0,2.0564364,-3.4642665,18.77906)">
+     transform="matrix(2.0564364,0,0,2.0564364,-3.4642665,18.77906)"
+     inkscape:export-filename="C:\Users\ische\Documents\Github\Scottish-Energy-Statistics-Hub\Structure\5 - Consumers\ElecNonHomeOutput.png"
+     inkscape:export-xdpi="195.7464"
+     inkscape:export-ydpi="195.7464">
     <g
        inkscape:export-ydpi="300"
        inkscape:export-xdpi="300"
@@ -302,9 +308,9 @@
              height="227.14285"
              x="-362.85715"
              y="133.94826"
-             style="fill:#68c3ea;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;fill-opacity:1" /></flowRegion><flowPara
+             style="fill:#68c3ea;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
            id="flowPara2599-1"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#68c3ea;fill-opacity:1">2019 Q4</flowPara></flowRoot>    </g>
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#68c3ea;fill-opacity:1">2020 Q2</flowPara></flowRoot>    </g>
     <g
        inkscape:export-ydpi="300"
        inkscape:export-xdpi="300"
@@ -343,7 +349,7 @@
            id="flowPara2599-0-8"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#00aa00;fill-opacity:1">North Scotland</flowPara><flowPara
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#00aa00;fill-opacity:1"
-           id="flowPara2649-5">55%</flowPara></flowRoot>    </g>
+           id="flowPara2649-5">56%</flowPara></flowRoot>    </g>
     <g
        inkscape:export-ydpi="300"
        inkscape:export-xdpi="300"

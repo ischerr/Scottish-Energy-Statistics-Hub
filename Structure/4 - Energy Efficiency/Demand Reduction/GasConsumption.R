@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 GasConsumptionOutput <- function(id) {
   ns <- NS(id)
@@ -81,9 +81,9 @@ GasConsumptionOutput <- function(id) {
                column(12, dataTableOutput(ns("GasConsumptionHHoldTable"))%>% withSpinner(color="#34d1a3"))),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")        
     ),
-    tabPanel("LA",
+    tabPanel("Local Authority",
              fluidRow(
-               column(10, h3("Data", style = "color: #34d1a3;  font-weight:bold")),
+               column(10, h3("Data - Average annual household consumption of gas by local authority, 2018", style = "color: #34d1a3;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -152,6 +152,8 @@ GasConsumption <- function(input, output, session) {
     names(Data)[1] <- "Year"
     
     Data[1:6] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data$Year <- as.character(Data$Year)
     
     Data[2,1] <- "Baseline\n2005/2007"
     
@@ -298,6 +300,8 @@ GasConsumption <- function(input, output, session) {
     
     Data[1:4] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data$Year <- as.character(Data$Year)
+    
     Data[2,1] <- " Baseline\n2005/2007"
     
     Data[nrow(Data),1] <- "% Change\nfrom baseline"
@@ -374,13 +378,13 @@ GasConsumption <- function(input, output, session) {
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "Gas consump", skip = 17, col_names = FALSE)[c(1,3,2,6)]
       
-      Data[1,1] <- 2003
+      Data[1,1] <- "2003"
       
       names(Data) <- c("Year", "Non-domestic", "Domestic", "Total")
       
       Data <- Data[complete.cases(Data),]
       
-      Data[nrow(Data),1] <- max(as.numeric(Data$Year),na.rm = TRUE)+1
+      Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE)+1)
       
       Data$Year <- as.numeric(Data$Year)
       
@@ -616,6 +620,8 @@ GasConsumption <- function(input, output, session) {
     
     Data[1:2] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data$Year <- as.character(Data$Year)
+    
     Data[1,1] <- "Baseline\n2005/2007"
     
     Data[2,1] <- " "
@@ -722,6 +728,8 @@ GasConsumption <- function(input, output, session) {
     
     Data[1:2] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data$Year <- as.character(Data$Year)
+    
     Data[1,1] <- "Baseline\n2005/2007"
     
     
@@ -778,13 +786,13 @@ GasConsumption <- function(input, output, session) {
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "Gas consump by household", skip = 13, col_names = FALSE)
       
-      Data[1,1] <- 2003
+      Data[1,1] <- "2003"
       
       names(Data) <- c("Year", "Consumption")
       
       Data <- Data[complete.cases(Data),]
       
-      Data[nrow(Data),1] <- max(as.numeric(Data$Year),na.rm = TRUE)+1
+      Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE)+1)
       
       Data$Total <- Data$Consumption
       
@@ -990,21 +998,32 @@ GasConsumption <- function(input, output, session) {
   
   output$GasConsumptionLATable = renderDataTable({
     
-    GasConsumptionLA <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Gas consump hhold LA",
-      skip = 12,
-      n_max = 34
-    )
+
+    GasConsumption <- read_csv("Processed Data/Output/Consumption/GasConsumption.csv")
     
-    names(GasConsumptionLA)[1:2] <- c("Geography Code", "Local Authority")
     
-    GasConsumptionLA <- GasConsumptionLA[1:3]
+    GasConsumption <- GasConsumption[which(GasConsumption$Year == max(GasConsumption$Year)),]
     
-    GasConsumptionLA <- GasConsumptionLA[complete.cases(GasConsumptionLA),]
+    GasConsumption <-  GasConsumption[c(3,2,11,10)]
+    
+
+    
+    names(GasConsumption) <- c("Geography Code","Local Authority", "Average household consumption (kWh)", "Total Consumption (GWh)")
+    
+    GasConsumption <- GasConsumption[which(substr(GasConsumption$`Geography Code`,1,1) == "S"),]
+    
+    GasConsumption <- GasConsumption[complete.cases(GasConsumption),]
+    
+    
+    LALookup <- read_excel("Structure/LALookup.xlsx", 
+                           sheet = "Code to LA")
+    
+    names(LALookup) <- c("Geography Code","Local Authority")
+    
+    GasConsumption <- merge(GasConsumption, LALookup, all = TRUE)
     
     datatable(
-      GasConsumptionLA,
+      GasConsumption,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -1014,17 +1033,17 @@ GasConsumption <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Average annual household consumption of gas by local authority (kWh)",
+        title = "Average annual household consumption of gas by local authority, 2018",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Average annual household consumption of gas by local authority (kWh)',
+            title = 'Average annual household consumption of gas by local authority, 2018',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Average annual household consumption of gas by local authority (kWh)')
+               title = 'Average annual household consumption of gas by local authority, 2018')
         ),
         
         # customize the length menu
@@ -1034,7 +1053,7 @@ GasConsumption <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(3, 0)
+      formatRound(3:4, 0)
   })
   
   observeEvent(input$ToggleTable3, {
@@ -1123,11 +1142,16 @@ GasConsumption <- function(input, output, session) {
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, GasConsumptionLAMap, key.shp = "CODE", key.data = "CODE")
+      merge(LA, GasConsumptionLAMap)
     
     pal <- colorNumeric(
       palette = "Greens",
       domain = LAMap$Total)
+    
+    palWithoutNA <- colorNumeric(
+      palette = "Greens",
+      domain = LAMap$Total,
+      na.color=rgb(0,0,0,0))
     
     leaflet(LAMap) %>% 
       addProviderTiles("Esri.WorldGrayCanvas" ) %>% 
@@ -1140,7 +1164,7 @@ GasConsumption <- function(input, output, session) {
                   color = ~pal(Total),
                   highlightOptions = list(color = "white", weight = 2,
                                           bringToFront = TRUE)) %>%
-      leaflet::addLegend("bottomright", pal = pal, values = ~Total,
+      leaflet::addLegend("bottomright", pal = palWithoutNA, values = ~Total,
                          title = "Gas consumption",
                          labFormat = labelFormat(suffix = " kWh"),
                          opacity = 1

@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 EnEconomyOutput <- function(id) {
   ns <- NS(id)
@@ -608,18 +608,6 @@ EnEconomy <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = mean(Year),
-            y = mean(GVA),
-            label = "GVA",
-            hjust = 0.5,
-            vjust = 1,
-            colour = ChartColours[2],
-            fontface = 2
-          ),
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
             x = Year,
             y = 0,
             label = ifelse(Year == max(Year) |
@@ -939,6 +927,8 @@ EnEconomy <- function(input, output, session) {
       sourcecaption = "Source: Scottish Government"
       plottitle = "Employment in the energy sector"  
       
+      length <- max(EnergySectorEmployment$Year) - min(EnergySectorEmployment$Year)
+      
       EnergySectorEmploymentChart <- EnergySectorEmployment %>%
         ggplot(aes(x = Year), family = "Century Gothic") +
         
@@ -1096,7 +1086,8 @@ EnEconomy <- function(input, output, session) {
           ChartColours
         )
       
-      EnergySectorEmploymentChart
+      EnergySectorEmploymentChart <- EnergySectorEmploymentChart +
+        xlim(min(EnergySectorEmployment$Year)-(length*0.03), max(EnergySectorEmployment$Year)+(length*0.03))
       
       ggsave(
         file,
@@ -1449,7 +1440,7 @@ EnEconomy <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year-.8,
+            x = Year-.99,
             y = Total,
             label = ifelse(Year == min(Year), paste0("\u00A3", format(round(Total, digits = 3),nsmall = 0, big.mark = ",", trim = TRUE), "\nbillion"), ""),
             hjust = 0.5,
@@ -1460,7 +1451,7 @@ EnEconomy <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = Year+1.05,
+            x = Year+1.08,
             y = Total,
             label = ifelse(Year == max(Year), paste0("\u00A3", format(round(Total, digits = 3),nsmall = 0, big.mark = ",", trim = TRUE), "\nbillion"), ""),
             hjust = 0.5,
@@ -1505,7 +1496,7 @@ EnEconomy <- function(input, output, session) {
       
       EnergySectorTotalChart <- EnergySectorTotalChart +
         xlim(min(EnergySectorTotal$Year) -1.4 , max(EnergySectorTotal$Year) +1.4)+
-        ylim(-.1, max(EnergySectorTotal$Total+.5))
+        ylim(-.15, max(EnergySectorTotal$Total+1))
       
       
       ggsave(

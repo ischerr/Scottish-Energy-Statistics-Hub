@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 CHPStatsOutput <- function(id) {
   ns <- NS(id)
@@ -326,8 +326,7 @@ CHPStats <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(c(2:7), 0) %>% 
-      formatPercentage(7,2)
+      formatRound(c(2:5), 0)
   })
 
   output$Text <- renderUI({

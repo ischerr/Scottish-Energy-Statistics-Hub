@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 NonDomEPCsOutput <- function(id) {
   ns <- NS(id)
@@ -90,9 +90,13 @@ NonDomEPCs <- function(input, output, session) {
     
     Data[2:9] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data[2,1] <- " "
+    
     Data[is.na(Data)] <- 0
     
-    Data[2,1] <- " "
+   
+    
+    
     
     Data$`Building type` <- paste("<b>",str_wrap(Data$`Building type`, 20),"</b>")
     
@@ -480,7 +484,7 @@ NonDomEPCs <- function(input, output, session) {
           label = ifelse(
             HouseholdEnergyEfficiency$Type == "z",
             "",
-            percent(HouseholdEnergyEfficiency$value[which(HouseholdEnergyEfficiency$variable == "Total")])
+            percent(HouseholdEnergyEfficiency$value[which(HouseholdEnergyEfficiency$variable == "Total")], 0.1)
           ),
           family = "Century Gothic",
           fontface = 2,
@@ -515,7 +519,7 @@ NonDomEPCs <- function(input, output, session) {
         HouseholdEnergyEfficiencyChart +
         coord_flip() +
         labs(subtitle = "2017") +
-        ylim(-.2, 1.06)
+        ylim(-.25, 1.06)
       
       HouseholdEnergyEfficiencyChart
       

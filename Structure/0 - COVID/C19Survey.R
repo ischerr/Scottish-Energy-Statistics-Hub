@@ -6,7 +6,7 @@ require("DT")
 
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 C19SurveyOutput <- function(id) {
   ns <- NS(id)
@@ -118,7 +118,7 @@ caution should be exercised on these findings.&nbsp;</p></blockquote>"))),
              fluidRow(
                column(10, h3("Data - Change in attitudes towards energy since lockdown.", style = "color: #5d8be1;  font-weight:bold")),
                
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable6"), "Show/Hide Table", style = "float:right; "))
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("C19SurveyChangeTable"))%>% withSpinner(color="#5d8be1"),
@@ -128,7 +128,7 @@ caution should be exercised on these findings.&nbsp;</p></blockquote>"))),
     tabPanel("Energy issues",
              fluidRow(
                column(10, h3("Data - Issues with energy.", style = "color: #5d8be1;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("C19SurveyRollingTable"))%>% withSpinner(color="#5d8be1"),
@@ -138,7 +138,7 @@ caution should be exercised on these findings.&nbsp;</p></blockquote>"))),
     tabPanel("Advice Sources",
              fluidRow(
                column(10, h3("Data - Sources of advice.", style = "color: #5d8be1;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("C19SurveyT62Table"))%>% withSpinner(color="#5d8be1"))),
@@ -146,7 +146,7 @@ caution should be exercised on these findings.&nbsp;</p></blockquote>"))),
     tabPanel("Information",
              fluidRow(
                column(10, h3("Data - Information from energy supplier.", style = "color: #5d8be1;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("C19SurveyT66Table"))%>% withSpinner(color="#5d8be1"))),
@@ -154,7 +154,7 @@ caution should be exercised on these findings.&nbsp;</p></blockquote>"))),
     tabPanel("Views on Information",
              fluidRow(
                column(10, h3("Data - Views on information from energy supplier.", style = "color: #5d8be1;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable6"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("C19SurveyT70Table"))%>% withSpinner(color="#5d8be1"))),
@@ -372,7 +372,7 @@ C19Survey <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:10, 0) 
+      formatPercentage(2:7, 0) 
   })
  
   output$C19SurveyRollingSubtitle <- renderText({
@@ -1060,8 +1060,28 @@ C19Survey <- function(input, output, session) {
   })
  
  
-  observeEvent(input$ToggleTable, {
+  observeEvent(input$ToggleTable1, {
     toggle("C19SurveyTable")
+  })
+  
+  observeEvent(input$ToggleTable2, {
+    toggle("C19SurveyChangeTable")
+  })
+  
+  observeEvent(input$ToggleTable3, {
+    toggle("C19SurveyRollingTable")
+  })
+  
+  observeEvent(input$ToggleTable4, {
+    toggle("C19SurveyT62Table")
+  })
+  
+  observeEvent(input$ToggleTable5, {
+    toggle("C19SurveyT66Table")
+  })
+  
+  observeEvent(input$ToggleTable6, {
+    toggle("C19SurveyT70Table")
   })
   
 

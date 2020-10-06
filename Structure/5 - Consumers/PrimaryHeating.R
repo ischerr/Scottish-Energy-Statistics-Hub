@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 PrimaryHeatingOutput <- function(id) {
   ns <- NS(id)
@@ -51,7 +51,7 @@ PrimaryHeatingOutput <- function(id) {
       tabPanel("Primary Fuel by Year",
                fluidRow(
     column(10, h3("Data - Primary heating fuel for households", style = "color: #68c3ea;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+    column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("PrimaryHeatingTable"))%>% withSpinner(color="#68c3ea"))),
@@ -260,7 +260,7 @@ PrimaryHeating <- function(input, output, session) {
                    )))
   })
   
-  observeEvent(input$ToggleTable, {
+  observeEvent(input$ToggleTable1, {
     toggle("PrimaryHeatingTable")
   })
   

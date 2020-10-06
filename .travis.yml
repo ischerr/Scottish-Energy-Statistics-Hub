@@ -1,10 +1,13 @@
-dist: bionic
+dist: focal
+
+language: r
+
+r:
+- 4.0.0
 
 sudo: false
 
 latex: false
-
-language: r
 
 warnings_are_errors: false
 
@@ -31,6 +34,8 @@ r_github_packages:
 - rensa/ggflags
 - rstudio/DT
 - r-spatial/sf
+- r-spatial/lwgeom
+- cran/ISOweek
 
 script:
   - Rscript deploy.r
@@ -40,4 +45,4 @@ notifications:
     recipients:
      - energystatistics@gov.scot
     on_success: change # default: change
-    on_failure: change # default: change
+    on_failure: change # default: always

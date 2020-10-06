@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 EnConsumptionOutput <- function(id) {
   ns <- NS(id)
@@ -104,7 +104,7 @@ EnConsumption <- function(input, output, session) {
     
     names(EnConsumption) <- c("Year", "Heat", "Transport", "Electricity", "Other")
     
-    paste(max(as.numeric(EnConsumption$Year), na.rm = TRUE))
+    paste("Scotland,",max(as.numeric(EnConsumption$Year), na.rm = TRUE))
   })
  
   output$EnConsumptionPlot <- renderPlotly  ({
@@ -119,7 +119,7 @@ EnConsumption <- function(input, output, session) {
     
     names(EnConsumption) <- c("Year", "Heat", "Transport", "Electricity", "Other")
     
-    ChartYear <- 2017
+    ChartYear <- max(as.numeric(EnConsumption$Year), na.rm = TRUE)
     
     ChartColours <- c("#fc9272", "#2b8cbe", "#34d1a3", "#02818a")
     

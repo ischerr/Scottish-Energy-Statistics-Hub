@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 EnConsumptionTgtOutput <- function(id) {
   ns <- NS(id)
@@ -293,7 +293,7 @@ EnConsumptionTgt <- function(input, output, session) {
       plottitle = "Final energy consumption against\n2005-07 baseline"
       
       EnConsChart <-
-        TargetChart(EnCons, plottitle, sourcecaption, ChartColours)
+        TargetChart3(EnCons, plottitle, sourcecaption, ChartColours)
       
       EnConsChart <- EnConsChart +
         geom_hline(yintercept = -0.12,

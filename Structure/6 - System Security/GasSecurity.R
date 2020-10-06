@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 GasSecurityOutput <- function(id) {
   ns <- NS(id)
@@ -70,14 +70,14 @@ GasSecurityOutput <- function(id) {
       tabPanel("Flows",
     fluidRow(
     column(10, h3("Data - Flows into St. Fergus, 12 month rolling average (GWh)", style = "color: #5d8be1;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+    column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("GasSecurityTable"))%>% withSpinner(color="#5d8be1")))),
     tabPanel("UK Proportion",
              fluidRow(
                column(10, h3("Data - Proportion of St. Fergus in UK gas, 12 month rolling average (GWh)", style = "color: #5d8be1;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("UKFergusTable"))%>% withSpinner(color="#5d8be1"))))),
@@ -547,7 +547,7 @@ GasSecurity <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:6, 1) %>% 
+      formatRound(2:4, 1) %>% 
       formatPercentage(c(4), 1)
   })
   
@@ -561,11 +561,13 @@ GasSecurity <- function(input, output, session) {
   })
  
  
-  observeEvent(input$ToggleTable, {
+  observeEvent(input$ToggleTable1, {
     toggle("GasSecurityTable")
   })
   
-
+  observeEvent(input$ToggleTable2, {
+    toggle("UKFergusTable")
+  })
   
   observeEvent(input$ToggleText, {
     toggle("Text")
@@ -1103,7 +1105,7 @@ output$GasSecurityProportion.png <- downloadHandler(
           y = GasSecurityRolling$FergusProp[which(GasSecurityRolling$Year == min(GasSecurityRolling$Year))],
           label = percent(GasSecurityRolling$FergusProp[which(GasSecurityRolling$Year == min(GasSecurityRolling$Year))], accuracy = 0.1),
           hjust = 0.5,
-          vjust = 1.1,
+          vjust = 1.3,
           fontface = 2
         ),
         colour = ChartColours[1],
@@ -1115,7 +1117,7 @@ output$GasSecurityProportion.png <- downloadHandler(
           y = GasSecurityRolling$FergusProp[which(GasSecurityRolling$Year == max(GasSecurityRolling$Year))],
           label = percent(GasSecurityRolling$FergusProp[which(GasSecurityRolling$Year == max(GasSecurityRolling$Year))], accuracy = 0.1),
           hjust = 0.5,
-          vjust = 1.1,
+          vjust = 1.3,
           fontface = 2
         ),
         colour = ChartColours[1],

@@ -1,8 +1,8 @@
-<p>While consumption in all other sectors declined since the 2005-07 baseline, it has <strong>increased </strong>slightly in the <strong>transport</strong> sector, up by <strong>0.9% </strong>to <strong>38,851 GWh </strong>in <strong>2018.</strong></p>
+<p>While consumption in all other sectors declined since the 2005-07 baseline, it has <strong>increased </strong>slightly in the <strong>transport</strong> sector, up by <strong>0.7% </strong>to <strong>38.8 TWh </strong>in <strong>2018.</strong></p>
 <p>The <strong>composition </strong>of Scottish transport energy consumption has changed over time:</p>
 <ul>
 <li>Consumption of fuel for <strong>personal road transport </strong>(buses, cars, motorcycles) has <strong>decreased </strong>by <strong>6.2%</strong>. Conversely <strong>freight </strong>has <strong>increased </strong>by <strong>15.6%</strong>.</li>
 <li>Consumption from <strong>diesel </strong>cars has <strong>increased </strong>by <strong>64.7%</strong>, whereas consumption from <strong>petrol</strong> vehicles&nbsp;<strong>dropped </strong>by <strong>34.4%</strong></li>
-<li>Energy consumption from <strong>buses </strong>has <strong>decreased </strong>by <strong>23.8%, </strong>including a <strong>14.2% drop </strong>on <strong>2017.</strong>&nbsp; Fuel consumption in&nbsp;<strong>rail rose&nbsp;</strong>by <strong>6.4% </strong>from the baseline.</li>
+<li>Energy consumption from <strong>buses </strong>has <strong>decreased </strong>by <strong>23.8%, </strong>including a <strong>14.2% drop </strong>on <strong>2017.</strong>&nbsp; Fuel consumption in&nbsp;<strong>rail dropped&nbsp;</strong>by <strong>2.5% </strong>from the baseline.</li>
 </ul>
 <p>&nbsp;</p>

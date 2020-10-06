@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 EnBalanceOutput <- function(id) {
   ns <- NS(id)
@@ -64,9 +64,12 @@ EnBalanceOutput <- function(id) {
       tabPanel("Energy balance data",
     fluidRow(
       uiOutput(ns("DataTableBalanceSupplyText")),
+      
       column(2, style = "padding:15px",  downloadButton(ns('EnBalanceData.xlsx'), 'Download Full Data', style="float:right")),
       column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Tables", style = "float:right; "))
     ),
+    fluidRow(column(12,selectInput(ns("UnitSelect3"), "Unit:", BalanceMultipliers$Unit, selected = BalanceMultipliers$Unit[1], multiple = FALSE,
+                  selectize = TRUE, width = NULL, size = NULL))),
     fluidRow(
       column(12, DTOutput(ns("EnBalanceTable1"))%>% withSpinner(color="#1A5D38"))),
     fluidRow(
@@ -83,8 +86,11 @@ EnBalanceOutput <- function(id) {
              
              fluidRow(
                column(10, h3("Data - Indigenous production & imports", style = "color: #1A5D38;  font-weight:bold")),
+               
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Tables", style = "float:right; "))
              ),
+             fluidRow(column(12,selectInput(ns("UnitSelect4"), "Unit:", BalanceMultipliers$Unit, selected = BalanceMultipliers$Unit[1], multiple = FALSE,
+                                  selectize = TRUE, width = NULL, size = NULL))),
              fluidRow(
                column(12, DTOutput(ns("EnFlowTable1"))%>% withSpinner(color="#1A5D38"))),
     fluidRow(
@@ -147,10 +153,20 @@ EnBalance <- function(input, output, session) {
     BalanceDropdown$Unit <- input$UnitSelect2
   })
   
+  observe({
+    BalanceDropdown$Unit <- input$UnitSelect3
+  })
+  
+  observe({
+    BalanceDropdown$Unit <- input$UnitSelect4
+  })
+  
   observe(
     {
       updateSelectInput(session, 'UnitSelect', selected = BalanceDropdown$Unit)
       updateSelectInput(session, 'UnitSelect2', selected = BalanceDropdown$Unit)
+      updateSelectInput(session, 'UnitSelect3', selected = BalanceDropdown$Unit)
+      updateSelectInput(session, 'UnitSelect4', selected = BalanceDropdown$Unit)
     }
   )
   

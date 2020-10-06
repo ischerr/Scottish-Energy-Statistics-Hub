@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 RenElecPipelineOutput <- function(id) {
   ns <- NS(id)
@@ -929,7 +929,7 @@ RenElecPipeline <- function(input, output, session) {
         xaxis = list(
           title = "",
           tickformat = "",
-          range = c(0,13000),
+          range = c(0,14000),
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
@@ -1628,10 +1628,9 @@ RenElecPipeline <- function(input, output, session) {
       
       names(Data2)[1] <- "Type"
       
+      Data2 <- Data2[order(Data2$Total),]
+      
       RenElecCapTech <- Data2[1:4]
-      
-      
-      RenElecCapTech <- arrange(RenElecCapTech,-row_number())
       
       RenElecCapTech$Type <-
         factor(RenElecCapTech$Type,
@@ -2003,7 +2002,7 @@ RenElecPipeline <- function(input, output, session) {
           tickformat = "%",
           showgrid = FALSE,
           showticklabels = FALSE,
-          range = c(0,15),
+          range = c(0,17),
           zeroline = FALSE,
           zerolinecolor = ChartColours[1],
           zerolinewidth = 2,

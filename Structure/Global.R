@@ -1,9 +1,22 @@
 Sources <- read_excel("Structure/Sources.xlsx")
 
+Sources$HTML <- "Hi"
+
+for (i in 1:nrow(Sources)){
+  
+  ifelse(substr(Sources[i,]$`Direct URL`,1,1) == "h", Sources[i,9] <- paste(a(Sources[i,]$Source, href = Sources[i,]$`Direct URL`, target="_blank")),Sources[i,9] <-  paste(p(Sources[i,]$Source, "(Unpublished)")))
+  }    
+
+
 SourceLookup <- function(x){
+  
+  
+    
   tagList(
-    a(Sources[which(Sources$Code == x),][2], href = Sources[which(Sources$Code == x),][3], target="_blank"),
-    br()
+    
+    
+   HTML(Sources[which(Sources$Code == x),]$HTML),
+    br(),
   )
 }
 
@@ -30,3 +43,17 @@ GenSupplyReadable <- read_delim("Processed Data/Output/Renewable Generation/GenS
 BalanceMultipliers <- read_excel("Structure/1 - Whole System/BalanceMultipliers.xlsx")
 
 BalanceDropdown <- reactiveValues(Unit = "ktoe")
+
+LARenGen <- read_delim("Processed Data/Output/Renewable Generation/LARenGen.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
+
+LARenCap <- read_delim("Processed Data/Output/Renewable Capacity/LAOperationalRenCap.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
+
+RenHeatDropdown <- reactiveValues(Measure = "Capacity")
+
+ULEVbyLA <- read_delim("Processed Data/Output/Vehicles/ULEVbyLA.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
+
+LAHeatMap <- read_csv("Processed Data/Output/Consumption/HeatConsumptionbyLA.csv")
+

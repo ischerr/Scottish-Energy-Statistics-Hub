@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 HeatConsumptionOutput <- function(id) {
   ns <- NS(id)
@@ -38,6 +38,23 @@ HeatConsumptionOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
              #dygraphOutput(ns("HeatConsumptionPlot")),
              plotlyOutput(ns("HeatConsumptionFuelPlot"), height =  "900px")%>% withSpinner(color="#34d1a3"),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("Local Authorities",
+             fluidRow(column(8,
+                             h3("Non-electrical heat demand at Local Authority Level", style = "color: #34d1a3;  font-weight:bold"),
+                             
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('LAHeatMap.png'), 'Download Graph', style="float:right")
+             )),
+             fluidRow(column(6,selectInput(ns("YearSelect"), "Year:", c(max(LAHeatMap$Year):min(LAHeatMap$Year)), selected = max(LAHeatMap$Year), multiple = FALSE,
+                                           selectize = TRUE, width = NULL, size = NULL) ),
+                      column(6, align = 'right', selectInput(ns("TechSelect"), "Tech:", c(unique(as.character(names(LAHeatMap[4:21])))), selected = "Total", multiple = FALSE,
+                                                             selectize = TRUE, width = "300px", size = NULL))),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
+             #dygraphOutput(ns("ElecGenFuelPlot")),
+             leafletOutput(ns("LAHeatMap"), height = "675px")%>% withSpinner(color="#34d1a3"),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
@@ -63,6 +80,18 @@ HeatConsumptionOutput <- function(id) {
              ),
              fluidRow(
                column(12, dataTableOutput(ns("HeatConsumptionFuelTable"))%>% withSpinner(color="#34d1a3"))),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("Local Authority",
+             fluidRow(
+               column(10, h3("Data - Non-electrical heat demand at Local Authority Level (GWh)", style = "color: #34d1a3;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12,selectInput(ns("YearSelect2"), "Year:", c(max(LAHeatMap$Year):min(LAHeatMap$Year)), selected = max(LAHeatMap$Year), multiple = FALSE,
+                                     selectize = TRUE, width = "200px", size = NULL) )
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("LAHeatTable"))%>% withSpinner(color="#34d1a3"))),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))
     ),
     fluidRow(
@@ -122,7 +151,7 @@ HeatConsumption <- function(input, output, session) {
       sheet = "Heat consump",
       col_names = FALSE,
       skip = 16,
-      n_max = 4
+      n_max = 5
     )
     
     Data <- as_tibble(t(Data))
@@ -131,7 +160,9 @@ HeatConsumption <- function(input, output, session) {
     
     names(Data)[1] <- "Year"
     
-    Data[1:4] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data[1:5] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data$Year <- as.character(Data$Year)
     
     Data[2,1] <- "Baseline\n2005/2007"
     
@@ -172,12 +203,24 @@ HeatConsumption <- function(input, output, session) {
       ) %>%
       add_trace(
         data = Data,
-        x = ~ `Non-Domestic`,
+        x = ~ `Industrial`,
         type = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "Non-Domestic",
-        text = paste0("Non-Domestic: ", format(round(Data$`Non-Domestic`, digits = 0), big.mark = ","), " GWh"),
+        name = "Industrial",
+        text = paste0("Industrial: ", format(round(Data$`Industrial`, digits = 0), big.mark = ","), " GWh"),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[2]),
+        legendgroup = 3
+      ) %>%
+      add_trace(
+        data = Data,
+        x = ~ `Commercial`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Commercial",
+        text = paste0("Commercial: ", format(round(Data$`Commercial`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 3
@@ -185,11 +228,11 @@ HeatConsumption <- function(input, output, session) {
       add_trace(
         data = Data,
         y = ~ Year,
-        x = ~ (Data$`Domestic` + Data$`Non-Domestic`) + 0.1,
+        x = ~ (Data$`Domestic` + Data$`Industrial` + Data$`Commercial`) + 0.1,
         showlegend = FALSE,
         type = 'scatter',
         mode = 'text',
-        text = ifelse(Data$`Domestic` >0, paste("<b>",format(round((Data$`Domestic` + Data$`Non-Domestic`), digits = 0), big.mark = ","),"GWh</b>")," "),
+        text = ifelse(Data$`Domestic` >0, paste("<b>",format(round((Data$`Domestic` + Data$`Industrial`  + Data$`Commercial`), digits = 0), big.mark = ","),"GWh</b>")," "),
         textposition = 'middle right',
         textfont = list(color = ChartColours[1]),
         hoverinfo = 'skip',
@@ -211,13 +254,25 @@ HeatConsumption <- function(input, output, session) {
       add_trace(
         data = tail(Data,1),
         y = ~Year,
-        x =  mean(DataLatest$`Domestic`) + (mean(DataLatest$`Non-Domestic`)/2),
+        x =  mean(DataLatest$`Domestic`) + (mean(DataLatest$`Industrial`)/2),
+        showlegend = FALSE,
+        mode = 'text',
+        type = 'scatter',
+        hoverinfo = 'skip',
+        textfont = list(color = BarColours[2]),
+        text =  paste0("<b>", percent(DataTail$`Industrial`, accuracy = 0.1), "</b>")
+      ) %>% 
+      
+      add_trace(
+        data = tail(Data,1),
+        y = ~Year,
+        x =  mean(DataLatest$`Domestic`) + mean(DataLatest$`Industrial`) + (mean(DataLatest$`Commercial`)/2),
         showlegend = FALSE,
         mode = 'text',
         type = 'scatter',
         hoverinfo = 'skip',
         textfont = list(color = BarColours[3]),
-        text =  paste0("<b>", percent(DataTail$`Non-Domestic`, accuracy = 0.1), "</b>")
+        text =  paste0("<b>", percent(DataTail$`Commercial`, accuracy = 0.1), "</b>")
       ) %>% 
       add_trace(
         data = tail(Data,1),
@@ -272,7 +327,7 @@ HeatConsumption <- function(input, output, session) {
       sheet = "Heat consump",
       col_names = FALSE,
       skip = 16,
-      n_max = 3
+      n_max = 4
     )
     
     Data <- as_tibble(t(Data))
@@ -281,7 +336,9 @@ HeatConsumption <- function(input, output, session) {
     
     names(Data)[1] <- "Year"
     
-    Data[1:3] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data[1:4] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data$Year <- as.character(Data$Year)
     
     Data[2,1] <- " Baseline\n2005/2007"
     
@@ -289,10 +346,12 @@ HeatConsumption <- function(input, output, session) {
     
     Data <- Data[-1,]
     
-    Data$Total <- Data$Domestic+Data$`Non-Domestic`
+    Data$`Non-Domestic` <- +Data$`Industrial`+Data$`Commercial`
+    
+    Data$Total <- Data$Domestic+Data$`Industrial`+Data$`Commercial`
     
     datatable(
-      Data,
+      Data[c(1,2,5,3,4,6)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -324,8 +383,9 @@ HeatConsumption <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:4, 0)%>% 
-      formatStyle(c(4), fontWeight = 'bold')
+      formatRound(2:6, 0)%>% 
+      formatStyle(c(6), fontWeight = 'bold') %>% 
+      formatStyle(c(4:5), fontStyle = 'italic')
   })
   
   
@@ -358,7 +418,7 @@ HeatConsumption <- function(input, output, session) {
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "Heat consump", skip = 16, col_names = FALSE)
       
-      Data <- head(Data, 4)
+      Data <- head(Data, 5)
       
       Data <- as_tibble(t(Data))
       
@@ -366,15 +426,15 @@ HeatConsumption <- function(input, output, session) {
       
       Data <- head(Data, -1)
       
-      Data [1,1] <- 2003
+      Data [1,1] <- "2003"
       
       Data <- as_tibble(sapply( Data, as.numeric ))
       
-      names(Data) <- c("Year", "Domestic", "Industrial/Commercial", "Total")
+      names(Data) <- c("Year", "Domestic", "Industrial", "Commercial", "Total")
       
       Data[nrow(Data),1] <- max(as.numeric(Data$Year),na.rm = TRUE)+1
       
-      HeatDemand <- Data[c(1,3,2,4)]
+      HeatDemand <- Data[c(1,4,3,2,5)]
       
       HeatDemand <- HeatDemand[order(-HeatDemand$Year),]
       
@@ -406,7 +466,8 @@ HeatConsumption <- function(input, output, session) {
         ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
         scale_fill_manual("variable",
                           values = c("Domestic" = BarColours[1],
-                                     "Industrial/Commercial" = BarColours[3])) +
+                                     "Industrial" = BarColours[2],
+                                     "Commercial" = BarColours[3])) +
         geom_bar(stat = "identity", width = .8) +
         geom_text(
           y = HeatDemand$top,
@@ -443,7 +504,7 @@ HeatConsumption <- function(input, output, session) {
                 HeatDemand$Year ==  max(HeatDemand$Year),
               paste0(format(
                 round(HeatDemand$value, digits = 0), big.mark = ","
-              ), " GWh"),
+              ), ""),
               ""
             ),
             ""
@@ -465,8 +526,17 @@ HeatConsumption <- function(input, output, session) {
         annotate(
           "text",
           x = 2004,
-          y = 69699,
-          label = "Industrial/Commercial",
+          y = 60000,
+          label = "Industrial",
+          fontface = 2,
+          color = BarColours[2],
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = 2004,
+          y = 88000,
+          label = "Commercial",
           fontface = 2,
           color = BarColours[3],
           family = "Century Gothic"
@@ -495,17 +565,40 @@ HeatConsumption <- function(input, output, session) {
             subset(
               HeatDemand,
               Year == max(HeatDemand$Year) &
-                variable == "Industrial/Commercial"
+                variable == "Industrial"
             )[1, 5]
           ) - as.numeric(
             subset(
               HeatDemand,
               Year == max(HeatDemand$Year) &
-                variable == "Industrial/Commercial"
+                variable == "Industrial"
             )[1, 4]
           ),
           label = percent((
-            subset(HeatDemandMax, variable == "Industrial/Commercial")[1, 3]
+            subset(HeatDemandMax, variable == "Industrial")[1, 3]
+          ),.1),
+          fontface = 2,
+          color = BarColours[2],
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = max(HeatDemand$Year) + 1.2,
+          y = as.numeric(
+            subset(
+              HeatDemand,
+              Year == max(HeatDemand$Year) &
+                variable == "Commercial"
+            )[1, 5]
+          ) - as.numeric(
+            subset(
+              HeatDemand,
+              Year == max(HeatDemand$Year) &
+                variable == "Commercial"
+            )[1, 4]
+          ),
+          label = percent((
+            subset(HeatDemandMax, variable == "Commercial")[1, 3]
           ),.1),
           fontface = 2,
           color = BarColours[3],
@@ -525,7 +618,8 @@ HeatConsumption <- function(input, output, session) {
           color = ChartColours[1],
           family = "Century Gothic",
           hjust = -.75
-        ) + annotate(
+        ) +
+        annotate(
           "text",
           x = max(HeatDemand$Year) + 1.2,
           y = -10000,
@@ -559,7 +653,7 @@ HeatConsumption <- function(input, output, session) {
       ggsave(
         file,
         plot = HeatDemandChart,
-        width = 20,
+        width = 21,
         height = 17.5,
         units = "cm",
         dpi = 300
@@ -573,23 +667,27 @@ HeatConsumption <- function(input, output, session) {
   
   HeatConsumptionFuel <- HeatConsumptionFuel[which(HeatConsumptionFuel$`LA Code` == "S92000003"),]
   
-  HeatConsumptionFuel$Coal <- HeatConsumptionFuel$`Coal - Industrial & Commercial` + HeatConsumptionFuel$`Coal - Domestic`
+  HeatConsumptionFuel$Coal <- HeatConsumptionFuel$`Coal - Industrial`+  HeatConsumptionFuel$`Coal - Commercial` + HeatConsumptionFuel$`Coal - Domestic`
   
   HeatConsumptionFuel$`Manufactured fuels` <- HeatConsumptionFuel$`Manufactured fuels - Industrial` + HeatConsumptionFuel$`Manufactured fuels - Domestic`
   
-  HeatConsumptionFuel$`Petroleum products` <- HeatConsumptionFuel$`Petroleum products - Industrial & Commercial` + HeatConsumptionFuel$`Petroleum products - Domestic` + HeatConsumptionFuel$`Petroleum products - Public Sector` + HeatConsumptionFuel$`Petroleum products - Agriculture`
+  HeatConsumptionFuel$`Petroleum products` <- HeatConsumptionFuel$`Petroleum products - Industrial`+ HeatConsumptionFuel$`Petroleum products - Commercial` + HeatConsumptionFuel$`Petroleum products - Domestic` + HeatConsumptionFuel$`Petroleum products - Public Sector` + HeatConsumptionFuel$`Petroleum products - Agriculture`
   
-  HeatConsumptionFuel$Gas <- HeatConsumptionFuel$`Sales (GWh) - Non-domestic consumption` + HeatConsumptionFuel$`Sales (GWh) - Domestic consumption`
+  HeatConsumptionFuel$Gas <- HeatConsumptionFuel$`Gas - Industrial` + HeatConsumptionFuel$`Gas - Commercial` + HeatConsumptionFuel$`Gas - Domestic`
   
-  HeatConsumptionFuel$`Bioenergy & wastes` <- HeatConsumptionFuel$`Bioenergy & wastes - Total`
+  HeatConsumptionFuel$`Bioenergy & wastes` <- HeatConsumptionFuel$`Bioenergy & Wastes - Industrial` + HeatConsumptionFuel$`Bioenergy & Wastes - Commercial` + HeatConsumptionFuel$`Bioenergy & wastes - Domestic` 
   
-  HeatConsumptionFuel <- HeatConsumptionFuel[c(2, 19,20,21,17,18, 16)]
+  HeatConsumptionFuel <- HeatConsumptionFuel[c(2, 22:26, 21)]
   
-  HeatConsumptionFuel <- rbind(HeatConsumptionFuel, read_csv("Structure/4 - Energy Efficiency/Demand Reduction/HeatFuelExtra.csv"))
+  HeatConsumptionFuel <- HeatConsumptionFuel[duplicated(HeatConsumptionFuel$Year),]
+  
+  #HeatConsumptionFuel <- rbind(HeatConsumptionFuel, read_csv("Structure/4 - Energy Efficiency/Demand Reduction/HeatFuelExtra.csv"))
   
   HeatConsumptionFuel <- HeatConsumptionFuel[order(-HeatConsumptionFuel$Year),]
   
   HeatConsumptionFuelBaseline <- as.data.frame.list(colMeans(HeatConsumptionFuel[which(HeatConsumptionFuel$Year %in% c(2005,2006,2007)),] ))
+  
+  HeatConsumptionFuelBaseline$Year <- as.character(HeatConsumptionFuelBaseline$Year)
   
   HeatConsumptionFuelBaseline[1,1] <- "Baseline 2005/2007"
   
@@ -661,6 +759,7 @@ HeatConsumption <- function(input, output, session) {
     
     Data <- Data[c(1,nrow(Data), 2:(nrow(Data)-1)),]
     
+    Data$Year <- as.character(Data$Year)
     
     Data[1,1] <- "Baseline\n2005/2007"
     
@@ -836,11 +935,11 @@ HeatConsumption <- function(input, output, session) {
       
       Data <- rbind(Data, DataCalc)
       
-      Data[1,1] <- 2003
+      Data[1,1] <- "2003"
       
       Data <- Data[complete.cases(Data),]
       
-      Data[nrow(Data),1] <- max(as.numeric(Data$Year),na.rm = TRUE)+1
+      Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE)+1)
       
       Data <- as_tibble(sapply( Data, as.numeric ))
       
@@ -1151,5 +1250,138 @@ HeatConsumption <- function(input, output, session) {
       
     }
   )
+  
+  output$LAHeatMap <- renderLeaflet({
+    
+    ### Load Packages
+    library(readr)
+    library("maptools")
+    library(tmaptools)
+    library(tmap)
+    library("sf")
+    library("leaflet")
+    library("rgeos")
+    library(readxl)
+    library(ggplot2)
+    
+    ### Add Simplified shape back to the Shapefile
+    LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/LocalAuthority2.shp")
+    
+    LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
+    ############ RENEWABLE ELECTRICITY ################################################
+    
+    Year = as.numeric(input$YearSelect)
+    
+    Tech = as.character(input$TechSelect)
+    
+    LARenGen <- read_csv("Processed Data/Output/Consumption/HeatConsumptionbyLA.csv")
+    
+    names(LARenGen)[1:3] <- c("LACode", "Year", "LAName")
+    
+    LARenGen <-  melt(LARenGen, id.vars = c("LACode", "LAName", "Year"))
+    
+    names(LARenGen)[1] <- "CODE"
+    
+    LARenGen <- LARenGen[which(LARenGen$Year == Year),]
+    
+    LARenGen <- LARenGen[which(substr(LARenGen$CODE,1,3) == "S12"),]
+    
+    LARenGen <- LARenGen[which(LARenGen$variable == Tech),]
+    
+    LARenGen$Content <- paste0("<b>",LARenGen$LAName, "</b><br/>", LARenGen$variable[1], " Demand:<br/><em>", format(round(LARenGen$value, digits = 0), big.mark = ",")," GWh</em>" )
+    
+    LARenGen$Hover <- paste0(LARenGen$LAName, " - ", format(round(LARenGen$value, digits = 0), big.mark = ","), " GWh")
+    
+    ### Change LA$CODE to string
+    LA$CODE <- as.character(LA$CODE)
+    
+    ### Order LAs in Shapefile
+    LA <- LA[order(LA$CODE),]
+    
+    ### Order LAs in Data
+    LARenGen <- LARenGen[order(LARenGen$CODE),]
+    
+    ### Combine Data with Map data
+    LAMap <-
+      merge(LA, LARenGen)
+    
+    
+    pal <- colorNumeric(
+      palette = "Greens",
+      domain = LAMap$value)
+    
+    l <-leaflet(LAMap) %>% 
+      addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
+      addPolygons(stroke = TRUE, 
+                  weight = 0.1,
+                  smoothFactor = 0.2,
+                  popup = ~Content,
+                  label = ~Hover,
+                  fillOpacity = 1,
+                  color = ~pal(value),
+                  highlightOptions = list(color = "white", weight = 2,
+                                          bringToFront = TRUE)) %>%
+      leaflet::addLegend("bottomright", pal = pal, values = ~value,
+                         title = paste0(LARenGen$variable[1], " Demand (GWh)"),
+                         opacity = 1
+      ) 
+    
+    l
+    
+  })
+  
+  output$LAHeatMap.png <- downloadHandler(
+    filename = "LAHeatMap.png",
+    content = function(file) {
+      writePNG(readPNG("Structure/4 - Energy Efficiency/Demand Reduction/LAHeatDemandMapChart.png"), file) 
+    }
+  )
+  
+  output$LAHeatTable = renderDataTable({
+    
+    LARenGen <- read_csv("Processed Data/Output/Consumption/HeatConsumptionbyLA.csv")
+    
+    Year2 = as.numeric(input$YearSelect2)
+    
+    LARenGen <- LARenGen[which(substr(LARenGen$`LA Code`,1,3) == "S12"),]
+    
+    LARenGen <- LARenGen[which(LARenGen$Year == Year2),]
+    
+    LARenGen <- LARenGen[order(-LARenGen$Year, LARenGen$Region),]
+    
+    datatable(
+      LARenGen,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        scrollX = TRUE,
+        title = "Non-electrical heat demand at Local Authority Level (GWh)",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Non-electrical heat demand at Local Authority Level (GWh)',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Non-electrical heat demand at Local Authority Level (GWh)')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(4:ncol(LARenGen), 0) 
+  })
   
 }

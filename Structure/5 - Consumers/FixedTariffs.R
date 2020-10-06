@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 FixedTariffsOutput <- function(id) {
   ns <- NS(id)
@@ -271,18 +271,15 @@ FixedTariffs <- function(input, output, session) {
   output$ElecPaymentsTable = renderDataTable({
     Data  <- read_delim("Processed Data/Output/Energy Bills/FixedTariffElectricity.txt", 
                                                  "\t", escape_double = FALSE, trim_ws = TRUE)
+    Data$Quarter <- dmy(Data$Quarter)
     
-    names(Data) <- c("Year", "North Scotland", "South Scotland", "Great Britain")
+    Data$Quarter <- as.yearqtr(Data$Quarter)
     
-    Data$Year <- dmy(Data$Year)
-    
-    Data$Year <- as.yearqtr(Data$Year)
-    
-    Data$Year <- format(Data$Year, "%Y Q%q")
+    Data$Quarter <- format(Data$Quarter, "%Y Q%q")
     ElecPayments <- Data
     
     datatable(
-      ElecPayments,
+      ElecPayments[c(1,3,4,2)],
       extensions = 'Buttons',
      # container = sketch,
       rownames = FALSE,
@@ -498,15 +495,14 @@ FixedTariffs <- function(input, output, session) {
     Data  <- read_delim("Processed Data/Output/Energy Bills/FixedTariffGas.txt", 
                         "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    names(Data) <- c("Year", "North Scotland", "South Scotland", "Great Britain")
+    Data$Quarter <- dmy(Data$Quarter)
+    Data$Quarter <- as.yearqtr(Data$Quarter)
     
-    Data$Year <- as.yearqtr(Data$Year)
-    
-    Data$Year <- format(Data$Year, "%Y Q%q")
-    ElecPayments <- Data
+    Data$Quarter <- format(Data$Quarter, "%Y Q%q")
+    GasPayments <- Data
     
     datatable(
-      ElecPayments,
+      GasPayments[c(1,3,4,2)],
       extensions = 'Buttons',
       # container = sketch,
       rownames = FALSE,

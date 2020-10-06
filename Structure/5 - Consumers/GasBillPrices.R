@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 GasBillPricesOutput <- function(id) {
   ns <- NS(id)
   tagList(
@@ -52,7 +52,7 @@ GasBillPricesOutput <- function(id) {
     tabPanel("Data - Time Series",
       fluidRow(
         column(10, h3("Data - gas Bills Time Series (2010 \u00A3)", style = "color: #68c3ea;  font-weight:bold")),
-        column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+        column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
       ),
       fluidRow(
         column(12, dataTableOutput(ns("AverageGasBillsTable"))%>% withSpinner(color="#68c3ea"))),
@@ -60,7 +60,7 @@ GasBillPricesOutput <- function(id) {
     tabPanel("Data - Regional breakdown",
              fluidRow(
                column(10, h3("Data - Average Annual gas Bills (Current Prices)", style = "color: #68c3ea;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("GasBillPricesTable"))%>% withSpinner(color="#68c3ea"))),
@@ -228,7 +228,7 @@ GasBillPrices <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatCurrency(c(2:7), currency = "\u00A3", digits = 0)
+      formatCurrency(c(2:4), currency = "\u00A3", digits = 0)
   })
   
   output$AverageGasBillsSubtitle <- renderText({
@@ -470,7 +470,7 @@ GasBillPrices <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatCurrency(c(2:7), currency = "\u00A3", digits = 0)
+      formatCurrency(c(2:4), currency = "\u00A3", digits = 0)
   })
   
   output$Text <- renderUI({
@@ -483,11 +483,11 @@ GasBillPrices <- function(input, output, session) {
   
   
  observeEvent(input$ToggleTable1, {
-    toggle("GasBillPricesTable")
+    toggle("AverageGasBillsTable")
   })
   
   observeEvent(input$ToggleTable2, {
-    toggle("AverageGasBillsTable")
+    toggle("GasBillPricesTable")
   })
 
   

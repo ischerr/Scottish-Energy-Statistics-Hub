@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 OilGasExportsOutput <- function(id) {
   ns <- NS(id)
@@ -452,8 +452,7 @@ OilGasExports <- function(input, output, session) {
             label = "Rest of\n World",
             hjust = 0.5,
             vjust = 1.4,
-            colour = ChartColours[3],
-            fontface = 2
+            colour = ChartColours[3]
           ),
           family = "Century Gothic"
         ) +
@@ -494,10 +493,9 @@ OilGasExports <- function(input, output, session) {
             x = mean(Year),
             y = mean(Total),
             label = "Total",
-            hjust = 1.5,
+            hjust = 2.1,
             vjust = -5.5,
-            colour = ChartColours[1],
-            fontface = 2
+            colour = ChartColours[1]
           ),
           family = "Century Gothic"
         )+
@@ -521,8 +519,7 @@ OilGasExports <- function(input, output, session) {
             label = "Rest of\n U.K.",
             hjust = 0.5,
             vjust = 1,
-            colour = ChartColours[2],
-            fontface = 2
+            colour = ChartColours[2]
           )) +
         
         ### 0 Axis
@@ -572,8 +569,8 @@ OilGasExports <- function(input, output, session) {
       ggsave(
         file,
         plot =  OilGasSupplyChart,
-        width = 21,
-        height = 10,
+        width = 30,
+        height = 13.5,
         units = "cm",
         dpi = 300
       )

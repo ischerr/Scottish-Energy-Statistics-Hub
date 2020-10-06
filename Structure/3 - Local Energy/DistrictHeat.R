@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 DistrictHeatOutput <- function(id) {
   ns <- NS(id)
@@ -370,7 +370,7 @@ DistrictHeat <- function(input, output, session) {
         pageLength = 10
       )
     ) %>% 
-      formatRound(2:10, 0) %>% 
+      formatRound(2:7, 0) %>% 
       formatRound(5,2) %>% 
       formatStyle(c(4), fontWeight = "bold")
     
@@ -422,7 +422,7 @@ DistrictHeat <- function(input, output, session) {
         pageLength = 10
       )
     ) %>% 
-      formatRound(2:10, 0) %>% 
+      formatRound(2:8, 0) %>% 
       formatStyle(c(8), fontWeight = "bold")
     
   })
@@ -473,7 +473,7 @@ DistrictHeat <- function(input, output, session) {
         pageLength = 10
       )
     ) %>% 
-      formatRound(2:10, 0) %>% 
+      formatRound(2:8, 0) %>% 
       formatStyle(c(8), fontWeight = "bold")
     
   })
@@ -524,7 +524,7 @@ DistrictHeat <- function(input, output, session) {
         pageLength = 10
       )
     ) %>% 
-      formatRound(2:10, 0) %>% 
+      formatRound(2:8, 0) %>% 
       formatStyle(c(8), fontWeight = "bold")
     
     
@@ -576,7 +576,7 @@ DistrictHeat <- function(input, output, session) {
         pageLength = 10
       )
     ) %>% 
-      formatRound(2:10, 0) %>% 
+      formatRound(2:8, 0) %>% 
       formatStyle(c(8), fontWeight = "bold")
     
     

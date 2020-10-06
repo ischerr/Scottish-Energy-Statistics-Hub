@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 RenElecGenOutput <- function(id) {
   ns <- NS(id)
@@ -54,6 +54,23 @@ RenElecGenOutput <- function(id) {
              plotlyOutput(ns("ScotRenGenPlot"))%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")
     ),
+    tabPanel("Local Authorities",
+             fluidRow(column(8,
+                             h3("Renewable electricity generation at Local Authority Level", style = "color: #39ab2c;  font-weight:bold"),
+                             
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('LAGenMap.png'), 'Download Graph', style="float:right")
+             )),
+             fluidRow(column(6,selectInput(ns("YearSelect"), "Year:", c(max(LARenGen$Year):min(LARenGen$Year)), selected = max(LARenGen$Year), multiple = FALSE,
+                                           selectize = TRUE, width = NULL, size = NULL) ),
+                      column(6, align = 'right', selectInput(ns("TechSelect"), "Tech:", c(unique(names(LARenGen[4:10]))), selected = "Total Renewable", multiple = FALSE,
+                                           selectize = TRUE, width = "300px", size = NULL))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+             #dygraphOutput(ns("ElecGenFuelPlot")),
+             leafletOutput(ns("LAGenMap"), height = "675px")%>% withSpinner(color="#39ab2c"),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Wind",
              fluidRow(column(8,
                              h3("Scottish wind generation compared to European countries", style = "color: #39ab2c;  font-weight:bold"),
@@ -116,6 +133,19 @@ RenElecGenOutput <- function(id) {
              fluidRow(
                column(12, dataTableOutput(ns("ScotRenGenTable"))%>% withSpinner(color="#39ab2c"))),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Local Authority",
+             fluidRow(
+               column(10, h3("Data - Renewable electricity generation at Local Authority Level (GWh)", style = "color: #39ab2c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12,selectInput(ns("YearSelect2"), "Year:", c(max(LARenGen$Year):min(LARenGen$Year)), selected = max(LARenGen$Year), multiple = FALSE,
+                                    selectize = TRUE, width = "200px", size = NULL) )
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("LAGenTable"))%>% withSpinner(color="#39ab2c"))),
+             HTML("<blockquote><p>*The sum of local authorities will not add up to overall Scottish generation because some sites have not been allocated a local authority.</p></blockquote>"),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Wind",
              fluidRow(
                column(10, h3("Data - Scottish wind generation compared to European countries (GWh)", style = "color: #39ab2c;  font-weight:bold")),
@@ -142,7 +172,8 @@ RenElecGenOutput <- function(id) {
       column(7, align = "right",
         SourceLookup("BEISRenElec"),
         SourceLookup("EURORenEn"),
-        SourceLookup("BEISSubNatEnergy")
+        SourceLookup("BEISSubNatEnergy"),
+        SourceLookup("BEISRenElecLA")
         
       )
     )
@@ -485,7 +516,7 @@ RenElecGen <- function(input, output, session) {
         xaxis = list(
           title = "",
           tickformat = "",
-          range = c(0, 30500),
+          range = c(0, 35500),
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
@@ -2250,6 +2281,8 @@ RenElecGen <- function(input, output, session) {
     
     names(Data) <- c("Quarter", "Onshore wind", "Offshore wind", "Shoreline wave / tidal", "Solar PV", "Hydro", "Landfill gas", "Sewage sludge digestion", "Other biomass (inc. co-firing)", "Total")
     
+    Data <- Data[which(Data$Total > 0),]
+    
     Data$Quarter <- paste0(substr(Data$Quarter,1,4), " Q", substr(Data$Quarter,8,8))
     
     datatable(
@@ -2290,4 +2323,163 @@ RenElecGen <- function(input, output, session) {
   observeEvent(input$ToggleTable5, {
     toggle("RenElecQuarterTable")
   })
+  
+  
+  
+  
+  
+
+  
+  output$LAGenMap <- renderLeaflet({
+    
+    ### Load Packages
+    library(readr)
+    library("maptools")
+    library(tmaptools)
+    library(tmap)
+    library("sf")
+    library("leaflet")
+    library("rgeos")
+    library(readxl)
+    library(ggplot2)
+    
+    ### Add Simplified shape back to the Shapefile
+    LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/LocalAuthority2.shp")
+    
+    LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
+    ############ RENEWABLE ELECTRICITY ################################################
+    
+    Year = as.numeric(input$YearSelect)
+    
+    Tech = as.character(input$TechSelect)
+    
+    LARenGen <- read_delim("Processed Data/Output/Renewable Generation/LARenGen.txt", 
+                           "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    LARenGen <-  melt(LARenGen, id.vars = c("LACode", "LAName", "Year"))
+    
+    names(LARenGen)[1] <- "CODE"
+    
+    LARenGen <- LARenGen[which(LARenGen$Year == Year),]
+    
+    LARenGen <- LARenGen[which(substr(LARenGen$CODE,1,3) == "S12"),]
+    
+    LARenGen <- LARenGen[which(LARenGen$variable == Tech),]
+    
+    LARenGen$Content <- paste0("<b>",LARenGen$LAName, "</b><br/>", LARenGen$variable[1], " Generation:<br/><em>", round(LARenGen$value, digits = 0)," GWh</em>" )
+    
+    LARenGen$Hover <- paste0(LARenGen$LAName, " - ", round(LARenGen$value, digits = 2), " GWh")
+    
+    ### Change LA$CODE to string
+    LA$CODE <- as.character(LA$CODE)
+    
+    ### Order LAs in Shapefile
+    LA <- LA[order(LA$CODE),]
+    
+    ### Order LAs in Data
+    LARenGen <- LARenGen[order(LARenGen$CODE),]
+    
+    ### Combine Data with Map data
+    LAMap <-
+      merge(LA, LARenGen)
+    
+    
+    pal <- colorNumeric(
+      palette = "Greens",
+      domain = LAMap$value)
+    
+    l <-leaflet(LAMap) %>% 
+      addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
+      addPolygons(stroke = TRUE, 
+                  weight = 0.1,
+                  smoothFactor = 0.2,
+                  popup = ~Content,
+                  label = ~Hover,
+                  fillOpacity = 1,
+                  color = ~pal(value),
+                  highlightOptions = list(color = "white", weight = 2,
+                                          bringToFront = TRUE)) %>%
+      leaflet::addLegend("bottomright", pal = pal, values = ~value,
+                         title = paste0(LARenGen$variable[1], " Generation (GWh)"),
+                         opacity = 1
+      ) 
+    
+    l
+    
+  })
+  
+  
+  
+  
+  
+  output$LAGenTable = renderDataTable({
+    
+    LARenGen <- read_delim("Processed Data/Output/Renewable Generation/LARenGen.txt", 
+                           "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    Year2 = as.numeric(input$YearSelect2)
+    
+    LARenGen <- LARenGen[which(substr(LARenGen$LACode,1,3) == "S12"),]
+    
+    LARenGen <- LARenGen[which(LARenGen$Year == Year2),]
+    
+    LARenGen <- LARenGen[order(-LARenGen$Year, LARenGen$LAName),]
+    
+    datatable(
+      LARenGen,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "Renewable electricity generation at Local Authority Level (GWh)",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Renewable electricity generation at Local Authority Level (GWh)',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Renewable electricity generation at Local Authority Level (GWh)')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(4:ncol(LARenGen), 0) 
+  })
+  
+  
+  output$LAGenMap.png <- downloadHandler(
+    filename = "LAGenMap.png",
+    content = function(file) {
+      writePNG(readPNG("Structure/2 - Renewables/Electricity/LARenGen.png"), file) 
+    }
+  )
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 }

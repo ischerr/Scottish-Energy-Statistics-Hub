@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 NonDomRHIOutput <- function(id) {
   ns <- NS(id)
@@ -52,7 +52,21 @@ NonDomRHIOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     #dygraphOutput(ns("NonDomRHIPlot")),
     plotlyOutput(ns("NonDomRHIPlot"))%>% withSpinner(color="#39ab2c"),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
+    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("On/Off-grid",
+             fluidRow(column(8,
+                             h3("Proportion of full accreditations which are on-grid and off-grid", style = "color: #39ab2c;  font-weight:bold"),
+                             h4(textOutput(ns('NonDomRHIUrbanRuralSubtitle')), style = "color: #39ab2c;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('NonDomRHIUrbanRural.png'), 'Download Graph', style="float:right")
+             )),
+             
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+             #dygraphOutput(ns("DomesticRHIPlot")),
+             plotlyOutput(ns("NonDomRHIUrbanRuralPlot"), height = "600px")%>% withSpinner(color="#39ab2c"),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
     ),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
@@ -83,7 +97,7 @@ NonDomRHIOutput <- function(id) {
       
       tabPanel("Heat generated, installed capacity & installations paid ",
     fluidRow(
-    column(10, h3("Data - Heat generated, installed capacity and number of installations receiving payment, Nov 2011 - June 2019", style = "color: #39ab2c;  font-weight:bold")),
+    column(10, h3("Data - Heat generated, installed capacity and number of installations receiving payment, Nov 2011 - May 2020", style = "color: #39ab2c;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -129,7 +143,7 @@ NonDomRHI <- function(input, output, session) {
   
   output$NonDomRHISubtitle <- renderText({
     
-    paste("Scotland, Nov 2011 - June 2019")
+    paste("Scotland, Nov 2011 - May 2020")
   })
   
   output$NonDomRHIPlot <- renderPlotly  ({
@@ -268,7 +282,7 @@ NonDomRHI <- function(input, output, session) {
                   "Accredited full applications: ",
                   format(round(NonDomRHIAccreditedInstallations$`Accredited full applications`, digits = 0), big.mark = ","),
                   "\nYear: ",
-                  format(NonDomRHIAccreditedInstallations$Year, "%Y")
+                  format(NonDomRHIAccreditedInstallations$Year, "%b %Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = LineColours[1], dash = "none")
@@ -283,7 +297,7 @@ NonDomRHI <- function(input, output, session) {
           "Accredited full applications: ",
           format(tail(NonDomRHIAccreditedInstallations[which(NonDomRHIAccreditedInstallations$`Accredited full applications` != 0),], 1)$`Accredited full applications`, big.mark = ","),
           "\nYear: ",
-          format(tail(NonDomRHIAccreditedInstallations[which(NonDomRHIAccreditedInstallations$`Accredited full applications` != 0),], 1)$Year, "%Y")
+          format(tail(NonDomRHIAccreditedInstallations[which(NonDomRHIAccreditedInstallations$`Accredited full applications` != 0),], 1)$Year, "%b %Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -361,7 +375,7 @@ NonDomRHI <- function(input, output, session) {
                   "Capacity of accredited full applications: ",
                   format(round(NonDomRHInstallationCapacity$`Capacity of accredited full applications`, digits = 0), big.mark = ","),
                   " MW\nYear: ",
-                  format(NonDomRHInstallationCapacity$Year, "%Y")
+                  format(NonDomRHInstallationCapacity$Year, "%b %Y")
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = LineColours[1], dash = "none")
@@ -376,7 +390,7 @@ NonDomRHI <- function(input, output, session) {
           "Capacity of accredited full applications: ",
           format(round(tail(NonDomRHInstallationCapacity[which(NonDomRHInstallationCapacity$`Capacity of accredited full applications` != 0),], 1)$`Capacity of accredited full applications`, digits = 0), big.mark = ","),
           " MW\nYear: ",
-          format(tail(NonDomRHInstallationCapacity[which(NonDomRHInstallationCapacity$`Capacity of accredited full applications` != 0),], 1)$Year, "%Y")
+          format(tail(NonDomRHInstallationCapacity[which(NonDomRHInstallationCapacity$`Capacity of accredited full applications` != 0),], 1)$Year, "%b %Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -439,17 +453,17 @@ NonDomRHI <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - June 2019",
+        title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - May 2020",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - June 2019",
+            title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - May 2020",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - June 2019")
+               title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - May 2020")
         ),
         
         # customize the length menu
@@ -745,7 +759,7 @@ NonDomRHI <- function(input, output, session) {
       
       NonDomRHIChart <-
         NonDomRHIChart +
-        labs(subtitle = "Scotland, Nov 2011 - June 2019") +
+        labs(subtitle = "Scotland, Nov 2011 - May 2020") +
         ylim(-.1, .7)+
         coord_flip()
       
@@ -756,7 +770,7 @@ NonDomRHI <- function(input, output, session) {
         file,
         plot = NonDomRHIChart,
         width = 20,
-        height = 12,
+        height = 15,
         units = "cm",
         dpi = 300
       )
@@ -820,7 +834,7 @@ output$NonDomRHIAccreditedInstallations.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year+101,
+          x = Year+110,
           y = `Applications`,
           label = ifelse(Year == max(Year), format(`Applications`, big.mark = ","), ""),
           hjust = 0.5,
@@ -943,7 +957,7 @@ output$NonDomRHIInstallationCap.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year+101,
+          x = Year+110,
           y = `Capacity`,
           label = ifelse(Year == max(Year), paste(round(Capacity, digits = 1), "\nMW"), ""),
           hjust = 0.5,
@@ -1010,6 +1024,273 @@ output$NonDomRHIInstallationCap.png <- downloadHandler(
     
   }
 )
+
+output$NonDomRHIUrbanRuralSubtitle <- renderText({
+  
+  paste("Scotland,","November 2011 to December 2019")
+})
+
+output$NonDomRHIUrbanRuralPlot <- renderPlotly  ({
+  
+  DomUrbanRural <- read_delim("Processed Data/Output/RHI/NonDomUrbanRural.txt", 
+                              "\t", escape_double = FALSE, trim_ws = TRUE)
+  
+  DomUrbanRural <- DomUrbanRural[which(DomUrbanRural$Total > 0),]
+  
+  DomUrbanRural$OnGridProp <- DomUrbanRural$`Total on-grid` / DomUrbanRural$Total
+  
+  DomUrbanRural$OffGridProp <- DomUrbanRural$`Total off-grid` / DomUrbanRural$Total
+  
+  DomUrbanRural <- DomUrbanRural[c(1,11,12)]
+  
+  DomUrbanRural$Tech <- paste0("<b>", DomUrbanRural$Tech, "</b>")
+  
+  DomUrbanRural$Tech <- factor(DomUrbanRural$Tech, levels = c(as.character(DomUrbanRural$Tech)))
+  
+  ChartColours <- c("#004529", "#78c679")
+  
+  p <- plot_ly(
+    data = DomUrbanRural,
+    y = ~Tech,
+    x = ~OnGridProp,
+    text = paste0(DomUrbanRural$Tech,
+                  "\nProportion of accreddited installations that are on-grid: ",
+                  percent(DomUrbanRural$OnGridProp,.1), ""
+    ),
+    name = "Urban",
+    type = "bar",
+    hoverinfo = "text",
+    orientation = 'h',
+    legendgroup = '1',
+    marker = list(color =  ChartColours[1])
+  )  %>% 
+    add_trace(
+      y = ~Tech,
+      x = ~OffGridProp,
+      text = paste0(DomUrbanRural$Tech,
+                    "\nPProportion of accreddited installations that are off-grid: ",
+                    percent(DomUrbanRural$OffGridProp,.1), ""
+      ),
+      name = "Rural",
+      type = "bar",
+      hoverinfo = "text",
+      orientation = 'h',
+      legendgroup = '2',
+      marker = list(color =  ChartColours[2])
+    ) %>% 
+    layout(
+      barmode = 'stack',
+      legend = list(font = list(color = "#39ab2c"),
+                    orientation = 'h'),
+      hoverlabel = list(font = list(color = "white"),
+                        hovername = 'text'),
+      hovername = 'text',
+      yaxis = list(title = "",
+                   autorange = "reversed",
+                   showgrid = FALSE),
+      xaxis = list(
+        title = "",
+        tickformat = "%",
+        showgrid = TRUE,
+        zeroline = TRUE,
+        zerolinecolor = ChartColours[1],
+        zerolinewidth = 2,
+        rangemode = "tozero"
+      )
+    ) %>% 
+    config(displayModeBar = F)
+  
+  p
+  
+  
+  
+  
+})
+
+output$NonDomRHIUrbanRural.png <- downloadHandler(
+  filename = "NonDomRHIUrbanRural.png",
+  content = function(file) {
+    
+    Data <- read_delim("Processed Data/Output/RHI/NonDomUrbanRural.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    Data <- Data[which(Data$Total > 0),]
+    
+    Data$OffGridProp <- Data$`Total off-grid` / Data$Total
+    Data$OnGridProp <- Data$`Total on-grid` / Data$Total
+    
+    Data <- Data[c(1,11,12)]
+    
+    ChartColours <- "#39ab2c"
+    BarColours <- c("#004529", "#78c679")
+    
+    Data$Tech <-
+      factor(Data$Tech,
+             levels = rev(unique(Data$Tech)),
+             ordered = TRUE)
+    
+    Data <- melt(Data, id.vars = "Tech")
+    
+    
+    Data$variable <-
+      factor(
+        Data$variable,
+        levels = unique(Data$variable),
+        ordered = TRUE
+      )
+    
+    Data <- Data %>%
+      group_by(Tech) %>%
+      mutate(pos = cumsum(value) - value / 2) %>%
+      mutate(top = sum(value))
+    
+    
+    ### variables
+    sourcecaption = "Source: BEIS"
+    plottitle = "Proportion of full accreditations which are on-grid and off-grid"
+    
+    DataChart <- Data %>%
+      ggplot(aes(x = Tech, y = value, fill = variable, color = variable), family = "Century Gothic") +
+      scale_fill_manual(
+        "variable",
+        values = c(
+          "OnGridProp" = BarColours[1],
+          "OffGridProp" = BarColours[2]
+        )
+      ) +
+      scale_colour_manual(values=c(BarColours[2],BarColours[1] )) +
+      geom_bar(position = "stack",
+               stat = "identity",
+               width = .8) +
+      coord_flip() +
+      geom_text(aes(
+        y = (top - pos),
+        label = percent(value, .1),
+        
+      ),
+      fontface = 2,
+      colour = "white",
+      size = 3,
+      family = "Century Gothic") +
+      geom_text(
+        y = -0.23,
+        label = str_wrap(Data$Tech, 30),
+        fontface = 2,
+        family = "Century Gothic",
+        vjust = .5,
+        color = ChartColours[1]
+      ) +
+      geom_text(
+        aes(x = 11.75,
+            y = 0,
+            label = "Urban"),
+        fontface = 2,
+        colour = BarColours[1],
+        family = "Century Gothic",
+        hjust = 0
+      ) +
+      geom_text(
+        aes(x = 11.75,
+            y = 1,
+            label = "Rural"),
+        fontface = 2,
+        colour = BarColours[2],
+        family = "Century Gothic",
+        hjust = 1
+      ) +
+      geom_text(
+        aes(x = 12,
+            y = 0.29,
+            label = " "),
+        fontface = 2,
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        hjust = 0.5
+      ) +
+      theme(
+        text = element_text(family = "Century Gothic")
+        ,
+        panel.background = element_rect(fill = "transparent") # bg of the panel
+        ,
+        plot.background = element_rect(fill = "transparent", color = NA) # bg of the plot
+        ,
+        legend.background = element_rect(fill = "transparent") # get rid of legend bg
+        ,
+        legend.box.background = element_rect(fill = "transparent") # get rid of legend panel bg
+        ,
+        legend.title = ggplot2::element_blank()
+        ,
+        axis.text.x = element_blank()
+        ,
+        axis.text.y = element_blank()
+        ,
+        axis.title = ggplot2::element_blank()
+        ,
+        legend.text = element_text(colour = "black", family = "Century Gothic")
+        ,
+        axis.ticks = ggplot2::element_blank()
+        ,
+        panel.grid.major = ggplot2::element_blank()
+        ,
+        legend.position = "none"
+        ,
+        title = element_text(colour = ChartColours[1], size = 14)
+        ,
+        plot.title = ggplot2::element_text(face = "bold")
+      ) + ### Label Plot
+      labs(y = "Percentage", caption = sourcecaption) +
+      labs(title = plottitle,
+           face = "bold",
+           subtitle = "Scotland, April - June 2020") +
+      ### 0 Axis
+      
+      #geom_hline(yintercept=.52, color = ChartColours[2], alpha = 0.7)+
+      
+      
+      ### Plot Borders
+      annotate(
+        geom = 'segment',
+        x = Inf,
+        xend = Inf,
+        color = ChartColours[1],
+        y = -Inf,
+        yend = Inf,
+        size = 1.5
+      ) +
+      annotate(
+        geom = 'segment',
+        x = -Inf,
+        xend = -Inf,
+        color = ChartColours[1],
+        y = -Inf,
+        yend = Inf,
+        size = 1
+      ) +
+      ylim(-.4,1)
+    
+    DataChart
+    
+    DataChart <-
+      DataChart +
+      labs(subtitle = paste("Scotland, November 2011 to December 2019")) 
+    
+    DataChart
+    
+    ggsave(
+      file,
+      plot = DataChart,
+      width = 22,
+      height = 20,
+      units = "cm",
+      dpi = 300
+    )
+    
+    
+    
+  }
+)
+
+
 }
     
     

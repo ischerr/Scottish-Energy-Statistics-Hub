@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 EnergyConsumptionOutput <- function(id) {
   ns <- NS(id)
@@ -155,6 +155,8 @@ EnergyConsumption <- function(input, output, session) {
     
     Data[1:7] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data$Year <- as.character(Data$Year)
+    
     Data[2,1] <- "Baseline\n2005/2007"
     
     Data[3,1] <- " "
@@ -163,7 +165,7 @@ EnergyConsumption <- function(input, output, session) {
     
     Data$Year <- paste("<b>", Data$Year, "</b>")
     
-    Data <- Data[-1,c(1,2,5,6,7)]
+    Data <- Data[-1,c(1,3,4,5,6,7)]
     
     Data$RowNumber <- as.numeric(rownames(Data))
     
@@ -174,21 +176,33 @@ EnergyConsumption <- function(input, output, session) {
     DataLatest <- Data[nrow(Data)-1,]
     
     ChartColours <- c("#34d1a3", "#FF8500")
-    BarColours <- c("#00441b", "#238b45", "#66c2a4", "#99d8c9", "ffffff")
+    BarColours <- c("#00441b", "#238b45","#41ae76", "#66c2a4","#66c2a4", "#99d8c9", "ffffff")
     
     p <- plot_ly(data = Data, y = ~ Year) %>%
       
       add_trace(
         data = Data,
-        x = ~ `Industry & Commercial`,
+        x = ~ `Industry`,
         type = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "Industry & Commercial",
-        text = paste0("Industry & Commercial: ", format(round(Data$`Industry & Commercial`, digits = 0), big.mark = ","), " GWh"),
+        name = "Industry",
+        text = paste0("Industry: ", format(round(Data$`Industry`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[1]),
         legendgroup = 2
+      ) %>%
+      add_trace(
+        data = Data,
+        x = ~ `Commercial`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Commercial",
+        text = paste0("Commercial: ", format(round(Data$`Commercial`, digits = 0), big.mark = ","), " GWh"),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[2]),
+        legendgroup = 3
       ) %>%
       add_trace(
         data = Data,
@@ -199,8 +213,8 @@ EnergyConsumption <- function(input, output, session) {
         name = "Domestic",
         text = paste0("Domestic: ", format(round(Data$`Domestic`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'text',
-        marker = list(color = BarColours[2]),
-        legendgroup = 3
+        marker = list(color = BarColours[3]),
+        legendgroup = 4
       ) %>%
       
       add_trace(
@@ -212,17 +226,17 @@ EnergyConsumption <- function(input, output, session) {
         name = "Transport",
         text = paste0("Transport: ", format(round(Data$`Transport`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'text',
-        marker = list(color = BarColours[3]),
-        legendgroup = 4
+        marker = list(color = BarColours[4]),
+        legendgroup = 5
       ) %>%
       add_trace(
         data = Data,
         y = ~ Year,
-        x = ~ (Data$`Industry & Commercial` + Data$`Domestic` + Data$`Transport`) + 0.1,
+        x = ~ (Data$`Industry` + Data$Commercial + Data$`Domestic` + Data$`Transport`) + 0.1,
         showlegend = FALSE,
         type = 'scatter',
         mode = 'text',
-        text = ifelse(Data$`Industry & Commercial` >0, paste("<b>",format(round((Data$`Industry & Commercial` + Data$`Domestic` + Data$`Transport`), digits = 0), big.mark = ","),"GWh</b>")," "),
+        text = ifelse(Data$`Industry` >0, paste("<b>",format(round((Data$`Industry` + Data$Commercial + Data$`Domestic` + Data$`Transport`), digits = 0), big.mark = ","),"GWh</b>")," "),
         textposition = 'middle right',
         textfont = list(color = ChartColours[1]),
         hoverinfo = 'skip',
@@ -233,34 +247,45 @@ EnergyConsumption <- function(input, output, session) {
       add_trace(
         data = tail(Data,1),
         y = ~Year,
-        x = mean(DataLatest$`Industry & Commercial`)/2,
+        x = mean(DataLatest$`Industry`)/2,
         showlegend = FALSE,
         mode = 'text',
         type = 'scatter',
         hoverinfo = 'skip',
         textfont = list(color = BarColours[1]),
-        text = paste0("<b>", percent(DataTail$`Industry & Commercial`, accuracy = 0.1), "</b>")
+        text = paste0("<b>", percent(DataTail$`Industry`, accuracy = 0.1), "</b>")
       ) %>% 
       add_trace(
         data = tail(Data,1),
         y = ~Year,
-        x =  mean(DataLatest$`Industry & Commercial`) + (mean(DataLatest$`Domestic`)/2),
+        x =  mean(DataLatest$`Industry`) + (mean(DataLatest$`Commercial`)/2),
         showlegend = FALSE,
         mode = 'text',
         type = 'scatter',
         hoverinfo = 'skip',
         textfont = list(color = BarColours[2]),
-        text =  paste0("<b>", percent(DataTail$`Domestic`, accuracy = 0.1), "</b>")
+        text =  paste0("<b>", percent(DataTail$`Commercial`, accuracy = 0.1), "</b>")
       ) %>% 
       add_trace(
         data = tail(Data,1),
         y = ~Year,
-        x = mean(DataLatest$`Industry & Commercial`) + mean(DataLatest$`Domestic`) + (mean(DataLatest$`Transport`)/2),
+        x =  mean(DataLatest$`Industry`) + mean(DataLatest$Commercial) + (mean(DataLatest$`Domestic`)/2),
         showlegend = FALSE,
         mode = 'text',
         type = 'scatter',
         hoverinfo = 'skip',
         textfont = list(color = BarColours[3]),
+        text =  paste0("<b>", percent(DataTail$`Domestic`, accuracy = 0.1), "</b>")
+      ) %>% 
+      add_trace(
+        data = tail(Data,1),
+        y = ~Year,
+        x = mean(DataLatest$`Industry`) + mean(DataLatest$Commercial) + mean(DataLatest$`Domestic`) + (mean(DataLatest$`Transport`)/2),
+        showlegend = FALSE,
+        mode = 'text',
+        type = 'scatter',
+        hoverinfo = 'skip',
+        textfont = list(color = BarColours[4]),
         text =  paste0("<b>", percent(DataTail$Transport, accuracy = 0.1), "</b>")
       ) %>% 
       add_trace(
@@ -317,14 +342,19 @@ EnergyConsumption <- function(input, output, session) {
     
     EnConsumption <- as_tibble(t(EnConsumption))
     
-    names(EnConsumption) <- c("Year","Industry & Commercial", "Industry (estimate)", "Commercial (estimate)", "Domestic", "Transport", "Total")
+    names(EnConsumption) <- c("Year","Industry & Commercial", "Industry", "Commercial", "Domestic", "Transport", "Total")
+    
+    EnConsumption$`Industry & Commercial` <- NULL
 
     EnConsumption <- head(EnConsumption, -1)
     
     EnConsumption <- tail(EnConsumption, -1)
     
-    EnConsumption[1:7] %<>% lapply(function(x) as.numeric(as.character(x)))
+    EnConsumption[1:6] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
     EnConsumption <- as_tibble(EnConsumption)
+    
+    EnConsumption$Year <- as.character(EnConsumption$Year)
     
     EnConsumption[1,1] <- " Baseline 2005 - 2007"
     
@@ -361,9 +391,8 @@ EnergyConsumption <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:7, 0)%>% 
-      formatStyle(c(3,4), fontStyle = "italic") %>% 
-      formatStyle(c(7), fontWeight = 'bold')
+      formatRound(2:6, 0)%>% 
+      formatStyle(c(6), fontWeight = 'bold')
   })
   
   
@@ -400,7 +429,7 @@ EnergyConsumption <- function(input, output, session) {
       names(Data)[1] <- "Year"
       Data <- tail(Data, -1)
       
-      Data[1,1] <- 2003
+      Data[1,1] <- "2003"
       
       Data$Year <- as.numeric(Data$Year)
       Data[nrow(Data),1] <- max(Data$Year + 1, na.rm =  TRUE)
@@ -409,7 +438,7 @@ EnergyConsumption <- function(input, output, session) {
       
       Data <- as_tibble(sapply( Data, as.numeric ))
       
-      FinalConsumptionSectors <- Data[c(1,6,5,2,7)]
+      FinalConsumptionSectors <- Data[c(1,6,5,4,3,7)]
       
       FinalConsumptionSectors <-
         FinalConsumptionSectors[order(-FinalConsumptionSectors$Year),]
@@ -449,17 +478,18 @@ EnergyConsumption <- function(input, output, session) {
         scale_fill_manual(
           "variable",
           values = c(
-            "Industry & Commercial" = BarColours[1],
-            "Domestic" = BarColours[2],
-            "Transport" = BarColours[3],
-            "Bioenergy & Wastes" = BarColours[4]
+            "Industry" = BarColours[1],
+            "Commercial" = BarColours[2],
+            "Domestic" = BarColours[3],
+            "Transport" = BarColours[4],
+            "Bioenergy & Wastes" = BarColours[5]
           )
         ) +
         geom_bar(stat = "identity", width = .8) +
         geom_text(
           y = FinalConsumptionSectors$top,
           label = ifelse(
-            FinalConsumptionSectors$value > 60000,
+            FinalConsumptionSectors$value > 40000,
             paste0(format(
               round(FinalConsumptionSectors$top, digits = 0), big.mark = ","
             ), " GWh"),
@@ -473,7 +503,7 @@ EnergyConsumption <- function(input, output, session) {
         geom_text(
           y = -17500,
           label =   ifelse(
-            FinalConsumptionSectors$value > 60000,
+            FinalConsumptionSectors$value > 40000,
             ifelse(
               FinalConsumptionSectors$Year == 2003,
               "2005/2007\n(baseline)",
@@ -489,7 +519,7 @@ EnergyConsumption <- function(input, output, session) {
         geom_text(
           y = FinalConsumptionSectors$top - FinalConsumptionSectors$pos,
           label =   ifelse(
-            FinalConsumptionSectors$value > 7000,
+            FinalConsumptionSectors$value > 20000,
             ifelse(
               FinalConsumptionSectors$Year == 2003 |
                 FinalConsumptionSectors$Year ==  max(FinalConsumptionSectors$Year),
@@ -508,10 +538,19 @@ EnergyConsumption <- function(input, output, session) {
         annotate(
           "text",
           x = 2002,
-          y = 33275,
-          label = "Industry\n& Commercial",
+          y = 31000,
+          label = "Industry",
           fontface = 2,
           color = BarColours[1],
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = 2002,
+          y = 70000,
+          label = "Commercial",
+          fontface = 2,
+          color = BarColours[2],
           family = "Century Gothic"
         ) +
         annotate(
@@ -520,7 +559,7 @@ EnergyConsumption <- function(input, output, session) {
           y = 100560,
           label = "Domestic",
           fontface = 2,
-          color = BarColours[2],
+          color = BarColours[3],
           family = "Century Gothic"
         ) +
         annotate(
@@ -529,7 +568,7 @@ EnergyConsumption <- function(input, output, session) {
           y = 141998,
           label = "Transport",
           fontface = 2,
-          color = BarColours[3],
+          color = BarColours[4],
           family = "Century Gothic"
         ) +
         annotate(
@@ -548,20 +587,43 @@ EnergyConsumption <- function(input, output, session) {
             subset(
               FinalConsumptionSectors,
               Year == max(FinalConsumptionSectors$Year) &
-                variable == "Industry & Commercial"
+                variable == "Industry"
             )[1, 5]
           ) - as.numeric(
             subset(
               FinalConsumptionSectors,
               Year == max(FinalConsumptionSectors$Year) &
-                variable == "Industry & Commercial"
+                variable == "Industry"
             )[1, 4]
           ),
           label = percent((
-            subset(FinalConsumptionMax, variable == "Industry & Commercial")[1, 3]
+            subset(FinalConsumptionMax, variable == "Industry")[1, 3]
           ), accuracy = .1),
           fontface = 2,
           color = BarColours[1],
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = max(FinalConsumptionSectors$Year) + 1.2,
+          y = as.numeric(
+            subset(
+              FinalConsumptionSectors,
+              Year == max(FinalConsumptionSectors$Year) &
+                variable == "Commercial"
+            )[1, 5]
+          ) - as.numeric(
+            subset(
+              FinalConsumptionSectors,
+              Year == max(FinalConsumptionSectors$Year) &
+                variable == "Commercial"
+            )[1, 4]
+          ),
+          label = percent((
+            subset(FinalConsumptionMax, variable == "Commercial")[1, 3]
+          ), accuracy = .1),
+          fontface = 2,
+          color = BarColours[3],
           family = "Century Gothic"
         ) +
         annotate(
@@ -584,7 +646,7 @@ EnergyConsumption <- function(input, output, session) {
             subset(FinalConsumptionMax, variable == "Domestic")[1, 3]
           ), accuracy = .1),
           fontface = 2,
-          color = BarColours[2],
+          color = BarColours[3],
           family = "Century Gothic"
         ) +
         annotate(
@@ -607,7 +669,7 @@ EnergyConsumption <- function(input, output, session) {
             subset(FinalConsumptionMax, variable == "Transport")[1, 3]
           ), accuracy = .1),
           fontface = 2,
-          color = BarColours[3],
+          color = BarColours[4],
           family = "Century Gothic"
         ) +
         annotate(
@@ -715,6 +777,8 @@ EnergyConsumption <- function(input, output, session) {
     names(Data)[1] <- "Year"
     
     Data[1:8] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data$Year <- as.character(Data$Year)
     
     Data[2,1] <- "Baseline\n2005/2007"
     
@@ -924,6 +988,8 @@ EnergyConsumption <- function(input, output, session) {
     
     Data[1:8] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data$Year <- as.character(Data$Year)
+    
     Data[2,1] <- " Baseline\n2005/2007"
     
     Data[3,1] <- " "
@@ -979,7 +1045,7 @@ EnergyConsumption <- function(input, output, session) {
     
     
     
-    paste("Scotland, 2017")
+    paste("Scotland, 2018")
   })
   
   output$EnConsumptionLAPlot <- renderImage({
@@ -1000,7 +1066,7 @@ EnergyConsumption <- function(input, output, session) {
   
   EnConsumptionLA <- read_csv("Processed Data/Output/Consumption/CorrectedFinalConsumptionbyLA.csv")
   
-  Year <- 2017
+  Year <- max(EnConsumptionLA$Year)
   
   output$EnConsumptionLATable = renderDataTable({
     
@@ -1008,7 +1074,7 @@ EnergyConsumption <- function(input, output, session) {
     
     EnConsumptionLATable <- EnConsumptionLA[which(EnConsumptionLA$Year == Year),]
     
-    EnConsumptionLATable <- EnConsumptionLATable[c(3,1,26,27,28,25)]
+    EnConsumptionLATable <- EnConsumptionLATable[c(2,1,31,32,33,30)]
     
     names(EnConsumptionLATable) <- c("Local Authority", "Geography Code", "Industry & Commercial", "Domestic", "Transport", "Total consumption")
     
@@ -1055,7 +1121,7 @@ EnergyConsumption <- function(input, output, session) {
   output$EnConsumptionLA.png <- downloadHandler(
     filename = "EnConsumptionLA.png",
     content = function(file) {
-      writePNG(readPNG("Structure/4 - Energy Efficiency/Demand Reduction/LAConsumptionMapChart.png"), file) 
+      file.copy("Structure/4 - Energy Efficiency/Demand Reduction/LAConsumptionMapChart.png", file) 
     }
   )
   
@@ -1074,11 +1140,11 @@ EnergyConsumption <- function(input, output, session) {
       names(Data)[1] <- "Year"
       Data <- tail(Data, -1)
       
-      Data[1,1] <- 2003
+      Data[1,1] <- "2003"
       
       Data <- Data[complete.cases(Data),]
       
-      Data[nrow(Data),1] <- max(as.numeric(Data$Year),na.rm = TRUE)+1
+      Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE) + 1)
       
       Data <- as_tibble(sapply( Data, as.numeric ))
       
@@ -1435,13 +1501,13 @@ EnergyConsumption <- function(input, output, session) {
     
     EnConsumptionLA <- read_csv("Processed Data/Output/Consumption/CorrectedFinalConsumptionbyLA.csv")
     
-    Year <- 2017
+    Year <- max(EnConsumptionLA$Year)
     
       unique(EnConsumptionLA$Year)
       
       EnConsumptionLAMap <- EnConsumptionLA[which(EnConsumptionLA$Year == Year),]
       
-      EnConsumptionLAMap <- EnConsumptionLAMap[c(3,1,26,27,28,25)]
+      EnConsumptionLAMap <- EnConsumptionLAMap[c(2,1,31,32,33,30)]
       
       names(EnConsumptionLAMap) <- c("LocalAuthority", "CODE", "Industry & Commercial", "Domestic", "Transport", "Total")
       
@@ -1469,10 +1535,10 @@ EnergyConsumption <- function(input, output, session) {
     
     ### Order LAs in Data
     EnConsumptionLAMap <- EnConsumptionLAMap[order(EnConsumptionLAMap$CODE),]
-    
+
     ### Combine Data with Map data
-    LAMap <-
-      append_data(LA, EnConsumptionLAMap, key.shp = "CODE", key.data = "CODE")
+    LAMap <- merge(LA, EnConsumptionLAMap)
+      #append_data(LA, EnConsumptionLAMap, key.shp = "CODE", key.data = "CODE")
     
     pal <- colorNumeric(
       palette = "Greens",

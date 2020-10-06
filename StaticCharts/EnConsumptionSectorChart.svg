@@ -15,7 +15,7 @@
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
    width="319.88266"
    height="419.77661"
-   inkscape:export-filename="C:\Users\ische\OneDrive\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\EnConsumptionSectorChart.png"
+   inkscape:export-filename="C:\Users\ische\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\EnConsumptionSectorChart.png"
    inkscape:export-xdpi="300.04529"
    inkscape:export-ydpi="300.04529">
   <metadata
@@ -39,15 +39,15 @@
      guidetolerance="10"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:window-width="3840"
-     inkscape:window-height="2066"
+     inkscape:window-width="2880"
+     inkscape:window-height="1526"
      id="namedview76"
      showgrid="false"
      inkscape:zoom="2.68112"
-     inkscape:cx="47.63038"
-     inkscape:cy="99.121495"
-     inkscape:window-x="-11"
-     inkscape:window-y="-11"
+     inkscape:cx="48.159531"
+     inkscape:cy="183.41273"
+     inkscape:window-x="5749"
+     inkscape:window-y="1587"
      inkscape:window-maximized="1"
      inkscape:current-layer="g1306"
      fit-margin-top="5"
@@ -159,6 +159,56 @@
        clip-path="url(#cpOC4yMnw2MTguMTR8MjQ1LjIyfDQ0Ljk3)"
        d="m 8.2207031,43.369141 v 3.201171 H 618.14062 v -3.201171 z"
        style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#1a5d38;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+    <g
+       transform="translate(-618.25664,-12.295827)"
+       class="trace"
+       style="opacity:1;stroke-linejoin:round"
+       id="g83">
+      <g
+         id="g968"
+         transform="matrix(0.74445883,0,0,0.74445883,499.07776,68.728201)">
+        <path
+           id="path27"
+           style="opacity:1;fill:#fc9272;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
+           d="M 375,223 V 25 a 198,198 0 1 1 -4.02239,395.95914 z"
+           class="surface"
+           inkscape:connector-curvature="0"
+           transform="translate(-4e-6)" />
+        <g
+           id="g53"
+           class="slice">
+          <path
+             id="path41"
+             style="fill:#2b8cbe;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
+             d="M 375,223 177.09281,216.93815 A 198,198 0 0 1 375,25 Z"
+             class="surface"
+             inkscape:connector-curvature="0" />
+        </g>
+        <g
+           id="g67"
+           class="slice">
+          <path
+             id="path55"
+             style="fill:#34d1a3;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
+             d="M 375,223 333.74335,416.65404 A 198,198 0 0 1 177.09281,216.93815 Z"
+             class="surface"
+             inkscape:connector-curvature="0" />
+        </g>
+        <g
+           id="g81"
+           class="slice">
+          <path
+             id="path69"
+             style="fill:#02818a;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
+             d="m 375,223 -4.02239,197.95914 a 198,198 0 0 1 -37.23426,-4.3051 z"
+             class="surface"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+      <g
+         class="slice"
+         id="g39" />
+    </g>
     <flowRoot
        transform="translate(223.89355,244.55678)"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#1a5d38;fill-opacity:1;stroke:none"
@@ -173,7 +223,7 @@
            width="483.75308"
            id="rect905-1" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#1a5d38;fill-opacity:1"
-         id="flowPara907-9">2017</flowPara></flowRoot>    <flowRoot
+         id="flowPara907-9">2018</flowPara></flowRoot>    <flowRoot
        transform="translate(45.124957,596.64747)"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#1a5d38;fill-opacity:1;stroke:none"
        id="flowRoot901-8-4"
@@ -254,12 +304,6 @@
         <g
            id="g1306"
            transform="matrix(1.1669625,0,0,1.1669625,-54.589849,3.6578162)">
-          <path
-             inkscape:connector-curvature="0"
-             class="surface"
-             d="M 375,223 V 25 a 198,198 0 1 1 -20.4141,394.94483 z"
-             style="fill:#fc9272;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-             id="path887" />
           <g
              style="fill:#ffffff"
              class="slicetext"
@@ -289,15 +333,9 @@
                  dy="15.599999"
                  x="600.40009"
                  y="230.12041"
-                 id="tspan893">51.1%</tspan>
+                 id="tspan893">50.3%</tspan>
             </text>
           </g>
-          <path
-             inkscape:connector-curvature="0"
-             class="surface"
-             d="M 375,223 177.25216,213.01033 A 198,198 0 0 1 375,25 Z"
-             style="fill:#2b8cbe;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-             id="path901" />
           <g
              style="fill:#ffffff"
              transform="matrix(1.2376399,0,0,1.2376399,51.476843,54.61336)"
@@ -328,15 +366,9 @@
                  dy="1.3em"
                  x="0"
                  y="0"
-                 id="tspan907">24.3%</tspan>
+                 id="tspan907">24.5%</tspan>
             </text>
           </g>
-          <path
-             inkscape:connector-curvature="0"
-             class="surface"
-             d="M 375,223 330.55901,415.94818 A 198,198 0 0 1 177.25216,213.01033 Z"
-             style="fill:#34d1a3;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-             id="path915" />
           <g
              style="fill:#ffffff"
              transform="matrix(1.2376399,0,0,1.2376399,66.070223,-144.69051)"
@@ -367,15 +399,9 @@
                  dy="1.3em"
                  x="0"
                  y="0"
-                 id="tspan921">22.4%</tspan>
+                 id="tspan921">22.1%</tspan>
             </text>
           </g>
-          <path
-             inkscape:connector-curvature="0"
-             class="surface"
-             d="m 375,223 -20.4141,196.94483 a 198,198 0 0 1 -24.02689,-3.99665 z"
-             style="fill:#02818a;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-             id="path929" />
           <g
              style="fill:#02808a;fill-opacity:1"
              transform="matrix(1.2376399,0,0,1.2376399,-49.842907,-95.073019)"
@@ -425,7 +451,7 @@
                  class="line"
                  x="-39.524086"
                  y="408.68973"
-                 id="tspan935-3">2.2%</tspan>
+                 id="tspan935-3">3.0%</tspan>
             </text>
           </g>
         </g>

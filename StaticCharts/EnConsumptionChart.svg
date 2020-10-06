@@ -15,7 +15,7 @@
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
    width="319.88266"
    height="419.77661"
-   inkscape:export-filename="C:\Users\ische\OneDrive\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\EnConsumptionSectorDomNonDomChart.png"
+   inkscape:export-filename="C:\Users\ische\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\EnConsumptionSectorDomNonDomChart.png"
    inkscape:export-xdpi="300"
    inkscape:export-ydpi="300">
   <metadata
@@ -39,17 +39,17 @@
      guidetolerance="10"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:window-width="2880"
-     inkscape:window-height="1526"
+     inkscape:window-width="1440"
+     inkscape:window-height="1515"
      id="namedview76"
      showgrid="false"
      inkscape:zoom="1.8958381"
-     inkscape:cx="190.37467"
+     inkscape:cx="87.781521"
      inkscape:cy="233.76131"
-     inkscape:window-x="5749"
-     inkscape:window-y="1587"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg74"
+     inkscape:window-x="7189"
+     inkscape:window-y="1598"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g4896"
      fit-margin-top="5"
      fit-margin-left="5"
      fit-margin-right="5"
@@ -155,7 +155,7 @@
            width="483.75308"
            id="rect905-1" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#1a5d38;fill-opacity:1"
-         id="flowPara907-9">2017</flowPara></flowRoot>    <flowRoot
+         id="flowPara907-9">2018</flowPara></flowRoot>    <flowRoot
        transform="translate(45.124957,596.64747)"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#1a5d38;fill-opacity:1;stroke:none"
        id="flowRoot901-8-4"
@@ -222,7 +222,7 @@
                    dy="1.3em"
                    x="0"
                    y="0"
-                   id="tspan33">59.4%</tspan>
+                   id="tspan33">59.9%</tspan>
               </text>
             </g>
           </g>
@@ -261,7 +261,7 @@
                    dy="1.3em"
                    x="0"
                    y="0"
-                   id="tspan47">40.6%</tspan>
+                   id="tspan47">40.1%</tspan>
               </text>
             </g>
           </g>

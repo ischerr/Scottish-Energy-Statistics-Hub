@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 HHoldEnConsumptionOutput <- function(id) {
   ns <- NS(id)
@@ -162,6 +162,7 @@ HHoldEnConsumption <- function(input, output, session) {
     
     p
     
+    #orca(p, "StaticCharts/HHoldEnConsumptione.svg")
     
     
     
@@ -222,6 +223,8 @@ HHoldEnConsumption <- function(input, output, session) {
       formatRound(2:ncol(HHoldEnConsumption), 0) %>% 
       formatPercentage(2,1)
   })
+  
+  
   
   
   output$Text <- renderUI({

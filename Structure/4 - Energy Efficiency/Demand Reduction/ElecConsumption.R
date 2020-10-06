@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 ElecConsumptionOutput <- function(id) {
   ns <- NS(id)
@@ -83,7 +83,7 @@ ElecConsumptionOutput <- function(id) {
              ),
     tabPanel("Data LA",
              fluidRow(
-               column(10, h3("Data - Total final energy consumption by consuming sector (GWh), by local authority in Scotland, 2018", style = "color: #34d1a3;  font-weight:bold")),
+               column(10, h3("Data - Average annual household consumption of electricity by local authority, 2018", style = "color: #34d1a3;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -145,6 +145,8 @@ ElecConsumption <- function(input, output, session) {
     names(Data)[1] <- "Year"
     
     Data[1:4] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data$Year <- as.character(Data$Year)
     
     Data[2,1] <- "Baseline\n2005/2007"
     
@@ -291,6 +293,8 @@ ElecConsumption <- function(input, output, session) {
     
     Data[1:4] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data$Year <- as.character(Data$Year)
+    
     Data[2,1] <- " Baseline\n2005/2007"
     
     Data[nrow(Data),1] <- "% Change\nfrom baseline"
@@ -366,11 +370,11 @@ ElecConsumption <- function(input, output, session) {
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "Elec consump", skip = 12, col_names = TRUE)
       
-      Data[1,1] <- 2003
+      Data[1,1] <- "2003"
       
       Data <- Data[complete.cases(Data),]
       
-      Data[nrow(Data),1] <- max(as.numeric(Data$Year),na.rm = TRUE)+1
+      Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE)+1)
       
       Data$Year <- as.numeric(Data$Year)
       
@@ -486,7 +490,7 @@ ElecConsumption <- function(input, output, session) {
           )[1, 4]),
           label = percent((
             subset(ElecConsumptiontionMax, variable == "Domestic")[1, 3]
-          )),
+          ),.1),
           fontface = 2,
           color = BarColours[1],
           family = "Century Gothic"
@@ -509,7 +513,7 @@ ElecConsumption <- function(input, output, session) {
           ),
           label = percent((
             subset(ElecConsumptiontionMax, variable == "Non-domestic")[1, 3]
-          )),
+          ),.1),
           fontface = 2,
           color = BarColours[3],
           family = "Century Gothic"
@@ -523,7 +527,7 @@ ElecConsumption <- function(input, output, session) {
           )[1, 5]),
           label = percent((
             subset(ElecConsumptiontionMax, variable == "Total")[1, 3]
-          )),
+          ), .1),
           fontface = 2,
           color = ChartColours[1],
           family = "Century Gothic",
@@ -598,6 +602,8 @@ ElecConsumption <- function(input, output, session) {
     names(Data) <- c("Year", "Consumption")
     
     Data[1:2] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data$Year <- as.character(Data$Year)
     
     Data[1,1] <- "Baseline\n2005/2007"
     
@@ -707,6 +713,8 @@ ElecConsumption <- function(input, output, session) {
     
     Data[1:2] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data$Year <- as.character(Data$Year)
+    
     Data[1,1] <- " Baseline\n2005/2007"
     
     
@@ -765,13 +773,13 @@ ElecConsumption <- function(input, output, session) {
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "Elec consump household", skip = 12, col_names = TRUE)
       
-      Data[1,1] <- 2003
+      Data[1,1] <- "2003"
       
       names(Data) <- c("Year", "Consumption")
       
       Data <- Data[complete.cases(Data),]
       
-      Data[nrow(Data),1] <- max(as.numeric(Data$Year),na.rm = TRUE)+1
+      Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE)+1)
       
       Data$Total <- Data$Consumption
       
@@ -972,17 +980,20 @@ ElecConsumption <- function(input, output, session) {
   }, deleteFile = TRUE)
   
   output$ElecConsumptionLATable = renderDataTable({
+
+    ElectricityConsumption <- read_csv("Processed Data/Output/Consumption/ElectricityConsumption.csv")
     
-    ElecConsumptionLA <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Elec consump hhold LA",
-      skip = 12,
-      n_max = 34
-    )
     
-    names(ElecConsumptionLA)[1:2] <- c("Geography Code", "Local Authority")
+    ElectricityConsumption <- ElectricityConsumption[which(ElectricityConsumption$Year ==max(ElectricityConsumption$Year)),]
+    
+    ElectricityConsumption <-  ElectricityConsumption[c(3,2,25,14)]
+    
+    names(ElectricityConsumption) <- c("Geography Code","Local Authority", "Average household consumption (kWh)", "Total Consumption (GWh)")
+    
+    ElectricityConsumption <- ElectricityConsumption[complete.cases(ElectricityConsumption),]
+    
     datatable(
-      ElecConsumptionLA,
+      ElectricityConsumption,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -992,17 +1003,17 @@ ElecConsumption <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Total final energy consumption by consuming sector (GWh), by local authority in Scotland, 2018",
+        title = "Average annual household consumption of electricity by local authority, 2018",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Total final energy consumption by consuming sector (GWh), by local authority in Scotland, 2018',
+            title = 'Average annual household consumption of electricity by local authority, 2018',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Total final energy consumption by consuming sector (GWh), by local authority in Scotland, 2018')
+               title = 'Average annual household consumption of electricity by local authority, 2018')
         ),
         
         # customize the length menu
@@ -1012,7 +1023,7 @@ ElecConsumption <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(3, 0)
+      formatRound(3:4, 0)
   })
   
   observeEvent(input$ToggleTable3, {
@@ -1093,7 +1104,7 @@ ElecConsumption <- function(input, output, session) {
     
     ### Combine Data with Map data
     LAMap <-
-      append_data(LA, ElecConsumptionLAMap, key.shp = "CODE", key.data = "CODE")
+     merge(LA, ElecConsumptionLAMap)
     
     pal <- colorNumeric(
       palette = "Greens",

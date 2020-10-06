@@ -5,7 +5,7 @@ require(png)
 require("DT")
 ###### UI Function ######
 
-source("Structure/Global.R")
+
 
 ElecStorageOutput <- function(id) {
   ns <- NS(id)
@@ -54,7 +54,7 @@ ElecStorageOutput <- function(id) {
       tabPanel("Capacity",
                fluidRow(
                  column(10, h3("Data- Electricity storage capacity by technology (MW)", style = "color: #5d8be1;  font-weight:bold")),
-                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
                  column(12, dataTableOutput(ns("ElecStorageCapTable"))%>% withSpinner(color="#5d8be1"))),
@@ -63,7 +63,7 @@ ElecStorageOutput <- function(id) {
       tabPanel("Pipeline",
                fluidRow(
                  column(10, h3("Data - Pipeline storage capacity by technology (MW)", style = "color: #5d8be1;  font-weight:bold")),
-                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
                  column(12, dataTableOutput(ns("ElecStorageTable"))%>% withSpinner(color="#5d8be1"))),
@@ -295,7 +295,11 @@ ElecStorage <- function(input, output, session) {
  })
  
  
-  observeEvent(input$ToggleTable, {
+  observeEvent(input$ToggleTable1, {
+    toggle("ElecStorageCapTable")
+  })
+  
+  observeEvent(input$ToggleTable2, {
     toggle("ElecStorageTable")
   })
   
@@ -308,6 +312,15 @@ ElecStorage <- function(input, output, session) {
   output$ElecStorage.png <- downloadHandler(
     filename = "ElecStorage.png",
     content = function(file) {
+      
+      Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                         sheet = "Renewable elec pipeline", col_names = TRUE,
+                         skip = 26, n_max = 1)
+      Quarter <- substr(Data[1,1], 8,8)
+      
+      Quarter <- as.numeric(Quarter)*3
+      
+      Year <- substr(Data[1,1], 1,4)
 
       ### Load Packages and Functions
       Data <- read_excel("Structure/CurrentWorking.xlsx",
@@ -457,7 +470,7 @@ ElecStorage <- function(input, output, session) {
       
       EnergyStorageTechChart <-
         EnergyStorageTechChart +
-        labs(subtitle = "Scotland, March 2019") +
+        labs(subtitle = paste("Scotland,", month.name[Quarter], Year)) +
         ylim(-1000, max(EnergyStorageTech$top)+800)+
         coord_flip()
       
@@ -644,6 +657,17 @@ ElecStorage <- function(input, output, session) {
     filename = "ElecStorageCap.png",
     content = function(file) {
       
+      Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                         sheet = "Renewable elec pipeline", col_names = TRUE,
+                         skip = 26, n_max = 1)
+      Quarter <- substr(Data[1,1], 8,8)
+      
+      Quarter <- as.numeric(Quarter)*3
+      
+      Year <- substr(Data[1,1], 1,4)
+      
+      paste("Scotland,", month.name[Quarter], Year)
+      
       ### Load Packages and Functions
       Data <- read_excel("Structure/CurrentWorking.xlsx",
                          sheet = "Electricity storage", skip = 14)[1:2]
@@ -752,7 +776,7 @@ ElecStorage <- function(input, output, session) {
       
       EnergyStorageTechChart <-
         EnergyStorageTechChart +
-        labs(subtitle = "Scotland, September 2019") +
+        labs(subtitle = paste("Scotland,", month.name[Quarter], Year)) +
         ylim(-150, max(EnergyStorageTech$top))+
         coord_flip()
       
