@@ -92,7 +92,7 @@ DualFuelBreakdownOutput <- function(id) {
     tabsetPanel(
       tabPanel("Dual Fuel - North Scotland",
     fluidRow(
-    column(10, h3("Data - North Scotland", style = "color: #68c3ea;  font-weight:bold")),
+    column(10, h3("Data - Dual Fuel Bill Breakdown - North Scotland", style = "color: #68c3ea;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -100,7 +100,7 @@ DualFuelBreakdownOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Dual Fuel - South Scotland",
              fluidRow(
-               column(10, h3("Data - South Scotland", style = "color: #68c3ea;  font-weight:bold")),
+               column(10, h3("Data - Dual Fuel Bill Breakdown - South Scotland", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -108,7 +108,7 @@ DualFuelBreakdownOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Electricity - North Scotland",
              fluidRow(
-               column(10, h3("Data - North Scotland", style = "color: #68c3ea;  font-weight:bold")),
+               column(10, h3("Data - Electricity Bill Breakdown - North Scotland", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -116,7 +116,7 @@ DualFuelBreakdownOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Electricity - South Scotland",
              fluidRow(
-               column(10, h3("Data - South Scotland", style = "color: #68c3ea;  font-weight:bold")),
+               column(10, h3("Data - Electricity Bill Breakdown - South Scotland", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -124,7 +124,7 @@ DualFuelBreakdownOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Gas - North Scotland",
              fluidRow(
-               column(10, h3("Data - North Scotland", style = "color: #68c3ea;  font-weight:bold")),
+               column(10, h3("Data - Gas Bill Breakdown - North Scotland", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -132,7 +132,7 @@ DualFuelBreakdownOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Gas - South Scotland",
              fluidRow(
-               column(10, h3("Data - South Scotland", style = "color: #68c3ea;  font-weight:bold")),
+               column(10, h3("Data - Gas Bill Breakdown - South Scotland", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
