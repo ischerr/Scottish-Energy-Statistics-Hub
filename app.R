@@ -730,12 +730,6 @@ ui <- shinyUI(fluidPage(
                    tabPanel(title = "Dual Fuel Bill Breakdown",
                             value = "DualFuelBreakdown",
                             DualFuelBreakdownOutput("DualFuelBreakdown")),
-                   tabPanel(title = "Elec Fuel Bill Breakdown",
-                            value = "ElecFuelBreakdown",
-                            ElecFuelBreakdownOutput("ElecFuelBreakdown")),
-                   tabPanel(title = "Gas Fuel Bill Breakdown",
-                            value = "GasFuelBreakdown",
-                            GasFuelBreakdownOutput("GasFuelBreakdown")),
                    tabPanel(title = "Fixed Tariffs",
                             value = "FixedTariffs",
                             FixedTariffsOutput("FixedTariffs"))

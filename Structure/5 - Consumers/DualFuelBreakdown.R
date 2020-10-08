@@ -1632,5 +1632,350 @@ DualFuelBreakdown <- function(input, output, session) {
     }
   )
   
+  output$ElecFuelBreakdown.png <- downloadHandler(
+    filename = "ElecFuelBreakdown.png",
+    content = function(file) {
+      
+      
+      NorthScotlandElecFuelBreakdown <- read_delim("Processed Data/Output/Energy Bills/NorthScotlandElecFuelBreakdown.txt", 
+                                                   "\t", escape_double = FALSE, trim_ws = TRUE)
+      
+      NorthScotlandElecFuelBreakdown <- head(NorthScotlandElecFuelBreakdown,1)
+      
+      NorthScotlandElecFuelBreakdown$Region <- "North Scotland"
+      
+      
+      SouthScotlandElecFuelBreakdown <- read_delim("Processed Data/Output/Energy Bills/SouthScotlandElecFuelBreakdown.txt", 
+                                                   "\t", escape_double = FALSE, trim_ws = TRUE)
+      
+      SouthScotlandElecFuelBreakdown <- head(SouthScotlandElecFuelBreakdown,1)
+      
+      SouthScotlandElecFuelBreakdown$Region <- "South Scotland"
+      
+      ElecFuelBreakdown <- rbind(NorthScotlandElecFuelBreakdown, SouthScotlandElecFuelBreakdown)[c(2:7,9)]
+      
+      ElecFuelBreakdown <- melt(ElecFuelBreakdown, id.vars = "Region")
+      
+      ElecFuelBreakdown$Region <- factor(ElecFuelBreakdown$Region, levels = rev(unique(ElecFuelBreakdown$Region)))
+      
+      ElecFuelBreakdown$variable <-
+        factor(ElecFuelBreakdown$variable,
+               levels = rev(unique(ElecFuelBreakdown$variable)))
+      
+      ElecFuelBreakdown <- ElecFuelBreakdown %>%
+        group_by(Region) %>%
+        mutate(pos = cumsum(value) - value / 2) %>%
+        mutate(top = sum(value))
+      
+      plottitle <-
+        "Breakdown of a electricity bill"
+      sourcecaption <- "Source: OFGEM"
+      
+      ChartColours <- c("#68c3ea", "#FF8500")
+      BarColours <- c("#081d58", "#253494", "#225ea8", "#1d91c0", "#41b6c4", "#7fcdbb", "#c7e9b4")
+      
+      
+      ElecFuelBreakdownChart <- ElecFuelBreakdown %>%
+        ggplot(aes(x = Region, y = value, fill = variable), family = "Century Gothic") +
+        scale_fill_manual(
+          "variable",
+          values = c(
+            "Wholesale" = BarColours[1],
+            "Network costs" = BarColours[2],
+            "Policy costs" = BarColours[3],
+            "Operating costs" = BarColours[4],
+            "EBIT" = BarColours[5],
+            "Adjustment allowance" = BarColours[6]
+          )
+        ) +
+        geom_bar(stat = "identity", width = .8) +
+        geom_text(
+          aes(
+            y = 0 - .12,
+            label = ifelse(variable == "EBIT", as.character(Region), ""),
+            color = ChartColours[2]
+          ),
+          fontface = 2,
+          colour = ChartColours[1],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(x = 2.7,
+              y = (0.5/6)*1,
+              label = "Wholesale\nCosts"),
+          fontface = 2,
+          colour = BarColours[1],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 2.7,
+              y = (1.5/6)*1,
+              label = "Network\nCosts"),
+          fontface = 2,
+          colour = BarColours[2],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 2.7,
+              y = (2.5/6)*1,
+              label = "Policy\ncosts"),
+          fontface = 2,
+          colour = BarColours[3],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 2.7,
+              y = (3.5/6)*1,
+              label = "Operating\ncosts"),
+          fontface = 2,
+          colour = BarColours[4],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 2.7,
+              y = (4.5/6)*1,
+              label = "EBIT"),
+          fontface = 2,
+          colour = BarColours[5],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 2.7,
+              y = (5.5/6)*1,
+              label = "Adjustment\nallowance"),
+          fontface = 2,
+          colour = BarColours[6],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 3,
+              y = (6.5/7)*1,
+              label = " "),
+          fontface = 2,
+          colour = BarColours[7],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          y = ElecFuelBreakdown$pos,
+          label = ifelse(ElecFuelBreakdown$value > .03, percent(ElecFuelBreakdown$value, 0.1), ""),
+          family = "Century Gothic",
+          fontface = 2,
+          color = "white",
+          size = 3
+        )
+      
+      
+      ElecFuelBreakdownChart
+      
+      
+      ElecFuelBreakdownChart <-
+        StackedBars(
+          ElecFuelBreakdownChart,
+          ElecFuelBreakdown,
+          plottitle,
+          sourcecaption,
+          ChartColours
+        )
+      
+      ElecFuelBreakdownChart <-
+        ElecFuelBreakdownChart +
+        ylim(-.18,1.01) +
+        coord_flip() +
+        labs(subtitle = paste("Scotland,", tail(NorthScotlandElecFuelBreakdown,1)[1]))
+      
+      ElecFuelBreakdownChart
+      
+      ggsave(
+        file,
+        plot = ElecFuelBreakdownChart,
+        width = 20,
+        height = 13,
+        units = "cm",
+        dpi = 300
+      )
+      
+      
+    }
+  )
+  
+  output$GasFuelBreakdown.png <- downloadHandler(
+    filename = "GasFuelBreakdown.png",
+    content = function(file) {
+      
+      
+      NorthScotlandGasFuelBreakdown <- read_delim("Processed Data/Output/Energy Bills/NorthScotlandGasFuelBreakdown.txt", 
+                                                  "\t", escape_double = FALSE, trim_ws = TRUE)
+      
+      NorthScotlandGasFuelBreakdown <- head(NorthScotlandGasFuelBreakdown,1)
+      
+      NorthScotlandGasFuelBreakdown$Region <- "North Scotland"
+      
+      
+      SouthScotlandGasFuelBreakdown <- read_delim("Processed Data/Output/Energy Bills/SouthScotlandGasFuelBreakdown.txt", 
+                                                  "\t", escape_double = FALSE, trim_ws = TRUE)
+      
+      SouthScotlandGasFuelBreakdown <- head(SouthScotlandGasFuelBreakdown,1)
+      
+      SouthScotlandGasFuelBreakdown$Region <- "South Scotland"
+      
+      GasFuelBreakdown <- rbind(NorthScotlandGasFuelBreakdown, SouthScotlandGasFuelBreakdown)[c(2:7,9)]
+      
+      GasFuelBreakdown <- melt(GasFuelBreakdown, id.vars = "Region")
+      
+      GasFuelBreakdown$Region <- factor(GasFuelBreakdown$Region, levels = rev(unique(GasFuelBreakdown$Region)))
+      
+      GasFuelBreakdown$variable <-
+        factor(GasFuelBreakdown$variable,
+               levels = rev(unique(GasFuelBreakdown$variable)))
+      
+      GasFuelBreakdown <- GasFuelBreakdown %>%
+        group_by(Region) %>%
+        mutate(pos = cumsum(value) - value / 2) %>%
+        mutate(top = sum(value))
+      
+      plottitle <-
+        "Breakdown of a gas bill"
+      sourcecaption <- "Source: OFGEM"
+      
+      ChartColours <- c("#68c3ea", "#FF8500")
+      BarColours <- c("#081d58", "#253494", "#225ea8", "#1d91c0", "#41b6c4", "#7fcdbb", "#c7e9b4")
+      
+      
+      GasFuelBreakdownChart <- GasFuelBreakdown %>%
+        ggplot(aes(x = Region, y = value, fill = variable), family = "Century Gothic") +
+        scale_fill_manual(
+          "variable",
+          values = c(
+            "Wholesale" = BarColours[1],
+            "Network costs" = BarColours[2],
+            "Policy costs" = BarColours[3],
+            "Operating costs" = BarColours[4],
+            "EBIT" = BarColours[5],
+            "Adjustment allowance" = BarColours[6]
+          )
+        ) +
+        geom_bar(stat = "identity", width = .8) +
+        geom_text(
+          aes(
+            y = 0 - .12,
+            label = ifelse(variable == "EBIT", as.character(Region), ""),
+            color = ChartColours[2]
+          ),
+          fontface = 2,
+          colour = ChartColours[1],
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(x = 2.7,
+              y = (0.5/6)*1,
+              label = "Wholesale\nCosts"),
+          fontface = 2,
+          colour = BarColours[1],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 2.7,
+              y = (1.5/6)*1,
+              label = "Network\nCosts"),
+          fontface = 2,
+          colour = BarColours[2],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 2.7,
+              y = (2.5/6)*1,
+              label = "Policy\ncosts"),
+          fontface = 2,
+          colour = BarColours[3],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 2.7,
+              y = (3.5/6)*1,
+              label = "Operating\ncosts"),
+          fontface = 2,
+          colour = BarColours[4],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 2.7,
+              y = (4.5/6)*1,
+              label = "EBIT"),
+          fontface = 2,
+          colour = BarColours[5],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 2.7,
+              y = (5.5/6)*1,
+              label = "Adjustment\nallowance"),
+          fontface = 2,
+          colour = BarColours[6],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = 3,
+              y = (6.5/7)*1,
+              label = " "),
+          fontface = 2,
+          colour = BarColours[7],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          y = GasFuelBreakdown$pos,
+          label = ifelse(GasFuelBreakdown$value > .03, percent(GasFuelBreakdown$value, 0.1), ""),
+          family = "Century Gothic",
+          fontface = 2,
+          color = "white",
+          size = 3
+        )
+      
+      
+      GasFuelBreakdownChart
+      
+      
+      GasFuelBreakdownChart <-
+        StackedBars(
+          GasFuelBreakdownChart,
+          GasFuelBreakdown,
+          plottitle,
+          sourcecaption,
+          ChartColours
+        )
+      
+      GasFuelBreakdownChart <-
+        GasFuelBreakdownChart +
+        ylim(-.18,1.01) +
+        coord_flip() +
+        labs(subtitle = paste("Scotland,", tail(NorthScotlandGasFuelBreakdown,1)[1]))
+      
+      GasFuelBreakdownChart
+      
+      ggsave(
+        file,
+        plot = GasFuelBreakdownChart,
+        width = 20,
+        height = 13,
+        units = "cm",
+        dpi = 300
+      )
+      
+      
+    }
+  )
   
 }
