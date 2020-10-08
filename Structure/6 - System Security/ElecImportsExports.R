@@ -11,20 +11,36 @@ ElecImportsExportsOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("Imports and Exports",
-    fluidRow(column(8,
-                    h3("Electricity imports and exports", style = "color: #5d8be1;  font-weight:bold"),
-                    h4(textOutput(ns('ElecImportsExportsSubtitle')), style = "color: #5d8be1;")
-    ),
+    tabPanel("Imports and Exports Quarterly",
+             fluidRow(column(8,
+                             h3("Quarterly Electricity imports and exports", style = "color: #5d8be1;  font-weight:bold"),
+                             h4(textOutput(ns('QuarterlyElecImportsExportsSubtitle')), style = "color: #5d8be1;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('QuarterlyElecImportsExports.png'), 'Download Graph', style="float:right")
+             )),
+             fluidRow(column(6,selectInput(ns("YearSelect"), "Period:", c("Last Year", "Last 2 Years" "Last 5 Years", "All Years"), selected = "Last Year", multiple = FALSE,
+                                           selectize = TRUE, width = NULL, size = NULL))),
+             
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
+             #dygraphOutput(ns("ElecImportsExportsPlot")),
+             plotlyOutput(ns("QuarterlyElecImportsExportsPlot"), height = "2000px")%>% withSpinner(color="#5d8be1"),
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
+    tabPanel("Imports and Exports Annual",
+             fluidRow(column(8,
+                             h3("Annual Electricity imports and exports", style = "color: #5d8be1;  font-weight:bold"),
+                             h4(textOutput(ns('ElecImportsExportsSubtitle')), style = "color: #5d8be1;")
+             ),
              column(
                4, style = 'padding:15px;',
                downloadButton(ns('ElecImportsExports.png'), 'Download Graph', style="float:right")
              )),
-    
-    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
-    #dygraphOutput(ns("ElecImportsExportsPlot")),
-    plotlyOutput(ns("ElecImportsExportsPlot"))%>% withSpinner(color="#5d8be1"),
-    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
+             
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
+             #dygraphOutput(ns("ElecImportsExportsPlot")),
+             plotlyOutput(ns("ElecImportsExportsPlot"))%>% withSpinner(color="#5d8be1"),
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
     tabPanel("Wholesale Export Value",
     fluidRow(column(8,
                     h3("Wholesale value of electricity exports", style = "color: #5d8be1;  font-weight:bold"),
@@ -260,6 +276,113 @@ ElecImportsExports <- function(input, output, session) {
     
     
   })
+  
+  ###
+  output$QuarterlyElecImportsExportsSubtitle <- renderText({
+    
+    ImportsExports <- read_csv("Processed Data/Output/Imports and Exports/ImportsExports.csv")
+    
+    
+    paste("Scotland,", 2000,"-", max(as.numeric(substr(ImportsExports$Quarter,1,4), na.rm = TRUE)))
+  })
+  
+  output$QuarterlyElecImportsExportsPlot <- renderPlotly  ({
+    
+    #"Last Year", "Last 2 Years" "Last 5 Years", "All Years"
+    
+    Period = as.numeric(input$YearSelect)
+    
+    i
+    
+    ImportsExports <- read_csv("Processed Data/Output/Imports and Exports/ImportsExports.csv")
+    
+    ImportsExports$ScotlandImports <- -ImportsExports$`Scotland - England Imports` - ImportsExports$`Scotland - NI Imports`
+    
+    ImportsExports$ScotlandExports <- +ImportsExports$`Scotland - England Exports` + ImportsExports$`Scotland - NI Exports`
+    
+    ImportsExports <- ImportsExports[c(1,18,19)] 
+    
+    ImportsExports <- ImportsExports[which(as.numeric(substr(ImportsExports$Quarter,1,4)) >= 2000),]
+    
+    ChartColours <- c("#39ab2c", "#FF8500")
+    
+    BarColours <-
+      c(
+        "#08519c",
+        "#3182bd",
+        "#6baed6",
+        "#9ecae1",
+        
+        "#a63603",
+        "#e6550d",
+        "#fd8d3c",
+        "#fdae6b"
+      )
+    
+    ImportsExports$Year <- paste0("<b>", ImportsExports$Quarter, "</b>")
+    
+    p <- plot_ly(
+      data = ImportsExports,
+      y = ~Year,
+      x = ~`ScotlandExports`,
+      legendgroup = 2,
+      text = paste0(
+        "Exports: ",
+        format(round(ImportsExports$ScotlandExports, digits = 0),big.mark = ","),
+        " GWh\nYear: ",
+        ImportsExports$Year
+      ),
+      name = "Exports",
+      type = "bar",
+      hoverinfo = "text",
+      orientation = 'h',
+      marker = list(color =  BarColours[1])
+    ) %>% 
+      add_trace(
+        data = ImportsExports,
+        y = ~Year,
+        x = ~`ScotlandImports`,
+        legendgroup = 1,
+        text = paste0(
+          "QImports: ",
+          format(round(-ImportsExports$`ScotlandImports`, digits = 0),big.mark = ","),
+          " GWh\nYear: ",
+          ImportsExports$Year
+        ),
+        name = "Imports",
+        type = "bar",
+        hoverinfo = "text",
+        orientation = 'h',
+        marker = list(color =  BarColours[5])
+      ) %>% 
+      layout(
+        barmode = 'relative',
+        legend = list(font = list(color = "#39ab2c"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        yaxis = list(title = "",
+                     showgrid = FALSE,
+                     dtick = 1),
+        xaxis = list(
+          title = "",
+          tickformat = "",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          range = c(-2000, 20000),
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    
+    p
+    
+  })
+  
+  ###
   
   
   output$ElecImportsExportsTable = renderDataTable({
