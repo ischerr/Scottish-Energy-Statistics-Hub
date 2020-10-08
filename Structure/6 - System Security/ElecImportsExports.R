@@ -20,7 +20,7 @@ ElecImportsExportsOutput <- function(id) {
                4, style = 'padding:15px;',
                downloadButton(ns('QuarterlyElecImportsExports.png'), 'Download Graph', style="float:right")
              )),
-             fluidRow(column(6,selectInput(ns("YearSelect"), "Period:", c("Last Year", "Last 2 Years" "Last 5 Years", "All Years"), selected = "Last Year", multiple = FALSE,
+             fluidRow(column(6,selectInput(ns("YearSelect"), "Period:", c("Last Year", "Last 2 Years", "Last 5 Years", "All Years"), selected = "Last Year", multiple = FALSE,
                                            selectize = TRUE, width = NULL, size = NULL))),
              
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
