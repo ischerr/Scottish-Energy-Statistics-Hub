@@ -90,7 +90,7 @@ DualFuelBreakdownOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     tabsetPanel(
-      tabPanel("North Scotland",
+      tabPanel("Dual Fuel - North Scotland",
     fluidRow(
     column(10, h3("Data - North Scotland", style = "color: #68c3ea;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
@@ -98,7 +98,7 @@ DualFuelBreakdownOutput <- function(id) {
     fluidRow(
       column(12, dataTableOutput(ns("NorthDualFuelBreakdownTable"))%>% withSpinner(color="#68c3ea"))),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-    tabPanel("South Scotland",
+    tabPanel("Dual Fuel - South Scotland",
              fluidRow(
                column(10, h3("Data - South Scotland", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
@@ -106,7 +106,7 @@ DualFuelBreakdownOutput <- function(id) {
              fluidRow(
                column(12, dataTableOutput(ns("SouthDualFuelBreakdownTable"))%>% withSpinner(color="#68c3ea"))),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-    tabPanel("North Scotland",
+    tabPanel("Electricity - North Scotland",
              fluidRow(
                column(10, h3("Data - North Scotland", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
@@ -114,7 +114,7 @@ DualFuelBreakdownOutput <- function(id) {
              fluidRow(
                column(12, dataTableOutput(ns("NorthElecFuelBreakdownTable"))%>% withSpinner(color="#68c3ea"))),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-    tabPanel("South Scotland",
+    tabPanel("Electricity - South Scotland",
              fluidRow(
                column(10, h3("Data - South Scotland", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
@@ -122,7 +122,7 @@ DualFuelBreakdownOutput <- function(id) {
              fluidRow(
                column(12, dataTableOutput(ns("SouthElecFuelBreakdownTable"))%>% withSpinner(color="#68c3ea"))),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-    tabPanel("North Scotland",
+    tabPanel("Gas - North Scotland",
              fluidRow(
                column(10, h3("Data - North Scotland", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
@@ -130,7 +130,7 @@ DualFuelBreakdownOutput <- function(id) {
              fluidRow(
                column(12, dataTableOutput(ns("NorthGasFuelBreakdownTable"))%>% withSpinner(color="#68c3ea"))),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
-    tabPanel("South Scotland",
+    tabPanel("Gas - South Scotland",
              fluidRow(
                column(10, h3("Data - South Scotland", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
@@ -815,17 +815,17 @@ DualFuelBreakdown <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Breakdown of a electricity bill, North Scotland",
+        title = "Breakdown of an electricity bill, North Scotland",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Breakdown of a electricity bill, North Scotland',
+            title = 'Breakdown of an electricity bill, North Scotland',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Breakdown of a electricity bill, North Scotland')
+               title = 'Breakdown of an electricity bill, North Scotland')
         ),
         
         # customize the length menu
