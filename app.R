@@ -1,5 +1,6 @@
 source("packages.R")
 
+
 js_code <- "
 shinyjs.browseURL = function(url) {
   window.open(url,'_blank');
@@ -226,6 +227,14 @@ observe({
     
   }
   
+  if(input$MainNav == "Emissions"){
+    
+    updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$Emissions), mode = "push")
+    
+    callModule(match.fun(input$Emissions), input$Emissions)
+    
+  }
+  
   if(input$MainNav == "TargetTracker"){
     
     updateQueryString(paste0("?Section=",input$MainNav), mode = "push")
@@ -283,6 +292,12 @@ observeEvent(input$GoToCovidTab, {
   observeEvent(input$GoToOilGasTab, {
     updateTabsetPanel(session, "MainNav",
                       selected = "OilGas"
+    )
+  })
+  
+  observeEvent(input$GoToEmissionsTab, {
+    updateTabsetPanel(session, "MainNav",
+                      selected = "Emissions"
     )
   })
   
@@ -412,6 +427,10 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )), 
+
+    style = "padding: 10px; margin-top: 20px;"
+  ),
+fluidRow(
   column(width = 4,
            actionLink(
              "GoToOilGasTab",
@@ -426,6 +445,20 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
+  column(width = 4,
+         actionLink(
+           "GoToEmissionsTab",
+           label = div(
+             tags$h3("Emissions", style = "color: black;"),
+             tags$p(
+               " ",
+               style = "color: black;"
+             ),
+             img(src = "signsblack.svg", height = "55%"),
+             style = "border: solid 2px #126992; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px;",
+             id = "SetEffects"
+           )
+         )),
     column(width = 4,
            actionLink(
              "GoToOtherTab",
@@ -539,7 +572,16 @@ ui <- shinyUI(fluidPage(
                  EnBalanceOutput("EnBalance")),
         tabPanel(title = "Energy Economy",
                  value = "EnEconomy",
-                 EnEconomyOutput("EnEconomy"))
+                 EnEconomyOutput("EnEconomy")),
+        tabPanel(title = "Greenhouse Gas Emissions",
+                 value = "GHGEmissions",
+                 GHGEmissionsOutput("GHGEmissions")),
+        tabPanel(title = "Carbon Productivity",
+                 value = "CarbonProd",
+                 CarbonProdOutput("CarbonProd")),
+        tabPanel(title = "Energy Supply Emissions",
+                 value = "EnSupplyEmissions",
+                 EnSupplyEmissionsOutput("EnSupplyEmissions"))
       )
     ),
     ###### Section - Renewables and Low Carbon #######
@@ -573,12 +615,15 @@ ui <- shinyUI(fluidPage(
         tabPanel(title ="Renewable Electricity Sources", 
                  value = "RenElecSources",
                  RenElecSourcesOutput("RenElecSources")),
-        tabPanel(title ="Grid Emissions", 
+        tabPanel(title = "Displaced Emissions",
+                 value = "DisplacedEmissions",
+                 DisplacedEmissionsOutput("DisplacedEmissions")),
+        tabPanel(title = "Grid Emissions",
                  value = "GridEmissions",
                  GridEmissionsOutput("GridEmissions")),
-        tabPanel(title ="Displaced Emissions", 
-                 value = "DisplacedEmissions",
-                 DisplacedEmissionsOutput("DisplacedEmissions"))
+        tabPanel(title = "GHG Elec",
+                 value = "GHGElec",
+                 GHGElecOutput("GHGElec"))
         )),
       tabPanel(
         value = "RenHeat",
@@ -596,7 +641,10 @@ ui <- shinyUI(fluidPage(
                    DomesticRHIOutput("DomesticRHI")),
           tabPanel(title ="Non-domestic RHI", 
                    value = "NonDomRHI",
-                   NonDomRHIOutput("NonDomRHI"))
+                   NonDomRHIOutput("NonDomRHI")),
+          tabPanel(title = "GHG Heat",
+                   value = "GHGHeat",
+                   GHGHeatOutput("GHGHeat"))
       )),
       tabPanel(
         value = "RenTransport",
@@ -608,7 +656,10 @@ ui <- shinyUI(fluidPage(
                               ULEVsOutput("ULEVs")),
                      tabPanel(title ="Biofuels in Transport", 
                               value = "Biofuels",
-                              BiofuelsOutput("Biofuels"))
+                              BiofuelsOutput("Biofuels")),
+                     tabPanel(title = "GHG Transport",
+                              value = "GHGTransport",
+                              GHGTransportOutput("GHGTransport"))
                      
         )
       ),
@@ -855,6 +906,15 @@ ui <- shinyUI(fluidPage(
                             value = "CoalProd",
                             CoalProdOutput("CoalProd"))
                    )),
+    ###### Section - Greenhouse Gases #######
+    tabPanel(value = "Emissions",
+             title = tags$div(img(src = "Emissions.svg", height = "30px",   display= "block"), " New Stuff", style = "font-family: 'Century Gothic'; font-weight: 400 "),
+             navlistPanel(id = "Emissions",
+                          widths = c(3, 8),
+                          tabPanel(title = "GrossConsumption",
+                                   value = "GrossConsumption",
+                                   GrossConsumptionOutput("GrossConsumption"))
+             )),
                    ###### Section - Target Tracker #######
                    tabPanel(value = "TargetTracker",
                             title = tags$div(img(src = "TargetIcon.svg", height = "30px",   display= "block"), " Target Tracker", style = "font-family: 'Century Gothic'; font-weight: 400 "),
