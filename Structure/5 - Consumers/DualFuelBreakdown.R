@@ -27,7 +27,7 @@ DualFuelBreakdownOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Dual Fuel Time Series - North Scotland",
              fluidRow(column(8,
-                             h3("Breakdown of a dual fuel bill", style = "color: #68c3ea;  font-weight:bold"),
+                             h3("Breakdown of a dual fuel bill, North Scotland", style = "color: #68c3ea;  font-weight:bold"),
                              h4(textOutput(ns('NorthDualFuelBreakdownSubtitle')), style = "color: #68c3ea;")
              ),
              column(
@@ -41,7 +41,7 @@ DualFuelBreakdownOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Dual Fuel Time Series - South Scotland",
              fluidRow(column(8,
-                             h3("Breakdown of a dual fuel bill", style = "color: #68c3ea;  font-weight:bold"),
+                             h3("Breakdown of a dual fuel bill, South Scotland", style = "color: #68c3ea;  font-weight:bold"),
                              h4(textOutput(ns('SouthDualFuelBreakdownSubtitle')), style = "color: #68c3ea;")
              ),
              column(
