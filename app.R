@@ -711,11 +711,11 @@ ui <- shinyUI(fluidPage(
                             FuelPovertyOutput("FuelPoverty")),
                    tabPanel(title = "Vulnerability",
                             value = "Vulnerability",
-                            VulnerabilityOutput("Vulnerability"))
-                                )),
+                            VulnerabilityOutput("Vulnerability")),
                   tabPanel(title = "Covid 19 Vulnerable consumers research",
                            value = "C19Survey",
-                           C19SurveyOutput("C19Survey")),
+                           C19SurveyOutput("C19Survey"))
+                  )),
                                tabPanel(
                                  value = "ConsumerChoice",
                                  title = "Consumer Choice",
