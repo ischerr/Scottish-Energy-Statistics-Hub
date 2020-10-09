@@ -260,7 +260,7 @@ C19Gas <- function(input, output, session) {
     tagList(column(12,
                    
                    HTML(
-                     paste(readtext("Structure/0 - COVID/C19Gas.txt")[2])
+                     paste(readtext("Structure/6 - System Security/C19Gas.txt")[2])
                      
                    )))
   })

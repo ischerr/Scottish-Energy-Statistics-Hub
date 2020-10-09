@@ -309,20 +309,6 @@ output$HomeTab <- renderUI({
   fluidRow(
     column(width = 4,
            actionLink(
-             "GoToCovidTab",
-             label = div(
-               tags$h3("Covid-19 energy analysis", style = "color: black;"),
-               tags$p(
-                 " ",
-                 style = "color: black;"
-               ),
-               img(src = "signsblack.svg", height = "55%"),
-               style = "border: solid 2px #000000; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px; ",
-               id = "SetEffects"
-             )
-           )),    
-    column(width = 4,
-           actionLink(
              "GoToTotalEnergyTab",
              label = div(
                tags$h3("Whole System View of Energy", style = "color: black;"),
@@ -332,6 +318,20 @@ output$HomeTab <- renderUI({
                ),
                img(src = "WholeSystem.svg", height = "55%"),
                style = "border: solid 2px #269356; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px; ",
+               id = "SetEffects"
+             )
+           )),    
+    column(width = 4,
+           actionLink(
+             "GoToLocalEnergyTab",
+             label = div(
+               tags$h3("Local Energy Systems", style = "color: black;"),
+               tags$p(
+                 " ",
+                 style = "color: black;"
+               ),
+               img(src = "Local.svg", height = "55%"),
+               style = "border: solid 2px #A3D65C; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px;",
                id = "SetEffects"
              )
            )),    
@@ -352,20 +352,6 @@ output$HomeTab <- renderUI({
     style = "padding: 10px; margin-top: 20px;"
   ),
   fluidRow(
-    column(width = 4,
-           actionLink(
-             "GoToLocalEnergyTab",
-             label = div(
-               tags$h3("Local Energy Systems", style = "color: black;"),
-               tags$p(
-                 " ",
-                 style = "color: black;"
-               ),
-               img(src = "Local.svg", height = "55%"),
-               style = "border: solid 2px #A3D65C; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px;",
-               id = "SetEffects"
-             )
-           )), 
     column(width = 4,
            actionLink(
              "GoToEnergyEfficiencyTab",
@@ -393,11 +379,7 @@ output$HomeTab <- renderUI({
                style = "border: solid 2px #68c3ea; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px;",
                id = "SetEffects"
              )
-           )),
-
-    style = "padding: 10px; margin-top: 20px;"
-  ),
-  fluidRow( 
+           )),    
     column(width = 4,
            actionLink(
              "GoToSystemSecurityTab",
@@ -411,7 +393,12 @@ output$HomeTab <- renderUI({
                style = "border: solid 2px #5d8be1; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px;",
                id = "SetEffects"
              )
-           )), 
+           )),
+
+    style = "padding: 10px; margin-top: 20px;"
+  ),
+  fluidRow( 
+  column(width = 2),
   column(width = 4,
            actionLink(
              "GoToOilGasTab",
@@ -498,26 +485,6 @@ ui <- shinyUI(fluidPage(
       title = tags$div(img(src = "HomeIcon.svg", height = "30px",   display= "block"), " Home", style = "font-family: 'Century Gothic'; font-weight: 400 "),
       uiOutput("HomeTab")%>% withSpinner(color="#3f3f3f")
       ),
-    ###### Section - Innovative Local Energy #######
-    tabPanel(
-      value = "Covid19",
-      tags$div(img(src = "signs.svg", height = "30px",   display= "block"), " Covid 19" , style = "font-family: 'Century Gothic'; font-weight: 400 "),
-      navlistPanel(id = "Covid19",
-                   widths = c(3, 8),
-                   tabPanel(title = "Covid 19 Electricity Daily Demand",
-                            value = "C19Elec",
-                            C19ElecOutput("C19Elec")),
-                   tabPanel(title = "Covid 19 Electricity Half Hourly Demand",
-                            value = "C19Settlement",
-                            C19SettlementOutput("C19Settlement")),
-                   tabPanel(title = "Covid 19 Gas Daily Demand",
-                            value = "C19Gas",
-                            C19GasOutput("C19Gas")),
-                   tabPanel(title = "Covid 19 Vulnerable consumers research",
-                            value = "C19Survey",
-                            C19SurveyOutput("C19Survey"))
-      )),
-
     tabPanel(
       ###### Section - Whole System View of Energy #######
       value = "WholeSystem",
@@ -746,6 +713,9 @@ ui <- shinyUI(fluidPage(
                             value = "Vulnerability",
                             VulnerabilityOutput("Vulnerability"))
                                 )),
+                  tabPanel(title = "Covid 19 Vulnerable consumers research",
+                           value = "C19Survey",
+                           C19SurveyOutput("C19Survey")),
                                tabPanel(
                                  value = "ConsumerChoice",
                                  title = "Consumer Choice",
@@ -811,7 +781,16 @@ ui <- shinyUI(fluidPage(
                             NonGasGridOutput("NonGasGrid")),
                    tabPanel(title = "Gas Security",
                             value = "GasSecurity",
-                            GasSecurityOutput("GasSecurity"))
+                            GasSecurityOutput("GasSecurity")),
+                   tabPanel(title = "Covid 19 Electricity Daily Demand",
+                            value = "C19Elec",
+                            C19ElecOutput("C19Elec")),
+                   tabPanel(title = "Covid 19 Electricity Half Hourly Demand",
+                            value = "C19Settlement",
+                            C19SettlementOutput("C19Settlement")),
+                   tabPanel(title = "Covid 19 Gas Daily Demand",
+                            value = "C19Gas",
+                            C19GasOutput("C19Gas"))
     )),
     ###### Section - System Security and Flexibility #######
     tabPanel(value = "OilGas",
