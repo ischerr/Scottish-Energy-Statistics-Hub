@@ -1037,6 +1037,243 @@ ElecImportsExports <- function(input, output, session) {
       
     }
   )
+  
+  output$QuarterlyElecImportsExports.png <- downloadHandler(
+    filename = "QuarterlyElecImportsExports.png",
+    content = function(file) {
+      
+      #"Last Year", "Last 2 Years" "Last 5 Years", "All Years"
+      
+      Period = as.numeric(input$YearSelect)
+      
+      i
+      
+      ImportsExports <- read_csv("Processed Data/Output/Imports and Exports/ImportsExports.csv")
+      
+      names(ImportsExports)[1] <- "Year"
+      
+      if(as.character(input$YearSelect) == "Last Year"){
+        DataLength <- 4
+        ChartHeight = 6
+      }
+      
+      if(as.character(input$YearSelect) == "Last 2 Years"){
+        DataLength <- 8
+        ChartHeight = 10
+      }
+      
+      if(as.character(input$YearSelect) == "Last 5 Years"){
+        DataLength <- 20
+        ChartHeight = 15}
+      
+      if(as.character(input$YearSelect) == "All Years"){
+        DataLength <- 20
+        ChartHeight = 15}
+      
+      # DataLength = 20
+      
+      # ChartHeight = 15
+      
+      ImportsExports <- tail(ImportsExports,DataLength)
+      
+      ImportsExports$ScotlandImports <- -ImportsExports$`Scotland - England Imports` - ImportsExports$`Scotland - NI Imports`
+      
+      ImportsExports$ScotlandExports <- +ImportsExports$`Scotland - England Exports` + ImportsExports$`Scotland - NI Exports`
+      
+      ImportsExports <- ImportsExports[c(1,18,19)] 
+      
+      ImportsExports <- ImportsExports[which(as.numeric(substr(ImportsExports$Year,1,4)) >= 2000),]
+      
+      ChartColours <- c("#5d8be1", "#FF8500")
+      
+      BarColours <-
+        c(
+          "#08519c",
+          "#3182bd",
+          "#6baed6",
+          "#9ecae1",
+          
+          "#a63603",
+          "#e6550d",
+          "#fd8d3c",
+          "#fdae6b"
+        )
+      ImportsExports$Year <- factor(ImportsExports$Year,
+                                    levels = unique(ImportsExports$Year),
+                                    ordered = TRUE)
+      
+      ImportsExports2 <- ImportsExports
+      
+      
+      ImportsExports <-
+        melt(ImportsExports, id.vars = "Year")
+      
+      
+      
+      
+      ImportsExports$variable <-
+        factor(ImportsExports$variable,
+               levels = unique(ImportsExports$variable))
+      
+      
+      plottitle <-
+        "Total final energy consumption by consuming sector"
+      sourcecaption <- "Source: BEIS"
+      
+      ChartColours <- c("#34d1a3", "#FF8500")
+      BarColours <- c("#00441b", "#238b45", "#66c2a4", "#99d8c9", "ffffff")
+      
+      
+      ImportsExportsChart <- ImportsExports %>%
+        ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
+        scale_fill_manual(
+          "variable",
+          values = c(
+            "ScotlandImports" = BarColours[1],
+            "ScotlandExports" = BarColours[2]
+          )
+        ) +
+        geom_bar(stat = "identity", width = .8) +
+        coord_flip() +
+        theme(
+          text = element_text(family = "Century Gothic")
+          ,
+          panel.background = element_rect(fill = "transparent") # bg of the panel
+          ,
+          plot.background = element_rect(fill = "transparent", color = NA) # bg of the plot
+          ,
+          legend.background = element_rect(fill = "transparent") # get rid of legend bg
+          ,
+          legend.box.background = element_rect(fill = "transparent") # get rid of legend panel bg
+          ,
+          legend.title = ggplot2::element_blank()
+          ,
+          axis.text.x = element_blank()
+          ,
+          axis.text.y = element_blank()
+          ,
+          axis.title = ggplot2::element_blank()
+          ,
+          legend.text = element_text(colour = "black", family = "Century Gothic")
+          ,
+          axis.ticks = ggplot2::element_blank()
+          ,
+          panel.grid.major = ggplot2::element_blank()
+          ,
+          legend.position = "none"
+          ,
+          title = element_text(colour = ChartColours[1], size = 14)
+          ,
+          plot.title = ggplot2::element_text(face = "bold")
+        ) + ### Label Plot
+        labs(y = "Percentage", caption = sourcecaption) +
+        labs(title = plottitle,
+             face = "bold",
+             subtitle = 2018) +
+        ### 0 Axis
+        
+        geom_hline(
+          yintercept = 0,
+          color = "grey",
+          alpha = 0.7,
+          linetype = 2
+        ) +
+        #geom_hline(yintercept=.52, color = ChartColours[2], alpha = 0.7)+
+        
+        
+        ### Plot Borders
+        annotate(
+          geom = 'segment',
+          x = Inf,
+          xend = Inf,
+          color = ChartColours[1],
+          y = -Inf,
+          yend = Inf,
+          size = 1.5
+        ) +
+        annotate(
+          geom = 'segment',
+          x = -Inf,
+          xend = -Inf,
+          color = ChartColours[1],
+          y = -Inf,
+          yend = Inf,
+          size = 1
+        ) +
+        labs(subtitle = paste(min(ImportsExports$Year),  "-", max(ImportsExports$Year))) +
+        annotate(
+          "text",
+          x = (nrow(ImportsExports)/2)+1,
+          y = mean(ImportsExports[which(ImportsExports$variable == "ScotlandExports"),]$value/2),
+          label = "Exports",
+          fontface = 2,
+          color = BarColours[2],
+          family = "Century Gothic"
+        )+
+        annotate(
+          "text",
+          x = (nrow(ImportsExports)/2)+1,
+          y = -200,
+          label = "Imports",
+          hjust = 1,
+          fontface = 2,
+          color = BarColours[1],
+          family = "Century Gothic"
+        )+
+        annotate(
+          "text",
+          x = (nrow(ImportsExports)/2)+1,
+          y = mean(ImportsExports[which(ImportsExports$variable == "ScotlandExports"),]$value)*1.2,
+          label = "Net Exports",
+          fontface = 2,
+          color = BarColours[1],
+          family = "Century Gothic"
+        )+
+        annotate(
+          "text",
+          x = (nrow(ImportsExports)/2)+1.5,
+          y = (ImportsExports2$ScotlandExports + 800),
+          label = " ",
+          fontface = 2,
+          color = BarColours[1],
+          family = "Century Gothic"
+        )+
+        annotate(
+          "text",
+          x = ImportsExports2$Year,
+          y = (ImportsExports2$ScotlandExports + 100),
+          label = paste(round(ImportsExports2$ScotlandExports + ImportsExports2$ScotlandImports,0),"GWh"),
+          hjust = 0,
+          fontface = 2,
+          color = BarColours[1],
+          family = "Century Gothic"
+        )+
+        annotate(
+          "text",
+          x = ImportsExports$Year,
+          y = -1200,
+          label = ImportsExports$Year,
+          fontface = 2,
+          color = BarColours[2],
+          family = "Century Gothic"
+        )
+      
+      
+      
+      
+      ImportsExportsChart
+      
+      ggsave(
+        file,
+        plot = ImportsExportsChart,
+        width = 20,
+        height = ChartHeight,
+        units = "cm",
+        dpi = 300
+      )
+      
+    }
+  )
 }
   
   
