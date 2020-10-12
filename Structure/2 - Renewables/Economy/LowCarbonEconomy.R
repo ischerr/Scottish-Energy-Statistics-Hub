@@ -107,7 +107,7 @@ LowCarbonEconomyOutput <- function(id) {
         fluidRow(
           column(
             10,
-            h3("Data - Turnover directly supported by the LCRE sector (\u00A3m)", style = "color: #39ab2c;  font-weight:bold")
+            h3("Data - Turnover directly supported by the LCRE sector (\u00A3bn)", style = "color: #39ab2c;  font-weight:bold")
           ),
           column(
             2,
