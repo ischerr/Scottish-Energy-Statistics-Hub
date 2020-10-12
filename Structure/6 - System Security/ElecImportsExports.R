@@ -121,7 +121,7 @@ ElecImportsExports <- function(input, output, session) {
     
     if(as.character(input$YearSelect) == "Last 5 Years"){ChartHeight <- "1500px"}
     
-    if(as.character(input$YearSelect) == "All Years"){ChartHeight <- "2000px"}
+    if(as.character(input$YearSelect) == "All Years"){ChartHeight <- "2500px"}
     
     plotlyOutput(session$ns("QuarterlyElecImportsExportsPlot"), height = ChartHeight) %>% withSpinner(color="#5d8be1")
 
@@ -340,7 +340,7 @@ ElecImportsExports <- function(input, output, session) {
     
     ImportsExports <- ImportsExports[which(as.numeric(substr(ImportsExports$Quarter,1,4)) >= 2000),]
     
-    ChartColours <- c("#39ab2c", "#FF8500")
+    ChartColours <- c("#5d8be1", "#FF8500")
     
     BarColours <-
       c(
@@ -391,6 +391,23 @@ ElecImportsExports <- function(input, output, session) {
       orientation = 'h',
       marker = list(color =  BarColours[1])
       ) %>% 
+      add_trace(
+        data = ImportsExports,
+        y = ~ Year,
+        x = ~`ScotlandExports` + 5,
+        showlegend = TRUE,
+        name = "Net Exports",
+        legendgroup = 3,
+        type = 'scatter',
+        mode = 'text',
+        text = ifelse(ImportsExports$`ScotlandExports` >0, paste("<b>Net:",format(round((ImportsExports$`ScotlandExports` + ImportsExports$`ScotlandImports`), digits = 0), big.mark = ","),"GWh</b>")," "),
+        textposition = 'middle right',
+        textfont = list(color = ChartColours[1]),
+        hoverinfo = 'skip',
+        marker = list(
+          size = 0.00001
+        )
+      ) %>% 
       layout(
         barmode = 'relative',
         legend = list(font = list(color = "#39ab2c"),
@@ -400,10 +417,12 @@ ElecImportsExports <- function(input, output, session) {
         hovername = 'text',
         yaxis = list(title = "",
                      showgrid = FALSE,
+                     range = min(ImportsExports$Year, max(ImportsExports$Year)),
                      dtick = 1),
         xaxis = list(
           title = "",
           tickformat = "",
+          range = c(min(ImportsExports$`ScotlandImports`),max(ImportsExports$`ScotlandExports`)*1.2),
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
