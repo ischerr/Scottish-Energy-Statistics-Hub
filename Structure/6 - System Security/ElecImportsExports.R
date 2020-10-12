@@ -11,7 +11,19 @@ ElecImportsExportsOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-    uiOutput(ns("QuarterlyUI")),
+      tabPanel("Imports and Exports Quarterly",
+               fluidRow(column(8,
+                               h3("Quarterly Electricity imports and exports", style = "color: #5d8be1;  font-weight:bold"),
+                               h4(textOutput(ns('QuarterlyElecImportsExportsSubtitle')), style = "color: #5d8be1;")
+               ),
+               column(
+                 4, style = 'padding:15px;',
+                 downloadButton(ns('QuarterlyElecImportsExports.png'), 'Download Graph', style="float:right")
+               )),
+               fluidRow(column(6,selectInput(ns("YearSelect"), "Period:", c("Last Year", "Last 2 Years", "Last 5 Years", "All Years"), selected = "Last Year", multiple = FALSE,
+                                             selectize = TRUE, width = NULL, size = NULL))),
+               uiOutput(ns("QuarterlyUI"))%>% withSpinner(color="#5d8be1"),
+               tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
     tabPanel("Imports and Exports Annual",
              fluidRow(column(8,
                              h3("Annual Electricity imports and exports", style = "color: #5d8be1;  font-weight:bold"),
@@ -103,24 +115,21 @@ ElecImportsExports <- function(input, output, session) {
   
   output$QuarterlyUI <- renderUI({
     
-    tabPanel("Imports and Exports Quarterly",
-             fluidRow(column(8,
-                             h3("Quarterly Electricity imports and exports", style = "color: #5d8be1;  font-weight:bold"),
-                             h4(textOutput(ns('QuarterlyElecImportsExportsSubtitle')), style = "color: #5d8be1;")
-             ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('QuarterlyElecImportsExports.png'), 'Download Graph', style="float:right")
-             )),
-             fluidRow(column(6,selectInput(ns("YearSelect"), "Period:", c("Last Year", "Last 2 Years", "Last 5 Years", "All Years"), selected = "Last Year", multiple = FALSE,
-                                           selectize = TRUE, width = NULL, size = NULL))),
-             
-             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
-             plotlyOutput(ns("QuarterlyElecImportsExportsPlot"), height = "2000px")%>% withSpinner(color="#5d8be1"),
-             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"))
+    if(as.character(input$YearSelect) == "Last Year"){ChartHeight <- "500px"}
+    
+    if(as.character(input$YearSelect) == "Last 2 Years"){ChartHeight <- "1000px"}
+    
+    if(as.character(input$YearSelect) == "Last 5 Years"){ChartHeight <- "1500px"}
+    
+    if(as.character(input$YearSelect) == "All Years"){ChartHeight <- "2000px"}
+    
+    plotlyOutput(session$ns("QuarterlyElecImportsExportsPlot"), height = ChartHeight) %>% withSpinner(color="#5d8be1")
+
   })
   
   output$ElecImportsExportsSubtitle <- renderText({
+    
+
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Elec imports & exports", skip = 12)[c(10,15,16)]
@@ -135,6 +144,7 @@ ElecImportsExports <- function(input, output, session) {
     
     
     paste("Scotland,", min(ElecImportsExports$Year),"-", max(ElecImportsExports$Year))
+    
   })
   
   output$ElecImportsExportsPlot <- renderPlotly  ({
@@ -287,7 +297,18 @@ ElecImportsExports <- function(input, output, session) {
     ImportsExports <- read_csv("Processed Data/Output/Imports and Exports/ImportsExports.csv")
     
     
-    paste("Scotland,", 2000,"-", max(as.numeric(substr(ImportsExports$Quarter,1,4), na.rm = TRUE)))
+    if(as.character(input$YearSelect) == "Last Year"){DataLength <- 4}
+    
+    if(as.character(input$YearSelect) == "Last 2 Years"){DataLength <- 8}
+    
+    if(as.character(input$YearSelect) == "Last 5 Years"){DataLength <- 20}
+    
+    if(as.character(input$YearSelect) == "All Years"){DataLength <- nrow(ImportsExports)}
+    
+    ImportsExports <- tail(ImportsExports,DataLength)
+    
+    
+    paste("Scotland,", head(ImportsExports,1)[1],"-", tail(ImportsExports,1)[1])
   })
   
   output$QuarterlyElecImportsExportsPlot <- renderPlotly  ({
@@ -299,6 +320,16 @@ ElecImportsExports <- function(input, output, session) {
     i
     
     ImportsExports <- read_csv("Processed Data/Output/Imports and Exports/ImportsExports.csv")
+    
+    if(as.character(input$YearSelect) == "Last Year"){DataLength <- 4}
+    
+    if(as.character(input$YearSelect) == "Last 2 Years"){DataLength <- 8}
+    
+    if(as.character(input$YearSelect) == "Last 5 Years"){DataLength <- 20}
+    
+    if(as.character(input$YearSelect) == "All Years"){DataLength <- nrow(ImportsExports)}
+    
+    ImportsExports <- tail(ImportsExports,DataLength)
     
     ImportsExports$ScotlandImports <- -ImportsExports$`Scotland - England Imports` - ImportsExports$`Scotland - NI Imports`
     
