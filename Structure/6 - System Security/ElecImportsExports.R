@@ -307,6 +307,7 @@ ElecImportsExports <- function(input, output, session) {
     
     ImportsExports <- tail(ImportsExports,DataLength)
     
+    ImportsExports <- ImportsExports[which(as.numeric(substr(ImportsExports$Quarter,1,4)) >= 2000),]
     
     paste("Scotland,", head(ImportsExports,1)[1],"-", tail(ImportsExports,1)[1])
   })
@@ -358,6 +359,23 @@ ElecImportsExports <- function(input, output, session) {
     
     p <- plot_ly(
       data = ImportsExports,
+        y = ~Year,
+        x = ~`ScotlandImports`,
+        legendgroup = 1,
+        text = paste0(
+          "Imports: ",
+          format(round(-ImportsExports$`ScotlandImports`, digits = 0),big.mark = ","),
+          " GWh\nYear: ",
+          ImportsExports$Year
+        ),
+        name = "Imports",
+        type = "bar",
+        hoverinfo = "text",
+        orientation = 'h',
+        marker = list(color =  BarColours[5])
+    ) %>% 
+      add_trace(
+         data = ImportsExports,
       y = ~Year,
       x = ~`ScotlandExports`,
       legendgroup = 2,
@@ -372,23 +390,6 @@ ElecImportsExports <- function(input, output, session) {
       hoverinfo = "text",
       orientation = 'h',
       marker = list(color =  BarColours[1])
-    ) %>% 
-      add_trace(
-        data = ImportsExports,
-        y = ~Year,
-        x = ~`ScotlandImports`,
-        legendgroup = 1,
-        text = paste0(
-          "QImports: ",
-          format(round(-ImportsExports$`ScotlandImports`, digits = 0),big.mark = ","),
-          " GWh\nYear: ",
-          ImportsExports$Year
-        ),
-        name = "Imports",
-        type = "bar",
-        hoverinfo = "text",
-        orientation = 'h',
-        marker = list(color =  BarColours[5])
       ) %>% 
       layout(
         barmode = 'relative',
@@ -405,7 +406,6 @@ ElecImportsExports <- function(input, output, session) {
           tickformat = "",
           showgrid = TRUE,
           zeroline = TRUE,
-          range = c(-2000, 20000),
           zerolinecolor = ChartColours[1],
           zerolinewidth = 2,
           rangemode = "tozero"
