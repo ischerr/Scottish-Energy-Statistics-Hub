@@ -1200,9 +1200,10 @@ ElecImportsExports <- function(input, output, session) {
         annotate(
           "text",
           x = (nrow(ImportsExports)/2)+1,
-          y = mean(ImportsExports[which(ImportsExports$variable == "ScotlandExports"),]$value/2),
+          y = 100,
           label = "Exports",
           fontface = 2,
+          hjust = 0,
           color = BarColours[1],
           family = "Century Gothic"
         )+
@@ -1247,10 +1248,30 @@ ElecImportsExports <- function(input, output, session) {
         annotate(
           "text",
           x = ImportsExports$Year,
-          y = -1200,
+          y = -2500,
           label = ImportsExports$Year,
           fontface = 2,
           color = BarColours[2],
+          family = "Century Gothic"
+        )+
+        annotate(
+          "text",
+          x = ImportsExports2$Year,
+          y = (100),
+          label = paste(format(round(ImportsExports2$ScotlandExports,0), big.mark = ","),"GWh"),
+          hjust = 0,
+          fontface = 2,
+          color = "white",
+          family = "Century Gothic"
+        )+
+        annotate(
+          "text",
+          x = ImportsExports2$Year,
+          y = (ImportsExports2$ScotlandImports - 100),
+          label = paste(format(round(-ImportsExports2$ScotlandImports,0), big.mark = ","),"GWh"),
+          hjust = 1,
+          fontface = 2,
+          color = BarColours[5],
           family = "Century Gothic"
         )
       
