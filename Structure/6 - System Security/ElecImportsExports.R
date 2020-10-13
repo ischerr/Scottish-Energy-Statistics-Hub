@@ -11,19 +11,6 @@ ElecImportsExportsOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel("Imports and Exports Quarterly",
-               fluidRow(column(8,
-                               h3("Quarterly Electricity imports and exports", style = "color: #5d8be1;  font-weight:bold"),
-                               h4(textOutput(ns('QuarterlyElecImportsExportsSubtitle')), style = "color: #5d8be1;")
-               ),
-               column(
-                 4, style = 'padding:15px;',
-                 downloadButton(ns('QuarterlyElecImportsExports.png'), 'Download Graph', style="float:right")
-               )),
-               fluidRow(column(6,selectInput(ns("YearSelect"), "Period:", c("Last Year", "Last 2 Years", "Last 5 Years", "All Years"), selected = "Last Year", multiple = FALSE,
-                                             selectize = TRUE, width = NULL, size = NULL))),
-               uiOutput(ns("QuarterlyUI"))%>% withSpinner(color="#5d8be1"),
-               tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
     tabPanel("Imports and Exports Annual",
              fluidRow(column(8,
                              h3("Annual Electricity imports and exports", style = "color: #5d8be1;  font-weight:bold"),
@@ -51,7 +38,20 @@ ElecImportsExportsOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     #dygraphOutput(ns("WholesaleExportsPlot")),
     plotlyOutput(ns("WholesaleExportsPlot"))%>% withSpinner(color="#5d8be1"),
-    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"))),
+    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"))
+    tabPanel("Imports and Exports Quarterly",
+             fluidRow(column(8,
+                             h3("Quarterly Electricity imports and exports", style = "color: #5d8be1;  font-weight:bold"),
+                             h4(textOutput(ns('QuarterlyElecImportsExportsSubtitle')), style = "color: #5d8be1;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('QuarterlyElecImportsExports.png'), 'Download Graph', style="float:right")
+             )),
+             fluidRow(column(6,selectInput(ns("YearSelect"), "Period:", c("Last Year", "Last 2 Years", "Last 5 Years", "All Years"), selected = "Last Year", multiple = FALSE,
+                                           selectize = TRUE, width = NULL, size = NULL))),
+             uiOutput(ns("QuarterlyUI"))%>% withSpinner(color="#5d8be1"),
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #5d8be1;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
@@ -1200,7 +1200,7 @@ ElecImportsExports <- function(input, output, session) {
         annotate(
           "text",
           x = (nrow(ImportsExports)/2)+1,
-          y = 100,
+          y = 200,
           label = "Exports",
           fontface = 2,
           hjust = 0,
