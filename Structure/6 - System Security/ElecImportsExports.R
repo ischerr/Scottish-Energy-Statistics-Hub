@@ -1238,7 +1238,7 @@ ElecImportsExports <- function(input, output, session) {
           "text",
           x = ImportsExports2$Year,
           y = (ImportsExports2$ScotlandExports + 100),
-          label = paste(round(ImportsExports2$ScotlandExports + ImportsExports2$ScotlandImports,0),"GWh"),
+          label = paste(format(round(ImportsExports2$ScotlandExports + ImportsExports2$ScotlandImports,0), big.mark = ","),"GWh"),
           hjust = 0,
           fontface = 2,
           color = ChartColours[1],
