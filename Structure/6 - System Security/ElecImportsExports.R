@@ -410,7 +410,7 @@ ElecImportsExports <- function(input, output, session) {
       ) %>% 
       layout(
         barmode = 'relative',
-        legend = list(font = list(color = "#39ab2c"),
+        legend = list(font = list(color = "#5d8be1"),
                       orientation = 'h'),
         hoverlabel = list(font = list(color = "white"),
                           hovername = 'text'),
@@ -1120,17 +1120,13 @@ ElecImportsExports <- function(input, output, session) {
         "Total final energy consumption by consuming sector"
       sourcecaption <- "Source: BEIS"
       
-      ChartColours <- c("#34d1a3", "#FF8500")
-      BarColours <- c("#00441b", "#238b45", "#66c2a4", "#99d8c9", "ffffff")
-      
-      
       ImportsExportsChart <- ImportsExports %>%
         ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
         scale_fill_manual(
           "variable",
           values = c(
-            "ScotlandImports" = BarColours[1],
-            "ScotlandExports" = BarColours[2]
+            "ScotlandImports" = BarColours[5],
+            "ScotlandExports" = BarColours[1]
           )
         ) +
         geom_bar(stat = "identity", width = .8) +
@@ -1207,7 +1203,7 @@ ElecImportsExports <- function(input, output, session) {
           y = mean(ImportsExports[which(ImportsExports$variable == "ScotlandExports"),]$value/2),
           label = "Exports",
           fontface = 2,
-          color = BarColours[2],
+          color = BarColours[1],
           family = "Century Gothic"
         )+
         annotate(
@@ -1217,7 +1213,7 @@ ElecImportsExports <- function(input, output, session) {
           label = "Imports",
           hjust = 1,
           fontface = 2,
-          color = BarColours[1],
+          color = BarColours[5],
           family = "Century Gothic"
         )+
         annotate(
@@ -1226,7 +1222,7 @@ ElecImportsExports <- function(input, output, session) {
           y = mean(ImportsExports[which(ImportsExports$variable == "ScotlandExports"),]$value)*1.2,
           label = "Net Exports",
           fontface = 2,
-          color = BarColours[1],
+          color = ChartColours[1],
           family = "Century Gothic"
         )+
         annotate(
@@ -1245,7 +1241,7 @@ ElecImportsExports <- function(input, output, session) {
           label = paste(round(ImportsExports2$ScotlandExports + ImportsExports2$ScotlandImports,0),"GWh"),
           hjust = 0,
           fontface = 2,
-          color = BarColours[1],
+          color = ChartColours[1],
           family = "Century Gothic"
         )+
         annotate(
