@@ -38,7 +38,7 @@ ElecImportsExportsOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     #dygraphOutput(ns("WholesaleExportsPlot")),
     plotlyOutput(ns("WholesaleExportsPlot"))%>% withSpinner(color="#5d8be1"),
-    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"))
+    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
     tabPanel("Imports and Exports Quarterly",
              fluidRow(column(8,
                              h3("Quarterly Electricity imports and exports", style = "color: #5d8be1;  font-weight:bold"),
