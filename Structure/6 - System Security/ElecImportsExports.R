@@ -1229,7 +1229,7 @@ ElecImportsExports <- function(input, output, session) {
         annotate(
           "text",
           x = (nrow(ImportsExports)/2)+1.5,
-          y = (ImportsExports2$ScotlandExports + 800),
+          y = (ImportsExports2$ScotlandExports + 1200),
           label = " ",
           fontface = 2,
           color = BarColours[1],
