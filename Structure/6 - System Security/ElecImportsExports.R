@@ -1117,7 +1117,7 @@ ElecImportsExports <- function(input, output, session) {
       
       
       plottitle <-
-        "Total final energy consumption by consuming sector"
+        "Quarterly electricity imports and exports"
       sourcecaption <- "Source: BEIS"
       
       ImportsExportsChart <- ImportsExports %>%
