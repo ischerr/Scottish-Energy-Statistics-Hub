@@ -21,7 +21,7 @@ GrossConsumptionOutput <- function(id) {
     
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     #dygraphOutput(ns("GrossConsumptionPlot")),
-    plotlyOutput(ns("GrossConsumptionPlot"))%>% withSpinner(color="#39ab2c"),
+    plotlyOutput(ns("GrossConsumptionPlot"), height = "500px")%>% withSpinner(color="#39ab2c"),
     HTML("<blockquote><p>Note: This does <b>not</b> mean that 23.3% of Scottish electricity demand is from non-renewable sources. Due to the way it is calculated, share of renewable electricity in gross consumption can exceed 100%.</p></blockquote>"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
@@ -117,8 +117,8 @@ GrossConsumption <- function(input, output, session) {
         width = 0.3,
         orientation = 'h',
         name = "Consumption",
-        text = paste0("Consumption\n", format(round(GrossConsumptionPlotData$Consumption, digits = 1), big.mark = ","), " GWh"),
-        hoverinfo = 'text',
+        text = paste0(format(round(GrossConsumptionPlotData$Consumption, digits = 1), big.mark = ","), " GWh"),
+        hoverinfo = 'none',
         marker = list(color = BarColours[1]),
         legendgroup = 1
       ) %>%
@@ -135,7 +135,7 @@ GrossConsumption <- function(input, output, session) {
         orientation = 'h',
         name = "Renewable",
         text = paste0("Renewable\n", format(round(GrossConsumptionPlotData$`Renewable`, digits = 1), big.mark = ","), " GWh"),
-        hoverinfo = 'text',
+        hoverinfo = 'none',
         marker = list(color = BarColours[2]),
         legendgroup = 2
       )  %>%
@@ -152,7 +152,7 @@ GrossConsumption <- function(input, output, session) {
         orientation = 'h',
         name = "Non-renewable",
         text = paste0("Non-renewable\n", format(round(GrossConsumptionPlotData$`Non-renewable`, digits = 1), big.mark=","), " GWh"),
-        hoverinfo = 'text',
+        hoverinfo = 'none',
         marker = list(color = BarColours[3]),
         legendgroup = 3
       )  %>%
@@ -167,7 +167,7 @@ GrossConsumption <- function(input, output, session) {
         arrowhead = 4,
         arrowsize = 1,
         arrowcolor = BarColours[8],
-        hoverinfo = 'name',
+        hoverinfo = 'none',
         legendgroup = 11,
         text = "",
         name = "Exports",
@@ -184,7 +184,7 @@ GrossConsumption <- function(input, output, session) {
         y = 1.5,
         xref = "x", yref = "y",
         showlegend = FALSE ,
-        hoverinfo = 'name',
+        hoverinfo = 'none',
         legendgroup = 10,
         text = paste0("Net Exports\n\n", format(round(min(GrossConsumption$`Exports`),1), big.mark = ",")," GWh"),
         name = paste("Exports"),
@@ -204,7 +204,7 @@ GrossConsumption <- function(input, output, session) {
         y = 1.5,
         xref = "x", yref = "y",
         showlegend = FALSE ,
-        hoverinfo = 'name',
+        hoverinfo = 'none',
         legendgroup = 10,
         text = paste0("\u00F7"),
         name = paste("Exports"),
@@ -224,12 +224,35 @@ GrossConsumption <- function(input, output, session) {
         y = 0.35,
         xref = "x", yref = "y",
         showlegend = FALSE ,
-        hoverinfo = 'name',
+        hoverinfo = 'none',
         legendgroup = 10,
         text = paste0("<b>",
           percent(max(GrossConsumption$Renewable)/(max(GrossConsumptionPlotData$Consumption)), .1),
-          "</b>\nequivalent of Scotland's\nown electricity demand\nfrom renewable sources"
+          "</b>\nequivalent of Scotland's own electricity\ndemand from renewable sources"
            ),
+        name = paste("Exports"),
+        marker = list(
+          size = 500,
+          opacity = 0
+        ),
+        showarrow = F,
+        textfont = list(
+          size = 20,
+          color = BarColours[8]
+        )
+      ) %>%
+      add_trace(
+        mode = 'text',
+        x = (max(GrossConsumption$Renewable)/2),
+        y = 2.35,
+        xref = "x", yref = "y",
+        showlegend = FALSE ,
+        hoverinfo = 'none',
+        legendgroup = 10,
+        text = paste0("<b>",
+                      percent(max(GrossConsumption$Renewable)/(max(GrossConsumptionPlotData$Renewable)+max(GrossConsumptionPlotData$`Non-renewable`)), .1),
+                      "</b> of Scotland's electricity generation\nfuel mix coming from renewable sources"
+        ),
         name = paste("Exports"),
         marker = list(
           size = 500,
@@ -255,7 +278,7 @@ GrossConsumption <- function(input, output, session) {
           ticktext = list("<b>Gross\nConsumption</b>", "<b>Electricity Generation\nfuel mix</b>"),
           tickvals = list(1, 2),
           tickmode = "array",
-          range = c(0,2.25)
+          range = c(0.1,2.65)
         ),
         xaxis = list(
           title = "",
