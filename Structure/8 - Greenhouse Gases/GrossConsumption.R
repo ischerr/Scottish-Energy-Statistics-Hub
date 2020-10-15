@@ -22,6 +22,7 @@ GrossConsumptionOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     #dygraphOutput(ns("GrossConsumptionPlot")),
     plotlyOutput(ns("GrossConsumptionPlot"))%>% withSpinner(color="#39ab2c"),
+    HTML("<blockquote><p>Note: This does <b>not</b> mean that 23.3% of Scottish electricity demand is from non-renewable sources. Due to the way it is calculated, share of renewable electricity in gross consumption can exceed 100%</p></blockquote>"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
@@ -220,12 +221,15 @@ GrossConsumption <- function(input, output, session) {
       add_trace(
         mode = 'text',
         x = (max(GrossConsumption$Renewables)/2),
-        y = 0.5,
+        y = 0.35,
         xref = "x", yref = "y",
         showlegend = FALSE ,
         hoverinfo = 'name',
         legendgroup = 10,
-        text = paste0("\u00F7"),
+        text = paste0("<b>",
+          percent(max(GrossConsumption$Renewables)/(max(GrossConsumptionPlotData$Consumption)), .1),
+          "</b>\nequivalent of Scotland's\nown electricity demand\nfrom renewable sources"
+           ),
         name = paste("Exports"),
         marker = list(
           size = 500,
@@ -233,7 +237,7 @@ GrossConsumption <- function(input, output, session) {
         ),
         showarrow = F,
         textfont = list(
-          size = 35,
+          size = 20,
           color = BarColours[8]
         )
       ) %>%
