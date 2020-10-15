@@ -22,7 +22,7 @@ GrossConsumptionOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     #dygraphOutput(ns("GrossConsumptionPlot")),
     plotlyOutput(ns("GrossConsumptionPlot"))%>% withSpinner(color="#39ab2c"),
-    HTML("<blockquote><p>Note: This does <b>not</b> mean that 23.3% of Scottish electricity demand is from non-renewable sources. Due to the way it is calculated, share of renewable electricity in gross consumption can exceed 100%</p></blockquote>"),
+    HTML("<blockquote><p>Note: This does <b>not</b> mean that 23.3% of Scottish electricity demand is from non-renewable sources. Due to the way it is calculated, share of renewable electricity in gross consumption can exceed 100%.</p></blockquote>"),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
