@@ -185,7 +185,7 @@ GrossConsumption <- function(input, output, session) {
         showlegend = FALSE ,
         hoverinfo = 'name',
         legendgroup = 10,
-        text = paste0("Exports\n\n", format(round(min(GrossConsumption$`Exports`),1), big.mark = ",")," GWh"),
+        text = paste0("Net Exports\n\n", format(round(min(GrossConsumption$`Exports`),1), big.mark = ",")," GWh"),
         name = paste("Exports"),
         marker = list(
           size = 100,
@@ -194,6 +194,46 @@ GrossConsumption <- function(input, output, session) {
         showarrow = F,
         textfont = list(
           size = 20,
+          color = BarColours[8]
+        )
+      ) %>%
+      add_trace(
+        mode = 'text',
+        x = (max(GrossConsumption$Renewables)/2),
+        y = 1.5,
+        xref = "x", yref = "y",
+        showlegend = FALSE ,
+        hoverinfo = 'name',
+        legendgroup = 10,
+        text = paste0("\u00F7"),
+        name = paste("Exports"),
+        marker = list(
+          size = 500,
+          opacity = 0
+        ),
+        showarrow = F,
+        textfont = list(
+          size = 35,
+          color = BarColours[8]
+        )
+      ) %>%
+      add_trace(
+        mode = 'text',
+        x = (max(GrossConsumption$Renewables)/2),
+        y = 0.5,
+        xref = "x", yref = "y",
+        showlegend = FALSE ,
+        hoverinfo = 'name',
+        legendgroup = 10,
+        text = paste0("\u00F7"),
+        name = paste("Exports"),
+        marker = list(
+          size = 500,
+          opacity = 0
+        ),
+        showarrow = F,
+        textfont = list(
+          size = 35,
           color = BarColours[8]
         )
       ) %>%
@@ -208,10 +248,10 @@ GrossConsumption <- function(input, output, session) {
         yaxis = list(
           title = "",
           showgrid = FALSE,
-          ticktext = list("<b>Consumption</b>", "<b>Generation</b>"),
+          ticktext = list("<b>Gross\nConsumption</b>", "<b>Electricity Generation\nfuel mix</b>"),
           tickvals = list(1, 2),
           tickmode = "array",
-          range = c(0.75,2.25)
+          range = c(0,2.25)
         ),
         xaxis = list(
           title = "",
