@@ -874,15 +874,7 @@ ui <- shinyUI(fluidPage(
                             value = "CoalProd",
                             CoalProdOutput("CoalProd"))
                    )),
-    ###### Section - Greenhouse Gases #######
-    tabPanel(value = "Emissions",
-             title = tags$div(img(src = "Emissions.svg", height = "30px",   display= "block"), " New Stuff", style = "font-family: 'Century Gothic'; font-weight: 400 "),
-             navlistPanel(id = "Emissions",
-                          widths = c(3, 8),
-                          tabPanel(title = "GrossConsumption",
-                                   value = "GrossConsumption",
-                                   GrossConsumptionOutput("GrossConsumption"))
-             )),
+
                    ###### Section - Target Tracker #######
                    tabPanel(value = "TargetTracker",
                             title = tags$div(img(src = "TargetIcon.svg", height = "30px",   display= "block"), " Target Tracker", style = "font-family: 'Century Gothic'; font-weight: 400 "),
