@@ -583,7 +583,7 @@ ui <- shinyUI(fluidPage(
         tabPanel(title = "Grid Emissions",
                  value = "GridEmissions",
                  GridEmissionsOutput("GridEmissions")),
-        tabPanel(title = "GHG Elec",
+        tabPanel(title = "Electricity Greenhouse Gas Emissions",
                  value = "GHGElec",
                  GHGElecOutput("GHGElec"))
         )),
@@ -604,7 +604,7 @@ ui <- shinyUI(fluidPage(
           tabPanel(title ="Non-domestic RHI", 
                    value = "NonDomRHI",
                    NonDomRHIOutput("NonDomRHI")),
-          tabPanel(title = "GHG Heat",
+          tabPanel(title = "Heat Greenhouse Gas Emissions",
                    value = "GHGHeat",
                    GHGHeatOutput("GHGHeat"))
       )),
@@ -619,7 +619,7 @@ ui <- shinyUI(fluidPage(
                      tabPanel(title ="Biofuels in Transport", 
                               value = "Biofuels",
                               BiofuelsOutput("Biofuels")),
-                     tabPanel(title = "GHG Transport",
+                     tabPanel(title = "Transport Greenhouse Gas Emissions",
                               value = "GHGTransport",
                               GHGTransportOutput("GHGTransport"))
                      
