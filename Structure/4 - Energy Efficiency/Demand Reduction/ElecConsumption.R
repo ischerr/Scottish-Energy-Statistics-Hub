@@ -963,22 +963,6 @@ ElecConsumption <- function(input, output, session) {
     paste("Scotland,", max(Data$Year, na.rm = TRUE))
   })
   
-  output$ElecConsumptionLAPlot <- renderImage({
-    
-    # A temp file to save the output. It will be deleted after renderImage
-    # sends it, because deleteFile=TRUE.
-    outfile <- tempfile(fileext='.png')
-    
-    writePNG(readPNG("Structure/4 - Energy Efficiency/Demand Reduction/ElecConsumptionLAOutput.png"),outfile) 
-    
-    # Generate a png
-    
-    
-    # Return a list
-    list(src = outfile,
-         alt = "This is alternate text")
-  }, deleteFile = TRUE)
-  
   output$ElecConsumptionLATable = renderDataTable({
 
     ElectricityConsumption <- read_csv("Processed Data/Output/Consumption/ElectricityConsumption.csv")
