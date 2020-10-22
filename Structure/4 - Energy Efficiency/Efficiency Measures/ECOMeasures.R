@@ -1398,7 +1398,7 @@ ECOMeasures <- function(input, output, session) {
     
     ECOLA$Content <- paste0("<b>",ECOLA$LAName, "</b><br/>", ECOLA$variable[1], ":<br/><em>", format(round(ECOLA$value, digits = 1), big.mark = ","),"</em>" )
     
-    ECOLA$Hover <- paste0(ECOLA$LAName, " - ", round(ECOLA$value, digits = 1), "")
+    ECOLA$Hover <- paste0(ECOLA$LAName, " - ", format(round(ECOLA$value, digits = 1), big.mark = ","), "")
     
     ### Change LA$CODE to string
     LA$CODE <- as.character(LA$CODE)
