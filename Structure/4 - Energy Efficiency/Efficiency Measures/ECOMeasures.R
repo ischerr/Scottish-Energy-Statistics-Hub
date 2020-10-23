@@ -90,6 +90,14 @@ ECOMeasuresOutput <- function(id) {
              ),
              fluidRow(
                column(12, dataTableOutput(ns("ECOObligationTable"))%>% withSpinner(color="#34d1a3"))),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("ECO Measures by LA",
+             fluidRow(
+               column(10, h3("Data - ECO measures by Local Authority, Scotland, 2020 Q2", style = "color: #34d1a3;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("ECOLATable"))%>% withSpinner(color="#34d1a3"))),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
       column(2, p("Update expected:")),
@@ -1311,19 +1319,13 @@ ECOMeasures <- function(input, output, session) {
   
   output$ECOLATable = renderDataTable({
     
-    ElectricityConsumption <- read_csv("Processed Data/Output/Consumption/ElectricityConsumption.csv")
+    ECOLATable <- read_delim("Processed Data/Output/ECO/ECOMeasuresLA.txt", 
+                                         "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    
-    ElectricityConsumption <- ElectricityConsumption[which(ElectricityConsumption$Year ==max(ElectricityConsumption$Year)),]
-    
-    ElectricityConsumption <-  ElectricityConsumption[c(3,2,25,14)]
-    
-    names(ElectricityConsumption) <- c("Geography Code","Local Authority", "Average household consumption (kWh)", "Total Consumption (GWh)")
-    
-    ElectricityConsumption <- ElectricityConsumption[complete.cases(ElectricityConsumption),]
+    ECOLATable <- dcast(ECOLATable, LA + Code ~ variable)
     
     datatable(
-      ElectricityConsumption,
+      ECOLATable,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -1333,17 +1335,17 @@ ECOMeasures <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Average annual household consumption of electricity by local authority, 2018",
+        title = "ECO measures by Local Authority, Scotland, 2020 Q2",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Average annual household consumption of electricity by local authority, 2018',
+            title = 'ECO measures by Local Authority, Scotland, 2020 Q2',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Average annual household consumption of electricity by local authority, 2018')
+               title = 'ECO measures by Local Authority, Scotland, 2020 Q2')
         ),
         
         # customize the length menu
@@ -1353,7 +1355,7 @@ ECOMeasures <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(3:4, 0)
+      formatRound(3:7, 0)
   })
   
   observeEvent(input$ToggleTable3, {
@@ -1444,10 +1446,62 @@ ECOMeasures <- function(input, output, session) {
   }) 
   
   output$ECOLA.png <- downloadHandler(
-    filename = "ECOLA.png",
-    content = function(file) {
-      file.copy(("Structure/2 - Renewables/Electricity/LARenCap.png"), file) 
+      filename = "ECOMeasuresLAMap.png",
+      content = function(file) {if(as.character(input$CategorySelect) == "ECO measures per 1,000 households"){
+        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOper1000.png"), file)
+      }
+        if(as.character(input$CategorySelect) == "Carbon Saving Target (CERO)"){
+          file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOCERO.png"), file)
+        }
+        if(as.character(input$CategorySelect) == "Affordable Warmth (HHCRO)"){
+          file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOAffordableWarmth.png"), file)
+        }
+        if(as.character(input$CategorySelect) == "ECO measures installed"){
+          file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOMeasuresInstalled.png"), file)
+        }
+        if(as.character(input$CategorySelect) == "Carbon Savings Community (CSCO)"){
+          file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOCSCO.png"), file)
+        }
+        #"Carbon Saving Target (CERO)"       "ECO measures per 1,000 households" "Affordable Warmth (HHCRO)"         "ECO measures installed"            "Carbon Savings Community (CSCO)"
+      }
+      
+    )
+  
+          
+    
+    
+    
+    downloadHandler(
+      filename = {
+        if(as.character(input$CategorySelect) == "ECO measures per 1,000 households"){
+      paste("ECOLAper1000.png")}
+          if(as.character(input$CategorySelect) == "Carbon Saving Target (CERO)"){
+            "ECOLACERO.png"}
+            if(as.character(input$CategorySelect) == "Affordable Warmth (HHCRO)"){
+              "ECOLAHHCRO.png"}
+              if(as.character(input$CategorySelect) == "ECO measures installed"){
+                "ECOLAMeasuresInstalled.png"}
+                if(as.character(input$CategorySelect) == "Carbon Savings Community (CSCO)"){
+                  "ECOLACSCO.png"}
+        },
+    content = function(file) {if(as.character(input$CategorySelect) == "ECO measures per 1,000 households"){
+      file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOper1000.png"), file)
     }
+      if(as.character(input$CategorySelect) == "Carbon Saving Target (CERO)"){
+        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOCERO.png"), file)
+      }
+      if(as.character(input$CategorySelect) == "Affordable Warmth (HHCRO)"){
+        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOAffordableWarmth.png"), file)
+      }
+      if(as.character(input$CategorySelect) == "ECO measures installed"){
+        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOMeasuresInstalled.png"), file)
+      }
+      if(as.character(input$CategorySelect) == "Carbon Savings Community (CSCO)"){
+        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOCSCO.png"), file)
+      }
+      #"Carbon Saving Target (CERO)"       "ECO measures per 1,000 households" "Affordable Warmth (HHCRO)"         "ECO measures installed"            "Carbon Savings Community (CSCO)"
+    }
+
   )
   
 }
