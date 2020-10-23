@@ -56,11 +56,11 @@ ECOMeasuresOutput <- function(id) {
     tabPanel("Local Authorities",
              fluidRow(column(8,
                              h3("ECO measures by LA", style = "color: #34d1a3;  font-weight:bold"),
-                             h4(textOutput(ns('QuarterlyElecImportsExportsSubtitle')), style = "color: #34d1a3;")
+                             h4(textOutput(ns('ECOLASubtitle')), style = "color: #34d1a3;")
              ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('QuarterlyElecImportsExports.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('ECOLA.png'), 'Download Graph', style="float:right")
              )),
              fluidRow(column(6,selectInput(ns("CategorySelect"), "Category:", c(ECOMeasuresLACategories), selected = ECOMeasuresLACategories[2], multiple = FALSE,
                                            selectize = TRUE, width = NULL, size = NULL))),
@@ -1368,6 +1368,11 @@ ECOMeasures <- function(input, output, session) {
   )
   
   
+  output$ECOLASubtitle <- renderText({
+    
+    paste("Scotland,", ObligationDate)
+  })
+  
   output$ECOLA <- renderLeaflet({
     
     ### Load Packages
@@ -1437,5 +1442,12 @@ ECOMeasures <- function(input, output, session) {
     l
     
   }) 
+  
+  output$ECOLA.png <- downloadHandler(
+    filename = "ECOLA.png",
+    content = function(file) {
+      file.copy(("Structure/2 - Renewables/Electricity/LARenCap.png"), file) 
+    }
+  )
   
 }
