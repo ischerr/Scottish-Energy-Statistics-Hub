@@ -415,6 +415,7 @@ output$HomeTab <- renderUI({
   ),
   fluidRow( 
   column(width = 2),
+
   column(width = 4,
            actionLink(
              "GoToOilGasTab",
@@ -585,7 +586,7 @@ ui <- shinyUI(fluidPage(
         tabPanel(title = "Grid Emissions",
                  value = "GridEmissions",
                  GridEmissionsOutput("GridEmissions")),
-        tabPanel(title = "GHG Elec",
+        tabPanel(title = "Electricity Greenhouse Gas Emissions",
                  value = "GHGElec",
                  GHGElecOutput("GHGElec"))
         )),
@@ -606,7 +607,7 @@ ui <- shinyUI(fluidPage(
           tabPanel(title ="Non-domestic RHI", 
                    value = "NonDomRHI",
                    NonDomRHIOutput("NonDomRHI")),
-          tabPanel(title = "GHG Heat",
+          tabPanel(title = "Heat Greenhouse Gas Emissions",
                    value = "GHGHeat",
                    GHGHeatOutput("GHGHeat"))
       )),
@@ -621,7 +622,7 @@ ui <- shinyUI(fluidPage(
                      tabPanel(title ="Biofuels in Transport", 
                               value = "Biofuels",
                               BiofuelsOutput("Biofuels")),
-                     tabPanel(title = "GHG Transport",
+                     tabPanel(title = "Transport Greenhouse Gas Emissions",
                               value = "GHGTransport",
                               GHGTransportOutput("GHGTransport"))
                      
@@ -876,15 +877,7 @@ ui <- shinyUI(fluidPage(
                             value = "CoalProd",
                             CoalProdOutput("CoalProd"))
                    )),
-    ###### Section - Greenhouse Gases #######
-    tabPanel(value = "Emissions",
-             title = tags$div(img(src = "Emissions.svg", height = "30px",   display= "block"), " New Stuff", style = "font-family: 'Century Gothic'; font-weight: 400 "),
-             navlistPanel(id = "Emissions",
-                          widths = c(3, 8),
-                          tabPanel(title = "GrossConsumption",
-                                   value = "GrossConsumption",
-                                   GrossConsumptionOutput("GrossConsumption"))
-             )),
+
                    ###### Section - Target Tracker #######
                    tabPanel(value = "TargetTracker",
                             title = tags$div(img(src = "TargetIcon.svg", height = "30px",   display= "block"), " Target Tracker", style = "font-family: 'Century Gothic'; font-weight: 400 "),

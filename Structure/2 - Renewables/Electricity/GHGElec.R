@@ -297,7 +297,7 @@ GHGElec <- function(input, output, session) {
     tagList(column(12,
                    
                    HTML(
-                     paste(readtext("Structure/8 - Greenhouse Gases/GHGElecHeatTransport.txt")[2])
+                     paste(readtext("Structure/2 - Renewables/Electricity/GHGElec.txt")[2])
                      
                    )))
   })
