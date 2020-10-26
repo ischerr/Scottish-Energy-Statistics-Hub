@@ -57,3 +57,6 @@ ULEVbyLA <- read_delim("Processed Data/Output/Vehicles/ULEVbyLA.txt",
 
 LAHeatMap <- read_csv("Processed Data/Output/Consumption/HeatConsumptionbyLAMap.csv")
 
+ECOMeasuresLACategories <- unique(read_delim("Processed Data/Output/ECO/ECOMeasuresLA.txt", 
+                            "\t", escape_double = FALSE, trim_ws = TRUE)$variable)
+

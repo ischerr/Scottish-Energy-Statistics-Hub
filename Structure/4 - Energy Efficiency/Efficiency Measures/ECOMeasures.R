@@ -52,6 +52,19 @@ ECOMeasuresOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
              #dygraphOutput(ns("ECOMeasuresPlot")),
              plotlyOutput(ns("ECOObligationPlot"), height = "450px")%>% withSpinner(color="#34d1a3"),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("Local Authorities",
+             fluidRow(column(8,
+                             h3("ECO measures by LA", style = "color: #34d1a3;  font-weight:bold"),
+                             h4(textOutput(ns('ECOLASubtitle')), style = "color: #34d1a3;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('ECOLA.png'), 'Download Graph', style="float:right")
+             )),
+             fluidRow(column(6,selectInput(ns("CategorySelect"), "Category:", c(ECOMeasuresLACategories), selected = ECOMeasuresLACategories[2], multiple = FALSE,
+                                           selectize = TRUE, width = NULL, size = NULL))),
+             leafletOutput(ns("ECOLA"), height = "675px")%>% withSpinner(color="#34d1a3"),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #34d1a3;  font-weight:bold")),
@@ -77,6 +90,14 @@ ECOMeasuresOutput <- function(id) {
              ),
              fluidRow(
                column(12, dataTableOutput(ns("ECOObligationTable"))%>% withSpinner(color="#34d1a3"))),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
+    tabPanel("ECO Measures by LA",
+             fluidRow(
+               column(10, h3("Data - ECO measures by Local Authority, Scotland, 2020 Q2", style = "color: #34d1a3;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("ECOLATable"))%>% withSpinner(color="#34d1a3"))),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
       column(2, p("Update expected:")),
@@ -1280,6 +1301,207 @@ ECOMeasures <- function(input, output, session) {
         ),
         file)
     }
+  )
+  
+  output$ECOLASubtitle <- renderText({
+    
+    Data <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Elec consump household",
+      col_names = TRUE,
+      skip = 12
+    )
+    
+    Data$Year <- as.numeric(Data$Year)
+    
+    paste("Scotland,", max(Data$Year, na.rm = TRUE))
+  })
+  
+  output$ECOLATable = renderDataTable({
+    
+    ECOLATable <- read_delim("Processed Data/Output/ECO/ECOMeasuresLA.txt", 
+                                         "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    ECOLATable <- dcast(ECOLATable, LA + Code ~ variable)
+    
+    datatable(
+      ECOLATable,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "ECO measures by Local Authority, Scotland, 2020 Q2",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'ECO measures by Local Authority, Scotland, 2020 Q2',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'ECO measures by Local Authority, Scotland, 2020 Q2')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(3:7, 0)
+  })
+  
+  observeEvent(input$ToggleTable3, {
+    toggle("ECOLATable")
+  })
+  
+  output$ECOLA.png <- downloadHandler(
+    filename = "ECOLA.png",
+    content = function(file) {
+      writePNG(readPNG("Structure/4 - Energy Efficiency/Demand Reduction/ECOLAChart.png"), file) 
+    }
+  )
+  
+  
+  output$ECOLASubtitle <- renderText({
+    
+    paste("Scotland,", ObligationDate)
+  })
+  
+  output$ECOLA <- renderLeaflet({
+    
+    ### Load Packages
+    library(readr)
+    library("maptools")
+    library(tmaptools)
+    library(tmap)
+    library("sf")
+    library("leaflet")
+    library("rgeos")
+    library(readxl)
+    library(ggplot2)
+    
+    ### Add Simplified shape back to the Shapefile
+    LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/LocalAuthority2.shp")
+    
+    LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
+    ############ RENEWABLE ELECTRICITY ################################################
+    
+    Category =  as.character(input$CategorySelect)
+    
+    ECOLA <- read_delim("Processed Data/Output/ECO/ECOMeasuresLA.txt", 
+                                                 "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    names(ECOLA)[1:2] <- c("CODE", "LAName")
+    
+    ECOLA <- ECOLA[which(ECOLA$variable == Category),]
+    
+    ECOLA$Content <- paste0("<b>",ECOLA$LAName, "</b><br/>", ECOLA$variable[1], ":<br/><em>", format(round(ECOLA$value, digits = 1), big.mark = ","),"</em>" )
+    
+    ECOLA$Hover <- paste0(ECOLA$LAName, " - ", format(round(ECOLA$value, digits = 1), big.mark = ","), "")
+    
+    ### Change LA$CODE to string
+    LA$CODE <- as.character(LA$CODE)
+    
+    ### Order LAs in Shapefile
+    LA <- LA[order(LA$CODE),]
+    
+    ### Order LAs in Data
+    ECOLA <- ECOLA[order(ECOLA$CODE),]
+    
+    ### Combine Data with Map data
+    LAMap <-
+      merge(LA, ECOLA)
+    
+    
+    pal <- colorNumeric(
+      palette = "Greens",
+      domain = LAMap$value)
+    
+    l <-leaflet(LAMap) %>% 
+      addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
+      addPolygons(stroke = TRUE, 
+                  weight = 0.1,
+                  smoothFactor = 0.2,
+                  popup = ~Content,
+                  label = ~Hover,
+                  fillOpacity = 1,
+                  color = ~pal(value),
+                  highlightOptions = list(color = "white", weight = 2,
+                                          bringToFront = TRUE)) %>%
+      leaflet::addLegend("bottomright", pal = pal, values = ~value,
+                         title = paste0(ECOLA$variable[1], ""),
+                         opacity = 1
+      ) 
+    
+    l
+    
+  }) 
+  
+  output$ECOLA.png <- downloadHandler(
+      filename = "ECOMeasuresLAMap.png",
+      content = function(file) {if(as.character(input$CategorySelect) == "ECO measures per 1,000 households"){
+        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOper1000.png"), file)
+      }
+        if(as.character(input$CategorySelect) == "Carbon Saving Target (CERO)"){
+          file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOCERO.png"), file)
+        }
+        if(as.character(input$CategorySelect) == "Affordable Warmth (HHCRO)"){
+          file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOAffordableWarmth.png"), file)
+        }
+        if(as.character(input$CategorySelect) == "ECO measures installed"){
+          file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOMeasuresInstalled.png"), file)
+        }
+        if(as.character(input$CategorySelect) == "Carbon Savings Community (CSCO)"){
+          file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOCSCO.png"), file)
+        }
+        #"Carbon Saving Target (CERO)"       "ECO measures per 1,000 households" "Affordable Warmth (HHCRO)"         "ECO measures installed"            "Carbon Savings Community (CSCO)"
+      }
+      
+    )
+  
+          
+    
+    
+    
+    downloadHandler(
+      filename = {
+        if(as.character(input$CategorySelect) == "ECO measures per 1,000 households"){
+      paste("ECOLAper1000.png")}
+          if(as.character(input$CategorySelect) == "Carbon Saving Target (CERO)"){
+            "ECOLACERO.png"}
+            if(as.character(input$CategorySelect) == "Affordable Warmth (HHCRO)"){
+              "ECOLAHHCRO.png"}
+              if(as.character(input$CategorySelect) == "ECO measures installed"){
+                "ECOLAMeasuresInstalled.png"}
+                if(as.character(input$CategorySelect) == "Carbon Savings Community (CSCO)"){
+                  "ECOLACSCO.png"}
+        },
+    content = function(file) {if(as.character(input$CategorySelect) == "ECO measures per 1,000 households"){
+      file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOper1000.png"), file)
+    }
+      if(as.character(input$CategorySelect) == "Carbon Saving Target (CERO)"){
+        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOCERO.png"), file)
+      }
+      if(as.character(input$CategorySelect) == "Affordable Warmth (HHCRO)"){
+        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOAffordableWarmth.png"), file)
+      }
+      if(as.character(input$CategorySelect) == "ECO measures installed"){
+        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOMeasuresInstalled.png"), file)
+      }
+      if(as.character(input$CategorySelect) == "Carbon Savings Community (CSCO)"){
+        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOCSCO.png"), file)
+      }
+      #"Carbon Saving Target (CERO)"       "ECO measures per 1,000 households" "Affordable Warmth (HHCRO)"         "ECO measures installed"            "Carbon Savings Community (CSCO)"
+    }
+
   )
   
 }
