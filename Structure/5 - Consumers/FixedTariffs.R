@@ -95,15 +95,14 @@ FixedTariffs <- function(input, output, session) {
   
   output$ElecPaymentsSubtitle <- renderText({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Elec payment methods",
-        col_names = TRUE,
-        skip = 12
-      )
+    Data <- read_delim("Processed Data/Output/Energy Bills/FixedTariffElectricity.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    
     
     names(Data)[1] <- "Year"
+    
+    Data$Year <- dmy(Data$Year)
     
     Data$Year <- as.yearqtr(Data$Year)
     
@@ -316,15 +315,14 @@ FixedTariffs <- function(input, output, session) {
   
   output$GasPaymentsSubtitle <- renderText({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Gas payment methods",
-        col_names = TRUE,
-        skip = 12
-      )
+    Data <- read_delim("Processed Data/Output/Energy Bills/FixedTariffGas.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    
     
     names(Data)[1] <- "Year"
+    
+    Data$Year <- dmy(Data$Year)
     
     Data$Year <- as.yearqtr(Data$Year)
     

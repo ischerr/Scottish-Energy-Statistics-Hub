@@ -48,9 +48,9 @@ HeatConsumptionOutput <- function(id) {
                4, style = 'padding:15px;',
                downloadButton(ns('LAHeatMap.png'), 'Download Graph', style="float:right")
              )),
-             fluidRow(column(6,selectInput(ns("YearSelect"), "Year:", c(max(LAHeatMap$Year):min(LAHeatMap$Year)), selected = max(LAHeatMap$Year), multiple = FALSE,
+             fluidRow(column(6,selectInput(ns("YearSelect"), "Year:", c(max(LAHeatMap$Year, na.rm = TRUE):min(LAHeatMap$Year, na.rm = TRUE)), selected = max(LAHeatMap$Year), multiple = FALSE,
                                            selectize = TRUE, width = NULL, size = NULL) ),
-                      column(6, align = 'right', selectInput(ns("TechSelect"), "Tech:", c(unique(as.character(names(LAHeatMap[4:21])))), selected = "Total", multiple = FALSE,
+                      column(6, align = 'right', selectInput(ns("TechSelect"), "Tech:", c(unique(as.character(names(LAHeatMap[4:9])))), selected = "Total", multiple = FALSE,
                                                              selectize = TRUE, width = "300px", size = NULL))),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
              #dygraphOutput(ns("ElecGenFuelPlot")),
@@ -87,7 +87,7 @@ HeatConsumptionOutput <- function(id) {
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
-               column(12,selectInput(ns("YearSelect2"), "Year:", c(max(LAHeatMap$Year):min(LAHeatMap$Year)), selected = max(LAHeatMap$Year), multiple = FALSE,
+               column(12,selectInput(ns("YearSelect2"), "Year:", c(max(LAHeatMap$Year, na.rm = TRUE):min(LAHeatMap$Year, na.rm = TRUE)), selected = max(LAHeatMap$Year), multiple = FALSE,
                                      selectize = TRUE, width = "200px", size = NULL) )
              ),
              fluidRow(
@@ -1274,7 +1274,7 @@ HeatConsumption <- function(input, output, session) {
     
     Tech = as.character(input$TechSelect)
     
-    LARenGen <- read_csv("Processed Data/Output/Consumption/HeatConsumptionbyLA.csv")
+    LARenGen <- read_csv("Processed Data/Output/Consumption/HeatConsumptionbyLAMap.csv")
     
     names(LARenGen)[1:3] <- c("LACode", "Year", "LAName")
     

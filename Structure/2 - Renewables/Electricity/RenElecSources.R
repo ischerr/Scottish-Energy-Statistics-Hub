@@ -318,7 +318,7 @@ RenElecSources <- function(input, output, session) {
   
   names(RenTurnover) <- c("variable", "value")
   
-  RenTurnover$value <- as.numeric(RenTurnover$value)/1000000
+  RenTurnover$value <- as.numeric(RenTurnover$value)
   
   RenTurnover$variable[RenTurnover$variable == "Hydropower"] <- "Hydro"
   
