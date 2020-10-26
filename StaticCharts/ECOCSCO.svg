@@ -14,7 +14,7 @@
    id="svg1391"
    sodipodi:docname="ECOCSCO.svg"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   inkscape:export-filename="C:\Users\ische\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\4 - Energy Efficiency\Efficiency Measures\ECOMeasuresInstalled.png"
+   inkscape:export-filename="C:\Users\ische\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\4 - Energy Efficiency\Efficiency Measures\ECOCSCO.png"
    inkscape:export-xdpi="60.005222"
    inkscape:export-ydpi="60.005222">
   <metadata
@@ -25,7 +25,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -47,8 +47,8 @@
      fit-margin-bottom="50"
      fit-margin-right="50"
      inkscape:zoom="0.32"
-     inkscape:cx="76.968556"
-     inkscape:cy="1386.9"
+     inkscape:cx="1925.4061"
+     inkscape:cy="1183.775"
      inkscape:window-x="-11"
      inkscape:window-y="-11"
      inkscape:window-maximized="1"
