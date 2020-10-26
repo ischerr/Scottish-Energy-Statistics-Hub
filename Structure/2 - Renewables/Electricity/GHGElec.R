@@ -33,7 +33,7 @@ GHGElecOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
-      column(10, h3("Data", style = "color: #39ab2c;  font-weight:bold")),
+      column(10, h3("Data - Electricity emissions (MtCO2e)", style = "color: #39ab2c;  font-weight:bold")),
       column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -344,17 +344,17 @@ GHGElec <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Carbon Productivity",
+        title = "Electricity emissions (MtCO2e)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Carbon Productivity',
+            title = 'Electricity emissions (MtCO2e)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Carbon Productivity')
+               title = 'Electricity emissions (MtCO2e)')
         ),
         
         # customize the length menu
