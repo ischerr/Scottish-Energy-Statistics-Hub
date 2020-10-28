@@ -760,7 +760,7 @@ RenElecTarget <- function(input, output, session) {
         borderpad=4,
         bgcolor="#ff7f0e",
         textfont = list(
-          size = 15,
+          size = 10,
           color = BarColours[8]
         )
       ) %>%
