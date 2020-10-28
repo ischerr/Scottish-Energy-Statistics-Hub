@@ -156,7 +156,7 @@ RenHeatTech <- function(input, output, session) {
     
     Data <- dcast(Data, Year ~ Technology)
     
-    names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar", "Total")
+    names(Data) <- c("Year", "Biomass", "CHP", "Biomethane", "Waste", "Pumps", "Solar", "Total")
     Data %<>% lapply(function(x) as.numeric(as.character(x)))
     Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
     Data <- Data[complete.cases(Data),]
@@ -202,6 +202,18 @@ RenHeatTech <- function(input, output, session) {
       ) %>%
       add_trace(
         data = Data,
+        x = ~ `Biomethane`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Biomethane",
+        text = paste0("Biomethane: ", format(round(Data$`Biomethane`, 3), big.mark = ","), unit),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[3]),
+        legendgroup = 3
+      ) %>%
+      add_trace(
+        data = Data,
         x = ~ `Waste`,
         type = 'bar',
         width = 0.7,
@@ -209,8 +221,8 @@ RenHeatTech <- function(input, output, session) {
         name = "Energy from waste",
         text = paste0("Energy from waste: ", format(round(Data$`Waste`, 3), big.mark = ","), unit),
         hoverinfo = 'text',
-        marker = list(color = BarColours[3]),
-        legendgroup = 3
+        marker = list(color = BarColours[4]),
+        legendgroup = 4
       ) %>%
       add_trace(
         data = Data,
@@ -221,8 +233,8 @@ RenHeatTech <- function(input, output, session) {
         name = "Heat pumps",
         text = paste0("Heat pumps: ", format(round(Data$`Pumps`, 3), big.mark = ","), unit),
         hoverinfo = 'text',
-        marker = list(color = BarColours[4]),
-        legendgroup = 4
+        marker = list(color = BarColours[5]),
+        legendgroup = 5
       ) %>%
       add_trace(
         data = Data,
@@ -233,8 +245,8 @@ RenHeatTech <- function(input, output, session) {
         name = "Solar thermal",
         text = paste0("Solar thermal: ", format(round(Data$`Solar`, 3), big.mark = ","), unit),
         hoverinfo = 'text',
-        marker = list(color = BarColours[5]),
-        legendgroup = 5
+        marker = list(color = BarColours[6]),
+        legendgroup = 6
       ) %>%
       add_trace(
         x = (Data$Total) * 1.01,
@@ -308,7 +320,7 @@ RenHeatTech <- function(input, output, session) {
     RenHeatCapOutput <- dcast(RenHeatCapOutput, Technology ~ variable)
     
     datatable(
-      RenHeatCapOutput[c(1,13,12,9,8,11,10)],
+      RenHeatCapOutput[c(1,19,18,17,13,12,11,16,15,14)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -338,8 +350,8 @@ RenHeatTech <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(c(2:3), 3) %>%
-      formatRound(c(4:7), 0)
+      formatRound(c(2:4), 3) %>%
+      formatRound(c(5:10), 0)
   }) 
   
   output$RenHeatTech.png <- downloadHandler(
@@ -382,9 +394,9 @@ RenHeatTech <- function(input, output, session) {
       
       Data <- dcast(Data, Year ~ Technology)
       
-      names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar", "Total")
+      names(Data) <- c("Year", "Biomass", "CHP", "Biomethane", "Waste", "Pumps", "Solar", "Total")
       
-      TotalData <- Data[c(1,7)]
+      TotalData <- Data[c(1,8)]
       
       Data$Total <- NULL
       
@@ -449,11 +461,12 @@ RenHeatTech <- function(input, output, session) {
         scale_fill_manual(
           "variable",
           values = c(
-            "Biomass" = BarColours[1],
-            "CHP"     = BarColours[2],
-            "Waste"   = BarColours[3],
-            "Pumps"   = BarColours[4],
-            "Solar"   = BarColours[5]
+            "Biomass"    = BarColours[1],
+            "CHP"        = BarColours[2],
+            "Biomethane" = BarColours[3],
+            "Waste"      = BarColours[4],
+            "Pumps"      = BarColours[5],
+            "Solar"      = BarColours[6]
           )
         ) +
         geom_bar(stat = "identity", width = .8) +
@@ -472,7 +485,7 @@ RenHeatTech <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height * 1.3,
-              y = length * (0.5 / 5)*.95,
+              y = length * (0.5 / 6)*.95,
               label = "Biomass"),
           fontface = 2,
           colour = BarColours[1],
@@ -481,24 +494,22 @@ RenHeatTech <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height * 1.3,
-              y = length * (1.5 / 5)*.95,
+              y = length * (1.5 / 6)*.95,
               label = "Biomass\nCHP"),
           fontface = 2,
           colour = BarColours[2],
         ) +
         geom_text(
           aes(x = height * 1.3,
-              y = length * (2.5 / 5)*.95,
-              label = "Energy\nfrom waste"),
+              y = length * (2.5 / 6)*.95,
+              label = "Biomethane"),
           fontface = 2,
           colour = BarColours[3],
-          family = "Century Gothic",
-          hjust = 0.5
         ) +
         geom_text(
           aes(x = height * 1.3,
-              y = length * (3.5 /5)*.95,
-              label = "Heat\npumps"),
+              y = length * (3.5 / 6)*.95,
+              label = "Energy\nfrom waste"),
           fontface = 2,
           colour = BarColours[4],
           family = "Century Gothic",
@@ -506,10 +517,19 @@ RenHeatTech <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height * 1.3,
-              y = length * (4.5 / 5)*.95,
-              label = "Solar\n thermal"),
+              y = length * (4.5 /6)*.95,
+              label = "Heat\npumps"),
           fontface = 2,
           colour = BarColours[5],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = height * 1.3,
+              y = length * (5.5 / 6)*.95,
+              label = "Solar\n thermal"),
+          fontface = 2,
+          colour = BarColours[6],
           family = "Century Gothic",
           hjust = 0.5
           
@@ -529,7 +549,7 @@ RenHeatTech <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height * 1.3,
-              y = length * (5.5 / 5)*.95,
+              y = length * (6.5 / 6)*.95,
               label = "Total"),
           fontface = 2,
           colour = ChartColours[1],
@@ -1092,7 +1112,7 @@ RenHeatTech <- function(input, output, session) {
   RenHeatSize <- RenHeatSize[c(2,4,3,1,6,5),]
   
   datatable(
-    RenHeatSize[c(1,13,12,9,8,11,10)],
+    RenHeatSize[c(1,19,18,17,13,12,11,16,15,14)],
     extensions = 'Buttons',
     
     rownames = FALSE,
@@ -1123,7 +1143,7 @@ RenHeatTech <- function(input, output, session) {
     )
   ) %>%
     
-    formatRound(c(4:7), 0)
+    formatRound(c(5:10), 0)
 })
 
 }
