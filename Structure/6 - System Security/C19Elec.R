@@ -533,7 +533,7 @@ C19Elec <- function(input, output, session) {
     
     WeekdayElecDemand <- dcast(WeekdayElecDemand, Year ~ PostLockdown)
     
-    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "fourth week of March to first week of third week of October (GWh)")
+    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "fourth week of March to first week of fourth week of October (GWh)")
     datatable(
       WeekdayElecDemand,
       extensions = 'Buttons',
