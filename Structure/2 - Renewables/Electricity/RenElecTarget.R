@@ -688,7 +688,7 @@ RenElecTarget <- function(input, output, session) {
       add_annotations(
         mode = 'text',
         x = (max(GrossConsumption$Renewable)/2),
-        y = 0.35,
+        y = 0.45,
         xref = "x", yref = "y",
         showlegend = FALSE ,
         hoverinfo = 'none',
@@ -715,7 +715,7 @@ RenElecTarget <- function(input, output, session) {
       add_annotations(
         mode = 'text',
         x = (max(GrossConsumption$Renewable)/2),
-        y = 2.55,
+        y = 2.45,
         xref = "x", yref = "y",
         showlegend = FALSE ,
         hoverinfo = 'none',
@@ -764,6 +764,26 @@ RenElecTarget <- function(input, output, session) {
           color = BarColours[8]
         )
       ) %>%
+      add_annotations(
+        mode = 'text',
+        x = .4,
+        y = .01,
+        xref = "paper", yref = "y",
+        showlegend = FALSE ,
+        hoverinfo = 'none',
+        legendgroup = 10,
+        text = "Note: This does not mean that 23.3% of Scottish electricity demand is from non-renewable sources.\nDue to the way it is calculated, share of renewable electricity in gross consumption can exceed 100%.",
+        name = paste("Consumption"),
+        marker = list(
+          size = 500,
+          opacity = 0
+        ),
+        showarrow = F,
+        textfont = list(
+          size = 10,
+          color = BarColours[8]
+        )
+      ) %>%
       layout(
         barmode = 'stack',
         showlegend = FALSE,
@@ -778,7 +798,7 @@ RenElecTarget <- function(input, output, session) {
           ticktext = list("<b>Gross\nConsumption</b>", "<b>Electricity Generation\nfuel mix</b>"),
           tickvals = list(1, 2),
           tickmode = "array",
-          range = c(0.1,2.65)
+          range = c(0,2.65)
         ),
         xaxis = list(
           title = "",
