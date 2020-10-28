@@ -32,7 +32,7 @@ EnSupplyEmissionsOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     fluidRow(
-    column(10, h3("Data", style = "color: #1A5D38;  font-weight:bold")),
+    column(10, h3("Data - Net source greenhouse gas emissions from the energy supply sector (MtCO2e)", style = "color: #1A5D38;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -134,6 +134,10 @@ EnSupplyEmissions <- function(input, output, session) {
     
     EnSupplyEmissions$Year <- dmy(EnSupplyEmissions$Year)
     
+    EnSupplyEmissions$YearLabel <- as.character(format(EnSupplyEmissions$Year, "%Y"))
+    
+    EnSupplyEmissions[which(EnSupplyEmissions$Year ==ymd("1988-01-01")),]$YearLabel <- "Baseline"
+    
     
     p <-  plot_ly(data = EnSupplyEmissions,
                   x = ~ Year ) %>% 
@@ -149,7 +153,7 @@ EnSupplyEmissions <- function(input, output, session) {
                   "Total energy supply emissions: ",
                   round(EnSupplyEmissions$`Energy Supply`, digits = 1),
                   " MtCO2e\nYear: ",
-                  format(EnSupplyEmissions$Year, "%Y")
+                  EnSupplyEmissions$YearLabel
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = LineColours[2], dash = "none")
@@ -163,7 +167,7 @@ EnSupplyEmissions <- function(input, output, session) {
           "Total energy supply emissions: ",
           round(EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))]$`Energy Supply`, digits = 1),
           " MtCO2e\nYear: ",
-          format(EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))]$Year, "%Y")
+          EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))]$YearLabel
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -185,7 +189,7 @@ EnSupplyEmissions <- function(input, output, session) {
                   "Electricity production emissions: ",
                   round(EnSupplyEmissions$`Electricity Production`, digits = 1),
                   " MtCO2e\nYear: ",
-                  format(EnSupplyEmissions$Year, "%Y")
+                  EnSupplyEmissions$YearLabel
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = LineColours[3], dash = "none")
@@ -199,7 +203,7 @@ EnSupplyEmissions <- function(input, output, session) {
           "Electricity production emissions: ",
           round(EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))]$`Electricity Production`, digits = 1),
           " MtCO2e\nYear: ",
-          format(EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))]$Year, "%Y")
+          EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))]$YearLabel
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -221,7 +225,7 @@ EnSupplyEmissions <- function(input, output, session) {
                   "Industry emissions: ",
                   round(EnSupplyEmissions$`Industry`, digits = 1),
                   " MtCO2e\nYear: ",
-                  format(EnSupplyEmissions$Year, "%Y")
+                  EnSupplyEmissions$YearLabel
                 ),
                 hoverinfo = 'text',
                 line = list(width = 6, color = LineColours[4], dash = "none")
@@ -235,7 +239,7 @@ EnSupplyEmissions <- function(input, output, session) {
           "Industry emissions: ",
           round(EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))]$`Industry`, digits = 1),
           " MtCO2e\nYear: ",
-          format(EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))]$Year, "%Y")
+          EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))]$YearLabel
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -321,17 +325,17 @@ EnSupplyEmissions <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Net source greenhouse gas emissions",
+        title = "Net source greenhouse gas emissions (MtCO2e)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Net source greenhouse gas emissions',
+            title = 'Net source greenhouse gas emissions (MtCO2e)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Net source greenhouse gas emissions')
+               title = 'Net source greenhouse gas emissions (MtCO2e)')
         ),
         
         # customize the length menu
