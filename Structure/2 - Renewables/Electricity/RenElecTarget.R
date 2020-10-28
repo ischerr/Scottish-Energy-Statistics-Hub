@@ -747,7 +747,7 @@ RenElecTarget <- function(input, output, session) {
         showlegend = FALSE ,
         hoverinfo = 'none',
         legendgroup = 10,
-        text = paste0(str_wrap("The denominator is\ngross consumption:\ngeneration minus net exports", 50)
+        text = paste0("The denominator is\ngross consumption:\ngeneration minus net exports"
         ),
         name = paste("Consumption"),
         marker = list(
