@@ -685,7 +685,7 @@ RenElecTarget <- function(input, output, session) {
           color = BarColours[8]
         )
       ) %>%
-      add_trace(
+      add_annotations(
         mode = 'text',
         x = (max(GrossConsumption$Renewable)/2),
         y = 0.35,
@@ -703,12 +703,16 @@ RenElecTarget <- function(input, output, session) {
           opacity = 0
         ),
         showarrow = F,
+        bordercolor="#c7c7c7",
+        borderwidth=2,
+        borderpad=4,
+        bgcolor="#ff7f0e",
         textfont = list(
           size = 20,
           color = BarColours[8]
         )
       ) %>%
-      add_trace(
+      add_annotations(
         mode = 'text',
         x = (max(GrossConsumption$Renewable)/2),
         y = 2.35,
@@ -726,6 +730,10 @@ RenElecTarget <- function(input, output, session) {
           opacity = 0
         ),
         showarrow = F,
+        bordercolor="#c7c7c7",
+        borderwidth=2,
+        borderpad=4,
+        bgcolor="#ff7f0e",
         textfont = list(
           size = 20,
           color = BarColours[8]
