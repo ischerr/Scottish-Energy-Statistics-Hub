@@ -584,7 +584,7 @@ RenElecTarget <- function(input, output, session) {
         width = 0.3,
         orientation = 'h',
         name = "Consumption",
-        text = paste0(format(round(GrossConsumptionPlotData$Consumption, digits = 1), big.mark = ","), " GWh"),
+        text = paste0(format(round(GrossConsumptionPlotData$Consumption, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'none',
         marker = list(color = BarColours[1]),
         legendgroup = 1
@@ -601,7 +601,7 @@ RenElecTarget <- function(input, output, session) {
         width = 0.3,
         orientation = 'h',
         name = "Renewable",
-        text = paste0("Renewable\n", format(round(GrossConsumptionPlotData$`Renewable`, digits = 1), big.mark = ","), " GWh"),
+        text = paste0("Renewable\n", format(round(GrossConsumptionPlotData$`Renewable`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'none',
         marker = list(color = BarColours[2]),
         legendgroup = 2
@@ -618,7 +618,7 @@ RenElecTarget <- function(input, output, session) {
         width = 0.3,
         orientation = 'h',
         name = "Non-renewable",
-        text = paste0("Non-renewable\n", format(round(GrossConsumptionPlotData$`Non-renewable`, digits = 1), big.mark=","), " GWh"),
+        text = paste0("Non-renewable\n", format(round(GrossConsumptionPlotData$`Non-renewable`, digits = 0), big.mark=","), " GWh"),
         hoverinfo = 'none',
         marker = list(color = BarColours[3]),
         legendgroup = 3
@@ -653,7 +653,7 @@ RenElecTarget <- function(input, output, session) {
         showlegend = FALSE ,
         hoverinfo = 'none',
         legendgroup = 10,
-        text = paste0("Net Exports\n\n", format(round(min(GrossConsumption$`Exports`),1), big.mark = ",")," GWh"),
+        text = paste0("Net Exports\n\n", format(round(min(GrossConsumption$`Exports`),0), big.mark = ",")," GWh"),
         name = paste("Exports"),
         marker = list(
           size = 100,
@@ -715,7 +715,7 @@ RenElecTarget <- function(input, output, session) {
       add_annotations(
         mode = 'text',
         x = (max(GrossConsumption$Renewable)/2),
-        y = 2.35,
+        y = 2.55,
         xref = "x", yref = "y",
         showlegend = FALSE ,
         hoverinfo = 'none',
@@ -736,6 +736,31 @@ RenElecTarget <- function(input, output, session) {
         bgcolor="#ff7f0e",
         textfont = list(
           size = 20,
+          color = BarColours[8]
+        )
+      ) %>%
+      add_annotations(
+        mode = 'text',
+        x = (max(GrossConsumption$Consumption)*1.45),
+        y = 1,
+        xref = "x", yref = "y",
+        showlegend = FALSE ,
+        hoverinfo = 'none',
+        legendgroup = 10,
+        text = paste0(str_wrap("The denominator of the renewable electricity target is gross consumption. This is total generation in Scotland minus net exports", 50)
+        ),
+        name = paste("Consumption"),
+        marker = list(
+          size = 500,
+          opacity = 0
+        ),
+        showarrow = F,
+        bordercolor="#c7c7c7",
+        borderwidth=2,
+        borderpad=4,
+        bgcolor="#ff7f0e",
+        textfont = list(
+          size = 15,
           color = BarColours[8]
         )
       ) %>%
