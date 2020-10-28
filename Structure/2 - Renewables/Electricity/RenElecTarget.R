@@ -38,7 +38,7 @@ RenElecTargetOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
              #dygraphOutput(ns("GrossConsumptionPlot")),
              plotlyOutput(ns("GrossConsumptionPlot"), height = "500px")%>% withSpinner(color="#39ab2c"),
-             HTML("<blockquote><p>Note: This does <b>not</b> mean that 23.3% of Scottish electricity demand is from non-renewable sources. Due to the way it is calculated, share of renewable electricity in gross consumption can exceed 100%.</p></blockquote>"),
+             HTML("<blockquote><p>Note: the calculation above is based on 2018 data as it is the most recent year where final data is available</p></blockquote>"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
@@ -722,7 +722,7 @@ RenElecTarget <- function(input, output, session) {
         legendgroup = 10,
         text = paste0("<b>",
                       percent(max(GrossConsumption$Renewable)/(max(GrossConsumptionPlotData$Renewable)+max(GrossConsumptionPlotData$`Non-renewable`)), .1),
-                      "</b> of Scotland's electricity generation\nfuel mix coming from renewable sources"
+                      "</b> of electricity generated\nfcomes from renewable sources"
         ),
         name = paste("Exports"),
         marker = list(
@@ -747,7 +747,7 @@ RenElecTarget <- function(input, output, session) {
         showlegend = FALSE ,
         hoverinfo = 'none',
         legendgroup = 10,
-        text = paste0(str_wrap("The denominator of the renewable electricity target is gross consumption. This is total generation in Scotland minus net exports", 50)
+        text = paste0(str_wrap("The denominator is\ngross consumption:\ngeneration minus net exports", 50)
         ),
         name = paste("Consumption"),
         marker = list(
@@ -772,7 +772,7 @@ RenElecTarget <- function(input, output, session) {
         showlegend = FALSE ,
         hoverinfo = 'none',
         legendgroup = 10,
-        text = "Note: This does not mean that 23.3% of Scottish electricity demand\nis from non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
+        text = "This does not mean that 23.3% of Scottish electricity demand is\nfrom non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
         name = paste("Consumption"),
         marker = list(
           size = 500,
