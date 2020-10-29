@@ -975,7 +975,7 @@ RenElecTarget <- function(input, output, session) {
           xend = 1.44,
           y = GrossConsumption[which(GrossConsumption$Type == "Electricity generation fuel mix" & GrossConsumption$variable == "Consumption"),]$top,
           yend = GrossConsumption[which(GrossConsumption$Type == "Electricity generation fuel mix" & GrossConsumption$variable == "Consumption"),]$top + GHGCarbonSink,
-          colour =   BarColours[7],
+          colour =   BarColours[8],
           arrow = arrow(length = unit(0.4, "cm")),
           size = 1
         ) + 
@@ -986,9 +986,9 @@ RenElecTarget <- function(input, output, session) {
           ),
           family = "Century Gothic",
           fontface = 2,
-          colour =   BarColours[7]
+          colour =   BarColours[8]
         ) +
-        geom_text(
+        geom_label(
           aes( x = 2.4,
                y = GrossConsumption[which(GrossConsumption$Type == "Electricity generation fuel mix" & GrossConsumption$variable == "Renewable"),]$value / 2,
                label = paste(
@@ -997,7 +997,8 @@ RenElecTarget <- function(input, output, session) {
                family = "Century Gothic",
                fontface = 2
           ),
-          colour =  BarColours[2]
+          colour =  "white",
+          fill = ChartColours[1]
         )  +
         geom_text(
           aes( x = 1.5,
@@ -1009,23 +1010,43 @@ RenElecTarget <- function(input, output, session) {
           colour =  BarColours[2],
           size = 10
         )  +
-        geom_text(
+        geom_label(
           aes( x = 0.5,
                y = GrossConsumption[which(GrossConsumption$Type == "Electricity generation fuel mix" & GrossConsumption$variable == "Renewable"),]$value / 2,
                label = paste0(percent(GrossConsumption[which(GrossConsumption$Type == "Electricity generation fuel mix" & GrossConsumption$variable == "Renewable"),]$value / GrossConsumption[which(GrossConsumption$Type == "Gross Consumption" & GrossConsumption$variable == "Consumption"),]$value, .1), "\nequivalent of Scotland's own electricity\ndemand from renewable sources") ,
                family = "Century Gothic",
                fontface = 2
           ),
-          colour =  BarColours[2]
+          colour =  "white",
+          fill = ChartColours[1]
+        ) +
+        geom_label(
+          aes( x = 1,
+               y = max(GrossConsumption[which(GrossConsumption$Type == "Gross Consumption"),]$value) *1.42,
+               label = "The denominator is\ngross consumption:\ngeneration minus net exports",
+               family = "Century Gothic",
+               fontface = 2
+          ),
+          colour =  "white",
+          fill = ChartColours[1]
         ) +
         geom_text(
-          aes( x = 0.2,
-               y = 0,
+          aes( x = 0,
+               y = 48629/2,
+               label = "This does not mean that 23.3% of Scottish electricity demand is\nfrom non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
+               family = "Century Gothic",
+               fontface = 2
+          ),
+          colour =  BarColours[8]
+        ) +
+        geom_text(
+          aes( x = -0.3,
+               y = 48629/2,
                label = " ",
                family = "Century Gothic",
                fontface = 2
           ),
-          colour =  BarColours[2]
+          colour =  BarColours[8]
         ) 
       
       GrossConsumptionChart
