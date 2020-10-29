@@ -584,7 +584,7 @@ RenElecTarget <- function(input, output, session) {
         width = 0.3,
         orientation = 'h',
         name = "Consumption",
-        text = paste0(format(round(GrossConsumptionPlotData$Consumption, digits = 0), big.mark = ","), " GWh"),
+        text = paste0(" ",format(round(GrossConsumptionPlotData$Consumption, digits = 0), big.mark = ","), " GWh\n"), #The \n at the end forces it to adopt the correct font and formatting. I don't know why, possibly something to do with HTML
         hoverinfo = 'none',
         marker = list(color = BarColours[1]),
         legendgroup = 1
@@ -706,10 +706,9 @@ RenElecTarget <- function(input, output, session) {
         bordercolor="#c7c7c7",
         borderwidth=2,
         borderpad=4,
-        bgcolor="#ff7f0e",
-        textfont = list(
-          size = 20,
-          color = BarColours[8]
+        bgcolor=ChartColours[1],
+        font = list(
+          color = "white"
         )
       ) %>%
       add_annotations(
@@ -722,7 +721,7 @@ RenElecTarget <- function(input, output, session) {
         legendgroup = 10,
         text = paste0("<b>",
                       percent(max(GrossConsumption$Renewable)/(max(GrossConsumptionPlotData$Renewable)+max(GrossConsumptionPlotData$`Non-renewable`)), .1),
-                      "</b> of electricity generated\nfcomes from renewable sources"
+                      "</b> of electricity generated\ncomes from renewable sources"
         ),
         name = paste("Exports"),
         marker = list(
@@ -733,15 +732,14 @@ RenElecTarget <- function(input, output, session) {
         bordercolor="#c7c7c7",
         borderwidth=2,
         borderpad=4,
-        bgcolor="#ff7f0e",
-        textfont = list(
-          size = 20,
-          color = BarColours[8]
+        bgcolor=ChartColours[1],
+        font = list(
+          color = "white"
         )
       ) %>%
       add_annotations(
         mode = 'text',
-        x = (max(GrossConsumption$Consumption)*1.45),
+        x = (max(GrossConsumption$Consumption)*1.55),
         y = 1,
         xref = "x", yref = "y",
         showlegend = FALSE ,
@@ -758,10 +756,9 @@ RenElecTarget <- function(input, output, session) {
         bordercolor="#c7c7c7",
         borderwidth=2,
         borderpad=4,
-        bgcolor="#ff7f0e",
-        textfont = list(
-          size = 10,
-          color = BarColours[8]
+        bgcolor=ChartColours[1],
+        font = list(
+          color = "white"
         )
       ) %>%
       add_annotations(
@@ -779,8 +776,7 @@ RenElecTarget <- function(input, output, session) {
           opacity = 0
         ),
         showarrow = F,
-        textfont = list(
-          size = 10,
+        font = list(
           color = BarColours[8]
         )
       ) %>%
