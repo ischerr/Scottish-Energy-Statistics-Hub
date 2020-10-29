@@ -320,7 +320,7 @@ RenHeatTech <- function(input, output, session) {
     RenHeatCapOutput <- dcast(RenHeatCapOutput, Technology ~ variable)
     
     datatable(
-      RenHeatCapOutput[c(1,19,18,17,13,12,11,16,15,14)],
+      RenHeatCapOutput[c(1,13,12,09,08,11,10)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -350,8 +350,7 @@ RenHeatTech <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(c(2:4), 3) %>%
-      formatRound(c(5:10), 0)
+      formatRound(c(4:7), 0)
   }) 
   
   output$RenHeatTech.png <- downloadHandler(
@@ -1109,10 +1108,8 @@ RenHeatTech <- function(input, output, session) {
   
   RenHeatSize[RenHeatSize <= 0.01] <- "< 0.1"
   
-  RenHeatSize <- RenHeatSize[c(2,4,3,1,6,5),]
-  
   datatable(
-    RenHeatSize[c(1,19,18,17,13,12,11,16,15,14)],
+    RenHeatSize[c(1,13,12,09,08,11,10)],
     extensions = 'Buttons',
     
     rownames = FALSE,
@@ -1143,7 +1140,7 @@ RenHeatTech <- function(input, output, session) {
     )
   ) %>%
     
-    formatRound(c(5:10), 0)
+    formatRound(c(4:7), 0)
 })
 
 }
