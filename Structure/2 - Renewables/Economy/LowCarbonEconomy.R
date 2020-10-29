@@ -127,7 +127,7 @@ LowCarbonEconomyOutput <- function(id) {
         fluidRow(
           column(
             10,
-            h3("Data - Exports directly supported by the LCRE sector (\u00A3)", style = "color: #39ab2c;  font-weight:bold")
+            h3("Data - Exports directly supported by the LCRE sector (\u00A3m)", style = "color: #39ab2c;  font-weight:bold")
           ),
           column(
             2,
@@ -431,17 +431,17 @@ LowCarbonEconomy <- function(input, output, session) {
           fixedColumns = FALSE,
           autoWidth = TRUE,
           ordering = TRUE,
-          title = "Exports directly supported by the LCRE sector (\u00A3)",
+          title = "Exports directly supported by the LCRE sector (\u00A3m)",
           dom = 'ltBp',
           buttons = list(
             list(extend = 'copy'),
             list(
               extend = 'excel',
-              title = 'Exports directly supported by the LCRE sector (\u00A3)',
+              title = 'Exports directly supported by the LCRE sector (\u00A3m)',
               header = TRUE
             ),
             list(extend = 'csv',
-                 title = 'Exports directly supported by the LCRE sector (\u00A3)')
+                 title = 'Exports directly supported by the LCRE sector (\u00A3m)')
           ),
           
           # customize the length menu
