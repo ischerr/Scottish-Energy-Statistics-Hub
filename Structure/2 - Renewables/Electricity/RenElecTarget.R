@@ -1022,7 +1022,7 @@ RenElecTarget <- function(input, output, session) {
         ) +
         geom_label(
           aes( x = 1,
-               y = max(GrossConsumption[which(GrossConsumption$Type == "Gross Consumption"),]$value) *1.42,
+               y = max(GrossConsumption[which(GrossConsumption$Type == "Gross Consumption"),]$value) *1.46,
                label = "The denominator is\ngross consumption:\ngeneration minus net exports",
                family = "Century Gothic",
                fontface = 2
@@ -1032,7 +1032,7 @@ RenElecTarget <- function(input, output, session) {
         ) +
         geom_text(
           aes( x = 0,
-               y = 48629/2,
+               y = 48629/1.9,
                label = "This does not mean that 23.3% of Scottish electricity demand is\nfrom non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
                family = "Century Gothic",
                fontface = 2
