@@ -105,7 +105,7 @@ CarbonProd <- function(input, output, session) {
       text = paste0(
         "Carbon Productivity: ",
         format(round(CarbonProd$Renewables, 0), big.mark = ","),
-        " \u00A3GVA per tonne of CO2e\nYear: ",
+        " \u00A3m GVA per million tonnes of CO2e\nYear: ",
         format(CarbonProd$Year, "%Y")
       ),
       hoverinfo = 'text',
@@ -119,7 +119,7 @@ CarbonProd <- function(input, output, session) {
         text = paste0(
           "Carbon Productivity: ",
           format(round(tail(CarbonProd[which(CarbonProd$Renewables > 0 | CarbonProd$Renewables < 0),],1)$Renewables, 0), big.mark = ","),
-          " \u00A3GVA per tonne of CO2e\nYear: ",
+          " \u00A3m GVA per million tonnes of CO2e\nYear: ",
           format(tail(CarbonProd[which(CarbonProd$Renewables > 0 | CarbonProd$Renewables < 0),],1)$Year, "%Y")
         ),
         hoverinfo = 'text',
@@ -179,7 +179,7 @@ CarbonProd <- function(input, output, session) {
     
     CarbonProdData <- as_tibble(CarbonProdData)
     
-    names(CarbonProdData) <- c("Year", "GVA (\u00A3 million)", "Emissions (Million tonnes of CO2 equivalent)", "Carbon Productivity (\u00A3GVA per tonne of CO2e)")
+    names(CarbonProdData) <- c("Year", "GVA (\u00A3 million)", "Emissions (Million tonnes of CO2 equivalent)", "Carbon Productivity (\u00A3m GVA perMtCO2e)")
     
     datatable(
       CarbonProdData,
