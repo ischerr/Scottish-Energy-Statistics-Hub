@@ -1,0 +1,137 @@
+"Local Authority"	"LACode"	"variable"	"value"
+"Aberdeen City"	"S12000033"	"Output (GWh)"	18
+"Aberdeenshire"	"S12000034"	"Output (GWh)"	361
+"Angus"	"S12000041"	"Output (GWh)"	168
+"Argyll & Bute"	"S12000035"	"Output (GWh)"	62
+"Clackmannanshire"	"S12000005"	"Output (GWh)"	0
+"Dumfries & Galloway"	"S12000006"	"Output (GWh)"	293
+"Dundee City"	"S12000042"	"Output (GWh)"	0
+"East Ayrshire"	"S12000008"	"Output (GWh)"	163
+"East Dunbartonshire"	"S12000045"	"Output (GWh)"	65
+"East Lothian"	"S12000010"	"Output (GWh)"	64
+"East Renfrewshire"	"S12000011"	"Output (GWh)"	0
+"Edinburgh, City of"	"S12000036"	"Output (GWh)"	55
+"Eilean Siar"	"S12000013"	"Output (GWh)"	31
+"Falkirk"	"S12000014"	"Output (GWh)"	0
+"Fife"	"S12000047"	"Output (GWh)"	217
+"Glasgow City"	"S12000049"	"Output (GWh)"	32
+"Highland"	"S12000017"	"Output (GWh)"	996
+"Inverclyde"	"S12000018"	"Output (GWh)"	15
+"Midlothian"	"S12000019"	"Output (GWh)"	26
+"Moray"	"S12000020"	"Output (GWh)"	358
+"North Ayrshire"	"S12000021"	"Output (GWh)"	368
+"North Lanarkshire"	"S12000050"	"Output (GWh)"	70
+"Orkney Islands"	"S12000023"	"Output (GWh)"	17
+"Perth & Kinross"	"S12000048"	"Output (GWh)"	215
+"Renfrewshire"	"S12000038"	"Output (GWh)"	29
+"Scottish Borders"	"S12000026"	"Output (GWh)"	142
+"Shetland Islands"	"S12000027"	"Output (GWh)"	37
+"South Ayrshire"	"S12000028"	"Output (GWh)"	503
+"South Lanarkshire"	"S12000029"	"Output (GWh)"	106
+"Stirling"	"S12000030"	"Output (GWh)"	574
+"West Dunbartonshire"	"S12000039"	"Output (GWh)"	0
+"West Lothian"	"S12000040"	"Output (GWh)"	42
+"Unknown"	NA	"Output (GWh)"	138
+"TOTAL"	"S92000003"	"Output (GWh)"	5205
+"Aberdeen City"	"S12000033"	"Output (%)"	0.0035
+"Aberdeenshire"	"S12000034"	"Output (%)"	0.0694
+"Angus"	"S12000041"	"Output (%)"	0.0323
+"Argyll & Bute"	"S12000035"	"Output (%)"	0.0119
+"Clackmannanshire"	"S12000005"	"Output (%)"	0
+"Dumfries & Galloway"	"S12000006"	"Output (%)"	0.0562
+"Dundee City"	"S12000042"	"Output (%)"	0
+"East Ayrshire"	"S12000008"	"Output (%)"	0.0313
+"East Dunbartonshire"	"S12000045"	"Output (%)"	0.0126
+"East Lothian"	"S12000010"	"Output (%)"	0.0122
+"East Renfrewshire"	"S12000011"	"Output (%)"	0.0014
+"Edinburgh, City of"	"S12000036"	"Output (%)"	0.0107
+"Eilean Siar"	"S12000013"	"Output (%)"	0.006
+"Falkirk"	"S12000014"	"Output (%)"	0
+"Fife"	"S12000047"	"Output (%)"	0.0417
+"Glasgow City"	"S12000049"	"Output (%)"	0.0062
+"Highland"	"S12000017"	"Output (%)"	0.1914
+"Inverclyde"	"S12000018"	"Output (%)"	0.0029
+"Midlothian"	"S12000019"	"Output (%)"	0.005
+"Moray"	"S12000020"	"Output (%)"	0.0688
+"North Ayrshire"	"S12000021"	"Output (%)"	0.0707
+"North Lanarkshire"	"S12000050"	"Output (%)"	0.0134
+"Orkney Islands"	"S12000023"	"Output (%)"	0.0032
+"Perth & Kinross"	"S12000048"	"Output (%)"	0.0412
+"Renfrewshire"	"S12000038"	"Output (%)"	0.0055
+"Scottish Borders"	"S12000026"	"Output (%)"	0.0274
+"Shetland Islands"	"S12000027"	"Output (%)"	0.0072
+"South Ayrshire"	"S12000028"	"Output (%)"	0.0966
+"South Lanarkshire"	"S12000029"	"Output (%)"	0.0204
+"Stirling"	"S12000030"	"Output (%)"	0.1103
+"West Dunbartonshire"	"S12000039"	"Output (%)"	0
+"West Lothian"	"S12000040"	"Output (%)"	0.0081
+"Unknown"	NA	"Output (%)"	0.0264
+"TOTAL"	"S92000003"	"Output (%)"	1
+"Aberdeen City"	"S12000033"	"Operational Capacity (GW)"	0.01
+"Aberdeenshire"	"S12000034"	"Operational Capacity (GW)"	0.2
+"Angus"	"S12000041"	"Operational Capacity (GW)"	0.06
+"Argyll & Bute"	"S12000035"	"Operational Capacity (GW)"	0.04
+"Clackmannanshire"	"S12000005"	"Operational Capacity (GW)"	0
+"Dumfries & Galloway"	"S12000006"	"Operational Capacity (GW)"	0.16
+"Dundee City"	"S12000042"	"Operational Capacity (GW)"	0.01
+"East Ayrshire"	"S12000008"	"Operational Capacity (GW)"	0.08
+"East Dunbartonshire"	"S12000045"	"Operational Capacity (GW)"	0.01
+"East Lothian"	"S12000010"	"Operational Capacity (GW)"	0.03
+"East Renfrewshire"	"S12000011"	"Operational Capacity (GW)"	0
+"Edinburgh, City of"	"S12000036"	"Operational Capacity (GW)"	0.03
+"Eilean Siar"	"S12000013"	"Operational Capacity (GW)"	0.02
+"Falkirk"	"S12000014"	"Operational Capacity (GW)"	0
+"Fife"	"S12000047"	"Operational Capacity (GW)"	0.25
+"Glasgow City"	"S12000049"	"Operational Capacity (GW)"	0.02
+"Highland"	"S12000017"	"Operational Capacity (GW)"	0.3
+"Inverclyde"	"S12000018"	"Operational Capacity (GW)"	0.01
+"Midlothian"	"S12000019"	"Operational Capacity (GW)"	0.01
+"Moray"	"S12000020"	"Operational Capacity (GW)"	0.09
+"North Ayrshire"	"S12000021"	"Operational Capacity (GW)"	0.12
+"North Lanarkshire"	"S12000050"	"Operational Capacity (GW)"	0.01
+"Orkney Islands"	"S12000023"	"Operational Capacity (GW)"	0.01
+"Perth & Kinross"	"S12000048"	"Operational Capacity (GW)"	0.09
+"Renfrewshire"	"S12000038"	"Operational Capacity (GW)"	0.02
+"Scottish Borders"	"S12000026"	"Operational Capacity (GW)"	0.07
+"Shetland Islands"	"S12000027"	"Operational Capacity (GW)"	0.01
+"South Ayrshire"	"S12000028"	"Operational Capacity (GW)"	0.06
+"South Lanarkshire"	"S12000029"	"Operational Capacity (GW)"	0.07
+"Stirling"	"S12000030"	"Operational Capacity (GW)"	0.1
+"West Dunbartonshire"	"S12000039"	"Operational Capacity (GW)"	0
+"West Lothian"	"S12000040"	"Operational Capacity (GW)"	0.02
+"Unknown"	NA	"Operational Capacity (GW)"	0.1
+"TOTAL"	"S92000003"	"Operational Capacity (GW)"	2.03
+"Aberdeen City"	"S12000033"	"Capacity (%)"	0.0047
+"Aberdeenshire"	"S12000034"	"Capacity (%)"	0.1002
+"Angus"	"S12000041"	"Capacity (%)"	0.0317
+"Argyll & Bute"	"S12000035"	"Capacity (%)"	0.0193
+"Clackmannanshire"	"S12000005"	"Capacity (%)"	0
+"Dumfries & Galloway"	"S12000006"	"Capacity (%)"	0.0789
+"Dundee City"	"S12000042"	"Capacity (%)"	0.0027
+"East Ayrshire"	"S12000008"	"Capacity (%)"	0.0396
+"East Dunbartonshire"	"S12000045"	"Capacity (%)"	0.0045
+"East Lothian"	"S12000010"	"Capacity (%)"	0.0149
+"East Renfrewshire"	"S12000011"	"Capacity (%)"	0
+"Edinburgh, City of"	"S12000036"	"Capacity (%)"	0.013
+"Eilean Siar"	"S12000013"	"Capacity (%)"	0.0079
+"Falkirk"	"S12000014"	"Capacity (%)"	0
+"Fife"	"S12000047"	"Capacity (%)"	0.1206
+"Glasgow City"	"S12000049"	"Capacity (%)"	0.0089
+"Highland"	"S12000017"	"Capacity (%)"	0.1469
+"Inverclyde"	"S12000018"	"Capacity (%)"	0.0056
+"Midlothian"	"S12000019"	"Capacity (%)"	0.0068
+"Moray"	"S12000020"	"Capacity (%)"	0.0449
+"North Ayrshire"	"S12000021"	"Capacity (%)"	0.0597
+"North Lanarkshire"	"S12000050"	"Capacity (%)"	0.0066
+"Orkney Islands"	"S12000023"	"Capacity (%)"	0.0048
+"Perth & Kinross"	"S12000048"	"Capacity (%)"	0.044
+"Renfrewshire"	"S12000038"	"Capacity (%)"	0.0112
+"Scottish Borders"	"S12000026"	"Capacity (%)"	0.0349
+"Shetland Islands"	"S12000027"	"Capacity (%)"	0.0067
+"South Ayrshire"	"S12000028"	"Capacity (%)"	0.0314
+"South Lanarkshire"	"S12000029"	"Capacity (%)"	0.0333
+"Stirling"	"S12000030"	"Capacity (%)"	0.0506
+"West Dunbartonshire"	"S12000039"	"Capacity (%)"	0
+"West Lothian"	"S12000040"	"Capacity (%)"	0.0089
+"Unknown"	NA	"Capacity (%)"	0.0478
+"TOTAL"	"S92000003"	"Capacity (%)"	1

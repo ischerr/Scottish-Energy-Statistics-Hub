@@ -41,7 +41,20 @@ RenHeatTechOutput <- function(id) {
                 tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
                 #dygraphOutput(ns("RenHeatTechPlot")),
                 plotlyOutput(ns("RenHeatSizePlot"))%>% withSpinner(color="#39ab2c"),
-                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
+                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Local Authorities",
+             fluidRow(column(8,
+                             h3("ECO measures by LA", style = "color: #34d1a3;  font-weight:bold"),
+                             h4(textOutput(ns('RenHeatLASubtitle')), style = "color: #34d1a3;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('RenHeatLA.png'), 'Download Graph', style="float:right")
+             )),
+             fluidRow(column(6,selectInput(ns("CategorySelect"), "Category:", c("Output (GWh)", "Operational Capacity (GW)"), selected = "Output (GWh)", multiple = FALSE,
+                                           selectize = TRUE, width = NULL, size = NULL))),
+             leafletOutput(ns("RenHeatLA"), height = "675px")%>% withSpinner(color="#34d1a3"),
+             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
@@ -1142,6 +1155,122 @@ RenHeatTech <- function(input, output, session) {
     
     formatRound(c(4:7), 0)
 })
+  
+  output$RenHeatLASubtitle <- renderText({
+    
+    Data <- read_delim("Processed Data/Output/Renewable Heat/RenHeatSize.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)[1:3]
+    
+    paste("Scotland,",  max(Data$Year))
+  })
+  
+  output$RenHeatLA <- renderLeaflet({
+    
+    ### Load Packages
+    library(readr)
+    library("maptools")
+    library(tmaptools)
+    library(tmap)
+    library("sf")
+    library("leaflet")
+    library("rgeos")
+    library(readxl)
+    library(ggplot2)
+    
+    ### Add Simplified shape back to the Shapefile
+    LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/LocalAuthority2.shp")
+    
+    LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
+    ############ RENEWABLE ELECTRICITY ################################################
+    
+    Category =  as.character(input$CategorySelect)
+    
+    RenHeatLA <- read_delim("Processed Data/Output/Renewable Heat/RenHeatLA.txt", 
+                        "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    names(RenHeatLA)[1:2] <- c("LAName", "CODE")
+    
+    RenHeatLA <- RenHeatLA[which(RenHeatLA$variable == Category),]
+    
+
+    RenHeatLA$Content <- paste0("<b>",RenHeatLA$LAName, "</b><br/>", RenHeatLA$variable[1], ":<br/><em>", format(round(RenHeatLA$value, digits = 1), big.mark = ","),"</em>" )
+    
+    RenHeatLA$Hover <- paste0(RenHeatLA$LAName, " - ", format(round(RenHeatLA$value, digits = 1), big.mark = ","), "")
+    
+
+    if(Category == "Output (GWh)"){
+      RenHeatLA[which(RenHeatLA$value == 0),]$Content <- paste0("<b>",RenHeatLA[which(RenHeatLA$value == 0),]$LAName, "</b><br/>", RenHeatLA[which(RenHeatLA$value == 0),]$variable[1], ":<br/><em>", "<10","</em>" )
+           
+           RenHeatLA[which(RenHeatLA$value == 0),]$Hover <- paste0(RenHeatLA[which(RenHeatLA$value == 0),]$LAName, " - ", "<10", "")
+    }
+    
+    if(Category == "Operational Capacity (GW)"){
+      RenHeatLA[which(RenHeatLA$value == 0),]$Content <- paste0("<b>",RenHeatLA[which(RenHeatLA$value == 0),]$LAName, "</b><br/>", RenHeatLA[which(RenHeatLA$value == 0),]$variable[1], ":<br/><em>", "<1","</em>" )
+           
+           RenHeatLA[which(RenHeatLA$value == 0),]$Hover <- paste0(RenHeatLA[which(RenHeatLA$value == 0),]$LAName, " - ", "<1", "")
+
+    }
+
+    
+    ### Change LA$CODE to string
+    LA$CODE <- as.character(LA$CODE)
+    
+    ### Order LAs in Shapefile
+    LA <- LA[order(LA$CODE),]
+    
+    ### Order LAs in Data
+    RenHeatLA <- RenHeatLA[order(RenHeatLA$CODE),]
+    
+    ### Combine Data with Map data
+    LAMap <-
+      merge(LA, RenHeatLA)
+    
+    
+    pal <- colorNumeric(
+      palette = "Greens",
+      domain = LAMap$value)
+    
+    l <-leaflet(LAMap) %>% 
+      addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
+      addPolygons(stroke = TRUE, 
+                  weight = 0.1,
+                  smoothFactor = 0.2,
+                  popup = ~Content,
+                  label = ~Hover,
+                  fillOpacity = 1,
+                  color = ~pal(value),
+                  highlightOptions = list(color = "white", weight = 2,
+                                          bringToFront = TRUE)) %>%
+      leaflet::addLegend("bottomright", pal = pal, values = ~value,
+                         title = paste0(RenHeatLA$variable[1], ""),
+                         opacity = 1
+      ) 
+    
+    l
+    
+  }) 
+  
+  output$RenHeatLA.png <- downloadHandler(
+    filename = "ECOMeasuresLAMap.png",
+    content = function(file) {if(as.character(input$CategorySelect) == "ECO measures per 1,000 households"){
+      file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOper1000.png"), file)
+    }
+      if(as.character(input$CategorySelect) == "Carbon Saving Target (CERO)"){
+        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOCERO.png"), file)
+      }
+      if(as.character(input$CategorySelect) == "Affordable Warmth (HHCRO)"){
+        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOAffordableWarmth.png"), file)
+      }
+      if(as.character(input$CategorySelect) == "ECO measures installed"){
+        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOMeasuresInstalled.png"), file)
+      }
+      if(as.character(input$CategorySelect) == "Carbon Savings Community (CSCO)"){
+        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOCSCO.png"), file)
+      }
+      #"Carbon Saving Target (CERO)"       "ECO measures per 1,000 households" "Affordable Warmth (HHCRO)"         "ECO measures installed"            "Carbon Savings Community (CSCO)"
+    }
+    
+  )
 
 }
 
