@@ -274,7 +274,7 @@ CarbonProd <- function(input, output, session) {
           aes(
             x = Year,
             y = Renewables,
-            label = ifelse(Year == min(Year), paste0(format(round(Renewables, digits = 0), big.mark = ",", trim = TRUE), " \u00A3GVA\nper tonne of CO2e"), ""),
+            label = ifelse(Year == min(Year), paste0(format(round(Renewables, digits = 0), big.mark = ",", trim = TRUE), " \u00A3m GVA\nMtCO2e"), ""),
             hjust = 0.5,
             vjust = 1.1,
             colour = ChartColours[2],
@@ -286,7 +286,7 @@ CarbonProd <- function(input, output, session) {
           aes(
             x = Year,
             y = Renewables,
-            label = ifelse(Year == max(Year), paste0(format(round(Renewables, digits = 0), big.mark = ",", trim = TRUE), " \u00A3GVA\nper tonne of CO2e"), ""),
+            label = ifelse(Year == max(Year), paste0(format(round(Renewables, digits = 0), big.mark = ",", trim = TRUE), " \u00A3m GVA\nMtCO2e"), ""),
             hjust = 0.5,
             vjust = -.6,
             colour = ChartColours[2],
