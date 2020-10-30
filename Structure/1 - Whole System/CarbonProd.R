@@ -138,7 +138,7 @@ CarbonProd <- function(input, output, session) {
                      showgrid = FALSE,
                      range = c(min(CarbonProd$Year)-100, max(CarbonProd$Year)+100)),
         yaxis = list(
-          title = "\u00A3GVA per tonne of CO2e",
+          title = "\u00A3m GVA per MtCO2e",
           tickformat = "",
           showgrid = TRUE,
           zeroline = TRUE,
