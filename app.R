@@ -585,10 +585,7 @@ ui <- shinyUI(fluidPage(
                  DisplacedEmissionsOutput("DisplacedEmissions")),
         tabPanel(title = "Grid Emissions",
                  value = "GridEmissions",
-                 GridEmissionsOutput("GridEmissions")),
-        tabPanel(title = "Electricity Greenhouse Gas Emissions",
-                 value = "GHGElec",
-                 GHGElecOutput("GHGElec"))
+                 GridEmissionsOutput("GridEmissions"))
         )),
       tabPanel(
         value = "RenHeat",
