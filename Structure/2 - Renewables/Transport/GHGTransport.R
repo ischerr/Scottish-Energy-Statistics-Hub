@@ -72,91 +72,136 @@ GHGTransport <- function(input, output, session) {
 
 
 #####################################################################
-    output$GHGTransportPlot <- renderPlotly  ({
+  output$GHGTransportPlot <- renderPlotly  ({
+    
+    GHGTransport <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
+                                 "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,5)]
+    
+    names(GHGTransport) <- c("Year", "Renewables")
+    
+    GHGTransport %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    GHGTransport <- as_tibble(GHGTransport)
+    
+    GHGTransport <- GHGTransport[complete.cases(GHGTransport),]
+    
+    GHGTransport <- GHGTransport[which(GHGTransport$Year >= 1998),]
+    
+    SectorTimeSeries <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
+                                   "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    SectorTimeSeries$Total <- rowSums(SectorTimeSeries[2:11])
+    
+    SectorTimeSeries <- SectorTimeSeries[c(1,12)]
+    
+    names(SectorTimeSeries)[1] <- "Year"
+    
+    GHGTransport <- merge(GHGTransport,SectorTimeSeries)
+    
+    ### Variables
+    ChartColours <- c("#39ab2c", "#1c9099")
+    sourcecaption = "Source: BEIS, SG"
+    plottitle = "Energy productivity target progress"
+    
+    #GHGTransport$OilPercentage <- PercentLabel(GHGTransport$Oil)
+    
+    GHGTransport$Year <-
+      paste0("01/01/", GHGTransport$Year)
+    
+    GHGTransport$Year <- dmy(GHGTransport$Year)
+    
+    p <-  plot_ly(GHGTransport, x = ~ Year) %>% 
+      add_trace(
+        y = ~ Renewables,
+        name = "Renewables",
+        type = 'scatter',
+        mode = 'lines',
+        text = paste0(
+          "Transport Emissions: ",
+          format(round(GHGTransport$Renewables, 1), big.mark = ","),
+          " MtCO2e\nYear: ",
+          format(GHGTransport$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        line = list(width = 6, color = ChartColours[1], dash = "none")
+      ) %>%
+      add_trace(
+        data = tail(GHGTransport[which(GHGTransport$Renewables > 0 | GHGTransport$Renewables < 0),],1),
+        x = ~ Year,
+        y = ~ `Renewables`,
+        name = "Renewables",
+        text = paste0(
+          "Transport Emissions: ",
+          format(round(tail(GHGTransport[which(GHGTransport$Renewables > 0 | GHGTransport$Renewables < 0),],1)$Renewables, 1), big.mark = ","),
+          " MtCO2e\nYear: ",
+          format(tail(GHGTransport[which(GHGTransport$Renewables > 0 | GHGTransport$Renewables < 0),],1)$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[1])
+      ) %>%
+      add_trace(
+        data = GHGTransport,
+        y = ~ Total,
+        name = "Total",
+        type = 'scatter',
+        mode = 'lines',
+        text = paste0(
+          "Total Emissions: ",
+          format(round(GHGTransport$Total, 1), big.mark = ","),
+          " MtCO2e\nYear: ",
+          format(GHGTransport$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        line = list(width = 6, color = ChartColours[2], dash = "dash")
+      ) %>%
+      add_trace(
+        data = tail(GHGTransport[which(GHGTransport$Total > 0 | GHGTransport$Total < 0),],1),
+        x = ~ Year,
+        y = ~ `Total`,
+        name = "Total Emissions",
+        text = paste0(
+          "Total Emissions: ",
+          format(round(tail(GHGTransport[which(GHGTransport$Total > 0 | GHGTransport$Total < 0),],1)$Total, 1), big.mark = ","),
+          " MtCO2e\nYear: ",
+          format(tail(GHGTransport[which(GHGTransport$Total > 0 | GHGTransport$Total < 0),],1)$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[2])
+      ) %>%
       
-      GHGTransport <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
-                                   "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,5)]
       
-      names(GHGTransport) <- c("Year", "Renewables")
-      
-      GHGTransport %<>% lapply(function(x) as.numeric(as.character(x)))
-      
-      GHGTransport <- as_tibble(GHGTransport)
-      
-      GHGTransport <- GHGTransport[complete.cases(GHGTransport),]
-      
-      GHGTransport <- GHGTransport[which(GHGTransport$Year >= 1998),]
-      
-      ### Variables
-      ChartColours <- c("#39ab2c", "#FF8500")
-      sourcecaption = "Source: BEIS, SG"
-      plottitle = "Energy productivity target progress"
-      
-      #GHGTransport$OilPercentage <- PercentLabel(GHGTransport$Oil)
-      
-      GHGTransport$Year <-
-        paste0("01/01/", GHGTransport$Year)
-      
-      GHGTransport$Year <- dmy(GHGTransport$Year)
-      
-      p <-  plot_ly(GHGTransport, x = ~ Year) %>% 
-        add_trace(
-          y = ~ Renewables,
-          name = "Renewables",
-          type = 'scatter',
-          mode = 'lines',
-          text = paste0(
-            "Progress: ",
-            format(round(GHGTransport$Renewables, 1), big.mark = ","),
-            " MtCO2e\nYear: ",
-            format(GHGTransport$Year, "%Y")
-          ),
-          hoverinfo = 'text',
-          line = list(width = 6, color = ChartColours[1], dash = "none")
-        ) %>%
-        add_trace(
-          data = tail(GHGTransport[which(GHGTransport$Renewables > 0 | GHGTransport$Renewables < 0),],1),
-          x = ~ Year,
-          y = ~ `Renewables`,
-          name = "Renewables",
-          text = paste0(
-            "Progress: ",
-            format(round(tail(GHGTransport[which(GHGTransport$Renewables > 0 | GHGTransport$Renewables < 0),],1)$Renewables, 1), big.mark = ","),
-            " MtCO2e\nYear: ",
-            format(tail(GHGTransport[which(GHGTransport$Renewables > 0 | GHGTransport$Renewables < 0),],1)$Year, "%Y")
-          ),
-          hoverinfo = 'text',
-          showlegend = FALSE ,
-          mode = 'markers',
-          marker = list(size = 18, 
-                        color = ChartColours[1])
-        ) %>%
-        layout(
-          legend = list(font = list(color = "#39ab2c"),
-                        orientation = 'h'),
-          hoverlabel = list(font = list(color = "white"),
-                            hovername = 'text'),
-          hovername = 'text',
-          xaxis = list(title = "",
-                       showgrid = FALSE,
-                       range = c(min(GHGTransport$Year)-100, max(GHGTransport$Year)+100)),
-          yaxis = list(
-            title = "MtCO2e",
-            tickformat = "",
-            showgrid = TRUE,
-            zeroline = TRUE,
-            zerolinecolor = ChartColours[1],
-            zerolinewidth = 2,
-            rangemode = "tozero"
-          )
-        ) %>%
-        config(displayModeBar = F)
-      p
-      
-      
-      
-      
-    })
+      layout(
+        legend = list(font = list(color = "#39ab2c"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        xaxis = list(title = "",
+                     showgrid = FALSE,
+                     range = c(min(GHGTransport$Year)-100, max(GHGTransport$Year)+100)),
+        yaxis = list(
+          title = "MtCO2e",
+          tickformat = "",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          rangemode = "tozero"
+        )
+      ) %>%
+      config(displayModeBar = F)
+    p
+    
+    
+    
+    
+  })
     
     output$GHGTransportSubtitle <- renderText({
       
@@ -194,10 +239,21 @@ GHGTransport <- function(input, output, session) {
         
         GHGTransport <- GHGTransport[complete.cases(GHGTransport),]
         
+        SectorTimeSeries <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
+                                       "\t", escape_double = FALSE, trim_ws = TRUE)
+        
+        SectorTimeSeries$Total <- rowSums(SectorTimeSeries[2:11])
+        
+        SectorTimeSeries <- SectorTimeSeries[c(1,12)]
+        
+        names(SectorTimeSeries)[1] <- "Year"
+        
+        GHGTransport <- merge(GHGTransport,SectorTimeSeries)
+        
         GHGTransport <- GHGTransport[which(GHGTransport$Year >= 1998),]
         
         ### Variables
-        ChartColours <- c("#39ab2c", "#FF8500")
+        ChartColours <- c("#39ab2c", "#1c9099")
         sourcecaption = "Source: SG"
         plottitle = "Transport emissions"
         
@@ -208,10 +264,11 @@ GHGTransport <- function(input, output, session) {
           geom_line(
             aes(
               y = Renewables,
-              colour = ChartColours[2],
+              
               label = percent(Renewables, 0.1)
             ),
             size = 1.5,
+            colour = ChartColours[1],
             family = "Century Gothic"
           ) +
           geom_text(
@@ -220,10 +277,11 @@ GHGTransport <- function(input, output, session) {
               y = Renewables,
               label = ifelse(Year == min(Year), paste0(format(round(Renewables, digits = 1), big.mark = ",", trim = TRUE), " MtCO2e"), ""),
               hjust = 0.5,
-              vjust = 2.2,
-              colour = ChartColours[2],
+              vjust = 3.2,
+              
               fontface = 2
             ),
+            colour = ChartColours[1],
             family = "Century Gothic"
           ) +
           geom_text(
@@ -233,9 +291,9 @@ GHGTransport <- function(input, output, session) {
               label = ifelse(Year == max(Year), paste0(format(round(Renewables, digits = 1), big.mark = ",", trim = TRUE), " MtCO2e"), ""),
               hjust = 0.5,
               vjust = -1,
-              colour = ChartColours[2],
               fontface = 2
             ),
+            colour = ChartColours[1],
             family = "Century Gothic"
           ) +
           geom_point(
@@ -243,10 +301,88 @@ GHGTransport <- function(input, output, session) {
             aes(
               x = Year,
               y = Renewables,
-              colour = ChartColours[2],
+              
               show_guide = FALSE
             ),
             size = 4,
+            colour = ChartColours[1],
+            family = "Century Gothic"
+          ) +
+          geom_text(
+            aes(
+              x = mean(Year),
+              y = mean(Renewables),
+              label = "Transport\nEmissions",
+              hjust = 0.5,
+              vjust = -1,
+              
+              fontface = 2
+            ),
+            colour = ChartColours[1],
+            family = "Century Gothic"
+          )+
+          
+          
+          geom_line(
+            aes(
+              y = Total,
+              
+              label = percent(Total, 0.1)
+            ),
+            size = 1.5,
+            linetype = "dashed",
+            colour = ChartColours[2],
+            family = "Century Gothic"
+          ) +
+          geom_text(
+            aes(
+              x = Year,
+              y = Total,
+              label = ifelse(Year == min(Year), paste0(format(round(Total, digits = 1), big.mark = ",", trim = TRUE), " MtCO2e"), ""),
+              hjust = 0.5,
+              vjust = 3.2,
+              
+              fontface = 2
+            ),
+            colour = ChartColours[2],
+            family = "Century Gothic"
+          ) +
+          geom_text(
+            aes(
+              x = Year,
+              y = Total,
+              label = ifelse(Year == max(Year), paste0(format(round(Total, digits = 1), big.mark = ",", trim = TRUE), " MtCO2e"), ""),
+              hjust = 0.5,
+              vjust = -1,
+              
+              fontface = 2
+            ),
+            colour = ChartColours[2],
+            family = "Century Gothic"
+          ) +
+          geom_point(
+            data = tail(GHGTransport, 1),
+            aes(
+              x = Year,
+              y = Total,
+              
+              show_guide = FALSE
+            ),
+            colour = ChartColours[2],
+            size = 4,
+            family = "Century Gothic"
+          ) +
+          geom_text(
+            aes(
+              x = mean(Year),
+              y = mean(Total),
+              label = "Total\nEmissions",
+              hjust = 0.5,
+              vjust = -1,
+              
+              fontface = 2
+            ),
+            colour = ChartColours[2],
             family = "Century Gothic"
           ) +
           
@@ -274,7 +410,7 @@ GHGTransport <- function(input, output, session) {
         
         GHGTransportChart <- GHGTransportChart +
           xlim(min(GHGTransport$Year) -1 , max(GHGTransport$Year) +1)+
-          ylim(-.30,max(GHGTransport$Renewables)*1.05)+
+          ylim(-.35,max(GHGTransport$Total)*1.05)+
           labs(subtitle = paste0("Scotland, ",min(GHGTransport$Year)," - ", max(GHGTransport$Year)))
         
         GHGTransportChart
