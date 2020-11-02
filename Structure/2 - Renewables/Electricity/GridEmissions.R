@@ -730,10 +730,11 @@ GridEmissions <- function(input, output, session) {
         geom_line(
           aes(
             y = Renewables,
-            colour = ChartColours[1],
+            
             label = percent(Renewables, 0.1)
           ),
           size = 1.5,
+          colour = ChartColours[1],
           family = "Century Gothic"
         ) +
         geom_text(
@@ -743,9 +744,10 @@ GridEmissions <- function(input, output, session) {
             label = ifelse(Year == min(Year), paste0(format(round(Renewables, digits = 1), big.mark = ",", trim = TRUE), " MtCO2e"), ""),
             hjust = 0.5,
             vjust = 3.2,
-            colour = ChartColours[1],
+            
             fontface = 2
           ),
+          colour = ChartColours[1],
           family = "Century Gothic"
         ) +
         geom_text(
@@ -755,9 +757,9 @@ GridEmissions <- function(input, output, session) {
             label = ifelse(Year == max(Year), paste0(format(round(Renewables, digits = 1), big.mark = ",", trim = TRUE), " MtCO2e"), ""),
             hjust = 0.5,
             vjust = -1,
-            colour = ChartColours[1],
             fontface = 2
           ),
+          colour = ChartColours[1],
           family = "Century Gothic"
         ) +
         geom_point(
@@ -765,22 +767,37 @@ GridEmissions <- function(input, output, session) {
           aes(
             x = Year,
             y = Renewables,
-            colour = ChartColours[1],
+            
             show_guide = FALSE
           ),
           size = 4,
+          colour = ChartColours[1],
           family = "Century Gothic"
         ) +
+        geom_text(
+          aes(
+            x = mean(Year),
+            y = mean(Renewables),
+            label = "Electricity\nEmissions",
+            hjust = 0.5,
+            vjust = -1,
+            
+            fontface = 2
+          ),
+          colour = ChartColours[1],
+          family = "Century Gothic"
+        )+
         
         
         geom_line(
           aes(
             y = Total,
-            colour = ChartColours[2],
+            
             label = percent(Total, 0.1)
           ),
           size = 1.5,
           linetype = "dashed",
+          colour = ChartColours[2],
           family = "Century Gothic"
         ) +
         geom_text(
@@ -790,9 +807,10 @@ GridEmissions <- function(input, output, session) {
             label = ifelse(Year == min(Year), paste0(format(round(Total, digits = 1), big.mark = ",", trim = TRUE), " MtCO2e"), ""),
             hjust = 0.5,
             vjust = 3.2,
-            colour = ChartColours[2],
+            
             fontface = 2
           ),
+          colour = ChartColours[2],
           family = "Century Gothic"
         ) +
         geom_text(
@@ -802,9 +820,10 @@ GridEmissions <- function(input, output, session) {
             label = ifelse(Year == max(Year), paste0(format(round(Total, digits = 1), big.mark = ",", trim = TRUE), " MtCO2e"), ""),
             hjust = 0.5,
             vjust = -1,
-            colour = ChartColours[2],
+            
             fontface = 2
           ),
+          colour = ChartColours[2],
           family = "Century Gothic"
         ) +
         geom_point(
@@ -812,10 +831,24 @@ GridEmissions <- function(input, output, session) {
           aes(
             x = Year,
             y = Total,
-            colour = ChartColours[2],
+            
             show_guide = FALSE
           ),
+          colour = ChartColours[2],
           size = 4,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = mean(Year),
+            y = mean(Total),
+            label = "Total\nEmissions",
+            hjust = 0.5,
+            vjust = -1,
+            
+            fontface = 2
+          ),
+          colour = ChartColours[2],
           family = "Century Gothic"
         ) +
         
@@ -843,7 +876,7 @@ GridEmissions <- function(input, output, session) {
       
       GHGElectricityChart <- GHGElectricityChart +
         xlim(min(GHGElectricity$Year) -1 , max(GHGElectricity$Year) +1)+
-        ylim(-.30,max(GHGElectricity$Total)*1.05)+
+        ylim(-.35,max(GHGElectricity$Total)*1.05)+
         labs(subtitle = paste0("Scotland, ",min(GHGElectricity$Year)," - ", max(GHGElectricity$Year)))
       
       GHGElectricityChart
