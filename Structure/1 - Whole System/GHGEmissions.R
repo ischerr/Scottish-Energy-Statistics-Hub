@@ -114,7 +114,7 @@ GHGEmissions <- function(input, output, session) {
     Data[2,1] <- 1989
     Data[is.na(Data)] <- 0
     
-    Data <- Data %>% unite(Targets,5:6, sep = "", remove = TRUE)
+    Data <- Data %>% unite(Targets,5:7, sep = "", remove = TRUE)
     
     Data <- as_tibble(sapply( Data, as.numeric ))
     
@@ -331,7 +331,7 @@ GHGEmissions <- function(input, output, session) {
       Data[2,1] <- 1989
       Data[is.na(Data)] <- 0
       
-      Data <- Data %>% unite(Targets,5:6, sep = "", remove = TRUE)
+      Data <- Data %>% unite(Targets,5:7, sep = "", remove = TRUE)
       
       Data <- as_tibble(sapply( Data, as.numeric ))
       
@@ -490,7 +490,7 @@ GHGEmissions <- function(input, output, session) {
           ),
           colour = LineColours[3],
           family = "Century Gothic",
-          vjust = -0.5
+          vjust = ifelse(AdjustedEmissions$Tgt <= 30, -0.5, 1.5)
         ) 
       
       AdjustedEmissionsChart <-
@@ -512,7 +512,7 @@ GHGEmissions <- function(input, output, session) {
       ggsave(
         file,
         plot = AdjustedEmissionsChart,
-        width = 26,
+        width = 30,
         height = 15,
         units = "cm",
         dpi = 300
