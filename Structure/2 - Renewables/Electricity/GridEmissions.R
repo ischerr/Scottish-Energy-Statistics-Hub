@@ -555,8 +555,19 @@ GridEmissions <- function(input, output, session) {
     
     GHGElectricity <- GHGElectricity[which(GHGElectricity$Year >= 1998),]
     
+    SectorTimeSeries <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
+                                   "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    SectorTimeSeries$Total <- rowSums(SectorTimeSeries[2:11])
+    
+    SectorTimeSeries <- SectorTimeSeries[c(1,12)]
+    
+    names(SectorTimeSeries)[1] <- "Year"
+    
+    GHGElectricity <- merge(GHGElectricity,SectorTimeSeries)
+    
     ### Variables
-    ChartColours <- c("#39ab2c", "#FF8500")
+    ChartColours <- c("#39ab2c", "#1c9099")
     sourcecaption = "Source: BEIS, SG"
     plottitle = "Energy productivity target progress"
     
@@ -574,7 +585,7 @@ GridEmissions <- function(input, output, session) {
         type = 'scatter',
         mode = 'lines',
         text = paste0(
-          "Progress: ",
+          "Electricity Emissions: ",
           format(round(GHGElectricity$Renewables, 1), big.mark = ","),
           " MtCO2e\nYear: ",
           format(GHGElectricity$Year, "%Y")
@@ -588,7 +599,7 @@ GridEmissions <- function(input, output, session) {
         y = ~ `Renewables`,
         name = "Renewables",
         text = paste0(
-          "Progress: ",
+          "Electricity Emissions: ",
           format(round(tail(GHGElectricity[which(GHGElectricity$Renewables > 0 | GHGElectricity$Renewables < 0),],1)$Renewables, 1), big.mark = ","),
           " MtCO2e\nYear: ",
           format(tail(GHGElectricity[which(GHGElectricity$Renewables > 0 | GHGElectricity$Renewables < 0),],1)$Year, "%Y")
@@ -599,6 +610,40 @@ GridEmissions <- function(input, output, session) {
         marker = list(size = 18, 
                       color = ChartColours[1])
       ) %>%
+      add_trace(
+        data = GHGElectricity,
+        y = ~ Total,
+        name = "Total",
+        type = 'scatter',
+        mode = 'lines',
+        text = paste0(
+          "Total Emissions: ",
+          format(round(GHGElectricity$Total, 1), big.mark = ","),
+          " MtCO2e\nYear: ",
+          format(GHGElectricity$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        line = list(width = 6, color = ChartColours[2], dash = "dash")
+      ) %>%
+      add_trace(
+        data = tail(GHGElectricity[which(GHGElectricity$Total > 0 | GHGElectricity$Total < 0),],1),
+        x = ~ Year,
+        y = ~ `Total`,
+        name = "Total Emissions",
+        text = paste0(
+          "Total Emissions: ",
+          format(round(tail(GHGElectricity[which(GHGElectricity$Total > 0 | GHGElectricity$Total < 0),],1)$Total, 1), big.mark = ","),
+          " MtCO2e\nYear: ",
+          format(tail(GHGElectricity[which(GHGElectricity$Total > 0 | GHGElectricity$Total < 0),],1)$Year, "%Y")
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[2])
+      ) %>%
+      
+      
       layout(
         legend = list(font = list(color = "#39ab2c"),
                       orientation = 'h'),
@@ -660,10 +705,21 @@ GridEmissions <- function(input, output, session) {
       
       GHGElectricity <- GHGElectricity[complete.cases(GHGElectricity),]
       
+      SectorTimeSeries <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
+                                     "\t", escape_double = FALSE, trim_ws = TRUE)
+      
+      SectorTimeSeries$Total <- rowSums(SectorTimeSeries[2:11])
+      
+      SectorTimeSeries <- SectorTimeSeries[c(1,12)]
+      
+      names(SectorTimeSeries)[1] <- "Year"
+      
+      GHGElectricity <- merge(GHGElectricity,SectorTimeSeries)
+      
       GHGElectricity <- GHGElectricity[which(GHGElectricity$Year >= 1998),]
       
       ### Variables
-      ChartColours <- c("#39ab2c", "#FF8500")
+      ChartColours <- c("#39ab2c", "#1c9099")
       sourcecaption = "Source: SG"
       plottitle = "Electricity emissions"
       
@@ -674,7 +730,7 @@ GridEmissions <- function(input, output, session) {
         geom_line(
           aes(
             y = Renewables,
-            colour = ChartColours[2],
+            colour = ChartColours[1],
             label = percent(Renewables, 0.1)
           ),
           size = 1.5,
@@ -687,7 +743,7 @@ GridEmissions <- function(input, output, session) {
             label = ifelse(Year == min(Year), paste0(format(round(Renewables, digits = 1), big.mark = ",", trim = TRUE), " MtCO2e"), ""),
             hjust = 0.5,
             vjust = 3.2,
-            colour = ChartColours[2],
+            colour = ChartColours[1],
             fontface = 2
           ),
           family = "Century Gothic"
@@ -699,7 +755,7 @@ GridEmissions <- function(input, output, session) {
             label = ifelse(Year == max(Year), paste0(format(round(Renewables, digits = 1), big.mark = ",", trim = TRUE), " MtCO2e"), ""),
             hjust = 0.5,
             vjust = -1,
-            colour = ChartColours[2],
+            colour = ChartColours[1],
             fontface = 2
           ),
           family = "Century Gothic"
@@ -709,6 +765,53 @@ GridEmissions <- function(input, output, session) {
           aes(
             x = Year,
             y = Renewables,
+            colour = ChartColours[1],
+            show_guide = FALSE
+          ),
+          size = 4,
+          family = "Century Gothic"
+        ) +
+        
+        
+        geom_line(
+          aes(
+            y = Total,
+            colour = ChartColours[2],
+            label = percent(Total, 0.1)
+          ),
+          size = 1.5,
+          linetype = "dashed",
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = Total,
+            label = ifelse(Year == min(Year), paste0(format(round(Total, digits = 1), big.mark = ",", trim = TRUE), " MtCO2e"), ""),
+            hjust = 0.5,
+            vjust = 3.2,
+            colour = ChartColours[2],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = Total,
+            label = ifelse(Year == max(Year), paste0(format(round(Total, digits = 1), big.mark = ",", trim = TRUE), " MtCO2e"), ""),
+            hjust = 0.5,
+            vjust = -1,
+            colour = ChartColours[2],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(GHGElectricity, 1),
+          aes(
+            x = Year,
+            y = Total,
             colour = ChartColours[2],
             show_guide = FALSE
           ),
@@ -740,7 +843,7 @@ GridEmissions <- function(input, output, session) {
       
       GHGElectricityChart <- GHGElectricityChart +
         xlim(min(GHGElectricity$Year) -1 , max(GHGElectricity$Year) +1)+
-        ylim(-.30,max(GHGElectricity$Renewables)*1.05)+
+        ylim(-.30,max(GHGElectricity$Total)*1.05)+
         labs(subtitle = paste0("Scotland, ",min(GHGElectricity$Year)," - ", max(GHGElectricity$Year)))
       
       GHGElectricityChart
