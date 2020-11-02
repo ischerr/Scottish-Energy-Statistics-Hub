@@ -99,7 +99,7 @@ EnSupplyEmissions <- function(input, output, session) {
     paste("Scotland, 1990","-", max(EnSupplyEmissions$Year))
   })
   
-  output$EnSupplyEmissionsPlot <- renderPlotly  ({
+  output$ZZEnSupplyEmissionsPlot <- renderPlotly  ({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
                        sheet = "Energy supply emissions", skip = 12)
@@ -277,6 +277,177 @@ EnSupplyEmissions <- function(input, output, session) {
     
   })
   
+  output$EnSupplyEmissionsPlot <- renderPlotly  ({
+    
+    Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                       sheet = "Energy supply emissions", skip = 12)
+    
+    Data <- as.data.frame(t(Data))
+    
+    colnames(Data) <- as.character(unlist(Data[1,]))
+    Data = Data[-1, ]
+    Data <- setDT(Data, keep.rownames = TRUE)[]
+    names(Data) <- c("Year", "Greenhouse Gas", "Energy Supply", "Electricity Production", "Industry")
+    Data[1,1] <- 1988
+    
+    Data<- rbind(Data, setNames(data.frame(1989,NA,NA,NA,NA),names(Data)))
+    Data <- Data[order(Data$Year)]
+    Data$Year <- as.numeric(as.character(Data$Year))
+    Data$`Greenhouse Gas` <- as.numeric(as.character(Data$`Greenhouse Gas`))
+    Data$`Energy Supply` <- as.numeric(as.character(Data$`Energy Supply`))
+    Data$`Electricity Production` <- as.numeric(as.character(Data$`Electricity Production`))
+    Data$`Industry` <- as.numeric(as.character(Data$`Industry`))
+    
+    
+    
+    EnSupplyEmissions <- Data
+    
+    EnSupplyEmissions$Year <- as.numeric(EnSupplyEmissions$Year)
+    
+    EnSupplyEmissions2 <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
+                                        "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    names(EnSupplyEmissions2)[1] <- "Year"
+    
+    EnSupplyEmissions2$Year <- as.numeric(EnSupplyEmissions2$Year)
+    
+    EnSupplyEmissions <- merge(EnSupplyEmissions, EnSupplyEmissions2)
+    
+    EnSupplyEmissions <- EnSupplyEmissions[,c(1,2,5:7,9)]
+    
+    EnSupplyEmissions$Other <- EnSupplyEmissions$`Greenhouse Gas` - EnSupplyEmissions$Industry - EnSupplyEmissions$Electricity - EnSupplyEmissions$Heat - EnSupplyEmissions$Transport
+    
+    
+    plottitle <- "Net source greenhouse gas emissions from the energy supply sector (MtCO2e)"
+    sourcecaption <- "Source: BEIS"
+    ChartColours <- c("#1A5D38", "#FF8500")
+    LineColours <- c( "#39ab2c","#006837", "#41ab5d", "#addd8e")
+    
+    EnSupplyEmissions$Year <- paste0("01/01/", EnSupplyEmissions$Year)
+    
+    EnSupplyEmissions$Year <- dmy(EnSupplyEmissions$Year)
+    
+    EnSupplyEmissions$YearLabel <- as.character(format(EnSupplyEmissions$Year, "%Y"))
+    
+    
+    p <-  plot_ly(data = EnSupplyEmissions,
+                  x = ~ Year ) %>% 
+      add_trace(data = EnSupplyEmissions,
+                x = ~ Year,
+                y = ~ `Greenhouse Gas`,
+                name = "Greenhouse Gas",
+                type = 'scatter',
+                mode = 'none',
+                legendgroup = "5",
+                text = paste0(
+                  "Greenhouse Gas: ",
+                  round(EnSupplyEmissions$`Greenhouse Gas`, digits = 1),
+                  " MtCO2e\nYear: ",
+                  EnSupplyEmissions$YearLabel
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = ChartColours[1], dash = "dash")
+      ) %>% 
+      add_trace(data = EnSupplyEmissions,
+                x = ~ Year,
+                y = ~ `Electricity`,
+                name = "Electricity",
+                type = 'scatter',
+                mode = 'none',
+                legendgroup = "1",
+                stackgroup = 'one',
+                text = paste0(
+                  "Electricity: ",
+                  round(EnSupplyEmissions$`Electricity`, digits = 1),
+                  " MtCO2e\nYear: ",
+                  EnSupplyEmissions$YearLabel
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = LineColours[1], dash = "none")
+      ) %>% 
+      
+      add_trace(data = EnSupplyEmissions,
+                x = ~ Year,
+                y = ~ `Industry`,
+                name = "Industry",
+                type = 'scatter',
+                mode = 'none',
+                legendgroup = "2",
+                stackgroup = 'one',
+                text = paste0(
+                  "Industry: ",
+                  round(EnSupplyEmissions$`Industry`, digits = 1),
+                  " MtCO2e\nYear: ",
+                  EnSupplyEmissions$YearLabel
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = LineColours[2], dash = "none")
+      ) %>% 
+      
+      add_trace(data = EnSupplyEmissions,
+                x = ~ Year,
+                y = ~ `Heat`,
+                name = "Heat",
+                type = 'scatter',
+                mode = 'none',
+                legendgroup = "3",
+                stackgroup = 'one',
+                text = paste0(
+                  "Heat: ",
+                  round(EnSupplyEmissions$`Heat`, digits = 1),
+                  " MtCO2e\nYear: ",
+                  EnSupplyEmissions$YearLabel
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = LineColours[3], dash = "none")
+      ) %>% 
+      
+      add_trace(data = EnSupplyEmissions,
+                x = ~ Year,
+                y = ~ `Transport`,
+                name = "Transport",
+                type = 'scatter',
+                mode = 'none',
+                legendgroup = "4",
+                stackgroup = "one",
+                text = paste0(
+                  "Transport: ",
+                  round(EnSupplyEmissions$`Transport`, digits = 1),
+                  " MtCO2e\nYear: ",
+                  EnSupplyEmissions$YearLabel
+                ),
+                hoverinfo = 'text',
+                line = list(width = 6, color = LineColours[4], dash = "none")
+      ) %>% 
+      layout(
+        barmode = 'stack',
+        barmode = 'group',
+        bargap = 0.25,
+        bargap = 0.66,
+        legend = list(font = list(color = "#1A5D38"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        xaxis = list(title = "",
+                     showgrid = FALSE,
+                     range = c(min(EnSupplyEmissions$Year)-100, max(EnSupplyEmissions$Year)+100)),
+        yaxis = list(
+          title = "MtCO2e",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    p
+    
+    
+    
+  })
+
   
   output$EnSupplyEmissionsTable = renderDataTable({
     
@@ -311,11 +482,11 @@ EnSupplyEmissions <- function(input, output, session) {
     ChartColours <- c("#1A5D38", "#FF8500")
     LineColours <- c( "#39ab2c","#006837", "#41ab5d", "#addd8e")
     
-
+    
     datatable(
       EnSupplyEmissions[,c(1,3:5)],
       extensions = 'Buttons',
-     # container = sketch,
+      # container = sketch,
       rownames = FALSE,
       options = list(
         paging = TRUE,
