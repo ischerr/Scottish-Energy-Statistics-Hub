@@ -36,11 +36,11 @@ GridEmissionsOutput <- function(id) {
         downloadButton(ns('GHGElectricity.png'), 'Download Graph', style="float:right")
       )),
     
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
+    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     #dygraphOutput(ns("RenEnTgtPlot")),
     plotlyOutput(ns("GHGElectricityPlot"))%>% withSpinner(color="#39ab2c"),
     HTML("<blockquote><p>*electricity emissions refer to the power stations, autogenerators, public sector combustion and miscellaneous industrial/commercial combustion categories in the greenhouse gas inventory</p></blockquote>"),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     
     
     fluidRow(

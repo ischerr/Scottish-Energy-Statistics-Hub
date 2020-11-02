@@ -554,7 +554,7 @@ RenElecTarget <- function(input, output, session) {
     
     GrossConsumptionPlotData$Type <- as.numeric(rownames(GrossConsumptionPlotData))
     
-    ChartColours <- c("#39ab2c", "#FF8500")
+    ChartColours <- c("#39ab2c", "#FF8500", "#74c476")
     BarColours <-
       c(
         "#045a8d",
@@ -706,7 +706,7 @@ RenElecTarget <- function(input, output, session) {
         bordercolor="#c7c7c7",
         borderwidth=2,
         borderpad=4,
-        bgcolor=ChartColours[1],
+        bgcolor=ChartColours[3],
         font = list(
           color = "white"
         )
@@ -732,7 +732,7 @@ RenElecTarget <- function(input, output, session) {
         bordercolor="#c7c7c7",
         borderwidth=2,
         borderpad=4,
-        bgcolor=ChartColours[1],
+        bgcolor=ChartColours[3],
         font = list(
           color = "white"
         )
@@ -756,7 +756,7 @@ RenElecTarget <- function(input, output, session) {
         bordercolor="#c7c7c7",
         borderwidth=2,
         borderpad=4,
-        bgcolor=ChartColours[1],
+        bgcolor=ChartColours[3],
         font = list(
           color = "white"
         )
@@ -881,7 +881,7 @@ RenElecTarget <- function(input, output, session) {
       
       GrossConsumptionYear <- 2018
       
-      ChartColours <- c("#39ab2c", "#FF8500")
+      ChartColours <- c("#39ab2c", "#FF8500", "#74c476")
       BarColours <-
         c(
           "#045a8d",
@@ -998,7 +998,7 @@ RenElecTarget <- function(input, output, session) {
                fontface = 2
           ),
           colour =  "white",
-          fill = ChartColours[1]
+          fill = ChartColours[3]
         )  +
         geom_text(
           aes( x = 1.5,
@@ -1018,7 +1018,7 @@ RenElecTarget <- function(input, output, session) {
                fontface = 2
           ),
           colour =  "white",
-          fill = ChartColours[1]
+          fill = ChartColours[3]
         ) +
         geom_label(
           aes( x = 1,
@@ -1028,7 +1028,7 @@ RenElecTarget <- function(input, output, session) {
                fontface = 2
           ),
           colour =  "white",
-          fill = ChartColours[1]
+          fill = ChartColours[3]
         ) +
         geom_text(
           aes( x = 0,
