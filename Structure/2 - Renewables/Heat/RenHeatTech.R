@@ -41,20 +41,22 @@ RenHeatTechOutput <- function(id) {
                 tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
                 #dygraphOutput(ns("RenHeatTechPlot")),
                 plotlyOutput(ns("RenHeatSizePlot"))%>% withSpinner(color="#39ab2c"),
-                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Local Authorities",
-             fluidRow(column(8,
-                             h3("ECO measures by LA", style = "color: #34d1a3;  font-weight:bold"),
-                             h4(textOutput(ns('RenHeatLASubtitle')), style = "color: #34d1a3;")
-             ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('RenHeatLA.png'), 'Download Graph', style="float:right")
-             )),
-             fluidRow(column(6,selectInput(ns("CategorySelect"), "Category:", c("Output (GWh)", "Operational Capacity (GW)"), selected = "Output (GWh)", multiple = FALSE,
-                                           selectize = TRUE, width = NULL, size = NULL))),
-             leafletOutput(ns("RenHeatLA"), height = "675px")%>% withSpinner(color="#34d1a3"),
-             tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
+                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
+    # ,
+    # tabPanel("Local Authorities",
+    #          fluidRow(column(8,
+    #                          h3("ECO measures by LA", style = "color: #34d1a3;  font-weight:bold"),
+    #                          h4(textOutput(ns('RenHeatLASubtitle')), style = "color: #34d1a3;")
+    #          ),
+    #          column(
+    #            4, style = 'padding:15px;',
+    #            downloadButton(ns('RenHeatLA.png'), 'Download Graph', style="float:right")
+    #          )),
+    #          fluidRow(column(6,selectInput(ns("CategorySelect"), "Category:", c("Output (GWh)", "Operational Capacity (GW)"), selected = "Output (GWh)", multiple = FALSE,
+    #                                        selectize = TRUE, width = NULL, size = NULL))),
+    #          leafletOutput(ns("RenHeatLA"), height = "675px")%>% withSpinner(color="#34d1a3"),
+    #          tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))
+    ),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
