@@ -336,20 +336,7 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),    
-    column(width = 4,
-           actionLink(
-             "GoToLocalEnergyTab",
-             label = div(
-               tags$h3("Local Energy Systems", style = "color: black;"),
-               tags$p(
-                 " ",
-                 style = "color: black;"
-               ),
-               img(src = "Local.svg", height = "55%"),
-               style = "border: solid 2px #A3D65C; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px;",
-               id = "SetEffects"
-             )
-           )),    
+  
     column(width = 4,
            actionLink(
              "GoToRenLowCarbonTab",
@@ -364,6 +351,20 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
+    column(width = 4,
+           actionLink(
+             "GoToLocalEnergyTab",
+             label = div(
+               tags$h3("Local Energy Systems", style = "color: black;"),
+               tags$p(
+                 " ",
+                 style = "color: black;"
+               ),
+               img(src = "Local.svg", height = "55%"),
+               style = "border: solid 2px #A3D65C; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px;",
+               id = "SetEffects"
+             )
+           )),  
     style = "padding: 10px; margin-top: 20px;"
   ),
   fluidRow(
