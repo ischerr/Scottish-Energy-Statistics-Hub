@@ -431,20 +431,6 @@ output$HomeTab <- renderUI({
                id = "SetEffects"
              )
            )),
-  column(width = 4,
-         actionLink(
-           "GoToEmissionsTab",
-           label = div(
-             tags$h3("Emissions", style = "color: black;"),
-             tags$p(
-               " ",
-               style = "color: black;"
-             ),
-             img(src = "signsblack.svg", height = "55%"),
-             style = "border: solid 2px #126992; height: 200px; width: 100%; text-align: center; padding: 5px; border-radius: 0px;",
-             id = "SetEffects"
-           )
-         )),
     column(width = 4,
            actionLink(
              "GoToOtherTab",
