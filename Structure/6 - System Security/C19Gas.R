@@ -140,11 +140,11 @@ C19Gas <- function(input, output, session) {
                 line = list(width = 4)
       ) %>% 
       add_trace(y = ~ `PostLockdown`, 
-                name = "Fourth week of March to first week of October",
+                name = "Fourth week of March to fourth week of October",
                 type = 'bar',
                 legendgroup = "2",
                 text = paste0(
-                  "Average weekday gas consumption in from the fourth week in March to first week of October: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
+                  "Average weekday gas consumption in from the fourth week in March to fourth week of October: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
                   "Year: ", WeekdayElecDemand$Year, "\n"),
                 hoverinfo = 'text',
                 line = list(width = 4)
@@ -219,7 +219,7 @@ C19Gas <- function(input, output, session) {
     
     WeekdayElecDemand <- dcast(WeekdayElecDemand, Year ~ PostLockdown)
     
-    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "Fourth week of March to first week of October (GWh)")
+    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "Fourth week of March to fourth week of October (GWh)")
     datatable(
       WeekdayElecDemand,
       extensions = 'Buttons',
@@ -260,7 +260,7 @@ C19Gas <- function(input, output, session) {
     tagList(column(12,
                    
                    HTML(
-                     paste(readtext("Structure/0 - COVID/C19Gas.txt")[2])
+                     paste(readtext("Structure/6 - System Security/C19Gas.txt")[2])
                      
                    )))
   })
@@ -313,7 +313,7 @@ C19Gas <- function(input, output, session) {
       DailyDemand$DayofYear <- yday(DailyDemand$Date)
       
       DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "First three weeks of March", 
-                                                                 "4th week Mar. to 3rd week Sep.")
+                                                                 "4th wk. Mar. to 3rd wk. Oct.")
       
       WeekdayElecDemand <- DailyDemand
       
@@ -339,7 +339,7 @@ C19Gas <- function(input, output, session) {
           "variable",
           values = c(
             "First three weeks of March" = BarColours[3],
-            "4th week Mar. to 3rd week Sep." = BarColours[2]
+            "4th wk. Mar. to 3rd wk. Oct." = BarColours[2]
           )
         ) +
         geom_bar(position = "dodge",

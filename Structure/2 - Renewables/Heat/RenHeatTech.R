@@ -41,7 +41,22 @@ RenHeatTechOutput <- function(id) {
                 tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
                 #dygraphOutput(ns("RenHeatTechPlot")),
                 plotlyOutput(ns("RenHeatSizePlot"))%>% withSpinner(color="#39ab2c"),
-                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
+                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
+    # ,
+    # tabPanel("Local Authorities",
+    #          fluidRow(column(8,
+    #                          h3("ECO measures by LA", style = "color: #34d1a3;  font-weight:bold"),
+    #                          h4(textOutput(ns('RenHeatLASubtitle')), style = "color: #34d1a3;")
+    #          ),
+    #          column(
+    #            4, style = 'padding:15px;',
+    #            downloadButton(ns('RenHeatLA.png'), 'Download Graph', style="float:right")
+    #          )),
+    #          fluidRow(column(6,selectInput(ns("CategorySelect"), "Category:", c("Output (GWh)", "Operational Capacity (GW)"), selected = "Output (GWh)", multiple = FALSE,
+    #                                        selectize = TRUE, width = NULL, size = NULL))),
+    #          leafletOutput(ns("RenHeatLA"), height = "675px")%>% withSpinner(color="#34d1a3"),
+    #          tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))
+    ),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
     column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
@@ -156,7 +171,7 @@ RenHeatTech <- function(input, output, session) {
     
     Data <- dcast(Data, Year ~ Technology)
     
-    names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar", "Total")
+    names(Data) <- c("Year", "Biomass", "CHP", "Biomethane", "Waste", "Pumps", "Solar", "Total")
     Data %<>% lapply(function(x) as.numeric(as.character(x)))
     Data <- distinct(as_tibble(Data), Year, .keep_all = TRUE)
     Data <- Data[complete.cases(Data),]
@@ -202,6 +217,18 @@ RenHeatTech <- function(input, output, session) {
       ) %>%
       add_trace(
         data = Data,
+        x = ~ `Biomethane`,
+        type = 'bar',
+        width = 0.7,
+        orientation = 'h',
+        name = "Biomethane",
+        text = paste0("Biomethane: ", format(round(Data$`Biomethane`, 3), big.mark = ","), unit),
+        hoverinfo = 'text',
+        marker = list(color = BarColours[3]),
+        legendgroup = 3
+      ) %>%
+      add_trace(
+        data = Data,
         x = ~ `Waste`,
         type = 'bar',
         width = 0.7,
@@ -209,8 +236,8 @@ RenHeatTech <- function(input, output, session) {
         name = "Energy from waste",
         text = paste0("Energy from waste: ", format(round(Data$`Waste`, 3), big.mark = ","), unit),
         hoverinfo = 'text',
-        marker = list(color = BarColours[3]),
-        legendgroup = 3
+        marker = list(color = BarColours[4]),
+        legendgroup = 4
       ) %>%
       add_trace(
         data = Data,
@@ -221,8 +248,8 @@ RenHeatTech <- function(input, output, session) {
         name = "Heat pumps",
         text = paste0("Heat pumps: ", format(round(Data$`Pumps`, 3), big.mark = ","), unit),
         hoverinfo = 'text',
-        marker = list(color = BarColours[4]),
-        legendgroup = 4
+        marker = list(color = BarColours[5]),
+        legendgroup = 5
       ) %>%
       add_trace(
         data = Data,
@@ -233,8 +260,8 @@ RenHeatTech <- function(input, output, session) {
         name = "Solar thermal",
         text = paste0("Solar thermal: ", format(round(Data$`Solar`, 3), big.mark = ","), unit),
         hoverinfo = 'text',
-        marker = list(color = BarColours[5]),
-        legendgroup = 5
+        marker = list(color = BarColours[6]),
+        legendgroup = 6
       ) %>%
       add_trace(
         x = (Data$Total) * 1.01,
@@ -308,7 +335,7 @@ RenHeatTech <- function(input, output, session) {
     RenHeatCapOutput <- dcast(RenHeatCapOutput, Technology ~ variable)
     
     datatable(
-      RenHeatCapOutput[c(1,13,12,9,8,11,10)],
+      RenHeatCapOutput[c(1,13,12,09,08,11,10)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -338,7 +365,6 @@ RenHeatTech <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(c(2:3), 3) %>%
       formatRound(c(4:7), 0)
   }) 
   
@@ -382,9 +408,9 @@ RenHeatTech <- function(input, output, session) {
       
       Data <- dcast(Data, Year ~ Technology)
       
-      names(Data) <- c("Year", "Biomass", "CHP", "Waste", "Pumps", "Solar", "Total")
+      names(Data) <- c("Year", "Biomass", "CHP", "Biomethane", "Waste", "Pumps", "Solar", "Total")
       
-      TotalData <- Data[c(1,7)]
+      TotalData <- Data[c(1,8)]
       
       Data$Total <- NULL
       
@@ -449,11 +475,12 @@ RenHeatTech <- function(input, output, session) {
         scale_fill_manual(
           "variable",
           values = c(
-            "Biomass" = BarColours[1],
-            "CHP"     = BarColours[2],
-            "Waste"   = BarColours[3],
-            "Pumps"   = BarColours[4],
-            "Solar"   = BarColours[5]
+            "Biomass"    = BarColours[1],
+            "CHP"        = BarColours[2],
+            "Biomethane" = BarColours[3],
+            "Waste"      = BarColours[4],
+            "Pumps"      = BarColours[5],
+            "Solar"      = BarColours[6]
           )
         ) +
         geom_bar(stat = "identity", width = .8) +
@@ -472,7 +499,7 @@ RenHeatTech <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height * 1.3,
-              y = length * (0.5 / 5)*.95,
+              y = length * (0.5 / 6)*.95,
               label = "Biomass"),
           fontface = 2,
           colour = BarColours[1],
@@ -481,24 +508,22 @@ RenHeatTech <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height * 1.3,
-              y = length * (1.5 / 5)*.95,
+              y = length * (1.5 / 6)*.95,
               label = "Biomass\nCHP"),
           fontface = 2,
           colour = BarColours[2],
         ) +
         geom_text(
           aes(x = height * 1.3,
-              y = length * (2.5 / 5)*.95,
-              label = "Energy\nfrom waste"),
+              y = length * (2.5 / 6)*.95,
+              label = "Biomethane"),
           fontface = 2,
           colour = BarColours[3],
-          family = "Century Gothic",
-          hjust = 0.5
         ) +
         geom_text(
           aes(x = height * 1.3,
-              y = length * (3.5 /5)*.95,
-              label = "Heat\npumps"),
+              y = length * (3.5 / 6)*.95,
+              label = "Energy\nfrom waste"),
           fontface = 2,
           colour = BarColours[4],
           family = "Century Gothic",
@@ -506,10 +531,19 @@ RenHeatTech <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height * 1.3,
-              y = length * (4.5 / 5)*.95,
-              label = "Solar\n thermal"),
+              y = length * (4.5 /6)*.95,
+              label = "Heat\npumps"),
           fontface = 2,
           colour = BarColours[5],
+          family = "Century Gothic",
+          hjust = 0.5
+        ) +
+        geom_text(
+          aes(x = height * 1.3,
+              y = length * (5.5 / 6)*.95,
+              label = "Solar\n thermal"),
+          fontface = 2,
+          colour = BarColours[6],
           family = "Century Gothic",
           hjust = 0.5
           
@@ -529,7 +563,7 @@ RenHeatTech <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = height * 1.3,
-              y = length * (5.5 / 5)*.95,
+              y = length * (6.5 / 6)*.95,
               label = "Total"),
           fontface = 2,
           colour = ChartColours[1],
@@ -1089,10 +1123,8 @@ RenHeatTech <- function(input, output, session) {
   
   RenHeatSize[RenHeatSize <= 0.01] <- "< 0.1"
   
-  RenHeatSize <- RenHeatSize[c(2,4,3,1,6,5),]
-  
   datatable(
-    RenHeatSize[c(1,13,12,9,8,11,10)],
+    RenHeatSize[c(1,13,12,09,08,11,10)],
     extensions = 'Buttons',
     
     rownames = FALSE,
@@ -1125,6 +1157,122 @@ RenHeatTech <- function(input, output, session) {
     
     formatRound(c(4:7), 0)
 })
+  
+  output$RenHeatLASubtitle <- renderText({
+    
+    Data <- read_delim("Processed Data/Output/Renewable Heat/RenHeatSize.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)[1:3]
+    
+    paste("Scotland,",  max(Data$Year))
+  })
+  
+  output$RenHeatLA <- renderLeaflet({
+    
+    ### Load Packages
+    library(readr)
+    library("maptools")
+    library(tmaptools)
+    library(tmap)
+    library("sf")
+    library("leaflet")
+    library("rgeos")
+    library(readxl)
+    library(ggplot2)
+    
+    ### Add Simplified shape back to the Shapefile
+    LA <- readOGR("Pre-Upload Scripts/Maps/Shapefile/LocalAuthority2.shp")
+    
+    LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
+    ############ RENEWABLE ELECTRICITY ################################################
+    
+    Category =  as.character(input$CategorySelect)
+    
+    RenHeatLA <- read_delim("Processed Data/Output/Renewable Heat/RenHeatLA.txt", 
+                        "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    names(RenHeatLA)[1:2] <- c("LAName", "CODE")
+    
+    RenHeatLA <- RenHeatLA[which(RenHeatLA$variable == Category),]
+    
+
+    RenHeatLA$Content <- paste0("<b>",RenHeatLA$LAName, "</b><br/>", RenHeatLA$variable[1], ":<br/><em>", format(round(RenHeatLA$value, digits = 1), big.mark = ","),"</em>" )
+    
+    RenHeatLA$Hover <- paste0(RenHeatLA$LAName, " - ", format(round(RenHeatLA$value, digits = 1), big.mark = ","), "")
+    
+
+    if(Category == "Output (GWh)"){
+      RenHeatLA[which(RenHeatLA$value == 0),]$Content <- paste0("<b>",RenHeatLA[which(RenHeatLA$value == 0),]$LAName, "</b><br/>", RenHeatLA[which(RenHeatLA$value == 0),]$variable[1], ":<br/><em>", "<10","</em>" )
+           
+           RenHeatLA[which(RenHeatLA$value == 0),]$Hover <- paste0(RenHeatLA[which(RenHeatLA$value == 0),]$LAName, " - ", "<10", "")
+    }
+    
+    if(Category == "Operational Capacity (GW)"){
+      RenHeatLA[which(RenHeatLA$value == 0),]$Content <- paste0("<b>",RenHeatLA[which(RenHeatLA$value == 0),]$LAName, "</b><br/>", RenHeatLA[which(RenHeatLA$value == 0),]$variable[1], ":<br/><em>", "<1","</em>" )
+           
+           RenHeatLA[which(RenHeatLA$value == 0),]$Hover <- paste0(RenHeatLA[which(RenHeatLA$value == 0),]$LAName, " - ", "<1", "")
+
+    }
+
+    
+    ### Change LA$CODE to string
+    LA$CODE <- as.character(LA$CODE)
+    
+    ### Order LAs in Shapefile
+    LA <- LA[order(LA$CODE),]
+    
+    ### Order LAs in Data
+    RenHeatLA <- RenHeatLA[order(RenHeatLA$CODE),]
+    
+    ### Combine Data with Map data
+    LAMap <-
+      merge(LA, RenHeatLA)
+    
+    
+    pal <- colorNumeric(
+      palette = "Greens",
+      domain = LAMap$value)
+    
+    l <-leaflet(LAMap) %>% 
+      addProviderTiles("Esri.WorldGrayCanvas", ) %>% 
+      addPolygons(stroke = TRUE, 
+                  weight = 0.1,
+                  smoothFactor = 0.2,
+                  popup = ~Content,
+                  label = ~Hover,
+                  fillOpacity = 1,
+                  color = ~pal(value),
+                  highlightOptions = list(color = "white", weight = 2,
+                                          bringToFront = TRUE)) %>%
+      leaflet::addLegend("bottomright", pal = pal, values = ~value,
+                         title = paste0(RenHeatLA$variable[1], ""),
+                         opacity = 1
+      ) 
+    
+    l
+    
+  }) 
+  
+  output$RenHeatLA.png <- downloadHandler(
+    filename = "ECOMeasuresLAMap.png",
+    content = function(file) {if(as.character(input$CategorySelect) == "ECO measures per 1,000 households"){
+      file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOper1000.png"), file)
+    }
+      if(as.character(input$CategorySelect) == "Carbon Saving Target (CERO)"){
+        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOCERO.png"), file)
+      }
+      if(as.character(input$CategorySelect) == "Affordable Warmth (HHCRO)"){
+        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOAffordableWarmth.png"), file)
+      }
+      if(as.character(input$CategorySelect) == "ECO measures installed"){
+        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOMeasuresInstalled.png"), file)
+      }
+      if(as.character(input$CategorySelect) == "Carbon Savings Community (CSCO)"){
+        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOCSCO.png"), file)
+      }
+      #"Carbon Saving Target (CERO)"       "ECO measures per 1,000 households" "Affordable Warmth (HHCRO)"         "ECO measures installed"            "Carbon Savings Community (CSCO)"
+    }
+    
+  )
 
 }
 

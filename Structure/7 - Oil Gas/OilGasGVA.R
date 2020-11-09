@@ -310,7 +310,7 @@ OilGasGVA <- function(input, output, session) {
             y = GVA,
             label = ifelse(Year == max(Year), paste0("\u00A3", format(round(GVA, digits = 3),nsmall = 3, trim = TRUE), "\nbillion"), ""),
             hjust = 0.5,
-            vjust = -.4,
+            vjust = 1.4,
             colour = ChartColours[2],
             fontface = 2
           ),

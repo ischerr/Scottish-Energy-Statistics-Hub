@@ -1,13 +1,15 @@
 "Year"	"Technology"	"Renewable heat capacity (GW)"	"% Renewable heat capacity"	"Annual output (GWh)"	"% Annual Output"	"Number of Installations"	"% Number of installations"
-2018	"Biomass"	1.261	0.63	3088	0.59	8400	0.33
-2018	"Biomass CHP"	0.403	0.2	757	0.14	40	1e-05
-2018	"Energy from waste"	0.123	0.06	1027	0.2	180	0.01
-2018	"Heat pump"	0.186	0.09	340	0.06	13250	0.52
-2018	"Solar Thermal"	0.037	0.02	18	0.0099	3690	0.14
-2018	"Total"	2.01	1	5230	0.9999	25550	1.00001
-2017	"Biomass"	1.232	0.64	2677	0.59	8180	0.36
-2017	"Biomass CHP"	0.395	0.2	685	0.15	30	1e-05
-2017	"Energy from waste"	0.115	0.06	904	0.2	150	0.01
-2017	"Heat pump"	0.159	0.08	284	0.06	11310	0.49
-2017	"Solar Thermal"	0.036	0.02	17	0.001	3340	0.15
-2017	"Total"	1.938	1	4569	1.001	23010	1
+2019	"Biomass"	1.28	0.63	2906	0.55	8550	0.28
+2019	"Biomass CHP"	0.37	0.18	772	0.15	20	1e-05
+2019	"Energy from waste"	0.11	0.05	383	0.07	170	0.01
+2019	"Biomethane"	0	0	716	0.14	20	1e-06
+2019	"Heat pump"	0.24	0.12	408	0.08	17140	0.56
+2019	"Solar Thermal"	0.04	0.02	20	0.0099	4560	0.15
+2019	"Total"	2.03	1	5205	1	30450	1.00001
+2018	"Biomass"	1.28	0.64	2915	0.59	8430	0.3
+2018	"Biomass CHP"	0.38	0.19	730	0.15	20	1e-05
+2018	"Energy from waste"	0.12	0.06	387	0.08	170	0.01
+2018	"Biomethane"	0	0	569	0.11	20	1e-06
+2018	"Heat pump"	0.19	0.09	345	0.07	14670	0.53
+2018	"Solar Thermal"	0.04	0.02	19	0.0099	4430	0.16
+2018	"Total"	2	1	4966	1	27720	1.000011

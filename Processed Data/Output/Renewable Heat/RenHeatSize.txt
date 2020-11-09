@@ -1,13 +1,13 @@
 "Year"	"Technology"	"Renewable heat capacity (GW)"	"% Renewable heat capacity"	"Annual output (GWh)"	"% Annual Output"	"Number of Installations"	"% Number of installations"
-2018	"Large (>1 MW)"	0.798	0.4	2450	0.47	100	0.001
-2018	"Small to medium (>45 kW - <1 MW)"	0.864	0.42	1511	0.29	3650	0.14
-2018	"Micro (=45 kW)"	0.347	0.18	634	0.12	21780	0.85
-2018	"Biomethane"	NA	NA	624	0.12	10	1e-04
-2018	"Unknown"	0.01	0.00099	10	0.01	20	1e-04
-2018	"Total"	2.01	1	5230	1	25550	1
-2017	"Large (>1 MW)"	0.778	0.4	2188	0.48	90	1e-04
-2017	"Small to medium (>45 kW - <1 MW)"	0.835	0.43	1221	0.27	3620	0.16
-2017	"Micro (=45 kW)"	0.322	0.17	584	0.13	19290	0.84
-2017	"Biomethane"	NA	NA	566	0.12	10	1e-04
-2017	"Unknown"	0.01	1e-04	10	0.01	10	1e-04
-2017	"Total"	1.938	1	4569	1	23020	1
+2019	"Large (>1 MW)"	0.76	0.37	2313	0.44	90	0.001
+2019	"Small to medium (>45 kW - <1 MW)"	0.89	0.44	1544	0.3	3840	0.13
+2019	"Micro (=45 kW)"	0.38	0.19	632	0.12	26510	0.87
+2019	"Biomethane"	0	0	716	0.14	20	1e-05
+2019	"Unknown"	0	0	0	0	0	0
+2019	"Total"	2.03	1	5205	1	30450	1
+2018	"Large (>1 MW)"	0.77	0.38	2337	0.47	80	0.001
+2018	"Small to medium (>45 kW - <1 MW)"	0.87	0.44	1463	0.29	3780	0.14
+2018	"Micro (=45 kW)"	0.36	0.18	587	0.12	23830	0.86
+2018	"Biomethane"	0	0	569	0.11	20	1e-04
+2018	"Unknown"	0.001	0.00099	10	0.0099	10	1e-04
+2018	"Total"	2	1	4966	1	27720	1
