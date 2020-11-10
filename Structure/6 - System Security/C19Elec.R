@@ -969,7 +969,7 @@ output$C19ElecRolling.png <- downloadHandler(
       annotate(
         "text",
         x = mean(DailyDemandFromMarch$Year),
-        y = 40,
+        y = 48,
         label = "2020",
         hjust = 0.5,
         colour = ChartColours[2],
