@@ -589,7 +589,8 @@ DailyDemand <- function(input, output, session) {
                    ChartColours)
       
       DailyDemandChart <- DailyDemandChart +
-        coord_cartesian(xlim = c(min(DailyDemand$Year), max(DailyDemand$Year)+20)) +      
+        coord_cartesian(xlim = c(min(DailyDemand$Year), max(DailyDemand$Year)+20)) +
+        
         ylim(-15, 352) +
         geom_hline(
           yintercept = 0,

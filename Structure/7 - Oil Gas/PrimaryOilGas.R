@@ -854,14 +854,13 @@ PrimaryOilGas <- function(input, output, session) {
                          ChartColours)
       
       
-      PrimaryOilGasChart <- PrimaryOilGasChart +
-        ylim(-.2,1)
+      PrimaryOilGasChart
       
       ggsave(
         file,
         plot = PrimaryOilGasChart,
         width = 12.5,
-        height = 6,
+        height = 14,
         units = "cm",
         dpi = 300
       )
