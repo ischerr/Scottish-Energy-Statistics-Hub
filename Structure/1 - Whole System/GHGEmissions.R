@@ -1363,4 +1363,248 @@ GHGEmissions <- function(input, output, session) {
   })
   
   
+  output$EnSupplyEmissions.png <- downloadHandler(
+    filename = "EnSupplyEmissions.png",
+    content = function(file) {
+      
+      Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                         sheet = "Energy supply emissions", skip = 12)
+      
+      Data <- as.data.frame(t(Data))
+      
+      colnames(Data) <- as.character(unlist(Data[1,]))
+      Data = Data[-1, ]
+      Data <- setDT(Data, keep.rownames = TRUE)[]
+      names(Data) <- c("Year", "Greenhouse Gas", "Energy Supply", "Electricity Production", "Industry")
+      Data[1,1] <- 1988
+      
+      Data<- rbind(Data, setNames(data.frame(1989,NA,NA,NA,NA),names(Data)))
+      Data <- Data[order(Data$Year)]
+      Data$Year <- as.numeric(as.character(Data$Year))
+      Data$`Greenhouse Gas` <- as.numeric(as.character(Data$`Greenhouse Gas`))
+      Data$`Energy Supply` <- as.numeric(as.character(Data$`Energy Supply`))
+      Data$`Electricity Production` <- as.numeric(as.character(Data$`Electricity Production`))
+      Data$`Industry` <- as.numeric(as.character(Data$`Industry`))
+      
+      
+      
+      EnSupplyEmissions <- Data
+      
+      EnSupplyEmissions$Year <- as.numeric(EnSupplyEmissions$Year)
+      
+      EnSupplyEmissions2 <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
+                                       "\t", escape_double = FALSE, trim_ws = TRUE)
+      
+      names(EnSupplyEmissions2)[1] <- "Year"
+      
+      EnSupplyEmissions2$Year <- as.numeric(EnSupplyEmissions2$Year)
+      
+      EnSupplyEmissions <- merge(EnSupplyEmissions, EnSupplyEmissions2)
+      
+      EnSupplyEmissions <- EnSupplyEmissions[,c(1,2,5:7,9)]
+      
+      EnSupplyEmissions$Other <- EnSupplyEmissions$`Greenhouse Gas` - EnSupplyEmissions$Industry - EnSupplyEmissions$Electricity - EnSupplyEmissions$Heat - EnSupplyEmissions$Transport
+      
+      EnSupplyEmissions <- as_tibble(EnSupplyEmissions)
+      plottitle <- "Net source greenhouse gas emissions from the energy supply sector (MtCO2e)"
+      sourcecaption <- "Source: BEIS"
+      ChartColours <- c("#1A5D38", "#FF8500")
+      LineColours <- c( "#39ab2c","#006837", "#41ab5d", "#addd8e")
+      
+      EnSupplyEmissionsTotal <- EnSupplyEmissions[c(1,2)]
+      
+      EnSupplyEmissions[c(2,7)] <- NULL
+      
+      EnSupplyEmissions <- melt(EnSupplyEmissions, id.vars = "Year")
+      
+      EnSupplyEmissions <- EnSupplyEmissions %>% mutate(variable = factor(variable),
+                                                        variable = factor(variable, levels = c("Transport","Heat","Industry","Electricity")))
+      
+      EnSupplyEmissions <- EnSupplyEmissions[order(EnSupplyEmissions$variable),]
+      
+      
+      EnSupplyEmissionsChart <-
+        EnSupplyEmissions %>% 
+        ggplot(aes(
+          x = Year,
+          y = value,
+          group = variable,
+          fill = variable
+        )) +
+        scale_fill_manual(
+          "variable",
+          values = c(
+            "Electricity" = LineColours[1],
+            "Industry" = LineColours[2],
+            "Heat" = LineColours[3],
+            "Transport" = LineColours[4]
+          )
+        ) +
+        geom_area(posistion = "fill") +
+        geom_text(
+          aes(
+            x = Year,
+            y = 0,
+            label = ifelse(
+              Year == max(Year) |
+                Year == min(Year),
+              format(Year, format = "%Y"),
+              ""
+            ),
+            hjust = ifelse(Year == min(Year), 0, 1),
+            vjust = 1.5,
+            colour = ChartColours[2],
+            fontface = 2,
+            family = "Century Gothic"
+          )
+        ) +
+        annotate(
+          "line",
+          x = EnSupplyEmissionsTotal$Year,
+          y = EnSupplyEmissionsTotal$`Greenhouse Gas`,
+          size = 1,
+          linetype = 2,
+          colour = ChartColours[1]
+        )+
+        annotate(
+          "point",
+          x = max(EnSupplyEmissionsTotal$Year),
+          y = EnSupplyEmissionsTotal[which(EnSupplyEmissionsTotal$Year == max(EnSupplyEmissionsTotal$Year)),]$`Greenhouse Gas`,
+          size = 3,
+          colour = ChartColours[1]
+        )+
+        annotate(
+          "text",
+          x = min(EnSupplyEmissionsTotal$Year)-2,
+          y = EnSupplyEmissions[which(EnSupplyEmissions$Year == min(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Electricity"),]$value / 2,
+          colour = LineColours[1],
+          label = paste0("Electricity\n", round(EnSupplyEmissions[which(EnSupplyEmissions$Year == min(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Electricity"),]$value, 1), " MtCO2e"),
+          fontface = 2,
+          family = "Century Gothic"
+        )+
+        annotate(
+          "text",
+          x = min(EnSupplyEmissionsTotal$Year)-2,
+          y = EnSupplyEmissions[which(EnSupplyEmissions$Year == min(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Electricity"),]$value +
+            ( EnSupplyEmissions[which(EnSupplyEmissions$Year == min(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Industry"),]$value/ 2),
+          colour = LineColours[2],
+          label = paste0("Industry\n", round(EnSupplyEmissions[which(EnSupplyEmissions$Year == min(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Industry"),]$value, 1), " MtCO2e"),
+          fontface = 2,
+          family = "Century Gothic"
+        )+
+        annotate(
+          "text",
+          x = min(EnSupplyEmissionsTotal$Year)-2,
+          y = EnSupplyEmissions[which(EnSupplyEmissions$Year == min(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Electricity"),]$value +
+            EnSupplyEmissions[which(EnSupplyEmissions$Year == min(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Industry"),]$value +
+            (EnSupplyEmissions[which(EnSupplyEmissions$Year == min(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Heat"),]$value/2),
+          colour = LineColours[3],
+          label = paste0("Heat\n", round(EnSupplyEmissions[which(EnSupplyEmissions$Year == min(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Heat"),]$value, 1), " MtCO2e"),
+          fontface = 2,
+          family = "Century Gothic"
+        )+
+        annotate(
+          "text",
+          x = min(EnSupplyEmissionsTotal$Year)-2,
+          y = EnSupplyEmissions[which(EnSupplyEmissions$Year == min(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Electricity"),]$value +
+            EnSupplyEmissions[which(EnSupplyEmissions$Year == min(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Industry"),]$value +
+            EnSupplyEmissions[which(EnSupplyEmissions$Year == min(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Heat"),]$value +
+            (EnSupplyEmissions[which(EnSupplyEmissions$Year == min(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Transport"),]$value/2),
+          colour = LineColours[4],
+          label = paste0("Transport\n", round(EnSupplyEmissions[which(EnSupplyEmissions$Year == min(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Transport"),]$value, 1), " MtCO2e"),
+          fontface = 2,
+          family = "Century Gothic"
+        )+
+        annotate(
+          "text",
+          x = max(EnSupplyEmissionsTotal$Year)+2,
+          y = EnSupplyEmissions[which(EnSupplyEmissions$Year == max(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Electricity"),]$value / 2,
+          colour = LineColours[1],
+          label = paste0(round(EnSupplyEmissions[which(EnSupplyEmissions$Year == max(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Electricity"),]$value, 1), " MtCO2e"),
+          fontface = 2,
+          family = "Century Gothic"
+        )+
+        annotate(
+          "text",
+          x = max(EnSupplyEmissionsTotal$Year)+2,
+          y = EnSupplyEmissions[which(EnSupplyEmissions$Year == max(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Electricity"),]$value +
+            ( EnSupplyEmissions[which(EnSupplyEmissions$Year == max(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Industry"),]$value/ 2),
+          colour = LineColours[2],
+          label = paste0(round(EnSupplyEmissions[which(EnSupplyEmissions$Year == max(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Industry"),]$value, 1), " MtCO2e"),
+          fontface = 2,
+          family = "Century Gothic"
+        )+
+        annotate(
+          "text",
+          x = max(EnSupplyEmissionsTotal$Year)+2,
+          y = EnSupplyEmissions[which(EnSupplyEmissions$Year == max(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Electricity"),]$value +
+            EnSupplyEmissions[which(EnSupplyEmissions$Year == max(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Industry"),]$value +
+            (EnSupplyEmissions[which(EnSupplyEmissions$Year == max(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Heat"),]$value/2),
+          colour = LineColours[3],
+          label = paste0(round(EnSupplyEmissions[which(EnSupplyEmissions$Year == max(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Heat"),]$value, 1), " MtCO2e"),
+          fontface = 2,
+          family = "Century Gothic"
+        )+
+        annotate(
+          "text",
+          x = max(EnSupplyEmissionsTotal$Year)+2,
+          y = EnSupplyEmissions[which(EnSupplyEmissions$Year == max(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Electricity"),]$value +
+            EnSupplyEmissions[which(EnSupplyEmissions$Year == max(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Industry"),]$value +
+            EnSupplyEmissions[which(EnSupplyEmissions$Year == max(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Heat"),]$value +
+            (EnSupplyEmissions[which(EnSupplyEmissions$Year == max(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Transport"),]$value/2),
+          colour = LineColours[4],
+          label = paste0(round(EnSupplyEmissions[which(EnSupplyEmissions$Year == max(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Transport"),]$value, 1), " MtCO2e"),
+          fontface = 2,
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = min(EnSupplyEmissionsTotal$Year)-2,
+          y = EnSupplyEmissionsTotal[which(EnSupplyEmissionsTotal$Year == min(EnSupplyEmissionsTotal$Year)),]$`Greenhouse Gas`,
+          colour = ChartColours[1],
+          label = paste0("Total Greenhouse\nGas Emissions\n", round(EnSupplyEmissionsTotal[which(EnSupplyEmissionsTotal$Year == min(EnSupplyEmissionsTotal$Year)),]$`Greenhouse Gas`, 1), " MtCO2e"),
+          fontface = 2,
+          family = "Century Gothic"
+        )+
+        annotate(
+          "text",
+          x = max(EnSupplyEmissionsTotal$Year)+2,
+          y = EnSupplyEmissionsTotal[which(EnSupplyEmissionsTotal$Year == max(EnSupplyEmissionsTotal$Year)),]$`Greenhouse Gas`,
+          colour = ChartColours[1],
+          label = paste0(round(EnSupplyEmissionsTotal[which(EnSupplyEmissionsTotal$Year == max(EnSupplyEmissionsTotal$Year)),]$`Greenhouse Gas`, 1), " MtCO2e"),
+          fontface = 2,
+          family = "Century Gothic"
+        )
+      
+      
+      
+      EnSupplyEmissionsChart <-
+        LinePercentChart(EnSupplyEmissionsChart,
+                         EnSupplyEmissions,
+                         plottitle,
+                         sourcecaption,
+                         ChartColours)
+      
+      
+      EnSupplyEmissionsChart
+      
+      EnSupplyEmissionsChart <- EnSupplyEmissionsChart +
+        labs(subtitle = paste("Scotland, 1990 -", max(EnSupplyEmissions$Year))) +
+        xlim(min(EnSupplyEmissions$Year)-3, max(EnSupplyEmissions$Year)+3)+
+        ylim(0,79)
+      
+      EnSupplyEmissionsChart
+      
+      ggsave(
+        file,
+        plot = EnSupplyEmissionsChart,
+        width = 30,
+        height = 15,
+        units = "cm",
+        dpi = 300
+      )
+      
+    }
+  )
+  
 }
