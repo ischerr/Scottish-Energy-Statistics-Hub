@@ -608,7 +608,7 @@ OilGasProd <- function(input, output, session) {
       ### variables
       ChartColours <- c("#126992", "#66c2a5", "#fc8d62", "#8da0cb")
       sourcecaption = "Source: Scottish Government"
-      plottitle = "Oil and gas production as a proportion of the UK"
+      plottitle = "Oil and gas production as a\nproportion of the UK"
       
       #OilGasProp$OilPercentage <- PercentLabel(OilGasProp$Oil)
       
@@ -630,8 +630,7 @@ OilGasProd <- function(input, output, session) {
             x = Year,
             y = Oil,
             label = ifelse(Year == min(Year), paste0(percent(`Oil`, .1), ""), ""),
-            hjust = 0.5,
-            vjust = 2,
+            hjust = 1.05,
             colour = ChartColours[2],
             fontface = 2
           ),
@@ -642,8 +641,7 @@ OilGasProd <- function(input, output, session) {
             x = Year,
             y = Oil,
             label = ifelse(Year == max(Year), paste0(percent(`Oil`, .1), ""), ""),
-            hjust = 0.5,
-            vjust = 2,
+            hjust = -0.15,
             colour = ChartColours[2],
             fontface = 2
           ),
@@ -686,8 +684,7 @@ OilGasProd <- function(input, output, session) {
             x = Year,
             y = `Gas`,
             label = ifelse(Year == min(Year), paste0(percent(`Gas`, .1),""), ""),
-            hjust = 0.5,
-            vjust = -1.9,
+            hjust = 1.05,
             colour = ChartColours[3],
             fontface = 2
           ),
@@ -698,8 +695,7 @@ OilGasProd <- function(input, output, session) {
             x = Year,
             y = `Gas`,
             label = ifelse(Year == max(Year), paste0(percent(`Gas`, .1), ""), ""),
-            hjust = 0.5,
-            vjust = -1.5,
+            hjust = -0.15,
             colour = ChartColours[3],
             fontface = 2
           ),
@@ -751,15 +747,16 @@ OilGasProd <- function(input, output, session) {
                          ChartColours)
       
       OilGasPropChart <- OilGasPropChart +
-        xlim(min(OilGasProp$Year) -1 , max(OilGasProp$Year) +1)
+        xlim(min(OilGasProp$Year) -1.5 , max(OilGasProp$Year) +1.5) +
+        ylim(-.2,1)
       
       OilGasPropChart
       
       ggsave(
         file,
         plot =  OilGasPropChart,
-        width = 14,
-        height = 14,
+        width = 13,
+        height = 7,
         units = "cm",
         dpi = 300
       )

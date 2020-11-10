@@ -661,13 +661,14 @@ EnProd <- function(input, output, session) {
         EnProdTargetChart(EnProd, plottitle, sourcecaption, ChartColours)
       
       EnProdChart <- EnProdChart +
-        xlim(min(EnProd$Year -1), max(EnProd$Year +1))
+        xlim(min(EnProd$Year -1), max(EnProd$Year +1)) +
+        ylim(-.05,.32)
       
       ggsave(
         file,
         plot = EnProdChart,
         width = 14,
-        height = 15,
+        height = 6.5,
         units = "cm",
         dpi = 300
       )
@@ -804,8 +805,9 @@ EnProd <- function(input, output, session) {
                          ChartColours)
       
       EnProdHistChart <- EnProdHistChart +
-        xlim(min(EnProdHist$Year)-0.5,max(EnProdHist$Year)+0.5)+
-        ylim(-0.0025, .33)
+        xlim(min(EnProdHist$Year)-0.5,max(EnProdHist$Year)+0.5) +
+        ylim(-.05,.36)
+
       
       EnProdHistChart
       
@@ -813,7 +815,7 @@ EnProd <- function(input, output, session) {
         file,
         plot = EnProdHistChart,
         width = 14,
-        height = 15,
+        height = 6.5,
         units = "cm",
         dpi = 300
       )
