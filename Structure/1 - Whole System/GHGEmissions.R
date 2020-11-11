@@ -64,13 +64,23 @@ GHGEmissionsOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
+    tabsetPanel(
+      tabPanel("Emissions by Sector",
     fluidRow(
       column(10, h3("Data -  Scottish greenhouse gas emissions by source sector (MtCO2e)", style = "color: #1A5D38;  font-weight:bold")),
       column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("SectorInventoryTable"))%>% withSpinner(color="#1A5D38"))),
-    tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
+    tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")),
+    tabPanel("Energy Supply Emissions",
+             fluidRow(
+               column(10, h3("Data -  Greenhouse gas emissions from the energy supply sector (MtCO2e)", style = "color: #1A5D38;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("EnSupplyEmissionsTable"))%>% withSpinner(color="#1A5D38"))),
+             tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"))),
     fluidRow(
       column(1,
              p("Next update:")),
@@ -1611,20 +1621,101 @@ GHGEmissions <- function(input, output, session) {
       EnSupplyEmissionsChart <- EnSupplyEmissionsChart +
         labs(subtitle = paste("Scotland, 1990 -", max(EnSupplyEmissions$Year))) +
         xlim(min(EnSupplyEmissions$Year)-3, max(EnSupplyEmissions$Year)+3)+
-        ylim(0,79)
+        ylim(-1.5,80.5)
       
       EnSupplyEmissionsChart
       
       ggsave(
         file,
         plot = EnSupplyEmissionsChart,
-        width = 30,
-        height = 15,
+        width = 35,
+        height = 11,
         units = "cm",
         dpi = 300
       )
       
     }
   )
+  
+  output$EnSupplyEmissionsTable = renderDataTable({
+    
+    Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                       sheet = "Energy supply emissions", skip = 12)
+    
+    Data <- as.data.frame(t(Data))
+    
+    colnames(Data) <- as.character(unlist(Data[1,]))
+    Data = Data[-1, ]
+    Data <- setDT(Data, keep.rownames = TRUE)[]
+    names(Data) <- c("Year", "Greenhouse Gas", "Energy Supply", "Electricity Production", "Industry")
+    Data[1,1] <- 1988
+    
+    Data<- rbind(Data, setNames(data.frame(1989,NA,NA,NA,NA),names(Data)))
+    Data <- Data[order(Data$Year)]
+    Data$Year <- as.numeric(as.character(Data$Year))
+    Data$`Greenhouse Gas` <- as.numeric(as.character(Data$`Greenhouse Gas`))
+    Data$`Energy Supply` <- as.numeric(as.character(Data$`Energy Supply`))
+    Data$`Electricity Production` <- as.numeric(as.character(Data$`Electricity Production`))
+    Data$`Industry` <- as.numeric(as.character(Data$`Industry`))
+    
+    
+    
+    EnSupplyEmissions <- Data
+    
+    EnSupplyEmissions$Year <- as.numeric(EnSupplyEmissions$Year)
+    
+    EnSupplyEmissions2 <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
+                                     "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    names(EnSupplyEmissions2)[1] <- "Year"
+    
+    EnSupplyEmissions2$Year <- as.numeric(EnSupplyEmissions2$Year)
+    
+    EnSupplyEmissions <- merge(EnSupplyEmissions, EnSupplyEmissions2)
+    
+    EnSupplyEmissions <- EnSupplyEmissions[,c(1,2,5:7,9)]
+    
+    EnSupplyEmissions$Other <- EnSupplyEmissions$`Greenhouse Gas` - EnSupplyEmissions$Industry - EnSupplyEmissions$Electricity - EnSupplyEmissions$Heat - EnSupplyEmissions$Transport
+    
+    EnSupplyEmissions <- as_tibble(EnSupplyEmissions)
+    
+    names(EnSupplyEmissions)[2] <- "Total Greenhouse Gas Emissions"
+    
+    datatable(
+      EnSupplyEmissions[c(1,3:6,2)],
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        order = list(list(0, 'desc')),
+        title = "Greenhouse gas emissions from the energy supply sector (MtCO2e)",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Greenhouse gas emissions from the energy supply sector (MtCO2e)',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Greenhouse gas emissions from the energy supply sector (MtCO2e)')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(2:6, 1) %>% 
+      formatStyle(6, fontWeight = "bold")
+  })
   
 }
