@@ -74,8 +74,7 @@ GHGTransport <- function(input, output, session) {
 #####################################################################
   output$GHGTransportPlot <- renderPlotly  ({
     
-    GHGTransport <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
-                                 "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,5)]
+    GHGTransport <- read_csv("Processed Data/Output/Greenhouse Gas/GHGSector.csv")[c(1,6)]
     
     names(GHGTransport) <- c("Year", "Renewables")
     
@@ -205,8 +204,7 @@ GHGTransport <- function(input, output, session) {
     
     output$GHGTransportSubtitle <- renderText({
       
-      GHGTransport <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
-                                   "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,5)]
+      GHGTransport <- read_csv("Processed Data/Output/Greenhouse Gas/GHGSector.csv")[c(1,6)]
       
       names(GHGTransport) <- c("Year", "Renewables")
       
@@ -228,8 +226,7 @@ GHGTransport <- function(input, output, session) {
       filename = "GHGTransport.png",
       content = function(file) {
         
-        GHGTransport <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
-                                     "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,5)]
+        GHGTransport <- read_csv("Processed Data/Output/Greenhouse Gas/GHGSector.csv")[c(1,6)]
         
         names(GHGTransport) <- c("Year", "Renewables")
         
@@ -442,8 +439,7 @@ GHGTransport <- function(input, output, session) {
   
   output$GHGTable = renderDataTable({
     
-    GHGTransport <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
-                                 "\t", escape_double = FALSE, trim_ws = TRUE)[c(1, 2, 3, 5, 4)]
+    GHGTransport <- read_csv("Processed Data/Output/Greenhouse Gas/GHGSector.csv")[c(1, 2, 3, 6, 7)]
     
     names(GHGTransport) <- c("Year", "Electricity Emissions", "Heat (specifically relating to buildings) Emissions", "Transport Emissions", "Total")
     
@@ -455,8 +451,7 @@ GHGTransport <- function(input, output, session) {
     
     GHGTransport$Total <- rowSums(GHGTransport[2:5])
     
-    GHGTransportBreakdown <- read_delim("Processed Data/Output/Greenhouse Gas/GHGTransportBreakdown.txt", 
-                                   "\t", escape_double = FALSE, trim_ws = TRUE)
+    GHGTransportBreakdown <- read_csv("Processed Data/Output/Greenhouse Gas/GHGTransportBreakdown.csv")
     
     names(GHGTransportBreakdown)[1] <- "Year"
     

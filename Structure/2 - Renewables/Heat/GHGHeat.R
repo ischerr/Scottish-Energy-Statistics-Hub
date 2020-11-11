@@ -76,8 +76,7 @@ GHGHeat <- function(input, output, session) {
 
   output$GHGHeatPlot <- renderPlotly  ({
     
-    GHGHeat <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
-                                 "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,3)]
+    GHGHeat <- read_csv("Processed Data/Output/Greenhouse Gas/GHGSector.csv")[c(1,3)]
     
     names(GHGHeat) <- c("Year", "Renewables")
     
@@ -207,8 +206,7 @@ GHGHeat <- function(input, output, session) {
     
     output$GHGHeatSubtitle <- renderText({
       
-      GHGHeat <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
-                                   "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,3)]
+      GHGHeat <- read_csv("Processed Data/Output/Greenhouse Gas/GHGSector.csv")[c(1,3)]
       
       names(GHGHeat) <- c("Year", "Renewables")
       
@@ -230,8 +228,7 @@ GHGHeat <- function(input, output, session) {
       filename = "GHGHeat.png",
       content = function(file) {
         
-        GHGHeat <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
-                                     "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,3)]
+        GHGHeat <- read_csv("Processed Data/Output/Greenhouse Gas/GHGSector.csv")[c(1,3)]
         
         names(GHGHeat) <- c("Year", "Renewables")
         
@@ -443,8 +440,7 @@ GHGHeat <- function(input, output, session) {
   
   output$GHGTable = renderDataTable({
     
-    GHGHeat <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
-                               "\t", escape_double = FALSE, trim_ws = TRUE)[c(1, 2, 3, 5, 4)]
+    GHGHeat <- read_csv("Processed Data/Output/Greenhouse Gas/GHGSector.csv")[c(1, 2, 3, 6, 7)]
     
     names(GHGHeat) <- c("Year", "Heat Emissions", "Heat (specifically relating to buildings) Emissions", "Transport Emissions", "Total")
     
@@ -456,8 +452,7 @@ GHGHeat <- function(input, output, session) {
     
     GHGHeat$Total <- rowSums(GHGHeat[2:5])
     
-    GHGHeatBreakdown <- read_delim("Processed Data/Output/Greenhouse Gas/GHGHeatBreakdown.txt", 
-                                        "\t", escape_double = FALSE, trim_ws = TRUE)
+    GHGHeatBreakdown <- read_csv("Processed Data/Output/Greenhouse Gas/GHGHeatBreakdown.csv")
     
     names(GHGHeatBreakdown)[1] <- "Year"
     

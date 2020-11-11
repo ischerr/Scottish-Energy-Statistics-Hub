@@ -542,8 +542,7 @@ GridEmissions <- function(input, output, session) {
   
   output$GHGElectricityPlot <- renderPlotly  ({
     
-    GHGElectricity <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
-                                 "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,2)]
+    GHGElectricity <- read_csv("Processed Data/Output/Greenhouse Gas/GHGSector.csv")[c(1,2)]
     
     names(GHGElectricity) <- c("Year", "Renewables")
     
@@ -673,8 +672,7 @@ GridEmissions <- function(input, output, session) {
   
   output$GHGElectricitySubtitle <- renderText({
     
-    GHGElectricity <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
-                                 "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,2)]
+    GHGElectricity <- read_csv("Processed Data/Output/Greenhouse Gas/GHGSector.csv")[c(1,2)]
     
     names(GHGElectricity) <- c("Year", "Renewables")
     
@@ -694,8 +692,7 @@ GridEmissions <- function(input, output, session) {
     filename = "GHGElectricity.png",
     content = function(file) {
       
-      GHGElectricity <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
-                                   "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,2)]
+      GHGElectricity <- read_csv("Processed Data/Output/Greenhouse Gas/GHGSector.csv")[c(1,2)]
       
       names(GHGElectricity) <- c("Year", "Renewables")
       
@@ -896,8 +893,7 @@ GridEmissions <- function(input, output, session) {
   
   output$GHGTable = renderDataTable({
     
-    GHGElectricity <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
-                                 "\t", escape_double = FALSE, trim_ws = TRUE)[c(1, 2, 3, 5, 4)]
+    GHGElectricity <- read_csv("Processed Data/Output/Greenhouse Gas/GHGSector.csv")[c(1, 2, 3, 6, 7)]
     
     names(GHGElectricity) <- c("Year", "Electricity Emissions", "Heat (specifically relating to buildings) Emissions", "Transport Emissions", "Total")
     
@@ -909,8 +905,7 @@ GridEmissions <- function(input, output, session) {
     
     GHGElectricity$Total <- rowSums(GHGElectricity[2:5])
     
-    GHGElecBreakdown <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElectricityBreakdown.txt", 
-                                   "\t", escape_double = FALSE, trim_ws = TRUE)
+    GHGElecBreakdown <- read_csv("Processed Data/Output/Greenhouse Gas/GHGElectricityBreakdown.csv")
     
     names(GHGElecBreakdown)[1] <- "Year"
     

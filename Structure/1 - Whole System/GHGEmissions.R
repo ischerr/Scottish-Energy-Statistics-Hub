@@ -1174,72 +1174,34 @@ GHGEmissions <- function(input, output, session) {
   
   output$EnSupplyEmissionsSubtitle <- renderText({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Energy supply emissions", skip = 12)
+    EnSupplyEmissions <- read_csv("Processed Data/Output/Greenhouse Gas/GHGSector.csv")
     
-    Data <- as.data.frame(t(Data))
+    names(EnSupplyEmissions)[1] <- "Year"
     
-    colnames(Data) <- as.character(unlist(Data[1,]))
-    Data = Data[-1, ]
-    Data <- setDT(Data, keep.rownames = TRUE)[]
-    names(Data) <- c("Year", "Greenhouse Gas", "Energy Supply", "Electricity Production", "Industry")
-    Data[1,1] <- 1988
+    EnSupplyEmissions$Year <- as.numeric(EnSupplyEmissions$Year)
     
-    Data<- rbind(Data, setNames(data.frame(1989,NA,NA,NA,NA),names(Data)))
-    Data <- Data[order(Data$Year)]
-    Data$Year <- as.numeric(as.character(Data$Year))
-    Data$`Greenhouse Gas` <- as.numeric(as.character(Data$`Greenhouse Gas`))
-    Data$`Energy Supply` <- as.numeric(as.character(Data$`Energy Supply`))
-    Data$`Electricity Production` <- as.numeric(as.character(Data$`Electricity Production`))
-    Data$`Industry` <- as.numeric(as.character(Data$`Industry`))
+    EnSupplyEmissions <- as_tibble(EnSupplyEmissions)
     
+    names(EnSupplyEmissions)[7] <- "Greenhouse Gas"
     
-    
-    EnSupplyEmissions <- Data
-    ### variables
+    EnSupplyEmissions <- EnSupplyEmissions[complete.cases(EnSupplyEmissions),]
     
     paste("Scotland, 1990","-", max(EnSupplyEmissions$Year))
   })
   
   output$EnSupplyEmissionsPlot <- renderPlotly  ({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Energy supply emissions", skip = 12)
+    EnSupplyEmissions <- read_csv("Processed Data/Output/Greenhouse Gas/GHGSector.csv")
     
-    Data <- as.data.frame(t(Data))
-    
-    colnames(Data) <- as.character(unlist(Data[1,]))
-    Data = Data[-1, ]
-    Data <- setDT(Data, keep.rownames = TRUE)[]
-    names(Data) <- c("Year", "Greenhouse Gas", "Energy Supply", "Electricity Production", "Industry")
-    Data[1,1] <- 1988
-    
-    Data<- rbind(Data, setNames(data.frame(1989,NA,NA,NA,NA),names(Data)))
-    Data <- Data[order(Data$Year)]
-    Data$Year <- as.numeric(as.character(Data$Year))
-    Data$`Greenhouse Gas` <- as.numeric(as.character(Data$`Greenhouse Gas`))
-    Data$`Energy Supply` <- as.numeric(as.character(Data$`Energy Supply`))
-    Data$`Electricity Production` <- as.numeric(as.character(Data$`Electricity Production`))
-    Data$`Industry` <- as.numeric(as.character(Data$`Industry`))
-    
-    
-    
-    EnSupplyEmissions <- Data
+    names(EnSupplyEmissions)[1] <- "Year"
     
     EnSupplyEmissions$Year <- as.numeric(EnSupplyEmissions$Year)
     
-    EnSupplyEmissions2 <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
-                                     "\t", escape_double = FALSE, trim_ws = TRUE)
+    EnSupplyEmissions <- as_tibble(EnSupplyEmissions)
     
-    names(EnSupplyEmissions2)[1] <- "Year"
+    names(EnSupplyEmissions)[7] <- "Greenhouse Gas"
     
-    EnSupplyEmissions2$Year <- as.numeric(EnSupplyEmissions2$Year)
-    
-    EnSupplyEmissions <- merge(EnSupplyEmissions, EnSupplyEmissions2)
-    
-    EnSupplyEmissions <- EnSupplyEmissions[,c(1,2,5:7,9)]
-    
-    EnSupplyEmissions$Other <- EnSupplyEmissions$`Greenhouse Gas` - EnSupplyEmissions$Industry - EnSupplyEmissions$Electricity - EnSupplyEmissions$Heat - EnSupplyEmissions$Transport
+    EnSupplyEmissions <- EnSupplyEmissions[complete.cases(EnSupplyEmissions),]
     
     
     plottitle <- "Net source greenhouse gas emissions from the energy supply sector (MtCO2e)"
@@ -1397,53 +1359,25 @@ GHGEmissions <- function(input, output, session) {
     filename = "EnSupplyEmissions.png",
     content = function(file) {
       
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Energy supply emissions", skip = 12)
+      EnSupplyEmissions <- read_csv("Processed Data/Output/Greenhouse Gas/GHGSector.csv")
       
-      Data <- as.data.frame(t(Data))
-      
-      colnames(Data) <- as.character(unlist(Data[1,]))
-      Data = Data[-1, ]
-      Data <- setDT(Data, keep.rownames = TRUE)[]
-      names(Data) <- c("Year", "Greenhouse Gas", "Energy Supply", "Electricity Production", "Industry")
-      Data[1,1] <- 1988
-      
-      Data<- rbind(Data, setNames(data.frame(1989,NA,NA,NA,NA),names(Data)))
-      Data <- Data[order(Data$Year)]
-      Data$Year <- as.numeric(as.character(Data$Year))
-      Data$`Greenhouse Gas` <- as.numeric(as.character(Data$`Greenhouse Gas`))
-      Data$`Energy Supply` <- as.numeric(as.character(Data$`Energy Supply`))
-      Data$`Electricity Production` <- as.numeric(as.character(Data$`Electricity Production`))
-      Data$`Industry` <- as.numeric(as.character(Data$`Industry`))
-      
-      
-      
-      EnSupplyEmissions <- Data
+      names(EnSupplyEmissions)[1] <- "Year"
       
       EnSupplyEmissions$Year <- as.numeric(EnSupplyEmissions$Year)
       
-      EnSupplyEmissions2 <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
-                                       "\t", escape_double = FALSE, trim_ws = TRUE)
-      
-      names(EnSupplyEmissions2)[1] <- "Year"
-      
-      EnSupplyEmissions2$Year <- as.numeric(EnSupplyEmissions2$Year)
-      
-      EnSupplyEmissions <- merge(EnSupplyEmissions, EnSupplyEmissions2)
-      
-      EnSupplyEmissions <- EnSupplyEmissions[,c(1,2,5:7,9)]
-      
-      EnSupplyEmissions$Other <- EnSupplyEmissions$`Greenhouse Gas` - EnSupplyEmissions$Industry - EnSupplyEmissions$Electricity - EnSupplyEmissions$Heat - EnSupplyEmissions$Transport
-      
       EnSupplyEmissions <- as_tibble(EnSupplyEmissions)
+      
+      names(EnSupplyEmissions)[7] <- "Greenhouse Gas"
+      
+      EnSupplyEmissions <- EnSupplyEmissions[complete.cases(EnSupplyEmissions),]
       plottitle <- "Greenhouse gas emissions from the energy supply sector (MtCO2e)"
       sourcecaption <- "Source: SG"
       ChartColours <- c("#1A5D38", "#FF8500")
       LineColours <- c( "#39ab2c","#006837", "#41ab5d", "#addd8e")
       
-      EnSupplyEmissionsTotal <- EnSupplyEmissions[c(1,2)]
+      EnSupplyEmissionsTotal <- EnSupplyEmissions[c(1,7)]
       
-      EnSupplyEmissions[c(2,7)] <- NULL
+      EnSupplyEmissions[c(5,7)] <- NULL
       
       EnSupplyEmissions <- melt(EnSupplyEmissions, id.vars = "Year")
       
@@ -1639,50 +1573,21 @@ GHGEmissions <- function(input, output, session) {
   
   output$EnSupplyEmissionsTable = renderDataTable({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Energy supply emissions", skip = 12)
+
+    EnSupplyEmissions <- read_csv("Processed Data/Output/Greenhouse Gas/GHGSector.csv")
     
-    Data <- as.data.frame(t(Data))
-    
-    colnames(Data) <- as.character(unlist(Data[1,]))
-    Data = Data[-1, ]
-    Data <- setDT(Data, keep.rownames = TRUE)[]
-    names(Data) <- c("Year", "Greenhouse Gas", "Energy Supply", "Electricity Production", "Industry")
-    Data[1,1] <- 1988
-    
-    Data<- rbind(Data, setNames(data.frame(1989,NA,NA,NA,NA),names(Data)))
-    Data <- Data[order(Data$Year)]
-    Data$Year <- as.numeric(as.character(Data$Year))
-    Data$`Greenhouse Gas` <- as.numeric(as.character(Data$`Greenhouse Gas`))
-    Data$`Energy Supply` <- as.numeric(as.character(Data$`Energy Supply`))
-    Data$`Electricity Production` <- as.numeric(as.character(Data$`Electricity Production`))
-    Data$`Industry` <- as.numeric(as.character(Data$`Industry`))
-    
-    
-    
-    EnSupplyEmissions <- Data
+    names(EnSupplyEmissions)[1] <- "Year"
     
     EnSupplyEmissions$Year <- as.numeric(EnSupplyEmissions$Year)
     
-    EnSupplyEmissions2 <- read_delim("Processed Data/Output/Greenhouse Gas/GHGElecHeatTransport.txt", 
-                                     "\t", escape_double = FALSE, trim_ws = TRUE)
-    
-    names(EnSupplyEmissions2)[1] <- "Year"
-    
-    EnSupplyEmissions2$Year <- as.numeric(EnSupplyEmissions2$Year)
-    
-    EnSupplyEmissions <- merge(EnSupplyEmissions, EnSupplyEmissions2)
-    
-    EnSupplyEmissions <- EnSupplyEmissions[,c(1,2,5:7,9)]
-    
-    EnSupplyEmissions$Other <- EnSupplyEmissions$`Greenhouse Gas` - EnSupplyEmissions$Industry - EnSupplyEmissions$Electricity - EnSupplyEmissions$Heat - EnSupplyEmissions$Transport
-    
     EnSupplyEmissions <- as_tibble(EnSupplyEmissions)
     
-    names(EnSupplyEmissions)[2] <- "Total Greenhouse Gas Emissions"
+    names(EnSupplyEmissions)[7] <- "Total Greenhouse Gas Emissions"
+    
+    EnSupplyEmissions <- EnSupplyEmissions[complete.cases(EnSupplyEmissions),]
     
     datatable(
-      EnSupplyEmissions[c(1,3:6,2)],
+      EnSupplyEmissions[c(1:4,6:7)],
       extensions = 'Buttons',
       
       rownames = FALSE,
