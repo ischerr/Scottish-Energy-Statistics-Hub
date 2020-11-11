@@ -40,9 +40,9 @@ GHGEmissionsOutput <- function(id) {
              plotlyOutput(ns("SectorInventoryPlot"), height = "700px")%>% withSpinner(color="#1A5D38"),
              tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"))
     ,
-    tabPanel("Energy Supply Sector",
+    tabPanel("Energy related emissions",
              fluidRow(column(8,
-                             h3("Greenhouse gas emissions from the energy supply sector (MtCO2e)", style = "color: #1A5D38;  font-weight:bold"),
+                             h3("Energy related greenhouse gas emissions (MtCO2e)", style = "color: #1A5D38;  font-weight:bold"),
                              h4(textOutput(ns('EnSupplyEmissionsSubtitle')), style = "color: #1A5D38;")
              ),
              column(
@@ -73,9 +73,9 @@ GHGEmissionsOutput <- function(id) {
     fluidRow(
       column(12, dataTableOutput(ns("SectorInventoryTable"))%>% withSpinner(color="#1A5D38"))),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")),
-    tabPanel("Energy Supply Emissions",
+    tabPanel("Energy related emissions",
              fluidRow(
-               column(10, h3("Data -  Greenhouse gas emissions from the energy supply sector (MtCO2e)", style = "color: #1A5D38;  font-weight:bold")),
+               column(10, h3("Data -  Energy related greenhouse gas emissions (MtCO2e)", style = "color: #1A5D38;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -1370,7 +1370,7 @@ GHGEmissions <- function(input, output, session) {
       names(EnSupplyEmissions)[7] <- "Greenhouse Gas"
       
       EnSupplyEmissions <- EnSupplyEmissions[complete.cases(EnSupplyEmissions),]
-      plottitle <- "Greenhouse gas emissions from the energy supply sector (MtCO2e)"
+      plottitle <- "Energy related greenhouse gas emissions (MtCO2e)"
       sourcecaption <- "Source: SG"
       ChartColours <- c("#1A5D38", "#FF8500")
       LineColours <- c( "#39ab2c","#006837", "#41ab5d", "#addd8e")
@@ -1599,17 +1599,17 @@ GHGEmissions <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Greenhouse gas emissions from the energy supply sector (MtCO2e)",
+        title = "Energy related greenhouse gas emissions (MtCO2e)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Greenhouse gas emissions from the energy supply sector (MtCO2e)',
+            title = 'Energy related greenhouse gas emissions (MtCO2e)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Greenhouse gas emissions from the energy supply sector (MtCO2e)')
+               title = 'Energy related greenhouse gas emissions (MtCO2e)')
         ),
         
         # customize the length menu
