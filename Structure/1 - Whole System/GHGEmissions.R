@@ -40,9 +40,9 @@ GHGEmissionsOutput <- function(id) {
              plotlyOutput(ns("SectorInventoryPlot"), height = "700px")%>% withSpinner(color="#1A5D38"),
              tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"))
     ,
-    tabPanel("Stacked",
+    tabPanel("Energy Supply Sector",
              fluidRow(column(8,
-                             h3("Net source greenhouse gas emissions from the energy supply sector (MtCO2e)", style = "color: #1A5D38;  font-weight:bold"),
+                             h3("Greenhouse gas emissions from the energy supply sector (MtCO2e)", style = "color: #1A5D38;  font-weight:bold"),
                              h4(textOutput(ns('EnSupplyEmissionsSubtitle')), style = "color: #1A5D38;")
              ),
              column(
@@ -1254,7 +1254,7 @@ GHGEmissions <- function(input, output, session) {
                 mode = 'none',
                 legendgroup = "5",
                 text = paste0(
-                  "Greenhouse Gas: ",
+                  "Total Greenhouse Gas Emissions: ",
                   round(EnSupplyEmissions$`Greenhouse Gas`, digits = 1),
                   " MtCO2e\nYear: ",
                   EnSupplyEmissions$YearLabel
@@ -1262,6 +1262,7 @@ GHGEmissions <- function(input, output, session) {
                 hoverinfo = 'text',
                 line = list(width = 6, color = ChartColours[1], dash = "dash")
       ) %>% 
+      
       add_trace(data = EnSupplyEmissions,
                 x = ~ Year,
                 y = ~ `Electricity`,
@@ -1277,7 +1278,7 @@ GHGEmissions <- function(input, output, session) {
                   EnSupplyEmissions$YearLabel
                 ),
                 hoverinfo = 'text',
-                line = list(width = 6, color = LineColours[1], dash = "none")
+                fillcolor = LineColours[1]
       ) %>% 
       
       add_trace(data = EnSupplyEmissions,
@@ -1295,7 +1296,7 @@ GHGEmissions <- function(input, output, session) {
                   EnSupplyEmissions$YearLabel
                 ),
                 hoverinfo = 'text',
-                line = list(width = 6, color = LineColours[2], dash = "none")
+                fillcolor = LineColours[2]
       ) %>% 
       
       add_trace(data = EnSupplyEmissions,
@@ -1313,7 +1314,7 @@ GHGEmissions <- function(input, output, session) {
                   EnSupplyEmissions$YearLabel
                 ),
                 hoverinfo = 'text',
-                line = list(width = 6, color = LineColours[3], dash = "none")
+                fillcolor = LineColours[3]
       ) %>% 
       
       add_trace(data = EnSupplyEmissions,
@@ -1331,7 +1332,26 @@ GHGEmissions <- function(input, output, session) {
                   EnSupplyEmissions$YearLabel
                 ),
                 hoverinfo = 'text',
-                line = list(width = 6, color = LineColours[4], dash = "none")
+                fillcolor = LineColours[4]
+      ) %>% 
+      add_trace(
+        data = tail(EnSupplyEmissions, 1),
+        x = ~ Year,
+        y = ~ `Greenhouse Gas`,
+        name = "Greenhouse Gas",
+        legendgroup = "5",
+        text = paste0(
+          "Total Greenhouse Gas Emissions: ",
+          round(EnSupplyEmissions$`Greenhouse Gas`, digits = 1),
+          " MtCO2e\nYear: ",
+          EnSupplyEmissions$YearLabel
+        ),
+        hoverinfo = 'text',
+        showlegend = FALSE ,
+        type = "scatter",
+        mode = 'markers',
+        marker = list(size = 18, 
+                      color = ChartColours[1])
       ) %>% 
       layout(
         barmode = 'stack',
@@ -1406,8 +1426,8 @@ GHGEmissions <- function(input, output, session) {
       EnSupplyEmissions$Other <- EnSupplyEmissions$`Greenhouse Gas` - EnSupplyEmissions$Industry - EnSupplyEmissions$Electricity - EnSupplyEmissions$Heat - EnSupplyEmissions$Transport
       
       EnSupplyEmissions <- as_tibble(EnSupplyEmissions)
-      plottitle <- "Net source greenhouse gas emissions from the energy supply sector (MtCO2e)"
-      sourcecaption <- "Source: BEIS"
+      plottitle <- "Greenhouse gas emissions from the energy supply sector (MtCO2e)"
+      sourcecaption <- "Source: SG"
       ChartColours <- c("#1A5D38", "#FF8500")
       LineColours <- c( "#39ab2c","#006837", "#41ab5d", "#addd8e")
       
