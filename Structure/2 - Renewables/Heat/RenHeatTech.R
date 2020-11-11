@@ -42,20 +42,20 @@ RenHeatTechOutput <- function(id) {
                 #dygraphOutput(ns("RenHeatTechPlot")),
                 plotlyOutput(ns("RenHeatSizePlot"))%>% withSpinner(color="#39ab2c"),
                 tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
-    # ,
-    # tabPanel("Local Authorities",
-    #          fluidRow(column(8,
-    #                          h3("ECO measures by LA", style = "color: #34d1a3;  font-weight:bold"),
-    #                          h4(textOutput(ns('RenHeatLASubtitle')), style = "color: #34d1a3;")
-    #          ),
-    #          column(
-    #            4, style = 'padding:15px;',
-    #            downloadButton(ns('RenHeatLA.png'), 'Download Graph', style="float:right")
-    #          )),
-    #          fluidRow(column(6,selectInput(ns("CategorySelect"), "Category:", c("Output (GWh)", "Operational Capacity (GW)"), selected = "Output (GWh)", multiple = FALSE,
-    #                                        selectize = TRUE, width = NULL, size = NULL))),
-    #          leafletOutput(ns("RenHeatLA"), height = "675px")%>% withSpinner(color="#34d1a3"),
-    #          tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))
+    ,
+    tabPanel("Local Authorities",
+             fluidRow(column(8,
+                             h3("Renewable Heat by Local Authority", style = "color: #39ab2c;  font-weight:bold"),
+                             h4(textOutput(ns('RenHeatLASubtitle')), style = "color: #39ab2c;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('RenHeatLA.png'), 'Download Graph', style="float:right")
+             )),
+             fluidRow(column(6,selectInput(ns("CategorySelect"), "Category:", c("Output (GWh)", "Operational Capacity (GW)"), selected = "Output (GWh)", multiple = FALSE,
+                                           selectize = TRUE, width = NULL, size = NULL))),
+             leafletOutput(ns("RenHeatLA"), height = "675px")%>% withSpinner(color="#39ab2c"),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
     ),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
@@ -89,7 +89,15 @@ RenHeatTechOutput <- function(id) {
       ),
       fluidRow(
         column(12, dataTableOutput(ns("RenHeatOutputTable"))%>% withSpinner(color="#39ab2c"))),
-      tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
+      tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Local Authority",
+             fluidRow(
+               column(10, h3("Data - Renewable Heat Output and Capacity by Local Authority", style = "color: #39ab2c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("RenHeatLATable"))%>% withSpinner(color="#39ab2c"))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
     ),
     fluidRow(
       column(2, p("Update expected:")),
@@ -1194,22 +1202,26 @@ RenHeatTech <- function(input, output, session) {
     
     RenHeatLA <- RenHeatLA[which(RenHeatLA$variable == Category),]
     
-
-    RenHeatLA$Content <- paste0("<b>",RenHeatLA$LAName, "</b><br/>", RenHeatLA$variable[1], ":<br/><em>", format(round(RenHeatLA$value, digits = 1), big.mark = ","),"</em>" )
+    RenHeatLA$Prop <- percent(RenHeatLA$value / RenHeatLA[which(RenHeatLA$LAName == "TOTAL"),]$value,.1)
     
-    RenHeatLA$Hover <- paste0(RenHeatLA$LAName, " - ", format(round(RenHeatLA$value, digits = 1), big.mark = ","), "")
+    if(Category == "Output (GWh)"){Unit <- " GWh"}
+    if(Category == "Operational Capacity (GW)"){Unit <- " GW"}
+
+    RenHeatLA$Content <- paste0("<b>",RenHeatLA$LAName, "</b><br/>", RenHeatLA$variable[1], ":<br/><em>", format(round(RenHeatLA$value, digits = 1), big.mark = ","),Unit,"<br/>", RenHeatLA$Prop, "</em>" )
+    
+    RenHeatLA$Hover <- paste0(RenHeatLA$LAName, " - ", format(round(RenHeatLA$value, digits = 1), big.mark = ","), Unit, " - ", RenHeatLA$Prop)
     
 
     if(Category == "Output (GWh)"){
-      RenHeatLA[which(RenHeatLA$value == 0),]$Content <- paste0("<b>",RenHeatLA[which(RenHeatLA$value == 0),]$LAName, "</b><br/>", RenHeatLA[which(RenHeatLA$value == 0),]$variable[1], ":<br/><em>", "<10","</em>" )
+      RenHeatLA[which(RenHeatLA$value == 0),]$Content <- paste0("<b>",RenHeatLA[which(RenHeatLA$value == 0),]$LAName, "</b><br/>", RenHeatLA[which(RenHeatLA$value == 0),]$variable[1], ":<br/><em>", "<10 GWh","<br/>", RenHeatLA[which(RenHeatLA$value == 0),]$Prop, "</em>" )
            
-           RenHeatLA[which(RenHeatLA$value == 0),]$Hover <- paste0(RenHeatLA[which(RenHeatLA$value == 0),]$LAName, " - ", "<10", "")
+           RenHeatLA[which(RenHeatLA$value == 0),]$Hover <- paste0(RenHeatLA[which(RenHeatLA$value == 0),]$LAName, " - ", "<10 GWh", " - ", RenHeatLA[which(RenHeatLA$value == 0),]$Prop)
     }
     
     if(Category == "Operational Capacity (GW)"){
-      RenHeatLA[which(RenHeatLA$value == 0),]$Content <- paste0("<b>",RenHeatLA[which(RenHeatLA$value == 0),]$LAName, "</b><br/>", RenHeatLA[which(RenHeatLA$value == 0),]$variable[1], ":<br/><em>", "<1","</em>" )
+      RenHeatLA[which(RenHeatLA$value == 0),]$Content <- paste0("<b>",RenHeatLA[which(RenHeatLA$value == 0),]$LAName, "</b><br/>", RenHeatLA[which(RenHeatLA$value == 0),]$variable[1], ":<br/><em>", "<1 GW","<br/>", RenHeatLA[which(RenHeatLA$value == 0),]$Prop, "</em>" )
            
-           RenHeatLA[which(RenHeatLA$value == 0),]$Hover <- paste0(RenHeatLA[which(RenHeatLA$value == 0),]$LAName, " - ", "<1", "")
+           RenHeatLA[which(RenHeatLA$value == 0),]$Hover <- paste0(RenHeatLA[which(RenHeatLA$value == 0),]$LAName, " - ", "<1 GW", " - ", RenHeatLA[which(RenHeatLA$value == 0),]$Prop)
 
     }
 
@@ -1273,6 +1285,59 @@ RenHeatTech <- function(input, output, session) {
     }
     
   )
+  
+  
+  output$RenHeatLATable = renderDataTable({
+    
+    RenHeatLA <- read_delim("Processed Data/Output/Renewable Heat/RenHeatLA.txt", 
+                            "\t", escape_double = FALSE, trim_ws = TRUE)
+    
+    names(RenHeatLA)[1:2] <- c("Name", "LA Code")
+    
+    RenHeatLA <- as_tibble(dcast(RenHeatLA, Name + `LA Code` ~ variable))
+    
+    RenHeatLA <- RenHeatLA[c(1,2,6,5,4,3)]
+    
+    RenHeatLA <- RenHeatLA[order(RenHeatLA$`LA Code`),]
+    
+    RenHeatLA <- RenHeatLA[c(1:32,34,33),]
+    
+    datatable(
+      RenHeatLA,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        title = "Renewable heat output and capacity by Local Authority",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = "Renewable heat output and capacity by Local Authority",
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = "Renewable heat output and capacity by Local Authority")
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      
+      formatRound(c(3), 0) %>% 
+      formatRound(5,3) %>% 
+      formatPercentage(c(4,6),1)
+  })
 
 }
 
