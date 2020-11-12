@@ -1265,21 +1265,12 @@ RenHeatTech <- function(input, output, session) {
   }) 
   
   output$RenHeatLA.png <- downloadHandler(
-    filename = "ECOMeasuresLAMap.png",
-    content = function(file) {if(as.character(input$CategorySelect) == "ECO measures per 1,000 households"){
-      file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOper1000.png"), file)
+    filename = "RenHeatLA.png",
+    content = function(file) {if(as.character(input$CategorySelect) == "Output (GWh)"){
+      file.copy(("Structure/2 - Renewables/Heat/RenHeatOutputMap.png"), file)
     }
-      if(as.character(input$CategorySelect) == "Carbon Saving Target (CERO)"){
-        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOCERO.png"), file)
-      }
-      if(as.character(input$CategorySelect) == "Affordable Warmth (HHCRO)"){
-        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOAffordableWarmth.png"), file)
-      }
-      if(as.character(input$CategorySelect) == "ECO measures installed"){
-        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOMeasuresInstalled.png"), file)
-      }
-      if(as.character(input$CategorySelect) == "Carbon Savings Community (CSCO)"){
-        file.copy(("Structure/4 - Energy Efficiency/Efficiency Measures/ECOCSCO.png"), file)
+      if(as.character(input$CategorySelect) == "Operational Capacity (GW)"){
+        file.copy(("Structure/2 - Renewables/Heat/RenHeatCapMap.png"), file)
       }
       #"Carbon Saving Target (CERO)"       "ECO measures per 1,000 households" "Affordable Warmth (HHCRO)"         "ECO measures installed"            "Carbon Savings Community (CSCO)"
     }
