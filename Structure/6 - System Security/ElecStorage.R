@@ -507,16 +507,7 @@ ElecStorage <- function(input, output, session) {
   
   output$ElecStorageCapPlot <- renderPlotly  ({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Electricity storage", col_names = TRUE,
-                       skip = 14, n_max = 10)[1:2]
-    
-    Data <- Data[complete.cases(Data),]
-    
-    Data[2]%<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    ElecStorageCap <- as_tibble(Data)
+    ElecStorageCap <- read_csv("Processed Data/Output/Renewable Capacity/Storage.csv")[c(2,5)]
     
     names(ElecStorageCap)[1] <- "Type"
     
@@ -604,16 +595,7 @@ ElecStorage <- function(input, output, session) {
   
   output$ElecStorageCapTable = renderDataTable({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Electricity storage", col_names = TRUE,
-                       skip = 14, n_max = 10)[1:2]
-    
-    Data <- Data[complete.cases(Data),]
-    
-    Data[2]%<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    ElecStorageCap <- as_tibble(Data)
+    ElecStorageCap <- read_csv("Processed Data/Output/Renewable Capacity/Storage.csv")[c(2,5)]
     
     names(ElecStorageCap)[1] <- "Type"
     
@@ -673,16 +655,9 @@ ElecStorage <- function(input, output, session) {
       paste("Scotland,", month.name[Quarter], Year)
       
       ### Load Packages and Functions
-      Data <- read_excel("Structure/CurrentWorking.xlsx",
-                         sheet = "Electricity storage", skip = 14)[1:2]
+      EnergyStorageTech  <- read_csv("Processed Data/Output/Renewable Capacity/Storage.csv")[c(2,5)]
       
-      names(Data)[1] <- "Type"
-      
-      Data <- Data[complete.cases(Data),]
-      
-      Data[2] %<>% lapply(function(x) as.numeric(as.character(x)))
-      
-      EnergyStorageTech <- Data
+      names(EnergyStorageTech )[1] <- "Type"
       
       EnergyStorageTech <- arrange(EnergyStorageTech,row_number())
       
