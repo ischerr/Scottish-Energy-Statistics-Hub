@@ -116,18 +116,17 @@ ElecStorage <- function(input, output, session) {
 
   output$ElecStoragePlot <- renderPlotly  ({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Electricity storage", col_names = TRUE,
-                       skip = 14, n_max = 10)[6:10]
+    ElecStorage <- read_csv("Processed Data/Output/Renewable Capacity/Storage.csv")
     
-    Data <- Data[complete.cases(Data),]
+    ElecStorage$Operational <- NULL
     
-    Data[2:5]%<>% lapply(function(x)
-      as.numeric(as.character(x)))
+    ElecStorage$`Under Construction` <- 0
     
-    ElecStorage <- as_tibble(Data)
+    names(ElecStorage)[2] <- "Type"
     
-    names(ElecStorage)[1] <- "Type"
+    names(ElecStorage)[5] <- "Total"
+    
+    ElecStorage <- ElecStorage[2:6]
     
     ElecStorage <- ElecStorage[which(ElecStorage$Total > 0),]
     
@@ -155,24 +154,24 @@ ElecStorage <- function(input, output, session) {
     p <- plot_ly(data = ElecStorage, y = ~ Type) %>%
       add_trace(
         data = ElecStorage,
-        x = ~ `Under construction`,
+        x = ~ `Under Construction`,
         type = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "Under construction",
-        text = paste0("Under construction: ", format(round(ElecStorage$`Under construction`, digits = 0), big.mark = ","), " MW"),
+        name = "Under Construction",
+        text = paste0("Under Construction: ", format(round(ElecStorage$`Under Construction`, digits = 0), big.mark = ","), " MW"),
         hoverinfo = 'text',
         marker = list(color = BarColours[2]),
         legendgroup = 2
       ) %>%
       add_trace(
         data = ElecStorage,
-        x = ~ `Awaiting construction`,
+        x = ~ `Awaiting Construction`,
         type = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "Awaiting construction",
-        text = paste0("Awaiting construction: ", format(round(ElecStorage$`Awaiting construction`, digits = 0), big.mark = ","), " MW"),
+        name = "Awaiting Construction",
+        text = paste0("Awaiting Construction: ", format(round(ElecStorage$`Awaiting Construction`, digits = 0), big.mark = ","), " MW"),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 3
@@ -180,12 +179,12 @@ ElecStorage <- function(input, output, session) {
       
       add_trace(
         data = ElecStorage,
-        x = ~ `Application submitted`,
+        x = ~ `Application Submitted`,
         type = 'bar',
         width = 0.7,
         orientation = 'h',
-        name = "Application submitted",
-        text = paste0("Application submitted: ", format(round(ElecStorage$`Application submitted`, digits = 0), big.mark = ","), " MW"),
+        name = "Application Submitted",
+        text = paste0("Application Submitted: ", format(round(ElecStorage$`Application Submitted`, digits = 0), big.mark = ","), " MW"),
         hoverinfo = 'text',
         marker = list(color = BarColours[4]),
         legendgroup = 4
@@ -238,21 +237,26 @@ ElecStorage <- function(input, output, session) {
   
   output$ElecStorageTable = renderDataTable({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Electricity storage", col_names = TRUE,
-                       skip = 14, n_max = 10)[6:10]
+    ElecStorage <- read_csv("Processed Data/Output/Renewable Capacity/Storage.csv")
     
-    Data <- Data[complete.cases(Data),]
+    ElecStorage$Operational <- NULL
     
-    Data[2:5]%<>% lapply(function(x)
-      as.numeric(as.character(x)))
+    ElecStorage$`Under Construction` <- 0
     
-    ElecStorage <- as_tibble(Data)
+    names(ElecStorage)[2] <- "Type"
     
-    names(ElecStorage)[1] <- "Type"
+    names(ElecStorage)[5] <- "Total"
+    
+    ElecStorage <- ElecStorage[2:6]
+    
+    ElecStorage <- ElecStorage[which(ElecStorage$Total > 0),]
+    
+    ElecStorage <- arrange(ElecStorage, ElecStorage$Total)
+    
+    rownames(ElecStorage) <- NULL
     
     datatable(
-      ElecStorage,
+      ElecStorage[c(1,5,2:4)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -314,28 +318,25 @@ ElecStorage <- function(input, output, session) {
     filename = "ElecStorage.png",
     content = function(file) {
       
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Renewable elec pipeline", col_names = TRUE,
-                         skip = 26, n_max = 1)
-      Quarter <- substr(Data[1,1], 8,8)
+      EnergyStorageTech <- read_csv("Processed Data/Output/Renewable Capacity/Storage.csv")
       
-      Quarter <- as.numeric(Quarter)*3
+      EnergyStorageTech$Operational <- NULL
       
-      Year <- substr(Data[1,1], 1,4)
-
-      ### Load Packages and Functions
-      Data <- read_excel("Structure/CurrentWorking.xlsx",
-                          sheet = "Electricity storage", skip = 14)[6:9]
+      EnergyStorageTech$`Under Construction` <- 0
       
-      names(Data)[1] <- "Type"
+      names(EnergyStorageTech)[2] <- "Type"
       
-      Data <- Data[complete.cases(Data),]
+      names(EnergyStorageTech)[5] <- "Total"
       
-      Data[2:4] %<>% lapply(function(x) as.numeric(as.character(x)))
+      EnergyStorageTech <- EnergyStorageTech[2:6]
       
-      EnergyStorageTech <- Data
+      EnergyStorageTech <- EnergyStorageTech[which(EnergyStorageTech$Total > 0),]
       
-      EnergyStorageTech <- arrange(EnergyStorageTech,row_number())
+      EnergyStorageTech <- arrange(EnergyStorageTech, EnergyStorageTech$Total)
+      
+      rownames(EnergyStorageTech) <- NULL
+      
+      EnergyStorageTech$Total <- NULL
       
       EnergyStorageTech$Type <-
         factor(EnergyStorageTech$Type,
@@ -347,7 +348,7 @@ ElecStorage <- function(input, output, session) {
       
       EnergyStorageTech$variable <-
         factor(EnergyStorageTech$variable,
-               levels = rev(unique(EnergyStorageTech$variable)),
+               levels = unique(EnergyStorageTech$variable),
                ordered = TRUE)
       
       EnergyStorageTech <- EnergyStorageTech %>%
@@ -379,9 +380,9 @@ ElecStorage <- function(input, output, session) {
           "variable",
           values = c(
             "Operational" = BarColours[1],
-            "Under construction" = BarColours[2],
-            "Awaiting construction" = BarColours[3],
-            "Application submitted" = BarColours[4]
+            "Under Construction" = BarColours[2],
+            "Awaiting Construction" = BarColours[3],
+            "Application Submitted" = BarColours[4]
           )
         ) +
         geom_bar(stat = "identity", width = .8) +
@@ -450,7 +451,7 @@ ElecStorage <- function(input, output, session) {
         geom_text(
           aes(
             x = Type,
-            y = pos,
+            y = top -pos,
             label = ifelse(value > 500, paste0(format(round(value, digits = 0), big.mark = ",", trim = TRUE), "\nMW"),""),
             fontface = 2
           ),
