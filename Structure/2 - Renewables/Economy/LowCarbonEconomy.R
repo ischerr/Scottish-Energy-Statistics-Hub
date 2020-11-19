@@ -36,6 +36,8 @@ LowCarbonEconomyOutput <- function(id) {
         #dygraphOutput(ns("LowCarbonEconomyPlot")),
         plotlyOutput(ns("LowCarbonEconomyPlot")) %>% withSpinner(color =
                                                                    "#39ab2c"),
+        plotlyOutput(ns("LowCarbonEconomyPlot2")) %>% withSpinner(color =
+                                                                   "#39ab2c"),
         tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")
       ),
       tabPanel(
@@ -225,43 +227,143 @@ LowCarbonEconomy <- function(input, output, session) {
     })
   
     output$LowCarbonEconomyPlot <- renderPlotly  ({
+      
+      ChartColours <- c("#39ab2c", "#FF8500")
     
-    LowCarbonEconomy <- Data[which(Data$Measure == "Employees  (FTE)"),]
-    
-    LowCarbonEmployment <- LowCarbonEconomy$Direct
-    
-    LowCarbonEconomy <- melt(LowCarbonEconomy[c(2,4,5)], id = c("Year"))
-    
-    LowCarbonEconomy$value <- as.numeric(LowCarbonEconomy$value)
-    
-    p <- plot_ly() %>% 
-      add_pie(data = LowCarbonEconomy,
-              labels = ~variable,
-              values = ~value,
-              sort = FALSE,
-              hole = 0.5,
-              textposition = "inside",
-              textinfo = 'none',
-              hoverinfo = 'text',
-              marker = list(colors = c("#1a5d38",  "#2b8cbe", "#31859c","#77933c", "#4f6228", "#184d0f"),
-                            line = list(color = '#FFFFFF', width = 2)),
-              text = paste0(LowCarbonEconomy$variable,": ", format(round(LowCarbonEconomy$value, digits = 0), big.mark = ","), " employees\n", percent((LowCarbonEconomy$value)/ sum(LowCarbonEconomy$value))),
-              sort = T) %>% 
+      chartdata <- read_csv("Processed Data/Output/LCRE/LCRE.csv") 
+      
+      chartdata <- chartdata[which(chartdata$Country == "Scotland"),]
+      
+      chartdata<- chartdata[which(chartdata$Category == "Turnover"),]
+      
+      chartdata$Estimate <- as.numeric(chartdata$Estimate)
+      chartdata$`Lower CI` <- as.numeric(chartdata$`Lower CI`)
+      chartdata$`Upper CI` <- as.numeric(chartdata$`Upper CI`)
+      
+      
+      
+      p <- plot_ly(chartdata,
+                   x = ~Year,
+                   y = ~Estimate, 
+                   type = 'scatter', 
+                   mode = 'lines',
+                   error_y =  ~list(
+                     array = c((`Upper CI` - Estimate)),
+                     arrayminus = c(`Estimate` - `Lower CI`),
+                     color = '#000000',
+                     symmetric = FALSE
+                   ),
+                   line = list(width = 6, color = ChartColours[1], dash = "none")) %>% 
+        add_trace(
+          data = tail(chartdata, 1),
+          x = ~Year,
+          y = ~Estimate, 
+          type = "scatter",
+          mode = 'markers',
+          marker = list(size = 18, 
+                        color = ChartColours[1])
+        )  %>% 
       layout(
-        title = list(
-          text = paste("<b>Total Employees</b>:",format(round(LowCarbonEmployment, digits = 0), big.mark = ",")),
-          font = list(
-            color = "#262626"
-          )
-        ),
-        legend = list(font = list(color = "#1A5D38"),
-                      orientation = 'h')
-      )
-    
-    #orca(p, "StaticCharts/LowCarbonEconomyPie.svg")
-    
-    p
+        barmode = 'stack',
+        bargap = 0.66,
+        legend = list(font = list(color = "#39ab2c"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        xaxis = list(title = "",
+                     showgrid = FALSE),
+        yaxis = list(
+          title = "",
+          tickformat = "",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          rangemode = "tozero"
+        )
+      ) %>% 
+        config(displayModeBar = F)
+      p
   })
+    
+    output$LowCarbonEconomyPlot2 <- renderPlotly  ({
+      
+      ChartColours <- c("#39ab2c", "#FF8500", "#bdbdbd")
+      
+      chartdata <- read_csv("Processed Data/Output/LCRE/LCRE.csv") 
+      
+      chartdata <- chartdata[which(chartdata$Country == "Scotland"),]
+      
+      chartdata<- chartdata[which(chartdata$Category == "Turnover"),]
+      
+      chartdata$Estimate <- as.numeric(chartdata$Estimate)
+      chartdata$`Lower CI` <- as.numeric(chartdata$`Lower CI`)
+      chartdata$`Upper CI` <- as.numeric(chartdata$`Upper CI`)
+      
+      
+      
+      p <- plot_ly(chartdata,
+                   x = ~Year,
+                   y = ~`Lower CI`,
+                   type = 'scatter', 
+                   mode = 'lines',
+                   line = list(width = 2, color = ChartColours[3], dash = "none")) %>% 
+        add_trace(
+          data = chartdata,
+          x = ~Year,
+          y = ~`Upper CI`,
+          type = 'scatter', 
+          mode = 'lines',
+          line = list(width = 2, color = ChartColours[3], dash = "none"),
+          fillcolor="rgba(240,240,240,0.5)", 
+          fill = 'tonexty'
+        ) %>% 
+        add_trace(
+          data = tail(chartdata, 1),
+          x = ~Year,
+          y = ~Estimate, 
+          type = "scatter",
+          mode = 'markers',
+          error_y =  ~list(
+            array = c((`Upper CI` - Estimate)),
+            arrayminus = c(`Estimate` - `Lower CI`),
+            color = '#000000',
+            symmetric = FALSE
+          ),
+          marker = list(size = 18, 
+                        color = ChartColours[1])
+        )  %>% 
+        add_trace(data = chartdata,
+                  x = ~Year,
+                  y = ~Estimate, 
+                  type = 'scatter', 
+                  mode = 'lines',
+                  line = list(width = 6, color = ChartColours[1], dash = "none")
+                  ) %>% 
+        layout(
+          barmode = 'stack',
+          bargap = 0.66,
+          legend = list(font = list(color = "#39ab2c"),
+                        orientation = 'h'),
+          hoverlabel = list(font = list(color = "white"),
+                            hovername = 'text'),
+          hovername = 'text',
+          xaxis = list(title = "",
+                       showgrid = FALSE),
+          yaxis = list(
+            title = "",
+            tickformat = "",
+            showgrid = TRUE,
+            zeroline = TRUE,
+            zerolinecolor = ChartColours[1],
+            zerolinewidth = 2,
+            rangemode = "tozero"
+          )
+        ) %>% 
+        config(displayModeBar = F)
+      p
+    })
   
     output$LowCarbonEconomyTurnoverPlot <- renderPlotly  ({
       
