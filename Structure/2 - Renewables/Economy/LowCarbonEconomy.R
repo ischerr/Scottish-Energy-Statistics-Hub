@@ -509,6 +509,7 @@ LowCarbonEconomy <- function(input, output, session) {
         )
     })
     
+    
     output$LowCarbonEconomyExportsTable = renderDataTable({
       
       Data <- read_excel("Structure/2 - Renewables/Economy/EconomyTables.xlsx", 
