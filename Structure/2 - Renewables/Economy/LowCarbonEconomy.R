@@ -23,7 +23,10 @@ LowCarbonEconomyOutput <- function(id) {
             h4(textOutput(ns(
               'LowCarbonEconomySubtitle'
             )), style = "color: #39ab2c;")
-          ),
+          ,
+          selectInput(ns("MeasureSelect"), "Measure:", c(unique(LCRE$Category)), selected = "Turnover", multiple = FALSE,
+                      selectize = TRUE, width = NULL, size = NULL)
+        ),
           column(
             4,
             style = 'padding:15px;',
@@ -232,7 +235,7 @@ LowCarbonEconomy <- function(input, output, session) {
       
       chartdata <- chartdata[which(chartdata$Country == "Scotland"),]
       
-      chartdata<- chartdata[which(chartdata$Category == "Turnover"),]
+      chartdata<- chartdata[which(chartdata$Category == input$MeasureSelect),]
       
       chartdata$Estimate <- as.numeric(chartdata$Estimate)
       chartdata$`Lower CI` <- as.numeric(chartdata$`Lower CI`)
