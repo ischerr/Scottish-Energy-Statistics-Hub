@@ -39,22 +39,22 @@ GHGEmissionsOutput <- function(id) {
              #dygraphOutput(ns("SectorInventoryPlot")),
              plotlyOutput(ns("SectorInventoryPlot"), height = "700px")%>% withSpinner(color="#1A5D38"),
              tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"))
-    # ,
-    # tabPanel("Energy related emissions",
-    #          fluidRow(column(8,
-    #                          h3("Energy related greenhouse gas emissions (MtCO2e)", style = "color: #1A5D38;  font-weight:bold"),
-    #                          h4(textOutput(ns('EnSupplyEmissionsSubtitle')), style = "color: #1A5D38;")
-    #          ),
-    #          column(
-    #            4, style = 'padding:15px;',
-    #            downloadButton(ns('EnSupplyEmissions.png'), 'Download Graph', style="float:right")
-    #          )),
-    # 
-    #          tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
-    #          #dygraphOutput(ns("EnSupplyEmissionsPlot")),
-    #          plotlyOutput(ns("EnSupplyEmissionsPlot"))%>% withSpinner(color="#1A5D38"),
-    #          tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")
-    #          )
+    ,
+    tabPanel("Energy related emissions",
+             fluidRow(column(8,
+                             h3("Energy related greenhouse gas emissions (MtCO2e)", style = "color: #1A5D38;  font-weight:bold"),
+                             h4(textOutput(ns('EnSupplyEmissionsSubtitle')), style = "color: #1A5D38;")
+             ),
+             column(
+               4, style = 'padding:15px;',
+               downloadButton(ns('EnSupplyEmissions.png'), 'Download Graph', style="float:right")
+             )),
+
+             tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
+             #dygraphOutput(ns("EnSupplyEmissionsPlot")),
+             plotlyOutput(ns("EnSupplyEmissionsPlot"))%>% withSpinner(color="#1A5D38"),
+             tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;")
+             )
     ),
     fluidRow(
     column(10,h3("Commentary", style = "color: #1A5D38;  font-weight:bold")),
@@ -73,15 +73,15 @@ GHGEmissionsOutput <- function(id) {
     fluidRow(
       column(12, dataTableOutput(ns("SectorInventoryTable"))%>% withSpinner(color="#1A5D38"))),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"))
-    # ,
-    # tabPanel("Energy related emissions",
-    #          fluidRow(
-    #            column(10, h3("Data -  Energy related greenhouse gas emissions (MtCO2e)", style = "color: #1A5D38;  font-weight:bold")),
-    #            column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
-    #          ),
-    #          fluidRow(
-    #            column(12, dataTableOutput(ns("EnSupplyEmissionsTable"))%>% withSpinner(color="#1A5D38"))),
-    #          tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"))
+    ,
+    tabPanel("Energy related emissions",
+             fluidRow(
+               column(10, h3("Data -  Energy related greenhouse gas emissions (MtCO2e)", style = "color: #1A5D38;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("EnSupplyEmissionsTable"))%>% withSpinner(color="#1A5D38"))),
+             tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"))
     )
     ,
     fluidRow(
