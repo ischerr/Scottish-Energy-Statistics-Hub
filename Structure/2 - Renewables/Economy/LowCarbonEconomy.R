@@ -24,7 +24,7 @@ LowCarbonEconomyOutput <- function(id) {
               'LowCarbonEconomySubtitle'
             )), style = "color: #39ab2c;")
           ,
-          selectInput(ns("MeasureSelect"), "Measure:", c(unique(LCRE$Category)), selected = "Turnover", multiple = FALSE,
+          selectInput(ns("MeasureSelect"), "Measure:", c("Turnover","Number of businesses", "Employment (full time equivalent)", "Exports", "Imports"), selected = "Turnover", multiple = FALSE,
                       selectize = TRUE, width = NULL, size = NULL)
         ),
           column(
@@ -242,12 +242,33 @@ LowCarbonEconomy <- function(input, output, session) {
       chartdata$`Upper CI` <- as.numeric(chartdata$`Upper CI`)
       
       
+      if (input$MeasureSelect == "Turnover"){
+      chartdata$unit <- "\u00A3"
+      }
+      if (input$MeasureSelect == "Number of businesses"){
+        chartdata$unit <- ""
+      }
+      if (input$MeasureSelect == "Employment (full time equivalent)"){
+        chartdata$unit <- ""
+      }
+      if (input$MeasureSelect == "Exports"){
+        chartdata$unit <- "\u00A3"
+      }     
+      if (input$MeasureSelect == "Imports"){
+        chartdata$unit <- "\u00A3"
+      } 
+      
+      chartdata$HoverText <- paste0("<b>", input$MeasureSelect, ": ", chartdata$unit, format(round(chartdata$Estimate, 0), big.mark = ","), "</b>\nYear: ", chartdata$Year, "\n<i>Upper CI: ", chartdata$unit, format(round(chartdata$`Upper CI`, 0), big.mark = ","), "\nLower CI: ", chartdata$unit, format(round(chartdata$`Lower CI`, 0), big.mark = ","), "</i>")
+      
+      
       
       p <- plot_ly(chartdata,
                    x = ~Year,
                    y = ~Estimate, 
                    type = 'scatter', 
                    mode = 'lines',
+                   text = chartdata$HoverText,
+                   hoverinfo = 'text',
                    error_y =  ~list(
                      array = c((`Upper CI` - Estimate)),
                      arrayminus = c(`Estimate` - `Lower CI`),
@@ -261,6 +282,8 @@ LowCarbonEconomy <- function(input, output, session) {
           y = ~Estimate, 
           type = "scatter",
           mode = 'markers',
+          hoverinfo = 'text',
+          text = tail(chartdata, 1)$HoverText,
           marker = list(size = 18, 
                         color = ChartColours[1])
         )  %>% 
