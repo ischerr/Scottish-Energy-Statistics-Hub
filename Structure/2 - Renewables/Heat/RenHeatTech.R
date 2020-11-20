@@ -82,15 +82,7 @@ RenHeatTechOutput <- function(id) {
              fluidRow(
                column(12, dataTableOutput(ns("RenHeatSizeTable"))%>% withSpinner(color="#39ab2c"))),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Energy from Waste",
-      fluidRow(
-        column(10, h3("Data - Energy from Waste", style = "color: #39ab2c;  font-weight:bold")),
-        column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
-      ),
-      fluidRow(
-        column(12, dataTableOutput(ns("RenHeatOutputTable"))%>% withSpinner(color="#39ab2c"))),
-      tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Local Authority",
+        tabPanel("Local Authority",
              fluidRow(
                column(10, h3("Data - Renewable Heat Output and Capacity by Local Authority", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
@@ -624,45 +616,6 @@ RenHeatTech <- function(input, output, session) {
     }
   )
 
-  output$RenHeatOutputTable = renderDataTable({
-    
-    RenHeatEnergyFromWaste <- read_delim("Processed Data/Output/Renewable Heat/RenHeatEnergyFromWaste.txt", 
-                                         "\t", escape_double = FALSE, trim_ws = TRUE)
-    
-    datatable(
-      RenHeatEnergyFromWaste[c(2,3,5)],
-      extensions = 'Buttons',
-      
-      rownames = FALSE,
-      options = list(
-        paging = TRUE,
-        pageLength = -1,
-        searching = TRUE,
-        fixedColumns = FALSE,
-        autoWidth = TRUE,
-        title = "Renewable heat from Waste",
-        dom = 'ltBp',
-        buttons = list(
-          list(extend = 'copy'),
-          list(
-            extend = 'excel',
-            title = "Renewable heat from Waste",
-            header = TRUE
-          ),
-          list(extend = 'csv',
-               title = "Renewable heat from Waste")
-        ),
-        
-        # customize the length menu
-        lengthMenu = list( c(10, 20, -1) # declare values
-                           , c(10, 20, "All") # declare titles
-        ), # end of lengthMenu customization
-        pageLength = 10
-      )
-    ) %>%
-      formatRound(c(2), 3) %>%
-      formatRound(c(3), 0)
-  })
 
   output$Text <- renderUI({
     tagList(column(12,
