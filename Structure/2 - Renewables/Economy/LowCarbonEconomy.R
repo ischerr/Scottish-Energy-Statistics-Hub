@@ -16,14 +16,19 @@ LowCarbonEconomyOutput <- function(id) {
           column(
             8,
             h3(
-              "LCRE sector",
+              "Turnover",
               style = "color: #39ab2c;  font-weight:bold"
             ),
             h4(textOutput(ns(
               'LowCarbonEconomyTurnoverSubtitle'
             )), style = "color: #39ab2c;")
           ,
-          selectInput(ns("MeasureSelect1"), "Measure:", c("Turnover","Number of businesses", "Employment (full time equivalent)", "Exports", "Imports"), selected = "Turnover", multiple = FALSE,
+          selectInput(ns("MeasureSelect1"), "Measure:", c("All groups",
+                                                          "Low carbon electricity",
+                                                          "Low carbon heat",
+                                                          "Energy from waste and biomass",
+                                                          "Energy efficient products"
+          ), selected = "Turnover", multiple = FALSE,
                       selectize = TRUE, width = NULL, size = NULL)
         ),
           column(
@@ -42,7 +47,7 @@ LowCarbonEconomyOutput <- function(id) {
                  column(
                    8,
                    h3(
-                     "LCRE sector",
+                     "Businesses",
                      style = "color: #39ab2c;  font-weight:bold"
                    ),
                    h4(textOutput(ns(
@@ -68,7 +73,7 @@ LowCarbonEconomyOutput <- function(id) {
                  column(
                    8,
                    h3(
-                     "LCRE sector",
+                     "Employment",
                      style = "color: #39ab2c;  font-weight:bold"
                    ),
                    h4(textOutput(ns(
@@ -94,7 +99,7 @@ LowCarbonEconomyOutput <- function(id) {
                  column(
                    8,
                    h3(
-                     "LCRE sector",
+                     "Exports",
                      style = "color: #39ab2c;  font-weight:bold"
                    ),
                    h4(textOutput(ns(
@@ -504,11 +509,15 @@ LowCarbonEconomy <- function(input, output, session) {
       
       ChartColours <- c("#39ab2c", "#FF8500")
       
-      chartdata <- read_csv("Processed Data/Output/LCRE/LCRE.csv") 
+      chartdata <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
       
       chartdata <- chartdata[which(chartdata$Country == "Scotland"),]
       
       chartdata<- chartdata[which(chartdata$Category == "Turnover"),]
+      
+      
+      chartdata<- chartdata[which(chartdata$Sector == input$MeasureSelect1),]
+      
       
       chartdata$Estimate <- as.numeric(chartdata$Estimate)
       chartdata$`Lower CI` <- as.numeric(chartdata$`Lower CI`)
