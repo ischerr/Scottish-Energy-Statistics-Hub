@@ -10,14 +10,11 @@ require("DT")
 LowCarbonEconomyOutput <- function(id) {
   ns <- NS(id)
   tagList(
-    tabsetPanel(
-      tabPanel(
-        "Employment",
         fluidRow(
           column(
             8,
             h3(
-              "Full time equivalent jobs directly supported by the LCRE sector",
+              "LCRE sector",
               style = "color: #39ab2c;  font-weight:bold"
             ),
             h4(textOutput(ns(
@@ -31,45 +28,13 @@ LowCarbonEconomyOutput <- function(id) {
             4,
             style = 'padding:15px;',
             downloadButton(ns('LowCarbonEconomy.png'), 'Download Graph', style =
-                             "float:right")
-          )
-        ),
+                             "float:right"))),
         
         tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
         #dygraphOutput(ns("LowCarbonEconomyPlot")),
         plotlyOutput(ns("LowCarbonEconomyPlot")) %>% withSpinner(color =
                                                                    "#39ab2c"),
-        tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")
-      ),
-      tabPanel(
-        "Turnover",
-        fluidRow(
-          column(
-            8,
-            h3("Turnover directly supported by the LCRE sector", style = "color: #39ab2c;  font-weight:bold"),
-            h4(textOutput(
-              ns('LowCarbonEconomyTurnoverSubtitle')
-            ), style = "color: #39ab2c;")
-          ),
-          column(
-            4,
-            style = 'padding:15px;',
-            downloadButton(
-              ns('LowCarbonEconomyTurnover.png'),
-              'Download Graph',
-              style = "float:right"
-            )
-          )
-        ),
-        
         tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-        #dygraphOutput(ns("LowCarbonEconomyPlot")),
-        plotlyOutput(ns("LowCarbonEconomyTurnoverPlot")) %>% withSpinner(color =
-                                                                           "#39ab2c"),
-        tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")
-      )
-      
-    ),
     fluidRow(
       column(
         10,
@@ -216,10 +181,10 @@ LowCarbonEconomy <- function(input, output, session) {
   
     output$LowCarbonEconomySubtitle <- renderText({
     
+    chartdata <- read_csv("Processed Data/Output/LCRE/LCRE.csv") 
 
-  
+    paste("Scotland,",min(chartdata$Year), "-", max(chartdata$Year))
     
-    paste("Scotland,", max(Year))
   })
     
     output$LowCarbonEconomyTurnoverSubtitle <- renderText({
@@ -269,6 +234,8 @@ LowCarbonEconomy <- function(input, output, session) {
                    mode = 'lines',
                    text = chartdata$HoverText,
                    hoverinfo = 'text',
+                   legendgroup = "1",
+                   name = input$MeasureSelect,
                    error_y =  ~list(
                      array = c((`Upper CI` - Estimate)),
                      arrayminus = c(`Estimate` - `Lower CI`),
@@ -280,6 +247,8 @@ LowCarbonEconomy <- function(input, output, session) {
           data = tail(chartdata, 1),
           x = ~Year,
           y = ~Estimate, 
+          legendgroup = "1",
+          showlegend = FALSE ,
           type = "scatter",
           mode = 'markers',
           hoverinfo = 'text',
@@ -588,8 +557,136 @@ LowCarbonEconomy <- function(input, output, session) {
   
     output$LowCarbonEconomy.png <- downloadHandler(
     filename = "LowCarbonEconomy.png",
-    content = function(file) {
-      writePNG(readPNG("Structure/2 - Renewables/Economy/LCREJobs.png"), file) 
+    content = function(file) {ChartColours <- c("#39ab2c", "#FF8500")
+    
+    LCRE <- read_csv("Processed Data/Output/LCRE/LCRE.csv") 
+    
+    LCRE <- LCRE[which(LCRE$Country == "Scotland"),]
+    
+    LCRE<- LCRE[which(LCRE$Category == input$MeasureSelect),]
+    
+    LCRE$Estimate <- as.numeric(LCRE$Estimate)
+    LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
+    LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+    
+    sourcecaption <- "BEIS"
+    
+    
+    
+    if (input$MeasureSelect == "Turnover"){
+      LCRE$unit <- "\u00A3"
+      plottitle <- "Turnover"
+    }
+    if (input$MeasureSelect == "Number of businesses"){
+      LCRE$unit <- ""
+      plottitle <- "Number of businesses"
+    }
+    if (input$MeasureSelect == "Employment (full time equivalent)"){
+      LCRE$unit <- ""
+      plottitle <- "Employment"
+    }
+    if (input$MeasureSelect == "Exports"){
+      LCRE$unit <- "\u00A3"
+      plottitle <- "Exports"
+    }     
+    if (input$MeasureSelect == "Imports"){
+      LCRE$unit <- "\u00A3"
+      plottitle <- "Imports"
+    } 
+    
+    LCRE$HoverText <- paste0("<b>", input$MeasureSelect, ": ", LCRE$unit, format(round(LCRE$Estimate, 0), big.mark = ","), "</b>\nYear: ", LCRE$Year, "\n<i>Upper CI: ", LCRE$unit, format(round(LCRE$`Upper CI`, 0), big.mark = ","), "\nLower CI: ", LCRE$unit, format(round(LCRE$`Lower CI`, 0), big.mark = ","), "</i>")
+    
+    length <- max(LCRE$Year) - min(LCRE$Year)
+    
+    LCREChart <-
+      LCRE %>%  ggplot(aes(x = Year), family = "Century Gothic") +
+      
+      ### Line of Values
+      geom_line(
+        aes(y = Estimate,
+            colour = ChartColours[1],
+            label = Estimate),
+        size = 1.5,
+        family = "Century Gothic"
+      ) + geom_errorbar(
+        aes(
+          y = Estimate,
+          ymin = `Lower CI`,
+          ymax = `Upper CI`
+        ),
+        width = .1
+      )+
+      geom_text(
+        aes(
+          x = Year-.1,
+          y = Estimate,
+          label = ifelse(Year == min(Year), paste0(LCRE$unit, format(round(LCRE$Estimate,1), big.mark = ",")), ""),
+          hjust = 1,
+          colour = ChartColours[1],
+          fontface = 2
+        ),
+        family = "Century Gothic"
+      ) +
+      geom_text(
+        aes(
+          x = Year+.1,
+          y = Estimate,
+          label = ifelse(Year == max(Year), paste0(LCRE$unit, format(round(LCRE$Estimate,1), big.mark = ",")), ""),
+          hjust = 0,
+          colour = ChartColours[1],
+          fontface = 2
+        ),
+        family = "Century Gothic"
+      ) +
+      geom_point(
+        data = tail(LCRE, 1),
+        aes(
+          x = Year,
+          y = Estimate,
+          colour = ChartColours[1],
+          label = Estimate,
+          show_guide = FALSE
+        ),
+        size = 4,
+        family = "Century Gothic"
+      ) +
+      geom_text(
+        aes(
+          x = Year,
+          y = 0,
+          label = ifelse(Year == max(Year) |
+                           Year == min(Year), Year, ""),
+          hjust = 0.5,
+          vjust = 1.5,
+          colour = ChartColours[1],
+          fontface = 2
+        ),
+        family = "Century Gothic"
+      )
+    
+    
+    LCREChart <-
+      LinePercentChart(LCREChart,
+                       LCRE,
+                       plottitle,
+                       sourcecaption,
+                       ChartColours)
+    
+    
+    LCREChart
+    
+    LCREChart <- LCREChart +
+      ylim(-.5, max(LCRE$`Upper CI`)*1.05)+
+      xlim(min(LCRE$Year)-(length*0.2), max(LCRE$Year)+(length*0.2))
+    
+    ggsave(
+      file,
+      plot = LCREChart,
+      width = 15,
+      height = 15,
+      units = "cm",
+      dpi = 300
+    )
     }
     )
     
