@@ -635,7 +635,7 @@ LowCarbonEconomy <- function(input, output, session) {
     sourcecaption <- "BEIS"
 
       LCRE$unit <- "\u00A3"
-      plottitle <- str_wrap(paste("Turnover directly supported by the LCRE sector - input$MeasureSelect1"), 35)  
+      plottitle <- str_wrap(paste("Exports directly supported by the LCRE sector - ", input$MeasureSelect1), 40) 
 
     length <- max(LCRE$Year) - min(LCRE$Year)
     
@@ -846,7 +846,7 @@ LowCarbonEconomy <- function(input, output, session) {
 
       LCRE$unit <- ""
       
-      plottitle <- str_wrap(paste("Number of businesses directly supported by the LCRE sector - input$MeasureSelect1"), 35) 
+      plottitle <- str_wrap(paste("Exports directly supported by the LCRE sector - ", input$MeasureSelect2), 40) 
      
       
         
@@ -1064,7 +1064,7 @@ LowCarbonEconomy <- function(input, output, session) {
       
 
         LCRE$unit <- ""
-        plottitle <- str_wrap(paste("Employment directly supported by the LCRE sector - input$MeasureSelect1"), 35) 
+        plottitle <- str_wrap(paste("Exports directly supported by the LCRE sector - ", input$MeasureSelect3), 40)  
 
       
         
@@ -1285,7 +1285,7 @@ LowCarbonEconomy <- function(input, output, session) {
       
 
         LCRE$unit <- "\u00A3"
-        plottitle <- str_wrap(paste("Exports directly supported by the LCRE sector - input$MeasureSelect1"), 35) 
+        plottitle <- str_wrap(paste("Exports directly supported by the LCRE sector - ", input$MeasureSelect4), 40) 
        
       
         
