@@ -16,7 +16,7 @@ LowCarbonEconomyOutput <- function(id) {
           column(
             8,
             h3(
-              "Turnover",
+              "Turnover directly supported by the LCRE sector",
               style = "color: #39ab2c;  font-weight:bold"
             ),
             h4(textOutput(ns(
@@ -28,8 +28,8 @@ LowCarbonEconomyOutput <- function(id) {
                                                          "Low carbon heat",
                                                          "Energy from waste and biomass",
                                                          "Energy efficient products",
-                                                         "Low carbon services",
-                                                         "Low emission vehicles"
+                                                         "Low carbon services"
+                                                         
                                                          
           ), selected = "All groups", multiple = FALSE,
                       selectize = TRUE, width = NULL, size = NULL)
@@ -50,7 +50,7 @@ LowCarbonEconomyOutput <- function(id) {
                  column(
                    8,
                    h3(
-                     "Businesses",
+                     "Number of businesses directly supported by the LCRE sector",
                      style = "color: #39ab2c;  font-weight:bold"
                    ),
                    h4(textOutput(ns(
@@ -58,8 +58,10 @@ LowCarbonEconomyOutput <- function(id) {
                    )), style = "color: #39ab2c;")
                    ,
                    selectInput(ns("MeasureSelect2"), "Sector:", c("All groups",
-                                                                  "Low carbon electricity"
-                                                                  
+                                                                  "Low carbon electricity",
+                                                                  "Energy from waste and biomass",
+                                                                  "Energy efficient products",
+                                                                  "Low carbon services"
                    ), selected = "All groups", multiple = FALSE,
                                selectize = TRUE, width = NULL, size = NULL)
                  ),
@@ -79,7 +81,7 @@ LowCarbonEconomyOutput <- function(id) {
                  column(
                    8,
                    h3(
-                     "Employment",
+                     "Employees directly supported by the LCRE sector",
                      style = "color: #39ab2c;  font-weight:bold"
                    ),
                    h4(textOutput(ns(
@@ -90,8 +92,9 @@ LowCarbonEconomyOutput <- function(id) {
                                                                   "Low carbon electricity",
                                                                   "Low carbon heat",
                                                                   "Energy from waste and biomass",
-                                                                  "Energy efficient products"
-                                                                  
+                                                                  "Energy efficient products",
+                                                                  "Low carbon services",
+                                                                  "Low emission vehicles"
                    ), selected = "All groups", multiple = FALSE,
                                selectize = TRUE, width = NULL, size = NULL)
                  ),
@@ -111,7 +114,7 @@ LowCarbonEconomyOutput <- function(id) {
                  column(
                    8,
                    h3(
-                     "Exports",
+                     "Exports directly supported by the LCRE sector",
                      style = "color: #39ab2c;  font-weight:bold"
                    ),
                    h4(textOutput(ns(
@@ -120,8 +123,10 @@ LowCarbonEconomyOutput <- function(id) {
                    ,
                    selectInput(ns("MeasureSelect4"), "Sector:", c("All groups",
                                                                   "Low carbon electricity",
-                                                                  "Energy efficient products"
-                                                                  
+                                                                  "Low carbon heat",
+                                                                  "Energy from waste and biomass",
+                                                                  "Energy efficient products",
+                                                                  "Low carbon services"
                    ), selected = "All groups", multiple = FALSE,
                                selectize = TRUE, width = NULL, size = NULL)
                  ),
@@ -515,9 +520,9 @@ LowCarbonEconomy <- function(input, output, session) {
   
     output$LowCarbonEconomyTurnoverSubtitle <- renderText({
       
-      chartdata <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
       
-      paste("Scotland,",min(chartdata$Year), "-", max(chartdata$Year))
+      paste("Scotland,",min(LCRE$Year), "-", max(LCRE$Year))
       
     })
     
@@ -525,36 +530,38 @@ LowCarbonEconomy <- function(input, output, session) {
       
       ChartColours <- c("#39ab2c", "#FF8500")
       
-      chartdata <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
       
-      chartdata$Estimate <- as.numeric(chartdata$Estimate)
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
       
-      chartdata <- chartdata[which(chartdata$Estimate > 0),]
+      LCRE <- LCRE[which(LCRE$Estimate > 0),]
       
-      chartdata <- chartdata[which(chartdata$Country == "Scotland"),]
+      LCRE <- LCRE[which(LCRE$Country == "Scotland"),]
       
-      chartdata<- chartdata[which(chartdata$Category == "Turnover"),]
+      LCRE<- LCRE[which(LCRE$Category == "Turnover"),]
       
-      chartdata<- chartdata[which(chartdata$Sector == input$MeasureSelect1),]
+      LCRE<- LCRE[which(LCRE$Sector == input$MeasureSelect1),]
       
       
-      chartdata$Estimate <- as.numeric(chartdata$Estimate)
-      chartdata$`Lower CI` <- as.numeric(chartdata$`Lower CI`)
-      chartdata$`Upper CI` <- as.numeric(chartdata$`Upper CI`)
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
+      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+      
+       
 
-        chartdata$unit <- "\u00A3"
+        LCRE$unit <- "\u00A3"
       
       
-      chartdata$HoverText <- paste0("<b>", "Turnover", ": ", chartdata$unit, format(round(chartdata$Estimate, 0), big.mark = ","), "</b>\nYear: ", chartdata$Year,"\nSector: ", input$MeasureSelect1,  "\n<i>Upper CI: ", chartdata$unit, format(round(chartdata$`Upper CI`, 0), big.mark = ","), "\nLower CI: ", chartdata$unit, format(round(chartdata$`Lower CI`, 0), big.mark = ","), "</i>")
+      LCRE$HoverText <- paste0("<b>", "Turnover", ": ", LCRE$unit, format(round(LCRE$Estimate, 0), big.mark = ","), "</b>\nYear: ", LCRE$Year,"\nSector: ", input$MeasureSelect1,  "\n<i>Upper CI: ", LCRE$unit, format(round(LCRE$`Upper CI`, 0), big.mark = ","), "\nLower CI: ", LCRE$unit, format(round(LCRE$`Lower CI`, 0), big.mark = ","), "</i>")
       
       
       
-      p <- plot_ly(chartdata,
+      p <- plot_ly(LCRE,
                    x = ~Year,
                    y = ~Estimate, 
                    type = 'scatter', 
                    mode = 'lines',
-                   text = chartdata$HoverText,
+                   text = LCRE$HoverText,
                    hoverinfo = 'text',
                    legendgroup = "1",
                    name = "Turnover",
@@ -566,7 +573,7 @@ LowCarbonEconomy <- function(input, output, session) {
                    ),
                    line = list(width = 6, color = ChartColours[1], dash = "none")) %>% 
         add_trace(
-          data = tail(chartdata, 1),
+          data = tail(LCRE, 1),
           x = ~Year,
           y = ~Estimate, 
           legendgroup = "1",
@@ -574,7 +581,7 @@ LowCarbonEconomy <- function(input, output, session) {
           type = "scatter",
           mode = 'markers',
           hoverinfo = 'text',
-          text = tail(chartdata, 1)$HoverText,
+          text = tail(LCRE, 1)$HoverText,
           marker = list(size = 18, 
                         color = ChartColours[1])
         )  %>% 
@@ -623,10 +630,12 @@ LowCarbonEconomy <- function(input, output, session) {
     LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
     LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
     
+     
+    
     sourcecaption <- "BEIS"
 
       LCRE$unit <- "\u00A3"
-      plottitle <- "Turnover"
+      plottitle <- str_wrap(paste("Turnover directly supported by the LCRE sector - input$MeasureSelect1"), 35)  
 
     length <- max(LCRE$Year) - min(LCRE$Year)
     
@@ -725,9 +734,9 @@ LowCarbonEconomy <- function(input, output, session) {
     
     output$LowCarbonEconomyBusinessesSubtitle <- renderText({
       
-      chartdata <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
       
-      paste("Scotland,",min(chartdata$Year), "-", max(chartdata$Year))
+      paste("Scotland,",min(LCRE$Year), "-", max(LCRE$Year))
       
     })
     
@@ -735,32 +744,34 @@ LowCarbonEconomy <- function(input, output, session) {
       
       ChartColours <- c("#39ab2c", "#FF8500")
       
-      chartdata <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
       
-      chartdata$Estimate <- as.numeric(chartdata$Estimate)
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
       
-      chartdata <- chartdata[which(chartdata$Estimate > 0),]
+      LCRE <- LCRE[which(LCRE$Estimate > 0),]
       
-      chartdata <- chartdata[which(chartdata$Country == "Scotland"),]
+      LCRE <- LCRE[which(LCRE$Country == "Scotland"),]
       
-      chartdata<- chartdata[which(chartdata$Category == "Number of businesses"),]
+      LCRE<- LCRE[which(LCRE$Category == "Number of businesses"),]
       
-      chartdata$Estimate <- as.numeric(chartdata$Estimate)
-      chartdata$`Lower CI` <- as.numeric(chartdata$`Lower CI`)
-      chartdata$`Upper CI` <- as.numeric(chartdata$`Upper CI`)
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
+      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
       
-      chartdata<- chartdata[which(chartdata$Sector == input$MeasureSelect2),]
+       
+      
+      LCRE<- LCRE[which(LCRE$Sector == input$MeasureSelect2),]
       
 
-      chartdata$unit <- ""
+      LCRE$unit <- ""
 
       
-      p <- plot_ly(chartdata,
+      p <- plot_ly(LCRE,
                    x = ~Year,
                    y = ~Estimate, 
                    type = 'scatter', 
                    mode = 'lines',
-                   text = chartdata$HoverText,
+                   text = LCRE$HoverText,
                    hoverinfo = 'text',
                    legendgroup = "1",
                    name = "Number of businesses",
@@ -772,7 +783,7 @@ LowCarbonEconomy <- function(input, output, session) {
                    ),
                    line = list(width = 6, color = ChartColours[1], dash = "none")) %>% 
         add_trace(
-          data = tail(chartdata, 1),
+          data = tail(LCRE, 1),
           x = ~Year,
           y = ~Estimate, 
           legendgroup = "1",
@@ -780,7 +791,7 @@ LowCarbonEconomy <- function(input, output, session) {
           type = "scatter",
           mode = 'markers',
           hoverinfo = 'text',
-          text = tail(chartdata, 1)$HoverText,
+          text = tail(LCRE, 1)$HoverText,
           marker = list(size = 18, 
                         color = ChartColours[1])
         )  %>% 
@@ -829,11 +840,13 @@ LowCarbonEconomy <- function(input, output, session) {
       LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
       LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
       
+       
+      
       sourcecaption <- "BEIS"
 
       LCRE$unit <- ""
       
-      plottitle <- "Number of businesses"
+      plottitle <- str_wrap(paste("Number of businesses directly supported by the LCRE sector - input$MeasureSelect1"), 35) 
      
       
         
@@ -935,9 +948,9 @@ LowCarbonEconomy <- function(input, output, session) {
     
     output$LowCarbonEconomyEmploymentSubtitle <- renderText({
       
-      chartdata <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
       
-      paste("Scotland,",min(chartdata$Year), "-", max(chartdata$Year))
+      paste("Scotland,",min(LCRE$Year), "-", max(LCRE$Year))
       
     })
     
@@ -945,36 +958,38 @@ LowCarbonEconomy <- function(input, output, session) {
       
       ChartColours <- c("#39ab2c", "#FF8500")
       
-      chartdata <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
       
-      chartdata$Estimate <- as.numeric(chartdata$Estimate)
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
       
-      chartdata <- chartdata[which(chartdata$Estimate > 0),]
+      LCRE <- LCRE[which(LCRE$Estimate > 0),]
       
-      chartdata <- chartdata[which(chartdata$Country == "Scotland"),]
+      LCRE <- LCRE[which(LCRE$Country == "Scotland"),]
       
-      chartdata<- chartdata[which(chartdata$Category == "Employment (full time equivalent)"),]
+      LCRE<- LCRE[which(LCRE$Category == "Employment (full time equivalent)"),]
       
-      chartdata<- chartdata[which(chartdata$Sector == input$MeasureSelect3),]
+      LCRE<- LCRE[which(LCRE$Sector == input$MeasureSelect3),]
       
-      chartdata$Estimate <- as.numeric(chartdata$Estimate)
-      chartdata$`Lower CI` <- as.numeric(chartdata$`Lower CI`)
-      chartdata$`Upper CI` <- as.numeric(chartdata$`Upper CI`)
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
+      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+      
+       
       
 
-        chartdata$unit <- ""
+        LCRE$unit <- ""
      
       
-        chartdata$HoverText <- paste0("<b>", "Turnover", ": ", chartdata$unit, format(round(chartdata$Estimate, 0), big.mark = ","), "</b>\nYear: ", chartdata$Year,"\nSector: ", input$MeasureSelect3,  "\n<i>Upper CI: ", chartdata$unit, format(round(chartdata$`Upper CI`, 0), big.mark = ","), "\nLower CI: ", chartdata$unit, format(round(chartdata$`Lower CI`, 0), big.mark = ","), "</i>")
+        LCRE$HoverText <- paste0("<b>", "Turnover", ": ", LCRE$unit, format(round(LCRE$Estimate, 0), big.mark = ","), "</b>\nYear: ", LCRE$Year,"\nSector: ", input$MeasureSelect3,  "\n<i>Upper CI: ", LCRE$unit, format(round(LCRE$`Upper CI`, 0), big.mark = ","), "\nLower CI: ", LCRE$unit, format(round(LCRE$`Lower CI`, 0), big.mark = ","), "</i>")
       
       
       
-      p <- plot_ly(chartdata,
+      p <- plot_ly(LCRE,
                    x = ~Year,
                    y = ~Estimate, 
                    type = 'scatter', 
                    mode = 'lines',
-                   text = chartdata$HoverText,
+                   text = LCRE$HoverText,
                    hoverinfo = 'text',
                    legendgroup = "1",
                    name = "Employment (full time equivalent)",
@@ -986,7 +1001,7 @@ LowCarbonEconomy <- function(input, output, session) {
                    ),
                    line = list(width = 6, color = ChartColours[1], dash = "none")) %>% 
         add_trace(
-          data = tail(chartdata, 1),
+          data = tail(LCRE, 1),
           x = ~Year,
           y = ~Estimate, 
           legendgroup = "1",
@@ -994,7 +1009,7 @@ LowCarbonEconomy <- function(input, output, session) {
           type = "scatter",
           mode = 'markers',
           hoverinfo = 'text',
-          text = tail(chartdata, 1)$HoverText,
+          text = tail(LCRE, 1)$HoverText,
           marker = list(size = 18, 
                         color = ChartColours[1])
         )  %>% 
@@ -1043,11 +1058,13 @@ LowCarbonEconomy <- function(input, output, session) {
       LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
       LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
       
+       
+      
       sourcecaption <- "BEIS"
       
 
         LCRE$unit <- ""
-        plottitle <- "Employment"
+        plottitle <- str_wrap(paste("Employment directly supported by the LCRE sector - input$MeasureSelect1"), 35) 
 
       
         
@@ -1149,9 +1166,9 @@ LowCarbonEconomy <- function(input, output, session) {
     
     output$LowCarbonEconomyExportsSubtitle <- renderText({
       
-      chartdata <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
       
-      paste("Scotland,",min(chartdata$Year), "-", max(chartdata$Year))
+      paste("Scotland,",min(LCRE$Year), "-", max(LCRE$Year))
       
     })
     
@@ -1159,37 +1176,41 @@ LowCarbonEconomy <- function(input, output, session) {
       
       ChartColours <- c("#39ab2c", "#FF8500")
       
-      chartdata <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
       
-      chartdata$Estimate <- as.numeric(chartdata$Estimate)
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
       
-      chartdata <- chartdata[which(chartdata$Estimate > 0),]
       
-      chartdata <- chartdata[which(chartdata$Country == "Scotland"),]
       
-      chartdata <- chartdata[which(chartdata$Category == "Exports"),]
+      LCRE <- LCRE[which(LCRE$Estimate > 0),]
       
-      chartdata <- chartdata[which(chartdata$Sector == input$MeasureSelect4),]
+      LCRE <- LCRE[which(LCRE$Country == "Scotland"),]
       
-      chartdata$Estimate <- as.numeric(chartdata$Estimate)
-      chartdata$`Lower CI` <- as.numeric(chartdata$`Lower CI`)
-      chartdata$`Upper CI` <- as.numeric(chartdata$`Upper CI`)
+      LCRE <- LCRE[which(LCRE$Category == "Exports"),]
+      
+      LCRE <- LCRE[which(LCRE$Sector == input$MeasureSelect4),]
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
+      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+      
+       
       
       
 
-        chartdata$unit <- "\u00A3"
+        LCRE$unit <- "\u00A3"
 
       
-        chartdata$HoverText <- paste0("<b>", "Turnover", ": ", chartdata$unit, format(round(chartdata$Estimate, 0), big.mark = ","), "</b>\nYear: ", chartdata$Year,"\nSector: ", input$MeasureSelect4,  "\n<i>Upper CI: ", chartdata$unit, format(round(chartdata$`Upper CI`, 0), big.mark = ","), "\nLower CI: ", chartdata$unit, format(round(chartdata$`Lower CI`, 0), big.mark = ","), "</i>")
+        LCRE$HoverText <- paste0("<b>", "Turnover", ": ", LCRE$unit, format(round(LCRE$Estimate, 0), big.mark = ","), "</b>\nYear: ", LCRE$Year,"\nSector: ", input$MeasureSelect4,  "\n<i>Upper CI: ", LCRE$unit, format(round(LCRE$`Upper CI`, 0), big.mark = ","), "\nLower CI: ", LCRE$unit, format(round(LCRE$`Lower CI`, 0), big.mark = ","), "</i>")
       
       
       
-      p <- plot_ly(chartdata,
+      p <- plot_ly(LCRE,
                    x = ~Year,
                    y = ~Estimate, 
                    type = 'scatter', 
                    mode = 'lines',
-                   text = chartdata$HoverText,
+                   text = LCRE$HoverText,
                    hoverinfo = 'text',
                    legendgroup = "1",
                    name = "Exports",
@@ -1201,7 +1222,7 @@ LowCarbonEconomy <- function(input, output, session) {
                    ),
                    line = list(width = 6, color = ChartColours[1], dash = "none")) %>% 
         add_trace(
-          data = tail(chartdata, 1),
+          data = tail(LCRE, 1),
           x = ~Year,
           y = ~Estimate, 
           legendgroup = "1",
@@ -1209,7 +1230,7 @@ LowCarbonEconomy <- function(input, output, session) {
           type = "scatter",
           mode = 'markers',
           hoverinfo = 'text',
-          text = tail(chartdata, 1)$HoverText,
+          text = tail(LCRE, 1)$HoverText,
           marker = list(size = 18, 
                         color = ChartColours[1])
         )  %>% 
@@ -1258,11 +1279,13 @@ LowCarbonEconomy <- function(input, output, session) {
       LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
       LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
       
+       
+      
       sourcecaption <- "BEIS"
       
 
         LCRE$unit <- "\u00A3"
-        plottitle <- "Exports"
+        plottitle <- str_wrap(paste("Exports directly supported by the LCRE sector - input$MeasureSelect1"), 35) 
        
       
         
