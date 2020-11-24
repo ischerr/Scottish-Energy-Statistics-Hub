@@ -23,7 +23,7 @@ LowCarbonEconomyOutput <- function(id) {
               'LowCarbonEconomyTurnoverSubtitle'
             )), style = "color: #39ab2c;")
           ,
-          selectInput(ns("MeasureSelect1"), "Measure:", c("All groups",
+          selectInput(ns("MeasureSelect1"), "Sector:", c("All groups",
                                                           "Low carbon electricity",
                                                           "Low carbon heat",
                                                           "Energy from waste and biomass",
@@ -526,7 +526,7 @@ LowCarbonEconomy <- function(input, output, session) {
         chartdata$unit <- "\u00A3"
       
       
-      chartdata$HoverText <- paste0("<b>", "Turnover", ": ", chartdata$unit, format(round(chartdata$Estimate, 0), big.mark = ","), "</b>\nYear: ", chartdata$Year, "\n<i>Upper CI: ", chartdata$unit, format(round(chartdata$`Upper CI`, 0), big.mark = ","), "\nLower CI: ", chartdata$unit, format(round(chartdata$`Lower CI`, 0), big.mark = ","), "</i>")
+      chartdata$HoverText <- paste0("<b>", "Turnover", ": ", chartdata$unit, format(round(chartdata$Estimate, 0), big.mark = ","), "</b>\nYear: ", chartdata$Year,"\nSector: ", input$MeasureSelect1,  "\n<i>Upper CI: ", chartdata$unit, format(round(chartdata$`Upper CI`, 0), big.mark = ","), "\nLower CI: ", chartdata$unit, format(round(chartdata$`Lower CI`, 0), big.mark = ","), "</i>")
       
       
       
