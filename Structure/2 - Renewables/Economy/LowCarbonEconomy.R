@@ -26,7 +26,11 @@ LowCarbonEconomyOutput <- function(id) {
           selectInput(ns("MeasureSelect1"), "Sector:", c("All groups",
                                                          "Low carbon electricity",
                                                          "Low carbon heat",
-                                                         "Energy efficient products"
+                                                         "Energy from waste and biomass",
+                                                         "Energy efficient products",
+                                                         "Low carbon services",
+                                                         "Low emission vehicles"
+                                                         
           ), selected = "All groups", multiple = FALSE,
                       selectize = TRUE, width = NULL, size = NULL)
         ),
@@ -523,6 +527,10 @@ LowCarbonEconomy <- function(input, output, session) {
       
       chartdata <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
       
+      chartdata$Estimate <- as.numeric(chartdata$Estimate)
+      
+      chartdata <- chartdata[which(chartdata$Estimate > 0),]
+      
       chartdata <- chartdata[which(chartdata$Country == "Scotland"),]
       
       chartdata<- chartdata[which(chartdata$Category == "Turnover"),]
@@ -600,6 +608,10 @@ LowCarbonEconomy <- function(input, output, session) {
     content = function(file) {ChartColours <- c("#39ab2c", "#FF8500")
     
     LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+    
+    LCRE$Estimate <- as.numeric(LCRE$Estimate)
+    
+    LCRE <- LCRE[which(LCRE$Estimate > 0),]
     
     LCRE <- LCRE[which(LCRE$Country == "Scotland"),]
     
@@ -725,6 +737,10 @@ LowCarbonEconomy <- function(input, output, session) {
       
       chartdata <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
       
+      chartdata$Estimate <- as.numeric(chartdata$Estimate)
+      
+      chartdata <- chartdata[which(chartdata$Estimate > 0),]
+      
       chartdata <- chartdata[which(chartdata$Country == "Scotland"),]
       
       chartdata<- chartdata[which(chartdata$Category == "Number of businesses"),]
@@ -798,6 +814,10 @@ LowCarbonEconomy <- function(input, output, session) {
       content = function(file) {ChartColours <- c("#39ab2c", "#FF8500")
       
       LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      
+      LCRE <- LCRE[which(LCRE$Estimate > 0),]
       
       LCRE <- LCRE[which(LCRE$Country == "Scotland"),]
       
@@ -927,6 +947,10 @@ LowCarbonEconomy <- function(input, output, session) {
       
       chartdata <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
       
+      chartdata$Estimate <- as.numeric(chartdata$Estimate)
+      
+      chartdata <- chartdata[which(chartdata$Estimate > 0),]
+      
       chartdata <- chartdata[which(chartdata$Country == "Scotland"),]
       
       chartdata<- chartdata[which(chartdata$Category == "Employment (full time equivalent)"),]
@@ -1004,6 +1028,10 @@ LowCarbonEconomy <- function(input, output, session) {
       content = function(file) {ChartColours <- c("#39ab2c", "#FF8500")
       
       LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      
+      LCRE <- LCRE[which(LCRE$Estimate > 0),]
       
       LCRE <- LCRE[which(LCRE$Country == "Scotland"),]
       
@@ -1133,6 +1161,10 @@ LowCarbonEconomy <- function(input, output, session) {
       
       chartdata <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
       
+      chartdata$Estimate <- as.numeric(chartdata$Estimate)
+      
+      chartdata <- chartdata[which(chartdata$Estimate > 0),]
+      
       chartdata <- chartdata[which(chartdata$Country == "Scotland"),]
       
       chartdata <- chartdata[which(chartdata$Category == "Exports"),]
@@ -1212,9 +1244,13 @@ LowCarbonEconomy <- function(input, output, session) {
       
       LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
       
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      
+      LCRE <- LCRE[which(LCRE$Estimate > 0),]
+      
       LCRE <- LCRE[which(LCRE$Country == "Scotland"),]
       
-      LCRE<- LCRE[which(LCRE$Category == "Exports"),]
+      LCRE <- LCRE[which(LCRE$Category == "Exports"),]
       
       LCRE <- LCRE[which(LCRE$Sector == input$MeasureSelect4),]
       
