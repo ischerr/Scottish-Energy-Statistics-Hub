@@ -54,21 +54,7 @@ TargetTrackerOutput <- function(id) {
     
     #################################################################################
     
-    fluidRow(column(8,
-                    h3("Grid Intensity", style = "color: #ff6600;  font-weight:bold"),
-                    h4("Amount of CO2 for each kWh of electricity generated (gCO2e/kWh)", style = "color: #ff6600;")
-    ),
-    column(
-      4, style = 'margin-top: 10px;',
-      actionButton(ns('GridIntensityLink'), 'More Information', style="float:right")
-    )),
-    #dygraphOutput(ns("TargetTrackerPlot")),
-    plotlyOutput(ns("GridIntensityPlot"), height = "75px")%>% withSpinner(color="#ff6600"),
-    tags$hr(style = "height:3px;border:none;color:#ff6600;background-color:#ff6600;"),
-    
-    
-    #################################################################################
-    
+
     fluidRow(column(8,
                     h3("Renewable heat target", style = "color: #ff6600;  font-weight:bold"),
                     h4("Non-electrical heat demand from renewables", style = "color: #ff6600;")
@@ -98,34 +84,7 @@ TargetTrackerOutput <- function(id) {
     
     #################################################################################
     
-    fluidRow(column(8,
-                    h3("Community and locally owned renewables", style = "color: #a3d65c;  font-weight:bold"),
-                    h4("Capacity of operating locally owned renewable energy initiatives", style = "color: #a3d65c;")
-    ),
-    column(
-      4, style = 'padding:15px;',
-      actionButton(ns('COLOTgtLink'), 'More Information', style="float:right")
-    )),
-    #dygraphOutput(ns("TargetTrackerPlot")),
-    plotlyOutput(ns("COLOTgtPlot"), height = "75px")%>% withSpinner(color="#a3d65c"),
-    tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;"),
-    
-    fluidRow(column(8,
-                    h3("District heat networks", style = "color: #a3d65c;  font-weight:bold"),
-                    h4("Domestic customers connected to a network", style = "color: #a3d65c;")
-    ),
-    column(
-      4, style = 'padding:15px;',
-      actionButton(ns('HeatNetworksTgtLink'), 'More Information', style="float:right")
-    )),
-    #dygraphOutput(ns("TargetTrackerPlot")),
-    plotlyOutput(ns("HeatNetworksCustomersTgtPlot"), height = "75px")%>% withSpinner(color="#a3d65c"),
-    fluidRow(column(8,
-                    h4("Total heat and cooling supplied through networks (GWh)", style = "color: #a3d65c;")
-    )),
-    #dygraphOutput(ns("TargetTrackerPlot")),
-    plotlyOutput(ns("HeatNetworksHeatPlot"), height = "75px")%>% withSpinner(color="#a3d65c"),
-    tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")
+
     
     
     
