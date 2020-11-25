@@ -23,7 +23,7 @@ LowCarbonEconomyOutput <- function(id) {
               'LowCarbonEconomyTurnoverSubtitle'
             )), style = "color: #39ab2c;")
           ,
-          selectInput(ns("MeasureSelect1"), "Sector:", c("All groups",
+          selectInput(ns("MeasureSelect1"), "Group:", c("All groups",
                                                          "Low carbon electricity",
                                                          "Low carbon heat",
                                                          "Energy from waste and biomass",
@@ -43,6 +43,7 @@ LowCarbonEconomyOutput <- function(id) {
         #dygraphOutput(ns("LowCarbonEconomyTurnoverPlot")),
         plotlyOutput(ns("LowCarbonEconomyTurnoverPlot")) %>% withSpinner(color =
                                                                    "#39ab2c"),
+        HTML("<blockquote><p>Note: Some groups are not included, as some data has been suppressed for disclosure control</p></blockquote>"),
         tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Businesses",
                fluidRow(
@@ -56,7 +57,7 @@ LowCarbonEconomyOutput <- function(id) {
                      'LowCarbonEconomyBusinessesSubtitle'
                    )), style = "color: #39ab2c;")
                    ,
-                   selectInput(ns("MeasureSelect2"), "Sector:", c("All groups",
+                   selectInput(ns("MeasureSelect2"), "Group:", c("All groups",
                                                                   "Low carbon electricity",
                                                                   "Energy efficient products"
                    ), selected = "All groups", multiple = FALSE,
@@ -72,6 +73,7 @@ LowCarbonEconomyOutput <- function(id) {
                #dygraphOutput(ns("LowCarbonEconomyBusinessesPlot")),
                plotlyOutput(ns("LowCarbonEconomyBusinessesPlot")) %>% withSpinner(color =
                                                                                   "#39ab2c"),
+               HTML("<blockquote><p>Note: Some groups are not included, as some data has been suppressed for disclosure control</p></blockquote>"),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Employment",
                fluidRow(
@@ -85,7 +87,7 @@ LowCarbonEconomyOutput <- function(id) {
                      'LowCarbonEconomyEmploymentSubtitle'
                    )), style = "color: #39ab2c;")
                    ,
-                   selectInput(ns("MeasureSelect3"), "Sector:", c("All groups",
+                   selectInput(ns("MeasureSelect3"), "Group:", c("All groups",
                                                                   "Low carbon electricity",
                                                                   "Low carbon heat",
                                                                   "Energy from waste and biomass",
@@ -105,6 +107,7 @@ LowCarbonEconomyOutput <- function(id) {
                #dygraphOutput(ns("LowCarbonEconomyEmploymentPlot")),
                plotlyOutput(ns("LowCarbonEconomyEmploymentPlot")) %>% withSpinner(color =
                                                                                   "#39ab2c"),
+               HTML("<blockquote><p>Note: Some groups are not included, as some data has been suppressed for disclosure control</p></blockquote>"),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Exports",
                fluidRow(
@@ -118,7 +121,7 @@ LowCarbonEconomyOutput <- function(id) {
                      'LowCarbonEconomyExportsSubtitle'
                    )), style = "color: #39ab2c;")
                    ,
-                   selectInput(ns("MeasureSelect4"), "Sector:", c("All groups",
+                   selectInput(ns("MeasureSelect4"), "Group:", c("All groups",
                                                                   "Low carbon electricity",
                                                                   "Energy from waste and biomass",
                                                                   "Energy efficient products",
@@ -136,6 +139,7 @@ LowCarbonEconomyOutput <- function(id) {
                #dygraphOutput(ns("LowCarbonEconomyExportsPlot")),
                plotlyOutput(ns("LowCarbonEconomyExportsPlot")) %>% withSpinner(color =
                                                                                   "#39ab2c"),
+               HTML("<blockquote><p>Note: Some groups are not included, as some data has been suppressed for disclosure control</p></blockquote>"),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
       column(
