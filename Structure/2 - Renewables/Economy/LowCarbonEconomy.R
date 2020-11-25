@@ -27,8 +27,7 @@ LowCarbonEconomyOutput <- function(id) {
                                                          "Low carbon electricity",
                                                          "Low carbon heat",
                                                          "Energy from waste and biomass",
-                                                         "Energy efficient products",
-                                                         "Low carbon services"
+                                                         "Energy efficient products"
                                                          
                                                          
           ), selected = "All groups", multiple = FALSE,
@@ -59,9 +58,7 @@ LowCarbonEconomyOutput <- function(id) {
                    ,
                    selectInput(ns("MeasureSelect2"), "Sector:", c("All groups",
                                                                   "Low carbon electricity",
-                                                                  "Energy from waste and biomass",
-                                                                  "Energy efficient products",
-                                                                  "Low carbon services"
+                                                                  "Energy efficient products"
                    ), selected = "All groups", multiple = FALSE,
                                selectize = TRUE, width = NULL, size = NULL)
                  ),
@@ -123,7 +120,6 @@ LowCarbonEconomyOutput <- function(id) {
                    ,
                    selectInput(ns("MeasureSelect4"), "Sector:", c("All groups",
                                                                   "Low carbon electricity",
-                                                                  "Low carbon heat",
                                                                   "Energy from waste and biomass",
                                                                   "Energy efficient products",
                                                                   "Low carbon services"
@@ -520,7 +516,28 @@ LowCarbonEconomy <- function(input, output, session) {
   
     output$LowCarbonEconomyTurnoverSubtitle <- renderText({
       
+      ChartColours <- c("#39ab2c", "#FF8500")
+      
       LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      
+      LCRE <- LCRE[which(LCRE$Estimate > 0),]
+      
+      LCRE <- LCRE[which(LCRE$Country == "Scotland"),]
+      
+      LCRE<- LCRE[which(LCRE$Category == "Turnover"),]
+      
+      LCRE<- LCRE[which(LCRE$Sector == input$MeasureSelect1),]
+      
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
+      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+      
+      
+      
+      LCRE$unit <- "\u00A3" 
       
       paste("Scotland,",min(LCRE$Year), "-", max(LCRE$Year))
       
