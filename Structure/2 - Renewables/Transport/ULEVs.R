@@ -872,10 +872,9 @@ output$ULEVRegOutput.png <- downloadHandler(
   
   output$ChargingPointSubtitle <- renderText({
     
-    AverageBillMap <- read_delim("Processed Data/Output/Charging Points/Points.txt", 
-                                 "\t", escape_double = FALSE, trim_ws = TRUE)
+    AverageBillMap <- read_csv("Processed Data/Output/Charging Points/Points.csv")
     
-    paste("Scotland,", names(AverageBillMap)[ncol(AverageBillMap)])
+    paste("Scotland,", AverageBillMap$Year[1])
   })
   
   output$ChargingPointMap <- renderLeaflet({
@@ -897,12 +896,9 @@ output$ULEVRegOutput.png <- downloadHandler(
     LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
     ############ RENEWABLE ELECTRICITY ################################################
     
-    AverageBillMap <- read_delim("Processed Data/Output/Charging Points/Points.txt", 
-                                 "\t", escape_double = FALSE, trim_ws = TRUE)
+    AverageBillMap <- read_csv("Processed Data/Output/Charging Points/Points.csv")[1:4]
     
-    AverageBillMap <- AverageBillMap[c(1,2,ncol(AverageBillMap))]
-    
-    names(AverageBillMap) <- c("LocalAuthority", "CODE", "Points")
+    names(AverageBillMap) <- c("CODE", "LocalAuthority", "Points", "Rapid Points")
     
     AverageBillMap <- AverageBillMap[which(substr(AverageBillMap$CODE, 1,3)== "S12"),]
     
@@ -1109,13 +1105,12 @@ output$ULEVRegOutput.png <- downloadHandler(
   
   output$ChargingPointTable = renderDataTable({
     
-    ChargingPoint <- read_delim("Processed Data/Output/Charging Points/Points.txt", 
-                                "\t", escape_double = FALSE, trim_ws = TRUE)
+    ChargingPoint <- read_csv("Processed Data/Output/Charging Points/Points.csv")
     
-    names(ChargingPoint)[1:2] <- c("Local Authority", "LA Code")
+    ChargingPoint <- ChargingPoint[c(2:33,1),]
     
     datatable(
-      ChargingPoint,
+      ChargingPoint[c(2,1,3,4)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -1145,7 +1140,7 @@ output$ULEVRegOutput.png <- downloadHandler(
         pageLength = 10
       )
     ) %>%
-      formatRound(c(3), 0) 
+      formatRound(c(3:4), 0) 
   })
   
   
