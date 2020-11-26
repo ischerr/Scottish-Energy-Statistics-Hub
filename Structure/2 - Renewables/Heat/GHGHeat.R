@@ -10,7 +10,7 @@ GHGHeatOutput <- function(id) {
   tagList(
     fluidRow(
                column(8,
-                      h3("Heat (specifically relating to buildings) emissions", style = "color: #39ab2c;  font-weight:bold"),
+                      h3("Greenhouse gas emissions associated with heating of buildings", style = "color: #39ab2c;  font-weight:bold"),
                       h4(textOutput(ns('GHGHeatSubtitle')), style = "color: #39ab2c;")
                ),
                column(
@@ -114,11 +114,11 @@ GHGHeat <- function(input, output, session) {
     p <-  plot_ly(GHGHeat, x = ~ Year) %>% 
       add_trace(
         y = ~ Renewables,
-        name = "Renewables",
+        name = "Heat Emissions",
         type = 'scatter',
         mode = 'lines',
         text = paste0(
-          "Heat Emissions: ",
+          "Greenhouse gas emissions associated with heating of buildings: ",
           format(round(GHGHeat$Renewables, 1), big.mark = ","),
           " MtCO2e\nYear: ",
           format(GHGHeat$Year, "%Y")
@@ -130,9 +130,9 @@ GHGHeat <- function(input, output, session) {
         data = tail(GHGHeat[which(GHGHeat$Renewables > 0 | GHGHeat$Renewables < 0),],1),
         x = ~ Year,
         y = ~ `Renewables`,
-        name = "Renewables",
+        name = "Heat Emissions",
         text = paste0(
-          "Heat Emissions: ",
+          "Greenhouse gas emissions associated with heating of buildings: ",
           format(round(tail(GHGHeat[which(GHGHeat$Renewables > 0 | GHGHeat$Renewables < 0),],1)$Renewables, 1), big.mark = ","),
           " MtCO2e\nYear: ",
           format(tail(GHGHeat[which(GHGHeat$Renewables > 0 | GHGHeat$Renewables < 0),],1)$Year, "%Y")
@@ -254,7 +254,7 @@ GHGHeat <- function(input, output, session) {
         ### Variables
         ChartColours <- c("#39ab2c", "#1c9099")
         sourcecaption = "Source: SG"
-        plottitle = "Heat emissions"
+        plottitle = "Greenhouse gas emissions associated with heating of buildings"
         
         
         GHGHeatChart <- GHGHeat %>%
