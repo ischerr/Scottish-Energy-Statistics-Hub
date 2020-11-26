@@ -580,7 +580,7 @@ GridEmissions <- function(input, output, session) {
     p <-  plot_ly(GHGElectricity, x = ~ Year) %>% 
       add_trace(
         y = ~ Renewables,
-        name = "Renewables",
+        name = "Electricity Emissions",
         type = 'scatter',
         mode = 'lines',
         text = paste0(
@@ -596,7 +596,7 @@ GridEmissions <- function(input, output, session) {
         data = tail(GHGElectricity[which(GHGElectricity$Renewables > 0 | GHGElectricity$Renewables < 0),],1),
         x = ~ Year,
         y = ~ `Renewables`,
-        name = "Renewables",
+        name = "Electricity Emissions",
         text = paste0(
           "Electricity Emissions: ",
           format(round(tail(GHGElectricity[which(GHGElectricity$Renewables > 0 | GHGElectricity$Renewables < 0),],1)$Renewables, 1), big.mark = ","),
