@@ -75,7 +75,7 @@ ULEVsOutput <- function(id) {
     
     tabPanel("Charging Events",
              fluidRow(column(8,
-                             h3("Total electric vehicle charging events by local authority", style = "color: #39ab2c;  font-weight:bold"),
+                             h3("Total electric vehicle charging events by local authority - ChargePlace Scotland Network", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('ChargingEventsSubtitle')), style = "color: #39ab2c;")
              ),
              column(
@@ -90,7 +90,7 @@ ULEVsOutput <- function(id) {
     
     tabPanel("Charge Provided",
              fluidRow(column(8,
-                             h3("Total electric vehicle charge drawn by local authority", style = "color: #39ab2c;  font-weight:bold"),
+                             h3("Total electric vehicle charge drawn by local authority - ChargePlace Scotland Network", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('ChargeProvidedSubtitle')), style = "color: #39ab2c;")
              ),
              column(
@@ -168,12 +168,13 @@ ULEVsOutput <- function(id) {
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
-             DateLookup(c("DFTLicenced", "DFTULEVs", "ChargePlace", "TransportScotland13"))),
+             DateLookup(c("DFTLicenced", "DFTULEVs", "ChargePlace", "TransportScotland13", "DFTCharging"))),
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
         SourceLookup("DFTLicenced"),
         SourceLookup("DFTULEVs"),
+        SourceLookup("DFTCharging"),
         SourceLookup("ChargePlace"),
         SourceLookup("TransportScotland13")
         
@@ -1151,7 +1152,7 @@ output$ULEVRegOutput.png <- downloadHandler(
   
   output$ChargingEventsDataSubtitle <- renderUI({
     
-    column(10, h3(paste("Data - Charging Points,", TableYear) , style = "color: #39ab2c;  font-weight:bold"))
+    column(10, h3(paste("Data - Charging Events,", TableYear, " - ChargePlace Scotland Network") , style = "color: #39ab2c;  font-weight:bold"))
     
   })
   
@@ -1200,7 +1201,7 @@ output$ULEVRegOutput.png <- downloadHandler(
   
   output$ChargeProvidedDataSubtitle <- renderUI({
     
-    column(10, h3(paste("Data - Charge Provided (MWh),", TableYear) , style = "color: #39ab2c;  font-weight:bold"))
+    column(10, h3(paste("Data - Charge Provided (MWh),", TableYear, " - ChargePlace Scotland Network") , style = "color: #39ab2c;  font-weight:bold"))
     
   })
   
