@@ -1224,7 +1224,7 @@ GHGEmissions <- function(input, output, session) {
       add_trace(data = EnSupplyEmissions,
                 x = ~ Year,
                 y = ~ `Greenhouse Gas`,
-                name = "Greenhouse Gas",
+                name = "Total Greenhouse Gas Emissions",
                 type = 'scatter',
                 mode = 'none',
                 legendgroup = "5",
@@ -1313,7 +1313,7 @@ GHGEmissions <- function(input, output, session) {
         data = tail(EnSupplyEmissions, 1),
         x = ~ Year,
         y = ~ `Greenhouse Gas`,
-        name = "Greenhouse Gas",
+        name = "Total Greenhouse Gas Emissions",
         legendgroup = "5",
         text = paste0(
           "Total Greenhouse Gas Emissions: ",
