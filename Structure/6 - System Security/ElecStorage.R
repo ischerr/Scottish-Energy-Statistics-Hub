@@ -755,7 +755,7 @@ ElecStorage <- function(input, output, session) {
       
       EnergyStorageTechChart <-
         EnergyStorageTechChart +
-        labs(subtitle = paste("Scotland,", month.name[Quarter], Year)) +
+        labs(subtitle = paste("Scotland, September 2020")) +
         ylim(-150, max(EnergyStorageTech$top))+
         coord_flip()
       
