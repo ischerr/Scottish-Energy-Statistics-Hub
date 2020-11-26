@@ -9,3 +9,4 @@
 <li>Fall in <strong>business</strong> emissions (<strong>down 32.2%</strong>)</li>
 </ul>
 <p>The largest factor <strong>slowing</strong> the overall <strong>reduction</strong> is <strong>transport</strong>. This sector was the largest contributor in 2018 at <strong>12.9 MtCO2e</strong>,&nbsp;however has shown only a <strong>4.9% decrease</strong> since <strong>1990</strong>.&nbsp;</p>
+<p>The equivalent of <strong>88.9%</strong> of Scotland&rsquo;s total greenhouse gas <strong>emissions</strong> are associated with <strong>energy</strong> (i.e. the electricity, heat, transport and industry sectors). As a proportion, this rose from <strong>80.8%</strong> in <strong>1990</strong>, showing the importance of further decarbonisation of the energy sector.</p>
