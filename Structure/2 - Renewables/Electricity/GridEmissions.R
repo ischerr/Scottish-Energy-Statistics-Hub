@@ -913,7 +913,7 @@ GridEmissions <- function(input, output, session) {
     
     GHGElectricity <- merge(GHGElectricity[which(GHGElectricity$Year >= 1998),],GHGElecBreakdown[which(GHGElecBreakdown$Year >= 1998),])
     
-    GHGElectricity$Proportion <- GHGElectricity$`Electricity Emissions` / GHGElectricity$Total
+    GHGElectricity$`Proportion of total emissions` <- GHGElectricity$`Electricity Emissions` / GHGElectricity$Total
     
     
     GHGElectricity <- GHGElectricity[c(1,2,10,8,7,9,6)]
