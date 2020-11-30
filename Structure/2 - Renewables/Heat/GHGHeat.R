@@ -460,7 +460,7 @@ GHGHeat <- function(input, output, session) {
     
     GHGHeat <- merge(GHGHeat[which(GHGHeat$Year >= 1998),],GHGHeatBreakdown[which(GHGHeatBreakdown$Year >= 1998),])
     
-    GHGHeat$Proportion <- GHGHeat$`Heat (specifically relating to buildings) Emissions` / GHGHeat$Total
+    GHGHeat$`Proportion of total emissions` <- GHGHeat$`Heat (specifically relating to buildings) Emissions` / GHGHeat$Total
     
     
     GHGHeat <- GHGHeat[c(1,3,9,8,6,7)]

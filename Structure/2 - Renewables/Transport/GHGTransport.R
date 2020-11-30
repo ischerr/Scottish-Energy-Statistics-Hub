@@ -459,7 +459,7 @@ GHGTransport <- function(input, output, session) {
     
     GHGTransport <- merge(GHGTransport[which(GHGTransport$Year >= 1998),],GHGTransportBreakdown[which(GHGTransportBreakdown$Year >= 1998),])
     
-    GHGTransport$Proportion <- GHGTransport$`Transport Emissions` / GHGTransport$Total
+    GHGTransport$`Proportion of total emissions` <- GHGTransport$`Transport Emissions` / GHGTransport$Total
     
     
     GHGTransport <- GHGTransport[c(1,4,8,7,6)]
