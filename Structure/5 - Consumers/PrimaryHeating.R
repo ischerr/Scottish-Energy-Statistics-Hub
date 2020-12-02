@@ -289,7 +289,7 @@ file)
     
     PrimaryHeatingLA <- read_excel("Structure/CurrentWorking.xlsx",
                                sheet = "Primary heating fuel", col_names = TRUE, 
-                               skip = 15, n_max = 33)[9:14]
+                               skip = 15, n_max = 33)[10:15]
     
     names(PrimaryHeatingLA)[1] <- c("Local Authority")
     
