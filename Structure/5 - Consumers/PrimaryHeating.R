@@ -114,7 +114,7 @@ PrimaryHeating <- function(input, output, session) {
   })
   
   output$PrimaryHeatingDataSubtitle <- renderUI({
-    tagList(h3(paste("Data - Primary heating fuel by Local Authority,", max(as.numeric(names(PrimaryHeating)), na.rm = TRUE)), style = "color: #68c3ea;  font-weight:bold"))
+    tagList(h3(paste("Data - Primary heating fuel by Local Authority,", 2018), style = "color: #68c3ea;  font-weight:bold"))
   })
  
   output$PrimaryHeatingPlot <- renderPlotly  ({
