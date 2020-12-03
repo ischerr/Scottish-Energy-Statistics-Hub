@@ -114,7 +114,7 @@ PrimaryHeating <- function(input, output, session) {
   })
   
   output$PrimaryHeatingDataSubtitle <- renderUI({
-    tagList(h3(paste("Data - Primary heating fuel by Local Authority,", max(as.numeric(names(PrimaryHeating)), na.rm = TRUE)), style = "color: #68c3ea;  font-weight:bold"))
+    tagList(h3(paste("Data - Primary heating fuel by Local Authority,", 2018), style = "color: #68c3ea;  font-weight:bold"))
   })
  
   output$PrimaryHeatingPlot <- renderPlotly  ({
@@ -289,7 +289,7 @@ file)
     
     PrimaryHeatingLA <- read_excel("Structure/CurrentWorking.xlsx",
                                sheet = "Primary heating fuel", col_names = TRUE, 
-                               skip = 15, n_max = 33)[9:14]
+                               skip = 15, n_max = 33)[10:15]
     
     names(PrimaryHeatingLA)[1] <- c("Local Authority")
     
@@ -332,7 +332,7 @@ file)
     PrimaryHeatingNonDom <- read_excel("Structure/CurrentWorking.xlsx",
                                        sheet = "Primary heating fuel", col_names = FALSE, 
                                        skip = 14)
-    paste0("Scotland,", unlist(strsplit(as.character(PrimaryHeatingNonDom[1,16]), ","))[3])
+    paste0("Scotland,", unlist(strsplit(as.character(PrimaryHeatingNonDom[1,17]), ","))[3])
   })
   
   output$PrimaryHeatingNonDomPlot <- renderPlotly  ({
@@ -341,7 +341,7 @@ file)
                                        sheet = "Primary heating fuel",
                                        col_names = FALSE,
                                        skip = 15,
-                                       n_max = 6)[16:17]
+                                       n_max = 6)[17:18]
     
     PrimaryHeatingNonDom <- as_tibble(t(PrimaryHeatingNonDom))
     
@@ -420,7 +420,7 @@ file)
                                        sheet = "Primary heating fuel",
                                        col_names = TRUE,
                                        skip = 15,
-                                       n_max = 5)[16:17]
+                                       n_max = 5)[17:18]
     
     names(PrimaryHeatingNonDom) <- c("Primary heating fuel", "Proportion")
     
