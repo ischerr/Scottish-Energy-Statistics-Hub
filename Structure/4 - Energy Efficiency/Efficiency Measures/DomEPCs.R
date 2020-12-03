@@ -1392,6 +1392,22 @@ DomEPCs <- function(input, output, session) {
         marker = list(size = 18, 
                       color = ChartColours[1])
       ) %>% 
+      add_trace(data = EER,
+                x = ~ Year,
+                y = ~ `SAP 2012 v2`,
+                name = "SAP 2012 rdSAP v9.93",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "2",
+                text = paste0(
+                  "SAP 2012 rdSAP v9.93: ",
+                  EER$`SAP 2012 v2`,
+                  "\nYear: ",
+                  format(EER$Year, "%Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 3, color = ChartColours[3], dash = "none")
+      ) %>% 
       add_trace(
         data = tail(EER[which(EER$`SAP 2012 v2` > 0 | EER$`SAP 2012 v2` < 0),], 1),
         x = ~ Year,
@@ -1405,7 +1421,7 @@ DomEPCs <- function(input, output, session) {
           format(EER[which(EER$`SAP 2012 v2` > 0 | EER$`SAP 2012 v2` < 0),]$Year, "%Y")
         ),
         hoverinfo = 'text',
-        showlegend = TRUE ,
+        showlegend = FALSE ,
         type = "scatter",
         mode = 'markers',
         marker = list(size = 12, 
@@ -1481,7 +1497,7 @@ DomEPCs <- function(input, output, session) {
     
     
     
-    names(Data) <- c("Year","SAP 2012 RdSAP v9.92", "SAP 2012 RdSAP v9.93", "SAP 2009")
+    names(Data) <- c("Year","SAP 2012 RdSAP v9.93", "SAP 2012 RdSAP v9.92", "SAP 2009")
     
     Data <- Data[which(Data$Year > 0),]
     
