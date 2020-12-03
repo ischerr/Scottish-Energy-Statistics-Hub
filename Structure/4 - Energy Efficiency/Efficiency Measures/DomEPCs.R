@@ -1392,6 +1392,22 @@ DomEPCs <- function(input, output, session) {
         marker = list(size = 18, 
                       color = ChartColours[1])
       ) %>% 
+      add_trace(data = EER,
+                x = ~ Year,
+                y = ~ `SAP 2012 v2`,
+                name = "SAP 2012 rdSAP v9.93",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "2",
+                text = paste0(
+                  "SAP 2012 rdSAP v9.93: ",
+                  EER$`SAP 2012 v2`,
+                  "\nYear: ",
+                  format(EER$Year, "%Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 3, color = ChartColours[3], dash = "none")
+      ) %>% 
       add_trace(
         data = tail(EER[which(EER$`SAP 2012 v2` > 0 | EER$`SAP 2012 v2` < 0),], 1),
         x = ~ Year,
@@ -1405,7 +1421,7 @@ DomEPCs <- function(input, output, session) {
           format(EER[which(EER$`SAP 2012 v2` > 0 | EER$`SAP 2012 v2` < 0),]$Year, "%Y")
         ),
         hoverinfo = 'text',
-        showlegend = TRUE ,
+        showlegend = FALSE ,
         type = "scatter",
         mode = 'markers',
         marker = list(size = 12, 
@@ -1481,7 +1497,7 @@ DomEPCs <- function(input, output, session) {
     
     
     
-    names(Data) <- c("Year","SAP 2012 RdSAP v9.92", "SAP 2012 RdSAP v9.93", "SAP 2009")
+    names(Data) <- c("Year","SAP 2012 RdSAP v9.93", "SAP 2012 RdSAP v9.92", "SAP 2009")
     
     Data <- Data[which(Data$Year > 0),]
     
@@ -1529,7 +1545,7 @@ DomEPCs <- function(input, output, session) {
       
       
       Data  <- read_excel("Structure/CurrentWorking.xlsx", 
-                          sheet = "Domestic EPCs", skip = 34)
+                          sheet = "Domestic EPCs", skip = 35)
       
       
       
@@ -1651,6 +1667,7 @@ DomEPCs <- function(input, output, session) {
           size = 4,
           family = "Century Gothic"
         ) +
+        
         geom_text(
           aes(
             x = mean(Year[which(EERProportion$`SAP 2012` > 0)]),
@@ -1658,6 +1675,26 @@ DomEPCs <- function(input, output, session) {
             label = "SAP 2012\nRdSAP v9.92",
             vjust = 1.5,
             colour = ChartColours[2],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_line(
+          aes(
+            y = `SAP 2012 v2`,
+            colour = ChartColours[4],
+            label = percent(`SAP 2012 v2`)
+          ),
+          size = .75,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = `SAP 2012 v2`,
+            label = ifelse(Year == min(Year[which(EERProportion$`SAP 2012 v2` > 0)]),`SAP 2012 v2`, ""),
+            vjust = 1.5,
+            colour = ChartColours[4],
             fontface = 2
           ),
           family = "Century Gothic"
