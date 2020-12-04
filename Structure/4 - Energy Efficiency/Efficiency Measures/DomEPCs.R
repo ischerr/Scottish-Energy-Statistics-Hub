@@ -1692,17 +1692,6 @@ DomEPCs <- function(input, output, session) {
           aes(
             x = Year,
             y = `SAP 2012 v2`,
-            label = ifelse(Year == min(Year[which(EERProportion$`SAP 2012 v2` > 0)]),`SAP 2012 v2`, ""),
-            vjust = 1.5,
-            colour = ChartColours[4],
-            fontface = 2
-          ),
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year,
-            y = `SAP 2012 v2`,
             label = ifelse(Year == max(Year), `SAP 2012 v2`, ""),
             hjust = -0.5,
             colour = ChartColours[4],
