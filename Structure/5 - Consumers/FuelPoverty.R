@@ -695,7 +695,7 @@ FuelPoverty <- function(input, output, session) {
       col_names = TRUE,
       skip = 12,
       n_max = 7
-    )[16:22]
+    )[16:21]
     
     names(Data) <- substr(names(Data), 1, 4)
     
