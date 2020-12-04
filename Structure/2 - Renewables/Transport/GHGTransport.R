@@ -449,8 +449,6 @@ GHGTransport <- function(input, output, session) {
     
     GHGTransport <- GHGTransport[complete.cases(GHGTransport),]
     
-    GHGTransport$Total <- rowSums(GHGTransport[2:5])
-    
     GHGTransportBreakdown <- read_csv("Processed Data/Output/Greenhouse Gas/GHGTransportBreakdown.csv")
     
     names(GHGTransportBreakdown)[1] <- "Year"
