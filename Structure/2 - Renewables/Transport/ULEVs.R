@@ -75,7 +75,7 @@ ULEVsOutput <- function(id) {
     
     tabPanel("Charging Events",
              fluidRow(column(8,
-                             h3("Total electric vehicle charging events by local authority", style = "color: #39ab2c;  font-weight:bold"),
+                             h3("Total electric vehicle charging events by local authority - ChargePlace Scotland Network", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('ChargingEventsSubtitle')), style = "color: #39ab2c;")
              ),
              column(
@@ -90,7 +90,7 @@ ULEVsOutput <- function(id) {
     
     tabPanel("Charge Provided",
              fluidRow(column(8,
-                             h3("Total electric vehicle charge drawn by local authority", style = "color: #39ab2c;  font-weight:bold"),
+                             h3("Total electric vehicle charge drawn by local authority - ChargePlace Scotland Network", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('ChargeProvidedSubtitle')), style = "color: #39ab2c;")
              ),
              column(
@@ -168,12 +168,13 @@ ULEVsOutput <- function(id) {
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
-             DateLookup(c("DFTLicenced", "DFTULEVs", "ChargePlace", "TransportScotland13"))),
+             DateLookup(c("DFTLicenced", "DFTULEVs", "ChargePlace", "TransportScotland13", "DFTCharging"))),
       column(1, align = "right",
              p("Sources:")),
       column(7, align = "right",
         SourceLookup("DFTLicenced"),
         SourceLookup("DFTULEVs"),
+        SourceLookup("DFTCharging"),
         SourceLookup("ChargePlace"),
         SourceLookup("TransportScotland13")
         
@@ -872,10 +873,9 @@ output$ULEVRegOutput.png <- downloadHandler(
   
   output$ChargingPointSubtitle <- renderText({
     
-    AverageBillMap <- read_delim("Processed Data/Output/Charging Points/Points.txt", 
-                                 "\t", escape_double = FALSE, trim_ws = TRUE)
+    AverageBillMap <- read_csv("Processed Data/Output/Charging Points/Points.csv")
     
-    paste("Scotland,", names(AverageBillMap)[ncol(AverageBillMap)])
+    paste("Scotland,", AverageBillMap$Year[1])
   })
   
   output$ChargingPointMap <- renderLeaflet({
@@ -897,12 +897,9 @@ output$ULEVRegOutput.png <- downloadHandler(
     LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
     ############ RENEWABLE ELECTRICITY ################################################
     
-    AverageBillMap <- read_delim("Processed Data/Output/Charging Points/Points.txt", 
-                                 "\t", escape_double = FALSE, trim_ws = TRUE)
+    AverageBillMap <- read_csv("Processed Data/Output/Charging Points/Points.csv")[1:4]
     
-    AverageBillMap <- AverageBillMap[c(1,2,ncol(AverageBillMap))]
-    
-    names(AverageBillMap) <- c("LocalAuthority", "CODE", "Points")
+    names(AverageBillMap) <- c("CODE", "LocalAuthority", "Points", "Rapid Points")
     
     AverageBillMap <- AverageBillMap[which(substr(AverageBillMap$CODE, 1,3)== "S12"),]
     
@@ -1109,13 +1106,12 @@ output$ULEVRegOutput.png <- downloadHandler(
   
   output$ChargingPointTable = renderDataTable({
     
-    ChargingPoint <- read_delim("Processed Data/Output/Charging Points/Points.txt", 
-                                "\t", escape_double = FALSE, trim_ws = TRUE)
+    ChargingPoint <- read_csv("Processed Data/Output/Charging Points/Points.csv")
     
-    names(ChargingPoint)[1:2] <- c("Local Authority", "LA Code")
+    ChargingPoint <- ChargingPoint[c(2:33,1),]
     
     datatable(
-      ChargingPoint,
+      ChargingPoint[c(2,1,3,4)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -1145,7 +1141,7 @@ output$ULEVRegOutput.png <- downloadHandler(
         pageLength = 10
       )
     ) %>%
-      formatRound(c(3), 0) 
+      formatRound(c(3:4), 0) 
   })
   
   
@@ -1156,7 +1152,7 @@ output$ULEVRegOutput.png <- downloadHandler(
   
   output$ChargingEventsDataSubtitle <- renderUI({
     
-    column(10, h3(paste("Data - Charging Points,", TableYear) , style = "color: #39ab2c;  font-weight:bold"))
+    column(10, h3(paste("Data - Charging Events,", TableYear, " - ChargePlace Scotland Network") , style = "color: #39ab2c;  font-weight:bold"))
     
   })
   
@@ -1205,7 +1201,7 @@ output$ULEVRegOutput.png <- downloadHandler(
   
   output$ChargeProvidedDataSubtitle <- renderUI({
     
-    column(10, h3(paste("Data - Charge Provided (MWh),", TableYear) , style = "color: #39ab2c;  font-weight:bold"))
+    column(10, h3(paste("Data - Charge Provided (MWh),", TableYear, " - ChargePlace Scotland Network") , style = "color: #39ab2c;  font-weight:bold"))
     
   })
   
