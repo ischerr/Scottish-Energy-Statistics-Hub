@@ -25,7 +25,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -43,12 +43,12 @@
      id="namedview76"
      showgrid="false"
      inkscape:zoom="1.8958381"
-     inkscape:cx="142.51057"
+     inkscape:cx="221.63125"
      inkscape:cy="208.80128"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g4896"
+     inkscape:current-layer="g531"
      fit-margin-top="5"
      fit-margin-left="5"
      fit-margin-right="5"
@@ -192,7 +192,7 @@
            width="483.75308"
            id="rect905-1" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#34d1a3;fill-opacity:1"
-         id="flowPara907-9">Scotland, 2019</flowPara></flowRoot>    <flowRoot
+         id="flowPara907-9">Scotland, 2018</flowPara></flowRoot>    <flowRoot
        transform="translate(131.05219,596.64747)"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#34d1a3;fill-opacity:1;stroke:none"
        id="flowRoot901-8-4"
@@ -360,7 +360,7 @@
                        id="flowPara500"
                        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle;fill:#ffffff">heating</flowPara><flowPara
                        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle;fill:#ffffff"
-                       id="flowPara408">11%</flowPara></flowRoot>                  <g
+                       id="flowPara408">12.1%</flowPara></flowRoot>                  <g
                      class="slice"
                      id="g169"
                      transform="translate(0,9.8823456)">
@@ -389,7 +389,7 @@
                        id="flowPara430-2"
                        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle;fill:#ffffff">heating</flowPara><flowPara
                        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle;fill:#ffffff"
-                       id="flowPara408-1">76%</flowPara></flowRoot>                  <flowRoot
+                       id="flowPara408-1">74.9%</flowPara></flowRoot>                  <flowRoot
                      transform="matrix(0.49703026,0,0,0.49703026,-147.9535,76.343566)"
                      style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#fd8d3c;fill-opacity:1;stroke:none;stroke-linejoin:round"
                      id="flowRoot400-0"
@@ -405,7 +405,7 @@
                        id="flowPara430-0"
                        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle;fill:#fd8d3c;fill-opacity:1">Lights, appliances &amp; renewables</flowPara><flowPara
                        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle;fill:#fd8d3c;fill-opacity:1"
-                       id="flowPara408-8">10%</flowPara></flowRoot>                  <flowRoot
+                       id="flowPara408-8">10.1%</flowPara></flowRoot>                  <flowRoot
                      transform="matrix(0.49703026,0,0,0.49703026,-161.77564,198.89983)"
                      style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#feb24c;fill-opacity:1;stroke:none;stroke-linejoin:round"
                      id="flowRoot400-16"
@@ -421,7 +421,7 @@
                        id="flowPara430-04"
                        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle;fill:#feb24c;fill-opacity:1">Cooking</flowPara><flowPara
                        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle;fill:#feb24c;fill-opacity:1"
-                       id="flowPara408-13">3%</flowPara></flowRoot>                </g>
+                       id="flowPara408-13">2.9%</flowPara></flowRoot>                </g>
               </g>
             </g>
             <g
