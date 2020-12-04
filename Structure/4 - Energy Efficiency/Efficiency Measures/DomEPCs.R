@@ -1545,7 +1545,7 @@ DomEPCs <- function(input, output, session) {
       
       
       Data  <- read_excel("Structure/CurrentWorking.xlsx", 
-                          sheet = "Domestic EPCs", skip = 35)
+                          sheet = "Domestic EPCs", skip = 34)
       
       
       
@@ -1667,7 +1667,6 @@ DomEPCs <- function(input, output, session) {
           size = 4,
           family = "Century Gothic"
         ) +
-        
         geom_text(
           aes(
             x = mean(Year[which(EERProportion$`SAP 2012` > 0)]),
@@ -1677,15 +1676,6 @@ DomEPCs <- function(input, output, session) {
             colour = ChartColours[2],
             fontface = 2
           ),
-          family = "Century Gothic"
-        ) +
-        geom_line(
-          aes(
-            y = `SAP 2012 v2`,
-            colour = ChartColours[4],
-            label = percent(`SAP 2012 v2`)
-          ),
-          size = .75,
           family = "Century Gothic"
         ) +
         geom_text(
