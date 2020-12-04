@@ -469,7 +469,7 @@ Boilers <- function(input, output, session) {
             y = mean(`New Boilers (post-1998)`, na.rm = TRUE),
             label = "New Boilers\n(post-1998)",
             hjust = .7,
-            vjust = -0.5,
+            vjust = 1.5,
             colour = ChartColours[2],
             fontface = 2
           ),
@@ -525,7 +525,7 @@ Boilers <- function(input, output, session) {
             y = mean(`Condensing Boilers`, na.rm = TRUE),
             label = "Condensing\nBoilers",
             hjust = 0.5,
-            vjust = -.5,
+            vjust = -.6,
             colour = ChartColours[3],
             fontface = 2
           ),
