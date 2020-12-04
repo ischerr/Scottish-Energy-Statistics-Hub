@@ -695,7 +695,6 @@ DomEPCs <- function(input, output, session) {
     
     Data[2:7] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    Data <- Data[3:5,]
     
     Data[is.na(Data)] <- 0
     

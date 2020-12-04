@@ -332,7 +332,7 @@ file)
     PrimaryHeatingNonDom <- read_excel("Structure/CurrentWorking.xlsx",
                                        sheet = "Primary heating fuel", col_names = FALSE, 
                                        skip = 14)
-    paste0("Scotland,", unlist(strsplit(as.character(PrimaryHeatingNonDom[1,17]), ","))[3])
+    paste0("Scotland,", unlist(strsplit(as.character(PrimaryHeatingNonDom[1,16]), ","))[3])
   })
   
   output$PrimaryHeatingNonDomPlot <- renderPlotly  ({
@@ -341,7 +341,7 @@ file)
                                        sheet = "Primary heating fuel",
                                        col_names = FALSE,
                                        skip = 15,
-                                       n_max = 6)[17:18]
+                                       n_max = 6)[16:17]
     
     PrimaryHeatingNonDom <- as_tibble(t(PrimaryHeatingNonDom))
     
@@ -420,7 +420,7 @@ file)
                                        sheet = "Primary heating fuel",
                                        col_names = TRUE,
                                        skip = 15,
-                                       n_max = 5)[17:18]
+                                       n_max = 5)[16:17]
     
     names(PrimaryHeatingNonDom) <- c("Primary heating fuel", "Proportion")
     
