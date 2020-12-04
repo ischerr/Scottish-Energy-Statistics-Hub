@@ -142,16 +142,14 @@ DomEPCs <- function(input, output, session) {
   
   output$StockEPCSubtitle <- renderText({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[2:9]
+    Data <- read_excel(
+      "Structure/CurrentWorking.xlsx",
+      sheet = "Domestic EPCs",
+      col_names = FALSE,
+      skip = 12
+    )
     
-    names(Data) <- unlist(Data[1,])
-    
-    names(Data)[1] <- "Year"
-    
-    Data$Year <- as.numeric(Data$Year)
-    
-    paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
+    paste("Scotland,", min(Data[2], na.rm = TRUE))#,"-", max(Data[2], na.rm = TRUE))
   })
   
   output$StockEPCPlot <- renderPlotly  ({
@@ -476,11 +474,11 @@ DomEPCs <- function(input, output, session) {
     
     
     Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[c(12,15,13:14)]
+                       sheet = "Domestic EPCs", skip = 12,  col_names = FALSE)[12:14]
     
     Data <- tail(Data, -1)
     
-    names(Data) <- c("Year","SAP 2012 RdSAP v9.93",  "SAP 2012 RdSAP v9.92", "SAP 2009")
+    names(Data) <- c("Year", "SAP 2012 RdSAP v9.92", "SAP 2009")
     
     Data <- Data[which(Data$Year > 0),]
     
@@ -519,7 +517,7 @@ DomEPCs <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:4, 1)
+      formatPercentage(2:3, 1)
   })
   
   output$EPCTenureSubtitle <- renderText({
@@ -547,7 +545,7 @@ DomEPCs <- function(input, output, session) {
     
     Data[2:7] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    Data <- Data[3:5,]
+    Data <- Data[2:4,]
     
     Data[is.na(Data)] <- 0
     
@@ -695,6 +693,7 @@ DomEPCs <- function(input, output, session) {
     
     Data[2:7] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data <- Data[2:4,]
     
     Data[is.na(Data)] <- 0
     
@@ -981,7 +980,7 @@ DomEPCs <- function(input, output, session) {
       #   hjust = 0.5
       # ) +
       geom_text(
-        aes(x = 2.8,
+        aes(x = 1.7,
             y = .5 * (1 / 6),
             label = "B"),
         fontface = 2,
@@ -990,7 +989,7 @@ DomEPCs <- function(input, output, session) {
         hjust = 0.5
       ) +
       geom_text(
-        aes(x = 2.8,
+        aes(x = 1.7,
             y = 1.5 * (1 / 6),
             label = "C"),
         fontface = 2,
@@ -999,7 +998,7 @@ DomEPCs <- function(input, output, session) {
         hjust = 0.5
       ) +
       geom_text(
-        aes(x = 2.8,
+        aes(x = 1.7,
             y = 2.5 * (1 / 6),
             label = "D"),
         fontface = 2,
@@ -1008,7 +1007,7 @@ DomEPCs <- function(input, output, session) {
         hjust = 0.5
       ) +
       geom_text(
-        aes(x = 2.8,
+        aes(x = 1.7,
             y = 3.5 * (1 / 6),
             label = "E"),
         fontface = 2,
@@ -1017,7 +1016,7 @@ DomEPCs <- function(input, output, session) {
         hjust = 0.5
       ) +
       geom_text(
-        aes(x = 2.8,
+        aes(x = 1.7,
             y = 4.5 * (1 / 6),
             label = "F"),
         fontface = 2,
@@ -1026,7 +1025,7 @@ DomEPCs <- function(input, output, session) {
         hjust = 0.5
       ) +
       geom_text(
-        aes(x = 2.8,
+        aes(x = 1.7,
             y = 5.5 * (1 / 6),
             label = "G"),
         fontface = 2,
@@ -1048,7 +1047,7 @@ DomEPCs <- function(input, output, session) {
         colour = ChartColours[1]
       ) +
       geom_text(
-        aes(x = 2.8,
+        aes(x = 1.7,
             y = 1.1,
             label = "C\nor better"),
         fontface = 2,
@@ -1057,7 +1056,7 @@ DomEPCs <- function(input, output, session) {
         hjust = 0.5
       )+
       geom_text(
-        aes(x = 3.3,
+        aes(x = 2.1,
             y = 1.05,
             label = " "),
         fontface = 2,
@@ -1081,7 +1080,7 @@ DomEPCs <- function(input, output, session) {
     HousingStockEPCChart <-
       HousingStockEPCChart +
       coord_flip() +
-      labs(subtitle = paste0("Scotland, ", min(as.numeric(as.character(HousingStockEPC$Type))), " - ", max(as.numeric(as.character(HousingStockEPC$Type))))) +
+      labs(subtitle = paste0("Scotland, ", min(as.numeric(as.character(HousingStockEPC$Type))))) +
       ylim(-.2, 1.13)
     
     HousingStockEPCChart
@@ -1090,7 +1089,7 @@ DomEPCs <- function(input, output, session) {
       file,
       plot = HousingStockEPCChart,
       width = 14.5,
-      height = 8,
+      height = 6,
       units = "cm",
       dpi = 300
     )
@@ -1299,7 +1298,7 @@ DomEPCs <- function(input, output, session) {
       DomesticEPCChart <-
         DomesticEPCChart +
         coord_flip() +
-        labs(subtitle = "Scotland, 2019") +
+        labs(subtitle = "Scotland, 2018") +
         ylim(-.2, 1.13)
       
       DomesticEPCChart
@@ -1476,7 +1475,7 @@ DomEPCs <- function(input, output, session) {
     
     
     Data  <- read_excel("Structure/CurrentWorking.xlsx", 
-                        sheet = "Domestic EPCs", skip = 35)
+                        sheet = "Domestic EPCs", skip = 34)
     
     
     
