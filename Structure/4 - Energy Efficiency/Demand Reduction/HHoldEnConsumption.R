@@ -99,7 +99,7 @@ HHoldEnConsumption <- function(input, output, session) {
   output$HHoldEnConsumptionSubtitle <- renderText({
     
 
-      paste("Scotland, 2019")
+      paste("Scotland, 2018")
     
   })
  
