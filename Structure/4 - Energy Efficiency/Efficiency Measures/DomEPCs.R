@@ -1637,8 +1637,7 @@ DomEPCs <- function(input, output, session) {
             x = Year,
             y = `SAP 2012`,
             label = ifelse(Year == min(Year[which(EERProportion$`SAP 2012` > 0)]),`SAP 2012`, ""),
-            hjust = 0.5,
-            vjust = 1.5,
+            vjust = 2,
             colour = ChartColours[2],
             fontface = 2
           ),
@@ -1649,8 +1648,7 @@ DomEPCs <- function(input, output, session) {
             x = Year,
             y = `SAP 2012`,
             label = ifelse(Year == max(Year),`SAP 2012`, ""),
-            hjust = .5,
-            vjust = 2,
+            hjust = -1,
             colour = ChartColours[2],
             fontface = 2
           ),
@@ -1670,10 +1668,10 @@ DomEPCs <- function(input, output, session) {
         
         geom_text(
           aes(
-            x = mean(Year[which(EERProportion$`SAP 2012` > 0)]),
+            x = max(Year[which(EERProportion$`SAP 2012` > 0)])+Length*0.25,
             y = mean(`SAP 2012`, na.rm = TRUE),
             label = "SAP 2012\nRdSAP v9.92",
-            vjust = 1.5,
+            
             colour = ChartColours[2],
             fontface = 2
           ),
@@ -1704,7 +1702,7 @@ DomEPCs <- function(input, output, session) {
             x = Year,
             y = `SAP 2012 v2`,
             label = ifelse(Year == max(Year), `SAP 2012 v2`, ""),
-            hjust = -0.5,
+            vjust = 2,
             colour = ChartColours[4],
             fontface = 2
           ),
@@ -1718,16 +1716,16 @@ DomEPCs <- function(input, output, session) {
             colour = ChartColours[4],
             show_guide = FALSE
           ),
-          size = 6,
+          size = 4,
           family = "Century Gothic"
         ) +
         geom_text(
           aes(
-            x = max(Year[which(EERProportion$`SAP 2012 v2` > 0)])+Length*0.275,
+            x = max(Year[which(EERProportion$`SAP 2012 v2` > 0)]),
             y = mean(`SAP 2012 v2`, na.rm = TRUE),
             label = "SAP 2012\nRdSAP v9.93",
             hjust = 0.5,
-            vjust = .5,
+            vjust = 2.5,
             colour = ChartColours[4],
             fontface = 2
           ),
