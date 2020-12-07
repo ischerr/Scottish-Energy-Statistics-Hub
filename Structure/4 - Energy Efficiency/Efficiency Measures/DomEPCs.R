@@ -1685,7 +1685,7 @@ DomEPCs <- function(input, output, session) {
             colour = ChartColours[4],
             label = percent(`SAP 2012 v2`)
           ),
-          size = .75,
+          size = 1.5,
           family = "Century Gothic"
         ) +
         geom_text(
@@ -1718,7 +1718,7 @@ DomEPCs <- function(input, output, session) {
             colour = ChartColours[4],
             show_guide = FALSE
           ),
-          size = 3,
+          size = 6,
           family = "Century Gothic"
         ) +
         geom_text(
