@@ -15,7 +15,7 @@
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
    width="319.88266"
    height="419.77661"
-   inkscape:export-filename="C:\Users\ische\OneDrive\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\EnConsumptionSectorDomNonDomChart.png"
+   inkscape:export-filename="C:\Users\ische\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\5 - Consumers\PrimaryHeatingChart.png"
    inkscape:export-xdpi="300"
    inkscape:export-ydpi="300">
   <metadata
@@ -26,7 +26,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -39,15 +39,15 @@
      guidetolerance="10"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:window-width="3840"
-     inkscape:window-height="2066"
+     inkscape:window-width="2880"
+     inkscape:window-height="1526"
      id="namedview76"
      showgrid="false"
      inkscape:zoom="3.7916762"
-     inkscape:cx="160.99911"
+     inkscape:cx="109.70254"
      inkscape:cy="266.24288"
-     inkscape:window-x="-11"
-     inkscape:window-y="-11"
+     inkscape:window-x="5749"
+     inkscape:window-y="1587"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg74"
      fit-margin-top="5"
@@ -172,7 +172,7 @@
            width="483.75308"
            id="rect905-1" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#68c3ea;fill-opacity:1"
-         id="flowPara907-9">2018</flowPara></flowRoot>    <flowRoot
+         id="flowPara907-9">2019</flowPara></flowRoot>    <flowRoot
        transform="translate(45.124957,596.64747)"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#68c3ea;fill-opacity:1;stroke:none;"
        id="flowRoot901-8-4"
@@ -324,7 +324,7 @@
          y="0"
          x="0"
          dy="1.3em"
-         class="line">10%</tspan>
+         class="line">11%</tspan>
     </text>
   </g>
   <path
@@ -333,37 +333,6 @@
      d="M 167.51544,235.82895 51.493153,162.19897 a 137.41377,137.41377 0 0 1 35.252497,-37.5401 z"
      class="surface"
      inkscape:connector-curvature="0" />
-  <g
-     style="stroke-linejoin:round"
-     id="g929"
-     class="slicetext"
-     transform="matrix(0.8430359,0,0,0.8430359,-111.92905,62.111459)">
-    <text
-       id="text927"
-       style="font-size:12px;font-family:'Open Sans', verdana, arial, sans-serif;text-anchor:middle;white-space:pre;fill:#444444;fill-opacity:1"
-       y="0"
-       x="0"
-       transform="translate(198.59776,83.375411)"
-       class="slicetext"
-       data-notex="1">
-      <tspan
-         id="tspan923"
-         y="0"
-         x="0"
-         dy="0em"
-         class="line">
-        <tspan
-           id="tspan921"
-           style="font-weight:bold">Oil</tspan>
-      </tspan>
-      <tspan
-         id="tspan925"
-         y="0"
-         x="0"
-         dy="1.3em"
-         class="line">6%</tspan>
-    </text>
-  </g>
   <path
      id="path933"
      style="fill:#fd8d3c;fill-opacity:1;stroke:#ffffff;stroke-width:0.63178748;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
@@ -432,4 +401,39 @@
        class="g-gtitle"
        id="g966" />
   </g>
-</svg>
+  <g
+     style="stroke-linejoin:round"
+     id="g915-4"
+     class="slicetext"
+     transform="matrix(0.8430359,0,0,0.8430359,-166.4118,111.53337)" />
+  <g
+     style="stroke-linejoin:round"
+     id="g943-3"
+     class="slicetext"
+     transform="matrix(0.8430359,0,0,0.8430359,-76.621542,19.383866)">
+    <text
+       id="text941-8"
+       style="font-size:12px;font-family:'Open Sans', verdana, arial, sans-serif;text-anchor:middle;white-space:pre;fill:#444444;fill-opacity:1"
+       y="0"
+       x="0"
+       transform="translate(154.51077,137.49585)"
+       class="slicetext"
+       data-notex="1" />
+  </g>
+  <flowRoot
+     xml:space="preserve"
+     id="flowRoot958"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#444444;fill-opacity:1;stroke:none"
+     transform="matrix(0.28171101,0,0,0.28171101,91.974742,110.86146)"><flowRegion
+       id="flowRegion960"
+       style="fill:#444444;fill-opacity:1"><rect
+         id="rect962"
+         width="212.30716"
+         height="155.86774"
+         x="-148.21941"
+         y="13.096315"
+         style="fill:#444444;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+       id="flowPara964"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#444444;fill-opacity:1">Oil</flowPara><flowPara
+       id="flowPara966"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#444444;fill-opacity:1">5%</flowPara></flowRoot></svg>
