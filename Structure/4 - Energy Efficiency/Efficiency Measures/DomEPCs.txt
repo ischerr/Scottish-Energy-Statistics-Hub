@@ -3,7 +3,7 @@
 <p>The<span style="background-color: #ffffff;"> methodology to assess of the energy performance of a dwelling changed</span>:</p>
 <ul>
 <li><u>SAP 2012 based on RdSAP (v9.93):</u> This is based on the latest methodology introduced in November 2017 and only data for <strong>2018 and 2019</strong> is available. Under this measure, more than four in ten (<strong>45%</strong>) Scottish homes were rated at least <strong>EPC band C.</strong></li>
-<li><u>SAP 2012 based on RdSAP (v9.92):</u> This allows for comparisons over a longer period. Under this measure <strong>47%</strong> of Scottish homes were rated as <strong>EPC band C</strong> or better in <strong>2019</strong>, up from 44% in 2018 and <strong>35%</strong> in <strong>2014</strong>.</li>
+<li><u>SAP 2012 based on RdSAP (v9.92):</u> This allows for comparisons over a longer period. Under this measure <strong>47%</strong> of Scottish homes were rated as <strong>EPC band C</strong> or better in <strong>2019</strong>, up from <b>44%</b> in <b>2018</b> and <strong>35%</strong> in <strong>2014</strong>.</li>
 </ul>
 <p>By way of comparison, <strong>34%</strong> of dwellings in <strong>England</strong> have an <strong>EPC</strong> rating of <strong>C</strong> or better according to the <strong>2018</strong> <a href="https://www.gov.uk/government/collections/english-housing-survey#2018-to-2019">English Housing Survey&nbsp;</a>(RdSAP changed to version 9.93 halfway through data collection).</p>
 <p>The Energy Efficient Scotland Routemap sets further aims for energy efficiency of properties based on <strong>tenure</strong>:</p>
