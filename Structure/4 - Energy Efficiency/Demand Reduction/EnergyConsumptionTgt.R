@@ -317,7 +317,7 @@ EnConsumptionTgt <- function(input, output, session) {
       ggsave(
         file,
         plot = EnConsChart,
-        width = 14,
+        width = 16,
         height = 16,
         units = "cm",
         dpi = 300

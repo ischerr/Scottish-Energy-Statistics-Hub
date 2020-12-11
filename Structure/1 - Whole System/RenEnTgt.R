@@ -303,6 +303,8 @@ RenEnTgt <- function(input, output, session) {
     filename = "RenEnTgt.png",
     content = function(file) {
 
+      
+      
       RenEn <- read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Renewable energy target",
@@ -333,7 +335,7 @@ RenEnTgt <- function(input, output, session) {
       plottitle = "Share of renewable energy in\ngross final energy consumption"
       
       RenEnChart <-
-        TargetChart(RenEn, plottitle, sourcecaption, ChartColours)
+        TargetChartLastYear(RenEn, plottitle, sourcecaption, ChartColours)
       
       RenEnChart
       data <- RenEn
@@ -422,6 +424,9 @@ RenEnTgt <- function(input, output, session) {
         )
       
       
+      RenEnChart <- RenEnChart +
+        ylim(0,.55)
+      
       RenEnChart
       
       ggsave(
@@ -432,6 +437,7 @@ RenEnTgt <- function(input, output, session) {
         units = "cm",
         dpi = 300
       )
+      
     }
   )
   ### Summary Tables ###
