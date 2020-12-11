@@ -55,9 +55,9 @@ DomEPCsOutput <- function(id) {
              plotlyOutput(ns("EPCTenurePlot"))%>% withSpinner(color="#34d1a3"),
              HTML("<blockquote><p>*based on SAP 2012 RdSAP v9.93&nbsp;</p></blockquote>"),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
-    tabPanel("Average EER Rating",
+    tabPanel("MedianEER Rating",
              fluidRow(column(8,
-                             h3("Average EER Rating", style = "color: #34d1a3;  font-weight:bold"),
+                             h3("MedianEER Rating", style = "color: #34d1a3;  font-weight:bold"),
                              h4(textOutput(ns('EERProportionsSubtitle')), style = "color: #34d1a3;")
              ),
              column(
@@ -104,9 +104,9 @@ DomEPCsOutput <- function(id) {
                column(12, dataTableOutput(ns("EPCTenureTable"))%>% withSpinner(color="#34d1a3"))),
              HTML("<blockquote><p>*based on SAP 2012 RdSAP v9.93&nbsp;</p></blockquote>"),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
-    tabPanel("Average EER Rating",
+    tabPanel("MedianEER Rating",
              fluidRow(
-               column(10, h3("Data - Average EER Rating", style = "color: #34d1a3;  font-weight:bold")),
+               column(10, h3("Data - MedianEER Rating", style = "color: #34d1a3;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -1516,17 +1516,17 @@ DomEPCs <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Average EER Rating",
+        title = "MedianEER Rating",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Average EER Rating',
+            title = 'MedianEER Rating',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Average EER Rating')
+               title = 'MedianEER Rating')
         ),
         
         # customize the length menu
@@ -1555,7 +1555,7 @@ DomEPCs <- function(input, output, session) {
       ### variables
       ChartColours <- c("#34d1a3", "#0868ac", "#4eb3d3", "#a8ddb5")
       sourcecaption = "Source: SG"
-      plottitle = "Average EER Rating"
+      plottitle = "MedianEER Rating"
       
       Length <- max(EERProportion$Year) - min(EERProportion$Year)
       Height <- max(EERProportion$`SAP 2009`)
