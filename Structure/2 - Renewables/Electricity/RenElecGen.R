@@ -2234,9 +2234,14 @@ RenElecGen <- function(input, output, session) {
     
     Data <- as_tibble(Data)
     
-    names(Data) <- c("Quarter", "Onshore wind", "Offshore wind", "Shoreline wave / tidal", "Solar PV", "Hydro", "Landfill gas", "Sewage sludge digestion", "Other biomass (inc. co-firing)", "Total")
+    names(Data) <- c("Quarter", "Onshore wind", "Offshore wind", "Wave and Tidal", "Solar PV", "Hydro", "Landfill gas", "Sewage sludge digestion", "Other biomass (inc. co-firing)", "Total")
+    
+    
+    Data$`Biofuels and Waste` <- Data$`Landfill gas` + Data$`Sewage sludge digestion` + Data$`Other biomass (inc. co-firing)`
     
     Data <- Data[which(Data$Total > 0),]
+    
+    Data <- Data[c(1,2,3,6,11,5,4,10)]
     
     Data$Quarter <- paste0(substr(Data$Quarter,1,4), " Q", substr(Data$Quarter,8,8))
     
