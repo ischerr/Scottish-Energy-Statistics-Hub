@@ -425,6 +425,8 @@ RenElecSources <- function(input, output, session) {
   Stacked[5,1] <- paste0("<b>", Stacked[5,1], "</b>" , "\n", RenEconomyYear)
   Stacked[6,1] <- paste0("<b>", Stacked[6,1], "</b>" , "\n", max(RenSites$Year))
   
+  Stacked <- Stacked[c(1,2,3,6,4,5),]
+  
   Stacked2$Time <- c(max(RenElecGenFuel$Year), max(RenElecCapFuel$Year),max(RenElecCapFuel$Year),RenEconomyYear,RenEconomyYear, max(RenSites$Year))
 
   
