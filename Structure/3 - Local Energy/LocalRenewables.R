@@ -968,7 +968,13 @@ LocalRenewables <- function(input, output, session) {
     CommunityOperatingTech$Capacity <- as.numeric(CommunityOperatingTech$Capacity)
     
     CommunityOperatingTech[is.na( CommunityOperatingTech)] <- 0.99
+    
+    CommunityOperatingTech[2,2] <- CommunityOperatingTech[2,2] + CommunityOperatingTech[5,2]
         
+    CommunityOperatingTech[2,1] <- "Bioenergy and Waste"
+    
+    CommunityOperatingTech <- CommunityOperatingTech[-5,]
+    
     CommunityOperatingTech$Tech <- paste0("<b>", CommunityOperatingTech$Tech, "</b>")
     
     CommunityOperatingTech$Tech <- factor(CommunityOperatingTech$Tech, levels = c(as.character(CommunityOperatingTech$Tech)))
@@ -1030,6 +1036,12 @@ LocalRenewables <- function(input, output, session) {
       
       ComCapTech <- Data
       
+      ComCapTech[2,2] <- ComCapTech[2,2] + ComCapTech[5,2]
+      
+      ComCapTech[2,1] <- "Bioenergy and Waste"
+      
+      ComCapTech <- ComCapTech[-5,]
+      
       ComCapTech$Tech <-
         factor(ComCapTech$Tech, levels = ComCapTech$Tech, ordered = TRUE)
       
@@ -1083,7 +1095,7 @@ LocalRenewables <- function(input, output, session) {
       ComCapTechChart <-
         ComCapTechChart +
         coord_flip() +
-        ylim(-85, max(ComCapTech$Capacity))+
+        ylim(-115, max(ComCapTech$Capacity))+
         scale_x_discrete(limits = rev(levels(ComCapTech$Tech)))+ 
         labs (subtitle = "Scotland, June 2019")
       
@@ -1103,11 +1115,23 @@ LocalRenewables <- function(input, output, session) {
   output$CommunityOperatingTechTable = renderDataTable({
     CommunityOperatingOutputType <- read_excel("Structure/CurrentWorking.xlsx", 
                                  sheet = "Comm & locally owned ren", col_names = TRUE, 
-                                 skip = 41, n_max = 9)
+                                 skip = 41, n_max = 9)[1:5]
     
     CommunityOperatingOutputType <- CommunityOperatingOutputType[1:5]
     
     CommunityOperatingOutputType[9,1] <- "Total"
+    
+    CommunityOperatingOutputType[2,2] <- as.character(as.numeric(CommunityOperatingOutputType[2,2]) + as.numeric(CommunityOperatingOutputType[5,2]))
+    
+    CommunityOperatingOutputType[2,3] <- as.character(as.numeric(CommunityOperatingOutputType[2,3]) + as.numeric(CommunityOperatingOutputType[5,3]))
+    
+    CommunityOperatingOutputType[2,4] <- as.character(as.numeric(CommunityOperatingOutputType[2,4]) + as.numeric(CommunityOperatingOutputType[5,4]))
+    
+    CommunityOperatingOutputType[2,5] <- as.character(as.numeric(CommunityOperatingOutputType[2,5]) + as.numeric(CommunityOperatingOutputType[5,5]))
+    
+    CommunityOperatingOutputType[2,1] <- "Bioenergy and Waste"
+    
+    CommunityOperatingOutputType <- CommunityOperatingOutputType[-5,]
     
     names(CommunityOperatingOutputType) <- c("Tech", "Capacity (MW)", "%", "Number of Installations", "%")
     
