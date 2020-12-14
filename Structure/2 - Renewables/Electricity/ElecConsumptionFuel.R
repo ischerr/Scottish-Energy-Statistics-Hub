@@ -450,7 +450,7 @@ ElecConsumptionFuel <- function(input, output, session) {
         showlegend = FALSE ,
         mode = 'text',
         hoverinfo = 'skip',
-        text = paste0("<b>", "Fossil:\n ", percent((
+        text = paste0("<b>", "Fossil Fuels:\n ", percent((
           ElecConsumptionFuel$Coal + ElecConsumptionFuel$Gas
         )[1]
         , 0.1) , "</b>"),
@@ -488,7 +488,7 @@ ElecConsumptionFuel <- function(input, output, session) {
         showlegend = FALSE ,
         mode = 'text',
         hoverinfo = 'skip',
-        text = paste0("<b>", "Fossil:\n ", percent((
+        text = paste0("<b>", "Fossil Fuels:\n ", percent((
           ElecConsumptionFuel$Coal + ElecConsumptionFuel$Gas
         )[2]
         , 0.1) , "</b>"),
@@ -859,7 +859,7 @@ ElecConsumptionFuel <- function(input, output, session) {
           "text",
           x = 0.65,
           y = 1 - (sum(ElecConsumptionFuel$value[which(ElecConsumptionFuel$variable != "Wind" & ElecConsumptionFuel$variable != "Hydro" & ElecConsumptionFuel$variable != "Biomass" & ElecConsumptionFuel$variable != "Solar" & ElecConsumptionFuel$variable != "Nuclear" & ElecConsumptionFuel$variable != "Imports" & ElecConsumptionFuel$variable != "Other"  & ElecConsumptionFuel$Sector == "England and Wales")]))/2,
-          label = paste("Fossil:",
+          label = paste("Fossil Fuels:",
                         percent(sum(ElecConsumptionFuel$value[which(ElecConsumptionFuel$variable != "Wind" & ElecConsumptionFuel$variable != "Hydro" & ElecConsumptionFuel$variable != "Biomass" & ElecConsumptionFuel$variable != "Solar" & ElecConsumptionFuel$variable != "Nuclear" & ElecConsumptionFuel$variable != "Imports" & ElecConsumptionFuel$variable != "Other" &  ElecConsumptionFuel$Sector == "England and Wales")]), 0.1)
           ),
           colour =  BarColours[8],
@@ -920,7 +920,7 @@ ElecConsumptionFuel <- function(input, output, session) {
           "text",
           x = 1.65,
           y =  1 - (sum(ElecConsumptionFuel$value[which(ElecConsumptionFuel$variable != "Wind" & ElecConsumptionFuel$variable != "Hydro" & ElecConsumptionFuel$variable != "Biomass" & ElecConsumptionFuel$variable != "Solar" & ElecConsumptionFuel$variable != "Nuclear" & ElecConsumptionFuel$variable != "Imports" & ElecConsumptionFuel$variable != "Other"  &  ElecConsumptionFuel$Sector == "Scotland")]))/2,
-          label = paste("Fossil:",
+          label = paste("Fossil Fuels:",
                         percent(sum(ElecConsumptionFuel$value[which(ElecConsumptionFuel$variable != "Wind" & ElecConsumptionFuel$variable != "Hydro" & ElecConsumptionFuel$variable != "Biomass" & ElecConsumptionFuel$variable != "Solar" & ElecConsumptionFuel$variable != "Nuclear" & ElecConsumptionFuel$variable != "Imports" & ElecConsumptionFuel$variable != "Other"  &  ElecConsumptionFuel$Sector == "Scotland")]), 0.1)
           ),
           colour =  BarColours[8],

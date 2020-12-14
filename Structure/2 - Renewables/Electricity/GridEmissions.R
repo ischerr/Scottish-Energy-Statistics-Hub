@@ -903,8 +903,6 @@ GridEmissions <- function(input, output, session) {
     
     GHGElectricity <- GHGElectricity[complete.cases(GHGElectricity),]
     
-    GHGElectricity$Total <- rowSums(GHGElectricity[2:5])
-    
     GHGElecBreakdown <- read_csv("Processed Data/Output/Greenhouse Gas/GHGElectricityBreakdown.csv")
     
     names(GHGElecBreakdown)[1] <- "Year"

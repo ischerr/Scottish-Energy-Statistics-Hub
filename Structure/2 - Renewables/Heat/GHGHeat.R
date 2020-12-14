@@ -450,8 +450,6 @@ GHGHeat <- function(input, output, session) {
     
     GHGHeat <- GHGHeat[complete.cases(GHGHeat),]
     
-    GHGHeat$Total <- rowSums(GHGHeat[2:5])
-    
     GHGHeatBreakdown <- read_csv("Processed Data/Output/Greenhouse Gas/GHGHeatBreakdown.csv")
     
     names(GHGHeatBreakdown)[1] <- "Year"
@@ -478,17 +476,17 @@ GHGHeat <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Carbon Productivity",
+        title = "Greenhouse gas emissions associated with heating of buildings",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Carbon Productivity',
+            title = 'Greenhouse gas emissions associated with heating of buildings',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Carbon Productivity')
+               title = 'Greenhouse gas emissions associated with heating of buildings')
         ),
         
         # customize the length menu

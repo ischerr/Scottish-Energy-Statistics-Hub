@@ -63,6 +63,9 @@ EnConsumptionOutput <- function(id) {
              ),
              fluidRow(
                column(12, dataTableOutput(ns("EnConsumptionDomNonDomTable"))%>% withSpinner(color="#1A5D38"))),
+             column(12, HTML("<blockquote>
+                          <p>* Electricity figures relate to electricity demand (i.e. after electricity own use and losses) rather than gross electricity consumption (generation minus net exports)</p>
+                          </blockquote>")),
              tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"))),
     fluidRow(
       column(2, p("Update expected:")),
