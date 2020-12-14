@@ -293,20 +293,24 @@ RenElecCapacity <- function(input, output, session) {
     Data[2:14]%<>% lapply(function(x)
       as.numeric(as.character(x)))
     
-    Data$Biomass <- Data$`Animal Biomass` + Data$Plant
+    Data$`Bioenergy and Waste` <- Data$`Landfill Gas` + Data$Waste + Data$`Anaerobic Digestion` + Data$`Animal Biomass` + Data$Plant + Data$Sewage
+    
+    Data$`Landfill Gas` <- NULL
+    
+    Data$Waste <- NULL
+    
+    Data$`Anaerobic Digestion` <- NULL
     
     Data$`Animal Biomass` <- NULL
     
     Data$Plant <- NULL
-    
-    Data$`Anaerobic Digestion` <- Data$`Anaerobic Digestion` + Data$Sewage
     
     Data$Sewage <- NULL
     
     names(Data)[1] <- "Quarter"
     
     datatable(
-      Data[c(1:10,12,11)],
+      Data[c(1:7,9,8)],
       extensions = 'Buttons',
       
       rownames = FALSE,
