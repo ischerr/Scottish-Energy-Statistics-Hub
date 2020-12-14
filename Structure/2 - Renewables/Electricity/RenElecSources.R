@@ -429,6 +429,7 @@ RenElecSources <- function(input, output, session) {
   
   Stacked2$Time <- c(max(RenElecGenFuel$Year), max(RenElecCapFuel$Year),max(RenElecCapFuel$Year),RenEconomyYear,RenEconomyYear, max(RenSites$Year))
 
+  Stacked2 <- Stacked2[c(1,2,3,6,4,5),]
   
   #Stacked$Tech <- factor(Stacked$Tech, levels = unique(Stacked$Tech)[order(row.names(Stacked), decreasing = FALSE)])
   ChartColours <- c("#39ab2c")
