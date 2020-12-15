@@ -31,7 +31,7 @@ LocalRenewablesOutput <- function(id) {
                plotlyOutput(ns("CommunityOperatingCapacityPlot"))%>% withSpinner(color="#a3d65c"),
                tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
       
-      tabPanel("Community owned renewable capacity",
+      tabPanel("Capacity by stage of development",
                fluidRow(
                  column(
                    8,

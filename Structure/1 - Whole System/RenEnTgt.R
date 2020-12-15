@@ -532,9 +532,9 @@ RenEnTgt <- function(input, output, session) {
     
     names(ElectricityTarget) <- c(
       "Year",
-      "Renewable Generation (GWh)",
+      "Renewable Electricity Generation (GWh)",
       "Gross Consumption (GWh)",
-      "Renewable % of consumption",
+      "% renewables of gross electricity consumption",
       "% of all energy consumption"
     )
     

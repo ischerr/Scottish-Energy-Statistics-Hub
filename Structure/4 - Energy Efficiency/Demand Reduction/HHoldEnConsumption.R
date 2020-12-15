@@ -158,7 +158,8 @@ HHoldEnConsumption <- function(input, output, session) {
           rangemode = "tozero"
         )
       ) %>% 
-      config(displayModeBar = F)
+      config(displayModeBar = FALSE,
+             showlegend = FALSE)
     
     p
     

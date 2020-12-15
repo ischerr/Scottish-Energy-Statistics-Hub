@@ -1539,7 +1539,7 @@ ElecGen <- function(input, output, session) {
         showlegend = FALSE ,
         mode = 'text',
         hoverinfo = 'skip',
-        text = paste0("<b>", "Fossil:\n ", percent((
+        text = paste0("<b>", "Fossil Fuels:\n ", percent((
           ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
         )[1]
         , 0.1) , "</b>"),
@@ -1577,7 +1577,7 @@ ElecGen <- function(input, output, session) {
         showlegend = FALSE ,
         mode = 'text',
         hoverinfo = 'skip',
-        text = paste0("<b>", "Fossil:\n ", percent((
+        text = paste0("<b>", "Fossil Fuels:\n ", percent((
           ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
         )[2]
         , 0.1) , "</b>"),
