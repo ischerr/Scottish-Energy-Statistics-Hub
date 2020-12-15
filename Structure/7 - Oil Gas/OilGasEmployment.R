@@ -526,7 +526,7 @@ OilGasEmployment <- function(input, output, session) {
     
     OilGasEmployment <- read_excel("Structure/7 - Oil Gas/RegionalOilGasEmployment.xlsx")
     
-    names(OilGasEmployment) <- c("Region", "Renewables")
+    names(OilGasEmployment) <- c("Region", "Proportion")
     
     datatable(
       OilGasEmployment,
