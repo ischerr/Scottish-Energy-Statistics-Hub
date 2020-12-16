@@ -695,7 +695,7 @@ FuelPoverty <- function(input, output, session) {
       col_names = TRUE,
       skip = 12,
       n_max = 7
-    )[16:21]
+    )[16:22]
     
     names(Data) <- substr(names(Data), 1, 4)
     
@@ -739,7 +739,7 @@ FuelPoverty <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:ncol(Data), 1)
+      formatPercentage(2:ncol(Data), 0)
   })
   
   
@@ -774,7 +774,7 @@ FuelPoverty <- function(input, output, session) {
         col_names = FALSE,
         skip = 12,
         n_max = 8
-      )[16:21]
+      )[16:22]
       
       Data <- as_tibble(t(Data))
       
@@ -1167,7 +1167,7 @@ FuelPoverty <- function(input, output, session) {
         col_names = FALSE,
         skip = 12,
         n_max = 8
-      )[16:21]
+      )[16:22]
       
       Data <- as_tibble(t(Data))
       
