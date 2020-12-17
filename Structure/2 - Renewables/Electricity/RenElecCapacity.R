@@ -94,6 +94,11 @@ RenElecCapacityOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+    fluidRow(
+      column(10, h3("Scottish extract of operational projects", style = "color: #39ab2c;  font-weight:bold")),
+      column(2, style = "padding:15px",  downloadButton(ns("PlanningTable"), "Planning Table", style = "float:right; "))
+    ),
+    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     tabsetPanel(
 
       tabPanel("Quarterly Capacity by technology",
@@ -2708,5 +2713,16 @@ RenElecCapacity <- function(input, output, session) {
     }
   )
 
+  output$PlanningTable <- downloadHandler(
+    filename = "DataTable.csv",
+    content = function(file){
+      
+      DataTable  <- read_csv("Processed Data/Output/REPD (Operational Corrections)/OperationalDataTable.csv")
+      
+      write.csv(DataTable, 
+                file,
+                row.names = FALSE)
+    }
+  )
   
 }
