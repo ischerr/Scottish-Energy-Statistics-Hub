@@ -2279,12 +2279,7 @@ RenElecPipeline <- function(input, output, session) {
     filename = "DataTable.csv",
     content = function(file){
 
-      DataTable <- read_delim("Processed Data/Output/REPD (Operational Corrections)/DataTable.txt", 
-                              "\t", escape_double = FALSE, trim_ws = TRUE)
-      
-      DataTable[which(DataTable$TurbineAmount == 0),]$TurbineAmount <- NA
-      
-      names(DataTable) <- c("Reference", "Local Authority", "Site Name", "Technology", "Capacity (MW)", "Status", "Wind Turbines")
+      DataTable  <- read_csv("Processed Data/Output/REPD (Operational Corrections)/PipelineDataTable.csv")
       
       write.csv(DataTable, 
                 file,
