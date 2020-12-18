@@ -540,10 +540,7 @@ RenElecTarget <- function(input, output, session) {
   
   output$GrossConsumptionSubtitle <- renderText({
     
-    GrossConsumption <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                                   "\t", escape_double = FALSE, trim_ws = TRUE)
-    
-    paste("Scotland,", max(as.numeric(GrossConsumption$refPeriod), na.rm = TRUE))
+      paste("Scotland, 2019")
   })
   
   output$GrossConsumptionPlot <- renderPlotly  ({
@@ -879,7 +876,7 @@ RenElecTarget <- function(input, output, session) {
       
       GrossConsumptionPlotData$Type <- as.numeric(rownames(GrossConsumptionPlotData))
       
-      GrossConsumptionYear <- 2018
+      GrossConsumptionYear <- 2019
       
       ChartColours <- c("#39ab2c", "#FF8500", "#74c476")
       BarColours <-

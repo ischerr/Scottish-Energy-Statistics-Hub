@@ -14,7 +14,7 @@ ElecGenOutput <- function(id) {
       tabPanel("Charts",
                fluidRow(column(8,
                                h3("Proportion of electricity generation by fuel", style = "color: #39ab2c;  font-weight:bold"),
-                               selectInput(ns("YearSelect"), "Year:", c(2018:2004), selected = 2018, multiple = FALSE,
+                               selectInput(ns("YearSelect"), "Year:", c(2019:2004), selected = 2019, multiple = FALSE,
                                            selectize = TRUE, width = NULL, size = NULL)
                ),
                column(
