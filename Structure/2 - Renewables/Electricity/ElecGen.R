@@ -189,6 +189,7 @@ ElecGen <- function(input, output, session) {
     plottitle = "Electricity generation -\nlow carbon versus fossil fuels"
     
     
+    
     p <-  plot_ly(ElecFuelLowCarbon, x = ~ Year ) %>% 
       add_trace(y = ~ `Low Carbon`,
                 name = "Low Carbon",
@@ -1193,6 +1194,8 @@ ElecGen <- function(input, output, session) {
         "#696969"
       )
     
+    if(as.numeric(input$YearSelect) >= 2017){
+    
     p <-
       plot_ly(data = ElecGenFuel, y = ~ Sector) %>%
       add_trace(
@@ -1452,7 +1455,7 @@ ElecGen <- function(input, output, session) {
       ) %>%
       add_trace(
         x = (
-          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
+          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear 
         )[1] / 2,
         y = .63,
         type = 'scatter',
@@ -1462,7 +1465,7 @@ ElecGen <- function(input, output, session) {
         text = paste0("<b>", "Low Carbon:\n ", percent(1 - (ElecGenFuel$Gas[1] +
                                                               ElecGenFuel$Oil[1] +
                                                               ElecGenFuel$Coal[1] +
-                                                              ElecGenFuel$Other[1] +
+                                                              ElecGenFuel$Other[1] + 
                                                               ElecGenFuel$`Pumped Hydro`[1]
         ), 0.1), "</b>"),
         textposistion = 'center',
@@ -1474,7 +1477,7 @@ ElecGen <- function(input, output, session) {
         x = ~ c(
           0,
           (
-            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro`
           )[2]
         ),
         y = ~ 1.8,
@@ -1492,7 +1495,7 @@ ElecGen <- function(input, output, session) {
       ) %>%
       add_trace(
         x = (
-          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
+          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro`
         )[2] / 2,
         y = 1.63,
         type = 'scatter',
@@ -1502,8 +1505,7 @@ ElecGen <- function(input, output, session) {
         text = paste0("<b>", "Low Carbon:\n ", percent(1 - (ElecGenFuel$Gas[2] +
                                                               ElecGenFuel$Oil[2] +
                                                               ElecGenFuel$Coal[2] +
-                                                              ElecGenFuel$Other[2] +
-                                                              ElecGenFuel$`Pumped Hydro`[2]
+                                                              ElecGenFuel$Other[2]
         ), 0.1), "</b>"),
         textposistion = 'center',
         textfont = list(color = BarColours[4])
@@ -1614,6 +1616,434 @@ ElecGen <- function(input, output, session) {
       config(displayModeBar = F) %>% 
       onRender("function(el,x){el.on('plotly_legendclick', function(){ return false; })}")
     
+    }
+    
+    if(as.numeric(input$YearSelect) < 2017){
+      
+      p <-
+        plot_ly(data = ElecGenFuel, y = ~ Sector) %>%
+        add_trace(
+          data = ElecGenFuel,
+          x = ~ Wind,
+          type = 'bar',
+          width = 0.3,
+          orientation = 'h',
+          name = "Wind",
+          text = paste0("Wind: ", percent(ElecGenFuel$Wind, accuracy = 0.1)),
+          hoverinfo = 'text',
+          marker = list(color = BarColours[1]),
+          legendgroup = 1
+        ) %>%
+        add_trace(
+          data = ElecGenFuel,
+          x = ~ Hydro,
+          type = 'bar',
+          width = 0.3,
+          orientation = 'h',
+          name = "Hydro",
+          text = paste0("Hydro: ", percent(ElecGenFuel$Hydro, accuracy = 0.1)),
+          hoverinfo = 'text',
+          marker = list(color = BarColours[2]),
+          legendgroup = 2
+        ) %>%
+        add_trace(
+          data = ElecGenFuel,
+          x = ~ `Biofuels and Waste`,
+          type = 'bar',
+          width = 0.3,
+          orientation = 'h',
+          name = "Biofuels and Waste",
+          text = paste0("Biofuels and Waste: ", percent(ElecGenFuel$`Biofuels and Waste`, accuracy = 0.1)),
+          hoverinfo = 'text',
+          marker = list(color = BarColours[3]),
+          legendgroup = 3
+        ) %>%
+        add_trace(
+          data = ElecGenFuel,
+          x = ~ Solar,
+          type = 'bar',
+          width = 0.3,
+          orientation = 'h',
+          name = "Solar",
+          text = paste0(
+            "Solar: ",
+            percent(ElecGenFuel$`Solar`, accuracy = 0.1)
+          ),
+          hoverinfo = 'text',
+          marker = list(color = BarColours[4]),
+          legendgroup = 4
+        ) %>%
+        add_trace(
+          data = ElecGenFuel,
+          x = ~ `Other Renewables`,
+          type = 'bar',
+          width = 0.3,
+          orientation = 'h',
+          name = "Other Renewables",
+          text = paste0(
+            "Other Renewables: ",
+            percent(ElecGenFuel$`Other Renewables`, accuracy = 0.1)
+          ),
+          hoverinfo = 'text',
+          marker = list(color = BarColours[5]),
+          legendgroup = 5
+        ) %>%
+        add_trace(
+          data = ElecGenFuel,
+          x = ~ `Nuclear`,
+          type = 'bar',
+          width = 0.3,
+          orientation = 'h',
+          name = "Nuclear",
+          text = paste0("Nuclear: ", percent(ElecGenFuel$Nuclear, accuracy = 0.1)),
+          hoverinfo = 'text',
+          marker = list(color = BarColours[6]),
+          legendgroup = 6
+        ) %>%
+        add_trace(
+          data = ElecGenFuel,
+          x = ~ `Pumped Hydro`,
+          type = 'bar',
+          width = 0.3,
+          orientation = 'h',
+          name = "Pumped Hydro",
+          text = paste0(
+            "Pumped Hydro: ",
+            percent(ElecGenFuel$`Pumped Hydro`, accuracy = 0.1)
+          ),
+          hoverinfo = 'text',
+          marker = list(color = BarColours[7]),
+          legendgroup = 7
+        ) %>%
+        add_trace(
+          data = ElecGenFuel,
+          x = ~ `Other`,
+          type = 'bar',
+          width = 0.3,
+          orientation = 'h',
+          name = "Other",
+          text = paste0(
+            "Other: ",
+            percent(ElecGenFuel$`Other`, accuracy = 0.1)
+          ),
+          hoverinfo = 'text',
+          marker = list(color = BarColours[11]),
+          legendgroup = 8
+        ) %>%
+        add_trace(
+          data = ElecGenFuel,
+          x = ~ Coal,
+          type = 'bar',
+          width = 0.3,
+          orientation = 'h',
+          name = "Coal",
+          text = paste0("Coal: ", percent(ElecGenFuel$Coal, accuracy = 0.1)),
+          hoverinfo = 'text',
+          marker = list(color = BarColours[8]),
+          legendgroup = 9
+        ) %>%
+        add_trace(
+          data = ElecGenFuel,
+          x = ~ Oil,
+          type = 'bar',
+          width = 0.3,
+          orientation = 'h',
+          name = "Oil",
+          text = paste0("Oil: ", percent(ElecGenFuel$`Oil`, accuracy = 0.1)),
+          hoverinfo = 'text',
+          marker = list(color = BarColours[9]),
+          legendgroup = 10
+        ) %>%
+        add_trace(
+          data = ElecGenFuel,
+          x = ~ Gas,
+          type = 'bar',
+          width = 0.3,
+          
+          orientation = 'h',
+          name = "Gas",
+          text = paste0("Gas: ", percent(ElecGenFuel$`Gas`, accuracy = 0.1)),
+          hoverinfo = 'text',
+          marker = list(color = BarColours[10]),
+          legendgroup = 11
+        ) %>%
+        add_trace(
+          x = ~ c(
+            0,
+            (
+              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar +  ElecGenFuel$`Other Renewables`
+            )[1]
+          ),
+          y = ~ 1.2,
+          type = 'scatter',
+          mode = 'lines',
+          showlegend = FALSE ,
+          hoverinfo = 'skip',
+          legendgroup = 10,
+          name = "Renewables",
+          line = list(
+            width = 2,
+            color = BarColours[2],
+            dash = "none"
+          )
+        ) %>%
+        add_trace(
+          x = (
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
+          )[1] / 2,
+          y = 1.37,
+          type = 'scatter',
+          showlegend = FALSE ,
+          mode = 'text',
+          hoverinfo = 'skip',
+          text = paste0("<b>", "Renewables:\n ", percent(1 - (ElecGenFuel$Gas[1] +
+                                                                ElecGenFuel$Oil[1] +
+                                                                ElecGenFuel$Coal[1] +
+                                                                ElecGenFuel$Other[1] +
+                                                                ElecGenFuel$`Pumped Hydro`[1]+
+                                                                ElecGenFuel$Nuclear[1]), 0.1),
+                        "</b>"),
+          textposition = ifelse( (1-(ElecGenFuel$Gas[1] +
+                                       ElecGenFuel$Oil[1] +
+                                       ElecGenFuel$Coal[1] +
+                                       ElecGenFuel$Other[1] +
+                                       ElecGenFuel$`Pumped Hydro`[1]+
+                                       ElecGenFuel$Nuclear[1])) > 0.1, "middle center", "middle right"),
+          textfont = list(color = BarColours[2])
+          
+        ) %>%
+        add_trace(
+          x = ~ c(
+            0,
+            (
+              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
+            )[2]
+          ),
+          y = ~ 2.2,
+          type = 'scatter',
+          mode = 'lines',
+          showlegend = FALSE ,
+          hoverinfo = 'skip',
+          legendgroup = 10,
+          name = "Renewables",
+          line = list(
+            width = 2,
+            color = BarColours[2],
+            dash = "none"
+          )
+        ) %>%
+        add_trace(
+          x = (
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
+          )[2] / 2,
+          y = 2.37,
+          type = 'scatter',
+          showlegend = FALSE ,
+          mode = 'text',
+          hoverinfo = 'skip',
+          text = paste0("<b>", "Renewables:\n ", percent(1 - (ElecGenFuel$Gas[2] +
+                                                                ElecGenFuel$Oil[2] +
+                                                                ElecGenFuel$Coal[2] +
+                                                                ElecGenFuel$Other[2] +
+                                                                ElecGenFuel$`Pumped Hydro`[2]+
+                                                                ElecGenFuel$Nuclear[2]), 0.1), "</b>"),
+          textposition = ifelse((1 - (ElecGenFuel$Gas[2] +
+                                        ElecGenFuel$Oil[2] +
+                                        ElecGenFuel$Coal[2] +
+                                        ElecGenFuel$Other[2] +
+                                        ElecGenFuel$`Pumped Hydro`[2]+
+                                        ElecGenFuel$Nuclear[2])) > 0.1, 'middle center', 'middle right'),
+          textfont = list(color = BarColours[2])
+          
+        ) %>%
+        
+        add_trace(
+          x = ~ c(
+            0,
+            (
+              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
+            )[1]
+          ),
+          y = ~ 0.8,
+          type = 'scatter',
+          mode = 'lines',
+          showlegend = FALSE ,
+          hoverinfo = 'skip',
+          legendgroup = 10,
+          name = "Renewables",
+          line = list(
+            width = 2,
+            color = BarColours[4],
+            dash = "none"
+          )
+        ) %>%
+        add_trace(
+          x = (
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
+          )[1] / 2,
+          y = .63,
+          type = 'scatter',
+          showlegend = FALSE ,
+          mode = 'text',
+          hoverinfo = 'skip',
+          text = paste0("<b>", "Low Carbon:\n ", percent(1 - (ElecGenFuel$Gas[1] +
+                                                                ElecGenFuel$Oil[1] +
+                                                                ElecGenFuel$Coal[1] +
+                                                                ElecGenFuel$Other[1] +
+                                                                ElecGenFuel$`Pumped Hydro`[1]
+          ), 0.1), "</b>"),
+          textposistion = 'center',
+          textfont = list(color = BarColours[4])
+          
+        ) %>%
+        
+        add_trace(
+          x = ~ c(
+            0,
+            (
+              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
+            )[2]
+          ),
+          y = ~ 1.8,
+          type = 'scatter',
+          mode = 'lines',
+          showlegend = FALSE ,
+          hoverinfo = 'skip',
+          legendgroup = 10,
+          name = "Renewables",
+          line = list(
+            width = 2,
+            color = BarColours[5],
+            dash = "none"
+          )
+        ) %>%
+        add_trace(
+          x = (
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
+          )[2] / 2,
+          y = 1.63,
+          type = 'scatter',
+          showlegend = FALSE ,
+          mode = 'text',
+          hoverinfo = 'skip',
+          text = paste0("<b>", "Low Carbon:\n ", percent(1 - (ElecGenFuel$Gas[2] +
+                                                                ElecGenFuel$Oil[2] +
+                                                                ElecGenFuel$Coal[2] +
+                                                                ElecGenFuel$Other[2] +
+                                                                ElecGenFuel$`Pumped Hydro`[2]
+          ), 0.1), "</b>"),
+          textposistion = 'center',
+          textfont = list(color = BarColours[4])
+          
+        ) %>%
+        
+        add_trace(
+          x = ~ c(
+            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1],
+            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1] - (
+              ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
+            )[1]
+          ),
+          y = ~ 0.8,
+          type = 'scatter',
+          mode = 'lines',
+          showlegend = FALSE ,
+          hoverinfo = 'skip',
+          legendgroup = 10,
+          name = "Renewables",
+          line = list(
+            width = 2,
+            color = BarColours[9],
+            dash = "none"
+          )
+        ) %>%
+        add_trace(
+          x = (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1] - (
+            ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
+          )[1] / 2,
+          y = .63,
+          type = 'scatter',
+          showlegend = FALSE ,
+          mode = 'text',
+          hoverinfo = 'skip',
+          text = paste0("<b>", "Fossil Fuels:\n ", percent((
+            ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
+          )[1]
+          , 0.1) , "</b>"),
+          textposistion = 'center',
+          textfont = list(color = BarColours[9])
+          
+        ) %>%
+        
+        add_trace(
+          x = ~ c(
+            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[2],
+            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[2] - (
+              ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
+            )[2]
+          ),
+          y = ~ 1.8,
+          type = 'scatter',
+          mode = 'lines',
+          showlegend = FALSE ,
+          hoverinfo = 'skip',
+          legendgroup = 10,
+          name = "Renewables",
+          line = list(
+            width = 2,
+            color = BarColours[9],
+            dash = "none"
+          )
+        ) %>%
+        add_trace(
+          x = 1 - (
+            ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
+          )[2] / 2,
+          y = 1.63,
+          type = 'scatter',
+          showlegend = FALSE ,
+          mode = 'text',
+          hoverinfo = 'skip',
+          text = paste0("<b>", "Fossil Fuels:\n ", percent((
+            ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
+          )[2]
+          , 0.1) , "</b>"),
+          textposistion = 'center',
+          textfont = list(color = BarColours[9])
+          
+        ) %>%
+        
+        layout(
+          barmode = 'stack',
+          legend = list(font = list(color = "#1A5D38"),
+                        orientation = 'h'),
+          hoverlabel = list(font = list(color = "white"),
+                            hovername = 'text'),
+          hovername = 'text',
+          yaxis = list(
+            title = "",
+            showgrid = FALSE,
+            ticktext = list("<b>England\nand Wales</b>", "<b>Scotland</b>"),
+            tickvals = list(1, 2),
+            tickmode = "array"
+          ),
+          xaxis = list(
+            title = "",
+            tickformat = "%",
+            showgrid = FALSE,
+            showticklabels = FALSE,
+            zeroline = FALSE,
+            zerolinecolor = ChartColours[1],
+            zerolinewidth = 2,
+            rangemode = "tozero"
+          )
+        ) %>%
+        config(displayModeBar = F) %>% 
+        onRender("function(el,x){el.on('plotly_legendclick', function(){ return false; })}")
+      
+      
+    }
+    
     p
   })
   
@@ -1648,6 +2078,8 @@ ElecGen <- function(input, output, session) {
     YearList <- as.list(DataScot$Year[which(DataScot$Year >= 2009)])
     
     DataScot$`Low Carbon` <- DataScot$Renewables + DataScot$Nuclear
+    
+    DataScot[which(DataScot$Year >= 2017),]$`Low Carbon` <- DataScot[which(DataScot$Year >= 2017),]$`Low Carbon` + DataScot[which(DataScot$Year >= 2017),]$`Pumped hydro`
     
     DataScot$`Fossil Fuels` <- DataScot$Gas + DataScot$Coal + DataScot$Oil
     
@@ -2099,20 +2531,35 @@ ElecGen <- function(input, output, session) {
            levels = rev(unique(ElecGenFuel$variable)),
            ordered = TRUE)
   
+  ### Calculate Pumped Hydro addition for low carbon in Scotland after 2017
+  
+  HydroAddition <- ElecGenFuel[which(ElecGenFuel$variable == "Pumped Hydro"),]
+  
+  HydroAddition[which(HydroAddition$Year < 2017),]$value <- 0
+  
+  HydroAddition[which(HydroAddition$Year >= 2017 & HydroAddition$Sector == 1.0),]$value <- 0
+  
   ElecGenFuel <- ElecGenFuel %>%
     group_by(Year, Sector)  %>%
     mutate(pos = cumsum(value) - value / 2) %>%
     mutate(top = sum(value)) %>% 
     mutate(RenLineX = Sector + 0.23) %>% 
-    mutate(RenLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Biofuels", "Solar", "Other Renewables"))])) %>% 
+    mutate(RenLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Biofuels and Waste", "Solar", "Other Renewables"))])) %>% 
     mutate(RenText = 1 - sum(value[which(variable %in% c("Coal", "Oil", "Gas", "Other", "Pumped Hydro", "Nuclear"))])) %>% 
     mutate(LCLineX = Sector - 0.23) %>% 
-    mutate(LCLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Biofuels",  "Solar", "Other Renewables", "Nuclear"))])) %>% 
+    mutate(LCLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Biofuels and Waste",  "Solar", "Other Renewables", "Nuclear"))])) %>% 
     mutate(LCText = 1 - sum(value[which(variable %in% c("Coal", "Oil", "Gas", "Other", "Pumped Hydro"))])) %>% 
     mutate(FossilLineX = Sector - 0.23) %>% 
     mutate(FossilLineY = sum(value[which(variable %in% c("Coal", "Oil", "Gas"))])) %>% 
     mutate(FossilText = sum(value[which(variable %in% c("Coal", "Oil", "Gas"))])) %>% 
     mutate(Infinite = Inf)
+  
+  for(i in 2017: max(ElecGenFuel$Year)){
+    ElecGenFuel[which(ElecGenFuel$Year == i & ElecGenFuel$Sector == 1.8),]$LCLineY <- max(ElecGenFuel[which(ElecGenFuel$Year == i & ElecGenFuel$Sector == 1.8),]$LCLineY) + HydroAddition[which(HydroAddition$Year == i & HydroAddition$Sector == 1.8),]$value
+    
+    ElecGenFuel[which(ElecGenFuel$Year == i & ElecGenFuel$Sector == 1.8),]$LCText <- max(ElecGenFuel[which(ElecGenFuel$Year == i & ElecGenFuel$Sector == 1.8),]$LCText) + HydroAddition[which(HydroAddition$Year == i & HydroAddition$Sector == 1.8),]$value
+    
+  }
   
   CountryList <- c("Scotland", "England and Wales")
   plottitle <-
