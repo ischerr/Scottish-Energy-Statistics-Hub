@@ -766,7 +766,7 @@ RenElecTarget <- function(input, output, session) {
         showlegend = FALSE ,
         hoverinfo = 'none',
         legendgroup = 10,
-        text = "This does not mean that 23.3% of Scottish electricity demand is\nfrom non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
+        text = "This does not mean that 10.5% of Scottish electricity demand is\nfrom non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
         name = paste("Consumption"),
         marker = list(
           size = 500,
@@ -1030,7 +1030,7 @@ RenElecTarget <- function(input, output, session) {
         geom_text(
           aes( x = 0,
                y = 48629/1.9,
-               label = "This does not mean that 23.3% of Scottish electricity demand is\nfrom non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
+               label = "This does not mean that 10.5% of Scottish electricity demand is\nfrom non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
                family = "Century Gothic",
                fontface = 2
           ),

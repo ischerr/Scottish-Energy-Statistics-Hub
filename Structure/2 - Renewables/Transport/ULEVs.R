@@ -677,7 +677,7 @@ ULEVs <- function(input, output, session) {
           ),
           label = "Hybrid Electric",
           hjust = .5,
-          vjust = 8.1,
+          vjust = 10.1,
           colour = "white",
           fontface = 2,
           family = "Century Gothic"
@@ -750,8 +750,8 @@ ULEVs <- function(input, output, session) {
       ggsave(
         file,
         plot =  ElecVehiclesChart,
-        width = 14,
-        height = 16,
+        width = 17,
+        height = 17,
         units = "cm",
         dpi = 300
       )
@@ -853,7 +853,7 @@ output$ULEVRegOutput.png <- downloadHandler(
         
         
         ElecVehiclesProportionChart <- ElecVehiclesProportionChart +
-          xlim(min(as.numeric(ElecVehiclesProportion$Year)-.15),max(as.numeric(ElecVehiclesProportion$Year)+.3))
+          xlim(min(as.numeric(ElecVehiclesProportion$Year)-.15),max(as.numeric(ElecVehiclesProportion$Year)+.5))
         
         ElecVehiclesProportionChart
         

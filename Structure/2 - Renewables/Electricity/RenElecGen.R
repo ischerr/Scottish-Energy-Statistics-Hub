@@ -2237,7 +2237,7 @@ RenElecGen <- function(input, output, session) {
     names(Data) <- c("Quarter", "Onshore wind", "Offshore wind", "Wave and Tidal", "Solar PV", "Hydro", "Landfill gas", "Sewage sludge digestion", "Other biomass (inc. co-firing)", "Total")
     
     
-    Data$`Biofuels and Waste` <- Data$`Landfill gas` + Data$`Sewage sludge digestion` + Data$`Other biomass (inc. co-firing)`
+    Data$`Bioenergy and Waste` <- Data$`Landfill gas` + Data$`Sewage sludge digestion` + Data$`Other biomass (inc. co-firing)`
     
     Data <- Data[which(Data$Total > 0),]
     

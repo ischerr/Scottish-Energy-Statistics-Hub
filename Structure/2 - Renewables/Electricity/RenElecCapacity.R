@@ -1546,7 +1546,7 @@ RenElecCapacity <- function(input, output, session) {
       RenElecCapFuelChart <-
         RenElecCapFuelChart +
         labs(subtitle = paste("Scotland,", min(RenElecCapFuel$Year), "-", max(RenElecCapFuel$Year))) +
-        ylim(-(max(RenElecCapFuel$top)*0.025), (max(RenElecCapFuel$top)*1.08)) +
+        ylim(-(max(RenElecCapFuel$top)*0.025), (max(RenElecCapFuel$top)*1.10)) +
         coord_cartesian(xlim = c(min(RenElecCapFuel$Year),max(RenElecCapFuel$Year+2)))
       
       RenElecCapFuelChart

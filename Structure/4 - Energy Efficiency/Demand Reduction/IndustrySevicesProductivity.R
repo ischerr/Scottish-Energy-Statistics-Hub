@@ -271,7 +271,7 @@ IndustrySevicesProductivity <- function(input, output, session) {
             label = ifelse(Year == max(Year), paste(round(GVA, digits = 2),"\n\u00A3GVA m per GWh"), ""),
             colour = ChartColours[1],
             fontface = 2, 
-            vjust = 1.25
+            vjust = 1.5
           ),
           family = "Century Gothic"
         ) +
@@ -707,7 +707,7 @@ IndustrySevicesProductivity <- function(input, output, session) {
             label = ifelse(Year == max(Year), paste(round(GVA, digits = 2),"\n\u00A3GVA m per GWh"), ""),
             colour = ChartColours[1],
             fontface = 2,
-            vjust = 1.2
+            vjust = 1.4
           ),
           family = "Century Gothic"
         ) +

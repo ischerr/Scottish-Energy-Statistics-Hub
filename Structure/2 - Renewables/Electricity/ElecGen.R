@@ -1059,7 +1059,7 @@ ElecGen <- function(input, output, session) {
         DataScot$`Wave / tidal`
       )
     
-    DataScot$`Biofuels and Waste` <-  DataScot$`Landfill Gas` + DataScot$`Sewage Gas` + DataScot$`Other biofuels and co-firing`
+    DataScot$`Bioenergy and Waste` <-  DataScot$`Landfill Gas` + DataScot$`Sewage Gas` + DataScot$`Other biofuels and co-firing`
     
     DataScot$`Wave / tidal` <- NULL
     
@@ -1086,7 +1086,7 @@ ElecGen <- function(input, output, session) {
         "Sector",
         "Wind",
         "Hydro",
-        "Biofuels and Waste",
+        "Bioenergy and Waste",
         "Solar",
         "Other Renewables",
         "Nuclear",
@@ -1133,7 +1133,7 @@ ElecGen <- function(input, output, session) {
         DataEW$`Wave / tidal`
       )
     
-    DataEW$`Biofuels and Waste` <-  DataEW$`Landfill Gas` + DataEW$`Sewage Gas` + DataEW$`Other biofuels and co-firing`
+    DataEW$`Bioenergy and Waste` <-  DataEW$`Landfill Gas` + DataEW$`Sewage Gas` + DataEW$`Other biofuels and co-firing`
     
     DataEW$`Wave / tidal` <- NULL
     
@@ -1160,7 +1160,7 @@ ElecGen <- function(input, output, session) {
         "Sector",
         "Wind",
         "Hydro",
-        "Biofuels and Waste",
+        "Bioenergy and Waste",
         "Solar",
         "Other Renewables",
         "Nuclear",
@@ -1224,12 +1224,12 @@ ElecGen <- function(input, output, session) {
       ) %>%
       add_trace(
         data = ElecGenFuel,
-        x = ~ `Biofuels and Waste`,
+        x = ~ `Bioenergy and Waste`,
         type = 'bar',
         width = 0.3,
         orientation = 'h',
-        name = "Biofuels and Waste",
-        text = paste0("Biofuels and Waste: ", percent(ElecGenFuel$`Biofuels and Waste`, accuracy = 0.1)),
+        name = "Bioenergy and Waste",
+        text = paste0("Bioenergy and Waste: ", percent(ElecGenFuel$`Bioenergy and Waste`, accuracy = 0.1)),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 3
@@ -1347,7 +1347,7 @@ ElecGen <- function(input, output, session) {
         x = ~ c(
           0,
           (
-            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar +  ElecGenFuel$`Other Renewables`
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar +  ElecGenFuel$`Other Renewables`
           )[1]
         ),
         y = ~ 1.2,
@@ -1365,7 +1365,7 @@ ElecGen <- function(input, output, session) {
       ) %>%
       add_trace(
         x = (
-          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
+          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
         )[1] / 2,
         y = 1.37,
         type = 'scatter',
@@ -1392,7 +1392,7 @@ ElecGen <- function(input, output, session) {
         x = ~ c(
           0,
           (
-            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
           )[2]
         ),
         y = ~ 2.2,
@@ -1410,7 +1410,7 @@ ElecGen <- function(input, output, session) {
       ) %>%
       add_trace(
         x = (
-          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
+          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
         )[2] / 2,
         y = 2.37,
         type = 'scatter',
@@ -1437,7 +1437,7 @@ ElecGen <- function(input, output, session) {
         x = ~ c(
           0,
           (
-            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
           )[1]
         ),
         y = ~ 0.8,
@@ -1455,7 +1455,7 @@ ElecGen <- function(input, output, session) {
       ) %>%
       add_trace(
         x = (
-          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear 
+          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear 
         )[1] / 2,
         y = .63,
         type = 'scatter',
@@ -1477,7 +1477,7 @@ ElecGen <- function(input, output, session) {
         x = ~ c(
           0,
           (
-            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro`
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro`
           )[2]
         ),
         y = ~ 1.8,
@@ -1495,7 +1495,7 @@ ElecGen <- function(input, output, session) {
       ) %>%
       add_trace(
         x = (
-          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro`
+          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro`
         )[2] / 2,
         y = 1.63,
         type = 'scatter',
@@ -1514,8 +1514,8 @@ ElecGen <- function(input, output, session) {
       
       add_trace(
         x = ~ c(
-          (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1],
-          (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1] - (
+          (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1],
+          (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1] - (
             ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
           )[1]
         ),
@@ -1533,7 +1533,7 @@ ElecGen <- function(input, output, session) {
         )
       ) %>%
       add_trace(
-        x = (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1] - (
+        x = (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1] - (
           ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
         )[1] / 2,
         y = .63,
@@ -1552,8 +1552,8 @@ ElecGen <- function(input, output, session) {
       
       add_trace(
         x = ~ c(
-          (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[2],
-          (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[2] - (
+          (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[2],
+          (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[2] - (
             ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
           )[2]
         ),
@@ -1648,12 +1648,12 @@ ElecGen <- function(input, output, session) {
         ) %>%
         add_trace(
           data = ElecGenFuel,
-          x = ~ `Biofuels and Waste`,
+          x = ~ `Bioenergy and Waste`,
           type = 'bar',
           width = 0.3,
           orientation = 'h',
-          name = "Biofuels and Waste",
-          text = paste0("Biofuels and Waste: ", percent(ElecGenFuel$`Biofuels and Waste`, accuracy = 0.1)),
+          name = "Bioenergy and Waste",
+          text = paste0("Bioenergy and Waste: ", percent(ElecGenFuel$`Bioenergy and Waste`, accuracy = 0.1)),
           hoverinfo = 'text',
           marker = list(color = BarColours[3]),
           legendgroup = 3
@@ -1771,7 +1771,7 @@ ElecGen <- function(input, output, session) {
           x = ~ c(
             0,
             (
-              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar +  ElecGenFuel$`Other Renewables`
+              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar +  ElecGenFuel$`Other Renewables`
             )[1]
           ),
           y = ~ 1.2,
@@ -1789,7 +1789,7 @@ ElecGen <- function(input, output, session) {
         ) %>%
         add_trace(
           x = (
-            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
           )[1] / 2,
           y = 1.37,
           type = 'scatter',
@@ -1816,7 +1816,7 @@ ElecGen <- function(input, output, session) {
           x = ~ c(
             0,
             (
-              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
+              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
             )[2]
           ),
           y = ~ 2.2,
@@ -1834,7 +1834,7 @@ ElecGen <- function(input, output, session) {
         ) %>%
         add_trace(
           x = (
-            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
           )[2] / 2,
           y = 2.37,
           type = 'scatter',
@@ -1861,7 +1861,7 @@ ElecGen <- function(input, output, session) {
           x = ~ c(
             0,
             (
-              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
+              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
             )[1]
           ),
           y = ~ 0.8,
@@ -1879,7 +1879,7 @@ ElecGen <- function(input, output, session) {
         ) %>%
         add_trace(
           x = (
-            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
           )[1] / 2,
           y = .63,
           type = 'scatter',
@@ -1901,7 +1901,7 @@ ElecGen <- function(input, output, session) {
           x = ~ c(
             0,
             (
-              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
+              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
             )[2]
           ),
           y = ~ 1.8,
@@ -1919,7 +1919,7 @@ ElecGen <- function(input, output, session) {
         ) %>%
         add_trace(
           x = (
-            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
           )[2] / 2,
           y = 1.63,
           type = 'scatter',
@@ -1939,8 +1939,8 @@ ElecGen <- function(input, output, session) {
         
         add_trace(
           x = ~ c(
-            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1],
-            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1] - (
+            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1],
+            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1] - (
               ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
             )[1]
           ),
@@ -1958,7 +1958,7 @@ ElecGen <- function(input, output, session) {
           )
         ) %>%
         add_trace(
-          x = (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1] - (
+          x = (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1] - (
             ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
           )[1] / 2,
           y = .63,
@@ -1977,8 +1977,8 @@ ElecGen <- function(input, output, session) {
         
         add_trace(
           x = ~ c(
-            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[2],
-            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Biofuels and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[2] - (
+            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[2],
+            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[2] - (
               ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
             )[2]
           ),
@@ -2083,7 +2083,7 @@ ElecGen <- function(input, output, session) {
     
     DataScot$`Fossil Fuels` <- DataScot$Gas + DataScot$Coal + DataScot$Oil
     
-    DataScot$`Biofuels and Waste` <- DataScot$`Landfill Gas` + DataScot$`Sewage Gas` + DataScot$`Other biofuels and co-firing`
+    DataScot$`Bioenergy and Waste` <- DataScot$`Landfill Gas` + DataScot$`Sewage Gas` + DataScot$`Other biofuels and co-firing`
     
     DataScot <- DataScot[c(1,2,3,4,7,19,9,11,17,12,13,14,18,10,15,16)]
     
@@ -2325,7 +2325,7 @@ ElecGen <- function(input, output, session) {
     
     DataEW$`Fossil Fuels` <- DataEW$Gas + DataEW$Coal + DataEW$Oil
     
-    DataEW$`Biofuels and Waste` <- DataEW$`Landfill Gas` + DataEW$`Sewage Gas` + DataEW$`Other biofuels and co-firing`
+    DataEW$`Bioenergy and Waste` <- DataEW$`Landfill Gas` + DataEW$`Sewage Gas` + DataEW$`Other biofuels and co-firing`
     
     DataEW <- DataEW[c(1,2,3,4,7,19,9,11,17,12,13,14,18,10,15,16)]
     
@@ -2405,7 +2405,7 @@ ElecGen <- function(input, output, session) {
       DataScot$`Wave / tidal`
     )
   
-  DataScot$`Biofuels and Waste` <- DataScot$`Landfill Gas` + DataScot$`Sewage Gas` + DataScot$`Other biofuels and co-firing`
+  DataScot$`Bioenergy and Waste` <- DataScot$`Landfill Gas` + DataScot$`Sewage Gas` + DataScot$`Other biofuels and co-firing`
   
   DataScot$`Wave / tidal` <- NULL
   
@@ -2431,7 +2431,7 @@ ElecGen <- function(input, output, session) {
       "Year",
       "Wind",
       "Hydro",
-      "Biofuels and Waste",
+      "Bioenergy and Waste",
       "Solar",
       "Other Renewables",
       "Nuclear",
@@ -2479,7 +2479,7 @@ ElecGen <- function(input, output, session) {
       DataEW$`Wave / tidal`
     )
   
-  DataEW$`Biofuels and Waste` <- DataEW$`Landfill Gas` + DataEW$`Sewage Gas` + DataEW$`Other biofuels and co-firing`
+  DataEW$`Bioenergy and Waste` <- DataEW$`Landfill Gas` + DataEW$`Sewage Gas` + DataEW$`Other biofuels and co-firing`
   
   DataEW$`Wave / tidal` <- NULL
   
@@ -2505,7 +2505,7 @@ ElecGen <- function(input, output, session) {
       "Year",
       "Wind",
       "Hydro",
-      "Biofuels and Waste",
+      "Bioenergy and Waste",
       "Solar",
       "Other Renewables",
       "Nuclear",
@@ -2544,10 +2544,10 @@ ElecGen <- function(input, output, session) {
     mutate(pos = cumsum(value) - value / 2) %>%
     mutate(top = sum(value)) %>% 
     mutate(RenLineX = Sector + 0.23) %>% 
-    mutate(RenLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Biofuels and Waste", "Solar", "Other Renewables"))])) %>% 
+    mutate(RenLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Bioenergy and Waste", "Solar", "Other Renewables"))])) %>% 
     mutate(RenText = 1 - sum(value[which(variable %in% c("Coal", "Oil", "Gas", "Other", "Pumped Hydro", "Nuclear"))])) %>% 
     mutate(LCLineX = Sector - 0.23) %>% 
-    mutate(LCLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Biofuels and Waste",  "Solar", "Other Renewables", "Nuclear"))])) %>% 
+    mutate(LCLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Bioenergy and Waste",  "Solar", "Other Renewables", "Nuclear"))])) %>% 
     mutate(LCText = 1 - sum(value[which(variable %in% c("Coal", "Oil", "Gas", "Other", "Pumped Hydro"))])) %>% 
     mutate(FossilLineX = Sector - 0.23) %>% 
     mutate(FossilLineY = sum(value[which(variable %in% c("Coal", "Oil", "Gas"))])) %>% 
@@ -2605,7 +2605,7 @@ ElecGen <- function(input, output, session) {
           values = c(
             "Wind" = BarColours[1],
             "Hydro" = BarColours[2],
-            "Biofuels and Waste" = BarColours[3],
+            "Bioenergy and Waste" = BarColours[3],
             "Solar" = BarColours[4],
             "Other Renewables" = BarColours[5],
             "Nuclear" = BarColours[6],
@@ -2739,7 +2739,7 @@ ElecGen <- function(input, output, session) {
           aes(
             x = 2.375,
             y = ((2 / 10) *1.15) - 0.121,
-            label = "Bioenergy\n& wastes"
+            label = "Bioenergy\n& waste"
           ),
           colour =  BarColours[3],
           size = 7,
