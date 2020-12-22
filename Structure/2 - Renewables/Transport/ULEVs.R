@@ -60,7 +60,7 @@ ULEVsOutput <- function(id) {
     
     tabPanel("Charging Points",
              fluidRow(column(8,
-                             h3("Total electric vehicle charging points by local authority", style = "color: #39ab2c;  font-weight:bold"),
+                             h3("All public electric vehicle charging points by local authority", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('ChargingPointSubtitle')), style = "color: #39ab2c;")
              ),
              column(
@@ -73,7 +73,7 @@ ULEVsOutput <- function(id) {
              leafletOutput(ns("ChargingPointMap"), height = "700px")%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     
-    tabPanel("Charging Events",
+    tabPanel("CPS - Charging Events",
              fluidRow(column(8,
                              h3("Total electric vehicle charging events by local authority - ChargePlace Scotland Network", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('ChargingEventsSubtitle')), style = "color: #39ab2c;")
@@ -88,7 +88,7 @@ ULEVsOutput <- function(id) {
              leafletOutput(ns("ChargingEventsMap"), height = "700px")%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     
-    tabPanel("Charge Provided",
+    tabPanel("CPS - Charge Provided",
              fluidRow(column(8,
                              h3("Total electric vehicle charge drawn by local authority - ChargePlace Scotland Network", style = "color: #39ab2c;  font-weight:bold"),
                              h4(textOutput(ns('ChargeProvidedSubtitle')), style = "color: #39ab2c;")
@@ -142,13 +142,13 @@ ULEVsOutput <- function(id) {
       tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
     tabPanel("Charging Points",
              fluidRow(
-               column(10, h3("Data - Charging Points", style = "color: #39ab2c;  font-weight:bold")),
+               column(10, h3("Data - All public charging points", style = "color: #39ab2c;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("ChargingPointTable"))%>% withSpinner(color="#39ab2c"))),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Charging Events",
+    tabPanel("CPS - Charging Events",
              fluidRow(
                uiOutput(ns("ChargingEventsDataSubtitle")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
@@ -156,7 +156,7 @@ ULEVsOutput <- function(id) {
              fluidRow(
                column(12, dataTableOutput(ns("ChargingEventsTable"))%>% withSpinner(color="#39ab2c"))),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Charge Provided",
+    tabPanel("CPS - Charge Provided",
              fluidRow(
                uiOutput(ns("ChargeProvidedDataSubtitle")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable6"), "Show/Hide Table", style = "float:right; "))
