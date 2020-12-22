@@ -168,16 +168,20 @@ ElecGen <- function(input, output, session) {
     
     Data <- as_tibble(t(Data))
     
-    Data <- Data[c(1,4,9)]
+    Data <- Data[c(1,4,9,5)]
     
     Data <- Data[complete.cases(Data),]
     
-    names(Data) <- c("Year", "Low Carbon", "Fossil Fuels")
+    names(Data) <- c("Year", "Low Carbon", "Fossil Fuels", "Pumped Hydro")
     
     Data %<>% lapply(function(x)
       as.numeric(as.character(x)))
     
     ElecFuelLowCarbon <- as_tibble(Data)
+    
+    ElecFuelLowCarbon[which(ElecFuelLowCarbon$Year >= 2017),]$`Low Carbon` <- ElecFuelLowCarbon[which(ElecFuelLowCarbon$Year >= 2017),]$`Low Carbon` + ElecFuelLowCarbon[which(ElecFuelLowCarbon$Year >= 2017),]$`Pumped Hydro`
+    
+    ElecFuelLowCarbon$`Pumped Hydro`<- NULL
     
     ElecFuelLowCarbon$Year <- paste0("01/01/", ElecFuelLowCarbon$Year)
     
@@ -615,16 +619,20 @@ ElecGen <- function(input, output, session) {
       
       Data <- as_tibble(t(Data))
       
-      Data <- Data[c(1,4,9)]
+      Data <- Data[c(1,4,9,5)]
       
       Data <- Data[complete.cases(Data),]
       
-      names(Data) <- c("Year", "Low Carbon", "Fossil Fuels")
+      names(Data) <- c("Year", "Low Carbon", "Fossil Fuels", "Pumped Hydro")
       
       Data %<>% lapply(function(x)
         as.numeric(as.character(x)))
       
       ElecFuelLowCarbon <- as_tibble(Data)
+      
+      ElecFuelLowCarbon[which(ElecFuelLowCarbon$Year >= 2017),]$`Low Carbon` <- ElecFuelLowCarbon[which(ElecFuelLowCarbon$Year >= 2017),]$`Low Carbon` + ElecFuelLowCarbon[which(ElecFuelLowCarbon$Year >= 2017),]$`Pumped Hydro`
+      
+      ElecFuelLowCarbon$`Pumped Hydro`<- NULL
       
       ### variables
       ChartColours <- c("#39ab2c", "#1a9850", "#f46d43", "#39ab2c")
