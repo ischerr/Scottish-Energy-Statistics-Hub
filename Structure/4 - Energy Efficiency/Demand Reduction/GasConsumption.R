@@ -83,7 +83,7 @@ GasConsumptionOutput <- function(id) {
     ),
     tabPanel("Local Authority",
              fluidRow(
-               column(10, h3("Data - Average annual household consumption of gas by local authority, 2018", style = "color: #34d1a3;  font-weight:bold")),
+               column(10, h3("Data - Average annual household consumption of gas by local authority, 2019", style = "color: #34d1a3;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -1033,17 +1033,17 @@ GasConsumption <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Average annual household consumption of gas by local authority, 2018",
+        title = "Average annual household consumption of gas by local authority, 2019",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Average annual household consumption of gas by local authority, 2018',
+            title = 'Average annual household consumption of gas by local authority, 2019',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Average annual household consumption of gas by local authority, 2018')
+               title = 'Average annual household consumption of gas by local authority, 2019')
         ),
         
         # customize the length menu
