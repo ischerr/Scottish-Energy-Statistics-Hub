@@ -121,7 +121,7 @@ AverageBillLA <- function(input, output, session) {
   
   output$AverageBillLASubtitle <- renderText({
     
-    paste("Scotland, 2018")
+    paste("Scotland, 2019")
   
     })
   
@@ -372,7 +372,7 @@ AverageBillLA <- function(input, output, session) {
 
   output$AverageBillLAElecSubtitle <- renderText({
     
-    paste("Scotland, 2018")
+    paste("Scotland, 2019")
     
   })
   
@@ -464,7 +464,7 @@ AverageBillLA <- function(input, output, session) {
   
   output$AverageBillLAGasSubtitle <- renderText({
     
-    paste("Scotland, 2018")
+    paste("Scotland, 2019")
     
   })
   
