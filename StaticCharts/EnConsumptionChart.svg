@@ -12,10 +12,10 @@
    version="1.1"
    id="svg74"
    sodipodi:docname="EnConsumptionChart.svg"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    width="319.88266"
    height="419.77661"
-   inkscape:export-filename="C:\Users\ische\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\EnConsumptionSectorDomNonDomChart.png"
+   inkscape:export-filename="C:\Users\ische\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\EnConsumptionSectorChart.png"
    inkscape:export-xdpi="300"
    inkscape:export-ydpi="300">
   <metadata
@@ -46,14 +46,15 @@
      inkscape:zoom="1.8958381"
      inkscape:cx="87.781521"
      inkscape:cy="233.76131"
-     inkscape:window-x="7189"
+     inkscape:window-x="7178"
      inkscape:window-y="1598"
      inkscape:window-maximized="0"
      inkscape:current-layer="g4896"
      fit-margin-top="5"
      fit-margin-left="5"
      fit-margin-right="5"
-     fit-margin-bottom="5" />
+     fit-margin-bottom="5"
+     inkscape:document-rotation="0" />
   <defs
      id="defs4">
     <style
@@ -118,20 +119,22 @@
          y="-66.533241"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
        id="flowPara1118"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;line-height:12.2078743px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'" /></flowRoot>  <flowRoot
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;line-height:12.2079px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'" /></flowRoot>
+  <flowRoot
      xml:space="preserve"
      id="flowRoot4827"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
      transform="translate(1.9999994,26.292316)"><flowRegion
        id="flowRegion4829"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"><rect
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"><rect
          id="rect4831"
          width="372.6055"
          height="392.74634"
          x="-309.9451"
          y="-75.484726"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
-       id="flowPara4833" /></flowRoot>  <g
+       id="flowPara4833" /></flowRoot>
+  <g
      id="g4896"
      transform="translate(2.947994,-5.4885812e-6)">
     <path
@@ -155,7 +158,8 @@
            width="483.75308"
            id="rect905-1" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#1a5d38;fill-opacity:1"
-         id="flowPara907-9">2018</flowPara></flowRoot>    <flowRoot
+         id="flowPara907-9">2019</flowPara></flowRoot>
+    <flowRoot
        transform="translate(45.124957,596.64747)"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#1a5d38;fill-opacity:1;stroke:none"
        id="flowRoot901-8-4"
@@ -168,8 +172,9 @@
            height="373.72443"
            width="483.75308"
            id="rect905-1-6" /></flowRegion><flowPara
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.19999981px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:end;text-anchor:end;fill:#1a5d38;fill-opacity:1"
-         id="flowPara907-9-7">Source: BEIS</flowPara></flowRoot>    <path
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:end;text-anchor:end;fill:#1a5d38;fill-opacity:1"
+         id="flowPara907-9-7">Source: BEIS</flowPara></flowRoot>
+    <path
        transform="matrix(0.49840363,0,0,1,0.90346509,351.74396)"
        inkscape:connector-curvature="0"
        id="line53-3"
@@ -206,24 +211,19 @@
                  x="0"
                  y="0"
                  style="font-size:12px;font-family:'Open Sans', verdana, arial, sans-serif;text-anchor:middle;white-space:pre;fill:#ffffff;fill-opacity:1"
-                 id="text35">
-                <tspan
+                 id="text35"><tspan
                    class="line"
                    dy="0em"
                    x="0"
                    y="0"
-                   id="tspan31">
-                  <tspan
+                   id="tspan31"><tspan
                      style="font-weight:bold"
-                     id="tspan29">Non-domestic</tspan>
-                </tspan>
-                <tspan
+                     id="tspan29">Non-domestic</tspan></tspan><tspan
                    class="line"
                    dy="1.3em"
                    x="0"
                    y="0"
-                   id="tspan33">59.9%</tspan>
-              </text>
+                   id="tspan33">59.3%</tspan></text>
             </g>
           </g>
           <g
@@ -245,24 +245,19 @@
                  x="0"
                  y="0"
                  style="font-size:12px;font-family:'Open Sans', verdana, arial, sans-serif;text-anchor:middle;white-space:pre;fill:#ffffff;fill-opacity:1"
-                 id="text49">
-                <tspan
+                 id="text49"><tspan
                    class="line"
                    dy="0em"
                    x="0"
                    y="0"
-                   id="tspan45">
-                  <tspan
+                   id="tspan45"><tspan
                      style="font-weight:bold"
-                     id="tspan43">Domestic</tspan>
-                </tspan>
-                <tspan
+                     id="tspan43">Domestic</tspan></tspan><tspan
                    class="line"
                    dy="1.3em"
                    x="0"
                    y="0"
-                   id="tspan47">40.1%</tspan>
-              </text>
+                   id="tspan47">40.7%</tspan></text>
             </g>
           </g>
         </g>
@@ -270,10 +265,10 @@
     </g>
     <flowRoot
        transform="translate(-1750.4811,228.7659)"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';letter-spacing:0px;word-spacing:0px;fill:#1a5d38;fill-opacity:1;stroke:none"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.6667px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';letter-spacing:0px;word-spacing:0px;fill:#1a5d38;fill-opacity:1;stroke:none"
        id="flowRoot4835"
        xml:space="preserve"><flowRegion
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#1a5d38;fill-opacity:1"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.6667px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#1a5d38;fill-opacity:1"
          id="flowRegion4837"><rect
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#1a5d38;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
            y="-226.71194"
@@ -282,7 +277,8 @@
            width="2922.1904"
            id="rect4839" /></flowRegion><flowPara
          id="flowPara4847">Total final energy consumption</flowPara><flowPara
-         id="flowPara4851">domestic and non-domestic</flowPara></flowRoot>  </g>
+         id="flowPara4851">domestic and non-domestic</flowPara></flowRoot>
+  </g>
   <image
      y="-8.5666132"
      x="403.49432"

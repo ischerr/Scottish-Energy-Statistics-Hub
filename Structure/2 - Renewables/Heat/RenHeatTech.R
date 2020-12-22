@@ -15,7 +15,7 @@ RenHeatTechOutput <- function(id) {
     fluidRow(column(8,
                     h3("Renewable heat by technology type", style = "color: #39ab2c;  font-weight:bold"),
                     h4(textOutput(ns('RenHeatTechSubtitle')), style = "color: #39ab2c;"),
-                    selectInput(ns("MeasureSelect"), "Measure:", c("Capacity", "Generation", "Number of Installations"), selected = "Capacity", multiple = FALSE,
+                    selectInput(ns("MeasureSelect"), "Measure:", c("Capacity", "Generation", "Number of Installations"), selected = "Generation", multiple = FALSE,
                                 selectize = TRUE, width = NULL, size = NULL)
                       ),
              column(
@@ -30,7 +30,7 @@ RenHeatTechOutput <- function(id) {
                 fluidRow(column(8,
                                 h3("Renewable heat by installation size", style = "color: #39ab2c;  font-weight:bold"),
                                 h4(textOutput(ns('RenHeatSizeSubtitle')), style = "color: #39ab2c;"), 
-                                selectInput(ns("MeasureSelect2"), "Measure:", c("Capacity", "Generation", "Number of Installations"), selected = "Capacity", multiple = FALSE,
+                                selectInput(ns("MeasureSelect2"), "Measure:", c("Capacity", "Generation", "Number of Installations"), selected = "Generation", multiple = FALSE,
                                             selectize = TRUE, width = NULL, size = NULL),
                 ),
                 column(

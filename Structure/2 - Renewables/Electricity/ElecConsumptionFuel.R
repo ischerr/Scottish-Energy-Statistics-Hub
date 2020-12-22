@@ -185,8 +185,8 @@ ElecConsumptionFuel <- function(input, output, session) {
         type = 'bar',
         width = 0.3,
         orientation = 'h',
-        name = "Biomass",
-        text = paste0("Biomass: ", percent(ElecConsumptionFuel$Biomass, accuracy = 0.1)),
+        name = "Bioenergy and Waste",
+        text = paste0("Bioenergy and Waste: ", percent(ElecConsumptionFuel$Biomass, accuracy = 0.1)),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 3
@@ -450,7 +450,7 @@ ElecConsumptionFuel <- function(input, output, session) {
         showlegend = FALSE ,
         mode = 'text',
         hoverinfo = 'skip',
-        text = paste0("<b>", "Fossil:\n ", percent((
+        text = paste0("<b>", "Fossil Fuels:\n ", percent((
           ElecConsumptionFuel$Coal + ElecConsumptionFuel$Gas
         )[1]
         , 0.1) , "</b>"),
@@ -488,7 +488,7 @@ ElecConsumptionFuel <- function(input, output, session) {
         showlegend = FALSE ,
         mode = 'text',
         hoverinfo = 'skip',
-        text = paste0("<b>", "Fossil:\n ", percent((
+        text = paste0("<b>", "Fossil Fuels:\n ", percent((
           ElecConsumptionFuel$Coal + ElecConsumptionFuel$Gas
         )[2]
         , 0.1) , "</b>"),
@@ -568,6 +568,8 @@ ElecConsumptionFuel <- function(input, output, session) {
     
     DataScot$`Fossil Fuels` <- DataScot$Gas + DataScot$Coal
     
+    
+    names(DataScot)[4] <- "Bioenergy and Waste"
     datatable(
       DataScot[c(1,2,3,4,5,11,6,12,9,10,13,7,8)],
       extensions = 'Buttons',
@@ -642,6 +644,8 @@ ElecConsumptionFuel <- function(input, output, session) {
     DataEW$`Low Carbon` <- DataEW$Renewables + DataEW$Nuclear
     
     DataEW$`Fossil Fuels` <- DataEW$Gas + DataEW$Coal
+    
+    names(DataEW)[4] <- "Bioenergy and Waste"
     
     datatable(
       DataEW[c(1,2,3,4,5,11,6,12,9,10,13,7,8)],
@@ -855,7 +859,7 @@ ElecConsumptionFuel <- function(input, output, session) {
           "text",
           x = 0.65,
           y = 1 - (sum(ElecConsumptionFuel$value[which(ElecConsumptionFuel$variable != "Wind" & ElecConsumptionFuel$variable != "Hydro" & ElecConsumptionFuel$variable != "Biomass" & ElecConsumptionFuel$variable != "Solar" & ElecConsumptionFuel$variable != "Nuclear" & ElecConsumptionFuel$variable != "Imports" & ElecConsumptionFuel$variable != "Other"  & ElecConsumptionFuel$Sector == "England and Wales")]))/2,
-          label = paste("Fossil:",
+          label = paste("Fossil Fuels:",
                         percent(sum(ElecConsumptionFuel$value[which(ElecConsumptionFuel$variable != "Wind" & ElecConsumptionFuel$variable != "Hydro" & ElecConsumptionFuel$variable != "Biomass" & ElecConsumptionFuel$variable != "Solar" & ElecConsumptionFuel$variable != "Nuclear" & ElecConsumptionFuel$variable != "Imports" & ElecConsumptionFuel$variable != "Other" &  ElecConsumptionFuel$Sector == "England and Wales")]), 0.1)
           ),
           colour =  BarColours[8],
@@ -916,7 +920,7 @@ ElecConsumptionFuel <- function(input, output, session) {
           "text",
           x = 1.65,
           y =  1 - (sum(ElecConsumptionFuel$value[which(ElecConsumptionFuel$variable != "Wind" & ElecConsumptionFuel$variable != "Hydro" & ElecConsumptionFuel$variable != "Biomass" & ElecConsumptionFuel$variable != "Solar" & ElecConsumptionFuel$variable != "Nuclear" & ElecConsumptionFuel$variable != "Imports" & ElecConsumptionFuel$variable != "Other"  &  ElecConsumptionFuel$Sector == "Scotland")]))/2,
-          label = paste("Fossil:",
+          label = paste("Fossil Fuels:",
                         percent(sum(ElecConsumptionFuel$value[which(ElecConsumptionFuel$variable != "Wind" & ElecConsumptionFuel$variable != "Hydro" & ElecConsumptionFuel$variable != "Biomass" & ElecConsumptionFuel$variable != "Solar" & ElecConsumptionFuel$variable != "Nuclear" & ElecConsumptionFuel$variable != "Imports" & ElecConsumptionFuel$variable != "Other"  &  ElecConsumptionFuel$Sector == "Scotland")]), 0.1)
           ),
           colour =  BarColours[8],
@@ -926,7 +930,7 @@ ElecConsumptionFuel <- function(input, output, session) {
         
         
         geom_text(
-          aes(x = 2.6,
+          aes(x = 2.9,
               y = .5/9,
               label = "Wind",
               fontface = 2
@@ -935,7 +939,7 @@ ElecConsumptionFuel <- function(input, output, session) {
           family = "Century Gothic"
         )+
         geom_text(
-          aes(x = 2.6,
+          aes(x = 2.9,
               y = 1.5/9,
               label = "Hydro",
               fontface = 2
@@ -944,16 +948,16 @@ ElecConsumptionFuel <- function(input, output, session) {
           family = "Century Gothic"
         )+
         geom_text(
-          aes(x = 2.6,
+          aes(x = 2.9,
               y = 2.5/9,
-              label = "Biomass",
+              label = "Bioenergy\nand Waste",
               fontface = 2
           ),
           colour =  BarColours[3],
           family = "Century Gothic"
         )+
         geom_text(
-          aes(x = 2.6,
+          aes(x = 2.9,
               y = 3.5/9,
               label = "Solar",
               fontface = 2
@@ -962,7 +966,7 @@ ElecConsumptionFuel <- function(input, output, session) {
           family = "Century Gothic"
         )+
         geom_text(
-          aes(x = 2.6,
+          aes(x = 2.9,
               y = 4.5/9,
               label = "Nuclear",
               fontface = 2
@@ -971,7 +975,7 @@ ElecConsumptionFuel <- function(input, output, session) {
           family = "Century Gothic"
         )+
         geom_text(
-          aes(x = 2.6,
+          aes(x = 2.9,
               y = 5.5/9,
               label = "Imports",
               fontface = 2
@@ -980,7 +984,7 @@ ElecConsumptionFuel <- function(input, output, session) {
           family = "Century Gothic"
         )+
         geom_text(
-          aes(x = 2.6,
+          aes(x = 2.9,
               y = 6.5/9,
               label = "Other",
               fontface = 2
@@ -989,7 +993,7 @@ ElecConsumptionFuel <- function(input, output, session) {
           family = "Century Gothic"
         )+
         geom_text(
-          aes(x = 2.6,
+          aes(x = 2.9,
               y = 7.5/9,
               label = "Coal",
               fontface = 2
@@ -998,7 +1002,7 @@ ElecConsumptionFuel <- function(input, output, session) {
           family = "Century Gothic"
         )+
         geom_text(
-          aes(x = 2.6,
+          aes(x = 2.9,
               y = 8.5/9,
               label = "Gas",
               fontface = 2
@@ -1007,7 +1011,7 @@ ElecConsumptionFuel <- function(input, output, session) {
           family = "Century Gothic"
         )+
         geom_text(
-          aes(x=2.8,
+          aes(x=3.2,
               y = 0,
               label = " ")
         )

@@ -99,7 +99,7 @@ HHoldEnConsumption <- function(input, output, session) {
   output$HHoldEnConsumptionSubtitle <- renderText({
     
 
-      paste("Scotland, 2018")
+      paste("Scotland, 2019")
     
   })
  
@@ -130,7 +130,7 @@ HHoldEnConsumption <- function(input, output, session) {
       values = ~value,
       text = paste0(
         HHoldEnConsumption$variable,
-        ": ", format(round(HHoldEnConsumption$value, 0), big.mark = ","), " GWh"
+        ": ", format(round(HHoldEnConsumption$value, -2), big.mark = ","), " GWh"
       ),
       textposition = 'outside',
       textinfo = 'label+percent',
@@ -158,7 +158,8 @@ HHoldEnConsumption <- function(input, output, session) {
           rangemode = "tozero"
         )
       ) %>% 
-      config(displayModeBar = F)
+      config(displayModeBar = FALSE,
+             showlegend = FALSE)
     
     p
     
@@ -188,6 +189,9 @@ HHoldEnConsumption <- function(input, output, session) {
         HHoldEnConsumption[2:3]%<>% lapply(function(x)
       as.numeric(as.character(x)))
     
+        
+        HHoldEnConsumption$`Estimated Consumption (GWh)` <- round(HHoldEnConsumption$`Estimated Consumption (GWh)`,-2)
+        
         datatable(
       HHoldEnConsumption,
       extensions = 'Buttons',

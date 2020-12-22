@@ -580,7 +580,7 @@ GridEmissions <- function(input, output, session) {
     p <-  plot_ly(GHGElectricity, x = ~ Year) %>% 
       add_trace(
         y = ~ Renewables,
-        name = "Renewables",
+        name = "Electricity Emissions",
         type = 'scatter',
         mode = 'lines',
         text = paste0(
@@ -596,7 +596,7 @@ GridEmissions <- function(input, output, session) {
         data = tail(GHGElectricity[which(GHGElectricity$Renewables > 0 | GHGElectricity$Renewables < 0),],1),
         x = ~ Year,
         y = ~ `Renewables`,
-        name = "Renewables",
+        name = "Electricity Emissions",
         text = paste0(
           "Electricity Emissions: ",
           format(round(tail(GHGElectricity[which(GHGElectricity$Renewables > 0 | GHGElectricity$Renewables < 0),],1)$Renewables, 1), big.mark = ","),
@@ -903,8 +903,6 @@ GridEmissions <- function(input, output, session) {
     
     GHGElectricity <- GHGElectricity[complete.cases(GHGElectricity),]
     
-    GHGElectricity$Total <- rowSums(GHGElectricity[2:5])
-    
     GHGElecBreakdown <- read_csv("Processed Data/Output/Greenhouse Gas/GHGElectricityBreakdown.csv")
     
     names(GHGElecBreakdown)[1] <- "Year"
@@ -913,7 +911,7 @@ GridEmissions <- function(input, output, session) {
     
     GHGElectricity <- merge(GHGElectricity[which(GHGElectricity$Year >= 1998),],GHGElecBreakdown[which(GHGElecBreakdown$Year >= 1998),])
     
-    GHGElectricity$Proportion <- GHGElectricity$`Electricity Emissions` / GHGElectricity$Total
+    GHGElectricity$`Proportion of total emissions` <- GHGElectricity$`Electricity Emissions` / GHGElectricity$Total
     
     
     GHGElectricity <- GHGElectricity[c(1,2,10,8,7,9,6)]

@@ -121,7 +121,7 @@ FuelPoverty <- function(input, output, session) {
   
   output$FuelPovertyProportionSubtitle <- renderText({
     
-    paste("Scotland, 2018")
+    paste("Scotland, 2019")
   })
   
   output$FuelPovertyProportionPlot <- renderPlotly  ({
@@ -223,7 +223,7 @@ FuelPoverty <- function(input, output, session) {
       n_max = 11
     )[c(7:9,11:12)]
     
-    names(Data) <- c("Type", "2017 - 000s", "2017",  "2016 - 000s", "2016")
+    names(Data) <- c("Type", "2019 - 000s", "2019",  "2018 - 000s", "2018")
     
     Data[2,1] <- paste0("<b>", Data[2,1], "</b>")
     
@@ -355,7 +355,7 @@ FuelPoverty <- function(input, output, session) {
       FuelPovertyBandsChart <- FuelPovertyBandsChart +
         coord_flip() +
         ylim(-.055, max(FuelPovertyBands$Percent))+
-        labs(subtitle = "Scotland, 2018")
+        labs(subtitle = "Scotland, 2019")
       
       FuelPovertyBandsChart
       
@@ -695,7 +695,7 @@ FuelPoverty <- function(input, output, session) {
       col_names = TRUE,
       skip = 12,
       n_max = 7
-    )[16:21]
+    )[16:22]
     
     names(Data) <- substr(names(Data), 1, 4)
     
@@ -739,7 +739,7 @@ FuelPoverty <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:ncol(Data), 1)
+      formatPercentage(2:ncol(Data), 0)
   })
   
   
@@ -774,7 +774,7 @@ FuelPoverty <- function(input, output, session) {
         col_names = FALSE,
         skip = 12,
         n_max = 8
-      )[16:21]
+      )[16:22]
       
       Data <- as_tibble(t(Data))
       
@@ -1167,7 +1167,7 @@ FuelPoverty <- function(input, output, session) {
         col_names = FALSE,
         skip = 12,
         n_max = 8
-      )[16:20]
+      )[16:22]
       
       Data <- as_tibble(t(Data))
       

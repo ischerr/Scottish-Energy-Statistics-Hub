@@ -248,10 +248,18 @@ RenElecGen <- function(input, output, session) {
     
     RenElecGenFuel <- arrange(RenElecGenFuel,-row_number())
     
-    RenElecGenFuel$Total <- RenElecGenFuel$`Other bioenergy` + RenElecGenFuel$`Sewage gas` + RenElecGenFuel$`Wave and tidal` + RenElecGenFuel$`Landfill gas` + RenElecGenFuel$`Solar PV` + RenElecGenFuel$Hydro + RenElecGenFuel$`Offshore Wind` + RenElecGenFuel$`Onshore Wind`
+    RenElecGenFuel$`Bioenergy and Wastes` <- RenElecGenFuel$`Other bioenergy` + RenElecGenFuel$`Sewage gas` + RenElecGenFuel$`Landfill gas`
+    
+    RenElecGenFuel$`Other bioenergy` <- NULL
+    
+    RenElecGenFuel$`Sewage gas` <- NULL
+    
+    RenElecGenFuel$`Landfill gas` <- NULL
+    
+    RenElecGenFuel$Total <-  RenElecGenFuel$`Wave and tidal`  + RenElecGenFuel$`Solar PV` + RenElecGenFuel$Hydro + RenElecGenFuel$`Offshore Wind` + RenElecGenFuel$`Onshore Wind` + RenElecGenFuel$`Bioenergy and Wastes`
     
     datatable(
-      RenElecGenFuel[c(1,9:2,10)],
+      RenElecGenFuel[c(1,6,5,4,7,3,2,8)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -332,7 +340,9 @@ RenElecGen <- function(input, output, session) {
     
     RenElecGenFuel[is.na(RenElecGenFuel)] <- 0
     
-    RenElecGenFuel$Total <- RenElecGenFuel$`Other bioenergy` + RenElecGenFuel$`Sewage gas` + RenElecGenFuel$`Wave and tidal` + RenElecGenFuel$`Landfill gas` + RenElecGenFuel$`Solar PV` + RenElecGenFuel$Hydro + RenElecGenFuel$`Offshore Wind` + RenElecGenFuel$`Onshore Wind`
+    RenElecGenFuel$`Bioenergy and Waste` <- RenElecGenFuel$`Other bioenergy` + RenElecGenFuel$`Sewage gas` + RenElecGenFuel$`Landfill gas` 
+    
+    RenElecGenFuel$Total <- RenElecGenFuel$`Wave and tidal`  + RenElecGenFuel$`Solar PV` + RenElecGenFuel$Hydro + RenElecGenFuel$`Offshore Wind` + RenElecGenFuel$`Onshore Wind` + RenElecGenFuel$`Bioenergy and Waste`
     
     ChartColours <- c("#39ab2c", "#FF8500")
     BarColours <-
@@ -420,8 +430,25 @@ RenElecGen <- function(input, output, session) {
       add_trace(
         data = RenElecGenFuel,
         y = ~Year,
-        x = ~`Solar PV`,
+        x = ~`Bioenergy and Waste`,
         legendgroup = 4,
+        text = paste0(
+          "Bioenergy and Waste: ",
+          format(round(RenElecGenFuel$`Bioenergy and Waste`, digits = 0),big.mark = ","),
+          " GWh\nYear: ",
+          RenElecGenFuel$Year
+        ),
+        name = "Bioenergy and Waste",
+        type = "bar",
+        hoverinfo = "text",
+        orientation = 'h',
+        marker = list(color =  BarColours[4])
+      )  %>% 
+      add_trace(
+        data = RenElecGenFuel,
+        y = ~Year,
+        x = ~`Solar PV`,
+        legendgroup = 5,
         text = paste0(
           "Solar PV: ",
           format(round(RenElecGenFuel$`Solar PV`, digits = 0),big.mark = ","),
@@ -432,25 +459,8 @@ RenElecGen <- function(input, output, session) {
         type = "bar",
         hoverinfo = "text",
         orientation = 'h',
-        marker = list(color =  BarColours[4])
-      )  %>% 
-      add_trace(
-        data = RenElecGenFuel,
-        y = ~Year,
-        x = ~`Landfill gas`,
-        legendgroup = 5,
-        text = paste0(
-          "Landfill gas: ",
-          format(round(RenElecGenFuel$`Landfill gas`, digits = 0),big.mark = ","),
-          " GWh\nYear: ",
-          RenElecGenFuel$Year
-        ),
-        name = "Landfill gas",
-        type = "bar",
-        hoverinfo = "text",
-        orientation = 'h',
         marker = list(color =  BarColours[5])
-      )  %>% 
+      )  %>%
       add_trace(
         data = RenElecGenFuel,
         y = ~Year,
@@ -468,40 +478,6 @@ RenElecGen <- function(input, output, session) {
         orientation = 'h',
         marker = list(color =  BarColours[6])
       )  %>% 
-      add_trace(
-        data = RenElecGenFuel,
-        y = ~Year,
-        x = ~`Sewage gas`,
-        legendgroup = 7,
-        text = paste0(
-          "Sewage gas: ",
-          format(round(RenElecGenFuel$`Sewage gas`, digits = 0),big.mark = ","),
-          " GWh\nYear: ",
-          RenElecGenFuel$Year
-        ),
-        name = "Sewage gas",
-        type = "bar",
-        hoverinfo = "text",
-        orientation = 'h',
-        marker = list(color =  BarColours[7])
-      )  %>% 
-      add_trace(
-        data = RenElecGenFuel,
-        y = ~Year,
-        x = ~`Other bioenergy`,
-        legendgroup = 8,
-        text = paste0(
-          "Other bioenergy: ",
-          format(round(RenElecGenFuel$`Other bioenergy`, digits = 0),big.mark = ","),
-          " GWh\nYear: ",
-          RenElecGenFuel$Year
-        ),
-        name = "Other bioenergy",
-        type = "bar",
-        hoverinfo = "text",
-        orientation = 'h',
-        marker = list(color =  BarColours[8])
-      )  %>%
       layout(
         barmode = 'stack',
         legend = list(font = list(color = "#39ab2c"),
@@ -565,6 +541,11 @@ RenElecGen <- function(input, output, session) {
       
       RenElecGenFuel[is.na(RenElecGenFuel)] <- 0
       
+      
+      RenElecGenFuel$`Bioenergy and Waste` <- RenElecGenFuel$`Other bioenergy` + RenElecGenFuel$`Sewage gas` + RenElecGenFuel$`Landfill gas`
+      
+      RenElecGenFuel <- RenElecGenFuel[c(1,4,6,10,7,8,9)]
+      
       RenElecGenFuel <- melt(RenElecGenFuel, id.vars = "Year")
       
       
@@ -605,11 +586,9 @@ RenElecGen <- function(input, output, session) {
             "Onshore Wind" = BarColours[1],
             "Offshore Wind" = BarColours[2],
             "Hydro" = BarColours[3],
-            "Solar PV" = BarColours[4],
-            "Landfill gas" = BarColours[5],
+            "Bioenergy and Waste" = BarColours[4],
+            "Solar PV" = BarColours[5],
             "Wave and tidal" = BarColours[6],
-            "Sewage gas" = BarColours[7],
-            "Other bioenergy" = BarColours[8],
             "Total" = "White"
           )
         ) +
@@ -628,7 +607,7 @@ RenElecGen <- function(input, output, session) {
         geom_text(
           aes(
            x = 1998.5,
-            y = (max(RenElecGenFuel$top)*1.1) * (.5 / 8),
+            y = (max(RenElecGenFuel$top)*1.1) * (.5 / 6),
             label = "Onshore\nWind"
           ),
           fontface = 2,
@@ -640,7 +619,7 @@ RenElecGen <- function(input, output, session) {
         geom_text(
           aes(
            x = 1998.5,
-            y = (max(RenElecGenFuel$top)*1.1) * (1.5 / 8),
+            y = (max(RenElecGenFuel$top)*1.1) * (1.5 / 6),
             label = "Offshore\nWind"
           ),
           fontface = 2,
@@ -652,7 +631,7 @@ RenElecGen <- function(input, output, session) {
         geom_text(
           aes(
            x = 1998.5,
-            y = (max(RenElecGenFuel$top)*1.1) * (2.5 / 8),
+            y = (max(RenElecGenFuel$top)*1.1) * (2.5 / 6),
             label = "Hydro"
           ),
           fontface = 2,
@@ -663,9 +642,9 @@ RenElecGen <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-           x = 1998.5,
-            y = (max(RenElecGenFuel$top)*1.1) * (3.5 / 8),
-            label = "Solar PV"
+            x = 1998.5,
+            y = (max(RenElecGenFuel$top)*1.1) * (3.5 / 6),
+            label = "Bioenergy\nand Waste"
           ),
           fontface = 2,
           colour =  BarColours[4],
@@ -676,8 +655,8 @@ RenElecGen <- function(input, output, session) {
         geom_text(
           aes(
            x = 1998.5,
-            y = (max(RenElecGenFuel$top)*1.1) * (4.5 / 8),
-            label = "Landfill\ngas"
+            y = (max(RenElecGenFuel$top)*1.1) * (4.5 / 6),
+            label = "Solar PV"
           ),
           fontface = 2,
           colour =  BarColours[5],
@@ -688,7 +667,7 @@ RenElecGen <- function(input, output, session) {
         geom_text(
           aes(
            x = 1998.5,
-            y = (max(RenElecGenFuel$top)*1.1) * (5.5 / 8),
+            y = (max(RenElecGenFuel$top)*1.1) * (5.5 / 6),
             label = "Wave\nand Tidal"
           ),
           fontface = 2,
@@ -698,32 +677,8 @@ RenElecGen <- function(input, output, session) {
           size = 3
         ) +
         geom_text(
-          aes(
-           x = 1998.5,
-            y = (max(RenElecGenFuel$top)*1.1) * (6.5 / 8),
-            label = "Sewage\nGas"
-          ),
-          fontface = 2,
-          colour =  BarColours[7],
-          family = "Century Gothic",
-          hjust = 0.5,
-          size = 3
-        ) +
-        geom_text(
-          aes(
-           x = 1998.5,
-            y = (max(RenElecGenFuel$top)*1.1) * (7.5 / 8),
-            label = "Other\nBioenergy"
-          ),
-          fontface = 2,
-          colour =  BarColours[8],
-          family = "Century Gothic",
-          hjust = 0.5,
-          size = 3
-        ) +
-        geom_text(
           aes(x = 2010.5,
-              y = (max(RenElecGenFuel$top)*1.1) * (8 / 8),
+              y = (max(RenElecGenFuel$top)*1.1) * (6 / 6),
               label = " "),
           fontface = 2,
           colour =  BarColours[8],
@@ -733,7 +688,7 @@ RenElecGen <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = 0.1,
-              y = (max(RenElecGenFuel$top)*1.1) * (8 / 8),
+              y = (max(RenElecGenFuel$top)*1.1) * (6 / 6),
               label = " "),
           fontface = 2,
           colour =  BarColours[8],
@@ -2279,9 +2234,14 @@ RenElecGen <- function(input, output, session) {
     
     Data <- as_tibble(Data)
     
-    names(Data) <- c("Quarter", "Onshore wind", "Offshore wind", "Shoreline wave / tidal", "Solar PV", "Hydro", "Landfill gas", "Sewage sludge digestion", "Other biomass (inc. co-firing)", "Total")
+    names(Data) <- c("Quarter", "Onshore wind", "Offshore wind", "Wave and Tidal", "Solar PV", "Hydro", "Landfill gas", "Sewage sludge digestion", "Other biomass (inc. co-firing)", "Total")
+    
+    
+    Data$`Bioenergy and Waste` <- Data$`Landfill gas` + Data$`Sewage sludge digestion` + Data$`Other biomass (inc. co-firing)`
     
     Data <- Data[which(Data$Total > 0),]
+    
+    Data <- Data[c(1,2,3,6,11,5,4,10)]
     
     Data$Quarter <- paste0(substr(Data$Quarter,1,4), " Q", substr(Data$Quarter,8,8))
     

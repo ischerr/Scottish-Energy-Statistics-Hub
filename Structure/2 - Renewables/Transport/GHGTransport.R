@@ -9,7 +9,7 @@ GHGTransportOutput <- function(id) {
   ns <- NS(id)
   tagList(fluidRow(
                column(8,
-                      h3("Transport emissions", style = "color: #39ab2c;  font-weight:bold"),
+                      h3("Transport greenhouse  gas emissions", style = "color: #39ab2c;  font-weight:bold"),
                       h4(textOutput(ns('GHGTransportSubtitle')), style = "color: #39ab2c;")
                ),
                column(
@@ -112,11 +112,11 @@ GHGTransport <- function(input, output, session) {
     p <-  plot_ly(GHGTransport, x = ~ Year) %>% 
       add_trace(
         y = ~ Renewables,
-        name = "Renewables",
+        name = "Transport Emissions",
         type = 'scatter',
         mode = 'lines',
         text = paste0(
-          "Transport Emissions: ",
+          "Transport greenhouse gas emissions: ",
           format(round(GHGTransport$Renewables, 1), big.mark = ","),
           " MtCO2e\nYear: ",
           format(GHGTransport$Year, "%Y")
@@ -128,9 +128,9 @@ GHGTransport <- function(input, output, session) {
         data = tail(GHGTransport[which(GHGTransport$Renewables > 0 | GHGTransport$Renewables < 0),],1),
         x = ~ Year,
         y = ~ `Renewables`,
-        name = "Renewables",
+        name = "Transport Emissions",
         text = paste0(
-          "Transport Emissions: ",
+          "Transport greenhouse gas emissions: ",
           format(round(tail(GHGTransport[which(GHGTransport$Renewables > 0 | GHGTransport$Renewables < 0),],1)$Renewables, 1), big.mark = ","),
           " MtCO2e\nYear: ",
           format(tail(GHGTransport[which(GHGTransport$Renewables > 0 | GHGTransport$Renewables < 0),],1)$Year, "%Y")
@@ -252,7 +252,7 @@ GHGTransport <- function(input, output, session) {
         ### Variables
         ChartColours <- c("#39ab2c", "#1c9099")
         sourcecaption = "Source: SG"
-        plottitle = "Transport emissions"
+        plottitle = "Transport greenhouse gas emissions"
         
         
         GHGTransportChart <- GHGTransport %>%
@@ -449,8 +449,6 @@ GHGTransport <- function(input, output, session) {
     
     GHGTransport <- GHGTransport[complete.cases(GHGTransport),]
     
-    GHGTransport$Total <- rowSums(GHGTransport[2:5])
-    
     GHGTransportBreakdown <- read_csv("Processed Data/Output/Greenhouse Gas/GHGTransportBreakdown.csv")
     
     names(GHGTransportBreakdown)[1] <- "Year"
@@ -459,7 +457,7 @@ GHGTransport <- function(input, output, session) {
     
     GHGTransport <- merge(GHGTransport[which(GHGTransport$Year >= 1998),],GHGTransportBreakdown[which(GHGTransportBreakdown$Year >= 1998),])
     
-    GHGTransport$Proportion <- GHGTransport$`Transport Emissions` / GHGTransport$Total
+    GHGTransport$`Proportion of total emissions` <- GHGTransport$`Transport Emissions` / GHGTransport$Total
     
     
     GHGTransport <- GHGTransport[c(1,4,8,7,6)]

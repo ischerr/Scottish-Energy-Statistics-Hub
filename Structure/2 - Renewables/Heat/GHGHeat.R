@@ -10,7 +10,7 @@ GHGHeatOutput <- function(id) {
   tagList(
     fluidRow(
                column(8,
-                      h3("Heat (specifically relating to buildings) emissions", style = "color: #39ab2c;  font-weight:bold"),
+                      h3("Greenhouse gas emissions associated with heating of buildings", style = "color: #39ab2c;  font-weight:bold"),
                       h4(textOutput(ns('GHGHeatSubtitle')), style = "color: #39ab2c;")
                ),
                column(
@@ -114,11 +114,11 @@ GHGHeat <- function(input, output, session) {
     p <-  plot_ly(GHGHeat, x = ~ Year) %>% 
       add_trace(
         y = ~ Renewables,
-        name = "Renewables",
+        name = "Heat Emissions",
         type = 'scatter',
         mode = 'lines',
         text = paste0(
-          "Heat Emissions: ",
+          "Greenhouse gas emissions associated with heating of buildings: ",
           format(round(GHGHeat$Renewables, 1), big.mark = ","),
           " MtCO2e\nYear: ",
           format(GHGHeat$Year, "%Y")
@@ -130,9 +130,9 @@ GHGHeat <- function(input, output, session) {
         data = tail(GHGHeat[which(GHGHeat$Renewables > 0 | GHGHeat$Renewables < 0),],1),
         x = ~ Year,
         y = ~ `Renewables`,
-        name = "Renewables",
+        name = "Heat Emissions",
         text = paste0(
-          "Heat Emissions: ",
+          "Greenhouse gas emissions associated with heating of buildings: ",
           format(round(tail(GHGHeat[which(GHGHeat$Renewables > 0 | GHGHeat$Renewables < 0),],1)$Renewables, 1), big.mark = ","),
           " MtCO2e\nYear: ",
           format(tail(GHGHeat[which(GHGHeat$Renewables > 0 | GHGHeat$Renewables < 0),],1)$Year, "%Y")
@@ -254,7 +254,7 @@ GHGHeat <- function(input, output, session) {
         ### Variables
         ChartColours <- c("#39ab2c", "#1c9099")
         sourcecaption = "Source: SG"
-        plottitle = "Heat emissions"
+        plottitle = "Greenhouse gas emissions associated with heating of buildings"
         
         
         GHGHeatChart <- GHGHeat %>%
@@ -450,8 +450,6 @@ GHGHeat <- function(input, output, session) {
     
     GHGHeat <- GHGHeat[complete.cases(GHGHeat),]
     
-    GHGHeat$Total <- rowSums(GHGHeat[2:5])
-    
     GHGHeatBreakdown <- read_csv("Processed Data/Output/Greenhouse Gas/GHGHeatBreakdown.csv")
     
     names(GHGHeatBreakdown)[1] <- "Year"
@@ -460,7 +458,7 @@ GHGHeat <- function(input, output, session) {
     
     GHGHeat <- merge(GHGHeat[which(GHGHeat$Year >= 1998),],GHGHeatBreakdown[which(GHGHeatBreakdown$Year >= 1998),])
     
-    GHGHeat$Proportion <- GHGHeat$`Heat (specifically relating to buildings) Emissions` / GHGHeat$Total
+    GHGHeat$`Proportion of total emissions` <- GHGHeat$`Heat (specifically relating to buildings) Emissions` / GHGHeat$Total
     
     
     GHGHeat <- GHGHeat[c(1,3,9,8,6,7)]
@@ -478,17 +476,17 @@ GHGHeat <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Carbon Productivity",
+        title = "Greenhouse gas emissions associated with heating of buildings",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Carbon Productivity',
+            title = 'Greenhouse gas emissions associated with heating of buildings',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Carbon Productivity')
+               title = 'Greenhouse gas emissions associated with heating of buildings')
         ),
         
         # customize the length menu

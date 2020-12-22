@@ -226,20 +226,24 @@ RenElecPipeline <- function(input, output, session) {
     Data[2:14]%<>% lapply(function(x)
       as.numeric(as.character(x)))
     
-    Data$Biomass <- Data$`Animal Biomass` + Data$Plant
+    Data$`Bioenergy and Waste` <- Data$`Landfill Gas`+ Data$Sewage + Data$Waste + Data$`Animal Biomass`+Data$`Anaerobic Digestion` + Data$Plant
+    
+    Data$`Landfill Gas` <- NULL
+    
+    Data$Sewage  <- NULL
+    
+    Data$Waste  <- NULL
     
     Data$`Animal Biomass` <- NULL
     
+    Data$`Anaerobic Digestion`  <- NULL
+    
     Data$Plant <- NULL
-    
-    Data$`Anaerobic Digestion` <- Data$`Anaerobic Digestion` + Data$Sewage
-    
-    Data$Sewage <- NULL
     
     names(Data)[1] <- "Quarter"
     
     datatable(
-      Data[c(1:10,12,11)],
+      Data[c(1,2,3,4,5,9,6,7,8)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -427,15 +431,19 @@ RenElecPipeline <- function(input, output, session) {
     Data[2:14]%<>% lapply(function(x)
       as.numeric(as.character(x)))
     
-    Data$Biomass <- Data$`Animal Biomass` + Data$Plant
+    Data$`Bioenergy and Waste` <- Data$`Landfill Gas`+ Data$Sewage + Data$Waste + Data$`Animal Biomass`+Data$`Anaerobic Digestion` + Data$Plant
+    
+    Data$`Landfill Gas` <- NULL
+    
+    Data$Sewage  <- NULL
+    
+    Data$Waste  <- NULL
     
     Data$`Animal Biomass` <- NULL
     
+    Data$`Anaerobic Digestion`  <- NULL
+    
     Data$Plant <- NULL
-    
-    Data$`Anaerobic Digestion` <- Data$`Anaerobic Digestion` + Data$Sewage
-    
-    Data$Sewage <- NULL
     
     Data$Total <- NULL
     
@@ -582,15 +590,19 @@ RenElecPipeline <- function(input, output, session) {
       Data[2:14]%<>% lapply(function(x)
         as.numeric(as.character(x)))
       
-      Data$Biomass <- Data$`Animal Biomass` + Data$Plant
+      Data$`Bioenergy and Waste` <- Data$`Landfill Gas`+ Data$Sewage + Data$Waste + Data$`Animal Biomass`+Data$`Anaerobic Digestion` + Data$Plant
+      
+      Data$`Landfill Gas` <- NULL
+      
+      Data$Sewage  <- NULL
+      
+      Data$Waste  <- NULL
       
       Data$`Animal Biomass` <- NULL
       
+      Data$`Anaerobic Digestion`  <- NULL
+      
       Data$Plant <- NULL
-      
-      Data$`Anaerobic Digestion` <- Data$`Anaerobic Digestion` + Data$Sewage
-      
-      Data$Sewage <- NULL
       
       Data$Total <- NULL
       
@@ -1299,6 +1311,12 @@ RenElecPipeline <- function(input, output, session) {
     Data[2:5]%<>% lapply(function(x)
       as.numeric(as.character(x)))
     
+    Data[5,2:5] <- Data[5,2:5] + Data[6,2:5] +Data[8,2:5] +Data[10,2:5]
+    
+    Data[5,1] <- "Bioenergy and Waste"
+    
+    Data <- Data[-c(6,8,10),]
+    
     RenElecPipeline <- as_tibble(Data)
     
     RenElecPipeline$Total <- RenElecPipeline$`Under Construction` + RenElecPipeline$`Awaiting Construction` + RenElecPipeline$`In Planning`
@@ -1428,6 +1446,11 @@ RenElecPipeline <- function(input, output, session) {
                                   skip = 13,
                                   n_max = 11)
     
+    RenElecPipeline[5,c(2:5,8:9)] <- RenElecPipeline[5,c(2:5,8:9)] + RenElecPipeline[6,c(2:5,8:9)] +RenElecPipeline[8,c(2:5,8:9)] +RenElecPipeline[10,c(2:5,8:9)]
+    
+    RenElecPipeline[5,1] <- "Bioenergy and Waste"
+    
+    RenElecPipeline <- RenElecPipeline[-c(6,8,10),]
     
     
     names(RenElecPipeline)[1] <- "Tech"
@@ -1626,6 +1649,15 @@ RenElecPipeline <- function(input, output, session) {
                           sheet = "Renewable elec pipeline", col_names = TRUE, 
                           skip = 13, n_max = 10)[1:5]
       
+      Data2[2:5]%<>% lapply(function(x)
+        as.numeric(as.character(x)))
+      
+      Data2[5,2:5] <- Data2[5,2:5] + Data2[6,2:5] +Data2[8,2:5] +Data2[10,2:5]
+      
+      Data2[5,1] <- "Bioenergy and Waste"
+      
+      Data2 <- Data2[-c(6,8,10),]
+      
       names(Data2)[1] <- "Type"
       
       Data2 <- Data2[order(Data2$Total),]
@@ -1705,7 +1737,7 @@ RenElecPipeline <- function(input, output, session) {
         
         geom_text(
           aes(
-            x = 11.1,
+            x = 8.1,
             y = (2/2) * (max(RenElecCapTech$top) * .8) +(max(RenElecCapTech$top) *.1),
             label = "Under\nConstruction",
             fontface = 2
@@ -1715,7 +1747,7 @@ RenElecPipeline <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 11.1,
+            x = 8.1,
             y = (1/2) * (max(RenElecCapTech$top) * .8) +(max(RenElecCapTech$top) *.1),
             label = "Awaiting\nConstruction",
             fontface = 2
@@ -1725,7 +1757,7 @@ RenElecPipeline <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 11.1,
+            x = 8.1,
             y = (0/2) * (max(RenElecCapTech$top) * .8) +(max(RenElecCapTech$top) *.1),
             label = "In\nPlanning",
             fontface = 2
@@ -1735,7 +1767,7 @@ RenElecPipeline <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            x = 12,
+            x = 9,
             y = (3.5/4) * 15000,
             label = " ",
             fontface = 2
@@ -2247,12 +2279,7 @@ RenElecPipeline <- function(input, output, session) {
     filename = "DataTable.csv",
     content = function(file){
 
-      DataTable <- read_delim("Processed Data/Output/REPD (Operational Corrections)/DataTable.txt", 
-                              "\t", escape_double = FALSE, trim_ws = TRUE)
-      
-      DataTable[which(DataTable$TurbineAmount == 0),]$TurbineAmount <- NA
-      
-      names(DataTable) <- c("Reference", "Local Authority", "Site Name", "Technology", "Capacity (MW)", "Status", "Wind Turbines")
+      DataTable  <- read_csv("Processed Data/Output/REPD (Operational Corrections)/PipelineDataTable.csv")
       
       write.csv(DataTable, 
                 file,

@@ -91,9 +91,9 @@ RenElecSourcesOutput <- function(id) {
                uiOutput(ns("TextSolar"))
              ),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-  tabPanel("Bioenergy",
+  tabPanel("Bioenergy and Waste",
            fluidRow(column(8,
-                           h3("Bioenergy", style = "color: #39ab2c;  font-weight:bold"),
+                           h3("Bioenergy and Waste", style = "color: #39ab2c;  font-weight:bold"),
                            h4("Scotland, Latest Figures", style = "color: #39ab2c;")
            ),
            column(
@@ -370,7 +370,7 @@ RenElecSources <- function(input, output, session) {
   ))
   names(SolarPVTable) <- c("Tech","Generation (GWh)", "Operational Capacity (MW)", "Pipeline Capacity (MW)", "Employees (FTE)", "Turnover (\u00A3bn)", "Number of Sites")
   
-  BioenergyTable <- as_tibble(cbind("Bioenergy",
+  BioenergyTable <- as_tibble(cbind("Bioenergy and Waste",
                                     RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Bioenergy`,
                                     RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Bioenergy`,
                                     RenElecPipeline$`Bioenergy`,
@@ -425,8 +425,11 @@ RenElecSources <- function(input, output, session) {
   Stacked[5,1] <- paste0("<b>", Stacked[5,1], "</b>" , "\n", RenEconomyYear)
   Stacked[6,1] <- paste0("<b>", Stacked[6,1], "</b>" , "\n", max(RenSites$Year))
   
+  Stacked <- Stacked[c(1,2,3,6,4,5),]
+  
   Stacked2$Time <- c(max(RenElecGenFuel$Year), max(RenElecCapFuel$Year),max(RenElecCapFuel$Year),RenEconomyYear,RenEconomyYear, max(RenSites$Year))
 
+  Stacked2 <- Stacked2[c(1,2,3,6,4,5),]
   
   #Stacked$Tech <- factor(Stacked$Tech, levels = unique(Stacked$Tech)[order(row.names(Stacked), decreasing = FALSE)])
   ChartColours <- c("#39ab2c")
@@ -590,7 +593,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 5.7,
+          x = 6.7,
           y = 0,
           label = "Onshore Wind",
           family = "Century Gothic",
@@ -600,7 +603,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 5.7,
+          x = 6.7,
           y = 1,
           label = "Other Renewables",
           family = "Century Gothic",
@@ -610,7 +613,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 5.95,
+          x = 6.95,
           y = 1,
           label = " ",
           family = "Century Gothic",
@@ -822,7 +825,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 5.7,
+          x = 6.7,
           y = 0,
           label = "Offshore Wind",
           family = "Century Gothic",
@@ -832,7 +835,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 5.7,
+          x = 6.7,
           y = 1,
           label = "Other Renewables",
           family = "Century Gothic",
@@ -842,7 +845,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 5.95,
+          x = 6.95,
           y = 1,
           label = " ",
           family = "Century Gothic",
@@ -1053,7 +1056,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 5.7,
+          x = 6.7,
           y = 0,
           label = "Hydro",
           family = "Century Gothic",
@@ -1063,7 +1066,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 5.7,
+          x = 6.7,
           y = 1,
           label = "Other Renewables",
           family = "Century Gothic",
@@ -1073,7 +1076,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 5.95,
+          x = 6.95,
           y = 1,
           label = " ",
           family = "Century Gothic",
@@ -1283,7 +1286,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 5.7,
+          x = 6.7,
           y = 0,
           label = "Solar",
           family = "Century Gothic",
@@ -1293,7 +1296,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 5.7,
+          x = 6.7,
           y = 1,
           label = "Other Renewables",
           family = "Century Gothic",
@@ -1303,7 +1306,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 5.95,
+          x = 6.95,
           y = 1,
           label = " ",
           family = "Century Gothic",
@@ -1366,7 +1369,7 @@ RenElecSources <- function(input, output, session) {
       x = ~(`Bioenergy`/ Total),
       legendgroup = 1,
       text = paste0(
-        "<b>Bioenergy</b>\n",
+        "<b>Bioenergy and Waste</b>\n",
         Stacked$Prefix,
         ifelse(Stacked$`Bioenergy` > 3,
                format(round(Stacked$`Bioenergy`, digits = 0),big.mark = ",", trim = TRUE),
@@ -1376,7 +1379,7 @@ RenElecSources <- function(input, output, session) {
         "\n",
         percent(Stacked$`Bioenergy` / Stacked$Total, 0.1)
       ),
-      name = "Bioenergy",
+      name = "Bioenergy and Waste",
       type = "bar",
       hoverinfo = "text",
       orientation = 'h',
@@ -1467,7 +1470,7 @@ RenElecSources <- function(input, output, session) {
       BioenergySources <- BioenergySources[complete.cases(BioenergySources),]
       
       plottitle <-
-        "Bioenergy"
+        "Bioenergy and Waste"
       sourcecaption <- "Source: BEIS"
       
       BioenergySourcesChart <- BioenergySources %>%
@@ -1518,9 +1521,9 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 3.7,
+          x = 4.7,
           y = 0,
-          label = "Bioenergy",
+          label = "Bioenergy and Waste",
           family = "Century Gothic",
           colour =  ChartColours[1],
           hjust = 0,
@@ -1528,7 +1531,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 3.7,
+          x = 4.7,
           y = 1,
           label = "Other Renewables",
           family = "Century Gothic",
@@ -1538,7 +1541,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 3.95,
+          x = 4.95,
           y = 1,
           label = " ",
           family = "Century Gothic",
@@ -1751,7 +1754,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 3.7,
+          x = 4.7,
           y = 0,
           label = "Wave and Tidal",
           family = "Century Gothic",
@@ -1761,7 +1764,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 3.7,
+          x = 4.7,
           y = 1,
           label = "Other Renewables",
           family = "Century Gothic",
@@ -1771,7 +1774,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 3.95,
+          x = 4.95,
           y = 1,
           label = " ",
           family = "Century Gothic",

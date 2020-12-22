@@ -13,8 +13,8 @@
    version="1.1"
    id="svg1391"
    sodipodi:docname="ECOCSCO.svg"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   inkscape:export-filename="C:\Users\ische\Documents\GitHub\Scottish-Energy-Statistics-Hub\Structure\4 - Energy Efficiency\Efficiency Measures\ECOCSCO.png"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   inkscape:export-filename="C:\Users\ische\GitHub\Scottish-Energy-Statistics-Hub\Structure\4 - Energy Efficiency\Efficiency Measures\ECOCSCO.png"
    inkscape:export-xdpi="60.005222"
    inkscape:export-ydpi="60.005222">
   <metadata
@@ -53,7 +53,8 @@
      inkscape:window-y="-11"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg1391"
-     inkscape:pagecheckerboard="true" />
+     inkscape:pagecheckerboard="true"
+     inkscape:document-rotation="0" />
   <defs
      id="defs202">
     <g
@@ -20574,7 +20575,8 @@
            width="341.72833"
            id="rect3652-5-0" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"
-         id="flowPara3654-8-63">Inverclyde</flowPara></flowRoot>    <flowRoot
+         id="flowPara3654-8-63">Inverclyde</flowPara></flowRoot>
+    <flowRoot
        transform="matrix(0.68016412,0,0,0.68016412,2056.5442,1652.4604)"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-44"
@@ -20588,7 +20590,8 @@
            width="341.72833"
            id="rect3652-51" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle"
-         id="flowPara3654-3">West Dunbartonshire</flowPara></flowRoot>    <flowRoot
+         id="flowPara3654-3">West Dunbartonshire</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-7-33"
        xml:space="preserve"
@@ -20600,7 +20603,8 @@
            width="341.72833"
            id="rect3652-8-46" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"
-         id="flowPara3654-1-72">Renfrewshire</flowPara></flowRoot>    <flowRoot
+         id="flowPara3654-1-72">Renfrewshire</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-1-0"
        xml:space="preserve"
@@ -20616,12 +20620,13 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle"
          id="flowPara3654-10-7">East</flowPara><flowPara
          id="flowPara3948"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Renfrewshire</flowPara></flowRoot>    <flowRoot
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Renfrewshire</flowPara></flowRoot>
+    <flowRoot
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-4-5"
        xml:space="preserve"
        transform="matrix(0.68016412,0,0,0.68016412,2277.7422,1828.843)"><flowRegion
-         style="fill:#000000;"
+         style="fill:#000000"
          id="flowRegion3650-75-0"><rect
            style="fill:#000000;"
            y="-109.83051"
@@ -20632,7 +20637,8 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff"
          id="flowPara3654-8-0">Glasgow</flowPara><flowPara
          id="flowPara3950"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">City</flowPara></flowRoot>    <flowRoot
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">City</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-6-0"
        xml:space="preserve"
@@ -20648,7 +20654,8 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle"
          id="flowPara3654-84-7">North</flowPara><flowPara
          id="flowPara3952"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Lanarkshire</flowPara></flowRoot>    <flowRoot
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Lanarkshire</flowPara></flowRoot>
+    <flowRoot
        transform="matrix(0.68016412,0,0,0.68016412,2812.0247,1623.131)"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-65"
@@ -20660,7 +20667,8 @@
            width="341.72833"
            id="rect3652-9" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"
-         id="flowPara3654-0">Falkirk</flowPara></flowRoot>    <flowRoot
+         id="flowPara3654-0">Falkirk</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-7-38"
        xml:space="preserve"
@@ -20676,7 +20684,8 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle"
          id="flowPara3654-1-87">West</flowPara><flowPara
          id="flowPara3954"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Lothian</flowPara></flowRoot>    <flowRoot
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Lothian</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-1-9"
        xml:space="preserve"
@@ -20692,7 +20701,8 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle"
          id="flowPara3654-10-6">City of</flowPara><flowPara
          id="flowPara3956"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Edinburgh</flowPara></flowRoot>    <flowRoot
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Edinburgh</flowPara></flowRoot>
+    <flowRoot
        transform="matrix(0.68016412,0,0,0.68016412,2321.3485,1685.8735)"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-44-8"
@@ -20706,7 +20716,8 @@
            width="341.72833"
            id="rect3652-51-0" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle"
-         id="flowPara3654-3-4">East Dunbartonshire</flowPara></flowRoot>  </g>
+         id="flowPara3654-3-4">East Dunbartonshire</flowPara></flowRoot>
+  </g>
   <g
      id="g6981">
     <flowRoot
@@ -20721,7 +20732,8 @@
            width="341.72833"
            id="rect3652" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"
-         id="flowPara3654">Shetland Islands</flowPara></flowRoot>    <flowRoot
+         id="flowPara3654">Shetland Islands</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-7"
        xml:space="preserve"
@@ -20733,7 +20745,8 @@
            width="341.72833"
            id="rect3652-8" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"
-         id="flowPara3654-1">Orkney Islands</flowPara></flowRoot>    <flowRoot
+         id="flowPara3654-1">Orkney Islands</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-1"
        xml:space="preserve"
@@ -20745,21 +20758,23 @@
            width="341.72833"
            id="rect3652-1" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle"
-         id="flowPara3654-10">Comhairle nan Eilean Siar</flowPara></flowRoot>    <flowRoot
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#800000;fill-opacity:1;stroke:none;"
+         id="flowPara3654-10">Comhairle nan Eilean Siar</flowPara></flowRoot>
+    <flowRoot
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#800000;fill-opacity:1;stroke:none"
        id="flowRoot3648-4"
        xml:space="preserve"
        transform="matrix(0.68016412,0,0,0.68016412,963.13159,1417.8657)"><flowRegion
          id="flowRegion3650-75"
-         style="fill:#800000;"><rect
+         style="fill:#800000"><rect
            y="-109.83051"
            x="-424.10925"
            height="129.97881"
            width="341.72833"
            id="rect3652-5"
            style="fill:#800000;" /></flowRegion><flowPara
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#800000;"
-         id="flowPara3654-8">Highland</flowPara></flowRoot>    <flowRoot
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#800000"
+         id="flowPara3654-8">Highland</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-6"
        xml:space="preserve"
@@ -20771,7 +20786,8 @@
            width="341.72833"
            id="rect3652-6" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"
-         id="flowPara3654-84">Moray</flowPara></flowRoot>    <flowRoot
+         id="flowPara3654-84">Moray</flowPara></flowRoot>
+    <flowRoot
        transform="matrix(0.68016412,0,0,0.68016412,1263.2282,1506.7972)"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-77"
@@ -20783,7 +20799,8 @@
            width="341.72833"
            id="rect3652-2" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"
-         id="flowPara3654-2">Aberdeenshire</flowPara></flowRoot>    <flowRoot
+         id="flowPara3654-2">Aberdeenshire</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-7-1"
        xml:space="preserve"
@@ -20795,7 +20812,8 @@
            width="341.72833"
            id="rect3652-8-4" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"
-         id="flowPara3654-1-7">Aberdeen City</flowPara></flowRoot>    <flowRoot
+         id="flowPara3654-1-7">Aberdeen City</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-1-2"
        xml:space="preserve"
@@ -20807,7 +20825,8 @@
            width="341.72833"
            id="rect3652-1-4" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"
-         id="flowPara3654-10-0">Angus</flowPara></flowRoot>    <flowRoot
+         id="flowPara3654-10-0">Angus</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-4-4"
        xml:space="preserve"
@@ -20821,7 +20840,8 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle"
          id="flowPara3654-8-6">Perth and</flowPara><flowPara
          id="flowPara3920"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Kinross</flowPara></flowRoot>    <flowRoot
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Kinross</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-6-2"
        xml:space="preserve"
@@ -20833,7 +20853,8 @@
            width="341.72833"
            id="rect3652-6-2" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"
-         id="flowPara3654-84-1">Dundee City</flowPara></flowRoot>    <flowRoot
+         id="flowPara3654-84-1">Dundee City</flowPara></flowRoot>
+    <flowRoot
        transform="matrix(0.68016412,0,0,0.68016412,1069.0952,1749.3171)"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-19"
@@ -20845,7 +20866,8 @@
            width="341.72833"
            id="rect3652-68" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"
-         id="flowPara3654-9">Stirling</flowPara></flowRoot>    <flowRoot
+         id="flowPara3654-9">Stirling</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-7-3"
        xml:space="preserve"
@@ -20857,7 +20879,8 @@
            width="341.72833"
            id="rect3652-8-9" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"
-         id="flowPara3654-1-8">Fife</flowPara></flowRoot>    <flowRoot
+         id="flowPara3654-1-8">Fife</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-1-3"
        xml:space="preserve"
@@ -20869,7 +20892,8 @@
            width="463.82843"
            id="rect3652-1-7" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"
-         id="flowPara3654-10-8">Clackmannanshire</flowPara></flowRoot>    <flowRoot
+         id="flowPara3654-10-8">Clackmannanshire</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-6-6"
        xml:space="preserve"
@@ -20883,7 +20907,8 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle"
          id="flowPara3654-84-9">Argyll </flowPara><flowPara
          id="flowPara3922"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">and Bute</flowPara></flowRoot>    <flowRoot
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">and Bute</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-4-7"
        xml:space="preserve"
@@ -20897,7 +20922,8 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle"
          id="flowPara3654-8-8">North</flowPara><flowPara
          id="flowPara4034"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Ayrshire</flowPara></flowRoot>    <flowRoot
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Ayrshire</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-6-4"
        xml:space="preserve"
@@ -20913,7 +20939,8 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle"
          id="flowPara3654-84-8">East</flowPara><flowPara
          id="flowPara4036"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Ayrshire</flowPara></flowRoot>    <flowRoot
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Ayrshire</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-4-7-9"
        xml:space="preserve"
@@ -20927,7 +20954,8 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle"
          id="flowPara3654-8-8-1">South</flowPara><flowPara
          id="flowPara4038"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Ayrshire</flowPara></flowRoot>    <flowRoot
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Ayrshire</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-6-4-7"
        xml:space="preserve"
@@ -20941,7 +20969,8 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle"
          id="flowPara3654-84-8-0">South</flowPara><flowPara
          id="flowPara4040"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Lanarkshire</flowPara></flowRoot>    <flowRoot
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Lanarkshire</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-4-7-7"
        xml:space="preserve"
@@ -20955,7 +20984,8 @@
            width="341.72833"
            id="rect3652-5-27-7" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle"
-         id="flowPara3654-8-8-7">Dumfries and Galloway</flowPara></flowRoot>    <flowRoot
+         id="flowPara3654-8-8-7">Dumfries and Galloway</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-6-4-5"
        xml:space="preserve"
@@ -20971,7 +21001,8 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle"
          id="flowPara3654-84-8-4">Scottish</flowPara><flowPara
          id="flowPara4042"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Borders</flowPara></flowRoot>    <flowRoot
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle">Borders</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-4-7-5"
        xml:space="preserve"
@@ -20983,7 +21014,8 @@
            width="341.72833"
            id="rect3652-5-27-4" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"
-         id="flowPara3654-8-8-16">Midlothian</flowPara></flowRoot>    <flowRoot
+         id="flowPara3654-8-8-16">Midlothian</flowPara></flowRoot>
+    <flowRoot
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
        id="flowRoot3648-6-4-8"
        xml:space="preserve"
@@ -20997,7 +21029,8 @@
            width="341.72833"
            id="rect3652-6-4-9" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle"
-         id="flowPara3654-84-8-8">East Lothian</flowPara></flowRoot>  </g>
+         id="flowPara3654-84-8-8">East Lothian</flowPara></flowRoot>
+  </g>
   <flowRoot
      xml:space="preserve"
      id="flowRoot4044"
@@ -21010,7 +21043,8 @@
          x="709.38135"
          y="-9.492939" /></flowRegion><flowPara
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:center;text-anchor:middle"
-       id="flowPara2645">Measures</flowPara></flowRoot>  <g
+       id="flowPara2645">Measures</flowPara></flowRoot>
+  <g
      id="g3646"
      transform="matrix(5.4626518,0,0,5.4626518,150.76841,206.16236)">
     <path
@@ -21281,7 +21315,8 @@
          x="709.38135"
          y="-9.492939" /></flowRegion><flowPara
        id="flowPara4050-2"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold'">0</flowPara></flowRoot>  <flowRoot
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold'">0</flowPara></flowRoot>
+  <flowRoot
      xml:space="preserve"
      id="flowRoot4044-3-3"
      style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
@@ -21293,7 +21328,8 @@
          x="709.38135"
          y="-9.492939" /></flowRegion><flowPara
        id="flowPara4050-2-19"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold'">13,000</flowPara></flowRoot>  <path
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold'">13,000</flowPara></flowRoot>
+  <path
      style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#34d1a3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
      d="m 8.2207031,43.369141 v 3.201171 H 618.14062 v -3.201171 z"
      clip-path="url(#cpOC4yMnw2MTguMTR8MjQ1LjIyfDQ0Ljk3)"
@@ -21303,10 +21339,13 @@
   <flowRoot
      xml:space="preserve"
      id="flowRoot901-8"
-     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#34d1a3;fill-opacity:1;stroke:none;"
-     transform="matrix(5.0209624,0,0,5.0209624,1150.2233,1142.344)"><flowRegion
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#34d1a3;fill-opacity:1;stroke:none"
+     transform="matrix(5.0209624,0,0,5.0209624,1150.2233,1142.344)"
+     inkscape:export-filename="C:\Users\ische\GitHub\Scottish-Energy-Statistics-Hub\Structure\4 - Energy Efficiency\Efficiency Measures\ECOCSCO.png"
+     inkscape:export-xdpi="60.005222"
+     inkscape:export-ydpi="60.005222"><flowRegion
        id="flowRegion903-3"
-       style="fill:#34d1a3;fill-opacity:1;"><rect
+       style="fill:#34d1a3;fill-opacity:1"><rect
          id="rect905-1"
          width="483.75308"
          height="373.72443"
@@ -21314,20 +21353,22 @@
          y="-218.56583"
          style="fill:#34d1a3;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" /></flowRegion><flowPara
        id="flowPara907-9"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#34d1a3;fill-opacity:1;">Scotland, 2020 Q2</flowPara></flowRoot>  <flowRoot
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#34d1a3;fill-opacity:1">Scotland, 2020 Q3</flowPara></flowRoot>
+  <flowRoot
      xml:space="preserve"
      id="flowRoot4835"
-     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';letter-spacing:0px;word-spacing:0px;fill:#34d1a3;fill-opacity:1;stroke:none"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.6667px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';letter-spacing:0px;word-spacing:0px;fill:#34d1a3;fill-opacity:1;stroke:none"
      transform="matrix(5.0209624,0,0,5.0209624,-8763.0379,1173.5202)"><flowRegion
        id="flowRegion4837"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#34d1a3;fill-opacity:1"><rect
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.6667px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#34d1a3;fill-opacity:1"><rect
          id="rect4839"
          width="2922.1904"
          height="2363.071"
          x="1755.4242"
          y="-226.71194"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#34d1a3;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
-       id="flowPara100">ECO measures - Carbon Savings Community (CSCO)</flowPara></flowRoot>  <g
+       id="flowPara100">ECO measures - Carbon Savings Community (CSCO)</flowPara></flowRoot>
+  <g
      id="g4542"
      transform="translate(-446.63692,98.48882)"
      style="fill:#34d1a3;fill-opacity:1">
@@ -21344,8 +21385,9 @@
            height="373.72443"
            width="483.75308"
            id="rect905-1-6" /></flowRegion><flowPara
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.19999981px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:end;text-anchor:end;fill:#34d1a3;fill-opacity:1"
-         id="flowPara907-9-7">Source: BEIS</flowPara></flowRoot>    <path
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:end;text-anchor:end;fill:#34d1a3;fill-opacity:1"
+         id="flowPara907-9-7">Source: BEIS</flowPara></flowRoot>
+    <path
        transform="matrix(5.4291325,0,0,5.0209624,452.59085,1894.4376)"
        inkscape:connector-curvature="0"
        id="line53-3"
