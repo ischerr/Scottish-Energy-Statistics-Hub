@@ -69,7 +69,7 @@ NonGasGrid <- function(input, output, session) {
   
   output$NonGasGridSubtitle <- renderText({
     
-    paste("Scotland, 2018")
+    paste("Scotland, 2019")
   
     })
   
