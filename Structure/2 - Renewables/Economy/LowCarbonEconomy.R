@@ -11,62 +11,136 @@ LowCarbonEconomyOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-      tabPanel(
-        "Employment",
+      tabPanel("Turnover",
         fluidRow(
           column(
             8,
             h3(
-              "Full time equivalent jobs directly supported by the LCRE sector",
+              "Turnover directly supported by the LCRE sector",
               style = "color: #39ab2c;  font-weight:bold"
             ),
             h4(textOutput(ns(
-              'LowCarbonEconomySubtitle'
+              'LowCarbonEconomyTurnoverSubtitle'
             )), style = "color: #39ab2c;")
-          ),
+          ,
+          selectInput(ns("MeasureSelect1"), "Group:", c("All groups",
+                                                         "Low carbon electricity",
+                                                         "Low carbon heat",
+                                                         "Energy from waste and biomass",
+                                                         "Energy efficient products"
+                                                         
+                                                         
+          ), selected = "All groups", multiple = FALSE,
+                      selectize = TRUE, width = NULL, size = NULL)
+        ),
           column(
             4,
             style = 'padding:15px;',
-            downloadButton(ns('LowCarbonEconomy.png'), 'Download Graph', style =
-                             "float:right")
-          )
-        ),
+            downloadButton(ns('LowCarbonEconomyTurnover.png'), 'Download Graph', style =
+                             "float:right"))),
         
         tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-        #dygraphOutput(ns("LowCarbonEconomyPlot")),
-        plotlyOutput(ns("LowCarbonEconomyPlot")) %>% withSpinner(color =
-                                                                   "#39ab2c"),
-        tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")
-      ),
-      tabPanel(
-        "Turnover",
-        fluidRow(
-          column(
-            8,
-            h3("Turnover directly supported by the LCRE sector", style = "color: #39ab2c;  font-weight:bold"),
-            h4(textOutput(
-              ns('LowCarbonEconomyTurnoverSubtitle')
-            ), style = "color: #39ab2c;")
-          ),
-          column(
-            4,
-            style = 'padding:15px;',
-            downloadButton(
-              ns('LowCarbonEconomyTurnover.png'),
-              'Download Graph',
-              style = "float:right"
-            )
-          )
-        ),
-        
-        tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-        #dygraphOutput(ns("LowCarbonEconomyPlot")),
+        #dygraphOutput(ns("LowCarbonEconomyTurnoverPlot")),
         plotlyOutput(ns("LowCarbonEconomyTurnoverPlot")) %>% withSpinner(color =
-                                                                           "#39ab2c"),
-        tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")
-      )
-      
-    ),
+                                                                   "#39ab2c"),
+        HTML("<blockquote><p>Note: Some groups are not included, as some data has been suppressed for disclosure control</p></blockquote>"),
+        tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+      tabPanel("Businesses",
+               fluidRow(
+                 column(
+                   8,
+                   h3(
+                     "Number of businesses directly supported by the LCRE sector",
+                     style = "color: #39ab2c;  font-weight:bold"
+                   ),
+                   h4(textOutput(ns(
+                     'LowCarbonEconomyBusinessesSubtitle'
+                   )), style = "color: #39ab2c;")
+                   ,
+                   selectInput(ns("MeasureSelect2"), "Group:", c("All groups",
+                                                                  "Low carbon electricity",
+                                                                  "Energy efficient products"
+                   ), selected = "All groups", multiple = FALSE,
+                               selectize = TRUE, width = NULL, size = NULL)
+                 ),
+                 column(
+                   4,
+                   style = 'padding:15px;',
+                   downloadButton(ns('LowCarbonEconomyBusinesses.png'), 'Download Graph', style =
+                                    "float:right"))),
+               
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+               #dygraphOutput(ns("LowCarbonEconomyBusinessesPlot")),
+               plotlyOutput(ns("LowCarbonEconomyBusinessesPlot")) %>% withSpinner(color =
+                                                                                  "#39ab2c"),
+               HTML("<blockquote><p>Note: Some groups are not included, as some data has been suppressed for disclosure control</p></blockquote>"),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+      tabPanel("Employment",
+               fluidRow(
+                 column(
+                   8,
+                   h3(
+                     "Employees directly supported by the LCRE sector",
+                     style = "color: #39ab2c;  font-weight:bold"
+                   ),
+                   h4(textOutput(ns(
+                     'LowCarbonEconomyEmploymentSubtitle'
+                   )), style = "color: #39ab2c;")
+                   ,
+                   selectInput(ns("MeasureSelect3"), "Group:", c("All groups",
+                                                                  "Low carbon electricity",
+                                                                  "Low carbon heat",
+                                                                  "Energy from waste and biomass",
+                                                                  "Energy efficient products",
+                                                                  "Low carbon services",
+                                                                  "Low emission vehicles"
+                   ), selected = "All groups", multiple = FALSE,
+                               selectize = TRUE, width = NULL, size = NULL)
+                 ),
+                 column(
+                   4,
+                   style = 'padding:15px;',
+                   downloadButton(ns('LowCarbonEconomyEmployment.png'), 'Download Graph', style =
+                                    "float:right"))),
+               
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+               #dygraphOutput(ns("LowCarbonEconomyEmploymentPlot")),
+               plotlyOutput(ns("LowCarbonEconomyEmploymentPlot")) %>% withSpinner(color =
+                                                                                  "#39ab2c"),
+               HTML("<blockquote><p>Note: Some groups are not included, as some data has been suppressed for disclosure control</p></blockquote>"),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+      tabPanel("Exports",
+               fluidRow(
+                 column(
+                   8,
+                   h3(
+                     "Exports directly supported by the LCRE sector",
+                     style = "color: #39ab2c;  font-weight:bold"
+                   ),
+                   h4(textOutput(ns(
+                     'LowCarbonEconomyExportsSubtitle'
+                   )), style = "color: #39ab2c;")
+                   ,
+                   selectInput(ns("MeasureSelect4"), "Group:", c("All groups",
+                                                                  "Low carbon electricity",
+                                                                  "Energy from waste and biomass",
+                                                                  "Energy efficient products",
+                                                                  "Low carbon services"
+                   ), selected = "All groups", multiple = FALSE,
+                               selectize = TRUE, width = NULL, size = NULL)
+                 ),
+                 column(
+                   4,
+                   style = 'padding:15px;',
+                   downloadButton(ns('LowCarbonEconomyExports.png'), 'Download Graph', style =
+                                    "float:right"))),
+               
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+               #dygraphOutput(ns("LowCarbonEconomyExportsPlot")),
+               plotlyOutput(ns("LowCarbonEconomyExportsPlot")) %>% withSpinner(color =
+                                                                                  "#39ab2c"),
+               HTML("<blockquote><p>Note: Some groups are not included, as some data has been suppressed for disclosure control</p></blockquote>"),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
       column(
         10,
@@ -211,100 +285,6 @@ LowCarbonEconomy <- function(input, output, session) {
   Data <- Data[which(Data$Year == Year),]
   
   
-    output$LowCarbonEconomySubtitle <- renderText({
-    
-
-  
-    
-    paste("Scotland,", max(Year))
-  })
-    
-    output$LowCarbonEconomyTurnoverSubtitle <- renderText({
-      
-    paste("Scotland,", max(Year))
-    })
-  
-    output$LowCarbonEconomyPlot <- renderPlotly  ({
-    
-    LowCarbonEconomy <- Data[which(Data$Measure == "Employees  (FTE)"),]
-    
-    LowCarbonEmployment <- LowCarbonEconomy$Direct
-    
-    LowCarbonEconomy <- melt(LowCarbonEconomy[c(2,4,5)], id = c("Year"))
-    
-    LowCarbonEconomy$value <- as.numeric(LowCarbonEconomy$value)
-    
-    p <- plot_ly() %>% 
-      add_pie(data = LowCarbonEconomy,
-              labels = ~variable,
-              values = ~value,
-              sort = FALSE,
-              hole = 0.5,
-              textposition = "inside",
-              textinfo = 'none',
-              hoverinfo = 'text',
-              marker = list(colors = c("#1a5d38",  "#2b8cbe", "#31859c","#77933c", "#4f6228", "#184d0f"),
-                            line = list(color = '#FFFFFF', width = 2)),
-              text = paste0(LowCarbonEconomy$variable,": ", format(round(LowCarbonEconomy$value, digits = 0), big.mark = ","), " employees\n", percent((LowCarbonEconomy$value)/ sum(LowCarbonEconomy$value))),
-              sort = T) %>% 
-      layout(
-        title = list(
-          text = paste("<b>Total Employees</b>:",format(round(LowCarbonEmployment, digits = 0), big.mark = ",")),
-          font = list(
-            color = "#262626"
-          )
-        ),
-        legend = list(font = list(color = "#1A5D38"),
-                      orientation = 'h')
-      )
-    
-    #orca(p, "StaticCharts/LowCarbonEconomyPie.svg")
-    
-    p
-  })
-  
-    output$LowCarbonEconomyTurnoverPlot <- renderPlotly  ({
-      
-    LowCarbonTurnover <- Data[which(Data$Measure == "Turnover (\u00A3000s)"),]
-    
-    LowCarbonDirectTurnover <- LowCarbonTurnover$Direct /1000000
-    
-    LowCarbonTurnover <- melt(LowCarbonTurnover[c(2,4,5)], id = c("Year"))
-    
-    LowCarbonTurnover$value <- as.numeric(LowCarbonTurnover$value) /1000000 
-    
-    p <- plot_ly() %>% 
-      add_pie(data = LowCarbonTurnover,
-              labels = ~variable,
-              values = ~value,
-              hole = .5,
-              sort = FALSE,
-              textposition = "inside",
-              textinfo = 'none',
-              hoverinfo = 'text',
-              marker = list(colors = c("#1a5d38",  "#2b8cbe", "#31859c","#77933c", "#4f6228", "#184d0f"),
-                            line = list(color = '#FFFFFF', width = 2)),
-              text = paste0(LowCarbonTurnover$variable,": \u00A3", format(round(LowCarbonTurnover$value, digits = 2), big.mark = ","), " bn\n", percent((LowCarbonTurnover$value)/ sum(LowCarbonTurnover$value))),
-              sort = T) %>% 
-      layout(
-        title = list(
-          text = paste0("<b>Total Turnover</b>: \u00A3",format(round(LowCarbonDirectTurnover, digits = 2), big.mark = ","), " bn"),
-          font = list(
-            color = "#262626"
-          )
-        ),
-        legend = list(font = list(color = "#1A5D38"),
-                      orientation = 'h')
-      )
-    
-    #orca(p, "StaticCharts/LowCarbonTurnoverPie.svg")
-    
-    p
-    
-    
-    
-  })
-  
     output$LowCarbonEconomyEmployeesTable = renderDataTable({
     
       Data <- read_excel("Structure/2 - Renewables/Economy/EconomyTables.xlsx", 
@@ -406,6 +386,7 @@ LowCarbonEconomy <- function(input, output, session) {
                     backgroundColor = styleEqual(c('Direct Activity',  'Renewable sector', 'Low carbon', 'Low carbon electricity', 'Low carbon heat', 'Energy from waste and biomass', 'Energy efficient products', 'Low carbon services', 'Low emission vehicles, infrastructure, fuels cells and energy storage'), c('#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd', '#bdbdbd'))
         )
     })
+    
     
     output$LowCarbonEconomyExportsTable = renderDataTable({
       
@@ -537,17 +518,892 @@ LowCarbonEconomy <- function(input, output, session) {
     toggle("Text")
   })
   
-    output$LowCarbonEconomy.png <- downloadHandler(
-    filename = "LowCarbonEconomy.png",
-    content = function(file) {
-      writePNG(readPNG("Structure/2 - Renewables/Economy/LCREJobs.png"), file) 
-    }
-    )
+    output$LowCarbonEconomyTurnoverSubtitle <- renderText({
+      
+      ChartColours <- c("#39ab2c", "#FF8500")
+      
+      LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      
+      LCRE <- LCRE[which(LCRE$Estimate > 0),]
+      
+      LCRE <- LCRE[which(LCRE$Country == "Scotland"),]
+      
+      LCRE<- LCRE[which(LCRE$Category == "Turnover"),]
+      
+      LCRE<- LCRE[which(LCRE$Sector == input$MeasureSelect1),]
+      
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
+      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+      
+      
+      
+      LCRE$unit <- "\u00A3" 
+      
+      paste("Scotland,",min(LCRE$Year), "-", max(LCRE$Year))
+      
+    })
+    
+    output$LowCarbonEconomyTurnoverPlot <- renderPlotly  ({
+      
+      ChartColours <- c("#39ab2c", "#FF8500")
+      
+      LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      
+      LCRE <- LCRE[which(LCRE$Estimate > 0),]
+      
+      LCRE <- LCRE[which(LCRE$Country == "Scotland"),]
+      
+      LCRE<- LCRE[which(LCRE$Category == "Turnover"),]
+      
+      LCRE<- LCRE[which(LCRE$Sector == input$MeasureSelect1),]
+      
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
+      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+      
+       
+
+        LCRE$unit <- "\u00A3"
+      
+      
+      LCRE$HoverText <- paste0("<b>", "Turnover", ": ", LCRE$unit, format(round(LCRE$Estimate, 0), big.mark = ","), "</b>\nYear: ", LCRE$Year,"\nSector: ", input$MeasureSelect1,  "\n<i>Upper CI: ", LCRE$unit, format(round(LCRE$`Upper CI`, 0), big.mark = ","), "\nLower CI: ", LCRE$unit, format(round(LCRE$`Lower CI`, 0), big.mark = ","), "</i>")
+      
+      
+      
+      p <- plot_ly(LCRE,
+                   x = ~Year,
+                   y = ~Estimate, 
+                   type = 'scatter', 
+                   mode = 'lines',
+                   text = LCRE$HoverText,
+                   hoverinfo = 'text',
+                   legendgroup = "1",
+                   name = "Turnover",
+                   error_y =  ~list(
+                     array = c((`Upper CI` - Estimate)),
+                     arrayminus = c(`Estimate` - `Lower CI`),
+                     color = '#000000',
+                     symmetric = FALSE
+                   ),
+                   line = list(width = 6, color = ChartColours[1], dash = "none")) %>% 
+        add_trace(
+          data = tail(LCRE, 1),
+          x = ~Year,
+          y = ~Estimate, 
+          legendgroup = "1",
+          showlegend = FALSE ,
+          type = "scatter",
+          mode = 'markers',
+          hoverinfo = 'text',
+          text = tail(LCRE, 1)$HoverText,
+          marker = list(size = 18, 
+                        color = ChartColours[1])
+        )  %>% 
+        layout(
+          barmode = 'stack',
+          bargap = 0.66,
+          legend = list(font = list(color = "#39ab2c"),
+                        orientation = 'h'),
+          hoverlabel = list(font = list(color = "white"),
+                            hovername = 'text'),
+          hovername = 'text',
+          xaxis = list(title = "",
+                       showgrid = FALSE),
+          yaxis = list(
+            title = "",
+            tickformat = "",
+            showgrid = TRUE,
+            zeroline = TRUE,
+            zerolinecolor = ChartColours[1],
+            zerolinewidth = 2,
+            rangemode = "tozero"
+          )
+        ) %>% 
+        config(displayModeBar = F)
+      p
+    })
+    
     
     output$LowCarbonEconomyTurnover.png <- downloadHandler(
     filename = "LowCarbonEconomyTurnover.png",
-    content = function(file) {
-      writePNG(readPNG("Structure/2 - Renewables/Economy/LCRETurnover.png"), file) 
+    content = function(file) {ChartColours <- c("#39ab2c", "#FF8500")
+    
+    LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+    
+    LCRE$Estimate <- as.numeric(LCRE$Estimate)
+    
+    LCRE <- LCRE[which(LCRE$Estimate > 0),]
+    
+    LCRE <- LCRE[which(LCRE$Country == "Scotland"),]
+    
+    LCRE<- LCRE[which(LCRE$Category == "Turnover"),]
+    
+    LCRE <- LCRE[which(LCRE$Sector == input$MeasureSelect1),]
+    
+    LCRE$Estimate <- as.numeric(LCRE$Estimate)
+    LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
+    LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+    
+     
+    
+    sourcecaption <- "BEIS"
+
+      LCRE$unit <- "\u00A3"
+      plottitle <- str_wrap(paste("Exports directly supported by the LCRE sector - ", input$MeasureSelect1), 40) 
+
+    length <- max(LCRE$Year) - min(LCRE$Year)
+    
+    LCREChart <-
+      LCRE %>%  ggplot(aes(x = Year), family = "Century Gothic") +
+      
+      ### Line of Values
+      geom_line(
+        aes(y = Estimate,
+            colour = ChartColours[1],
+            label = Estimate),
+        size = 1.5,
+        family = "Century Gothic"
+      ) + geom_errorbar(
+        aes(
+          y = Estimate,
+          ymin = `Lower CI`,
+          ymax = `Upper CI`
+        ),
+        width = .1
+      )+
+      geom_text(
+        aes(
+          x = Year-.1,
+          y = Estimate,
+          label = ifelse(Year == min(Year), paste0(LCRE$unit, format(round(LCRE$Estimate,1), big.mark = ",")), ""),
+          hjust = 1,
+          colour = ChartColours[1],
+          fontface = 2
+        ),
+        family = "Century Gothic"
+      ) +
+      geom_text(
+        aes(
+          x = Year+.1,
+          y = Estimate,
+          label = ifelse(Year == max(Year), paste0(LCRE$unit, format(round(LCRE$Estimate,1), big.mark = ",")), ""),
+          hjust = 0,
+          colour = ChartColours[1],
+          fontface = 2
+        ),
+        family = "Century Gothic"
+      ) +
+      geom_point(
+        data = tail(LCRE, 1),
+        aes(
+          x = Year,
+          y = Estimate,
+          colour = ChartColours[1],
+          label = Estimate,
+          show_guide = FALSE
+        ),
+        size = 4,
+        family = "Century Gothic"
+      ) +
+      geom_text(
+        aes(
+          x = Year,
+          y = 0,
+          label = ifelse(Year == max(Year) |
+                           Year == min(Year), Year, ""),
+          hjust = 0.5,
+          vjust = 1.5,
+          colour = ChartColours[1],
+          fontface = 2
+        ),
+        family = "Century Gothic"
+      )
+    
+    
+    LCREChart <-
+      LinePercentChart(LCREChart,
+                       LCRE,
+                       plottitle,
+                       sourcecaption,
+                       ChartColours)
+    
+    
+    LCREChart
+    
+    LCREChart <- LCREChart +
+      ylim(-.5, max(LCRE$`Upper CI`)*1.05)+
+      xlim(min(LCRE$Year)-(length*0.2), max(LCRE$Year)+(length*0.2))
+    
+    ggsave(
+      file,
+      plot = LCREChart,
+      width = 15,
+      height = 15,
+      units = "cm",
+      dpi = 300
+    )
     }
     )
+    
+    
+    output$LowCarbonEconomyBusinessesSubtitle <- renderText({
+      
+      LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      
+      paste("Scotland,",min(LCRE$Year), "-", max(LCRE$Year))
+      
+    })
+    
+    output$LowCarbonEconomyBusinessesPlot <- renderPlotly  ({
+      
+      ChartColours <- c("#39ab2c", "#FF8500")
+      
+      LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      
+      LCRE <- LCRE[which(LCRE$Estimate > 0),]
+      
+      LCRE <- LCRE[which(LCRE$Country == "Scotland"),]
+      
+      LCRE<- LCRE[which(LCRE$Category == "Number of businesses"),]
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
+      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+      
+       
+      
+      LCRE<- LCRE[which(LCRE$Sector == input$MeasureSelect2),]
+      
+
+      LCRE$unit <- ""
+
+      
+      p <- plot_ly(LCRE,
+                   x = ~Year,
+                   y = ~Estimate, 
+                   type = 'scatter', 
+                   mode = 'lines',
+                   text = LCRE$HoverText,
+                   hoverinfo = 'text',
+                   legendgroup = "1",
+                   name = "Number of businesses",
+                   error_y =  ~list(
+                     array = c((`Upper CI` - Estimate)),
+                     arrayminus = c(`Estimate` - `Lower CI`),
+                     color = '#000000',
+                     symmetric = FALSE
+                   ),
+                   line = list(width = 6, color = ChartColours[1], dash = "none")) %>% 
+        add_trace(
+          data = tail(LCRE, 1),
+          x = ~Year,
+          y = ~Estimate, 
+          legendgroup = "1",
+          showlegend = FALSE ,
+          type = "scatter",
+          mode = 'markers',
+          hoverinfo = 'text',
+          text = tail(LCRE, 1)$HoverText,
+          marker = list(size = 18, 
+                        color = ChartColours[1])
+        )  %>% 
+        layout(
+          barmode = 'stack',
+          bargap = 0.66,
+          legend = list(font = list(color = "#39ab2c"),
+                        orientation = 'h'),
+          hoverlabel = list(font = list(color = "white"),
+                            hovername = 'text'),
+          hovername = 'text',
+          xaxis = list(title = "",
+                       showgrid = FALSE),
+          yaxis = list(
+            title = "",
+            tickformat = "",
+            showgrid = TRUE,
+            zeroline = TRUE,
+            zerolinecolor = ChartColours[1],
+            zerolinewidth = 2,
+            rangemode = "tozero"
+          )
+        ) %>% 
+        config(displayModeBar = F)
+      p
+    })
+    
+    
+    output$LowCarbonEconomyBusinesses.png <- downloadHandler(
+      filename = "LowCarbonEconomyBusinesses.png",
+      content = function(file) {ChartColours <- c("#39ab2c", "#FF8500")
+      
+      LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      
+      LCRE <- LCRE[which(LCRE$Estimate > 0),]
+      
+      LCRE <- LCRE[which(LCRE$Country == "Scotland"),]
+      
+      LCRE<- LCRE[which(LCRE$Category == "Number of businesses"),]
+      
+      LCRE <- LCRE[which(LCRE$Sector == input$MeasureSelect2),]
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
+      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+      
+       
+      
+      sourcecaption <- "BEIS"
+
+      LCRE$unit <- ""
+      
+      plottitle <- str_wrap(paste("Exports directly supported by the LCRE sector - ", input$MeasureSelect2), 40) 
+     
+      
+        
+      length <- max(LCRE$Year) - min(LCRE$Year)
+      
+      LCREChart <-
+        LCRE %>%  ggplot(aes(x = Year), family = "Century Gothic") +
+        
+        ### Line of Values
+        geom_line(
+          aes(y = Estimate,
+              colour = ChartColours[1],
+              label = Estimate),
+          size = 1.5,
+          family = "Century Gothic"
+        ) + geom_errorbar(
+          aes(
+            y = Estimate,
+            ymin = `Lower CI`,
+            ymax = `Upper CI`
+          ),
+          width = .1
+        )+
+        geom_text(
+          aes(
+            x = Year-.1,
+            y = Estimate,
+            label = ifelse(Year == min(Year), paste0(LCRE$unit, format(round(LCRE$Estimate,1), big.mark = ",")), ""),
+            hjust = 1,
+            colour = ChartColours[1],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year+.1,
+            y = Estimate,
+            label = ifelse(Year == max(Year), paste0(LCRE$unit, format(round(LCRE$Estimate,1), big.mark = ",")), ""),
+            hjust = 0,
+            colour = ChartColours[1],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(LCRE, 1),
+          aes(
+            x = Year,
+            y = Estimate,
+            colour = ChartColours[1],
+            label = Estimate,
+            show_guide = FALSE
+          ),
+          size = 4,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = 0,
+            label = ifelse(Year == max(Year) |
+                             Year == min(Year), Year, ""),
+            hjust = 0.5,
+            vjust = 1.5,
+            colour = ChartColours[1],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        )
+      
+      
+      LCREChart <-
+        LinePercentChart(LCREChart,
+                         LCRE,
+                         plottitle,
+                         sourcecaption,
+                         ChartColours)
+      
+      
+      LCREChart
+      
+      LCREChart <- LCREChart +
+        ylim(-.5, max(LCRE$`Upper CI`)*1.05)+
+        xlim(min(LCRE$Year)-(length*0.2), max(LCRE$Year)+(length*0.2))
+      
+      ggsave(
+        file,
+        plot = LCREChart,
+        width = 15,
+        height = 15,
+        units = "cm",
+        dpi = 300
+      )
+      }
+    )
+    
+    
+    
+    output$LowCarbonEconomyEmploymentSubtitle <- renderText({
+      
+      LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      
+      paste("Scotland,",min(LCRE$Year), "-", max(LCRE$Year))
+      
+    })
+    
+    output$LowCarbonEconomyEmploymentPlot <- renderPlotly  ({
+      
+      ChartColours <- c("#39ab2c", "#FF8500")
+      
+      LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      
+      LCRE <- LCRE[which(LCRE$Estimate > 0),]
+      
+      LCRE <- LCRE[which(LCRE$Country == "Scotland"),]
+      
+      LCRE<- LCRE[which(LCRE$Category == "Employment (full time equivalent)"),]
+      
+      LCRE<- LCRE[which(LCRE$Sector == input$MeasureSelect3),]
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
+      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+      
+       
+      
+
+        LCRE$unit <- ""
+     
+      
+        LCRE$HoverText <- paste0("<b>", "Turnover", ": ", LCRE$unit, format(round(LCRE$Estimate, 0), big.mark = ","), "</b>\nYear: ", LCRE$Year,"\nSector: ", input$MeasureSelect3,  "\n<i>Upper CI: ", LCRE$unit, format(round(LCRE$`Upper CI`, 0), big.mark = ","), "\nLower CI: ", LCRE$unit, format(round(LCRE$`Lower CI`, 0), big.mark = ","), "</i>")
+      
+      
+      
+      p <- plot_ly(LCRE,
+                   x = ~Year,
+                   y = ~Estimate, 
+                   type = 'scatter', 
+                   mode = 'lines',
+                   text = LCRE$HoverText,
+                   hoverinfo = 'text',
+                   legendgroup = "1",
+                   name = "Employment (full time equivalent)",
+                   error_y =  ~list(
+                     array = c((`Upper CI` - Estimate)),
+                     arrayminus = c(`Estimate` - `Lower CI`),
+                     color = '#000000',
+                     symmetric = FALSE
+                   ),
+                   line = list(width = 6, color = ChartColours[1], dash = "none")) %>% 
+        add_trace(
+          data = tail(LCRE, 1),
+          x = ~Year,
+          y = ~Estimate, 
+          legendgroup = "1",
+          showlegend = FALSE ,
+          type = "scatter",
+          mode = 'markers',
+          hoverinfo = 'text',
+          text = tail(LCRE, 1)$HoverText,
+          marker = list(size = 18, 
+                        color = ChartColours[1])
+        )  %>% 
+        layout(
+          barmode = 'stack',
+          bargap = 0.66,
+          legend = list(font = list(color = "#39ab2c"),
+                        orientation = 'h'),
+          hoverlabel = list(font = list(color = "white"),
+                            hovername = 'text'),
+          hovername = 'text',
+          xaxis = list(title = "",
+                       showgrid = FALSE),
+          yaxis = list(
+            title = "",
+            tickformat = "",
+            showgrid = TRUE,
+            zeroline = TRUE,
+            zerolinecolor = ChartColours[1],
+            zerolinewidth = 2,
+            rangemode = "tozero"
+          )
+        ) %>% 
+        config(displayModeBar = F)
+      p
+    })
+    
+    
+    output$LowCarbonEconomyEmployment.png <- downloadHandler(
+      filename = "LowCarbonEconomyEmployment.png",
+      content = function(file) {ChartColours <- c("#39ab2c", "#FF8500")
+      
+      LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      
+      LCRE <- LCRE[which(LCRE$Estimate > 0),]
+      
+      LCRE <- LCRE[which(LCRE$Country == "Scotland"),]
+      
+      LCRE<- LCRE[which(LCRE$Category == "Employment (full time equivalent)"),]
+      
+      LCRE <- LCRE[which(LCRE$Sector == input$MeasureSelect3),]
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
+      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+      
+       
+      
+      sourcecaption <- "BEIS"
+      
+
+        LCRE$unit <- ""
+        plottitle <- str_wrap(paste("Exports directly supported by the LCRE sector - ", input$MeasureSelect3), 40)  
+
+      
+        
+      length <- max(LCRE$Year) - min(LCRE$Year)
+      
+      LCREChart <-
+        LCRE %>%  ggplot(aes(x = Year), family = "Century Gothic") +
+        
+        ### Line of Values
+        geom_line(
+          aes(y = Estimate,
+              colour = ChartColours[1],
+              label = Estimate),
+          size = 1.5,
+          family = "Century Gothic"
+        ) + geom_errorbar(
+          aes(
+            y = Estimate,
+            ymin = `Lower CI`,
+            ymax = `Upper CI`
+          ),
+          width = .1
+        )+
+        geom_text(
+          aes(
+            x = Year-.1,
+            y = Estimate,
+            label = ifelse(Year == min(Year), paste0(LCRE$unit, format(round(LCRE$Estimate,1), big.mark = ",")), ""),
+            hjust = 1,
+            colour = ChartColours[1],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year+.1,
+            y = Estimate,
+            label = ifelse(Year == max(Year), paste0(LCRE$unit, format(round(LCRE$Estimate,1), big.mark = ",")), ""),
+            hjust = 0,
+            colour = ChartColours[1],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(LCRE, 1),
+          aes(
+            x = Year,
+            y = Estimate,
+            colour = ChartColours[1],
+            label = Estimate,
+            show_guide = FALSE
+          ),
+          size = 4,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = 0,
+            label = ifelse(Year == max(Year) |
+                             Year == min(Year), Year, ""),
+            hjust = 0.5,
+            vjust = 1.5,
+            colour = ChartColours[1],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        )
+      
+      
+      LCREChart <-
+        LinePercentChart(LCREChart,
+                         LCRE,
+                         plottitle,
+                         sourcecaption,
+                         ChartColours)
+      
+      
+      LCREChart
+      
+      LCREChart <- LCREChart +
+        ylim(-.5, max(LCRE$`Upper CI`)*1.05)+
+        xlim(min(LCRE$Year)-(length*0.2), max(LCRE$Year)+(length*0.2))
+      
+      ggsave(
+        file,
+        plot = LCREChart,
+        width = 15,
+        height = 15,
+        units = "cm",
+        dpi = 300
+      )
+      }
+    )
+    
+    
+    
+    output$LowCarbonEconomyExportsSubtitle <- renderText({
+      
+      LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      
+      paste("Scotland,",min(LCRE$Year), "-", max(LCRE$Year))
+      
+    })
+    
+    output$LowCarbonEconomyExportsPlot <- renderPlotly  ({
+      
+      ChartColours <- c("#39ab2c", "#FF8500")
+      
+      LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      
+      
+      
+      LCRE <- LCRE[which(LCRE$Estimate > 0),]
+      
+      LCRE <- LCRE[which(LCRE$Country == "Scotland"),]
+      
+      LCRE <- LCRE[which(LCRE$Category == "Exports"),]
+      
+      LCRE <- LCRE[which(LCRE$Sector == input$MeasureSelect4),]
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
+      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+      
+       
+      
+      
+
+        LCRE$unit <- "\u00A3"
+
+      
+        LCRE$HoverText <- paste0("<b>", "Turnover", ": ", LCRE$unit, format(round(LCRE$Estimate, 0), big.mark = ","), "</b>\nYear: ", LCRE$Year,"\nSector: ", input$MeasureSelect4,  "\n<i>Upper CI: ", LCRE$unit, format(round(LCRE$`Upper CI`, 0), big.mark = ","), "\nLower CI: ", LCRE$unit, format(round(LCRE$`Lower CI`, 0), big.mark = ","), "</i>")
+      
+      
+      
+      p <- plot_ly(LCRE,
+                   x = ~Year,
+                   y = ~Estimate, 
+                   type = 'scatter', 
+                   mode = 'lines',
+                   text = LCRE$HoverText,
+                   hoverinfo = 'text',
+                   legendgroup = "1",
+                   name = "Exports",
+                   error_y =  ~list(
+                     array = c((`Upper CI` - Estimate)),
+                     arrayminus = c(`Estimate` - `Lower CI`),
+                     color = '#000000',
+                     symmetric = FALSE
+                   ),
+                   line = list(width = 6, color = ChartColours[1], dash = "none")) %>% 
+        add_trace(
+          data = tail(LCRE, 1),
+          x = ~Year,
+          y = ~Estimate, 
+          legendgroup = "1",
+          showlegend = FALSE ,
+          type = "scatter",
+          mode = 'markers',
+          hoverinfo = 'text',
+          text = tail(LCRE, 1)$HoverText,
+          marker = list(size = 18, 
+                        color = ChartColours[1])
+        )  %>% 
+        layout(
+          barmode = 'stack',
+          bargap = 0.66,
+          legend = list(font = list(color = "#39ab2c"),
+                        orientation = 'h'),
+          hoverlabel = list(font = list(color = "white"),
+                            hovername = 'text'),
+          hovername = 'text',
+          xaxis = list(title = "",
+                       showgrid = FALSE),
+          yaxis = list(
+            title = "",
+            tickformat = "",
+            showgrid = TRUE,
+            zeroline = TRUE,
+            zerolinecolor = ChartColours[1],
+            zerolinewidth = 2,
+            rangemode = "tozero"
+          )
+        ) %>% 
+        config(displayModeBar = F)
+      p
+    })
+    
+    
+    output$LowCarbonEconomyExports.png <- downloadHandler(
+      filename = "LowCarbonEconomyExports.png",
+      content = function(file) {ChartColours <- c("#39ab2c", "#FF8500")
+      
+      LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      
+      LCRE <- LCRE[which(LCRE$Estimate > 0),]
+      
+      LCRE <- LCRE[which(LCRE$Country == "Scotland"),]
+      
+      LCRE <- LCRE[which(LCRE$Category == "Exports"),]
+      
+      LCRE <- LCRE[which(LCRE$Sector == input$MeasureSelect4),]
+      
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
+      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+      
+       
+      
+      sourcecaption <- "BEIS"
+      
+
+        LCRE$unit <- "\u00A3"
+        plottitle <- str_wrap(paste("Exports directly supported by the LCRE sector - ", input$MeasureSelect4), 40) 
+       
+      
+        
+        
+      length <- max(LCRE$Year) - min(LCRE$Year)
+      
+      LCREChart <-
+        LCRE %>%  ggplot(aes(x = Year), family = "Century Gothic") +
+        
+        ### Line of Values
+        geom_line(
+          aes(y = Estimate,
+              colour = ChartColours[1],
+              label = Estimate),
+          size = 1.5,
+          family = "Century Gothic"
+        ) + geom_errorbar(
+          aes(
+            y = Estimate,
+            ymin = `Lower CI`,
+            ymax = `Upper CI`
+          ),
+          width = .1
+        )+
+        geom_text(
+          aes(
+            x = Year-.1,
+            y = Estimate,
+            label = ifelse(Year == min(Year), paste0(LCRE$unit, format(round(LCRE$Estimate,1), big.mark = ",")), ""),
+            hjust = 1,
+            colour = ChartColours[1],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year+.1,
+            y = Estimate,
+            label = ifelse(Year == max(Year), paste0(LCRE$unit, format(round(LCRE$Estimate,1), big.mark = ",")), ""),
+            hjust = 0,
+            colour = ChartColours[1],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        ) +
+        geom_point(
+          data = tail(LCRE, 1),
+          aes(
+            x = Year,
+            y = Estimate,
+            colour = ChartColours[1],
+            label = Estimate,
+            show_guide = FALSE
+          ),
+          size = 4,
+          family = "Century Gothic"
+        ) +
+        geom_text(
+          aes(
+            x = Year,
+            y = 0,
+            label = ifelse(Year == max(Year) |
+                             Year == min(Year), Year, ""),
+            hjust = 0.5,
+            vjust = 1.5,
+            colour = ChartColours[1],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        )
+      
+      
+      LCREChart <-
+        LinePercentChart(LCREChart,
+                         LCRE,
+                         plottitle,
+                         sourcecaption,
+                         ChartColours)
+      
+      
+      LCREChart
+      
+      LCREChart <- LCREChart +
+        ylim(-.5, max(LCRE$`Upper CI`)*1.05)+
+        xlim(min(LCRE$Year)-(length*0.2), max(LCRE$Year)+(length*0.2))
+      
+      ggsave(
+        file,
+        plot = LCREChart,
+        width = 15,
+        height = 15,
+        units = "cm",
+        dpi = 300
+      )
+      }
+    )
+    
+
 }
