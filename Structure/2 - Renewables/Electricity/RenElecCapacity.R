@@ -696,7 +696,7 @@ RenElecCapacity <- function(input, output, session) {
           tickformat = "%",
           showgrid = FALSE,
           showticklabels = FALSE,
-          range = c(0,9900),
+          range = c(0,13000),
           zeroline = FALSE,
           zerolinecolor = ChartColours[1],
           zerolinewidth = 2,
@@ -1546,7 +1546,7 @@ RenElecCapacity <- function(input, output, session) {
       RenElecCapFuelChart <-
         RenElecCapFuelChart +
         labs(subtitle = paste("Scotland,", min(RenElecCapFuel$Year), "-", max(RenElecCapFuel$Year))) +
-        ylim(-(max(RenElecCapFuel$top)*0.025), (max(RenElecCapFuel$top)*1.10)) +
+        ylim(-(max(RenElecCapFuel$top)*0.025), (max(RenElecCapFuel$top)*1.13)) +
         coord_cartesian(xlim = c(min(RenElecCapFuel$Year),max(RenElecCapFuel$Year+2)))
       
       RenElecCapFuelChart

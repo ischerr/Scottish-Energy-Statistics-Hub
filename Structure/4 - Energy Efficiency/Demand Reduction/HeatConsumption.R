@@ -141,6 +141,8 @@ HeatConsumption <- function(input, output, session) {
     
     Data[1:3] %<>% lapply(function(x) as.numeric(as.character(x)))
     
+    Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
+    
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
@@ -159,6 +161,8 @@ HeatConsumption <- function(input, output, session) {
     names(Data) <- unlist(Data[1,])
     
     names(Data)[1] <- "Year"
+    
+    Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
     
     Data[1:5] %<>% lapply(function(x) as.numeric(as.character(x)))
     
@@ -336,6 +340,8 @@ HeatConsumption <- function(input, output, session) {
     
     names(Data)[1] <- "Year"
     
+    Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
+    
     Data[1:4] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     Data$Year <- as.character(Data$Year)
@@ -421,6 +427,8 @@ HeatConsumption <- function(input, output, session) {
       Data <- head(Data, 5)
       
       Data <- as_tibble(t(Data))
+      
+      Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
       
       Data <- Data[complete.cases(Data),]
       
@@ -667,14 +675,23 @@ HeatConsumption <- function(input, output, session) {
   
   HeatConsumptionFuel <- HeatConsumptionFuel[which(HeatConsumptionFuel$`LA Code` == "S92000003"),]
   
-  HeatConsumptionFuel$Coal <- HeatConsumptionFuel$`Coal - Industrial`+  HeatConsumptionFuel$`Coal - Commercial` + HeatConsumptionFuel$`Coal - Domestic`
+  HeatConsumptionFuel$Coal <- HeatConsumptionFuel$`Coal - Industrial`+  HeatConsumptionFuel$`Coal - Commercial` + HeatConsumptionFuel$`Coal - Domestic` + HeatConsumptionFuel$`Coal - Public Sector`
   
   HeatConsumptionFuel$`Manufactured fuels` <- HeatConsumptionFuel$`Manufactured fuels - Industrial` + HeatConsumptionFuel$`Manufactured fuels - Domestic`
   
   HeatConsumptionFuel$`Petroleum products` <- HeatConsumptionFuel$`Petroleum products - Industrial`+ HeatConsumptionFuel$`Petroleum products - Commercial` + HeatConsumptionFuel$`Petroleum products - Domestic` + HeatConsumptionFuel$`Petroleum products - Public Sector` + HeatConsumptionFuel$`Petroleum products - Agriculture`
   
+  #### Temp Gas Replacement Code ###
+  
+  #GasExtra <- read_excel("Structure/4 - Energy Efficiency/Demand Reduction/GasExtra.xlsx")
+  
+  #HeatConsumptionFuel$Gas <- GasExtra$Gas
+  
+  
   HeatConsumptionFuel$Gas <- HeatConsumptionFuel$`Gas - Industrial` + HeatConsumptionFuel$`Gas - Commercial` + HeatConsumptionFuel$`Gas - Domestic`
   
+  
+  ######
   HeatConsumptionFuel$`Bioenergy & wastes` <- HeatConsumptionFuel$`Bioenergy & Wastes - Industrial` + HeatConsumptionFuel$`Bioenergy & Wastes - Commercial` + HeatConsumptionFuel$`Bioenergy & wastes - Domestic` 
   
   HeatConsumptionFuel <- HeatConsumptionFuel[c(2, 22:26, 21)]
@@ -694,6 +711,13 @@ HeatConsumption <- function(input, output, session) {
   names(HeatConsumptionFuelBaseline) <- names(HeatConsumptionFuel)
   
   HeatConsumptionFuel <- rbind(HeatConsumptionFuel, HeatConsumptionFuelBaseline)
+  
+  
+  
+  
+  
+  
+  
   
   output$HeatConsumptionFuelTable = renderDataTable({
     
@@ -963,7 +987,7 @@ HeatConsumption <- function(input, output, session) {
       
       HeatConsumptionFuel$variable <-
         factor(HeatConsumptionFuel$variable,
-               levels = unique(HeatConsumptionFuel$variable))
+               levels = c("Total","Manufactured fuels","Coal","Bioenergy & wastes","Gas","Petroleum products"))
       
       HeatConsumptionFuel <- HeatConsumptionFuel %>%
         group_by(Year) %>%

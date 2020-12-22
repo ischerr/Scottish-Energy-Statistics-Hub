@@ -86,7 +86,7 @@ ScotGenSupply <- function(input, output, session) {
   
   output$ScotGenSupplySubtitle <- renderText({
     
-    paste("Scotland, 2018")
+    paste("Scotland, 2019")
   })
   
   GenSupplyReadable <- read_delim("Processed Data/Output/Renewable Generation/GenSupplyReadable.txt", 
