@@ -55,6 +55,20 @@ ElecGenOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
                #dygraphOutput(ns("ElecGenLCFFPlot")),
                plotlyOutput(ns("ElecGenRNPlot"))%>% withSpinner(color="#39ab2c"),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+      tabPanel("Biofuels and Waste Breakdown",
+               fluidRow(column(8,
+                               h3("Biofuels and Waste breakdown", style = "color: #39ab2c;  font-weight:bold"),
+                               h4(textOutput(ns('BiofuelsSubtitle')), style = "color: #39ab2c;")
+               ),
+               column(
+                 4, style = 'padding:15px;',
+                 downloadButton(ns('Biofuels.png'), 'Download Graph', style="float:right")
+               )),
+               
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+               #dygraphOutput(ns("ElecGenLCFFPlot")),
+               plotlyOutput(ns("BiofuelsPlot"), height = "675px")%>% withSpinner(color="#39ab2c"),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
     ),
     fluidRow(
@@ -98,6 +112,14 @@ ElecGenOutput <- function(id) {
                  column(12, HTML("<blockquote>
                           <p>* Renewables figures by type are taken from Energy Trends 6.1,whereas the total is taken from Electricity generation and supply figures. These totals may not match exactly in some years.  Coal includes a small quantity of non-renewable wastes and other thermal.</p>
                           </blockquote>"))),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+      tabPanel("Bioenergy and Waste Breakdown",
+               fluidRow(
+                 column(10, h3("Data - Bioenergy and Waste Breakdown (GWh)", style = "color: #39ab2c;  font-weight:bold")),
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
+               ),
+               fluidRow(
+                 column(12, DT::dataTableOutput(ns("BioenergyTable"))%>% withSpinner(color="#39ab2c"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
       column(2, p("Update expected:")),
@@ -597,6 +619,10 @@ ElecGen <- function(input, output, session) {
   
   observeEvent(input$ToggleTable3, {
     toggle("ElecGenFuelEWTable")
+  })
+  
+  observeEvent(input$ToggleTable5, {
+    toggle("BioenergyTable")
   })
   
   observeEvent(input$ToggleText, {
@@ -2943,5 +2969,296 @@ ElecGen <- function(input, output, session) {
     list(src = outfile,
          alt = "This is alternate text")
   }, deleteFile = TRUE)
+  
+  
+  output$BioenergyTable = renderDataTable({
+    
+    DataScot <-
+      read_excel(
+        "Structure/CurrentWorking.xlsx",
+        sheet = "Elec gen by fuel",
+        col_names = FALSE,
+        skip = 15,
+        n_max = 16
+      )
+    
+    DataScot <- as.data.frame(t(DataScot))
+    
+    DataScot <- setDT(DataScot, keep.rownames = FALSE)
+    
+    names(DataScot) <- as.character(unlist(DataScot[1, ]))
+    
+    DataScot <- tail(DataScot,-1)
+    
+    DataScot <- head(DataScot,-1)
+    
+    DataScot %<>% lapply(function(x)
+      as.numeric(as.character(x)))
+    
+    names(DataScot)[1] <- "Year"
+    
+    DataScot <- as_tibble(DataScot)
+    
+    YearList <- as.list(DataScot$Year[which(DataScot$Year >= 2009)])
+    
+    DataScot$`Low Carbon` <- DataScot$Renewables + DataScot$Nuclear
+    
+    DataScot[which(DataScot$Year >= 2017),]$`Low Carbon` <- DataScot[which(DataScot$Year >= 2017),]$`Low Carbon` + DataScot[which(DataScot$Year >= 2017),]$`Pumped hydro`
+    
+    DataScot$`Fossil Fuels` <- DataScot$Gas + DataScot$Coal + DataScot$Oil
+    
+    DataScot$`Bioenergy and Waste` <- DataScot$`Landfill Gas` + DataScot$`Sewage Gas` + DataScot$`Other biofuels and co-firing`
+    
+    DataScot <- DataScot[c(1,5,6,8,19)]
+    
+    datatable(
+      DataScot,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        scrollX = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        order = list(list(0 , 'desc')),
+        title = "Bioenergy and Waste breakdown - Scotland (GWh)",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Bioenergy and Waste breakdown - Scotland (GWh)',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Bioenergy and Waste breakdown - Scotland (GWh)')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(2:ncol(DataScot), 0) %>% 
+      formatStyle(5, fontWeight = "bold")
+  })
+  
+  
+  output$BiofuelsPlot <- renderPlotly  ({
+    
+    DataScot <-
+      read_excel(
+        "Structure/CurrentWorking.xlsx",
+        sheet = "Elec gen by fuel",
+        col_names = FALSE,
+        skip = 15,
+        n_max = 16
+      )
+    
+    DataScot <- as.data.frame(t(DataScot))
+    
+    DataScot <- setDT(DataScot, keep.rownames = FALSE)
+    
+    names(DataScot) <- as.character(unlist(DataScot[1,]))
+    
+    DataScot <- tail(DataScot, -1)
+    
+    DataScot <- head(DataScot, -1)
+    
+    DataScot %<>% lapply(function(x)
+      as.numeric(as.character(x)))
+    
+    DataScot <- as_tibble(DataScot)
+    
+    DataScot$Renewables <- NULL
+    
+    DataScot$Total <- NULL
+    
+    DataScot$`Other Renewables` <-
+      (
+        DataScot$`Wave / tidal`
+      )
+    
+    DataScot$`Bioenergy and Waste` <-  DataScot$`Landfill Gas` + DataScot$`Sewage Gas` + DataScot$`Other biofuels and co-firing`
+    
+    DataScot$`Wave / tidal` <- NULL
+    
+    DataScot$`Landfill Gas` <- NULL
+    
+    DataScot$`Sewage Gas` <- NULL
+    
+    DataScot$`Other biofuels and co-firing` <- NULL
+    
+    DataScot$`Fossil Fuels` <- DataScot$Coal + DataScot$Oil + DataScot$Gas
+    
+    DataScot$Coal <- NULL
+    
+    DataScot$Oil <- NULL
+    
+    DataScot$Gas <- NULL
+    
+    DataScot$`Other Renewables` <- DataScot$`Other Renewables` + DataScot$`Solar PV`
+    
+    DataScot$`Solar PV` <- NULL
+    
+    DataScot$Other <- DataScot$Other + DataScot$`Pumped hydro`
+    
+    DataScot$`Pumped hydro` <- NULL
+    
+    names(DataScot)[1] <- "Year"
+    
+    DataScot$Sector <- "Scotland"
+    
+    DataScot <- as_tibble(DataScot)
+    
+    DataScot <- DataScot[which(DataScot$Year == max(DataScot$Year)),][2:8]
+    
+    DataScot <- melt(DataScot)
+    
+    DataScot$variable <- factor(DataScot$variable, levels = c(
+      "Wind", 
+      "Hydro",
+      "Bioenergy and Waste",
+      "Other Renewables",
+      "Nuclear",
+      "Other",
+      "Fossil Fuels"
+    ))
+    
+    DataScot <- DataScot[order(DataScot$variable),]
+    
+    Bioenergy <-
+      read_excel(
+        "Structure/CurrentWorking.xlsx",
+        sheet = "Elec gen by fuel",
+        col_names = FALSE,
+        skip = 15,
+        n_max = 16
+      )
+    
+    Bioenergy <- as.data.frame(t(Bioenergy))
+    
+    Bioenergy <- setDT(Bioenergy, keep.rownames = FALSE)
+    
+    names(Bioenergy) <- as.character(unlist(Bioenergy[1, ]))
+    
+    Bioenergy <- tail(Bioenergy,-1)
+    
+    Bioenergy <- head(Bioenergy,-1)
+    
+    Bioenergy %<>% lapply(function(x)
+      as.numeric(as.character(x)))
+    
+    names(Bioenergy)[1] <- "Year"
+    
+    Bioenergy <- as_tibble(Bioenergy)
+    
+    YearList <- as.list(Bioenergy$Year[which(Bioenergy$Year >= 2009)])
+    
+    Bioenergy$`Low Carbon` <- Bioenergy$Renewables + Bioenergy$Nuclear
+    
+    Bioenergy[which(Bioenergy$Year >= 2017),]$`Low Carbon` <- Bioenergy[which(Bioenergy$Year >= 2017),]$`Low Carbon` + Bioenergy[which(Bioenergy$Year >= 2017),]$`Pumped hydro`
+    
+    Bioenergy$`Fossil Fuels` <- Bioenergy$Gas + Bioenergy$Coal + Bioenergy$Oil
+    
+    Bioenergy$`Bioenergy and Waste` <- Bioenergy$`Landfill Gas` + Bioenergy$`Sewage Gas` + Bioenergy$`Other biofuels and co-firing`
+    
+    Bioenergy <- Bioenergy[c(1,5,6,8)]
+    
+    Bioenergy <- Bioenergy[which(Bioenergy$Year == max(Bioenergy$Year)),][2:4]
+    
+    Bioenergy <- melt(Bioenergy)
+    
+    Bioenergy <- Bioenergy[order(-Bioenergy$value),]
+    
+    ChartColours <- c(
+      "#005a32",
+      "#238b45",
+      "#41ab5d",
+      "#74c476",
+      "#6baed6",
+      "#969696",
+      "#d94801",
+      "#696969"
+    )
+    
+    Bioenergy$variable <- str_wrap(Bioenergy$variable, 16)
+    
+    ScaleFactor = 10
+    
+    p <- plot_ly() %>% 
+      add_pie(
+        data = DataScot,
+        labels = ~variable,
+        type = 'pie',
+        values = ~value,
+        text = paste0(
+          DataScot$variable,
+          ": ", format(round(DataScot$value, 0), big.mark = ","), " GWh" 
+        ),
+        textposition = 'outside',
+        textinfo = 'label+percent',
+        insidetextfont = list(color = '#FFFFFF'),
+        hoverinfo = 'text',
+        pull = c(0,0,0.2,0,0,0,0),
+        sort = FALSE,
+        scalegroup = 1,
+        direction = 'clockwise',
+        domain = list(row = 0, column = 0),
+        marker = list(colors = ChartColours,
+                      line = list(color = '#FFFFFF', width = 1))
+      )  %>% 
+      add_pie(
+        data = Bioenergy,
+        labels = ~variable,
+        type = 'pie',
+        values = ~value * ScaleFactor,
+        scalegroup = 1,
+        text = paste0(
+          Bioenergy$variable,
+          ": ", format(round(Bioenergy$value, 0), big.mark = ","), " GWh" 
+        ),
+        textposition = 'outside',
+        textinfo = 'label+percent',
+        insidetextfont = list(color = '#FFFFFF'),
+        hoverinfo = 'text',
+        domain = list(row = 0, column = 1),
+        marker = list(colors = ChartColours,
+                      line = list(color = '#FFFFFF', width = 1))
+      ) %>% 
+      layout(
+        barmode = 'stack',
+        grid=list(rows=1, columns=2),
+        showlegend =  FALSE,
+        legend = list(font = list(color = "#1A5D38"),
+                      orientation = 'h'),
+        hoverlabel = list(font = list(color = "white"),
+                          hovername = 'text'),
+        hovername = 'text',
+        yaxis = list(title = "",
+                     showgrid = FALSE),
+        xaxis = list(
+          title = "",
+          tickformat = "%",
+          showgrid = TRUE,
+          zeroline = TRUE,
+          zerolinecolor = ChartColours[1],
+          zerolinewidth = 2,
+          rangemode = "tozero"
+        )
+      ) %>% 
+      config(displayModeBar = F)
+    
+    p
+    
+    
+  })
+  
 }
 
