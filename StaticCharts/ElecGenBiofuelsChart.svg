@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="311.76321mm"
+   height="164.42996mm"
+   viewBox="0 0 311.76321 164.42996"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="ElecGenBiofuelsChart.svg"
+   inkscape:export-filename="C:\Users\ische\GitHub\Scottish-Energy-Statistics-Hub\Structure\6 - System Security\ScotGenSupply.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300">
+  <defs
+     id="defs2">
+    <marker
+       inkscape:stockid="TriangleInL"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleInL"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4769"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         style="fill:#e31a1c;fill-opacity:1;fill-rule:evenodd;stroke:#e31a1c;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="scale(-0.8)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5416"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#3283ba;fill-opacity:1;fill-rule:evenodd;stroke:#3283ba;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5414"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5340"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#3283ba;fill-opacity:1;fill-rule:evenodd;stroke:#3283ba;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5338"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5270"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#3283ba;fill-opacity:1;fill-rule:evenodd;stroke:#3283ba;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5268"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5206"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#ff7f00;fill-opacity:1;fill-rule:evenodd;stroke:#ff8104;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5204"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5148"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#ff7f00;fill-opacity:1;fill-rule:evenodd;stroke:#ff8104;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5146"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5096"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#ff7f00;fill-opacity:1;fill-rule:evenodd;stroke:#ff8104;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5094"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5050"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#ff7f00;fill-opacity:1;fill-rule:evenodd;stroke:#ff8104;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5048"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5010"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#33a02c;fill-opacity:1;fill-rule:evenodd;stroke:#33a02c;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5008"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker4976"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#33a02c;fill-opacity:1;fill-rule:evenodd;stroke:#33a02c;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path4974"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker4948"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8)"
+         style="fill:#3283ba;fill-opacity:1;fill-rule:evenodd;stroke:#3283ba;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path4946"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleOutL"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleOutL"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4778"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         style="fill:#e31a1c;fill-opacity:1;fill-rule:evenodd;stroke:#e31a1c;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="scale(0.8)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <clipPath
+       id="cpOC4yMnw2MTguMTR8MjQ1LjIyfDQ0Ljk3">
+      <rect
+         x="8.2200003"
+         y="44.970001"
+         width="609.91998"
+         height="200.25"
+         id="rect10"
+         style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
+    </clipPath>
+    <clipPath
+       id="cpOC4yMnw2MTguMTR8MjQ1LjIyfDQ0Ljk3-1">
+      <rect
+         x="8.2200003"
+         y="44.970001"
+         width="609.91998"
+         height="200.25"
+         id="rect10-9"
+         style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
+    </clipPath>
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1017" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1258" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1017-8" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1261" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1017-9" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1264" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1017-0" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1267" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1017-7" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1270" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1017-1" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1273" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1017-05" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1276" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1017-7-8" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1279" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1017-7-5" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1282" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1017-7-84" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1285" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1017-7-4" />
+    <rect
+       x="41.293533"
+       y="-41.293533"
+       width="259.70148"
+       height="90.547264"
+       id="rect1864" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="521.39312"
+     inkscape:cy="356.68359"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="4"
+     fit-margin-left="4"
+     fit-margin-right="4"
+     fit-margin-bottom="4"
+     inkscape:window-width="3840"
+     inkscape:window-height="2066"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:document-rotation="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-39.335375,-39.211614)">
+    <path
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#39ab2c;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       d="m 8.2207031,43.369141 v 3.201171 H 618.14062 v -3.201171 z"
+       clip-path="url(#cpOC4yMnw2MTguMTR8MjQ1LjIyfDQ0Ljk3)"
+       id="line53"
+       inkscape:connector-curvature="0"
+       transform="matrix(0.49803802,0,0,0.31726222,39.241152,41.889867)" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot901-8"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#39ab2c;fill-opacity:1;stroke:none;"
+       transform="matrix(0.31726222,0,0,0.31726222,113.3112,111.85032)"><flowRegion
+         id="flowRegion903-3"
+         style="fill:#39ab2c;fill-opacity:1;"><rect
+           id="rect905-1"
+           width="483.75308"
+           height="373.72443"
+           x="-219.31134"
+           y="-218.56583"
+           style="fill:#39ab2c;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" /></flowRegion><flowPara
+         id="flowPara907-9"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#39ab2c;fill-opacity:1;">Scotland, 2019</flowPara></flowRoot>
+    <g
+       id="g13551"
+       transform="matrix(1.1991013,0,0,1.1991013,-153.44844,122.96131)"
+       style="fill:#39ab2c;fill-opacity:1">
+      <flowRoot
+         transform="matrix(0.26458333,0,0,0.26458333,347.62173,112.06812)"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#39ab2c;fill-opacity:1;stroke:none"
+         id="flowRoot901-8-4"
+         xml:space="preserve"><flowRegion
+           style="fill:#39ab2c;fill-opacity:1"
+           id="flowRegion903-3-8"><rect
+             style="fill:#39ab2c;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+             y="-218.56583"
+             x="-219.31134"
+             height="373.72443"
+             width="483.75308"
+             id="rect905-1-6" /></flowRegion><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:end;text-anchor:end;fill:#39ab2c;fill-opacity:1"
+           id="flowPara907-9-7">Source: BEIS</flowPara></flowRoot>
+      <path
+         transform="matrix(0.41534273,0,0,0.26458333,160.69501,47.270735)"
+         inkscape:connector-curvature="0"
+         id="line53-3"
+         clip-path="url(#cpOC4yMnw2MTguMTR8MjQ1LjIyfDQ0Ljk3-1)"
+         d="m 8.2207031,43.369141 v 3.201171 H 618.14062 v -3.201171 z"
+         style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#39ab2c;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+    </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot1106"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,336.21159,-38.838347)"><flowRegion
+         id="flowRegion1108"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"><rect
+           id="rect1110"
+           width="313.6749"
+           height="382.30292"
+           x="-261.45792"
+           y="-66.533241"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+         id="flowPara1118"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;line-height:12.2079px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'" /></flowRoot>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4827"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,336.21159,-38.838347)"><flowRegion
+         id="flowRegion4829"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'"><rect
+           id="rect4831"
+           width="372.6055"
+           height="392.74634"
+           x="-309.9451"
+           y="-75.484726"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
+         id="flowPara4833" /></flowRoot>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4835-6"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.6667px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';letter-spacing:0px;word-spacing:0px;fill:#39ab2c;fill-opacity:1;stroke:none;"
+       transform="matrix(0.31726222,0,0,0.31726222,-513.13163,114.20408)"><flowRegion
+         id="flowRegion4837-4"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.6667px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#39ab2c;fill-opacity:1;"><rect
+           id="rect4839-1"
+           width="2922.1904"
+           height="2363.071"
+           x="1755.4242"
+           y="-226.71194"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#39ab2c;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;fill-opacity:1;" /></flowRegion><flowPara
+         id="flowPara4851-3">Electricity generation - Biofuels and Waste breakdown</flowPara></flowRoot>
+    <g
+       class="slice"
+       id="g37"
+       style="opacity:0.8"
+       transform="matrix(0.4121721,0,0,0.4121721,44.653845,17.196984)">
+      <path
+         class="surface"
+         d="M 209.21053,242.5 V 118.15789 a 124.34211,124.34211 0 0 1 40.79998,241.79985 z"
+         style="fill:#005a32;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-opacity:1"
+         id="path27" />
+    </g>
+    <g
+       class="slice"
+       id="g51"
+       style="opacity:0.8"
+       transform="matrix(0.4121721,0,0,0.4121721,44.653845,17.196984)">
+      <path
+         class="surface"
+         d="m 209.21053,242.5 40.79998,117.45774 a 124.34211,124.34211 0 0 1 -82.25729,-0.23039 z"
+         style="fill:#238b45;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-opacity:1"
+         id="path39" />
+    </g>
+    <g
+       class="slice"
+       id="g63"
+       style="stroke:#000000;stroke-width:0.999582;stroke-miterlimit:4;stroke-dasharray:2.99875, 2.99875;stroke-dashoffset:0;stroke-opacity:1"
+       transform="matrix(0.4121721,0,0,0.4121721,44.653845,17.196984)">
+      <path
+         class="surface"
+         d="M 197.3894,264.3792 155.9321,381.60655 A 124.34211,124.34211 0 0 1 122.06058,363.30608 Z"
+         style="fill:#41ab5d;fill-opacity:1;stroke:#000000;stroke-width:0.999582;stroke-miterlimit:4;stroke-dasharray:2.99875, 2.99875;stroke-dashoffset:0;stroke-opacity:1"
+         id="path53" />
+    </g>
+    <g
+       class="slice"
+       id="g77"
+       transform="matrix(0.4121721,0,0,0.4121721,44.653845,17.196984)">
+      <path
+         class="surface"
+         d="m 209.21053,242.5 -75.32882,98.92688 a 124.34211,124.34211 0 0 1 -4.41028,-3.51915 z"
+         style="opacity:0.8;fill:#74c476;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-opacity:1"
+         id="path65" />
+      <path
+         class="textline"
+         stroke-width="1.5"
+         d="m 131.6566,339.69232 -7.38147,9.25063 h -12.78487"
+         fill="none"
+         style="stroke:#444444;stroke-opacity:1"
+         id="path75" />
+    </g>
+    <g
+       class="slice"
+       id="g89"
+       style="opacity:0.8"
+       transform="matrix(0.4121721,0,0,0.4121721,44.653845,17.196984)">
+      <path
+         class="surface"
+         d="m 209.21053,242.5 -79.7391,95.40773 A 124.34211,124.34211 0 0 1 111.1871,165.99924 Z"
+         style="fill:#6baed6;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-opacity:1"
+         id="path79" />
+    </g>
+    <g
+       class="slice"
+       id="g101"
+       style="opacity:0.8"
+       transform="matrix(0.4121721,0,0,0.4121721,44.653845,17.196984)">
+      <path
+         class="surface"
+         d="M 209.21053,242.5 111.1871,165.99924 a 124.34211,124.34211 0 0 1 8.93055,-10.23688 z"
+         style="fill:#969696;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-opacity:1"
+         id="path91" />
+    </g>
+    <g
+       class="slice"
+       id="g113"
+       style="opacity:0.8"
+       transform="matrix(0.4121721,0,0,0.4121721,44.653845,17.196984)">
+      <path
+         class="surface"
+         d="m 209.21053,242.5 -89.09288,-86.73764 a 124.34211,124.34211 0 0 1 89.09288,-37.60447 z"
+         style="fill:#d94801;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-opacity:1"
+         id="path103" />
+    </g>
+    <text
+       xml:space="preserve"
+       id="text1015"
+       style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1017);fill:#ffffff;fill-opacity:1;stroke:none;"
+       x="31.949791"
+       y="0"
+       transform="matrix(0.4121721,0,0,0.4121721,44.858905,92.864388)"><tspan
+         x="138.31486"
+         y="-29.128595"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">Fossil Fuels
+</tspan></tspan><tspan
+         x="153.0479"
+         y="-12.402561"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">12.7%</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text1015-3"
+       style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1017-8);fill:#969696;fill-opacity:1;stroke:none;"
+       x="31.949791"
+       y="0"
+       transform="matrix(0.4121721,0,0,0.4121721,13.36684,88.172886)"><tspan
+         x="152.68657"
+         y="-29.128595"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#969696;fill-opacity:1">Other
+</tspan></tspan><tspan
+         x="156.74255"
+         y="-12.402561"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#969696;fill-opacity:1">1.7</tspan><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#969696;fill-opacity:1">%</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text1015-39"
+       style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1017-9);fill:#ffffff;fill-opacity:1;stroke:none;"
+       x="31.949791"
+       y="0"
+       transform="matrix(0.4121721,0,0,0.4121721,25.260363,131.64574)"><tspan
+         x="145.61953"
+         y="-29.128595"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">Nuclear
+</tspan></tspan><tspan
+         x="153.0479"
+         y="-12.402561"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">24.5</tspan><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">%</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text1015-30"
+       style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1017-0);fill:#74c476;fill-opacity:1;stroke:none;"
+       x="31.949791"
+       y="0"
+       transform="matrix(0.4121721,0,0,0.4121721,-1.3975342,171.0174)"><tspan
+         x="111.16649"
+         y="-29.128595"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#74c476;fill-opacity:1">Other Renewables
+</tspan></tspan><tspan
+         x="156.74255"
+         y="-12.402561"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#74c476;fill-opacity:1">0.7</tspan><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#74c476;fill-opacity:1">%</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text1015-9"
+       style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1017-7);fill:#41ab5d;fill-opacity:1;stroke:none;"
+       x="31.949791"
+       y="0"
+       transform="matrix(0.4121721,0,0,0.4121721,33.243973,192.32378)"><tspan
+         x="102.34165"
+         y="-29.128595"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#41ab5d;fill-opacity:1">Bioenergy and Waste
+</tspan></tspan><tspan
+         x="156.07849"
+         y="-12.402561"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#41ab5d;fill-opacity:1">5.0%</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text1015-2"
+       style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1017-1);fill:#ffffff;fill-opacity:1;stroke:none;"
+       x="31.949791"
+       y="0"
+       transform="matrix(0.4121721,0,0,0.4121721,60.120689,167.55188)"><tspan
+         x="152.07785"
+         y="-29.128595"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">Hydro
+</tspan></tspan><tspan
+         x="153.0479"
+         y="-12.402561"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">10.7%</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text1015-8"
+       style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1017-05);fill:#ffffff;fill-opacity:1;stroke:none;"
+       x="31.949791"
+       y="0"
+       transform="matrix(0.4121721,0,0,0.4121721,83.702673,121.80282)"><tspan
+         x="154.77641"
+         y="-29.128595"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">Wind
+</tspan></tspan><tspan
+         x="153.0479"
+         y="-12.402561"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">44.7</tspan><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">%</tspan></tspan></text>
+    <g
+       id="g1853"
+       transform="matrix(0.83505791,0,0,0.83505791,45.568917,19.574908)">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.412001;stroke-miterlimit:4;stroke-dasharray:1.236, 1.236;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect1686"
+         width="131.15775"
+         height="113.01488"
+         x="202.4321"
+         y="70.086205" />
+    </g>
+    <g
+       id="g1953"
+       transform="translate(0,1.9706083)">
+      <g
+         id="g1518"
+         transform="matrix(0.83505791,0,0,0.83505791,50.750574,35.668109)">
+        <g
+           class="trace"
+           stroke-linejoin="round"
+           style="opacity:1"
+           id="g155"
+           transform="matrix(0.49551793,0,0,0.49551793,7.1097171,-7.1361145)">
+          <g
+             class="slice"
+             id="g129">
+            <path
+               class="surface"
+               d="m 540.78947,242.5 v -87.46212 a 87.462123,87.462123 0 1 1 -78.74161,49.39138 z"
+               style="fill:#005a32;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-opacity:1"
+               id="path117" />
+          </g>
+          <g
+             class="slice"
+             id="g141">
+            <path
+               class="surface"
+               d="m 540.78947,242.5 -75.76435,-43.69653 a 87.462123,87.462123 0 0 1 75.76435,-43.76559 z"
+               style="fill:#238b45;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-opacity:1"
+               id="path131" />
+          </g>
+          <g
+             class="slice"
+             id="g153">
+            <path
+               class="surface"
+               d="m 540.78947,242.5 -78.74161,-38.07074 a 87.462123,87.462123 0 0 1 2.97726,-5.62579 z"
+               style="fill:#41ab5d;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-opacity:1"
+               id="path143" />
+          </g>
+        </g>
+        <text
+           xml:space="preserve"
+           id="text1015-9-4"
+           style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1017-7-8);opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;"
+           x="31.949791"
+           y="0"
+           transform="matrix(0.4121721,0,0,0.4121721,192.58578,97.741302)"><tspan
+             x="146.88255"
+             y="-29.128595"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">Landfill 
+</tspan></tspan><tspan
+             x="158.21064"
+             y="-12.402561"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">Gas
+</tspan></tspan><tspan
+             x="152.34477"
+             y="4.3234731"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">16.7%</tspan></tspan></text>
+        <text
+           xml:space="preserve"
+           id="text1015-9-1"
+           style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1017-7-5);opacity:1;fill:#41ab5d;fill-opacity:1;stroke:none;"
+           x="31.949791"
+           y="0"
+           transform="matrix(0.4121721,0,0,0.4121721,151.16351,99.074185)"><tspan
+             x="130.20941"
+             y="-29.128595"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#41ab5d;fill-opacity:1">Sewage Gas
+</tspan></tspan><tspan
+             x="150.34608"
+             y="-12.402561"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#41ab5d;fill-opacity:1">1.2%</tspan><tspan
+               style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#41ab5d;fill-opacity:1">%</tspan></tspan></text>
+        <text
+           xml:space="preserve"
+           id="text1015-9-13"
+           style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1017-7-84);opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;"
+           x="31.949791"
+           y="0"
+           transform="matrix(0.4121721,0,0,0.4121721,214.11715,136.1902)"><tspan
+             x="126.34875"
+             y="-29.128595"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">Other biofuels
+</tspan></tspan><tspan
+             x="129.54535"
+             y="-12.402561"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">and co-firing
+</tspan></tspan><tspan
+             x="152.34477"
+             y="4.3234731"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">82.2</tspan><tspan
+               style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#ffffff">%</tspan></tspan></text>
+      </g>
+      <text
+         xml:space="preserve"
+         id="text1015-9-9"
+         style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1017-7-4);fill:#41ab5d;fill-opacity:1;stroke:none;"
+         x="31.949791"
+         y="0"
+         transform="matrix(0.4121721,0,0,0.4121721,198.71761,96.316154)"><tspan
+           x="102.34165"
+           y="-29.128595"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#41ab5d;fill-opacity:1">Bioenergy and Waste
+</tspan></tspan></text>
+    </g>
+  </g>
+</svg>

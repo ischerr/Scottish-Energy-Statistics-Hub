@@ -3260,5 +3260,44 @@ ElecGen <- function(input, output, session) {
     
   })
   
+  output$BiofuelsSubtitle <- renderText({
+    
+    Data <-
+      read_excel(
+        "Structure/CurrentWorking.xlsx",
+        sheet = "Elec gen low carbon and fossil",
+        col_names = FALSE,
+        skip = 28,
+        n_max = 15
+      )
+    
+    Data <- as_tibble(t(Data))
+    
+    Data <- Data[c(1,2,3)]
+    
+    Data <- Data[complete.cases(Data),]
+    
+    names(Data) <- c("Year", "Renewables", "Nuclear")
+    
+    Data %<>% lapply(function(x)
+      as.numeric(as.character(x)))
+    
+    ElecFuelRenNuclear <- as_tibble(Data)
+    
+    paste("Scotland,", "-", max(ElecFuelRenNuclear$Year))
+  })
+  
+  output$Biofuels.png <- downloadHandler(
+    filename = "ElecGenBiofuels.png",
+    content = function(file) {
+      
+      writePNG(
+        readPNG(
+          "Structure/2 - Renewables/Electricity/ElecGenBiofuelsChart.png"
+        ),
+        file)
+    }
+  )
+  
 }
 
