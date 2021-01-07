@@ -11,6 +11,11 @@ latex: false
 
 warnings_are_errors: false
 
+addons:
+  apt:
+    packages:
+      - libgit2-dev
+
 repos: 
   CRAN: https://cran.rstudio.com
   rforge: http://R-Forge.R-project.org
