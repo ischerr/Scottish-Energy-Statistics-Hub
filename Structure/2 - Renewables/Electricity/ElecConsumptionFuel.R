@@ -1069,7 +1069,6 @@ ElecConsumptionFuel <- function(input, output, session) {
     toggle("Text")
   })
   
-  
 
   
 }

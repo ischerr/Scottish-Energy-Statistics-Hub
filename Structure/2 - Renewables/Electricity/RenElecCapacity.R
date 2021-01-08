@@ -145,7 +145,16 @@ RenElecCapacityOutput <- function(id) {
                fluidRow(
                  column(12, dataTableOutput(ns("LACapTable"))%>% withSpinner(color="#39ab2c"))),
                HTML("<blockquote><p>*The sum of local authorities will not add up to overall Scottish capacity because some sites have not been allocated a local authority.</p></blockquote>"),
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+      tabPanel("Bionergy Breakdown",
+               fluidRow(
+                 column(10, h3("Data - Quarterly operational renewable capacity - Bioenergy and Waste Breakdown (MW)", style = "color: #39ab2c;  font-weight:bold")),
+                 column(2, style = "padding:15px",  actionButton(ns("ToggleTable6"), "Show/Hide Table", style = "float:right; "))
+               ),
+               fluidRow(
+                 column(12, dataTableOutput(ns("BioenergyTable"))%>% withSpinner(color="#39ab2c"))),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
+      ),
 
   
     fluidRow(
@@ -2725,4 +2734,60 @@ RenElecCapacity <- function(input, output, session) {
     }
   )
   
+  
+  output$BioenergyTable = renderDataTable({
+    
+    Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                       sheet = "R - QTRCapacity", col_names = FALSE)
+    
+    Data <- as_tibble(t(Data))
+    
+    names(Data) <- c("Date", "Wind Onshore", "Wind Offshore", "Shoreline wave / tidal", "Solar P.V.", "Small Hydro", "Large Hydro", "Landfill Gas", "Sewage", "Waste", "Animal Biomass", "Anaerobic Digestion", "Plant", "Total")
+    
+    Data <- Data[-1,]
+    
+    Data$Date <- paste0(substr(Data$Date,1,4), " Q", substr(Data$Date, 8,8))
+    
+    Data[2:14]%<>% lapply(function(x)
+      as.numeric(as.character(x)))
+    
+    Data$`Bioenergy and Waste` <- Data$`Landfill Gas` + Data$Waste + Data$`Anaerobic Digestion` + Data$`Animal Biomass` + Data$Plant + Data$Sewage
+    
+    names(Data)[1] <- "Quarter"
+    
+    datatable(
+      Data[c(1,8,9,10,11,12,13,15)],
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        title = "Operational renewable capacity - Bioenergy and Waste Breakdown (MW)",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Operational renewable capacity - Bioenergy and Waste Breakdown (MW)',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Operational renewable capacity - Bioenergy and Waste Breakdown (MW)')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(2:8, 0) %>% 
+      formatStyle(8, fontWeight = "bold")
+  })
 }

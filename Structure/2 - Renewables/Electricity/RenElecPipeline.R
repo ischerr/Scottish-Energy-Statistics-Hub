@@ -76,7 +76,16 @@ RenElecPipelineOutput <- function(id) {
              ),
              fluidRow(
                column(12, dataTableOutput(ns("RenElecPipelineTimeTable"))%>% withSpinner(color="#39ab2c"))),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Bioenergy Breakdown",
+             fluidRow(
+               column(10, h3("Data - Pipeline capacity - Bioenergy and Waste breakdown (GW)", style = "color: #39ab2c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("BioenergyTable"))%>% withSpinner(color="#39ab2c"))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
+    ),
     fluidRow(
       column(2, p("Update expected:")),
       column(2,
@@ -2286,5 +2295,61 @@ RenElecPipeline <- function(input, output, session) {
                 row.names = FALSE)
     }
   )
+  
+  
+  output$BioenergyTable = renderDataTable({
+    
+    RenElecPipeline <- read_excel("Structure/CurrentWorking.xlsx",
+                                  sheet = "Renewable elec pipeline", col_names = TRUE, 
+                                  skip = 13,
+                                  n_max = 11)
+    
+    RenElecPipeline[5,c(2:5,8:9)] <- RenElecPipeline[5,c(2:5,8:9)] + RenElecPipeline[6,c(2:5,8:9)] +RenElecPipeline[8,c(2:5,8:9)] +RenElecPipeline[10,c(2:5,8:9)]
+    
+    RenElecPipeline[5,1] <- "Total Bioenergy and Waste"
+    
+    RenElecPipeline <- RenElecPipeline[c(5,6,8,10),]
+    
+    
+    names(RenElecPipeline)[1] <- "Tech"
+    
+    RenElecPipeline <- RenElecPipeline[1:5]
+    
+    datatable(
+      RenElecPipeline,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        order = list(list(ncol(RenElecPipeline)-1, 'desc')),
+        title = "Pipeline renewable capacity - Bioenergy and Waste (MW)",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Pipeline renewable capacity - Bioenergy and Waste (MW)',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Pipeline renewable capacity - Bioenergy and Waste (MW)')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(2:ncol(RenElecPipeline), 0)
+  
+})
   
 }

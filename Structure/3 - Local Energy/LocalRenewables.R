@@ -163,7 +163,6 @@ LocalRenewablesOutput <- function(id) {
       ns("CommunityCapacityTable")
     )%>% withSpinner(color="#a3d65c"))),
     tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
-    
     tabPanel("Technology",
              fluidRow(
                column(10, h3("Data - Capacity of operational community and locally owned renewable installations by technology", style = "color: #a3d65c;  font-weight:bold")),
@@ -175,6 +174,19 @@ LocalRenewablesOutput <- function(id) {
              ),
              fluidRow(column(12, dataTableOutput(
                ns("CommunityOperatingTechTable")
+             )%>% withSpinner(color="#a3d65c"))),
+             tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
+    tabPanel("Technology - Bioenergy breakdown",
+             fluidRow(
+               column(10, h3("Data - Capacity of operational community and locally owned renewable installations by technology", style = "color: #a3d65c;  font-weight:bold")),
+               column(
+                 2,
+                 style = "padding:15px",
+                 actionButton(ns("ToggleTable7"), "Show/Hide Table", style = "float:right; ")
+               )
+             ),
+             fluidRow(column(12, dataTableOutput(
+               ns("BioenergyTable")
              )%>% withSpinner(color="#a3d65c"))),
              tags$hr(style = "height:3px;border:none;color:#a3d65c;background-color:#a3d65c;")),
     
@@ -1778,5 +1790,65 @@ LocalRenewables <- function(input, output, session) {
     
   })
   
+  
+  output$BioenergyTable = renderDataTable({
+    CommunityOperatingOutputType <- read_excel("Structure/CurrentWorking.xlsx", 
+                                               sheet = "Comm & locally owned ren", col_names = TRUE, 
+                                               skip = 41, n_max = 9)[1:5]
+    
+    CommunityOperatingOutputType <- CommunityOperatingOutputType[1:5]
+    
+    CommunityOperatingOutputType[9,1] <- "Total"
+    
+    CommunityOperatingOutputType[9,2] <- as.character(as.numeric(CommunityOperatingOutputType[2,2]) + as.numeric(CommunityOperatingOutputType[5,2]))
+    
+    CommunityOperatingOutputType[9,3] <- as.character(as.numeric(CommunityOperatingOutputType[2,3]) + as.numeric(CommunityOperatingOutputType[5,3]))
+    
+    CommunityOperatingOutputType[9,4] <- as.character(as.numeric(CommunityOperatingOutputType[2,4]) + as.numeric(CommunityOperatingOutputType[5,4]))
+    
+    CommunityOperatingOutputType[9,5] <- as.character(as.numeric(CommunityOperatingOutputType[2,5]) + as.numeric(CommunityOperatingOutputType[5,5]))
+    
+    CommunityOperatingOutputType[9,1] <- "Bioenergy and Waste"
+    
+    CommunityOperatingOutputType <- CommunityOperatingOutputType[c(2,5,9),]
+    
+    names(CommunityOperatingOutputType) <- c("Tech", "Capacity (MW)", "%", "Number of Installations", "%")
+    
+    datatable(
+      CommunityOperatingOutputType,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        title = "Capacity of operational community and locally owned renewable installations, Bioenergy and Waste",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Capacity of operational community and locally owned renewable installations, Bioenergy and Waste',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Capacity of operational community and locally owned renewable installations, Bioenergy and Waste')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10 
+      ) 
+    ) %>% 
+      formatPercentage(c(3,5), 1)
+    
+    
+  })
   
 }

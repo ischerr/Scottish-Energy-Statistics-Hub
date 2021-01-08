@@ -2437,7 +2437,7 @@ RenElecGen <- function(input, output, session) {
   )
   
   
-  output$BioebergyTable = renderDataTable({
+  output$BioenergyTable = renderDataTable({
     
     Data <- read_excel("Structure/CurrentWorking.xlsx",
                        sheet = "R - QTRScotGen",
