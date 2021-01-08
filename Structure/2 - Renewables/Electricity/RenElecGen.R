@@ -99,6 +99,7 @@ RenElecGenOutput <- function(id) {
              #dygraphOutput(ns("EUHydroPlot")),
              plotlyOutput(ns("EUHydroPlot"), height = "900px")%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
+    
     ),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
@@ -161,6 +162,14 @@ RenElecGenOutput <- function(id) {
              ),
              fluidRow(
                column(12, dataTableOutput(ns("EUHydroTable"))%>% withSpinner(color="#39ab2c"))),
+             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+    tabPanel("Bioenergy breakdown",
+             fluidRow(
+               column(10, h3("Data - Bioenergy and Waste Breakdown", style = "color: #39ab2c;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("BioenergyTable"))%>% withSpinner(color="#39ab2c"))),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
     ),
     fluidRow(
@@ -2427,6 +2436,77 @@ RenElecGen <- function(input, output, session) {
     }
   )
   
+  
+  output$BioebergyTable = renderDataTable({
+    
+    Data <- read_excel("Structure/CurrentWorking.xlsx",
+                       sheet = "R - QTRScotGen",
+                       col_names = FALSE
+    )
+    
+    Data <- as_tibble(t(Data))
+    
+    names(Data) <- unlist(Data[1,])
+    
+    names(Data)[1] <- "Year & Quarter"
+    
+    Data <- Data[-1,]
+    
+    Data[2:10] %<>% lapply(function(x)
+      as.numeric(as.character(x)))
+    
+    Data <- as_tibble(Data)
+    
+    names(Data) <- c("Quarter", "Onshore wind", "Offshore wind", "Wave and Tidal", "Solar PV", "Hydro", "Landfill gas", "Sewage sludge digestion", "Other biomass (inc. co-firing)", "Total")
+    
+    
+    Data$`Bioenergy and Waste` <- Data$`Landfill gas` + Data$`Sewage sludge digestion` + Data$`Other biomass (inc. co-firing)`
+    
+    Data <- Data[which(Data$Total > 0),]
+    
+    Data <- Data[c(1,7,8,9,11)]
+    
+    Data$Quarter <- paste0(substr(Data$Quarter,1,4), " Q", substr(Data$Quarter,8,8))
+    
+    datatable(
+      Data,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        title = "Renewable electricity generation - Bioenergy and Waste breakdown (GWh)",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Renewable electricity generation - Bioenergy and Waste breakdown (GWh)',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Renewable electricity generation - Bioenergy and Waste breakdown (GWh)')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatRound(2:ncol(Data), 0) %>% 
+      formatStyle(5, fontWeight = "bold")
+  })
+  
+  observeEvent(input$ToggleTable5, {
+    toggle("RenElecQuarterTable")
+  })
   
   
   
