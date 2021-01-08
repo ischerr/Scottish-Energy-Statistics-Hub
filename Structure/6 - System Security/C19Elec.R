@@ -111,12 +111,12 @@ C19Elec <- function(input, output, session) {
 
   output$C19ElecSubtitle <- renderText({
     
-    paste("Scotland, 2013 - 2020")
+    paste("Scotland, 2013 - 2021")
   })
   
   output$C19Elec2Subtitle <- renderText({
     
-    paste("Scotland, 2013 - 2020")
+    paste("Scotland, 2013 - 2021")
   })
   
   output$C19ElecPlot <- renderPlotly  ({
@@ -344,26 +344,23 @@ C19Elec <- function(input, output, session) {
     
     DailyDemand$Month <-month(DailyDemand$Date)
     
+    DailyDemand$ChartYear <- substr(ISOweek(DailyDemand$Date),1,4)
+    
     DailyDemand$Week <- isoweek(DailyDemand$Date)
     
     DailyDemand$Weekday <- weekdays(DailyDemand$Date)
     
     DailyDemand$DayofYear <- yday(DailyDemand$Date)
     
-    DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "PostLockdown", "BeforeLockdown")
+    DailyDemand <- DailyDemand[-which(substr(DailyDemand$Date,6,10) == "02-29"),]
     
-    DailyDemandFromMarch <- DailyDemand[which(DailyDemand$Week >= 2 & DailyDemand$Week <= 51),]
+    #DailyDemand <- DailyDemand[c(5,6,7,9,1,8,4)]
     
-    DailyDemandFromMarch <- DailyDemandFromMarch[c(5,6,7,9,1,8,4)]
+    DailyDemand <- DailyDemand %>% group_by(Year) %>% mutate(id = row_number()-1)
     
-    DailyDemandFromMarch <- DailyDemandFromMarch %>% group_by(Year) %>% mutate(id = row_number())
+    DailyDemand$NewDate <- ymd("2021/01/01") + DailyDemand$id
     
-    
-    DailyDemandFromMarch  <- dcast(DailyDemandFromMarch, id ~ Year, value.var = 'Electricity')
-    
-    DailyDemandFromMarch$Date <- ymd("2020/01/05") + DailyDemandFromMarch$id
-    
-    DailyDemandFromMarch <- DailyDemandFromMarch[complete.cases(DailyDemandFromMarch),]
+    DailyDemand  <- dcast(DailyDemand, NewDate ~ Year, value.var = 'Electricity')
     
     vline1 <- function(x = 0, color = "#02818a") {
       list(
@@ -391,41 +388,61 @@ C19Elec <- function(input, output, session) {
     }
     
     
-    p2 <-  plot_ly(DailyDemandFromMarch,x = ~ Date ) %>% 
-      add_trace(data = DailyDemandFromMarch,
-                x = ~ Date,
-                y = ~ `2020`,
-                name = "2020",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "1",
-                text = paste0(
-                  "2020 Demand: ",
-                  round(DailyDemandFromMarch$`2020`, digits = 1),
-                  " GWh\nDate: ",
-                  format(DailyDemandFromMarch$Date, format="%d/%m/%y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 4)
-      ) %>% 
-      add_trace(data = DailyDemandFromMarch,
-                x = ~ Date,
+    p2 <-  plot_ly(DailyDemand,x = ~ Date ) %>% 
+
+      add_trace(data = DailyDemand,
+                x = ~ NewDate,
                 y = ~ `2019`,
                 name = "2019",
                 type = 'scatter',
                 mode = 'lines',
-                legendgroup = "2",
+                legendgroup = "3",
                 text = paste0(
-                  "2019 demand on equivalent date: ",
-                  round(DailyDemandFromMarch$`2019`, digits = 1),
-                  " GWh\nDate: ",
-                  format(DailyDemandFromMarch$Date, format="%d/%m/%y")
+                  "Demand: ",
+                  round(DailyDemand$`2019`, digits = 1),
+                  " GWh\n", weekdays(ymd(paste0("2019-",substr(DailyDemand$NewDate,6,10)))), " ",
+                  format(ymd(paste0("2019-",substr(DailyDemand$NewDate,6,10))), format="%d %B %Y")
                 ),
                 hoverinfo = 'text',
-                line = list(width = 4)
+                line = list(width = 2)
       )  %>% 
+      
+      add_trace(data = DailyDemand,
+                x = ~ NewDate,
+                y = ~ `2020`,
+                name = "2020",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "2",
+                text = paste0(
+                  "Demand: ",
+                  round(DailyDemand$`2020`, digits = 1),
+                  " GWh\n", weekdays(ymd(paste0("2020-",substr(DailyDemand$NewDate,6,10)))), " ",
+                  format(ymd(paste0("2020-",substr(DailyDemand$NewDate,6,10))), format="%d %B %Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 2)
+      )  %>% 
+      add_trace(data = DailyDemand,
+                x = ~ NewDate,
+                y = ~ `2021`,
+                name = "2021",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "1",
+                text = paste0(
+                  "Demand: ",
+                  round(DailyDemand$`2021`, digits = 1),
+                  " GWh\n", weekdays(ymd(paste0("2021-",substr(DailyDemand$NewDate,6,10)))), " ",
+                  format(ymd(paste0("2021-",substr(DailyDemand$NewDate,6,10))), format="%d %B %Y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 2)
+      ) %>% 
+
+      
       add_annotations(
-        x = dmy("31/03/2020"),
+        x = dmy("31/03/2021"),
         y = .4,
         yref = "paper",
         text = "<b>23/03</b>\nLockdown",
@@ -435,7 +452,7 @@ C19Elec <- function(input, output, session) {
         showarrow = FALSE
       ) %>% 
       add_annotations(
-        x = dmy("4/06/2020"),
+        x = dmy("4/06/2021"),
         y = .4,
         yref = "paper",
         text = "<b>28/05</b>\nPhase 1",
@@ -445,7 +462,7 @@ C19Elec <- function(input, output, session) {
         showarrow = FALSE
       ) %>% 
       add_annotations(
-        x = dmy("26/06/2020"),
+        x = dmy("26/06/2021"),
         y = .4,
         yref = "paper",
         text = "<b>19/06</b>\nPhase 2",
@@ -455,7 +472,7 @@ C19Elec <- function(input, output, session) {
         showarrow = FALSE
       ) %>% 
       add_annotations(
-        x = dmy("17/07/2020"),
+        x = dmy("17/07/2021"),
         y = .4,
         yref = "paper",
         text = "<b>10/07</b>\nPhase 3",
@@ -466,7 +483,7 @@ C19Elec <- function(input, output, session) {
       ) %>% 
       layout(
         barmode = 'stack',
-        shapes = list( vline1(dmy("23/03/2020")),vline2(dmy("28/05/2020")),vline2(dmy("19/06/2020")),vline2(dmy("10/07/2020"))),
+        shapes = list( vline1(dmy("23/03/2021")),vline2(dmy("28/05/2021")),vline2(dmy("19/06/2021")),vline2(dmy("10/07/2021"))),
         bargap = 0.66,
         legend = list(font = list(color = "#126992"),
                       orientation = 'h'),
@@ -474,7 +491,7 @@ C19Elec <- function(input, output, session) {
                           hovername = 'text'),
         hovername = 'text',
         
-        xaxis = list(title = "Date in 2020",
+        xaxis = list(title = "Date in 2021",
                      showgrid = FALSE,
                      tickfont = list(size = 15)),
         yaxis = list(
