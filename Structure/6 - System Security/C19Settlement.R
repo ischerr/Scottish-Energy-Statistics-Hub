@@ -110,7 +110,7 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly$Date <- ymd(ElecDemandHalfHourly$Date)
     
-    ElecDemandHalfHourly$Year <-year(ElecDemandHalfHourly$Date)
+    ElecDemandHalfHourly$Year <- substr(ISOweek(ElecDemandHalfHourly$Date),1,4)
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2013),]
     
@@ -122,7 +122,9 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly$DayofYear <- yday(ElecDemandHalfHourly$Date)
     
-    ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 13, "PostLockdown", "BeforeLockdown")
+    
+    
+    #ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 1, "PostLockdown", "BeforeLockdown")
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2019),]
     
@@ -134,7 +136,7 @@ C19Settlement <- function(input, output, session) {
     # 
     # max(x$Week)}
     
-     MaxWeek = 51
+    MaxWeek = 1
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week == MaxWeek),] 
     
@@ -145,7 +147,7 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly  <- dcast(ElecDemandHalfHourly, id + SettlementPeriod + Weekday ~ Year, value.var = 'Total')
     
-    ElecDemandHalfHourly$Date <- ymd("2020/12/14")
+    ElecDemandHalfHourly$Date <- ymd("2021/01/03")
     
     ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date) + 1
     ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date) + 2
@@ -154,43 +156,63 @@ C19Settlement <- function(input, output, session) {
     ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Saturday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Saturday"),]$Date) + 5
     ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Sunday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Sunday"),]$Date) + 6
     
-    ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
+    ChartColours <- c("#fc4e2a", "#1d91c0", "#bdbdbd", "#8da0cb")
     BarColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
     
     p1 <-  plot_ly(ElecDemandHalfHourly,x = ~ id ) %>% 
-      add_trace(data = ElecDemandHalfHourly,
-                x = ~ id,
-                y = ~ `2020`,
-                name = "2020",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "1",
-                text = paste0(
-                  "2020 Demand: ",
-                  round(ElecDemandHalfHourly$`2020`, digits = 1),
-                  " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod,
-                  "\nDate: ",
-                  format(ElecDemandHalfHourly$Date, format="%d/%m/%y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 4)
-      ) %>% 
       add_trace(data = ElecDemandHalfHourly,
                 x = ~ id,
                 y = ~ `2019`,
                 name = "2019",
                 type = 'scatter',
                 mode = 'lines',
-                legendgroup = "2",
+                legendgroup = "1",
                 text = paste0(
-                  "2019 demand on equivalent date: ",
+                  "2019 Demand: ",
                   round(ElecDemandHalfHourly$`2019`, digits = 1),
                   " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod,
                   "\nDate: ",
                   format(ElecDemandHalfHourly$Date, format="%d/%m/%y")
                 ),
                 hoverinfo = 'text',
-                line = list(width = 4)
+                line = list(width = 4,
+                            color = ChartColours[3])
+      ) %>% 
+      add_trace(data = ElecDemandHalfHourly,
+                x = ~ id,
+                y = ~ `2020`,
+                name = "2020",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "2",
+                text = paste0(
+                  "2020 demand on equivalent date: ",
+                  round(ElecDemandHalfHourly$`2020`, digits = 1),
+                  " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod,
+                  "\nDate: ",
+                  format(ElecDemandHalfHourly$Date, format="%d/%m/%y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 4,
+                            color = ChartColours[2])
+      )  %>% 
+      add_trace(data = ElecDemandHalfHourly,
+                x = ~ id,
+                y = ~ `2021`,
+                name = "2021",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "3",
+                text = paste0(
+                  "2021 demand on equivalent date: ",
+                  round(ElecDemandHalfHourly$`2021`, digits = 1),
+                  " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod,
+                  "\nDate: ",
+                  format(ElecDemandHalfHourly$Date, format="%d/%m/%y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 4,
+                            color = ChartColours[1])
       )  %>% 
       layout(
         legend = list(font = list(color = "#126992"),
@@ -340,7 +362,7 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly$Date <- ymd(ElecDemandHalfHourly$Date)
     
-    ElecDemandHalfHourly$Year <-year(ElecDemandHalfHourly$Date)
+    ElecDemandHalfHourly$Year <-substr(ISOweek(ElecDemandHalfHourly$Date),1,4)
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2013),]
     
@@ -352,7 +374,7 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly$DayofYear <- yday(ElecDemandHalfHourly$Date)
     
-    ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 13, "PostLockdown", "BeforeLockdown")
+    ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 1, "PostLockdown", "BeforeLockdown")
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2019),]
     
@@ -364,7 +386,7 @@ C19Settlement <- function(input, output, session) {
     # 
     # max(x$Week)}
     
-     MaxWeek = 51
+     MaxWeek = 1
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week <= MaxWeek),] 
     
@@ -381,7 +403,7 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly <- dcast(ElecDemandHalfHourly, SettlementPeriod ~ Variable, value.var = "Total")
     
-    ChartColours <- c("#1f77b4","#fdae6b","#ff7f0e","#9ecae1")
+    ChartColours <- c("#fc8d59", "#fc4e2a", "#a6bddb", "#1d91c0", "#d9d9d9", "#bdbdbd", "#8da0cb")
     
     p2 <-  plot_ly(ElecDemandHalfHourly,x = ~ SettlementPeriod ) %>% 
       add_trace(data = ElecDemandHalfHourly,
@@ -397,7 +419,7 @@ C19Settlement <- function(input, output, session) {
                   " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod
                 ),
                 hoverinfo = 'text',
-                line = list(width = 4, color = ChartColours[3], dash = "none")
+                line = list(width = 4, color = ChartColours[6], dash = "none")
       ) %>% 
       add_trace(data = ElecDemandHalfHourly,
                 x = ~ SettlementPeriod,
@@ -412,7 +434,7 @@ C19Settlement <- function(input, output, session) {
                   " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod
                 ),
                 hoverinfo = 'text',
-                line = list(width = 4, color = ChartColours[2], dash = "none")
+                line = list(width = 4, color = ChartColours[5], dash = "none")
       ) %>% 
       add_trace(data = ElecDemandHalfHourly,
                 x = ~ SettlementPeriod,
@@ -427,7 +449,7 @@ C19Settlement <- function(input, output, session) {
                   " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod
                 ),
                 hoverinfo = 'text',
-                line = list(width = 4, color = ChartColours[1], dash = "none")
+                line = list(width = 4, color = ChartColours[4], dash = "none")
       ) %>% 
       add_trace(data = ElecDemandHalfHourly,
                 x = ~ SettlementPeriod,
@@ -442,7 +464,37 @@ C19Settlement <- function(input, output, session) {
                   " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod
                 ),
                 hoverinfo = 'text',
-                line = list(width = 4, color = ChartColours[4], dash = "none")
+                line = list(width = 4, color = ChartColours[3], dash = "none")
+      ) %>% 
+      add_trace(data = ElecDemandHalfHourly,
+                x = ~ SettlementPeriod,
+                y = ~ `2021 - Weekday`,
+                name = "2021 - Weekday",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "5",
+                text = paste0(
+                  "2021 - Weekday average demand: ",
+                  round(ElecDemandHalfHourly$`2021 - Weekday`, digits = 1),
+                  " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod
+                ),
+                hoverinfo = 'text',
+                line = list(width = 4, color = ChartColours[2], dash = "none")
+      ) %>% 
+      add_trace(data = ElecDemandHalfHourly,
+                x = ~ SettlementPeriod,
+                y = ~ `2021 - Weekend`,
+                name = "2021 - Weekend",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "6",
+                text = paste0(
+                  "2021 - Weekend average demand: ",
+                  round(ElecDemandHalfHourly$`2021 - Weekend`, digits = 1),
+                  " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod
+                ),
+                hoverinfo = 'text',
+                line = list(width = 4, color = ChartColours[1], dash = "none")
       ) %>% 
       layout(
         legend = list(font = list(color = "#126992"),
