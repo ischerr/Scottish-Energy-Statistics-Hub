@@ -12,6 +12,21 @@ C19ElecOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
+      tabPanel("Daily demand",
+               fluidRow(column(8,
+                               h3("Daily electricity demand - 2020 vs 2019", style = "color: #5d8be1;  font-weight:bold"),
+                               h4(textOutput(ns('C19ElecRollingSubtitle')), style = "color: #5d8be1;")
+               ),
+               column(
+                 4, style = 'padding:15px;',
+                 downloadButton(ns('C19ElecRolling.png'), 'Download Graph', style="float:right")
+               )),
+               
+               tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
+               #dygraphOutput(ns("C19ElecPlot")),
+               plotlyOutput(ns("C19ElecRollingPlot"), height = "600px")%>% withSpinner(color="#5d8be1"),
+               tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")
+      ),
     tabPanel("Average Demand since lockdown",
              fluidRow(column(8,
                              h3("Average daily electricity demand post-lockdown and in equivalent periods in previous years", style = "color: #5d8be1;  font-weight:bold"),
@@ -38,21 +53,6 @@ C19ElecOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
              #dygraphOutput(ns("C19ElecPlot")),
              plotlyOutput(ns("C19ElecPlot"), height = "600px")%>% withSpinner(color="#5d8be1"),
-             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")
-    ),
-    tabPanel("Daily demand",
-             fluidRow(column(8,
-                             h3("Daily electricity demand - 2020 vs 2019", style = "color: #5d8be1;  font-weight:bold"),
-                             h4(textOutput(ns('C19ElecRollingSubtitle')), style = "color: #5d8be1;")
-             ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('C19ElecRolling.png'), 'Download Graph', style="float:right")
-             )),
-             
-             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
-             #dygraphOutput(ns("C19ElecPlot")),
-             plotlyOutput(ns("C19ElecRollingPlot"))%>% withSpinner(color="#5d8be1"),
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")
     )
     ),
@@ -442,48 +442,48 @@ C19Elec <- function(input, output, session) {
 
       
       add_annotations(
-        x = dmy("31/03/2021"),
-        y = .4,
-        yref = "paper",
-        text = "<b>23/03</b>\nLockdown",
+        x = dmy("25/03/2021"),
+        y = 30,
+        text = "<b>24/03/2020</b>\nNational\nLockdown",
+        align = 'left',
+        xanchor = 'left',
         font = list(color = "#02818a",
                     family = "Century Gothic"),
-        textposistion = "bottom right",
         showarrow = FALSE
       ) %>% 
       add_annotations(
-        x = dmy("4/06/2021"),
-        y = .4,
-        yref = "paper",
-        text = "<b>28/05</b>\nPhase 1",
+        x = dmy("29/05/2021"),
+        y = 30,
+        text = "<b>28/05/2020</b>\nPhased\nRoutemap",
+        align = 'left',
+        xanchor = 'left',
         font = list(color = "#02818a",
                     family = "Century Gothic"),
-        textposistion = "bottom right",
         showarrow = FALSE
       ) %>% 
       add_annotations(
-        x = dmy("26/06/2021"),
-        y = .4,
-        yref = "paper",
-        text = "<b>19/06</b>\nPhase 2",
+        x = dmy("24/10/2021"),
+        y = 30,
+        text = "<b>24/10/2020</b>\nFive-level\nStrategic\nFramework",
+        align = 'left',
+        xanchor = 'left',
         font = list(color = "#02818a",
                     family = "Century Gothic"),
-        textposistion = "bottom right",
         showarrow = FALSE
       ) %>% 
       add_annotations(
-        x = dmy("17/07/2021"),
-        y = .4,
-        yref = "paper",
-        text = "<b>10/07</b>\nPhase 3",
+        x = dmy("05/01/2021"),
+        y = 30,
+        text = "<b>04/01/2021</b>\nMainland\nLockdown",
+        align = 'left',
+        xanchor = 'left',
         font = list(color = "#02818a",
                     family = "Century Gothic"),
-        textposistion = "bottom right",
         showarrow = FALSE
       ) %>% 
       layout(
         barmode = 'stack',
-        shapes = list( vline1(dmy("23/03/2021")),vline2(dmy("28/05/2021")),vline2(dmy("19/06/2021")),vline2(dmy("10/07/2021"))),
+        shapes = list( vline1(dmy("24/03/2021")),vline2(dmy("28/05/2021")),vline1(dmy("23/10/2021")),vline1(dmy("04/01/2021"))),
         bargap = 0.66,
         legend = list(font = list(color = "#126992"),
                       orientation = 'h'),
@@ -1096,9 +1096,9 @@ output$C19ElecRolling.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = dmy("24/03/2020"),
+          x = dmy("26/03/2020"),
           y = 50,
-          label = "23/03",
+          label = "24/03/2020",
           fontface = 2
         ),
         hjust = 0,
@@ -1111,7 +1111,7 @@ output$C19ElecRolling.png <- downloadHandler(
         aes(
           x = dmy("24/03/2020"),
           y = 50,
-          label = "Lockdown\n "
+          label = "National\nLockdown "
         ),
         vjust = 1.1,
         hjust = 0,
