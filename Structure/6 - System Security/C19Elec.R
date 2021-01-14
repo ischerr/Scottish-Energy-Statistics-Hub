@@ -14,7 +14,7 @@ C19ElecOutput <- function(id) {
     tabsetPanel(
       tabPanel("Daily demand",
                fluidRow(column(8,
-                               h3("Daily electricity demand - 2020 vs 2019", style = "color: #5d8be1;  font-weight:bold"),
+                               h3("Daily electricity demand, annual comparison", style = "color: #5d8be1;  font-weight:bold"),
                                h4(textOutput(ns('C19ElecRollingSubtitle')), style = "color: #5d8be1;")
                ),
                column(
@@ -30,7 +30,7 @@ C19ElecOutput <- function(id) {
       ),
     tabPanel("Average Annual Demand",
              fluidRow(column(8,
-                             h3("Average daily electricity demand post-lockdown and in equivalent periods in previous years", style = "color: #5d8be1;  font-weight:bold"),
+                             h3("Average daily electricity demand", style = "color: #5d8be1;  font-weight:bold"),
                              h4(textOutput(ns('C19Elec2Subtitle')), style = "color: #5d8be1;")
              ),
              column(
@@ -66,21 +66,21 @@ C19ElecOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:;background-color:#5d8be1;"),
     tabsetPanel(
-      tabPanel("Average daily demand",
-    fluidRow(
-    column(10, h3("Data - Average daily electricity demand post-lockdown and in equivalent periods in previous years (GWh)", style = "color: #5d8be1;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
-    ),
-    fluidRow(
-      column(12, dataTableOutput(ns("C19ElecTable"))%>% withSpinner(color="#5d8be1"))),
-    tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
     tabPanel("Daily demand",
              fluidRow(
-               column(10, h3("Data - Daily electricity demand - 2020 vs 2019 (GWh)", style = "color: #5d8be1;  font-weight:bold")),
+               column(10, h3("Data - Daily electricity demand", style = "color: #5d8be1;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("C19ElecRollingTable"))%>% withSpinner(color="#5d8be1"))),
+             tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
+    tabPanel("Average daily demand",
+             fluidRow(
+               column(10, h3("Data - Average daily electricity demand (GWh)", style = "color: #5d8be1;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("C19ElecTable"))%>% withSpinner(color="#5d8be1"))),
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"))),
     fluidRow(
       column(2, p(" ")),
@@ -300,7 +300,7 @@ C19Elec <- function(input, output, session) {
   
   output$C19ElecRollingSubtitle <- renderText({
     
-    paste("Scotland")
+    paste("Scotland, 2019 - 2021")
   })
   
   output$C19ElecRollingPlot <- renderPlotly  ({
@@ -520,7 +520,7 @@ C19Elec <- function(input, output, session) {
     
     DailyDemand$Year <-year(DailyDemand$Date)
     
-    DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013),]
+    DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013 & DailyDemand$Year < 2021),]
     
     DailyDemand$Month <-month(DailyDemand$Date)
     
@@ -530,13 +530,15 @@ C19Elec <- function(input, output, session) {
     
     DailyDemand$DayofYear <- yday(DailyDemand$Date)
     
-    DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "PostLockdown", "BeforeLockdown")
+    DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 1, "PostLockdown", "BeforeLockdown")
     
     WeekdayElecDemand <- DailyDemand
     
-    WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Month >= 3),]
+    #WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Weekday %in%c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")),]
     
-    maxweek <- max(WeekdayElecDemand[which(WeekdayElecDemand$Year ==max(WeekdayElecDemand$Year)),]$Week)
+    #WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Month >= 3),]
+    
+    maxweek <- 56 #max(WeekdayElecDemand[which(WeekdayElecDemand$Year ==max(WeekdayElecDemand$Year)),]$Week)
     
     WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Week <= maxweek),]
     
@@ -545,7 +547,7 @@ C19Elec <- function(input, output, session) {
     
     WeekdayElecDemand <- dcast(WeekdayElecDemand, Year ~ PostLockdown)
     
-    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "fourth week of March to second week of November (GWh)")
+    names(WeekdayElecDemand)[1:2] <- c("Year", "Demand (GWh)")
     datatable(
       WeekdayElecDemand,
       extensions = 'Buttons',
@@ -559,17 +561,17 @@ C19Elec <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Average daily electricity demand post-lockdown and in equivalent periods in previous years (GWh)",
+        title = "Average daily electricity demand (GWh)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Average daily electricity demand post-lockdown and in equivalent periods in previous years (GWh)',
+            title = 'Average daily electricity demand (GWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Average daily electricity demand post-lockdown and in equivalent periods in previous years (GWh)')
+               title = 'Average daily electricity demand (GWh)')
         ),
         
         # customize the length menu
@@ -579,7 +581,7 @@ C19Elec <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:3, 2) 
+      formatRound(2:3, 1) 
   })
   
   output$C19ElecRollingTable = renderDataTable({
@@ -591,7 +593,7 @@ C19Elec <- function(input, output, session) {
     
     DailyDemand$Year <-year(DailyDemand$Date)
     
-    DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013),]
+    DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2019),]
     
     DailyDemand$Month <-month(DailyDemand$Date)
     
@@ -601,27 +603,10 @@ C19Elec <- function(input, output, session) {
     
     DailyDemand$DayofYear <- yday(DailyDemand$Date)
     
-    DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "PostLockdown", "BeforeLockdown")
-    
-    DailyDemandFromMarch <- DailyDemand[which(DailyDemand$Week >= 2 & DailyDemand$Week <= 51),]
-    
-    DailyDemandFromMarch <- DailyDemandFromMarch[c(5,6,7,9,1,8,4)]
-    
-    DailyDemandFromMarch <- DailyDemandFromMarch %>% group_by(Year) %>% mutate(id = row_number())
-    
-    
-    DailyDemandFromMarch  <- dcast(DailyDemandFromMarch, id ~ Year, value.var = 'Electricity')
-    
-    DailyDemandFromMarch$Year <- ymd("2020/01/05") + DailyDemandFromMarch$id
-    
-    DailyDemandFromMarch <- DailyDemandFromMarch[complete.cases(DailyDemandFromMarch),]
-    
-    DailyDemandFromMarch <- DailyDemandFromMarch[10:8]
-    
-    names(DailyDemandFromMarch) <- c("Date", "Daily electricity demand in 2020 (GWh)", "Electricity demand on equivalent day in 2019 (GWh)")
+    names(DailyDemand)[4] <- c("Daily electricity demand(GWh)")
     
     datatable(
-      DailyDemandFromMarch,
+      DailyDemand[c(1,4)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -633,17 +618,17 @@ C19Elec <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Daily electricity demand - 2020 vs 2019 (GWh)",
+        title = "Daily electricity demand (GWh)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Daily electricity demand - 2020 vs 2019 (GWh)',
+            title = 'Daily electricity demand (GWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Daily electricity demand - 2020 vs 2019 (GWh)')
+               title = 'Daily electricity demand (GWh)')
         ),
         
         # customize the length menu
@@ -653,7 +638,7 @@ C19Elec <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:3, 1) 
+      formatRound(2, 1) 
   })
   
   output$Text <- renderUI({
@@ -799,7 +784,8 @@ C19Elec <- function(input, output, session) {
       library(plotly)
       
       plottitle <-
-        "Average daily electricity demand post-lockdown\nand in equivalent periods in previous years"
+        "Average daily electricity demand."
+      
       sourcecaption <- "Source: National Grid"
       
       DailyDemand <- read_delim("CovidAnalysis/DailyDemand.txt", 
@@ -809,7 +795,7 @@ C19Elec <- function(input, output, session) {
       
       DailyDemand$Year <-year(DailyDemand$Date)
       
-      DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013),]
+      DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013 & DailyDemand$Year < 2021),]
       
       DailyDemand$Month <-month(DailyDemand$Date)
       
@@ -819,17 +805,15 @@ C19Elec <- function(input, output, session) {
       
       DailyDemand$DayofYear <- yday(DailyDemand$Date)
       
-      DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "Post", "Pre")
+      DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 1, "PostLockdown", "BeforeLockdown")
       
       WeekdayElecDemand <- DailyDemand
       
       #WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Weekday %in%c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")),]
       
-      WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Month >= 3),]
+      #WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Month >= 3),]
       
-      WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$PostLockdown == "Post"),]
-      
-      maxweek <- max(WeekdayElecDemand[which(WeekdayElecDemand$Year ==max(WeekdayElecDemand$Year)),]$Week)
+      maxweek <- 56 #max(WeekdayElecDemand[which(WeekdayElecDemand$Year ==max(WeekdayElecDemand$Year)),]$Week)
       
       WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Week <= maxweek),]
       
@@ -846,7 +830,7 @@ C19Elec <- function(input, output, session) {
         scale_fill_manual(
           "variable",
           values = c(
-            "Post" = BarColours[2]
+            "PostLockdown" = BarColours[2]
           )
         ) +
         geom_bar(position = "dodge",
@@ -1249,7 +1233,7 @@ output$C19ElecRolling.png <- downloadHandler(
     
     DailyDemandChart
     
-    plottitle = "Daily electricity demand - 2020 vs 2019"
+    plottitle = "Daily electricity demand, annual comparison"
     sourcecaption = "Source: National Grid, SPICe"
     
     DailyDemandChart <-
