@@ -38,7 +38,6 @@ RenElecTargetOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
              #dygraphOutput(ns("GrossConsumptionPlot")),
              plotlyOutput(ns("GrossConsumptionPlot"), height = "500px")%>% withSpinner(color="#39ab2c"),
-             HTML("<blockquote><p>Note: the calculation above is based on 2018 data as it is the most recent year where final data is available</p></blockquote>"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
