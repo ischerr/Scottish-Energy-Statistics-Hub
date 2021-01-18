@@ -88,7 +88,11 @@ RenElecGenOutput <- function(id) {
     tabPanel("Hydro",
              fluidRow(column(8,
                              h3("Scottish hydro generation compared to European countries", style = "color: #39ab2c;  font-weight:bold"),
-                             h4(textOutput(ns('EUHydroSubtitle')), style = "color: #39ab2c;")
+                             h4(textOutput(ns('EUHydroSubtitle')), style = "color: #39ab2c;"
+             ),
+             selectInput(ns("TechSelect2"), "Tech:", c("Wind",
+                                                       "Hydro"), selected = "Wind", multiple = FALSE,
+             selectize = TRUE, width = NULL, size = NULL)
              ),
              column(
                4, style = 'padding:15px;',
@@ -1540,7 +1544,7 @@ RenElecGen <- function(input, output, session) {
   )
   
   output$EUHydroSubtitle <- renderText({
-    
+
     EUHydro <- read_excel("Structure/CurrentWorking.xlsx",
                           sheet = "Wind and hydro gen EU", col_names = TRUE, 
                           skip = 48, n_max = 30)
@@ -1561,6 +1565,80 @@ RenElecGen <- function(input, output, session) {
   })
   
   output$EUHydroPlot <- renderPlotly  ({
+    
+    
+    x <- as.character(input$TechSelect2)
+    print(x)
+    if(x == "Wind"){
+      ChartColours <- c("#39ab2c", "#78c679", "#a3d65c")
+      
+      EUWind <- read_delim("Processed Data/Output/EU Wind Hydro/EUWind.txt", 
+                           "\t", escape_double = FALSE, trim_ws = TRUE)
+      
+      EUWind <- EUWind[,c(1,ncol(EUWind))]
+      
+      names(EUWind) <- c("Countries", "Renewables")
+      
+      EUWind <- EUWind %>% mutate(Countries = replace(Countries, Countries == "United Kingdom", "U.K."))
+      
+      EUWind$Renewables <- as.numeric(EUWind$Renewables)
+      
+      EUWind <- merge(EUWind, EUFlagLookup)
+      
+      EUWind$Group <- ifelse(EUWind$Renewables > 0 & EUWind$Countries %in% c("SCOTLAND", "U.K.", "EU (27)"), ChartColours[1],
+                             ifelse(EUWind$Renewables <= 0 & EUWind$Countries %in% c("SCOTLAND", "U.K.", "EU (27)"), "D",
+                                    ifelse(EUWind$Renewables > 0 & EUWind$Renewables %in% c(min(EUWind$Renewables), max(EUWind$Renewables)), ChartColours[2],
+                                           ifelse(EUWind$Renewables <= 0 & EUWind$Renewables %in% c(min(EUWind$Renewables), max(EUWind$Renewables)), "E",      
+                                                  ifelse(EUWind$Renewables <= 0 , "D",  
+                                                         ChartColours[2])))))
+      
+      EUWind <- EUWind[order(-EUWind$Renewables),]
+      
+      EUWind <- EUWind %>% mutate(Countries = replace(Countries, Countries == "U.K.", "Rest of the UK"))
+      
+      EUWind <- EUWind[-1:-2,]
+      
+      EUWind$Countries <- factor(EUWind$Countries, levels = unique(EUWind$Countries)[order(EUWind$Renewables, decreasing = FALSE)])
+      
+      p <- plot_ly(
+        data = EUWind,
+        y = ~Countries,
+        x = ~Renewables,
+        text = paste0(
+          "Wind Generation: ",
+          format(round(EUWind$Renewables, digits = 0), big.mark = ","),
+          " GWh\nCountry: ",
+          EUWind$Countries
+        ),
+        name = "EU Renewable Energy",
+        type = "bar",
+        hoverinfo = "text",
+        orientation = 'h',
+        marker = list(color =  as.list(EUWind$Group))
+      )  %>% 
+        layout(
+          barmode = 'stack',
+          legend = list(font = list(color = "#39ab2c"),
+                        orientation = 'h'),
+          hoverlabel = list(font = list(color = "white"),
+                            hovername = 'text'),
+          hovername = 'text',
+          yaxis = list(title = "",
+                       showgrid = FALSE),
+          xaxis = list(
+            title = "GWh",
+            tickformat = "",
+            showgrid = TRUE,
+            zeroline = TRUE,
+            zerolinecolor = ChartColours[1],
+            zerolinewidth = 2,
+            rangemode = "tozero"
+          )
+        ) %>% 
+        config(displayModeBar = F)
+    }
+    
+    if(as.character(input$TechSelect2) == "Hydro"){
     
     ChartColours <- c("#39ab2c", "#78c679", "#a3d65c")
     
@@ -1628,7 +1706,7 @@ RenElecGen <- function(input, output, session) {
         )
       ) %>% 
       config(displayModeBar = F)
-    
+    }
     p
     
     
