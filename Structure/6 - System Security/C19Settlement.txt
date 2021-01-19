@@ -1,5 +1,6 @@
 <p><strong>The profile of electricity use has changed since lockdown</strong></p>
-<p>The Scottish electricity demand data is available at a settlement period, or half-hourly level.&nbsp; The first chart shows half-hourly demand for the most recent week compared to the same period last year.&nbsp; This shows that:</p>
+<p>The Scottish electricity demand data is available at a settlement period, or half-hourly level.&nbsp; The first chart shows half-hourly demand for the most recent week compared to the same period in 2020 (which is before national lockdown was imposed) and 2019.&nbsp; This shows that:</p>
 <ul>
-<li><strong>Peak demand</strong> was higher in 2019 - <strong>5,047 MW</strong> in <strong>2020</strong> compared to <strong>4,414 MW</strong> in the same week in <strong>2019</strong>.</li>
-<li>The profile of weekday demand post lockdown is similar to weekend demand in 2019.&nbsp; Given that, in normal times, industrial and commercial demand is lower at weekends, this seems to confirm a reduction of activity in those sectors in daytime hours during the week.</li>
+<li><strong>Peak demand</strong> during weekdays was similar, - <strong>4,793 MW</strong> in <strong>2021</strong> compared to <strong>4,866 MW</strong> in the same week in <strong>2019, and 4,666 MW </strong>in <strong>2020</strong>.</li>
+<li>Weekend demand shows a different picture. Whilst there is usually reduced demand on weekends, the drop is more pronounced in <strong>2021</strong> compared to the two years previous.</li>
+</ul>
