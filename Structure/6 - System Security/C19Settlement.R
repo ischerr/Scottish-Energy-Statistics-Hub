@@ -1,4 +1,5 @@
 require(readxl)
+require(ISOweek)
 require(plotly)
 require(dygraphs)
 require(png)
@@ -28,7 +29,7 @@ C19SettlementOutput <- function(id) {
     ),
     tabPanel("Average demand",
              fluidRow(column(8,
-                             h3("Average electricity demand by weekday/weekend, post lockdown", style = "color: #5d8be1;  font-weight:bold"),
+                             h3("Average electricity demand by weekday/weekend in 2021 so far, compared to equivalent in 2019 and 2020.", style = "color: #5d8be1;  font-weight:bold"),
                              h4(textOutput(ns('C19SettlementRollingSubtitle')), style = "color: #5d8be1;")
              ),
              column(
@@ -37,7 +38,7 @@ C19SettlementOutput <- function(id) {
              
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
              #dygraphOutput(ns("C19SettlementPlot")),
-             plotlyOutput(ns("C19SettlementRollingPlot"))%>% withSpinner(color="#5d8be1"),
+             plotlyOutput(ns("C19SettlementRollingPlot"), height = "600px")%>% withSpinner(color="#5d8be1"),
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")
     )
     ),
@@ -52,7 +53,7 @@ C19SettlementOutput <- function(id) {
     tabsetPanel(
       tabPanel("Demand by settlement period",
     fluidRow(
-    column(10, h3("Data - Electricity demand by settlement period, week commencing 14/12/20 and equivalent week in 2019.", style = "color: #5d8be1;  font-weight:bold")),
+    column(10, h3("Data - Electricity demand by settlement period, week commencing 11/01/21 and equivalent week in 2019 & 2020.", style = "color: #5d8be1;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -60,7 +61,7 @@ C19SettlementOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
     tabPanel("Average demand weekday/weekend",
              fluidRow(
-               column(10, h3("Data - Average electricity demand by weekday/weekend, post lockdown", style = "color: #5d8be1;  font-weight:bold")),
+               column(10, h3("Data - Average electricity demand by weekday/weekend in 2021 so far, compared to equivalent in 2019 and 2020.", style = "color: #5d8be1;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -96,7 +97,7 @@ C19Settlement <- function(input, output, session) {
 
   output$C19SettlementSubtitle <- renderText({
     
-    paste("Scotland, week commencing 14/12/20 and equivalent week in 2019")
+    paste("Scotland, week commencing 11/01/21 and equivalent week in 2019 & 2020")
   })
   
   output$C19SettlementPlot <- renderPlotly  ({
@@ -110,7 +111,7 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly$Date <- ymd(ElecDemandHalfHourly$Date)
     
-    ElecDemandHalfHourly$Year <-year(ElecDemandHalfHourly$Date)
+    ElecDemandHalfHourly$Year <- substr(ISOweek(ElecDemandHalfHourly$Date),1,4)
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2013),]
     
@@ -122,7 +123,9 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly$DayofYear <- yday(ElecDemandHalfHourly$Date)
     
-    ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 13, "PostLockdown", "BeforeLockdown")
+    
+    
+    #ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 1, "PostLockdown", "BeforeLockdown")
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2019),]
     
@@ -134,7 +137,7 @@ C19Settlement <- function(input, output, session) {
     # 
     # max(x$Week)}
     
-     MaxWeek = 51
+    MaxWeek = 2
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week == MaxWeek),] 
     
@@ -145,7 +148,7 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly  <- dcast(ElecDemandHalfHourly, id + SettlementPeriod + Weekday ~ Year, value.var = 'Total')
     
-    ElecDemandHalfHourly$Date <- ymd("2020/12/14")
+    ElecDemandHalfHourly$Date <- ymd("2021/01/11")
     
     ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date) + 1
     ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date) + 2
@@ -154,43 +157,63 @@ C19Settlement <- function(input, output, session) {
     ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Saturday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Saturday"),]$Date) + 5
     ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Sunday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Sunday"),]$Date) + 6
     
-    ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
+    ChartColours <- c("#fc4e2a", "#1d91c0", "#bdbdbd", "#8da0cb")
     BarColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
     
     p1 <-  plot_ly(ElecDemandHalfHourly,x = ~ id ) %>% 
-      add_trace(data = ElecDemandHalfHourly,
-                x = ~ id,
-                y = ~ `2020`,
-                name = "2020",
-                type = 'scatter',
-                mode = 'lines',
-                legendgroup = "1",
-                text = paste0(
-                  "2020 Demand: ",
-                  round(ElecDemandHalfHourly$`2020`, digits = 1),
-                  " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod,
-                  "\nDate: ",
-                  format(ElecDemandHalfHourly$Date, format="%d/%m/%y")
-                ),
-                hoverinfo = 'text',
-                line = list(width = 4)
-      ) %>% 
       add_trace(data = ElecDemandHalfHourly,
                 x = ~ id,
                 y = ~ `2019`,
                 name = "2019",
                 type = 'scatter',
                 mode = 'lines',
-                legendgroup = "2",
+                legendgroup = "1",
                 text = paste0(
-                  "2019 demand on equivalent date: ",
+                  "2019 Demand: ",
                   round(ElecDemandHalfHourly$`2019`, digits = 1),
                   " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod,
                   "\nDate: ",
                   format(ElecDemandHalfHourly$Date, format="%d/%m/%y")
                 ),
                 hoverinfo = 'text',
-                line = list(width = 4)
+                line = list(width = 4,
+                            color = ChartColours[3])
+      ) %>% 
+      add_trace(data = ElecDemandHalfHourly,
+                x = ~ id,
+                y = ~ `2020`,
+                name = "2020",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "2",
+                text = paste0(
+                  "2020 demand on equivalent date: ",
+                  round(ElecDemandHalfHourly$`2020`, digits = 1),
+                  " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod,
+                  "\nDate: ",
+                  format(ElecDemandHalfHourly$Date, format="%d/%m/%y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 4,
+                            color = ChartColours[2])
+      )  %>% 
+      add_trace(data = ElecDemandHalfHourly,
+                x = ~ id,
+                y = ~ `2021`,
+                name = "2021",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "3",
+                text = paste0(
+                  "2021 demand on equivalent date: ",
+                  round(ElecDemandHalfHourly$`2021`, digits = 1),
+                  " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod,
+                  "\nDate: ",
+                  format(ElecDemandHalfHourly$Date, format="%d/%m/%y")
+                ),
+                hoverinfo = 'text',
+                line = list(width = 4,
+                            color = ChartColours[1])
       )  %>% 
       layout(
         legend = list(font = list(color = "#126992"),
@@ -235,7 +258,7 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly$Date <- ymd(ElecDemandHalfHourly$Date)
     
-    ElecDemandHalfHourly$Year <-year(ElecDemandHalfHourly$Date)
+    ElecDemandHalfHourly$Year <- substr(ISOweek(ElecDemandHalfHourly$Date),1,4)
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2013),]
     
@@ -247,7 +270,9 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly$DayofYear <- yday(ElecDemandHalfHourly$Date)
     
-    ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 13, "PostLockdown", "BeforeLockdown")
+    
+    
+    #ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 1, "PostLockdown", "BeforeLockdown")
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2019),]
     
@@ -259,7 +284,7 @@ C19Settlement <- function(input, output, session) {
     # 
     # max(x$Week)}
     
-     MaxWeek = 51
+    MaxWeek = 2
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week == MaxWeek),] 
     
@@ -270,7 +295,7 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly  <- dcast(ElecDemandHalfHourly, id + SettlementPeriod + Weekday ~ Year, value.var = 'Total')
     
-    ElecDemandHalfHourly$Date <- ymd("2020/12/14")
+    ElecDemandHalfHourly$Date <- ymd("2021/01/11")
     
     ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date) + 1
     ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date) + 2
@@ -284,9 +309,9 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly$Date <- as.character((hms("00:30:00")*(ElecDemandHalfHourly$SettlementPeriod-1))+ElecDemandHalfHourly$Date)
     
-    ElecDemandHalfHourly <- ElecDemandHalfHourly[6:4]
+    ElecDemandHalfHourly <- ElecDemandHalfHourly[7:4]
     
-    names(ElecDemandHalfHourly) <- c("Date", "Half hourly demand in 2020 (MW)", "Demand in equivalent half hour in 2019 (MW)")
+    names(ElecDemandHalfHourly) <- c("Date", "Half hourly demand in 2021 (MW)", "Demand in equivalent half hour in 2020 (MW)", "Demand in equivalent half hour in 2019 (MW)")
     
     DT::datatable(
       ElecDemandHalfHourly,
@@ -298,17 +323,17 @@ C19Settlement <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Electricity demand by settlement period, week commencing 14/12/20 and equivalent week in 2019",
+        title = "Electricity demand by settlement period, week commencing 11/01/2020 and equivalent week in 2019 & 2020",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Electricity demand by settlement period, week commencing 14/12/20 and equivalent week in 2019',
+            title = 'Electricity demand by settlement period, week commencing 11/01/2020 and equivalent week in 2019 & 2020',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Electricity demand by settlement period, week commencing 14/12/20 and equivalent week in 2019')
+               title = 'Electricity demand by settlement period, week commencing 11/01/2020 and equivalent week in 2019 & 2020')
         ),
         
         # customize the length menu
@@ -318,7 +343,7 @@ C19Settlement <- function(input, output, session) {
         pageLength = -1
       ) 
     ) %>%
-        formatRound(2:3, 0) %>% 
+        formatRound(2:4, 0) %>% 
       formatDate(1,
                  method =  "toLocaleString")
   }) 
@@ -340,7 +365,7 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly$Date <- ymd(ElecDemandHalfHourly$Date)
     
-    ElecDemandHalfHourly$Year <-year(ElecDemandHalfHourly$Date)
+    ElecDemandHalfHourly$Year <-substr(ISOweek(ElecDemandHalfHourly$Date),1,4)
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2013),]
     
@@ -352,7 +377,7 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly$DayofYear <- yday(ElecDemandHalfHourly$Date)
     
-    ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 13, "PostLockdown", "BeforeLockdown")
+    ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 2, "PostLockdown", "BeforeLockdown")
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2019),]
     
@@ -364,7 +389,7 @@ C19Settlement <- function(input, output, session) {
     # 
     # max(x$Week)}
     
-     MaxWeek = 51
+     MaxWeek = 2
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week <= MaxWeek),] 
     
@@ -381,7 +406,7 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly <- dcast(ElecDemandHalfHourly, SettlementPeriod ~ Variable, value.var = "Total")
     
-    ChartColours <- c("#1f77b4","#fdae6b","#ff7f0e","#9ecae1")
+    ChartColours <- c("#fc8d59", "#fc4e2a", "#a6bddb", "#1d91c0", "#d9d9d9", "#bdbdbd", "#8da0cb")
     
     p2 <-  plot_ly(ElecDemandHalfHourly,x = ~ SettlementPeriod ) %>% 
       add_trace(data = ElecDemandHalfHourly,
@@ -397,7 +422,7 @@ C19Settlement <- function(input, output, session) {
                   " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod
                 ),
                 hoverinfo = 'text',
-                line = list(width = 4, color = ChartColours[3], dash = "none")
+                line = list(width = 4, color = ChartColours[6], dash = "none")
       ) %>% 
       add_trace(data = ElecDemandHalfHourly,
                 x = ~ SettlementPeriod,
@@ -412,7 +437,7 @@ C19Settlement <- function(input, output, session) {
                   " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod
                 ),
                 hoverinfo = 'text',
-                line = list(width = 4, color = ChartColours[2], dash = "none")
+                line = list(width = 4, color = ChartColours[5], dash = "none")
       ) %>% 
       add_trace(data = ElecDemandHalfHourly,
                 x = ~ SettlementPeriod,
@@ -427,7 +452,7 @@ C19Settlement <- function(input, output, session) {
                   " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod
                 ),
                 hoverinfo = 'text',
-                line = list(width = 4, color = ChartColours[1], dash = "none")
+                line = list(width = 4, color = ChartColours[4], dash = "none")
       ) %>% 
       add_trace(data = ElecDemandHalfHourly,
                 x = ~ SettlementPeriod,
@@ -442,7 +467,37 @@ C19Settlement <- function(input, output, session) {
                   " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod
                 ),
                 hoverinfo = 'text',
-                line = list(width = 4, color = ChartColours[4], dash = "none")
+                line = list(width = 4, color = ChartColours[3], dash = "none")
+      ) %>% 
+      add_trace(data = ElecDemandHalfHourly,
+                x = ~ SettlementPeriod,
+                y = ~ `2021 - Weekday`,
+                name = "2021 - Weekday",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "5",
+                text = paste0(
+                  "2021 - Weekday average demand: ",
+                  round(ElecDemandHalfHourly$`2021 - Weekday`, digits = 1),
+                  " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod
+                ),
+                hoverinfo = 'text',
+                line = list(width = 4, color = ChartColours[2], dash = "none")
+      ) %>% 
+      add_trace(data = ElecDemandHalfHourly,
+                x = ~ SettlementPeriod,
+                y = ~ `2021 - Weekend`,
+                name = "2021 - Weekend",
+                type = 'scatter',
+                mode = 'lines',
+                legendgroup = "6",
+                text = paste0(
+                  "2021 - Weekend average demand: ",
+                  round(ElecDemandHalfHourly$`2021 - Weekend`, digits = 1),
+                  " MW\nSettlement Period: ", ElecDemandHalfHourly$SettlementPeriod
+                ),
+                hoverinfo = 'text',
+                line = list(width = 4, color = ChartColours[1], dash = "none")
       ) %>% 
       layout(
         legend = list(font = list(color = "#126992"),
@@ -473,9 +528,6 @@ C19Settlement <- function(input, output, session) {
   
   output$C19SettlementRollingTable = renderDataTable({
     
-    library(readr)
-    library(lubridate)
-    
     ElecDemandHalfHourly <- read_csv("CovidAnalysis/ElecDemandHalfHourly.csv")
     
     names(ElecDemandHalfHourly) <- c("Date", "SettlementPeriod", "Total", "Quarter")
@@ -484,7 +536,7 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly$Date <- ymd(ElecDemandHalfHourly$Date)
     
-    ElecDemandHalfHourly$Year <-year(ElecDemandHalfHourly$Date)
+    ElecDemandHalfHourly$Year <-substr(ISOweek(ElecDemandHalfHourly$Date),1,4)
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2013),]
     
@@ -496,7 +548,7 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly$DayofYear <- yday(ElecDemandHalfHourly$Date)
     
-    ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 13, "PostLockdown", "BeforeLockdown")
+    ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 1, "PostLockdown", "BeforeLockdown")
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2019),]
     
@@ -508,7 +560,7 @@ C19Settlement <- function(input, output, session) {
     # 
     # max(x$Week)}
     
-     MaxWeek = 51
+    MaxWeek = 2
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week <= MaxWeek),] 
     
@@ -525,10 +577,10 @@ C19Settlement <- function(input, output, session) {
     
     ElecDemandHalfHourly <- dcast(ElecDemandHalfHourly, SettlementPeriod ~ Variable, value.var = "Total")
     
-    names(ElecDemandHalfHourly) <- c("Settlement Period", "2019 - Weekday (MW)",   "2019 - Weekend (MW)",   "2020 - Weekday (MW)",   "2020 - Weekend (MW)")  
+    names(ElecDemandHalfHourly) <- c("Settlement Period", "2019 - Weekday (MW)",   "2019 - Weekend (MW)",   "2020 - Weekday (MW)",   "2020 - Weekend (MW)",   "2021 - Weekday (MW)",   "2021 - Weekend (MW)")  
     
     DT::datatable(
-      ElecDemandHalfHourly,
+      ElecDemandHalfHourly[c(1,6,7,4,5,2,3)],
       extensions = 'Buttons',
       rownames = FALSE,
       options = list(
@@ -537,17 +589,17 @@ C19Settlement <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Average electricity demand by weekday/weekend, post lockdown",
+        title = "Average electricity demand by weekday/weekend in 2021 so far, compared to equivalent in 2019 and 2020.",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Average electricity demand by weekday/weekend, post lockdown',
+            title = 'Average electricity demand by weekday/weekend in 2021 so far, compared to equivalent in 2019 and 2020.',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Average electricity demand by weekday/weekend, post lockdown')
+               title = 'Average electricity demand by weekday/weekend in 2021 so far, compared to equivalent in 2019 and 2020.')
         ),
         
         # customize the length menu
@@ -557,7 +609,7 @@ C19Settlement <- function(input, output, session) {
         pageLength = -1
       ) 
     ) %>%
-      formatRound(2:5, 0)
+      formatRound(2:7, 0)
   })
   
   output$Text <- renderUI({
@@ -587,16 +639,15 @@ C19Settlement <- function(input, output, session) {
     filename = "C19HalfHourlyDemand.png",
     content = function(file) {
       
-      library(readr)
-      library(lubridate)
-      
       ElecDemandHalfHourly <- read_csv("CovidAnalysis/ElecDemandHalfHourly.csv")
       
       names(ElecDemandHalfHourly) <- c("Date", "SettlementPeriod", "Total", "Quarter")
       
+      ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$SettlementPeriod <= 48),]
+      
       ElecDemandHalfHourly$Date <- ymd(ElecDemandHalfHourly$Date)
       
-      ElecDemandHalfHourly$Year <-year(ElecDemandHalfHourly$Date)
+      ElecDemandHalfHourly$Year <-substr(ISOweek(ElecDemandHalfHourly$Date),1,4)
       
       ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2013),]
       
@@ -608,7 +659,7 @@ C19Settlement <- function(input, output, session) {
       
       ElecDemandHalfHourly$DayofYear <- yday(ElecDemandHalfHourly$Date)
       
-      ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 13, "PostLockdown", "BeforeLockdown")
+      ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 2, "PostLockdown", "BeforeLockdown")
       
       ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2019),]
       
@@ -620,7 +671,7 @@ C19Settlement <- function(input, output, session) {
       # 
       # max(x$Week)}
       
-       MaxWeek = 51
+      MaxWeek = 2
       
       ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week == MaxWeek),] 
       
@@ -631,7 +682,7 @@ C19Settlement <- function(input, output, session) {
       
       ElecDemandHalfHourly  <- dcast(ElecDemandHalfHourly, id + SettlementPeriod + Weekday ~ Year, value.var = 'Total')
       
-      ElecDemandHalfHourly$Date <- ymd("2020/12/14")
+      ElecDemandHalfHourly$Date <- ymd("2021/01/11")
       
       ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Tuesday"),]$Date) + 1
       ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date <- (ElecDemandHalfHourly[which(ElecDemandHalfHourly$Weekday == "Wednesday"),]$Date) + 2
@@ -645,43 +696,58 @@ C19Settlement <- function(input, output, session) {
       width <- 336
       
       ChartColours <- c("#126992", "#1f77b4", "#ff7f0e", "#8da0cb")
-      BarColours <- c("#126992", "#1f77b4", "#ff7f0e", "#8da0cb")
+      BarColours <- c("#fc8d59", "#fc4e2a", "#a6bddb", "#1d91c0", "#d9d9d9", "#bdbdbd", "#8da0cb")
       
       ElecDemandHalfHourlyChart <- ElecDemandHalfHourly %>%
         ggplot(aes(x = Year), family = "Century Gothic") +
         geom_line(
           aes(y = `2019`,
               label = paste0(`2019` * 100, "%")),
-          colour = ChartColours[3],
+          colour = BarColours[6],
           size = 1,
           family = "Century Gothic"
         ) +
         annotate(
           "text",
           x = mean(ElecDemandHalfHourly$Year),
-          y = mean(ElecDemandHalfHourly$`2019`),
+          y = 3200,
           label = "2019",
           hjust = 0.5,
-          vjust = -6,
-          colour = ChartColours[3],
+          colour = BarColours[6],
           fontface = 2,
           family = "Century Gothic"
         ) +
         geom_line(
           aes(y = `2020`,
               label = `2020`),
-          colour = ChartColours[2],
+          colour = BarColours[4],
           size = 1,
           family = "Century Gothic"
         ) +
         annotate(
           "text",
           x = mean(ElecDemandHalfHourly$Year),
-          y = mean(ElecDemandHalfHourly$`2020`),
+          y = 3000,
           label = "2020",
           hjust = 0.5,
-          vjust = 2,
-          colour = ChartColours[2],
+          colour = BarColours[4],
+          fontface = 2,
+          family = "Century Gothic"
+        ) +
+        geom_line(
+          aes(y = `2021`,
+              label = `2021`),
+          colour = BarColours[2],
+          size = 1,
+          family = "Century Gothic"
+        ) +
+        annotate(
+          "text",
+          x = mean(ElecDemandHalfHourly$Year),
+          y = 2800,
+          label = "2021",
+          hjust = 0.5,
+          colour = BarColours[2],
           fontface = 2,
           family = "Century Gothic"
         ) +
@@ -880,7 +946,7 @@ C19Settlement <- function(input, output, session) {
           title = plottitle,
           face = 2,
           subtitle = paste(
-            "Scotland, week commencing 14/12/20 and equivalent week in 2019"
+            "Scotland, week commencing 11/01/2020 and equivalent week in 2019 & 2020"
           )
         )+
         
@@ -914,7 +980,7 @@ output$C19SettlementRolling.png <- downloadHandler(
     
     ElecDemandHalfHourly$Date <- ymd(ElecDemandHalfHourly$Date)
     
-    ElecDemandHalfHourly$Year <-year(ElecDemandHalfHourly$Date)
+    ElecDemandHalfHourly$Year <-substr(ISOweek(ElecDemandHalfHourly$Date),1,4)
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2013),]
     
@@ -926,7 +992,7 @@ output$C19SettlementRolling.png <- downloadHandler(
     
     ElecDemandHalfHourly$DayofYear <- yday(ElecDemandHalfHourly$Date)
     
-    ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 13, "PostLockdown", "BeforeLockdown")
+    ElecDemandHalfHourly$PostLockdown <- ifelse(ElecDemandHalfHourly$Week >= 2, "PostLockdown", "BeforeLockdown")
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Year >= 2019),]
     
@@ -938,7 +1004,7 @@ output$C19SettlementRolling.png <- downloadHandler(
     # 
     # max(x$Week)}
     
-     MaxWeek = 51
+    MaxWeek = 2
     
     ElecDemandHalfHourly <- ElecDemandHalfHourly[which(ElecDemandHalfHourly$Week <= MaxWeek),] 
     
@@ -961,79 +1027,109 @@ output$C19SettlementRolling.png <- downloadHandler(
     width <- 48
     
     ChartColours <- c("#126992", "#1f77b4", "#ff7f0e", "#8da0cb", "#fdae6b")
-    BarColours <- c("#126992", "#1f77b4", "#ff7f0e", "#8da0cb")
+    BarColours <- c("#fc8d59", "#fc4e2a", "#a6bddb", "#1d91c0", "#d9d9d9", "#bdbdbd", "#8da0cb")
     
     ElecDemandHalfHourlyChart <- ElecDemandHalfHourly %>%
       ggplot(aes(x = Year), family = "Century Gothic") +
       geom_line(
         aes(y = `2019 - Weekday`,
             label = paste0(`2019 - Weekday` * 100, "%")),
-        colour = ChartColours[3],
+        colour = BarColours[6],
         size = 1,
         family = "Century Gothic"
       ) +
       annotate(
         "text",
         x = mean(ElecDemandHalfHourly$Year),
-        y = mean(ElecDemandHalfHourly$`2019 - Weekday`),
+        y = 4800,
         label = "2019 - Weekday",
         hjust = 0.5,
-        vjust = -6,
-        colour = ChartColours[3],
-        fontface = 2,
-        family = "Century Gothic"
-      ) +
-      geom_line(
-        aes(y = `2020 - Weekday`,
-            label = `2020 - Weekday`),
-        colour = ChartColours[2],
-        size = 1,
-        family = "Century Gothic"
-      ) +
-      annotate(
-        "text",
-        x = mean(ElecDemandHalfHourly$Year),
-        y = mean(ElecDemandHalfHourly$`2020 - Weekday`),
-        label = "2020 - Weekday",
-        hjust = 0.5,
-        vjust = 2,
-        colour = ChartColours[2],
+        colour = BarColours[6],
         fontface = 2,
         family = "Century Gothic"
       ) +
       geom_line(
         aes(y = `2019 - Weekend`,
             label = paste0(`2019 - Weekend` * 100, "%")),
-        colour = ChartColours[5],
+        colour = BarColours[5],
         size = 1,
         family = "Century Gothic"
       ) +
       annotate(
         "text",
         x = mean(ElecDemandHalfHourly$Year),
-        y = mean(ElecDemandHalfHourly$`2019 - Weekend`),
+        y = 2800,
         label = "2019 - Weekend",
         hjust = 0.5,
-        vjust = -6,
-        colour = ChartColours[5],
+        colour = BarColours[5],
+        fontface = 2,
+        family = "Century Gothic"
+      ) +
+      geom_line(
+        aes(y = `2020 - Weekday`,
+            label = `2020 - Weekday`),
+        colour = BarColours[4],
+        size = 1,
+        family = "Century Gothic"
+      ) +
+      annotate(
+        "text",
+        x = mean(ElecDemandHalfHourly$Year),
+        y = 4600,
+        label = "2020 - Weekday",
+        hjust = 0.5,
+        colour = BarColours[4],
         fontface = 2,
         family = "Century Gothic"
       ) +
       geom_line(
         aes(y = `2020 - Weekend`,
             label = `2020 - Weekend`),
-        colour = ChartColours[4],
+        colour = BarColours[3],
         size = 1,
         family = "Century Gothic"
       ) +
       annotate(
         "text",
         x = mean(ElecDemandHalfHourly$Year),
-        y = mean(ElecDemandHalfHourly$`2020 - Weekend`),
+        y = 2600,
         label = "2020 - Weekend",
         hjust = 0.5,
-        vjust = 2.2,
-        colour = ChartColours[4],
+        colour = BarColours[3],
+        fontface = 2,
+        family = "Century Gothic"
+      ) +
+      geom_line(
+        aes(y = `2021 - Weekday`,
+            label = `2021 - Weekday`),
+        colour = BarColours[2],
+        size = 1,
+        family = "Century Gothic"
+      ) +
+      annotate(
+        "text",
+        x = mean(ElecDemandHalfHourly$Year),
+        y = 4400,
+        label = "2021 - Weekday",
+        hjust = 0.5,
+        colour = BarColours[2],
+        fontface = 2,
+        family = "Century Gothic"
+      ) +
+      geom_line(
+        aes(y = `2021 - Weekend`,
+            label = `2021 - Weekend`),
+        colour = BarColours[1],
+        size = 1,
+        family = "Century Gothic"
+      ) +
+      annotate(
+        "text",
+        x = mean(ElecDemandHalfHourly$Year),
+        y = 2400,
+        label = "2021 - Weekend",
+        hjust = 0.5,
+        colour = BarColours[1],
         fontface = 2,
         family = "Century Gothic"
       ) +
@@ -1200,6 +1296,69 @@ output$C19SettlementRolling.png <- downloadHandler(
         colour = "grey",
         alpha = 0.4,
         linetype = 2
+      )+
+      geom_text(
+        aes(
+          x = min(Year)-(width*0.03),
+          y = 4000,
+          label = "4000\nMW",
+          fontface = 2
+        ),
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        size = 3
+      ) +
+      annotate(
+        "segment",
+        x = min(ElecDemandHalfHourly$Year)-100,
+        xend = max(ElecDemandHalfHourly$Year)+100,
+        y = 4000,
+        yend = 4000,
+        colour = "grey",
+        alpha = 0.4,
+        linetype = 2
+      ) +
+      geom_text(
+        aes(
+          x = min(Year)-(width*0.03),
+          y = 4500,
+          label = "4500\nMW",
+          fontface = 2
+        ),
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        size = 3
+      ) +
+      annotate(
+        "segment",
+        x = min(ElecDemandHalfHourly$Year)-100,
+        xend = max(ElecDemandHalfHourly$Year)+100,
+        y = 4500,
+        yend = 4500,
+        colour = "grey",
+        alpha = 0.4,
+        linetype = 2
+      )+
+      geom_text(
+        aes(
+          x = min(Year)-(width*0.03),
+          y = 5000,
+          label = "5000\nMW",
+          fontface = 2
+        ),
+        colour = ChartColours[1],
+        family = "Century Gothic",
+        size = 3
+      ) +
+      annotate(
+        "segment",
+        x = min(ElecDemandHalfHourly$Year)-100,
+        xend = max(ElecDemandHalfHourly$Year)+100,
+        y = 5000,
+        yend = 5000,
+        colour = "grey",
+        alpha = 0.4,
+        linetype = 2
       )
     # )+
     # annotate(
@@ -1216,7 +1375,7 @@ output$C19SettlementRolling.png <- downloadHandler(
     
     ElecDemandHalfHourlyChart
     
-    plottitle = "Average electricity demand by weekday/weekend, post lockdown"
+    plottitle = "Average electricity demand per settlement period, by weekday/weekend"
     sourcecaption = "Source: National Grid"
     
     ElecDemandHalfHourlyChart <-
@@ -1228,12 +1387,12 @@ output$C19SettlementRolling.png <- downloadHandler(
     
     ElecDemandHalfHourlyChart <- ElecDemandHalfHourlyChart +
       coord_cartesian(xlim = c(min(ElecDemandHalfHourly$Year-1), max(ElecDemandHalfHourly$Year)-1),
-                      ylim = c(-45,max(ElecDemandHalfHourly$`2019 - Weekday`)*1.14)) +
+                      ylim = c(-45,max(ElecDemandHalfHourly$`2019 - Weekday`)*1.11)) +
       labs(
         title = plottitle,
         face = 2,
         subtitle = paste(
-          "Scotland, 2020 vs 2019"
+          "Scotland, 2021, 2020 & 2019"
         )
       )+
       
@@ -1249,7 +1408,7 @@ output$C19SettlementRolling.png <- downloadHandler(
       file,
       plot =  ElecDemandHalfHourlyChart,
       width = 30,
-      height = 12,
+      height = 15,
       units = "cm",
       dpi = 300
     )
