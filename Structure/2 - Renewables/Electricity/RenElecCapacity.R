@@ -1838,6 +1838,19 @@ RenElecCapacity <- function(input, output, session) {
         marker = list(color = BarColours[4]),
         legendgroup = 4
       ) %>% 
+      add_trace(
+        x = (OperationalSize$Total) * 1.01,
+        showlegend = FALSE,
+        type = 'scatter',
+        mode = 'text',
+        text = paste0("<b>",format(round((as.numeric(OperationalSize$Total)), digits = 0), big.mark = ","), " MW", "</b>"),
+        textposition = 'middle right',
+        textfont = list(color = ChartColours[1]),
+        hoverinfo = 'skip',
+        marker = list(
+          size = 0.00001
+        )
+      ) %>%
       layout(
         barmode = 'stack',
         legend = list(font = list(color = "#1A5D38"),
@@ -1856,6 +1869,7 @@ RenElecCapacity <- function(input, output, session) {
         xaxis = list(
           title = "",
           tickformat = "",
+          range = c(0, max(OperationalSize$Total)*1.12),
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
