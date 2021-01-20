@@ -66,7 +66,7 @@ DomesticRHIOutput <- function(id) {
     tabsetPanel(
       tabPanel("Cumulative Installations",
                fluidRow(
-                 column(10, h3("Data - Cumulative number of domestic RHI applications and accredited applications", style = "color: #39ab2c;  font-weight:bold")),
+                 column(10, h3("Data - Cumulative number of domestic RHI accredited applications", style = "color: #39ab2c;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
@@ -532,11 +532,11 @@ DomesticRHI <- function(input, output, session) {
         sheet = "Domestic RHI", 
         skip = 60)
     
-    names(Data) <- c("Date", "Air Source - Applications", "Air Source - Accredited Applications",
-                    "Ground Source - Applications", "Ground Source - Accredited Applications",
-                     "Biomass - Applications", "Biomass - Accredited Applications",
-                     "Solar Thermal - Applications", "Solar Thermal - Accredited Applications",
-                     "Total - Applications", "Total - Accredited Applications")
+    names(Data) <- c("Date", "Air Source - Applications", "Air Source",
+                    "Ground Source - Applications", "Ground Source",
+                     "Biomass - Applications", "Biomass",
+                     "Solar Thermal - Applications", "Solar Thermal",
+                     "Total - Applications", "Total")
     
     Data$Date <- format(Data$Date, "%b %Y")
 
@@ -551,17 +551,17 @@ DomesticRHI <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Cumulative number of accredited domestic RHI applications, Scotland",
+        title = "Cumulative number of domestic RHI accredited applications, Scotland",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Cumulative number of accredited domestic RHI applications, Scotland",
+            title = "Cumulative number of domestic RHI accredited applications, Scotland",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Cumulative number of accredited domestic RHI applications, Scotland")
+               title = "Cumulative number of domestic RHI accredited applications, Scotland")
         ),
         
         # customize the length menu
