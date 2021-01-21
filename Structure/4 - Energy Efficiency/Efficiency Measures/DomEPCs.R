@@ -39,6 +39,7 @@ DomEPCsOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
              #dygraphOutput(ns("StockEPCPlot")),
              plotlyOutput(ns("EPCProportionsPlot"))%>% withSpinner(color="#34d1a3"),
+             HTML("<blockquote><p>*based on SAP 2012 RdSAP v9.92&nbsp;</p></blockquote>"),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
     tabPanel("Housing Tenure EPC",
              fluidRow(column(8,
