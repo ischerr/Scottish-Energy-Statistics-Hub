@@ -24,6 +24,7 @@ PrimaryHeatingOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     #dygraphOutput(ns("PrimaryHeatingPlot")),
     plotlyOutput(ns("PrimaryHeatingPlot"), height = "600px")%>% withSpinner(color="#68c3ea"),
+    
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Non-domestic",
              fluidRow(column(8,
@@ -38,6 +39,7 @@ PrimaryHeatingOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
              #dygraphOutput(ns("PrimaryHeatingPlot")),
              plotlyOutput(ns("PrimaryHeatingNonDomPlot"), height = "600px")%>% withSpinner(color="#68c3ea"),
+             HTML("<blockquote><p>*based on EPCs available for non-domestic properties that may not be representative of the full non-domestic building stock</p></blockquote>"),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),

@@ -268,6 +268,8 @@ PrimaryOilGas <- function(input, output, session) {
     
     PrimaryOilGas <- Data[complete.cases(Data),]
     
+    PrimaryOilGas$`Proportion of primary energy made up of oil and gas` <- (PrimaryOilGas$Coal + PrimaryOilGas$`Primary oils` + PrimaryOilGas$`Petroleum products` + PrimaryOilGas$`Natural gas`)/PrimaryOilGas$Total
+    
     datatable(
       PrimaryOilGas,
       extensions = 'Buttons',
@@ -299,7 +301,8 @@ PrimaryOilGas <- function(input, output, session) {
         pageLength = -1
       )
     ) %>%
-      formatRound(2:8, 1) 
+      formatRound(2:8, 1) %>% 
+      formatPercentage(9,1)
   })
   
   

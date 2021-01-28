@@ -668,17 +668,17 @@ WallInsulation <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Cumulative recorded wall insulations under government schemes, CERT + ECO (000s)",
+        title = "Cumulative recorded wall insulations under government schemes, CERT + ECO",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Cumulative recorded wall insulations under government schemes, CERT + ECO (000s)',
+            title = 'Cumulative recorded wall insulations under government schemes, CERT + ECO',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Cumulative recorded wall insulations under government schemes, CERT + ECO (000s)')
+               title = 'Cumulative recorded wall insulations under government schemes, CERT + ECO')
         ),
         
         # customize the length menu
@@ -710,13 +710,13 @@ WallInsulation <- function(input, output, session) {
       add_trace(data = WallInsulationPlotlyData,
                 x = ~ Year,
                 y = ~ Total,
-                name = "Total wall insulation - CERT + ECO (000s)",
+                name = "Total wall insulation - CERT + ECO",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "1",
                 text = paste0(
-                  "Total wall insulation - CERT + ECO (000s): ",
-                  WallInsulationPlotlyData$Total,
+                  "Total wall insulation - CERT + ECO: ",
+                  format(WallInsulationPlotlyData$Total, big.mark = ","),
                   "\nYear: ",
                   format(WallInsulationPlotlyData$Year, "%Y")
                 ),
@@ -728,10 +728,10 @@ WallInsulation <- function(input, output, session) {
         x = ~ Year,
         y = ~ `Total`,
         legendgroup = "1",
-        name = "Total wall insulation - CERT + ECO (000s)",
+        name = "Total wall insulation - CERT + ECO",
         text = paste0(
-          "Total wall insulation - CERT + ECO (000s): ",
-          WallInsulationPlotlyData[which(WallInsulationPlotlyData$Total > 0 | WallInsulationPlotlyData$Total < 0),][-1,]$Total, 
+          "Total wall insulation - CERT + ECO: ",
+          format(WallInsulationPlotlyData[which(WallInsulationPlotlyData$Total > 0 | WallInsulationPlotlyData$Total < 0),][-1,]$Total, big.mark = ","), 
           "\nYear: ",
           format(WallInsulationPlotlyData[which(WallInsulationPlotlyData$Total > 0 | WallInsulationPlotlyData$Total < 0),][-1,]$Year, "%Y")
         ),
@@ -745,13 +745,13 @@ WallInsulation <- function(input, output, session) {
       add_trace(data = WallInsulationPlotlyData,
                 x = ~ Year,
                 y = ~ Cavity,
-                name = "Cavity wall insulation - CERT + ECO (000s)",
+                name = "Cavity wall insulation - CERT + ECO",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "2",
                 text = paste0(
-                  "Cavity wall insulation - CERT + ECO (000s): ",
-                  WallInsulationPlotlyData$Cavity,
+                  "Cavity wall insulation - CERT + ECO: ",
+                  format(WallInsulationPlotlyData$Cavity, big.mark = ","),
                   "\nYear: ",
                   format(WallInsulationPlotlyData$Year, "%Y")
                 ),
@@ -763,10 +763,10 @@ WallInsulation <- function(input, output, session) {
         x = ~ Year,
         y = ~ `Cavity`,
         legendgroup = "2",
-        name = "Cavity wall insulation - CERT + ECO (000s)",
+        name = "Cavity wall insulation - CERT + ECO",
         text = paste0(
-          "Cavity wall insulation - CERT + ECO (000s): ",
-          WallInsulationPlotlyData[which(WallInsulationPlotlyData$Cavity > 0 | WallInsulationPlotlyData$Cavity < 0),][-1,]$Cavity,
+          "Cavity wall insulation - CERT + ECO: ",
+          format(WallInsulationPlotlyData[which(WallInsulationPlotlyData$Cavity > 0 | WallInsulationPlotlyData$Cavity < 0),][-1,]$Cavity, big.mark = ","),
           "\nYear: ",
           format(WallInsulationPlotlyData[which(WallInsulationPlotlyData$Cavity > 0 | WallInsulationPlotlyData$Cavity < 0),][-1,]$Year, "%Y")
         ),
@@ -780,13 +780,13 @@ WallInsulation <- function(input, output, session) {
       add_trace(data = WallInsulationPlotlyData,
                 x = ~ Year,
                 y = ~ Solid,
-                name = "Solid wall insulation - CERT + ECO (000s)",
+                name = "Solid wall insulation - CERT + ECO",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "3",
                 text = paste0(
                   "Solid: ",
-                  WallInsulationPlotlyData$Solid,
+                  format(WallInsulationPlotlyData$Solid, big.mark = ","),
                   "\nYear: ",
                   format(WallInsulationPlotlyData$Year, "%Y")
                 ),
@@ -798,10 +798,10 @@ WallInsulation <- function(input, output, session) {
         x = ~ Year,
         y = ~ `Solid`,
         legendgroup = "3",
-        name = "Solid wall insulation - CERT + ECO (000s)",
+        name = "Solid wall insulation - CERT + ECO",
         text = paste0(
-          "Solid wall insulation - CERT + ECO (000s): ",
-         WallInsulationPlotlyData[which(WallInsulationPlotlyData$Solid > 0 | WallInsulationPlotlyData$Solid < 0),][-1,]$Solid, 
+          "Solid wall insulation - CERT + ECO: ",
+         format(WallInsulationPlotlyData[which(WallInsulationPlotlyData$Solid > 0 | WallInsulationPlotlyData$Solid < 0),][-1,]$Solid, big.mark = ","), 
           "\nYear: ",
           format(WallInsulationPlotlyData[which(WallInsulationPlotlyData$Solid > 0 | WallInsulationPlotlyData$Solid < 0),][-1,]$Year, "%Y")
         ),
@@ -878,7 +878,7 @@ WallInsulation <- function(input, output, session) {
           aes(
             x = Year,
             y = Cavity,
-            label = ifelse(Year == min(Year), Cavity, ""),
+            label = ifelse(Year == min(Year), format(Cavity, big.mark = ","), ""),
             hjust = 0.5,
             vjust = 2,
             colour = ChartColours[2],
@@ -890,7 +890,7 @@ WallInsulation <- function(input, output, session) {
           aes(
             x = Year,
             y = Cavity,
-            label = ifelse(Year == max(Year), Cavity, ""),
+            label = ifelse(Year == max(Year), format(Cavity, big.mark = ","), ""),
             hjust = 0.5,
             vjust = 2,
             colour = ChartColours[2],
@@ -935,7 +935,7 @@ WallInsulation <- function(input, output, session) {
           aes(
             x = Year,
             y = Solid,
-            label = ifelse(Year == min(Year), Solid, ""),
+            label = ifelse(Year == min(Year), format(Solid, big.mark = ","), ""),
             hjust = 0.5,
             vjust = -.8,
             colour = ChartColours[3],
@@ -947,7 +947,7 @@ WallInsulation <- function(input, output, session) {
           aes(
             x = Year,
             y = Solid,
-            label = ifelse(Year == max(Year), Solid, ""),
+            label = ifelse(Year == max(Year), format(Solid, big.mark = ","), ""),
             hjust = 0.5,
             vjust = 2,
             colour = ChartColours[3],
@@ -988,9 +988,9 @@ WallInsulation <- function(input, output, session) {
           aes(
             x = Year,
             y = Total,
-            label = ifelse(Year == min(Year), Total, ""),
+            label = ifelse(Year == min(Year), format(Total, big.mark = ","), ""),
             hjust = 0.5,
-            vjust = -.8,
+            vjust = -2,
             colour = ChartColours[4],
             fontface = 2
           ),
@@ -1000,7 +1000,7 @@ WallInsulation <- function(input, output, session) {
           aes(
             x = Year,
             y = Total,
-            label = ifelse(Year == max(Year),Total, ""),
+            label = ifelse(Year == max(Year), format(Total, big.mark = ","), ""),
             hjust = 0.5,
             vjust = 2,
             colour = ChartColours[4],
@@ -1053,7 +1053,10 @@ WallInsulation <- function(input, output, session) {
                          sourcecaption,
                          ChartColours)
       
-      WallInsulationggplotDataChart
+      WallInsulationggplotDataChart <-
+        WallInsulationggplotDataChart +
+        xlim(min(WallInsulationggplotData$Year)-.5, max(WallInsulationggplotData$Year)+.5)
+      
       
       ggsave(
         file,

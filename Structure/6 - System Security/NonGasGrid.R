@@ -96,7 +96,12 @@ NonGasGrid <- function(input, output, session) {
       "Structure/CurrentWorking.xlsx",
       sheet = "Non-gas grid by LA",
       skip = 13
-    )[c(2,5)]
+    )[c(6,2,5)]
+    
+    NonGasGrid[33,1] <- "S92000003"
+    NonGasGrid[33,2] <- "Scotland"
+    
+    NonGasGrid <- rbind(NonGasGrid[33,], NonGasGrid[1:32,])
 
     datatable(
       NonGasGrid,
@@ -130,7 +135,7 @@ NonGasGrid <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2, 1)
+      formatPercentage(3, 1)
   })
   
   output$NonGasGridTimeSeriesTable = renderDataTable({
