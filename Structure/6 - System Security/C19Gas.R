@@ -96,7 +96,7 @@ C19Gas <- function(input, output, session) {
     
     DailyDemand$Year <-year(DailyDemand$Date)
     
-    DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013),]
+    DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013 & DailyDemand$Year <= 2020),]
     
     DailyDemand$Month <-month(DailyDemand$Date)
     
@@ -106,47 +106,62 @@ C19Gas <- function(input, output, session) {
     
     DailyDemand$DayofYear <- yday(DailyDemand$Date)
     
-    DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "PostLockdown", "BeforeLockdown")
+    DailyDemand$Quarter <- quarters(DailyDemand$Date)
     
-    WeekdayElecDemand <- DailyDemand
-    
-    WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Weekday %in%c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")),]
-    
-    WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Month >= 3),]
-    
-    maxweek <- max(WeekdayElecDemand[which(WeekdayElecDemand$Year ==max(WeekdayElecDemand$Year)),]$Week)
-    
-    WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Week <= maxweek),]
-    
-    WeekdayElecDemand <- WeekdayElecDemand %>% group_by(Year, PostLockdown) %>% 
+    DailyDemand <- DailyDemand %>% group_by(Year, Quarter) %>% 
       summarise(Gas = mean(Gas))
     
-    WeekdayElecDemand <- dcast(WeekdayElecDemand, Year ~ PostLockdown)
+    DailyDemand <- dcast(DailyDemand, Year ~ Quarter)
     
     ChartColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
-    BarColours <- c("#126992", "#1d91c0", "#7fcdbb", "#8da0cb")
+    BarColours <- c("#253494", "#1d91c0", "#7fcdbb", "#edf8b1")
     
-    WeekdayElecDemand$YearFormat <- paste0("<b>", WeekdayElecDemand$Year, "</b>")
+    DailyDemand$YearFormat <- paste0("<b>", DailyDemand$Year, "</b>")
     
-    p1 <-  plot_ly(WeekdayElecDemand, x = ~ YearFormat ) %>%  
-      add_trace(y = ~ `BeforeLockdown`,
-                name = "First three weeks of March",
+    p1 <-  plot_ly(DailyDemand, x = ~ YearFormat ) %>%  
+      add_trace(y = ~ `Q1`,
+                name = "Q1",
                 type = 'bar',
                 legendgroup = "1",
                 text = paste0(
-                  "Average weekday gas consumption in first three weeks of March: ", format(round(WeekdayElecDemand$`BeforeLockdown`, 0.1), big.mark = ",")," GWh\n",
-                  "Year: ", WeekdayElecDemand$Year, "\n"),
+                  "Q1: ", format(round(DailyDemand$`Q1`, 0.1), big.mark = ",")," GWh\n",
+                  "Year: ", DailyDemand$Year, "\n"),
                 hoverinfo = 'text',
-                line = list(width = 4)
+                marker = list(color = BarColours[1]),
+                line = list(width = 4
+      )
       ) %>% 
-      add_trace(y = ~ `PostLockdown`, 
-                name = "Fourth week of March to third week of December",
+      add_trace(y = ~ `Q2`, 
+                name = "Q2",
                 type = 'bar',
                 legendgroup = "2",
                 text = paste0(
-                  "Average weekday gas consumption in from the fourth week in March to third week of December: ", format(round(WeekdayElecDemand$`PostLockdown`, 0.1), big.mark = ",")," GWh\n",
-                  "Year: ", WeekdayElecDemand$Year, "\n"),
+                  "Q2: ", format(round(DailyDemand$`Q2`, 0.1), big.mark = ",")," GWh\n",
+                  "Year: ", DailyDemand$Year, "\n"),
                 hoverinfo = 'text',
+                marker = list(color = BarColours[2]),
+                line = list(width = 4)
+      ) %>% 
+      add_trace(y = ~ `Q3`, 
+                name = "Q3",
+                type = 'bar',
+                legendgroup = "3",
+                text = paste0(
+                  "Q3: ", format(round(DailyDemand$`Q3`, 0.1), big.mark = ",")," GWh\n",
+                  "Year: ", DailyDemand$Year, "\n"),
+                hoverinfo = 'text',
+                marker = list(color = BarColours[3]),
+                line = list(width = 4)
+      ) %>% 
+      add_trace(y = ~ `Q4`, 
+                name = "Q4",
+                type = 'bar',
+                legendgroup = "4",
+                text = paste0(
+                  "Q4: ", format(round(DailyDemand$`Q4`, 0.1), big.mark = ",")," GWh\n",
+                  "Year: ", DailyDemand$Year, "\n"),
+                hoverinfo = 'text',
+                marker = list(color = BarColours[4]),
                 line = list(width = 4)
       ) %>% 
       layout(
@@ -291,10 +306,6 @@ C19Gas <- function(input, output, session) {
       library(zoo)
       library(plotly)
       
-      plottitle <-
-        "Average weekday daily gas demand"
-      sourcecaption <- "Source: National Grid"
-      
       DailyDemand <- read_delim("CovidAnalysis/DailyDemand.txt", 
                                 "\t", escape_double = FALSE, trim_ws = TRUE)
       
@@ -302,7 +313,7 @@ C19Gas <- function(input, output, session) {
       
       DailyDemand$Year <-year(DailyDemand$Date)
       
-      DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013),]
+      DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013 & DailyDemand$Year <= 2020),]
       
       DailyDemand$Month <-month(DailyDemand$Date)
       
@@ -312,34 +323,27 @@ C19Gas <- function(input, output, session) {
       
       DailyDemand$DayofYear <- yday(DailyDemand$Date)
       
-      DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "First three weeks of March", 
-                                                                 "4th wk. Mar. to 3rd wk. Dec.")
+      DailyDemand$Quarter <- quarters(DailyDemand$Date)
       
-      WeekdayElecDemand <- DailyDemand
-      
-      WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Weekday %in%c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")),]
-      
-      WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Month >= 3),]
-      
-      maxweek <- max(WeekdayElecDemand[which(WeekdayElecDemand$Year ==max(WeekdayElecDemand$Year)),]$Week)
-      
-      WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Week <= maxweek),]
-      
-      WeekdayElecDemand <- WeekdayElecDemand %>% group_by(Year, PostLockdown) %>% 
+      DailyDemand <- DailyDemand %>% group_by(Year, Quarter) %>% 
         summarise(Gas = mean(Gas))
       
+      plottitle <- "CHart"
+      sourcecaption <- "SOurce: BEIS"
       #WeekdayElecDemand <- as.data.frame(dcast(WeekdayElecDemand, Year ~ PostLockdown))
       
       ChartColours <- c("#126992", "#2078b4", "#ff7f0e", "#8da0cb")
-      BarColours <- c("#126992", "#2078b4", "#ff7f0e", "#8da0cb")
+      BarColours <- c("#253494", "#1d91c0", "#7fcdbb", "#edf8b1")
       
-      WeekdayElecDemandChart <- WeekdayElecDemand  %>%
-        ggplot(aes(x = Year, y = Gas, fill = PostLockdown), family = "Century Gothic") +
+      DailyDemandChart <-  DailyDemand  %>%
+        ggplot(aes(x = Year, y = Gas, fill = Quarter), family = "Century Gothic") +
         scale_fill_manual(
-          "variable",
+          "Quarter",
           values = c(
-            "First three weeks of March" = BarColours[3],
-            "4th wk. Mar. to 3rd wk. Dec." = BarColours[2]
+            "Q1" = BarColours[1],
+            "Q2" = BarColours[2],
+            "Q3" = BarColours[3],
+            "Q4" = BarColours[4]
           )
         ) +
         geom_bar(position = "dodge",
@@ -348,19 +352,19 @@ C19Gas <- function(input, output, session) {
         geom_text(position = position_dodge(width = .8),
                   aes(
                     y = Gas + 12,
-                    fill = PostLockdown,
+                    fill = Quarter,
                     label = paste(format(round(Gas, digits = 0), big.mark = ","), "\nGWh")
                   ),
                   fontface = 2,
                   colour =  ChartColours[1],
                   family = "Century Gothic",
                   size = 3) +
-        geom_text(position = position_dodge(width = -.8),
+        geom_text(position = position_dodge(width = .8),
                   aes(
                     y = 5,
-                    fill = PostLockdown,
+                    fill = Quarter,
                     angle = 90,
-                    label = ifelse(Year == min(Year), as.character(PostLockdown), ""),
+                    label = ifelse(Year == min(Year), as.character(Quarter), ""),
                     hjust = 0
                   ),
                   fontface = 2,
@@ -369,26 +373,26 @@ C19Gas <- function(input, output, session) {
                   size = 4) +
         annotate(
           "text",
-          x = WeekdayElecDemand$Year,
+          x = DailyDemand$Year,
           y = -9,
-          label = WeekdayElecDemand$Year,
+          label = DailyDemand$Year,
           family = "Century Gothic",
           fontface = 2,
           colour =  ChartColours[1]
         )
       
-      WeekdayElecDemandChart <-
-        StackedArea(WeekdayElecDemandChart,
-                    WeekdayElecDemand,
+      DailyDemandChart <-
+        StackedArea(DailyDemandChart,
+                    DailyDemand,
                     plottitle,
                     sourcecaption,
                     ChartColours)
       
-      WeekdayElecDemandChart
+      DailyDemandChart
       
       ggsave(
         file,
-        plot = WeekdayElecDemandChart,
+        plot = DailyDemandChart,
         width = 20,
         height = 16,
         units = "cm",
