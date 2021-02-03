@@ -590,7 +590,7 @@ LoftInsulation <- function(input, output, session) {
     
     LoftInsulationData[1] <- NULL
     
-    names(LoftInsulationData) <- c("Year", "CERT + ECO (000s)")
+    names(LoftInsulationData) <- c("Year", "CERT + ECO")
     
     LoftInsulationData <- LoftInsulationData[complete.cases(LoftInsulationData),]
     
@@ -609,17 +609,17 @@ LoftInsulation <- function(input, output, session) {
           autoWidth = TRUE,
           ordering = TRUE,
           order = list(list(0, 'desc')),
-          title = "Cumulative recorded Loft insulations under government schemes, CERT + ECO (000s)",
+          title = "Cumulative recorded Loft insulations under government schemes, CERT + ECO",
           dom = 'ltBp',
           buttons = list(
             list(extend = 'copy'),
             list(
               extend = 'excel',
-              title = 'Cumulative recorded Loft insulations under government schemes, CERT + ECO (000s)',
+              title = 'Cumulative recorded Loft insulations under government schemes, CERT + ECO',
               header = TRUE
             ),
             list(extend = 'csv',
-                 title = 'Cumulative recorded Loft insulations under government schemes, CERT + ECO (000s)')
+                 title = 'Cumulative recorded Loft insulations under government schemes, CERT + ECO')
           ),
           
           # customize the length menu
@@ -651,13 +651,13 @@ LoftInsulation <- function(input, output, session) {
         add_trace(data = LoftInsulationPlotlyData,
                   x = ~ Year,
                   y = ~ Amount,
-                  name = "Total Loft insulation - CERT + ECO (000s)",
+                  name = "Total Loft insulation - CERT + ECO",
                   type = 'scatter',
                   mode = 'lines',
                   legendgroup = "1",
                   text = paste0(
-                    "Total Loft insulation - CERT + ECO (000s): ",
-                    LoftInsulationPlotlyData$Amount,
+                    "Total Loft insulation - CERT + ECO: ",
+                    format(LoftInsulationPlotlyData$Amount, big.mark = ","),
                     "\nYear: ",
                     format(LoftInsulationPlotlyData$Year, "%Y")
                   ),
@@ -669,10 +669,10 @@ LoftInsulation <- function(input, output, session) {
           x = ~ Year,
           y = ~ `Amount`,
           legendgroup = "1",
-          name = "Total Loft insulation - CERT + ECO (000s)",
+          name = "Total Loft insulation - CERT + ECO",
           text = paste0(
-            "Total Loft insulation - CERT + ECO (000s): ",
-            LoftInsulationPlotlyData[which(LoftInsulationPlotlyData$Amount > 0 | LoftInsulationPlotlyData$Amount < 0),][-1,]$Amount, 
+            "Total Loft insulation - CERT + ECO: ",
+            format(LoftInsulationPlotlyData[which(LoftInsulationPlotlyData$Amount > 0 | LoftInsulationPlotlyData$Amount < 0),][-1,]$Amount, big.mark = ","), 
             "\nYear: ",
             format(LoftInsulationPlotlyData[which(LoftInsulationPlotlyData$Amount > 0 | LoftInsulationPlotlyData$Amount < 0),][-1,]$Year, "%Y")
           ),
@@ -744,7 +744,7 @@ LoftInsulation <- function(input, output, session) {
             aes(
               x = Year,
               y = Amount,
-              label = ifelse(Year == min(Year), Amount, ""),
+              label = ifelse(Year == min(Year), format(Amount, big.mark = ","), ""),
               hjust = 0.5,
               vjust = 1.5,
               colour = ChartColours[4],
@@ -756,7 +756,7 @@ LoftInsulation <- function(input, output, session) {
             aes(
               x = Year,
               y = Amount,
-              label = ifelse(Year == max(Year),Amount, ""),
+              label = ifelse(Year == max(Year), format(Amount, big.mark = ","), ""),
               hjust = 0.5,
               vjust = 2,
               colour = ChartColours[4],
@@ -797,7 +797,8 @@ LoftInsulation <- function(input, output, session) {
                            sourcecaption,
                            ChartColours)
         
-        LoftInsulationggplotDataChart
+        LoftInsulationggplotDataChart <- LoftInsulationggplotDataChart +
+          xlim(min(LoftInsulationggplotData$Year)-.5,max(LoftInsulationggplotData$Year)+.5)
         
         ggsave(
           file,
