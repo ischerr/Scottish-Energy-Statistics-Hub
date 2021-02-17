@@ -146,7 +146,7 @@ OilGasRevenue <- function(input, output, session) {
                           hovername = 'text'),
         hovername = 'text',
 
-        xaxis = list(title = "",
+        xaxis = list(title = "Financial Year",
                      showgrid = FALSE),
         yaxis = list(
           title = "\u00A3 Billion",
@@ -172,9 +172,9 @@ OilGasRevenue <- function(input, output, session) {
                        sheet = "Oil and gas sales revenue", skip = 13, col_names = TRUE)[1:3]
     
     
-    names(Data) <- c("Year", "Sales Revenue (\u00A3 Billion)", "Proportion of UK Total")
+    names(Data) <- c("Financial Year", "Sales Revenue (\u00A3 Billion)", "Proportion of UK Total")
     
-    Data$Year <- factor(Data$Year, ordered = TRUE)
+    Data$`Financial Year` <- factor(Data$`Financial Year`, ordered = TRUE)
     
     OilGasRevenue <- Data
     
@@ -343,7 +343,7 @@ OilGasRevenue <- function(input, output, session) {
       OilGasRevenueChart <- OilGasRevenueChart +
         xlim(min(OilGasRevenue$Year) -1 , max(OilGasRevenue$Year) +1)+
         ylim(-1,max(OilGasRevenue$Revenue))+
-        labs(subtitle = paste0("Scotland, ",min(OilGasRevenue$Year),"/",substr(min(OilGasRevenue$Year)+1,3,4), " - ", max(OilGasRevenue$Year), "/",substr(max(OilGasRevenue$Year)+1,3,4)))
+        labs(subtitle = paste0("Scotland, ",min(OilGasRevenue$Year),"/",substr(min(OilGasRevenue$Year)+1,3,4), " - ", max(OilGasRevenue$Year), "/",substr(max(OilGasRevenue$Year)+1,3,4), " (Financial Years)"))
       
       OilGasRevenueChart
       
