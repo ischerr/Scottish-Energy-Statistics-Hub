@@ -869,7 +869,11 @@ ui <- shinyUI(fluidPage(
                                          widths = c(3,8),
                                          tabPanel(title = "Target Tracker",
                                                   value = "TargetTracker",
-                                                  TargetTrackerOutput("TargetTracker")))
+                                                  TargetTrackerOutput("TargetTracker")),
+                                         tabPanel(title = "Schedule",
+                                                  value = "Schedule",
+                                                  ScheduleOutput("Schedule"))
+                                         )
                             
                           
     )
