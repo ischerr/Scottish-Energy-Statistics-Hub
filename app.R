@@ -239,7 +239,7 @@ observe({
     
     updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$Other), mode = "push")
     
-    callModule(match.fun(input$Other), input$Other)
+    callModule(match.fun(input$Other), input$Other, parent_session = session)
     
   }
   
@@ -870,9 +870,9 @@ ui <- shinyUI(fluidPage(
                                          tabPanel(title = "Target Tracker",
                                                   value = "TargetTracker",
                                                   TargetTrackerOutput("TargetTracker")),
-                                         tabPanel(title = "Schedule",
-                                                  value = "Schedule",
-                                                  ScheduleOutput("Schedule"))
+                                         tabPanel(title = "Sources",
+                                                  value = "SourcesList",
+                                                  SourcesListOutput("SourcesList"))
                                          )
                             
                           
