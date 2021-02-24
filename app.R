@@ -239,7 +239,7 @@ observe({
     
     updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$Other), mode = "push")
     
-    callModule(match.fun(input$Other), input$Other)
+    callModule(match.fun(input$Other), input$Other, parent_session = session)
     
   }
   
