@@ -154,6 +154,8 @@ ElecConsumption <- function(input, output, session) {
     
     Data[nrow(Data),1] <- "% Change\nfrom baseline"
     
+    Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
+    
     Data$Year <- paste("<b>", Data$Year, "</b>")
     
     Data <- Data[-1,]
@@ -303,6 +305,8 @@ ElecConsumption <- function(input, output, session) {
     
     Data <- head(Data, -1)
     
+    Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
+    
     datatable(
       Data,
       extensions = 'Buttons',
@@ -370,13 +374,15 @@ ElecConsumption <- function(input, output, session) {
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "Elec consump", skip = 12, col_names = TRUE)
       
-      Data[1,1] <- "2003"
+      Data[1,1] <- "2006"
       
       Data <- Data[complete.cases(Data),]
       
       Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE)+1)
       
       Data$Year <- as.numeric(Data$Year)
+      
+      Data <- Data[-c(2,3,4),]
       
       ElecConsumptiontion <- Data[c(1,3,2,4)]
       
@@ -428,7 +434,7 @@ ElecConsumption <- function(input, output, session) {
           label =   ifelse(
             ElecConsumptiontion$pos < 10000,
             ifelse(
-              ElecConsumptiontion$Year == 2003,
+              ElecConsumptiontion$Year == 2006,
               "2005/2007\n(baseline)",
               ElecConsumptiontion$Year
             ),
@@ -444,7 +450,7 @@ ElecConsumption <- function(input, output, session) {
           label =   ifelse(
             ElecConsumptiontion$pos > 0,
             ifelse(
-              ElecConsumptiontion$Year == 2003 |
+              ElecConsumptiontion$Year == 2006 |
                 ElecConsumptiontion$Year ==  max(ElecConsumptiontion$Year),
               paste0(format(
                 round(ElecConsumptiontion$value, digits = 0), big.mark = ","
@@ -460,7 +466,7 @@ ElecConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2004,
+          x = 2005,
           y = 6085,
           label = "Domestic",
           fontface = 2,
@@ -469,7 +475,7 @@ ElecConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2004,
+          x = 2005,
           y = 20735,
           label = "Non-domestic",
           fontface = 2,
@@ -559,7 +565,7 @@ ElecConsumption <- function(input, output, session) {
         coord_flip() +
         labs(subtitle = paste("Scotland, 2005 -", max(ElecConsumptiontion$Year))) +
         ylim(-4000, max(ElecConsumptiontion$top) + 4200) +
-        xlim(max(ElecConsumptiontion$Year) + 1.2, 2002.5)
+        xlim(max(ElecConsumptiontion$Year) + 1.2, 2005)
       
       ElecConsumptiontionChart
       
@@ -612,6 +618,8 @@ ElecConsumption <- function(input, output, session) {
     Data <- head(Data, -3)
     
     Data[nrow(Data),1] <- "% Change\nfrom baseline"
+    
+    Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
     
     Data$Year <- paste("<b>", Data$Year, "</b>")
     
@@ -724,6 +732,8 @@ ElecConsumption <- function(input, output, session) {
     
     Data <- head(Data, -1)
     
+    Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
+    
     datatable(
       Data,
       extensions = 'Buttons',
@@ -773,7 +783,7 @@ ElecConsumption <- function(input, output, session) {
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "Elec consump household", skip = 12, col_names = TRUE)
       
-      Data[1,1] <- "2003"
+      Data[1,1] <- "2006"
       
       names(Data) <- c("Year", "Consumption")
       
@@ -784,6 +794,8 @@ ElecConsumption <- function(input, output, session) {
       Data$Total <- Data$Consumption
       
       Data$Year <- as.numeric(Data$Year)
+      
+      Data <- Data[-c(2,3,4),]
       
       ElecConsumptionHHold <- Data
       
@@ -852,7 +864,7 @@ ElecConsumption <- function(input, output, session) {
           label =   ifelse(
             ElecConsumptionHHold$value < 7000,
             ifelse(
-              ElecConsumptionHHold$Year == 2003,
+              ElecConsumptionHHold$Year == 2006,
               "2005/2007\n(baseline)",
               ElecConsumptionHHold$Year
             ),
@@ -932,7 +944,7 @@ ElecConsumption <- function(input, output, session) {
         coord_flip() +
         labs(subtitle = paste("Scotland, 2005 -", max(ElecConsumptionHHold$Year))) +
         ylim(-1000, max(ElecConsumptionHHold$top)) +
-        xlim(max(ElecConsumptionHHold$Year) + 1.2, 2002)
+        xlim(max(ElecConsumptionHHold$Year) + 1.2, 2005.5)
       
       ElecConsumptionHHoldChart
       
