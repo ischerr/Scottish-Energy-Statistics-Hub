@@ -141,7 +141,7 @@ HeatConsumption <- function(input, output, session) {
     
     Data[1:3] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    #Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
+    Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
     
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
@@ -162,7 +162,7 @@ HeatConsumption <- function(input, output, session) {
     
     names(Data)[1] <- "Year"
     
-    #Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
+    Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
     
     Data[1:5] %<>% lapply(function(x) as.numeric(as.character(x)))
     
@@ -175,6 +175,8 @@ HeatConsumption <- function(input, output, session) {
     Data <- head(Data, -1)
     
     Data[nrow(Data),1] <- "% Change\nfrom baseline"
+    
+    Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
     
     Data$Year <- paste("<b>", Data$Year, "</b>")
     
@@ -340,7 +342,7 @@ HeatConsumption <- function(input, output, session) {
     
     names(Data)[1] <- "Year"
     
-    #Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
+    Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
     
     Data[1:4] %<>% lapply(function(x) as.numeric(as.character(x)))
     
@@ -355,6 +357,8 @@ HeatConsumption <- function(input, output, session) {
     Data$`Non-Domestic` <- +Data$`Industrial`+Data$`Commercial`
     
     Data$Total <- Data$Domestic+Data$`Industrial`+Data$`Commercial`
+    
+    Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
     
     datatable(
       Data[c(1,2,5,3,4,6)],
@@ -428,13 +432,15 @@ HeatConsumption <- function(input, output, session) {
       
       Data <- as_tibble(t(Data))
       
-      Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
+      #Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
       
       Data <- Data[complete.cases(Data),]
       
       Data <- head(Data, -1)
       
-      Data [1,1] <- "2003"
+      Data <- Data[-c(2,3,4),]
+      
+      Data [1,1] <- "2006"
       
       Data <- as_tibble(sapply( Data, as.numeric ))
       
@@ -492,7 +498,7 @@ HeatConsumption <- function(input, output, session) {
           label =   ifelse(
             HeatDemand$variable == "Domestic",
             ifelse(
-              HeatDemand$Year == 2003,
+              HeatDemand$Year == 2006,
               "2005/2007\n(baseline)",
               HeatDemand$Year
             ),
@@ -508,7 +514,7 @@ HeatConsumption <- function(input, output, session) {
           label =   ifelse(
             HeatDemand$pos > 0,
             ifelse(
-              HeatDemand$Year == 2003 |
+              HeatDemand$Year == 2006 |
                 HeatDemand$Year ==  max(HeatDemand$Year),
               paste0(format(
                 round(HeatDemand$value, digits = 0), big.mark = ","
@@ -524,7 +530,7 @@ HeatConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2004,
+          x = 2005,
           y = 20257,
           label = "Domestic",
           fontface = 2,
@@ -533,7 +539,7 @@ HeatConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2004,
+          x = 2005,
           y = 60000,
           label = "Industrial",
           fontface = 2,
@@ -542,7 +548,7 @@ HeatConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2004,
+          x = 2005,
           y = 88000,
           label = "Commercial",
           fontface = 2,
@@ -654,7 +660,7 @@ HeatConsumption <- function(input, output, session) {
         coord_flip() +
         labs(subtitle = paste("Scotland, 2005 -", max(HeatDemand$Year))) +
         ylim(-16000, max(HeatDemand$top) + 18500) +
-        xlim(max(HeatDemand$Year) + 1.2, 2002.5)
+        xlim(max(HeatDemand$Year) + 1.2, 2005)
       
       HeatDemandChart
       
@@ -721,6 +727,7 @@ HeatConsumption <- function(input, output, session) {
   
   output$HeatConsumptionFuelTable = renderDataTable({
     
+    HeatConsumptionFuel = subset(HeatConsumptionFuel, !(HeatConsumptionFuel$Year %in% c(2005, 2006, 2007)))
     
     datatable(
       HeatConsumptionFuel,
@@ -789,7 +796,11 @@ HeatConsumption <- function(input, output, session) {
     
     Data[2,1] <- " "
     
+    Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
+    
     Data$Year <- paste("<b>", Data$Year, "</b>")
+    
+    Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
     
     Data$RowNumber <- as.numeric(rownames(Data))
     
@@ -959,13 +970,17 @@ HeatConsumption <- function(input, output, session) {
       
       Data <- rbind(Data, DataCalc)
       
-      Data[1,1] <- "2003"
+      Data <- Data[-c(2,3,4),]
+      
+      Data[1,1] <- "2006"
       
       Data <- Data[complete.cases(Data),]
       
       Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE)+1)
       
       Data <- as_tibble(sapply( Data, as.numeric ))
+      
+      
       
       HeatConsumptionFuel <- Data[c(1,6:2,7)]
       
@@ -1035,7 +1050,7 @@ HeatConsumption <- function(input, output, session) {
           label =   ifelse(
             HeatConsumptionFuel$value < 7000,
             ifelse(
-              HeatConsumptionFuel$Year == 2003,
+              HeatConsumptionFuel$Year == 2006,
               "2005/2007\n(baseline)",
               HeatConsumptionFuel$Year
             ),
@@ -1051,7 +1066,7 @@ HeatConsumption <- function(input, output, session) {
           label =   ifelse(
             HeatConsumptionFuel$value > 7000,
             ifelse(
-              HeatConsumptionFuel$Year == 2003 |
+              HeatConsumptionFuel$Year == 2006 |
                 HeatConsumptionFuel$Year ==  max(HeatConsumptionFuel$Year),
               paste0(format(
                 round(HeatConsumptionFuel$value, digits = 0), big.mark = ","
@@ -1067,7 +1082,7 @@ HeatConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2002,
+          x = 2005,
           y = (.5/5)*max(HeatConsumptionFuel$top),
           label = "Petroleum\nProducts",
           fontface = 2,
@@ -1076,7 +1091,7 @@ HeatConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2002,
+          x = 2005,
           y = (1.5/5)*max(HeatConsumptionFuel$top),
           label = "Gas",
           fontface = 2,
@@ -1085,7 +1100,7 @@ HeatConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2002,
+          x = 2005,
           y = (2.5/5)*max(HeatConsumptionFuel$top),
           label = "Bioenergy\n& wastes",
           fontface = 2,
@@ -1094,7 +1109,7 @@ HeatConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2002,
+          x = 2005,
           y = (3.5/5)*max(HeatConsumptionFuel$top),
           label = "Coal",
           fontface = 2,
@@ -1103,7 +1118,7 @@ HeatConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2002,
+          x = 2005,
           y = (4.5/5)*max(HeatConsumptionFuel$top),
           label = "Manufactured\nFuels",
           fontface = 2,
@@ -1112,7 +1127,7 @@ HeatConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2002,
+          x = 2005,
           y = (5.5/5)*max(HeatConsumptionFuel$top),
           label = "Total",
           fontface = 2,
@@ -1258,7 +1273,7 @@ HeatConsumption <- function(input, output, session) {
         coord_flip() +
         labs(subtitle = paste("Scotland, 2005 -", max(HeatConsumptionFuel$Year))) +
         ylim(-max(HeatConsumptionFuel$top * 0.16), max(HeatConsumptionFuel$top * 1.16)) +
-        xlim(max(HeatConsumptionFuel$Year) + 1.2, 2002)
+        xlim(max(HeatConsumptionFuel$Year) + 1.2, 2004.5)
       
       HeatConsumptionFuelChart
       
@@ -1371,7 +1386,7 @@ HeatConsumption <- function(input, output, session) {
     
     LARenGen <- LARenGen[which(LARenGen$Year == Year2),]
     
-    LARenGen <- LARenGen[order(-LARenGen$Year, LARenGen$Region),]
+    
     
     datatable(
       LARenGen,

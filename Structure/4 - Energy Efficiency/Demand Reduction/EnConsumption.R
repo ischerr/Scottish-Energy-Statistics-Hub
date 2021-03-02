@@ -161,6 +161,8 @@ EnergyConsumption <- function(input, output, session) {
     
     Data[3,1] <- " "
     
+    Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
+    
     Data[nrow(Data),1] <- "% Change\nfrom baseline"
     
     Data$Year <- paste("<b>", Data$Year, "</b>")
@@ -358,6 +360,8 @@ EnergyConsumption <- function(input, output, session) {
     
     EnConsumption[1,1] <- " Baseline 2005 - 2007"
     
+    EnConsumption = subset(EnConsumption, !(EnConsumption$Year %in% c(2005, 2006, 2007)))
+    
     datatable(
       EnConsumption,
       extensions = 'Buttons',
@@ -429,7 +433,9 @@ EnergyConsumption <- function(input, output, session) {
       names(Data)[1] <- "Year"
       Data <- tail(Data, -1)
       
-      Data[1,1] <- "2003"
+      Data <- Data[-c(3,4,5),]
+      
+      Data[1,1] <- "2006"
       
       Data$Year <- as.numeric(Data$Year)
       Data[nrow(Data),1] <- max(Data$Year + 1, na.rm =  TRUE)
@@ -505,7 +511,7 @@ EnergyConsumption <- function(input, output, session) {
           label =   ifelse(
             FinalConsumptionSectors$value > 40000,
             ifelse(
-              FinalConsumptionSectors$Year == 2003,
+              FinalConsumptionSectors$Year == 2006,
               "2005/2007\n(baseline)",
               FinalConsumptionSectors$Year
             ),
@@ -521,7 +527,7 @@ EnergyConsumption <- function(input, output, session) {
           label =   ifelse(
             FinalConsumptionSectors$value > 20000,
             ifelse(
-              FinalConsumptionSectors$Year == 2003 |
+              FinalConsumptionSectors$Year == 2006 |
                 FinalConsumptionSectors$Year ==  max(FinalConsumptionSectors$Year),
               paste0(format(
                 round(FinalConsumptionSectors$value, digits = 0), big.mark = ","
@@ -537,7 +543,7 @@ EnergyConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2002,
+          x = 2005,
           y = 31000,
           label = "Industry",
           fontface = 2,
@@ -546,7 +552,7 @@ EnergyConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2002,
+          x = 2005,
           y = 70000,
           label = "Commercial",
           fontface = 2,
@@ -555,7 +561,7 @@ EnergyConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2002,
+          x = 2005,
           y = 100560,
           label = "Domestic",
           fontface = 2,
@@ -564,7 +570,7 @@ EnergyConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2002,
+          x = 2005,
           y = 141998,
           label = "Transport",
           fontface = 2,
@@ -573,7 +579,7 @@ EnergyConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2002,
+          x = 2005,
           y = 180998,
           label = "Total",
           fontface = 2,
@@ -718,7 +724,7 @@ EnergyConsumption <- function(input, output, session) {
         coord_flip() +
         labs(subtitle = paste("Scotland, 2005 -", max(FinalConsumptionSectors$Year))) +
         ylim(-26500, max(FinalConsumptionSectors$top) + 25000) +
-        xlim(max(FinalConsumptionSectors$Year) + 1.2, 2002)
+        xlim(max(FinalConsumptionSectors$Year) + 1.2, 2005)
       
       FinalConsumptionSectorsChart
       
@@ -1140,9 +1146,13 @@ EnergyConsumption <- function(input, output, session) {
       names(Data)[1] <- "Year"
       Data <- tail(Data, -1)
       
-      Data[1,1] <- "2003"
+      Data <- Data[-c(3,4,5),]
+      
+      Data[1,1] <- "2006"
       
       Data <- Data[complete.cases(Data),]
+      
+      
       
       Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE) + 1)
       
@@ -1216,7 +1226,7 @@ EnergyConsumption <- function(input, output, session) {
           label =   ifelse(
             FinalConsumptionFuel$value < 7000,
             ifelse(
-              FinalConsumptionFuel$Year == 2003,
+              FinalConsumptionFuel$Year == 2006,
               "2005/2007\n(baseline)",
               FinalConsumptionFuel$Year
             ),
@@ -1232,7 +1242,7 @@ EnergyConsumption <- function(input, output, session) {
           label =   ifelse(
             FinalConsumptionFuel$value > 7000,
             ifelse(
-              FinalConsumptionFuel$Year == 2003 |
+              FinalConsumptionFuel$Year == 2006 |
                 FinalConsumptionFuel$Year ==  max(FinalConsumptionFuel$Year),
               paste0(format(
                 round(FinalConsumptionFuel$value, digits = 0), big.mark = ","
@@ -1248,7 +1258,7 @@ EnergyConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2002,
+          x = 2005,
           y = (.5/6)*max(FinalConsumptionFuel$top),
           label = "Petroleum\nProducts",
           fontface = 2,
@@ -1257,7 +1267,7 @@ EnergyConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2002,
+          x = 2005,
           y = (1.5/6)*max(FinalConsumptionFuel$top),
           label = "Gas",
           fontface = 2,
@@ -1266,7 +1276,7 @@ EnergyConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2002,
+          x = 2005,
           y = (2.5/6)*max(FinalConsumptionFuel$top),
           label = "Electricity",
           fontface = 2,
@@ -1275,7 +1285,7 @@ EnergyConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2002,
+          x = 2005,
           y = (3.5/6)*max(FinalConsumptionFuel$top),
           label = "Bioenergy\n& wastes",
           fontface = 2,
@@ -1284,7 +1294,7 @@ EnergyConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2002,
+          x = 2005,
           y = (4.5/6)*max(FinalConsumptionFuel$top),
           label = "Coal",
           fontface = 2,
@@ -1293,7 +1303,7 @@ EnergyConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2002,
+          x = 2005,
           y = (5.5/6)*max(FinalConsumptionFuel$top),
           label = "Manufactured\nFuels",
           fontface = 2,
@@ -1302,7 +1312,7 @@ EnergyConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2002,
+          x = 2005,
           y = (6.5/6)*max(FinalConsumptionFuel$top),
           label = "Total",
           fontface = 2,
@@ -1448,7 +1458,7 @@ EnergyConsumption <- function(input, output, session) {
         coord_flip() +
         labs(subtitle = paste("Scotland, 2005 -", max(FinalConsumptionFuel$Year))) +
         ylim(-max(FinalConsumptionFuel$top * 0.16), max(FinalConsumptionFuel$top * 1.16)) +
-        xlim(max(FinalConsumptionFuel$Year) + 1.2, 2002)
+        xlim(max(FinalConsumptionFuel$Year) + 1.2, 2005)
       
       FinalConsumptionFuelChart
       

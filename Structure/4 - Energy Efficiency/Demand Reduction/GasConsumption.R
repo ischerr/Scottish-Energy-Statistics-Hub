@@ -161,6 +161,8 @@ GasConsumption <- function(input, output, session) {
     
     Data[nrow(Data),1] <- "% Change\nfrom baseline"
     
+    Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
+    
     Data$Year <- paste("<b>", Data$Year, "</b>")
     
     Data <- Data[-1,]
@@ -310,6 +312,8 @@ GasConsumption <- function(input, output, session) {
     
     Data <- head(Data, -1)
     
+    Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
+    
     datatable(
       Data,
       extensions = 'Buttons',
@@ -378,7 +382,7 @@ GasConsumption <- function(input, output, session) {
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "Gas consump", skip = 17, col_names = FALSE)[c(1,3,2,6)]
       
-      Data[1,1] <- "2003"
+      Data[1,1] <- "2006"
       
       names(Data) <- c("Year", "Non-domestic", "Domestic", "Total")
       
@@ -387,6 +391,8 @@ GasConsumption <- function(input, output, session) {
       Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE)+1)
       
       Data$Year <- as.numeric(Data$Year)
+      
+      Data <- Data[-c(2,3,4),]
       
       GasConsumptiontion <- Data
       
@@ -442,7 +448,7 @@ GasConsumption <- function(input, output, session) {
           label =   ifelse(
             GasConsumptiontion$variable == "Domestic",
             ifelse(
-              GasConsumptiontion$Year == 2003,
+              GasConsumptiontion$Year == 2006,
               "2005/2007\n(baseline)",
               GasConsumptiontion$Year
             ),
@@ -458,7 +464,7 @@ GasConsumption <- function(input, output, session) {
           label =   ifelse(
             GasConsumptiontion$pos > 0,
             ifelse(
-              GasConsumptiontion$Year == 2003 |
+              GasConsumptiontion$Year == 2006 |
                 GasConsumptiontion$Year ==  max(GasConsumptiontion$Year),
               paste0(format(
                 round(GasConsumptiontion$value, digits = 0), big.mark = ","
@@ -474,7 +480,7 @@ GasConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2004,
+          x = 2005,
           y = 17357,
           label = "Domestic",
           fontface = 2,
@@ -483,7 +489,7 @@ GasConsumption <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 2004,
+          x = 2005,
           y = 47247,
           label = "Non-domestic",
           fontface = 2,
@@ -572,7 +578,7 @@ GasConsumption <- function(input, output, session) {
         coord_flip() +
         labs(subtitle = paste("Scotland, 2005 -", max(GasConsumptiontion$Year))) +
         ylim(-10000, max(GasConsumptiontion$top) + 10500) +
-        xlim(max(GasConsumptiontion$Year) + 1.2, 2002.5)
+        xlim(max(GasConsumptiontion$Year) + 1.2, 2005)
       
       GasConsumptiontionChart
       
@@ -627,6 +633,8 @@ GasConsumption <- function(input, output, session) {
     Data[2,1] <- " "
     
     Data[nrow(Data),1] <- "% Change\nfrom baseline"
+    
+    Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
     
     Data$Year <- paste("<b>", Data$Year, "</b>")
     
@@ -739,6 +747,8 @@ GasConsumption <- function(input, output, session) {
     
     Data <- Data[-1,]
     
+    Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
+    
     datatable(
       Data,
       extensions = 'Buttons',
@@ -786,7 +796,7 @@ GasConsumption <- function(input, output, session) {
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "Gas consump by household", skip = 13, col_names = FALSE)
       
-      Data[1,1] <- "2003"
+      Data[1,1] <- "2006"
       
       names(Data) <- c("Year", "Consumption")
       
@@ -797,6 +807,8 @@ GasConsumption <- function(input, output, session) {
       Data$Total <- Data$Consumption
       
       Data$Year <- as.numeric(Data$Year)
+      
+      Data <- Data[-c(2,3,4),]
       
       GasConsumptionHHold <- Data
       
@@ -866,7 +878,7 @@ GasConsumption <- function(input, output, session) {
           label =   ifelse(
             GasConsumptionHHold$value > 7000,
             ifelse(
-              GasConsumptionHHold$Year == 2003,
+              GasConsumptionHHold$Year == 2006,
               "2005/2007\n(baseline)",
               GasConsumptionHHold$Year
             ),
@@ -946,7 +958,7 @@ GasConsumption <- function(input, output, session) {
         coord_flip() +
         labs(subtitle = paste("Scotland, 2005 -", max(GasConsumptionHHold$Year))) +
         ylim(-3100, max(GasConsumptionHHold$top)) +
-        xlim(max(GasConsumptionHHold$Year) + 1.2, 2002)
+        xlim(max(GasConsumptionHHold$Year) + 1.2, 2005)
       
       GasConsumptionHHoldChart
       

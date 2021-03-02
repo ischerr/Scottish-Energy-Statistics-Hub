@@ -510,7 +510,7 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            label = ifelse(Year == min(Year), paste(round(Total, digits = 1), "MW"), ""),
+            label = ifelse(Year == min(Year), paste(round(Total, digits = 1), "GW"), ""),
             show_guide = FALSE
           ),
           fontface = 2,
@@ -521,7 +521,7 @@ RenElecCapacity <- function(input, output, session) {
         geom_text(
           aes(
             x = Year + .3,
-            label = ifelse(Year == max(Year), paste(round(Total, digits = 1), "MW"), ""),
+            label = ifelse(Year == max(Year), paste(round(Total, digits = 1), "GW"), ""),
             show_guide = FALSE
           ),
           fontface = 2,
@@ -1351,7 +1351,7 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            label = ifelse(Year == min(Year), paste(round(Total, digits = 1), "MW"), ""),
+            label = ifelse(Year == min(Year), paste(round(Total, digits = 1), "GW"), ""),
             show_guide = FALSE
           ),
           fontface = 2,
@@ -1362,7 +1362,7 @@ RenElecCapacity <- function(input, output, session) {
         geom_text(
           aes(
             x = Year + .3,
-            label = ifelse(Year == max(Year), paste(round(Total, digits = 1), "MW"), ""),
+            label = ifelse(Year == max(Year), paste(round(Total, digits = 1), "GW"), ""),
             show_guide = FALSE
           ),
           fontface = 2,
