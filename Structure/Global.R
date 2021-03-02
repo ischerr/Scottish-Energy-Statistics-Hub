@@ -31,6 +31,21 @@ DateLookup <- function(x){
 } 
 
 
+
+UpdatedLookup <- function(x){
+  
+  y <- max(Sources[which(Sources$Code %in% x),]$`Last Updated`, na.rm = TRUE)
+  
+  tagList(
+    ifelse(is.infinite(y), " ", format(y, "%B %Y")),
+    br()
+  )
+} 
+
+
+
+
+
 css_fix <- "div.info.legend.leaflet-control br {clear: both;}" # CSS to correct spacing
 html_fix <- htmltools::tags$style(type = "text/css", css_fix)  # Convert CSS to HTML
                 
