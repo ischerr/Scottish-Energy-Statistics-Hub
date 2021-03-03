@@ -73,11 +73,21 @@ RenEnTgtOutput <- function(id) {
     
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     fluidRow(
-      column(2, p("Update expected:")),
+      column(2, HTML("<p><strong>Last Updated:</strong></p>")),
       column(2,
-             DateLookup(c("BEISRenElec", "BEISElecGen", "BEISSubNatEnergy", "ESTRenHeat", "BEISUKConsump", "DFTRenewable", "BEISSubNatElec", "BEISSubNatGas", "BEISLocalRoad"))),
+             UpdatedLookup(c("BEISRenElec", "BEISElecGen", "BEISSubNatEnergy", "ESTRenHeat", "BEISUKConsump", "DFTRenewable", "BEISSubNatElec", "BEISSubNatGas","BEISLocalRoad"))),
       column(1, align = "right",
-             p("Sources:")),
+             HTML("<p><strong>Reason:</strong></p>")),
+      column(7, align = "right", 
+             p("Regular updates")
+      )),
+    fluidRow(p(" ")),
+    fluidRow(
+      column(2, HTML("<p><strong>Update Expected:</strong></p>")),
+      column(2,
+             DateLookup(c("BEISRenElec", "BEISElecGen", "BEISSubNatEnergy", "ESTRenHeat", "BEISUKConsump", "DFTRenewable", "BEISSubNatElec", "BEISSubNatGas","BEISLocalRoad"))),
+      column(1, align = "right",
+             HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("BEISRenElec"),
         SourceLookup("BEISElecGen"),
