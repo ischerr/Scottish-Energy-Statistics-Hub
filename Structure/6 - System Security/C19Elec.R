@@ -83,11 +83,21 @@ C19ElecOutput <- function(id) {
                column(12, dataTableOutput(ns("C19ElecTable"))%>% withSpinner(color="#5d8be1"))),
              tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"))),
     fluidRow(
-      column(2, p(" ")),
+      column(2, HTML("<p><strong>Last Updated:</strong></p>")),
       column(2,
-             p(" ")),
+             UpdatedLookup(c("NGElecDemand", "SPICeCovid"))),
       column(1, align = "right",
-             p("Sources:")),
+             HTML("<p><strong>Reason:</strong></p>")),
+      column(7, align = "right", 
+             p("Regular updates")
+      )),
+    fluidRow(p(" ")),
+    fluidRow(
+      column(2, HTML("<p><strong>Update Expected:</strong></p>")),
+      column(2,
+             DateLookup(c("NGElecDemand", "SPICeCovid"))),
+      column(1, align = "right",
+             HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("NGElecDemand"),
         SourceLookup("SPICeCovid")
