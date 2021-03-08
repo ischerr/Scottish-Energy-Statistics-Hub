@@ -531,7 +531,7 @@ DomesticRHI <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(c(2:5), 0) 
+      formatRound(c(2:6), 0) 
   })
   
   output$CumulativeInstallationsOutputTable = renderDataTable({
