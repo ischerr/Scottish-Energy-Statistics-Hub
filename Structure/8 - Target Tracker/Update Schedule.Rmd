@@ -1,0 +1,20 @@
+---
+title: "Update Schedule"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+``` . (remove .)
+## Untitled test
+
+```{r pressure, echo=FALSE}
+require("readxl")
+d <- readxl::read_xlsx(path="Structure/Sources.xlsx")
+head(d)
+```. (remove .)
+
+d2<- d[c(2,5,7)]
+head(d2)
+library(knitr)
+kable(d2)

@@ -39,17 +39,26 @@ EnSupplyEmissionsOutput <- function(id) {
       column(12, dataTableOutput(ns("EnSupplyEmissionsTable"))%>% withSpinner(color="#1A5D38"))),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     fluidRow(
-      column(1,
-             p("Next update:")),
+      column(2, HTML("<p><strong>Last Updated:</strong></p>")),
       column(2,
-             p("March 2019")),
+             UpdatedLookup(c("BEISSubNatEnergy", "BEISElecGen", "ESTRenHeat"))),
       column(1, align = "right",
-             p("Sources:")),
+             HTML("<p><strong>Reason:</strong></p>")),
+      column(7, align = "right", 
+             p("Regular updates")
+      )),
+    fluidRow(p(" ")),
+    fluidRow(
+      column(2, HTML("<p><strong>Update Expected:</strong></p>")),
+      column(2,
+             DateLookup(c("BEISSubNatEnergy", "BEISElecGen", "ESTRenHeat"))),
+      column(1, align = "right",
+             HTML("<p><strong>Sources:</strong></p>")),
       column(
-        8,
+        7,
         align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
+        SourceLookup("BEISSubNatEnergy"),
+        SourceLookup("BEISElecGen"),
         SourceLookup("ESTRenHeat")
         
       )

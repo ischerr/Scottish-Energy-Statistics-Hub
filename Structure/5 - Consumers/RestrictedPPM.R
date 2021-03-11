@@ -68,12 +68,22 @@ RestrictedPPMOutput <- function(id) {
              fluidRow(
                column(12, dataTableOutput(ns("RestrictedMeterPropTable"))%>% withSpinner(color="#68c3ea"))),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
-    fluidRow(
-      column(2, p("Update expected:")),
-      column(2,
-             DateLookup(c("BEISElecPPM", "BEISElecMeter"))),
-      column(1, align = "right",
-             p("Sources:")),
+fluidRow(
+  column(2, HTML("<p><strong>Last Updated:</strong></p>")),
+  column(2,
+         UpdatedLookup(c("BEISElecMeter"))),
+  column(1, align = "right",
+         HTML("<p><strong>Reason:</strong></p>")),
+  column(7, align = "right", 
+         p("Regular updates")
+  )),
+fluidRow(p(" ")),
+fluidRow(
+  column(2, HTML("<p><strong>Update Expected:</strong></p>")),
+  column(2,
+         DateLookup(c("BEISElecMeter"))),
+  column(1, align = "right",
+         HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("BEISElecMeter")
         

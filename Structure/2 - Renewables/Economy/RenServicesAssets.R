@@ -55,11 +55,21 @@ RenServicesAssetsOutput <- function(id) {
       column(12, dataTableOutput(ns("RenServicesTable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
-      column(2, p("Update expected:")),
+      column(2, HTML("<p><strong>Last Updated:</strong></p>")),
+      column(2,
+             UpdatedLookup(c("ONSNatural"))),
+      column(1, align = "right",
+             HTML("<p><strong>Reason:</strong></p>")),
+      column(7, align = "right", 
+             p("Regular updates")
+      )),
+    fluidRow(p(" ")),
+    fluidRow(
+      column(2, HTML("<p><strong>Update Expected:</strong></p>")),
       column(2,
              DateLookup(c("ONSNatural"))),
       column(1, align = "right",
-             p("Sources:")),
+             HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("ONSNatural")
         
