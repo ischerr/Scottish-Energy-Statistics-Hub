@@ -32,17 +32,17 @@ C19GasOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:;background-color:#5d8be1;"),
     tabsetPanel(
-      tabPanel("Weekday Demand",
+      tabPanel("Daily Demand",
     fluidRow(
-    column(10, h3("Data - Average weekday daily gas demand (GWh)", style = "color: #5d8be1;  font-weight:bold")),
+    column(10, h3("Data - Daily gas demand (GWh)", style = "color: #5d8be1;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("C19GasTable"))%>% withSpinner(color="#5d8be1"))),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;")),
-    tabPanel("Daily demand",
+    tabPanel("Average daily demand per year",
              fluidRow(
-               column(10, h3("Data - Daily gas demand from start of March - 2020 vs 2019 (GWh)", style = "color: #5d8be1;  font-weight:bold")),
+               column(10, h3("Data - Average daily gas demand by year (GWh)", style = "color: #5d8be1;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -189,12 +189,6 @@ C19Gas <- function(input, output, session) {
   
   output$C19GasTable = renderDataTable({
     
-    library(readr)
-    library(ISOweek)
-    library(lubridate)
-    library(zoo)
-    library(plotly)
-    
     DailyDemand <- read_delim("CovidAnalysis/DailyDemand.txt", 
                               "\t", escape_double = FALSE, trim_ws = TRUE)
     
@@ -202,7 +196,7 @@ C19Gas <- function(input, output, session) {
     
     DailyDemand$Year <-year(DailyDemand$Date)
     
-    DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013),]
+    DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2019),]
     
     DailyDemand$Month <-month(DailyDemand$Date)
     
@@ -212,58 +206,42 @@ C19Gas <- function(input, output, session) {
     
     DailyDemand$DayofYear <- yday(DailyDemand$Date)
     
-    DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "PostLockdown", "BeforeLockdown")
+    names(DailyDemand)[2] <- c("Daily gas demand (GWh)")
     
-    WeekdayElecDemand <- DailyDemand
-    
-    WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Weekday %in%c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")),]
-    
-    WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Month >= 3),]
-    
-    maxweek <- max(WeekdayElecDemand[which(WeekdayElecDemand$Year ==max(WeekdayElecDemand$Year)),]$Week)
-    
-    WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Week <= maxweek),]
-    
-    WeekdayElecDemand <- WeekdayElecDemand %>% group_by(Year, PostLockdown) %>% 
-      summarise(Gas = mean(Gas))
-    
-    WeekdayElecDemand <- dcast(WeekdayElecDemand, Year ~ PostLockdown)
-    
-    names(WeekdayElecDemand) <- c("Year", "First three weeks of March (GWh)", "Fourth week of March to third week of December (GWh)")
     datatable(
-      WeekdayElecDemand,
+      DailyDemand[c(1,2)],
       extensions = 'Buttons',
       
       rownames = FALSE,
       options = list(
         paging = TRUE,
-        pageLength = 10,
+        pageLength = -1,
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Average weekday daily electricity demand (GWh)",
+        title = "Daily gas demand (GWh)",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Average weekday daily electricity demand (GWh)',
+            title = 'Daily gas demand (GWh)',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Average weekday daily electricity demand (GWh)')
+               title = 'Daily gas demand (GWh)')
         ),
         
         # customize the length menu
-        lengthMenu = list( c(10, 20, -1) # declare values
-                           , c(10, 20, "All") # declare titles
+        lengthMenu = list( c( -1, 10, 20) # declare values
+                           , c("All", 10, 20 ) # declare titles
         ), # end of lengthMenu customization
         pageLength = 10
       )
     ) %>%
-      formatRound(2:3, 0) 
+      formatRound(2, 1)  
   })
   
   output$Text <- renderUI({
@@ -428,6 +406,12 @@ output$FullData <- downloadHandler(
 
 output$C19GasRollingTable = renderDataTable({
   
+  library(readr)
+  library(ISOweek)
+  library(lubridate)
+  library(zoo)
+  library(plotly)
+  
   DailyDemand <- read_delim("CovidAnalysis/DailyDemand.txt", 
                             "\t", escape_double = FALSE, trim_ws = TRUE)
   
@@ -435,7 +419,7 @@ output$C19GasRollingTable = renderDataTable({
   
   DailyDemand$Year <-year(DailyDemand$Date)
   
-  DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013),]
+  DailyDemand <- DailyDemand[which(DailyDemand$Year >= 2013 & DailyDemand$Year < 2021),]
   
   DailyDemand$Month <-month(DailyDemand$Date)
   
@@ -445,54 +429,53 @@ output$C19GasRollingTable = renderDataTable({
   
   DailyDemand$DayofYear <- yday(DailyDemand$Date)
   
-  DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 13, "PostLockdown", "BeforeLockdown")
+  DailyDemand$PostLockdown <- ifelse(DailyDemand$Week >= 1, "PostLockdown", "BeforeLockdown")
   
-  DailyDemandFromMarch <- DailyDemand[which(DailyDemand$Week >= 2 & DailyDemand$Week <= 51),]
+  WeekdayElecDemand <- DailyDemand
   
-  DailyDemandFromMarch <- DailyDemandFromMarch[c(5,6,7,9,1,8,2)]
+  #WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Weekday %in%c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")),]
   
-  DailyDemandFromMarch <- DailyDemandFromMarch %>% group_by(Year) %>% mutate(id = row_number())
+  #WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Month >= 3),]
   
+  maxweek <- 56 #max(WeekdayElecDemand[which(WeekdayElecDemand$Year ==max(WeekdayElecDemand$Year)),]$Week)
   
-  DailyDemandFromMarch  <- dcast(DailyDemandFromMarch, id ~ Year, value.var = 'Gas')
+  WeekdayElecDemand <- WeekdayElecDemand[which(WeekdayElecDemand$Week <= maxweek),]
   
-  DailyDemandFromMarch$Year <- ymd("2020/01/05") + DailyDemandFromMarch$id
+  WeekdayElecDemand <- WeekdayElecDemand %>% group_by(Year, PostLockdown) %>% 
+    summarise(Gas = mean(Gas))
   
-  DailyDemandFromMarch <- DailyDemandFromMarch[complete.cases(DailyDemandFromMarch),]
+  WeekdayElecDemand <- dcast(WeekdayElecDemand, Year ~ PostLockdown)
   
-  DailyDemandFromMarch <- DailyDemandFromMarch[10:8]
-  
-  names(DailyDemandFromMarch) <- c("Date", "Daily gas demand in 2020 (GWh)", "Gas demand on equivalent day in 2019 (GWh)")
-  
+  names(WeekdayElecDemand)[1:2] <- c("Year", "Demand (GWh)")
   datatable(
-    DailyDemandFromMarch,
+    WeekdayElecDemand,
     extensions = 'Buttons',
     
     rownames = FALSE,
     options = list(
       paging = TRUE,
-      pageLength = -1,
+      pageLength = 10,
       searching = TRUE,
       fixedColumns = FALSE,
       autoWidth = TRUE,
       ordering = TRUE,
       order = list(list(0, 'desc')),
-      title = "Daily gas demand from start of March - 2020 vs 2019 (GWh)",
+      title = "Average daily gas demand per year (GWh)",
       dom = 'ltBp',
       buttons = list(
         list(extend = 'copy'),
         list(
           extend = 'excel',
-          title = 'Daily gas demand from start of March - 2020 vs 2019 (GWh)',
+          title = 'Average daily gas demand per year(GWh)',
           header = TRUE
         ),
         list(extend = 'csv',
-             title = 'Daily gas demand from start of March - 2020 vs 2019 (GWh)')
+             title = 'Average daily gas demand per year(GWh)')
       ),
       
       # customize the length menu
-      lengthMenu = list( c( -1, 10, 20) # declare values
-                         , c("All", 10, 20 ) # declare titles
+      lengthMenu = list( c(10, 20, -1) # declare values
+                         , c(10, 20, "All") # declare titles
       ), # end of lengthMenu customization
       pageLength = 10
     )
