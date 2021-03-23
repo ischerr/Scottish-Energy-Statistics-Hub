@@ -230,6 +230,15 @@ TargetTracker <- function(input, output, session, parent_session) {
     
   })
 
+  
+  v <- reactiveValues(doPlot = FALSE)
+  
+  observeEvent(input$go, {
+    # 0 will be coerced to FALSE
+    # 1+ will be coerced to TRUE
+    v$doPlot <- input$go
+  })
+  
   observeEvent(input$RenEnTgtLink, {
     
     updateTabsetPanel(parent_session, "MainNav",
@@ -261,7 +270,7 @@ TargetTracker <- function(input, output, session, parent_session) {
       
       RenElec[which(RenElec$Year == max(RenElec$Year)),]$Renewables
     }
-    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2019")
+    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2020")
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2020")
     Colour = "#31a354"
     
@@ -557,8 +566,6 @@ TargetTracker <- function(input, output, session, parent_session) {
     print("Hi")
   })
   
-  observeEvent(input$tabset, {
-    input$RenEnTgtLink <- FALSE
-  })
+
   
 }

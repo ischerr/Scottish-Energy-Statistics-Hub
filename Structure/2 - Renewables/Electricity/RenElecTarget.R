@@ -115,7 +115,7 @@ RenElecTarget <- function(input, output, session) {
     RenElec <- tail(RenElec[c(1,4)], -1)
     
     names(RenElec) <- c("Year", "Renewables")
-    RenElec <- merge(RenElec, data.frame(Year = 2020, Renewables = NA, Tgt = 1), all = T)
+    RenElec <- merge(RenElec, data.frame(Year = 2020, Tgt = 1), all = T)
     RenElec %<>% lapply(function(x) as.numeric(as.character(x)))
     RenElec <- as.data.frame(RenElec)
     ### variables
