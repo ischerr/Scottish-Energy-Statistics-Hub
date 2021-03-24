@@ -391,7 +391,7 @@ RenElecTarget <- function(input, output, session) {
       RenElec <- tail(RenElec[c(1,4)], -1)
       
       names(RenElec) <- c("Year", "Renewables")
-      RenElec <- merge(RenElec, data.frame(Year = 2020, Renewables = NA, Tgt = 1), all = T)
+      RenElec <- merge(RenElec, data.frame(Year = 2020, Tgt = 1), all = T)
       RenElec %<>% lapply(function(x) as.numeric(as.character(x)))
       RenElec <- as.data.frame(RenElec)
       ### variables
@@ -400,7 +400,7 @@ RenElecTarget <- function(input, output, session) {
       plottitle = "Share of renewable electricity in\ngross electricity consumption"
       
       RenElecChart <-
-        TargetChartSide(RenElec, plottitle, sourcecaption, ChartColours)
+        TargetChartSide2(RenElec, plottitle, sourcecaption, ChartColours)
       
       
       
@@ -533,7 +533,7 @@ RenElecTarget <- function(input, output, session) {
           size = 1.5,
           family = "Century Gothic"
         ) +
-        xlim(1999,2027)+
+        xlim(1999,2029)+
         ylim(-0.01, 1)
       
       ggsave(
@@ -549,7 +549,7 @@ RenElecTarget <- function(input, output, session) {
   
   output$GrossConsumptionSubtitle <- renderText({
     
-      paste("Scotland, 2019")
+      paste("Scotland, 2020")
   })
   
   output$GrossConsumptionPlot <- renderPlotly  ({
@@ -885,7 +885,7 @@ RenElecTarget <- function(input, output, session) {
       
       GrossConsumptionPlotData$Type <- as.numeric(rownames(GrossConsumptionPlotData))
       
-      GrossConsumptionYear <- 2019
+      GrossConsumptionYear <- 2020
       
       ChartColours <- c("#39ab2c", "#FF8500", "#74c476")
       BarColours <-

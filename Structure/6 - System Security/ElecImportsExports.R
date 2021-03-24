@@ -799,7 +799,7 @@ ElecImportsExports <- function(input, output, session) {
     WholesaleValue$`Month Year` <- (as.yearmon(WholesaleValue$`Month Year`))
     
     DataFullYearStart <- ceiling_date(as.Date(min(WholesaleValue$`Month Year`)), unit = "year",week_start = getOption("lubridate.week.start", 1) )
-    DataFullYearEnd <- floor_date(as.Date(max(WholesaleValue$`Month Year`)), unit = "year",week_start = getOption("lubridate.week.start", 1) ) - 1
+    DataFullYearEnd <- ceiling_date(as.Date(max(WholesaleValue$`Month Year`)), unit = "year",week_start = getOption("lubridate.week.start", 1) )-1
     
     WholesaleValue <- WholesaleValue[which(as.Date(WholesaleValue$`Month Year`) >= DataFullYearStart),]
     
