@@ -795,8 +795,7 @@ TargetChartSide2 <-
           x = dataMax$Year,
           y = Renewables,
           label = Percentage,
-          hjust = 0.4,
-          vjust = -1,
+          hjust = 1.25,
           colour = "Renewables",
           fontface = 2
         ),

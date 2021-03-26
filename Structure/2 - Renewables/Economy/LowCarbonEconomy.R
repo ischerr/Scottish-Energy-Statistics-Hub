@@ -80,7 +80,7 @@ LowCarbonEconomyOutput <- function(id) {
                  column(
                    8,
                    h3(
-                     "Employees directly supported by the LCRE sector",
+                     "Full-time equivalent staff directly employed within the LCRE sector",
                      style = "color: #39ab2c;  font-weight:bold"
                    ),
                    h4(textOutput(ns(
@@ -161,7 +161,7 @@ LowCarbonEconomyOutput <- function(id) {
         fluidRow(
           column(
             10,
-            h3("Data - Employees directly supported by the LCRE sector", style = "color: #39ab2c;  font-weight:bold")
+            h3("Data - Full-time equivalent staff directly employed within the LCRE sector", style = "color: #39ab2c;  font-weight:bold")
           ),
           column(
             2,
@@ -322,17 +322,17 @@ LowCarbonEconomy <- function(input, output, session) {
           fixedColumns = FALSE,
           autoWidth = TRUE,
           ordering = TRUE,
-          title = "Employees directly supported by the LCRE sector",
+          title = "Full-time equivalent staff directly employed within the LCRE sector",
           dom = 'ltBp',
           buttons = list(
             list(extend = 'copy'),
             list(
               extend = 'excel',
-              title = 'Employees directly supported by the LCRE sector',
+              title = 'Full-time equivalent staff directly employed within the LCRE sector',
               header = TRUE
             ),
             list(extend = 'csv',
-                 title = 'Employees directly supported by the LCRE sector')
+                 title = 'Full-time equivalent staff directly employed within the LCRE sector')
           ),
           
           # customize the length menu
@@ -666,7 +666,7 @@ LowCarbonEconomy <- function(input, output, session) {
     sourcecaption <- "BEIS"
 
       LCRE$unit <- "\u00A3"
-      plottitle <- str_wrap(paste("Exports directly supported by the LCRE sector - ", input$MeasureSelect1), 40) 
+      plottitle <- str_wrap(paste("Turnover directly supported by the LCRE sector - ", input$MeasureSelect1), 40) 
 
     length <- max(LCRE$Year) - min(LCRE$Year)
     
@@ -877,7 +877,7 @@ LowCarbonEconomy <- function(input, output, session) {
 
       LCRE$unit <- ""
       
-      plottitle <- str_wrap(paste("Exports directly supported by the LCRE sector - ", input$MeasureSelect2), 40) 
+      plottitle <- str_wrap(paste("Number of businesses directly supported by the LCRE sector - ", input$MeasureSelect2), 40) 
      
       
         
@@ -1095,7 +1095,7 @@ LowCarbonEconomy <- function(input, output, session) {
       
 
         LCRE$unit <- ""
-        plottitle <- str_wrap(paste("Exports directly supported by the LCRE sector - ", input$MeasureSelect3), 40)  
+        plottitle <- str_wrap(paste("Full-time equivalent staff directly employed within the LCRE sector - ", input$MeasureSelect3), 40)  
 
       
         
