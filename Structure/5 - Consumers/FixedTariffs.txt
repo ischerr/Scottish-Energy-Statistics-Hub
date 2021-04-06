@@ -1,9 +1,9 @@
 <p>On a fixed tariff, customers&rsquo; unit rates and standing charges do not change for the duration of the contract.&nbsp; This means that households are protected from energy price rises, and their bills only differ depending on the energy consumed.&nbsp;</p>
 <p>Approximately <strong>four in ten</strong> Scottish consumers are on <strong>fixed tariffs</strong> for electricity and gas.&nbsp; They are increasingly popular among Scottish consumers in recent years, rising from:</p>
 <ul>
-<li><strong>32%</strong> in <strong>September 2016</strong> to <strong>38%</strong> in <strong>September 2020</strong>&nbsp;among <strong>electricity</strong> customers in <strong>South Scotland</strong>;</li>
-<li><strong>32%</strong> to <strong>40%</strong> among <strong>gas</strong> customers in <strong>South Scotland</strong>;</li>
-<li><strong>25%</strong> to <strong>36%</strong> among <strong>electricity</strong> customers in <strong>North Scotland</strong>;</li>
-<li><strong>29% </strong>to<strong>&nbsp;38% </strong>among<strong> gas </strong>customers in<strong> North Scotland</strong>.</li>
+<li><strong>32%</strong> in <strong>September 2016</strong> to <strong>40%</strong> in <strong>December 2020</strong>&nbsp;among <strong>electricity</strong> customers in <strong>South Scotland</strong>;</li>
+<li><strong>32%</strong> to <strong>43%</strong> among <strong>gas</strong> customers in <strong>South Scotland</strong>;</li>
+<li><strong>25%</strong> to <strong>37%</strong> among <strong>electricity</strong> customers in <strong>North Scotland</strong>;</li>
+<li><strong>29% </strong>to<strong>&nbsp;40% </strong>among<strong> gas </strong>customers in<strong> North Scotland</strong>.</li>
 </ul>
 <p>Fixed tariffs are most popular among <strong>direct debit</strong> customers, with more than half on them for electricity and gas.</p>

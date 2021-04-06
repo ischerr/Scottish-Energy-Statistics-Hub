@@ -301,7 +301,7 @@ LowCarbonEconomy <- function(input, output, session) {
                          sheet = "Employees", col_names = TRUE)
       
       
-      for (i in 2:6){
+      for (i in 2:7){
         Data[2,i] <- percent(as.numeric(Data[2,i]),0.1)
       }
     
@@ -315,7 +315,7 @@ LowCarbonEconomy <- function(input, output, session) {
         # container = sketch,
         rownames = FALSE,
         options = list(
-          columnDefs = list(list(className = 'dt-right', targets = 1:5)),
+          columnDefs = list(list(className = 'dt-right', targets = 1:6)),
           paging = TRUE,
           pageLength = -1,
           searching = TRUE,
@@ -353,7 +353,7 @@ LowCarbonEconomy <- function(input, output, session) {
       Data <- read_csv("Structure/2 - Renewables/Economy/EconomyTablesTurnover.csv")
       
       
-      for (i in 2:6){
+      for (i in 2:7){
         Data[2,i] <- percent(as.numeric(Data[2,i]),0.1)
       }
       
@@ -364,7 +364,7 @@ LowCarbonEconomy <- function(input, output, session) {
         # container = sketch,
         rownames = FALSE,
         options = list(
-          columnDefs = list(list(className = 'dt-right', targets = 1:5)),
+          columnDefs = list(list(className = 'dt-right', targets = 1:6)),
           paging = TRUE,
           pageLength = -1,
           searching = TRUE,
@@ -404,7 +404,7 @@ LowCarbonEconomy <- function(input, output, session) {
                          sheet = "Exports", col_names = TRUE)
       
       
-      for (i in 2:6){
+      for (i in 2:7){
         Data[2,i] <- percent(as.numeric(Data[2,i]),0.1)
       }
       
@@ -415,7 +415,7 @@ LowCarbonEconomy <- function(input, output, session) {
         # container = sketch,
         rownames = FALSE,
         options = list(
-          columnDefs = list(list(className = 'dt-right', targets = 1:5)),
+          columnDefs = list(list(className = 'dt-right', targets = 1:6)),
           paging = TRUE,
           pageLength = -1,
           searching = TRUE,
@@ -454,7 +454,7 @@ LowCarbonEconomy <- function(input, output, session) {
                          sheet = "Number of Businesses", col_names = TRUE)
       
       
-      for (i in 2:6){
+      for (i in 2:7){
         Data[2,i] <- percent(as.numeric(Data[2,i]),0.1)
       }
       
@@ -465,7 +465,7 @@ LowCarbonEconomy <- function(input, output, session) {
         # container = sketch,
         rownames = FALSE,
         options = list(
-          columnDefs = list(list(className = 'dt-right', targets = 1:5)),
+          columnDefs = list(list(className = 'dt-right', targets = 1:6)),
           paging = TRUE,
           pageLength = -1,
           searching = TRUE,
@@ -563,7 +563,7 @@ LowCarbonEconomy <- function(input, output, session) {
       
       LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
       
-      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)*1000
       
       LCRE <- LCRE[which(LCRE$Estimate > 0),]
       
@@ -575,15 +575,15 @@ LowCarbonEconomy <- function(input, output, session) {
       
       
       LCRE$Estimate <- as.numeric(LCRE$Estimate)
-      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
-      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)*1000
+      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)*1000
       
        
 
         LCRE$unit <- "\u00A3"
       
       
-      LCRE$HoverText <- paste0("<b>", "Turnover", ": ", LCRE$unit, format(round(LCRE$Estimate, 0), big.mark = ","), "</b>\nYear: ", LCRE$Year,"\nSector: ", input$MeasureSelect1,  "\n<i>Upper CI: ", LCRE$unit, format(round(LCRE$`Upper CI`, 0), big.mark = ","), "\nLower CI: ", LCRE$unit, format(round(LCRE$`Lower CI`, 0), big.mark = ","), "</i>")
+      LCRE$HoverText <- paste0("<b>", "Turnover", ": ", LCRE$unit, format(round(LCRE$Estimate / 1000000000, 2), big.mark = ","), " billion</b>\nYear: ", LCRE$Year,"\nSector: ", input$MeasureSelect1,  "\n<i>Upper CI: ", LCRE$unit, format(round(LCRE$`Upper CI`/ 1000000000, 2), big.mark = ","), " billion\nLower CI: ", LCRE$unit, format(round(LCRE$`Lower CI`/ 1000000000, 2), big.mark = ","), " billionn</i>")
       
       
       
@@ -657,9 +657,9 @@ LowCarbonEconomy <- function(input, output, session) {
     
     LCRE <- LCRE[which(LCRE$Sector == input$MeasureSelect1),]
     
-    LCRE$Estimate <- as.numeric(LCRE$Estimate)
-    LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
-    LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+    LCRE$Estimate <- as.numeric(LCRE$Estimate)*1000
+    LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)*1000
+    LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)*1000
     
      
     
@@ -692,7 +692,7 @@ LowCarbonEconomy <- function(input, output, session) {
         aes(
           x = Year-.1,
           y = Estimate,
-          label = ifelse(Year == min(Year), paste0(LCRE$unit, format(round(LCRE$Estimate,1), big.mark = ",")), ""),
+          label = ifelse(Year == min(Year), paste0(LCRE$unit, format(round(LCRE$Estimate/1000000000,2), big.mark = ","), " billion"), ""),
           hjust = 1,
           colour = ChartColours[1],
           fontface = 2
@@ -703,7 +703,7 @@ LowCarbonEconomy <- function(input, output, session) {
         aes(
           x = Year+.1,
           y = Estimate,
-          label = ifelse(Year == max(Year), paste0(LCRE$unit, format(round(LCRE$Estimate,1), big.mark = ",")), ""),
+          label = ifelse(Year == max(Year), paste0(LCRE$unit, format(round(LCRE$Estimate/1000000000,2), big.mark = ","), " billion"), ""),
           hjust = 0,
           colour = ChartColours[1],
           fontface = 2
@@ -1221,9 +1221,9 @@ LowCarbonEconomy <- function(input, output, session) {
       
       LCRE <- LCRE[which(LCRE$Sector == input$MeasureSelect4),]
       
-      LCRE$Estimate <- as.numeric(LCRE$Estimate)
-      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
-      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)*1000
+      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)*1000
+      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)*1000
       
        
       
@@ -1232,7 +1232,7 @@ LowCarbonEconomy <- function(input, output, session) {
         LCRE$unit <- "\u00A3"
 
       
-        LCRE$HoverText <- paste0("<b>", "Turnover", ": ", LCRE$unit, format(round(LCRE$Estimate, 0), big.mark = ","), "</b>\nYear: ", LCRE$Year,"\nSector: ", input$MeasureSelect4,  "\n<i>Upper CI: ", LCRE$unit, format(round(LCRE$`Upper CI`, 0), big.mark = ","), "\nLower CI: ", LCRE$unit, format(round(LCRE$`Lower CI`, 0), big.mark = ","), "</i>")
+        LCRE$HoverText <- paste0("<b>", "Turnover", ": ", LCRE$unit, format(round(LCRE$Estimate/1000000, 1), big.mark = ","), " million</b>\nYear: ", LCRE$Year,"\nSector: ", input$MeasureSelect4,  "\n<i>Upper CI: ", LCRE$unit, format(round(LCRE$`Upper CI`/1000000, 1), big.mark = ","), " million\nLower CI: ", LCRE$unit, format(round(LCRE$`Lower CI`/1000000, 1), big.mark = ","), " million</i>")
       
       
       
@@ -1306,9 +1306,9 @@ LowCarbonEconomy <- function(input, output, session) {
       
       LCRE <- LCRE[which(LCRE$Sector == input$MeasureSelect4),]
       
-      LCRE$Estimate <- as.numeric(LCRE$Estimate)
-      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
-      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+      LCRE$Estimate <- as.numeric(LCRE$Estimate) *1000
+      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)*1000
+      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)*1000
       
        
       
@@ -1345,7 +1345,7 @@ LowCarbonEconomy <- function(input, output, session) {
           aes(
             x = Year-.1,
             y = Estimate,
-            label = ifelse(Year == min(Year), paste0(LCRE$unit, format(round(LCRE$Estimate,1), big.mark = ",")), ""),
+            label = ifelse(Year == min(Year), paste0(LCRE$unit, format(round(LCRE$Estimate/1000000,1), big.mark = ","), " million"), ""),
             hjust = 1,
             colour = ChartColours[1],
             fontface = 2
@@ -1356,7 +1356,7 @@ LowCarbonEconomy <- function(input, output, session) {
           aes(
             x = Year+.1,
             y = Estimate,
-            label = ifelse(Year == max(Year), paste0(LCRE$unit, format(round(LCRE$Estimate,1), big.mark = ",")), ""),
+            label = ifelse(Year == max(Year), paste0(LCRE$unit, format(round(LCRE$Estimate/1000000,1), big.mark = ","), " million"), ""),
             hjust = 0,
             colour = ChartColours[1],
             fontface = 2
@@ -1402,7 +1402,7 @@ LowCarbonEconomy <- function(input, output, session) {
       
       LCREChart <- LCREChart +
         ylim(-.5, max(LCRE$`Upper CI`)*1.05)+
-        xlim(min(LCRE$Year)-(length*0.2), max(LCRE$Year)+(length*0.2))
+        xlim(min(LCRE$Year)-(length*0.3), max(LCRE$Year)+(length*0.3))
       
       ggsave(
         file,
@@ -1417,3 +1417,4 @@ LowCarbonEconomy <- function(input, output, session) {
     
 
 }
+

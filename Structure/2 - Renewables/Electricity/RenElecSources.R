@@ -18,7 +18,6 @@ RenElecSourcesOutput <- function(id) {
                ),
                column(
                  4, style = 'padding:15px;',
-                 downloadButton(ns('OnshoreWindGen.png'), 'Download Graph', style="float:right")
                )),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
                  plotlyOutput(ns("OnshoreWindGenPlot"))%>% withSpinner(color="#39ab2c"),
@@ -1855,7 +1854,7 @@ RenElecSources <- function(input, output, session) {
     
     TechTableOutput <- head(TechTable, -1)
     
-    names(TechTableOutput)[2] <- "Generation - 2019 (GWh)"
+    names(TechTableOutput)[2] <- "Generation - 2020 (GWh)"
     
     TechTableOutput[2:7] %<>% lapply(function(x)
       as.numeric(as.character(x)))

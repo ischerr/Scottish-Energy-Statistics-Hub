@@ -16,3 +16,4 @@ Quarter	Great Britain	North Scotland	South Scotland
 01/03/2020	0.42	0.4	0.41
 01/06/2020	0.41	0.38	0.4
 01/09/2020	0.42	0.38	0.4
+01/12/2020	0.45	0.40	0.43

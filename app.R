@@ -303,7 +303,7 @@ observeEvent(input$GoToCovidTab, {
   
   observeEvent(input$GoToOtherTab, {
     updateTabsetPanel(session, "MainNav",
-                      selected = "TargetTracker"
+                      selected = "Other"
     )
   })
   

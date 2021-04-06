@@ -477,7 +477,7 @@ TargetTracker <- function(input, output, session, parent_session) {
       EnProd[which(EnProd$Year == max(EnProd$Year)),]$Renewables
       
       }
-    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2018")
+    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2019")
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2030")
     Colour = "#800008"
     
