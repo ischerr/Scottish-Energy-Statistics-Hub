@@ -204,7 +204,7 @@ EnBalance <- function(input, output, session) {
   
   output$EnBalanceSubtitle <- renderText({
     
-    paste("Scotland, 2018")
+    paste("Scotland, 2019")
   })
   
   output$EnBalancePlot <- renderPlotly  ({
@@ -496,7 +496,7 @@ EnBalance <- function(input, output, session) {
   
   output$SimplifiedFlowSubtitle <- renderText({
     
-    paste("Scotland, 2018")
+    paste("Scotland, 2019")
   })
   
   output$SimplifiedFlow.png <- downloadHandler(
