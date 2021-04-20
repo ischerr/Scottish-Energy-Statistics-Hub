@@ -14,7 +14,7 @@
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    width="568.93176"
    height="319.22357"
-   inkscape:export-filename="C:\Users\ische\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\SimplifiedFlowPJ.png"
+   inkscape:export-filename="C:\Users\ische\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\SimplifiedFlowktoe.png"
    inkscape:export-xdpi="299.98212"
    inkscape:export-ydpi="299.98212">
   <metadata
@@ -43,8 +43,8 @@
      id="namedview76"
      showgrid="false"
      inkscape:zoom="5.3622399"
-     inkscape:cx="294.81182"
-     inkscape:cy="167.26115"
+     inkscape:cx="248.2913"
+     inkscape:cy="148.20409"
      inkscape:window-x="-11"
      inkscape:window-y="-11"
      inkscape:window-maximized="1"
@@ -53,7 +53,9 @@
      fit-margin-left="5"
      fit-margin-right="5"
      fit-margin-bottom="5"
-     inkscape:document-rotation="0" />
+     inkscape:document-rotation="0"
+     showguides="true"
+     inkscape:guide-bbox="true" />
   <defs
      id="defs4">
     <style
@@ -195,6 +197,60 @@
          id="rect1871"
          style="opacity:1;fill:#1a5d38;fill-opacity:1;stroke:#1a5d38;stroke-width:0.66145831;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
     </clipPath>
+    <g
+       class="clips"
+       id="g1147" />
+    <g
+       class="gradients"
+       id="g1149" />
+    <g
+       class="clips"
+       id="g1210-7" />
+    <clipPath
+       id="legend724f30">
+      <rect
+         width="534"
+         height="67"
+         x="0"
+         y="0"
+         id="rect1212" />
+    </clipPath>
+    <g
+       class="clips"
+       id="g1486" />
+    <g
+       class="gradients"
+       id="g1488-7" />
+    <g
+       class="clips"
+       id="g1537" />
+    <clipPath
+       id="legend4f9065">
+      <rect
+         width="153"
+         height="29"
+         x="0"
+         y="0"
+         id="rect1539" />
+    </clipPath>
+    <g
+       class="clips"
+       id="g1726" />
+    <g
+       class="gradients"
+       id="g1728" />
+    <g
+       class="clips"
+       id="g1793" />
+    <clipPath
+       id="legend920927">
+      <rect
+         width="491"
+         height="67"
+         x="0"
+         y="0"
+         id="rect1795" />
+    </clipPath>
   </defs>
   <defs
      id="defs13">
@@ -222,6 +278,146 @@
          style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
     </clipPath>
   </defs>
+  <g
+     id="g2094"
+     transform="translate(-728.49609,-119.48859)">
+    <g
+       class="pielayer"
+       id="g1785"
+       transform="matrix(0.511593,0,0,0.511593,637.05266,158.87797)">
+      <g
+         class="trace"
+         stroke-linejoin="round"
+         style="opacity:1"
+         id="g1757">
+        <g
+           class="slice"
+           id="g1751">
+          <path
+             class="surface"
+             d="m 506.26136,144.86493 a 144.8,144.8 0 1 0 0,122.27014 l 32.81534,15.28376 a 181,181 0 1 1 0,-152.83766 z"
+             style="fill:#262626;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-opacity:1"
+             id="path1749" />
+        </g>
+        <g
+           class="slice"
+           id="g1755">
+          <path
+             class="surface"
+             d="m 506.26136,267.13507 a 144.8,144.8 0 0 0 0,-122.27014 l 32.81534,-15.28376 a 181,181 0 0 1 0,152.83766 z"
+             style="fill:#6f8a91;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-opacity:1"
+             id="path1753" />
+        </g>
+      </g>
+      <g
+         class="trace"
+         stroke-linejoin="round"
+         style="opacity:1"
+         id="g1783-5">
+        <g
+           class="slice"
+           id="g1761">
+          <path
+             class="surface"
+             d="M 375,206 V 61.2 a 144.8,144.8 0 1 1 -93.53043,255.34003 z"
+             style="fill:#254061;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-opacity:1"
+             id="path1759" />
+        </g>
+        <g
+           class="slice"
+           id="g1765">
+          <path
+             class="surface"
+             d="M 375,206 236.01035,246.60685 A 144.8,144.8 0 0 1 375,61.2 Z"
+             style="fill:#376092;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-opacity:1"
+             id="path1763" />
+        </g>
+        <g
+           class="slice"
+           id="g1769">
+          <path
+             class="surface"
+             d="m 375,206 -117.44538,84.69725 a 144.8,144.8 0 0 1 -21.54427,-44.0904 z"
+             style="fill:#77933c;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-opacity:1"
+             id="path1767" />
+        </g>
+        <g
+           class="slice"
+           id="g1773">
+          <path
+             class="surface"
+             d="M 375,206 272.42304,308.20082 a 144.8,144.8 0 0 1 -14.86842,-17.50357 z"
+             style="fill:#4f6228;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-opacity:1"
+             id="path1771" />
+        </g>
+        <g
+           class="slice"
+           id="g1777">
+          <path
+             class="surface"
+             d="m 375,206 -95.38645,108.94248 a 144.8,144.8 0 0 1 -7.19051,-6.74166 z"
+             style="fill:#184d0f;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-opacity:1"
+             id="path1775" />
+        </g>
+        <g
+           class="slice"
+           id="g1781-8">
+          <path
+             class="surface"
+             d="m 375,206 -93.53043,110.54003 a 144.8,144.8 0 0 1 -1.85602,-1.59755 z"
+             style="fill:#00aa88;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-opacity:1"
+             id="path1779" />
+        </g>
+      </g>
+    </g>
+    <g
+       class="bglayer"
+       id="g1731" />
+    <g
+       class="layer-below"
+       id="g1737">
+      <g
+         class="imagelayer"
+         id="g1733" />
+      <g
+         class="shapelayer"
+         id="g1735" />
+    </g>
+    <g
+       class="cartesianlayer"
+       id="g1739" />
+    <g
+       class="polarlayer"
+       id="g1741" />
+    <g
+       class="ternarylayer"
+       id="g1743" />
+    <g
+       class="geolayer"
+       id="g1745" />
+    <g
+       class="funnelarealayer"
+       id="g1747" />
+    <g
+       class="treemaplayer"
+       id="g1787" />
+    <g
+       class="sunburstlayer"
+       id="g1789" />
+    <g
+       class="glimages"
+       id="g1791" />
+    <g
+       class="layer-above"
+       id="g1803">
+      <g
+         class="imagelayer"
+         id="g1799" />
+      <g
+         class="shapelayer"
+         id="g1801" />
+    </g>
+  </g>
   <flowRoot
      xml:space="preserve"
      id="flowRoot1106"
@@ -612,105 +808,10 @@
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#262626;fill-opacity:1"
          id="flowPara2806-8-2">Exports and losses</flowPara><flowPara
          id="flowPara1261"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#262626;fill-opacity:1">85.8%</flowPara></flowRoot>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#262626;fill-opacity:1">86.1%</flowPara></flowRoot>
     <g
        transform="matrix(4.018046,0,0,4.018046,236.70602,-861.63431)"
        id="g2051">
-      <g
-         class="pielayer"
-         id="g898"
-         transform="matrix(0.48415925,0,0,0.48415925,140.23796,28.958201)">
-        <g
-           class="trace"
-           style="opacity:1;stroke-linejoin:round"
-           id="g870">
-          <g
-             class="slice"
-             id="g864-3">
-            <path
-               inkscape:connector-curvature="0"
-               class="surface"
-               d="m 508.0095,148.76791 a 144.8,144.8 0 1 0 0,114.46418 l 33.25238,14.30802 a 181,181 0 1 1 0,-143.08022 z"
-               style="fill:#262626;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-               id="path862" />
-          </g>
-          <g
-             class="slice"
-             id="g868">
-            <path
-               inkscape:connector-curvature="0"
-               class="surface"
-               d="m 508.0095,263.23209 a 144.8,144.8 0 0 0 0,-114.46418 l 33.25238,-14.30802 a 181,181 0 0 1 0,143.08022 z"
-               style="fill:#6f8a91;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-               id="path866" />
-          </g>
-        </g>
-        <g
-           class="trace"
-           style="opacity:1;stroke-linejoin:round"
-           id="g896">
-          <g
-             class="slice"
-             id="g874">
-            <path
-               inkscape:connector-curvature="0"
-               class="surface"
-               d="M 375,206 V 61.2 a 144.8,144.8 0 1 1 -46.91923,281.78769 z"
-               style="fill:#254061;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-               id="path872" />
-          </g>
-          <g
-             class="slice"
-             id="g878">
-            <path
-               inkscape:connector-curvature="0"
-               class="surface"
-               d="M 375,206 261.99552,296.53743 A 144.8,144.8 0 0 1 375,61.2 Z"
-               style="fill:#376092;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-               id="path876" />
-          </g>
-          <g
-             class="slice"
-             id="g882">
-            <path
-               inkscape:connector-curvature="0"
-               class="surface"
-               d="M 375,206 293.33383,325.5729 A 144.8,144.8 0 0 1 261.99552,296.53743 Z"
-               style="fill:#77933c;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-               id="path880" />
-          </g>
-          <g
-             class="slice"
-             id="g886">
-            <path
-               inkscape:connector-curvature="0"
-               class="surface"
-               d="M 375,206 316.96909,338.66293 A 144.8,144.8 0 0 1 293.33383,325.5729 Z"
-               style="fill:#4f6228;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-               id="path884" />
-          </g>
-          <g
-             class="slice"
-             id="g890">
-            <path
-               inkscape:connector-curvature="0"
-               class="surface"
-               d="m 375,206 -50.1447,135.84016 a 144.8,144.8 0 0 1 -7.88621,-3.17723 z"
-               style="fill:#184d0f;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-               id="path888" />
-          </g>
-          <g
-             class="slice"
-             id="g894">
-            <path
-               inkscape:connector-curvature="0"
-               class="surface"
-               d="m 375,206 -46.91923,136.98769 a 144.8,144.8 0 0 1 -3.22547,-1.14753 z"
-               style="fill:#00aa88;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-               id="path892" />
-          </g>
-        </g>
-      </g>
       <g
          class="pielayer"
          id="g1500"
@@ -875,12 +976,12 @@
              y="1479.6626"
              style="fill:#ffffff;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
            id="flowPara2806"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#ffffff">63%</flowPara></flowRoot>
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#ffffff">61%</flowPara></flowRoot>
       <flowRoot
          xml:space="preserve"
          id="flowRoot2800-9"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none"
-         transform="matrix(0.17628475,0,0,0.17628475,645.93893,-89.257059)"><flowRegion
+         transform="matrix(0.17628475,0,0,0.17628475,633.96107,-107.83142)"><flowRegion
            id="flowRegion2802-1"
            style="fill:#ffffff"><rect
              id="rect2804-9"
@@ -890,12 +991,12 @@
              y="1479.6626"
              style="fill:#ffffff;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
            id="flowPara2806-6"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#ffffff">3%</flowPara></flowRoot>
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:#ffffff">5%</flowPara></flowRoot>
       <flowRoot
          xml:space="preserve"
          id="flowRoot2800-9-5"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none"
-         transform="matrix(0.17628475,0,0,0.17628475,657.5957,-80.153999)"><flowRegion
+         transform="matrix(0.17628475,0,0,0.17628475,640.01506,-95.082927)"><flowRegion
            id="flowRegion2802-1-5"
            style="fill:#ffffff"><rect
              id="rect2804-9-6"
@@ -1044,7 +1145,7 @@
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#6f8a91;fill-opacity:1"
            id="flowPara1709">consumption</flowPara><flowPara
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:center;text-anchor:middle;fill:#6f8a91;fill-opacity:1"
-           id="flowPara1261-6">14.2%</flowPara></flowRoot>
+           id="flowPara1261-6">13.9%</flowPara></flowRoot>
       <flowRoot
          xml:space="preserve"
          id="flowRoot2800-4-9-0-5"
@@ -1059,7 +1160,7 @@
              y="1479.6626"
              style="text-align:center;text-anchor:middle;fill:#1a5d38;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;text-anchor:start;fill:#1a5d38;fill-opacity:1"
-           id="flowPara1261-6-5">Indigenous production &amp; imports - 4,073 PJ</flowPara></flowRoot>
+           id="flowPara1261-6-5">Indigenous production &amp; imports - 99,685 ktoe</flowPara></flowRoot>
       <flowRoot
          xml:space="preserve"
          id="flowRoot2800-4-9-0-5-7"
@@ -1074,7 +1175,7 @@
              y="1479.6626"
              style="text-align:center;text-anchor:middle;fill:#6f8a91;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;text-anchor:start;fill:#6f8a91;fill-opacity:1"
-           id="flowPara1261-6-5-3">Final consumption - 579 PJ</flowPara></flowRoot>
+           id="flowPara1261-6-5-3">Final consumption - 13,831 ktoe</flowPara></flowRoot>
       <flowRoot
          xml:space="preserve"
          id="flowRoot2800-4-9-0-5-2"
@@ -1089,7 +1190,7 @@
              y="1479.6626"
              style="text-align:center;text-anchor:middle;fill:#262626;fill-opacity:1;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;text-anchor:start;fill:#262626;fill-opacity:1"
-           id="flowPara1261-6-5-34">Exports and losses - 3,494 PJ</flowPara></flowRoot>
+           id="flowPara1261-6-5-34">Exports and losses - 85,854 ktoe</flowPara></flowRoot>
       <flowRoot
          xml:space="preserve"
          id="flowRoot2800-4-9-0-5-0"
@@ -1358,5 +1459,5 @@
        sodipodi:role="line"
        id="tspan1144"
        x="498.29922"
-       y="175.48637"></tspan></text>
+       y="175.48637" /></text>
 </svg>

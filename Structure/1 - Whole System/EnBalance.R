@@ -579,6 +579,7 @@ EnBalance <- function(input, output, session) {
     
     p1
     
+    #orca(p1, "StaticCharts/EnBalance1.svg")
   })
   output$SimplifiedFlowPlot2 <- renderPlotly  ({
     
@@ -646,7 +647,7 @@ EnBalance <- function(input, output, session) {
       )
     p2
     
-    
+    #orca(p2, "StaticCharts/EnBalance2.svg")
     
     
   })
@@ -717,7 +718,7 @@ EnBalance <- function(input, output, session) {
     
     p3
     
-    
+    #orca(p3, "StaticCharts/EnBalance3.svg")
   })
   
   observeEvent(input$ToggleTable1, {
