@@ -129,7 +129,7 @@ EnEconomyOutput <- function(id) {
       column(1, align = "right",
              HTML("<p><strong>Reason:</strong></p>")),
       column(7, align = "right", 
-             p("Regular updates")
+             p("Employment figures available for 2019")
       )),
     fluidRow(p(" ")),
     fluidRow(
@@ -842,7 +842,7 @@ EnEconomy <- function(input, output, session) {
     GrowthExports <- read_delim("Processed Data/Output/Growth Exports/GrowthExports.txt", 
                                 "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    EnergySectorExports <- merge(EnergySectorExports[1:5], GrowthExports)
+    EnergySectorExports <- merge(EnergySectorExports[1:5], GrowthExports, all = TRUE)
     
     EnergySectorExports$TotalExports <- EnergySectorExports$UKExports + EnergySectorExports$EUExports + EnergySectorExports$NonEUExports
     
