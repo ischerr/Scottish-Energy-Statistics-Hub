@@ -93,18 +93,28 @@ ECOMeasuresOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
     tabPanel("ECO Measures by LA",
              fluidRow(
-               column(10, h3("Data - ECO measures by Local Authority, Scotland, 2020 Q2", style = "color: #34d1a3;  font-weight:bold")),
+               column(10, h3("Data - ECO measures by Local Authority, Scotland, 2020 Q4", style = "color: #34d1a3;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
                column(12, dataTableOutput(ns("ECOLATable"))%>% withSpinner(color="#34d1a3"))),
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"))),
     fluidRow(
-      column(2, p("Update expected:")),
+      column(2, HTML("<p><strong>Last Updated:</strong></p>")),
       column(2,
-             DateLookup(c("BEISHHoldEE"))),
+             UpdatedLookup(c("SGGrowth"))),
       column(1, align = "right",
-             p("Sources:")),
+             HTML("<p><strong>Reason:</strong></p>")),
+      column(7, align = "right", 
+             p("Regular updates")
+      )),
+    fluidRow(p(" ")),
+    fluidRow(
+      column(2, HTML("<p><strong>Update Expected:</strong></p>")),
+      column(2,
+             DateLookup(c("SGGrowth"))),
+      column(1, align = "right",
+             HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("BEISHHoldEE")
         
@@ -1335,17 +1345,17 @@ ECOMeasures <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "ECO measures by Local Authority, Scotland, 2020 Q2",
+        title = "ECO measures by Local Authority, Scotland, 2020 Q4",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'ECO measures by Local Authority, Scotland, 2020 Q2',
+            title = 'ECO measures by Local Authority, Scotland, 2020 Q4',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'ECO measures by Local Authority, Scotland, 2020 Q2')
+               title = 'ECO measures by Local Authority, Scotland, 2020 Q4')
         ),
         
         # customize the length menu

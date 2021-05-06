@@ -38,7 +38,7 @@ RenElecTargetOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
              #dygraphOutput(ns("GrossConsumptionPlot")),
              plotlyOutput(ns("GrossConsumptionPlot"), height = "500px")%>% withSpinner(color="#39ab2c"),
-             HTML("<blockquote><p>Note: the calculation above is based on 2018 data as it is the most recent year where final data is available</p></blockquote>"),
+             HTML("<blockquote><p>*2019 figures used here as they are final.</p></blockquote>"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
@@ -56,11 +56,21 @@ RenElecTargetOutput <- function(id) {
       column(12, dataTableOutput(ns("RenElecTargetTable"))%>% withSpinner(color="#39ab2c"))),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
-      column(2, p("Update expected:")),
+      column(2, HTML("<p><strong>Last Updated:</strong></p>")),
+      column(2,
+             UpdatedLookup(c("BEISRenElec", "BEISElecGen"))),
+      column(1, align = "right",
+             HTML("<p><strong>Reason:</strong></p>")),
+      column(7, align = "right", 
+             p("Regular updates")
+      )),
+    fluidRow(p(" ")),
+    fluidRow(
+      column(2, HTML("<p><strong>Update Expected:</strong></p>")),
       column(2,
              DateLookup(c("BEISRenElec", "BEISElecGen"))),
       column(1, align = "right",
-             p("Sources:")),
+             HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("BEISRenElec"),
         SourceLookup("BEISElecGen")
@@ -106,7 +116,7 @@ RenElecTarget <- function(input, output, session) {
     RenElec <- tail(RenElec[c(1,4)], -1)
     
     names(RenElec) <- c("Year", "Renewables")
-    RenElec <- merge(RenElec, data.frame(Year = 2020, Renewables = NA, Tgt = 1), all = T)
+    RenElec <- merge(RenElec, data.frame(Year = 2020, Tgt = 1), all = T)
     RenElec %<>% lapply(function(x) as.numeric(as.character(x)))
     RenElec <- as.data.frame(RenElec)
     ### variables
@@ -382,7 +392,7 @@ RenElecTarget <- function(input, output, session) {
       RenElec <- tail(RenElec[c(1,4)], -1)
       
       names(RenElec) <- c("Year", "Renewables")
-      RenElec <- merge(RenElec, data.frame(Year = 2020, Renewables = NA, Tgt = 1), all = T)
+      RenElec <- merge(RenElec, data.frame(Year = 2020, Tgt = 1), all = T)
       RenElec %<>% lapply(function(x) as.numeric(as.character(x)))
       RenElec <- as.data.frame(RenElec)
       ### variables
@@ -391,7 +401,7 @@ RenElecTarget <- function(input, output, session) {
       plottitle = "Share of renewable electricity in\ngross electricity consumption"
       
       RenElecChart <-
-        TargetChartSide(RenElec, plottitle, sourcecaption, ChartColours)
+        TargetChartSide2(RenElec, plottitle, sourcecaption, ChartColours)
       
       
       
@@ -524,7 +534,7 @@ RenElecTarget <- function(input, output, session) {
           size = 1.5,
           family = "Century Gothic"
         ) +
-        xlim(1999,2027)+
+        xlim(1999,2029)+
         ylim(-0.01, 1)
       
       ggsave(
@@ -540,10 +550,7 @@ RenElecTarget <- function(input, output, session) {
   
   output$GrossConsumptionSubtitle <- renderText({
     
-    GrossConsumption <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                                   "\t", escape_double = FALSE, trim_ws = TRUE)
-    
-    paste("Scotland,", max(as.numeric(GrossConsumption$refPeriod), na.rm = TRUE))
+      paste("Scotland, 2019")
   })
   
   output$GrossConsumptionPlot <- renderPlotly  ({
@@ -769,7 +776,7 @@ RenElecTarget <- function(input, output, session) {
         showlegend = FALSE ,
         hoverinfo = 'none',
         legendgroup = 10,
-        text = "This does not mean that 23.3% of Scottish electricity demand is\nfrom non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
+        text = "This does not mean that 10.5% of Scottish electricity demand is\nfrom non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
         name = paste("Consumption"),
         marker = list(
           size = 500,
@@ -879,7 +886,7 @@ RenElecTarget <- function(input, output, session) {
       
       GrossConsumptionPlotData$Type <- as.numeric(rownames(GrossConsumptionPlotData))
       
-      GrossConsumptionYear <- 2018
+      GrossConsumptionYear <- 2019
       
       ChartColours <- c("#39ab2c", "#FF8500", "#74c476")
       BarColours <-
@@ -1033,7 +1040,7 @@ RenElecTarget <- function(input, output, session) {
         geom_text(
           aes( x = 0,
                y = 48629/1.9,
-               label = "This does not mean that 23.3% of Scottish electricity demand is\nfrom non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
+               label = "This does not mean that 10.5% of Scottish electricity demand is\nfrom non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
                family = "Century Gothic",
                fontface = 2
           ),

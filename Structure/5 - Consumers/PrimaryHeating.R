@@ -24,6 +24,7 @@ PrimaryHeatingOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     #dygraphOutput(ns("PrimaryHeatingPlot")),
     plotlyOutput(ns("PrimaryHeatingPlot"), height = "600px")%>% withSpinner(color="#68c3ea"),
+    
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Non-domestic",
              fluidRow(column(8,
@@ -38,6 +39,7 @@ PrimaryHeatingOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
              #dygraphOutput(ns("PrimaryHeatingPlot")),
              plotlyOutput(ns("PrimaryHeatingNonDomPlot"), height = "600px")%>% withSpinner(color="#68c3ea"),
+             HTML("<blockquote><p>*based on EPCs available for non-domestic properties that may not be representative of the full non-domestic building stock</p></blockquote>"),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #68c3ea;  font-weight:bold")),
@@ -75,11 +77,21 @@ PrimaryHeatingOutput <- function(id) {
              p("* Small base and judged to be insufficiently reliable for publication"),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     fluidRow(
-      column(2, p("Update expected:")),
+      column(2, HTML("<p><strong>Last Updated:</strong></p>")),
+      column(2,
+             UpdatedLookup(c("SGSHCS", "SGNonDomBase"))),
+      column(1, align = "right",
+             HTML("<p><strong>Reason:</strong></p>")),
+      column(7, align = "right", 
+             p("Regular updates")
+      )),
+    fluidRow(p(" ")),
+    fluidRow(
+      column(2, HTML("<p><strong>Update Expected:</strong></p>")),
       column(2,
              DateLookup(c("SGSHCS", "SGNonDomBase"))),
       column(1, align = "right",
-             p("Sources:")),
+             HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("SGSHCS"),
         SourceLookup("SGNonDomBase")

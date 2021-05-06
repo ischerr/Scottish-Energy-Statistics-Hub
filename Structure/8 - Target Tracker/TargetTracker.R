@@ -222,7 +222,7 @@ TargetTracker <- function(input, output, session, parent_session) {
       RenEn[which(RenEn$Year != max(RenEn$Year)),][2:4] <- 0
       RenEn[which(RenEn$Year == max(RenEn$Year)),]$Renewables
     }
-    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2018")
+    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2019")
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2030")
     Colour = "#4d4d4d"
     
@@ -230,6 +230,15 @@ TargetTracker <- function(input, output, session, parent_session) {
     
   })
 
+  
+  v <- reactiveValues(doPlot = FALSE)
+  
+  observeEvent(input$go, {
+    # 0 will be coerced to FALSE
+    # 1+ will be coerced to TRUE
+    v$doPlot <- input$go
+  })
+  
   observeEvent(input$RenEnTgtLink, {
     
     updateTabsetPanel(parent_session, "MainNav",
@@ -261,7 +270,7 @@ TargetTracker <- function(input, output, session, parent_session) {
       
       RenElec[which(RenElec$Year == max(RenElec$Year)),]$Renewables
     }
-    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2018")
+    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2020")
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2020")
     Colour = "#31a354"
     
@@ -335,7 +344,7 @@ TargetTracker <- function(input, output, session, parent_session) {
       
       Data[which(Data$Year == max(Data$Year)),]$Renewables
     }
-    CurrentAnnotation = paste0("<b>Current: ", round(current, digits = 0), " gCO2e/kWh</b>\n in 2017")
+    CurrentAnnotation = paste0("<b>Current: ", round(current, digits = 0), " gCO2e/kWh</b>\n in 2018")
     TargetAnnotation = paste0("<b>Target: ", round(target, digits = 0), " gCO2e/kWh</b>\n by 2020")
     Colour = "#ff6600"
     
@@ -378,7 +387,7 @@ TargetTracker <- function(input, output, session, parent_session) {
     
       
       }
-    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2018")
+    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2019")
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2020")
     Colour = "#ff6600"
     
@@ -417,7 +426,7 @@ TargetTracker <- function(input, output, session, parent_session) {
       Data[which(Data$Year == max(Data$Year)),]$`% Progress`
       
       }
-    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2018")
+    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2019")
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2020")
     Colour = "#297fff"
     
@@ -468,7 +477,7 @@ TargetTracker <- function(input, output, session, parent_session) {
       EnProd[which(EnProd$Year == max(EnProd$Year)),]$Renewables
       
       }
-    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2018")
+    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2019")
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2030")
     Colour = "#800008"
     
@@ -556,5 +565,7 @@ TargetTracker <- function(input, output, session, parent_session) {
     
     print("Hi")
   })
+  
+
   
 }

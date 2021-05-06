@@ -235,11 +235,11 @@ observe({
     
   }
   
-  if(input$MainNav == "TargetTracker"){
+  if(input$MainNav == "Other"){
     
-    updateQueryString(paste0("?Section=",input$MainNav), mode = "push")
+    updateQueryString(paste0("?Section=",input$MainNav,"&Chart=",input$Other), mode = "push")
     
-    
+    callModule(match.fun(input$Other), input$Other, parent_session = session)
     
   }
   
@@ -303,7 +303,7 @@ observeEvent(input$GoToCovidTab, {
   
   observeEvent(input$GoToOtherTab, {
     updateTabsetPanel(session, "MainNav",
-                      selected = "TargetTracker"
+                      selected = "Other"
     )
   })
   
@@ -315,7 +315,7 @@ output$HomeTab <- renderUI({
   h1("Scottish Energy Statistics"),
   h3(paste(input$MainTab)),
   p(
-    "The Scottish Energy Statistics Hub is a new interactive tool which is a ‘one-stop shop’ for all Scottish energy data. Each page in the Hub has an interactive chart, commentary and data, with options to download charts and data. The Hub will be updated when new or revised data is available, so will always show the latest picture of Scottish energy statistics"
+    "The Scottish Energy Statistics Hub is an interactive tool which is a ‘one-stop shop’ for all Scottish energy data. Each page in the Hub has an interactive chart, commentary and data, with options to download charts and data. The Hub will be updated when new or revised data is available, so will always show the latest picture of Scottish energy statistics"
   ),
   img(src = "MainPage.png", width = "100%")
   ),
@@ -863,9 +863,17 @@ ui <- shinyUI(fluidPage(
                    )),
 
                    ###### Section - Target Tracker #######
-                   tabPanel(value = "TargetTracker",
-                            title = tags$div(img(src = "TargetIcon.svg", height = "30px",   display= "block"), " Target Tracker", style = "font-family: 'Century Gothic'; font-weight: 400 "),
-                            TargetTrackerOutput("TargetTracker")
+                   tabPanel(value = "Other",
+                            title = tags$div(img(src = "TargetIcon.svg", height = "30px",   display= "block"), " Other", style = "font-family: 'Century Gothic'; font-weight: 400 "),
+                            navlistPanel(id = "Other",
+                                         widths = c(3,8),
+                                         tabPanel(title = "Target Tracker",
+                                                  value = "TargetTracker",
+                                                  TargetTrackerOutput("TargetTracker")),
+                                         tabPanel(title = "Sources",
+                                                  value = "SourcesList",
+                                                  SourcesListOutput("SourcesList"))
+                                         )
                             
                           
     )

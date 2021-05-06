@@ -64,11 +64,21 @@ PrimaryOilGasOutput <- function(id) {
                column(12, dataTableOutput(ns("PrimaryOilGasImportsTable"))%>% withSpinner(color="#126992"))),
              tags$hr(style = "height:3px;border:none;color:#126992;background-color:#126992;"))),
     fluidRow(
-      column(2, p("Update expected:")),
+      column(2, HTML("<p><strong>Last Updated:</strong></p>")),
+      column(2,
+             UpdatedLookup(c("SESHEnergyBalance"))),
+      column(1, align = "right",
+             HTML("<p><strong>Reason:</strong></p>")),
+      column(7, align = "right", 
+             p("Regular updates")
+      )),
+    fluidRow(p(" ")),
+    fluidRow(
+      column(2, HTML("<p><strong>Update Expected:</strong></p>")),
       column(2,
              DateLookup(c("SESHEnergyBalance"))),
       column(1, align = "right",
-             p("Sources:")),
+             HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("SESHEnergyBalance")
       )
@@ -268,6 +278,8 @@ PrimaryOilGas <- function(input, output, session) {
     
     PrimaryOilGas <- Data[complete.cases(Data),]
     
+    PrimaryOilGas$`Proportion of primary energy made up of oil and gas` <- (PrimaryOilGas$Coal + PrimaryOilGas$`Primary oils` + PrimaryOilGas$`Petroleum products` + PrimaryOilGas$`Natural gas`)/PrimaryOilGas$Total
+    
     datatable(
       PrimaryOilGas,
       extensions = 'Buttons',
@@ -299,7 +311,8 @@ PrimaryOilGas <- function(input, output, session) {
         pageLength = -1
       )
     ) %>%
-      formatRound(2:8, 1) 
+      formatRound(2:8, 1) %>% 
+      formatPercentage(9,1)
   })
   
   

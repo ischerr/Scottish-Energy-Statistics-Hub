@@ -7,7 +7,7 @@
 <p>The changes in consumption of different <span style="text-decoration: underline;"><strong>fuels</strong></span> in Scotland has also changed over time:&nbsp;</p>
 <ul>
 <li><strong>Petroleum</strong> products continue to make up the biggest proportion of Scotland's energy fuel mix, <strong>68.0 TWh</strong> in <strong>2018</strong>, <strong>down</strong>&nbsp;<strong>9.6%</strong> from the <strong>2005-07</strong> baseline, and <strong>down 2.8%</strong> on <strong>2017</strong>.</li>
-<li><strong>Gas</strong> comprises about a third of all consumption (<strong>47.7 TWh</strong>), down <strong>20.4%</strong> from <strong>2005-07</strong></li>
+<li><strong>Gas</strong> comprises about a third of all consumption (<strong>47.6 TWh</strong>), down <strong>20.4%</strong> from <strong>2005-07</strong></li>
 <li>Scotland consumes <strong>24.2 TWh</strong> of <strong>electricity</strong>, <strong>down 17.4%</strong> from the baseline</li>
 <li>Consumption of <strong>coal</strong> decreased the most in comparison to <strong>2005/07</strong>, <strong>dropping 39.8% </strong>to <strong>1.4 TWh</strong>.&nbsp;</li>
 <li>The only fuel type where consumption <strong>increased</strong> is <strong>bioenergy</strong> and <strong>energy from waste</strong>, which has more than tripled between 2005-07 and 2017 (<strong>5.1 TWh</strong>).&nbsp;</li>

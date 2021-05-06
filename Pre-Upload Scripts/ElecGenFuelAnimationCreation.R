@@ -181,6 +181,16 @@ ElecGenFuel$variable <-
          levels = rev(unique(ElecGenFuel$variable)),
          ordered = TRUE)
 
+### Calculate Pumped Hydro addition for low carbon in Scotland after 2017
+
+HydroAddition <- ElecGenFuel[which(ElecGenFuel$variable == "Pumped Hydro"),]
+
+HydroAddition[which(HydroAddition$Year < 2017),]$value <- 0
+
+HydroAddition[which(HydroAddition$Year >= 2017 & HydroAddition$Sector == 1.0),]$value <- 0
+
+
+
 ElecGenFuel <- ElecGenFuel %>%
   group_by(Year, Sector)  %>%
   mutate(pos = cumsum(value) - value / 2) %>%
@@ -195,6 +205,13 @@ ElecGenFuel <- ElecGenFuel %>%
   mutate(FossilLineY = sum(value[which(variable %in% c("Coal", "Oil", "Gas"))])) %>% 
   mutate(FossilText = sum(value[which(variable %in% c("Coal", "Oil", "Gas"))])) %>% 
   mutate(Infinite = Inf)
+
+for(i in 2017: max(ElecGenFuel$Year)){
+  ElecGenFuel[which(ElecGenFuel$Year == i & ElecGenFuel$Sector == 1.8),]$LCLineY <- max(ElecGenFuel[which(ElecGenFuel$Year == i & ElecGenFuel$Sector == 1.8),]$LCLineY) + HydroAddition[which(HydroAddition$Year == i & HydroAddition$Sector == 1.8),]$value
+  
+  ElecGenFuel[which(ElecGenFuel$Year == i & ElecGenFuel$Sector == 1.8),]$LCText <- max(ElecGenFuel[which(ElecGenFuel$Year == i & ElecGenFuel$Sector == 1.8),]$LCText) + HydroAddition[which(HydroAddition$Year == i & HydroAddition$Sector == 1.8),]$value
+  
+}
   
 CountryList <- c("Scotland", "England and Wales")
 plottitle <-

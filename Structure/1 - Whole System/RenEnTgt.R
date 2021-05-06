@@ -73,11 +73,21 @@ RenEnTgtOutput <- function(id) {
     
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
     fluidRow(
-      column(2, p("Update expected:")),
+      column(2, HTML("<p><strong>Last Updated:</strong></p>")),
       column(2,
-             DateLookup(c("BEISRenElec", "BEISElecGen", "BEISSubNatEnergy", "ESTRenHeat", "BEISUKConsump", "DFTRenewable", "BEISSubNatElec", "BEISSubNatGas", "BEISLocalRoad"))),
+             UpdatedLookup(c("BEISRenElec", "BEISElecGen", "BEISSubNatEnergy", "ESTRenHeat", "BEISUKConsump", "DFTRenewable", "BEISSubNatElec", "BEISSubNatGas","BEISLocalRoad"))),
       column(1, align = "right",
-             p("Sources:")),
+             HTML("<p><strong>Reason:</strong></p>")),
+      column(7, align = "right", 
+             p("Regular updates")
+      )),
+    fluidRow(p(" ")),
+    fluidRow(
+      column(2, HTML("<p><strong>Update Expected:</strong></p>")),
+      column(2,
+             DateLookup(c("BEISRenElec", "BEISElecGen", "BEISSubNatEnergy", "ESTRenHeat", "BEISUKConsump", "DFTRenewable", "BEISSubNatElec", "BEISSubNatGas","BEISLocalRoad"))),
+      column(1, align = "right",
+             HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("BEISRenElec"),
         SourceLookup("BEISElecGen"),
@@ -303,6 +313,8 @@ RenEnTgt <- function(input, output, session) {
     filename = "RenEnTgt.png",
     content = function(file) {
 
+      
+      
       RenEn <- read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Renewable energy target",
@@ -333,7 +345,7 @@ RenEnTgt <- function(input, output, session) {
       plottitle = "Share of renewable energy in\ngross final energy consumption"
       
       RenEnChart <-
-        TargetChart(RenEn, plottitle, sourcecaption, ChartColours)
+        TargetChartLastYear(RenEn, plottitle, sourcecaption, ChartColours)
       
       RenEnChart
       data <- RenEn
@@ -422,6 +434,9 @@ RenEnTgt <- function(input, output, session) {
         )
       
       
+      RenEnChart <- RenEnChart +
+        ylim(0,.55)
+      
       RenEnChart
       
       ggsave(
@@ -432,6 +447,7 @@ RenEnTgt <- function(input, output, session) {
         units = "cm",
         dpi = 300
       )
+      
     }
   )
   ### Summary Tables ###
@@ -526,9 +542,9 @@ RenEnTgt <- function(input, output, session) {
     
     names(ElectricityTarget) <- c(
       "Year",
-      "Renewable Generation (GWh)",
+      "Renewable Electricity Generation (GWh)",
       "Gross Consumption (GWh)",
-      "Renewable % of consumption",
+      "% renewables of gross electricity consumption",
       "% of all energy consumption"
     )
     

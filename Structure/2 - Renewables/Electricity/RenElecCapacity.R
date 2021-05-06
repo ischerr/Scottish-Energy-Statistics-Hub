@@ -24,20 +24,7 @@ RenElecCapacityOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
                #dygraphOutput(ns("RenElecCapacityPlot")),
                plotlyOutput(ns("RenElecCapacityPlot"))%>% withSpinner(color="#39ab2c"),
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-      tabPanel("Quarterly operational capacity by tech",
-               fluidRow(column(8,
-                               h3("Operational renewable capacity by technology", style = "color: #39ab2c;  font-weight:bold"),
-                               h4(textOutput(ns('RenElecBreakdownCapSubtitle')), style = "color: #39ab2c;")
-               ),
-               column(
-                 4, style = 'padding:15px;',
-                 downloadButton(ns('RenElecBreakdownCap.png'), 'Download Graph', style="float:right")
-               )),
-               
-               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-               #dygraphOutput(ns("RenElecCapacityPlot")),
-               plotlyOutput(ns("RenElecBreakdownCapPlot"), height = "600px")%>% withSpinner(color="#39ab2c"),
+               HTML("<blockquote><p>*due to an administrative error, onshore and offshore wind capacity was overstated and has been revised down for 2020. BEIS will finalise revisions of previous years in June</p></blockquote>"),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Operational capacity by installation size",
                fluidRow(column(8,
@@ -94,6 +81,11 @@ RenElecCapacityOutput <- function(id) {
     uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+    fluidRow(
+      column(10, h3("Scottish extract of operational projects", style = "color: #39ab2c;  font-weight:bold")),
+      column(2, style = "padding:15px",  downloadButton(ns("PlanningTable"), "Planning Table", style = "float:right; "))
+    ),
+    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     tabsetPanel(
 
       tabPanel("Quarterly Capacity by technology",
@@ -103,10 +95,11 @@ RenElecCapacityOutput <- function(id) {
                ),
                fluidRow(
                  column(12, dataTableOutput(ns("RenElecBreakdownCapTable"))%>% withSpinner(color="#39ab2c"))),
+               HTML("<blockquote><p>*due to an administrative error, onshore and offshore wind capacity was overstated and has been revised down for 2020. BEIS will finalise revisions of previous years in June</p></blockquote>"),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Capacity by installation size",
                fluidRow(
-                 column(10, h3("Data - Operational renewable capacity by installation size (MW)", style = "color: #39ab2c;  font-weight:bold")),
+                 column(10, uiOutput(ns("SizeTableTitle"))),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable4"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
@@ -144,11 +137,21 @@ RenElecCapacityOutput <- function(id) {
 
   
     fluidRow(
-      column(2, p("Update expected:")),
+      column(2, HTML("<p><strong>Last Updated:</strong></p>")),
       column(2,
-             DateLookup(c("BEISRenElec", "BEISREPD", "BEISRenElecLA"))),
+             UpdatedLookup(c("BEISREPD", "BEISRenElec", "BEISRenElecLA"))),
       column(1, align = "right",
-             p("Sources:")),
+             HTML("<p><strong>Reason:</strong></p>")),
+      column(7, align = "right", 
+             p("Regular updates")
+      )),
+    fluidRow(p(" ")),
+    fluidRow(
+      column(2, HTML("<p><strong>Update Expected:</strong></p>")),
+      column(2,
+             DateLookup(c("BEISREPD", "BEISRenElec", "BEISRenElecLA"))),
+      column(1, align = "right",
+             HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("BEISREPD"),
         SourceLookup("BEISRenElec"),
@@ -293,20 +296,24 @@ RenElecCapacity <- function(input, output, session) {
     Data[2:14]%<>% lapply(function(x)
       as.numeric(as.character(x)))
     
-    Data$Biomass <- Data$`Animal Biomass` + Data$Plant
+    Data$`Bioenergy and Waste` <- Data$`Landfill Gas` + Data$Waste + Data$`Anaerobic Digestion` + Data$`Animal Biomass` + Data$Plant + Data$Sewage
+    
+    Data$`Landfill Gas` <- NULL
+    
+    Data$Waste <- NULL
+    
+    Data$`Anaerobic Digestion` <- NULL
     
     Data$`Animal Biomass` <- NULL
     
     Data$Plant <- NULL
-    
-    Data$`Anaerobic Digestion` <- Data$`Anaerobic Digestion` + Data$Sewage
     
     Data$Sewage <- NULL
     
     names(Data)[1] <- "Quarter"
     
     datatable(
-      Data[c(1:10,12,11)],
+      Data[c(1:7,9,8)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -368,7 +375,9 @@ RenElecCapacity <- function(input, output, session) {
     
     RenElecCapFuel$Total <- RenElecCapFuel$`Other bioenergy` + RenElecCapFuel$`Sewage gas` + RenElecCapFuel$`Wave and tidal` + RenElecCapFuel$`Landfill gas` + RenElecCapFuel$`Solar PV` + RenElecCapFuel$Hydro + RenElecCapFuel$`Offshore Wind` + RenElecCapFuel$`Onshore Wind`
     
-    #RenElecCapFuel<-RenElecCapFuel[seq(dim(RenElecCapFuel)[1],1),]
+    RenElecCapFuel$`Bioenergy and Waste` <-   RenElecCapFuel$`Other bioenergy` + RenElecCapFuel$`Sewage gas` + RenElecCapFuel$`Landfill gas`
+    
+    RenElecCapFuel <- RenElecCapFuel[c(1,2,3,4,5,11,7,10)]
     
     datatable(
       RenElecCapFuel[],
@@ -403,6 +412,24 @@ RenElecCapacity <- function(input, output, session) {
     ) %>%
       formatRound(2:ncol(RenElecCapFuel), 0) %>% 
       formatStyle(10, fontWeight = "bold")
+  })
+  
+  Date <-     {Data <- read_excel("Structure/CurrentWorking.xlsx", 
+                                  sheet = "R - QTRCapacity", col_names = FALSE)
+  
+  Data <- as_tibble(t(Data))
+  
+  names(Data) <- c("Date", "Wind Onshore", "Wind Offshore", "Shoreline wave / tidal", "Solar Photovoltaics", "Small Hydro", "Large Hydro", "Landfill Gas", "Sewage", "Waste", "Animal Biomass", "Anaerobic Digestion", "Plant", "Total")
+  
+  Data <- Data[2,]
+  
+  Data$Date <- paste0(substr(Data$Date,1,4), " Q", substr(Data$Date, 8,8))
+  
+  paste(Data$Date)}
+  
+  output$SizeTableTitle <- renderUI({
+
+    tagList(h3(paste("Data - Operational renewable capacity by installation size (MW) - ", Date), style = "color: #39ab2c;  font-weight:bold"))
   })
   
  output$Text <- renderUI({
@@ -493,7 +520,7 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            label = ifelse(Year == min(Year), paste(round(Total, digits = 1), "MW"), ""),
+            label = ifelse(Year == min(Year), paste(round(Total, digits = 1), "GW"), ""),
             show_guide = FALSE
           ),
           fontface = 2,
@@ -504,7 +531,7 @@ RenElecCapacity <- function(input, output, session) {
         geom_text(
           aes(
             x = Year + .3,
-            label = ifelse(Year == max(Year), paste(round(Total, digits = 1), "MW"), ""),
+            label = ifelse(Year == max(Year), paste(round(Total, digits = 1), "GW"), ""),
             show_guide = FALSE
           ),
           fontface = 2,
@@ -560,290 +587,7 @@ RenElecCapacity <- function(input, output, session) {
     }
   )
   
-  output$RenElecBreakdownCapPlot <- renderPlotly  ({
-    
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "R - QTRCapacity", col_names = FALSE)
-    
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- c("Date", "Wind Onshore", "Wind Offshore", "Shoreline wave / tidal", "Solar Photovoltaics", "Small Hydro", "Large Hydro", "Landfill Gas", "Sewage", "Energy from waste", "Animal Biomass", "Anaerobic Digestion", "Plant", "Total")
-    
-    Data <- Data[2,]
-    
-    Data[2:14]%<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    Data$Biomass <- Data$`Animal Biomass` + Data$Plant
-    
-    Data$`Animal Biomass` <- NULL
-    
-    Data$Plant <- NULL
-    
-    Data$`Anaerobic Digestion` <- Data$`Anaerobic Digestion` + Data$Sewage
-    
-    Data$Sewage <- NULL
-    
-    Data$Total <- NULL
-    
-    Data <- melt(Data)
-    
-    names(Data) <-  c("Time", "Type", "Renewables")
-    
-    RenElecPipeline <- as_tibble(Data)
-    
-    
-    # 
-    # Data <- as.data.frame(t(Data))
-    # 
-    # names(Data) <-  as.character(unlist(Data[1,]))
-    # names(Data)[1] <- "Type"
-    # Data <- tail(Data,-1)
-    # Data %<>% lapply(function(x) as.numeric(as.character(x)))
-    # Data <- as.data.frame(Data)
-    
-    RenElecPipeline <- RenElecPipeline[which(RenElecPipeline$Renewables > 0),]
-    
-    RenElecPipeline <- arrange(RenElecPipeline, RenElecPipeline$Renewables)
-    
-    RenElecPipeline$Type <- paste0("<b>",RenElecPipeline$Type, "</b>")
-    
-    rownames(RenElecPipeline) <- NULL
-    
-    #RenElecPipeline$Type <- as.numeric(rownames(RenElecPipeline))
-    
-    ChartColours <- c("#39ab2c", "#FF8500")
-    BarColours <-
-      c(
-        "#31a354",
-        "#0868ac",
-        "#43a2ca",
-        "#7bccc4",
-        "#a6bddb",
-        "#d0d1e6",
-        "#bdbdbd",
-        "#969696"
-      )
-    
-    
-    p <- plot_ly(data = RenElecPipeline, y = ~ Type) %>%
-      
-      add_trace(
-        data = RenElecPipeline,
-        x = ~ `Renewables`,
-        type = 'bar',
-        width = 0.7,
-        orientation = 'h',
-        name = "Renewables",
-        text = paste0("Renewables: ", format(round(RenElecPipeline$`Renewables`, digits = 0), big.mark = ","), " MW"),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[1]),
-        legendgroup = 2
-      ) %>%
-      add_trace(
-        data = RenElecPipeline,
-        y = ~ Type,
-        x = ~ (RenElecPipeline$`Renewables`) + 0.1,
-        showlegend = FALSE,
-        type = 'scatter',
-        mode = 'text',
-        text = paste("<b>",format(round((RenElecPipeline$`Renewables`), digits = 0), big.mark = ","),"MW</b>"),
-        textposition = 'middle right',
-        textfont = list(color = ChartColours[1]),
-        hoverinfo = 'skip',
-        marker = list(
-          size = 0.00001
-        )
-      ) %>%
-      layout(
-        barmode = 'stack',
-        legend = list(font = list(color = "#1A5D38"),
-                      orientation = 'h'),
-        hoverlabel = list(font = list(color = "white"),
-                          hovername = 'text'),
-        hovername = 'text',
-        yaxis = list(
-          title = "",
-          showgrid = FALSE,
-          # ticktext = list( "Landfill Gas",          
-          #                  "Large Hydro",          
-          #                  "Anaerobic Digestion",   
-          #                  "Small Hydro",     
-          #                  "Energy from waste"  ,   
-          #                  "Biomass (co-firing)" ,  
-          #                  "Solar Photovoltaics" ,  
-          #                  "Shoreline wave / tidal",
-          #                  "Wind Offshore",       
-          #                  "Wind Onshore"),
-          tickvals = list(0,1,2,3,4,5,6,7,8,9, 10),
-          tickmode = "array"
-        ),
-        xaxis = list(
-          title = "",
-          tickformat = "%",
-          showgrid = FALSE,
-          showticklabels = FALSE,
-          range = c(0,9900),
-          zeroline = FALSE,
-          zerolinecolor = ChartColours[1],
-          zerolinewidth = 2,
-          rangemode = "tozero"
-        )
-      ) %>%
-      config(displayModeBar = F)
-    
-    p
-  })
-  
-  output$RenElecBreakdownCapSubtitle <- renderText({
-    
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "R - QTRCapacity", col_names = FALSE)
-    
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- c("Date", "Wind Onshore", "Wind Offshore", "Shoreline wave / tidal", "Solar Photovoltaics", "Small Hydro", "Large Hydro", "Landfill Gas", "Sewage", "Waste", "Animal Biomass", "Anaerobic Digestion", "Plant", "Total")
-    
-    Data <- Data[2,]
-    
-    Data$Date <- paste0(substr(Data$Date,1,4), " Q", substr(Data$Date, 8,8))
-    
-        paste("Scotland,", Data$Date)
-  })
-  
-  output$RenElecBreakdownCap.png <- downloadHandler(
-    filename = "RenElecBreakdownCap.png",
-    content = function(file) {
-      
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "R - QTRCapacity", col_names = FALSE)
-      
-      Data <- as_tibble(t(Data))
-      
-      names(Data) <- c("Date", "Wind Onshore", "Wind Offshore", "Shoreline wave / tidal", "Solar Photovoltaics", "Small Hydro", "Large Hydro", "Landfill Gas", "Sewage", "Energy from waste", "Animal Biomass", "Anaerobic Digestion", "Plant", "Total")
-      
-      Data <- Data[2,]
-      
-      Data$Date <- paste0(substr(Data$Date,1,4), " Q", substr(Data$Date, 8,8))
-      
-      Data[2:14]%<>% lapply(function(x)
-        as.numeric(as.character(x)))
-      
-      Data$Biomass <- Data$`Animal Biomass` + Data$Plant
-      
-      Data$`Animal Biomass` <- NULL
-      
-      Data$Plant <- NULL
-      
-      Data$`Anaerobic Digestion` <- Data$`Anaerobic Digestion` + Data$Sewage
-      
-      Data$Sewage <- NULL
-      
-      Data$Total <- NULL
-      
-      PipelineTotal <- as_tibble(Data)
-      
-      PipelineTotal <- melt(PipelineTotal, id.vars = "Date")
-      
-      PipelineTotal <- PipelineTotal[order(-PipelineTotal$value),]
-      
-      PipelineTotal$variable <-
-        factor(PipelineTotal$variable,
-               levels = rev(unique(PipelineTotal$variable)),
-               ordered = TRUE)
-      
-      PipelineTotal$value <- as.numeric(PipelineTotal$value)
-      
-      PipelineTotal <- PipelineTotal %>%
-        group_by(Date) %>%
-        mutate(pos = cumsum(value) - value / 2) %>%
-        mutate(top = max(value))
-      
-      plottitle <-
-        "Operational renewable capacity by technology"
-      sourcecaption <- "Source: BEIS"
-      
-      ChartColours <- c("#39ab2c", "#FF8500")
-      BarColours <-
-        c(
-          "#31a354",
-          "#0868ac",
-          "#43a2ca",
-          "#7bccc4",
-          "#a6bddb",
-          "#d0d1e6",
-          "#bdbdbd",
-          "#969696"
-        )
-      
-      
-      PipelineTotalChart <- PipelineTotal %>%
-        ggplot(aes(x = variable, y = value), family = "Century Gothic") +
-        geom_bar(stat = "identity", width = .4, fill = ChartColours[1]) +
-        geom_text(
-          aes(
-            x = variable,
-            y = -200,
-            label = variable,
-            fontface = 2
-          ),
-          colour = ChartColours[1],
-          family = "Century Gothic",
-          hjust = 1
-        ) +
-        geom_text(
-          aes(
-            x = variable,
-            y = value+1000  ,
-            label = paste0(format(round(value, digits = 0), big.mark = ","), " MW"),
-            fontface = 2
-          ),
-          colour = ChartColours[1],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = 1.7,
-            y = (3.5/4) * 15,
-            label = " ",
-            fontface = 2
-          ),
-          colour = BarColours[4],
-          family = "Century Gothic"
-        )
-      
-      
-      
-      PipelineTotalChart
-      
-      
-      PipelineTotalChart <-
-        StackedBars(PipelineTotalChart,
-                    PipelineTotal,
-                    plottitle,
-                    sourcecaption,
-                    ChartColours)
-      
-      PipelineTotalChart <-
-        PipelineTotalChart +
-        labs(subtitle = paste("Scotland,", PipelineTotal$Date)) +
-        ylim(-3500, max(PipelineTotal$top)+1700)+
-        coord_flip()
-      
-      PipelineTotalChart
-      
-      ggsave(
-        file,
-        plot = PipelineTotalChart,
-        width = 17.5,
-        height = 10,
-        units = "cm",
-        dpi = 300
-      )
-      
-      
-    }
-  )
+
   
   output$RenElecFuelSubtitle <- renderText({
     
@@ -895,6 +639,9 @@ RenElecCapacity <- function(input, output, session) {
     RenElecCapFuel <- arrange(RenElecCapFuel,-row_number())
     
     RenElecCapFuel$Total <- RenElecCapFuel$`Other bioenergy` + RenElecCapFuel$`Sewage gas` + RenElecCapFuel$`Wave and tidal` + RenElecCapFuel$`Landfill gas` + RenElecCapFuel$`Solar PV` + RenElecCapFuel$Hydro + RenElecCapFuel$`Offshore Wind` + RenElecCapFuel$`Onshore Wind`
+    
+    RenElecCapFuel$`Bioenergy and Waste` <- RenElecCapFuel$`Other bioenergy` + RenElecCapFuel$`Sewage gas`+ RenElecCapFuel$`Landfill gas`
+    
     
     ChartColours <- c("#39ab2c", "#FF8500")
     BarColours <-
@@ -983,15 +730,15 @@ RenElecCapacity <- function(input, output, session) {
       add_trace(
         data = RenElecCapFuel,
         x = ~Year,
-        y = ~`Landfill gas`,
+        y = ~`Bioenergy and Waste`,
         legendgroup = 5,
         text = paste0(
-          "Landfill gas: ",
-          format(round(RenElecCapFuel$`Landfill gas`, digits = 0),big.mark = ","),
+          "Bioenergy and Waste: ",
+          format(round(RenElecCapFuel$`Bioenergy and Waste`, digits = 0),big.mark = ","),
           " MW\nYear: ",
           format(RenElecCapFuel$Year, "%Y")
         ),
-        name = "Landfill gas",
+        name = "Bioenergy and Waste",
         type = "scatter",
         hoverinfo = "text",
         fillcolor = (BarColours[5])
@@ -1012,38 +759,6 @@ RenElecCapacity <- function(input, output, session) {
         hoverinfo = "text",
         fillcolor = (BarColours[6])
       )  %>% 
-      add_trace(
-        data = RenElecCapFuel,
-        x = ~Year,
-        y = ~`Sewage gas`,
-        legendgroup = 7,
-        text = paste0(
-          "Sewage gas: ",
-          format(round(RenElecCapFuel$`Sewage gas`, digits = 0),big.mark = ","),
-          " MW\nYear: ",
-          format(RenElecCapFuel$Year, "%Y")
-        ),
-        name = "Sewage gas",
-        type = "scatter",
-        hoverinfo = "text",
-        fillcolor = (BarColours[7])
-      )  %>% 
-      add_trace(
-        data = RenElecCapFuel,
-        x = ~Year,
-        y = ~`Other bioenergy`,
-        legendgroup = 8,
-        text = paste0(
-          "Other bioenergy: ",
-          format(round(RenElecCapFuel$`Other bioenergy`, digits = 0),big.mark = ","),
-          " MW\nYear: ",
-          format(RenElecCapFuel$Year, "%Y")
-        ),
-        name = "Other bioenergy",
-        type = "scatter",
-        hoverinfo = "text",
-        fillcolor = (BarColours[8])
-      ) %>%
       layout(
         legend = list(font = list(color = "#1A5D38"),
                       orientation = 'h'),
@@ -1089,15 +804,24 @@ RenElecCapacity <- function(input, output, session) {
     
     RenElecCapFuel <- as_tibble(Data)
     
+    RenElecCapFuel[is.na(RenElecCapFuel)] <- 0
+    
     RenElecCapFuel <- RenElecCapFuel[c(1, (ncol(RenElecCapFuel) - 1):2)]
     
     RenElecCapFuel <- arrange(RenElecCapFuel,-row_number())
     
     RenElecCapFuel$Total <- RenElecCapFuel$`Other bioenergy` + RenElecCapFuel$`Sewage gas` + RenElecCapFuel$`Wave and tidal` + RenElecCapFuel$`Landfill gas` + RenElecCapFuel$`Solar PV` + RenElecCapFuel$Hydro + RenElecCapFuel$`Offshore Wind` + RenElecCapFuel$`Onshore Wind`
     
+    RenElecCapFuel$`Bioenergy and Waste` <- RenElecCapFuel$`Other bioenergy` + RenElecCapFuel$`Sewage gas`+ RenElecCapFuel$`Landfill gas`
+    
+    RenElecCapFuel$`Other bioenergy` <- NULL
+      
+      RenElecCapFuel$`Sewage gas` <- NULL
+      
+      RenElecCapFuel$`Landfill gas` <- NULL
     
     datatable(
-      RenElecCapFuel[c(1,9:2,10)],
+      RenElecCapFuel[c(1,6:2,8,7)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -1248,7 +972,15 @@ RenElecCapacity <- function(input, output, session) {
       
       RenElecCapFuel[is.na(RenElecCapFuel)] <- 0
       
-      RenElecCapFuel <- RenElecCapFuel[c(1, (ncol(RenElecCapFuel) - 1):2)]
+      RenElecCapFuel$`Bioenergy and Waste` <- RenElecCapFuel$`Landfill gas` + RenElecCapFuel$`Sewage gas` + RenElecCapFuel$`Other bioenergy`
+      
+      RenElecCapFuel$`Landfill gas` <- NULL
+      
+      RenElecCapFuel$`Sewage gas` <- NULL 
+      
+      RenElecCapFuel$`Other bioenergy` <- NULL
+      
+      RenElecCapFuel <- RenElecCapFuel[c(1, 6, 8,5 ,4 ,3 ,2)]
       
       RenElecCapFuel <- arrange(RenElecCapFuel,-row_number())
       
@@ -1409,10 +1141,8 @@ RenElecCapacity <- function(input, output, session) {
             "Offshore Wind" = BarColours[2],
             "Hydro" = BarColours[3],
             "Solar PV" = BarColours[4],
-            "Landfill gas" = BarColours[5],
+            "Bioenergy and Waste" = BarColours[5],
             "Wave and tidal" = BarColours[6],
-            "Sewage gas" = BarColours[7],
-            "Other bioenergy" = BarColours[8],
             "Total" = "White"
           )
         ) +
@@ -1478,8 +1208,8 @@ RenElecCapacity <- function(input, output, session) {
         geom_text(
           aes(
             x = max(RenElecCapFuel$Year)+.1,
-            y = 11350,
-            label = "Landfill gas"
+            y = 11600,
+            label = "Bioenergy and Wastes"
           ),
           fontface = 2,
           colour =  BarColours[5],
@@ -1490,35 +1220,11 @@ RenElecCapacity <- function(input, output, session) {
         geom_text(
           aes(
             x = max(RenElecCapFuel$Year)+.1,
-            y = 11700,
+            y = 11900,
             label = "Wave and Tidal"
           ),
           fontface = 2,
           colour =  BarColours[6],
-          family = "Century Gothic",
-          hjust = 0,
-          size = 3
-        ) +
-        geom_text(
-          aes(
-            x = max(RenElecCapFuel$Year)+.1,
-            y = 12000,
-            label = "Sewage Gas"
-          ),
-          fontface = 2,
-          colour =  BarColours[7],
-          family = "Century Gothic",
-          hjust = 0,
-          size = 3
-        ) +
-        geom_text(
-          aes(
-            x = max(RenElecCapFuel$Year)+.1,
-            y = 12330,
-            label = "Other Bioenergy"
-          ),
-          fontface = 2,
-          colour =  BarColours[8],
           family = "Century Gothic",
           hjust = 0,
           size = 3
@@ -1566,7 +1272,7 @@ RenElecCapacity <- function(input, output, session) {
       RenElecCapFuelChart <-
         RenElecCapFuelChart +
         labs(subtitle = paste("Scotland,", min(RenElecCapFuel$Year), "-", max(RenElecCapFuel$Year))) +
-        ylim(-(max(RenElecCapFuel$top)*0.025), (max(RenElecCapFuel$top)*1.08)) +
+        ylim(-(max(RenElecCapFuel$top)*0.025), (max(RenElecCapFuel$top)*1.13)) +
         coord_cartesian(xlim = c(min(RenElecCapFuel$Year),max(RenElecCapFuel$Year+2)))
       
       RenElecCapFuelChart
@@ -1655,7 +1361,7 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            label = ifelse(Year == min(Year), paste(round(Total, digits = 1), "MW"), ""),
+            label = ifelse(Year == min(Year), paste(round(Total, digits = 1), "GW"), ""),
             show_guide = FALSE
           ),
           fontface = 2,
@@ -1666,7 +1372,7 @@ RenElecCapacity <- function(input, output, session) {
         geom_text(
           aes(
             x = Year + .3,
-            label = ifelse(Year == max(Year), paste(round(Total, digits = 1), "MW"), ""),
+            label = ifelse(Year == max(Year), paste(round(Total, digits = 1), "GW"), ""),
             show_guide = FALSE
           ),
           fontface = 2,
@@ -1734,6 +1440,8 @@ RenElecCapacity <- function(input, output, session) {
     
     CapacitySizeTech <- CapacitySizeTech[-1,]
     
+    CapacitySizeTech[4,1] <- "Bioenergy and Waste"
+    
     datatable(
       CapacitySizeTech[c(1,3,2,4:7),],
       extensions = 'Buttons',
@@ -1747,17 +1455,17 @@ RenElecCapacity <- function(input, output, session) {
         columnDefs = list(list(className = 'dt-right', targets = 1:5)),
         autoWidth = TRUE,
 
-        title = "Operational renewable capacity by installation size (MW)",
+        title = paste("Operational renewable capacity by installation size (MW) - ", Date),
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Operational renewable capacity by installation size (MW)',
+            title = paste("Operational renewable capacity by installation size (MW) - ", Date),
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Operational renewable capacity by installation size (MW)')
+               title = paste("Operational renewable capacity by installation size (MW) - ", Date))
         ),
         
         # customize the length menu
@@ -1796,6 +1504,8 @@ RenElecCapacity <- function(input, output, session) {
     OperationalSize <- OperationalSize[order(-OperationalSize$Total),]
        
     OperationalSize$Year <- paste("<b>", OperationalSize$`Technology Type`, "</b>")
+    
+    OperationalSize[5,1] <- "Bioenergy and Waste"
     
     ChartColours <- c("#39ab2c", "#FF8500")
     
@@ -1854,6 +1564,19 @@ RenElecCapacity <- function(input, output, session) {
         marker = list(color = BarColours[4]),
         legendgroup = 4
       ) %>% 
+      add_trace(
+        x = (OperationalSize$Total) * 1.01,
+        showlegend = FALSE,
+        type = 'scatter',
+        mode = 'text',
+        text = paste0("<b>",format(round((as.numeric(OperationalSize$Total)), digits = 0), big.mark = ","), " MW", "</b>"),
+        textposition = 'middle right',
+        textfont = list(color = ChartColours[1]),
+        hoverinfo = 'skip',
+        marker = list(
+          size = 0.00001
+        )
+      ) %>%
       layout(
         barmode = 'stack',
         legend = list(font = list(color = "#1A5D38"),
@@ -1872,6 +1595,7 @@ RenElecCapacity <- function(input, output, session) {
         xaxis = list(
           title = "",
           tickformat = "",
+          range = c(0, max(OperationalSize$Total)*1.25),
           showgrid = TRUE,
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
@@ -1943,7 +1667,7 @@ RenElecCapacity <- function(input, output, session) {
       
       OperationalSize <- OperationalSize[which(OperationalSize$Total > 250),]
       
-      
+      OperationalSize[2,1] <- "Bioenergy and Waste"
       
       
       ChartColours <- c("#39ab2c", "#FF8500")
@@ -2157,6 +1881,8 @@ RenElecCapacity <- function(input, output, session) {
     
     RenSites$Year <- dmy(RenSites$Year)
     
+    RenSites$`Bioenergy and Waste` <- RenSites$`Landfill gas` + RenSites$`Sewage gas` + RenSites$`Other Bioenergy`
+    
     p <- plot_ly(
       data = RenSites,
       x = ~Year,
@@ -2229,15 +1955,15 @@ RenElecCapacity <- function(input, output, session) {
       add_trace(
         data = RenSites,
         x = ~Year,
-        y = ~`Landfill gas`,
+        y = ~`Bioenergy and Waste`,
         legendgroup = 5,
         text = paste0(
-          "Landfill gas: ",
-          format(round(RenSites$`Landfill gas`, digits = 0),big.mark = ","),
+          "Bioenergy and Waste: ",
+          format(round(RenSites$`Bioenergy and Waste`, digits = 0),big.mark = ","),
           "\nYear: ",
           format(RenSites$Year, "%Y")
         ),
-        name = "Landfill gas",
+        name = "Bioenergy and Waste",
         type = "scatter",
         mode = "none",
         hoverinfo = "text",
@@ -2259,40 +1985,6 @@ RenElecCapacity <- function(input, output, session) {
         mode = "none",
         hoverinfo = "text",
         fillcolor = ( BarColours[6])
-      )  %>% 
-      add_trace(
-        data = RenSites,
-        x = ~Year,
-        y = ~`Sewage gas`,
-        legendgroup = 7,
-        text = paste0(
-          "Sewage gas: ",
-          format(round(RenSites$`Sewage gas`, digits = 0),big.mark = ","),
-          "\nYear: ",
-          format(RenSites$Year, "%Y")
-        ),
-        name = "Sewage gas",
-        type = "scatter",
-        mode = "none",
-        hoverinfo = "text",
-        fillcolor = ( BarColours[7])
-      )  %>% 
-      add_trace(
-        data = RenSites,
-        x = ~Year,
-        y = ~`Other Bioenergy`,
-        legendgroup = 8,
-        text = paste0(
-          "Other Bioenergy: ",
-          format(round(RenSites$`Other Bioenergy`, digits = 0),big.mark = ","),
-          "\nYear: ",
-          format(RenSites$Year, "%Y")
-        ),
-        name = "Other Bioenergy",
-        type = "scatter",
-        mode = "none",
-        hoverinfo = "text",
-        fillcolor = ( BarColours[8])
       )  %>%
       layout(
         legend = list(font = list(color = "#1A5D38"),
@@ -2330,7 +2022,10 @@ RenElecCapacity <- function(input, output, session) {
     
     RenSites <- as_tibble(Data)
     
-    
+    RenSites$`Bioenergy and Waste` <- RenSites$`Landfill gas` + RenSites$`Sewage gas` + RenSites$`Other Bioenergy`
+
+    RenSites <- RenSites[c(1,2,3,4,5,11,7,10)]
+        
     datatable(
       RenSites,
       extensions = 'Buttons',
@@ -2384,7 +2079,6 @@ RenElecCapacity <- function(input, output, session) {
       
       
       RenSites <- as_tibble(Data[1:9])
-      
       
       RenSites <- melt(RenSites, id.vars = "Year")
       
@@ -2759,5 +2453,16 @@ RenElecCapacity <- function(input, output, session) {
     }
   )
 
+  output$PlanningTable <- downloadHandler(
+    filename = "DataTable.csv",
+    content = function(file){
+      
+      DataTable  <- read_csv("Processed Data/Output/REPD (Operational Corrections)/OperationalDataTable.csv")
+      
+      write.csv(DataTable, 
+                file,
+                row.names = FALSE)
+    }
+  )
   
 }

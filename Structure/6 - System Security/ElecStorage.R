@@ -73,11 +73,21 @@ ElecStorageOutput <- function(id) {
      
                
     fluidRow(
-      column(2, p("Update expected:")),
+      column(2, HTML("<p><strong>Last Updated:</strong></p>")),
+      column(2,
+             UpdatedLookup(c("BEISREPD"))),
+      column(1, align = "right",
+             HTML("<p><strong>Reason:</strong></p>")),
+      column(7, align = "right", 
+             p("Regular updates")
+      )),
+    fluidRow(p(" ")),
+    fluidRow(
+      column(2, HTML("<p><strong>Update Expected:</strong></p>")),
       column(2,
              DateLookup(c("BEISREPD"))),
       column(1, align = "right",
-             p("Sources:")),
+             HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("BEISREPD")
         
@@ -111,7 +121,7 @@ ElecStorage <- function(input, output, session) {
     Year <- substr(Data[1,1], 1,4)
     
     #paste("Scotland,", month.name[Quarter], Year)
-    paste("Scotland, September 2020")
+    paste("Scotland, December 2020")
   })
 
   output$ElecStoragePlot <- renderPlotly  ({
@@ -473,7 +483,7 @@ ElecStorage <- function(input, output, session) {
       EnergyStorageTechChart <-
         EnergyStorageTechChart +
         #labs(subtitle = paste("Scotland,", month.name[Quarter], Year)) +
-        labs(subtitle = paste("Scotland, September 2020")) +
+        labs(subtitle = paste("Scotland, December 2020")) +
         ylim(-1000, max(EnergyStorageTech$top)+800)+
         coord_flip()
       
@@ -502,7 +512,7 @@ ElecStorage <- function(input, output, session) {
     Year <- substr(Data[1,1], 1,4)
     
     #paste("Scotland,", month.name[Quarter], Year)
-    paste("Scotland, September 2020") 
+    paste("Scotland, December 2020") 
   })
   
   output$ElecStorageCapPlot <- renderPlotly  ({
@@ -755,7 +765,7 @@ ElecStorage <- function(input, output, session) {
       
       EnergyStorageTechChart <-
         EnergyStorageTechChart +
-        labs(subtitle = paste("Scotland, September 2020")) +
+        labs(subtitle = paste("Scotland, December 2020")) +
         ylim(-150, max(EnergyStorageTech$top))+
         coord_flip()
       

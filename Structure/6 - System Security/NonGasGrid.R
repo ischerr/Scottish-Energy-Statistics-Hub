@@ -39,11 +39,21 @@ NonGasGridOutput <- function(id) {
       column(12, dataTableOutput(ns("NonGasGridTable"))%>% withSpinner(color="#5d8be1"))),
     tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"),
     fluidRow(
-      column(2, p("Update expected:")),
+      column(2, HTML("<p><strong>Last Updated:</strong></p>")),
+      column(2,
+             UpdatedLookup(c("BEISNonGasGrid"))),
+      column(1, align = "right",
+             HTML("<p><strong>Reason:</strong></p>")),
+      column(7, align = "right", 
+             p("Regular updates")
+      )),
+    fluidRow(p(" ")),
+    fluidRow(
+      column(2, HTML("<p><strong>Update Expected:</strong></p>")),
       column(2,
              DateLookup(c("BEISNonGasGrid"))),
       column(1, align = "right",
-             p("Sources:")),
+             HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("BEISNonGasGrid")
         
@@ -69,7 +79,7 @@ NonGasGrid <- function(input, output, session) {
   
   output$NonGasGridSubtitle <- renderText({
     
-    paste("Scotland, 2018")
+    paste("Scotland, 2019")
   
     })
   
@@ -96,7 +106,12 @@ NonGasGrid <- function(input, output, session) {
       "Structure/CurrentWorking.xlsx",
       sheet = "Non-gas grid by LA",
       skip = 13
-    )[c(2,5)]
+    )[c(6,2,5)]
+    
+    NonGasGrid[33,1] <- "S92000003"
+    NonGasGrid[33,2] <- "Scotland"
+    
+    NonGasGrid <- rbind(NonGasGrid[33,], NonGasGrid[1:32,])
 
     datatable(
       NonGasGrid,
@@ -130,7 +145,7 @@ NonGasGrid <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2, 1)
+      formatPercentage(3, 1)
   })
   
   output$NonGasGridTimeSeriesTable = renderDataTable({

@@ -85,17 +85,24 @@ GHGEmissionsOutput <- function(id) {
     )
     ,
     fluidRow(
-      column(1,
-             p("Next update:")),
+      column(2, HTML("<p><strong>Last Updated:</strong></p>")),
       column(2,
-             p("March 2019")),
+             UpdatedLookup(c("BEISSubNatEnergy", "BEISRenElec", "ESTRenHeat"))),
       column(1, align = "right",
-             p("Sources:")),
-      column(
-        8,
-        align = "right",
-        SourceLookup("BEISFinalConsump"),
-        SourceLookup("ETElecGen"),
+             HTML("<p><strong>Reason:</strong></p>")),
+      column(7, align = "right", 
+             p("Regular updates")
+      )),
+    fluidRow(p(" ")),
+    fluidRow(
+      column(2, HTML("<p><strong>Update Expected:</strong></p>")),
+      column(2,
+             DateLookup(c("BEISSubNatEnergy", "BEISRenElec", "ESTRenHeat"))),
+      column(1, align = "right",
+             HTML("<p><strong>Sources:</strong></p>")),
+      column(7, align = "right",
+        SourceLookup("BEISSubNatEnergy"),
+        SourceLookup("BEISRenElec"),
         SourceLookup("ESTRenHeat")
         
       )

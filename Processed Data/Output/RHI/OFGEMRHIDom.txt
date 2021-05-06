@@ -1,7 +1,7 @@
 "Region"	"Air Source - Accredited Applications"	"Ground Source - Accredited Applications"	"Biomass - Accredited Applications"	"Solar Thermal - Accredited Applications"	"Total - Accredited Applications"
-"South West Scotland"	4100	363	1080	189	5732
-"East Scotland"	1870	491	1458	477	4296
-"Highlands & Islands"	2589	350	834	393	4166
-"North East Scotland"	591	260	378	174	1403
-"Unkown"	8	0	9	1	18
-"Total"	9158	1464	3759	1234	15615
+"East Scotland"	1417	414	875	382	3088
+"Highlands & Islands"	3948	486	1323	519	6276
+"North East Scotland"	622	256	342	166	1386
+"Southern Scotland"	3704	322	1075	159	5260
+"West Central Scotland"	342	52	141	32	567
+"Total"	10033	1530	3756	1258	16577

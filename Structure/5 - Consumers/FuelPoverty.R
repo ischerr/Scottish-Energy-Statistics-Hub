@@ -92,11 +92,21 @@ FuelPovertyOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     
     fluidRow(
-      column(2, p("Update expected:")),
+      column(2, HTML("<p><strong>Last Updated:</strong></p>")),
       column(2,
-             DateLookup(c("SHSHCS"))),
+             UpdatedLookup(c("SGSHCS"))),
       column(1, align = "right",
-             p("Sources:")),
+             HTML("<p><strong>Reason:</strong></p>")),
+      column(7, align = "right", 
+             p("Regular updates")
+      )),
+    fluidRow(p(" ")),
+    fluidRow(
+      column(2, HTML("<p><strong>Update Expected:</strong></p>")),
+      column(2,
+             DateLookup(c("SGSHCS"))),
+      column(1, align = "right",
+             HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("SGSHCS")
         
@@ -695,7 +705,7 @@ FuelPoverty <- function(input, output, session) {
       col_names = TRUE,
       skip = 12,
       n_max = 7
-    )[16:21]
+    )[16:22]
     
     names(Data) <- substr(names(Data), 1, 4)
     
@@ -739,7 +749,7 @@ FuelPoverty <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatPercentage(2:ncol(Data), 1)
+      formatPercentage(2:ncol(Data), 0)
   })
   
   
@@ -774,7 +784,7 @@ FuelPoverty <- function(input, output, session) {
         col_names = FALSE,
         skip = 12,
         n_max = 8
-      )[16:21]
+      )[16:22]
       
       Data <- as_tibble(t(Data))
       
@@ -1167,7 +1177,7 @@ FuelPoverty <- function(input, output, session) {
         col_names = FALSE,
         skip = 12,
         n_max = 8
-      )[16:21]
+      )[16:22]
       
       Data <- as_tibble(t(Data))
       

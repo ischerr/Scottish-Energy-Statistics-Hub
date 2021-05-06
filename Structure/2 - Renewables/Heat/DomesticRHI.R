@@ -66,7 +66,7 @@ DomesticRHIOutput <- function(id) {
     tabsetPanel(
       tabPanel("Cumulative Installations",
                fluidRow(
-                 column(10, h3("Data - Cumulative number of domestic RHI applications and accredited applications", style = "color: #39ab2c;  font-weight:bold")),
+                 column(10, h3("Data - Cumulative number of domestic RHI accredited applications", style = "color: #39ab2c;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
@@ -82,7 +82,7 @@ DomesticRHIOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Installations by region",
                fluidRow(
-                 column(10, h3("Data - Number of domestic RHI accredited applications by region, Scotland, July 2020", style = "color: #39ab2c;  font-weight:bold")),
+                 column(10, h3("Data - Number of domestic RHI accredited applications by region, Scotland, January 2021", style = "color: #39ab2c;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
@@ -107,11 +107,21 @@ DomesticRHIOutput <- function(id) {
 
     ),
     fluidRow(
-      column(2, p("Update expected:")),
+      column(2, HTML("<p><strong>Last Updated:</strong></p>")),
       column(2,
-             DateLookup(c("BEISRHI", "OGFGEMdrhi"))),
+             UpdatedLookup(c("BEISRHI","OGFGEMdrhi"))),
       column(1, align = "right",
-             p("Sources:")),
+             HTML("<p><strong>Reason:</strong></p>")),
+      column(7, align = "right", 
+             p("Regular updates")
+      )),
+    fluidRow(p(" ")),
+    fluidRow(
+      column(2, HTML("<p><strong>Update Expected:</strong></p>")),
+      column(2,
+             DateLookup(c("BEISRHI","OGFGEMdrhi"))),
+      column(1, align = "right",
+             HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("BEISRHI"),
         SourceLookup("OGFGEMdrhi")
@@ -219,7 +229,7 @@ DomesticRHI <- function(input, output, session) {
   })
   
   output$SubtitleYearText2 <- renderUI({
-    column(10, h3(paste("Number of full accreditations on/off the gas grid by aggregated rural/urban classification, Domestic -", "April 2014 to December 2019") , style = "color: #39ab2c;  font-weight:bold"))
+    column(10, h3(paste("Number of full accreditations on/off the gas grid by aggregated rural/urban classification, Domestic -", "April 2014 to December 2020") , style = "color: #39ab2c;  font-weight:bold"))
     
   })
   
@@ -521,7 +531,7 @@ DomesticRHI <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(c(2:5), 0) 
+      formatRound(c(2:6), 0) 
   })
   
   output$CumulativeInstallationsOutputTable = renderDataTable({
@@ -532,11 +542,11 @@ DomesticRHI <- function(input, output, session) {
         sheet = "Domestic RHI", 
         skip = 60)
     
-    names(Data) <- c("Date", "Air Source - Applications", "Air Source - Accredited Applications",
-                    "Ground Source - Applications", "Ground Source - Accredited Applications",
-                     "Biomass - Applications", "Biomass - Accredited Applications",
-                     "Solar Thermal - Applications", "Solar Thermal - Accredited Applications",
-                     "Total - Applications", "Total - Accredited Applications")
+    names(Data) <- c("Date", "Air Source - Applications", "Air Source",
+                    "Ground Source - Applications", "Ground Source",
+                     "Biomass - Applications", "Biomass",
+                     "Solar Thermal - Applications", "Solar Thermal",
+                     "Total - Applications", "Total")
     
     Data$Date <- format(Data$Date, "%b %Y")
 
@@ -551,17 +561,17 @@ DomesticRHI <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "Cumulative number of accredited domestic RHI applications, Scotland",
+        title = "Cumulative number of domestic RHI accredited applications, Scotland",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Cumulative number of accredited domestic RHI applications, Scotland",
+            title = "Cumulative number of domestic RHI accredited applications, Scotland",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Cumulative number of accredited domestic RHI applications, Scotland")
+               title = "Cumulative number of domestic RHI accredited applications, Scotland")
         ),
         
         # customize the length menu
@@ -636,17 +646,17 @@ names(Data)[1] <- "LA Code"
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = paste("Number of full accreditations on/off the gas grid by aggregated rural/urban classification, Domestic", "November 2011 to December 2019"),
+        title = paste("Number of full accreditations on/off the gas grid by aggregated rural/urban classification, Domestic", "November 2011 to December 2020"),
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = paste("Number of full accreditations on/off the gas grid by aggregated rural/urban classification, Domestic", "November 2011 to December 2019"),
+            title = paste("Number of full accreditations on/off the gas grid by aggregated rural/urban classification, Domestic", "November 2011 to December 2020"),
             header = TRUE
           ),
           list(extend = 'csv',
-               title = paste("Number of full accreditations on/off the gas grid by aggregated rural/urban classification, Domestic", "November 2011 to December 2019"))
+               title = paste("Number of full accreditations on/off the gas grid by aggregated rural/urban classification, Domestic", "November 2011 to December 2020"))
         ),
         
         # customize the length menu
@@ -1162,7 +1172,7 @@ output$DomRHIInstallationsOutput.png <- downloadHandler(
 
 output$DomRHIUrbanRuralSubtitle <- renderText({
   
-  paste("Scotland,","April 2014 to December 2019")
+  paste("Scotland,","April 2014 to December 2020")
 })
 
 output$DomRHIUrbanRuralPlot <- renderPlotly  ({
@@ -1403,7 +1413,7 @@ output$DomRHIUrbanRural.png <- downloadHandler(
     
     DataChart <-
       DataChart +
-      labs(subtitle = paste("Scotland, April 2014 to December 2019")) 
+      labs(subtitle = paste("Scotland, April 2014 to December 2020")) 
     
     DataChart
     

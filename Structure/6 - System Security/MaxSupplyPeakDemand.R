@@ -80,11 +80,21 @@ MaxSupplyPeakDemandOutput <- function(id) {
       tags$hr(style = "height:3px;border:none;color:#5d8be1;background-color:#5d8be1;"))
     ),
     fluidRow(
-      column(2, p("Update expected:")),
+      column(2, HTML("<p><strong>Last Updated:</strong></p>")),
+      column(2,
+             UpdatedLookup(c("BEISDUKESPower", "NGData", "NGTen"))),
+      column(1, align = "right",
+             HTML("<p><strong>Reason:</strong></p>")),
+      column(7, align = "right", 
+             p("Regular updates")
+      )),
+    fluidRow(p(" ")),
+    fluidRow(
+      column(2, HTML("<p><strong>Update Expected:</strong></p>")),
       column(2,
              DateLookup(c("BEISDUKESPower", "NGData", "NGTen"))),
       column(1, align = "right",
-             p("Sources:")),
+             HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("BEISDUKESPower"),
         SourceLookup("NGData"),
@@ -191,7 +201,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
                      
                      ),
         yaxis = list(
-          title = "",
+          title = "Winter",
           tickformat = "",
           autorange = "reversed",
           ticktext = as.list(Data$`Year`),
@@ -225,7 +235,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
     
     Data <- Data[!duplicated(Data$Year),]
     
-    names(Data)[2:3] <- c("Maximum supply capacity (MW)", "Peak electricity demand for the year (MW)")
+    names(Data)[1:3] <- c("Winter", "Maximum supply capacity (MW)", "Peak electricity demand for the year (MW)")
     
     datatable(
       Data,
@@ -451,7 +461,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         ),
         yaxis = list(
           title = "",
-          tickformat = "",
+          tickformat = "Winter",
           autorange = "reversed",
           ticktext = as.list(Data$`Year`),
           tickmode = "array",
@@ -489,6 +499,8 @@ MaxSupplyPeakDemand <- function(input, output, session) {
     Data$`Maximum import capacity` <- Data$`Moyle Interconnector` + Data$`Secure import capability of GB Transmission Network into Scotland`
     
     MaxSupplyCapacityTech <- Data[c(2:8,12,9,10,13,11)]
+    
+    names(MaxSupplyCapacityTech)[1] <- "Winter"
     
     datatable(
       MaxSupplyCapacityTech,
@@ -1111,7 +1123,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
                      
         ),
         yaxis = list(
-          title = "",
+          title = "Winter",
           tickformat = "",
           autorange = "reversed",
           ticktext = as.list(Data$`Year`),

@@ -4,7 +4,7 @@ Sources$HTML <- "Hi"
 
 for (i in 1:nrow(Sources)){
   
-  ifelse(substr(Sources[i,]$`Direct URL`,1,1) == "h", Sources[i,9] <- paste(a(Sources[i,]$Source, href = Sources[i,]$`Direct URL`, target="_blank")),Sources[i,9] <-  paste(p(Sources[i,]$Source, "(Unpublished)")))
+  ifelse(substr(Sources[i,]$`Direct URL`,1,1) == "h", Sources[i,10] <- paste(a(Sources[i,]$Source, href = Sources[i,]$`Direct URL`, target="_blank")),Sources[i,10] <-  paste(p(Sources[i,]$Source, "(Unpublished)")))
   }    
 
 
@@ -29,6 +29,21 @@ DateLookup <- function(x){
     br()
   )
 } 
+
+
+
+UpdatedLookup <- function(x){
+  
+  y <- max(Sources[which(Sources$Code %in% x),]$`Last Updated`, na.rm = TRUE)
+  
+  tagList(
+    ifelse(is.infinite(y), " ", format(y, "%B %Y")),
+    br()
+  )
+} 
+
+
+
 
 
 css_fix <- "div.info.legend.leaflet-control br {clear: both;}" # CSS to correct spacing

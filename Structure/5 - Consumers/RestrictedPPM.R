@@ -11,20 +11,6 @@ RestrictedPPMOutput <- function(id) {
   ns <- NS(id)
   tagList(
     tabsetPanel(
-    tabPanel("Local Authorities",
-    fluidRow(column(8,
-                    h3("Proportion of Economy 7 meters by local authority", style = "color: #68c3ea;  font-weight:bold"),
-                    h4(textOutput(ns('RestrictedMeterPropSubtitle')), style = "color: #68c3ea;")
-    ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('RestrictedMeter.png'), 'Download Graph', style="float:right")
-             )),
-    
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
-    #imageOutput(ns("RestrictedMeterPlot"), height = "700px")%>% withSpinner(color="#68c3ea"),
-    leafletOutput(ns("RestrictedMeterPropMap"), height = "800px")%>% withSpinner(color="#68c3ea"),
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
         tabPanel("Time Series",
              fluidRow(column(8,
                              h3("Economy 7 meters in Scotland", style = "color: #68c3ea;  font-weight:bold"),
@@ -40,7 +26,21 @@ RestrictedPPMOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
              #dygraphOutput(ns("RestrictedMeterPlot")),
              plotlyOutput(ns("RestrictedMetersPropTSPlot"))%>% withSpinner(color="#68c3ea"),
-             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+        tabPanel("Local Authorities",
+                 fluidRow(column(8,
+                                 h3("Proportion of Economy 7 meters by local authority", style = "color: #68c3ea;  font-weight:bold"),
+                                 h4(textOutput(ns('RestrictedMeterPropSubtitle')), style = "color: #68c3ea;")
+                 ),
+                 column(
+                   4, style = 'padding:15px;',
+                   downloadButton(ns('RestrictedMeter.png'), 'Download Graph', style="float:right")
+                 )),
+                 
+                 tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
+                 #imageOutput(ns("RestrictedMeterPlot"), height = "700px")%>% withSpinner(color="#68c3ea"),
+                 leafletOutput(ns("RestrictedMeterPropMap"), height = "800px")%>% withSpinner(color="#68c3ea"),
+                 tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))
 ),
    
     fluidRow(
@@ -52,14 +52,6 @@ RestrictedPPMOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"),
     tabsetPanel(
-      tabPanel("Economy 7 proportion",
-    fluidRow(
-    column(10, h3("Data - Proportion of Economy 7 meters by local authority", style = "color: #68c3ea;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
-    ),
-    fluidRow(
-      column(12, dataTableOutput(ns("RestrictedMeterPropTable"))%>% withSpinner(color="#68c3ea"))),
-    tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Economy 7 amount",
              fluidRow(
                column(10, h3("Data - Amount of Economy 7 meters by local authority", style = "color: #68c3ea;  font-weight:bold")),
@@ -67,13 +59,31 @@ RestrictedPPMOutput <- function(id) {
              ),
              fluidRow(
                column(12, dataTableOutput(ns("RestrictedMeterAmountTable"))%>% withSpinner(color="#68c3ea"))),
+             tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
+    tabPanel("Economy 7 proportion",
+             fluidRow(
+               column(10, h3("Data - Proportion of Economy 7 meters by local authority", style = "color: #68c3ea;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+             ),
+             fluidRow(
+               column(12, dataTableOutput(ns("RestrictedMeterPropTable"))%>% withSpinner(color="#68c3ea"))),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
-    fluidRow(
-      column(2, p("Update expected:")),
-      column(2,
-             DateLookup(c("BEISElecPPM", "BEISElecMeter"))),
-      column(1, align = "right",
-             p("Sources:")),
+fluidRow(
+  column(2, HTML("<p><strong>Last Updated:</strong></p>")),
+  column(2,
+         UpdatedLookup(c("BEISElecMeter"))),
+  column(1, align = "right",
+         HTML("<p><strong>Reason:</strong></p>")),
+  column(7, align = "right", 
+         p("Regular updates")
+  )),
+fluidRow(p(" ")),
+fluidRow(
+  column(2, HTML("<p><strong>Update Expected:</strong></p>")),
+  column(2,
+         DateLookup(c("BEISElecMeter"))),
+  column(1, align = "right",
+         HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("BEISElecMeter")
         

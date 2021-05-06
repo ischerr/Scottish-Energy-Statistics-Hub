@@ -111,12 +111,22 @@ EnBalanceOutput <- function(id) {
   
   )),
     tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
-    fluidRow(
-      column(2, p("Update expected:")),
-      column(2,
-             DateLookup(c("BEISElecGen", "BEISSubNatEnergy", "HMRCTrade", "BEISDUKESBalance", "SGCommodityBalance", "BEISImportExport"))),
-      column(1, align = "right",
-             p("Sources:")),
+  fluidRow(
+    column(2, HTML("<p><strong>Last Updated:</strong></p>")),
+    column(2,
+           UpdatedLookup(c("BEISElecGen", "BEISSubNatEnergy", "HMRCTrade", "BEISDUKESBalance", "SGCommodityBalance", "BEISImportExport"))),
+    column(1, align = "right",
+           HTML("<p><strong>Reason:</strong></p>")),
+    column(7, align = "right", 
+           p("Regular updates")
+    )),
+  fluidRow(p(" ")),
+  fluidRow(
+    column(2, HTML("<p><strong>Update Expected:</strong></p>")),
+    column(2,
+           DateLookup(c("BEISElecGen", "BEISSubNatEnergy", "HMRCTrade", "BEISDUKESBalance", "SGCommodityBalance", "BEISImportExport"))),
+    column(1, align = "right",
+           HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("BEISElecGen"),
         SourceLookup("BEISSubNatEnergy"),
@@ -194,7 +204,7 @@ EnBalance <- function(input, output, session) {
   
   output$EnBalanceSubtitle <- renderText({
     
-    paste("Scotland, 2018")
+    paste("Scotland, 2019")
   })
   
   output$EnBalancePlot <- renderPlotly  ({
@@ -486,7 +496,7 @@ EnBalance <- function(input, output, session) {
   
   output$SimplifiedFlowSubtitle <- renderText({
     
-    paste("Scotland, 2018")
+    paste("Scotland, 2019")
   })
   
   output$SimplifiedFlow.png <- downloadHandler(
@@ -569,6 +579,7 @@ EnBalance <- function(input, output, session) {
     
     p1
     
+    #orca(p1, "StaticCharts/EnBalance1.svg")
   })
   output$SimplifiedFlowPlot2 <- renderPlotly  ({
     
@@ -636,7 +647,7 @@ EnBalance <- function(input, output, session) {
       )
     p2
     
-    
+    #orca(p2, "StaticCharts/EnBalance2.svg")
     
     
   })
@@ -707,7 +718,7 @@ EnBalance <- function(input, output, session) {
     
     p3
     
-    
+    #orca(p3, "StaticCharts/EnBalance3.svg")
   })
   
   observeEvent(input$ToggleTable1, {

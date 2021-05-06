@@ -87,11 +87,27 @@ AverageBillLAOutput <- function(id) {
                column(12, dataTableOutput(ns("GasUnitTable"))%>% withSpinner(color="#68c3ea"))),
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;"))),
     fluidRow(
-      column(2, p("Update expected:")),
+      column(2, HTML("<p><strong>Last Updated:</strong></p>")),
       column(2,
-             DateLookup(c("BEISUnitElec","BEISSubNatElec","BEISUnitGas","BEISSubNatGas"))),
+             UpdatedLookup(c("BEISUnitElec",
+                           "BEISSubNatElec",
+                           "BEISUnitGas",
+                           "BEISSubNatGas"))),
       column(1, align = "right",
-             p("Sources:")),
+             HTML("<p><strong>Reason:</strong></p>")),
+      column(7, align = "right", 
+             p("Regular updates")
+      )),
+    fluidRow(p(" ")),
+    fluidRow(
+      column(2, HTML("<p><strong>Update Expected:</strong></p>")),
+      column(2,
+             DateLookup(c("BEISUnitElec",
+                        "BEISSubNatElec",
+                        "BEISUnitGas",
+                        "BEISSubNatGas"))),
+      column(1, align = "right",
+             HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("BEISUnitElec"),
         SourceLookup("BEISSubNatElec"),
@@ -121,7 +137,7 @@ AverageBillLA <- function(input, output, session) {
   
   output$AverageBillLASubtitle <- renderText({
     
-    paste("Scotland, 2018")
+    paste("Scotland, 2019")
   
     })
   
@@ -372,7 +388,7 @@ AverageBillLA <- function(input, output, session) {
 
   output$AverageBillLAElecSubtitle <- renderText({
     
-    paste("Scotland, 2018")
+    paste("Scotland, 2019")
     
   })
   
@@ -464,7 +480,7 @@ AverageBillLA <- function(input, output, session) {
   
   output$AverageBillLAGasSubtitle <- renderText({
     
-    paste("Scotland, 2018")
+    paste("Scotland, 2019")
     
   })
   

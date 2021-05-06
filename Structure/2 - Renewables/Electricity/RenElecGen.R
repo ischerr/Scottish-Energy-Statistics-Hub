@@ -71,33 +71,23 @@ RenElecGenOutput <- function(id) {
              #dygraphOutput(ns("ElecGenFuelPlot")),
              leafletOutput(ns("LAGenMap"), height = "675px")%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Wind",
+    tabPanel("EU Comparison",
              fluidRow(column(8,
-                             h3("Scottish wind generation compared to European countries", style = "color: #39ab2c;  font-weight:bold"),
-                             h4(textOutput(ns('EUWindSubtitle')), style = "color: #39ab2c;")
+                             h3("Scottish electricity generation compared to European countries", style = "color: #39ab2c;  font-weight:bold"),
+                             h4(textOutput(ns('EUComparisonSubtitle')), style = "color: #39ab2c;"
+             ),
+             selectInput(ns("TechSelect2"), "Tech:", c("Wind",
+                                                       "Hydro"), selected = "Wind", multiple = FALSE,
+             selectize = TRUE, width = NULL, size = NULL)
              ),
              column(
                4, style = 'padding:15px;',
-               downloadButton(ns('EUWind.png'), 'Download Graph', style="float:right")
+               downloadButton(ns('EUComparison.png'), 'Download Graph', style="float:right")
              )),
              
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-             #dygraphOutput(ns("EUWindPlot")),
-             plotlyOutput(ns("EUWindPlot"), height = "900px")%>% withSpinner(color="#39ab2c"),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Hydro",
-             fluidRow(column(8,
-                             h3("Scottish hydro generation compared to European countries", style = "color: #39ab2c;  font-weight:bold"),
-                             h4(textOutput(ns('EUHydroSubtitle')), style = "color: #39ab2c;")
-             ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('EUHydro.png'), 'Download Graph', style="float:right")
-             )),
-             
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-             #dygraphOutput(ns("EUHydroPlot")),
-             plotlyOutput(ns("EUHydroPlot"), height = "900px")%>% withSpinner(color="#39ab2c"),
+             #dygraphOutput(ns("EUComparisonPlot")),
+             plotlyOutput(ns("EUComparisonPlot"), height = "900px")%>% withSpinner(color="#39ab2c"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
     ),
     fluidRow(
@@ -164,11 +154,21 @@ RenElecGenOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))
     ),
     fluidRow(
-      column(2, p("Update expected:")),
+      column(2, HTML("<p><strong>Last Updated:</strong></p>")),
       column(2,
-             DateLookup(c("BEISRenElec", "EURORenEn", "BEISSubNatEnergy"))),
+             UpdatedLookup(c("BEISRenElec", "EURORenEn", "BEISSubNatEnergy", "BEISRenElecLA"))),
       column(1, align = "right",
-             p("Sources:")),
+             HTML("<p><strong>Reason:</strong></p>")),
+      column(7, align = "right", 
+             p("Regular updates")
+      )),
+    fluidRow(p(" ")),
+    fluidRow(
+      column(2, HTML("<p><strong>Update Expected:</strong></p>")),
+      column(2,
+             DateLookup(c("BEISRenElec", "EURORenEn", "BEISSubNatEnergy", "BEISRenElecLA"))),
+      column(1, align = "right",
+             HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("BEISRenElec"),
         SourceLookup("EURORenEn"),
@@ -248,10 +248,18 @@ RenElecGen <- function(input, output, session) {
     
     RenElecGenFuel <- arrange(RenElecGenFuel,-row_number())
     
-    RenElecGenFuel$Total <- RenElecGenFuel$`Other bioenergy` + RenElecGenFuel$`Sewage gas` + RenElecGenFuel$`Wave and tidal` + RenElecGenFuel$`Landfill gas` + RenElecGenFuel$`Solar PV` + RenElecGenFuel$Hydro + RenElecGenFuel$`Offshore Wind` + RenElecGenFuel$`Onshore Wind`
+    RenElecGenFuel$`Bioenergy and Wastes` <- RenElecGenFuel$`Other bioenergy` + RenElecGenFuel$`Sewage gas` + RenElecGenFuel$`Landfill gas`
+    
+    RenElecGenFuel$`Other bioenergy` <- NULL
+    
+    RenElecGenFuel$`Sewage gas` <- NULL
+    
+    RenElecGenFuel$`Landfill gas` <- NULL
+    
+    RenElecGenFuel$Total <-  RenElecGenFuel$`Wave and tidal`  + RenElecGenFuel$`Solar PV` + RenElecGenFuel$Hydro + RenElecGenFuel$`Offshore Wind` + RenElecGenFuel$`Onshore Wind` + RenElecGenFuel$`Bioenergy and Wastes`
     
     datatable(
-      RenElecGenFuel[c(1,9:2,10)],
+      RenElecGenFuel[c(1,6,5,4,7,3,2,8)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -332,7 +340,9 @@ RenElecGen <- function(input, output, session) {
     
     RenElecGenFuel[is.na(RenElecGenFuel)] <- 0
     
-    RenElecGenFuel$Total <- RenElecGenFuel$`Other bioenergy` + RenElecGenFuel$`Sewage gas` + RenElecGenFuel$`Wave and tidal` + RenElecGenFuel$`Landfill gas` + RenElecGenFuel$`Solar PV` + RenElecGenFuel$Hydro + RenElecGenFuel$`Offshore Wind` + RenElecGenFuel$`Onshore Wind`
+    RenElecGenFuel$`Bioenergy and Waste` <- RenElecGenFuel$`Other bioenergy` + RenElecGenFuel$`Sewage gas` + RenElecGenFuel$`Landfill gas` 
+    
+    RenElecGenFuel$Total <- RenElecGenFuel$`Wave and tidal`  + RenElecGenFuel$`Solar PV` + RenElecGenFuel$Hydro + RenElecGenFuel$`Offshore Wind` + RenElecGenFuel$`Onshore Wind` + RenElecGenFuel$`Bioenergy and Waste`
     
     ChartColours <- c("#39ab2c", "#FF8500")
     BarColours <-
@@ -420,8 +430,25 @@ RenElecGen <- function(input, output, session) {
       add_trace(
         data = RenElecGenFuel,
         y = ~Year,
-        x = ~`Solar PV`,
+        x = ~`Bioenergy and Waste`,
         legendgroup = 4,
+        text = paste0(
+          "Bioenergy and Waste: ",
+          format(round(RenElecGenFuel$`Bioenergy and Waste`, digits = 0),big.mark = ","),
+          " GWh\nYear: ",
+          RenElecGenFuel$Year
+        ),
+        name = "Bioenergy and Waste",
+        type = "bar",
+        hoverinfo = "text",
+        orientation = 'h',
+        marker = list(color =  BarColours[4])
+      )  %>% 
+      add_trace(
+        data = RenElecGenFuel,
+        y = ~Year,
+        x = ~`Solar PV`,
+        legendgroup = 5,
         text = paste0(
           "Solar PV: ",
           format(round(RenElecGenFuel$`Solar PV`, digits = 0),big.mark = ","),
@@ -432,25 +459,8 @@ RenElecGen <- function(input, output, session) {
         type = "bar",
         hoverinfo = "text",
         orientation = 'h',
-        marker = list(color =  BarColours[4])
-      )  %>% 
-      add_trace(
-        data = RenElecGenFuel,
-        y = ~Year,
-        x = ~`Landfill gas`,
-        legendgroup = 5,
-        text = paste0(
-          "Landfill gas: ",
-          format(round(RenElecGenFuel$`Landfill gas`, digits = 0),big.mark = ","),
-          " GWh\nYear: ",
-          RenElecGenFuel$Year
-        ),
-        name = "Landfill gas",
-        type = "bar",
-        hoverinfo = "text",
-        orientation = 'h',
         marker = list(color =  BarColours[5])
-      )  %>% 
+      )  %>%
       add_trace(
         data = RenElecGenFuel,
         y = ~Year,
@@ -468,40 +478,6 @@ RenElecGen <- function(input, output, session) {
         orientation = 'h',
         marker = list(color =  BarColours[6])
       )  %>% 
-      add_trace(
-        data = RenElecGenFuel,
-        y = ~Year,
-        x = ~`Sewage gas`,
-        legendgroup = 7,
-        text = paste0(
-          "Sewage gas: ",
-          format(round(RenElecGenFuel$`Sewage gas`, digits = 0),big.mark = ","),
-          " GWh\nYear: ",
-          RenElecGenFuel$Year
-        ),
-        name = "Sewage gas",
-        type = "bar",
-        hoverinfo = "text",
-        orientation = 'h',
-        marker = list(color =  BarColours[7])
-      )  %>% 
-      add_trace(
-        data = RenElecGenFuel,
-        y = ~Year,
-        x = ~`Other bioenergy`,
-        legendgroup = 8,
-        text = paste0(
-          "Other bioenergy: ",
-          format(round(RenElecGenFuel$`Other bioenergy`, digits = 0),big.mark = ","),
-          " GWh\nYear: ",
-          RenElecGenFuel$Year
-        ),
-        name = "Other bioenergy",
-        type = "bar",
-        hoverinfo = "text",
-        orientation = 'h',
-        marker = list(color =  BarColours[8])
-      )  %>%
       layout(
         barmode = 'stack',
         legend = list(font = list(color = "#39ab2c"),
@@ -565,6 +541,11 @@ RenElecGen <- function(input, output, session) {
       
       RenElecGenFuel[is.na(RenElecGenFuel)] <- 0
       
+      
+      RenElecGenFuel$`Bioenergy and Waste` <- RenElecGenFuel$`Other bioenergy` + RenElecGenFuel$`Sewage gas` + RenElecGenFuel$`Landfill gas`
+      
+      RenElecGenFuel <- RenElecGenFuel[c(1,4,6,10,7,8,9)]
+      
       RenElecGenFuel <- melt(RenElecGenFuel, id.vars = "Year")
       
       
@@ -605,11 +586,9 @@ RenElecGen <- function(input, output, session) {
             "Onshore Wind" = BarColours[1],
             "Offshore Wind" = BarColours[2],
             "Hydro" = BarColours[3],
-            "Solar PV" = BarColours[4],
-            "Landfill gas" = BarColours[5],
+            "Bioenergy and Waste" = BarColours[4],
+            "Solar PV" = BarColours[5],
             "Wave and tidal" = BarColours[6],
-            "Sewage gas" = BarColours[7],
-            "Other bioenergy" = BarColours[8],
             "Total" = "White"
           )
         ) +
@@ -628,7 +607,7 @@ RenElecGen <- function(input, output, session) {
         geom_text(
           aes(
            x = 1998.5,
-            y = (max(RenElecGenFuel$top)*1.1) * (.5 / 8),
+            y = (max(RenElecGenFuel$top)*1.1) * (.5 / 6),
             label = "Onshore\nWind"
           ),
           fontface = 2,
@@ -640,7 +619,7 @@ RenElecGen <- function(input, output, session) {
         geom_text(
           aes(
            x = 1998.5,
-            y = (max(RenElecGenFuel$top)*1.1) * (1.5 / 8),
+            y = (max(RenElecGenFuel$top)*1.1) * (1.5 / 6),
             label = "Offshore\nWind"
           ),
           fontface = 2,
@@ -652,7 +631,7 @@ RenElecGen <- function(input, output, session) {
         geom_text(
           aes(
            x = 1998.5,
-            y = (max(RenElecGenFuel$top)*1.1) * (2.5 / 8),
+            y = (max(RenElecGenFuel$top)*1.1) * (2.5 / 6),
             label = "Hydro"
           ),
           fontface = 2,
@@ -663,9 +642,9 @@ RenElecGen <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-           x = 1998.5,
-            y = (max(RenElecGenFuel$top)*1.1) * (3.5 / 8),
-            label = "Solar PV"
+            x = 1998.5,
+            y = (max(RenElecGenFuel$top)*1.1) * (3.5 / 6),
+            label = "Bioenergy\nand Waste"
           ),
           fontface = 2,
           colour =  BarColours[4],
@@ -676,8 +655,8 @@ RenElecGen <- function(input, output, session) {
         geom_text(
           aes(
            x = 1998.5,
-            y = (max(RenElecGenFuel$top)*1.1) * (4.5 / 8),
-            label = "Landfill\ngas"
+            y = (max(RenElecGenFuel$top)*1.1) * (4.5 / 6),
+            label = "Solar PV"
           ),
           fontface = 2,
           colour =  BarColours[5],
@@ -688,7 +667,7 @@ RenElecGen <- function(input, output, session) {
         geom_text(
           aes(
            x = 1998.5,
-            y = (max(RenElecGenFuel$top)*1.1) * (5.5 / 8),
+            y = (max(RenElecGenFuel$top)*1.1) * (5.5 / 6),
             label = "Wave\nand Tidal"
           ),
           fontface = 2,
@@ -698,32 +677,8 @@ RenElecGen <- function(input, output, session) {
           size = 3
         ) +
         geom_text(
-          aes(
-           x = 1998.5,
-            y = (max(RenElecGenFuel$top)*1.1) * (6.5 / 8),
-            label = "Sewage\nGas"
-          ),
-          fontface = 2,
-          colour =  BarColours[7],
-          family = "Century Gothic",
-          hjust = 0.5,
-          size = 3
-        ) +
-        geom_text(
-          aes(
-           x = 1998.5,
-            y = (max(RenElecGenFuel$top)*1.1) * (7.5 / 8),
-            label = "Other\nBioenergy"
-          ),
-          fontface = 2,
-          colour =  BarColours[8],
-          family = "Century Gothic",
-          hjust = 0.5,
-          size = 3
-        ) +
-        geom_text(
           aes(x = 2010.5,
-              y = (max(RenElecGenFuel$top)*1.1) * (8 / 8),
+              y = (max(RenElecGenFuel$top)*1.1) * (6 / 6),
               label = " "),
           fontface = 2,
           colour =  BarColours[8],
@@ -733,7 +688,7 @@ RenElecGen <- function(input, output, session) {
         ) +
         geom_text(
           aes(x = 0.1,
-              y = (max(RenElecGenFuel$top)*1.1) * (8 / 8),
+              y = (max(RenElecGenFuel$top)*1.1) * (6 / 6),
               label = " "),
           fontface = 2,
           colour =  BarColours[8],
@@ -1255,103 +1210,6 @@ RenElecGen <- function(input, output, session) {
     }
   )
   
-  output$EUWindSubtitle <- renderText({
-    
-    EURenElec <- read_excel("Structure/CurrentWorking.xlsx",
-                            sheet = "Wind and hydro gen EU", col_names = TRUE, 
-                            skip = 15, n_max = 30)
-    
-    EURenElec <- EURenElec[,c(1:ncol(EURenElec))]
-    
-    
-    
-    names(EURenElec)[1] <- c("Countries")
-    
-    EURenElec <- EURenElec %>% mutate(Countries = replace(Countries, Countries == "United Kingdom", "U.K."))
-    
-    EURenElec <- EURenElec %>% mutate(Countries = replace(Countries, Countries == "SCOTLAND", "Scotland"))
-    
-    EURenElec[2:ncol(EURenElec)] %<>% lapply(function(x) as.numeric(as.character(x)))
-    
-    paste(max(as.numeric(names(EURenElec)), na.rm = TRUE))
-  })
-  
-  output$EUWindPlot <- renderPlotly  ({
-    
-    ChartColours <- c("#39ab2c", "#78c679", "#a3d65c")
-    
-    EUWind <- read_delim("Processed Data/Output/EU Wind Hydro/EUWind.txt", 
-                         "\t", escape_double = FALSE, trim_ws = TRUE)
-    
-    EUWind <- EUWind[,c(1,ncol(EUWind))]
-    
-    names(EUWind) <- c("Countries", "Renewables")
-    
-    EUWind <- EUWind %>% mutate(Countries = replace(Countries, Countries == "United Kingdom", "U.K."))
-    
-    EUWind$Renewables <- as.numeric(EUWind$Renewables)
-    
-    EUWind <- merge(EUWind, EUFlagLookup)
-    
-    EUWind$Group <- ifelse(EUWind$Renewables > 0 & EUWind$Countries %in% c("SCOTLAND", "U.K.", "EU (27)"), ChartColours[1],
-                           ifelse(EUWind$Renewables <= 0 & EUWind$Countries %in% c("SCOTLAND", "U.K.", "EU (27)"), "D",
-                                  ifelse(EUWind$Renewables > 0 & EUWind$Renewables %in% c(min(EUWind$Renewables), max(EUWind$Renewables)), ChartColours[2],
-                                         ifelse(EUWind$Renewables <= 0 & EUWind$Renewables %in% c(min(EUWind$Renewables), max(EUWind$Renewables)), "E",      
-                                                ifelse(EUWind$Renewables <= 0 , "D",  
-                                                       ChartColours[2])))))
-    
-    EUWind <- EUWind[order(-EUWind$Renewables),]
-    
-    EUWind <- EUWind %>% mutate(Countries = replace(Countries, Countries == "U.K.", "Rest of the UK"))
-    
-    EUWind <- EUWind[-1:-2,]
-    
-    EUWind$Countries <- factor(EUWind$Countries, levels = unique(EUWind$Countries)[order(EUWind$Renewables, decreasing = FALSE)])
-    
-    p <- plot_ly(
-      data = EUWind,
-      y = ~Countries,
-      x = ~Renewables,
-      text = paste0(
-        "Wind Generation: ",
-        format(round(EUWind$Renewables, digits = 0), big.mark = ","),
-        " GWh\nCountry: ",
-        EUWind$Countries
-      ),
-      name = "EU Renewable Energy",
-      type = "bar",
-      hoverinfo = "text",
-      orientation = 'h',
-      marker = list(color =  as.list(EUWind$Group))
-    )  %>% 
-      layout(
-        barmode = 'stack',
-        legend = list(font = list(color = "#39ab2c"),
-                      orientation = 'h'),
-        hoverlabel = list(font = list(color = "white"),
-                          hovername = 'text'),
-        hovername = 'text',
-        yaxis = list(title = "",
-                     showgrid = FALSE),
-        xaxis = list(
-          title = "GWh",
-          tickformat = "",
-          showgrid = TRUE,
-          zeroline = TRUE,
-          zerolinecolor = ChartColours[1],
-          zerolinewidth = 2,
-          rangemode = "tozero"
-        )
-      ) %>% 
-      config(displayModeBar = F)
-    
-    p
-    
-    
-    
-    
-  })
-  
   output$EUWindTable = renderDataTable({
     
     ChartColours <- c("#39ab2c", "#78c679", "#a3d65c")
@@ -1412,246 +1270,148 @@ RenElecGen <- function(input, output, session) {
                   backgroundColor = styleEqual(c('Scotland'), c('#bdbdbd')))
   })
   
-  output$EUWind.png <- downloadHandler(
-    filename = "EUWind.png",
-    content = function(file) {
+  output$EUComparisonSubtitle <- renderText({
+
+    EUComparison <- read_excel("Structure/CurrentWorking.xlsx",
+                          sheet = "Wind and hydro gen EU", col_names = TRUE, 
+                          skip = 48, n_max = 30)
+    
+    EUComparison <- EUComparison[,c(1:ncol(EUComparison))]
+    
+    
+    
+    names(EUComparison)[1] <- c("Countries")
+    
+    EUComparison <- EUComparison %>% mutate(Countries = replace(Countries, Countries == "United Kingdom", "U.K."))
+    
+    EUComparison <- EUComparison %>% mutate(Countries = replace(Countries, Countries == "SCOTLAND", "Scotland"))
+    
+    EUComparison[2:ncol(EUComparison)] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    paste(max(as.numeric(names(EUComparison)), na.rm = TRUE))
+  })
+  
+  output$EUComparisonPlot <- renderPlotly  ({
+    
+    
+    x <- as.character(input$TechSelect2)
+    print(x)
+    if(x == "Wind"){
+      ChartColours <- c("#39ab2c", "#78c679", "#a3d65c")
       
       EUWind <- read_delim("Processed Data/Output/EU Wind Hydro/EUWind.txt", 
                            "\t", escape_double = FALSE, trim_ws = TRUE)
-      
-      EUWind <- EUWind[-1:-3,]
       
       EUWind <- EUWind[,c(1,ncol(EUWind))]
       
       names(EUWind) <- c("Countries", "Renewables")
       
-      EUWind <- EUWind[which(EUWind$Renewables > 100),]
-      
       EUWind <- EUWind %>% mutate(Countries = replace(Countries, Countries == "United Kingdom", "U.K."))
+      
+      EUWind$Renewables <- as.numeric(EUWind$Renewables)
       
       EUWind <- merge(EUWind, EUFlagLookup)
       
-      EUWind$Group <- ifelse(EUWind$Renewables > 0 & EUWind$Countries %in% c("SCOTLAND", "U.K.", "EU (28)"), "B",
-                             ifelse(EUWind$Renewables <= 0 & EUWind$Countries %in% c("SCOTLAND", "U.K.", "EU (28)"), "D",
-                                    ifelse(EUWind$Renewables > 0 & EUWind$Renewables %in% c(min(EUWind$Renewables), max(EUWind$Renewables)), "C",
+      EUWind$Group <- ifelse(EUWind$Renewables > 0 & EUWind$Countries %in% c("SCOTLAND", "U.K.", "EU (27)"), ChartColours[1],
+                             ifelse(EUWind$Renewables <= 0 & EUWind$Countries %in% c("SCOTLAND", "U.K.", "EU (27)"), "D",
+                                    ifelse(EUWind$Renewables > 0 & EUWind$Renewables %in% c(min(EUWind$Renewables), max(EUWind$Renewables)), ChartColours[2],
                                            ifelse(EUWind$Renewables <= 0 & EUWind$Renewables %in% c(min(EUWind$Renewables), max(EUWind$Renewables)), "E",      
                                                   ifelse(EUWind$Renewables <= 0 , "D",  
-                                                         "A")))))
+                                                         ChartColours[2])))))
       
       EUWind <- EUWind[order(-EUWind$Renewables),]
       
-      EUWind$Renewables <- EUWind$Renewables /100000
-      
       EUWind <- EUWind %>% mutate(Countries = replace(Countries, Countries == "U.K.", "Rest of the UK"))
       
-      ### variables
-      ChartColours <- c("#39ab2c", "#78c679", "#a3d65c")
-      sourcecaption = "Source: Eurostat, BEIS"
-      plottitle = "Scottish wind generation compared to\nEuropean countries"
+      EUWind <- EUWind[-1:-2,]
       
+      EUWind$Countries <- factor(EUWind$Countries, levels = unique(EUWind$Countries)[order(EUWind$Renewables, decreasing = FALSE)])
       
-      EUWind <- EUWind[order(EUWind$Renewables),]
-      EUWind$Countries <-
-        factor(EUWind$Countries, levels = EUWind$Countries)
-      
-      EUWindChart <-
-        EUWind %>%  ggplot(aes(x = Countries, y = Renewables, fill = Group)) +
-        geom_flag(aes(
-          y = -.025,
-          size = 10,
-          country = Flag
-        )) +
-        #scale_country()+
-        #scale_size(range = c(15,30), guide = FALSE)+
-        ylim(-.64, 1.10) +
-        geom_bar(stat = "identity") +
-        coord_flip() +
-        scale_fill_manual("Group",
-                          values = c("A" = ChartColours[2], "B" = ChartColours[1], "C" = ChartColours[2], "D" = ChartColours[2], "E" = ChartColours[2])) +
-        geom_text(
-          label = ifelse(
-            EUWind$Group == "B" |
-              EUWind$Group == "C" |
-              EUWind$Group == "E" ,
-            paste(format(round(EUWind$Renewables*100000, digits = 0), big.mark = ","), "GWh") ,
-            ""
-          ),
-          fontface = 2,
-          family = "Century Gothic",
-          hjust = ifelse(EUWind$Renewables > .3, 1.1, 0),
-          vjust = .5,
-          color = ifelse(EUWind$Renewables > .3, "white", ChartColours[2])
-        ) +
-        geom_text(
-          y = -0.055,
-          label = EUWind$Countries,
-          fontface = 2,
-          family = "Century Gothic",
-          hjust = 1,
-          vjust = .5,
-          color = "Black"
-        ) +
-        theme(
-          text = element_text(family = "Century Gothic")
-          ,
-          panel.background = element_rect(fill = "transparent") # bg of the panel
-          ,
-          plot.background = element_rect(fill = "transparent", color = NA) # bg of the plot
-          ,
-          legend.background = element_rect(fill = "transparent") # get rid of legend bg
-          ,
-          legend.box.background = element_rect(fill = "transparent") # get rid of legend panel bg
-          ,
-          legend.title = ggplot2::element_blank()
-          ,
-          axis.text.x = element_blank()
-          ,
-          axis.text.y = element_blank()
-          ,
-          axis.title = ggplot2::element_blank()
-          ,
-          legend.text = element_text(colour = "black", family = "Century Gothic")
-          ,
-          axis.ticks = ggplot2::element_blank()
-          ,
-          panel.grid.major = ggplot2::element_blank()
-          ,
-          legend.position = "none"
-          ,
-          title = element_text(colour = ChartColours[1], size = 14)
-          ,
-          plot.title = ggplot2::element_text(face = "bold")
-        ) + ### Label Plot
-        labs(y = "Percentage", caption = sourcecaption) +
-        labs(title = plottitle,
-             face = "bold",
-             subtitle = 2018) +
-        ### 0 Axis
-        
-        geom_hline(
-          yintercept = 0,
-          color = "grey",
-          alpha = 0.7,
-          linetype = 2
-        ) +
-        #geom_hline(yintercept=.52, color = ChartColours[2], alpha = 0.7)+
-        
-        
-        ### Plot Borders
-        annotate(
-          geom = 'segment',
-          x = Inf,
-          xend = Inf,
-          color = ChartColours[1],
-          y = -Inf,
-          yend = Inf,
-          size = 1.5
-        ) +
-        annotate(
-          geom = 'segment',
-          x = -Inf,
-          xend = -Inf,
-          color = ChartColours[1],
-          y = -Inf,
-          yend = Inf,
-          size = 1
-        ) +
-        annotation_custom(
-          ScotFlag,
-          xmin = match("SCOTLAND", EUWind$Countries) - .38,
-          xmax = match("SCOTLAND", EUWind$Countries) + .38,
-          ymax = .675
-        ) +
-        annotation_custom(
-          LatviaFlag,
-          xmin = match("Latvia", EUWind$Countries) - .38,
-          xmax = match("Latvia", EUWind$Countries) + .38,
-          ymax = .675
-        )
-      
-      
-      EUWindChart
-      
-      
-      ggsave(
-        file,
-        plot =  EUWindChart,
-        width = 15,
-        height = 22,
-        units = "cm",
-        dpi = 300
-      )
+      p <- plot_ly(
+        data = EUWind,
+        y = ~Countries,
+        x = ~Renewables,
+        text = paste0(
+          "Wind Generation: ",
+          format(round(EUWind$Renewables, digits = 0), big.mark = ","),
+          " GWh\nCountry: ",
+          EUWind$Countries
+        ),
+        name = "EU Renewable Energy",
+        type = "bar",
+        hoverinfo = "text",
+        orientation = 'h',
+        marker = list(color =  as.list(EUWind$Group))
+      )  %>% 
+        layout(
+          barmode = 'stack',
+          legend = list(font = list(color = "#39ab2c"),
+                        orientation = 'h'),
+          hoverlabel = list(font = list(color = "white"),
+                            hovername = 'text'),
+          hovername = 'text',
+          yaxis = list(title = "",
+                       showgrid = FALSE),
+          xaxis = list(
+            title = "GWh",
+            tickformat = "",
+            showgrid = TRUE,
+            zeroline = TRUE,
+            zerolinecolor = ChartColours[1],
+            zerolinewidth = 2,
+            rangemode = "tozero"
+          )
+        ) %>% 
+        config(displayModeBar = F)
     }
-  )
-  
-  output$EUHydroSubtitle <- renderText({
     
-    EUHydro <- read_excel("Structure/CurrentWorking.xlsx",
-                          sheet = "Wind and hydro gen EU", col_names = TRUE, 
-                          skip = 48, n_max = 30)
-    
-    EUHydro <- EUHydro[,c(1:ncol(EUHydro))]
-    
-    
-    
-    names(EUHydro)[1] <- c("Countries")
-    
-    EUHydro <- EUHydro %>% mutate(Countries = replace(Countries, Countries == "United Kingdom", "U.K."))
-    
-    EUHydro <- EUHydro %>% mutate(Countries = replace(Countries, Countries == "SCOTLAND", "Scotland"))
-    
-    EUHydro[2:ncol(EUHydro)] %<>% lapply(function(x) as.numeric(as.character(x)))
-    
-    paste(max(as.numeric(names(EUHydro)), na.rm = TRUE))
-  })
-  
-  output$EUHydroPlot <- renderPlotly  ({
+    if(as.character(input$TechSelect2) == "Hydro"){
     
     ChartColours <- c("#39ab2c", "#78c679", "#a3d65c")
     
-    EUHydro <- read_delim("Processed Data/Output/EU Wind Hydro/EUHydro.txt", 
+    EUComparison <- read_delim("Processed Data/Output/EU Wind Hydro/EUHydro.txt", 
                           "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    EUHydro <- EUHydro[,c(1,ncol(EUHydro))]
+    EUComparison <- EUComparison[,c(1,ncol(EUComparison))]
     
-    names(EUHydro) <- c("Countries", "Renewables")
+    names(EUComparison) <- c("Countries", "Renewables")
     
-    EUHydro <- EUHydro %>% mutate(Countries = replace(Countries, Countries == "United Kingdom", "U.K."))
+    EUComparison <- EUComparison %>% mutate(Countries = replace(Countries, Countries == "United Kingdom", "U.K."))
     
-    EUHydro$Renewables <- as.numeric(EUHydro$Renewables)
+    EUComparison$Renewables <- as.numeric(EUComparison$Renewables)
     
-    EUHydro <- merge(EUHydro, EUFlagLookup)
+    EUComparison <- merge(EUComparison, EUFlagLookup)
     
-    EUHydro$Group <- ifelse(EUHydro$Renewables > 0 & EUHydro$Countries %in% c("SCOTLAND", "U.K.", "EU (27)"), ChartColours[1],
-                            ifelse(EUHydro$Renewables <= 0 & EUHydro$Countries %in% c("SCOTLAND", "U.K.", "EU (27)"), "D",
-                                   ifelse(EUHydro$Renewables > 0 & EUHydro$Renewables %in% c(min(EUHydro$Renewables), max(EUHydro$Renewables)), ChartColours[2],
-                                          ifelse(EUHydro$Renewables <= 0 & EUHydro$Renewables %in% c(min(EUHydro$Renewables), max(EUHydro$Renewables)), "E",      
-                                                 ifelse(EUHydro$Renewables <= 0 , "D",  
+    EUComparison$Group <- ifelse(EUComparison$Renewables > 0 & EUComparison$Countries %in% c("SCOTLAND", "U.K.", "EU (27)"), ChartColours[1],
+                            ifelse(EUComparison$Renewables <= 0 & EUComparison$Countries %in% c("SCOTLAND", "U.K.", "EU (27)"), "D",
+                                   ifelse(EUComparison$Renewables > 0 & EUComparison$Renewables %in% c(min(EUComparison$Renewables), max(EUComparison$Renewables)), ChartColours[2],
+                                          ifelse(EUComparison$Renewables <= 0 & EUComparison$Renewables %in% c(min(EUComparison$Renewables), max(EUComparison$Renewables)), "E",      
+                                                 ifelse(EUComparison$Renewables <= 0 , "D",  
                                                         ChartColours[2])))))
     
-    EUHydro <- EUHydro[order(-EUHydro$Renewables),]
+    EUComparison <- EUComparison[order(-EUComparison$Renewables),]
     
-    EUHydro <- EUHydro %>% mutate(Countries = replace(Countries, Countries == "U.K.", "Rest of the UK"))
+    EUComparison <- EUComparison %>% mutate(Countries = replace(Countries, Countries == "U.K.", "Rest of the UK"))
     
-    EUHydro <- EUHydro[-1:-2,]
+    EUComparison <- EUComparison[-1:-2,]
     
-    EUHydro$Countries <- factor(EUHydro$Countries, levels = unique(EUHydro$Countries)[order(EUHydro$Renewables, decreasing = FALSE)])
+    EUComparison$Countries <- factor(EUComparison$Countries, levels = unique(EUComparison$Countries)[order(EUComparison$Renewables, decreasing = FALSE)])
     
     p <- plot_ly(
-      data = EUHydro,
+      data = EUComparison,
       y = ~Countries,
       x = ~Renewables,
       text = paste0(
         "Hydro Generation: ",
-        format(round(EUHydro$Renewables, digits = 0), big.mark = ","),
+        format(round(EUComparison$Renewables, digits = 0), big.mark = ","),
         " GWh\nCountry: ",
-        EUHydro$Countries
+        EUComparison$Countries
       ),
       name = "EU Renewable Energy",
       type = "bar",
       hoverinfo = "text",
       orientation = 'h',
-      marker = list(color =  as.list(EUHydro$Group))
+      marker = list(color =  as.list(EUComparison$Group))
     )  %>% 
       layout(
         barmode = 'stack',
@@ -1673,7 +1433,7 @@ RenElecGen <- function(input, output, session) {
         )
       ) %>% 
       config(displayModeBar = F)
-    
+    }
     p
     
     
@@ -1746,8 +1506,8 @@ RenElecGen <- function(input, output, session) {
   })
 
   
-  output$EUHydro.png <- downloadHandler(
-    filename = "EUHydro.png",
+  output$EUComparison.png <- downloadHandler(
+    filename = "EUComparison.png",
     content = function(file) {
       
       ### Load Packages and Functions
@@ -1756,33 +1516,203 @@ RenElecGen <- function(input, output, session) {
         source("Structure/PackageHeader.R")
       }
       
-      EUHydro <- read_delim("Processed Data/Output/EU Wind Hydro/EUHydro.txt", 
+      
+      if(input$TechSelect2 == "Wind"){
+        EUWind <- read_delim("Processed Data/Output/EU Wind Hydro/EUWind.txt", 
+                             "\t", escape_double = FALSE, trim_ws = TRUE)
+        
+        EUWind <- EUWind[-1:-3,]
+        
+        EUWind <- EUWind[,c(1,ncol(EUWind))]
+        
+        names(EUWind) <- c("Countries", "Renewables")
+        
+        EUWind <- EUWind[which(EUWind$Renewables > 100),]
+        
+        EUWind <- EUWind %>% mutate(Countries = replace(Countries, Countries == "United Kingdom", "U.K."))
+        
+        EUWind <- merge(EUWind, EUFlagLookup)
+        
+        EUWind$Group <- ifelse(EUWind$Renewables > 0 & EUWind$Countries %in% c("SCOTLAND", "U.K.", "EU (28)"), "B",
+                               ifelse(EUWind$Renewables <= 0 & EUWind$Countries %in% c("SCOTLAND", "U.K.", "EU (28)"), "D",
+                                      ifelse(EUWind$Renewables > 0 & EUWind$Renewables %in% c(min(EUWind$Renewables), max(EUWind$Renewables)), "C",
+                                             ifelse(EUWind$Renewables <= 0 & EUWind$Renewables %in% c(min(EUWind$Renewables), max(EUWind$Renewables)), "E",      
+                                                    ifelse(EUWind$Renewables <= 0 , "D",  
+                                                           "A")))))
+        
+        EUWind <- EUWind[order(-EUWind$Renewables),]
+        
+        EUWind$Renewables <- EUWind$Renewables /100000
+        
+        EUWind <- EUWind %>% mutate(Countries = replace(Countries, Countries == "U.K.", "Rest of the UK"))
+        
+        ### variables
+        ChartColours <- c("#39ab2c", "#78c679", "#a3d65c")
+        sourcecaption = "Source: Eurostat, BEIS"
+        plottitle = "Scottish wind generation compared to\nEuropean countries"
+        
+        
+        EUWind <- EUWind[order(EUWind$Renewables),]
+        EUWind$Countries <-
+          factor(EUWind$Countries, levels = EUWind$Countries)
+        
+        EUWindChart <-
+          EUWind %>%  ggplot(aes(x = Countries, y = Renewables, fill = Group)) +
+          geom_flag(aes(
+            y = -.025,
+            size = 10,
+            country = Flag
+          )) +
+          #scale_country()+
+          #scale_size(range = c(15,30), guide = FALSE)+
+          ylim(-.64, 1.10) +
+          geom_bar(stat = "identity") +
+          coord_flip() +
+          scale_fill_manual("Group",
+                            values = c("A" = ChartColours[2], "B" = ChartColours[1], "C" = ChartColours[2], "D" = ChartColours[2], "E" = ChartColours[2])) +
+          geom_text(
+            label = ifelse(
+              EUWind$Group == "B" |
+                EUWind$Group == "C" |
+                EUWind$Group == "E" ,
+              paste(format(round(EUWind$Renewables*100000, digits = 0), big.mark = ","), "GWh") ,
+              ""
+            ),
+            fontface = 2,
+            family = "Century Gothic",
+            hjust = ifelse(EUWind$Renewables > .3, 1.1, 0),
+            vjust = .5,
+            color = ifelse(EUWind$Renewables > .3, "white", ChartColours[2])
+          ) +
+          geom_text(
+            y = -0.055,
+            label = EUWind$Countries,
+            fontface = 2,
+            family = "Century Gothic",
+            hjust = 1,
+            vjust = .5,
+            color = "Black"
+          ) +
+          theme(
+            text = element_text(family = "Century Gothic")
+            ,
+            panel.background = element_rect(fill = "transparent") # bg of the panel
+            ,
+            plot.background = element_rect(fill = "transparent", color = NA) # bg of the plot
+            ,
+            legend.background = element_rect(fill = "transparent") # get rid of legend bg
+            ,
+            legend.box.background = element_rect(fill = "transparent") # get rid of legend panel bg
+            ,
+            legend.title = ggplot2::element_blank()
+            ,
+            axis.text.x = element_blank()
+            ,
+            axis.text.y = element_blank()
+            ,
+            axis.title = ggplot2::element_blank()
+            ,
+            legend.text = element_text(colour = "black", family = "Century Gothic")
+            ,
+            axis.ticks = ggplot2::element_blank()
+            ,
+            panel.grid.major = ggplot2::element_blank()
+            ,
+            legend.position = "none"
+            ,
+            title = element_text(colour = ChartColours[1], size = 14)
+            ,
+            plot.title = ggplot2::element_text(face = "bold")
+          ) + ### Label Plot
+          labs(y = "Percentage", caption = sourcecaption) +
+          labs(title = plottitle,
+               face = "bold",
+               subtitle = 2018) +
+          ### 0 Axis
+          
+          geom_hline(
+            yintercept = 0,
+            color = "grey",
+            alpha = 0.7,
+            linetype = 2
+          ) +
+          #geom_hline(yintercept=.52, color = ChartColours[2], alpha = 0.7)+
+          
+          
+          ### Plot Borders
+          annotate(
+            geom = 'segment',
+            x = Inf,
+            xend = Inf,
+            color = ChartColours[1],
+            y = -Inf,
+            yend = Inf,
+            size = 1.5
+          ) +
+          annotate(
+            geom = 'segment',
+            x = -Inf,
+            xend = -Inf,
+            color = ChartColours[1],
+            y = -Inf,
+            yend = Inf,
+            size = 1
+          ) +
+          annotation_custom(
+            ScotFlag,
+            xmin = match("SCOTLAND", EUWind$Countries) - .38,
+            xmax = match("SCOTLAND", EUWind$Countries) + .38,
+            ymax = .675
+          ) +
+          annotation_custom(
+            LatviaFlag,
+            xmin = match("Latvia", EUWind$Countries) - .38,
+            xmax = match("Latvia", EUWind$Countries) + .38,
+            ymax = .675
+          )
+        
+        
+        EUWindChart
+        
+        
+        ggsave(
+          file,
+          plot =  EUWindChart,
+          width = 15,
+          height = 22,
+          units = "cm",
+          dpi = 300
+        )
+      }
+      
+      if(input$TechSelect2 == "Hydro"){
+      EUComparison <- read_delim("Processed Data/Output/EU Wind Hydro/EUHydro.txt", 
                             "\t", escape_double = FALSE, trim_ws = TRUE)
       
-      EUHydro <- EUHydro[-1:-3,]
+      EUComparison <- EUComparison[-1:-3,]
       
-      EUHydro <- EUHydro[,c(1,ncol(EUHydro))]
+      EUComparison <- EUComparison[,c(1,ncol(EUComparison))]
       
-      names(EUHydro) <- c("Countries", "Renewables")
+      names(EUComparison) <- c("Countries", "Renewables")
       
-      EUHydro <- EUHydro[which(EUHydro$Renewables > 100),]
+      EUComparison <- EUComparison[which(EUComparison$Renewables > 100),]
       
-      EUHydro <- EUHydro %>% mutate(Countries = replace(Countries, Countries == "United Kingdom", "U.K."))
+      EUComparison <- EUComparison %>% mutate(Countries = replace(Countries, Countries == "United Kingdom", "U.K."))
       
-      EUHydro <- merge(EUHydro, EUFlagLookup)
+      EUComparison <- merge(EUComparison, EUFlagLookup)
       
-      EUHydro$Group <- ifelse(EUHydro$Renewables > 0 & EUHydro$Countries %in% c("SCOTLAND", "U.K.", "EU (28)"), "B",
-                              ifelse(EUHydro$Renewables <= 0 & EUHydro$Countries %in% c("SCOTLAND", "U.K.", "EU (28)"), "D",
-                                     ifelse(EUHydro$Renewables > 0 & EUHydro$Renewables %in% c(min(EUHydro$Renewables), max(EUHydro$Renewables)), "C",
-                                            ifelse(EUHydro$Renewables <= 0 & EUHydro$Renewables %in% c(min(EUHydro$Renewables), max(EUHydro$Renewables)), "E",      
-                                                   ifelse(EUHydro$Renewables <= 0 , "D",  
+      EUComparison$Group <- ifelse(EUComparison$Renewables > 0 & EUComparison$Countries %in% c("SCOTLAND", "U.K.", "EU (28)"), "B",
+                              ifelse(EUComparison$Renewables <= 0 & EUComparison$Countries %in% c("SCOTLAND", "U.K.", "EU (28)"), "D",
+                                     ifelse(EUComparison$Renewables > 0 & EUComparison$Renewables %in% c(min(EUComparison$Renewables), max(EUComparison$Renewables)), "C",
+                                            ifelse(EUComparison$Renewables <= 0 & EUComparison$Renewables %in% c(min(EUComparison$Renewables), max(EUComparison$Renewables)), "E",      
+                                                   ifelse(EUComparison$Renewables <= 0 , "D",  
                                                           "A")))))
       
-      EUHydro <- EUHydro[order(-EUHydro$Renewables),]
+      EUComparison <- EUComparison[order(-EUComparison$Renewables),]
       
-      EUHydro$Renewables <- EUHydro$Renewables /100000
+      EUComparison$Renewables <- EUComparison$Renewables /100000
       
-      EUHydro <- EUHydro %>% mutate(Countries = replace(Countries, Countries == "U.K.", "Rest of the UK"))
+      EUComparison <- EUComparison %>% mutate(Countries = replace(Countries, Countries == "U.K.", "Rest of the UK"))
       
       ### variables
       ChartColours <- c("#39ab2c", "#78c679", "#a3d65c")
@@ -1790,12 +1720,12 @@ RenElecGen <- function(input, output, session) {
       plottitle = "Scottish hydro generation compared to\nEuropean countries"
       
       
-      EUHydro <- EUHydro[order(EUHydro$Renewables),]
-      EUHydro$Countries <-
-        factor(EUHydro$Countries, levels = EUHydro$Countries)
+      EUComparison <- EUComparison[order(EUComparison$Renewables),]
+      EUComparison$Countries <-
+        factor(EUComparison$Countries, levels = EUComparison$Countries)
       
-      EUHydroChart <-
-        EUHydro %>%  ggplot(aes(x = Countries, y = Renewables, fill = Group)) +
+      EUComparisonChart <-
+        EUComparison %>%  ggplot(aes(x = Countries, y = Renewables, fill = Group)) +
         geom_flag(aes(
           y = -.05,
           size = 10,
@@ -1810,21 +1740,21 @@ RenElecGen <- function(input, output, session) {
                           values = c("A" = ChartColours[2], "B" = ChartColours[1], "C" = ChartColours[2], "D" = ChartColours[2], "E" = ChartColours[2])) +
         geom_text(
           label = ifelse(
-            EUHydro$Group == "B" |
-              EUHydro$Group == "C" |
-              EUHydro$Group == "E" ,
-            paste(format(round(EUHydro$Renewables*100000, digits = 0), big.mark = ","), "GWh") ,
+            EUComparison$Group == "B" |
+              EUComparison$Group == "C" |
+              EUComparison$Group == "E" ,
+            paste(format(round(EUComparison$Renewables*100000, digits = 0), big.mark = ","), "GWh") ,
             ""
           ),
           fontface = 2,
           family = "Century Gothic",
-          hjust = ifelse(EUHydro$Renewables > .3, 1.1, 0),
+          hjust = ifelse(EUComparison$Renewables > .3, 1.1, 0),
           vjust = .5,
-          color = ifelse(EUHydro$Renewables > .3, "white", ChartColours[2])
+          color = ifelse(EUComparison$Renewables > .3, "white", ChartColours[2])
         ) +
         geom_text(
           y = -0.095,
-          label = EUHydro$Countries,
+          label = EUComparison$Countries,
           fontface = 2,
           family = "Century Gothic",
           hjust = 1,
@@ -1898,29 +1828,30 @@ RenElecGen <- function(input, output, session) {
         ) +
         annotation_custom(
           ScotFlag,
-          xmin = match("SCOTLAND", EUHydro$Countries) - .4,
-          xmax = match("SCOTLAND", EUHydro$Countries) + .4,
+          xmin = match("SCOTLAND", EUComparison$Countries) - .4,
+          xmax = match("SCOTLAND", EUComparison$Countries) + .4,
           ymax = .847
         ) +
         annotation_custom(
           LatviaFlag,
-          xmin = match("Latvia", EUHydro$Countries) - .4,
-          xmax = match("Latvia", EUHydro$Countries) + .4,
+          xmin = match("Latvia", EUComparison$Countries) - .4,
+          xmax = match("Latvia", EUComparison$Countries) + .4,
           ymax = .847
         )
       
       
-      EUHydroChart
+      EUComparisonChart
       
       
       ggsave(
         file,
-        plot =  EUHydroChart,
+        plot =  EUComparisonChart,
         width = 15,
         height = 22,
         units = "cm",
         dpi = 300
       )
+      }
     })
   
   
@@ -2279,9 +2210,14 @@ RenElecGen <- function(input, output, session) {
     
     Data <- as_tibble(Data)
     
-    names(Data) <- c("Quarter", "Onshore wind", "Offshore wind", "Shoreline wave / tidal", "Solar PV", "Hydro", "Landfill gas", "Sewage sludge digestion", "Other biomass (inc. co-firing)", "Total")
+    names(Data) <- c("Quarter", "Onshore wind", "Offshore wind", "Wave and Tidal", "Solar PV", "Hydro", "Landfill gas", "Sewage sludge digestion", "Other biomass (inc. co-firing)", "Total")
+    
+    
+    Data$`Bioenergy and Waste` <- Data$`Landfill gas` + Data$`Sewage sludge digestion` + Data$`Other biomass (inc. co-firing)`
     
     Data <- Data[which(Data$Total > 0),]
+    
+    Data <- Data[c(1,2,3,6,11,5,4,10)]
     
     Data$Quarter <- paste0(substr(Data$Quarter,1,4), " Q", substr(Data$Quarter,8,8))
     

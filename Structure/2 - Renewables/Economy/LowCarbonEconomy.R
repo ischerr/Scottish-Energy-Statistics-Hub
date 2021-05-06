@@ -43,7 +43,7 @@ LowCarbonEconomyOutput <- function(id) {
         #dygraphOutput(ns("LowCarbonEconomyTurnoverPlot")),
         plotlyOutput(ns("LowCarbonEconomyTurnoverPlot")) %>% withSpinner(color =
                                                                    "#39ab2c"),
-        HTML("<blockquote><p>Note: Some groups are not included, as some data has been suppressed for disclosure control</p></blockquote>"),
+        HTML("<blockquote><p>Note: Estimated data. Some groups are not included, as some data has been suppressed for disclosure control</p></blockquote>"),
         tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Businesses",
                fluidRow(
@@ -73,14 +73,14 @@ LowCarbonEconomyOutput <- function(id) {
                #dygraphOutput(ns("LowCarbonEconomyBusinessesPlot")),
                plotlyOutput(ns("LowCarbonEconomyBusinessesPlot")) %>% withSpinner(color =
                                                                                   "#39ab2c"),
-               HTML("<blockquote><p>Note: Some groups are not included, as some data has been suppressed for disclosure control</p></blockquote>"),
+               HTML("<blockquote><p>Note: Estimated data. Some groups are not included, as some data has been suppressed for disclosure control</p></blockquote>"),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Employment",
                fluidRow(
                  column(
                    8,
                    h3(
-                     "Employees directly supported by the LCRE sector",
+                     "Full-time equivalent staff directly employed within the LCRE sector",
                      style = "color: #39ab2c;  font-weight:bold"
                    ),
                    h4(textOutput(ns(
@@ -107,7 +107,7 @@ LowCarbonEconomyOutput <- function(id) {
                #dygraphOutput(ns("LowCarbonEconomyEmploymentPlot")),
                plotlyOutput(ns("LowCarbonEconomyEmploymentPlot")) %>% withSpinner(color =
                                                                                   "#39ab2c"),
-               HTML("<blockquote><p>Note: Some groups are not included, as some data has been suppressed for disclosure control</p></blockquote>"),
+               HTML("<blockquote><p>Note: Estimated data. Some groups are not included, as some data has been suppressed for disclosure control</p></blockquote>"),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Exports",
                fluidRow(
@@ -139,7 +139,7 @@ LowCarbonEconomyOutput <- function(id) {
                #dygraphOutput(ns("LowCarbonEconomyExportsPlot")),
                plotlyOutput(ns("LowCarbonEconomyExportsPlot")) %>% withSpinner(color =
                                                                                   "#39ab2c"),
-               HTML("<blockquote><p>Note: Some groups are not included, as some data has been suppressed for disclosure control</p></blockquote>"),
+               HTML("<blockquote><p>Note: Estimated data. Some groups are not included, as some data has been suppressed for disclosure control</p></blockquote>"),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
       column(
@@ -161,7 +161,7 @@ LowCarbonEconomyOutput <- function(id) {
         fluidRow(
           column(
             10,
-            h3("Data - Employees directly supported by the LCRE sector", style = "color: #39ab2c;  font-weight:bold")
+            h3("Data - Estimated full-time equivalent staff directly employed within the LCRE sector", style = "color: #39ab2c;  font-weight:bold")
           ),
           column(
             2,
@@ -173,7 +173,7 @@ LowCarbonEconomyOutput <- function(id) {
           12, dataTableOutput(ns("LowCarbonEconomyEmployeesTable")) %>% withSpinner(color =
                                                                                       "#39ab2c")
         )),
-        p("*Cells marked 'c' have been suppressed for disclosure control"),
+        p("*Cells marked 'c' have been suppressed for disclosure control. Confidence intervals can be found in the source ONS release, linked below."),
         tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")
       ),
       tabPanel(
@@ -181,7 +181,7 @@ LowCarbonEconomyOutput <- function(id) {
         fluidRow(
           column(
             10,
-            h3("Data - Turnover directly supported by the LCRE sector (\u00A3bn)", style = "color: #39ab2c;  font-weight:bold")
+            h3("Data - Estimated turnover directly supported by the LCRE sector (\u00A3bn)", style = "color: #39ab2c;  font-weight:bold")
           ),
           column(
             2,
@@ -193,7 +193,7 @@ LowCarbonEconomyOutput <- function(id) {
           12, dataTableOutput(ns("LowCarbonEconomyTurnoverTable")) %>% withSpinner(color =
                                                                                      "#39ab2c")
         )),
-        p("*Cells marked 'c' have been suppressed for disclosure control"),
+        p("*Cells marked 'c' have been suppressed for disclosure control. Confidence intervals can be found in the source ONS release, linked below."),
         tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")
       ),
       tabPanel(
@@ -201,7 +201,7 @@ LowCarbonEconomyOutput <- function(id) {
         fluidRow(
           column(
             10,
-            h3("Data - Exports directly supported by the LCRE sector (\u00A3m)", style = "color: #39ab2c;  font-weight:bold")
+            h3("Data - Estimated exports directly supported by the LCRE sector (\u00A3m)", style = "color: #39ab2c;  font-weight:bold")
           ),
           column(
             2,
@@ -213,7 +213,7 @@ LowCarbonEconomyOutput <- function(id) {
           12, dataTableOutput(ns("LowCarbonEconomyExportsTable")) %>% withSpinner(color =
                                                                                      "#39ab2c")
         )),
-        p("*Cells marked 'c' have been suppressed for disclosure control"),
+        p("*Cells marked 'c' have been suppressed for disclosure control. Confidence intervals can be found in the source ONS release, linked below."),
         tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")
       ),
       tabPanel(
@@ -221,7 +221,7 @@ LowCarbonEconomyOutput <- function(id) {
         fluidRow(
           column(
             10,
-            h3("Data - Businesses directly supported by the LCRE sector", style = "color: #39ab2c;  font-weight:bold")
+            h3("Data - Estimated businesses directly supported by the LCRE sector", style = "color: #39ab2c;  font-weight:bold")
           ),
           column(
             2,
@@ -233,16 +233,26 @@ LowCarbonEconomyOutput <- function(id) {
           12, dataTableOutput(ns("LowCarbonEconomyBusinessTable")) %>% withSpinner(color =
                                                                                      "#39ab2c")
         )),
-        p("*Cells marked 'c' have been suppressed for disclosure control"),
+        p("*Cells marked 'c' have been suppressed for disclosure control. Confidence intervals can be found in the source ONS release, linked below."),
         tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")
       )
     ),
     fluidRow(
-      column(2, p("Update expected:")),
+      column(2, HTML("<p><strong>Last Updated:</strong></p>")),
+      column(2,
+             UpdatedLookup(c("ONSLowCarbon"))),
+      column(1, align = "right",
+             HTML("<p><strong>Reason:</strong></p>")),
+      column(7, align = "right", 
+             p("Regular updates")
+      )),
+    fluidRow(p(" ")),
+    fluidRow(
+      column(2, HTML("<p><strong>Update Expected:</strong></p>")),
       column(2,
              DateLookup(c("ONSLowCarbon"))),
       column(1, align = "right",
-             p("Sources:")),
+             HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("ONSLowCarbon")
         
@@ -291,7 +301,7 @@ LowCarbonEconomy <- function(input, output, session) {
                          sheet = "Employees", col_names = TRUE)
       
       
-      for (i in 2:6){
+      for (i in 2:7){
         Data[2,i] <- percent(as.numeric(Data[2,i]),0.1)
       }
     
@@ -305,24 +315,24 @@ LowCarbonEconomy <- function(input, output, session) {
         # container = sketch,
         rownames = FALSE,
         options = list(
-          columnDefs = list(list(className = 'dt-right', targets = 1:5)),
+          columnDefs = list(list(className = 'dt-right', targets = 1:6)),
           paging = TRUE,
           pageLength = -1,
           searching = TRUE,
           fixedColumns = FALSE,
           autoWidth = TRUE,
           ordering = TRUE,
-          title = "Employees directly supported by the LCRE sector",
+          title = "Full-time equivalent staff directly employed within the LCRE sector",
           dom = 'ltBp',
           buttons = list(
             list(extend = 'copy'),
             list(
               extend = 'excel',
-              title = 'Employees directly supported by the LCRE sector',
+              title = 'Full-time equivalent staff directly employed within the LCRE sector',
               header = TRUE
             ),
             list(extend = 'csv',
-                 title = 'Employees directly supported by the LCRE sector')
+                 title = 'Full-time equivalent staff directly employed within the LCRE sector')
           ),
           
           # customize the length menu
@@ -343,7 +353,7 @@ LowCarbonEconomy <- function(input, output, session) {
       Data <- read_csv("Structure/2 - Renewables/Economy/EconomyTablesTurnover.csv")
       
       
-      for (i in 2:6){
+      for (i in 2:7){
         Data[2,i] <- percent(as.numeric(Data[2,i]),0.1)
       }
       
@@ -354,7 +364,7 @@ LowCarbonEconomy <- function(input, output, session) {
         # container = sketch,
         rownames = FALSE,
         options = list(
-          columnDefs = list(list(className = 'dt-right', targets = 1:5)),
+          columnDefs = list(list(className = 'dt-right', targets = 1:6)),
           paging = TRUE,
           pageLength = -1,
           searching = TRUE,
@@ -394,7 +404,7 @@ LowCarbonEconomy <- function(input, output, session) {
                          sheet = "Exports", col_names = TRUE)
       
       
-      for (i in 2:6){
+      for (i in 2:7){
         Data[2,i] <- percent(as.numeric(Data[2,i]),0.1)
       }
       
@@ -405,7 +415,7 @@ LowCarbonEconomy <- function(input, output, session) {
         # container = sketch,
         rownames = FALSE,
         options = list(
-          columnDefs = list(list(className = 'dt-right', targets = 1:5)),
+          columnDefs = list(list(className = 'dt-right', targets = 1:6)),
           paging = TRUE,
           pageLength = -1,
           searching = TRUE,
@@ -444,7 +454,7 @@ LowCarbonEconomy <- function(input, output, session) {
                          sheet = "Number of Businesses", col_names = TRUE)
       
       
-      for (i in 2:6){
+      for (i in 2:7){
         Data[2,i] <- percent(as.numeric(Data[2,i]),0.1)
       }
       
@@ -455,7 +465,7 @@ LowCarbonEconomy <- function(input, output, session) {
         # container = sketch,
         rownames = FALSE,
         options = list(
-          columnDefs = list(list(className = 'dt-right', targets = 1:5)),
+          columnDefs = list(list(className = 'dt-right', targets = 1:6)),
           paging = TRUE,
           pageLength = -1,
           searching = TRUE,
@@ -553,7 +563,7 @@ LowCarbonEconomy <- function(input, output, session) {
       
       LCRE <- read_csv("Processed Data/Output/LCRE/LCREBreakdown.csv") 
       
-      LCRE$Estimate <- as.numeric(LCRE$Estimate)
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)*1000
       
       LCRE <- LCRE[which(LCRE$Estimate > 0),]
       
@@ -565,15 +575,15 @@ LowCarbonEconomy <- function(input, output, session) {
       
       
       LCRE$Estimate <- as.numeric(LCRE$Estimate)
-      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
-      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)*1000
+      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)*1000
       
        
 
         LCRE$unit <- "\u00A3"
       
       
-      LCRE$HoverText <- paste0("<b>", "Turnover", ": ", LCRE$unit, format(round(LCRE$Estimate, 0), big.mark = ","), "</b>\nYear: ", LCRE$Year,"\nSector: ", input$MeasureSelect1,  "\n<i>Upper CI: ", LCRE$unit, format(round(LCRE$`Upper CI`, 0), big.mark = ","), "\nLower CI: ", LCRE$unit, format(round(LCRE$`Lower CI`, 0), big.mark = ","), "</i>")
+      LCRE$HoverText <- paste0("<b>", "Turnover", ": ", LCRE$unit, format(round(LCRE$Estimate / 1000000000, 2), big.mark = ","), " billion</b>\nYear: ", LCRE$Year,"\nSector: ", input$MeasureSelect1,  "\n<i>Upper CI: ", LCRE$unit, format(round(LCRE$`Upper CI`/ 1000000000, 2), big.mark = ","), " billion\nLower CI: ", LCRE$unit, format(round(LCRE$`Lower CI`/ 1000000000, 2), big.mark = ","), " billionn</i>")
       
       
       
@@ -647,16 +657,16 @@ LowCarbonEconomy <- function(input, output, session) {
     
     LCRE <- LCRE[which(LCRE$Sector == input$MeasureSelect1),]
     
-    LCRE$Estimate <- as.numeric(LCRE$Estimate)
-    LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
-    LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+    LCRE$Estimate <- as.numeric(LCRE$Estimate)*1000
+    LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)*1000
+    LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)*1000
     
      
     
     sourcecaption <- "BEIS"
 
       LCRE$unit <- "\u00A3"
-      plottitle <- str_wrap(paste("Exports directly supported by the LCRE sector - ", input$MeasureSelect1), 40) 
+      plottitle <- str_wrap(paste("Turnover directly supported by the LCRE sector - ", input$MeasureSelect1), 40) 
 
     length <- max(LCRE$Year) - min(LCRE$Year)
     
@@ -682,7 +692,7 @@ LowCarbonEconomy <- function(input, output, session) {
         aes(
           x = Year-.1,
           y = Estimate,
-          label = ifelse(Year == min(Year), paste0(LCRE$unit, format(round(LCRE$Estimate,1), big.mark = ",")), ""),
+          label = ifelse(Year == min(Year), paste0(LCRE$unit, format(round(LCRE$Estimate/1000000000,2), big.mark = ","), " billion"), ""),
           hjust = 1,
           colour = ChartColours[1],
           fontface = 2
@@ -693,7 +703,7 @@ LowCarbonEconomy <- function(input, output, session) {
         aes(
           x = Year+.1,
           y = Estimate,
-          label = ifelse(Year == max(Year), paste0(LCRE$unit, format(round(LCRE$Estimate,1), big.mark = ",")), ""),
+          label = ifelse(Year == max(Year), paste0(LCRE$unit, format(round(LCRE$Estimate/1000000000,2), big.mark = ","), " billion"), ""),
           hjust = 0,
           colour = ChartColours[1],
           fontface = 2
@@ -867,7 +877,7 @@ LowCarbonEconomy <- function(input, output, session) {
 
       LCRE$unit <- ""
       
-      plottitle <- str_wrap(paste("Exports directly supported by the LCRE sector - ", input$MeasureSelect2), 40) 
+      plottitle <- str_wrap(paste("Number of businesses directly supported by the LCRE sector - ", input$MeasureSelect2), 40) 
      
       
         
@@ -1085,7 +1095,7 @@ LowCarbonEconomy <- function(input, output, session) {
       
 
         LCRE$unit <- ""
-        plottitle <- str_wrap(paste("Exports directly supported by the LCRE sector - ", input$MeasureSelect3), 40)  
+        plottitle <- str_wrap(paste("Full-time equivalent staff directly employed within the LCRE sector - ", input$MeasureSelect3), 40)  
 
       
         
@@ -1211,9 +1221,9 @@ LowCarbonEconomy <- function(input, output, session) {
       
       LCRE <- LCRE[which(LCRE$Sector == input$MeasureSelect4),]
       
-      LCRE$Estimate <- as.numeric(LCRE$Estimate)
-      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
-      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+      LCRE$Estimate <- as.numeric(LCRE$Estimate)*1000
+      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)*1000
+      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)*1000
       
        
       
@@ -1222,7 +1232,7 @@ LowCarbonEconomy <- function(input, output, session) {
         LCRE$unit <- "\u00A3"
 
       
-        LCRE$HoverText <- paste0("<b>", "Turnover", ": ", LCRE$unit, format(round(LCRE$Estimate, 0), big.mark = ","), "</b>\nYear: ", LCRE$Year,"\nSector: ", input$MeasureSelect4,  "\n<i>Upper CI: ", LCRE$unit, format(round(LCRE$`Upper CI`, 0), big.mark = ","), "\nLower CI: ", LCRE$unit, format(round(LCRE$`Lower CI`, 0), big.mark = ","), "</i>")
+        LCRE$HoverText <- paste0("<b>", "Turnover", ": ", LCRE$unit, format(round(LCRE$Estimate/1000000, 1), big.mark = ","), " million</b>\nYear: ", LCRE$Year,"\nSector: ", input$MeasureSelect4,  "\n<i>Upper CI: ", LCRE$unit, format(round(LCRE$`Upper CI`/1000000, 1), big.mark = ","), " million\nLower CI: ", LCRE$unit, format(round(LCRE$`Lower CI`/1000000, 1), big.mark = ","), " million</i>")
       
       
       
@@ -1296,9 +1306,9 @@ LowCarbonEconomy <- function(input, output, session) {
       
       LCRE <- LCRE[which(LCRE$Sector == input$MeasureSelect4),]
       
-      LCRE$Estimate <- as.numeric(LCRE$Estimate)
-      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)
-      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)
+      LCRE$Estimate <- as.numeric(LCRE$Estimate) *1000
+      LCRE$`Lower CI` <- as.numeric(LCRE$`Lower CI`)*1000
+      LCRE$`Upper CI` <- as.numeric(LCRE$`Upper CI`)*1000
       
        
       
@@ -1335,7 +1345,7 @@ LowCarbonEconomy <- function(input, output, session) {
           aes(
             x = Year-.1,
             y = Estimate,
-            label = ifelse(Year == min(Year), paste0(LCRE$unit, format(round(LCRE$Estimate,1), big.mark = ",")), ""),
+            label = ifelse(Year == min(Year), paste0(LCRE$unit, format(round(LCRE$Estimate/1000000,1), big.mark = ","), " million"), ""),
             hjust = 1,
             colour = ChartColours[1],
             fontface = 2
@@ -1346,7 +1356,7 @@ LowCarbonEconomy <- function(input, output, session) {
           aes(
             x = Year+.1,
             y = Estimate,
-            label = ifelse(Year == max(Year), paste0(LCRE$unit, format(round(LCRE$Estimate,1), big.mark = ",")), ""),
+            label = ifelse(Year == max(Year), paste0(LCRE$unit, format(round(LCRE$Estimate/1000000,1), big.mark = ","), " million"), ""),
             hjust = 0,
             colour = ChartColours[1],
             fontface = 2
@@ -1392,7 +1402,7 @@ LowCarbonEconomy <- function(input, output, session) {
       
       LCREChart <- LCREChart +
         ylim(-.5, max(LCRE$`Upper CI`)*1.05)+
-        xlim(min(LCRE$Year)-(length*0.2), max(LCRE$Year)+(length*0.2))
+        xlim(min(LCRE$Year)-(length*0.3), max(LCRE$Year)+(length*0.3))
       
       ggsave(
         file,
@@ -1407,3 +1417,4 @@ LowCarbonEconomy <- function(input, output, session) {
     
 
 }
+
