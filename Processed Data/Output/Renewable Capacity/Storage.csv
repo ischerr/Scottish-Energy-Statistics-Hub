@@ -1,4 +1,4 @@
-"","TechType","Application Submitted","Awaiting Construction","Operational","Pipeline"
-"1","Battery","249.8","815.3","24.178","1065.1"
-"2","Pumped Storage Hydroelectricity","1999","810","740","2809"
-"3","Total","2248.8","1625.3","764.178","3874.1"
+"","TechType","Application Submitted","Awaiting Construction","Operational","Under Construction","Pipeline"
+"1","Battery","169.9","905.1","24.1","40","1115"
+"2","Pumped Storage Hydroelectricity","1999","810","740",NA,NA
+"3","Total","2168.9","1715.1","764.1",NA,NA

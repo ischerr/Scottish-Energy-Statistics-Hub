@@ -18,6 +18,7 @@ RenElecSourcesOutput <- function(id) {
                ),
                column(
                  4, style = 'padding:15px;',
+                 downloadButton(ns('OnshoreWindGen.png'), 'Download Graph', style="float:right")
                )),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
                  plotlyOutput(ns("OnshoreWindGenPlot"))%>% withSpinner(color="#39ab2c"),
@@ -440,6 +441,10 @@ RenElecSources <- function(input, output, session) {
 
   Stacked2 <- Stacked2[c(1,2,3,6,4,5),]
   
+  Stacked<- Stacked[1:5,]
+  Stacked2 <- Stacked2[1:5,]
+  
+  
   #Stacked$Tech <- factor(Stacked$Tech, levels = unique(Stacked$Tech)[order(row.names(Stacked), decreasing = FALSE)])
   ChartColours <- c("#39ab2c")
   BarColours <- c("#39ab2c", "#d9d9d9")
@@ -602,7 +607,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 6.7,
+          x = 5.7,
           y = 0,
           label = "Onshore Wind",
           family = "Century Gothic",
@@ -612,7 +617,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 6.7,
+          x = 5.7,
           y = 1,
           label = "Other Renewables",
           family = "Century Gothic",
@@ -622,7 +627,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 6.95,
+          x = 5.95,
           y = 1,
           label = " ",
           family = "Century Gothic",
@@ -834,7 +839,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 6.7,
+          x = 5.7,
           y = 0,
           label = "Offshore Wind",
           family = "Century Gothic",
@@ -844,7 +849,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 6.7,
+          x = 5.7,
           y = 1,
           label = "Other Renewables",
           family = "Century Gothic",
@@ -854,7 +859,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 6.95,
+          x = 5.95,
           y = 1,
           label = " ",
           family = "Century Gothic",
@@ -1065,7 +1070,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 6.7,
+          x = 5.7,
           y = 0,
           label = "Hydro",
           family = "Century Gothic",
@@ -1075,7 +1080,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 6.7,
+          x = 5.7,
           y = 1,
           label = "Other Renewables",
           family = "Century Gothic",
@@ -1085,7 +1090,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 6.95,
+          x = 5.95,
           y = 1,
           label = " ",
           family = "Century Gothic",
@@ -1295,7 +1300,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 6.7,
+          x = 5.7,
           y = 0,
           label = "Solar",
           family = "Century Gothic",
@@ -1305,7 +1310,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 6.7,
+          x = 5.7,
           y = 1,
           label = "Other Renewables",
           family = "Century Gothic",
@@ -1315,7 +1320,7 @@ RenElecSources <- function(input, output, session) {
         ) +
         annotate(
           "text",
-          x = 6.95,
+          x = 5.95,
           y = 1,
           label = " ",
           family = "Century Gothic",
