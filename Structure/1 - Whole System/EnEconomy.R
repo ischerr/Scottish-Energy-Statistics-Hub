@@ -135,11 +135,12 @@ EnEconomyOutput <- function(id) {
     fluidRow(
       column(2, HTML("<p><strong>Update Expected:</strong></p>")),
       column(2,
-             DateLookup(c("SGGrowth"))),
+             DateLookup(c("SGGrowth", "SGGrowthLA"))),
       column(1, align = "right",
              HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
-             SourceLookup("SGGrowth")
+             SourceLookup("SGGrowth"),
+             SourceLookup("SGGrowthLA"),
              
       )
     )

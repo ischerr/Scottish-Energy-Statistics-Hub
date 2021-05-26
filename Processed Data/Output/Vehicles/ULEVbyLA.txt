@@ -1,6 +1,38 @@
 "Quarter"	"LAName"	"LACode"	"variable"	"value"
-2020 Q3	"Aberdeen City"	"S12000033"	"Battery Electric Vehicles"	366
-2020 Q3	"Aberdeenshire"	"S12000034"	"Battery Electric Vehicles"	590
+2020 Q4	"Aberdeen City"	"S12000033"	"Battery Electric Vehicles"	436
+2020 Q4	"Aberdeenshire"	"S12000034"	"Battery Electric Vehicles"	662
+2020 Q4	"Angus"	"S12000041"	"Battery Electric Vehicles"	300
+2020 Q4	"Argyll and Bute"	"S12000035"	"Battery Electric Vehicles"	176
+2020 Q4	"City of Edinburgh"	"S12000036"	"Battery Electric Vehicles"	1281
+2020 Q4	"Clackmannanshire"	"S12000005"	"Battery Electric Vehicles"	77
+2020 Q4	"Dumfries and Galloway"	"S12000006"	"Battery Electric Vehicles"	207
+2020 Q4	"Dundee City"	"S12000042"	"Battery Electric Vehicles"	472
+2020 Q4	"East Ayrshire"	"S12000008"	"Battery Electric Vehicles"	210
+2020 Q4	"East Dunbartonshire"	"S12000045"	"Battery Electric Vehicles"	287
+2020 Q4	"East Lothian"	"S12000010"	"Battery Electric Vehicles"	361
+2020 Q4	"East Renfrewshire"	"S12000011"	"Battery Electric Vehicles"	287
+2020 Q4	"Falkirk"	"S12000014"	"Battery Electric Vehicles"	284
+2020 Q4	"Fife"	"S12000047"	"Battery Electric Vehicles"	795
+2020 Q4	"Glasgow City"	"S12000049"	"Battery Electric Vehicles"	1012
+2020 Q4	"Highland"	"S12000017"	"Battery Electric Vehicles"	457
+2020 Q4	"Inverclyde"	"S12000018"	"Battery Electric Vehicles"	113
+2020 Q4	"Midlothian"	"S12000019"	"Battery Electric Vehicles"	263
+2020 Q4	"Moray"	"S12000020"	"Battery Electric Vehicles"	134
+2020 Q4	"Na h-Eileanan Siar"	"S12000013"	"Battery Electric Vehicles"	39
+2020 Q4	"North Ayrshire"	"S12000021"	"Battery Electric Vehicles"	137
+2020 Q4	"North Lanarkshire"	"S12000050"	"Battery Electric Vehicles"	341
+2020 Q4	"Orkney Islands"	"S12000023"	"Battery Electric Vehicles"	250
+2020 Q4	"Perth and Kinross"	"S12000048"	"Battery Electric Vehicles"	434
+2020 Q4	"Renfrewshire"	"S12000038"	"Battery Electric Vehicles"	3516
+2020 Q4	"Scottish Borders"	"S12000026"	"Battery Electric Vehicles"	304
+2020 Q4	"Shetland Islands"	"S12000027"	"Battery Electric Vehicles"	37
+2020 Q4	"South Ayrshire"	"S12000028"	"Battery Electric Vehicles"	203
+2020 Q4	"South Lanarkshire"	"S12000029"	"Battery Electric Vehicles"	533
+2020 Q4	"Stirling"	"S12000030"	"Battery Electric Vehicles"	774
+2020 Q4	"West Dunbartonshire"	"S12000039"	"Battery Electric Vehicles"	95
+2020 Q4	"West Lothian"	"S12000040"	"Battery Electric Vehicles"	326
+2020 Q3	"Aberdeen City"	"S12000033"	"Battery Electric Vehicles"	364
+2020 Q3	"Aberdeenshire"	"S12000034"	"Battery Electric Vehicles"	587
 2020 Q3	"Angus"	"S12000041"	"Battery Electric Vehicles"	264
 2020 Q3	"Argyll and Bute"	"S12000035"	"Battery Electric Vehicles"	161
 2020 Q3	"City of Edinburgh"	"S12000036"	"Battery Electric Vehicles"	1104
@@ -11,7 +43,7 @@
 2020 Q3	"East Dunbartonshire"	"S12000045"	"Battery Electric Vehicles"	251
 2020 Q3	"East Lothian"	"S12000010"	"Battery Electric Vehicles"	307
 2020 Q3	"East Renfrewshire"	"S12000011"	"Battery Electric Vehicles"	254
-2020 Q3	"Falkirk"	"S12000014"	"Battery Electric Vehicles"	257
+2020 Q3	"Falkirk"	"S12000014"	"Battery Electric Vehicles"	256
 2020 Q3	"Fife"	"S12000047"	"Battery Electric Vehicles"	705
 2020 Q3	"Glasgow City"	"S12000049"	"Battery Electric Vehicles"	811
 2020 Q3	"Highland"	"S12000017"	"Battery Electric Vehicles"	408
@@ -20,15 +52,15 @@
 2020 Q3	"Moray"	"S12000020"	"Battery Electric Vehicles"	112
 2020 Q3	"Na h-Eileanan Siar"	"S12000013"	"Battery Electric Vehicles"	35
 2020 Q3	"North Ayrshire"	"S12000021"	"Battery Electric Vehicles"	117
-2020 Q3	"North Lanarkshire"	"S12000050"	"Battery Electric Vehicles"	274
+2020 Q3	"North Lanarkshire"	"S12000050"	"Battery Electric Vehicles"	273
 2020 Q3	"Orkney Islands"	"S12000023"	"Battery Electric Vehicles"	234
 2020 Q3	"Perth and Kinross"	"S12000048"	"Battery Electric Vehicles"	393
-2020 Q3	"Renfrewshire"	"S12000038"	"Battery Electric Vehicles"	2087
+2020 Q3	"Renfrewshire"	"S12000038"	"Battery Electric Vehicles"	2076
 2020 Q3	"Scottish Borders"	"S12000026"	"Battery Electric Vehicles"	261
 2020 Q3	"Shetland Islands"	"S12000027"	"Battery Electric Vehicles"	29
 2020 Q3	"South Ayrshire"	"S12000028"	"Battery Electric Vehicles"	173
 2020 Q3	"South Lanarkshire"	"S12000029"	"Battery Electric Vehicles"	462
-2020 Q3	"Stirling"	"S12000030"	"Battery Electric Vehicles"	636
+2020 Q3	"Stirling"	"S12000030"	"Battery Electric Vehicles"	623
 2020 Q3	"West Dunbartonshire"	"S12000039"	"Battery Electric Vehicles"	81
 2020 Q3	"West Lothian"	"S12000040"	"Battery Electric Vehicles"	281
 2020 Q2	"Aberdeen City"	"S12000033"	"Battery Electric Vehicles"	303
@@ -735,1478 +767,1574 @@
 2015 Q1	"Stirling"	"S12000030"	"Battery Electric Vehicles"	33
 2015 Q1	"West Dunbartonshire"	"S12000039"	"Battery Electric Vehicles"	10
 2015 Q1	"West Lothian"	"S12000040"	"Battery Electric Vehicles"	43
-2020 Q3	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	268
-2020 Q3	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	467
-2020 Q3	"Angus"	"S12000041"	"Plug-in Hybrids"	133
-2020 Q3	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	122
-2020 Q3	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	797
-2020 Q3	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	51
-2020 Q3	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	153
-2020 Q3	"Dundee City"	"S12000042"	"Plug-in Hybrids"	120
-2020 Q3	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	95
-2020 Q3	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	168
-2020 Q3	"East Lothian"	"S12000010"	"Plug-in Hybrids"	169
-2020 Q3	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	195
-2020 Q3	"Falkirk"	"S12000014"	"Plug-in Hybrids"	148
-2020 Q3	"Fife"	"S12000047"	"Plug-in Hybrids"	380
-2020 Q3	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	453
-2020 Q3	"Highland"	"S12000017"	"Plug-in Hybrids"	251
-2020 Q3	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	56
-2020 Q3	"Midlothian"	"S12000019"	"Plug-in Hybrids"	127
-2020 Q3	"Moray"	"S12000020"	"Plug-in Hybrids"	101
-2020 Q3	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	26
-2020 Q3	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	103
-2020 Q3	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	246
-2020 Q3	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	47
-2020 Q3	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	270
-2020 Q3	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	2901
-2020 Q3	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	195
-2020 Q3	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	33
-2020 Q3	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	125
-2020 Q3	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	354
-2020 Q3	"Stirling"	"S12000030"	"Plug-in Hybrids"	1257
-2020 Q3	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	100
-2020 Q3	"West Lothian"	"S12000040"	"Plug-in Hybrids"	215
-2020 Q2	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	251
-2020 Q2	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	423
-2020 Q2	"Angus"	"S12000041"	"Plug-in Hybrids"	109
-2020 Q2	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	104
-2020 Q2	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	715
-2020 Q2	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	51
-2020 Q2	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	133
-2020 Q2	"Dundee City"	"S12000042"	"Plug-in Hybrids"	97
-2020 Q2	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	88
-2020 Q2	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	147
-2020 Q2	"East Lothian"	"S12000010"	"Plug-in Hybrids"	145
-2020 Q2	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	170
-2020 Q2	"Falkirk"	"S12000014"	"Plug-in Hybrids"	126
-2020 Q2	"Fife"	"S12000047"	"Plug-in Hybrids"	331
-2020 Q2	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	395
-2020 Q2	"Highland"	"S12000017"	"Plug-in Hybrids"	229
-2020 Q2	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	45
-2020 Q2	"Midlothian"	"S12000019"	"Plug-in Hybrids"	113
-2020 Q2	"Moray"	"S12000020"	"Plug-in Hybrids"	78
-2020 Q2	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	17
-2020 Q2	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	99
-2020 Q2	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	206
-2020 Q2	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	42
-2020 Q2	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	245
-2020 Q2	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	2620
-2020 Q2	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	160
-2020 Q2	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	30
-2020 Q2	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	107
-2020 Q2	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	310
-2020 Q2	"Stirling"	"S12000030"	"Plug-in Hybrids"	1117
-2020 Q2	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	87
-2020 Q2	"West Lothian"	"S12000040"	"Plug-in Hybrids"	195
-2020 Q1	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	255
-2020 Q1	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	417
-2020 Q1	"Angus"	"S12000041"	"Plug-in Hybrids"	110
-2020 Q1	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	101
-2020 Q1	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	711
-2020 Q1	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	52
-2020 Q1	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	129
-2020 Q1	"Dundee City"	"S12000042"	"Plug-in Hybrids"	96
-2020 Q1	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	86
-2020 Q1	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	146
-2020 Q1	"East Lothian"	"S12000010"	"Plug-in Hybrids"	144
-2020 Q1	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	173
-2020 Q1	"Falkirk"	"S12000014"	"Plug-in Hybrids"	122
-2020 Q1	"Fife"	"S12000047"	"Plug-in Hybrids"	330
-2020 Q1	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	396
-2020 Q1	"Highland"	"S12000017"	"Plug-in Hybrids"	219
-2020 Q1	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	44
-2020 Q1	"Midlothian"	"S12000019"	"Plug-in Hybrids"	109
-2020 Q1	"Moray"	"S12000020"	"Plug-in Hybrids"	78
-2020 Q1	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	17
-2020 Q1	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	99
-2020 Q1	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	196
-2020 Q1	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	42
-2020 Q1	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	243
-2020 Q1	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	2662
-2020 Q1	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	158
-2020 Q1	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	30
-2020 Q1	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	106
-2020 Q1	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	304
-2020 Q1	"Stirling"	"S12000030"	"Plug-in Hybrids"	1135
-2020 Q1	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	83
-2020 Q1	"West Lothian"	"S12000040"	"Plug-in Hybrids"	195
-2019 Q4	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	239
-2019 Q4	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	386
-2019 Q4	"Angus"	"S12000041"	"Plug-in Hybrids"	102
-2019 Q4	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	99
-2019 Q4	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	633
-2019 Q4	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	48
-2019 Q4	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	124
-2019 Q4	"Dundee City"	"S12000042"	"Plug-in Hybrids"	93
-2019 Q4	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	80
-2019 Q4	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	137
-2019 Q4	"East Lothian"	"S12000010"	"Plug-in Hybrids"	134
-2019 Q4	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	157
-2019 Q4	"Falkirk"	"S12000014"	"Plug-in Hybrids"	112
-2019 Q4	"Fife"	"S12000047"	"Plug-in Hybrids"	302
-2019 Q4	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	366
-2019 Q4	"Highland"	"S12000017"	"Plug-in Hybrids"	199
-2019 Q4	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	40
-2019 Q4	"Midlothian"	"S12000019"	"Plug-in Hybrids"	104
-2019 Q4	"Moray"	"S12000020"	"Plug-in Hybrids"	77
-2019 Q4	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	16
-2019 Q4	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	88
-2019 Q4	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	191
-2019 Q4	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	41
-2019 Q4	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	230
-2019 Q4	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	2570
-2019 Q4	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	148
-2019 Q4	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	30
-2019 Q4	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	93
-2019 Q4	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	274
-2019 Q4	"Stirling"	"S12000030"	"Plug-in Hybrids"	1059
-2019 Q4	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	69
-2019 Q4	"West Lothian"	"S12000040"	"Plug-in Hybrids"	172
-2019 Q3	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	225
-2019 Q3	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	350
-2019 Q3	"Angus"	"S12000041"	"Plug-in Hybrids"	100
-2019 Q3	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	95
-2019 Q3	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	567
-2019 Q3	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	41
-2019 Q3	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	121
-2019 Q3	"Dundee City"	"S12000042"	"Plug-in Hybrids"	82
-2019 Q3	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	79
-2019 Q3	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	119
-2019 Q3	"East Lothian"	"S12000010"	"Plug-in Hybrids"	122
-2019 Q3	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	160
-2019 Q3	"Falkirk"	"S12000014"	"Plug-in Hybrids"	105
-2019 Q3	"Fife"	"S12000047"	"Plug-in Hybrids"	278
-2019 Q3	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	353
-2019 Q3	"Highland"	"S12000017"	"Plug-in Hybrids"	184
-2019 Q3	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	39
-2019 Q3	"Midlothian"	"S12000019"	"Plug-in Hybrids"	98
-2019 Q3	"Moray"	"S12000020"	"Plug-in Hybrids"	74
-2019 Q3	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	16
-2019 Q3	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	86
-2019 Q3	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	190
-2019 Q3	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	38
-2019 Q3	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	213
-2019 Q3	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	2375
-2019 Q3	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	137
-2019 Q3	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	30
-2019 Q3	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	86
-2019 Q3	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	258
-2019 Q3	"Stirling"	"S12000030"	"Plug-in Hybrids"	998
-2019 Q3	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	63
-2019 Q3	"West Lothian"	"S12000040"	"Plug-in Hybrids"	160
-2019 Q2	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	218
-2019 Q2	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	329
-2019 Q2	"Angus"	"S12000041"	"Plug-in Hybrids"	95
-2019 Q2	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	87
-2019 Q2	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	511
-2019 Q2	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	42
-2019 Q2	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	118
-2019 Q2	"Dundee City"	"S12000042"	"Plug-in Hybrids"	81
-2019 Q2	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	80
-2019 Q2	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	109
-2019 Q2	"East Lothian"	"S12000010"	"Plug-in Hybrids"	118
-2019 Q2	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	147
-2019 Q2	"Falkirk"	"S12000014"	"Plug-in Hybrids"	96
-2019 Q2	"Fife"	"S12000047"	"Plug-in Hybrids"	265
-2019 Q2	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	332
-2019 Q2	"Highland"	"S12000017"	"Plug-in Hybrids"	168
-2019 Q2	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	36
-2019 Q2	"Midlothian"	"S12000019"	"Plug-in Hybrids"	86
-2019 Q2	"Moray"	"S12000020"	"Plug-in Hybrids"	66
-2019 Q2	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	15
-2019 Q2	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	78
-2019 Q2	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	174
-2019 Q2	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	34
-2019 Q2	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	200
-2019 Q2	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	2172
-2019 Q2	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	128
-2019 Q2	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	29
-2019 Q2	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	79
-2019 Q2	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	238
-2019 Q2	"Stirling"	"S12000030"	"Plug-in Hybrids"	929
-2019 Q2	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	56
-2019 Q2	"West Lothian"	"S12000040"	"Plug-in Hybrids"	149
-2019 Q1	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	211
-2019 Q1	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	322
-2019 Q1	"Angus"	"S12000041"	"Plug-in Hybrids"	86
-2019 Q1	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	81
-2019 Q1	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	454
-2019 Q1	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	39
-2019 Q1	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	112
-2019 Q1	"Dundee City"	"S12000042"	"Plug-in Hybrids"	76
-2019 Q1	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	71
-2019 Q1	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	101
-2019 Q1	"East Lothian"	"S12000010"	"Plug-in Hybrids"	115
-2019 Q1	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	151
-2019 Q1	"Falkirk"	"S12000014"	"Plug-in Hybrids"	88
-2019 Q1	"Fife"	"S12000047"	"Plug-in Hybrids"	256
-2019 Q1	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	297
-2019 Q1	"Highland"	"S12000017"	"Plug-in Hybrids"	156
-2019 Q1	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	36
-2019 Q1	"Midlothian"	"S12000019"	"Plug-in Hybrids"	78
-2019 Q1	"Moray"	"S12000020"	"Plug-in Hybrids"	65
-2019 Q1	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	13
-2019 Q1	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	77
-2019 Q1	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	165
-2019 Q1	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	34
-2019 Q1	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	186
-2019 Q1	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	1974
-2019 Q1	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	115
-2019 Q1	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	29
-2019 Q1	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	71
-2019 Q1	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	230
-2019 Q1	"Stirling"	"S12000030"	"Plug-in Hybrids"	891
-2019 Q1	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	47
-2019 Q1	"West Lothian"	"S12000040"	"Plug-in Hybrids"	137
-2018 Q4	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	201
-2018 Q4	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	310
-2018 Q4	"Angus"	"S12000041"	"Plug-in Hybrids"	82
-2018 Q4	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	75
-2018 Q4	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	411
-2018 Q4	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	37
-2018 Q4	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	103
-2018 Q4	"Dundee City"	"S12000042"	"Plug-in Hybrids"	67
-2018 Q4	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	65
-2018 Q4	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	89
-2018 Q4	"East Lothian"	"S12000010"	"Plug-in Hybrids"	105
-2018 Q4	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	150
-2018 Q4	"Falkirk"	"S12000014"	"Plug-in Hybrids"	72
-2018 Q4	"Fife"	"S12000047"	"Plug-in Hybrids"	248
-2018 Q4	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	261
-2018 Q4	"Highland"	"S12000017"	"Plug-in Hybrids"	145
-2018 Q4	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	32
-2018 Q4	"Midlothian"	"S12000019"	"Plug-in Hybrids"	67
-2018 Q4	"Moray"	"S12000020"	"Plug-in Hybrids"	59
-2018 Q4	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	11
-2018 Q4	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	77
-2018 Q4	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	148
-2018 Q4	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	31
-2018 Q4	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	175
-2018 Q4	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	1737
-2018 Q4	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	109
-2018 Q4	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	27
-2018 Q4	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	78
-2018 Q4	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	221
-2018 Q4	"Stirling"	"S12000030"	"Plug-in Hybrids"	813
-2018 Q4	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	43
-2018 Q4	"West Lothian"	"S12000040"	"Plug-in Hybrids"	127
-2018 Q3	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	185
-2018 Q3	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	279
-2018 Q3	"Angus"	"S12000041"	"Plug-in Hybrids"	77
-2018 Q3	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	73
-2018 Q3	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	367
-2018 Q3	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	32
-2018 Q3	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	100
-2018 Q3	"Dundee City"	"S12000042"	"Plug-in Hybrids"	57
-2018 Q3	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	57
-2018 Q3	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	71
-2018 Q3	"East Lothian"	"S12000010"	"Plug-in Hybrids"	99
-2018 Q3	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	95
-2018 Q3	"Falkirk"	"S12000014"	"Plug-in Hybrids"	68
-2018 Q3	"Fife"	"S12000047"	"Plug-in Hybrids"	223
-2018 Q3	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	232
-2018 Q3	"Highland"	"S12000017"	"Plug-in Hybrids"	134
-2018 Q3	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	31
-2018 Q3	"Midlothian"	"S12000019"	"Plug-in Hybrids"	50
-2018 Q3	"Moray"	"S12000020"	"Plug-in Hybrids"	48
-2018 Q3	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	11
-2018 Q3	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	71
-2018 Q3	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	131
-2018 Q3	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	29
-2018 Q3	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	163
-2018 Q3	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	1476
-2018 Q3	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	103
-2018 Q3	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	25
-2018 Q3	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	74
-2018 Q3	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	183
-2018 Q3	"Stirling"	"S12000030"	"Plug-in Hybrids"	755
-2018 Q3	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	38
-2018 Q3	"West Lothian"	"S12000040"	"Plug-in Hybrids"	114
-2018 Q2	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	184
-2018 Q2	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	260
-2018 Q2	"Angus"	"S12000041"	"Plug-in Hybrids"	64
-2018 Q2	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	67
-2018 Q2	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	321
-2018 Q2	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	30
-2018 Q2	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	96
-2018 Q2	"Dundee City"	"S12000042"	"Plug-in Hybrids"	49
-2018 Q2	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	52
-2018 Q2	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	66
-2018 Q2	"East Lothian"	"S12000010"	"Plug-in Hybrids"	89
-2018 Q2	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	71
-2018 Q2	"Falkirk"	"S12000014"	"Plug-in Hybrids"	60
-2018 Q2	"Fife"	"S12000047"	"Plug-in Hybrids"	211
-2018 Q2	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	202
-2018 Q2	"Highland"	"S12000017"	"Plug-in Hybrids"	120
-2018 Q2	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	27
-2018 Q2	"Midlothian"	"S12000019"	"Plug-in Hybrids"	46
-2018 Q2	"Moray"	"S12000020"	"Plug-in Hybrids"	47
-2018 Q2	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	10
-2018 Q2	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	64
-2018 Q2	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	115
-2018 Q2	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	25
-2018 Q2	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	141
-2018 Q2	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	1298
-2018 Q2	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	94
+2020 Q4	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	267
+2020 Q4	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	446
+2020 Q4	"Angus"	"S12000041"	"Plug-in Hybrids"	125
+2020 Q4	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	122
+2020 Q4	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	758
+2020 Q4	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	47
+2020 Q4	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	156
+2020 Q4	"Dundee City"	"S12000042"	"Plug-in Hybrids"	116
+2020 Q4	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	88
+2020 Q4	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	164
+2020 Q4	"East Lothian"	"S12000010"	"Plug-in Hybrids"	161
+2020 Q4	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	211
+2020 Q4	"Falkirk"	"S12000014"	"Plug-in Hybrids"	166
+2020 Q4	"Fife"	"S12000047"	"Plug-in Hybrids"	369
+2020 Q4	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	438
+2020 Q4	"Highland"	"S12000017"	"Plug-in Hybrids"	253
+2020 Q4	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	49
+2020 Q4	"Midlothian"	"S12000019"	"Plug-in Hybrids"	116
+2020 Q4	"Moray"	"S12000020"	"Plug-in Hybrids"	106
+2020 Q4	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	25
+2020 Q4	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	95
+2020 Q4	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	256
+2020 Q4	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	42
+2020 Q4	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	270
+2020 Q4	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	3322
+2020 Q4	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	179
+2020 Q4	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	34
+2020 Q4	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	131
+2020 Q4	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	346
+2020 Q4	"Stirling"	"S12000030"	"Plug-in Hybrids"	1455
+2020 Q4	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	107
+2020 Q4	"West Lothian"	"S12000040"	"Plug-in Hybrids"	220
+2020 Q3	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	249
+2020 Q3	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	433
+2020 Q3	"Angus"	"S12000041"	"Plug-in Hybrids"	122
+2020 Q3	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	110
+2020 Q3	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	683
+2020 Q3	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	47
+2020 Q3	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	145
+2020 Q3	"Dundee City"	"S12000042"	"Plug-in Hybrids"	108
+2020 Q3	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	88
+2020 Q3	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	154
+2020 Q3	"East Lothian"	"S12000010"	"Plug-in Hybrids"	147
+2020 Q3	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	179
+2020 Q3	"Falkirk"	"S12000014"	"Plug-in Hybrids"	141
+2020 Q3	"Fife"	"S12000047"	"Plug-in Hybrids"	353
+2020 Q3	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	406
+2020 Q3	"Highland"	"S12000017"	"Plug-in Hybrids"	238
+2020 Q3	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	50
+2020 Q3	"Midlothian"	"S12000019"	"Plug-in Hybrids"	105
+2020 Q3	"Moray"	"S12000020"	"Plug-in Hybrids"	95
+2020 Q3	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	24
+2020 Q3	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	94
+2020 Q3	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	231
+2020 Q3	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	44
+2020 Q3	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	249
+2020 Q3	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	2872
+2020 Q3	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	180
+2020 Q3	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	31
+2020 Q3	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	111
+2020 Q3	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	330
+2020 Q3	"Stirling"	"S12000030"	"Plug-in Hybrids"	1251
+2020 Q3	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	96
+2020 Q3	"West Lothian"	"S12000040"	"Plug-in Hybrids"	205
+2020 Q2	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	230
+2020 Q2	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	389
+2020 Q2	"Angus"	"S12000041"	"Plug-in Hybrids"	100
+2020 Q2	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	94
+2020 Q2	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	602
+2020 Q2	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	45
+2020 Q2	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	125
+2020 Q2	"Dundee City"	"S12000042"	"Plug-in Hybrids"	85
+2020 Q2	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	82
+2020 Q2	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	134
+2020 Q2	"East Lothian"	"S12000010"	"Plug-in Hybrids"	125
+2020 Q2	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	154
+2020 Q2	"Falkirk"	"S12000014"	"Plug-in Hybrids"	119
+2020 Q2	"Fife"	"S12000047"	"Plug-in Hybrids"	306
+2020 Q2	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	348
+2020 Q2	"Highland"	"S12000017"	"Plug-in Hybrids"	216
+2020 Q2	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	39
+2020 Q2	"Midlothian"	"S12000019"	"Plug-in Hybrids"	94
+2020 Q2	"Moray"	"S12000020"	"Plug-in Hybrids"	71
+2020 Q2	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	15
+2020 Q2	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	89
+2020 Q2	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	191
+2020 Q2	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	39
+2020 Q2	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	223
+2020 Q2	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	2574
+2020 Q2	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	145
+2020 Q2	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	29
+2020 Q2	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	93
+2020 Q2	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	286
+2020 Q2	"Stirling"	"S12000030"	"Plug-in Hybrids"	1098
+2020 Q2	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	83
+2020 Q2	"West Lothian"	"S12000040"	"Plug-in Hybrids"	184
+2020 Q1	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	233
+2020 Q1	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	380
+2020 Q1	"Angus"	"S12000041"	"Plug-in Hybrids"	99
+2020 Q1	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	90
+2020 Q1	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	597
+2020 Q1	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	45
+2020 Q1	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	122
+2020 Q1	"Dundee City"	"S12000042"	"Plug-in Hybrids"	85
+2020 Q1	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	81
+2020 Q1	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	133
+2020 Q1	"East Lothian"	"S12000010"	"Plug-in Hybrids"	123
+2020 Q1	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	155
+2020 Q1	"Falkirk"	"S12000014"	"Plug-in Hybrids"	114
+2020 Q1	"Fife"	"S12000047"	"Plug-in Hybrids"	306
+2020 Q1	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	349
+2020 Q1	"Highland"	"S12000017"	"Plug-in Hybrids"	206
+2020 Q1	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	38
+2020 Q1	"Midlothian"	"S12000019"	"Plug-in Hybrids"	90
+2020 Q1	"Moray"	"S12000020"	"Plug-in Hybrids"	71
+2020 Q1	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	15
+2020 Q1	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	89
+2020 Q1	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	183
+2020 Q1	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	39
+2020 Q1	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	222
+2020 Q1	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	2610
+2020 Q1	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	143
+2020 Q1	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	29
+2020 Q1	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	92
+2020 Q1	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	280
+2020 Q1	"Stirling"	"S12000030"	"Plug-in Hybrids"	1116
+2020 Q1	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	79
+2020 Q1	"West Lothian"	"S12000040"	"Plug-in Hybrids"	184
+2019 Q4	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	218
+2019 Q4	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	351
+2019 Q4	"Angus"	"S12000041"	"Plug-in Hybrids"	92
+2019 Q4	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	89
+2019 Q4	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	525
+2019 Q4	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	41
+2019 Q4	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	119
+2019 Q4	"Dundee City"	"S12000042"	"Plug-in Hybrids"	82
+2019 Q4	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	74
+2019 Q4	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	125
+2019 Q4	"East Lothian"	"S12000010"	"Plug-in Hybrids"	112
+2019 Q4	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	141
+2019 Q4	"Falkirk"	"S12000014"	"Plug-in Hybrids"	104
+2019 Q4	"Fife"	"S12000047"	"Plug-in Hybrids"	278
+2019 Q4	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	322
+2019 Q4	"Highland"	"S12000017"	"Plug-in Hybrids"	187
+2019 Q4	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	34
+2019 Q4	"Midlothian"	"S12000019"	"Plug-in Hybrids"	86
+2019 Q4	"Moray"	"S12000020"	"Plug-in Hybrids"	70
+2019 Q4	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	13
+2019 Q4	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	78
+2019 Q4	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	178
+2019 Q4	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	38
+2019 Q4	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	209
+2019 Q4	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	2520
+2019 Q4	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	134
+2019 Q4	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	29
+2019 Q4	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	78
+2019 Q4	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	251
+2019 Q4	"Stirling"	"S12000030"	"Plug-in Hybrids"	1041
+2019 Q4	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	66
+2019 Q4	"West Lothian"	"S12000040"	"Plug-in Hybrids"	165
+2019 Q3	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	204
+2019 Q3	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	317
+2019 Q3	"Angus"	"S12000041"	"Plug-in Hybrids"	90
+2019 Q3	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	85
+2019 Q3	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	478
+2019 Q3	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	34
+2019 Q3	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	116
+2019 Q3	"Dundee City"	"S12000042"	"Plug-in Hybrids"	72
+2019 Q3	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	72
+2019 Q3	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	110
+2019 Q3	"East Lothian"	"S12000010"	"Plug-in Hybrids"	103
+2019 Q3	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	144
+2019 Q3	"Falkirk"	"S12000014"	"Plug-in Hybrids"	98
+2019 Q3	"Fife"	"S12000047"	"Plug-in Hybrids"	256
+2019 Q3	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	309
+2019 Q3	"Highland"	"S12000017"	"Plug-in Hybrids"	172
+2019 Q3	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	33
+2019 Q3	"Midlothian"	"S12000019"	"Plug-in Hybrids"	83
+2019 Q3	"Moray"	"S12000020"	"Plug-in Hybrids"	66
+2019 Q3	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	13
+2019 Q3	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	74
+2019 Q3	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	178
+2019 Q3	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	36
+2019 Q3	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	191
+2019 Q3	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	2324
+2019 Q3	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	123
+2019 Q3	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	29
+2019 Q3	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	74
+2019 Q3	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	238
+2019 Q3	"Stirling"	"S12000030"	"Plug-in Hybrids"	980
+2019 Q3	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	60
+2019 Q3	"West Lothian"	"S12000040"	"Plug-in Hybrids"	154
+2019 Q2	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	199
+2019 Q2	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	298
+2019 Q2	"Angus"	"S12000041"	"Plug-in Hybrids"	86
+2019 Q2	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	77
+2019 Q2	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	439
+2019 Q2	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	34
+2019 Q2	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	114
+2019 Q2	"Dundee City"	"S12000042"	"Plug-in Hybrids"	71
+2019 Q2	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	72
+2019 Q2	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	100
+2019 Q2	"East Lothian"	"S12000010"	"Plug-in Hybrids"	101
+2019 Q2	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	134
+2019 Q2	"Falkirk"	"S12000014"	"Plug-in Hybrids"	89
+2019 Q2	"Fife"	"S12000047"	"Plug-in Hybrids"	242
+2019 Q2	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	289
+2019 Q2	"Highland"	"S12000017"	"Plug-in Hybrids"	156
+2019 Q2	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	30
+2019 Q2	"Midlothian"	"S12000019"	"Plug-in Hybrids"	74
+2019 Q2	"Moray"	"S12000020"	"Plug-in Hybrids"	58
+2019 Q2	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	12
+2019 Q2	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	67
+2019 Q2	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	164
+2019 Q2	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	32
+2019 Q2	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	180
+2019 Q2	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	2121
+2019 Q2	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	115
+2019 Q2	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	28
+2019 Q2	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	67
+2019 Q2	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	216
+2019 Q2	"Stirling"	"S12000030"	"Plug-in Hybrids"	911
+2019 Q2	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	54
+2019 Q2	"West Lothian"	"S12000040"	"Plug-in Hybrids"	142
+2019 Q1	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	194
+2019 Q1	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	291
+2019 Q1	"Angus"	"S12000041"	"Plug-in Hybrids"	78
+2019 Q1	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	72
+2019 Q1	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	391
+2019 Q1	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	31
+2019 Q1	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	109
+2019 Q1	"Dundee City"	"S12000042"	"Plug-in Hybrids"	67
+2019 Q1	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	63
+2019 Q1	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	90
+2019 Q1	"East Lothian"	"S12000010"	"Plug-in Hybrids"	98
+2019 Q1	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	137
+2019 Q1	"Falkirk"	"S12000014"	"Plug-in Hybrids"	82
+2019 Q1	"Fife"	"S12000047"	"Plug-in Hybrids"	232
+2019 Q1	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	256
+2019 Q1	"Highland"	"S12000017"	"Plug-in Hybrids"	146
+2019 Q1	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	29
+2019 Q1	"Midlothian"	"S12000019"	"Plug-in Hybrids"	68
+2019 Q1	"Moray"	"S12000020"	"Plug-in Hybrids"	58
+2019 Q1	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	11
+2019 Q1	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	66
+2019 Q1	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	157
+2019 Q1	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	32
+2019 Q1	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	170
+2019 Q1	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	1919
+2019 Q1	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	103
+2019 Q1	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	28
+2019 Q1	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	61
+2019 Q1	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	209
+2019 Q1	"Stirling"	"S12000030"	"Plug-in Hybrids"	873
+2019 Q1	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	44
+2019 Q1	"West Lothian"	"S12000040"	"Plug-in Hybrids"	129
+2018 Q4	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	184
+2018 Q4	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	279
+2018 Q4	"Angus"	"S12000041"	"Plug-in Hybrids"	75
+2018 Q4	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	66
+2018 Q4	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	354
+2018 Q4	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	31
+2018 Q4	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	101
+2018 Q4	"Dundee City"	"S12000042"	"Plug-in Hybrids"	58
+2018 Q4	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	57
+2018 Q4	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	80
+2018 Q4	"East Lothian"	"S12000010"	"Plug-in Hybrids"	90
+2018 Q4	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	137
+2018 Q4	"Falkirk"	"S12000014"	"Plug-in Hybrids"	68
+2018 Q4	"Fife"	"S12000047"	"Plug-in Hybrids"	223
+2018 Q4	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	227
+2018 Q4	"Highland"	"S12000017"	"Plug-in Hybrids"	135
+2018 Q4	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	25
+2018 Q4	"Midlothian"	"S12000019"	"Plug-in Hybrids"	59
+2018 Q4	"Moray"	"S12000020"	"Plug-in Hybrids"	53
+2018 Q4	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	9
+2018 Q4	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	64
+2018 Q4	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	143
+2018 Q4	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	29
+2018 Q4	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	160
+2018 Q4	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	1682
+2018 Q4	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	98
+2018 Q4	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	26
+2018 Q4	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	70
+2018 Q4	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	205
+2018 Q4	"Stirling"	"S12000030"	"Plug-in Hybrids"	796
+2018 Q4	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	41
+2018 Q4	"West Lothian"	"S12000040"	"Plug-in Hybrids"	118
+2018 Q3	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	170
+2018 Q3	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	249
+2018 Q3	"Angus"	"S12000041"	"Plug-in Hybrids"	69
+2018 Q3	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	64
+2018 Q3	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	319
+2018 Q3	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	28
+2018 Q3	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	97
+2018 Q3	"Dundee City"	"S12000042"	"Plug-in Hybrids"	49
+2018 Q3	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	50
+2018 Q3	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	67
+2018 Q3	"East Lothian"	"S12000010"	"Plug-in Hybrids"	83
+2018 Q3	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	87
+2018 Q3	"Falkirk"	"S12000014"	"Plug-in Hybrids"	65
+2018 Q3	"Fife"	"S12000047"	"Plug-in Hybrids"	202
+2018 Q3	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	200
+2018 Q3	"Highland"	"S12000017"	"Plug-in Hybrids"	124
+2018 Q3	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	24
+2018 Q3	"Midlothian"	"S12000019"	"Plug-in Hybrids"	45
+2018 Q3	"Moray"	"S12000020"	"Plug-in Hybrids"	44
+2018 Q3	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	9
+2018 Q3	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	61
+2018 Q3	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	126
+2018 Q3	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	27
+2018 Q3	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	147
+2018 Q3	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	1431
+2018 Q3	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	90
+2018 Q3	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	24
+2018 Q3	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	66
+2018 Q3	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	170
+2018 Q3	"Stirling"	"S12000030"	"Plug-in Hybrids"	740
+2018 Q3	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	36
+2018 Q3	"West Lothian"	"S12000040"	"Plug-in Hybrids"	107
+2018 Q2	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	168
+2018 Q2	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	232
+2018 Q2	"Angus"	"S12000041"	"Plug-in Hybrids"	56
+2018 Q2	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	59
+2018 Q2	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	281
+2018 Q2	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	26
+2018 Q2	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	93
+2018 Q2	"Dundee City"	"S12000042"	"Plug-in Hybrids"	42
+2018 Q2	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	46
+2018 Q2	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	62
+2018 Q2	"East Lothian"	"S12000010"	"Plug-in Hybrids"	75
+2018 Q2	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	67
+2018 Q2	"Falkirk"	"S12000014"	"Plug-in Hybrids"	59
+2018 Q2	"Fife"	"S12000047"	"Plug-in Hybrids"	188
+2018 Q2	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	171
+2018 Q2	"Highland"	"S12000017"	"Plug-in Hybrids"	111
+2018 Q2	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	21
+2018 Q2	"Midlothian"	"S12000019"	"Plug-in Hybrids"	41
+2018 Q2	"Moray"	"S12000020"	"Plug-in Hybrids"	43
+2018 Q2	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	8
+2018 Q2	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	57
+2018 Q2	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	109
+2018 Q2	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	24
+2018 Q2	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	127
+2018 Q2	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	1265
+2018 Q2	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	81
 2018 Q2	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	25
-2018 Q2	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	66
-2018 Q2	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	153
-2018 Q2	"Stirling"	"S12000030"	"Plug-in Hybrids"	653
-2018 Q2	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	34
-2018 Q2	"West Lothian"	"S12000040"	"Plug-in Hybrids"	100
-2018 Q1	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	169
-2018 Q1	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	238
-2018 Q1	"Angus"	"S12000041"	"Plug-in Hybrids"	55
-2018 Q1	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	64
-2018 Q1	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	286
-2018 Q1	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	27
-2018 Q1	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	90
-2018 Q1	"Dundee City"	"S12000042"	"Plug-in Hybrids"	45
-2018 Q1	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	50
-2018 Q1	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	59
-2018 Q1	"East Lothian"	"S12000010"	"Plug-in Hybrids"	76
-2018 Q1	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	69
-2018 Q1	"Falkirk"	"S12000014"	"Plug-in Hybrids"	55
-2018 Q1	"Fife"	"S12000047"	"Plug-in Hybrids"	190
-2018 Q1	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	177
-2018 Q1	"Highland"	"S12000017"	"Plug-in Hybrids"	111
-2018 Q1	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	24
-2018 Q1	"Midlothian"	"S12000019"	"Plug-in Hybrids"	49
-2018 Q1	"Moray"	"S12000020"	"Plug-in Hybrids"	37
-2018 Q1	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	12
-2018 Q1	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	51
-2018 Q1	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	95
-2018 Q1	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	23
-2018 Q1	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	124
-2018 Q1	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	1026
-2018 Q1	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	88
+2018 Q2	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	59
+2018 Q2	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	142
+2018 Q2	"Stirling"	"S12000030"	"Plug-in Hybrids"	640
+2018 Q2	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	32
+2018 Q2	"West Lothian"	"S12000040"	"Plug-in Hybrids"	93
+2018 Q1	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	154
+2018 Q1	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	210
+2018 Q1	"Angus"	"S12000041"	"Plug-in Hybrids"	49
+2018 Q1	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	54
+2018 Q1	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	248
+2018 Q1	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	23
+2018 Q1	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	87
+2018 Q1	"Dundee City"	"S12000042"	"Plug-in Hybrids"	38
+2018 Q1	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	43
+2018 Q1	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	56
+2018 Q1	"East Lothian"	"S12000010"	"Plug-in Hybrids"	63
+2018 Q1	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	64
+2018 Q1	"Falkirk"	"S12000014"	"Plug-in Hybrids"	54
+2018 Q1	"Fife"	"S12000047"	"Plug-in Hybrids"	170
+2018 Q1	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	146
+2018 Q1	"Highland"	"S12000017"	"Plug-in Hybrids"	104
+2018 Q1	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	19
+2018 Q1	"Midlothian"	"S12000019"	"Plug-in Hybrids"	44
+2018 Q1	"Moray"	"S12000020"	"Plug-in Hybrids"	33
+2018 Q1	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	9
+2018 Q1	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	44
+2018 Q1	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	90
+2018 Q1	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	22
+2018 Q1	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	112
+2018 Q1	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	997
+2018 Q1	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	76
 2018 Q1	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	25
-2018 Q1	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	54
-2018 Q1	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	142
-2018 Q1	"Stirling"	"S12000030"	"Plug-in Hybrids"	529
-2018 Q1	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	31
-2018 Q1	"West Lothian"	"S12000040"	"Plug-in Hybrids"	95
-2017 Q4	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	154
-2017 Q4	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	213
-2017 Q4	"Angus"	"S12000041"	"Plug-in Hybrids"	47
-2017 Q4	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	56
-2017 Q4	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	264
-2017 Q4	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	24
-2017 Q4	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	84
-2017 Q4	"Dundee City"	"S12000042"	"Plug-in Hybrids"	39
-2017 Q4	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	45
-2017 Q4	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	46
-2017 Q4	"East Lothian"	"S12000010"	"Plug-in Hybrids"	72
-2017 Q4	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	63
-2017 Q4	"Falkirk"	"S12000014"	"Plug-in Hybrids"	48
-2017 Q4	"Fife"	"S12000047"	"Plug-in Hybrids"	162
-2017 Q4	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	157
-2017 Q4	"Highland"	"S12000017"	"Plug-in Hybrids"	97
-2017 Q4	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	21
-2017 Q4	"Midlothian"	"S12000019"	"Plug-in Hybrids"	43
-2017 Q4	"Moray"	"S12000020"	"Plug-in Hybrids"	32
-2017 Q4	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	10
-2017 Q4	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	43
-2017 Q4	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	92
+2018 Q1	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	49
+2018 Q1	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	132
+2018 Q1	"Stirling"	"S12000030"	"Plug-in Hybrids"	517
+2018 Q1	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	30
+2018 Q1	"West Lothian"	"S12000040"	"Plug-in Hybrids"	90
+2017 Q4	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	139
+2017 Q4	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	191
+2017 Q4	"Angus"	"S12000041"	"Plug-in Hybrids"	42
+2017 Q4	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	46
+2017 Q4	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	232
+2017 Q4	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	20
+2017 Q4	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	80
+2017 Q4	"Dundee City"	"S12000042"	"Plug-in Hybrids"	31
+2017 Q4	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	38
+2017 Q4	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	42
+2017 Q4	"East Lothian"	"S12000010"	"Plug-in Hybrids"	62
+2017 Q4	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	57
+2017 Q4	"Falkirk"	"S12000014"	"Plug-in Hybrids"	47
+2017 Q4	"Fife"	"S12000047"	"Plug-in Hybrids"	142
+2017 Q4	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	127
+2017 Q4	"Highland"	"S12000017"	"Plug-in Hybrids"	89
+2017 Q4	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	17
+2017 Q4	"Midlothian"	"S12000019"	"Plug-in Hybrids"	39
+2017 Q4	"Moray"	"S12000020"	"Plug-in Hybrids"	28
+2017 Q4	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	7
+2017 Q4	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	38
+2017 Q4	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	84
 2017 Q4	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	19
-2017 Q4	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	116
-2017 Q4	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	808
-2017 Q4	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	81
+2017 Q4	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	106
+2017 Q4	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	783
+2017 Q4	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	70
 2017 Q4	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	21
-2017 Q4	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	51
-2017 Q4	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	125
-2017 Q4	"Stirling"	"S12000030"	"Plug-in Hybrids"	467
-2017 Q4	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	23
-2017 Q4	"West Lothian"	"S12000040"	"Plug-in Hybrids"	86
-2017 Q3	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	141
-2017 Q3	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	191
-2017 Q3	"Angus"	"S12000041"	"Plug-in Hybrids"	44
-2017 Q3	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	43
-2017 Q3	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	229
-2017 Q3	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	22
-2017 Q3	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	78
-2017 Q3	"Dundee City"	"S12000042"	"Plug-in Hybrids"	43
-2017 Q3	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	40
-2017 Q3	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	40
-2017 Q3	"East Lothian"	"S12000010"	"Plug-in Hybrids"	65
-2017 Q3	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	68
-2017 Q3	"Falkirk"	"S12000014"	"Plug-in Hybrids"	43
-2017 Q3	"Fife"	"S12000047"	"Plug-in Hybrids"	158
-2017 Q3	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	138
-2017 Q3	"Highland"	"S12000017"	"Plug-in Hybrids"	91
-2017 Q3	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	17
-2017 Q3	"Midlothian"	"S12000019"	"Plug-in Hybrids"	41
-2017 Q3	"Moray"	"S12000020"	"Plug-in Hybrids"	29
-2017 Q3	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	10
-2017 Q3	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	46
-2017 Q3	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	86
+2017 Q4	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	45
+2017 Q4	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	115
+2017 Q4	"Stirling"	"S12000030"	"Plug-in Hybrids"	456
+2017 Q4	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	22
+2017 Q4	"West Lothian"	"S12000040"	"Plug-in Hybrids"	79
+2017 Q3	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	127
+2017 Q3	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	168
+2017 Q3	"Angus"	"S12000041"	"Plug-in Hybrids"	39
+2017 Q3	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	35
+2017 Q3	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	205
+2017 Q3	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	18
+2017 Q3	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	74
+2017 Q3	"Dundee City"	"S12000042"	"Plug-in Hybrids"	36
+2017 Q3	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	33
+2017 Q3	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	38
+2017 Q3	"East Lothian"	"S12000010"	"Plug-in Hybrids"	57
+2017 Q3	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	58
+2017 Q3	"Falkirk"	"S12000014"	"Plug-in Hybrids"	41
+2017 Q3	"Fife"	"S12000047"	"Plug-in Hybrids"	139
+2017 Q3	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	113
+2017 Q3	"Highland"	"S12000017"	"Plug-in Hybrids"	84
+2017 Q3	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	14
+2017 Q3	"Midlothian"	"S12000019"	"Plug-in Hybrids"	38
+2017 Q3	"Moray"	"S12000020"	"Plug-in Hybrids"	26
+2017 Q3	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	7
+2017 Q3	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	41
+2017 Q3	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	80
 2017 Q3	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	19
-2017 Q3	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	106
-2017 Q3	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	687
-2017 Q3	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	72
+2017 Q3	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	96
+2017 Q3	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	666
+2017 Q3	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	64
 2017 Q3	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	19
-2017 Q3	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	42
-2017 Q3	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	121
-2017 Q3	"Stirling"	"S12000030"	"Plug-in Hybrids"	414
-2017 Q3	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	21
-2017 Q3	"West Lothian"	"S12000040"	"Plug-in Hybrids"	72
-2017 Q2	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	132
-2017 Q2	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	179
-2017 Q2	"Angus"	"S12000041"	"Plug-in Hybrids"	40
-2017 Q2	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	40
-2017 Q2	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	210
-2017 Q2	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	21
-2017 Q2	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	67
-2017 Q2	"Dundee City"	"S12000042"	"Plug-in Hybrids"	37
-2017 Q2	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	40
-2017 Q2	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	34
-2017 Q2	"East Lothian"	"S12000010"	"Plug-in Hybrids"	57
-2017 Q2	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	61
-2017 Q2	"Falkirk"	"S12000014"	"Plug-in Hybrids"	38
-2017 Q2	"Fife"	"S12000047"	"Plug-in Hybrids"	142
-2017 Q2	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	132
-2017 Q2	"Highland"	"S12000017"	"Plug-in Hybrids"	80
-2017 Q2	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	15
-2017 Q2	"Midlothian"	"S12000019"	"Plug-in Hybrids"	34
-2017 Q2	"Moray"	"S12000020"	"Plug-in Hybrids"	25
-2017 Q2	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	10
-2017 Q2	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	40
-2017 Q2	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	85
+2017 Q3	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	38
+2017 Q3	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	112
+2017 Q3	"Stirling"	"S12000030"	"Plug-in Hybrids"	404
+2017 Q3	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	20
+2017 Q3	"West Lothian"	"S12000040"	"Plug-in Hybrids"	65
+2017 Q2	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	119
+2017 Q2	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	155
+2017 Q2	"Angus"	"S12000041"	"Plug-in Hybrids"	35
+2017 Q2	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	32
+2017 Q2	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	188
+2017 Q2	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	18
+2017 Q2	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	63
+2017 Q2	"Dundee City"	"S12000042"	"Plug-in Hybrids"	30
+2017 Q2	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	33
+2017 Q2	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	32
+2017 Q2	"East Lothian"	"S12000010"	"Plug-in Hybrids"	51
+2017 Q2	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	51
+2017 Q2	"Falkirk"	"S12000014"	"Plug-in Hybrids"	36
+2017 Q2	"Fife"	"S12000047"	"Plug-in Hybrids"	123
+2017 Q2	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	108
+2017 Q2	"Highland"	"S12000017"	"Plug-in Hybrids"	73
+2017 Q2	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	12
+2017 Q2	"Midlothian"	"S12000019"	"Plug-in Hybrids"	32
+2017 Q2	"Moray"	"S12000020"	"Plug-in Hybrids"	23
+2017 Q2	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	7
+2017 Q2	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	34
+2017 Q2	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	78
 2017 Q2	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	18
-2017 Q2	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	91
-2017 Q2	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	494
-2017 Q2	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	63
+2017 Q2	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	83
+2017 Q2	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	478
+2017 Q2	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	55
 2017 Q2	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	19
-2017 Q2	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	37
-2017 Q2	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	110
-2017 Q2	"Stirling"	"S12000030"	"Plug-in Hybrids"	345
-2017 Q2	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	21
-2017 Q2	"West Lothian"	"S12000040"	"Plug-in Hybrids"	67
-2017 Q1	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	125
-2017 Q1	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	164
-2017 Q1	"Angus"	"S12000041"	"Plug-in Hybrids"	40
-2017 Q1	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	34
-2017 Q1	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	178
-2017 Q1	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	18
-2017 Q1	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	61
-2017 Q1	"Dundee City"	"S12000042"	"Plug-in Hybrids"	37
-2017 Q1	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	37
-2017 Q1	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	29
-2017 Q1	"East Lothian"	"S12000010"	"Plug-in Hybrids"	55
-2017 Q1	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	53
-2017 Q1	"Falkirk"	"S12000014"	"Plug-in Hybrids"	36
-2017 Q1	"Fife"	"S12000047"	"Plug-in Hybrids"	131
-2017 Q1	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	122
-2017 Q1	"Highland"	"S12000017"	"Plug-in Hybrids"	72
-2017 Q1	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	14
-2017 Q1	"Midlothian"	"S12000019"	"Plug-in Hybrids"	30
-2017 Q1	"Moray"	"S12000020"	"Plug-in Hybrids"	20
-2017 Q1	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	9
-2017 Q1	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	36
-2017 Q1	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	80
+2017 Q2	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	33
+2017 Q2	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	103
+2017 Q2	"Stirling"	"S12000030"	"Plug-in Hybrids"	337
+2017 Q2	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	20
+2017 Q2	"West Lothian"	"S12000040"	"Plug-in Hybrids"	61
+2017 Q1	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	114
+2017 Q1	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	141
+2017 Q1	"Angus"	"S12000041"	"Plug-in Hybrids"	35
+2017 Q1	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	27
+2017 Q1	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	159
+2017 Q1	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	16
+2017 Q1	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	57
+2017 Q1	"Dundee City"	"S12000042"	"Plug-in Hybrids"	31
+2017 Q1	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	29
+2017 Q1	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	27
+2017 Q1	"East Lothian"	"S12000010"	"Plug-in Hybrids"	51
+2017 Q1	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	43
+2017 Q1	"Falkirk"	"S12000014"	"Plug-in Hybrids"	34
+2017 Q1	"Fife"	"S12000047"	"Plug-in Hybrids"	113
+2017 Q1	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	101
+2017 Q1	"Highland"	"S12000017"	"Plug-in Hybrids"	67
+2017 Q1	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	12
+2017 Q1	"Midlothian"	"S12000019"	"Plug-in Hybrids"	27
+2017 Q1	"Moray"	"S12000020"	"Plug-in Hybrids"	19
+2017 Q1	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	6
+2017 Q1	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	32
+2017 Q1	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	73
 2017 Q1	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	16
-2017 Q1	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	77
-2017 Q1	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	423
-2017 Q1	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	64
+2017 Q1	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	70
+2017 Q1	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	410
+2017 Q1	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	56
 2017 Q1	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	17
-2017 Q1	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	34
-2017 Q1	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	94
-2017 Q1	"Stirling"	"S12000030"	"Plug-in Hybrids"	299
-2017 Q1	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	19
-2017 Q1	"West Lothian"	"S12000040"	"Plug-in Hybrids"	58
-2016 Q4	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	115
-2016 Q4	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	148
-2016 Q4	"Angus"	"S12000041"	"Plug-in Hybrids"	33
-2016 Q4	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	27
-2016 Q4	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	153
-2016 Q4	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	14
-2016 Q4	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	56
-2016 Q4	"Dundee City"	"S12000042"	"Plug-in Hybrids"	27
-2016 Q4	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	31
-2016 Q4	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	25
-2016 Q4	"East Lothian"	"S12000010"	"Plug-in Hybrids"	48
-2016 Q4	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	43
-2016 Q4	"Falkirk"	"S12000014"	"Plug-in Hybrids"	31
-2016 Q4	"Fife"	"S12000047"	"Plug-in Hybrids"	118
-2016 Q4	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	114
-2016 Q4	"Highland"	"S12000017"	"Plug-in Hybrids"	65
-2016 Q4	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	14
-2016 Q4	"Midlothian"	"S12000019"	"Plug-in Hybrids"	26
-2016 Q4	"Moray"	"S12000020"	"Plug-in Hybrids"	19
-2016 Q4	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	8
-2016 Q4	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	33
-2016 Q4	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	73
+2017 Q1	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	31
+2017 Q1	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	89
+2017 Q1	"Stirling"	"S12000030"	"Plug-in Hybrids"	291
+2017 Q1	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	18
+2017 Q1	"West Lothian"	"S12000040"	"Plug-in Hybrids"	52
+2016 Q4	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	102
+2016 Q4	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	124
+2016 Q4	"Angus"	"S12000041"	"Plug-in Hybrids"	30
+2016 Q4	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	22
+2016 Q4	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	137
+2016 Q4	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	12
+2016 Q4	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	53
+2016 Q4	"Dundee City"	"S12000042"	"Plug-in Hybrids"	25
+2016 Q4	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	25
+2016 Q4	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	23
+2016 Q4	"East Lothian"	"S12000010"	"Plug-in Hybrids"	44
+2016 Q4	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	40
+2016 Q4	"Falkirk"	"S12000014"	"Plug-in Hybrids"	29
+2016 Q4	"Fife"	"S12000047"	"Plug-in Hybrids"	101
+2016 Q4	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	94
+2016 Q4	"Highland"	"S12000017"	"Plug-in Hybrids"	61
+2016 Q4	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	11
+2016 Q4	"Midlothian"	"S12000019"	"Plug-in Hybrids"	24
+2016 Q4	"Moray"	"S12000020"	"Plug-in Hybrids"	18
+2016 Q4	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	6
+2016 Q4	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	31
+2016 Q4	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	68
 2016 Q4	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	13
-2016 Q4	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	61
-2016 Q4	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	350
-2016 Q4	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	55
+2016 Q4	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	57
+2016 Q4	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	339
+2016 Q4	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	49
 2016 Q4	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	15
-2016 Q4	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	32
-2016 Q4	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	86
-2016 Q4	"Stirling"	"S12000030"	"Plug-in Hybrids"	235
+2016 Q4	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	29
+2016 Q4	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	81
+2016 Q4	"Stirling"	"S12000030"	"Plug-in Hybrids"	227
 2016 Q4	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	15
-2016 Q4	"West Lothian"	"S12000040"	"Plug-in Hybrids"	55
-2016 Q3	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	103
-2016 Q3	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	136
-2016 Q3	"Angus"	"S12000041"	"Plug-in Hybrids"	28
-2016 Q3	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	27
-2016 Q3	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	134
-2016 Q3	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	12
-2016 Q3	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	53
-2016 Q3	"Dundee City"	"S12000042"	"Plug-in Hybrids"	28
-2016 Q3	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	25
-2016 Q3	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	23
-2016 Q3	"East Lothian"	"S12000010"	"Plug-in Hybrids"	43
-2016 Q3	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	39
-2016 Q3	"Falkirk"	"S12000014"	"Plug-in Hybrids"	29
-2016 Q3	"Fife"	"S12000047"	"Plug-in Hybrids"	110
-2016 Q3	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	107
-2016 Q3	"Highland"	"S12000017"	"Plug-in Hybrids"	64
-2016 Q3	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	12
-2016 Q3	"Midlothian"	"S12000019"	"Plug-in Hybrids"	23
-2016 Q3	"Moray"	"S12000020"	"Plug-in Hybrids"	19
-2016 Q3	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	8
-2016 Q3	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	30
-2016 Q3	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	69
+2016 Q4	"West Lothian"	"S12000040"	"Plug-in Hybrids"	48
+2016 Q3	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	93
+2016 Q3	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	116
+2016 Q3	"Angus"	"S12000041"	"Plug-in Hybrids"	26
+2016 Q3	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	22
+2016 Q3	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	120
+2016 Q3	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	11
+2016 Q3	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	51
+2016 Q3	"Dundee City"	"S12000042"	"Plug-in Hybrids"	26
+2016 Q3	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	20
+2016 Q3	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	21
+2016 Q3	"East Lothian"	"S12000010"	"Plug-in Hybrids"	40
+2016 Q3	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	36
+2016 Q3	"Falkirk"	"S12000014"	"Plug-in Hybrids"	26
+2016 Q3	"Fife"	"S12000047"	"Plug-in Hybrids"	96
+2016 Q3	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	89
+2016 Q3	"Highland"	"S12000017"	"Plug-in Hybrids"	59
+2016 Q3	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	9
+2016 Q3	"Midlothian"	"S12000019"	"Plug-in Hybrids"	21
+2016 Q3	"Moray"	"S12000020"	"Plug-in Hybrids"	16
+2016 Q3	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	6
+2016 Q3	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	27
+2016 Q3	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	65
 2016 Q3	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	10
-2016 Q3	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	61
-2016 Q3	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	320
-2016 Q3	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	48
+2016 Q3	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	55
+2016 Q3	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	312
+2016 Q3	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	42
 2016 Q3	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	13
-2016 Q3	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	33
-2016 Q3	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	77
-2016 Q3	"Stirling"	"S12000030"	"Plug-in Hybrids"	201
+2016 Q3	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	29
+2016 Q3	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	73
+2016 Q3	"Stirling"	"S12000030"	"Plug-in Hybrids"	193
 2016 Q3	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	14
-2016 Q3	"West Lothian"	"S12000040"	"Plug-in Hybrids"	48
-2016 Q2	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	97
-2016 Q2	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	125
-2016 Q2	"Angus"	"S12000041"	"Plug-in Hybrids"	25
-2016 Q2	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	26
-2016 Q2	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	114
-2016 Q2	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	6
-2016 Q2	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	48
-2016 Q2	"Dundee City"	"S12000042"	"Plug-in Hybrids"	23
-2016 Q2	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	20
-2016 Q2	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	19
-2016 Q2	"East Lothian"	"S12000010"	"Plug-in Hybrids"	42
-2016 Q2	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	36
-2016 Q2	"Falkirk"	"S12000014"	"Plug-in Hybrids"	23
-2016 Q2	"Fife"	"S12000047"	"Plug-in Hybrids"	98
-2016 Q2	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	96
-2016 Q2	"Highland"	"S12000017"	"Plug-in Hybrids"	49
-2016 Q2	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	9
-2016 Q2	"Midlothian"	"S12000019"	"Plug-in Hybrids"	18
-2016 Q2	"Moray"	"S12000020"	"Plug-in Hybrids"	16
-2016 Q2	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	7
-2016 Q2	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	27
-2016 Q2	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	55
+2016 Q3	"West Lothian"	"S12000040"	"Plug-in Hybrids"	43
+2016 Q2	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	79
+2016 Q2	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	106
+2016 Q2	"Angus"	"S12000041"	"Plug-in Hybrids"	24
+2016 Q2	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	21
+2016 Q2	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	100
+2016 Q2	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	5
+2016 Q2	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	46
+2016 Q2	"Dundee City"	"S12000042"	"Plug-in Hybrids"	21
+2016 Q2	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	16
+2016 Q2	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	18
+2016 Q2	"East Lothian"	"S12000010"	"Plug-in Hybrids"	38
+2016 Q2	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	33
+2016 Q2	"Falkirk"	"S12000014"	"Plug-in Hybrids"	20
+2016 Q2	"Fife"	"S12000047"	"Plug-in Hybrids"	84
+2016 Q2	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	77
+2016 Q2	"Highland"	"S12000017"	"Plug-in Hybrids"	43
+2016 Q2	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	8
+2016 Q2	"Midlothian"	"S12000019"	"Plug-in Hybrids"	17
+2016 Q2	"Moray"	"S12000020"	"Plug-in Hybrids"	13
+2016 Q2	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	5
+2016 Q2	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	23
+2016 Q2	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	52
 2016 Q2	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	8
-2016 Q2	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	53
-2016 Q2	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	262
-2016 Q2	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	46
+2016 Q2	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	48
+2016 Q2	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	253
+2016 Q2	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	40
 2016 Q2	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	13
-2016 Q2	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	31
-2016 Q2	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	67
-2016 Q2	"Stirling"	"S12000030"	"Plug-in Hybrids"	169
+2016 Q2	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	26
+2016 Q2	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	64
+2016 Q2	"Stirling"	"S12000030"	"Plug-in Hybrids"	162
 2016 Q2	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	14
-2016 Q2	"West Lothian"	"S12000040"	"Plug-in Hybrids"	42
-2016 Q1	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	90
-2016 Q1	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	112
-2016 Q1	"Angus"	"S12000041"	"Plug-in Hybrids"	24
-2016 Q1	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	23
-2016 Q1	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	105
+2016 Q2	"West Lothian"	"S12000040"	"Plug-in Hybrids"	38
+2016 Q1	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	72
+2016 Q1	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	93
+2016 Q1	"Angus"	"S12000041"	"Plug-in Hybrids"	23
+2016 Q1	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	18
+2016 Q1	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	94
 2016 Q1	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	0
-2016 Q1	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	47
-2016 Q1	"Dundee City"	"S12000042"	"Plug-in Hybrids"	23
-2016 Q1	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	19
-2016 Q1	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	14
-2016 Q1	"East Lothian"	"S12000010"	"Plug-in Hybrids"	40
-2016 Q1	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	27
-2016 Q1	"Falkirk"	"S12000014"	"Plug-in Hybrids"	19
-2016 Q1	"Fife"	"S12000047"	"Plug-in Hybrids"	90
-2016 Q1	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	231
-2016 Q1	"Highland"	"S12000017"	"Plug-in Hybrids"	43
-2016 Q1	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	7
-2016 Q1	"Midlothian"	"S12000019"	"Plug-in Hybrids"	19
-2016 Q1	"Moray"	"S12000020"	"Plug-in Hybrids"	13
-2016 Q1	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	7
-2016 Q1	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	25
-2016 Q1	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	52
+2016 Q1	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	45
+2016 Q1	"Dundee City"	"S12000042"	"Plug-in Hybrids"	21
+2016 Q1	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	15
+2016 Q1	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	13
+2016 Q1	"East Lothian"	"S12000010"	"Plug-in Hybrids"	36
+2016 Q1	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	24
+2016 Q1	"Falkirk"	"S12000014"	"Plug-in Hybrids"	16
+2016 Q1	"Fife"	"S12000047"	"Plug-in Hybrids"	77
+2016 Q1	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	208
+2016 Q1	"Highland"	"S12000017"	"Plug-in Hybrids"	37
+2016 Q1	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	6
+2016 Q1	"Midlothian"	"S12000019"	"Plug-in Hybrids"	18
+2016 Q1	"Moray"	"S12000020"	"Plug-in Hybrids"	9
+2016 Q1	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	5
+2016 Q1	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	21
+2016 Q1	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	49
 2016 Q1	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	7
-2016 Q1	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	44
-2016 Q1	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	32
-2016 Q1	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	38
+2016 Q1	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	40
+2016 Q1	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	29
+2016 Q1	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	32
 2016 Q1	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	14
-2016 Q1	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	32
-2016 Q1	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	58
-2016 Q1	"Stirling"	"S12000030"	"Plug-in Hybrids"	138
+2016 Q1	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	28
+2016 Q1	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	54
+2016 Q1	"Stirling"	"S12000030"	"Plug-in Hybrids"	132
 2016 Q1	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	11
-2016 Q1	"West Lothian"	"S12000040"	"Plug-in Hybrids"	34
-2015 Q4	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	77
-2015 Q4	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	92
+2016 Q1	"West Lothian"	"S12000040"	"Plug-in Hybrids"	29
+2015 Q4	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	61
+2015 Q4	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	74
 2015 Q4	"Angus"	"S12000041"	"Plug-in Hybrids"	20
-2015 Q4	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	20
-2015 Q4	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	90
+2015 Q4	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	16
+2015 Q4	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	80
 2015 Q4	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	0
-2015 Q4	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	37
-2015 Q4	"Dundee City"	"S12000042"	"Plug-in Hybrids"	18
-2015 Q4	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	15
-2015 Q4	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	13
-2015 Q4	"East Lothian"	"S12000010"	"Plug-in Hybrids"	29
-2015 Q4	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	16
-2015 Q4	"Falkirk"	"S12000014"	"Plug-in Hybrids"	16
-2015 Q4	"Fife"	"S12000047"	"Plug-in Hybrids"	74
-2015 Q4	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	216
-2015 Q4	"Highland"	"S12000017"	"Plug-in Hybrids"	39
-2015 Q4	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	5
-2015 Q4	"Midlothian"	"S12000019"	"Plug-in Hybrids"	14
-2015 Q4	"Moray"	"S12000020"	"Plug-in Hybrids"	13
-2015 Q4	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	7
-2015 Q4	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	19
-2015 Q4	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	40
+2015 Q4	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	35
+2015 Q4	"Dundee City"	"S12000042"	"Plug-in Hybrids"	17
+2015 Q4	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	11
+2015 Q4	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	12
+2015 Q4	"East Lothian"	"S12000010"	"Plug-in Hybrids"	26
+2015 Q4	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	13
+2015 Q4	"Falkirk"	"S12000014"	"Plug-in Hybrids"	14
+2015 Q4	"Fife"	"S12000047"	"Plug-in Hybrids"	61
+2015 Q4	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	191
+2015 Q4	"Highland"	"S12000017"	"Plug-in Hybrids"	33
+2015 Q4	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	0
+2015 Q4	"Midlothian"	"S12000019"	"Plug-in Hybrids"	13
+2015 Q4	"Moray"	"S12000020"	"Plug-in Hybrids"	9
+2015 Q4	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	5
+2015 Q4	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	16
+2015 Q4	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	37
 2015 Q4	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	6
-2015 Q4	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	38
-2015 Q4	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	24
-2015 Q4	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	35
+2015 Q4	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	34
+2015 Q4	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	22
+2015 Q4	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	30
 2015 Q4	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	12
-2015 Q4	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	20
-2015 Q4	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	52
-2015 Q4	"Stirling"	"S12000030"	"Plug-in Hybrids"	98
+2015 Q4	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	18
+2015 Q4	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	48
+2015 Q4	"Stirling"	"S12000030"	"Plug-in Hybrids"	92
 2015 Q4	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	11
-2015 Q4	"West Lothian"	"S12000040"	"Plug-in Hybrids"	26
-2015 Q3	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	69
-2015 Q3	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	75
-2015 Q3	"Angus"	"S12000041"	"Plug-in Hybrids"	18
-2015 Q3	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	18
-2015 Q3	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	77
+2015 Q4	"West Lothian"	"S12000040"	"Plug-in Hybrids"	21
+2015 Q3	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	55
+2015 Q3	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	59
+2015 Q3	"Angus"	"S12000041"	"Plug-in Hybrids"	17
+2015 Q3	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	14
+2015 Q3	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	70
 2015 Q3	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	0
-2015 Q3	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	36
+2015 Q3	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	34
 2015 Q3	"Dundee City"	"S12000042"	"Plug-in Hybrids"	16
-2015 Q3	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	14
-2015 Q3	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	11
-2015 Q3	"East Lothian"	"S12000010"	"Plug-in Hybrids"	22
-2015 Q3	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	16
-2015 Q3	"Falkirk"	"S12000014"	"Plug-in Hybrids"	11
-2015 Q3	"Fife"	"S12000047"	"Plug-in Hybrids"	69
-2015 Q3	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	173
-2015 Q3	"Highland"	"S12000017"	"Plug-in Hybrids"	34
+2015 Q3	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	10
+2015 Q3	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	10
+2015 Q3	"East Lothian"	"S12000010"	"Plug-in Hybrids"	19
+2015 Q3	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	12
+2015 Q3	"Falkirk"	"S12000014"	"Plug-in Hybrids"	10
+2015 Q3	"Fife"	"S12000047"	"Plug-in Hybrids"	55
+2015 Q3	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	147
+2015 Q3	"Highland"	"S12000017"	"Plug-in Hybrids"	27
 2015 Q3	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	0
-2015 Q3	"Midlothian"	"S12000019"	"Plug-in Hybrids"	13
-2015 Q3	"Moray"	"S12000020"	"Plug-in Hybrids"	10
-2015 Q3	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	5
-2015 Q3	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	18
-2015 Q3	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	37
+2015 Q3	"Midlothian"	"S12000019"	"Plug-in Hybrids"	12
+2015 Q3	"Moray"	"S12000020"	"Plug-in Hybrids"	6
+2015 Q3	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	0
+2015 Q3	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	15
+2015 Q3	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	35
 2015 Q3	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	6
-2015 Q3	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	32
-2015 Q3	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	22
-2015 Q3	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	28
+2015 Q3	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	28
+2015 Q3	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	19
+2015 Q3	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	23
 2015 Q3	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	11
-2015 Q3	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	19
-2015 Q3	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	45
-2015 Q3	"Stirling"	"S12000030"	"Plug-in Hybrids"	73
+2015 Q3	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	17
+2015 Q3	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	42
+2015 Q3	"Stirling"	"S12000030"	"Plug-in Hybrids"	70
 2015 Q3	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	8
-2015 Q3	"West Lothian"	"S12000040"	"Plug-in Hybrids"	21
-2015 Q2	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	56
-2015 Q2	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	62
-2015 Q2	"Angus"	"S12000041"	"Plug-in Hybrids"	15
-2015 Q2	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	14
-2015 Q2	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	59
+2015 Q3	"West Lothian"	"S12000040"	"Plug-in Hybrids"	17
+2015 Q2	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	42
+2015 Q2	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	47
+2015 Q2	"Angus"	"S12000041"	"Plug-in Hybrids"	14
+2015 Q2	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	10
+2015 Q2	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	53
 2015 Q2	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	0
-2015 Q2	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	30
+2015 Q2	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	28
 2015 Q2	"Dundee City"	"S12000042"	"Plug-in Hybrids"	11
-2015 Q2	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	11
+2015 Q2	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	7
 2015 Q2	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	9
-2015 Q2	"East Lothian"	"S12000010"	"Plug-in Hybrids"	18
-2015 Q2	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	12
-2015 Q2	"Falkirk"	"S12000014"	"Plug-in Hybrids"	9
-2015 Q2	"Fife"	"S12000047"	"Plug-in Hybrids"	55
-2015 Q2	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	147
-2015 Q2	"Highland"	"S12000017"	"Plug-in Hybrids"	30
+2015 Q2	"East Lothian"	"S12000010"	"Plug-in Hybrids"	15
+2015 Q2	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	9
+2015 Q2	"Falkirk"	"S12000014"	"Plug-in Hybrids"	8
+2015 Q2	"Fife"	"S12000047"	"Plug-in Hybrids"	41
+2015 Q2	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	124
+2015 Q2	"Highland"	"S12000017"	"Plug-in Hybrids"	23
 2015 Q2	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	0
-2015 Q2	"Midlothian"	"S12000019"	"Plug-in Hybrids"	12
-2015 Q2	"Moray"	"S12000020"	"Plug-in Hybrids"	10
+2015 Q2	"Midlothian"	"S12000019"	"Plug-in Hybrids"	11
+2015 Q2	"Moray"	"S12000020"	"Plug-in Hybrids"	6
 2015 Q2	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	0
-2015 Q2	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	13
-2015 Q2	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	36
+2015 Q2	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	12
+2015 Q2	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	34
 2015 Q2	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	0
-2015 Q2	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	26
-2015 Q2	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	19
-2015 Q2	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	24
+2015 Q2	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	24
+2015 Q2	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	17
+2015 Q2	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	20
 2015 Q2	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	7
-2015 Q2	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	13
-2015 Q2	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	31
-2015 Q2	"Stirling"	"S12000030"	"Plug-in Hybrids"	63
+2015 Q2	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	11
+2015 Q2	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	29
+2015 Q2	"Stirling"	"S12000030"	"Plug-in Hybrids"	60
 2015 Q2	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	5
-2015 Q2	"West Lothian"	"S12000040"	"Plug-in Hybrids"	17
-2015 Q1	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	44
-2015 Q1	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	47
-2015 Q1	"Angus"	"S12000041"	"Plug-in Hybrids"	11
-2015 Q1	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	11
-2015 Q1	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	51
+2015 Q2	"West Lothian"	"S12000040"	"Plug-in Hybrids"	13
+2015 Q1	"Aberdeen City"	"S12000033"	"Plug-in Hybrids"	32
+2015 Q1	"Aberdeenshire"	"S12000034"	"Plug-in Hybrids"	33
+2015 Q1	"Angus"	"S12000041"	"Plug-in Hybrids"	10
+2015 Q1	"Argyll and Bute"	"S12000035"	"Plug-in Hybrids"	7
+2015 Q1	"City of Edinburgh"	"S12000036"	"Plug-in Hybrids"	42
 2015 Q1	"Clackmannanshire"	"S12000005"	"Plug-in Hybrids"	0
-2015 Q1	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	23
+2015 Q1	"Dumfries and Galloway"	"S12000006"	"Plug-in Hybrids"	21
 2015 Q1	"Dundee City"	"S12000042"	"Plug-in Hybrids"	9
-2015 Q1	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	10
+2015 Q1	"East Ayrshire"	"S12000008"	"Plug-in Hybrids"	7
 2015 Q1	"East Dunbartonshire"	"S12000045"	"Plug-in Hybrids"	9
-2015 Q1	"East Lothian"	"S12000010"	"Plug-in Hybrids"	13
-2015 Q1	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	11
+2015 Q1	"East Lothian"	"S12000010"	"Plug-in Hybrids"	11
+2015 Q1	"East Renfrewshire"	"S12000011"	"Plug-in Hybrids"	7
 2015 Q1	"Falkirk"	"S12000014"	"Plug-in Hybrids"	0
-2015 Q1	"Fife"	"S12000047"	"Plug-in Hybrids"	40
-2015 Q1	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	110
-2015 Q1	"Highland"	"S12000017"	"Plug-in Hybrids"	24
+2015 Q1	"Fife"	"S12000047"	"Plug-in Hybrids"	27
+2015 Q1	"Glasgow City"	"S12000049"	"Plug-in Hybrids"	91
+2015 Q1	"Highland"	"S12000017"	"Plug-in Hybrids"	16
 2015 Q1	"Inverclyde"	"S12000018"	"Plug-in Hybrids"	0
-2015 Q1	"Midlothian"	"S12000019"	"Plug-in Hybrids"	7
-2015 Q1	"Moray"	"S12000020"	"Plug-in Hybrids"	8
+2015 Q1	"Midlothian"	"S12000019"	"Plug-in Hybrids"	6
+2015 Q1	"Moray"	"S12000020"	"Plug-in Hybrids"	0
 2015 Q1	"Na h-Eileanan Siar"	"S12000013"	"Plug-in Hybrids"	0
-2015 Q1	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	12
-2015 Q1	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	25
+2015 Q1	"North Ayrshire"	"S12000021"	"Plug-in Hybrids"	10
+2015 Q1	"North Lanarkshire"	"S12000050"	"Plug-in Hybrids"	22
 2015 Q1	"Orkney Islands"	"S12000023"	"Plug-in Hybrids"	0
-2015 Q1	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	23
-2015 Q1	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	11
-2015 Q1	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	21
+2015 Q1	"Perth and Kinross"	"S12000048"	"Plug-in Hybrids"	21
+2015 Q1	"Renfrewshire"	"S12000038"	"Plug-in Hybrids"	9
+2015 Q1	"Scottish Borders"	"S12000026"	"Plug-in Hybrids"	17
 2015 Q1	"Shetland Islands"	"S12000027"	"Plug-in Hybrids"	5
-2015 Q1	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	14
-2015 Q1	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	25
-2015 Q1	"Stirling"	"S12000030"	"Plug-in Hybrids"	41
+2015 Q1	"South Ayrshire"	"S12000028"	"Plug-in Hybrids"	12
+2015 Q1	"South Lanarkshire"	"S12000029"	"Plug-in Hybrids"	23
+2015 Q1	"Stirling"	"S12000030"	"Plug-in Hybrids"	38
 2015 Q1	"West Dunbartonshire"	"S12000039"	"Plug-in Hybrids"	0
-2015 Q1	"West Lothian"	"S12000040"	"Plug-in Hybrids"	9
-2020 Q3	"Aberdeen City"	"S12000033"	"Other ULEVs"	5
-2020 Q3	"Aberdeenshire"	"S12000034"	"Other ULEVs"	3
-2020 Q3	"Angus"	"S12000041"	"Other ULEVs"	2
-2020 Q3	"Argyll and Bute"	"S12000035"	"Other ULEVs"	4
-2020 Q3	"City of Edinburgh"	"S12000036"	"Other ULEVs"	33
-2020 Q3	"Clackmannanshire"	"S12000005"	"Other ULEVs"	1
-2020 Q3	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	1
-2020 Q3	"Dundee City"	"S12000042"	"Other ULEVs"	1
-2020 Q3	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
-2020 Q3	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	4
-2020 Q3	"East Lothian"	"S12000010"	"Other ULEVs"	5
-2020 Q3	"East Renfrewshire"	"S12000011"	"Other ULEVs"	2
-2020 Q3	"Falkirk"	"S12000014"	"Other ULEVs"	4
-2020 Q3	"Fife"	"S12000047"	"Other ULEVs"	8
-2020 Q3	"Glasgow City"	"S12000049"	"Other ULEVs"	7
-2020 Q3	"Highland"	"S12000017"	"Other ULEVs"	4
-2020 Q3	"Inverclyde"	"S12000018"	"Other ULEVs"	1
-2020 Q3	"Midlothian"	"S12000019"	"Other ULEVs"	0
-2020 Q3	"Moray"	"S12000020"	"Other ULEVs"	0
-2020 Q3	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2020 Q3	"North Ayrshire"	"S12000021"	"Other ULEVs"	2
-2020 Q3	"North Lanarkshire"	"S12000050"	"Other ULEVs"	2
-2020 Q3	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2020 Q3	"Perth and Kinross"	"S12000048"	"Other ULEVs"	3
-2020 Q3	"Renfrewshire"	"S12000038"	"Other ULEVs"	32
-2020 Q3	"Scottish Borders"	"S12000026"	"Other ULEVs"	3
-2020 Q3	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2020 Q3	"South Ayrshire"	"S12000028"	"Other ULEVs"	4
-2020 Q3	"South Lanarkshire"	"S12000029"	"Other ULEVs"	1
-2020 Q3	"Stirling"	"S12000030"	"Other ULEVs"	11
-2020 Q3	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	3
-2020 Q3	"West Lothian"	"S12000040"	"Other ULEVs"	4
-2020 Q2	"Aberdeen City"	"S12000033"	"Other ULEVs"	5
-2020 Q2	"Aberdeenshire"	"S12000034"	"Other ULEVs"	3
-2020 Q2	"Angus"	"S12000041"	"Other ULEVs"	2
-2020 Q2	"Argyll and Bute"	"S12000035"	"Other ULEVs"	3
-2020 Q2	"City of Edinburgh"	"S12000036"	"Other ULEVs"	31
-2020 Q2	"Clackmannanshire"	"S12000005"	"Other ULEVs"	1
-2020 Q2	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	1
-2020 Q2	"Dundee City"	"S12000042"	"Other ULEVs"	1
-2020 Q2	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
-2020 Q2	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	5
-2020 Q2	"East Lothian"	"S12000010"	"Other ULEVs"	5
-2020 Q2	"East Renfrewshire"	"S12000011"	"Other ULEVs"	2
-2020 Q2	"Falkirk"	"S12000014"	"Other ULEVs"	4
-2020 Q2	"Fife"	"S12000047"	"Other ULEVs"	8
-2020 Q2	"Glasgow City"	"S12000049"	"Other ULEVs"	8
-2020 Q2	"Highland"	"S12000017"	"Other ULEVs"	3
-2020 Q2	"Inverclyde"	"S12000018"	"Other ULEVs"	1
-2020 Q2	"Midlothian"	"S12000019"	"Other ULEVs"	0
-2020 Q2	"Moray"	"S12000020"	"Other ULEVs"	0
-2020 Q2	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2020 Q2	"North Ayrshire"	"S12000021"	"Other ULEVs"	2
-2020 Q2	"North Lanarkshire"	"S12000050"	"Other ULEVs"	3
-2020 Q2	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2020 Q2	"Perth and Kinross"	"S12000048"	"Other ULEVs"	2
-2020 Q2	"Renfrewshire"	"S12000038"	"Other ULEVs"	42
-2020 Q2	"Scottish Borders"	"S12000026"	"Other ULEVs"	3
-2020 Q2	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2020 Q2	"South Ayrshire"	"S12000028"	"Other ULEVs"	3
-2020 Q2	"South Lanarkshire"	"S12000029"	"Other ULEVs"	1
-2020 Q2	"Stirling"	"S12000030"	"Other ULEVs"	14
-2020 Q2	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	3
-2020 Q2	"West Lothian"	"S12000040"	"Other ULEVs"	4
-2020 Q1	"Aberdeen City"	"S12000033"	"Other ULEVs"	5
-2020 Q1	"Aberdeenshire"	"S12000034"	"Other ULEVs"	3
-2020 Q1	"Angus"	"S12000041"	"Other ULEVs"	2
-2020 Q1	"Argyll and Bute"	"S12000035"	"Other ULEVs"	3
-2020 Q1	"City of Edinburgh"	"S12000036"	"Other ULEVs"	31
-2020 Q1	"Clackmannanshire"	"S12000005"	"Other ULEVs"	1
-2020 Q1	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	1
-2020 Q1	"Dundee City"	"S12000042"	"Other ULEVs"	1
-2020 Q1	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
-2020 Q1	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	5
-2020 Q1	"East Lothian"	"S12000010"	"Other ULEVs"	5
-2020 Q1	"East Renfrewshire"	"S12000011"	"Other ULEVs"	2
-2020 Q1	"Falkirk"	"S12000014"	"Other ULEVs"	4
-2020 Q1	"Fife"	"S12000047"	"Other ULEVs"	9
-2020 Q1	"Glasgow City"	"S12000049"	"Other ULEVs"	7
-2020 Q1	"Highland"	"S12000017"	"Other ULEVs"	3
-2020 Q1	"Inverclyde"	"S12000018"	"Other ULEVs"	1
-2020 Q1	"Midlothian"	"S12000019"	"Other ULEVs"	1
-2020 Q1	"Moray"	"S12000020"	"Other ULEVs"	0
-2020 Q1	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2020 Q1	"North Ayrshire"	"S12000021"	"Other ULEVs"	2
-2020 Q1	"North Lanarkshire"	"S12000050"	"Other ULEVs"	3
-2020 Q1	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2020 Q1	"Perth and Kinross"	"S12000048"	"Other ULEVs"	2
-2020 Q1	"Renfrewshire"	"S12000038"	"Other ULEVs"	51
-2020 Q1	"Scottish Borders"	"S12000026"	"Other ULEVs"	3
-2020 Q1	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2020 Q1	"South Ayrshire"	"S12000028"	"Other ULEVs"	3
-2020 Q1	"South Lanarkshire"	"S12000029"	"Other ULEVs"	1
-2020 Q1	"Stirling"	"S12000030"	"Other ULEVs"	14
-2020 Q1	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	3
-2020 Q1	"West Lothian"	"S12000040"	"Other ULEVs"	4
-2019 Q4	"Aberdeen City"	"S12000033"	"Other ULEVs"	5
-2019 Q4	"Aberdeenshire"	"S12000034"	"Other ULEVs"	3
-2019 Q4	"Angus"	"S12000041"	"Other ULEVs"	3
-2019 Q4	"Argyll and Bute"	"S12000035"	"Other ULEVs"	3
-2019 Q4	"City of Edinburgh"	"S12000036"	"Other ULEVs"	26
-2019 Q4	"Clackmannanshire"	"S12000005"	"Other ULEVs"	1
-2019 Q4	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	1
-2019 Q4	"Dundee City"	"S12000042"	"Other ULEVs"	1
-2019 Q4	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
-2019 Q4	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	5
-2019 Q4	"East Lothian"	"S12000010"	"Other ULEVs"	5
-2019 Q4	"East Renfrewshire"	"S12000011"	"Other ULEVs"	2
-2019 Q4	"Falkirk"	"S12000014"	"Other ULEVs"	4
-2019 Q4	"Fife"	"S12000047"	"Other ULEVs"	7
-2019 Q4	"Glasgow City"	"S12000049"	"Other ULEVs"	9
-2019 Q4	"Highland"	"S12000017"	"Other ULEVs"	3
-2019 Q4	"Inverclyde"	"S12000018"	"Other ULEVs"	1
-2019 Q4	"Midlothian"	"S12000019"	"Other ULEVs"	1
-2019 Q4	"Moray"	"S12000020"	"Other ULEVs"	0
-2019 Q4	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2019 Q4	"North Ayrshire"	"S12000021"	"Other ULEVs"	2
-2019 Q4	"North Lanarkshire"	"S12000050"	"Other ULEVs"	2
-2019 Q4	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2019 Q4	"Perth and Kinross"	"S12000048"	"Other ULEVs"	2
-2019 Q4	"Renfrewshire"	"S12000038"	"Other ULEVs"	52
-2019 Q4	"Scottish Borders"	"S12000026"	"Other ULEVs"	3
-2019 Q4	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2019 Q4	"South Ayrshire"	"S12000028"	"Other ULEVs"	3
-2019 Q4	"South Lanarkshire"	"S12000029"	"Other ULEVs"	1
-2019 Q4	"Stirling"	"S12000030"	"Other ULEVs"	15
-2019 Q4	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	3
-2019 Q4	"West Lothian"	"S12000040"	"Other ULEVs"	4
-2019 Q3	"Aberdeen City"	"S12000033"	"Other ULEVs"	6
-2019 Q3	"Aberdeenshire"	"S12000034"	"Other ULEVs"	3
-2019 Q3	"Angus"	"S12000041"	"Other ULEVs"	3
-2019 Q3	"Argyll and Bute"	"S12000035"	"Other ULEVs"	3
-2019 Q3	"City of Edinburgh"	"S12000036"	"Other ULEVs"	28
-2019 Q3	"Clackmannanshire"	"S12000005"	"Other ULEVs"	1
-2019 Q3	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	1
-2019 Q3	"Dundee City"	"S12000042"	"Other ULEVs"	1
-2019 Q3	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
-2019 Q3	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	5
-2019 Q3	"East Lothian"	"S12000010"	"Other ULEVs"	5
-2019 Q3	"East Renfrewshire"	"S12000011"	"Other ULEVs"	2
-2019 Q3	"Falkirk"	"S12000014"	"Other ULEVs"	4
-2019 Q3	"Fife"	"S12000047"	"Other ULEVs"	7
-2019 Q3	"Glasgow City"	"S12000049"	"Other ULEVs"	9
-2019 Q3	"Highland"	"S12000017"	"Other ULEVs"	4
-2019 Q3	"Inverclyde"	"S12000018"	"Other ULEVs"	1
-2019 Q3	"Midlothian"	"S12000019"	"Other ULEVs"	1
-2019 Q3	"Moray"	"S12000020"	"Other ULEVs"	0
-2019 Q3	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2019 Q3	"North Ayrshire"	"S12000021"	"Other ULEVs"	2
-2019 Q3	"North Lanarkshire"	"S12000050"	"Other ULEVs"	2
-2019 Q3	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2019 Q3	"Perth and Kinross"	"S12000048"	"Other ULEVs"	2
-2019 Q3	"Renfrewshire"	"S12000038"	"Other ULEVs"	55
-2019 Q3	"Scottish Borders"	"S12000026"	"Other ULEVs"	4
-2019 Q3	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2019 Q3	"South Ayrshire"	"S12000028"	"Other ULEVs"	4
-2019 Q3	"South Lanarkshire"	"S12000029"	"Other ULEVs"	1
-2019 Q3	"Stirling"	"S12000030"	"Other ULEVs"	17
-2019 Q3	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	3
-2019 Q3	"West Lothian"	"S12000040"	"Other ULEVs"	4
-2019 Q2	"Aberdeen City"	"S12000033"	"Other ULEVs"	6
-2019 Q2	"Aberdeenshire"	"S12000034"	"Other ULEVs"	2
-2019 Q2	"Angus"	"S12000041"	"Other ULEVs"	3
-2019 Q2	"Argyll and Bute"	"S12000035"	"Other ULEVs"	3
-2019 Q2	"City of Edinburgh"	"S12000036"	"Other ULEVs"	29
-2019 Q2	"Clackmannanshire"	"S12000005"	"Other ULEVs"	1
-2019 Q2	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	1
-2019 Q2	"Dundee City"	"S12000042"	"Other ULEVs"	1
-2019 Q2	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
-2019 Q2	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	6
-2019 Q2	"East Lothian"	"S12000010"	"Other ULEVs"	5
-2019 Q2	"East Renfrewshire"	"S12000011"	"Other ULEVs"	2
-2019 Q2	"Falkirk"	"S12000014"	"Other ULEVs"	4
-2019 Q2	"Fife"	"S12000047"	"Other ULEVs"	7
-2019 Q2	"Glasgow City"	"S12000049"	"Other ULEVs"	9
-2019 Q2	"Highland"	"S12000017"	"Other ULEVs"	4
-2019 Q2	"Inverclyde"	"S12000018"	"Other ULEVs"	1
-2019 Q2	"Midlothian"	"S12000019"	"Other ULEVs"	1
-2019 Q2	"Moray"	"S12000020"	"Other ULEVs"	0
-2019 Q2	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2019 Q2	"North Ayrshire"	"S12000021"	"Other ULEVs"	2
-2019 Q2	"North Lanarkshire"	"S12000050"	"Other ULEVs"	2
-2019 Q2	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2019 Q2	"Perth and Kinross"	"S12000048"	"Other ULEVs"	2
-2019 Q2	"Renfrewshire"	"S12000038"	"Other ULEVs"	56
-2019 Q2	"Scottish Borders"	"S12000026"	"Other ULEVs"	4
-2019 Q2	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2019 Q2	"South Ayrshire"	"S12000028"	"Other ULEVs"	4
-2019 Q2	"South Lanarkshire"	"S12000029"	"Other ULEVs"	1
-2019 Q2	"Stirling"	"S12000030"	"Other ULEVs"	17
-2019 Q2	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	2
-2019 Q2	"West Lothian"	"S12000040"	"Other ULEVs"	5
-2019 Q1	"Aberdeen City"	"S12000033"	"Other ULEVs"	6
-2019 Q1	"Aberdeenshire"	"S12000034"	"Other ULEVs"	3
-2019 Q1	"Angus"	"S12000041"	"Other ULEVs"	3
-2019 Q1	"Argyll and Bute"	"S12000035"	"Other ULEVs"	4
-2019 Q1	"City of Edinburgh"	"S12000036"	"Other ULEVs"	30
-2019 Q1	"Clackmannanshire"	"S12000005"	"Other ULEVs"	1
-2019 Q1	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	1
-2019 Q1	"Dundee City"	"S12000042"	"Other ULEVs"	1
-2019 Q1	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
-2019 Q1	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	5
-2019 Q1	"East Lothian"	"S12000010"	"Other ULEVs"	6
-2019 Q1	"East Renfrewshire"	"S12000011"	"Other ULEVs"	1
-2019 Q1	"Falkirk"	"S12000014"	"Other ULEVs"	4
-2019 Q1	"Fife"	"S12000047"	"Other ULEVs"	7
-2019 Q1	"Glasgow City"	"S12000049"	"Other ULEVs"	11
-2019 Q1	"Highland"	"S12000017"	"Other ULEVs"	3
-2019 Q1	"Inverclyde"	"S12000018"	"Other ULEVs"	1
-2019 Q1	"Midlothian"	"S12000019"	"Other ULEVs"	1
-2019 Q1	"Moray"	"S12000020"	"Other ULEVs"	0
-2019 Q1	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2019 Q1	"North Ayrshire"	"S12000021"	"Other ULEVs"	2
-2019 Q1	"North Lanarkshire"	"S12000050"	"Other ULEVs"	3
-2019 Q1	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2019 Q1	"Perth and Kinross"	"S12000048"	"Other ULEVs"	2
-2019 Q1	"Renfrewshire"	"S12000038"	"Other ULEVs"	59
-2019 Q1	"Scottish Borders"	"S12000026"	"Other ULEVs"	4
-2019 Q1	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2019 Q1	"South Ayrshire"	"S12000028"	"Other ULEVs"	3
-2019 Q1	"South Lanarkshire"	"S12000029"	"Other ULEVs"	1
-2019 Q1	"Stirling"	"S12000030"	"Other ULEVs"	17
-2019 Q1	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	2
-2019 Q1	"West Lothian"	"S12000040"	"Other ULEVs"	5
-2018 Q4	"Aberdeen City"	"S12000033"	"Other ULEVs"	7
-2018 Q4	"Aberdeenshire"	"S12000034"	"Other ULEVs"	3
-2018 Q4	"Angus"	"S12000041"	"Other ULEVs"	3
-2018 Q4	"Argyll and Bute"	"S12000035"	"Other ULEVs"	4
-2018 Q4	"City of Edinburgh"	"S12000036"	"Other ULEVs"	30
-2018 Q4	"Clackmannanshire"	"S12000005"	"Other ULEVs"	1
-2018 Q4	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	1
-2018 Q4	"Dundee City"	"S12000042"	"Other ULEVs"	1
-2018 Q4	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
-2018 Q4	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	6
-2018 Q4	"East Lothian"	"S12000010"	"Other ULEVs"	6
-2018 Q4	"East Renfrewshire"	"S12000011"	"Other ULEVs"	1
-2018 Q4	"Falkirk"	"S12000014"	"Other ULEVs"	4
-2018 Q4	"Fife"	"S12000047"	"Other ULEVs"	7
-2018 Q4	"Glasgow City"	"S12000049"	"Other ULEVs"	11
-2018 Q4	"Highland"	"S12000017"	"Other ULEVs"	4
-2018 Q4	"Inverclyde"	"S12000018"	"Other ULEVs"	1
-2018 Q4	"Midlothian"	"S12000019"	"Other ULEVs"	2
-2018 Q4	"Moray"	"S12000020"	"Other ULEVs"	0
-2018 Q4	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2018 Q4	"North Ayrshire"	"S12000021"	"Other ULEVs"	2
-2018 Q4	"North Lanarkshire"	"S12000050"	"Other ULEVs"	2
-2018 Q4	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2018 Q4	"Perth and Kinross"	"S12000048"	"Other ULEVs"	2
-2018 Q4	"Renfrewshire"	"S12000038"	"Other ULEVs"	61
-2018 Q4	"Scottish Borders"	"S12000026"	"Other ULEVs"	5
-2018 Q4	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2018 Q4	"South Ayrshire"	"S12000028"	"Other ULEVs"	3
-2018 Q4	"South Lanarkshire"	"S12000029"	"Other ULEVs"	1
-2018 Q4	"Stirling"	"S12000030"	"Other ULEVs"	17
-2018 Q4	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	2
-2018 Q4	"West Lothian"	"S12000040"	"Other ULEVs"	4
-2018 Q3	"Aberdeen City"	"S12000033"	"Other ULEVs"	7
-2018 Q3	"Aberdeenshire"	"S12000034"	"Other ULEVs"	3
-2018 Q3	"Angus"	"S12000041"	"Other ULEVs"	3
-2018 Q3	"Argyll and Bute"	"S12000035"	"Other ULEVs"	4
-2018 Q3	"City of Edinburgh"	"S12000036"	"Other ULEVs"	30
-2018 Q3	"Clackmannanshire"	"S12000005"	"Other ULEVs"	1
-2018 Q3	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	1
-2018 Q3	"Dundee City"	"S12000042"	"Other ULEVs"	1
-2018 Q3	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
-2018 Q3	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	6
-2018 Q3	"East Lothian"	"S12000010"	"Other ULEVs"	6
-2018 Q3	"East Renfrewshire"	"S12000011"	"Other ULEVs"	1
-2018 Q3	"Falkirk"	"S12000014"	"Other ULEVs"	4
-2018 Q3	"Fife"	"S12000047"	"Other ULEVs"	6
-2018 Q3	"Glasgow City"	"S12000049"	"Other ULEVs"	11
-2018 Q3	"Highland"	"S12000017"	"Other ULEVs"	4
-2018 Q3	"Inverclyde"	"S12000018"	"Other ULEVs"	1
-2018 Q3	"Midlothian"	"S12000019"	"Other ULEVs"	2
-2018 Q3	"Moray"	"S12000020"	"Other ULEVs"	0
-2018 Q3	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2018 Q3	"North Ayrshire"	"S12000021"	"Other ULEVs"	2
-2018 Q3	"North Lanarkshire"	"S12000050"	"Other ULEVs"	2
-2018 Q3	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2018 Q3	"Perth and Kinross"	"S12000048"	"Other ULEVs"	2
-2018 Q3	"Renfrewshire"	"S12000038"	"Other ULEVs"	62
-2018 Q3	"Scottish Borders"	"S12000026"	"Other ULEVs"	5
-2018 Q3	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2018 Q3	"South Ayrshire"	"S12000028"	"Other ULEVs"	3
-2018 Q3	"South Lanarkshire"	"S12000029"	"Other ULEVs"	1
-2018 Q3	"Stirling"	"S12000030"	"Other ULEVs"	17
-2018 Q3	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	2
-2018 Q3	"West Lothian"	"S12000040"	"Other ULEVs"	4
-2018 Q2	"Aberdeen City"	"S12000033"	"Other ULEVs"	9
-2018 Q2	"Aberdeenshire"	"S12000034"	"Other ULEVs"	4
-2018 Q2	"Angus"	"S12000041"	"Other ULEVs"	3
-2018 Q2	"Argyll and Bute"	"S12000035"	"Other ULEVs"	4
-2018 Q2	"City of Edinburgh"	"S12000036"	"Other ULEVs"	29
-2018 Q2	"Clackmannanshire"	"S12000005"	"Other ULEVs"	1
-2018 Q2	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	1
-2018 Q2	"Dundee City"	"S12000042"	"Other ULEVs"	1
-2018 Q2	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
-2018 Q2	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	6
-2018 Q2	"East Lothian"	"S12000010"	"Other ULEVs"	5
-2018 Q2	"East Renfrewshire"	"S12000011"	"Other ULEVs"	1
-2018 Q2	"Falkirk"	"S12000014"	"Other ULEVs"	4
-2018 Q2	"Fife"	"S12000047"	"Other ULEVs"	7
-2018 Q2	"Glasgow City"	"S12000049"	"Other ULEVs"	10
-2018 Q2	"Highland"	"S12000017"	"Other ULEVs"	5
-2018 Q2	"Inverclyde"	"S12000018"	"Other ULEVs"	1
-2018 Q2	"Midlothian"	"S12000019"	"Other ULEVs"	2
-2018 Q2	"Moray"	"S12000020"	"Other ULEVs"	0
-2018 Q2	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2018 Q2	"North Ayrshire"	"S12000021"	"Other ULEVs"	2
-2018 Q2	"North Lanarkshire"	"S12000050"	"Other ULEVs"	2
-2018 Q2	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2018 Q2	"Perth and Kinross"	"S12000048"	"Other ULEVs"	2
-2018 Q2	"Renfrewshire"	"S12000038"	"Other ULEVs"	62
-2018 Q2	"Scottish Borders"	"S12000026"	"Other ULEVs"	5
+2015 Q1	"West Lothian"	"S12000040"	"Plug-in Hybrids"	6
+2020 Q4	"Aberdeen City"	"S12000033"	"Other ULEVs"	32
+2020 Q4	"Aberdeenshire"	"S12000034"	"Other ULEVs"	40
+2020 Q4	"Angus"	"S12000041"	"Other ULEVs"	13
+2020 Q4	"Argyll and Bute"	"S12000035"	"Other ULEVs"	16
+2020 Q4	"City of Edinburgh"	"S12000036"	"Other ULEVs"	152
+2020 Q4	"Clackmannanshire"	"S12000005"	"Other ULEVs"	5
+2020 Q4	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	9
+2020 Q4	"Dundee City"	"S12000042"	"Other ULEVs"	11
+2020 Q4	"East Ayrshire"	"S12000008"	"Other ULEVs"	7
+2020 Q4	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	18
+2020 Q4	"East Lothian"	"S12000010"	"Other ULEVs"	23
+2020 Q4	"East Renfrewshire"	"S12000011"	"Other ULEVs"	20
+2020 Q4	"Falkirk"	"S12000014"	"Other ULEVs"	13
+2020 Q4	"Fife"	"S12000047"	"Other ULEVs"	35
+2020 Q4	"Glasgow City"	"S12000049"	"Other ULEVs"	52
+2020 Q4	"Highland"	"S12000017"	"Other ULEVs"	17
+2020 Q4	"Inverclyde"	"S12000018"	"Other ULEVs"	7
+2020 Q4	"Midlothian"	"S12000019"	"Other ULEVs"	24
+2020 Q4	"Moray"	"S12000020"	"Other ULEVs"	8
+2020 Q4	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	2
+2020 Q4	"North Ayrshire"	"S12000021"	"Other ULEVs"	11
+2020 Q4	"North Lanarkshire"	"S12000050"	"Other ULEVs"	21
+2020 Q4	"Orkney Islands"	"S12000023"	"Other ULEVs"	3
+2020 Q4	"Perth and Kinross"	"S12000048"	"Other ULEVs"	28
+2020 Q4	"Renfrewshire"	"S12000038"	"Other ULEVs"	58
+2020 Q4	"Scottish Borders"	"S12000026"	"Other ULEVs"	19
+2020 Q4	"Shetland Islands"	"S12000027"	"Other ULEVs"	2
+2020 Q4	"South Ayrshire"	"S12000028"	"Other ULEVs"	19
+2020 Q4	"South Lanarkshire"	"S12000029"	"Other ULEVs"	29
+2020 Q4	"Stirling"	"S12000030"	"Other ULEVs"	25
+2020 Q4	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	7
+2020 Q4	"West Lothian"	"S12000040"	"Other ULEVs"	15
+2020 Q3	"Aberdeen City"	"S12000033"	"Other ULEVs"	26
+2020 Q3	"Aberdeenshire"	"S12000034"	"Other ULEVs"	40
+2020 Q3	"Angus"	"S12000041"	"Other ULEVs"	13
+2020 Q3	"Argyll and Bute"	"S12000035"	"Other ULEVs"	16
+2020 Q3	"City of Edinburgh"	"S12000036"	"Other ULEVs"	147
+2020 Q3	"Clackmannanshire"	"S12000005"	"Other ULEVs"	5
+2020 Q3	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	9
+2020 Q3	"Dundee City"	"S12000042"	"Other ULEVs"	13
+2020 Q3	"East Ayrshire"	"S12000008"	"Other ULEVs"	7
+2020 Q3	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	18
+2020 Q3	"East Lothian"	"S12000010"	"Other ULEVs"	27
+2020 Q3	"East Renfrewshire"	"S12000011"	"Other ULEVs"	18
+2020 Q3	"Falkirk"	"S12000014"	"Other ULEVs"	12
+2020 Q3	"Fife"	"S12000047"	"Other ULEVs"	35
+2020 Q3	"Glasgow City"	"S12000049"	"Other ULEVs"	54
+2020 Q3	"Highland"	"S12000017"	"Other ULEVs"	17
+2020 Q3	"Inverclyde"	"S12000018"	"Other ULEVs"	7
+2020 Q3	"Midlothian"	"S12000019"	"Other ULEVs"	22
+2020 Q3	"Moray"	"S12000020"	"Other ULEVs"	6
+2020 Q3	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	2
+2020 Q3	"North Ayrshire"	"S12000021"	"Other ULEVs"	11
+2020 Q3	"North Lanarkshire"	"S12000050"	"Other ULEVs"	18
+2020 Q3	"Orkney Islands"	"S12000023"	"Other ULEVs"	3
+2020 Q3	"Perth and Kinross"	"S12000048"	"Other ULEVs"	24
+2020 Q3	"Renfrewshire"	"S12000038"	"Other ULEVs"	72
+2020 Q3	"Scottish Borders"	"S12000026"	"Other ULEVs"	18
+2020 Q3	"Shetland Islands"	"S12000027"	"Other ULEVs"	2
+2020 Q3	"South Ayrshire"	"S12000028"	"Other ULEVs"	18
+2020 Q3	"South Lanarkshire"	"S12000029"	"Other ULEVs"	25
+2020 Q3	"Stirling"	"S12000030"	"Other ULEVs"	30
+2020 Q3	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	7
+2020 Q3	"West Lothian"	"S12000040"	"Other ULEVs"	14
+2020 Q2	"Aberdeen City"	"S12000033"	"Other ULEVs"	26
+2020 Q2	"Aberdeenshire"	"S12000034"	"Other ULEVs"	37
+2020 Q2	"Angus"	"S12000041"	"Other ULEVs"	11
+2020 Q2	"Argyll and Bute"	"S12000035"	"Other ULEVs"	13
+2020 Q2	"City of Edinburgh"	"S12000036"	"Other ULEVs"	144
+2020 Q2	"Clackmannanshire"	"S12000005"	"Other ULEVs"	7
+2020 Q2	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	9
+2020 Q2	"Dundee City"	"S12000042"	"Other ULEVs"	13
+2020 Q2	"East Ayrshire"	"S12000008"	"Other ULEVs"	6
+2020 Q2	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	18
+2020 Q2	"East Lothian"	"S12000010"	"Other ULEVs"	25
+2020 Q2	"East Renfrewshire"	"S12000011"	"Other ULEVs"	18
+2020 Q2	"Falkirk"	"S12000014"	"Other ULEVs"	11
+2020 Q2	"Fife"	"S12000047"	"Other ULEVs"	33
+2020 Q2	"Glasgow City"	"S12000049"	"Other ULEVs"	55
+2020 Q2	"Highland"	"S12000017"	"Other ULEVs"	16
+2020 Q2	"Inverclyde"	"S12000018"	"Other ULEVs"	7
+2020 Q2	"Midlothian"	"S12000019"	"Other ULEVs"	19
+2020 Q2	"Moray"	"S12000020"	"Other ULEVs"	7
+2020 Q2	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	2
+2020 Q2	"North Ayrshire"	"S12000021"	"Other ULEVs"	12
+2020 Q2	"North Lanarkshire"	"S12000050"	"Other ULEVs"	18
+2020 Q2	"Orkney Islands"	"S12000023"	"Other ULEVs"	3
+2020 Q2	"Perth and Kinross"	"S12000048"	"Other ULEVs"	24
+2020 Q2	"Renfrewshire"	"S12000038"	"Other ULEVs"	88
+2020 Q2	"Scottish Borders"	"S12000026"	"Other ULEVs"	18
+2020 Q2	"Shetland Islands"	"S12000027"	"Other ULEVs"	1
+2020 Q2	"South Ayrshire"	"S12000028"	"Other ULEVs"	17
+2020 Q2	"South Lanarkshire"	"S12000029"	"Other ULEVs"	25
+2020 Q2	"Stirling"	"S12000030"	"Other ULEVs"	33
+2020 Q2	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	7
+2020 Q2	"West Lothian"	"S12000040"	"Other ULEVs"	15
+2020 Q1	"Aberdeen City"	"S12000033"	"Other ULEVs"	27
+2020 Q1	"Aberdeenshire"	"S12000034"	"Other ULEVs"	40
+2020 Q1	"Angus"	"S12000041"	"Other ULEVs"	13
+2020 Q1	"Argyll and Bute"	"S12000035"	"Other ULEVs"	14
+2020 Q1	"City of Edinburgh"	"S12000036"	"Other ULEVs"	145
+2020 Q1	"Clackmannanshire"	"S12000005"	"Other ULEVs"	8
+2020 Q1	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	8
+2020 Q1	"Dundee City"	"S12000042"	"Other ULEVs"	12
+2020 Q1	"East Ayrshire"	"S12000008"	"Other ULEVs"	5
+2020 Q1	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	18
+2020 Q1	"East Lothian"	"S12000010"	"Other ULEVs"	26
+2020 Q1	"East Renfrewshire"	"S12000011"	"Other ULEVs"	20
+2020 Q1	"Falkirk"	"S12000014"	"Other ULEVs"	12
+2020 Q1	"Fife"	"S12000047"	"Other ULEVs"	33
+2020 Q1	"Glasgow City"	"S12000049"	"Other ULEVs"	54
+2020 Q1	"Highland"	"S12000017"	"Other ULEVs"	16
+2020 Q1	"Inverclyde"	"S12000018"	"Other ULEVs"	7
+2020 Q1	"Midlothian"	"S12000019"	"Other ULEVs"	20
+2020 Q1	"Moray"	"S12000020"	"Other ULEVs"	7
+2020 Q1	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	2
+2020 Q1	"North Ayrshire"	"S12000021"	"Other ULEVs"	12
+2020 Q1	"North Lanarkshire"	"S12000050"	"Other ULEVs"	16
+2020 Q1	"Orkney Islands"	"S12000023"	"Other ULEVs"	3
+2020 Q1	"Perth and Kinross"	"S12000048"	"Other ULEVs"	23
+2020 Q1	"Renfrewshire"	"S12000038"	"Other ULEVs"	103
+2020 Q1	"Scottish Borders"	"S12000026"	"Other ULEVs"	18
+2020 Q1	"Shetland Islands"	"S12000027"	"Other ULEVs"	1
+2020 Q1	"South Ayrshire"	"S12000028"	"Other ULEVs"	17
+2020 Q1	"South Lanarkshire"	"S12000029"	"Other ULEVs"	25
+2020 Q1	"Stirling"	"S12000030"	"Other ULEVs"	33
+2020 Q1	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	7
+2020 Q1	"West Lothian"	"S12000040"	"Other ULEVs"	15
+2019 Q4	"Aberdeen City"	"S12000033"	"Other ULEVs"	26
+2019 Q4	"Aberdeenshire"	"S12000034"	"Other ULEVs"	38
+2019 Q4	"Angus"	"S12000041"	"Other ULEVs"	13
+2019 Q4	"Argyll and Bute"	"S12000035"	"Other ULEVs"	13
+2019 Q4	"City of Edinburgh"	"S12000036"	"Other ULEVs"	134
+2019 Q4	"Clackmannanshire"	"S12000005"	"Other ULEVs"	8
+2019 Q4	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	6
+2019 Q4	"Dundee City"	"S12000042"	"Other ULEVs"	12
+2019 Q4	"East Ayrshire"	"S12000008"	"Other ULEVs"	6
+2019 Q4	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	17
+2019 Q4	"East Lothian"	"S12000010"	"Other ULEVs"	27
+2019 Q4	"East Renfrewshire"	"S12000011"	"Other ULEVs"	18
+2019 Q4	"Falkirk"	"S12000014"	"Other ULEVs"	12
+2019 Q4	"Fife"	"S12000047"	"Other ULEVs"	31
+2019 Q4	"Glasgow City"	"S12000049"	"Other ULEVs"	53
+2019 Q4	"Highland"	"S12000017"	"Other ULEVs"	15
+2019 Q4	"Inverclyde"	"S12000018"	"Other ULEVs"	7
+2019 Q4	"Midlothian"	"S12000019"	"Other ULEVs"	19
+2019 Q4	"Moray"	"S12000020"	"Other ULEVs"	7
+2019 Q4	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	3
+2019 Q4	"North Ayrshire"	"S12000021"	"Other ULEVs"	12
+2019 Q4	"North Lanarkshire"	"S12000050"	"Other ULEVs"	15
+2019 Q4	"Orkney Islands"	"S12000023"	"Other ULEVs"	3
+2019 Q4	"Perth and Kinross"	"S12000048"	"Other ULEVs"	23
+2019 Q4	"Renfrewshire"	"S12000038"	"Other ULEVs"	102
+2019 Q4	"Scottish Borders"	"S12000026"	"Other ULEVs"	17
+2019 Q4	"Shetland Islands"	"S12000027"	"Other ULEVs"	1
+2019 Q4	"South Ayrshire"	"S12000028"	"Other ULEVs"	18
+2019 Q4	"South Lanarkshire"	"S12000029"	"Other ULEVs"	24
+2019 Q4	"Stirling"	"S12000030"	"Other ULEVs"	33
+2019 Q4	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	6
+2019 Q4	"West Lothian"	"S12000040"	"Other ULEVs"	11
+2019 Q3	"Aberdeen City"	"S12000033"	"Other ULEVs"	27
+2019 Q3	"Aberdeenshire"	"S12000034"	"Other ULEVs"	36
+2019 Q3	"Angus"	"S12000041"	"Other ULEVs"	13
+2019 Q3	"Argyll and Bute"	"S12000035"	"Other ULEVs"	13
+2019 Q3	"City of Edinburgh"	"S12000036"	"Other ULEVs"	117
+2019 Q3	"Clackmannanshire"	"S12000005"	"Other ULEVs"	8
+2019 Q3	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	6
+2019 Q3	"Dundee City"	"S12000042"	"Other ULEVs"	11
+2019 Q3	"East Ayrshire"	"S12000008"	"Other ULEVs"	7
+2019 Q3	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	14
+2019 Q3	"East Lothian"	"S12000010"	"Other ULEVs"	24
+2019 Q3	"East Renfrewshire"	"S12000011"	"Other ULEVs"	18
+2019 Q3	"Falkirk"	"S12000014"	"Other ULEVs"	11
+2019 Q3	"Fife"	"S12000047"	"Other ULEVs"	29
+2019 Q3	"Glasgow City"	"S12000049"	"Other ULEVs"	53
+2019 Q3	"Highland"	"S12000017"	"Other ULEVs"	16
+2019 Q3	"Inverclyde"	"S12000018"	"Other ULEVs"	7
+2019 Q3	"Midlothian"	"S12000019"	"Other ULEVs"	16
+2019 Q3	"Moray"	"S12000020"	"Other ULEVs"	8
+2019 Q3	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	3
+2019 Q3	"North Ayrshire"	"S12000021"	"Other ULEVs"	14
+2019 Q3	"North Lanarkshire"	"S12000050"	"Other ULEVs"	14
+2019 Q3	"Orkney Islands"	"S12000023"	"Other ULEVs"	2
+2019 Q3	"Perth and Kinross"	"S12000048"	"Other ULEVs"	24
+2019 Q3	"Renfrewshire"	"S12000038"	"Other ULEVs"	106
+2019 Q3	"Scottish Borders"	"S12000026"	"Other ULEVs"	18
+2019 Q3	"Shetland Islands"	"S12000027"	"Other ULEVs"	1
+2019 Q3	"South Ayrshire"	"S12000028"	"Other ULEVs"	16
+2019 Q3	"South Lanarkshire"	"S12000029"	"Other ULEVs"	21
+2019 Q3	"Stirling"	"S12000030"	"Other ULEVs"	35
+2019 Q3	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	6
+2019 Q3	"West Lothian"	"S12000040"	"Other ULEVs"	10
+2019 Q2	"Aberdeen City"	"S12000033"	"Other ULEVs"	25
+2019 Q2	"Aberdeenshire"	"S12000034"	"Other ULEVs"	33
+2019 Q2	"Angus"	"S12000041"	"Other ULEVs"	12
+2019 Q2	"Argyll and Bute"	"S12000035"	"Other ULEVs"	13
+2019 Q2	"City of Edinburgh"	"S12000036"	"Other ULEVs"	101
+2019 Q2	"Clackmannanshire"	"S12000005"	"Other ULEVs"	9
+2019 Q2	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	5
+2019 Q2	"Dundee City"	"S12000042"	"Other ULEVs"	11
+2019 Q2	"East Ayrshire"	"S12000008"	"Other ULEVs"	8
+2019 Q2	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	15
+2019 Q2	"East Lothian"	"S12000010"	"Other ULEVs"	22
+2019 Q2	"East Renfrewshire"	"S12000011"	"Other ULEVs"	15
+2019 Q2	"Falkirk"	"S12000014"	"Other ULEVs"	11
+2019 Q2	"Fife"	"S12000047"	"Other ULEVs"	30
+2019 Q2	"Glasgow City"	"S12000049"	"Other ULEVs"	52
+2019 Q2	"Highland"	"S12000017"	"Other ULEVs"	16
+2019 Q2	"Inverclyde"	"S12000018"	"Other ULEVs"	7
+2019 Q2	"Midlothian"	"S12000019"	"Other ULEVs"	13
+2019 Q2	"Moray"	"S12000020"	"Other ULEVs"	8
+2019 Q2	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	3
+2019 Q2	"North Ayrshire"	"S12000021"	"Other ULEVs"	13
+2019 Q2	"North Lanarkshire"	"S12000050"	"Other ULEVs"	12
+2019 Q2	"Orkney Islands"	"S12000023"	"Other ULEVs"	2
+2019 Q2	"Perth and Kinross"	"S12000048"	"Other ULEVs"	22
+2019 Q2	"Renfrewshire"	"S12000038"	"Other ULEVs"	107
+2019 Q2	"Scottish Borders"	"S12000026"	"Other ULEVs"	17
+2019 Q2	"Shetland Islands"	"S12000027"	"Other ULEVs"	1
+2019 Q2	"South Ayrshire"	"S12000028"	"Other ULEVs"	16
+2019 Q2	"South Lanarkshire"	"S12000029"	"Other ULEVs"	23
+2019 Q2	"Stirling"	"S12000030"	"Other ULEVs"	35
+2019 Q2	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	4
+2019 Q2	"West Lothian"	"S12000040"	"Other ULEVs"	12
+2019 Q1	"Aberdeen City"	"S12000033"	"Other ULEVs"	23
+2019 Q1	"Aberdeenshire"	"S12000034"	"Other ULEVs"	34
+2019 Q1	"Angus"	"S12000041"	"Other ULEVs"	11
+2019 Q1	"Argyll and Bute"	"S12000035"	"Other ULEVs"	13
+2019 Q1	"City of Edinburgh"	"S12000036"	"Other ULEVs"	93
+2019 Q1	"Clackmannanshire"	"S12000005"	"Other ULEVs"	9
+2019 Q1	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	4
+2019 Q1	"Dundee City"	"S12000042"	"Other ULEVs"	10
+2019 Q1	"East Ayrshire"	"S12000008"	"Other ULEVs"	8
+2019 Q1	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	16
+2019 Q1	"East Lothian"	"S12000010"	"Other ULEVs"	23
+2019 Q1	"East Renfrewshire"	"S12000011"	"Other ULEVs"	15
+2019 Q1	"Falkirk"	"S12000014"	"Other ULEVs"	10
+2019 Q1	"Fife"	"S12000047"	"Other ULEVs"	31
+2019 Q1	"Glasgow City"	"S12000049"	"Other ULEVs"	52
+2019 Q1	"Highland"	"S12000017"	"Other ULEVs"	13
+2019 Q1	"Inverclyde"	"S12000018"	"Other ULEVs"	8
+2019 Q1	"Midlothian"	"S12000019"	"Other ULEVs"	11
+2019 Q1	"Moray"	"S12000020"	"Other ULEVs"	7
+2019 Q1	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	2
+2019 Q1	"North Ayrshire"	"S12000021"	"Other ULEVs"	13
+2019 Q1	"North Lanarkshire"	"S12000050"	"Other ULEVs"	11
+2019 Q1	"Orkney Islands"	"S12000023"	"Other ULEVs"	2
+2019 Q1	"Perth and Kinross"	"S12000048"	"Other ULEVs"	18
+2019 Q1	"Renfrewshire"	"S12000038"	"Other ULEVs"	114
+2019 Q1	"Scottish Borders"	"S12000026"	"Other ULEVs"	16
+2019 Q1	"Shetland Islands"	"S12000027"	"Other ULEVs"	1
+2019 Q1	"South Ayrshire"	"S12000028"	"Other ULEVs"	13
+2019 Q1	"South Lanarkshire"	"S12000029"	"Other ULEVs"	22
+2019 Q1	"Stirling"	"S12000030"	"Other ULEVs"	35
+2019 Q1	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	5
+2019 Q1	"West Lothian"	"S12000040"	"Other ULEVs"	13
+2018 Q4	"Aberdeen City"	"S12000033"	"Other ULEVs"	24
+2018 Q4	"Aberdeenshire"	"S12000034"	"Other ULEVs"	34
+2018 Q4	"Angus"	"S12000041"	"Other ULEVs"	10
+2018 Q4	"Argyll and Bute"	"S12000035"	"Other ULEVs"	13
+2018 Q4	"City of Edinburgh"	"S12000036"	"Other ULEVs"	87
+2018 Q4	"Clackmannanshire"	"S12000005"	"Other ULEVs"	7
+2018 Q4	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	3
+2018 Q4	"Dundee City"	"S12000042"	"Other ULEVs"	10
+2018 Q4	"East Ayrshire"	"S12000008"	"Other ULEVs"	8
+2018 Q4	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	15
+2018 Q4	"East Lothian"	"S12000010"	"Other ULEVs"	21
+2018 Q4	"East Renfrewshire"	"S12000011"	"Other ULEVs"	14
+2018 Q4	"Falkirk"	"S12000014"	"Other ULEVs"	8
+2018 Q4	"Fife"	"S12000047"	"Other ULEVs"	32
+2018 Q4	"Glasgow City"	"S12000049"	"Other ULEVs"	45
+2018 Q4	"Highland"	"S12000017"	"Other ULEVs"	14
+2018 Q4	"Inverclyde"	"S12000018"	"Other ULEVs"	8
+2018 Q4	"Midlothian"	"S12000019"	"Other ULEVs"	10
+2018 Q4	"Moray"	"S12000020"	"Other ULEVs"	6
+2018 Q4	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	2
+2018 Q4	"North Ayrshire"	"S12000021"	"Other ULEVs"	15
+2018 Q4	"North Lanarkshire"	"S12000050"	"Other ULEVs"	7
+2018 Q4	"Orkney Islands"	"S12000023"	"Other ULEVs"	2
+2018 Q4	"Perth and Kinross"	"S12000048"	"Other ULEVs"	17
+2018 Q4	"Renfrewshire"	"S12000038"	"Other ULEVs"	116
+2018 Q4	"Scottish Borders"	"S12000026"	"Other ULEVs"	16
+2018 Q4	"Shetland Islands"	"S12000027"	"Other ULEVs"	1
+2018 Q4	"South Ayrshire"	"S12000028"	"Other ULEVs"	11
+2018 Q4	"South Lanarkshire"	"S12000029"	"Other ULEVs"	17
+2018 Q4	"Stirling"	"S12000030"	"Other ULEVs"	34
+2018 Q4	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	4
+2018 Q4	"West Lothian"	"S12000040"	"Other ULEVs"	13
+2018 Q3	"Aberdeen City"	"S12000033"	"Other ULEVs"	22
+2018 Q3	"Aberdeenshire"	"S12000034"	"Other ULEVs"	33
+2018 Q3	"Angus"	"S12000041"	"Other ULEVs"	11
+2018 Q3	"Argyll and Bute"	"S12000035"	"Other ULEVs"	13
+2018 Q3	"City of Edinburgh"	"S12000036"	"Other ULEVs"	78
+2018 Q3	"Clackmannanshire"	"S12000005"	"Other ULEVs"	5
+2018 Q3	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	4
+2018 Q3	"Dundee City"	"S12000042"	"Other ULEVs"	9
+2018 Q3	"East Ayrshire"	"S12000008"	"Other ULEVs"	7
+2018 Q3	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	10
+2018 Q3	"East Lothian"	"S12000010"	"Other ULEVs"	22
+2018 Q3	"East Renfrewshire"	"S12000011"	"Other ULEVs"	9
+2018 Q3	"Falkirk"	"S12000014"	"Other ULEVs"	7
+2018 Q3	"Fife"	"S12000047"	"Other ULEVs"	27
+2018 Q3	"Glasgow City"	"S12000049"	"Other ULEVs"	43
+2018 Q3	"Highland"	"S12000017"	"Other ULEVs"	14
+2018 Q3	"Inverclyde"	"S12000018"	"Other ULEVs"	8
+2018 Q3	"Midlothian"	"S12000019"	"Other ULEVs"	7
+2018 Q3	"Moray"	"S12000020"	"Other ULEVs"	4
+2018 Q3	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	2
+2018 Q3	"North Ayrshire"	"S12000021"	"Other ULEVs"	12
+2018 Q3	"North Lanarkshire"	"S12000050"	"Other ULEVs"	7
+2018 Q3	"Orkney Islands"	"S12000023"	"Other ULEVs"	2
+2018 Q3	"Perth and Kinross"	"S12000048"	"Other ULEVs"	18
+2018 Q3	"Renfrewshire"	"S12000038"	"Other ULEVs"	107
+2018 Q3	"Scottish Borders"	"S12000026"	"Other ULEVs"	18
+2018 Q3	"Shetland Islands"	"S12000027"	"Other ULEVs"	1
+2018 Q3	"South Ayrshire"	"S12000028"	"Other ULEVs"	11
+2018 Q3	"South Lanarkshire"	"S12000029"	"Other ULEVs"	14
+2018 Q3	"Stirling"	"S12000030"	"Other ULEVs"	32
+2018 Q3	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	4
+2018 Q3	"West Lothian"	"S12000040"	"Other ULEVs"	11
+2018 Q2	"Aberdeen City"	"S12000033"	"Other ULEVs"	25
+2018 Q2	"Aberdeenshire"	"S12000034"	"Other ULEVs"	32
+2018 Q2	"Angus"	"S12000041"	"Other ULEVs"	11
+2018 Q2	"Argyll and Bute"	"S12000035"	"Other ULEVs"	12
+2018 Q2	"City of Edinburgh"	"S12000036"	"Other ULEVs"	69
+2018 Q2	"Clackmannanshire"	"S12000005"	"Other ULEVs"	5
+2018 Q2	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	4
+2018 Q2	"Dundee City"	"S12000042"	"Other ULEVs"	8
+2018 Q2	"East Ayrshire"	"S12000008"	"Other ULEVs"	6
+2018 Q2	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	10
+2018 Q2	"East Lothian"	"S12000010"	"Other ULEVs"	19
+2018 Q2	"East Renfrewshire"	"S12000011"	"Other ULEVs"	5
+2018 Q2	"Falkirk"	"S12000014"	"Other ULEVs"	5
+2018 Q2	"Fife"	"S12000047"	"Other ULEVs"	30
+2018 Q2	"Glasgow City"	"S12000049"	"Other ULEVs"	41
+2018 Q2	"Highland"	"S12000017"	"Other ULEVs"	14
+2018 Q2	"Inverclyde"	"S12000018"	"Other ULEVs"	7
+2018 Q2	"Midlothian"	"S12000019"	"Other ULEVs"	7
+2018 Q2	"Moray"	"S12000020"	"Other ULEVs"	4
+2018 Q2	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	2
+2018 Q2	"North Ayrshire"	"S12000021"	"Other ULEVs"	9
+2018 Q2	"North Lanarkshire"	"S12000050"	"Other ULEVs"	8
+2018 Q2	"Orkney Islands"	"S12000023"	"Other ULEVs"	1
+2018 Q2	"Perth and Kinross"	"S12000048"	"Other ULEVs"	16
+2018 Q2	"Renfrewshire"	"S12000038"	"Other ULEVs"	95
+2018 Q2	"Scottish Borders"	"S12000026"	"Other ULEVs"	18
 2018 Q2	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2018 Q2	"South Ayrshire"	"S12000028"	"Other ULEVs"	3
-2018 Q2	"South Lanarkshire"	"S12000029"	"Other ULEVs"	1
-2018 Q2	"Stirling"	"S12000030"	"Other ULEVs"	19
-2018 Q2	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	2
-2018 Q2	"West Lothian"	"S12000040"	"Other ULEVs"	3
-2018 Q1	"Aberdeen City"	"S12000033"	"Other ULEVs"	10
-2018 Q1	"Aberdeenshire"	"S12000034"	"Other ULEVs"	3
-2018 Q1	"Angus"	"S12000041"	"Other ULEVs"	3
-2018 Q1	"Argyll and Bute"	"S12000035"	"Other ULEVs"	4
-2018 Q1	"City of Edinburgh"	"S12000036"	"Other ULEVs"	25
-2018 Q1	"Clackmannanshire"	"S12000005"	"Other ULEVs"	1
-2018 Q1	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	2
-2018 Q1	"Dundee City"	"S12000042"	"Other ULEVs"	1
-2018 Q1	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
-2018 Q1	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	6
-2018 Q1	"East Lothian"	"S12000010"	"Other ULEVs"	4
-2018 Q1	"East Renfrewshire"	"S12000011"	"Other ULEVs"	1
-2018 Q1	"Falkirk"	"S12000014"	"Other ULEVs"	3
-2018 Q1	"Fife"	"S12000047"	"Other ULEVs"	7
-2018 Q1	"Glasgow City"	"S12000049"	"Other ULEVs"	12
-2018 Q1	"Highland"	"S12000017"	"Other ULEVs"	5
-2018 Q1	"Inverclyde"	"S12000018"	"Other ULEVs"	0
-2018 Q1	"Midlothian"	"S12000019"	"Other ULEVs"	1
-2018 Q1	"Moray"	"S12000020"	"Other ULEVs"	0
-2018 Q1	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2018 Q1	"North Ayrshire"	"S12000021"	"Other ULEVs"	2
-2018 Q1	"North Lanarkshire"	"S12000050"	"Other ULEVs"	2
-2018 Q1	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2018 Q1	"Perth and Kinross"	"S12000048"	"Other ULEVs"	3
-2018 Q1	"Renfrewshire"	"S12000038"	"Other ULEVs"	63
-2018 Q1	"Scottish Borders"	"S12000026"	"Other ULEVs"	6
+2018 Q2	"South Ayrshire"	"S12000028"	"Other ULEVs"	10
+2018 Q2	"South Lanarkshire"	"S12000029"	"Other ULEVs"	12
+2018 Q2	"Stirling"	"S12000030"	"Other ULEVs"	32
+2018 Q2	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	4
+2018 Q2	"West Lothian"	"S12000040"	"Other ULEVs"	10
+2018 Q1	"Aberdeen City"	"S12000033"	"Other ULEVs"	25
+2018 Q1	"Aberdeenshire"	"S12000034"	"Other ULEVs"	31
+2018 Q1	"Angus"	"S12000041"	"Other ULEVs"	9
+2018 Q1	"Argyll and Bute"	"S12000035"	"Other ULEVs"	14
+2018 Q1	"City of Edinburgh"	"S12000036"	"Other ULEVs"	63
+2018 Q1	"Clackmannanshire"	"S12000005"	"Other ULEVs"	5
+2018 Q1	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	5
+2018 Q1	"Dundee City"	"S12000042"	"Other ULEVs"	8
+2018 Q1	"East Ayrshire"	"S12000008"	"Other ULEVs"	7
+2018 Q1	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	9
+2018 Q1	"East Lothian"	"S12000010"	"Other ULEVs"	17
+2018 Q1	"East Renfrewshire"	"S12000011"	"Other ULEVs"	6
+2018 Q1	"Falkirk"	"S12000014"	"Other ULEVs"	4
+2018 Q1	"Fife"	"S12000047"	"Other ULEVs"	27
+2018 Q1	"Glasgow City"	"S12000049"	"Other ULEVs"	43
+2018 Q1	"Highland"	"S12000017"	"Other ULEVs"	12
+2018 Q1	"Inverclyde"	"S12000018"	"Other ULEVs"	5
+2018 Q1	"Midlothian"	"S12000019"	"Other ULEVs"	6
+2018 Q1	"Moray"	"S12000020"	"Other ULEVs"	4
+2018 Q1	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	3
+2018 Q1	"North Ayrshire"	"S12000021"	"Other ULEVs"	9
+2018 Q1	"North Lanarkshire"	"S12000050"	"Other ULEVs"	7
+2018 Q1	"Orkney Islands"	"S12000023"	"Other ULEVs"	1
+2018 Q1	"Perth and Kinross"	"S12000048"	"Other ULEVs"	15
+2018 Q1	"Renfrewshire"	"S12000038"	"Other ULEVs"	92
+2018 Q1	"Scottish Borders"	"S12000026"	"Other ULEVs"	18
 2018 Q1	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2018 Q1	"South Ayrshire"	"S12000028"	"Other ULEVs"	2
-2018 Q1	"South Lanarkshire"	"S12000029"	"Other ULEVs"	2
-2018 Q1	"Stirling"	"S12000030"	"Other ULEVs"	19
-2018 Q1	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	2
-2018 Q1	"West Lothian"	"S12000040"	"Other ULEVs"	3
-2017 Q4	"Aberdeen City"	"S12000033"	"Other ULEVs"	10
-2017 Q4	"Aberdeenshire"	"S12000034"	"Other ULEVs"	3
-2017 Q4	"Angus"	"S12000041"	"Other ULEVs"	3
-2017 Q4	"Argyll and Bute"	"S12000035"	"Other ULEVs"	4
-2017 Q4	"City of Edinburgh"	"S12000036"	"Other ULEVs"	22
-2017 Q4	"Clackmannanshire"	"S12000005"	"Other ULEVs"	1
-2017 Q4	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	2
-2017 Q4	"Dundee City"	"S12000042"	"Other ULEVs"	2
-2017 Q4	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
-2017 Q4	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	7
-2017 Q4	"East Lothian"	"S12000010"	"Other ULEVs"	2
-2017 Q4	"East Renfrewshire"	"S12000011"	"Other ULEVs"	1
-2017 Q4	"Falkirk"	"S12000014"	"Other ULEVs"	2
-2017 Q4	"Fife"	"S12000047"	"Other ULEVs"	6
-2017 Q4	"Glasgow City"	"S12000049"	"Other ULEVs"	8
-2017 Q4	"Highland"	"S12000017"	"Other ULEVs"	4
-2017 Q4	"Inverclyde"	"S12000018"	"Other ULEVs"	0
-2017 Q4	"Midlothian"	"S12000019"	"Other ULEVs"	1
-2017 Q4	"Moray"	"S12000020"	"Other ULEVs"	0
-2017 Q4	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2017 Q4	"North Ayrshire"	"S12000021"	"Other ULEVs"	2
-2017 Q4	"North Lanarkshire"	"S12000050"	"Other ULEVs"	2
+2018 Q1	"South Ayrshire"	"S12000028"	"Other ULEVs"	7
+2018 Q1	"South Lanarkshire"	"S12000029"	"Other ULEVs"	12
+2018 Q1	"Stirling"	"S12000030"	"Other ULEVs"	31
+2018 Q1	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	3
+2018 Q1	"West Lothian"	"S12000040"	"Other ULEVs"	8
+2017 Q4	"Aberdeen City"	"S12000033"	"Other ULEVs"	25
+2017 Q4	"Aberdeenshire"	"S12000034"	"Other ULEVs"	25
+2017 Q4	"Angus"	"S12000041"	"Other ULEVs"	8
+2017 Q4	"Argyll and Bute"	"S12000035"	"Other ULEVs"	14
+2017 Q4	"City of Edinburgh"	"S12000036"	"Other ULEVs"	54
+2017 Q4	"Clackmannanshire"	"S12000005"	"Other ULEVs"	5
+2017 Q4	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	6
+2017 Q4	"Dundee City"	"S12000042"	"Other ULEVs"	10
+2017 Q4	"East Ayrshire"	"S12000008"	"Other ULEVs"	7
+2017 Q4	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	11
+2017 Q4	"East Lothian"	"S12000010"	"Other ULEVs"	12
+2017 Q4	"East Renfrewshire"	"S12000011"	"Other ULEVs"	7
+2017 Q4	"Falkirk"	"S12000014"	"Other ULEVs"	3
+2017 Q4	"Fife"	"S12000047"	"Other ULEVs"	26
+2017 Q4	"Glasgow City"	"S12000049"	"Other ULEVs"	38
+2017 Q4	"Highland"	"S12000017"	"Other ULEVs"	12
+2017 Q4	"Inverclyde"	"S12000018"	"Other ULEVs"	4
+2017 Q4	"Midlothian"	"S12000019"	"Other ULEVs"	5
+2017 Q4	"Moray"	"S12000020"	"Other ULEVs"	4
+2017 Q4	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	3
+2017 Q4	"North Ayrshire"	"S12000021"	"Other ULEVs"	7
+2017 Q4	"North Lanarkshire"	"S12000050"	"Other ULEVs"	10
 2017 Q4	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2017 Q4	"Perth and Kinross"	"S12000048"	"Other ULEVs"	1
-2017 Q4	"Renfrewshire"	"S12000038"	"Other ULEVs"	56
-2017 Q4	"Scottish Borders"	"S12000026"	"Other ULEVs"	6
+2017 Q4	"Perth and Kinross"	"S12000048"	"Other ULEVs"	11
+2017 Q4	"Renfrewshire"	"S12000038"	"Other ULEVs"	81
+2017 Q4	"Scottish Borders"	"S12000026"	"Other ULEVs"	17
 2017 Q4	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2017 Q4	"South Ayrshire"	"S12000028"	"Other ULEVs"	2
-2017 Q4	"South Lanarkshire"	"S12000029"	"Other ULEVs"	2
-2017 Q4	"Stirling"	"S12000030"	"Other ULEVs"	16
-2017 Q4	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	2
-2017 Q4	"West Lothian"	"S12000040"	"Other ULEVs"	3
-2017 Q3	"Aberdeen City"	"S12000033"	"Other ULEVs"	7
-2017 Q3	"Aberdeenshire"	"S12000034"	"Other ULEVs"	4
-2017 Q3	"Angus"	"S12000041"	"Other ULEVs"	1
-2017 Q3	"Argyll and Bute"	"S12000035"	"Other ULEVs"	4
-2017 Q3	"City of Edinburgh"	"S12000036"	"Other ULEVs"	17
-2017 Q3	"Clackmannanshire"	"S12000005"	"Other ULEVs"	0
-2017 Q3	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	2
-2017 Q3	"Dundee City"	"S12000042"	"Other ULEVs"	1
-2017 Q3	"East Ayrshire"	"S12000008"	"Other ULEVs"	1
-2017 Q3	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	5
-2017 Q3	"East Lothian"	"S12000010"	"Other ULEVs"	0
-2017 Q3	"East Renfrewshire"	"S12000011"	"Other ULEVs"	1
-2017 Q3	"Falkirk"	"S12000014"	"Other ULEVs"	2
-2017 Q3	"Fife"	"S12000047"	"Other ULEVs"	6
-2017 Q3	"Glasgow City"	"S12000049"	"Other ULEVs"	5
-2017 Q3	"Highland"	"S12000017"	"Other ULEVs"	3
-2017 Q3	"Inverclyde"	"S12000018"	"Other ULEVs"	0
-2017 Q3	"Midlothian"	"S12000019"	"Other ULEVs"	1
-2017 Q3	"Moray"	"S12000020"	"Other ULEVs"	0
-2017 Q3	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2017 Q3	"North Ayrshire"	"S12000021"	"Other ULEVs"	2
-2017 Q3	"North Lanarkshire"	"S12000050"	"Other ULEVs"	2
+2017 Q4	"South Ayrshire"	"S12000028"	"Other ULEVs"	8
+2017 Q4	"South Lanarkshire"	"S12000029"	"Other ULEVs"	12
+2017 Q4	"Stirling"	"S12000030"	"Other ULEVs"	27
+2017 Q4	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	3
+2017 Q4	"West Lothian"	"S12000040"	"Other ULEVs"	10
+2017 Q3	"Aberdeen City"	"S12000033"	"Other ULEVs"	21
+2017 Q3	"Aberdeenshire"	"S12000034"	"Other ULEVs"	27
+2017 Q3	"Angus"	"S12000041"	"Other ULEVs"	6
+2017 Q3	"Argyll and Bute"	"S12000035"	"Other ULEVs"	12
+2017 Q3	"City of Edinburgh"	"S12000036"	"Other ULEVs"	41
+2017 Q3	"Clackmannanshire"	"S12000005"	"Other ULEVs"	4
+2017 Q3	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	6
+2017 Q3	"Dundee City"	"S12000042"	"Other ULEVs"	8
+2017 Q3	"East Ayrshire"	"S12000008"	"Other ULEVs"	8
+2017 Q3	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	7
+2017 Q3	"East Lothian"	"S12000010"	"Other ULEVs"	8
+2017 Q3	"East Renfrewshire"	"S12000011"	"Other ULEVs"	11
+2017 Q3	"Falkirk"	"S12000014"	"Other ULEVs"	4
+2017 Q3	"Fife"	"S12000047"	"Other ULEVs"	25
+2017 Q3	"Glasgow City"	"S12000049"	"Other ULEVs"	30
+2017 Q3	"Highland"	"S12000017"	"Other ULEVs"	10
+2017 Q3	"Inverclyde"	"S12000018"	"Other ULEVs"	3
+2017 Q3	"Midlothian"	"S12000019"	"Other ULEVs"	4
+2017 Q3	"Moray"	"S12000020"	"Other ULEVs"	3
+2017 Q3	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	3
+2017 Q3	"North Ayrshire"	"S12000021"	"Other ULEVs"	7
+2017 Q3	"North Lanarkshire"	"S12000050"	"Other ULEVs"	8
 2017 Q3	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2017 Q3	"Perth and Kinross"	"S12000048"	"Other ULEVs"	2
-2017 Q3	"Renfrewshire"	"S12000038"	"Other ULEVs"	47
-2017 Q3	"Scottish Borders"	"S12000026"	"Other ULEVs"	4
+2017 Q3	"Perth and Kinross"	"S12000048"	"Other ULEVs"	12
+2017 Q3	"Renfrewshire"	"S12000038"	"Other ULEVs"	68
+2017 Q3	"Scottish Borders"	"S12000026"	"Other ULEVs"	12
 2017 Q3	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2017 Q3	"South Ayrshire"	"S12000028"	"Other ULEVs"	1
-2017 Q3	"South Lanarkshire"	"S12000029"	"Other ULEVs"	2
-2017 Q3	"Stirling"	"S12000030"	"Other ULEVs"	13
-2017 Q3	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	1
-2017 Q3	"West Lothian"	"S12000040"	"Other ULEVs"	3
-2017 Q2	"Aberdeen City"	"S12000033"	"Other ULEVs"	7
-2017 Q2	"Aberdeenshire"	"S12000034"	"Other ULEVs"	4
-2017 Q2	"Angus"	"S12000041"	"Other ULEVs"	0
-2017 Q2	"Argyll and Bute"	"S12000035"	"Other ULEVs"	4
-2017 Q2	"City of Edinburgh"	"S12000036"	"Other ULEVs"	13
-2017 Q2	"Clackmannanshire"	"S12000005"	"Other ULEVs"	0
-2017 Q2	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	2
-2017 Q2	"Dundee City"	"S12000042"	"Other ULEVs"	1
-2017 Q2	"East Ayrshire"	"S12000008"	"Other ULEVs"	1
-2017 Q2	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	5
-2017 Q2	"East Lothian"	"S12000010"	"Other ULEVs"	0
-2017 Q2	"East Renfrewshire"	"S12000011"	"Other ULEVs"	1
-2017 Q2	"Falkirk"	"S12000014"	"Other ULEVs"	2
-2017 Q2	"Fife"	"S12000047"	"Other ULEVs"	5
-2017 Q2	"Glasgow City"	"S12000049"	"Other ULEVs"	8
-2017 Q2	"Highland"	"S12000017"	"Other ULEVs"	2
-2017 Q2	"Inverclyde"	"S12000018"	"Other ULEVs"	0
-2017 Q2	"Midlothian"	"S12000019"	"Other ULEVs"	1
-2017 Q2	"Moray"	"S12000020"	"Other ULEVs"	0
-2017 Q2	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2017 Q2	"North Ayrshire"	"S12000021"	"Other ULEVs"	2
-2017 Q2	"North Lanarkshire"	"S12000050"	"Other ULEVs"	2
+2017 Q3	"South Ayrshire"	"S12000028"	"Other ULEVs"	5
+2017 Q3	"South Lanarkshire"	"S12000029"	"Other ULEVs"	11
+2017 Q3	"Stirling"	"S12000030"	"Other ULEVs"	23
+2017 Q3	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	2
+2017 Q3	"West Lothian"	"S12000040"	"Other ULEVs"	10
+2017 Q2	"Aberdeen City"	"S12000033"	"Other ULEVs"	20
+2017 Q2	"Aberdeenshire"	"S12000034"	"Other ULEVs"	28
+2017 Q2	"Angus"	"S12000041"	"Other ULEVs"	5
+2017 Q2	"Argyll and Bute"	"S12000035"	"Other ULEVs"	12
+2017 Q2	"City of Edinburgh"	"S12000036"	"Other ULEVs"	35
+2017 Q2	"Clackmannanshire"	"S12000005"	"Other ULEVs"	3
+2017 Q2	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	6
+2017 Q2	"Dundee City"	"S12000042"	"Other ULEVs"	8
+2017 Q2	"East Ayrshire"	"S12000008"	"Other ULEVs"	8
+2017 Q2	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	7
+2017 Q2	"East Lothian"	"S12000010"	"Other ULEVs"	6
+2017 Q2	"East Renfrewshire"	"S12000011"	"Other ULEVs"	11
+2017 Q2	"Falkirk"	"S12000014"	"Other ULEVs"	4
+2017 Q2	"Fife"	"S12000047"	"Other ULEVs"	24
+2017 Q2	"Glasgow City"	"S12000049"	"Other ULEVs"	32
+2017 Q2	"Highland"	"S12000017"	"Other ULEVs"	9
+2017 Q2	"Inverclyde"	"S12000018"	"Other ULEVs"	3
+2017 Q2	"Midlothian"	"S12000019"	"Other ULEVs"	3
+2017 Q2	"Moray"	"S12000020"	"Other ULEVs"	2
+2017 Q2	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	3
+2017 Q2	"North Ayrshire"	"S12000021"	"Other ULEVs"	8
+2017 Q2	"North Lanarkshire"	"S12000050"	"Other ULEVs"	9
 2017 Q2	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2017 Q2	"Perth and Kinross"	"S12000048"	"Other ULEVs"	2
-2017 Q2	"Renfrewshire"	"S12000038"	"Other ULEVs"	32
-2017 Q2	"Scottish Borders"	"S12000026"	"Other ULEVs"	2
+2017 Q2	"Perth and Kinross"	"S12000048"	"Other ULEVs"	10
+2017 Q2	"Renfrewshire"	"S12000038"	"Other ULEVs"	48
+2017 Q2	"Scottish Borders"	"S12000026"	"Other ULEVs"	10
 2017 Q2	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2017 Q2	"South Ayrshire"	"S12000028"	"Other ULEVs"	1
-2017 Q2	"South Lanarkshire"	"S12000029"	"Other ULEVs"	2
-2017 Q2	"Stirling"	"S12000030"	"Other ULEVs"	11
-2017 Q2	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	1
-2017 Q2	"West Lothian"	"S12000040"	"Other ULEVs"	3
-2017 Q1	"Aberdeen City"	"S12000033"	"Other ULEVs"	4
-2017 Q1	"Aberdeenshire"	"S12000034"	"Other ULEVs"	3
-2017 Q1	"Angus"	"S12000041"	"Other ULEVs"	0
-2017 Q1	"Argyll and Bute"	"S12000035"	"Other ULEVs"	4
-2017 Q1	"City of Edinburgh"	"S12000036"	"Other ULEVs"	10
-2017 Q1	"Clackmannanshire"	"S12000005"	"Other ULEVs"	0
-2017 Q1	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	1
-2017 Q1	"Dundee City"	"S12000042"	"Other ULEVs"	2
-2017 Q1	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
-2017 Q1	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	4
-2017 Q1	"East Lothian"	"S12000010"	"Other ULEVs"	0
-2017 Q1	"East Renfrewshire"	"S12000011"	"Other ULEVs"	1
-2017 Q1	"Falkirk"	"S12000014"	"Other ULEVs"	2
-2017 Q1	"Fife"	"S12000047"	"Other ULEVs"	3
-2017 Q1	"Glasgow City"	"S12000049"	"Other ULEVs"	6
-2017 Q1	"Highland"	"S12000017"	"Other ULEVs"	2
-2017 Q1	"Inverclyde"	"S12000018"	"Other ULEVs"	0
-2017 Q1	"Midlothian"	"S12000019"	"Other ULEVs"	1
-2017 Q1	"Moray"	"S12000020"	"Other ULEVs"	0
-2017 Q1	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2017 Q1	"North Ayrshire"	"S12000021"	"Other ULEVs"	1
-2017 Q1	"North Lanarkshire"	"S12000050"	"Other ULEVs"	2
+2017 Q2	"South Ayrshire"	"S12000028"	"Other ULEVs"	5
+2017 Q2	"South Lanarkshire"	"S12000029"	"Other ULEVs"	9
+2017 Q2	"Stirling"	"S12000030"	"Other ULEVs"	19
+2017 Q2	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	2
+2017 Q2	"West Lothian"	"S12000040"	"Other ULEVs"	9
+2017 Q1	"Aberdeen City"	"S12000033"	"Other ULEVs"	15
+2017 Q1	"Aberdeenshire"	"S12000034"	"Other ULEVs"	26
+2017 Q1	"Angus"	"S12000041"	"Other ULEVs"	5
+2017 Q1	"Argyll and Bute"	"S12000035"	"Other ULEVs"	11
+2017 Q1	"City of Edinburgh"	"S12000036"	"Other ULEVs"	29
+2017 Q1	"Clackmannanshire"	"S12000005"	"Other ULEVs"	2
+2017 Q1	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	5
+2017 Q1	"Dundee City"	"S12000042"	"Other ULEVs"	8
+2017 Q1	"East Ayrshire"	"S12000008"	"Other ULEVs"	8
+2017 Q1	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	6
+2017 Q1	"East Lothian"	"S12000010"	"Other ULEVs"	4
+2017 Q1	"East Renfrewshire"	"S12000011"	"Other ULEVs"	11
+2017 Q1	"Falkirk"	"S12000014"	"Other ULEVs"	4
+2017 Q1	"Fife"	"S12000047"	"Other ULEVs"	21
+2017 Q1	"Glasgow City"	"S12000049"	"Other ULEVs"	27
+2017 Q1	"Highland"	"S12000017"	"Other ULEVs"	7
+2017 Q1	"Inverclyde"	"S12000018"	"Other ULEVs"	2
+2017 Q1	"Midlothian"	"S12000019"	"Other ULEVs"	4
+2017 Q1	"Moray"	"S12000020"	"Other ULEVs"	1
+2017 Q1	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	3
+2017 Q1	"North Ayrshire"	"S12000021"	"Other ULEVs"	5
+2017 Q1	"North Lanarkshire"	"S12000050"	"Other ULEVs"	9
 2017 Q1	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2017 Q1	"Perth and Kinross"	"S12000048"	"Other ULEVs"	2
-2017 Q1	"Renfrewshire"	"S12000038"	"Other ULEVs"	20
-2017 Q1	"Scottish Borders"	"S12000026"	"Other ULEVs"	2
+2017 Q1	"Perth and Kinross"	"S12000048"	"Other ULEVs"	9
+2017 Q1	"Renfrewshire"	"S12000038"	"Other ULEVs"	33
+2017 Q1	"Scottish Borders"	"S12000026"	"Other ULEVs"	10
 2017 Q1	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2017 Q1	"South Ayrshire"	"S12000028"	"Other ULEVs"	0
-2017 Q1	"South Lanarkshire"	"S12000029"	"Other ULEVs"	1
-2017 Q1	"Stirling"	"S12000030"	"Other ULEVs"	7
-2017 Q1	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	1
-2017 Q1	"West Lothian"	"S12000040"	"Other ULEVs"	2
-2016 Q4	"Aberdeen City"	"S12000033"	"Other ULEVs"	7
-2016 Q4	"Aberdeenshire"	"S12000034"	"Other ULEVs"	2
-2016 Q4	"Angus"	"S12000041"	"Other ULEVs"	0
-2016 Q4	"Argyll and Bute"	"S12000035"	"Other ULEVs"	4
-2016 Q4	"City of Edinburgh"	"S12000036"	"Other ULEVs"	6
-2016 Q4	"Clackmannanshire"	"S12000005"	"Other ULEVs"	0
-2016 Q4	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	1
-2016 Q4	"Dundee City"	"S12000042"	"Other ULEVs"	2
-2016 Q4	"East Ayrshire"	"S12000008"	"Other ULEVs"	1
-2016 Q4	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	5
-2016 Q4	"East Lothian"	"S12000010"	"Other ULEVs"	0
-2016 Q4	"East Renfrewshire"	"S12000011"	"Other ULEVs"	0
-2016 Q4	"Falkirk"	"S12000014"	"Other ULEVs"	1
-2016 Q4	"Fife"	"S12000047"	"Other ULEVs"	2
-2016 Q4	"Glasgow City"	"S12000049"	"Other ULEVs"	2
-2016 Q4	"Highland"	"S12000017"	"Other ULEVs"	2
-2016 Q4	"Inverclyde"	"S12000018"	"Other ULEVs"	0
-2016 Q4	"Midlothian"	"S12000019"	"Other ULEVs"	0
-2016 Q4	"Moray"	"S12000020"	"Other ULEVs"	0
-2016 Q4	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2016 Q4	"North Ayrshire"	"S12000021"	"Other ULEVs"	0
-2016 Q4	"North Lanarkshire"	"S12000050"	"Other ULEVs"	1
+2017 Q1	"South Ayrshire"	"S12000028"	"Other ULEVs"	3
+2017 Q1	"South Lanarkshire"	"S12000029"	"Other ULEVs"	6
+2017 Q1	"Stirling"	"S12000030"	"Other ULEVs"	15
+2017 Q1	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	2
+2017 Q1	"West Lothian"	"S12000040"	"Other ULEVs"	8
+2016 Q4	"Aberdeen City"	"S12000033"	"Other ULEVs"	20
+2016 Q4	"Aberdeenshire"	"S12000034"	"Other ULEVs"	26
+2016 Q4	"Angus"	"S12000041"	"Other ULEVs"	3
+2016 Q4	"Argyll and Bute"	"S12000035"	"Other ULEVs"	9
+2016 Q4	"City of Edinburgh"	"S12000036"	"Other ULEVs"	22
+2016 Q4	"Clackmannanshire"	"S12000005"	"Other ULEVs"	2
+2016 Q4	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	4
+2016 Q4	"Dundee City"	"S12000042"	"Other ULEVs"	4
+2016 Q4	"East Ayrshire"	"S12000008"	"Other ULEVs"	7
+2016 Q4	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	7
+2016 Q4	"East Lothian"	"S12000010"	"Other ULEVs"	4
+2016 Q4	"East Renfrewshire"	"S12000011"	"Other ULEVs"	3
+2016 Q4	"Falkirk"	"S12000014"	"Other ULEVs"	3
+2016 Q4	"Fife"	"S12000047"	"Other ULEVs"	19
+2016 Q4	"Glasgow City"	"S12000049"	"Other ULEVs"	22
+2016 Q4	"Highland"	"S12000017"	"Other ULEVs"	6
+2016 Q4	"Inverclyde"	"S12000018"	"Other ULEVs"	3
+2016 Q4	"Midlothian"	"S12000019"	"Other ULEVs"	2
+2016 Q4	"Moray"	"S12000020"	"Other ULEVs"	1
+2016 Q4	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	2
+2016 Q4	"North Ayrshire"	"S12000021"	"Other ULEVs"	2
+2016 Q4	"North Lanarkshire"	"S12000050"	"Other ULEVs"	6
 2016 Q4	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2016 Q4	"Perth and Kinross"	"S12000048"	"Other ULEVs"	1
-2016 Q4	"Renfrewshire"	"S12000038"	"Other ULEVs"	12
-2016 Q4	"Scottish Borders"	"S12000026"	"Other ULEVs"	2
+2016 Q4	"Perth and Kinross"	"S12000048"	"Other ULEVs"	5
+2016 Q4	"Renfrewshire"	"S12000038"	"Other ULEVs"	23
+2016 Q4	"Scottish Borders"	"S12000026"	"Other ULEVs"	8
 2016 Q4	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2016 Q4	"South Ayrshire"	"S12000028"	"Other ULEVs"	0
-2016 Q4	"South Lanarkshire"	"S12000029"	"Other ULEVs"	1
-2016 Q4	"Stirling"	"S12000030"	"Other ULEVs"	5
+2016 Q4	"South Ayrshire"	"S12000028"	"Other ULEVs"	3
+2016 Q4	"South Lanarkshire"	"S12000029"	"Other ULEVs"	6
+2016 Q4	"Stirling"	"S12000030"	"Other ULEVs"	13
 2016 Q4	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	1
-2016 Q4	"West Lothian"	"S12000040"	"Other ULEVs"	2
-2016 Q3	"Aberdeen City"	"S12000033"	"Other ULEVs"	5
-2016 Q3	"Aberdeenshire"	"S12000034"	"Other ULEVs"	3
-2016 Q3	"Angus"	"S12000041"	"Other ULEVs"	0
-2016 Q3	"Argyll and Bute"	"S12000035"	"Other ULEVs"	3
-2016 Q3	"City of Edinburgh"	"S12000036"	"Other ULEVs"	5
-2016 Q3	"Clackmannanshire"	"S12000005"	"Other ULEVs"	0
-2016 Q3	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	1
-2016 Q3	"Dundee City"	"S12000042"	"Other ULEVs"	1
-2016 Q3	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
-2016 Q3	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	2
-2016 Q3	"East Lothian"	"S12000010"	"Other ULEVs"	0
-2016 Q3	"East Renfrewshire"	"S12000011"	"Other ULEVs"	0
-2016 Q3	"Falkirk"	"S12000014"	"Other ULEVs"	1
-2016 Q3	"Fife"	"S12000047"	"Other ULEVs"	2
-2016 Q3	"Glasgow City"	"S12000049"	"Other ULEVs"	3
-2016 Q3	"Highland"	"S12000017"	"Other ULEVs"	1
-2016 Q3	"Inverclyde"	"S12000018"	"Other ULEVs"	0
-2016 Q3	"Midlothian"	"S12000019"	"Other ULEVs"	0
-2016 Q3	"Moray"	"S12000020"	"Other ULEVs"	0
-2016 Q3	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2016 Q3	"North Ayrshire"	"S12000021"	"Other ULEVs"	0
-2016 Q3	"North Lanarkshire"	"S12000050"	"Other ULEVs"	1
+2016 Q4	"West Lothian"	"S12000040"	"Other ULEVs"	9
+2016 Q3	"Aberdeen City"	"S12000033"	"Other ULEVs"	15
+2016 Q3	"Aberdeenshire"	"S12000034"	"Other ULEVs"	23
+2016 Q3	"Angus"	"S12000041"	"Other ULEVs"	2
+2016 Q3	"Argyll and Bute"	"S12000035"	"Other ULEVs"	8
+2016 Q3	"City of Edinburgh"	"S12000036"	"Other ULEVs"	19
+2016 Q3	"Clackmannanshire"	"S12000005"	"Other ULEVs"	1
+2016 Q3	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	3
+2016 Q3	"Dundee City"	"S12000042"	"Other ULEVs"	3
+2016 Q3	"East Ayrshire"	"S12000008"	"Other ULEVs"	5
+2016 Q3	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	4
+2016 Q3	"East Lothian"	"S12000010"	"Other ULEVs"	3
+2016 Q3	"East Renfrewshire"	"S12000011"	"Other ULEVs"	3
+2016 Q3	"Falkirk"	"S12000014"	"Other ULEVs"	4
+2016 Q3	"Fife"	"S12000047"	"Other ULEVs"	16
+2016 Q3	"Glasgow City"	"S12000049"	"Other ULEVs"	21
+2016 Q3	"Highland"	"S12000017"	"Other ULEVs"	6
+2016 Q3	"Inverclyde"	"S12000018"	"Other ULEVs"	3
+2016 Q3	"Midlothian"	"S12000019"	"Other ULEVs"	2
+2016 Q3	"Moray"	"S12000020"	"Other ULEVs"	3
+2016 Q3	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	2
+2016 Q3	"North Ayrshire"	"S12000021"	"Other ULEVs"	3
+2016 Q3	"North Lanarkshire"	"S12000050"	"Other ULEVs"	5
 2016 Q3	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2016 Q3	"Perth and Kinross"	"S12000048"	"Other ULEVs"	0
-2016 Q3	"Renfrewshire"	"S12000038"	"Other ULEVs"	6
-2016 Q3	"Scottish Borders"	"S12000026"	"Other ULEVs"	2
+2016 Q3	"Perth and Kinross"	"S12000048"	"Other ULEVs"	6
+2016 Q3	"Renfrewshire"	"S12000038"	"Other ULEVs"	14
+2016 Q3	"Scottish Borders"	"S12000026"	"Other ULEVs"	8
 2016 Q3	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2016 Q3	"South Ayrshire"	"S12000028"	"Other ULEVs"	0
-2016 Q3	"South Lanarkshire"	"S12000029"	"Other ULEVs"	1
-2016 Q3	"Stirling"	"S12000030"	"Other ULEVs"	4
+2016 Q3	"South Ayrshire"	"S12000028"	"Other ULEVs"	4
+2016 Q3	"South Lanarkshire"	"S12000029"	"Other ULEVs"	5
+2016 Q3	"Stirling"	"S12000030"	"Other ULEVs"	12
 2016 Q3	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	1
-2016 Q3	"West Lothian"	"S12000040"	"Other ULEVs"	0
-2016 Q2	"Aberdeen City"	"S12000033"	"Other ULEVs"	3
-2016 Q2	"Aberdeenshire"	"S12000034"	"Other ULEVs"	2
-2016 Q2	"Angus"	"S12000041"	"Other ULEVs"	0
-2016 Q2	"Argyll and Bute"	"S12000035"	"Other ULEVs"	1
-2016 Q2	"City of Edinburgh"	"S12000036"	"Other ULEVs"	2
-2016 Q2	"Clackmannanshire"	"S12000005"	"Other ULEVs"	0
-2016 Q2	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	0
-2016 Q2	"Dundee City"	"S12000042"	"Other ULEVs"	1
-2016 Q2	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
-2016 Q2	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	2
-2016 Q2	"East Lothian"	"S12000010"	"Other ULEVs"	0
-2016 Q2	"East Renfrewshire"	"S12000011"	"Other ULEVs"	0
-2016 Q2	"Falkirk"	"S12000014"	"Other ULEVs"	1
-2016 Q2	"Fife"	"S12000047"	"Other ULEVs"	2
-2016 Q2	"Glasgow City"	"S12000049"	"Other ULEVs"	2
-2016 Q2	"Highland"	"S12000017"	"Other ULEVs"	0
-2016 Q2	"Inverclyde"	"S12000018"	"Other ULEVs"	0
-2016 Q2	"Midlothian"	"S12000019"	"Other ULEVs"	0
-2016 Q2	"Moray"	"S12000020"	"Other ULEVs"	0
-2016 Q2	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2016 Q2	"North Ayrshire"	"S12000021"	"Other ULEVs"	0
-2016 Q2	"North Lanarkshire"	"S12000050"	"Other ULEVs"	1
+2016 Q3	"West Lothian"	"S12000040"	"Other ULEVs"	5
+2016 Q2	"Aberdeen City"	"S12000033"	"Other ULEVs"	21
+2016 Q2	"Aberdeenshire"	"S12000034"	"Other ULEVs"	21
+2016 Q2	"Angus"	"S12000041"	"Other ULEVs"	1
+2016 Q2	"Argyll and Bute"	"S12000035"	"Other ULEVs"	6
+2016 Q2	"City of Edinburgh"	"S12000036"	"Other ULEVs"	16
+2016 Q2	"Clackmannanshire"	"S12000005"	"Other ULEVs"	1
+2016 Q2	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	2
+2016 Q2	"Dundee City"	"S12000042"	"Other ULEVs"	3
+2016 Q2	"East Ayrshire"	"S12000008"	"Other ULEVs"	4
+2016 Q2	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	3
+2016 Q2	"East Lothian"	"S12000010"	"Other ULEVs"	4
+2016 Q2	"East Renfrewshire"	"S12000011"	"Other ULEVs"	3
+2016 Q2	"Falkirk"	"S12000014"	"Other ULEVs"	4
+2016 Q2	"Fife"	"S12000047"	"Other ULEVs"	16
+2016 Q2	"Glasgow City"	"S12000049"	"Other ULEVs"	21
+2016 Q2	"Highland"	"S12000017"	"Other ULEVs"	6
+2016 Q2	"Inverclyde"	"S12000018"	"Other ULEVs"	1
+2016 Q2	"Midlothian"	"S12000019"	"Other ULEVs"	1
+2016 Q2	"Moray"	"S12000020"	"Other ULEVs"	3
+2016 Q2	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	2
+2016 Q2	"North Ayrshire"	"S12000021"	"Other ULEVs"	4
+2016 Q2	"North Lanarkshire"	"S12000050"	"Other ULEVs"	4
 2016 Q2	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2016 Q2	"Perth and Kinross"	"S12000048"	"Other ULEVs"	0
-2016 Q2	"Renfrewshire"	"S12000038"	"Other ULEVs"	3
-2016 Q2	"Scottish Borders"	"S12000026"	"Other ULEVs"	2
+2016 Q2	"Perth and Kinross"	"S12000048"	"Other ULEVs"	5
+2016 Q2	"Renfrewshire"	"S12000038"	"Other ULEVs"	12
+2016 Q2	"Scottish Borders"	"S12000026"	"Other ULEVs"	8
 2016 Q2	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2016 Q2	"South Ayrshire"	"S12000028"	"Other ULEVs"	0
-2016 Q2	"South Lanarkshire"	"S12000029"	"Other ULEVs"	1
-2016 Q2	"Stirling"	"S12000030"	"Other ULEVs"	4
+2016 Q2	"South Ayrshire"	"S12000028"	"Other ULEVs"	5
+2016 Q2	"South Lanarkshire"	"S12000029"	"Other ULEVs"	4
+2016 Q2	"Stirling"	"S12000030"	"Other ULEVs"	11
 2016 Q2	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	1
-2016 Q2	"West Lothian"	"S12000040"	"Other ULEVs"	0
-2016 Q1	"Aberdeen City"	"S12000033"	"Other ULEVs"	2
-2016 Q1	"Aberdeenshire"	"S12000034"	"Other ULEVs"	0
-2016 Q1	"Angus"	"S12000041"	"Other ULEVs"	0
-2016 Q1	"Argyll and Bute"	"S12000035"	"Other ULEVs"	0
-2016 Q1	"City of Edinburgh"	"S12000036"	"Other ULEVs"	1
+2016 Q2	"West Lothian"	"S12000040"	"Other ULEVs"	4
+2016 Q1	"Aberdeen City"	"S12000033"	"Other ULEVs"	20
+2016 Q1	"Aberdeenshire"	"S12000034"	"Other ULEVs"	19
+2016 Q1	"Angus"	"S12000041"	"Other ULEVs"	1
+2016 Q1	"Argyll and Bute"	"S12000035"	"Other ULEVs"	5
+2016 Q1	"City of Edinburgh"	"S12000036"	"Other ULEVs"	12
 2016 Q1	"Clackmannanshire"	"S12000005"	"Other ULEVs"	0
-2016 Q1	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	0
-2016 Q1	"Dundee City"	"S12000042"	"Other ULEVs"	0
-2016 Q1	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
-2016 Q1	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	0
-2016 Q1	"East Lothian"	"S12000010"	"Other ULEVs"	0
-2016 Q1	"East Renfrewshire"	"S12000011"	"Other ULEVs"	0
-2016 Q1	"Falkirk"	"S12000014"	"Other ULEVs"	0
-2016 Q1	"Fife"	"S12000047"	"Other ULEVs"	0
-2016 Q1	"Glasgow City"	"S12000049"	"Other ULEVs"	2
-2016 Q1	"Highland"	"S12000017"	"Other ULEVs"	0
-2016 Q1	"Inverclyde"	"S12000018"	"Other ULEVs"	0
-2016 Q1	"Midlothian"	"S12000019"	"Other ULEVs"	0
-2016 Q1	"Moray"	"S12000020"	"Other ULEVs"	0
-2016 Q1	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2016 Q1	"North Ayrshire"	"S12000021"	"Other ULEVs"	0
-2016 Q1	"North Lanarkshire"	"S12000050"	"Other ULEVs"	0
+2016 Q1	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	2
+2016 Q1	"Dundee City"	"S12000042"	"Other ULEVs"	2
+2016 Q1	"East Ayrshire"	"S12000008"	"Other ULEVs"	4
+2016 Q1	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	1
+2016 Q1	"East Lothian"	"S12000010"	"Other ULEVs"	4
+2016 Q1	"East Renfrewshire"	"S12000011"	"Other ULEVs"	3
+2016 Q1	"Falkirk"	"S12000014"	"Other ULEVs"	3
+2016 Q1	"Fife"	"S12000047"	"Other ULEVs"	13
+2016 Q1	"Glasgow City"	"S12000049"	"Other ULEVs"	25
+2016 Q1	"Highland"	"S12000017"	"Other ULEVs"	6
+2016 Q1	"Inverclyde"	"S12000018"	"Other ULEVs"	1
+2016 Q1	"Midlothian"	"S12000019"	"Other ULEVs"	1
+2016 Q1	"Moray"	"S12000020"	"Other ULEVs"	4
+2016 Q1	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	2
+2016 Q1	"North Ayrshire"	"S12000021"	"Other ULEVs"	4
+2016 Q1	"North Lanarkshire"	"S12000050"	"Other ULEVs"	3
 2016 Q1	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2016 Q1	"Perth and Kinross"	"S12000048"	"Other ULEVs"	0
-2016 Q1	"Renfrewshire"	"S12000038"	"Other ULEVs"	0
-2016 Q1	"Scottish Borders"	"S12000026"	"Other ULEVs"	0
+2016 Q1	"Perth and Kinross"	"S12000048"	"Other ULEVs"	4
+2016 Q1	"Renfrewshire"	"S12000038"	"Other ULEVs"	3
+2016 Q1	"Scottish Borders"	"S12000026"	"Other ULEVs"	6
 2016 Q1	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2016 Q1	"South Ayrshire"	"S12000028"	"Other ULEVs"	0
-2016 Q1	"South Lanarkshire"	"S12000029"	"Other ULEVs"	0
-2016 Q1	"Stirling"	"S12000030"	"Other ULEVs"	2
+2016 Q1	"South Ayrshire"	"S12000028"	"Other ULEVs"	4
+2016 Q1	"South Lanarkshire"	"S12000029"	"Other ULEVs"	4
+2016 Q1	"Stirling"	"S12000030"	"Other ULEVs"	8
 2016 Q1	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	0
-2016 Q1	"West Lothian"	"S12000040"	"Other ULEVs"	0
-2015 Q4	"Aberdeen City"	"S12000033"	"Other ULEVs"	0
-2015 Q4	"Aberdeenshire"	"S12000034"	"Other ULEVs"	0
+2016 Q1	"West Lothian"	"S12000040"	"Other ULEVs"	5
+2015 Q4	"Aberdeen City"	"S12000033"	"Other ULEVs"	16
+2015 Q4	"Aberdeenshire"	"S12000034"	"Other ULEVs"	18
 2015 Q4	"Angus"	"S12000041"	"Other ULEVs"	0
-2015 Q4	"Argyll and Bute"	"S12000035"	"Other ULEVs"	0
-2015 Q4	"City of Edinburgh"	"S12000036"	"Other ULEVs"	0
+2015 Q4	"Argyll and Bute"	"S12000035"	"Other ULEVs"	4
+2015 Q4	"City of Edinburgh"	"S12000036"	"Other ULEVs"	10
 2015 Q4	"Clackmannanshire"	"S12000005"	"Other ULEVs"	0
-2015 Q4	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	0
-2015 Q4	"Dundee City"	"S12000042"	"Other ULEVs"	0
-2015 Q4	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
-2015 Q4	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	0
-2015 Q4	"East Lothian"	"S12000010"	"Other ULEVs"	0
-2015 Q4	"East Renfrewshire"	"S12000011"	"Other ULEVs"	0
-2015 Q4	"Falkirk"	"S12000014"	"Other ULEVs"	0
-2015 Q4	"Fife"	"S12000047"	"Other ULEVs"	0
-2015 Q4	"Glasgow City"	"S12000049"	"Other ULEVs"	1
-2015 Q4	"Highland"	"S12000017"	"Other ULEVs"	0
+2015 Q4	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	2
+2015 Q4	"Dundee City"	"S12000042"	"Other ULEVs"	1
+2015 Q4	"East Ayrshire"	"S12000008"	"Other ULEVs"	4
+2015 Q4	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	1
+2015 Q4	"East Lothian"	"S12000010"	"Other ULEVs"	3
+2015 Q4	"East Renfrewshire"	"S12000011"	"Other ULEVs"	3
+2015 Q4	"Falkirk"	"S12000014"	"Other ULEVs"	2
+2015 Q4	"Fife"	"S12000047"	"Other ULEVs"	13
+2015 Q4	"Glasgow City"	"S12000049"	"Other ULEVs"	26
+2015 Q4	"Highland"	"S12000017"	"Other ULEVs"	6
 2015 Q4	"Inverclyde"	"S12000018"	"Other ULEVs"	0
-2015 Q4	"Midlothian"	"S12000019"	"Other ULEVs"	0
-2015 Q4	"Moray"	"S12000020"	"Other ULEVs"	0
-2015 Q4	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2015 Q4	"North Ayrshire"	"S12000021"	"Other ULEVs"	0
-2015 Q4	"North Lanarkshire"	"S12000050"	"Other ULEVs"	0
+2015 Q4	"Midlothian"	"S12000019"	"Other ULEVs"	1
+2015 Q4	"Moray"	"S12000020"	"Other ULEVs"	4
+2015 Q4	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	2
+2015 Q4	"North Ayrshire"	"S12000021"	"Other ULEVs"	3
+2015 Q4	"North Lanarkshire"	"S12000050"	"Other ULEVs"	3
 2015 Q4	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2015 Q4	"Perth and Kinross"	"S12000048"	"Other ULEVs"	0
-2015 Q4	"Renfrewshire"	"S12000038"	"Other ULEVs"	0
-2015 Q4	"Scottish Borders"	"S12000026"	"Other ULEVs"	0
+2015 Q4	"Perth and Kinross"	"S12000048"	"Other ULEVs"	4
+2015 Q4	"Renfrewshire"	"S12000038"	"Other ULEVs"	2
+2015 Q4	"Scottish Borders"	"S12000026"	"Other ULEVs"	5
 2015 Q4	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2015 Q4	"South Ayrshire"	"S12000028"	"Other ULEVs"	0
-2015 Q4	"South Lanarkshire"	"S12000029"	"Other ULEVs"	0
-2015 Q4	"Stirling"	"S12000030"	"Other ULEVs"	0
+2015 Q4	"South Ayrshire"	"S12000028"	"Other ULEVs"	2
+2015 Q4	"South Lanarkshire"	"S12000029"	"Other ULEVs"	4
+2015 Q4	"Stirling"	"S12000030"	"Other ULEVs"	6
 2015 Q4	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	0
-2015 Q4	"West Lothian"	"S12000040"	"Other ULEVs"	0
-2015 Q3	"Aberdeen City"	"S12000033"	"Other ULEVs"	0
-2015 Q3	"Aberdeenshire"	"S12000034"	"Other ULEVs"	0
-2015 Q3	"Angus"	"S12000041"	"Other ULEVs"	0
-2015 Q3	"Argyll and Bute"	"S12000035"	"Other ULEVs"	0
-2015 Q3	"City of Edinburgh"	"S12000036"	"Other ULEVs"	0
+2015 Q4	"West Lothian"	"S12000040"	"Other ULEVs"	5
+2015 Q3	"Aberdeen City"	"S12000033"	"Other ULEVs"	14
+2015 Q3	"Aberdeenshire"	"S12000034"	"Other ULEVs"	16
+2015 Q3	"Angus"	"S12000041"	"Other ULEVs"	1
+2015 Q3	"Argyll and Bute"	"S12000035"	"Other ULEVs"	4
+2015 Q3	"City of Edinburgh"	"S12000036"	"Other ULEVs"	7
 2015 Q3	"Clackmannanshire"	"S12000005"	"Other ULEVs"	0
-2015 Q3	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	0
+2015 Q3	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	2
 2015 Q3	"Dundee City"	"S12000042"	"Other ULEVs"	0
-2015 Q3	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
-2015 Q3	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	0
-2015 Q3	"East Lothian"	"S12000010"	"Other ULEVs"	0
-2015 Q3	"East Renfrewshire"	"S12000011"	"Other ULEVs"	0
-2015 Q3	"Falkirk"	"S12000014"	"Other ULEVs"	0
-2015 Q3	"Fife"	"S12000047"	"Other ULEVs"	0
-2015 Q3	"Glasgow City"	"S12000049"	"Other ULEVs"	1
-2015 Q3	"Highland"	"S12000017"	"Other ULEVs"	0
+2015 Q3	"East Ayrshire"	"S12000008"	"Other ULEVs"	4
+2015 Q3	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	1
+2015 Q3	"East Lothian"	"S12000010"	"Other ULEVs"	3
+2015 Q3	"East Renfrewshire"	"S12000011"	"Other ULEVs"	4
+2015 Q3	"Falkirk"	"S12000014"	"Other ULEVs"	1
+2015 Q3	"Fife"	"S12000047"	"Other ULEVs"	14
+2015 Q3	"Glasgow City"	"S12000049"	"Other ULEVs"	27
+2015 Q3	"Highland"	"S12000017"	"Other ULEVs"	7
 2015 Q3	"Inverclyde"	"S12000018"	"Other ULEVs"	0
-2015 Q3	"Midlothian"	"S12000019"	"Other ULEVs"	0
-2015 Q3	"Moray"	"S12000020"	"Other ULEVs"	0
+2015 Q3	"Midlothian"	"S12000019"	"Other ULEVs"	1
+2015 Q3	"Moray"	"S12000020"	"Other ULEVs"	4
 2015 Q3	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2015 Q3	"North Ayrshire"	"S12000021"	"Other ULEVs"	0
-2015 Q3	"North Lanarkshire"	"S12000050"	"Other ULEVs"	0
+2015 Q3	"North Ayrshire"	"S12000021"	"Other ULEVs"	3
+2015 Q3	"North Lanarkshire"	"S12000050"	"Other ULEVs"	2
 2015 Q3	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2015 Q3	"Perth and Kinross"	"S12000048"	"Other ULEVs"	0
-2015 Q3	"Renfrewshire"	"S12000038"	"Other ULEVs"	0
-2015 Q3	"Scottish Borders"	"S12000026"	"Other ULEVs"	0
+2015 Q3	"Perth and Kinross"	"S12000048"	"Other ULEVs"	4
+2015 Q3	"Renfrewshire"	"S12000038"	"Other ULEVs"	3
+2015 Q3	"Scottish Borders"	"S12000026"	"Other ULEVs"	5
 2015 Q3	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2015 Q3	"South Ayrshire"	"S12000028"	"Other ULEVs"	0
-2015 Q3	"South Lanarkshire"	"S12000029"	"Other ULEVs"	0
-2015 Q3	"Stirling"	"S12000030"	"Other ULEVs"	0
+2015 Q3	"South Ayrshire"	"S12000028"	"Other ULEVs"	2
+2015 Q3	"South Lanarkshire"	"S12000029"	"Other ULEVs"	3
+2015 Q3	"Stirling"	"S12000030"	"Other ULEVs"	3
 2015 Q3	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	0
-2015 Q3	"West Lothian"	"S12000040"	"Other ULEVs"	0
-2015 Q2	"Aberdeen City"	"S12000033"	"Other ULEVs"	0
-2015 Q2	"Aberdeenshire"	"S12000034"	"Other ULEVs"	0
-2015 Q2	"Angus"	"S12000041"	"Other ULEVs"	0
-2015 Q2	"Argyll and Bute"	"S12000035"	"Other ULEVs"	0
-2015 Q2	"City of Edinburgh"	"S12000036"	"Other ULEVs"	0
+2015 Q3	"West Lothian"	"S12000040"	"Other ULEVs"	4
+2015 Q2	"Aberdeen City"	"S12000033"	"Other ULEVs"	14
+2015 Q2	"Aberdeenshire"	"S12000034"	"Other ULEVs"	15
+2015 Q2	"Angus"	"S12000041"	"Other ULEVs"	1
+2015 Q2	"Argyll and Bute"	"S12000035"	"Other ULEVs"	4
+2015 Q2	"City of Edinburgh"	"S12000036"	"Other ULEVs"	6
 2015 Q2	"Clackmannanshire"	"S12000005"	"Other ULEVs"	0
-2015 Q2	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	0
+2015 Q2	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	2
 2015 Q2	"Dundee City"	"S12000042"	"Other ULEVs"	0
-2015 Q2	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
+2015 Q2	"East Ayrshire"	"S12000008"	"Other ULEVs"	4
 2015 Q2	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	0
-2015 Q2	"East Lothian"	"S12000010"	"Other ULEVs"	0
-2015 Q2	"East Renfrewshire"	"S12000011"	"Other ULEVs"	0
-2015 Q2	"Falkirk"	"S12000014"	"Other ULEVs"	0
-2015 Q2	"Fife"	"S12000047"	"Other ULEVs"	0
-2015 Q2	"Glasgow City"	"S12000049"	"Other ULEVs"	0
-2015 Q2	"Highland"	"S12000017"	"Other ULEVs"	0
-2015 Q2	"Inverclyde"	"S12000018"	"Other ULEVs"	0
-2015 Q2	"Midlothian"	"S12000019"	"Other ULEVs"	0
-2015 Q2	"Moray"	"S12000020"	"Other ULEVs"	0
+2015 Q2	"East Lothian"	"S12000010"	"Other ULEVs"	3
+2015 Q2	"East Renfrewshire"	"S12000011"	"Other ULEVs"	3
+2015 Q2	"Falkirk"	"S12000014"	"Other ULEVs"	1
+2015 Q2	"Fife"	"S12000047"	"Other ULEVs"	14
+2015 Q2	"Glasgow City"	"S12000049"	"Other ULEVs"	23
+2015 Q2	"Highland"	"S12000017"	"Other ULEVs"	7
+2015 Q2	"Inverclyde"	"S12000018"	"Other ULEVs"	1
+2015 Q2	"Midlothian"	"S12000019"	"Other ULEVs"	1
+2015 Q2	"Moray"	"S12000020"	"Other ULEVs"	4
 2015 Q2	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2015 Q2	"North Ayrshire"	"S12000021"	"Other ULEVs"	0
-2015 Q2	"North Lanarkshire"	"S12000050"	"Other ULEVs"	0
+2015 Q2	"North Ayrshire"	"S12000021"	"Other ULEVs"	1
+2015 Q2	"North Lanarkshire"	"S12000050"	"Other ULEVs"	2
 2015 Q2	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2015 Q2	"Perth and Kinross"	"S12000048"	"Other ULEVs"	0
-2015 Q2	"Renfrewshire"	"S12000038"	"Other ULEVs"	0
-2015 Q2	"Scottish Borders"	"S12000026"	"Other ULEVs"	0
+2015 Q2	"Perth and Kinross"	"S12000048"	"Other ULEVs"	2
+2015 Q2	"Renfrewshire"	"S12000038"	"Other ULEVs"	2
+2015 Q2	"Scottish Borders"	"S12000026"	"Other ULEVs"	4
 2015 Q2	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2015 Q2	"South Ayrshire"	"S12000028"	"Other ULEVs"	0
-2015 Q2	"South Lanarkshire"	"S12000029"	"Other ULEVs"	0
-2015 Q2	"Stirling"	"S12000030"	"Other ULEVs"	0
+2015 Q2	"South Ayrshire"	"S12000028"	"Other ULEVs"	2
+2015 Q2	"South Lanarkshire"	"S12000029"	"Other ULEVs"	2
+2015 Q2	"Stirling"	"S12000030"	"Other ULEVs"	3
 2015 Q2	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	0
-2015 Q2	"West Lothian"	"S12000040"	"Other ULEVs"	0
-2015 Q1	"Aberdeen City"	"S12000033"	"Other ULEVs"	0
-2015 Q1	"Aberdeenshire"	"S12000034"	"Other ULEVs"	0
-2015 Q1	"Angus"	"S12000041"	"Other ULEVs"	0
-2015 Q1	"Argyll and Bute"	"S12000035"	"Other ULEVs"	0
-2015 Q1	"City of Edinburgh"	"S12000036"	"Other ULEVs"	0
+2015 Q2	"West Lothian"	"S12000040"	"Other ULEVs"	4
+2015 Q1	"Aberdeen City"	"S12000033"	"Other ULEVs"	12
+2015 Q1	"Aberdeenshire"	"S12000034"	"Other ULEVs"	14
+2015 Q1	"Angus"	"S12000041"	"Other ULEVs"	1
+2015 Q1	"Argyll and Bute"	"S12000035"	"Other ULEVs"	4
+2015 Q1	"City of Edinburgh"	"S12000036"	"Other ULEVs"	9
 2015 Q1	"Clackmannanshire"	"S12000005"	"Other ULEVs"	0
-2015 Q1	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	0
+2015 Q1	"Dumfries and Galloway"	"S12000006"	"Other ULEVs"	2
 2015 Q1	"Dundee City"	"S12000042"	"Other ULEVs"	0
-2015 Q1	"East Ayrshire"	"S12000008"	"Other ULEVs"	0
+2015 Q1	"East Ayrshire"	"S12000008"	"Other ULEVs"	3
 2015 Q1	"East Dunbartonshire"	"S12000045"	"Other ULEVs"	0
-2015 Q1	"East Lothian"	"S12000010"	"Other ULEVs"	0
-2015 Q1	"East Renfrewshire"	"S12000011"	"Other ULEVs"	0
+2015 Q1	"East Lothian"	"S12000010"	"Other ULEVs"	2
+2015 Q1	"East Renfrewshire"	"S12000011"	"Other ULEVs"	4
 2015 Q1	"Falkirk"	"S12000014"	"Other ULEVs"	0
-2015 Q1	"Fife"	"S12000047"	"Other ULEVs"	0
-2015 Q1	"Glasgow City"	"S12000049"	"Other ULEVs"	0
-2015 Q1	"Highland"	"S12000017"	"Other ULEVs"	0
-2015 Q1	"Inverclyde"	"S12000018"	"Other ULEVs"	0
-2015 Q1	"Midlothian"	"S12000019"	"Other ULEVs"	0
+2015 Q1	"Fife"	"S12000047"	"Other ULEVs"	13
+2015 Q1	"Glasgow City"	"S12000049"	"Other ULEVs"	19
+2015 Q1	"Highland"	"S12000017"	"Other ULEVs"	8
+2015 Q1	"Inverclyde"	"S12000018"	"Other ULEVs"	1
+2015 Q1	"Midlothian"	"S12000019"	"Other ULEVs"	1
 2015 Q1	"Moray"	"S12000020"	"Other ULEVs"	0
 2015 Q1	"Na h-Eileanan Siar"	"S12000013"	"Other ULEVs"	0
-2015 Q1	"North Ayrshire"	"S12000021"	"Other ULEVs"	0
-2015 Q1	"North Lanarkshire"	"S12000050"	"Other ULEVs"	0
+2015 Q1	"North Ayrshire"	"S12000021"	"Other ULEVs"	2
+2015 Q1	"North Lanarkshire"	"S12000050"	"Other ULEVs"	3
 2015 Q1	"Orkney Islands"	"S12000023"	"Other ULEVs"	0
-2015 Q1	"Perth and Kinross"	"S12000048"	"Other ULEVs"	0
-2015 Q1	"Renfrewshire"	"S12000038"	"Other ULEVs"	0
-2015 Q1	"Scottish Borders"	"S12000026"	"Other ULEVs"	0
+2015 Q1	"Perth and Kinross"	"S12000048"	"Other ULEVs"	2
+2015 Q1	"Renfrewshire"	"S12000038"	"Other ULEVs"	2
+2015 Q1	"Scottish Borders"	"S12000026"	"Other ULEVs"	4
 2015 Q1	"Shetland Islands"	"S12000027"	"Other ULEVs"	0
-2015 Q1	"South Ayrshire"	"S12000028"	"Other ULEVs"	0
-2015 Q1	"South Lanarkshire"	"S12000029"	"Other ULEVs"	0
-2015 Q1	"Stirling"	"S12000030"	"Other ULEVs"	0
+2015 Q1	"South Ayrshire"	"S12000028"	"Other ULEVs"	2
+2015 Q1	"South Lanarkshire"	"S12000029"	"Other ULEVs"	2
+2015 Q1	"Stirling"	"S12000030"	"Other ULEVs"	3
 2015 Q1	"West Dunbartonshire"	"S12000039"	"Other ULEVs"	0
-2015 Q1	"West Lothian"	"S12000040"	"Other ULEVs"	0
+2015 Q1	"West Lothian"	"S12000040"	"Other ULEVs"	3
+2020 Q4	"Aberdeen City"	"S12000033"	"Total ULEVs"	735
+2020 Q4	"Aberdeenshire"	"S12000034"	"Total ULEVs"	1148
+2020 Q4	"Angus"	"S12000041"	"Total ULEVs"	438
+2020 Q4	"Argyll and Bute"	"S12000035"	"Total ULEVs"	314
+2020 Q4	"City of Edinburgh"	"S12000036"	"Total ULEVs"	2191
+2020 Q4	"Clackmannanshire"	"S12000005"	"Total ULEVs"	129
+2020 Q4	"Dumfries and Galloway"	"S12000006"	"Total ULEVs"	372
+2020 Q4	"Dundee City"	"S12000042"	"Total ULEVs"	599
+2020 Q4	"East Ayrshire"	"S12000008"	"Total ULEVs"	305
+2020 Q4	"East Dunbartonshire"	"S12000045"	"Total ULEVs"	469
+2020 Q4	"East Lothian"	"S12000010"	"Total ULEVs"	545
+2020 Q4	"East Renfrewshire"	"S12000011"	"Total ULEVs"	518
+2020 Q4	"Falkirk"	"S12000014"	"Total ULEVs"	463
+2020 Q4	"Fife"	"S12000047"	"Total ULEVs"	1199
+2020 Q4	"Glasgow City"	"S12000049"	"Total ULEVs"	1502
+2020 Q4	"Highland"	"S12000017"	"Total ULEVs"	727
+2020 Q4	"Inverclyde"	"S12000018"	"Total ULEVs"	169
+2020 Q4	"Midlothian"	"S12000019"	"Total ULEVs"	403
+2020 Q4	"Moray"	"S12000020"	"Total ULEVs"	248
+2020 Q4	"Na h-Eileanan Siar"	"S12000013"	"Total ULEVs"	66
+2020 Q4	"North Ayrshire"	"S12000021"	"Total ULEVs"	243
+2020 Q4	"North Lanarkshire"	"S12000050"	"Total ULEVs"	618
+2020 Q4	"Orkney Islands"	"S12000023"	"Total ULEVs"	295
+2020 Q4	"Perth and Kinross"	"S12000048"	"Total ULEVs"	732
+2020 Q4	"Renfrewshire"	"S12000038"	"Total ULEVs"	6896
+2020 Q4	"Scottish Borders"	"S12000026"	"Total ULEVs"	502
+2020 Q4	"Shetland Islands"	"S12000027"	"Total ULEVs"	73
+2020 Q4	"South Ayrshire"	"S12000028"	"Total ULEVs"	353
+2020 Q4	"South Lanarkshire"	"S12000029"	"Total ULEVs"	908
+2020 Q4	"Stirling"	"S12000030"	"Total ULEVs"	2254
+2020 Q4	"West Dunbartonshire"	"S12000039"	"Total ULEVs"	209
+2020 Q4	"West Lothian"	"S12000040"	"Total ULEVs"	561
 2020 Q3	"Aberdeen City"	"S12000033"	"Total ULEVs"	639
 2020 Q3	"Aberdeenshire"	"S12000034"	"Total ULEVs"	1060
 2020 Q3	"Angus"	"S12000041"	"Total ULEVs"	399

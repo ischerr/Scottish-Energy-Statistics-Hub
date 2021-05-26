@@ -93,7 +93,7 @@ ECOMeasuresOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
     tabPanel("ECO Measures by LA",
              fluidRow(
-               column(10, h3("Data - ECO measures by Local Authority, Scotland, 2020 Q4", style = "color: #34d1a3;  font-weight:bold")),
+               column(10, h3("Data - ECO measures by ECO obligation by local authority, up to end December 2020", style = "color: #34d1a3;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -1345,17 +1345,17 @@ ECOMeasures <- function(input, output, session) {
         searching = TRUE,
         fixedColumns = FALSE,
         autoWidth = TRUE,
-        title = "ECO measures by Local Authority, Scotland, 2020 Q4",
+        title = "ECO measures by ECO obligation by local authority, up to end December 2020",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'ECO measures by Local Authority, Scotland, 2020 Q4',
+            title = 'ECO measures by ECO obligation by local authority, up to end December 2020',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'ECO measures by Local Authority, Scotland, 2020 Q4')
+               title = 'ECO measures by ECO obligation by local authority, up to end December 2020')
         ),
         
         # customize the length menu
