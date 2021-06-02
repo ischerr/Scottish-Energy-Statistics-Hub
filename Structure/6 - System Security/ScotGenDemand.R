@@ -45,7 +45,7 @@ ScotGenDemandOutput <- function(id) {
       column(1, align = "right",
              HTML("<p><strong>Reason:</strong></p>")),
       column(7, align = "right", 
-             p("Regular updates")
+             p("Minor corrections")
       )),
     fluidRow(p(" ")),
     fluidRow(
