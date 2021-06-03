@@ -273,7 +273,7 @@ ULEVs <- function(input, output, session) {
       ) %>% 
       add_trace(
         x = Data2$Year,
-        y = Data2$`All ULEVs` +  1500,
+        y = Data2$`All ULEVs` +  2000,
         name = "All ULEVs",
         mode = 'text',
         text = paste("<b>Total:\n", format(Data2$`All ULEVs`, big.mark = ","),"</b>"),
@@ -300,7 +300,7 @@ ULEVs <- function(input, output, session) {
           showgrid = TRUE,
           zeroline = FALSE,
           rangemode = "tozero",
-          range = c(0, max(Data$`All ULEVs`)+3000)
+          range = c(0, max(Data$`All ULEVs`)+5000)
         )
       ) %>% 
       config(displayModeBar = F)
@@ -630,7 +630,7 @@ ULEVs <- function(input, output, session) {
         annotate(
           "text",
           x = ElecVehiclesMin$Year,
-          y = ElecVehiclesMin$`Battery Electric Vehicles` * 0.5,
+          y = ElecVehiclesMin$`Battery Electric Vehicles` * 0.3,
           label = format(ElecVehiclesMin$`Battery Electric Vehicles`,big.mark = ","),
           hjust = -.1,
           vjust = 0,
@@ -663,7 +663,7 @@ ULEVs <- function(input, output, session) {
         annotate(
           "text",
           x = ElecVehiclesMax$Year,
-          y = (ElecVehiclesMax$`Hybrid Electric Vehicles` * 0.5) + ElecVehiclesMax$`Battery Electric Vehicles`,
+          y = (ElecVehiclesMax$`Hybrid Electric Vehicles` * 0.15) + ElecVehiclesMax$`Battery Electric Vehicles`,
           label = format(ElecVehiclesMax$`Hybrid Electric Vehicles`, big.mark = ","),
           hjust = 1.1,
           vjust = 0,
@@ -688,7 +688,7 @@ ULEVs <- function(input, output, session) {
           "text",
           x = mean(ElecVehicles$Year),
           y = ((ElecVehiclesMax$`Hybrid Electric Vehicles` + ElecVehiclesMin$`Hybrid Electric Vehicles`) *
-                 .25
+                 .17
           ) + ((
             ElecVehiclesMax$`Battery Electric Vehicles` + ElecVehiclesMin$`Battery Electric Vehicles`
           ) * .5
