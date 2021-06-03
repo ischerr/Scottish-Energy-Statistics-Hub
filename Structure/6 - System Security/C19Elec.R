@@ -406,6 +406,17 @@ C19Elec <- function(input, output, session) {
           line = list(color = color)
         )}
       
+      vline4 <- function(x = 0, color = "#ef6548") {
+        list(
+          type = "line", 
+          y0 = 0, 
+          y1 = 1, 
+          yref = "paper",
+          x0 = x, 
+          x1 = x, 
+          line = list(color = color, dash = "dash")
+        )}
+      
     
     
     p2 <-  plot_ly(DailyDemand,x = ~ Date ) %>% 
@@ -507,9 +518,19 @@ C19Elec <- function(input, output, session) {
                     family = "Century Gothic"),
         showarrow = FALSE
       ) %>% 
+      add_annotations(
+        x = dmy("27/04/2021"),
+        y = 30,
+        text = "<b>26/04/2021</b>\nScotland\nLevel 3",
+        align = 'left',
+        xanchor = 'left',
+        font = list(color = "#ef6548",
+                    family = "Century Gothic"),
+        showarrow = FALSE
+      ) %>% 
       layout(
         barmode = 'stack',
-        shapes = list( vline1(dmy("24/03/2021")),vline2(dmy("28/05/2021")),vline1(dmy("23/10/2021")),vline3(dmy("04/01/2021"))),
+        shapes = list( vline1(dmy("24/03/2021")),vline2(dmy("28/05/2021")),vline1(dmy("23/10/2021")),vline3(dmy("04/01/2021")),vline4(dmy("26/04/2021"))),
         bargap = 0.66,
         legend = list(font = list(color = "#126992"),
                       orientation = 'h'),
@@ -610,6 +631,16 @@ C19Elec <- function(input, output, session) {
         line = list(color = color)
       )}
     
+    vline4 <- function(x = 0, color = "#ef6548") {
+      list(
+        type = "line", 
+        y0 = 0, 
+        y1 = 1, 
+        yref = "paper",
+        x0 = x, 
+        x1 = x, 
+        line = list(color = color, dash = "dash")
+      )}
     
     
     p2 <-  plot_ly(DailyDemand,x = ~ Date ) %>% 
@@ -711,9 +742,19 @@ C19Elec <- function(input, output, session) {
                     family = "Century Gothic"),
         showarrow = FALSE
       ) %>% 
+      add_annotations(
+        x = dmy("27/04/2021"),
+        y = 30,
+        text = "<b>26/04/2021</b>\nScotland\nLevel 3",
+        align = 'left',
+        xanchor = 'left',
+        font = list(color = "#ef6548",
+                    family = "Century Gothic"),
+        showarrow = FALSE
+      ) %>% 
       layout(
         barmode = 'stack',
-        shapes = list( vline1(dmy("24/03/2021")),vline2(dmy("28/05/2021")),vline1(dmy("23/10/2021")),vline3(dmy("04/01/2021"))),
+        shapes = list( vline1(dmy("24/03/2021")),vline2(dmy("28/05/2021")),vline1(dmy("23/10/2021")),vline3(dmy("04/01/2021")), vline4(dmy("26/04/2021"))),
         bargap = 0.66,
         legend = list(font = list(color = "#126992"),
                       orientation = 'h'),
@@ -1351,6 +1392,9 @@ output$C19ElecRolling.png <- downloadHandler(
       
       
       
+      
+      
+      
       geom_text(
         aes(
           x = dmy("29/05/2021"),
@@ -1463,6 +1507,43 @@ output$C19ElecRolling.png <- downloadHandler(
         yend = 1000,
         colour = "#ef6548",
         alpha = 0.9
+      ) +
+      
+      
+      geom_text(
+        aes(
+          x = dmy("27/04/2021"),
+          y = 40,
+          label = "26/04/2021",
+          fontface = 2
+        ),
+        hjust = 0,
+        vjust = -.2,
+        colour = "#ef6548",
+        family = "Century Gothic",
+        size = 3
+      )+
+      geom_text(
+        aes(
+          x = dmy("27/04/2021"),
+          y = 40,
+          label = "Scotland\nLevel 3"
+        ),
+        vjust = 1.1,
+        hjust = 0,
+        colour = "#ef6548",
+        family = "Century Gothic",
+        size = 3
+      )+
+      annotate(
+        "segment",
+        x = dmy("26/04/2021"),
+        xend = dmy("26/04/2021"),
+        y = 0,
+        yend = 1000,
+        colour = "#ef6548",
+        alpha = 0.9,
+        linetype = 2
       ) 
     
     
@@ -1862,6 +1943,42 @@ output$C19ElecRolling2.png <- downloadHandler(
         yend = 1000,
         colour = "#ef6548",
         alpha = 0.9
+      ) +
+    
+    geom_text(
+      aes(
+        x = dmy("27/04/2021"),
+        y = 40,
+        label = "26/04/2021",
+        fontface = 2
+      ),
+      hjust = 0,
+      vjust = -.2,
+      colour = "#ef6548",
+      family = "Century Gothic",
+      size = 3
+    )+
+      geom_text(
+        aes(
+          x = dmy("27/04/2021"),
+          y = 40,
+          label = "Scotland\nLevel 3"
+        ),
+        vjust = 1.1,
+        hjust = 0,
+        colour = "#ef6548",
+        family = "Century Gothic",
+        size = 3
+      )+
+      annotate(
+        "segment",
+        x = dmy("26/04/2021"),
+        xend = dmy("26/04/2021"),
+        y = 0,
+        yend = 1000,
+        colour = "#ef6548",
+        alpha = 0.9, 
+        linetype = 2
       ) 
     
     
