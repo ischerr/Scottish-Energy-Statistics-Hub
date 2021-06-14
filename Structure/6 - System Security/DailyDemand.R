@@ -14,7 +14,7 @@ DailyDemandOutput <- function(id) {
     tabsetPanel(
       tabPanel("Daily Demand",
     fluidRow(column(8,
-                    h3("Energy use in Scotland per day", style = "color: #5d8be1;  font-weight:bold"),
+                    h3("Energy use in Scotland per day, 90 day rolling average", style = "color: #5d8be1;  font-weight:bold"),
                     h4(textOutput(ns('DailyDemandSubtitle')), style = "color: #5d8be1;")
     ),
              column(
@@ -150,7 +150,13 @@ DailyDemand <- function(input, output, session) {
     
     Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
     
+    
+    
     DailyDemand <- Data
+    
+    DailyDemand$Electricity <- rollmean(DailyDemand$Electricity, k = 90, align = "center", fill = NA)
+    DailyDemand$Gas <- rollmean(DailyDemand$Gas, k = 90, align = "center", fill = NA)
+    DailyDemand$Transport <- rollmean(DailyDemand$Transport, k = 90, align = "center", fill = NA)
     
     ### variables
     ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
