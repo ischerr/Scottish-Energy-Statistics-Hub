@@ -125,8 +125,7 @@ GHGEmissions <- function(input, output, session) {
   
     output$GHGEmissionsPercentageReductionTargetsSubtitle <- renderText({
       
-      GHGEmissions <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                                      "\t", escape_double = FALSE, trim_ws = TRUE)
+      GHGEmissions <- read_csv("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv")
       
       GHGEmissions$Total <- rowSums(GHGEmissions[2:11])
       
@@ -559,16 +558,14 @@ GHGEmissions <- function(input, output, session) {
   
   output$SectorInventorySubtitle <- renderText({
     
-    SectorInventory <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                                  "\t", escape_double = FALSE, trim_ws = TRUE)
+    SectorInventory <- read_csv("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv")
     
     paste("Scotland,", max(as.numeric(SectorInventory$refPeriod), na.rm = TRUE))
   })
   
   output$SectorInventoryPlot <- renderPlotly  ({
     
-    SectorInventory <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                                  "\t", escape_double = FALSE, trim_ws = TRUE)
+    SectorInventory <- read_csv("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv")
     
     SectorInventory <- SectorInventory[nrow(SectorInventory),]
     
@@ -866,8 +863,7 @@ GHGEmissions <- function(input, output, session) {
     filename = "SectorInventory.png",
     content = function(file) {
       
-      SectorInventory <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                                    "\t", escape_double = FALSE, trim_ws = TRUE)
+      SectorInventory <- read_csv("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv")
       
       SectorInventoryYear <- paste("Scotland,", max(as.numeric(SectorInventory$refPeriod), na.rm = TRUE))
       
@@ -1134,8 +1130,7 @@ GHGEmissions <- function(input, output, session) {
   
   output$SectorInventoryTable = renderDataTable({
     
-    SectorInventory <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                                  "\t", escape_double = FALSE, trim_ws = TRUE)
+    SectorInventory <- read_csv("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv")
     
     names(SectorInventory) <- c("Year", "Agriculture", "Business", "Energy Supply", "Industrial Processes", "International Aviation and Shipping", "Forestry (Carbon Sink)", "Public",  "Residential", "Domestic Transport", "Waste Management" )
     
