@@ -922,7 +922,7 @@ GridEmissions <- function(input, output, session) {
     GHGElectricity$`Proportion of total Scottish emissions` <- GHGElectricity$`Electricity Emissions` / GHGElectricity$Total
     
     
-    GHGElectricity <- GHGElectricity[c(1,2,10,8,7,9,6)]
+    GHGElectricity <- GHGElectricity[c(1,2,8,7,6)]
     
     datatable(
       GHGElectricity,
@@ -957,10 +957,10 @@ GridEmissions <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:7, 2) %>% 
+      formatRound(2:5, 2) %>% 
       formatPercentage(3,1) %>% 
       formatStyle(2, fontWeight = "bold") %>% 
-      formatStyle(4:7, fontStyle = "italic")
+      formatStyle(4:5, fontStyle = "italic")
   })
   
   
