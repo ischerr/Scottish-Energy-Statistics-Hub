@@ -104,8 +104,7 @@ GHGTransport <- function(input, output, session) {
     
     GHGTransport <- GHGTransport[which(GHGTransport$Year >= 1998),]
     
-    SectorTimeSeries <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                                   "\t", escape_double = FALSE, trim_ws = TRUE)
+    SectorTimeSeries <- read_csv("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv")
     
     SectorTimeSeries$Total <- rowSums(SectorTimeSeries[2:11])
     
@@ -254,8 +253,7 @@ GHGTransport <- function(input, output, session) {
         
         GHGTransport <- GHGTransport[complete.cases(GHGTransport),]
         
-        SectorTimeSeries <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                                       "\t", escape_double = FALSE, trim_ws = TRUE)
+        SectorTimeSeries <- read_csv("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv")
         
         SectorTimeSeries$Total <- rowSums(SectorTimeSeries[2:11])
         
