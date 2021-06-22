@@ -564,8 +564,7 @@ GridEmissions <- function(input, output, session) {
     
     GHGElectricity <- GHGElectricity[which(GHGElectricity$Year >= 1998),]
     
-    SectorTimeSeries <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                                   "\t", escape_double = FALSE, trim_ws = TRUE)
+    SectorTimeSeries <- read_csv("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv")
     
     SectorTimeSeries$Total <- rowSums(SectorTimeSeries[2:11])
     
@@ -712,8 +711,7 @@ GridEmissions <- function(input, output, session) {
       
       GHGElectricity <- GHGElectricity[complete.cases(GHGElectricity),]
       
-      SectorTimeSeries <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                                     "\t", escape_double = FALSE, trim_ws = TRUE)
+      SectorTimeSeries <- read_csv("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv")
       
       SectorTimeSeries$Total <- rowSums(SectorTimeSeries[2:11])
       
