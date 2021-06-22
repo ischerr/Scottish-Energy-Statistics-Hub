@@ -106,8 +106,7 @@ GHGHeat <- function(input, output, session) {
     
     GHGHeat <- GHGHeat[which(GHGHeat$Year >= 1998),]
     
-    SectorTimeSeries <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                                   "\t", escape_double = FALSE, trim_ws = TRUE)
+    SectorTimeSeries <- read_csv("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv")
     
     SectorTimeSeries$Total <- rowSums(SectorTimeSeries[2:11])
     
@@ -256,8 +255,7 @@ GHGHeat <- function(input, output, session) {
         
         GHGHeat <- GHGHeat[complete.cases(GHGHeat),]
         
-        SectorTimeSeries <- read_delim("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv", 
-                                       "\t", escape_double = FALSE, trim_ws = TRUE)
+        SectorTimeSeries <- read_csv("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv")
         
         SectorTimeSeries$Total <- rowSums(SectorTimeSeries[2:11])
         
