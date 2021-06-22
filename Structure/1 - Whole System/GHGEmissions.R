@@ -37,7 +37,7 @@ GHGEmissionsOutput <- function(id) {
              
              tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"),
              #dygraphOutput(ns("SectorInventoryPlot")),
-             plotlyOutput(ns("SectorInventoryPlot"), height = "700px")%>% withSpinner(color="#1A5D38"),
+             plotlyOutput(ns("SectorInventoryPlot"))%>% withSpinner(color="#1A5D38"),
              tags$hr(style = "height:3px;border:none;color:#1A5D38;background-color:#1A5D38;"))
     ,
     tabPanel("Energy related emissions",
@@ -249,7 +249,7 @@ GHGEmissions <- function(input, output, session) {
         yaxis = list(
           title = "MtCO2e",
           showgrid = TRUE,
-          range = c(-5,82),
+          range = c(-5,89),
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
           zerolinewidth = 2,
@@ -474,8 +474,20 @@ GHGEmissions <- function(input, output, session) {
           aes(
             x = Year,
             y = 0,
-            label = ifelse(Year %in% c(1990, 1995, 1998, max(AdjustedEmissions[which(AdjustedEmissions$Renewables > 0),]$Year)), Year, ""),
+            label = ifelse(Year %in% c(1990, 1995, 1998), Year, ""),
             hjust = 0.5,
+            vjust = 1.7,
+            colour = ChartColours[1],
+            fontface = 2
+          ),
+          family = "Century Gothic"
+        )+
+        geom_text(
+          aes(
+            x = Year,
+            y = 0,
+            label = ifelse(Year %in% c(max(AdjustedEmissions[which(AdjustedEmissions$Renewables > 0),]$Year)), Year, ""),
+            hjust = 1,
             vjust = 1.7,
             colour = ChartColours[1],
             fontface = 2
@@ -541,7 +553,7 @@ GHGEmissions <- function(input, output, session) {
       AdjustedEmissionsChart <- AdjustedEmissionsChart +
         labs(subtitle = paste("Scotland, 1990 -", max(AdjustedEmissions$Year[which(AdjustedEmissions$Renewables > 0)]))) +
         xlim(min(AdjustedEmissions$Year), 2046)+
-        ylim(0,79)
+        ylim(0,86)
       
       
       ggsave(
@@ -576,24 +588,18 @@ GHGEmissions <- function(input, output, session) {
     SectorInventory$variable <- as.character(SectorInventory$variable)
     
     SectorInventory$Type <- "Emissions"
-    
-    SectorInventory <- rbind(SectorInventory, c("Total", sum(SectorInventory$value), "Total greenhouse gas emissions"))
-    
-    SectorInventory[which(SectorInventory$value < 0),]$Type <- "Carbon sinks"
-    
+
     SectorInventory <- dcast(SectorInventory, Type ~ variable, value.var = "value")
     
     SectorInventory[is.na(SectorInventory)] <- 0
     
-    SectorInventory[2:12] %<>% lapply(function(x) as.numeric(as.character(x)))
+    SectorInventory[2:11] %<>% lapply(function(x) as.numeric(as.character(x)))
     
     SectorInventory <- as_tibble(SectorInventory)
     
-    SectorInventory <- SectorInventory[c(3,1,2),]
-    
     rownames(SectorInventory) <- NULL
     
-    SectorInventoryPlotData <- SectorInventory[c(1,3),]
+    SectorInventoryPlotData <- SectorInventory
     
     SectorInventoryPlotData$Type <- as.numeric(rownames(SectorInventoryPlotData))
     
@@ -615,23 +621,6 @@ GHGEmissions <- function(input, output, session) {
     
     
     p <- plot_ly(data = SectorInventoryPlotData, y = ~ Type) %>%
-      add_trace(
-        data = SectorInventoryPlotData,
-        x = ~ Total,
-        type = 'bar',
-        textinfo = 'text',
-        textposition = "inside",
-        insidetextanchor = "middle",
-        insidetextfont = list(color = "#FFFFFF",
-                              font = "bold"),
-        width = 0.3,
-        orientation = 'h',
-        name = "Total",
-        text = paste0("Total\n", round(SectorInventoryPlotData$Total, digits = 1), " MtCO2e"),
-        hoverinfo = 'text',
-        marker = list(color = BarColours[1]),
-        legendgroup = 1
-      ) %>%
       add_trace(
         data = SectorInventoryPlotData,
         x = ~ `transport-excluding-international`,
@@ -781,48 +770,30 @@ GHGEmissions <- function(input, output, session) {
         marker = list(color = BarColours[10]),
         legendgroup = 10
       ) %>%
-      add_annotations(
-        ax = max(SectorInventory$Total)- min(SectorInventory$`land-use-land-use-change-and-forestry`),
-        x = max(SectorInventory$Total),
-        ay = 1.5,
-        y = 1.5,
-        xref = "x", yref = "y",
-        axref = "x", ayref = "y",
-        showlegend = FALSE ,
-        arrowhead = 4,
-        arrowsize = 1,
-        arrowcolor = BarColours[8],
-        hoverinfo = 'name',
-        legendgroup = 11,
-        text = "",
-        name = "Carbon sinks absorb more carbon than they generate",
-        line = list(
-          arrowhead = 1,
-          width = 3,
-          color = BarColours[8],
-          dash = "none"
-        )
-      ) %>%
       add_trace(
+        data = SectorInventoryPlotData,
+        x = ~ (sum(SectorInventoryPlotData[2:11])*1.01),
+        showlegend = FALSE,
+        type = 'scatter',
         mode = 'text',
-        x =max(SectorInventory$Total) - (min(SectorInventory$`land-use-land-use-change-and-forestry`)/2),
-        y = 1.5,
-        xref = "x", yref = "y",
-        showlegend = FALSE ,
-        hoverinfo = 'name',
-        legendgroup = 10,
-        text = paste0("Forestry\n\n", round(min(SectorInventory$`land-use-land-use-change-and-forestry`),1)," MtCO2e"),
-        name = paste("Carbon sinks"),
+        text = paste("<b>",format(round(sum(SectorInventoryPlotData[2:11]), digits = 1), big.mark = ","),"MtCO2e</b>"),
+        textposition = 'middle',
+        textfont = list(color = ChartColours[1]),
+        hoverinfo = 'skip',
         marker = list(
-          size = 100,
-          opacity = 0
-        ),
-        showarrow = F,
-        textfont = list(
-          size = 20,
-          color = BarColours[8]
+          size = 0.00001
         )
-      ) %>%
+      )  %>% 
+      add_trace(
+        data = SectorInventoryPlotData,
+        x = ~ (sum(SectorInventoryPlotData[2:11])*1.06),
+        showlegend = FALSE,
+        type = 'scatter',
+        mode = 'text',
+        marker = list(
+          size = 0.00001
+        )
+      )  %>% 
       layout(
         barmode = 'stack',
         showlegend = FALSE,
@@ -834,10 +805,9 @@ GHGEmissions <- function(input, output, session) {
         yaxis = list(
           title = "",
           showgrid = FALSE,
-          ticktext = list("<b>Total Greenhouse\nGas Emissions</b>", "<b>Emissions</b>"),
-          tickvals = list(1, 2),
-          tickmode = "array",
-          range = c(0.75,2.25)
+          ticktext = list("<b>Total Greenhouse\nGas Emissions</b>"),
+          tickvals = list(1),
+          tickmode = "array"
         ),
         xaxis = list(
           title = "",
@@ -877,21 +847,17 @@ GHGEmissions <- function(input, output, session) {
       
       SectorInventory$Type <- "Emissions"
       
-      SectorInventory <- rbind(SectorInventory, c("Total", sum(SectorInventory$value), "Total greenhouse gas emissions"))
-      
-      SectorInventory[which(SectorInventory$value < 0),]$Type <- "Carbon sinks"
-      
       SectorInventory <- dcast(SectorInventory, Type ~ variable, value.var = "value")
       
       SectorInventory[is.na(SectorInventory)] <- 0
       
-      SectorInventory[2:12] %<>% lapply(function(x) as.numeric(as.character(x)))
+      SectorInventory[2:11] %<>% lapply(function(x) as.numeric(as.character(x)))
       
       SectorInventory <- as_tibble(SectorInventory)
       
-      SectorInventory <- SectorInventory[c(3,1,2),]
+      SectorInventory <- SectorInventory
       
-      SectorInventory <- SectorInventory[c(1,10,7,5,8,12,6,9,4,2,3,11)]
+      SectorInventory <- SectorInventory[c(1,5,8,11,6,9,4,2,3,10)]
       
       ChartColours <- c("#1A5D38", "#FF8500")
       BarColours <-
@@ -917,10 +883,6 @@ GHGEmissions <- function(input, output, session) {
       
       SectorInventory <- melt(SectorInventory, id.vars = "Type")
       
-      GHGCarbonSink <- min(SectorInventory[which(SectorInventory$variable == "land-use-land-use-change-and-forestry"),]$value)
-      
-      
-      SectorInventory <- subset(SectorInventory, SectorInventory$Type != "Carbon sinks" )
       SectorInventory$variable <-
         factor(
           SectorInventory$variable,
@@ -951,8 +913,7 @@ GHGEmissions <- function(input, output, session) {
             "waste-management" = BarColours[8],
             "public" = BarColours[9],
             "industrial-processes" = BarColours[10],
-            "land-use-land-use-change-and-forestry" = ChartColours[1],
-            "Total" = BarColours[1]
+            "land-use-land-use-change-and-forestry" = ChartColours[1]
           )
         ) +
         geom_bar(stat = "identity",
@@ -987,37 +948,9 @@ GHGEmissions <- function(input, output, session) {
           fontface = 2,
           colour =  ChartColours[1]
         ) +
-        geom_segment(
-          x = 1.44,
-          xend = 1.44,
-          y = SectorInventory[which(SectorInventory$Type == "Emissions" & SectorInventory$variable == "Total"),]$top,
-          yend = SectorInventory[which(SectorInventory$Type == "Emissions" & SectorInventory$variable == "Total"),]$top + GHGCarbonSink,
-          colour =   BarColours[7],
-          arrow = arrow(length = unit(0.4, "cm")),
-          size = 1
-        ) + 
         geom_text(
-          aes( x = 1.6,
-               y = SectorInventory[which(SectorInventory$Type == "Emissions" & SectorInventory$variable == "Total"),]$top + (GHGCarbonSink/2),
-               label = paste("Forestry: \n", round(GHGCarbonSink, digits = 1), "MtCO2e")
-          ),
-          family = "Century Gothic",
-          fontface = 2,
-          colour =   BarColours[7]
-        ) +
-        geom_text(
-          aes( x = 1.3,
-               y = SectorInventory[which(SectorInventory$Type == "Emissions" & SectorInventory$variable == "Total"),]$top + (GHGCarbonSink/2),
-               label = "Carbon sinks absorb more\ncarbon than they generate"
-          ),
-          family = "Century Gothic",
-          fontface = 2,
-          colour =  BarColours[7],
-          size = 3
-        ) +
-        geom_text(
-          aes( x = 2.4,
-               y = (SectorInventory[which(SectorInventory$Type == "Emissions" & SectorInventory$variable == "Total"),]$top) *(0/7) - 3,
+          aes( x = 1.4,
+               y = (SectorInventory$top) *(0/8),
                label = "Domestic\nTransport",
                family = "Century Gothic",
                fontface = 2
@@ -1025,8 +958,8 @@ GHGEmissions <- function(input, output, session) {
           colour =  BarColours[2]
         )  +
         geom_text(
-          aes( x = 2.4,
-               y = (SectorInventory[which(SectorInventory$Type == "Emissions" & SectorInventory$variable == "Total"),]$top) *(1/7) - 3,
+          aes( x = 1.4,
+               y = (SectorInventory$top) *(1/8),
                label = "Business",
                family = "Century Gothic",
                fontface = 2
@@ -1034,8 +967,8 @@ GHGEmissions <- function(input, output, session) {
           colour =  BarColours[3]
         )  +
         geom_text(
-          aes( x = 2.4,
-               y = (SectorInventory[which(SectorInventory$Type == "Emissions" & SectorInventory$variable == "Total"),]$top) *(2/7) - 3,
+          aes( x = 1.4,
+               y = (SectorInventory$top) *(2/8),
                label = "Agriculture",
                family = "Century Gothic",
                fontface = 2
@@ -1043,8 +976,8 @@ GHGEmissions <- function(input, output, session) {
           colour =  BarColours[4]
         )  +
         geom_text(
-          aes( x = 2.4,
-               y = (SectorInventory[which(SectorInventory$Type == "Emissions" & SectorInventory$variable == "Total"),]$top) *(3/7) - 3,
+          aes( x = 1.4,
+               y = (SectorInventory$top) *(3/8),
                label = "Energy\nSupply",
                family = "Century Gothic",
                fontface = 2
@@ -1052,8 +985,8 @@ GHGEmissions <- function(input, output, session) {
           colour =  BarColours[5]
         ) +
         geom_text(
-          aes( x = 2.4,
-               y = (SectorInventory[which(SectorInventory$Type == "Emissions" & SectorInventory$variable == "Total"),]$top) *(4/7) - 3,
+          aes( x = 1.4,
+               y = (SectorInventory$top) *(4/8),
                label = "Residential",
                family = "Century Gothic",
                fontface = 2
@@ -1061,8 +994,8 @@ GHGEmissions <- function(input, output, session) {
           colour =  BarColours[6]
         ) +
         geom_text(
-          aes( x = 2.4,
-               y = (SectorInventory[which(SectorInventory$Type == "Emissions" & SectorInventory$variable == "Total"),]$top) *(5/7) - 3,
+          aes( x = 1.4,
+               y = (SectorInventory$top) *(5/8) ,
                label = "International\naviation\nand shipping",
                family = "Century Gothic",
                fontface = 2
@@ -1070,8 +1003,8 @@ GHGEmissions <- function(input, output, session) {
           colour =  BarColours[7]
         )+
         geom_text(
-          aes( x = 2.4,
-               y = (SectorInventory[which(SectorInventory$Type == "Emissions" & SectorInventory$variable == "Total"),]$top) *(6/7) - 3,
+          aes( x = 1.4,
+               y = (SectorInventory$top) *(6/8),
                label = "Waste\nManagement",
                family = "Century Gothic",
                fontface = 2
@@ -1079,8 +1012,8 @@ GHGEmissions <- function(input, output, session) {
           colour =  BarColours[8]
         )+
         geom_text(
-          aes( x = 2.4,
-               y = (SectorInventory[which(SectorInventory$Type == "Emissions" & SectorInventory$variable == "Total"),]$top) *(7/7) - 3,
+          aes( x = 1.4,
+               y = (SectorInventory$top) *(7/8),
                label = "Public",
                family = "Century Gothic",
                fontface = 2
@@ -1088,13 +1021,22 @@ GHGEmissions <- function(input, output, session) {
           colour =  BarColours[9]
         )+
         geom_text(
-          aes( x = 2.4,
-               y = (SectorInventory[which(SectorInventory$Type == "Emissions" & SectorInventory$variable == "Total"),]$top) *(8/7) - 3,
+          aes( x = 1.4,
+               y = (SectorInventory$top) *(8/8),
                label = "Industrial\nProcesses",
                family = "Century Gothic",
                fontface = 2
           ),
           colour =  BarColours[10]
+        )+
+        geom_text(
+          aes( x = 1,
+               y = (SectorInventory$top) *(8.3/8),
+               label = paste0(round(SectorInventory$top,1), "\nMtCO2e"),
+               family = "Century Gothic",
+               fontface = 2
+          ),
+          colour =  BarColours[1]
         )
       
       SectorInventoryChart
@@ -1110,12 +1052,10 @@ GHGEmissions <- function(input, output, session) {
       SectorInventoryChart <-
         SectorInventoryChart +
         labs(subtitle = SectorInventoryYear)+
-        coord_flip()+ 
-        ylim(-7,53)
+        ylim(0, max(SectorInventory$top)*1.05)+
+        coord_flip()
       
       SectorInventoryChart
-      
-      
       
       ggsave(
         file,
@@ -1132,7 +1072,7 @@ GHGEmissions <- function(input, output, session) {
     
     SectorInventory <- read_csv("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv")
     
-    names(SectorInventory) <- c("Year", "Agriculture", "Business", "Energy Supply", "Industrial Processes", "International Aviation and Shipping", "Forestry (Carbon Sink)", "Public",  "Residential", "Domestic Transport", "Waste Management" )
+    names(SectorInventory) <- c("Year", "Agriculture", "Business", "Energy Supply", "Industrial Processes", "International Aviation and Shipping", "Forestry", "Public",  "Residential", "Domestic Transport", "Waste Management" )
     
     SectorInventory <- SectorInventory[c(1,10,3,2,4,9,6,11,8,5,7)]
     
@@ -1482,6 +1422,7 @@ GHGEmissions <- function(input, output, session) {
           colour = LineColours[4],
           label = paste0("Transport\n", round(EnSupplyEmissions[which(EnSupplyEmissions$Year == min(EnSupplyEmissions$Year) & EnSupplyEmissions$variable == "Transport"),]$value, 1), " MtCO2e"),
           fontface = 2,
+          vjust = 0,
           family = "Century Gothic"
         )+
         annotate(
@@ -1560,7 +1501,7 @@ GHGEmissions <- function(input, output, session) {
       EnSupplyEmissionsChart <- EnSupplyEmissionsChart +
         labs(subtitle = paste("Scotland, 1990 -", max(EnSupplyEmissions$Year))) +
         xlim(min(EnSupplyEmissions$Year)-3, max(EnSupplyEmissions$Year)+3)+
-        ylim(-1.5,80.5)
+        ylim(-1.5,90)
       
       EnSupplyEmissionsChart
       
