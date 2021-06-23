@@ -81,11 +81,12 @@ GridEmissionsOutput <- function(id) {
     fluidRow(
       column(2, HTML("<p><strong>Update Expected:</strong></p>")),
       column(2,
-             DateLookup(c("BEISElecGen", "SGEmissionsPublic"))),
+             DateLookup(c("BEISElecGen","BEISEmissions", "SGEmissionsPublic"))),
       column(1, align = "right",
              HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("BEISElecGen"),
+        SourceLookup("BEISEmissions"),
         SourceLookup("SGEmissionsPublic")
         
       )
