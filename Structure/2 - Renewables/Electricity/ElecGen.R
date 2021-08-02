@@ -1097,7 +1097,7 @@ ElecGen <- function(input, output, session) {
     
     DataScot <- as_tibble(DataScot)
     
-    DataScot <- DataScot[which(DataScot$Year == as.numeric(input$YearSelect)),]
+    DataScot <- DataScot[which(DataScot$Year == as.numeric(2019)),]
     
     DataScot <-
       DataScot[c(
@@ -1171,7 +1171,7 @@ ElecGen <- function(input, output, session) {
     
     DataEW <- as_tibble(DataEW)
     
-    DataEW <- DataEW[which(DataEW$Year == as.numeric(input$YearSelect)),]
+    DataEW <- DataEW[which(DataEW$Year == as.numeric(2019)),]
     
     DataEW <-
       DataEW[c(
@@ -1390,12 +1390,11 @@ ElecGen <- function(input, output, session) {
         showlegend = FALSE ,
         mode = 'text',
         hoverinfo = 'skip',
-        text = paste0("<b>", "Renewables:\n ", percent(1 - (ElecGenFuel$Gas[1] +
-                                                              ElecGenFuel$Oil[1] +
-                                                              ElecGenFuel$Coal[1] +
-                                                              ElecGenFuel$Other[1] +
-                                                              ElecGenFuel$`Pumped Hydro`[1]+
-                                                              ElecGenFuel$Nuclear[1]), 0.1),
+        text = paste0("<b>", "Renewables:\n ", percent(ElecGenFuel$Wind[1] + 
+                                                       ElecGenFuel$Hydro[1] +
+                                                       ElecGenFuel$`Bioenergy and Waste`[1] +
+                                                       ElecGenFuel$Solar[1] + 
+                                                       ElecGenFuel$`Other Renewables`[1], 0.1),
                       "</b>"),
         textposition = ifelse( (1-(ElecGenFuel$Gas[1] +
                                      ElecGenFuel$Oil[1] +
@@ -1435,12 +1434,11 @@ ElecGen <- function(input, output, session) {
         showlegend = FALSE ,
         mode = 'text',
         hoverinfo = 'skip',
-        text = paste0("<b>", "Renewables:\n ", percent(1 - (ElecGenFuel$Gas[2] +
-                                                              ElecGenFuel$Oil[2] +
-                                                              ElecGenFuel$Coal[2] +
-                                                              ElecGenFuel$Other[2] +
-                                                              ElecGenFuel$`Pumped Hydro`[2]+
-                                                              ElecGenFuel$Nuclear[2]), 0.1), "</b>"),
+        text = paste0("<b>", "Renewables:\n ", percent(ElecGenFuel$Wind[2] + 
+                                                         ElecGenFuel$Hydro[2] +
+                                                         ElecGenFuel$`Bioenergy and Waste`[2] +
+                                                         ElecGenFuel$Solar[2] + 
+                                                         ElecGenFuel$`Other Renewables`[2], 0.1), "</b>"),
         textposition = ifelse((1 - (ElecGenFuel$Gas[2] +
                                       ElecGenFuel$Oil[2] +
                                       ElecGenFuel$Coal[2] +
@@ -1480,12 +1478,12 @@ ElecGen <- function(input, output, session) {
         showlegend = FALSE ,
         mode = 'text',
         hoverinfo = 'skip',
-        text = paste0("<b>", "Low Carbon:\n ", percent(1 - (ElecGenFuel$Gas[1] +
-                                                              ElecGenFuel$Oil[1] +
-                                                              ElecGenFuel$Coal[1] +
-                                                              ElecGenFuel$Other[1] + 
-                                                              ElecGenFuel$`Pumped Hydro`[1]
-        ), 0.1), "</b>"),
+        text = paste0("<b>", "Low Carbon:\n ", percent(ElecGenFuel$Wind[1] + 
+                                                         ElecGenFuel$Hydro[1] +
+                                                         ElecGenFuel$`Bioenergy and Waste`[1] +
+                                                         ElecGenFuel$Solar[1] + 
+                                                         ElecGenFuel$`Other Renewables`[1]+
+                                                         ElecGenFuel$Nuclear[1], 0.1), "</b>"),
         textposistion = 'center',
         textfont = list(color = BarColours[4])
         
@@ -1520,11 +1518,13 @@ ElecGen <- function(input, output, session) {
         showlegend = FALSE ,
         mode = 'text',
         hoverinfo = 'skip',
-        text = paste0("<b>", "Low Carbon:\n ", percent(1 - (ElecGenFuel$Gas[2] +
-                                                              ElecGenFuel$Oil[2] +
-                                                              ElecGenFuel$Coal[2] +
-                                                              ElecGenFuel$Other[2]
-        ), 0.1), "</b>"),
+        text = paste0("<b>", "Low Carbon:\n ", percent(ElecGenFuel$Wind[2] + 
+                                                         ElecGenFuel$Hydro[2] +
+                                                         ElecGenFuel$`Bioenergy and Waste`[2] +
+                                                         ElecGenFuel$Solar[2] + 
+                                                         ElecGenFuel$`Other Renewables`[2]+
+                                                         ElecGenFuel$Nuclear[2] +
+                                                         ElecGenFuel$`Pumped Hydro`[2], 0.1), "</b>"),
         textposistion = 'center',
         textfont = list(color = BarColours[4])
         
@@ -2563,10 +2563,10 @@ ElecGen <- function(input, output, session) {
     mutate(top = sum(value)) %>% 
     mutate(RenLineX = Sector + 0.23) %>% 
     mutate(RenLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Bioenergy and Waste", "Solar", "Other Renewables"))])) %>% 
-    mutate(RenText = 1 - sum(value[which(variable %in% c("Coal", "Oil", "Gas", "Other", "Pumped Hydro", "Nuclear"))])) %>% 
+    mutate(RenText = sum(value[which(variable %in% c("Wind", "Hydro", "Bioenergy and Waste", "Solar", "Other Renewables"))])) %>% 
     mutate(LCLineX = Sector - 0.23) %>% 
     mutate(LCLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Bioenergy and Waste",  "Solar", "Other Renewables", "Nuclear"))])) %>% 
-    mutate(LCText = 1 - sum(value[which(variable %in% c("Coal", "Oil", "Gas", "Other", "Pumped Hydro"))])) %>% 
+    mutate(LCText = sum(value[which(variable %in% c("Wind", "Hydro", "Bioenergy and Waste",  "Solar", "Other Renewables", "Nuclear"))])) %>% 
     mutate(FossilLineX = Sector - 0.23) %>% 
     mutate(FossilLineY = sum(value[which(variable %in% c("Coal", "Oil", "Gas"))])) %>% 
     mutate(FossilText = sum(value[which(variable %in% c("Coal", "Oil", "Gas"))])) %>% 

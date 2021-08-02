@@ -121,7 +121,7 @@ ElecStorage <- function(input, output, session) {
     Year <- substr(Data[1,1], 1,4)
     
     #paste("Scotland,", month.name[Quarter], Year)
-    paste("Scotland, December 2020")
+    paste("Scotland, March 2021")
   })
 
   output$ElecStoragePlot <- renderPlotly  ({
@@ -130,11 +130,9 @@ ElecStorage <- function(input, output, session) {
     
     ElecStorage$Operational <- NULL
     
-    ElecStorage$`Under Construction` <- 0
-    
     names(ElecStorage)[2] <- "Type"
     
-    names(ElecStorage)[5] <- "Total"
+    names(ElecStorage)[6] <- "Total"
     
     ElecStorage <- ElecStorage[2:6]
     
@@ -251,11 +249,9 @@ ElecStorage <- function(input, output, session) {
     
     ElecStorage$Operational <- NULL
     
-    ElecStorage$`Under Construction` <- 0
-    
     names(ElecStorage)[2] <- "Type"
     
-    names(ElecStorage)[5] <- "Total"
+    names(ElecStorage)[6] <- "Total"
     
     ElecStorage <- ElecStorage[2:6]
     
@@ -266,7 +262,7 @@ ElecStorage <- function(input, output, session) {
     rownames(ElecStorage) <- NULL
     
     datatable(
-      ElecStorage[c(1,5,2:4)],
+      ElecStorage[c(1,2:5)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -332,11 +328,9 @@ ElecStorage <- function(input, output, session) {
       
       EnergyStorageTech$Operational <- NULL
       
-      EnergyStorageTech$`Under Construction` <- 0
-      
       names(EnergyStorageTech)[2] <- "Type"
       
-      names(EnergyStorageTech)[5] <- "Total"
+      names(EnergyStorageTech)[6] <- "Total"
       
       EnergyStorageTech <- EnergyStorageTech[2:6]
       
@@ -483,7 +477,7 @@ ElecStorage <- function(input, output, session) {
       EnergyStorageTechChart <-
         EnergyStorageTechChart +
         #labs(subtitle = paste("Scotland,", month.name[Quarter], Year)) +
-        labs(subtitle = paste("Scotland, December 2020")) +
+        labs(subtitle = paste("Scotland, March 2021")) +
         ylim(-1000, max(EnergyStorageTech$top)+800)+
         coord_flip()
       
@@ -512,7 +506,7 @@ ElecStorage <- function(input, output, session) {
     Year <- substr(Data[1,1], 1,4)
     
     #paste("Scotland,", month.name[Quarter], Year)
-    paste("Scotland, December 2020") 
+    paste("Scotland, March 2021") 
   })
   
   output$ElecStorageCapPlot <- renderPlotly  ({
@@ -765,7 +759,7 @@ ElecStorage <- function(input, output, session) {
       
       EnergyStorageTechChart <-
         EnergyStorageTechChart +
-        labs(subtitle = paste("Scotland, December 2020")) +
+        labs(subtitle = paste("Scotland, March 2021")) +
         ylim(-150, max(EnergyStorageTech$top))+
         coord_flip()
       

@@ -114,7 +114,7 @@ EnBalanceOutput <- function(id) {
   fluidRow(
     column(2, HTML("<p><strong>Last Updated:</strong></p>")),
     column(2,
-           UpdatedLookup(c("BEISElecGen", "BEISSubNatEnergy", "HMRCTrade", "BEISDUKESBalance", "SGCommodityBalance", "BEISImportExport"))),
+           "April 2021"),
     column(1, align = "right",
            HTML("<p><strong>Reason:</strong></p>")),
     column(7, align = "right", 
@@ -124,7 +124,7 @@ EnBalanceOutput <- function(id) {
   fluidRow(
     column(2, HTML("<p><strong>Update Expected:</strong></p>")),
     column(2,
-           DateLookup(c("BEISElecGen", "BEISSubNatEnergy", "HMRCTrade", "BEISDUKESBalance", "SGCommodityBalance", "BEISImportExport"))),
+           "April 2022"),
     column(1, align = "right",
            HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
