@@ -24,7 +24,6 @@ RenElecCapacityOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
                #dygraphOutput(ns("RenElecCapacityPlot")),
                plotlyOutput(ns("RenElecCapacityPlot"))%>% withSpinner(color="#39ab2c"),
-               HTML("<blockquote><p>*due to an administrative error, onshore and offshore wind capacity was overstated and has been revised down for 2020. BEIS will finalise revisions of previous years in June</p></blockquote>"),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Operational capacity by installation size",
                fluidRow(column(8,
