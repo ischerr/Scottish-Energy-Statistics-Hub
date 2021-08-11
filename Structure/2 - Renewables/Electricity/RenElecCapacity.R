@@ -1847,7 +1847,7 @@ RenElecCapacity <- function(input, output, session) {
   
   output$RenSitesSubtitle <- renderText({
     
-    Data <- read_delim("Processed Data/Output/Renewable Generation/RenewableSites.txt", 
+    Data <- read_delim("Processed Data/Output/Renewable Sites/LAOperationalRenSites.txt", 
                        "\t", escape_double = FALSE, trim_ws = TRUE)
     
     paste(min(Data$Year),"-", max(Data$Year))
@@ -1858,7 +1858,20 @@ RenElecCapacity <- function(input, output, session) {
     Data <- read_delim("Processed Data/Output/Renewable Generation/RenewableSites.txt", 
                        "\t", escape_double = FALSE, trim_ws = TRUE)
     
+    Data2 <- read_delim("Processed Data/Output/Renewable Sites/LAOperationalRenSites.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
     
+    Data2 <- Data2[which(Data2$`Local Authority Name` == "Scotland"),]
+    
+    Data2$`Other Bioenergy` <- Data2$`Municipal Solid Waste`+Data2$`Animal Biomass`+Data2$`Plant Biomass`+Data2$Cofiring + Data2$`Anaerobic Digestion`
+    
+    Data2 <- Data2[c(16, 4,7,5,3,10,8,9,17,15)]
+    
+    names(Data2) <- names(Data)
+    
+    Data <- rbind(Data2, Data)
+    
+    Data <- distinct(Data, Year, .keep_all = TRUE)
     
     RenSites <- as_tibble(Data)
     
@@ -2017,7 +2030,20 @@ RenElecCapacity <- function(input, output, session) {
     Data <- read_delim("Processed Data/Output/Renewable Generation/RenewableSites.txt", 
                        "\t", escape_double = FALSE, trim_ws = TRUE)
     
+    Data2 <- read_delim("Processed Data/Output/Renewable Sites/LAOperationalRenSites.txt", 
+                        "\t", escape_double = FALSE, trim_ws = TRUE)
     
+    Data2 <- Data2[which(Data2$`Local Authority Name` == "Scotland"),]
+    
+    Data2$`Other Bioenergy` <- Data2$`Municipal Solid Waste`+Data2$`Animal Biomass`+Data2$`Plant Biomass`+Data2$Cofiring + Data2$`Anaerobic Digestion`
+    
+    Data2 <- Data2[c(16, 4,7,5,3,10,8,9,17,15)]
+    
+    names(Data2) <- names(Data)
+    
+    Data <- rbind(Data2, Data)
+    
+    Data <- distinct(Data, Year, .keep_all = TRUE)
     
     RenSites <- as_tibble(Data)
     

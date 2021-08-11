@@ -41,7 +41,7 @@ EnSupplyEmissionsOutput <- function(id) {
     fluidRow(
       column(2, HTML("<p><strong>Last Updated:</strong></p>")),
       column(2,
-             UpdatedLookup(c("BEISSubNatEnergy", "BEISElecGen", "ESTRenHeat"))),
+             UpdatedLookup(c("SGEmissions"))),
       column(1, align = "right",
              HTML("<p><strong>Reason:</strong></p>")),
       column(7, align = "right", 
@@ -51,15 +51,13 @@ EnSupplyEmissionsOutput <- function(id) {
     fluidRow(
       column(2, HTML("<p><strong>Update Expected:</strong></p>")),
       column(2,
-             DateLookup(c("BEISSubNatEnergy", "BEISElecGen", "ESTRenHeat"))),
+             DateLookup(c("SGEmissions"))),
       column(1, align = "right",
              HTML("<p><strong>Sources:</strong></p>")),
       column(
         7,
         align = "right",
-        SourceLookup("BEISSubNatEnergy"),
-        SourceLookup("BEISElecGen"),
-        SourceLookup("ESTRenHeat")
+        SourceLookup("SGEmissions")
         
       )
     )

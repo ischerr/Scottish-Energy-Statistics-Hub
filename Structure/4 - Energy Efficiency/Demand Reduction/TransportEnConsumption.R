@@ -131,6 +131,8 @@ TransportEnConsumption <- function(input, output, session) {
     ChartColours <- c("#34d1a3", "#FF8500")
     BarColours <- c("#00441b", "#238b45","#41ae76", "#66c2a4","#66c2a4", "#99d8c9", "ffffff")
     
+    Data <- Data[c(-3, -4, -5),]
+    
     p <- plot_ly(data = Data, y = ~ Year) %>%
       
       add_trace(

@@ -97,7 +97,7 @@ NonDomRHIOutput <- function(id) {
       
       tabPanel("Heat generated, installed capacity & installations paid ",
     fluidRow(
-    column(10, h3("Data - Heat generated, installed capacity and number of installations receiving payment, Nov 2011 - May 2020", style = "color: #39ab2c;  font-weight:bold")),
+    column(10, h3("Data - Heat generated, installed capacity and number of installations receiving payment, Nov 2011 - June 2021", style = "color: #39ab2c;  font-weight:bold")),
     column(2, style = "padding:15px",  actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
@@ -153,7 +153,7 @@ NonDomRHI <- function(input, output, session) {
   
   output$NonDomRHISubtitle <- renderText({
     
-    paste("Scotland, Nov 2011 - May 2020")
+    paste("Scotland, Nov 2011 - June 2021")
   })
   
   output$NonDomRHIPlot <- renderPlotly  ({
@@ -463,17 +463,17 @@ NonDomRHI <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - May 2020",
+        title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - June 2021",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - May 2020",
+            title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - June 2021",
             header = TRUE
           ),
           list(extend = 'csv',
-               title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - May 2020")
+               title = "Non-domestic RHI heat generated, installed capacity and number of installations receiving payment by tariff, Scotland, Nov 2011 - June 2021")
         ),
         
         # customize the length menu
@@ -769,7 +769,7 @@ NonDomRHI <- function(input, output, session) {
       
       NonDomRHIChart <-
         NonDomRHIChart +
-        labs(subtitle = "Scotland, Nov 2011 - May 2020") +
+        labs(subtitle = "Scotland, Nov 2011 - June 2021") +
         ylim(-.1, .7)+
         coord_flip()
       
