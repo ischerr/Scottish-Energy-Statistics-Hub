@@ -123,7 +123,7 @@ RenServicesAssets <- function(input, output, session) {
                 text = paste0(
                   "Value of renewable energy services: \u00A3",
                   round(Renewables$Annual, digits = 1),
-                  " billion\nYear: ",
+                  " million\nYear: ",
                   paste(Renewables$Year)
                 ),
                 hoverinfo = 'text',
@@ -138,7 +138,7 @@ RenServicesAssets <- function(input, output, session) {
         text = paste0(
           "Value of renewable energy services: \u00A3",
           round(Renewables[which(Renewables$Annual > 0 | Renewables$Annual < 0),][-1,]$Annual, digits = 1),
-          " billion\nYear: ",
+          " million\nYear: ",
           paste(Renewables[which(Renewables$Annual > 0 | Renewables$Annual < 0),][-1,]$Year)
         ),
         hoverinfo = 'text',
@@ -182,7 +182,7 @@ RenServicesAssets <- function(input, output, session) {
     Renewables <- read_delim("Processed Data/Output/Services and assets/Renewables.txt", 
                               "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    names(Renewables) <- c("Year", "Value of renewable energy services (\u00A3 bn)", "Value of renewable energy assets (\u00A3 bn)")
+    names(Renewables) <- c("Year", "Value of renewable energy services (\u00A3 million)", "Value of renewable energy assets (\u00A3 billion)")
     
     datatable(
       Renewables,
@@ -251,7 +251,7 @@ RenServicesAssets <- function(input, output, session) {
           aes(
             x = Year,
             y = Annual,
-            label = ifelse(Year == min(Year), paste0("\u00A3", format(round(Annual, digits = 1),nsmall = 1, trim = TRUE), " billion"), ""),
+            label = ifelse(Year == min(Year), paste0("\u00A3", format(round(Annual, digits = 1),nsmall = 1, trim = TRUE), " million"), ""),
             hjust = 1.1,
             colour = ChartColours[2],
             fontface = 2
@@ -262,7 +262,7 @@ RenServicesAssets <- function(input, output, session) {
           aes(
             x = Year,
             y = Annual,
-            label = ifelse(Year == max(Year), paste0("\u00A3", format(round(Annual, digits = 1),nsmall = 1, trim = TRUE), " billion"), ""),
+            label = ifelse(Year == max(Year), paste0("\u00A3", format(round(Annual, digits = 1),nsmall = 1, trim = TRUE), " million"), ""),
             hjust = 0.5,
             vjust = -1.5,
             colour = ChartColours[2],

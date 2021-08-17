@@ -279,7 +279,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Elec capacity and peak demand", col_names = TRUE, 
-        skip = 38)[c(1:11)]
+        skip = 40)[c(1:11)]
     
     names(Data)[1:2] <- c("Year", "Period")
     
@@ -312,7 +312,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Elec capacity and peak demand", col_names = TRUE, 
-        skip = 38)[c(1:11)]
+        skip = 40)[c(1:11)]
     
     names(Data)[1:2] <- c("Year", "Period")
     
@@ -484,7 +484,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Elec capacity and peak demand", col_names = TRUE, 
-        skip = 38)[c(1:11)]
+        skip = 40)[c(1:11)]
     
     names(Data)[1:2] <- c("Year", "Period")
     
@@ -699,7 +699,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         read_excel(
           "Structure/CurrentWorking.xlsx",
           sheet = "Elec capacity and peak demand", col_names = TRUE, 
-          skip = 38)[c(1:11)]
+          skip = 40)[c(1:11)]
       
       names(Data)[1:2] <- c("Year", "Period")
       
@@ -1016,7 +1016,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Elec capacity and peak demand", col_names = TRUE, 
-        skip = 38)[c(1:11)]
+        skip = 40)[c(1:11)]
     
     names(Data)[1:2] <- c("Year", "Period")
     
@@ -1049,7 +1049,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
       read_excel(
         "Structure/CurrentWorking.xlsx",
         sheet = "Elec capacity and peak demand", col_names = TRUE, 
-        skip = 38)[c(1:11)]
+        skip = 40)[c(1:11)]
     
     names(Data)[1:2] <- c("Year", "Period")
     
@@ -1150,7 +1150,7 @@ MaxSupplyPeakDemand <- function(input, output, session) {
         read_excel(
           "Structure/CurrentWorking.xlsx",
           sheet = "Elec capacity and peak demand", col_names = TRUE, 
-          skip = 38)[c(1:11)]
+          skip = 40)[c(1:11)]
       
       names(Data)[1:2] <- c("Year", "Period")
       

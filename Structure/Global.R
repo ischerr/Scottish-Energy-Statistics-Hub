@@ -77,3 +77,7 @@ ECOMeasuresLACategories <- unique(read_delim("Processed Data/Output/ECO/ECOMeasu
 
 LCRE <- read_csv("Processed Data/Output/LCRE/LCRE.csv") 
 
+TransportMultipliers <- data.frame(Unit = c("GWh", "ktoe"),
+                                   Multiplier = c(1, (1/0.01163)))
+
+TransportDropdown <- reactiveValues(Unit = "GWh")

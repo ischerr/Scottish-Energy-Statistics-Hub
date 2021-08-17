@@ -12,7 +12,9 @@ TransportEnConsumptionOutput <- function(id) {
   tagList(
     fluidRow(column(8,
                     h3("Road and rail energy consumption", style = "color: #34d1a3;  font-weight:bold"),
-                    h4(textOutput(ns('TransportEnConsumptionSubtitle')), style = "color: #34d1a3;")
+                    h4(textOutput(ns('TransportEnConsumptionSubtitle')), style = "color: #34d1a3;"),
+                    selectInput(ns("UnitSelect"), "Unit:", TransportMultipliers$Unit, selected = TransportMultipliers$Unit[1], multiple = FALSE,
+                                selectize = TRUE, width = NULL, size = NULL)
     ),
              column(
                4, style = 'padding:15px;',
@@ -32,9 +34,10 @@ TransportEnConsumptionOutput <- function(id) {
     ),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
-    column(10, h3("Data - Road and rail energy consumption (Gwh)", style = "color: #34d1a3;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
-    ),
+    column(10, h3("Data - Road and rail energy consumption", style = "color: #34d1a3;  font-weight:bold")),
+    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))),
+    fluidRow(column(12,selectInput(ns("UnitSelect2"), "Unit:", TransportMultipliers$Unit, selected = TransportMultipliers$Unit[1], multiple = FALSE,
+                                   selectize = TRUE, width = NULL, size = NULL))),
     fluidRow(
       column(12, dataTableOutput(ns("TransportEnConsumptionTable"))%>% withSpinner(color="#34d1a3"))),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
@@ -69,6 +72,24 @@ TransportEnConsumptionOutput <- function(id) {
 TransportEnConsumption <- function(input, output, session) {
   
   
+  observe({
+    TransportDropdown$Unit <- input$UnitSelect
+  })
+  
+  observe({
+    TransportDropdown$Unit <- input$UnitSelect2
+  })
+  
+
+  observe(
+    {
+      updateSelectInput(session, 'UnitSelect', selected = TransportDropdown$Unit)
+      updateSelectInput(session, 'UnitSelect2', selected = TransportDropdown$Unit)
+    }
+  )
+  
+  
+  
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
@@ -96,6 +117,10 @@ TransportEnConsumption <- function(input, output, session) {
   
   output$TransportEnConsumptionPlot <- renderPlotly  ({
     
+    unit <- as.character(TransportDropdown$Unit)
+    
+    multiplier <- TransportMultipliers[which(TransportMultipliers$Unit == unit),]$Multiplier
+    
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Transport energy consump",
@@ -106,6 +131,8 @@ TransportEnConsumption <- function(input, output, session) {
     names(Data) <- c("Year", "Road - Personal", "Road - Freight", "Rail", "Total")
     
     Data[1:5] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data[2:5] %<>% lapply(function(x) as.numeric(as.character(x))*multiplier)
     
     Data$Year <- as.character(Data$Year)
     
@@ -125,11 +152,17 @@ TransportEnConsumption <- function(input, output, session) {
     
     Data[is.na(Data)] <- 0
     
+    Data[nrow(Data),2] <- (Data[nrow(Data)-1,2]/Data[1,2])-1
+    Data[nrow(Data),3] <- (Data[nrow(Data)-1,3]/Data[1,3])-1
+    Data[nrow(Data),4] <- (Data[nrow(Data)-1,4]/Data[1,4])-1
+    Data[nrow(Data),5] <- (Data[nrow(Data)-1,5]/Data[1,5])-1
+    
     DataTail <- tail(Data,1)
     DataLatest <- Data[nrow(Data)-1,]
     
     ChartColours <- c("#34d1a3", "#FF8500")
     BarColours <- c("#00441b", "#238b45","#41ae76", "#66c2a4","#66c2a4", "#99d8c9", "ffffff")
+    
     
     Data <- Data[c(-3, -4, -5),]
     
@@ -142,7 +175,7 @@ TransportEnConsumption <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Road - Personal",
-        text = paste0("Road - Personal: ", format(round(Data$`Road - Personal`, digits = 0), big.mark = ","), " GWh"),
+        text = paste0("Road - Personal: ", format(round(Data$`Road - Personal`, digits = 0), big.mark = ","), unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[1]),
         legendgroup = 2
@@ -154,7 +187,7 @@ TransportEnConsumption <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Road - Freight",
-        text = paste0("Road - Freight: ", format(round(Data$`Road - Freight`, digits = 0), big.mark = ","), " GWh"),
+        text = paste0("Road - Freight: ", format(round(Data$`Road - Freight`, digits = 0), big.mark = ","), unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[2]),
         legendgroup = 3
@@ -167,7 +200,7 @@ TransportEnConsumption <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Rail",
-        text = paste0("Rail: ", format(round(Data$`Rail`, digits = 0), big.mark = ","), " GWh"),
+        text = paste0("Rail: ", format(round(Data$`Rail`, digits = 0), big.mark = ","), "", unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 4
@@ -179,7 +212,7 @@ TransportEnConsumption <- function(input, output, session) {
         showlegend = FALSE,
         type = 'scatter',
         mode = 'text',
-        text = ifelse(Data$`Road - Personal` >0, paste("<b>",format(round((Data$`Road - Personal` + Data$`Road - Freight` + Data$`Rail`), digits = 0), big.mark = ","),"GWh</b>")," "),
+        text = ifelse(Data$`Road - Personal` >0, paste("<b>",format(round((Data$`Road - Personal` + Data$`Road - Freight` + Data$`Rail`), digits = 0), big.mark = ","), unit, "</b>")," "),
         textposition = 'middle right',
         textfont = list(color = ChartColours[1]),
         hoverinfo = 'skip',
@@ -223,7 +256,7 @@ TransportEnConsumption <- function(input, output, session) {
       add_trace(
         data = tail(Data,1),
         y = ~Year,
-        x = mean(DataLatest$`Total`)+ 5000,
+        x = mean(DataLatest$`Total`)*1.05,
         showlegend = FALSE,
         mode = 'text',
         type = 'scatter',
@@ -253,7 +286,7 @@ TransportEnConsumption <- function(input, output, session) {
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
           zerolinewidth = 2,
-          range = c(0,50000)
+          range = c(0,(50000*multiplier))
         )
       ) %>% 
       config(displayModeBar = F)
@@ -276,9 +309,17 @@ TransportEnConsumption <- function(input, output, session) {
       skip = 14
     )
     
+    unit <- as.character(TransportDropdown$Unit)
+    
+    multiplier <- TransportMultipliers[which(TransportMultipliers$Unit == unit),]$Multiplier
+    
     Data <- Data[complete.cases(Data),]
     
     Data <- head(Data,-1)
+    
+    Data[1:13] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data[2:13] %<>% lapply(function(x) as.numeric(as.character(x))*multiplier)
     
     names(Data)[c(1,12,13)] <- c("Year", "Rail", "Total Transport Consumption")
     
@@ -296,17 +337,17 @@ TransportEnConsumption <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Road and rail energy consumption (GWh)",
+        title = paste0("Road and rail energy consumption (", unit,")"),
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Road and rail energy consumption (GWh)',
+            title = paste0("Road and rail energy consumption (", unit,")"),
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Road and rail energy consumption (GWh)')
+               title = paste0("Road and rail energy consumption (", unit,")"))
         ),
         
         # customize the length menu
@@ -354,6 +395,10 @@ TransportEnConsumption <- function(input, output, session) {
         col_names = FALSE,
         skip = 14
       )[c(1,6,10,12,13)]
+      
+      unit <- as.character(TransportDropdown$Unit)
+      
+      multiplier <- TransportMultipliers[which(TransportMultipliers$Unit == unit),]$Multiplier
       
       names(Data) <- c("Year", "Road - Personal", "Road - Freight", "Rail", "Total")
   
@@ -419,8 +464,8 @@ TransportEnConsumption <- function(input, output, session) {
           label = ifelse(
             FinalConsumptionFuel$value < 7000,
             paste0(format(
-              round(FinalConsumptionFuel$top, digits = 0), big.mark = ","
-            ), " GWh"),
+              round(FinalConsumptionFuel$top*multiplier, digits = 0), big.mark = ","
+            ), " ", unit),
             ""
           ),
           hjust = 0,
@@ -452,8 +497,8 @@ TransportEnConsumption <- function(input, output, session) {
               FinalConsumptionFuel$Year == 2003 |
                 FinalConsumptionFuel$Year ==  max(FinalConsumptionFuel$Year),
               paste0(format(
-                round(FinalConsumptionFuel$value, digits = 0), big.mark = ","
-              ), " GWh"),
+                round(FinalConsumptionFuel$value*multiplier, digits = 0), big.mark = ","
+              ), " ", unit),
               ""
             ),
             ""
