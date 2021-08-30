@@ -97,6 +97,17 @@ library(spatstat)
 
 
 
+js_code <- "
+shinyjs.browseURL = function(url) {
+  window.open(url,'_blank');
+}
+"
+
+dir.create('~/.fonts')
+file.copy("www/GOTHIC.TTF", "~/.fonts")
+system('fc-cache -f ~/.fonts')
+
+
 
 
 
