@@ -1,28 +1,18 @@
 source("packages.R")
 
 
-js_code <- "
-shinyjs.browseURL = function(url) {
-  window.open(url,'_blank');
-}
-"
-
-dir.create('~/.fonts')
-file.copy("www/GOTHIC.TTF", "~/.fonts")
-system('fc-cache -f ~/.fonts')
-
 ### Create List of Scripts, including filepath ###
-   SourceList <-
-    list.files(
-      "Structure",
-      full.names = TRUE,
-      recursive = TRUE,
-      pattern = "\\.R$"
-    )
-  
-  ### Pass Each list item to Source() command ###
-  sapply(SourceList, source)
-  
+SourceList <-
+  list.files(
+    "Structure",
+    full.names = TRUE,
+    recursive = TRUE,
+    pattern = "\\.R$"
+  )
+
+### Pass Each list item to Source() command ###
+sapply(SourceList, source)
+
   
 server <- function(input, output, session) {
   
@@ -478,17 +468,6 @@ ui <- shinyUI(fluidPage(
         padding-right: 15px;
       }")
   ),
-  #' tags$head(HTML("<meta charset='utf-8'>
-  #'   <title>Emoji</title>
-  #'   <style>
-  #'       @font-face {
-  #'           font-family: 'Century Gothic';
-  #'           src: url('GOTHIC.ttf');
-  #'       }
-  #'       span {
-  #'           font-family: 'Century Gothic';
-  #'       }
-  #'   </style>")),
   navbarPage(
     id = "MainNav",
     title = div(
