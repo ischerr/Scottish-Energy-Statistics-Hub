@@ -151,7 +151,7 @@ HeatConsumption <- function(input, output, session) {
     
     Data[1:3] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
+    #Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
     
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
@@ -172,7 +172,7 @@ HeatConsumption <- function(input, output, session) {
     
     names(Data)[1] <- "Year"
     
-    Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
+    #Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
     
     Data[1:5] %<>% lapply(function(x) as.numeric(as.character(x)))
     
@@ -352,7 +352,7 @@ HeatConsumption <- function(input, output, session) {
     
     names(Data)[1] <- "Year"
     
-    Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
+    #Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
     
     Data[1:4] %<>% lapply(function(x) as.numeric(as.character(x)))
     
