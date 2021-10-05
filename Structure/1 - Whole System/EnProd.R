@@ -61,7 +61,7 @@ EnProdOutput <- function(id) {
       column(1, align = "right",
              HTML("<p><strong>Reason:</strong></p>")),
       column(7, align = "right", 
-             p("Quarterly Update - GVA Figures")
+             p("Quarterly Update")
     )),
     fluidRow(p(" ")),
     fluidRow(
