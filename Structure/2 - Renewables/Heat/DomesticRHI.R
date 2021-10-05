@@ -82,7 +82,7 @@ DomesticRHIOutput <- function(id) {
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Installations by region",
                fluidRow(
-                 column(10, h3("Data - Number of domestic RHI accredited applications by region, Scotland, January 2021", style = "color: #39ab2c;  font-weight:bold")),
+                 column(10, h3("Data - Number of domestic RHI accredited applications by region, Scotland, July 2021", style = "color: #39ab2c;  font-weight:bold")),
                  column(2, style = "padding:15px",  actionButton(ns("ToggleTable5"), "Show/Hide Table", style = "float:right; "))
                ),
                fluidRow(
