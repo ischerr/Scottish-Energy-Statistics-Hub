@@ -1061,7 +1061,7 @@ EnergyConsumption <- function(input, output, session) {
     
     
     
-    paste("Scotland, 2018")
+    paste("Scotland, 2019")
   })
   
   output$EnConsumptionLAPlot <- renderImage({
@@ -1080,7 +1080,7 @@ EnergyConsumption <- function(input, output, session) {
          alt = "This is alternate text")
   }, deleteFile = TRUE)
   
-  EnConsumptionLA <- read_csv("Processed Data/Output/Consumption/CorrectedFinalConsumptionbyLA.csv")
+  EnConsumptionLA <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
   
   Year <- max(EnConsumptionLA$Year)
   
@@ -1090,7 +1090,12 @@ EnergyConsumption <- function(input, output, session) {
     
     EnConsumptionLATable <- EnConsumptionLA[which(EnConsumptionLA$Year == Year),]
     
-    EnConsumptionLATable <- EnConsumptionLATable[c(2,1,31,32,33,30)]
+    EnConsumptionLATable <- EnConsumptionLATable %>%  select(c('Region',
+                                                               'LA Code',
+                                                               'Consuming Sector - Industry & Commercial',
+                                                               'Consuming Sector - Domestic',
+                                                               'Consuming Sector - Transport',                                                                                                                    'All fuels - Total'
+    ))
     
     names(EnConsumptionLATable) <- c("Local Authority", "Geography Code", "Industry & Commercial", "Domestic", "Transport", "Total consumption")
     
@@ -1519,15 +1524,23 @@ EnergyConsumption <- function(input, output, session) {
     LA <- spTransform(LA, CRS("+proj=longlat +datum=WGS84"))
     ############ RENEWABLE ELECTRICITY ################################################
     
-    EnConsumptionLA <- read_csv("Processed Data/Output/Consumption/CorrectedFinalConsumptionbyLA.csv")
+    
+    EnConsumptionLA <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
     
     Year <- max(EnConsumptionLA$Year)
-    
+
+      
       unique(EnConsumptionLA$Year)
       
       EnConsumptionLAMap <- EnConsumptionLA[which(EnConsumptionLA$Year == Year),]
       
-      EnConsumptionLAMap <- EnConsumptionLAMap[c(2,1,31,32,33,30)]
+      EnConsumptionLAMap <- EnConsumptionLAMap %>%  select(c('Region',
+                                                                 'LA Code',
+                                                                 'Consuming Sector - Industry & Commercial',
+                                                                 'Consuming Sector - Domestic',
+                                                                 'Consuming Sector - Transport',                                                                                                                    'All fuels - Total'
+      ))
+      
       
       names(EnConsumptionLAMap) <- c("LocalAuthority", "CODE", "Industry & Commercial", "Domestic", "Transport", "Total")
       
