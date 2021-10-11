@@ -12,10 +12,10 @@
    version="1.1"
    id="svg74"
    sodipodi:docname="EnConsumptionSectorChart.svg"
-   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
    width="319.88266"
    height="419.77661"
-   inkscape:export-filename="C:\Users\ische\GitHub\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\EnConsumptionSectorChart.png"
+   inkscape:export-filename="C:\Users\ische\Documents\Github\Scottish-Energy-Statistics-Hub\Structure\1 - Whole System\EnConsumptionSectorChart.png"
    inkscape:export-xdpi="299.50983"
    inkscape:export-ydpi="299.50983">
   <metadata
@@ -39,15 +39,15 @@
      guidetolerance="10"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:window-width="2880"
-     inkscape:window-height="1526"
+     inkscape:window-width="2560"
+     inkscape:window-height="1017"
      id="namedview76"
      showgrid="false"
      inkscape:zoom="2.68112"
-     inkscape:cx="48.159531"
-     inkscape:cy="228.17014"
-     inkscape:window-x="5749"
-     inkscape:window-y="1587"
+     inkscape:cx="-12.449468"
+     inkscape:cy="198.33186"
+     inkscape:window-x="2552"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="g1306"
      fit-margin-top="5"
@@ -137,8 +137,7 @@
          y="-66.533241"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
        id="flowPara1118"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;line-height:12.2079px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'" /></flowRoot>
-  <flowRoot
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;line-height:12.2079px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic'" /></flowRoot>  <flowRoot
      xml:space="preserve"
      id="flowRoot4827"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
@@ -151,8 +150,7 @@
          x="-309.9451"
          y="-75.484726"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" /></flowRegion><flowPara
-       id="flowPara4833" /></flowRoot>
-  <g
+       id="flowPara4833" /></flowRoot>  <g
      id="g4896"
      transform="translate(2.947994,-5.4885812e-6)">
     <path
@@ -226,8 +224,7 @@
            width="483.75308"
            id="rect905-1" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#1a5d38;fill-opacity:1"
-         id="flowPara907-9">2019</flowPara></flowRoot>
-    <flowRoot
+         id="flowPara907-9">2019</flowPara></flowRoot>    <flowRoot
        transform="translate(45.124957,596.64747)"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#1a5d38;fill-opacity:1;stroke:none"
        id="flowRoot901-8-4"
@@ -241,8 +238,7 @@
            width="483.75308"
            id="rect905-1-6" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';text-align:end;text-anchor:end;fill:#1a5d38;fill-opacity:1"
-         id="flowPara907-9-7">Source: BEIS</flowPara></flowRoot>
-    <path
+         id="flowPara907-9-7">Source: BEIS</flowPara></flowRoot>    <path
        transform="matrix(0.49840363,0,0,1,0.90346509,351.74396)"
        inkscape:connector-curvature="0"
        id="line53-3"
@@ -263,8 +259,7 @@
            width="2922.1904"
            id="rect4839" /></flowRegion><flowPara
          id="flowPara4847">Total final energy consumption</flowPara><flowPara
-         id="flowPara4851">by sector</flowPara></flowRoot>
-    <g
+         id="flowPara4851">by sector</flowPara></flowRoot>    <g
        class="bglayer"
        id="g869"
        transform="translate(-750.13381,-193.12357)" />
@@ -321,21 +316,26 @@
                x="600.40009"
                y="230.12041"
                style="font-size:12px;font-family:'Open Sans', verdana, arial, sans-serif;text-anchor:middle;white-space:pre;fill:#ffffff;fill-opacity:1"
-               id="text895"><tspan
+               id="text895">
+              <tspan
                  style="fill:#ffffff"
                  class="line"
                  dy="0"
                  x="600.40009"
                  y="230.12041"
-                 id="tspan891"><tspan
+                 id="tspan891">
+                <tspan
                    style="font-weight:bold;fill:#ffffff"
-                   id="tspan889">Heat</tspan></tspan><tspan
+                   id="tspan889">Heat</tspan>
+              </tspan>
+              <tspan
                  style="fill:#ffffff"
                  class="line"
                  dy="15.599999"
                  x="600.40009"
                  y="230.12041"
-                 id="tspan893">51.0%</tspan></text>
+                 id="tspan893">50.2%</tspan>
+            </text>
           </g>
           <g
              style="fill:#ffffff"
@@ -349,21 +349,26 @@
                x="0"
                y="0"
                style="font-size:12px;font-family:'Open Sans', verdana, arial, sans-serif;text-anchor:middle;white-space:pre;fill:#ffffff;fill-opacity:1"
-               id="text909"><tspan
+               id="text909">
+              <tspan
                  style="fill:#ffffff"
                  class="line"
                  dy="0em"
                  x="0"
                  y="0"
-                 id="tspan905"><tspan
+                 id="tspan905">
+                <tspan
                    style="font-weight:bold;fill:#ffffff"
-                   id="tspan903">Transport</tspan></tspan><tspan
+                   id="tspan903">Transport</tspan>
+              </tspan>
+              <tspan
                  style="fill:#ffffff"
                  class="line"
                  dy="1.3em"
                  x="0"
                  y="0"
-                 id="tspan907">24.3%</tspan></text>
+                 id="tspan907">24.2%</tspan>
+            </text>
           </g>
           <g
              style="fill:#ffffff"
@@ -377,21 +382,26 @@
                x="0"
                y="0"
                style="font-size:12px;font-family:'Open Sans', verdana, arial, sans-serif;text-anchor:middle;white-space:pre;fill:#ffffff;fill-opacity:1"
-               id="text923"><tspan
+               id="text923">
+              <tspan
                  style="fill:#ffffff"
                  class="line"
                  dy="0em"
                  x="0"
                  y="0"
-                 id="tspan919"><tspan
+                 id="tspan919">
+                <tspan
                    style="font-weight:bold;fill:#ffffff"
-                   id="tspan917">Electricity</tspan></tspan><tspan
+                   id="tspan917">Electricity</tspan>
+              </tspan>
+              <tspan
                  style="fill:#ffffff"
                  class="line"
                  dy="1.3em"
                  x="0"
                  y="0"
-                 id="tspan921">21.7%</tspan></text>
+                 id="tspan921">21.6%</tspan>
+            </text>
           </g>
           <g
              style="fill:#02808a;fill-opacity:1"
@@ -405,20 +415,25 @@
                x="0"
                y="0"
                style="font-size:12px;font-family:'Open Sans', verdana, arial, sans-serif;text-anchor:middle;white-space:pre;fill:#02808a;fill-opacity:1"
-               id="text937"><tspan
+               id="text937">
+              <tspan
                  style="fill:#02808a;fill-opacity:1"
                  class="line"
                  dy="0em"
                  x="0"
                  y="0"
-                 id="tspan933"><tspan
+                 id="tspan933">
+                <tspan
                    style="font-weight:bold;fill:#02808a;fill-opacity:1"
-                   id="tspan931">Other</tspan></tspan><tspan
+                   id="tspan931">Other</tspan>
+              </tspan>
+              <tspan
                  style="fill:#02808a;fill-opacity:1"
                  class="line"
                  x="0"
                  y="0"
-                 id="tspan935" /></text>
+                 id="tspan935" />
+            </text>
           </g>
           <g
              style="opacity:1;fill:#02818a;fill-opacity:1;stroke-linejoin:round"
@@ -431,12 +446,14 @@
                x="-39.524086"
                y="408.68973"
                style="font-size:12px;font-family:'Open Sans', verdana, arial, sans-serif;text-anchor:middle;white-space:pre;fill:#02818a;fill-opacity:1"
-               id="text937-9"><tspan
+               id="text937-9">
+              <tspan
                  style="fill:#02818a;fill-opacity:1"
                  class="line"
                  x="-39.524086"
                  y="408.68973"
-                 id="tspan935-3">3.0%</tspan></text>
+                 id="tspan935-3">4.0%</tspan>
+            </text>
           </g>
         </g>
       </g>
