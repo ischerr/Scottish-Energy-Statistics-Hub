@@ -1,5 +1,5 @@
 <p><strong>Consumption has</strong> <strong>decreased </strong>slightly in the <strong>transport</strong> sector from the 2005-07 baseline, down by <strong>1.0% </strong>to <strong>38.0 TWh </strong>in <strong>2019.</strong></p>
-<p>The <strong>composition </strong>of Scottish transport energy consumption has changed over time:</p>
+<p>The <strong>composition </strong>of Scottish transport energy consumption has changed over time. From the baseline to <strong>2019</strong>:</p>
 <ul>
 <li>Consumption of fuel for <strong>personal road transport </strong>(buses, cars, motorcycles) has <strong>decreased </strong>by <strong>8.9%</strong>. Conversely <strong>freight </strong>has <strong>increased </strong>by <strong>16.2%</strong>.</li>
 <li>Consumption from <strong>diesel </strong>cars has <strong>increased </strong>by <strong>53.4%</strong>, whereas consumption from <strong>petrol</strong> vehicles&nbsp;<strong>dropped </strong>by <strong>35.0%</strong></li>

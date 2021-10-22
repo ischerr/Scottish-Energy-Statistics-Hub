@@ -89,7 +89,7 @@ RenElecPipelineOutput <- function(id) {
     fluidRow(
       column(2, HTML("<p><strong>Last Updated:</strong></p>")),
       column(2,
-             UpdatedLookup(c("BEISREPD", "BEISRenElec"))),
+             UpdatedLookup(c("BEISREPD"))),
       column(1, align = "right",
              HTML("<p><strong>Reason:</strong></p>")),
       column(7, align = "right", 
@@ -99,12 +99,11 @@ RenElecPipelineOutput <- function(id) {
     fluidRow(
       column(2, HTML("<p><strong>Update Expected:</strong></p>")),
       column(2,
-             DateLookup(c("BEISREPD", "BEISRenElec"))),
+             DateLookup(c("BEISREPD"))),
       column(1, align = "right",
              HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
-        SourceLookup("BEISREPD"),
-        SourceLookup("BEISRenElec")
+        SourceLookup("BEISREPD")
         
       )
     )
@@ -563,7 +562,7 @@ RenElecPipeline <- function(input, output, session) {
           tickformat = "%",
           showgrid = FALSE,
           showticklabels = FALSE,
-          range = c(0,13000),
+          range = c(0,14000),
           zeroline = FALSE,
           zerolinecolor = ChartColours[1],
           zerolinewidth = 2,

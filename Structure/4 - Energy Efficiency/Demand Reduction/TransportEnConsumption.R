@@ -325,6 +325,12 @@ TransportEnConsumption <- function(input, output, session) {
     
     Data <- Data[seq(dim(Data)[1],1),]
     
+    Data$Year <- as.character(Data$Year)
+    
+    Data[nrow(Data),1] <- "Baseline 2005/2007"
+    
+    Data <- Data[-which(Data$Year %in% c(2005,2006,2007)),]
+    
     datatable(
       Data,
       extensions = 'Buttons',

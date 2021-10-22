@@ -165,7 +165,7 @@ tabsetPanel(
 fluidRow(
   column(2, HTML("<p><strong>Last Updated:</strong></p>")),
   column(2,
-         UpdatedLookup(c("BEISRenElec", "BEISREPD", "ONSLowCarbon"))),
+         UpdatedLookup(c("BEISRenElec", "BEISREPD","BEISRenElecLA", "ONSLowCarbon"))),
   column(1, align = "right",
          HTML("<p><strong>Reason:</strong></p>")),
   column(7, align = "right", 
@@ -175,12 +175,13 @@ fluidRow(p(" ")),
 fluidRow(
   column(2, HTML("<p><strong>Update Expected:</strong></p>")),
   column(2,
-         DateLookup(c("BEISRenElec", "BEISREPD", "ONSLowCarbon"))),
+         DateLookup(c("BEISRenElec", "BEISREPD", "BEISRenElecLA", "ONSLowCarbon"))),
   column(1, align = "right",
          HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
         SourceLookup("BEISRenElec"),
         SourceLookup("BEISREPD"),
+        SourceLookup("BEISRenElecLA"),
         SourceLookup("ONSLowCarbon")
         
       )
