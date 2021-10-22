@@ -211,7 +211,7 @@ GasConsumption <- function(input, output, session) {
         name = "Non-domestic",
         text = paste0("Non-domestic: ", format(round(Data$`Non-domestic`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'text',
-        marker = list(color = BarColours[3]),
+        marker = list(color = BarColours[2]),
         legendgroup = 3
       ) %>%
       add_trace(
@@ -248,7 +248,7 @@ GasConsumption <- function(input, output, session) {
         mode = 'text',
         type = 'scatter',
         hoverinfo = 'skip',
-        textfont = list(color = BarColours[3]),
+        textfont = list(color = BarColours[2]),
         text =  paste0("<b>", percent(DataTail$`Non-domestic`, accuracy = 0.1), "</b>")
       ) %>% 
       add_trace(
@@ -437,7 +437,7 @@ GasConsumption <- function(input, output, session) {
         ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
         scale_fill_manual("variable",
                           values = c("Domestic" = BarColours[1],
-                                     "Non-domestic" = BarColours[3])) +
+                                     "Non-domestic" = BarColours[2])) +
         geom_bar(stat = "identity", width = .8) +
         geom_text(
           y = GasConsumptiontion$top,
@@ -503,7 +503,7 @@ GasConsumption <- function(input, output, session) {
           y = 47247,
           label = "Non-domestic",
           fontface = 2,
-          color = BarColours[3],
+          color = BarColours[2],
           family = "Century Gothic"
         ) +
         annotate(
@@ -544,7 +544,7 @@ GasConsumption <- function(input, output, session) {
             subset(GasConsumptiontionMax, variable == "Non-domestic")[1, 3]
           ), 0.1),
           fontface = 2,
-          color = BarColours[3],
+          color = BarColours[2],
           family = "Century Gothic"
         ) +
         annotate(

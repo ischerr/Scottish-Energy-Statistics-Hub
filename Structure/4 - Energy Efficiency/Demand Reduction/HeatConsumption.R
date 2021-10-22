@@ -180,7 +180,7 @@ HeatConsumption <- function(input, output, session) {
     DataLatest <- Data[nrow(Data)-1,]
     
     ChartColours <- c("#34d1a3", "#FF8500")
-    BarColours <- c("#00441b", "#238b45", "#66c2a4", "#ef3b2c")
+    BarColours <- c("#00441b", "#006d2c", "#238b45", "#ef3b2c")
     
     p <- plot_ly(data = Data, y = ~ Year) %>%
       
@@ -218,7 +218,7 @@ HeatConsumption <- function(input, output, session) {
         text = paste0("Commercial: ", format(round(Data$`Commercial`, digits = 0), big.mark = ","), " GWh"),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
-        legendgroup = 3
+        legendgroup = 4
       ) %>%
       add_trace(
         data = Data,
@@ -413,7 +413,8 @@ HeatConsumption <- function(input, output, session) {
       
       Data$Commercial <- Data$Total - Data$Domestic - Data$Industrial
       
-      Data <- Data %>% select(Year, Domestic, Industrial, Commercial, Total)
+      
+      Data <- Data %>% select(Year, Commercial, Industrial, Domestic, Total)
       
       Data$Year <- as.character(Data$Year)
       
@@ -427,6 +428,8 @@ HeatConsumption <- function(input, output, session) {
                             (Data[nrow(Data),3]/Data[1,3])-1,
                             (Data[nrow(Data),4]/Data[1,4])-1,
                             (Data[nrow(Data),5]/Data[1,5])-1))
+      HeatDemand <- melt(Data, id = c("Year"))
+      
       
       HeatDemandMax <- subset(HeatDemand, Year == max(HeatDemand$Year))
       
@@ -447,8 +450,7 @@ HeatConsumption <- function(input, output, session) {
       sourcecaption <- "Source: BEIS"
       
       ChartColours <- c("#34d1a3", "#FF8500")
-      BarColours <- c("#00441b", "#238b45", "#66c2a4", "#ef3b2c")
-      
+      BarColours <- c("#00441b", "#006d2c", "#238b45", "#ef3b2c")
       
       HeatDemandChart <- HeatDemand %>%
         ggplot(aes(x = Year, y = value, fill = variable), family = "Century Gothic") +
