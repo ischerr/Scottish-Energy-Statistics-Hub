@@ -135,62 +135,41 @@ HeatConsumption <- function(input, output, session) {
   
   output$HeatConsumptionSubtitle <- renderText({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Heat consump",
-      col_names = FALSE,
-      skip = 16,
-      n_max = 3
-    )
-    
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- unlist(Data[1,])
-    
-    names(Data)[1] <- "Year"
-    
-    Data[1:3] %<>% lapply(function(x) as.numeric(as.character(x)))
-    
-    #Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
+    Data <- read_csv("Processed Data/Output/Consumption/HeatConsumptionbyLA.csv")
     
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
   output$HeatConsumptionPlot <- renderPlotly  ({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Heat consump",
-      col_names = FALSE,
-      skip = 16,
-      n_max = 5
-    )
     
-    Data <- as_tibble(t(Data))
+    Data <- read_csv("Processed Data/Output/Consumption/HeatConsumptionbyLA.csv")
     
-    names(Data) <- unlist(Data[1,])
+    Data <- Data[which(Data$`LA Code` == "S92000003"),]
     
-    names(Data)[1] <- "Year"
+    Data$Domestic <- Data$`Gas - Domestic`+Data$`Coal - Domestic`+Data$`Manufactured fuels - Domestic`+Data$`Petroleum products - Domestic` + Data$`Bioenergy & wastes - Domestic`
     
-    #Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
+    Data$Industrial <- Data$`Gas - Industrial`+ Data$`Coal - Industrial`+Data$`Manufactured fuels - Industrial`+Data$`Petroleum products - Industrial` + Data$`Bioenergy & Wastes - Industrial`
     
-    Data[1:5] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data$Commercial <- Data$Total - Data$Domestic - Data$Industrial
+    
+    Data <- Data %>% select(Year, Domestic, Industrial, Commercial, Total)
     
     Data$Year <- as.character(Data$Year)
     
-    Data[2,1] <- "Baseline\n2005/2007"
+    Data <- as_tibble(rbind(c("Baseline 2005/2007",mean(Data[1:3,][[2]]),mean(Data[1:3,][[3]]),mean(Data[1:3,][[4]]),mean(Data[1:3,][[5]])),
+                            c(" ",0,0,0,0), 
+                            Data[4:nrow(Data),]))
     
-    Data[3,1] <- ""
+    Data[2:5] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    Data <- head(Data, -1)
-    
-    Data[nrow(Data),1] <- "% Change\nfrom baseline"
-    
-    Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
+    Data <- rbind(Data, c(Year = "% Change from baseline",
+                          (Data[nrow(Data),2]/Data[1,2])-1,
+                          (Data[nrow(Data),3]/Data[1,3])-1,
+                          (Data[nrow(Data),4]/Data[1,4])-1,
+                          (Data[nrow(Data),5]/Data[1,5])-1))
     
     Data$Year <- paste("<b>", Data$Year, "</b>")
-    
-    Data <- Data[-1,]
     
     Data$RowNumber <- as.numeric(rownames(Data))
     
@@ -338,40 +317,29 @@ HeatConsumption <- function(input, output, session) {
   
   output$HeatConsumptionTable = renderDataTable({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Heat consump",
-      col_names = FALSE,
-      skip = 16,
-      n_max = 4
-    )
     
-    Data <- as_tibble(t(Data))
+    Data <- read_csv("Processed Data/Output/Consumption/HeatConsumptionbyLA.csv")
     
-    names(Data) <- unlist(Data[1,])
+    Data <- Data[which(Data$`LA Code` == "S92000003"),]
     
-    names(Data)[1] <- "Year"
+    Data$Domestic <- Data$`Gas - Domestic`+Data$`Coal - Domestic`+Data$`Manufactured fuels - Domestic`+Data$`Petroleum products - Domestic` + Data$`Bioenergy & wastes - Domestic`
     
-    #Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
+    Data$Industrial <- Data$`Gas - Industrial`+ Data$`Coal - Industrial`+Data$`Manufactured fuels - Industrial`+Data$`Petroleum products - Industrial` + Data$`Bioenergy & Wastes - Industrial`
     
-    Data[1:4] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data$Commercial <- Data$Total - Data$Domestic - Data$Industrial
+    
+    Data <- Data %>% select(Year, Domestic, Industrial, Commercial, Total)
     
     Data$Year <- as.character(Data$Year)
     
-    Data[2,1] <- " Baseline\n2005/2007"
+    Data <- as_tibble(rbind(c(" Baseline 2005/2007",mean(Data[1:3,][[2]]),mean(Data[1:3,][[3]]),mean(Data[1:3,][[4]]),mean(Data[1:3,][[5]])),
+                            Data[4:nrow(Data),]))
     
-    Data <- head(Data, -2)
+    Data[2:5] %<>% lapply(function(x) as.numeric(as.character(x)))
     
-    Data <- Data[-1,]
-    
-    Data$`Non-Domestic` <- +Data$`Industrial`+Data$`Commercial`
-    
-    Data$Total <- Data$Domestic+Data$`Industrial`+Data$`Commercial`
-    
-    Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
     
     datatable(
-      Data[c(1,2,5,3,4,6)],
+      Data,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -435,34 +403,30 @@ HeatConsumption <- function(input, output, session) {
     content = function(file) {
 
 
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Heat consump", skip = 16, col_names = FALSE)
+      Data <- read_csv("Processed Data/Output/Consumption/HeatConsumptionbyLA.csv")
       
-      Data <- head(Data, 5)
+      Data <- Data[which(Data$`LA Code` == "S92000003"),]
       
-      Data <- as_tibble(t(Data))
+      Data$Domestic <- Data$`Gas - Domestic`+Data$`Coal - Domestic`+Data$`Manufactured fuels - Domestic`+Data$`Petroleum products - Domestic` + Data$`Bioenergy & wastes - Domestic`
       
-      #Data <- Data[-(nrow(Data)-2),] # TEMP REMOVAL OF 2019
+      Data$Industrial <- Data$`Gas - Industrial`+ Data$`Coal - Industrial`+Data$`Manufactured fuels - Industrial`+Data$`Petroleum products - Industrial` + Data$`Bioenergy & Wastes - Industrial`
       
-      Data <- Data[complete.cases(Data),]
+      Data$Commercial <- Data$Total - Data$Domestic - Data$Industrial
       
-      Data <- head(Data, -1)
+      Data <- Data %>% select(Year, Domestic, Industrial, Commercial, Total)
       
-      Data <- Data[-c(2,3,4),]
+      Data$Year <- as.character(Data$Year)
       
-      Data [1,1] <- "2006"
+      Data <- as_tibble(rbind(c(2006,mean(Data[1:3,][[2]]),mean(Data[1:3,][[3]]),mean(Data[1:3,][[4]]),mean(Data[1:3,][[5]])),
+                              Data[4:nrow(Data),]))
       
-      Data <- as_tibble(sapply( Data, as.numeric ))
+      Data[1:5] %<>% lapply(function(x) as.numeric(as.character(x)))
       
-      names(Data) <- c("Year", "Domestic", "Industrial", "Commercial", "Total")
-      
-      Data[nrow(Data),1] <- max(as.numeric(Data$Year),na.rm = TRUE)+1
-      
-      HeatDemand <- Data[c(1,4,3,2,5)]
-      
-      HeatDemand <- HeatDemand[order(-HeatDemand$Year),]
-      
-      HeatDemand <- melt(HeatDemand, id.vars = "Year")
+      Data <- rbind(Data, c(Year = max(Data$Year+1),
+                            (Data[nrow(Data),2]/Data[1,2])-1,
+                            (Data[nrow(Data),3]/Data[1,3])-1,
+                            (Data[nrow(Data),4]/Data[1,4])-1,
+                            (Data[nrow(Data),5]/Data[1,5])-1))
       
       HeatDemandMax <- subset(HeatDemand, Year == max(HeatDemand$Year))
       
@@ -711,8 +675,6 @@ HeatConsumption <- function(input, output, session) {
   HeatConsumptionFuel$`Bioenergy & wastes` <- HeatConsumptionFuel$`Bioenergy & Wastes - Industrial` + HeatConsumptionFuel$`Bioenergy & Wastes - Commercial` + HeatConsumptionFuel$`Bioenergy & wastes - Domestic` 
   
   HeatConsumptionFuel <- HeatConsumptionFuel[c(2, 22:26, 21)]
-  
-  HeatConsumptionFuel <- HeatConsumptionFuel[duplicated(HeatConsumptionFuel$Year),]
   
   #HeatConsumptionFuel <- rbind(HeatConsumptionFuel, read_csv("Structure/4 - Energy Efficiency/Demand Reduction/HeatFuelExtra.csv"))
   
