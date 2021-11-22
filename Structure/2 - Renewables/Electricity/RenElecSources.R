@@ -339,6 +339,23 @@ RenElecSources <- function(input, output, session) {
                      "\t", escape_double = FALSE, trim_ws = TRUE))
   
   
+  RenSites2 <- as_tibble(read_delim("Processed Data/Output/Renewable Sites/LAOperationalRenSites.txt", 
+                          "\t", escape_double = FALSE, trim_ws = TRUE))
+  
+  RenSites2 <- RenSites2[which(RenSites2$LACode == "S92000003"),]
+  
+  RenSites2$`Other Bioenergy` <- RenSites2$`Animal Biomass` + RenSites2$`Plant Biomass` + RenSites2$Cofiring + RenSites2$`Municipal Solid Waste` + RenSites2$`Anaerobic Digestion`
+  
+  RenSites2 <- RenSites2[c(16, 4, 7, 5, 3, 10, 8, 9, 17, 15)]
+  
+  names(RenSites2) <- names(RenSites)
+  
+  RenSites <- rbind(RenSites2, RenSites)
+  
+  RenSites <- distinct(RenSites, Year, .keep_all = TRUE)
+  
+  RenSites <- RenSites[order(RenSites$Year),]
+  
   OnshoreWindTable <- as_tibble(cbind("Onshore Wind",
                                       RenElecGenFuel[which(RenElecGenFuel$Year == max(RenElecGenFuel$Year)),]$`Onshore Wind`,
                                       RenElecCapFuel[which(RenElecCapFuel$Year == max(RenElecCapFuel$Year)),]$`Onshore Wind`,
