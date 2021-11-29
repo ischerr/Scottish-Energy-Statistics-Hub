@@ -2078,7 +2078,7 @@ RenElecSources <- function(input, output, session) {
   
   output$TurbineDataDate <- renderUI({
     tagList(
-      h3(paste("Data - Wind summary,", format(max(SitesTimeSeries$Month), "%B %Y")), style = "color: #39ab2c;  font-weight:bold")
+      h3(paste("Data - Wind summary (sites over 150 kW capacity),", format(max(SitesTimeSeries$Month), "%B %Y")), style = "color: #39ab2c;  font-weight:bold")
     )
   }) 
   

@@ -312,13 +312,21 @@ ULEVs <- function(input, output, session) {
   
   output$ULEVRegOutputSubtitle <- renderText({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "ULEVs", 
-        skip = 17)
+    ULEVRegister <- read_delim("Processed Data/Output/Vehicles/ULEVRegister.txt", 
+                               "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,22)]
     
-    Data <- Data[c(1,3,4,2)]
+    AllRegister <- read_delim("Processed Data/Output/Vehicles/AllVehiclesRegister.txt", 
+                              "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,8)]
+    
+    
+    
+    Data <- merge(ULEVRegister, AllRegister, by = "Date")
+    
+    names(Data) <- c("Year",    "All ULEVs registered for the first time", "All cars registered")
+    
+    Data$`All cars registered` <- Data$`All cars registered` * 1000
+    
+    Data$`% ULEVs registered of all vehicles` <- Data$`All ULEVs registered for the first time`/Data$`All cars registered`
     
     Data$Year <- as.yearqtr(Data$Year)
     
@@ -329,15 +337,21 @@ ULEVs <- function(input, output, session) {
     
     
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "ULEVs", col_names = TRUE, 
-        skip = 18)
+    ULEVRegister <- read_delim("Processed Data/Output/Vehicles/ULEVRegister.txt", 
+                               "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,22)]
     
-    Data <- Data[c(1,12)]
+    AllRegister <- read_delim("Processed Data/Output/Vehicles/AllVehiclesRegister.txt", 
+                              "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,8)]
     
-    names(Data) <- c("Year", "Proportion")
+    
+    
+    Data <- merge(ULEVRegister, AllRegister, by = "Date")
+    
+    names(Data) <- c("Year",    "All ULEVs registered for the first time", "All cars registered")
+    
+    Data$`All cars registered` <- Data$`All cars registered` * 1000
+    
+    Data$Proportion <- Data$`All ULEVs registered for the first time`/Data$`All cars registered`
     
     Data$Year <- as.yearqtr(Data$Year)
     
@@ -474,15 +488,24 @@ ULEVs <- function(input, output, session) {
   
   output$ULEVRegOutputTable = renderDataTable({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "ULEVs", col_names = TRUE, 
-        skip = 17)
+  
     
-    Data <- Data[c(1,10:12)]
+    ULEVRegister <- read_delim("Processed Data/Output/Vehicles/ULEVRegister.txt", 
+                               "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,22)]
     
-    ULEVRegOutputTech <- Data
+    AllRegister <- read_delim("Processed Data/Output/Vehicles/AllVehiclesRegister.txt", 
+                               "\t", escape_double = FALSE, trim_ws = TRUE)[c(1,8)]
+    
+    
+    
+    ULEVRegOutputTech <- merge(ULEVRegister, AllRegister, by = "Date")
+    
+    names(ULEVRegOutputTech) <- c("Year",    "All ULEVs registered for the first time", "All cars registered")
+    
+    ULEVRegOutputTech$`All cars registered` <- ULEVRegOutputTech$`All cars registered` * 1000
+  
+    ULEVRegOutputTech$`% ULEVs registered of all vehicles` <- ULEVRegOutputTech$`All ULEVs registered for the first time`/ULEVRegOutputTech$`All cars registered`
+    
     
     datatable(
       ULEVRegOutputTech,

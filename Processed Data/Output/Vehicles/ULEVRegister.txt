@@ -1,4 +1,4 @@
-"Date"	"PiG Eligible Cars 2,3"	"X__1"	"Non PiG Eligible Plug-in Cars 2,3"	"Non Plug-in Cars"	"Plug-in Quadricycles"	"All Cars"	"X__2"	"PiG Eligible Motorcycles 2,4"	"Non PiG Eligible Motorcycles 2,4"	"All Motorcycles 4"	"X__3"	"PiG Eligible Light Goods Vehicles 2"	"Non PiG Eligible Plug-in Light Goods Vehicles 2"	"Non Plug-in Light Goods Vehicles"	"All Light Goods Vehicles"	"X__4"	"Heavy Goods Vehicles"	"Buses & coaches"	"Taxis"	"Other vehicles excl. Taxis 5"	"Total"
+"Date"	"PiG Eligible Cars 2,3"	"...3"	"Non PiG Eligible Plug-in Cars 2,3"	"Non Plug-in Cars"	"Plug-in Quadricycles"	"All Cars"	"...8"	"PiG Eligible Motorcycles 2,4"	"Non PiG Eligible Motorcycles 2,4"	"All Motorcycles 4"	"...12"	"PiG Eligible Light Goods Vehicles 2"	"Non PiG Eligible Plug-in Light Goods Vehicles 2"	"Non Plug-in Light Goods Vehicles"	"All Light Goods Vehicles"	"...17"	"Heavy Goods Vehicles"	"Buses & coaches"	"Taxis"	"Other vehicles excl. Taxis 5"	"Total"
 "2010 Q1"	"0"	"0"	"1"	"0"	"0"	"1"	0	"0"	"4"	"4"	0	"0"	"3"	"0"	"3"	0	"0"	"0"	"0"	"0"	"8"
 "2010 Q2"	"0"	"0"	"3"	"0"	"0"	"3"	0	"0"	"1"	"1"	0	"0"	"3"	"0"	"3"	0	"0"	"0"	"0"	"2"	"9"
 "2010 Q3"	"0"	"0"	"7"	"0"	"0"	"7"	0	"0"	"6"	"6"	0	"0"	"6"	"0"	"6"	0	"0"	"0"	"0"	"2"	"21"
@@ -44,3 +44,4 @@
 "2020 Q3"	"2094"	"0"	"1793"	"0"	"0"	"3887"	0	"29"	"3"	"32"	0	"103"	"1"	"0"	"104"	0	"0"	"6"	"7"	"6"	"4042"
 "2020 Q4"	"2277"	"0"	"2059"	"0"	"0"	"4336"	0	"29"	"7"	"36"	0	"50"	"0"	"0"	"50"	0	"2"	"16"	"4"	"1"	"4445"
 "2021 Q1"	".. 6"	"0"	".. 6"	"0"	"0"	"3827"	0	"22"	"4"	"26"	0	"117"	"3"	"0"	"120"	0	"1"	"3"	"2"	"8"	"3987"
+"2021 Q2"	".. 6"	"0"	".. 6"	"1"	"0"	"3684"	0	"44"	"9"	"53"	0	"127"	"5"	"0"	"132"	0	"4"	"10"	"1"	"4"	"3888"

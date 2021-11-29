@@ -1,3 +1,7 @@
+if (exists("GlobalScript") == 0) {
+  
+
+
 Sources <- read_excel("Structure/Sources.xlsx")
 
 Sources$HTML <- "Hi"
@@ -78,6 +82,16 @@ ECOMeasuresLACategories <- unique(read_delim("Processed Data/Output/ECO/ECOMeasu
 LCRE <- read_csv("Processed Data/Output/LCRE/LCRE.csv") 
 
 TransportMultipliers <- data.frame(Unit = c("GWh", "ktoe"),
-                                   Multiplier = c(1, (1/0.01163)))
+                                   Multiplier = c(1, (1/11.63)))
 
 TransportDropdown <- reactiveValues(Unit = "GWh")
+
+EnConsumptionMultipliers <- data.frame(Unit = c("GWh", "ktoe"),
+                                   Multiplier = c(1, (1/11.63)))
+
+EnConsumptionDropdown <- reactiveValues(Unit = "GWh")
+
+
+GlobalScript <- 1
+
+}

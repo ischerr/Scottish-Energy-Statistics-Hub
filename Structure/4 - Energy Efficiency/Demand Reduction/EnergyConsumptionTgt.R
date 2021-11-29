@@ -33,7 +33,9 @@ EnConsumptionTgtOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;"),
     fluidRow(
     column(10, h3("Data", style = "color: #34d1a3;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; ")),
+    column(12,selectInput(ns("UnitSelect"), "Unit:", EnConsumptionMultipliers$Unit, selected = EnConsumptionMultipliers$Unit[1], multiple = FALSE,
+                          selectize = TRUE, width = NULL, size = NULL))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("EnConsumptionTgtTable"))%>% withSpinner(color="#34d1a3"))),
@@ -78,6 +80,15 @@ EnConsumptionTgt <- function(input, output, session) {
   
   print("EnConsumptionTgt.R")
 
+  observe({
+    EnConsumptionDropdown$Unit <- input$UnitSelect
+  })
+  
+  observe(
+    {
+      updateSelectInput(session, 'UnitSelect', selected = EnConsumptionDropdown$Unit)
+    }
+  )
   
   output$EnConsumptionTgtSubtitle <- renderText({
     
@@ -211,6 +222,10 @@ EnConsumptionTgt <- function(input, output, session) {
   
   output$EnConsumptionTgtTable = renderDataTable({
     
+    unit <- as.character(EnConsumptionDropdown$Unit)
+    
+    
+    
     EnConsumption <- read_excel("Structure/CurrentWorking.xlsx", 
                           sheet = "Energy consumption target", col_names = FALSE, 
                           skip = 22)[1:4]
@@ -219,7 +234,10 @@ EnConsumptionTgt <- function(input, output, session) {
     names(EnConsumption) <- c("Year","Total Energy Consumption (GWh)", "Change in Consumption from Baseline (GWh)", "% change from baseline")
 
     EnConsumption[2:4] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
     EnConsumption <- as_tibble(EnConsumption)
+    
+    EnConsumption[2:3] %<>% lapply(function(x) as.numeric(as.character(x))* EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier)
     
     datatable(
       EnConsumption,

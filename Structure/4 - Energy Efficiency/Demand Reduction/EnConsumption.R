@@ -14,7 +14,9 @@ EnergyConsumptionOutput <- function(id) {
       tabPanel("Sector",
     fluidRow(column(8,
                     h3("Total final energy consumption by consuming sector", style = "color: #34d1a3;  font-weight:bold"),
-                    h4(textOutput(ns('EnConsumptionSectorSubtitle')), style = "color: #34d1a3;")
+                    h4(textOutput(ns('EnConsumptionSectorSubtitle')), style = "color: #34d1a3;"),
+                    selectInput(ns("UnitSelect"), "Unit:", EnConsumptionMultipliers$Unit, selected = EnConsumptionMultipliers$Unit[1], multiple = FALSE,
+                                selectize = TRUE, width = NULL, size = NULL)
     ),
              column(
                4, style = 'padding:15px;',
@@ -27,7 +29,9 @@ EnergyConsumptionOutput <- function(id) {
     tabPanel("Fuel",
              fluidRow(column(8,
                              h3("Final energy consumption by fuel type", style = "color: #34d1a3;  font-weight:bold"),
-                             h4(textOutput(ns('EnConsumptionFuelSubtitle')), style = "color: #34d1a3;")
+                             h4(textOutput(ns('EnConsumptionFuelSubtitle')), style = "color: #34d1a3;"),
+                             selectInput(ns("UnitSelect2"), "Unit:", EnConsumptionMultipliers$Unit, selected = EnConsumptionMultipliers$Unit[1], multiple = FALSE,
+                                         selectize = TRUE, width = NULL, size = NULL)
              ),
              column(
                4, style = 'padding:15px;',
@@ -40,7 +44,9 @@ EnergyConsumptionOutput <- function(id) {
     tabPanel("Local Authority",
              fluidRow(column(8,
                              h3("Total final energy consumption by local authority", style = "color: #34d1a3;  font-weight:bold"),
-                             h4(textOutput(ns('EnConsumptionLASubtitle')), style = "color: #34d1a3;")
+                             h4(textOutput(ns('EnConsumptionLASubtitle')), style = "color: #34d1a3;"),
+                             selectInput(ns("UnitSelect3"), "Unit:", EnConsumptionMultipliers$Unit, selected = EnConsumptionMultipliers$Unit[1], multiple = FALSE,
+                                         selectize = TRUE, width = NULL, size = NULL)
              ),
              column(
                4, style = 'padding:15px;',
@@ -63,16 +69,20 @@ EnergyConsumptionOutput <- function(id) {
     tabsetPanel(
       tabPanel("Sector",
     fluidRow(
-    column(10, h3("Data - Total final energy consumption by consuming sector (GWh)", style = "color: #34d1a3;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+    column(10, h3("Data - Total final energy consumption by consuming sector", style = "color: #34d1a3;  font-weight:bold")),
+    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; ")),
+    column(12,selectInput(ns("UnitSelect4"), "Unit:", EnConsumptionMultipliers$Unit, selected = EnConsumptionMultipliers$Unit[1], multiple = FALSE,
+                                   selectize = TRUE, width = NULL, size = NULL)),
     ),
     fluidRow(
       column(12, dataTableOutput(ns("EnConsumptionSectorTable"))%>% withSpinner(color="#34d1a3"))),
     tags$hr(style = "height:3px;border:none;color:#34d1a3;background-color:#34d1a3;")),
     tabPanel("Fuel",
              fluidRow(
-               column(10, h3("Data - Final energy consumption by fuel type (GWh)", style = "color: #34d1a3;  font-weight:bold")),
-               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
+               column(10, h3("Data - Final energy consumption by fuel type", style = "color: #34d1a3;  font-weight:bold")),
+               column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; ")),
+               column(12,selectInput(ns("UnitSelect5"), "Unit:", EnConsumptionMultipliers$Unit, selected = EnConsumptionMultipliers$Unit[1], multiple = FALSE,
+                                              selectize = TRUE, width = NULL, size = NULL)),
              ),
              fluidRow(
                column(12, dataTableOutput(ns("EnConsumptionFuelTable"))%>% withSpinner(color="#34d1a3"))),
@@ -81,7 +91,9 @@ EnergyConsumptionOutput <- function(id) {
     tabPanel("Local Authority",
              fluidRow(
              column(10, h3("Data - Local Authority", style = "color: #34d1a3;  font-weight:bold")),
-             column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
+             column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; ")),
+             column(12,selectInput(ns("UnitSelect6"), "Unit:", EnConsumptionMultipliers$Unit, selected = EnConsumptionMultipliers$Unit[1], multiple = FALSE,
+                                            selectize = TRUE, width = NULL, size = NULL)),
     ),
     fluidRow(
       column(12, dataTableOutput(ns("EnConsumptionLATable"))%>% withSpinner(color="#34d1a3"))),
@@ -124,6 +136,45 @@ EnergyConsumption <- function(input, output, session) {
   }
   
   print("EnConsumptionSector.R")
+  
+  
+  
+  observe({
+    EnConsumptionDropdown$Unit <- input$UnitSelect
+  })
+  
+  observe({
+    EnConsumptionDropdown$Unit <- input$UnitSelect2
+  })
+  
+  observe({
+    EnConsumptionDropdown$Unit <- input$UnitSelect3
+  })
+  
+  observe({
+    EnConsumptionDropdown$Unit <- input$UnitSelect4
+  })
+  
+  observe({
+    EnConsumptionDropdown$Unit <- input$UnitSelect5
+  })
+  
+  observe({
+    EnConsumptionDropdown$Unit <- input$UnitSelect6
+  })
+  
+  observe(
+    {
+      updateSelectInput(session, 'UnitSelect', selected = EnConsumptionDropdown$Unit)
+      updateSelectInput(session, 'UnitSelect2', selected = EnConsumptionDropdown$Unit)
+      updateSelectInput(session, 'UnitSelect3', selected = EnConsumptionDropdown$Unit)
+      updateSelectInput(session, 'UnitSelect4', selected = EnConsumptionDropdown$Unit)
+      updateSelectInput(session, 'UnitSelect5', selected = EnConsumptionDropdown$Unit)
+      updateSelectInput(session, 'UnitSelect6', selected = EnConsumptionDropdown$Unit)
+    }
+  )
+  
+  
 
   
   output$EnConsumptionSectorSubtitle <- renderText({
@@ -149,6 +200,8 @@ EnergyConsumption <- function(input, output, session) {
   
   output$EnConsumptionSectorPlot <- renderPlotly  ({
     
+    unit <- as.character(EnConsumptionDropdown$Unit)
+
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Energy consump sector",
@@ -187,6 +240,10 @@ EnergyConsumption <- function(input, output, session) {
     
     DataLatest <- Data[nrow(Data)-1,]
     
+    Data[2:6] %<>% lapply(function(x) as.numeric(as.character(x)) * EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier)
+    
+    DataLatest[2:6] %<>% lapply(function(x) as.numeric(as.character(x)) * EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier)
+    
     ChartColours <- c("#34d1a3", "#FF8500")
     BarColours <- c("#00441b", "#238b45","#41ae76", "#66c2a4","#66c2a4", "#99d8c9", "ffffff")
     
@@ -199,7 +256,7 @@ EnergyConsumption <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Industry",
-        text = paste0("Industry: ", format(round(Data$`Industry`, digits = 0), big.mark = ","), " GWh"),
+        text = paste0("Industry: ", format(round(Data$`Industry`, digits = 0), big.mark = ","), " ", unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[1]),
         legendgroup = 2
@@ -211,7 +268,7 @@ EnergyConsumption <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Commercial",
-        text = paste0("Commercial: ", format(round(Data$`Commercial`, digits = 0), big.mark = ","), " GWh"),
+        text = paste0("Commercial: ", format(round(Data$`Commercial`, digits = 0), big.mark = ","), " ", unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[2]),
         legendgroup = 3
@@ -223,7 +280,7 @@ EnergyConsumption <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Domestic",
-        text = paste0("Domestic: ", format(round(Data$`Domestic`, digits = 0), big.mark = ","), " GWh"),
+        text = paste0("Domestic: ", format(round(Data$`Domestic`, digits = 0), big.mark = ","), " ", unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 4
@@ -236,7 +293,7 @@ EnergyConsumption <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Transport",
-        text = paste0("Transport: ", format(round(Data$`Transport`, digits = 0), big.mark = ","), " GWh"),
+        text = paste0("Transport: ", format(round(Data$`Transport`, digits = 0), big.mark = ","), " ", unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[4]),
         legendgroup = 5
@@ -248,7 +305,7 @@ EnergyConsumption <- function(input, output, session) {
         showlegend = FALSE,
         type = 'scatter',
         mode = 'text',
-        text = ifelse(Data$`Industry` >0, paste("<b>",format(round((Data$`Industry` + Data$Commercial + Data$`Domestic` + Data$`Transport`), digits = 0), big.mark = ","),"GWh</b>")," "),
+        text = ifelse(Data$`Industry` >0, paste("<b>",format(round((Data$`Industry` + Data$Commercial + Data$`Domestic` + Data$`Transport`), digits = 0), big.mark = ","),unit,"</b>")," "),
         textposition = 'middle right',
         textfont = list(color = ChartColours[1]),
         hoverinfo = 'skip',
@@ -303,7 +360,7 @@ EnergyConsumption <- function(input, output, session) {
       add_trace(
         data = tail(Data,1),
         y = ~Year,
-        x = mean(DataLatest$`Total`)+ 15000,
+        x = mean(DataLatest$`Total`)+ (15000 * EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier) ,
         showlegend = FALSE,
         mode = 'text',
         type = 'scatter',
@@ -333,7 +390,7 @@ EnergyConsumption <- function(input, output, session) {
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
           zerolinewidth = 2,
-          range = c(0,220000)
+          range = c(0,(220000* EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier))
         )
       ) %>% 
       config(displayModeBar = F)
@@ -348,6 +405,8 @@ EnergyConsumption <- function(input, output, session) {
   
   output$EnConsumptionSectorTable = renderDataTable({
     
+    unit <- as.character(EnConsumptionDropdown$Unit)
+   
     EnConsumption <- read_excel("Structure/CurrentWorking.xlsx", 
                                 sheet = "Energy consump sector", skip = 16, col_names = FALSE)
     EnConsumption <- head(EnConsumption, -1)
@@ -372,6 +431,9 @@ EnergyConsumption <- function(input, output, session) {
     
     EnConsumption = subset(EnConsumption, !(EnConsumption$Year %in% c(2005, 2006, 2007)))
     
+    EnConsumption[2:6] %<>% lapply(function(x) as.numeric(as.character(x))* EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier)
+    
+    
     datatable(
       EnConsumption,
       extensions = 'Buttons',
@@ -385,17 +447,17 @@ EnergyConsumption <- function(input, output, session) {
         autoWidth = TRUE,
         ordering = TRUE,
         order = list(list(0, 'desc')),
-        title = "Total final energy consumption by consuming sector (GWh)",
+        title = paste0("Total final energy consumption by consuming sector (",unit,")"),
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Total final energy consumption by consuming sector (GWh)',
+            title = paste0("Total final energy consumption by consuming sector (",unit,")"),
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Total final energy consumption by consuming sector (GWh)')
+               title = paste0("Total final energy consumption by consuming sector (",unit,")"))
         ),
         
         # customize the length menu
@@ -429,7 +491,8 @@ EnergyConsumption <- function(input, output, session) {
   output$EnConsumptionSector.png <- downloadHandler(
     filename = "EnConsumptionSector.png",
     content = function(file) {
-
+      
+      unit <- as.character(EnConsumptionDropdown$Unit)
 
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "Energy consump sector", skip = 16, col_names = FALSE)
@@ -507,8 +570,8 @@ EnergyConsumption <- function(input, output, session) {
           label = ifelse(
             FinalConsumptionSectors$value > 40000,
             paste0(format(
-              round(FinalConsumptionSectors$top, digits = 0), big.mark = ","
-            ), " GWh"),
+              round(FinalConsumptionSectors$top* EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier, digits = 0), big.mark = ","
+            ), " ", unit),
             ""
           ),
           hjust = 0,
@@ -540,8 +603,8 @@ EnergyConsumption <- function(input, output, session) {
               FinalConsumptionSectors$Year == 2006 |
                 FinalConsumptionSectors$Year ==  max(FinalConsumptionSectors$Year),
               paste0(format(
-                round(FinalConsumptionSectors$value, digits = 0), big.mark = ","
-              ), " GWh"),
+                round(FinalConsumptionSectors$value* EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier, digits = 0), big.mark = ","
+              ), " ", unit),
               ""
             ),
             ""
@@ -778,6 +841,8 @@ EnergyConsumption <- function(input, output, session) {
   
   output$EnConsumptionFuelPlot <- renderPlotly  ({
     
+    unit <- as.character(EnConsumptionDropdown$Unit)
+    
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
       sheet = "Energy consump fuel type",
@@ -813,6 +878,11 @@ EnergyConsumption <- function(input, output, session) {
     DataTail <- tail(Data,1)
     DataLatest <- Data[nrow(Data)-1,]
     
+    Data[2:8] %<>% lapply(function(x) as.numeric(as.character(x)) * EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier)
+    
+    DataLatest[2:8] %<>% lapply(function(x) as.numeric(as.character(x)) * EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier)
+    
+    
     ChartColours <- c("#34d1a3", "#FF8500")
     BarColours <- c("#00441b", "#238b45","#41ae76", "#66c2a4","#66c2a4", "#99d8c9", "ffffff")
     
@@ -825,7 +895,7 @@ EnergyConsumption <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Petroleum products",
-        text = paste0("Petroleum products: ", format(round(Data$`Petroleum products`, digits = 0), big.mark = ","), " GWh"),
+        text = paste0("Petroleum products: ", format(round(Data$`Petroleum products`, digits = 0), big.mark = ","), " ", unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[1]),
         legendgroup = 2
@@ -837,7 +907,7 @@ EnergyConsumption <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Gas",
-        text = paste0("Gas: ", format(round(Data$`Gas`, digits = 0), big.mark = ","), " GWh"),
+        text = paste0("Gas: ", format(round(Data$`Gas`, digits = 0), big.mark = ","), " ", unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[2]),
         legendgroup = 3
@@ -850,7 +920,7 @@ EnergyConsumption <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Electricity",
-        text = paste0("Electricity: ", format(round(Data$`Electricity`, digits = 0), big.mark = ","), " GWh"),
+        text = paste0("Electricity: ", format(round(Data$`Electricity`, digits = 0), big.mark = ","), " ", unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[3]),
         legendgroup = 4
@@ -862,7 +932,7 @@ EnergyConsumption <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Bioenergy & wastes",
-        text = paste0("Bioenergy & wastes: ", format(round(Data$`Bioenergy & wastes`, digits = 0), big.mark = ","), " GWh"),
+        text = paste0("Bioenergy & wastes: ", format(round(Data$`Bioenergy & wastes`, digits = 0), big.mark = ","), " ", unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[4]),
         legendgroup = 5
@@ -874,7 +944,7 @@ EnergyConsumption <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Coal",
-        text = paste0("Coal: ", format(round(Data$`Coal`, digits = 0), big.mark = ","), " GWh"),
+        text = paste0("Coal: ", format(round(Data$`Coal`, digits = 0), big.mark = ","), " ", unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[5]),
         legendgroup = 6
@@ -886,7 +956,7 @@ EnergyConsumption <- function(input, output, session) {
         width = 0.7,
         orientation = 'h',
         name = "Manufactured fuels",
-        text = paste0("Manufactured fuels: ", format(round(Data$`Manufactured fuels`, digits = 0), big.mark = ","), " GWh"),
+        text = paste0("Manufactured fuels: ", format(round(Data$`Manufactured fuels`, digits = 0), big.mark = ","), " ", unit),
         hoverinfo = 'text',
         marker = list(color = BarColours[6]),
         legendgroup = 7
@@ -942,7 +1012,7 @@ EnergyConsumption <- function(input, output, session) {
       add_trace(
         data = tail(Data,1),
         y = ~Year,
-        x = mean(DataLatest$`Total`)+ 25000,
+        x = mean(DataLatest$`Total`)+ 25000* EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier,
         showlegend = FALSE,
         mode = 'text',
         type = 'scatter',
@@ -972,7 +1042,7 @@ EnergyConsumption <- function(input, output, session) {
           zeroline = TRUE,
           zerolinecolor = ChartColours[1],
           zerolinewidth = 2,
-          range = c(0,220000)
+          range = c(0,220000* EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier)
         )
       ) %>% 
       config(displayModeBar = F)
@@ -987,6 +1057,7 @@ EnergyConsumption <- function(input, output, session) {
   
   output$EnConsumptionFuelTable = renderDataTable({
     
+    unit <- as.character(EnConsumptionDropdown$Unit)
     
     Data <- read_excel(
       "Structure/CurrentWorking.xlsx",
@@ -1015,6 +1086,8 @@ EnergyConsumption <- function(input, output, session) {
     Data <- Data[-1,]
     
     Data <- head(Data, -1)
+    
+    Data[2:8] %<>% lapply(function(x) as.numeric(as.character(x))* EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier)
     
     datatable(
       Data,
@@ -1086,6 +1159,8 @@ EnergyConsumption <- function(input, output, session) {
   
   output$EnConsumptionLATable = renderDataTable({
     
+    unit <- as.character(EnConsumptionDropdown$Unit)
+    
     unique(EnConsumptionLA$Year)
     
     EnConsumptionLATable <- EnConsumptionLA[which(EnConsumptionLA$Year == Year),]
@@ -1100,6 +1175,9 @@ EnergyConsumption <- function(input, output, session) {
     names(EnConsumptionLATable) <- c("Local Authority", "Geography Code", "Industry & Commercial", "Domestic", "Transport", "Total consumption")
     
     EnConsumptionLATable[order(substr(EnConsumptionLATable$`Geography Code`,1,3), EnConsumptionLATable$`Local Authority`),]
+    
+    EnConsumptionLATable[3:6] %<>% lapply(function(x) as.numeric(as.character(x))* EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier)
+    
     
     datatable(
       EnConsumptionLATable,
@@ -1150,6 +1228,7 @@ EnergyConsumption <- function(input, output, session) {
     filename = "EnConsumptionFuel.png",
     content = function(file) {
       
+      unit <- as.character(EnConsumptionDropdown$Unit)
       
       Data <- read_excel("Structure/CurrentWorking.xlsx", 
                          sheet = "Energy consump fuel type", skip = 12, col_names = FALSE)
@@ -1227,8 +1306,8 @@ EnergyConsumption <- function(input, output, session) {
           label = ifelse(
             FinalConsumptionFuel$value < 7000,
             paste0(format(
-              round(FinalConsumptionFuel$top, digits = 0), big.mark = ","
-            ), " GWh"),
+              round(FinalConsumptionFuel$top* EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier, digits = 0), big.mark = ","
+            ), " ", unit),
             ""
           ),
           hjust = 0,
@@ -1260,8 +1339,8 @@ EnergyConsumption <- function(input, output, session) {
               FinalConsumptionFuel$Year == 2006 |
                 FinalConsumptionFuel$Year ==  max(FinalConsumptionFuel$Year),
               paste0(format(
-                round(FinalConsumptionFuel$value, digits = 0), big.mark = ","
-              ), " GWh"),
+                round(FinalConsumptionFuel$value* EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier, digits = 0), big.mark = ","
+              ), " ", unit),
               ""
             ),
             ""
@@ -1497,6 +1576,8 @@ EnergyConsumption <- function(input, output, session) {
   
   output$EnConsumptionMap <- renderLeaflet({
     
+    unit <- as.character(EnConsumptionDropdown$Unit)
+    
     ### Load Packages
     library(readr)
     library("maptools")
@@ -1527,6 +1608,9 @@ EnergyConsumption <- function(input, output, session) {
     
     EnConsumptionLA <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
     
+    EnConsumptionLA[4:37] %<>% lapply(function(x) as.numeric(as.character(x))* EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier)
+    
+    
     Year <- max(EnConsumptionLA$Year)
 
       
@@ -1553,9 +1637,9 @@ EnergyConsumption <- function(input, output, session) {
     
     EnConsumptionLAMap[is.na(EnConsumptionLAMap)] <- 0
     
-    EnConsumptionLAMap$Content <- paste0("<b>",EnConsumptionLAMap$LocalAuthority, "</b><br/>Total final energy consumption:<br/><em>", ifelse(EnConsumptionLAMap$Total > 0,paste0(format(round(EnConsumptionLAMap$Total,0 ),  big.mark = ",")," GWh</em>"),"N/A" ))
+    EnConsumptionLAMap$Content <- paste0("<b>",EnConsumptionLAMap$LocalAuthority, "</b><br/>Total final energy consumption:<br/><em>", ifelse(EnConsumptionLAMap$Total > 0,paste0(format(round(EnConsumptionLAMap$Total,0 ),  big.mark = ",")," ",unit,"</em>"),"N/A" ))
     
-    EnConsumptionLAMap$Hover <- paste0(EnConsumptionLAMap$LocalAuthority, " - ", ifelse(EnConsumptionLAMap$Total > 0,paste0(format(round(EnConsumptionLAMap$Total,0 ),  big.mark = ",")," GWh"),"N/A" ))
+    EnConsumptionLAMap$Hover <- paste0(EnConsumptionLAMap$LocalAuthority, " - ", ifelse(EnConsumptionLAMap$Total > 0,paste0(format(round(EnConsumptionLAMap$Total,0 ),  big.mark = ",")," ",unit),"N/A" ))
   
     
     
@@ -1590,7 +1674,7 @@ EnergyConsumption <- function(input, output, session) {
                                           bringToFront = TRUE)) %>%
       leaflet::addLegend("bottomright", pal = pal, values = ~Total,
                          title = "Total final energy consumption",
-                         labFormat = labelFormat(suffix = " GWh"),
+                         labFormat = labelFormat(suffix = paste(" ",unit)),
                          opacity = 1
       ) %>% 
       htmlwidgets::prependContent(html_fix) 
