@@ -231,7 +231,7 @@ EnConsumptionTgt <- function(input, output, session) {
                           skip = 22)[1:4]
     EnConsumption <- tail(EnConsumption, -1)
     
-    names(EnConsumption) <- c("Year","Total Energy Consumption (GWh)", "Change in Consumption from Baseline (GWh)", "% change from baseline")
+    names(EnConsumption) <- c("Year","Total Energy Consumption", "Change in Consumption from Baseline", "% change from baseline")
 
     EnConsumption[2:4] %<>% lapply(function(x) as.numeric(as.character(x)))
     
