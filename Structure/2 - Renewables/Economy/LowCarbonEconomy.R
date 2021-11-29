@@ -157,26 +157,6 @@ LowCarbonEconomyOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     tabsetPanel(
       tabPanel(
-        "Employees",
-        fluidRow(
-          column(
-            10,
-            h3("Data - Estimated full-time equivalent staff directly employed within the LCRE sector", style = "color: #39ab2c;  font-weight:bold")
-          ),
-          column(
-            2,
-            style = "padding:15px",
-            actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; ")
-          )
-        ),
-        fluidRow(column(
-          12, dataTableOutput(ns("LowCarbonEconomyEmployeesTable")) %>% withSpinner(color =
-                                                                                      "#39ab2c")
-        )),
-        p("*Cells marked 'c' have been suppressed for disclosure control. Confidence intervals can be found in the source ONS release, linked below."),
-        tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")
-      ),
-      tabPanel(
         "Turnover",
         fluidRow(
           column(
@@ -197,26 +177,6 @@ LowCarbonEconomyOutput <- function(id) {
         tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")
       ),
       tabPanel(
-        "Exports",
-        fluidRow(
-          column(
-            10,
-            h3("Data - Estimated exports directly supported by the LCRE sector (\u00A3m)", style = "color: #39ab2c;  font-weight:bold")
-          ),
-          column(
-            2,
-            style = "padding:15px",
-            actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; ")
-          )
-        ),
-        fluidRow(column(
-          12, dataTableOutput(ns("LowCarbonEconomyExportsTable")) %>% withSpinner(color =
-                                                                                     "#39ab2c")
-        )),
-        p("*Cells marked 'c' have been suppressed for disclosure control. Confidence intervals can be found in the source ONS release, linked below."),
-        tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")
-      ),
-      tabPanel(
         "Businesses",
         fluidRow(
           column(
@@ -231,6 +191,46 @@ LowCarbonEconomyOutput <- function(id) {
         ),
         fluidRow(column(
           12, dataTableOutput(ns("LowCarbonEconomyBusinessTable")) %>% withSpinner(color =
+                                                                                     "#39ab2c")
+        )),
+        p("*Cells marked 'c' have been suppressed for disclosure control. Confidence intervals can be found in the source ONS release, linked below."),
+        tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")
+      ),
+      tabPanel(
+        "Employees",
+        fluidRow(
+          column(
+            10,
+            h3("Data - Estimated full-time equivalent staff directly employed within the LCRE sector", style = "color: #39ab2c;  font-weight:bold")
+          ),
+          column(
+            2,
+            style = "padding:15px",
+            actionButton(ns("ToggleTable1"), "Show/Hide Table", style = "float:right; ")
+          )
+        ),
+        fluidRow(column(
+          12, dataTableOutput(ns("LowCarbonEconomyEmployeesTable")) %>% withSpinner(color =
+                                                                                      "#39ab2c")
+        )),
+        p("*Cells marked 'c' have been suppressed for disclosure control. Confidence intervals can be found in the source ONS release, linked below."),
+        tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")
+      ),
+      tabPanel(
+        "Exports",
+        fluidRow(
+          column(
+            10,
+            h3("Data - Estimated exports directly supported by the LCRE sector (\u00A3m)", style = "color: #39ab2c;  font-weight:bold")
+          ),
+          column(
+            2,
+            style = "padding:15px",
+            actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; ")
+          )
+        ),
+        fluidRow(column(
+          12, dataTableOutput(ns("LowCarbonEconomyExportsTable")) %>% withSpinner(color =
                                                                                      "#39ab2c")
         )),
         p("*Cells marked 'c' have been suppressed for disclosure control. Confidence intervals can be found in the source ONS release, linked below."),
@@ -796,6 +796,8 @@ LowCarbonEconomy <- function(input, output, session) {
 
       LCRE$unit <- ""
 
+      LCRE$HoverText <- paste0("<b>", "Number of Businesses", ": ", LCRE$unit, format(round(LCRE$Estimate), big.mark = ","), "</b>\nYear: ", LCRE$Year,"\nSector: ", input$MeasureSelect1,  "\n<i>Upper CI: ", LCRE$unit, format(round(LCRE$`Upper CI`), big.mark = ","), "\nLower CI: ", LCRE$unit, format(round(LCRE$`Lower CI`), big.mark = ","), "</i>")
+      
       
       p <- plot_ly(LCRE,
                    x = ~Year,
