@@ -99,8 +99,7 @@ ScotGenSupply <- function(input, output, session) {
     paste("Scotland, 2019")
   })
   
-  GenSupplyReadable <- read_delim("Processed Data/Output/Renewable Generation/GenSupplyReadable.txt", 
-                                  "\t", escape_double = FALSE, trim_ws = TRUE)
+  GenSupplyReadable <- read_csv("Processed Data/Output/Renewable Generation/GenSupplyReadable.csv")
   
   
   RenSupplyGen <- read_excel("Structure/6 - System Security/RenSupplyGen.xlsx")

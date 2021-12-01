@@ -56,8 +56,7 @@ html_fix <- htmltools::tags$style(type = "text/css", css_fix)  # Convert CSS to 
 
 
 
-GenSupplyReadable <- read_delim("Processed Data/Output/Renewable Generation/GenSupplyReadable.txt", 
-                                "\t", escape_double = FALSE, trim_ws = TRUE)
+GenSupplyReadable <- read_csv("Processed Data/Output/Renewable Generation/GenSupplyReadable.csv")
 
 BalanceMultipliers <- read_excel("Structure/1 - Whole System/BalanceMultipliers.xlsx")
 

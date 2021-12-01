@@ -1174,6 +1174,8 @@ EnergyConsumption <- function(input, output, session) {
     
     names(EnConsumptionLATable) <- c("Local Authority", "Geography Code", "Industry & Commercial", "Domestic", "Transport", "Total consumption")
     
+    EnConsumptionLATable <- EnConsumptionLATable[which(substr(EnConsumptionLATable$`Geography Code`,1,1) == "S"),]
+    
     EnConsumptionLATable[order(substr(EnConsumptionLATable$`Geography Code`,1,3), EnConsumptionLATable$`Local Authority`),]
     
     EnConsumptionLATable[3:6] %<>% lapply(function(x) as.numeric(as.character(x))* EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier)
