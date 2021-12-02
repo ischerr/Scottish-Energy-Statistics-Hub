@@ -47,6 +47,12 @@ RenElecTargetOutput <- function(id) {
     fluidRow(
     uiOutput(ns("Text"))
     ),
+    fluidRow(
+      column(2,style = "padding:15px",actionButton(ns("ToggleText2"), "Revisions", style = "float:left; "))
+      ),
+    fluidRow(
+      uiOutput(ns("RevisionsText"))
+    ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
     column(10, h3("Data", style = "color: #39ab2c;  font-weight:bold")),
@@ -80,7 +86,7 @@ RenElecTargetOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
       column(10, h3("Revisions", style = "color: #39ab2c;  font-weight:bold")),
-      column(2, style = "padding:15px",  actionButton(ns("ToggleTableRev"), "Show/Hide Table", style = "float:right; "))
+      column(2, style = "padding:15px",  actionButton(ns("ToggleTableRev"), "Show Revisions", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("RevisionsTable"))%>% withSpinner(color="#39ab2c"))),
@@ -378,6 +384,15 @@ RenElecTarget <- function(input, output, session) {
   })
   
   
+  output$RevisionsText <- renderUI({
+    tagList(column(12,
+                   HTML(
+                     paste(readtext("Structure/2 - Renewables/Electricity/RenElecTargetRevisions.txt")[2])
+                     
+                   )))
+  })
+  
+  
   observeEvent(input$ToggleTable, {
     toggle("RenElecTargetTable")
   })
@@ -388,6 +403,11 @@ RenElecTarget <- function(input, output, session) {
     toggle("Text")
   })
   
+  observeEvent(input$ToggleText2, {
+    toggle("RevisionsText")
+  })
+  
+  toggle("RevisionsText")
   
   output$RenElecTarget.png <- downloadHandler(
     filename = "RenElecTarget.png",
@@ -1119,17 +1139,6 @@ RenElecTarget <- function(input, output, session) {
         order = list(list(0, 'desc')),
         title = "Renewable Electricity Target Revisions",
         dom = 'ltBp',
-        buttons = list(
-          list(extend = 'copy'),
-          list(
-            extend = 'excel',
-            title = 'Renewable Electricity Target Revisions',
-            header = TRUE
-          ),
-          list(extend = 'csv',
-               title = 'Renewable Electricity Target Revisions')
-        ),
-        
         # customize the length menu
         lengthMenu = list( c(10, 20, -1) # declare values
                            , c(10, 20, "All") # declare titles
