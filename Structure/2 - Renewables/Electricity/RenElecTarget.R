@@ -76,7 +76,14 @@ RenElecTargetOutput <- function(id) {
         SourceLookup("BEISElecGen")
         
       )
-    )
+    ),
+    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+    fluidRow(
+      column(10, h3("Revisions", style = "color: #39ab2c;  font-weight:bold")),
+      column(2, style = "padding:15px",  actionButton(ns("ToggleTableRev"), "Show/Hide Table", style = "float:right; "))
+    ),
+    fluidRow(
+      column(12, dataTableOutput(ns("RevisionsTable"))%>% withSpinner(color="#39ab2c"))),
   )
 }
 
@@ -1086,4 +1093,50 @@ RenElecTarget <- function(input, output, session) {
       )
     }
   )
+  
+  observeEvent(input$ToggleTableRev, {
+    toggle("RevisionsTable")
+  })
+  
+  toggle("RevisionsTable")
+  
+  output$RevisionsTable = renderDataTable({
+    
+    RenElecRevisions <- read_excel("Structure/2 - Renewables/Electricity/RenElecRevisions.xlsx")
+    
+    datatable(
+      RenElecRevisions,
+      extensions = 'Buttons',
+      
+      rownames = FALSE,
+      options = list(
+        paging = TRUE,
+        pageLength = -1,
+        searching = TRUE,
+        fixedColumns = FALSE,
+        autoWidth = TRUE,
+        ordering = TRUE,
+        order = list(list(0, 'desc')),
+        title = "Renewable Electricity Target Revisions",
+        dom = 'ltBp',
+        buttons = list(
+          list(extend = 'copy'),
+          list(
+            extend = 'excel',
+            title = 'Renewable Electricity Target Revisions',
+            header = TRUE
+          ),
+          list(extend = 'csv',
+               title = 'Renewable Electricity Target Revisions')
+        ),
+        
+        # customize the length menu
+        lengthMenu = list( c(10, 20, -1) # declare values
+                           , c(10, 20, "All") # declare titles
+        ), # end of lengthMenu customization
+        pageLength = 10
+      )
+    ) %>%
+      formatPercentage(3:4, 1)
+  })
 }
