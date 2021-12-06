@@ -5,5 +5,5 @@
 <p>* Gross electricity consumption refers to total electricity generation minus net exports</p>
 </blockquote>
 <blockquote>
-<p>* Renewable electricity target was revised tp <strong>95.9%</strong> from 97.4% on the 29th of June 2021</p>
+<p>** Renewable electricity target was revised tp <strong>95.9%</strong> from 97.4% on the 29th of June 2021</p>
 </blockquote>
