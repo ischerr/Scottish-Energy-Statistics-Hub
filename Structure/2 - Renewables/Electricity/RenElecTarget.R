@@ -47,12 +47,6 @@ RenElecTargetOutput <- function(id) {
     fluidRow(
     uiOutput(ns("Text"))
     ),
-    fluidRow(
-      column(2,style = "padding:15px",actionButton(ns("ToggleText2"), "Revisions", style = "float:left; "))
-      ),
-    fluidRow(
-      uiOutput(ns("RevisionsText"))
-    ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
     column(10, h3("Data", style = "color: #39ab2c;  font-weight:bold")),
@@ -384,14 +378,6 @@ RenElecTarget <- function(input, output, session) {
   })
   
   
-  output$RevisionsText <- renderUI({
-    tagList(column(12,
-                   HTML(
-                     paste(readtext("Structure/2 - Renewables/Electricity/RenElecTargetRevisions.txt")[2])
-                     
-                   )))
-  })
-  
   
   observeEvent(input$ToggleTable, {
     toggle("RenElecTargetTable")
@@ -403,11 +389,7 @@ RenElecTarget <- function(input, output, session) {
     toggle("Text")
   })
   
-  observeEvent(input$ToggleText2, {
-    toggle("RevisionsText")
-  })
-  
-  toggle("RevisionsText")
+
   
   output$RenElecTarget.png <- downloadHandler(
     filename = "RenElecTarget.png",
