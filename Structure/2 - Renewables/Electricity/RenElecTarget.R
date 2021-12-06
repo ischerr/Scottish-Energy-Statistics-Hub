@@ -521,12 +521,38 @@ RenElecTarget <- function(input, output, session) {
   
   output$GrossConsumptionSubtitle <- renderText({
     
-      paste("Scotland, 2019")
+    GenSupplyReadable <- read_csv("Processed Data/Output/Renewable Generation/GenSupplyReadable.csv")
+    
+      paste("Scotland,", max(GenSupplyReadable$Year))
   })
   
   output$GrossConsumptionPlot <- renderPlotly  ({
     
-    GrossConsumption <- read_excel("Processed Data/TestConsumption.xlsx")
+    GrossConsumption <- tibble(Type = c("Consumption", "Exports", "Generation"),
+                                   Renewable = c(0,0,0),
+                                   `Non-renewable` = c(0,0,0),
+                                   Exports = c(0,0,0),
+                                   Consumption = c(0,0,0)
+                                   )
+    
+    GenSupplyReadable <- read_csv("Processed Data/Output/Renewable Generation/GenSupplyReadable.csv")
+    
+    GenSupplyReadable <- GenSupplyReadable[which(GenSupplyReadable$Country == "Scotland" & GenSupplyReadable$Year == max(GenSupplyReadable$Year)),]
+    
+    RenElec <- read_csv("Processed Data/Output/Renewable Generation/RenElecTgt.csv")
+    
+    RenElec <- RenElec[which(RenElec$Year == max(GenSupplyReadable$Year)),]
+    
+    
+    GrossConsumption[1,5] <- RenElec$`Gross Electricity Consumption`
+    
+    GrossConsumption[3,2] <- RenElec$Renewable
+    
+    GrossConsumption[3,3] <- GenSupplyReadable$`Total generated` - RenElec$Renewable
+    
+    GrossConsumption[2,4] <- RenElec$`Gross Electricity Consumption` - GenSupplyReadable$`Total generated`
+    
+    
     
     GrossConsumptionPlotData <- GrossConsumption[c(1,3),]
     
@@ -849,7 +875,29 @@ RenElecTarget <- function(input, output, session) {
     filename = "GrossConsumption.png",
     content = function(file) {
       
-      GrossConsumption <- read_excel("Processed Data/TestConsumption.xlsx")
+      GrossConsumption <- tibble(Type = c("Consumption", "Exports", "Generation"),
+                                 Renewable = c(0,0,0),
+                                 `Non-renewable` = c(0,0,0),
+                                 Exports = c(0,0,0),
+                                 Consumption = c(0,0,0)
+      )
+      
+      GenSupplyReadable <- read_csv("Processed Data/Output/Renewable Generation/GenSupplyReadable.csv")
+      
+      GenSupplyReadable <- GenSupplyReadable[which(GenSupplyReadable$Country == "Scotland" & GenSupplyReadable$Year == max(GenSupplyReadable$Year)),]
+      
+      RenElec <- read_csv("Processed Data/Output/Renewable Generation/RenElecTgt.csv")
+      
+      RenElec <- RenElec[which(RenElec$Year == max(GenSupplyReadable$Year)),]
+      
+      
+      GrossConsumption[1,5] <- RenElec$`Gross Electricity Consumption`
+      
+      GrossConsumption[3,2] <- RenElec$Renewable
+      
+      GrossConsumption[3,3] <- GenSupplyReadable$`Total generated` - RenElec$Renewable
+      
+      GrossConsumption[2,4] <- RenElec$`Gross Electricity Consumption` - GenSupplyReadable$`Total generated`
       
       GrossConsumption$Type <- c("Gross Consumption", "Net exports", "Electricity generation fuel mix")
       
