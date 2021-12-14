@@ -122,13 +122,11 @@ EnConsumption <- function(input, output, session) {
  
   output$EnConsumptionPlot <- renderPlotly  ({
     
-    EnConsumption <- read_excel("Structure/CurrentWorking.xlsx",
-                               sheet = "Energy consump by sector", col_names = TRUE, 
-                               skip = 21)
+    EnConsumption <- read_csv("Processed Data/Output/Consumption/RenEnTgt.csv")
     
-    EnConsumption <- EnConsumption[2:6]
+    EnConsumption$Other <- EnConsumption$`Adjusted Consumption` - EnConsumption$`Gross Electricity Consumption` - EnConsumption$`Heat Consumption` - EnConsumption$`Consuming Sector - Transport`
     
-    EnConsumption <- EnConsumption[complete.cases(EnConsumption),]
+    EnConsumption <- select(EnConsumption, Year, `Heat Consumption`, `Consuming Sector - Transport`, `Gross Electricity Consumption`, Other)
     
     names(EnConsumption) <- c("Year", "Heat", "Transport", "Electricity", "Other")
     
@@ -189,13 +187,11 @@ EnConsumption <- function(input, output, session) {
   
   output$EnConsumptionTable = renderDataTable({
     
-    EnConsumption <- read_excel("Structure/CurrentWorking.xlsx",
-                               sheet = "Energy consump by sector", col_names = TRUE, 
-                               skip = 21)
+    EnConsumption <- read_csv("Processed Data/Output/Consumption/RenEnTgt.csv")
     
-    EnConsumption <- EnConsumption[2:6]
+    EnConsumption$Other <- EnConsumption$`Adjusted Consumption` - EnConsumption$`Gross Electricity Consumption` - EnConsumption$`Heat Consumption` - EnConsumption$`Consuming Sector - Transport`
     
-    EnConsumption <- EnConsumption[complete.cases(EnConsumption),]
+    EnConsumption <- select(EnConsumption, Year, `Heat Consumption`, `Consuming Sector - Transport`, `Gross Electricity Consumption`, Other)
     
     names(EnConsumption) <- c("Year", "Heat", "Transport", "Gross electricity consumption", "Other")
     

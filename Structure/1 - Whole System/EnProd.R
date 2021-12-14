@@ -99,16 +99,12 @@ EnProd <- function(input, output, session) {
 
 
 #####################################################################
+  
+
+  
   output$EnProdPlot <- renderPlotly  ({
     
-    EnProd <- read_excel(
-      "Structure/CurrentWorking.xlsx", 
-      sheet = "Energy productivity", col_names = FALSE, 
-      skip = 26, n_max = 4)
-    
-    EnProd <- as.data.frame(t(EnProd))
-    
-    EnProd <- EnProd[c(1,3)]
+    EnProd <- read_csv("Processed Data/Output/GVA/EnProductivity.csv")[c(1,6)]
     
     EnProd <- EnProd[complete.cases(EnProd),]
     
@@ -208,14 +204,7 @@ EnProd <- function(input, output, session) {
   
   output$EnProdSubtitle <- renderText({
     
-    EnProd <- read_excel(
-      "Structure/CurrentWorking.xlsx", 
-      sheet = "Energy productivity", col_names = FALSE, 
-      skip = 26, n_max = 4)
-    
-    EnProd <- as.data.frame(t(EnProd))
-    
-    EnProd <- EnProd[c(1,3)]
+    EnProd <- read_csv("Processed Data/Output/GVA/EnProductivity.csv")[c(1,6)]
     
     EnProd <- EnProd[complete.cases(EnProd),]
     
@@ -231,15 +220,9 @@ EnProd <- function(input, output, session) {
 
   output$EnProdHistPlot <- renderPlotly  ({
     
-    EnProdHist <- read_excel(
-      "Structure/CurrentWorking.xlsx", 
-      sheet = "Energy productivity", col_names = FALSE, 
-      skip = 26, n_max = 4)
+
     
-    
-    EnProdHist <- as.data.frame(t(EnProdHist))
-    
-    EnProdHist <- EnProdHist[c(1,4)]
+    EnProdHist <- read_csv("Processed Data/Output/GVA/EnProductivity.csv")[c(1,7)]
     
     EnProdHist <- EnProdHist[complete.cases(EnProdHist),]
     
@@ -321,15 +304,7 @@ EnProd <- function(input, output, session) {
   
   output$EnProdHistSubtitle <- renderText({
     
-    EnProdHist <- read_excel(
-      "Structure/CurrentWorking.xlsx", 
-      sheet = "Energy productivity", col_names = FALSE, 
-      skip = 26, n_max = 4)
-    
-    
-    EnProdHist <- as.data.frame(t(EnProdHist))
-    
-    EnProdHist <- EnProdHist[c(1,4)]
+    EnProdHist <- read_csv("Processed Data/Output/GVA/EnProductivity.csv")[c(1,7)]
     
     EnProdHist <- EnProdHist[complete.cases(EnProdHist),]
     
@@ -343,26 +318,18 @@ EnProd <- function(input, output, session) {
   
   output$EnProdTable = renderDataTable({
     
-    EnProdData <- read_excel(
-      "Structure/CurrentWorking.xlsx", 
-      sheet = "Energy productivity", col_names = FALSE, 
-      skip = 26, n_max = 10)
+    EnProdData <- read_csv("Processed Data/Output/GVA/EnProductivity.csv")
+  
+    EnProdData <- EnProdData[c(1,5,6,7,3,2)]
     
-    
-    EnProdData <- as.data.frame(t(EnProdData))
-    
-    EnProdData <- EnProdData[c(1:4,9:10)]
-    
-    names(EnProdData) <- as.character(unlist(EnProdData[1,]))
-    
-    EnProdData <- EnProdData[-1,]
-    
-    names(EnProdData)[1] <- "Year"
-    
-    EnProdData %<>% lapply(function(x) as.numeric(as.character(x)))
-    
-    EnProdData <- as_tibble(EnProdData)
-    
+    names(EnProdData) <- c( 
+    "Year",
+    "Energy Productivity (£ million GVA per GWh consumed)",
+    "Percentage change from 2015",
+    "Percentage change from 2005",
+    "Gross value added (deflated with Scottish chained volume measures) (£m)",
+    "Scottish total final energy consumption (GWh)"
+    )
     
     datatable(
       EnProdData,
@@ -427,14 +394,7 @@ EnProd <- function(input, output, session) {
     filename = "EnProd.png",
     content = function(file) {
 
-      EnProd <- read_excel(
-        "Structure/CurrentWorking.xlsx", 
-        sheet = "Energy productivity", col_names = FALSE, 
-        skip = 26, n_max = 4)
-      
-      EnProd <- as.data.frame(t(EnProd))
-      
-      EnProd <- EnProd[c(1,3)]
+      EnProd <- read_csv("Processed Data/Output/GVA/EnProductivity.csv")[c(1,6)]
       
       EnProd <- EnProd[complete.cases(EnProd),]
       
@@ -688,15 +648,7 @@ EnProd <- function(input, output, session) {
     filename = "EnProdHist.png",
     content = function(file) {
       
-      EnProdHist <- read_excel(
-        "Structure/CurrentWorking.xlsx", 
-        sheet = "Energy productivity", col_names = FALSE, 
-        skip = 26, n_max = 4)
-      
-      
-      EnProdHist <- as.data.frame(t(EnProdHist))
-      
-      EnProdHist <- EnProdHist[c(1,4)]
+      EnProdHist <- read_csv("Processed Data/Output/GVA/EnProductivity.csv")[c(1,7)]
       
       EnProdHist <- EnProdHist[complete.cases(EnProdHist),]
       
