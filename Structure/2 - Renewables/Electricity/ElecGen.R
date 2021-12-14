@@ -1041,6 +1041,8 @@ ElecGen <- function(input, output, session) {
   
   output$ElecGenFuelPlot <- renderPlotly  ({
     
+    Year = as.numeric(input$YearSelect)
+    
     DataScot <-
       read_excel(
         "Structure/CurrentWorking.xlsx",
@@ -1097,7 +1099,7 @@ ElecGen <- function(input, output, session) {
     
     DataScot <- as_tibble(DataScot)
     
-    DataScot <- DataScot[which(DataScot$Year == as.numeric(2019)),]
+    DataScot <- DataScot[which(DataScot$Year == Year),]
     
     DataScot <-
       DataScot[c(
@@ -1171,7 +1173,7 @@ ElecGen <- function(input, output, session) {
     
     DataEW <- as_tibble(DataEW)
     
-    DataEW <- DataEW[which(DataEW$Year == as.numeric(2019)),]
+    DataEW <- DataEW[which(DataEW$Year == Year),]
     
     DataEW <-
       DataEW[c(
