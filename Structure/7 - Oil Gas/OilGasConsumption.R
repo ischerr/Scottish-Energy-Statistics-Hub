@@ -88,7 +88,7 @@ OilGasConsumption <- function(input, output, session) {
   
   output$OilGasConsumptionSubtitle <- renderText({
     
-    paste("Scotland, 2018")
+    paste("Scotland, 2019")
 
       })
   
