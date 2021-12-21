@@ -12,45 +12,45 @@ RenElecTargetOutput <- function(id) {
   tagList(
     tabsetPanel(
       tabPanel("Target",
-    fluidRow(column(8,
-                    h3("Share of renewable electricity in gross final consumption", style = "color: #39ab2c;  font-weight:bold"),
-                    h4(textOutput(ns('RenElecTargetSubtitle')), style = "color: #39ab2c;")
-    ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('RenElecTarget.png'), 'Download Graph', style="float:right")
-             )),
+               fluidRow(column(8,
+                               h3("Share of renewable electricity in gross final consumption", style = "color: #39ab2c;  font-weight:bold"),
+                               h4(textOutput(ns('RenElecTargetSubtitle')), style = "color: #39ab2c;")
+               ),
+               column(
+                 4, style = 'padding:15px;',
+                 downloadButton(ns('RenElecTarget.png'), 'Download Graph', style="float:right")
+               )),
+               
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+               #dygraphOutput(ns("RenElecTargetPlot")),
+               plotlyOutput(ns("RenElecTargetPlot"))%>% withSpinner(color="#39ab2c"),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
+      tabPanel("Calculation",
+               fluidRow(column(8,
+                               h3("Renewable electricity target calculation", style = "color: #39ab2c;  font-weight:bold"),
+                               h4(textOutput(ns('GrossConsumptionSubtitle')), style = "color: #39ab2c;")
+               ),
+               column(
+                 4, style = 'padding:15px;',
+                 downloadButton(ns('GrossConsumption.png'), 'Download Graph', style="float:right")
+               )),
+               
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
+               #dygraphOutput(ns("GrossConsumptionPlot")),
+               plotlyOutput(ns("GrossConsumptionPlot"), height = "500px")%>% withSpinner(color="#39ab2c"),
+               #HTML("<blockquote><p>*2020 figures used here as they are final.</p></blockquote>"),
+               tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
+    fluidRow(
+      column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
+      column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
     
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-    #dygraphOutput(ns("RenElecTargetPlot")),
-    plotlyOutput(ns("RenElecTargetPlot"))%>% withSpinner(color="#39ab2c"),
-    tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
-    tabPanel("Calculation",
-             fluidRow(column(8,
-                             h3("Renewable electricity target calculation", style = "color: #39ab2c;  font-weight:bold"),
-                             h4(textOutput(ns('GrossConsumptionSubtitle')), style = "color: #39ab2c;")
-             ),
-             column(
-               4, style = 'padding:15px;',
-               downloadButton(ns('GrossConsumption.png'), 'Download Graph', style="float:right")
-             )),
-             
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
-             #dygraphOutput(ns("GrossConsumptionPlot")),
-             plotlyOutput(ns("GrossConsumptionPlot"), height = "500px")%>% withSpinner(color="#39ab2c"),
-             #HTML("<blockquote><p>*2020 figures used here as they are final.</p></blockquote>"),
-             tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
-    column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
-    column(2,style = "padding:15px",actionButton(ns("ToggleText"), "Show/Hide Text", style = "float:right; "))),
-    
-    fluidRow(
-    uiOutput(ns("Text"))
+      uiOutput(ns("Text"))
     ),
     tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
     fluidRow(
-    column(10, h3("Data", style = "color: #39ab2c;  font-weight:bold")),
-    column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
+      column(10, h3("Data", style = "color: #39ab2c;  font-weight:bold")),
+      column(2, style = "padding:15px",  actionButton(ns("ToggleTable"), "Show/Hide Table", style = "float:right; "))
     ),
     fluidRow(
       column(12, dataTableOutput(ns("RenElecTargetTable"))%>% withSpinner(color="#39ab2c"))),
@@ -72,9 +72,9 @@ RenElecTargetOutput <- function(id) {
       column(1, align = "right",
              HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
-        SourceLookup("BEISRenElec"),
-        SourceLookup("BEISElecGen")
-        
+             SourceLookup("BEISRenElec"),
+             SourceLookup("BEISElecGen")
+             
       )
     )
   )
@@ -92,7 +92,7 @@ RenElecTarget <- function(input, output, session) {
   }
   
   print("RenElecTarget.R")
-
+  
   
   output$RenElecTargetSubtitle <- renderText({
     
@@ -126,7 +126,7 @@ RenElecTarget <- function(input, output, session) {
     
     RenElec$Year <- paste0("01/01/", RenElec$Year)
     
-
+    
     RenElecBar <- read_excel("Structure/CurrentWorking.xlsx", 
                              sheet = "Renewable elec by fuel", col_names = TRUE, 
                              skip = 12)
@@ -160,16 +160,16 @@ RenElecTarget <- function(input, output, session) {
     
     RenElecBar$Total <- NULL
     
-   RenElec<- merge(RenElec, RenElecBar, all = TRUE)
-   
-   RenElec$Year <- dmy(RenElec$Year)
-   
-   RenElec <- arrange(RenElec, Year)
-   
-   BarColours <- c("#c7e9b4",
-                   "#41b6c4",
-                   "#225ea8",
-                   "#253494")
+    RenElec<- merge(RenElec, RenElecBar, all = TRUE)
+    
+    RenElec$Year <- dmy(RenElec$Year)
+    
+    RenElec <- arrange(RenElec, Year)
+    
+    BarColours <- c("#c7e9b4",
+                    "#41b6c4",
+                    "#225ea8",
+                    "#253494")
     
     p <-  plot_ly(RenElec,x = ~ Year ) %>% 
       add_trace(y = ~ Renewables,
@@ -281,7 +281,7 @@ RenElecTarget <- function(input, output, session) {
                 ),
                 marker = list(color = BarColours[1]),
                 hoverinfo = "text")   %>% 
-
+      
       layout(
         barmode = 'stack',
         bargap = 0,
@@ -319,7 +319,7 @@ RenElecTarget <- function(input, output, session) {
     RenElec <- tail(RenElec, -1)
     
     names(RenElec) <- c("Year","Renewable Electricity (GWh)", "Gross Electricity Consumption (GWh)", "% Progress")
-
+    
     RenElec %<>% lapply(function(x) as.numeric(as.character(x)))
     RenElec <- as_tibble(RenElec)
     
@@ -375,7 +375,7 @@ RenElecTarget <- function(input, output, session) {
     toggle("RenElecTargetTable")
   })
   
-
+  
   
   observeEvent(input$ToggleText, {
     toggle("Text")
@@ -385,7 +385,7 @@ RenElecTarget <- function(input, output, session) {
   output$RenElecTarget.png <- downloadHandler(
     filename = "RenElecTarget.png",
     content = function(file) {
-
+      
       RenElec <- read_excel("Structure/CurrentWorking.xlsx", 
                             sheet = "Renewable elec target", col_names = FALSE, 
                             skip = 15)
@@ -550,7 +550,7 @@ RenElecTarget <- function(input, output, session) {
   
   output$GrossConsumptionSubtitle <- renderText({
     
-      paste("Scotland, 2020")
+    paste("Scotland, 2020")
   })
   
   output$GrossConsumptionPlot <- renderPlotly  ({
@@ -1040,7 +1040,7 @@ RenElecTarget <- function(input, output, session) {
         geom_text(
           aes( x = 0,
                y = 48629/1.9,
-               label = "This does not mean that 10.5% of Scottish electricity demand is\nfrom non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
+               label = "This does not mean that 1.4% of Scottish electricity demand is\nfrom non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
                family = "Century Gothic",
                fontface = 2
           ),
