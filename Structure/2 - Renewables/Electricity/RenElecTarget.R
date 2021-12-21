@@ -38,7 +38,7 @@ RenElecTargetOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"),
              #dygraphOutput(ns("GrossConsumptionPlot")),
              plotlyOutput(ns("GrossConsumptionPlot"), height = "500px")%>% withSpinner(color="#39ab2c"),
-             HTML("<blockquote><p>*2019 figures used here as they are final.</p></blockquote>"),
+             #HTML("<blockquote><p>*2020 figures used here as they are final.</p></blockquote>"),
              tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
     column(10,h3("Commentary", style = "color: #39ab2c;  font-weight:bold")),
@@ -550,7 +550,7 @@ RenElecTarget <- function(input, output, session) {
   
   output$GrossConsumptionSubtitle <- renderText({
     
-      paste("Scotland, 2019")
+      paste("Scotland, 2020")
   })
   
   output$GrossConsumptionPlot <- renderPlotly  ({
@@ -776,7 +776,7 @@ RenElecTarget <- function(input, output, session) {
         showlegend = FALSE ,
         hoverinfo = 'none',
         legendgroup = 10,
-        text = "This does not mean that 10.5% of Scottish electricity demand is\nfrom non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
+        text = "This does not mean that 1.4% of Scottish electricity demand is\nfrom non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
         name = paste("Consumption"),
         marker = list(
           size = 500,
@@ -886,7 +886,7 @@ RenElecTarget <- function(input, output, session) {
       
       GrossConsumptionPlotData$Type <- as.numeric(rownames(GrossConsumptionPlotData))
       
-      GrossConsumptionYear <- 2019
+      GrossConsumptionYear <- 2020
       
       ChartColours <- c("#39ab2c", "#FF8500", "#74c476")
       BarColours <-
