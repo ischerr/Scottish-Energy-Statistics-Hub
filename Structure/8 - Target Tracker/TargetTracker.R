@@ -380,7 +380,7 @@ TargetTracker <- function(input, output, session, parent_session) {
       
       names(RenHeat) <- c("Year", "Renewables")
       RenHeat$Year <- substr(RenHeat$Year,1,4)
-      RenHeat <- merge(RenHeat, data.frame(Year = 2020, Renewables = NA, Tgt = .11), all = T)
+      RenHeat <- merge(RenHeat, data.frame(Year = 2020, Tgt = .11), all = T)
       RenHeat %<>% lapply(function(x) as.numeric(as.character(x)))
       RenHeat <- as.data.frame(RenHeat)
       RenHeat[which(RenHeat$Year == max(RenHeat[which(RenHeat$Renewables>0),]$Year)),]$Renewables
