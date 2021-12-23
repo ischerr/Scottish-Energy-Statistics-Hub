@@ -1,8 +1,8 @@
 "Technology Type"	"<5MW"	"5 - 10MW"	"10-50MW"	"50MW +"	"Total"
-"Wind Onshore"	7620.93387	205.35	681.54613	162.5	8670.33
-"Biomass and Waste"	258.931	97.279	162.72	0	518.93
-"Hydro"	1663.13	0	0	0	1663.13
+"Wind Onshore"	466.30387	346.2	3176.08613	4681.74	8670.33
+"Hydro"	328.134	51.401	735.895	547.7	1663.13
+"Wind Offshore"	2.30926389122033e-14	7.35	40	858.8	906.15
+"Biomass and Waste"	135.431	97.279	221.22	65	518.93
+"Solar Photovoltaics"	387.50058	0	12.99942	0	400.5
 "Shoreline wave / tidal"	16.22	5.7	0	0	21.92
-"Solar Photovoltaics"	400.5	0	0	0	400.5
-"Wind Offshore"	888.8	7.35	10	0	906.15
-"All Technologies"	10848.51487	315.679	854.26613	162.5	12180.96
+"All Technologies"	1333.58945	507.93	4186.20055	6153.24	12180.96
