@@ -418,13 +418,7 @@ RenEnTgt <- function(input, output, session) {
   )
   ### Summary Tables ###
   
-  Overview <- read_excel(
-    "Structure/CurrentWorking.xlsx",
-    sheet = "Renewable energy target",
-    col_names = FALSE,
-    skip = 36,
-    n_max = 23
-  )
+ 
   
   Overview <- as_tibble(read_csv("Processed Data/Output/Consumption/RenEnTgt.csv"))
     

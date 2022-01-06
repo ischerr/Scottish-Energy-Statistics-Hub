@@ -79,58 +79,37 @@ EnSupplyEmissions <- function(input, output, session) {
   
     output$EnSupplyEmissionsSubtitle <- renderText({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Energy supply emissions", skip = 12)
-    
-    Data <- as.data.frame(t(Data))
-    
-    colnames(Data) <- as.character(unlist(Data[1,]))
-    Data = Data[-1, ]
-    Data <- setDT(Data, keep.rownames = TRUE)[]
-    names(Data) <- c("Year", "Greenhouse Gas", "Energy Supply", "Electricity Production", "Industry")
-    Data[1,1] <- 1988
-    
-    Data<- rbind(Data, setNames(data.frame(1989,NA,NA,NA,NA),names(Data)))
-    Data <- Data[order(Data$Year)]
-    Data$Year <- as.numeric(as.character(Data$Year))
-    Data$`Greenhouse Gas` <- as.numeric(as.character(Data$`Greenhouse Gas`))
-    Data$`Energy Supply` <- as.numeric(as.character(Data$`Energy Supply`))
-    Data$`Electricity Production` <- as.numeric(as.character(Data$`Electricity Production`))
-    Data$`Industry` <- as.numeric(as.character(Data$`Industry`))
-    
-    
-    
-    EnSupplyEmissions <- Data
-    ### variables
-    
-    paste("Scotland, 1990","-", max(EnSupplyEmissions$Year))
+      EnSupplyEmissions <- read_csv("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv")
+      
+    paste("Scotland, 1990","-", max(EnSupplyEmissions$refPeriod))
   })
   
   output$EnSupplyEmissionsPlot <- renderPlotly  ({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Energy supply emissions", skip = 12)
+
+    EnSupplyEmissions <- read_csv("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv")
     
-    Data <- as.data.frame(t(Data))
+    EnSupplyEmissions$`Greenhouse Gas` <- rowSums(EnSupplyEmissions[2:11])
     
-    colnames(Data) <- as.character(unlist(Data[1,]))
-    Data = Data[-1, ]
-    Data <- setDT(Data, keep.rownames = TRUE)[]
-    names(Data) <- c("Year", "Greenhouse Gas", "Energy Supply", "Electricity Production", "Industry")
-    Data[1,1] <- 1988
+    EnSupplyEmissions <- select(EnSupplyEmissions, refPeriod, `Greenhouse Gas`, `energy-supply`)
     
-    Data<- rbind(Data, setNames(data.frame(1989,NA,NA,NA,NA),names(Data)))
-    Data <- Data[order(Data$Year)]
-    Data$Year <- as.numeric(as.character(Data$Year))
-    Data$`Greenhouse Gas` <- as.numeric(as.character(Data$`Greenhouse Gas`))
-    Data$`Energy Supply` <- as.numeric(as.character(Data$`Energy Supply`))
-    Data$`Electricity Production` <- as.numeric(as.character(Data$`Electricity Production`))
-    Data$`Industry` <- as.numeric(as.character(Data$`Industry`))
+    names(EnSupplyEmissions) <- c("Year", "Greenhouse Gas", "Energy Supply")
     
+    ElecSupplyEmissions <- read_csv("Processed Data/Output/Greenhouse Gas/GHGElectricityBreakdown.csv")
     
+    ElecSupplyEmissions$`Electricity Production` <- rowSums(ElecSupplyEmissions[2:3])
     
-    EnSupplyEmissions <- Data
+    ElecSupplyEmissions <- select(ElecSupplyEmissions, EmissionYear, `Electricity Production`)
     
+    names(ElecSupplyEmissions) <- c("Year", "Electricity Production")
+    
+    EnSupplyEmissions <- merge(EnSupplyEmissions, ElecSupplyEmissions)
+    
+    EnSupplyEmissions$Industry <- EnSupplyEmissions$`Energy Supply` - EnSupplyEmissions$`Electricity Production`
+    
+    YearDisplay <- tibble(Year = c("1991","1996"))
+    
+    EnSupplyEmissions <- merge(EnSupplyEmissions, YearDisplay, all = TRUE)
     
     plottitle <- "Net source greenhouse gas emissions from the energy supply sector (MtCO2e)"
     sourcecaption <- "Source: BEIS"
@@ -143,8 +122,8 @@ EnSupplyEmissions <- function(input, output, session) {
     
     EnSupplyEmissions$YearLabel <- as.character(format(EnSupplyEmissions$Year, "%Y"))
     
-    EnSupplyEmissions[which(EnSupplyEmissions$Year ==ymd("1988-01-01")),]$YearLabel <- "Baseline"
     
+    EnSupplyEmissions <- as_tibble(EnSupplyEmissions)
     
     p <-  plot_ly(data = EnSupplyEmissions,
                   x = ~ Year ) %>% 
@@ -166,15 +145,15 @@ EnSupplyEmissions <- function(input, output, session) {
                 line = list(width = 6, color = LineColours[2], dash = "none")
       ) %>% 
       add_trace(
-        data = EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))],
+        data = EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year))),],
         x = ~ Year,
         y = ~ `Energy Supply`,
         name = "Total energy supply emissions",
         text = paste0(
           "Total energy supply emissions: ",
-          round(EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))]$`Energy Supply`, digits = 1),
+          round(EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year))),]$`Energy Supply`, digits = 1),
           " MtCO2e\nYear: ",
-          EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))]$YearLabel
+          EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year))),]$YearLabel
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -202,15 +181,15 @@ EnSupplyEmissions <- function(input, output, session) {
                 line = list(width = 6, color = LineColours[3], dash = "none")
       ) %>% 
       add_trace(
-        data = EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))],
+        data = EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year))),],
         x = ~ Year,
         y = ~ `Electricity Production`,
         name = "Electricity production emissions",
         text = paste0(
           "Electricity production emissions: ",
-          round(EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))]$`Electricity Production`, digits = 1),
+          round(EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year))),]$`Electricity Production`, digits = 1),
           " MtCO2e\nYear: ",
-          EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))]$YearLabel
+          EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year))),]$YearLabel
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -238,15 +217,15 @@ EnSupplyEmissions <- function(input, output, session) {
                 line = list(width = 6, color = LineColours[4], dash = "none")
       ) %>% 
       add_trace(
-        data = EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))],
+        data = EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year))),],
         x = ~ Year,
         y = ~ `Industry`,
         name = "Industry emissions",
         text = paste0(
           "Industry emissions: ",
-          round(EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))]$`Industry`, digits = 1),
+          round(EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year))),]$`Industry`, digits = 1),
           " MtCO2e\nYear: ",
-          EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1988-01-01"),ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year)))]$YearLabel
+          EnSupplyEmissions[which(EnSupplyEmissions$Year %in% c(ymd("1990-01-01"),ymd("1995-01-01"),ymd("1998-01-01"),max(EnSupplyEmissions$Year))),]$YearLabel
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -289,36 +268,27 @@ EnSupplyEmissions <- function(input, output, session) {
   
   output$EnSupplyEmissionsTable = renderDataTable({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Energy supply emissions", skip = 12)
+    EnSupplyEmissions <- read_csv("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv")
     
-    Data <- as.data.frame(t(Data))
+    EnSupplyEmissions$`Greenhouse Gas` <- rowSums(EnSupplyEmissions[2:11])
     
-    colnames(Data) <- as.character(unlist(Data[1,]))
-    Data = Data[-1, ]
-    Data <- setDT(Data, keep.rownames = TRUE)[]
-    names(Data) <- c("Year", "Greenhouse Gas", "Energy Supply", "Electricity Production", "Industry")
-    Data[1,1] <- 1988
+    EnSupplyEmissions <- select(EnSupplyEmissions, refPeriod, `Greenhouse Gas`, `energy-supply`)
     
-    Data<- rbind(Data, setNames(data.frame(1989,NA,NA,NA,NA),names(Data)))
-    Data <- Data[order(Data$Year)]
-    Data$Year <- as.numeric(as.character(Data$Year))
-    Data$`Greenhouse Gas` <- as.numeric(as.character(Data$`Greenhouse Gas`))
-    Data$`Energy Supply` <- as.numeric(as.character(Data$`Energy Supply`))
-    Data$`Electricity Production` <- as.numeric(as.character(Data$`Electricity Production`))
-    Data$`Industry` <- as.numeric(as.character(Data$`Industry`))
+    names(EnSupplyEmissions) <- c("Year", "Greenhouse Gas", "Energy Supply")
     
-    Data$Year <- as.character(Data$Year)
-    Data[1,1] <- " Baseline"
-    Data$Year <- factor(Data$Year, ordered = TRUE)
+    ElecSupplyEmissions <- read_csv("Processed Data/Output/Greenhouse Gas/GHGElectricityBreakdown.csv")
     
-    EnSupplyEmissions <- Data[complete.cases(Data)]
+    ElecSupplyEmissions$`Electricity Production` <- rowSums(ElecSupplyEmissions[2:3])
     
+    ElecSupplyEmissions <- select(ElecSupplyEmissions, EmissionYear, `Electricity Production`)
     
-    plottitle <- "Net source greenhouse gas emissions from the energy supply sector (MtCO2e)"
-    sourcecaption <- "Source: BEIS"
-    ChartColours <- c("#1A5D38", "#FF8500")
-    LineColours <- c( "#39ab2c","#006837", "#41ab5d", "#addd8e")
+    names(ElecSupplyEmissions) <- c("Year", "Electricity Production")
+    
+    EnSupplyEmissions <- merge(EnSupplyEmissions, ElecSupplyEmissions)
+    
+    EnSupplyEmissions$Industry <- EnSupplyEmissions$`Energy Supply` - EnSupplyEmissions$`Electricity Production`
+    
+    EnSupplyEmissions$Year <- as.numeric(EnSupplyEmissions$Year)
     
     
     datatable(
@@ -384,28 +354,39 @@ EnSupplyEmissions <- function(input, output, session) {
     filename = "EnSupplyEmissions.png",
     content = function(file) {
 
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Energy supply emissions", skip = 12)
+      EnSupplyEmissions <- read_csv("Processed Data/Output/Greenhouse Gas/SectorTimeSeries.csv")
       
-      Data <- as.data.frame(t(Data))
+      EnSupplyEmissions$`Greenhouse Gas` <- rowSums(EnSupplyEmissions[2:11])
       
-      colnames(Data) <- as.character(unlist(Data[1,]))
-      Data = Data[-1, ]
-      Data <- setDT(Data, keep.rownames = TRUE)[]
-      names(Data) <- c("Year", "Greenhouse Gas", "Energy Supply", "Electricity Production", "Industry")
-      Data[1,1] <- 1988
+      EnSupplyEmissions <- select(EnSupplyEmissions, refPeriod, `Greenhouse Gas`, `energy-supply`)
       
-      Data<- rbind(Data, setNames(data.frame(1989,NA,NA,NA,NA),names(Data)))
-      Data <- Data[order(Data$Year)]
-      Data$Year <- as.numeric(as.character(Data$Year))
-      Data$`Greenhouse Gas` <- as.numeric(as.character(Data$`Greenhouse Gas`))
-      Data$`Energy Supply` <- as.numeric(as.character(Data$`Energy Supply`))
-      Data$`Electricity Production` <- as.numeric(as.character(Data$`Electricity Production`))
-      Data$`Industry` <- as.numeric(as.character(Data$`Industry`))
+      names(EnSupplyEmissions) <- c("Year", "Greenhouse Gas", "Energy Supply")
+      
+      ElecSupplyEmissions <- read_csv("Processed Data/Output/Greenhouse Gas/GHGElectricityBreakdown.csv")
+      
+      ElecSupplyEmissions$`Electricity Production` <- rowSums(ElecSupplyEmissions[2:3])
+      
+      ElecSupplyEmissions <- select(ElecSupplyEmissions, EmissionYear, `Electricity Production`)
+      
+      names(ElecSupplyEmissions) <- c("Year", "Electricity Production")
+      
+      EnSupplyEmissions <- merge(EnSupplyEmissions, ElecSupplyEmissions)
+      
+      EnSupplyEmissions$Industry <- EnSupplyEmissions$`Energy Supply` - EnSupplyEmissions$`Electricity Production`
+      
+      YearDisplay <- tibble(Year = c("1991","1996"))
+      
+      EnSupplyEmissions <- merge(EnSupplyEmissions, YearDisplay, all = TRUE)
+      
+      EnSupplyEmissions$Year <- as.numeric(EnSupplyEmissions$Year)
+      
+      plottitle <- "Net source greenhouse gas emissions from the energy supply sector (MtCO2e)"
+      sourcecaption <- "Source: BEIS"
+      ChartColours <- c("#1A5D38", "#FF8500")
+      LineColours <- c( "#39ab2c","#006837", "#41ab5d", "#addd8e")
       
       
-      
-      EnergyEnSupplyEmissions <- Data
+      EnergyEnSupplyEmissions <- as_tibble(EnSupplyEmissions)
       
       
       plottitle <- "Net source greenhouse gas emissions from the energy supply sector (MtCO2e)"
@@ -427,7 +408,7 @@ EnSupplyEmissions <- function(input, output, session) {
           aes(
             x = Year,
             y = `Energy Supply`,
-            label = ifelse(Year %in% c(1988,1990,1995, 1998), round(`Energy Supply`, digits= 1), ""),
+            label = ifelse(Year %in% c(1990,1995, 1998), round(`Energy Supply`, digits= 1), ""),
             hjust = 0.5,
             vjust = 2.5,
             fontface = 2
@@ -472,7 +453,7 @@ EnSupplyEmissions <- function(input, output, session) {
           family = "Century Gothic"
         ) +
         geom_point(
-          data = EnergyEnSupplyEmissions[which(EnergyEnSupplyEmissions$Year %in% c(1988,1990,1995,1998)),],
+          data = EnergyEnSupplyEmissions[which(EnergyEnSupplyEmissions$Year %in% c(1990,1995,1998)),],
           aes(
             x = Year,
             y = `Energy Supply`,
@@ -495,7 +476,7 @@ EnSupplyEmissions <- function(input, output, session) {
           aes(
             x = Year,
             y = `Electricity Production`,
-            label = ifelse(Year %in% c(1988,1990,1995, 1998), round(`Electricity Production`, digits= 1), ""),
+            label = ifelse(Year %in% c(1990,1995, 1998), round(`Electricity Production`, digits= 1), ""),
             hjust = 0.5,
             vjust = 2,
             fontface = 2
@@ -540,7 +521,7 @@ EnSupplyEmissions <- function(input, output, session) {
           family = "Century Gothic"
         ) +
         geom_point(
-          data = EnergyEnSupplyEmissions[which(EnergyEnSupplyEmissions$Year %in% c(1988,1990,1995,1998)),],
+          data = EnergyEnSupplyEmissions[which(EnergyEnSupplyEmissions$Year %in% c(1990,1995,1998)),],
           aes(
             x = Year,
             y = `Electricity Production`,
@@ -563,7 +544,7 @@ EnSupplyEmissions <- function(input, output, session) {
           aes(
             x = Year,
             y = `Industry`,
-            label = ifelse(Year %in% c(1988,1990,1995, 1998), sprintf("%.1f", round(`Industry`, digits= 1)), ""),
+            label = ifelse(Year %in% c(1990,1995, 1998), sprintf("%.1f", round(`Industry`, digits= 1)), ""),
             hjust = 0.5,
             vjust = 2,
             fontface = 2
@@ -608,7 +589,7 @@ EnSupplyEmissions <- function(input, output, session) {
           family = "Century Gothic"
         ) +
         geom_point(
-          data = EnergyEnSupplyEmissions[which(EnergyEnSupplyEmissions$Year %in% c(1988,1990,1995,1998)),],
+          data = EnergyEnSupplyEmissions[which(EnergyEnSupplyEmissions$Year %in% c(1990,1995,1998)),],
           aes(
             x = Year,
             y = `Industry`,
@@ -624,18 +605,6 @@ EnSupplyEmissions <- function(input, output, session) {
             x = Year,
             y = 0,
             label = ifelse(Year %in% c(1990, 1995, 1998, max(Year)), Year, ""),
-            hjust = 0.5,
-            vjust = 1.5,
-            colour = ChartColours[1],
-            fontface = 2
-          ),
-          family = "Century Gothic"
-        )+
-        geom_text(
-          aes(
-            x = 1988,
-            y = 0,
-            label = "Baseline",
             hjust = 0.5,
             vjust = 1.5,
             colour = ChartColours[1],
