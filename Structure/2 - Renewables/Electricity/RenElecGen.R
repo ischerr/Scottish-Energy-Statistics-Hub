@@ -2039,7 +2039,7 @@ RenElecGen <- function(input, output, session) {
   })
   
   output$RenElecQuarterGeneration.png <- downloadHandler(
-    filename = "RenElecQuarterGeneration.png",
+    filename = "RenElecQuarterGeneration.svg",
     content = function(file) {
       
       ### Load Packages and Functions
