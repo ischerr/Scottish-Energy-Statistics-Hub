@@ -117,50 +117,27 @@ RenEnTgt <- function(input, output, session) {
   
   output$RenEnTgtSubtitle <- renderText({
     
-    RenEn <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Renewable energy target",
-      col_names = FALSE,
-      skip = 36,
-      n_max = 23
-    )
-    RenEn <- as.data.frame(t(RenEn))
-    RenEn <- RenEn[, c(1, 6, 12, 18, 23)]
-    RenEn <- tail(RenEn,-5)
-    names(RenEn) <-
-      c("Year", "Electricity", "Heat", "Transport", "Renewables")
-    RenEn[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    RenEn[which(RenEn$Year != max(RenEn$Year)),][2:4] <- 0
+    RenEn <- read_csv("Processed Data/Output/Consumption/RenEnTgt.csv")
     
     paste("Scotland,", min(RenEn$Year),"-", max(RenEn$Year))
+    
   })
   
   output$RenEnTgtPlot <- renderPlotly  ({
     
-    RenEn <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Renewable energy target",
-      col_names = FALSE,
-      skip = 36,
-      n_max = 23
-    )
-    RenEn <- as.data.frame(t(RenEn))
-    RenEn <- RenEn[, c(1, 6, 12, 18, 23)]
-    RenEn <- tail(RenEn,-5)
-    names(RenEn) <-
-      c("Year", "Electricity", "Heat", "Transport", "Renewables")
-    RenEn[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
-      as.numeric(as.character(x)))
+    RenEn <- read_csv("Processed Data/Output/Consumption/RenEnTgt.csv")[c(1,18,19,20,17)]
     
-    RenEn[which(RenEn$Year != max(RenEn$Year)),][2:4] <- 0
+    names(RenEn) <- c("Year", "Electricity", "Heat", "Transport", "Renewables")
+    
+    RenEn[1:(nrow(RenEn)-1),2:4] <- 0
+    
     RenEnTgts <-
       read_csv("Structure/1 - Whole System/Renewable energy target.csv")
+    
     RenEn <- bind_rows(RenEn, RenEnTgts)
     
     RenEn <-
-      RenEn[, c(1, 5, 6, 2, 3, 4)] %>% distinct(Year, .keep_all =  TRUE) %>% arrange(Year)
+      RenEn[, c(1, 2, 6, 3, 4, 5)] %>% distinct(Year, .keep_all =  TRUE) %>% arrange(Year)
     
     # RenEnTgt <- RenEn[c(1, 2, 4:6)]
     # 
@@ -313,22 +290,11 @@ RenEnTgt <- function(input, output, session) {
     filename = "RenEnTgt.png",
     content = function(file) {
 
+      RenEn <- read_csv("Processed Data/Output/Consumption/RenEnTgt.csv")[c(1,18,19,20,17)]
       
+      names(RenEn) <- c("Year", "Electricity", "Heat", "Transport", "Renewables")
       
-      RenEn <- read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Renewable energy target",
-        col_names = FALSE,
-        skip = 36,
-        n_max = 23
-      )
-      RenEn <- as.data.frame(t(RenEn))
-      RenEn <- RenEn[, c(1, 6, 12, 18, 23)]
-      RenEn <- tail(RenEn,-5)
-      names(RenEn) <-
-        c("Year", "Electricity", "Heat", "Transport", "Renewables")
-      RenEn[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
-        as.numeric(as.character(x)))
+      RenEn[1:(nrow(RenEn)-1),2:4] <- 0
       RenEnTgts <-
         read_csv("Structure/1 - Whole System/Renewable energy target.csv")
       RenEn <- bind_rows(RenEn, RenEnTgts)
@@ -460,24 +426,11 @@ RenEnTgt <- function(input, output, session) {
     n_max = 23
   )
   
-  Overview <- as_tibble(t(Overview))
-  
-  names(Overview) <- unlist(Overview[1,])
-  
-  Overview <- Overview[-1,]
-  
-  names(Overview)[1] <- "Year"
-  
-  Overview[c(2,7,8,13,14,19,20)] <- NULL
-  
-  Overview <- Overview[complete.cases(Overview),]
-  
-    Overview %<>% lapply(function(x)
-    as.numeric(as.character(x)))
+  Overview <- as_tibble(read_csv("Processed Data/Output/Consumption/RenEnTgt.csv"))
     
   output$TotalTargetTable = renderDataTable({ 
     
-    TotalTarget <- Overview[c(1, 14, 15, 16, 5, 9, 13)]
+    TotalTarget <- Overview[c(1, 16, 15, 17:20)]
     
     names(TotalTarget) <- c(
       "Year",
@@ -536,7 +489,7 @@ RenEnTgt <- function(input, output, session) {
   
   output$ElectricityTargetTable = renderDataTable({ 
     
-    ElectricityTarget <- Overview[1:5]
+    ElectricityTarget <- Overview[c(1,5,6,7,18)]
     
     ElectricityTarget <- as_tibble(ElectricityTarget)
     
@@ -592,7 +545,7 @@ RenEnTgt <- function(input, output, session) {
   
   output$HeatTargetTable = renderDataTable({ 
     
-    HeatTarget <- as_tibble(Overview[c(1, 6:9)])
+    HeatTarget <- as_tibble(Overview[c(1, 8,9,10,19)])
     
     
     names(HeatTarget) <- c(
@@ -648,7 +601,7 @@ RenEnTgt <- function(input, output, session) {
   
   output$TransportTargetTable = renderDataTable({ 
     
-    TransportTarget <- as_tibble(Overview[c(1, 10:13)])
+    TransportTarget <- as_tibble(Overview[c(1, 14,12,13,20)])
     
     names(TransportTarget) <- c(
       "Year",
