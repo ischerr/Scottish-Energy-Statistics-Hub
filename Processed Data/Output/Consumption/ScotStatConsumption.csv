@@ -271,7 +271,7 @@ S12000005,2012,Count,GWh,Petroleum Products,Public Sector,0.024
 S12000005,2012,Count,GWh,Petroleum Products,Rail,49.054
 S12000005,2012,Count,GWh,Petroleum Products,Road Transport,221.03
 S12000005,2012,Count,GWh,Petroleum Products,All,320.738
-S12000005,2013,Count,GWh,All,All,1664.513
+S12000005,2013,Count,GWh,All,All,1664.514
 S12000005,2013,Count,GWh,Bioenergy & Wastes,Domestic,11.714
 S12000005,2013,Count,GWh,Bioenergy & Wastes,Road Transport,6.458
 S12000005,2013,Count,GWh,Bioenergy & Wastes,All,18.173
@@ -373,7 +373,7 @@ S12000005,2015,Count,GWh,Petroleum Products,Public Sector,0.026
 S12000005,2015,Count,GWh,Petroleum Products,Rail,49.169
 S12000005,2015,Count,GWh,Petroleum Products,Road Transport,221.17
 S12000005,2015,Count,GWh,Petroleum Products,All,306.226
-S12000005,2016,Count,GWh,All,All,1746.088
+S12000005,2016,Count,GWh,All,All,1746.448
 S12000005,2016,Count,GWh,Bioenergy & Wastes,Domestic,13.527
 S12000005,2016,Count,GWh,Bioenergy & Wastes,Road Transport,5.93
 S12000005,2016,Count,GWh,Bioenergy & Wastes,All,19.46
@@ -386,12 +386,12 @@ S12000005,2016,Count,GWh,Coal,Industrial,0.003
 S12000005,2016,Count,GWh,Coal,Public Sector,0.038
 S12000005,2016,Count,GWh,Coal,Rail,0
 S12000005,2016,Count,GWh,Coal,All,2.976
-S12000005,2016,Count,GWh,All,Domestic,413.27
-S12000005,2016,Count,GWh,All,Industrial & Commercial,1053.13
+S12000005,2016,Count,GWh,All,Domestic,417.384
+S12000005,2016,Count,GWh,All,Industrial & Commercial,1049.378
 S12000005,2016,Count,GWh,All,Transport,279.687
-S12000005,2016,Count,GWh,Electricity,Domestic,87.501
-S12000005,2016,Count,GWh,Electricity,Industrial & Commercial,224.003
-S12000005,2016,Count,GWh,Electricity,All,311.504
+S12000005,2016,Count,GWh,Electricity,Domestic,91.614
+S12000005,2016,Count,GWh,Electricity,Industrial & Commercial,220.251
+S12000005,2016,Count,GWh,Electricity,All,311.865
 S12000005,2016,Count,GWh,Gas,Commercial,390.93
 S12000005,2016,Count,GWh,Gas,Domestic,297.866
 S12000005,2016,Count,GWh,Gas,Industrial,411.018
@@ -509,6 +509,40 @@ S12000005,2019,Count,GWh,Petroleum Products,Public Sector,0.025
 S12000005,2019,Count,GWh,Petroleum Products,Rail,41.375
 S12000005,2019,Count,GWh,Petroleum Products,Road Transport,222.903
 S12000005,2019,Count,GWh,Petroleum Products,All,300.733
+S12000005,2020,Count,GWh,All,All,1758.587
+S12000005,2020,Count,GWh,Bioenergy & Wastes,Domestic,15.156
+S12000005,2020,Count,GWh,Bioenergy & Wastes,Road Transport,10.369
+S12000005,2020,Count,GWh,Bioenergy & Wastes,All,25.531
+S12000005,2020,Count,GWh,Bioenergy & Wastes,Commercial,0.002
+S12000005,2020,Count,GWh,Bioenergy & Wastes,Industrial,0.003
+S12000005,2020,Count,GWh,Coal,Agriculture,0
+S12000005,2020,Count,GWh,Coal,Commercial,0.034
+S12000005,2020,Count,GWh,Coal,Domestic,2.616
+S12000005,2020,Count,GWh,Coal,Industrial,0.001
+S12000005,2020,Count,GWh,Coal,Public Sector,0.025
+S12000005,2020,Count,GWh,Coal,Rail,0
+S12000005,2020,Count,GWh,Coal,All,2.677
+S12000005,2020,Count,GWh,All,Domestic,426.826
+S12000005,2020,Count,GWh,All,Industrial & Commercial,1057.114
+S12000005,2020,Count,GWh,All,Transport,274.647
+S12000005,2020,Count,GWh,Electricity,Domestic,86.722
+S12000005,2020,Count,GWh,Electricity,Industrial & Commercial,209.783
+S12000005,2020,Count,GWh,Electricity,All,296.505
+S12000005,2020,Count,GWh,Gas,Commercial,404.897
+S12000005,2020,Count,GWh,Gas,Domestic,310.643
+S12000005,2020,Count,GWh,Gas,Industrial,414.46
+S12000005,2020,Count,GWh,Gas,All,1130
+S12000005,2020,Count,GWh,Manufactured Fuels,Domestic,2.232
+S12000005,2020,Count,GWh,Manufactured Fuels,Industrial,0.91
+S12000005,2020,Count,GWh,Manufactured Fuels,All,3.142
+S12000005,2020,Count,GWh,Petroleum Products,Agriculture,10.279
+S12000005,2020,Count,GWh,Petroleum Products,Commercial,0.311
+S12000005,2020,Count,GWh,Petroleum Products,Domestic,9.458
+S12000005,2020,Count,GWh,Petroleum Products,Industrial,16.381
+S12000005,2020,Count,GWh,Petroleum Products,Public Sector,0.025
+S12000005,2020,Count,GWh,Petroleum Products,Rail,41.375
+S12000005,2020,Count,GWh,Petroleum Products,Road Transport,222.903
+S12000005,2020,Count,GWh,Petroleum Products,All,300.733
 S12000006,2005,Count,GWh,All,All,5746.186
 S12000006,2005,Count,GWh,Bioenergy & Wastes,Domestic,26.595
 S12000006,2005,Count,GWh,Bioenergy & Wastes,Road Transport,3.122
@@ -794,15 +828,15 @@ S12000006,2013,Count,GWh,Coal,Industrial,59.171
 S12000006,2013,Count,GWh,Coal,Public Sector,11.43
 S12000006,2013,Count,GWh,Coal,Rail,0
 S12000006,2013,Count,GWh,Coal,All,113.751
-S12000006,2013,Count,GWh,All,Domestic,1378.527
-S12000006,2013,Count,GWh,All,Industrial & Commercial,1837.19
+S12000006,2013,Count,GWh,All,Domestic,1378.528
+S12000006,2013,Count,GWh,All,Industrial & Commercial,1837.191
 S12000006,2013,Count,GWh,All,Transport,1945.574
 S12000006,2013,Count,GWh,Electricity,Domestic,344.462
 S12000006,2013,Count,GWh,Electricity,Industrial & Commercial,537.929
 S12000006,2013,Count,GWh,Electricity,All,882.39
 S12000006,2013,Count,GWh,Gas,Commercial,282.715
 S12000006,2013,Count,GWh,Gas,Domestic,610.913
-S12000006,2013,Count,GWh,Gas,Industrial,285.434
+S12000006,2013,Count,GWh,Gas,Industrial,285.435
 S12000006,2013,Count,GWh,Gas,All,1179.062
 S12000006,2013,Count,GWh,Manufactured Fuels,Domestic,24.015
 S12000006,2013,Count,GWh,Manufactured Fuels,Industrial,30.044
@@ -883,7 +917,7 @@ S12000006,2015,Count,GWh,Petroleum Products,Public Sector,1.867
 S12000006,2015,Count,GWh,Petroleum Products,Rail,43.544
 S12000006,2015,Count,GWh,Petroleum Products,Road Transport,1950.976
 S12000006,2015,Count,GWh,Petroleum Products,All,2947.425
-S12000006,2016,Count,GWh,All,All,5313.375
+S12000006,2016,Count,GWh,All,All,5348.746
 S12000006,2016,Count,GWh,Bioenergy & Wastes,Domestic,70.506
 S12000006,2016,Count,GWh,Bioenergy & Wastes,Road Transport,49.019
 S12000006,2016,Count,GWh,Bioenergy & Wastes,All,155.393
@@ -896,12 +930,12 @@ S12000006,2016,Count,GWh,Coal,Industrial,34.299
 S12000006,2016,Count,GWh,Coal,Public Sector,1.544
 S12000006,2016,Count,GWh,Coal,Rail,0
 S12000006,2016,Count,GWh,Coal,All,72.684
-S12000006,2016,Count,GWh,All,Domestic,1324.285
-S12000006,2016,Count,GWh,All,Industrial & Commercial,1920.033
+S12000006,2016,Count,GWh,All,Domestic,1343.821
+S12000006,2016,Count,GWh,All,Industrial & Commercial,1935.869
 S12000006,2016,Count,GWh,All,Transport,2069.057
-S12000006,2016,Count,GWh,Electricity,Domestic,333.253
-S12000006,2016,Count,GWh,Electricity,Industrial & Commercial,536.155
-S12000006,2016,Count,GWh,Electricity,All,869.409
+S12000006,2016,Count,GWh,Electricity,Domestic,352.789
+S12000006,2016,Count,GWh,Electricity,Industrial & Commercial,551.991
+S12000006,2016,Count,GWh,Electricity,All,904.78
 S12000006,2016,Count,GWh,Gas,Commercial,288.021
 S12000006,2016,Count,GWh,Gas,Domestic,601.812
 S12000006,2016,Count,GWh,Gas,Industrial,302.821
@@ -1019,6 +1053,40 @@ S12000006,2019,Count,GWh,Petroleum Products,Public Sector,1.972
 S12000006,2019,Count,GWh,Petroleum Products,Rail,37.111
 S12000006,2019,Count,GWh,Petroleum Products,Road Transport,1933.602
 S12000006,2019,Count,GWh,Petroleum Products,All,2949.582
+S12000006,2020,Count,GWh,All,All,5292.528
+S12000006,2020,Count,GWh,Bioenergy & Wastes,Domestic,78.995
+S12000006,2020,Count,GWh,Bioenergy & Wastes,Road Transport,95.145
+S12000006,2020,Count,GWh,Bioenergy & Wastes,All,261.914
+S12000006,2020,Count,GWh,Bioenergy & Wastes,Commercial,39.415
+S12000006,2020,Count,GWh,Bioenergy & Wastes,Industrial,48.359
+S12000006,2020,Count,GWh,Coal,Agriculture,0
+S12000006,2020,Count,GWh,Coal,Commercial,0.436
+S12000006,2020,Count,GWh,Coal,Domestic,32.485
+S12000006,2020,Count,GWh,Coal,Industrial,22.194
+S12000006,2020,Count,GWh,Coal,Public Sector,1.414
+S12000006,2020,Count,GWh,Coal,Rail,0
+S12000006,2020,Count,GWh,Coal,All,56.53
+S12000006,2020,Count,GWh,All,Domestic,1355.52
+S12000006,2020,Count,GWh,All,Industrial & Commercial,1871.149
+S12000006,2020,Count,GWh,All,Transport,2065.858
+S12000006,2020,Count,GWh,Electricity,Domestic,321.11
+S12000006,2020,Count,GWh,Electricity,Industrial & Commercial,485.478
+S12000006,2020,Count,GWh,Electricity,All,806.587
+S12000006,2020,Count,GWh,Gas,Commercial,273.082
+S12000006,2020,Count,GWh,Gas,Domestic,638.692
+S12000006,2020,Count,GWh,Gas,Industrial,279.532
+S12000006,2020,Count,GWh,Gas,All,1191.305
+S12000006,2020,Count,GWh,Manufactured Fuels,Domestic,19.088
+S12000006,2020,Count,GWh,Manufactured Fuels,Industrial,7.522
+S12000006,2020,Count,GWh,Manufactured Fuels,All,26.609
+S12000006,2020,Count,GWh,Petroleum Products,Agriculture,515.666
+S12000006,2020,Count,GWh,Petroleum Products,Commercial,5.683
+S12000006,2020,Count,GWh,Petroleum Products,Domestic,265.151
+S12000006,2020,Count,GWh,Petroleum Products,Industrial,190.396
+S12000006,2020,Count,GWh,Petroleum Products,Public Sector,1.972
+S12000006,2020,Count,GWh,Petroleum Products,Rail,37.111
+S12000006,2020,Count,GWh,Petroleum Products,Road Transport,1933.602
+S12000006,2020,Count,GWh,Petroleum Products,All,2949.582
 S12000008,2005,Count,GWh,All,All,3370.94
 S12000008,2005,Count,GWh,Bioenergy & Wastes,Domestic,10.972
 S12000008,2005,Count,GWh,Bioenergy & Wastes,Road Transport,1.564
@@ -1291,7 +1359,7 @@ S12000008,2012,Count,GWh,Petroleum Products,Public Sector,0.97
 S12000008,2012,Count,GWh,Petroleum Products,Rail,23.502
 S12000008,2012,Count,GWh,Petroleum Products,Road Transport,803.453
 S12000008,2012,Count,GWh,Petroleum Products,All,1033.757
-S12000008,2013,Count,GWh,All,All,2812.492
+S12000008,2013,Count,GWh,All,All,2812.493
 S12000008,2013,Count,GWh,Bioenergy & Wastes,Domestic,25.189
 S12000008,2013,Count,GWh,Bioenergy & Wastes,Road Transport,23.783
 S12000008,2013,Count,GWh,Bioenergy & Wastes,All,215.764
@@ -1305,7 +1373,7 @@ S12000008,2013,Count,GWh,Coal,Public Sector,2.72
 S12000008,2013,Count,GWh,Coal,Rail,0
 S12000008,2013,Count,GWh,Coal,All,22.376
 S12000008,2013,Count,GWh,All,Domestic,1040.695
-S12000008,2013,Count,GWh,All,Industrial & Commercial,923.907
+S12000008,2013,Count,GWh,All,Industrial & Commercial,923.908
 S12000008,2013,Count,GWh,All,Transport,847.89
 S12000008,2013,Count,GWh,Electricity,Domestic,201.381
 S12000008,2013,Count,GWh,Electricity,Industrial & Commercial,242.373
@@ -1393,7 +1461,7 @@ S12000008,2015,Count,GWh,Petroleum Products,Public Sector,0.898
 S12000008,2015,Count,GWh,Petroleum Products,Rail,22.513
 S12000008,2015,Count,GWh,Petroleum Products,Road Transport,828.138
 S12000008,2015,Count,GWh,Petroleum Products,All,1062.022
-S12000008,2016,Count,GWh,All,All,2689.934
+S12000008,2016,Count,GWh,All,All,2717.03
 S12000008,2016,Count,GWh,Bioenergy & Wastes,Domestic,29.087
 S12000008,2016,Count,GWh,Bioenergy & Wastes,Road Transport,21.077
 S12000008,2016,Count,GWh,Bioenergy & Wastes,All,147.605
@@ -1406,12 +1474,12 @@ S12000008,2016,Count,GWh,Coal,Industrial,8.184
 S12000008,2016,Count,GWh,Coal,Public Sector,0.377
 S12000008,2016,Count,GWh,Coal,Rail,0
 S12000008,2016,Count,GWh,Coal,All,15.993
-S12000008,2016,Count,GWh,All,Domestic,1011.018
-S12000008,2016,Count,GWh,All,Industrial & Commercial,818.277
+S12000008,2016,Count,GWh,All,Domestic,1020.372
+S12000008,2016,Count,GWh,All,Industrial & Commercial,836.019
 S12000008,2016,Count,GWh,All,Transport,860.639
-S12000008,2016,Count,GWh,Electricity,Domestic,194.598
-S12000008,2016,Count,GWh,Electricity,Industrial & Commercial,238.572
-S12000008,2016,Count,GWh,Electricity,All,433.17
+S12000008,2016,Count,GWh,Electricity,Domestic,203.953
+S12000008,2016,Count,GWh,Electricity,Industrial & Commercial,256.314
+S12000008,2016,Count,GWh,Electricity,All,460.266
 S12000008,2016,Count,GWh,Gas,Commercial,146.399
 S12000008,2016,Count,GWh,Gas,Domestic,736.519
 S12000008,2016,Count,GWh,Gas,Industrial,153.922
@@ -1529,6 +1597,40 @@ S12000008,2019,Count,GWh,Petroleum Products,Public Sector,1.007
 S12000008,2019,Count,GWh,Petroleum Products,Rail,19.294
 S12000008,2019,Count,GWh,Petroleum Products,Road Transport,812.444
 S12000008,2019,Count,GWh,Petroleum Products,All,1049.036
+S12000008,2020,Count,GWh,All,All,2747.907
+S12000008,2020,Count,GWh,Bioenergy & Wastes,Domestic,32.589
+S12000008,2020,Count,GWh,Bioenergy & Wastes,Road Transport,38.655
+S12000008,2020,Count,GWh,Bioenergy & Wastes,All,208.193
+S12000008,2020,Count,GWh,Bioenergy & Wastes,Commercial,61.497
+S12000008,2020,Count,GWh,Bioenergy & Wastes,Industrial,75.452
+S12000008,2020,Count,GWh,Coal,Agriculture,0
+S12000008,2020,Count,GWh,Coal,Commercial,0.15
+S12000008,2020,Count,GWh,Coal,Domestic,6.553
+S12000008,2020,Count,GWh,Coal,Industrial,4.375
+S12000008,2020,Count,GWh,Coal,Public Sector,0.542
+S12000008,2020,Count,GWh,Coal,Rail,0
+S12000008,2020,Count,GWh,Coal,All,11.62
+S12000008,2020,Count,GWh,All,Domestic,1045.708
+S12000008,2020,Count,GWh,All,Industrial & Commercial,831.806
+S12000008,2020,Count,GWh,All,Transport,870.393
+S12000008,2020,Count,GWh,Electricity,Domestic,190.764
+S12000008,2020,Count,GWh,Electricity,Industrial & Commercial,203.456
+S12000008,2020,Count,GWh,Electricity,All,394.22
+S12000008,2020,Count,GWh,Gas,Commercial,151.912
+S12000008,2020,Count,GWh,Gas,Domestic,772.262
+S12000008,2020,Count,GWh,Gas,Industrial,155.499
+S12000008,2020,Count,GWh,Gas,All,1079.673
+S12000008,2020,Count,GWh,Manufactured Fuels,Domestic,5.166
+S12000008,2020,Count,GWh,Manufactured Fuels,Industrial,0
+S12000008,2020,Count,GWh,Manufactured Fuels,All,5.166
+S12000008,2020,Count,GWh,Petroleum Products,Agriculture,99.613
+S12000008,2020,Count,GWh,Petroleum Products,Commercial,1.417
+S12000008,2020,Count,GWh,Petroleum Products,Domestic,38.374
+S12000008,2020,Count,GWh,Petroleum Products,Industrial,76.886
+S12000008,2020,Count,GWh,Petroleum Products,Public Sector,1.007
+S12000008,2020,Count,GWh,Petroleum Products,Rail,19.294
+S12000008,2020,Count,GWh,Petroleum Products,Road Transport,812.444
+S12000008,2020,Count,GWh,Petroleum Products,All,1049.036
 S12000010,2005,Count,GWh,All,All,3202.672
 S12000010,2005,Count,GWh,Bioenergy & Wastes,Domestic,11.52
 S12000010,2005,Count,GWh,Bioenergy & Wastes,Road Transport,1.262
@@ -1814,13 +1916,13 @@ S12000010,2013,Count,GWh,Coal,Industrial,466.493
 S12000010,2013,Count,GWh,Coal,Public Sector,1.465
 S12000010,2013,Count,GWh,Coal,Rail,0
 S12000010,2013,Count,GWh,Coal,All,483.304
-S12000010,2013,Count,GWh,All,Domestic,834.384
+S12000010,2013,Count,GWh,All,Domestic,834.385
 S12000010,2013,Count,GWh,All,Industrial & Commercial,1336.072
 S12000010,2013,Count,GWh,All,Transport,680.009
 S12000010,2013,Count,GWh,Electricity,Domestic,191.792
-S12000010,2013,Count,GWh,Electricity,Industrial & Commercial,274.369
+S12000010,2013,Count,GWh,Electricity,Industrial & Commercial,274.37
 S12000010,2013,Count,GWh,Electricity,All,466.162
-S12000010,2013,Count,GWh,Gas,Commercial,113.376
+S12000010,2013,Count,GWh,Gas,Commercial,113.377
 S12000010,2013,Count,GWh,Gas,Domestic,534.244
 S12000010,2013,Count,GWh,Gas,Industrial,114.467
 S12000010,2013,Count,GWh,Gas,All,762.088
@@ -1903,7 +2005,7 @@ S12000010,2015,Count,GWh,Petroleum Products,Public Sector,0.203
 S12000010,2015,Count,GWh,Petroleum Products,Rail,2.071
 S12000010,2015,Count,GWh,Petroleum Products,Road Transport,683.979
 S12000010,2015,Count,GWh,Petroleum Products,All,856.019
-S12000010,2016,Count,GWh,All,All,2816.963
+S12000010,2016,Count,GWh,All,All,2823.28
 S12000010,2016,Count,GWh,Bioenergy & Wastes,Domestic,30.542
 S12000010,2016,Count,GWh,Bioenergy & Wastes,Road Transport,18.371
 S12000010,2016,Count,GWh,Bioenergy & Wastes,All,124.853
@@ -1916,12 +2018,12 @@ S12000010,2016,Count,GWh,Coal,Industrial,596.648
 S12000010,2016,Count,GWh,Coal,Public Sector,0.197
 S12000010,2016,Count,GWh,Coal,Rail,0
 S12000010,2016,Count,GWh,Coal,All,609.948
-S12000010,2016,Count,GWh,All,Domestic,831.421
-S12000010,2016,Count,GWh,All,Industrial & Commercial,1259.652
+S12000010,2016,Count,GWh,All,Domestic,841.134
+S12000010,2016,Count,GWh,All,Industrial & Commercial,1256.256
 S12000010,2016,Count,GWh,All,Transport,725.89
-S12000010,2016,Count,GWh,Electricity,Domestic,187.71
-S12000010,2016,Count,GWh,Electricity,Industrial & Commercial,274.336
-S12000010,2016,Count,GWh,Electricity,All,462.046
+S12000010,2016,Count,GWh,Electricity,Domestic,197.422
+S12000010,2016,Count,GWh,Electricity,Industrial & Commercial,270.941
+S12000010,2016,Count,GWh,Electricity,All,468.363
 S12000010,2016,Count,GWh,Gas,Commercial,97.095
 S12000010,2016,Count,GWh,Gas,Domestic,541.675
 S12000010,2016,Count,GWh,Gas,Industrial,102.084
@@ -2039,6 +2141,40 @@ S12000010,2019,Count,GWh,Petroleum Products,Public Sector,0.22
 S12000010,2019,Count,GWh,Petroleum Products,Rail,1.86
 S12000010,2019,Count,GWh,Petroleum Products,Road Transport,733.042
 S12000010,2019,Count,GWh,Petroleum Products,All,899.118
+S12000010,2020,Count,GWh,All,All,3072.99
+S12000010,2020,Count,GWh,Bioenergy & Wastes,Domestic,34.219
+S12000010,2020,Count,GWh,Bioenergy & Wastes,Road Transport,34.488
+S12000010,2020,Count,GWh,Bioenergy & Wastes,All,351.696
+S12000010,2020,Count,GWh,Bioenergy & Wastes,Commercial,127.076
+S12000010,2020,Count,GWh,Bioenergy & Wastes,Industrial,155.913
+S12000010,2020,Count,GWh,Coal,Agriculture,0
+S12000010,2020,Count,GWh,Coal,Commercial,0.171
+S12000010,2020,Count,GWh,Coal,Domestic,11.543
+S12000010,2020,Count,GWh,Coal,Industrial,508.331
+S12000010,2020,Count,GWh,Coal,Public Sector,0.199
+S12000010,2020,Count,GWh,Coal,Rail,0
+S12000010,2020,Count,GWh,Coal,All,520.244
+S12000010,2020,Count,GWh,All,Domestic,895.816
+S12000010,2020,Count,GWh,All,Industrial & Commercial,1407.784
+S12000010,2020,Count,GWh,All,Transport,769.39
+S12000010,2020,Count,GWh,Electricity,Domestic,197.664
+S12000010,2020,Count,GWh,Electricity,Industrial & Commercial,256.393
+S12000010,2020,Count,GWh,Electricity,All,454.057
+S12000010,2020,Count,GWh,Gas,Commercial,121.926
+S12000010,2020,Count,GWh,Gas,Domestic,593.109
+S12000010,2020,Count,GWh,Gas,Industrial,124.806
+S12000010,2020,Count,GWh,Gas,All,839.84
+S12000010,2020,Count,GWh,Manufactured Fuels,Domestic,7.268
+S12000010,2020,Count,GWh,Manufactured Fuels,Industrial,0.767
+S12000010,2020,Count,GWh,Manufactured Fuels,All,8.035
+S12000010,2020,Count,GWh,Petroleum Products,Agriculture,39.437
+S12000010,2020,Count,GWh,Petroleum Products,Commercial,3.704
+S12000010,2020,Count,GWh,Petroleum Products,Domestic,52.014
+S12000010,2020,Count,GWh,Petroleum Products,Industrial,68.84
+S12000010,2020,Count,GWh,Petroleum Products,Public Sector,0.22
+S12000010,2020,Count,GWh,Petroleum Products,Rail,1.86
+S12000010,2020,Count,GWh,Petroleum Products,Road Transport,733.042
+S12000010,2020,Count,GWh,Petroleum Products,All,899.118
 S12000011,2005,Count,GWh,All,All,2029.44
 S12000011,2005,Count,GWh,Bioenergy & Wastes,Domestic,7.64
 S12000011,2005,Count,GWh,Bioenergy & Wastes,Road Transport,1.228
@@ -2311,7 +2447,7 @@ S12000011,2012,Count,GWh,Petroleum Products,Public Sector,0.127
 S12000011,2012,Count,GWh,Petroleum Products,Rail,15.772
 S12000011,2012,Count,GWh,Petroleum Products,Road Transport,582.095
 S12000011,2012,Count,GWh,Petroleum Products,All,634.185
-S12000011,2013,Count,GWh,All,All,1656.537
+S12000011,2013,Count,GWh,All,All,1656.538
 S12000011,2013,Count,GWh,Bioenergy & Wastes,Domestic,17.54
 S12000011,2013,Count,GWh,Bioenergy & Wastes,Road Transport,17.415
 S12000011,2013,Count,GWh,Bioenergy & Wastes,All,35.033
@@ -2333,7 +2469,7 @@ S12000011,2013,Count,GWh,Electricity,All,233.935
 S12000011,2013,Count,GWh,Gas,Commercial,50.922
 S12000011,2013,Count,GWh,Gas,Domestic,651.353
 S12000011,2013,Count,GWh,Gas,Industrial,51.412
-S12000011,2013,Count,GWh,Gas,All,753.687
+S12000011,2013,Count,GWh,Gas,All,753.688
 S12000011,2013,Count,GWh,Manufactured Fuels,Domestic,1.958
 S12000011,2013,Count,GWh,Manufactured Fuels,Industrial,0.034
 S12000011,2013,Count,GWh,Manufactured Fuels,All,1.992
@@ -2413,7 +2549,7 @@ S12000011,2015,Count,GWh,Petroleum Products,Public Sector,0.122
 S12000011,2015,Count,GWh,Petroleum Products,Rail,15.967
 S12000011,2015,Count,GWh,Petroleum Products,Road Transport,591.519
 S12000011,2015,Count,GWh,Petroleum Products,All,644.297
-S12000011,2016,Count,GWh,All,All,1675.744
+S12000011,2016,Count,GWh,All,All,1686.13
 S12000011,2016,Count,GWh,Bioenergy & Wastes,Domestic,20.254
 S12000011,2016,Count,GWh,Bioenergy & Wastes,Road Transport,15.807
 S12000011,2016,Count,GWh,Bioenergy & Wastes,All,36.663
@@ -2426,12 +2562,12 @@ S12000011,2016,Count,GWh,Coal,Industrial,0.562
 S12000011,2016,Count,GWh,Coal,Public Sector,0
 S12000011,2016,Count,GWh,Coal,Rail,0
 S12000011,2016,Count,GWh,Coal,All,2.291
-S12000011,2016,Count,GWh,All,Domestic,833.507
-S12000011,2016,Count,GWh,All,Industrial & Commercial,212.032
+S12000011,2016,Count,GWh,All,Domestic,840.091
+S12000011,2016,Count,GWh,All,Industrial & Commercial,215.833
 S12000011,2016,Count,GWh,All,Transport,630.206
-S12000011,2016,Count,GWh,Electricity,Domestic,158.792
-S12000011,2016,Count,GWh,Electricity,Industrial & Commercial,78.03
-S12000011,2016,Count,GWh,Electricity,All,236.822
+S12000011,2016,Count,GWh,Electricity,Domestic,165.376
+S12000011,2016,Count,GWh,Electricity,Industrial & Commercial,81.831
+S12000011,2016,Count,GWh,Electricity,All,247.207
 S12000011,2016,Count,GWh,Gas,Commercial,51.298
 S12000011,2016,Count,GWh,Gas,Domestic,641.22
 S12000011,2016,Count,GWh,Gas,Industrial,53.933
@@ -2549,6 +2685,40 @@ S12000011,2019,Count,GWh,Petroleum Products,Public Sector,0.129
 S12000011,2019,Count,GWh,Petroleum Products,Rail,13.787
 S12000011,2019,Count,GWh,Petroleum Products,Road Transport,565.797
 S12000011,2019,Count,GWh,Petroleum Products,All,617.4
+S12000011,2020,Count,GWh,All,All,1684.184
+S12000011,2020,Count,GWh,Bioenergy & Wastes,Domestic,22.693
+S12000011,2020,Count,GWh,Bioenergy & Wastes,Road Transport,26.341
+S12000011,2020,Count,GWh,Bioenergy & Wastes,All,50.262
+S12000011,2020,Count,GWh,Bioenergy & Wastes,Commercial,0.551
+S12000011,2020,Count,GWh,Bioenergy & Wastes,Industrial,0.676
+S12000011,2020,Count,GWh,Coal,Agriculture,0
+S12000011,2020,Count,GWh,Coal,Commercial,0.01
+S12000011,2020,Count,GWh,Coal,Domestic,1.549
+S12000011,2020,Count,GWh,Coal,Industrial,0.308
+S12000011,2020,Count,GWh,Coal,Public Sector,0
+S12000011,2020,Count,GWh,Coal,Rail,0
+S12000011,2020,Count,GWh,Coal,All,1.867
+S12000011,2020,Count,GWh,All,Domestic,869.274
+S12000011,2020,Count,GWh,All,Industrial & Commercial,208.985
+S12000011,2020,Count,GWh,All,Transport,605.925
+S12000011,2020,Count,GWh,Electricity,Domestic,157.972
+S12000011,2020,Count,GWh,Electricity,Industrial & Commercial,65.657
+S12000011,2020,Count,GWh,Electricity,All,223.629
+S12000011,2020,Count,GWh,Gas,Commercial,56.068
+S12000011,2020,Count,GWh,Gas,Domestic,675.161
+S12000011,2020,Count,GWh,Gas,Industrial,57.392
+S12000011,2020,Count,GWh,Gas,All,788.622
+S12000011,2020,Count,GWh,Manufactured Fuels,Domestic,2.405
+S12000011,2020,Count,GWh,Manufactured Fuels,Industrial,0
+S12000011,2020,Count,GWh,Manufactured Fuels,All,2.405
+S12000011,2020,Count,GWh,Petroleum Products,Agriculture,15.75
+S12000011,2020,Count,GWh,Petroleum Products,Commercial,0.203
+S12000011,2020,Count,GWh,Petroleum Products,Domestic,9.493
+S12000011,2020,Count,GWh,Petroleum Products,Industrial,12.241
+S12000011,2020,Count,GWh,Petroleum Products,Public Sector,0.129
+S12000011,2020,Count,GWh,Petroleum Products,Rail,13.787
+S12000011,2020,Count,GWh,Petroleum Products,Road Transport,565.797
+S12000011,2020,Count,GWh,Petroleum Products,All,617.4
 S12000013,2005,Count,GWh,All,All,723.191
 S12000013,2005,Count,GWh,Bioenergy & Wastes,Domestic,6.929
 S12000013,2005,Count,GWh,Bioenergy & Wastes,Road Transport,0.275
@@ -2923,7 +3093,7 @@ S12000013,2015,Count,GWh,Petroleum Products,Public Sector,1.001
 S12000013,2015,Count,GWh,Petroleum Products,Rail,5.351
 S12000013,2015,Count,GWh,Petroleum Products,Road Transport,170.706
 S12000013,2015,Count,GWh,Petroleum Products,All,419.923
-S12000013,2016,Count,GWh,All,All,679.694
+S12000013,2016,Count,GWh,All,All,684.337
 S12000013,2016,Count,GWh,Bioenergy & Wastes,Domestic,18.37
 S12000013,2016,Count,GWh,Bioenergy & Wastes,Road Transport,4.485
 S12000013,2016,Count,GWh,Bioenergy & Wastes,All,40.419
@@ -2936,12 +3106,12 @@ S12000013,2016,Count,GWh,Coal,Industrial,17.233
 S12000013,2016,Count,GWh,Coal,Public Sector,0.587
 S12000013,2016,Count,GWh,Coal,Rail,0
 S12000013,2016,Count,GWh,Coal,All,41.482
-S12000013,2016,Count,GWh,All,Domestic,283.413
-S12000013,2016,Count,GWh,All,Industrial & Commercial,211.984
+S12000013,2016,Count,GWh,All,Domestic,287.416
+S12000013,2016,Count,GWh,All,Industrial & Commercial,212.624
 S12000013,2016,Count,GWh,All,Transport,184.297
-S12000013,2016,Count,GWh,Electricity,Domestic,87.26
-S12000013,2016,Count,GWh,Electricity,Industrial & Commercial,62.773
-S12000013,2016,Count,GWh,Electricity,All,150.033
+S12000013,2016,Count,GWh,Electricity,Domestic,91.263
+S12000013,2016,Count,GWh,Electricity,Industrial & Commercial,63.414
+S12000013,2016,Count,GWh,Electricity,All,154.676
 S12000013,2016,Count,GWh,Gas,Commercial,1.374
 S12000013,2016,Count,GWh,Gas,Domestic,12.326
 S12000013,2016,Count,GWh,Gas,Industrial,1.445
@@ -3059,6 +3229,40 @@ S12000013,2019,Count,GWh,Petroleum Products,Public Sector,1.073
 S12000013,2019,Count,GWh,Petroleum Products,Rail,4.429
 S12000013,2019,Count,GWh,Petroleum Products,Road Transport,150.375
 S12000013,2019,Count,GWh,Petroleum Products,All,404.553
+S12000013,2020,Count,GWh,All,All,682.862
+S12000013,2020,Count,GWh,Bioenergy & Wastes,Domestic,20.582
+S12000013,2020,Count,GWh,Bioenergy & Wastes,Road Transport,7.144
+S12000013,2020,Count,GWh,Bioenergy & Wastes,All,64.531
+S12000013,2020,Count,GWh,Bioenergy & Wastes,Commercial,16.527
+S12000013,2020,Count,GWh,Bioenergy & Wastes,Industrial,20.278
+S12000013,2020,Count,GWh,Coal,Agriculture,0
+S12000013,2020,Count,GWh,Coal,Commercial,0.121
+S12000013,2020,Count,GWh,Coal,Domestic,21.066
+S12000013,2020,Count,GWh,Coal,Industrial,9.449
+S12000013,2020,Count,GWh,Coal,Public Sector,0.588
+S12000013,2020,Count,GWh,Coal,Rail,0
+S12000013,2020,Count,GWh,Coal,All,31.224
+S12000013,2020,Count,GWh,All,Domestic,291.429
+S12000013,2020,Count,GWh,All,Industrial & Commercial,229.485
+S12000013,2020,Count,GWh,All,Transport,161.948
+S12000013,2020,Count,GWh,Electricity,Domestic,87.782
+S12000013,2020,Count,GWh,Electricity,Industrial & Commercial,60.072
+S12000013,2020,Count,GWh,Electricity,All,147.854
+S12000013,2020,Count,GWh,Gas,Commercial,2.269
+S12000013,2020,Count,GWh,Gas,Domestic,20.15
+S12000013,2020,Count,GWh,Gas,Industrial,2.323
+S12000013,2020,Count,GWh,Gas,All,24.743
+S12000013,2020,Count,GWh,Manufactured Fuels,Domestic,9.957
+S12000013,2020,Count,GWh,Manufactured Fuels,Industrial,0
+S12000013,2020,Count,GWh,Manufactured Fuels,All,9.957
+S12000013,2020,Count,GWh,Petroleum Products,Agriculture,36.946
+S12000013,2020,Count,GWh,Petroleum Products,Commercial,1.492
+S12000013,2020,Count,GWh,Petroleum Products,Domestic,131.892
+S12000013,2020,Count,GWh,Petroleum Products,Industrial,78.347
+S12000013,2020,Count,GWh,Petroleum Products,Public Sector,1.073
+S12000013,2020,Count,GWh,Petroleum Products,Rail,4.429
+S12000013,2020,Count,GWh,Petroleum Products,Road Transport,150.375
+S12000013,2020,Count,GWh,Petroleum Products,All,404.553
 S12000014,2005,Count,GWh,All,All,24958.15
 S12000014,2005,Count,GWh,Bioenergy & Wastes,Domestic,13.1
 S12000014,2005,Count,GWh,Bioenergy & Wastes,Road Transport,2.074
@@ -3348,7 +3552,7 @@ S12000014,2013,Count,GWh,All,Domestic,1278.635
 S12000014,2013,Count,GWh,All,Industrial & Commercial,16229.025
 S12000014,2013,Count,GWh,All,Transport,1317.857
 S12000014,2013,Count,GWh,Electricity,Domestic,291.471
-S12000014,2013,Count,GWh,Electricity,Industrial & Commercial,419.11
+S12000014,2013,Count,GWh,Electricity,Industrial & Commercial,419.111
 S12000014,2013,Count,GWh,Electricity,All,710.581
 S12000014,2013,Count,GWh,Gas,Commercial,378.254
 S12000014,2013,Count,GWh,Gas,Domestic,911.771
@@ -3399,7 +3603,7 @@ S12000014,2014,Count,GWh,Petroleum Products,Public Sector,1.188
 S12000014,2014,Count,GWh,Petroleum Products,Rail,46.493
 S12000014,2014,Count,GWh,Petroleum Products,Road Transport,1269.704
 S12000014,2014,Count,GWh,Petroleum Products,All,12403.403
-S12000014,2015,Count,GWh,All,All,16835.975
+S12000014,2015,Count,GWh,All,All,16579.278
 S12000014,2015,Count,GWh,Bioenergy & Wastes,Domestic,32.273
 S12000014,2015,Count,GWh,Bioenergy & Wastes,Road Transport,33.491
 S12000014,2015,Count,GWh,Bioenergy & Wastes,All,66.042
@@ -3413,15 +3617,15 @@ S12000014,2015,Count,GWh,Coal,Public Sector,0.065
 S12000014,2015,Count,GWh,Coal,Rail,0.373
 S12000014,2015,Count,GWh,Coal,All,12.393
 S12000014,2015,Count,GWh,All,Domestic,1261.711
-S12000014,2015,Count,GWh,All,Industrial & Commercial,14198.258
+S12000014,2015,Count,GWh,All,Industrial & Commercial,13941.562
 S12000014,2015,Count,GWh,All,Transport,1376.006
 S12000014,2015,Count,GWh,Electricity,Domestic,293.757
 S12000014,2015,Count,GWh,Electricity,Industrial & Commercial,436.556
 S12000014,2015,Count,GWh,Electricity,All,730.313
-S12000014,2015,Count,GWh,Gas,Commercial,327.514
+S12000014,2015,Count,GWh,Gas,Commercial,209.082
 S12000014,2015,Count,GWh,Gas,Domestic,895.131
-S12000014,2015,Count,GWh,Gas,Industrial,382.359
-S12000014,2015,Count,GWh,Gas,All,1605.004
+S12000014,2015,Count,GWh,Gas,Industrial,244.095
+S12000014,2015,Count,GWh,Gas,All,1348.307
 S12000014,2015,Count,GWh,Manufactured Fuels,Domestic,6.707
 S12000014,2015,Count,GWh,Manufactured Fuels,Industrial,666.019
 S12000014,2015,Count,GWh,Manufactured Fuels,All,672.725
@@ -3433,7 +3637,7 @@ S12000014,2015,Count,GWh,Petroleum Products,Public Sector,1.19
 S12000014,2015,Count,GWh,Petroleum Products,Rail,45.784
 S12000014,2015,Count,GWh,Petroleum Products,Road Transport,1296.358
 S12000014,2015,Count,GWh,Petroleum Products,All,13749.498
-S12000014,2016,Count,GWh,All,All,17860.583
+S12000014,2016,Count,GWh,All,All,17602.651
 S12000014,2016,Count,GWh,Bioenergy & Wastes,Domestic,34.729
 S12000014,2016,Count,GWh,Bioenergy & Wastes,Road Transport,34.216
 S12000014,2016,Count,GWh,Bioenergy & Wastes,All,69.377
@@ -3446,16 +3650,16 @@ S12000014,2016,Count,GWh,Coal,Industrial,0.403
 S12000014,2016,Count,GWh,Coal,Public Sector,0.067
 S12000014,2016,Count,GWh,Coal,Rail,0.43
 S12000014,2016,Count,GWh,Coal,All,11.28
-S12000014,2016,Count,GWh,All,Domestic,1258.756
-S12000014,2016,Count,GWh,All,Industrial & Commercial,15200.935
+S12000014,2016,Count,GWh,All,Domestic,1275.857
+S12000014,2016,Count,GWh,All,Industrial & Commercial,14925.901
 S12000014,2016,Count,GWh,All,Transport,1400.892
-S12000014,2016,Count,GWh,Electricity,Domestic,276.656
-S12000014,2016,Count,GWh,Electricity,Industrial & Commercial,430.483
-S12000014,2016,Count,GWh,Electricity,All,707.139
-S12000014,2016,Count,GWh,Gas,Commercial,358.081
+S12000014,2016,Count,GWh,Electricity,Domestic,293.757
+S12000014,2016,Count,GWh,Electricity,Industrial & Commercial,436.556
+S12000014,2016,Count,GWh,Electricity,All,730.313
+S12000014,2016,Count,GWh,Gas,Commercial,221.048
 S12000014,2016,Count,GWh,Gas,Domestic,906.801
-S12000014,2016,Count,GWh,Gas,Industrial,376.481
-S12000014,2016,Count,GWh,Gas,All,1641.363
+S12000014,2016,Count,GWh,Gas,Industrial,232.407
+S12000014,2016,Count,GWh,Gas,All,1360.256
 S12000014,2016,Count,GWh,Manufactured Fuels,Domestic,6.642
 S12000014,2016,Count,GWh,Manufactured Fuels,Industrial,680.013
 S12000014,2016,Count,GWh,Manufactured Fuels,All,686.656
@@ -3467,7 +3671,7 @@ S12000014,2016,Count,GWh,Petroleum Products,Public Sector,1.382
 S12000014,2016,Count,GWh,Petroleum Products,Rail,45.553
 S12000014,2016,Count,GWh,Petroleum Products,Road Transport,1320.693
 S12000014,2016,Count,GWh,Petroleum Products,All,14744.769
-S12000014,2017,Count,GWh,All,All,18388.895
+S12000014,2017,Count,GWh,All,All,18076.176
 S12000014,2017,Count,GWh,Bioenergy & Wastes,Domestic,34.548
 S12000014,2017,Count,GWh,Bioenergy & Wastes,Road Transport,33.817
 S12000014,2017,Count,GWh,Bioenergy & Wastes,All,68.905
@@ -3481,15 +3685,15 @@ S12000014,2017,Count,GWh,Coal,Public Sector,0.063
 S12000014,2017,Count,GWh,Coal,Rail,0.429
 S12000014,2017,Count,GWh,Coal,All,10.874
 S12000014,2017,Count,GWh,All,Domestic,1279.582
-S12000014,2017,Count,GWh,All,Industrial & Commercial,15703.398
+S12000014,2017,Count,GWh,All,Industrial & Commercial,15390.679
 S12000014,2017,Count,GWh,All,Transport,1405.915
 S12000014,2017,Count,GWh,Electricity,Domestic,271.741
 S12000014,2017,Count,GWh,Electricity,Industrial & Commercial,434.126
 S12000014,2017,Count,GWh,Electricity,All,705.867
-S12000014,2017,Count,GWh,Gas,Commercial,362.781
+S12000014,2017,Count,GWh,Gas,Commercial,212.008
 S12000014,2017,Count,GWh,Gas,Domestic,933.531
-S12000014,2017,Count,GWh,Gas,Industrial,389.665
-S12000014,2017,Count,GWh,Gas,All,1685.977
+S12000014,2017,Count,GWh,Gas,Industrial,227.718
+S12000014,2017,Count,GWh,Gas,All,1373.258
 S12000014,2017,Count,GWh,Manufactured Fuels,Domestic,7.102
 S12000014,2017,Count,GWh,Manufactured Fuels,Industrial,626.045
 S12000014,2017,Count,GWh,Manufactured Fuels,All,633.147
@@ -3501,7 +3705,7 @@ S12000014,2017,Count,GWh,Petroleum Products,Public Sector,1.534
 S12000014,2017,Count,GWh,Petroleum Products,Rail,45.075
 S12000014,2017,Count,GWh,Petroleum Products,Road Transport,1326.595
 S12000014,2017,Count,GWh,Petroleum Products,All,15284.125
-S12000014,2018,Count,GWh,All,All,18429.421
+S12000014,2018,Count,GWh,All,All,18104.521
 S12000014,2018,Count,GWh,Bioenergy & Wastes,Domestic,37.702
 S12000014,2018,Count,GWh,Bioenergy & Wastes,Road Transport,46.151
 S12000014,2018,Count,GWh,Bioenergy & Wastes,All,84.571
@@ -3515,15 +3719,15 @@ S12000014,2018,Count,GWh,Coal,Public Sector,0.068
 S12000014,2018,Count,GWh,Coal,Rail,0.429
 S12000014,2018,Count,GWh,Coal,All,10.503
 S12000014,2018,Count,GWh,All,Domestic,1269.144
-S12000014,2018,Count,GWh,All,Industrial & Commercial,15779.616
+S12000014,2018,Count,GWh,All,Industrial & Commercial,15454.716
 S12000014,2018,Count,GWh,All,Transport,1380.661
 S12000014,2018,Count,GWh,Electricity,Domestic,263.019
 S12000014,2018,Count,GWh,Electricity,Industrial & Commercial,420.368
 S12000014,2018,Count,GWh,Electricity,All,683.387
-S12000014,2018,Count,GWh,Gas,Commercial,379.791
+S12000014,2018,Count,GWh,Gas,Commercial,219.617
 S12000014,2018,Count,GWh,Gas,Domestic,927.879
-S12000014,2018,Count,GWh,Gas,Industrial,390.583
-S12000014,2018,Count,GWh,Gas,All,1698.253
+S12000014,2018,Count,GWh,Gas,Industrial,225.857
+S12000014,2018,Count,GWh,Gas,All,1373.353
 S12000014,2018,Count,GWh,Manufactured Fuels,Domestic,7.191
 S12000014,2018,Count,GWh,Manufactured Fuels,Industrial,740.642
 S12000014,2018,Count,GWh,Manufactured Fuels,All,747.833
@@ -3535,7 +3739,7 @@ S12000014,2018,Count,GWh,Petroleum Products,Public Sector,1.884
 S12000014,2018,Count,GWh,Petroleum Products,Rail,42.723
 S12000014,2018,Count,GWh,Petroleum Products,Road Transport,1291.358
 S12000014,2018,Count,GWh,Petroleum Products,All,15204.875
-S12000014,2019,Count,GWh,All,All,16452.075
+S12000014,2019,Count,GWh,All,All,16191.242
 S12000014,2019,Count,GWh,Bioenergy & Wastes,Domestic,38.911
 S12000014,2019,Count,GWh,Bioenergy & Wastes,Road Transport,58.967
 S12000014,2019,Count,GWh,Bioenergy & Wastes,All,98.687
@@ -3549,15 +3753,15 @@ S12000014,2019,Count,GWh,Coal,Public Sector,0.057
 S12000014,2019,Count,GWh,Coal,Rail,0.429
 S12000014,2019,Count,GWh,Coal,All,9.986
 S12000014,2019,Count,GWh,All,Domestic,1278.643
-S12000014,2019,Count,GWh,All,Industrial & Commercial,13826.327
+S12000014,2019,Count,GWh,All,Industrial & Commercial,13565.494
 S12000014,2019,Count,GWh,All,Transport,1347.106
 S12000014,2019,Count,GWh,Electricity,Domestic,262.121
 S12000014,2019,Count,GWh,Electricity,Industrial & Commercial,406.217
 S12000014,2019,Count,GWh,Electricity,All,668.338
-S12000014,2019,Count,GWh,Gas,Commercial,295.659
+S12000014,2019,Count,GWh,Gas,Commercial,166.764
 S12000014,2019,Count,GWh,Gas,Domestic,937.909
-S12000014,2019,Count,GWh,Gas,Industrial,302.641
-S12000014,2019,Count,GWh,Gas,All,1536.209
+S12000014,2019,Count,GWh,Gas,Industrial,170.702
+S12000014,2019,Count,GWh,Gas,All,1275.376
 S12000014,2019,Count,GWh,Manufactured Fuels,Domestic,6.735
 S12000014,2019,Count,GWh,Manufactured Fuels,Industrial,571.989
 S12000014,2019,Count,GWh,Manufactured Fuels,All,578.724
@@ -3569,6 +3773,40 @@ S12000014,2019,Count,GWh,Petroleum Products,Public Sector,1.433
 S12000014,2019,Count,GWh,Petroleum Products,Rail,41.748
 S12000014,2019,Count,GWh,Petroleum Products,Road Transport,1245.961
 S12000014,2019,Count,GWh,Petroleum Products,All,13560.131
+S12000014,2020,Count,GWh,All,All,16203.785
+S12000014,2020,Count,GWh,Bioenergy & Wastes,Domestic,38.911
+S12000014,2020,Count,GWh,Bioenergy & Wastes,Road Transport,58.967
+S12000014,2020,Count,GWh,Bioenergy & Wastes,All,98.687
+S12000014,2020,Count,GWh,Bioenergy & Wastes,Commercial,0.363
+S12000014,2020,Count,GWh,Bioenergy & Wastes,Industrial,0.445
+S12000014,2020,Count,GWh,Coal,Agriculture,0
+S12000014,2020,Count,GWh,Coal,Commercial,0.04
+S12000014,2020,Count,GWh,Coal,Domestic,9.258
+S12000014,2020,Count,GWh,Coal,Industrial,0.203
+S12000014,2020,Count,GWh,Coal,Public Sector,0.057
+S12000014,2020,Count,GWh,Coal,Rail,0.429
+S12000014,2020,Count,GWh,Coal,All,9.986
+S12000014,2020,Count,GWh,All,Domestic,1300.538
+S12000014,2020,Count,GWh,All,Industrial & Commercial,13556.141
+S12000014,2020,Count,GWh,All,Transport,1347.106
+S12000014,2020,Count,GWh,Electricity,Domestic,271.957
+S12000014,2020,Count,GWh,Electricity,Industrial & Commercial,356.907
+S12000014,2020,Count,GWh,Electricity,All,628.864
+S12000014,2020,Count,GWh,Gas,Commercial,186.509
+S12000014,2020,Count,GWh,Gas,Domestic,949.969
+S12000014,2020,Count,GWh,Gas,Industrial,190.914
+S12000014,2020,Count,GWh,Gas,All,1327.393
+S12000014,2020,Count,GWh,Manufactured Fuels,Domestic,6.735
+S12000014,2020,Count,GWh,Manufactured Fuels,Industrial,571.989
+S12000014,2020,Count,GWh,Manufactured Fuels,All,578.724
+S12000014,2020,Count,GWh,Petroleum Products,Agriculture,24.001
+S12000014,2020,Count,GWh,Petroleum Products,Commercial,2.076
+S12000014,2020,Count,GWh,Petroleum Products,Domestic,23.708
+S12000014,2020,Count,GWh,Petroleum Products,Industrial,12221.203
+S12000014,2020,Count,GWh,Petroleum Products,Public Sector,1.433
+S12000014,2020,Count,GWh,Petroleum Products,Rail,41.748
+S12000014,2020,Count,GWh,Petroleum Products,Road Transport,1245.961
+S12000014,2020,Count,GWh,Petroleum Products,All,13560.131
 S12000017,2005,Count,GWh,All,All,8031.287
 S12000017,2005,Count,GWh,Bioenergy & Wastes,Domestic,47.431
 S12000017,2005,Count,GWh,Bioenergy & Wastes,Road Transport,3.282
@@ -3841,7 +4079,7 @@ S12000017,2012,Count,GWh,Petroleum Products,Public Sector,40.536
 S12000017,2012,Count,GWh,Petroleum Products,Rail,35.726
 S12000017,2012,Count,GWh,Petroleum Products,Road Transport,1895.232
 S12000017,2012,Count,GWh,Petroleum Products,All,3512.41
-S12000017,2013,Count,GWh,All,All,7654.134
+S12000017,2013,Count,GWh,All,All,7654.135
 S12000017,2013,Count,GWh,Bioenergy & Wastes,Domestic,108.895
 S12000017,2013,Count,GWh,Bioenergy & Wastes,Road Transport,56.769
 S12000017,2013,Count,GWh,Bioenergy & Wastes,All,1088.56
@@ -3854,12 +4092,12 @@ S12000017,2013,Count,GWh,Coal,Industrial,102.528
 S12000017,2013,Count,GWh,Coal,Public Sector,28.03
 S12000017,2013,Count,GWh,Coal,Rail,2.664
 S12000017,2013,Count,GWh,Coal,All,276.951
-S12000017,2013,Count,GWh,All,Domestic,2245.371
+S12000017,2013,Count,GWh,All,Domestic,2245.372
 S12000017,2013,Count,GWh,All,Industrial & Commercial,3400.953
 S12000017,2013,Count,GWh,All,Transport,2007.811
 S12000017,2013,Count,GWh,Electricity,Domestic,669.284
 S12000017,2013,Count,GWh,Electricity,Industrial & Commercial,951.677
-S12000017,2013,Count,GWh,Electricity,All,1620.96
+S12000017,2013,Count,GWh,Electricity,All,1620.961
 S12000017,2013,Count,GWh,Gas,Commercial,274.882
 S12000017,2013,Count,GWh,Gas,Domestic,573.823
 S12000017,2013,Count,GWh,Gas,Industrial,277.526
@@ -3875,7 +4113,7 @@ S12000017,2013,Count,GWh,Petroleum Products,Public Sector,36.398
 S12000017,2013,Count,GWh,Petroleum Products,Rail,36.439
 S12000017,2013,Count,GWh,Petroleum Products,Road Transport,1911.939
 S12000017,2013,Count,GWh,Petroleum Products,All,3462.183
-S12000017,2014,Count,GWh,All,All,7798.229
+S12000017,2014,Count,GWh,All,All,7798.23
 S12000017,2014,Count,GWh,Bioenergy & Wastes,Domestic,103.437
 S12000017,2014,Count,GWh,Bioenergy & Wastes,Road Transport,64.13
 S12000017,2014,Count,GWh,Bioenergy & Wastes,All,1141.92
@@ -3943,7 +4181,7 @@ S12000017,2015,Count,GWh,Petroleum Products,Public Sector,40.257
 S12000017,2015,Count,GWh,Petroleum Products,Rail,36.84
 S12000017,2015,Count,GWh,Petroleum Products,Road Transport,1996.819
 S12000017,2015,Count,GWh,Petroleum Products,All,3612.773
-S12000017,2016,Count,GWh,All,All,7803.006
+S12000017,2016,Count,GWh,All,All,7834.431
 S12000017,2016,Count,GWh,Bioenergy & Wastes,Domestic,125.747
 S12000017,2016,Count,GWh,Bioenergy & Wastes,Road Transport,52.202
 S12000017,2016,Count,GWh,Bioenergy & Wastes,All,1201.699
@@ -3956,12 +4194,12 @@ S12000017,2016,Count,GWh,Coal,Industrial,66.715
 S12000017,2016,Count,GWh,Coal,Public Sector,3.824
 S12000017,2016,Count,GWh,Coal,Rail,2.914
 S12000017,2016,Count,GWh,Coal,All,196.167
-S12000017,2016,Count,GWh,All,Domestic,2157.813
-S12000017,2016,Count,GWh,All,Industrial & Commercial,3519.8
+S12000017,2016,Count,GWh,All,Domestic,2175.238
+S12000017,2016,Count,GWh,All,Industrial & Commercial,3533.799
 S12000017,2016,Count,GWh,All,Transport,2125.393
-S12000017,2016,Count,GWh,Electricity,Domestic,652.547
-S12000017,2016,Count,GWh,Electricity,Industrial & Commercial,903.548
-S12000017,2016,Count,GWh,Electricity,All,1556.094
+S12000017,2016,Count,GWh,Electricity,Domestic,669.973
+S12000017,2016,Count,GWh,Electricity,Industrial & Commercial,917.547
+S12000017,2016,Count,GWh,Electricity,All,1587.519
 S12000017,2016,Count,GWh,Gas,Commercial,274.411
 S12000017,2016,Count,GWh,Gas,Domestic,598.451
 S12000017,2016,Count,GWh,Gas,Industrial,288.511
@@ -4079,6 +4317,40 @@ S12000017,2019,Count,GWh,Petroleum Products,Public Sector,40.692
 S12000017,2019,Count,GWh,Petroleum Products,Rail,34.291
 S12000017,2019,Count,GWh,Petroleum Products,Road Transport,2027.694
 S12000017,2019,Count,GWh,Petroleum Products,All,3641.265
+S12000017,2020,Count,GWh,All,All,7678.525
+S12000017,2020,Count,GWh,Bioenergy & Wastes,Domestic,140.887
+S12000017,2020,Count,GWh,Bioenergy & Wastes,Road Transport,96.613
+S12000017,2020,Count,GWh,Bioenergy & Wastes,All,1286.471
+S12000017,2020,Count,GWh,Bioenergy & Wastes,Commercial,471.041
+S12000017,2020,Count,GWh,Bioenergy & Wastes,Industrial,577.93
+S12000017,2020,Count,GWh,Coal,Agriculture,0
+S12000017,2020,Count,GWh,Coal,Commercial,1.736
+S12000017,2020,Count,GWh,Coal,Domestic,107.622
+S12000017,2020,Count,GWh,Coal,Industrial,38.393
+S12000017,2020,Count,GWh,Coal,Public Sector,4.136
+S12000017,2020,Count,GWh,Coal,Rail,2.904
+S12000017,2020,Count,GWh,Coal,All,154.791
+S12000017,2020,Count,GWh,All,Domestic,2204.26
+S12000017,2020,Count,GWh,All,Industrial & Commercial,3312.762
+S12000017,2020,Count,GWh,All,Transport,2161.503
+S12000017,2020,Count,GWh,Electricity,Domestic,651.888
+S12000017,2020,Count,GWh,Electricity,Industrial & Commercial,745.772
+S12000017,2020,Count,GWh,Electricity,All,1397.66
+S12000017,2020,Count,GWh,Gas,Commercial,248.116
+S12000017,2020,Count,GWh,Gas,Domestic,642.218
+S12000017,2020,Count,GWh,Gas,Industrial,253.976
+S12000017,2020,Count,GWh,Gas,All,1144.31
+S12000017,2020,Count,GWh,Manufactured Fuels,Domestic,53.693
+S12000017,2020,Count,GWh,Manufactured Fuels,Industrial,0.335
+S12000017,2020,Count,GWh,Manufactured Fuels,All,54.028
+S12000017,2020,Count,GWh,Petroleum Products,Agriculture,314.581
+S12000017,2020,Count,GWh,Petroleum Products,Commercial,20.754
+S12000017,2020,Count,GWh,Petroleum Products,Domestic,607.952
+S12000017,2020,Count,GWh,Petroleum Products,Industrial,595.3
+S12000017,2020,Count,GWh,Petroleum Products,Public Sector,40.692
+S12000017,2020,Count,GWh,Petroleum Products,Rail,34.291
+S12000017,2020,Count,GWh,Petroleum Products,Road Transport,2027.694
+S12000017,2020,Count,GWh,Petroleum Products,All,3641.265
 S12000018,2005,Count,GWh,All,All,1760.923
 S12000018,2005,Count,GWh,Bioenergy & Wastes,Domestic,5.356
 S12000018,2005,Count,GWh,Bioenergy & Wastes,Road Transport,0.757
@@ -4453,7 +4725,7 @@ S12000018,2015,Count,GWh,Petroleum Products,Public Sector,0.379
 S12000018,2015,Count,GWh,Petroleum Products,Rail,0.568
 S12000018,2015,Count,GWh,Petroleum Products,Road Transport,366.889
 S12000018,2015,Count,GWh,Petroleum Products,All,398.274
-S12000018,2016,Count,GWh,All,All,1376.466
+S12000018,2016,Count,GWh,All,All,1404.725
 S12000018,2016,Count,GWh,Bioenergy & Wastes,Domestic,14.199
 S12000018,2016,Count,GWh,Bioenergy & Wastes,Road Transport,9.836
 S12000018,2016,Count,GWh,Bioenergy & Wastes,All,24.04
@@ -4466,12 +4738,12 @@ S12000018,2016,Count,GWh,Coal,Industrial,0.042
 S12000018,2016,Count,GWh,Coal,Public Sector,0.017
 S12000018,2016,Count,GWh,Coal,Rail,0
 S12000018,2016,Count,GWh,Coal,All,1.424
-S12000018,2016,Count,GWh,All,Domestic,632.592
-S12000018,2016,Count,GWh,All,Industrial & Commercial,365.668
+S12000018,2016,Count,GWh,All,Domestic,643.998
+S12000018,2016,Count,GWh,All,Industrial & Commercial,382.521
 S12000018,2016,Count,GWh,All,Transport,378.207
-S12000018,2016,Count,GWh,Electricity,Domestic,141.031
-S12000018,2016,Count,GWh,Electricity,Industrial & Commercial,176.2
-S12000018,2016,Count,GWh,Electricity,All,317.231
+S12000018,2016,Count,GWh,Electricity,Domestic,152.437
+S12000018,2016,Count,GWh,Electricity,Industrial & Commercial,193.053
+S12000018,2016,Count,GWh,Electricity,All,345.489
 S12000018,2016,Count,GWh,Gas,Commercial,79.844
 S12000018,2016,Count,GWh,Gas,Domestic,469.457
 S12000018,2016,Count,GWh,Gas,Industrial,83.947
@@ -4589,6 +4861,40 @@ S12000018,2019,Count,GWh,Petroleum Products,Public Sector,0.381
 S12000018,2019,Count,GWh,Petroleum Products,Rail,0.519
 S12000018,2019,Count,GWh,Petroleum Products,Road Transport,350.398
 S12000018,2019,Count,GWh,Petroleum Products,All,382.322
+S12000018,2020,Count,GWh,All,All,1494.544
+S12000018,2020,Count,GWh,Bioenergy & Wastes,Domestic,15.909
+S12000018,2020,Count,GWh,Bioenergy & Wastes,Road Transport,16.118
+S12000018,2020,Count,GWh,Bioenergy & Wastes,All,32.037
+S12000018,2020,Count,GWh,Bioenergy & Wastes,Commercial,0.005
+S12000018,2020,Count,GWh,Bioenergy & Wastes,Industrial,0.006
+S12000018,2020,Count,GWh,Coal,Agriculture,0
+S12000018,2020,Count,GWh,Coal,Commercial,0.012
+S12000018,2020,Count,GWh,Coal,Domestic,1.194
+S12000018,2020,Count,GWh,Coal,Industrial,0.013
+S12000018,2020,Count,GWh,Coal,Public Sector,0.016
+S12000018,2020,Count,GWh,Coal,Rail,0
+S12000018,2020,Count,GWh,Coal,All,1.235
+S12000018,2020,Count,GWh,All,Domestic,641.271
+S12000018,2020,Count,GWh,All,Industrial & Commercial,486.238
+S12000018,2020,Count,GWh,All,Transport,367.035
+S12000018,2020,Count,GWh,Electricity,Domestic,128.653
+S12000018,2020,Count,GWh,Electricity,Industrial & Commercial,153.79
+S12000018,2020,Count,GWh,Electricity,All,282.443
+S12000018,2020,Count,GWh,Gas,Commercial,151.179
+S12000018,2020,Count,GWh,Gas,Domestic,488.705
+S12000018,2020,Count,GWh,Gas,Industrial,154.749
+S12000018,2020,Count,GWh,Gas,All,794.634
+S12000018,2020,Count,GWh,Manufactured Fuels,Domestic,1.729
+S12000018,2020,Count,GWh,Manufactured Fuels,Industrial,0.144
+S12000018,2020,Count,GWh,Manufactured Fuels,All,1.873
+S12000018,2020,Count,GWh,Petroleum Products,Agriculture,7.834
+S12000018,2020,Count,GWh,Petroleum Products,Commercial,0.432
+S12000018,2020,Count,GWh,Petroleum Products,Domestic,5.08
+S12000018,2020,Count,GWh,Petroleum Products,Industrial,17.677
+S12000018,2020,Count,GWh,Petroleum Products,Public Sector,0.381
+S12000018,2020,Count,GWh,Petroleum Products,Rail,0.519
+S12000018,2020,Count,GWh,Petroleum Products,Road Transport,350.398
+S12000018,2020,Count,GWh,Petroleum Products,All,382.322
 S12000019,2005,Count,GWh,All,All,1810.921
 S12000019,2005,Count,GWh,Bioenergy & Wastes,Domestic,8.916
 S12000019,2005,Count,GWh,Bioenergy & Wastes,Road Transport,0.895
@@ -4861,7 +5167,7 @@ S12000019,2012,Count,GWh,Petroleum Products,Public Sector,0.126
 S12000019,2012,Count,GWh,Petroleum Products,Rail,0.936
 S12000019,2012,Count,GWh,Petroleum Products,Road Transport,480.438
 S12000019,2012,Count,GWh,Petroleum Products,All,585.995
-S12000019,2013,Count,GWh,All,All,1641.998
+S12000019,2013,Count,GWh,All,All,1641.999
 S12000019,2013,Count,GWh,Bioenergy & Wastes,Domestic,20.469
 S12000019,2013,Count,GWh,Bioenergy & Wastes,Road Transport,14.302
 S12000019,2013,Count,GWh,Bioenergy & Wastes,All,36.001
@@ -4880,7 +5186,7 @@ S12000019,2013,Count,GWh,All,Transport,490.496
 S12000019,2013,Count,GWh,Electricity,Domestic,139.769
 S12000019,2013,Count,GWh,Electricity,Industrial & Commercial,208.42
 S12000019,2013,Count,GWh,Electricity,All,348.189
-S12000019,2013,Count,GWh,Gas,Commercial,80.707
+S12000019,2013,Count,GWh,Gas,Commercial,80.708
 S12000019,2013,Count,GWh,Gas,Domestic,483.143
 S12000019,2013,Count,GWh,Gas,Industrial,81.484
 S12000019,2013,Count,GWh,Gas,All,645.335
@@ -4963,7 +5269,7 @@ S12000019,2015,Count,GWh,Petroleum Products,Public Sector,0.117
 S12000019,2015,Count,GWh,Petroleum Products,Rail,0.855
 S12000019,2015,Count,GWh,Petroleum Products,Road Transport,490.539
 S12000019,2015,Count,GWh,Petroleum Products,All,597.539
-S12000019,2016,Count,GWh,All,All,1684.795
+S12000019,2016,Count,GWh,All,All,1695.454
 S12000019,2016,Count,GWh,Bioenergy & Wastes,Domestic,23.637
 S12000019,2016,Count,GWh,Bioenergy & Wastes,Road Transport,13.157
 S12000019,2016,Count,GWh,Bioenergy & Wastes,All,45.463
@@ -4976,12 +5282,12 @@ S12000019,2016,Count,GWh,Coal,Industrial,8.521
 S12000019,2016,Count,GWh,Coal,Public Sector,0.387
 S12000019,2016,Count,GWh,Coal,Rail,0
 S12000019,2016,Count,GWh,Coal,All,19.225
-S12000019,2016,Count,GWh,All,Domestic,701.453
-S12000019,2016,Count,GWh,All,Industrial & Commercial,470.245
+S12000019,2016,Count,GWh,All,Domestic,707.546
+S12000019,2016,Count,GWh,All,Industrial & Commercial,474.811
 S12000019,2016,Count,GWh,All,Transport,513.097
-S12000019,2016,Count,GWh,Electricity,Domestic,140.2
-S12000019,2016,Count,GWh,Electricity,Industrial & Commercial,207.824
-S12000019,2016,Count,GWh,Electricity,All,348.024
+S12000019,2016,Count,GWh,Electricity,Domestic,146.293
+S12000019,2016,Count,GWh,Electricity,Industrial & Commercial,212.39
+S12000019,2016,Count,GWh,Electricity,All,358.683
 S12000019,2016,Count,GWh,Gas,Commercial,83.329
 S12000019,2016,Count,GWh,Gas,Domestic,491.652
 S12000019,2016,Count,GWh,Gas,Industrial,87.611
@@ -5099,6 +5405,40 @@ S12000019,2019,Count,GWh,Petroleum Products,Public Sector,0.126
 S12000019,2019,Count,GWh,Petroleum Products,Rail,0.691
 S12000019,2019,Count,GWh,Petroleum Products,Road Transport,493.367
 S12000019,2019,Count,GWh,Petroleum Products,All,603.417
+S12000019,2020,Count,GWh,All,All,1719.284
+S12000019,2020,Count,GWh,Bioenergy & Wastes,Domestic,26.483
+S12000019,2020,Count,GWh,Bioenergy & Wastes,Road Transport,23.007
+S12000019,2020,Count,GWh,Bioenergy & Wastes,All,70.357
+S12000019,2020,Count,GWh,Bioenergy & Wastes,Commercial,9.37
+S12000019,2020,Count,GWh,Bioenergy & Wastes,Industrial,11.497
+S12000019,2020,Count,GWh,Coal,Agriculture,0
+S12000019,2020,Count,GWh,Coal,Commercial,0.274
+S12000019,2020,Count,GWh,Coal,Domestic,9.099
+S12000019,2020,Count,GWh,Coal,Industrial,5.301
+S12000019,2020,Count,GWh,Coal,Public Sector,0.623
+S12000019,2020,Count,GWh,Coal,Rail,0
+S12000019,2020,Count,GWh,Coal,All,15.297
+S12000019,2020,Count,GWh,All,Domestic,751.84
+S12000019,2020,Count,GWh,All,Industrial & Commercial,450.379
+S12000019,2020,Count,GWh,All,Transport,517.065
+S12000019,2020,Count,GWh,Electricity,Domestic,146.271
+S12000019,2020,Count,GWh,Electricity,Industrial & Commercial,186.922
+S12000019,2020,Count,GWh,Electricity,All,333.193
+S12000019,2020,Count,GWh,Gas,Commercial,77.732
+S12000019,2020,Count,GWh,Gas,Domestic,534.031
+S12000019,2020,Count,GWh,Gas,Industrial,79.567
+S12000019,2020,Count,GWh,Gas,All,691.329
+S12000019,2020,Count,GWh,Manufactured Fuels,Domestic,5.691
+S12000019,2020,Count,GWh,Manufactured Fuels,Industrial,0
+S12000019,2020,Count,GWh,Manufactured Fuels,All,5.691
+S12000019,2020,Count,GWh,Petroleum Products,Agriculture,22.955
+S12000019,2020,Count,GWh,Petroleum Products,Commercial,3.03
+S12000019,2020,Count,GWh,Petroleum Products,Domestic,30.265
+S12000019,2020,Count,GWh,Petroleum Products,Industrial,52.982
+S12000019,2020,Count,GWh,Petroleum Products,Public Sector,0.126
+S12000019,2020,Count,GWh,Petroleum Products,Rail,0.691
+S12000019,2020,Count,GWh,Petroleum Products,Road Transport,493.367
+S12000019,2020,Count,GWh,Petroleum Products,All,603.417
 S12000020,2005,Count,GWh,All,All,3412.023
 S12000020,2005,Count,GWh,Bioenergy & Wastes,Domestic,13.549
 S12000020,2005,Count,GWh,Bioenergy & Wastes,Road Transport,0.935
@@ -5371,7 +5711,7 @@ S12000020,2012,Count,GWh,Petroleum Products,Public Sector,4.197
 S12000020,2012,Count,GWh,Petroleum Products,Rail,6.553
 S12000020,2012,Count,GWh,Petroleum Products,Road Transport,517.923
 S12000020,2012,Count,GWh,Petroleum Products,All,916.218
-S12000020,2013,Count,GWh,All,All,3549.584
+S12000020,2013,Count,GWh,All,All,3549.585
 S12000020,2013,Count,GWh,Bioenergy & Wastes,Domestic,31.106
 S12000020,2013,Count,GWh,Bioenergy & Wastes,Road Transport,15.55
 S12000020,2013,Count,GWh,Bioenergy & Wastes,All,96.482
@@ -5385,12 +5725,12 @@ S12000020,2013,Count,GWh,Coal,Public Sector,2.631
 S12000020,2013,Count,GWh,Coal,Rail,0.82
 S12000020,2013,Count,GWh,Coal,All,126.937
 S12000020,2013,Count,GWh,All,Domestic,840.461
-S12000020,2013,Count,GWh,All,Industrial & Commercial,2164.786
+S12000020,2013,Count,GWh,All,Industrial & Commercial,2164.787
 S12000020,2013,Count,GWh,All,Transport,544.337
 S12000020,2013,Count,GWh,Electricity,Domestic,191.234
 S12000020,2013,Count,GWh,Electricity,Industrial & Commercial,322.819
 S12000020,2013,Count,GWh,Electricity,All,514.053
-S12000020,2013,Count,GWh,Gas,Commercial,724.685
+S12000020,2013,Count,GWh,Gas,Commercial,724.686
 S12000020,2013,Count,GWh,Gas,Domestic,432.337
 S12000020,2013,Count,GWh,Gas,Industrial,731.657
 S12000020,2013,Count,GWh,Gas,All,1888.68
@@ -5405,7 +5745,7 @@ S12000020,2013,Count,GWh,Petroleum Products,Public Sector,3.845
 S12000020,2013,Count,GWh,Petroleum Products,Rail,6.689
 S12000020,2013,Count,GWh,Petroleum Products,Road Transport,521.278
 S12000020,2013,Count,GWh,Petroleum Products,All,906.702
-S12000020,2014,Count,GWh,All,All,3665.639
+S12000020,2014,Count,GWh,All,All,3665.638
 S12000020,2014,Count,GWh,Bioenergy & Wastes,Domestic,29.547
 S12000020,2014,Count,GWh,Bioenergy & Wastes,Road Transport,17.777
 S12000020,2014,Count,GWh,Bioenergy & Wastes,All,129.589
@@ -5419,7 +5759,7 @@ S12000020,2014,Count,GWh,Coal,Public Sector,2.725
 S12000020,2014,Count,GWh,Coal,Rail,0.777
 S12000020,2014,Count,GWh,Coal,All,122.758
 S12000020,2014,Count,GWh,All,Domestic,831.431
-S12000020,2014,Count,GWh,All,Industrial & Commercial,2272.343
+S12000020,2014,Count,GWh,All,Industrial & Commercial,2272.342
 S12000020,2014,Count,GWh,All,Transport,561.865
 S12000020,2014,Count,GWh,Electricity,Domestic,197.739
 S12000020,2014,Count,GWh,Electricity,Industrial & Commercial,324.089
@@ -5473,7 +5813,7 @@ S12000020,2015,Count,GWh,Petroleum Products,Public Sector,4.201
 S12000020,2015,Count,GWh,Petroleum Products,Rail,6.831
 S12000020,2015,Count,GWh,Petroleum Products,Road Transport,545.836
 S12000020,2015,Count,GWh,Petroleum Products,All,941.951
-S12000020,2016,Count,GWh,All,All,3612.609
+S12000020,2016,Count,GWh,All,All,3632.877
 S12000020,2016,Count,GWh,Bioenergy & Wastes,Domestic,35.92
 S12000020,2016,Count,GWh,Bioenergy & Wastes,Road Transport,14.401
 S12000020,2016,Count,GWh,Bioenergy & Wastes,All,202.705
@@ -5486,12 +5826,12 @@ S12000020,2016,Count,GWh,Coal,Industrial,91.5
 S12000020,2016,Count,GWh,Coal,Public Sector,0.361
 S12000020,2016,Count,GWh,Coal,Rail,0.897
 S12000020,2016,Count,GWh,Coal,All,111.725
-S12000020,2016,Count,GWh,All,Domestic,831.397
-S12000020,2016,Count,GWh,All,Industrial & Commercial,2201.954
+S12000020,2016,Count,GWh,All,Domestic,836.805
+S12000020,2016,Count,GWh,All,Industrial & Commercial,2216.814
 S12000020,2016,Count,GWh,All,Transport,579.258
-S12000020,2016,Count,GWh,Electricity,Domestic,187.021
-S12000020,2016,Count,GWh,Electricity,Industrial & Commercial,308.514
-S12000020,2016,Count,GWh,Electricity,All,495.535
+S12000020,2016,Count,GWh,Electricity,Domestic,192.428
+S12000020,2016,Count,GWh,Electricity,Industrial & Commercial,323.375
+S12000020,2016,Count,GWh,Electricity,All,515.803
 S12000020,2016,Count,GWh,Gas,Commercial,685.525
 S12000020,2016,Count,GWh,Gas,Domestic,442.715
 S12000020,2016,Count,GWh,Gas,Industrial,720.751
@@ -5609,6 +5949,40 @@ S12000020,2019,Count,GWh,Petroleum Products,Public Sector,4.212
 S12000020,2019,Count,GWh,Petroleum Products,Rail,6.43
 S12000020,2019,Count,GWh,Petroleum Products,Road Transport,546.804
 S12000020,2019,Count,GWh,Petroleum Products,All,1005.872
+S12000020,2020,Count,GWh,All,All,3563.892
+S12000020,2020,Count,GWh,Bioenergy & Wastes,Domestic,40.245
+S12000020,2020,Count,GWh,Bioenergy & Wastes,Road Transport,25.932
+S12000020,2020,Count,GWh,Bioenergy & Wastes,All,286.581
+S12000020,2020,Count,GWh,Bioenergy & Wastes,Commercial,98.973
+S12000020,2020,Count,GWh,Bioenergy & Wastes,Industrial,121.432
+S12000020,2020,Count,GWh,Coal,Agriculture,0
+S12000020,2020,Count,GWh,Coal,Commercial,0.255
+S12000020,2020,Count,GWh,Coal,Domestic,16.775
+S12000020,2020,Count,GWh,Coal,Industrial,43.464
+S12000020,2020,Count,GWh,Coal,Public Sector,0.313
+S12000020,2020,Count,GWh,Coal,Rail,0.894
+S12000020,2020,Count,GWh,Coal,All,61.701
+S12000020,2020,Count,GWh,All,Domestic,850.059
+S12000020,2020,Count,GWh,All,Industrial & Commercial,2133.773
+S12000020,2020,Count,GWh,All,Transport,580.06
+S12000020,2020,Count,GWh,Electricity,Domestic,188.186
+S12000020,2020,Count,GWh,Electricity,Industrial & Commercial,273.732
+S12000020,2020,Count,GWh,Electricity,All,461.918
+S12000020,2020,Count,GWh,Gas,Commercial,632.4
+S12000020,2020,Count,GWh,Gas,Domestic,458.272
+S12000020,2020,Count,GWh,Gas,Industrial,647.335
+S12000020,2020,Count,GWh,Gas,All,1738.007
+S12000020,2020,Count,GWh,Manufactured Fuels,Domestic,9.813
+S12000020,2020,Count,GWh,Manufactured Fuels,Industrial,0
+S12000020,2020,Count,GWh,Manufactured Fuels,All,9.813
+S12000020,2020,Count,GWh,Petroleum Products,Agriculture,96.546
+S12000020,2020,Count,GWh,Petroleum Products,Commercial,2.128
+S12000020,2020,Count,GWh,Petroleum Products,Domestic,136.768
+S12000020,2020,Count,GWh,Petroleum Products,Industrial,212.983
+S12000020,2020,Count,GWh,Petroleum Products,Public Sector,4.212
+S12000020,2020,Count,GWh,Petroleum Products,Rail,6.43
+S12000020,2020,Count,GWh,Petroleum Products,Road Transport,546.804
+S12000020,2020,Count,GWh,Petroleum Products,All,1005.872
 S12000021,2005,Count,GWh,All,All,5179.729
 S12000021,2005,Count,GWh,Bioenergy & Wastes,Domestic,13.454
 S12000021,2005,Count,GWh,Bioenergy & Wastes,Road Transport,1.077
@@ -5895,7 +6269,7 @@ S12000021,2013,Count,GWh,Coal,Public Sector,1.07
 S12000021,2013,Count,GWh,Coal,Rail,0
 S12000021,2013,Count,GWh,Coal,All,14.228
 S12000021,2013,Count,GWh,All,Domestic,1124.033
-S12000021,2013,Count,GWh,All,Industrial & Commercial,3477.407
+S12000021,2013,Count,GWh,All,Industrial & Commercial,3477.408
 S12000021,2013,Count,GWh,All,Transport,569.529
 S12000021,2013,Count,GWh,Electricity,Domestic,260.695
 S12000021,2013,Count,GWh,Electricity,Industrial & Commercial,476.153
@@ -5903,7 +6277,7 @@ S12000021,2013,Count,GWh,Electricity,All,736.848
 S12000021,2013,Count,GWh,Gas,Commercial,644.32
 S12000021,2013,Count,GWh,Gas,Domestic,779.231
 S12000021,2013,Count,GWh,Gas,Industrial,650.519
-S12000021,2013,Count,GWh,Gas,All,2074.07
+S12000021,2013,Count,GWh,Gas,All,2074.071
 S12000021,2013,Count,GWh,Manufactured Fuels,Domestic,4.627
 S12000021,2013,Count,GWh,Manufactured Fuels,Industrial,1.031
 S12000021,2013,Count,GWh,Manufactured Fuels,All,5.658
@@ -5934,7 +6308,7 @@ S12000021,2014,Count,GWh,All,Transport,581.697
 S12000021,2014,Count,GWh,Electricity,Domestic,262.703
 S12000021,2014,Count,GWh,Electricity,Industrial & Commercial,451.443
 S12000021,2014,Count,GWh,Electricity,All,714.145
-S12000021,2014,Count,GWh,Gas,Commercial,693.171
+S12000021,2014,Count,GWh,Gas,Commercial,693.17
 S12000021,2014,Count,GWh,Gas,Domestic,763.613
 S12000021,2014,Count,GWh,Gas,Industrial,798.62
 S12000021,2014,Count,GWh,Gas,All,2255.404
@@ -5983,7 +6357,7 @@ S12000021,2015,Count,GWh,Petroleum Products,Public Sector,0.456
 S12000021,2015,Count,GWh,Petroleum Products,Rail,6.76
 S12000021,2015,Count,GWh,Petroleum Products,Road Transport,560.958
 S12000021,2015,Count,GWh,Petroleum Products,All,773.991
-S12000021,2016,Count,GWh,All,All,5292.654
+S12000021,2016,Count,GWh,All,All,5345.759
 S12000021,2016,Count,GWh,Bioenergy & Wastes,Domestic,35.667
 S12000021,2016,Count,GWh,Bioenergy & Wastes,Road Transport,14.896
 S12000021,2016,Count,GWh,Bioenergy & Wastes,All,1600.889
@@ -5996,12 +6370,12 @@ S12000021,2016,Count,GWh,Coal,Industrial,3.645
 S12000021,2016,Count,GWh,Coal,Public Sector,0.147
 S12000021,2016,Count,GWh,Coal,Rail,0
 S12000021,2016,Count,GWh,Coal,All,9.099
-S12000021,2016,Count,GWh,All,Domestic,1083.652
-S12000021,2016,Count,GWh,All,Industrial & Commercial,3624.047
+S12000021,2016,Count,GWh,All,Domestic,1095.836
+S12000021,2016,Count,GWh,All,Industrial & Commercial,3664.967
 S12000021,2016,Count,GWh,All,Transport,584.956
-S12000021,2016,Count,GWh,Electricity,Domestic,248.214
-S12000021,2016,Count,GWh,Electricity,Industrial & Commercial,412.691
-S12000021,2016,Count,GWh,Electricity,All,660.905
+S12000021,2016,Count,GWh,Electricity,Domestic,260.398
+S12000021,2016,Count,GWh,Electricity,Industrial & Commercial,453.612
+S12000021,2016,Count,GWh,Electricity,All,714.01
 S12000021,2016,Count,GWh,Gas,Commercial,729.04
 S12000021,2016,Count,GWh,Gas,Domestic,752.022
 S12000021,2016,Count,GWh,Gas,Industrial,766.501
@@ -6119,6 +6493,40 @@ S12000021,2019,Count,GWh,Petroleum Products,Public Sector,0.487
 S12000021,2019,Count,GWh,Petroleum Products,Rail,5.722
 S12000021,2019,Count,GWh,Petroleum Products,Road Transport,536.907
 S12000021,2019,Count,GWh,Petroleum Products,All,748.537
+S12000021,2020,Count,GWh,All,All,5091.183
+S12000021,2020,Count,GWh,Bioenergy & Wastes,Domestic,39.962
+S12000021,2020,Count,GWh,Bioenergy & Wastes,Road Transport,24.902
+S12000021,2020,Count,GWh,Bioenergy & Wastes,All,1494.945
+S12000021,2020,Count,GWh,Bioenergy & Wastes,Commercial,642.178
+S12000021,2020,Count,GWh,Bioenergy & Wastes,Industrial,787.903
+S12000021,2020,Count,GWh,Coal,Agriculture,0
+S12000021,2020,Count,GWh,Coal,Commercial,0.108
+S12000021,2020,Count,GWh,Coal,Domestic,4.585
+S12000021,2020,Count,GWh,Coal,Industrial,1.235
+S12000021,2020,Count,GWh,Coal,Public Sector,0.17
+S12000021,2020,Count,GWh,Coal,Rail,0
+S12000021,2020,Count,GWh,Coal,All,6.099
+S12000021,2020,Count,GWh,All,Domestic,1123.729
+S12000021,2020,Count,GWh,All,Industrial & Commercial,3399.922
+S12000021,2020,Count,GWh,All,Transport,567.531
+S12000021,2020,Count,GWh,Electricity,Domestic,242.762
+S12000021,2020,Count,GWh,Electricity,Industrial & Commercial,354.028
+S12000021,2020,Count,GWh,Electricity,All,596.79
+S12000021,2020,Count,GWh,Gas,Commercial,714.96
+S12000021,2020,Count,GWh,Gas,Domestic,792.798
+S12000021,2020,Count,GWh,Gas,Industrial,731.844
+S12000021,2020,Count,GWh,Gas,All,2239.602
+S12000021,2020,Count,GWh,Manufactured Fuels,Domestic,4.97
+S12000021,2020,Count,GWh,Manufactured Fuels,Industrial,0.24
+S12000021,2020,Count,GWh,Manufactured Fuels,All,5.21
+S12000021,2020,Count,GWh,Petroleum Products,Agriculture,47.861
+S12000021,2020,Count,GWh,Petroleum Products,Commercial,2.142
+S12000021,2020,Count,GWh,Petroleum Products,Domestic,38.652
+S12000021,2020,Count,GWh,Petroleum Products,Industrial,116.767
+S12000021,2020,Count,GWh,Petroleum Products,Public Sector,0.487
+S12000021,2020,Count,GWh,Petroleum Products,Rail,5.722
+S12000021,2020,Count,GWh,Petroleum Products,Road Transport,536.907
+S12000021,2020,Count,GWh,Petroleum Products,All,748.537
 S12000023,2005,Count,GWh,All,All,589.317
 S12000023,2005,Count,GWh,Bioenergy & Wastes,Domestic,6.408
 S12000023,2005,Count,GWh,Bioenergy & Wastes,Road Transport,0.157
@@ -6493,7 +6901,7 @@ S12000023,2015,Count,GWh,Petroleum Products,Public Sector,2.103
 S12000023,2015,Count,GWh,Petroleum Products,Rail,0
 S12000023,2015,Count,GWh,Petroleum Products,Road Transport,100.653
 S12000023,2015,Count,GWh,Petroleum Products,All,358.783
-S12000023,2016,Count,GWh,All,All,552.201
+S12000023,2016,Count,GWh,All,All,559.828
 S12000023,2016,Count,GWh,Bioenergy & Wastes,Domestic,16.989
 S12000023,2016,Count,GWh,Bioenergy & Wastes,Road Transport,2.68
 S12000023,2016,Count,GWh,Bioenergy & Wastes,All,22.958
@@ -6506,12 +6914,12 @@ S12000023,2016,Count,GWh,Coal,Industrial,4.779
 S12000023,2016,Count,GWh,Coal,Public Sector,0.884
 S12000023,2016,Count,GWh,Coal,Rail,0
 S12000023,2016,Count,GWh,Coal,All,21.096
-S12000023,2016,Count,GWh,All,Domestic,197.11
-S12000023,2016,Count,GWh,All,Industrial & Commercial,248.329
+S12000023,2016,Count,GWh,All,Domestic,198.807
+S12000023,2016,Count,GWh,All,Industrial & Commercial,254.259
 S12000023,2016,Count,GWh,All,Transport,106.762
-S12000023,2016,Count,GWh,Electricity,Domestic,80.046
-S12000023,2016,Count,GWh,Electricity,Industrial & Commercial,54.068
-S12000023,2016,Count,GWh,Electricity,All,134.114
+S12000023,2016,Count,GWh,Electricity,Domestic,81.743
+S12000023,2016,Count,GWh,Electricity,Industrial & Commercial,59.998
+S12000023,2016,Count,GWh,Electricity,All,141.741
 S12000023,2016,Count,GWh,Gas,Commercial,0
 S12000023,2016,Count,GWh,Gas,Domestic,0
 S12000023,2016,Count,GWh,Gas,Industrial,0
@@ -6629,6 +7037,40 @@ S12000023,2019,Count,GWh,Petroleum Products,Public Sector,2.324
 S12000023,2019,Count,GWh,Petroleum Products,Rail,0
 S12000023,2019,Count,GWh,Petroleum Products,Road Transport,100.626
 S12000023,2019,Count,GWh,Petroleum Products,All,369.305
+S12000023,2020,Count,GWh,All,All,561.906
+S12000023,2020,Count,GWh,Bioenergy & Wastes,Domestic,19.035
+S12000023,2020,Count,GWh,Bioenergy & Wastes,Road Transport,4.812
+S12000023,2020,Count,GWh,Bioenergy & Wastes,All,31.154
+S12000023,2020,Count,GWh,Bioenergy & Wastes,Commercial,3.282
+S12000023,2020,Count,GWh,Bioenergy & Wastes,Industrial,4.026
+S12000023,2020,Count,GWh,Coal,Agriculture,0
+S12000023,2020,Count,GWh,Coal,Commercial,0.289
+S12000023,2020,Count,GWh,Coal,Domestic,13.611
+S12000023,2020,Count,GWh,Coal,Industrial,2.275
+S12000023,2020,Count,GWh,Coal,Public Sector,1.127
+S12000023,2020,Count,GWh,Coal,Rail,0
+S12000023,2020,Count,GWh,Coal,All,17.302
+S12000023,2020,Count,GWh,All,Domestic,198.759
+S12000023,2020,Count,GWh,All,Industrial & Commercial,257.709
+S12000023,2020,Count,GWh,All,Transport,105.438
+S12000023,2020,Count,GWh,Electricity,Domestic,82.855
+S12000023,2020,Count,GWh,Electricity,Industrial & Commercial,54.404
+S12000023,2020,Count,GWh,Electricity,All,137.259
+S12000023,2020,Count,GWh,Gas,Commercial,0
+S12000023,2020,Count,GWh,Gas,Domestic,0
+S12000023,2020,Count,GWh,Gas,Industrial,0
+S12000023,2020,Count,GWh,Gas,All,0
+S12000023,2020,Count,GWh,Manufactured Fuels,Domestic,6.887
+S12000023,2020,Count,GWh,Manufactured Fuels,Industrial,0
+S12000023,2020,Count,GWh,Manufactured Fuels,All,6.887
+S12000023,2020,Count,GWh,Petroleum Products,Agriculture,126.477
+S12000023,2020,Count,GWh,Petroleum Products,Commercial,3.169
+S12000023,2020,Count,GWh,Petroleum Products,Domestic,76.372
+S12000023,2020,Count,GWh,Petroleum Products,Industrial,60.337
+S12000023,2020,Count,GWh,Petroleum Products,Public Sector,2.324
+S12000023,2020,Count,GWh,Petroleum Products,Rail,0
+S12000023,2020,Count,GWh,Petroleum Products,Road Transport,100.626
+S12000023,2020,Count,GWh,Petroleum Products,All,369.305
 S12000026,2005,Count,GWh,All,All,3417.475
 S12000026,2005,Count,GWh,Bioenergy & Wastes,Domestic,21.36
 S12000026,2005,Count,GWh,Bioenergy & Wastes,Road Transport,1.532
@@ -6920,7 +7362,7 @@ S12000026,2013,Count,GWh,All,Transport,877.493
 S12000026,2013,Count,GWh,Electricity,Domestic,262.183
 S12000026,2013,Count,GWh,Electricity,Industrial & Commercial,314.658
 S12000026,2013,Count,GWh,Electricity,All,576.841
-S12000026,2013,Count,GWh,Gas,Commercial,143.229
+S12000026,2013,Count,GWh,Gas,Commercial,143.23
 S12000026,2013,Count,GWh,Gas,Domestic,511.67
 S12000026,2013,Count,GWh,Gas,Industrial,144.607
 S12000026,2013,Count,GWh,Gas,All,799.507
@@ -7003,7 +7445,7 @@ S12000026,2015,Count,GWh,Petroleum Products,Public Sector,0.575
 S12000026,2015,Count,GWh,Petroleum Products,Rail,0.947
 S12000026,2015,Count,GWh,Petroleum Products,Road Transport,895.925
 S12000026,2015,Count,GWh,Petroleum Products,All,1501.446
-S12000026,2016,Count,GWh,All,All,3146.328
+S12000026,2016,Count,GWh,All,All,3170.193
 S12000026,2016,Count,GWh,Bioenergy & Wastes,Domestic,56.629
 S12000026,2016,Count,GWh,Bioenergy & Wastes,Road Transport,23.424
 S12000026,2016,Count,GWh,Bioenergy & Wastes,All,145.445
@@ -7016,12 +7458,12 @@ S12000026,2016,Count,GWh,Coal,Industrial,62.522
 S12000026,2016,Count,GWh,Coal,Public Sector,0.387
 S12000026,2016,Count,GWh,Coal,Rail,0
 S12000026,2016,Count,GWh,Coal,All,98.75
-S12000026,2016,Count,GWh,All,Domestic,1067.599
-S12000026,2016,Count,GWh,All,Industrial & Commercial,1144.222
+S12000026,2016,Count,GWh,All,Domestic,1081.313
+S12000026,2016,Count,GWh,All,Industrial & Commercial,1154.373
 S12000026,2016,Count,GWh,All,Transport,934.507
-S12000026,2016,Count,GWh,Electricity,Domestic,253.723
-S12000026,2016,Count,GWh,Electricity,Industrial & Commercial,311.078
-S12000026,2016,Count,GWh,Electricity,All,564.801
+S12000026,2016,Count,GWh,Electricity,Domestic,267.437
+S12000026,2016,Count,GWh,Electricity,Industrial & Commercial,321.229
+S12000026,2016,Count,GWh,Electricity,All,588.666
 S12000026,2016,Count,GWh,Gas,Commercial,140.197
 S12000026,2016,Count,GWh,Gas,Domestic,509.535
 S12000026,2016,Count,GWh,Gas,Industrial,147.401
@@ -7139,6 +7581,40 @@ S12000026,2019,Count,GWh,Petroleum Products,Public Sector,0.656
 S12000026,2019,Count,GWh,Petroleum Products,Rail,0.876
 S12000026,2019,Count,GWh,Petroleum Products,Road Transport,877.423
 S12000026,2019,Count,GWh,Petroleum Products,All,1496.28
+S12000026,2020,Count,GWh,All,All,3176.191
+S12000026,2020,Count,GWh,Bioenergy & Wastes,Domestic,63.447
+S12000026,2020,Count,GWh,Bioenergy & Wastes,Road Transport,41.811
+S12000026,2020,Count,GWh,Bioenergy & Wastes,All,266.911
+S12000026,2020,Count,GWh,Bioenergy & Wastes,Commercial,72.59
+S12000026,2020,Count,GWh,Bioenergy & Wastes,Industrial,89.063
+S12000026,2020,Count,GWh,Coal,Agriculture,0
+S12000026,2020,Count,GWh,Coal,Commercial,0.245
+S12000026,2020,Count,GWh,Coal,Domestic,31.91
+S12000026,2020,Count,GWh,Coal,Industrial,40.916
+S12000026,2020,Count,GWh,Coal,Public Sector,0.326
+S12000026,2020,Count,GWh,Coal,Rail,0
+S12000026,2020,Count,GWh,Coal,All,73.398
+S12000026,2020,Count,GWh,All,Domestic,1100.084
+S12000026,2020,Count,GWh,All,Industrial & Commercial,1155.997
+S12000026,2020,Count,GWh,All,Transport,920.11
+S12000026,2020,Count,GWh,Electricity,Domestic,250.523
+S12000026,2020,Count,GWh,Electricity,Industrial & Commercial,268.487
+S12000026,2020,Count,GWh,Electricity,All,519.01
+S12000026,2020,Count,GWh,Gas,Commercial,129.467
+S12000026,2020,Count,GWh,Gas,Domestic,540.872
+S12000026,2020,Count,GWh,Gas,Industrial,132.524
+S12000026,2020,Count,GWh,Gas,All,802.864
+S12000026,2020,Count,GWh,Manufactured Fuels,Domestic,17.632
+S12000026,2020,Count,GWh,Manufactured Fuels,Industrial,0.096
+S12000026,2020,Count,GWh,Manufactured Fuels,All,17.728
+S12000026,2020,Count,GWh,Petroleum Products,Agriculture,290.505
+S12000026,2020,Count,GWh,Petroleum Products,Commercial,3.852
+S12000026,2020,Count,GWh,Petroleum Products,Domestic,195.699
+S12000026,2020,Count,GWh,Petroleum Products,Industrial,127.27
+S12000026,2020,Count,GWh,Petroleum Products,Public Sector,0.656
+S12000026,2020,Count,GWh,Petroleum Products,Rail,0.876
+S12000026,2020,Count,GWh,Petroleum Products,Road Transport,877.423
+S12000026,2020,Count,GWh,Petroleum Products,All,1496.28
 S12000027,2005,Count,GWh,All,All,740.639
 S12000027,2005,Count,GWh,Bioenergy & Wastes,Domestic,5.258
 S12000027,2005,Count,GWh,Bioenergy & Wastes,Road Transport,0.243
@@ -7513,7 +7989,7 @@ S12000027,2015,Count,GWh,Petroleum Products,Public Sector,1.358
 S12000027,2015,Count,GWh,Petroleum Products,Rail,0
 S12000027,2015,Count,GWh,Petroleum Products,Road Transport,147.583
 S12000027,2015,Count,GWh,Petroleum Products,All,413.717
-S12000027,2016,Count,GWh,All,All,659.184
+S12000027,2016,Count,GWh,All,All,671.607
 S12000027,2016,Count,GWh,Bioenergy & Wastes,Domestic,13.939
 S12000027,2016,Count,GWh,Bioenergy & Wastes,Road Transport,3.934
 S12000027,2016,Count,GWh,Bioenergy & Wastes,All,29.41
@@ -7526,12 +8002,12 @@ S12000027,2016,Count,GWh,Coal,Industrial,11.275
 S12000027,2016,Count,GWh,Coal,Public Sector,0.682
 S12000027,2016,Count,GWh,Coal,Rail,0
 S12000027,2016,Count,GWh,Coal,All,20.721
-S12000027,2016,Count,GWh,All,Domestic,190.455
-S12000027,2016,Count,GWh,All,Industrial & Commercial,312.61
+S12000027,2016,Count,GWh,All,Domestic,193.078
+S12000027,2016,Count,GWh,All,Industrial & Commercial,322.409
 S12000027,2016,Count,GWh,All,Transport,156.119
-S12000027,2016,Count,GWh,Electricity,Domestic,99.827
-S12000027,2016,Count,GWh,Electricity,Industrial & Commercial,89.858
-S12000027,2016,Count,GWh,Electricity,All,189.686
+S12000027,2016,Count,GWh,Electricity,Domestic,102.45
+S12000027,2016,Count,GWh,Electricity,Industrial & Commercial,99.658
+S12000027,2016,Count,GWh,Electricity,All,202.108
 S12000027,2016,Count,GWh,Gas,Commercial,0
 S12000027,2016,Count,GWh,Gas,Domestic,0
 S12000027,2016,Count,GWh,Gas,Industrial,0
@@ -7649,6 +8125,40 @@ S12000027,2019,Count,GWh,Petroleum Products,Public Sector,1.496
 S12000027,2019,Count,GWh,Petroleum Products,Rail,0
 S12000027,2019,Count,GWh,Petroleum Products,Road Transport,146.563
 S12000027,2019,Count,GWh,Petroleum Products,All,425.334
+S12000027,2020,Count,GWh,All,All,667.923
+S12000027,2020,Count,GWh,Bioenergy & Wastes,Domestic,15.617
+S12000027,2020,Count,GWh,Bioenergy & Wastes,Road Transport,6.974
+S12000027,2020,Count,GWh,Bioenergy & Wastes,All,46.962
+S12000027,2020,Count,GWh,Bioenergy & Wastes,Commercial,10.944
+S12000027,2020,Count,GWh,Bioenergy & Wastes,Industrial,13.427
+S12000027,2020,Count,GWh,Coal,Agriculture,0
+S12000027,2020,Count,GWh,Coal,Commercial,0.334
+S12000027,2020,Count,GWh,Coal,Domestic,7.587
+S12000027,2020,Count,GWh,Coal,Industrial,6.217
+S12000027,2020,Count,GWh,Coal,Public Sector,0.799
+S12000027,2020,Count,GWh,Coal,Rail,0
+S12000027,2020,Count,GWh,Coal,All,14.938
+S12000027,2020,Count,GWh,All,Domestic,187.439
+S12000027,2020,Count,GWh,All,Industrial & Commercial,326.946
+S12000027,2020,Count,GWh,All,Transport,153.537
+S12000027,2020,Count,GWh,Electricity,Domestic,96.868
+S12000027,2020,Count,GWh,Electricity,Industrial & Commercial,79.491
+S12000027,2020,Count,GWh,Electricity,All,176.359
+S12000027,2020,Count,GWh,Gas,Commercial,0
+S12000027,2020,Count,GWh,Gas,Domestic,0
+S12000027,2020,Count,GWh,Gas,Industrial,0
+S12000027,2020,Count,GWh,Gas,All,0
+S12000027,2020,Count,GWh,Manufactured Fuels,Domestic,4.234
+S12000027,2020,Count,GWh,Manufactured Fuels,Industrial,0.096
+S12000027,2020,Count,GWh,Manufactured Fuels,All,4.33
+S12000027,2020,Count,GWh,Petroleum Products,Agriculture,68.279
+S12000027,2020,Count,GWh,Petroleum Products,Commercial,3.77
+S12000027,2020,Count,GWh,Petroleum Products,Domestic,63.132
+S12000027,2020,Count,GWh,Petroleum Products,Industrial,142.093
+S12000027,2020,Count,GWh,Petroleum Products,Public Sector,1.496
+S12000027,2020,Count,GWh,Petroleum Products,Rail,0
+S12000027,2020,Count,GWh,Petroleum Products,Road Transport,146.563
+S12000027,2020,Count,GWh,Petroleum Products,All,425.334
 S12000028,2005,Count,GWh,All,All,3266.57
 S12000028,2005,Count,GWh,Bioenergy & Wastes,Domestic,11.251
 S12000028,2005,Count,GWh,Bioenergy & Wastes,Road Transport,1.369
@@ -7921,7 +8431,7 @@ S12000028,2012,Count,GWh,Petroleum Products,Public Sector,0.325
 S12000028,2012,Count,GWh,Petroleum Products,Rail,52.492
 S12000028,2012,Count,GWh,Petroleum Products,Road Transport,732.167
 S12000028,2012,Count,GWh,Petroleum Products,All,1096.89
-S12000028,2013,Count,GWh,All,All,3281.3
+S12000028,2013,Count,GWh,All,All,3281.301
 S12000028,2013,Count,GWh,Bioenergy & Wastes,Domestic,25.832
 S12000028,2013,Count,GWh,Bioenergy & Wastes,Road Transport,21.693
 S12000028,2013,Count,GWh,Bioenergy & Wastes,All,313.099
@@ -7955,7 +8465,7 @@ S12000028,2013,Count,GWh,Petroleum Products,Public Sector,0.124
 S12000028,2013,Count,GWh,Petroleum Products,Rail,51.604
 S12000028,2013,Count,GWh,Petroleum Products,Road Transport,724.019
 S12000028,2013,Count,GWh,Petroleum Products,All,1079.761
-S12000028,2014,Count,GWh,All,All,3014.618
+S12000028,2014,Count,GWh,All,All,3014.619
 S12000028,2014,Count,GWh,Bioenergy & Wastes,Domestic,24.537
 S12000028,2014,Count,GWh,Bioenergy & Wastes,Road Transport,24.44
 S12000028,2014,Count,GWh,Bioenergy & Wastes,All,54.262
@@ -8023,7 +8533,7 @@ S12000028,2015,Count,GWh,Petroleum Products,Public Sector,0.321
 S12000028,2015,Count,GWh,Petroleum Products,Rail,52.223
 S12000028,2015,Count,GWh,Petroleum Products,Road Transport,747.862
 S12000028,2015,Count,GWh,Petroleum Products,All,1129.613
-S12000028,2016,Count,GWh,All,All,2988.269
+S12000028,2016,Count,GWh,All,All,3015.27
 S12000028,2016,Count,GWh,Bioenergy & Wastes,Domestic,29.829
 S12000028,2016,Count,GWh,Bioenergy & Wastes,Road Transport,19.691
 S12000028,2016,Count,GWh,Bioenergy & Wastes,All,59.017
@@ -8036,12 +8546,12 @@ S12000028,2016,Count,GWh,Coal,Industrial,11.007
 S12000028,2016,Count,GWh,Coal,Public Sector,0.131
 S12000028,2016,Count,GWh,Coal,Rail,0
 S12000028,2016,Count,GWh,Coal,All,21.125
-S12000028,2016,Count,GWh,All,Domestic,978.202
-S12000028,2016,Count,GWh,All,Industrial & Commercial,1184.474
+S12000028,2016,Count,GWh,All,Domestic,990.392
+S12000028,2016,Count,GWh,All,Industrial & Commercial,1199.285
 S12000028,2016,Count,GWh,All,Transport,825.593
-S12000028,2016,Count,GWh,Electricity,Domestic,205.922
-S12000028,2016,Count,GWh,Electricity,Industrial & Commercial,271.955
-S12000028,2016,Count,GWh,Electricity,All,477.877
+S12000028,2016,Count,GWh,Electricity,Domestic,218.111
+S12000028,2016,Count,GWh,Electricity,Industrial & Commercial,286.766
+S12000028,2016,Count,GWh,Electricity,All,504.878
 S12000028,2016,Count,GWh,Gas,Commercial,300.849
 S12000028,2016,Count,GWh,Gas,Domestic,662.366
 S12000028,2016,Count,GWh,Gas,Industrial,316.308
@@ -8159,6 +8669,40 @@ S12000028,2019,Count,GWh,Petroleum Products,Public Sector,0.331
 S12000028,2019,Count,GWh,Petroleum Products,Rail,43.595
 S12000028,2019,Count,GWh,Petroleum Products,Road Transport,734.966
 S12000028,2019,Count,GWh,Petroleum Products,All,1104.483
+S12000028,2020,Count,GWh,All,All,2941.823
+S12000028,2020,Count,GWh,Bioenergy & Wastes,Domestic,33.421
+S12000028,2020,Count,GWh,Bioenergy & Wastes,Road Transport,34.588
+S12000028,2020,Count,GWh,Bioenergy & Wastes,All,84.673
+S12000028,2020,Count,GWh,Bioenergy & Wastes,Commercial,7.483
+S12000028,2020,Count,GWh,Bioenergy & Wastes,Industrial,9.181
+S12000028,2020,Count,GWh,Coal,Agriculture,0
+S12000028,2020,Count,GWh,Coal,Commercial,0.15
+S12000028,2020,Count,GWh,Coal,Domestic,8.723
+S12000028,2020,Count,GWh,Coal,Industrial,4.662
+S12000028,2020,Count,GWh,Coal,Public Sector,0.12
+S12000028,2020,Count,GWh,Coal,Rail,0
+S12000028,2020,Count,GWh,Coal,All,13.654
+S12000028,2020,Count,GWh,All,Domestic,1012.814
+S12000028,2020,Count,GWh,All,Industrial & Commercial,1115.861
+S12000028,2020,Count,GWh,All,Transport,813.148
+S12000028,2020,Count,GWh,Electricity,Domestic,200.804
+S12000028,2020,Count,GWh,Electricity,Industrial & Commercial,229.685
+S12000028,2020,Count,GWh,Electricity,All,430.488
+S12000028,2020,Count,GWh,Gas,Commercial,297.786
+S12000028,2020,Count,GWh,Gas,Domestic,698.825
+S12000028,2020,Count,GWh,Gas,Industrial,304.818
+S12000028,2020,Count,GWh,Gas,All,1301.429
+S12000028,2020,Count,GWh,Manufactured Fuels,Domestic,6.09
+S12000028,2020,Count,GWh,Manufactured Fuels,Industrial,1.006
+S12000028,2020,Count,GWh,Manufactured Fuels,All,7.096
+S12000028,2020,Count,GWh,Petroleum Products,Agriculture,107.433
+S12000028,2020,Count,GWh,Petroleum Products,Commercial,2.889
+S12000028,2020,Count,GWh,Petroleum Products,Domestic,64.952
+S12000028,2020,Count,GWh,Petroleum Products,Industrial,150.317
+S12000028,2020,Count,GWh,Petroleum Products,Public Sector,0.331
+S12000028,2020,Count,GWh,Petroleum Products,Rail,43.595
+S12000028,2020,Count,GWh,Petroleum Products,Road Transport,734.966
+S12000028,2020,Count,GWh,Petroleum Products,All,1104.483
 S12000029,2005,Count,GWh,All,All,8042.556
 S12000029,2005,Count,GWh,Bioenergy & Wastes,Domestic,28.136
 S12000029,2005,Count,GWh,Bioenergy & Wastes,Road Transport,4.041
@@ -8431,7 +8975,7 @@ S12000029,2012,Count,GWh,Petroleum Products,Public Sector,1.013
 S12000029,2012,Count,GWh,Petroleum Products,Rail,12.162
 S12000029,2012,Count,GWh,Petroleum Products,Road Transport,2364.394
 S12000029,2012,Count,GWh,Petroleum Products,All,2892.658
-S12000029,2013,Count,GWh,All,All,6915.529
+S12000029,2013,Count,GWh,All,All,6915.53
 S12000029,2013,Count,GWh,Bioenergy & Wastes,Domestic,64.596
 S12000029,2013,Count,GWh,Bioenergy & Wastes,Road Transport,69.269
 S12000029,2013,Count,GWh,Bioenergy & Wastes,All,136.061
@@ -8451,9 +8995,9 @@ S12000029,2013,Count,GWh,Electricity,Domestic,630.829
 S12000029,2013,Count,GWh,Electricity,Industrial & Commercial,646.187
 S12000029,2013,Count,GWh,Electricity,All,1277.016
 S12000029,2013,Count,GWh,Gas,Commercial,351.837
-S12000029,2013,Count,GWh,Gas,Domestic,1852.989
+S12000029,2013,Count,GWh,Gas,Domestic,1852.99
 S12000029,2013,Count,GWh,Gas,Industrial,355.221
-S12000029,2013,Count,GWh,Gas,All,2560.047
+S12000029,2013,Count,GWh,Gas,All,2560.048
 S12000029,2013,Count,GWh,Manufactured Fuels,Domestic,16.632
 S12000029,2013,Count,GWh,Manufactured Fuels,Industrial,12.765
 S12000029,2013,Count,GWh,Manufactured Fuels,All,29.397
@@ -8479,7 +9023,7 @@ S12000029,2014,Count,GWh,Coal,Public Sector,4.205
 S12000029,2014,Count,GWh,Coal,Rail,0
 S12000029,2014,Count,GWh,Coal,All,51.444
 S12000029,2014,Count,GWh,All,Domestic,2670.511
-S12000029,2014,Count,GWh,All,Industrial & Commercial,1720.373
+S12000029,2014,Count,GWh,All,Industrial & Commercial,1720.372
 S12000029,2014,Count,GWh,All,Transport,2461.577
 S12000029,2014,Count,GWh,Electricity,Domestic,622.762
 S12000029,2014,Count,GWh,Electricity,Industrial & Commercial,609.61
@@ -8533,7 +9077,7 @@ S12000029,2015,Count,GWh,Petroleum Products,Public Sector,0.922
 S12000029,2015,Count,GWh,Petroleum Products,Rail,12.528
 S12000029,2015,Count,GWh,Petroleum Products,Road Transport,2386.848
 S12000029,2015,Count,GWh,Petroleum Products,All,2931.688
-S12000029,2016,Count,GWh,All,All,6750.772
+S12000029,2016,Count,GWh,All,All,6851.717
 S12000029,2016,Count,GWh,Bioenergy & Wastes,Domestic,74.593
 S12000029,2016,Count,GWh,Bioenergy & Wastes,Road Transport,61.479
 S12000029,2016,Count,GWh,Bioenergy & Wastes,All,151.385
@@ -8546,12 +9090,12 @@ S12000029,2016,Count,GWh,Coal,Industrial,14.333
 S12000029,2016,Count,GWh,Coal,Public Sector,0.539
 S12000029,2016,Count,GWh,Coal,Rail,0
 S12000029,2016,Count,GWh,Coal,All,37.963
-S12000029,2016,Count,GWh,All,Domestic,2662.449
-S12000029,2016,Count,GWh,All,Industrial & Commercial,1592.016
+S12000029,2016,Count,GWh,All,Domestic,2698.155
+S12000029,2016,Count,GWh,All,Industrial & Commercial,1657.255
 S12000029,2016,Count,GWh,All,Transport,2496.307
-S12000029,2016,Count,GWh,Electricity,Domestic,588.374
-S12000029,2016,Count,GWh,Electricity,Industrial & Commercial,578.149
-S12000029,2016,Count,GWh,Electricity,All,1166.523
+S12000029,2016,Count,GWh,Electricity,Domestic,624.08
+S12000029,2016,Count,GWh,Electricity,Industrial & Commercial,643.388
+S12000029,2016,Count,GWh,Electricity,All,1267.468
 S12000029,2016,Count,GWh,Gas,Commercial,281.036
 S12000029,2016,Count,GWh,Gas,Domestic,1842.299
 S12000029,2016,Count,GWh,Gas,Industrial,295.477
@@ -8669,6 +9213,40 @@ S12000029,2019,Count,GWh,Petroleum Products,Public Sector,0.985
 S12000029,2019,Count,GWh,Petroleum Products,Rail,11.65
 S12000029,2019,Count,GWh,Petroleum Products,Road Transport,2430.154
 S12000029,2019,Count,GWh,Petroleum Products,All,2988.757
+S12000029,2020,Count,GWh,All,All,6905.576
+S12000029,2020,Count,GWh,Bioenergy & Wastes,Domestic,83.574
+S12000029,2020,Count,GWh,Bioenergy & Wastes,Road Transport,117.615
+S12000029,2020,Count,GWh,Bioenergy & Wastes,All,237.493
+S12000029,2020,Count,GWh,Bioenergy & Wastes,Commercial,16.302
+S12000029,2020,Count,GWh,Bioenergy & Wastes,Industrial,20.002
+S12000029,2020,Count,GWh,Coal,Agriculture,0
+S12000029,2020,Count,GWh,Coal,Commercial,0.17
+S12000029,2020,Count,GWh,Coal,Domestic,20.546
+S12000029,2020,Count,GWh,Coal,Industrial,9.111
+S12000029,2020,Count,GWh,Coal,Public Sector,0.489
+S12000029,2020,Count,GWh,Coal,Rail,0
+S12000029,2020,Count,GWh,Coal,All,30.317
+S12000029,2020,Count,GWh,All,Domestic,2778.676
+S12000029,2020,Count,GWh,All,Industrial & Commercial,1567.482
+S12000029,2020,Count,GWh,All,Transport,2559.418
+S12000029,2020,Count,GWh,Electricity,Domestic,582.154
+S12000029,2020,Count,GWh,Electricity,Industrial & Commercial,499.429
+S12000029,2020,Count,GWh,Electricity,All,1081.584
+S12000029,2020,Count,GWh,Gas,Commercial,291.931
+S12000029,2020,Count,GWh,Gas,Domestic,1957.015
+S12000029,2020,Count,GWh,Gas,Industrial,298.825
+S12000029,2020,Count,GWh,Gas,All,2547.771
+S12000029,2020,Count,GWh,Manufactured Fuels,Domestic,14.728
+S12000029,2020,Count,GWh,Manufactured Fuels,Industrial,4.928
+S12000029,2020,Count,GWh,Manufactured Fuels,All,19.655
+S12000029,2020,Count,GWh,Petroleum Products,Agriculture,128.425
+S12000029,2020,Count,GWh,Petroleum Products,Commercial,2.735
+S12000029,2020,Count,GWh,Petroleum Products,Domestic,120.659
+S12000029,2020,Count,GWh,Petroleum Products,Industrial,294.149
+S12000029,2020,Count,GWh,Petroleum Products,Public Sector,0.985
+S12000029,2020,Count,GWh,Petroleum Products,Rail,11.65
+S12000029,2020,Count,GWh,Petroleum Products,Road Transport,2430.154
+S12000029,2020,Count,GWh,Petroleum Products,All,2988.757
 S12000030,2005,Count,GWh,All,All,3565.692
 S12000030,2005,Count,GWh,Bioenergy & Wastes,Domestic,9.309
 S12000030,2005,Count,GWh,Bioenergy & Wastes,Road Transport,1.697
@@ -8941,7 +9519,7 @@ S12000030,2012,Count,GWh,Petroleum Products,Public Sector,1.017
 S12000030,2012,Count,GWh,Petroleum Products,Rail,23.062
 S12000030,2012,Count,GWh,Petroleum Products,Road Transport,917.309
 S12000030,2012,Count,GWh,Petroleum Products,All,1140.348
-S12000030,2013,Count,GWh,All,All,3491.936
+S12000030,2013,Count,GWh,All,All,3491.937
 S12000030,2013,Count,GWh,Bioenergy & Wastes,Domestic,21.371
 S12000030,2013,Count,GWh,Bioenergy & Wastes,Road Transport,26.94
 S12000030,2013,Count,GWh,Bioenergy & Wastes,All,629.545
@@ -8958,7 +9536,7 @@ S12000030,2013,Count,GWh,All,Domestic,791.543
 S12000030,2013,Count,GWh,All,Industrial & Commercial,1745.614
 S12000030,2013,Count,GWh,All,Transport,954.779
 S12000030,2013,Count,GWh,Electricity,Domestic,188.219
-S12000030,2013,Count,GWh,Electricity,Industrial & Commercial,300.641
+S12000030,2013,Count,GWh,Electricity,Industrial & Commercial,300.642
 S12000030,2013,Count,GWh,Electricity,All,488.86
 S12000030,2013,Count,GWh,Gas,Commercial,366.626
 S12000030,2013,Count,GWh,Gas,Domestic,494.091
@@ -9043,7 +9621,7 @@ S12000030,2015,Count,GWh,Petroleum Products,Public Sector,1.012
 S12000030,2015,Count,GWh,Petroleum Products,Rail,23.588
 S12000030,2015,Count,GWh,Petroleum Products,Road Transport,944.481
 S12000030,2015,Count,GWh,Petroleum Products,All,1167.551
-S12000030,2016,Count,GWh,All,All,3587.694
+S12000030,2016,Count,GWh,All,All,3588.527
 S12000030,2016,Count,GWh,Bioenergy & Wastes,Domestic,24.679
 S12000030,2016,Count,GWh,Bioenergy & Wastes,Road Transport,24.994
 S12000030,2016,Count,GWh,Bioenergy & Wastes,All,653.249
@@ -9056,12 +9634,12 @@ S12000030,2016,Count,GWh,Coal,Industrial,4.335
 S12000030,2016,Count,GWh,Coal,Public Sector,0.24
 S12000030,2016,Count,GWh,Coal,Rail,0
 S12000030,2016,Count,GWh,Coal,All,12.989
-S12000030,2016,Count,GWh,All,Domestic,775.826
-S12000030,2016,Count,GWh,All,Industrial & Commercial,1798.018
+S12000030,2016,Count,GWh,All,Domestic,782.25
+S12000030,2016,Count,GWh,All,Industrial & Commercial,1792.427
 S12000030,2016,Count,GWh,All,Transport,1013.85
-S12000030,2016,Count,GWh,Electricity,Domestic,182.774
-S12000030,2016,Count,GWh,Electricity,Industrial & Commercial,291.259
-S12000030,2016,Count,GWh,Electricity,All,474.032
+S12000030,2016,Count,GWh,Electricity,Domestic,189.197
+S12000030,2016,Count,GWh,Electricity,Industrial & Commercial,285.667
+S12000030,2016,Count,GWh,Electricity,All,474.865
 S12000030,2016,Count,GWh,Gas,Commercial,372.35
 S12000030,2016,Count,GWh,Gas,Domestic,491.363
 S12000030,2016,Count,GWh,Gas,Industrial,391.483
@@ -9179,6 +9757,40 @@ S12000030,2019,Count,GWh,Petroleum Products,Public Sector,1.024
 S12000030,2019,Count,GWh,Petroleum Products,Rail,21.771
 S12000030,2019,Count,GWh,Petroleum Products,Road Transport,935.989
 S12000030,2019,Count,GWh,Petroleum Products,All,1158.517
+S12000030,2020,Count,GWh,All,All,3605.329
+S12000030,2020,Count,GWh,Bioenergy & Wastes,Domestic,27.65
+S12000030,2020,Count,GWh,Bioenergy & Wastes,Road Transport,44.3
+S12000030,2020,Count,GWh,Bioenergy & Wastes,All,787.5
+S12000030,2020,Count,GWh,Bioenergy & Wastes,Commercial,321.318
+S12000030,2020,Count,GWh,Bioenergy & Wastes,Industrial,394.232
+S12000030,2020,Count,GWh,Coal,Agriculture,0
+S12000030,2020,Count,GWh,Coal,Commercial,0.2
+S12000030,2020,Count,GWh,Coal,Domestic,7.23
+S12000030,2020,Count,GWh,Coal,Industrial,1.941
+S12000030,2020,Count,GWh,Coal,Public Sector,0.197
+S12000030,2020,Count,GWh,Coal,Rail,0
+S12000030,2020,Count,GWh,Coal,All,9.567
+S12000030,2020,Count,GWh,All,Domestic,798.007
+S12000030,2020,Count,GWh,All,Industrial & Commercial,1805.261
+S12000030,2020,Count,GWh,All,Transport,1002.06
+S12000030,2020,Count,GWh,Electricity,Domestic,179.812
+S12000030,2020,Count,GWh,Electricity,Industrial & Commercial,246.982
+S12000030,2020,Count,GWh,Electricity,All,426.794
+S12000030,2020,Count,GWh,Gas,Commercial,348.078
+S12000030,2020,Count,GWh,Gas,Domestic,513.195
+S12000030,2020,Count,GWh,Gas,Industrial,356.298
+S12000030,2020,Count,GWh,Gas,All,1217.572
+S12000030,2020,Count,GWh,Manufactured Fuels,Domestic,5.043
+S12000030,2020,Count,GWh,Manufactured Fuels,Industrial,0.335
+S12000030,2020,Count,GWh,Manufactured Fuels,All,5.379
+S12000030,2020,Count,GWh,Petroleum Products,Agriculture,66.327
+S12000030,2020,Count,GWh,Petroleum Products,Commercial,4.054
+S12000030,2020,Count,GWh,Petroleum Products,Domestic,65.077
+S12000030,2020,Count,GWh,Petroleum Products,Industrial,64.275
+S12000030,2020,Count,GWh,Petroleum Products,Public Sector,1.024
+S12000030,2020,Count,GWh,Petroleum Products,Rail,21.771
+S12000030,2020,Count,GWh,Petroleum Products,Road Transport,935.989
+S12000030,2020,Count,GWh,Petroleum Products,All,1158.517
 S12000033,2005,Count,GWh,All,All,6313.902
 S12000033,2005,Count,GWh,Bioenergy & Wastes,Domestic,16.354
 S12000033,2005,Count,GWh,Bioenergy & Wastes,Road Transport,2.014
@@ -9451,7 +10063,7 @@ S12000033,2012,Count,GWh,Petroleum Products,Public Sector,17.762
 S12000033,2012,Count,GWh,Petroleum Products,Rail,6.822
 S12000033,2012,Count,GWh,Petroleum Products,Road Transport,999.875
 S12000033,2012,Count,GWh,Petroleum Products,All,1388.886
-S12000033,2013,Count,GWh,All,All,5059.765
+S12000033,2013,Count,GWh,All,All,5059.766
 S12000033,2013,Count,GWh,Bioenergy & Wastes,Domestic,37.546
 S12000033,2013,Count,GWh,Bioenergy & Wastes,Road Transport,29.763
 S12000033,2013,Count,GWh,Bioenergy & Wastes,All,77.886
@@ -9464,14 +10076,14 @@ S12000033,2013,Count,GWh,Coal,Industrial,8.443
 S12000033,2013,Count,GWh,Coal,Public Sector,12.528
 S12000033,2013,Count,GWh,Coal,Rail,0
 S12000033,2013,Count,GWh,Coal,All,26.871
-S12000033,2013,Count,GWh,All,Domestic,1864.071
+S12000033,2013,Count,GWh,All,Domestic,1864.072
 S12000033,2013,Count,GWh,All,Industrial & Commercial,2174.749
 S12000033,2013,Count,GWh,All,Transport,1020.945
 S12000033,2013,Count,GWh,Electricity,Domestic,444.895
 S12000033,2013,Count,GWh,Electricity,Industrial & Commercial,815.663
 S12000033,2013,Count,GWh,Electricity,All,1260.558
 S12000033,2013,Count,GWh,Gas,Commercial,492.077
-S12000033,2013,Count,GWh,Gas,Domestic,1348.967
+S12000033,2013,Count,GWh,Gas,Domestic,1348.968
 S12000033,2013,Count,GWh,Gas,Industrial,496.811
 S12000033,2013,Count,GWh,Gas,All,2337.855
 S12000033,2013,Count,GWh,Manufactured Fuels,Domestic,4.694
@@ -9553,7 +10165,7 @@ S12000033,2015,Count,GWh,Petroleum Products,Public Sector,18.291
 S12000033,2015,Count,GWh,Petroleum Products,Rail,6.958
 S12000033,2015,Count,GWh,Petroleum Products,Road Transport,993.609
 S12000033,2015,Count,GWh,Petroleum Products,All,1403.118
-S12000033,2016,Count,GWh,All,All,4966.815
+S12000033,2016,Count,GWh,All,All,5049.534
 S12000033,2016,Count,GWh,Bioenergy & Wastes,Domestic,43.357
 S12000033,2016,Count,GWh,Bioenergy & Wastes,Road Transport,26.358
 S12000033,2016,Count,GWh,Bioenergy & Wastes,All,79.338
@@ -9566,12 +10178,12 @@ S12000033,2016,Count,GWh,Coal,Industrial,5.238
 S12000033,2016,Count,GWh,Coal,Public Sector,1.728
 S12000033,2016,Count,GWh,Coal,Rail,0
 S12000033,2016,Count,GWh,Coal,All,12.023
-S12000033,2016,Count,GWh,All,Domestic,1830.184
-S12000033,2016,Count,GWh,All,Industrial & Commercial,2113.856
+S12000033,2016,Count,GWh,All,Domestic,1852.316
+S12000033,2016,Count,GWh,All,Industrial & Commercial,2174.443
 S12000033,2016,Count,GWh,All,Transport,1022.775
-S12000033,2016,Count,GWh,Electricity,Domestic,405.173
-S12000033,2016,Count,GWh,Electricity,Industrial & Commercial,746.179
-S12000033,2016,Count,GWh,Electricity,All,1151.352
+S12000033,2016,Count,GWh,Electricity,Domestic,427.305
+S12000033,2016,Count,GWh,Electricity,Industrial & Commercial,806.766
+S12000033,2016,Count,GWh,Electricity,All,1234.071
 S12000033,2016,Count,GWh,Gas,Commercial,473.913
 S12000033,2016,Count,GWh,Gas,Domestic,1350.934
 S12000033,2016,Count,GWh,Gas,Industrial,498.265
@@ -9689,6 +10301,40 @@ S12000033,2019,Count,GWh,Petroleum Products,Public Sector,17.251
 S12000033,2019,Count,GWh,Petroleum Products,Rail,6.2
 S12000033,2019,Count,GWh,Petroleum Products,Road Transport,1084.974
 S12000033,2019,Count,GWh,Petroleum Products,All,1510.293
+S12000033,2020,Count,GWh,All,All,4967.815
+S12000033,2020,Count,GWh,Bioenergy & Wastes,Domestic,48.577
+S12000033,2020,Count,GWh,Bioenergy & Wastes,Road Transport,50.219
+S12000033,2020,Count,GWh,Bioenergy & Wastes,All,118.825
+S12000033,2020,Count,GWh,Bioenergy & Wastes,Commercial,8.994
+S12000033,2020,Count,GWh,Bioenergy & Wastes,Industrial,11.035
+S12000033,2020,Count,GWh,Coal,Agriculture,0
+S12000033,2020,Count,GWh,Coal,Commercial,0.52
+S12000033,2020,Count,GWh,Coal,Domestic,4.109
+S12000033,2020,Count,GWh,Coal,Industrial,3.232
+S12000033,2020,Count,GWh,Coal,Public Sector,2.263
+S12000033,2020,Count,GWh,Coal,Rail,0
+S12000033,2020,Count,GWh,Coal,All,10.124
+S12000033,2020,Count,GWh,All,Domestic,1852.495
+S12000033,2020,Count,GWh,All,Industrial & Commercial,1973.926
+S12000033,2020,Count,GWh,All,Transport,1141.394
+S12000033,2020,Count,GWh,Electricity,Domestic,387.811
+S12000033,2020,Count,GWh,Electricity,Industrial & Commercial,576.9
+S12000033,2020,Count,GWh,Electricity,All,964.712
+S12000033,2020,Count,GWh,Gas,Commercial,477.526
+S12000033,2020,Count,GWh,Gas,Domestic,1385.275
+S12000033,2020,Count,GWh,Gas,Industrial,488.804
+S12000033,2020,Count,GWh,Gas,All,2351.605
+S12000033,2020,Count,GWh,Manufactured Fuels,Domestic,5.462
+S12000033,2020,Count,GWh,Manufactured Fuels,Industrial,6.795
+S12000033,2020,Count,GWh,Manufactured Fuels,All,12.257
+S12000033,2020,Count,GWh,Petroleum Products,Agriculture,11.943
+S12000033,2020,Count,GWh,Petroleum Products,Commercial,1.538
+S12000033,2020,Count,GWh,Petroleum Products,Domestic,21.261
+S12000033,2020,Count,GWh,Petroleum Products,Industrial,367.126
+S12000033,2020,Count,GWh,Petroleum Products,Public Sector,17.251
+S12000033,2020,Count,GWh,Petroleum Products,Rail,6.2
+S12000033,2020,Count,GWh,Petroleum Products,Road Transport,1084.974
+S12000033,2020,Count,GWh,Petroleum Products,All,1510.293
 S12000034,2005,Count,GWh,All,All,7401.951
 S12000034,2005,Count,GWh,Bioenergy & Wastes,Domestic,45.154
 S12000034,2005,Count,GWh,Bioenergy & Wastes,Road Transport,3.755
@@ -9961,7 +10607,7 @@ S12000034,2012,Count,GWh,Petroleum Products,Public Sector,2.046
 S12000034,2012,Count,GWh,Petroleum Products,Rail,20.701
 S12000034,2012,Count,GWh,Petroleum Products,Road Transport,2045.55
 S12000034,2012,Count,GWh,Petroleum Products,All,3398.313
-S12000034,2013,Count,GWh,All,All,6401.123
+S12000034,2013,Count,GWh,All,All,6401.124
 S12000034,2013,Count,GWh,Bioenergy & Wastes,Domestic,103.667
 S12000034,2013,Count,GWh,Bioenergy & Wastes,Road Transport,62.105
 S12000034,2013,Count,GWh,Bioenergy & Wastes,All,169.343
@@ -9974,11 +10620,11 @@ S12000034,2013,Count,GWh,Coal,Industrial,45.812
 S12000034,2013,Count,GWh,Coal,Public Sector,10.083
 S12000034,2013,Count,GWh,Coal,Rail,0
 S12000034,2013,Count,GWh,Coal,All,114.557
-S12000034,2013,Count,GWh,All,Domestic,2457.388
+S12000034,2013,Count,GWh,All,Domestic,2457.389
 S12000034,2013,Count,GWh,All,Industrial & Commercial,1778.813
 S12000034,2013,Count,GWh,All,Transport,2164.922
 S12000034,2013,Count,GWh,Electricity,Domestic,596.249
-S12000034,2013,Count,GWh,Electricity,Industrial & Commercial,665.097
+S12000034,2013,Count,GWh,Electricity,Industrial & Commercial,665.098
 S12000034,2013,Count,GWh,Electricity,All,1261.347
 S12000034,2013,Count,GWh,Gas,Commercial,182.464
 S12000034,2013,Count,GWh,Gas,Domestic,1029.062
@@ -10063,7 +10709,7 @@ S12000034,2015,Count,GWh,Petroleum Products,Public Sector,2.031
 S12000034,2015,Count,GWh,Petroleum Products,Rail,21.303
 S12000034,2015,Count,GWh,Petroleum Products,Road Transport,2221.152
 S12000034,2015,Count,GWh,Petroleum Products,All,3585.312
-S12000034,2016,Count,GWh,All,All,6554.307
+S12000034,2016,Count,GWh,All,All,6596.534
 S12000034,2016,Count,GWh,Bioenergy & Wastes,Domestic,119.71
 S12000034,2016,Count,GWh,Bioenergy & Wastes,Road Transport,57.788
 S12000034,2016,Count,GWh,Bioenergy & Wastes,All,201.931
@@ -10076,12 +10722,12 @@ S12000034,2016,Count,GWh,Coal,Industrial,33.286
 S12000034,2016,Count,GWh,Coal,Public Sector,1.396
 S12000034,2016,Count,GWh,Coal,Rail,0
 S12000034,2016,Count,GWh,Coal,All,84.767
-S12000034,2016,Count,GWh,All,Domestic,2396.484
-S12000034,2016,Count,GWh,All,Industrial & Commercial,1844.058
+S12000034,2016,Count,GWh,All,Domestic,2418.831
+S12000034,2016,Count,GWh,All,Industrial & Commercial,1863.937
 S12000034,2016,Count,GWh,All,Transport,2313.765
-S12000034,2016,Count,GWh,Electricity,Domestic,575.251
-S12000034,2016,Count,GWh,Electricity,Industrial & Commercial,653.609
-S12000034,2016,Count,GWh,Electricity,All,1228.86
+S12000034,2016,Count,GWh,Electricity,Domestic,597.598
+S12000034,2016,Count,GWh,Electricity,Industrial & Commercial,673.489
+S12000034,2016,Count,GWh,Electricity,All,1271.087
 S12000034,2016,Count,GWh,Gas,Commercial,169.221
 S12000034,2016,Count,GWh,Gas,Domestic,1050.935
 S12000034,2016,Count,GWh,Gas,Industrial,177.916
@@ -10199,6 +10845,40 @@ S12000034,2019,Count,GWh,Petroleum Products,Public Sector,2.087
 S12000034,2019,Count,GWh,Petroleum Products,Rail,19.573
 S12000034,2019,Count,GWh,Petroleum Products,Road Transport,2262.088
 S12000034,2019,Count,GWh,Petroleum Products,All,3643.898
+S12000034,2020,Count,GWh,All,All,6701.05
+S12000034,2020,Count,GWh,Bioenergy & Wastes,Domestic,134.124
+S12000034,2020,Count,GWh,Bioenergy & Wastes,Road Transport,107.436
+S12000034,2020,Count,GWh,Bioenergy & Wastes,All,289.969
+S12000034,2020,Count,GWh,Bioenergy & Wastes,Commercial,21.739
+S12000034,2020,Count,GWh,Bioenergy & Wastes,Industrial,26.671
+S12000034,2020,Count,GWh,Coal,Agriculture,0
+S12000034,2020,Count,GWh,Coal,Commercial,0.865
+S12000034,2020,Count,GWh,Coal,Domestic,44.244
+S12000034,2020,Count,GWh,Coal,Industrial,14.802
+S12000034,2020,Count,GWh,Coal,Public Sector,1.571
+S12000034,2020,Count,GWh,Coal,Rail,0
+S12000034,2020,Count,GWh,Coal,All,61.482
+S12000034,2020,Count,GWh,All,Domestic,2437.799
+S12000034,2020,Count,GWh,All,Industrial & Commercial,1874.154
+S12000034,2020,Count,GWh,All,Transport,2389.097
+S12000034,2020,Count,GWh,Electricity,Domestic,564.37
+S12000034,2020,Count,GWh,Electricity,Industrial & Commercial,634.078
+S12000034,2020,Count,GWh,Electricity,All,1198.448
+S12000034,2020,Count,GWh,Gas,Commercial,187.954
+S12000034,2020,Count,GWh,Gas,Domestic,1093.168
+S12000034,2020,Count,GWh,Gas,Industrial,192.392
+S12000034,2020,Count,GWh,Gas,All,1473.513
+S12000034,2020,Count,GWh,Manufactured Fuels,Domestic,28.093
+S12000034,2020,Count,GWh,Manufactured Fuels,Industrial,5.646
+S12000034,2020,Count,GWh,Manufactured Fuels,All,33.739
+S12000034,2020,Count,GWh,Petroleum Products,Agriculture,370.432
+S12000034,2020,Count,GWh,Petroleum Products,Commercial,8.66
+S12000034,2020,Count,GWh,Petroleum Products,Domestic,573.801
+S12000034,2020,Count,GWh,Petroleum Products,Industrial,407.258
+S12000034,2020,Count,GWh,Petroleum Products,Public Sector,2.087
+S12000034,2020,Count,GWh,Petroleum Products,Rail,19.573
+S12000034,2020,Count,GWh,Petroleum Products,Road Transport,2262.088
+S12000034,2020,Count,GWh,Petroleum Products,All,3643.898
 S12000035,2005,Count,GWh,All,All,2618.537
 S12000035,2005,Count,GWh,Bioenergy & Wastes,Domestic,19.441
 S12000035,2005,Count,GWh,Bioenergy & Wastes,Road Transport,1.183
@@ -10485,7 +11165,7 @@ S12000035,2013,Count,GWh,Coal,Public Sector,7.97
 S12000035,2013,Count,GWh,Coal,Rail,0
 S12000035,2013,Count,GWh,Coal,All,83.467
 S12000035,2013,Count,GWh,All,Domestic,860.539
-S12000035,2013,Count,GWh,All,Industrial & Commercial,762.298
+S12000035,2013,Count,GWh,All,Industrial & Commercial,762.299
 S12000035,2013,Count,GWh,All,Transport,638.362
 S12000035,2013,Count,GWh,Electricity,Domestic,280.148
 S12000035,2013,Count,GWh,Electricity,Industrial & Commercial,237.765
@@ -10573,7 +11253,7 @@ S12000035,2015,Count,GWh,Petroleum Products,Public Sector,52.902
 S12000035,2015,Count,GWh,Petroleum Products,Rail,5.538
 S12000035,2015,Count,GWh,Petroleum Products,Road Transport,647.97
 S12000035,2015,Count,GWh,Petroleum Products,All,1156.589
-S12000035,2016,Count,GWh,All,All,2278.101
+S12000035,2016,Count,GWh,All,All,2293.612
 S12000035,2016,Count,GWh,Bioenergy & Wastes,Domestic,51.542
 S12000035,2016,Count,GWh,Bioenergy & Wastes,Road Transport,17.054
 S12000035,2016,Count,GWh,Bioenergy & Wastes,All,90.941
@@ -10586,12 +11266,12 @@ S12000035,2016,Count,GWh,Coal,Industrial,27.656
 S12000035,2016,Count,GWh,Coal,Public Sector,1.089
 S12000035,2016,Count,GWh,Coal,Rail,0
 S12000035,2016,Count,GWh,Coal,All,62.368
-S12000035,2016,Count,GWh,All,Domestic,818.709
-S12000035,2016,Count,GWh,All,Industrial & Commercial,775.378
+S12000035,2016,Count,GWh,All,Domestic,824.072
+S12000035,2016,Count,GWh,All,Industrial & Commercial,785.527
 S12000035,2016,Count,GWh,All,Transport,684.013
-S12000035,2016,Count,GWh,Electricity,Domestic,272.97
-S12000035,2016,Count,GWh,Electricity,Industrial & Commercial,226.178
-S12000035,2016,Count,GWh,Electricity,All,499.148
+S12000035,2016,Count,GWh,Electricity,Domestic,278.332
+S12000035,2016,Count,GWh,Electricity,Industrial & Commercial,236.327
+S12000035,2016,Count,GWh,Electricity,All,514.659
 S12000035,2016,Count,GWh,Gas,Commercial,67.046
 S12000035,2016,Count,GWh,Gas,Domestic,314.536
 S12000035,2016,Count,GWh,Gas,Industrial,70.491
@@ -10709,6 +11389,40 @@ S12000035,2019,Count,GWh,Petroleum Products,Public Sector,42.311
 S12000035,2019,Count,GWh,Petroleum Products,Rail,4.982
 S12000035,2019,Count,GWh,Petroleum Products,Road Transport,655.473
 S12000035,2019,Count,GWh,Petroleum Products,All,1165.643
+S12000035,2020,Count,GWh,All,All,2316.605
+S12000035,2020,Count,GWh,Bioenergy & Wastes,Domestic,57.748
+S12000035,2020,Count,GWh,Bioenergy & Wastes,Road Transport,31.087
+S12000035,2020,Count,GWh,Bioenergy & Wastes,All,142.833
+S12000035,2020,Count,GWh,Bioenergy & Wastes,Commercial,24.248
+S12000035,2020,Count,GWh,Bioenergy & Wastes,Industrial,29.751
+S12000035,2020,Count,GWh,Coal,Agriculture,0
+S12000035,2020,Count,GWh,Coal,Commercial,0.513
+S12000035,2020,Count,GWh,Coal,Domestic,29.355
+S12000035,2020,Count,GWh,Coal,Industrial,15.324
+S12000035,2020,Count,GWh,Coal,Public Sector,1.38
+S12000035,2020,Count,GWh,Coal,Rail,0
+S12000035,2020,Count,GWh,Coal,All,46.572
+S12000035,2020,Count,GWh,All,Domestic,836.563
+S12000035,2020,Count,GWh,All,Industrial & Commercial,788.499
+S12000035,2020,Count,GWh,All,Transport,691.542
+S12000035,2020,Count,GWh,Electricity,Domestic,270.907
+S12000035,2020,Count,GWh,Electricity,Industrial & Commercial,209.313
+S12000035,2020,Count,GWh,Electricity,All,480.22
+S12000035,2020,Count,GWh,Gas,Commercial,67.338
+S12000035,2020,Count,GWh,Gas,Domestic,328.753
+S12000035,2020,Count,GWh,Gas,Industrial,68.929
+S12000035,2020,Count,GWh,Gas,All,465.02
+S12000035,2020,Count,GWh,Manufactured Fuels,Domestic,16.171
+S12000035,2020,Count,GWh,Manufactured Fuels,Industrial,0.144
+S12000035,2020,Count,GWh,Manufactured Fuels,All,16.315
+S12000035,2020,Count,GWh,Petroleum Products,Agriculture,121.963
+S12000035,2020,Count,GWh,Petroleum Products,Commercial,6.839
+S12000035,2020,Count,GWh,Petroleum Products,Domestic,133.628
+S12000035,2020,Count,GWh,Petroleum Products,Industrial,200.447
+S12000035,2020,Count,GWh,Petroleum Products,Public Sector,42.311
+S12000035,2020,Count,GWh,Petroleum Products,Rail,4.982
+S12000035,2020,Count,GWh,Petroleum Products,Road Transport,655.473
+S12000035,2020,Count,GWh,Petroleum Products,All,1165.643
 S12000036,2005,Count,GWh,All,All,11682.151
 S12000036,2005,Count,GWh,Bioenergy & Wastes,Domestic,30.23
 S12000036,2005,Count,GWh,Bioenergy & Wastes,Road Transport,4.917
@@ -10981,7 +11695,7 @@ S12000036,2012,Count,GWh,Petroleum Products,Public Sector,3.23
 S12000036,2012,Count,GWh,Petroleum Products,Rail,33.709
 S12000036,2012,Count,GWh,Petroleum Products,Road Transport,2520.408
 S12000036,2012,Count,GWh,Petroleum Products,All,2793.514
-S12000036,2013,Count,GWh,All,All,10087.469
+S12000036,2013,Count,GWh,All,All,10087.471
 S12000036,2013,Count,GWh,Bioenergy & Wastes,Domestic,69.403
 S12000036,2013,Count,GWh,Bioenergy & Wastes,Road Transport,74.841
 S12000036,2013,Count,GWh,Bioenergy & Wastes,All,144.409
@@ -10994,16 +11708,16 @@ S12000036,2013,Count,GWh,Coal,Industrial,1.685
 S12000036,2013,Count,GWh,Coal,Public Sector,0.855
 S12000036,2013,Count,GWh,Coal,Rail,0
 S12000036,2013,Count,GWh,Coal,All,11.743
-S12000036,2013,Count,GWh,All,Domestic,3757.597
-S12000036,2013,Count,GWh,All,Industrial & Commercial,3724.364
+S12000036,2013,Count,GWh,All,Domestic,3757.598
+S12000036,2013,Count,GWh,All,Industrial & Commercial,3724.365
 S12000036,2013,Count,GWh,All,Transport,2605.507
-S12000036,2013,Count,GWh,Electricity,Domestic,892.116
+S12000036,2013,Count,GWh,Electricity,Domestic,892.117
 S12000036,2013,Count,GWh,Electricity,Industrial & Commercial,1591.071
-S12000036,2013,Count,GWh,Electricity,All,2483.187
+S12000036,2013,Count,GWh,Electricity,All,2483.188
 S12000036,2013,Count,GWh,Gas,Commercial,960.692
-S12000036,2013,Count,GWh,Gas,Domestic,2758.097
+S12000036,2013,Count,GWh,Gas,Domestic,2758.098
 S12000036,2013,Count,GWh,Gas,Industrial,969.934
-S12000036,2013,Count,GWh,Gas,All,4688.722
+S12000036,2013,Count,GWh,Gas,All,4688.723
 S12000036,2013,Count,GWh,Manufactured Fuels,Domestic,8.261
 S12000036,2013,Count,GWh,Manufactured Fuels,Industrial,0.285
 S12000036,2013,Count,GWh,Manufactured Fuels,All,8.546
@@ -11083,7 +11797,7 @@ S12000036,2015,Count,GWh,Petroleum Products,Public Sector,2.922
 S12000036,2015,Count,GWh,Petroleum Products,Rail,34.407
 S12000036,2015,Count,GWh,Petroleum Products,Road Transport,2517.893
 S12000036,2015,Count,GWh,Petroleum Products,All,2786.96
-S12000036,2016,Count,GWh,All,All,9851.39
+S12000036,2016,Count,GWh,All,All,9959.611
 S12000036,2016,Count,GWh,Bioenergy & Wastes,Domestic,80.143
 S12000036,2016,Count,GWh,Bioenergy & Wastes,Road Transport,66.752
 S12000036,2016,Count,GWh,Bioenergy & Wastes,All,148.032
@@ -11096,12 +11810,12 @@ S12000036,2016,Count,GWh,Coal,Industrial,1.078
 S12000036,2016,Count,GWh,Coal,Public Sector,0.122
 S12000036,2016,Count,GWh,Coal,Rail,0
 S12000036,2016,Count,GWh,Coal,All,9.071
-S12000036,2016,Count,GWh,All,Domestic,3707.629
-S12000036,2016,Count,GWh,All,Industrial & Commercial,3500.495
+S12000036,2016,Count,GWh,All,Domestic,3749.562
+S12000036,2016,Count,GWh,All,Industrial & Commercial,3566.784
 S12000036,2016,Count,GWh,All,Transport,2643.265
-S12000036,2016,Count,GWh,Electricity,Domestic,864.059
-S12000036,2016,Count,GWh,Electricity,Industrial & Commercial,1459.926
-S12000036,2016,Count,GWh,Electricity,All,2323.985
+S12000036,2016,Count,GWh,Electricity,Domestic,905.992
+S12000036,2016,Count,GWh,Electricity,Industrial & Commercial,1526.215
+S12000036,2016,Count,GWh,Electricity,All,2432.206
 S12000036,2016,Count,GWh,Gas,Commercial,888.706
 S12000036,2016,Count,GWh,Gas,Domestic,2727.269
 S12000036,2016,Count,GWh,Gas,Industrial,934.372
@@ -11219,6 +11933,40 @@ S12000036,2019,Count,GWh,Petroleum Products,Public Sector,5.17
 S12000036,2019,Count,GWh,Petroleum Products,Rail,31.674
 S12000036,2019,Count,GWh,Petroleum Products,Road Transport,2368.578
 S12000036,2019,Count,GWh,Petroleum Products,All,2656.578
+S12000036,2020,Count,GWh,All,All,9586.335
+S12000036,2020,Count,GWh,Bioenergy & Wastes,Domestic,89.793
+S12000036,2020,Count,GWh,Bioenergy & Wastes,Road Transport,110.656
+S12000036,2020,Count,GWh,Bioenergy & Wastes,All,202.781
+S12000036,2020,Count,GWh,Bioenergy & Wastes,Commercial,1.047
+S12000036,2020,Count,GWh,Bioenergy & Wastes,Industrial,1.285
+S12000036,2020,Count,GWh,Coal,Agriculture,0
+S12000036,2020,Count,GWh,Coal,Commercial,0.153
+S12000036,2020,Count,GWh,Coal,Domestic,6.94
+S12000036,2020,Count,GWh,Coal,Industrial,0.589
+S12000036,2020,Count,GWh,Coal,Public Sector,0.274
+S12000036,2020,Count,GWh,Coal,Rail,0
+S12000036,2020,Count,GWh,Coal,All,7.956
+S12000036,2020,Count,GWh,All,Domestic,3893.048
+S12000036,2020,Count,GWh,All,Industrial & Commercial,3182.379
+S12000036,2020,Count,GWh,All,Transport,2510.909
+S12000036,2020,Count,GWh,Electricity,Domestic,861.801
+S12000036,2020,Count,GWh,Electricity,Industrial & Commercial,1169.851
+S12000036,2020,Count,GWh,Electricity,All,2031.651
+S12000036,2020,Count,GWh,Gas,Commercial,876.043
+S12000036,2020,Count,GWh,Gas,Domestic,2904.661
+S12000036,2020,Count,GWh,Gas,Industrial,896.732
+S12000036,2020,Count,GWh,Gas,All,4677.436
+S12000036,2020,Count,GWh,Manufactured Fuels,Domestic,9.838
+S12000036,2020,Count,GWh,Manufactured Fuels,Industrial,0.096
+S12000036,2020,Count,GWh,Manufactured Fuels,All,9.933
+S12000036,2020,Count,GWh,Petroleum Products,Agriculture,11.072
+S12000036,2020,Count,GWh,Petroleum Products,Commercial,3.174
+S12000036,2020,Count,GWh,Petroleum Products,Domestic,20.016
+S12000036,2020,Count,GWh,Petroleum Products,Industrial,216.894
+S12000036,2020,Count,GWh,Petroleum Products,Public Sector,5.17
+S12000036,2020,Count,GWh,Petroleum Products,Rail,31.674
+S12000036,2020,Count,GWh,Petroleum Products,Road Transport,2368.578
+S12000036,2020,Count,GWh,Petroleum Products,All,2656.578
 S12000038,2005,Count,GWh,All,All,4506.028
 S12000038,2005,Count,GWh,Bioenergy & Wastes,Domestic,12.818
 S12000038,2005,Count,GWh,Bioenergy & Wastes,Road Transport,2.202
@@ -11511,9 +12259,9 @@ S12000038,2013,Count,GWh,Electricity,Domestic,310.758
 S12000038,2013,Count,GWh,Electricity,Industrial & Commercial,518.455
 S12000038,2013,Count,GWh,Electricity,All,829.213
 S12000038,2013,Count,GWh,Gas,Commercial,297.13
-S12000038,2013,Count,GWh,Gas,Domestic,1043.249
+S12000038,2013,Count,GWh,Gas,Domestic,1043.25
 S12000038,2013,Count,GWh,Gas,Industrial,299.988
-S12000038,2013,Count,GWh,Gas,All,1640.367
+S12000038,2013,Count,GWh,Gas,All,1640.368
 S12000038,2013,Count,GWh,Manufactured Fuels,Domestic,3.51
 S12000038,2013,Count,GWh,Manufactured Fuels,Industrial,0.002
 S12000038,2013,Count,GWh,Manufactured Fuels,All,3.512
@@ -11525,7 +12273,7 @@ S12000038,2013,Count,GWh,Petroleum Products,Public Sector,0.101
 S12000038,2013,Count,GWh,Petroleum Products,Rail,25.429
 S12000038,2013,Count,GWh,Petroleum Products,Road Transport,1161.317
 S12000038,2013,Count,GWh,Petroleum Products,All,1334.786
-S12000038,2014,Count,GWh,All,All,3683.377
+S12000038,2014,Count,GWh,All,All,3683.378
 S12000038,2014,Count,GWh,Bioenergy & Wastes,Domestic,27.953
 S12000038,2014,Count,GWh,Bioenergy & Wastes,Road Transport,38.99
 S12000038,2014,Count,GWh,Bioenergy & Wastes,All,66.963
@@ -11593,7 +12341,7 @@ S12000038,2015,Count,GWh,Petroleum Products,Public Sector,0.251
 S12000038,2015,Count,GWh,Petroleum Products,Rail,25.985
 S12000038,2015,Count,GWh,Petroleum Products,Road Transport,1189.899
 S12000038,2015,Count,GWh,Petroleum Products,All,1384.111
-S12000038,2016,Count,GWh,All,All,3797.1
+S12000038,2016,Count,GWh,All,All,3828.79
 S12000038,2016,Count,GWh,Bioenergy & Wastes,Domestic,33.982
 S12000038,2016,Count,GWh,Bioenergy & Wastes,Road Transport,31.247
 S12000038,2016,Count,GWh,Bioenergy & Wastes,All,65.268
@@ -11606,12 +12354,12 @@ S12000038,2016,Count,GWh,Coal,Industrial,0.036
 S12000038,2016,Count,GWh,Coal,Public Sector,0.024
 S12000038,2016,Count,GWh,Coal,Rail,0
 S12000038,2016,Count,GWh,Coal,All,3.394
-S12000038,2016,Count,GWh,All,Domestic,1371.253
-S12000038,2016,Count,GWh,All,Industrial & Commercial,1180.139
+S12000038,2016,Count,GWh,All,Domestic,1387.469
+S12000038,2016,Count,GWh,All,Industrial & Commercial,1195.613
 S12000038,2016,Count,GWh,All,Transport,1245.708
-S12000038,2016,Count,GWh,Electricity,Domestic,291.743
-S12000038,2016,Count,GWh,Electricity,Industrial & Commercial,478.549
-S12000038,2016,Count,GWh,Electricity,All,770.291
+S12000038,2016,Count,GWh,Electricity,Domestic,307.959
+S12000038,2016,Count,GWh,Electricity,Industrial & Commercial,494.022
+S12000038,2016,Count,GWh,Electricity,All,801.981
 S12000038,2016,Count,GWh,Gas,Commercial,265.034
 S12000038,2016,Count,GWh,Gas,Domestic,1026.841
 S12000038,2016,Count,GWh,Gas,Industrial,278.653
@@ -11729,6 +12477,40 @@ S12000038,2019,Count,GWh,Petroleum Products,Public Sector,0.269
 S12000038,2019,Count,GWh,Petroleum Products,Rail,21.735
 S12000038,2019,Count,GWh,Petroleum Products,Road Transport,1160.792
 S12000038,2019,Count,GWh,Petroleum Products,All,1362.998
+S12000038,2020,Count,GWh,All,All,3755.918
+S12000038,2020,Count,GWh,Bioenergy & Wastes,Domestic,38.074
+S12000038,2020,Count,GWh,Bioenergy & Wastes,Road Transport,54.097
+S12000038,2020,Count,GWh,Bioenergy & Wastes,All,92.243
+S12000038,2020,Count,GWh,Bioenergy & Wastes,Commercial,0.032
+S12000038,2020,Count,GWh,Bioenergy & Wastes,Industrial,0.04
+S12000038,2020,Count,GWh,Coal,Agriculture,0
+S12000038,2020,Count,GWh,Coal,Commercial,0.013
+S12000038,2020,Count,GWh,Coal,Domestic,2.954
+S12000038,2020,Count,GWh,Coal,Industrial,0.018
+S12000038,2020,Count,GWh,Coal,Public Sector,0.023
+S12000038,2020,Count,GWh,Coal,Rail,0
+S12000038,2020,Count,GWh,Coal,All,3.009
+S12000038,2020,Count,GWh,All,Domestic,1431.886
+S12000038,2020,Count,GWh,All,Industrial & Commercial,1087.408
+S12000038,2020,Count,GWh,All,Transport,1236.624
+S12000038,2020,Count,GWh,Electricity,Domestic,289.82
+S12000038,2020,Count,GWh,Electricity,Industrial & Commercial,391.328
+S12000038,2020,Count,GWh,Electricity,All,681.148
+S12000038,2020,Count,GWh,Gas,Commercial,260.561
+S12000038,2020,Count,GWh,Gas,Domestic,1085.068
+S12000038,2020,Count,GWh,Gas,Industrial,266.715
+S12000038,2020,Count,GWh,Gas,All,1612.344
+S12000038,2020,Count,GWh,Manufactured Fuels,Domestic,4.176
+S12000038,2020,Count,GWh,Manufactured Fuels,Industrial,0
+S12000038,2020,Count,GWh,Manufactured Fuels,All,4.176
+S12000038,2020,Count,GWh,Petroleum Products,Agriculture,19.038
+S12000038,2020,Count,GWh,Petroleum Products,Commercial,1.079
+S12000038,2020,Count,GWh,Petroleum Products,Domestic,11.794
+S12000038,2020,Count,GWh,Petroleum Products,Industrial,148.291
+S12000038,2020,Count,GWh,Petroleum Products,Public Sector,0.269
+S12000038,2020,Count,GWh,Petroleum Products,Rail,21.735
+S12000038,2020,Count,GWh,Petroleum Products,Road Transport,1160.792
+S12000038,2020,Count,GWh,Petroleum Products,All,1362.998
 S12000039,2005,Count,GWh,All,All,2041.064
 S12000039,2005,Count,GWh,Bioenergy & Wastes,Domestic,5.522
 S12000039,2005,Count,GWh,Bioenergy & Wastes,Road Transport,0.942
@@ -12017,9 +12799,9 @@ S12000039,2013,Count,GWh,Coal,All,2.535
 S12000039,2013,Count,GWh,All,Domestic,677.998
 S12000039,2013,Count,GWh,All,Industrial & Commercial,525.858
 S12000039,2013,Count,GWh,All,Transport,513.503
-S12000039,2013,Count,GWh,Electricity,Domestic,154.319
+S12000039,2013,Count,GWh,Electricity,Domestic,154.32
 S12000039,2013,Count,GWh,Electricity,Industrial & Commercial,195.212
-S12000039,2013,Count,GWh,Electricity,All,349.531
+S12000039,2013,Count,GWh,Electricity,All,349.532
 S12000039,2013,Count,GWh,Gas,Commercial,146.202
 S12000039,2013,Count,GWh,Gas,Domestic,499.086
 S12000039,2013,Count,GWh,Gas,Industrial,147.609
@@ -12103,7 +12885,7 @@ S12000039,2015,Count,GWh,Petroleum Products,Public Sector,0.847
 S12000039,2015,Count,GWh,Petroleum Products,Rail,0.443
 S12000039,2015,Count,GWh,Petroleum Products,Road Transport,505.68
 S12000039,2015,Count,GWh,Petroleum Products,All,557.176
-S12000039,2016,Count,GWh,All,All,1635.407
+S12000039,2016,Count,GWh,All,All,1652.99
 S12000039,2016,Count,GWh,Bioenergy & Wastes,Domestic,14.639
 S12000039,2016,Count,GWh,Bioenergy & Wastes,Road Transport,13.306
 S12000039,2016,Count,GWh,Bioenergy & Wastes,All,28.197
@@ -12116,12 +12898,12 @@ S12000039,2016,Count,GWh,Coal,Industrial,0.235
 S12000039,2016,Count,GWh,Coal,Public Sector,0.023
 S12000039,2016,Count,GWh,Coal,Rail,0
 S12000039,2016,Count,GWh,Coal,All,1.854
-S12000039,2016,Count,GWh,All,Domestic,657.776
-S12000039,2016,Count,GWh,All,Industrial & Commercial,464.715
+S12000039,2016,Count,GWh,All,Domestic,666.373
+S12000039,2016,Count,GWh,All,Industrial & Commercial,473.702
 S12000039,2016,Count,GWh,All,Transport,512.916
-S12000039,2016,Count,GWh,Electricity,Domestic,145.863
-S12000039,2016,Count,GWh,Electricity,Industrial & Commercial,193.898
-S12000039,2016,Count,GWh,Electricity,All,339.762
+S12000039,2016,Count,GWh,Electricity,Domestic,154.46
+S12000039,2016,Count,GWh,Electricity,Industrial & Commercial,202.885
+S12000039,2016,Count,GWh,Electricity,All,357.345
 S12000039,2016,Count,GWh,Gas,Commercial,111.405
 S12000039,2016,Count,GWh,Gas,Domestic,486.33
 S12000039,2016,Count,GWh,Gas,Industrial,117.129
@@ -12239,6 +13021,40 @@ S12000039,2019,Count,GWh,Petroleum Products,Public Sector,0.856
 S12000039,2019,Count,GWh,Petroleum Products,Rail,0.412
 S12000039,2019,Count,GWh,Petroleum Products,Road Transport,467.55
 S12000039,2019,Count,GWh,Petroleum Products,All,518.332
+S12000039,2020,Count,GWh,All,All,1644.452
+S12000039,2020,Count,GWh,Bioenergy & Wastes,Domestic,16.402
+S12000039,2020,Count,GWh,Bioenergy & Wastes,Road Transport,21.512
+S12000039,2020,Count,GWh,Bioenergy & Wastes,All,38.347
+S12000039,2020,Count,GWh,Bioenergy & Wastes,Commercial,0.195
+S12000039,2020,Count,GWh,Bioenergy & Wastes,Industrial,0.239
+S12000039,2020,Count,GWh,Coal,Agriculture,0
+S12000039,2020,Count,GWh,Coal,Commercial,0.009
+S12000039,2020,Count,GWh,Coal,Domestic,1.422
+S12000039,2020,Count,GWh,Coal,Industrial,0.109
+S12000039,2020,Count,GWh,Coal,Public Sector,0.016
+S12000039,2020,Count,GWh,Coal,Rail,0
+S12000039,2020,Count,GWh,Coal,All,1.556
+S12000039,2020,Count,GWh,All,Domestic,675.247
+S12000039,2020,Count,GWh,All,Industrial & Commercial,479.731
+S12000039,2020,Count,GWh,All,Transport,489.474
+S12000039,2020,Count,GWh,Electricity,Domestic,140.515
+S12000039,2020,Count,GWh,Electricity,Industrial & Commercial,181.817
+S12000039,2020,Count,GWh,Electricity,All,322.332
+S12000039,2020,Count,GWh,Gas,Commercial,125.886
+S12000039,2020,Count,GWh,Gas,Domestic,507.186
+S12000039,2020,Count,GWh,Gas,Industrial,128.859
+S12000039,2020,Count,GWh,Gas,All,761.931
+S12000039,2020,Count,GWh,Manufactured Fuels,Domestic,1.858
+S12000039,2020,Count,GWh,Manufactured Fuels,Industrial,0.096
+S12000039,2020,Count,GWh,Manufactured Fuels,All,1.954
+S12000039,2020,Count,GWh,Petroleum Products,Agriculture,8.066
+S12000039,2020,Count,GWh,Petroleum Products,Commercial,0.841
+S12000039,2020,Count,GWh,Petroleum Products,Domestic,7.864
+S12000039,2020,Count,GWh,Petroleum Products,Industrial,32.743
+S12000039,2020,Count,GWh,Petroleum Products,Public Sector,0.856
+S12000039,2020,Count,GWh,Petroleum Products,Rail,0.412
+S12000039,2020,Count,GWh,Petroleum Products,Road Transport,467.55
+S12000039,2020,Count,GWh,Petroleum Products,All,518.332
 S12000040,2005,Count,GWh,All,All,4817.964
 S12000040,2005,Count,GWh,Bioenergy & Wastes,Domestic,17.038
 S12000040,2005,Count,GWh,Bioenergy & Wastes,Road Transport,2.469
@@ -12511,7 +13327,7 @@ S12000040,2012,Count,GWh,Petroleum Products,Public Sector,0.383
 S12000040,2012,Count,GWh,Petroleum Products,Rail,23.013
 S12000040,2012,Count,GWh,Petroleum Products,Road Transport,1358.06
 S12000040,2012,Count,GWh,Petroleum Products,All,1560.463
-S12000040,2013,Count,GWh,All,All,4260.493
+S12000040,2013,Count,GWh,All,All,4260.494
 S12000040,2013,Count,GWh,Bioenergy & Wastes,Domestic,39.117
 S12000040,2013,Count,GWh,Bioenergy & Wastes,Road Transport,40.211
 S12000040,2013,Count,GWh,Bioenergy & Wastes,All,79.935
@@ -12524,13 +13340,13 @@ S12000040,2013,Count,GWh,Coal,Industrial,6.85
 S12000040,2013,Count,GWh,Coal,Public Sector,0.702
 S12000040,2013,Count,GWh,Coal,Rail,0
 S12000040,2013,Count,GWh,Coal,All,19.516
-S12000040,2013,Count,GWh,All,Domestic,1431.444
+S12000040,2013,Count,GWh,All,Domestic,1431.445
 S12000040,2013,Count,GWh,All,Industrial & Commercial,1413.384
 S12000040,2013,Count,GWh,All,Transport,1415.665
 S12000040,2013,Count,GWh,Electricity,Domestic,296.014
-S12000040,2013,Count,GWh,Electricity,Industrial & Commercial,567.662
-S12000040,2013,Count,GWh,Electricity,All,863.676
-S12000040,2013,Count,GWh,Gas,Commercial,349.035
+S12000040,2013,Count,GWh,Electricity,Industrial & Commercial,567.663
+S12000040,2013,Count,GWh,Electricity,All,863.677
+S12000040,2013,Count,GWh,Gas,Commercial,349.036
 S12000040,2013,Count,GWh,Gas,Domestic,1045.929
 S12000040,2013,Count,GWh,Gas,Industrial,352.393
 S12000040,2013,Count,GWh,Gas,All,1747.358
@@ -12545,7 +13361,7 @@ S12000040,2013,Count,GWh,Petroleum Products,Public Sector,0.147
 S12000040,2013,Count,GWh,Petroleum Products,Rail,23.445
 S12000040,2013,Count,GWh,Petroleum Products,Road Transport,1352.009
 S12000040,2013,Count,GWh,Petroleum Products,All,1534.841
-S12000040,2014,Count,GWh,All,All,4195.456
+S12000040,2014,Count,GWh,All,All,4195.457
 S12000040,2014,Count,GWh,Bioenergy & Wastes,Domestic,37.157
 S12000040,2014,Count,GWh,Bioenergy & Wastes,Road Transport,45.152
 S12000040,2014,Count,GWh,Bioenergy & Wastes,All,84.275
@@ -12559,7 +13375,7 @@ S12000040,2014,Count,GWh,Coal,Public Sector,0.725
 S12000040,2014,Count,GWh,Coal,Rail,0
 S12000040,2014,Count,GWh,Coal,All,17.167
 S12000040,2014,Count,GWh,All,Domestic,1413.705
-S12000040,2014,Count,GWh,All,Industrial & Commercial,1350.088
+S12000040,2014,Count,GWh,All,Industrial & Commercial,1350.089
 S12000040,2014,Count,GWh,All,Transport,1431.662
 S12000040,2014,Count,GWh,Electricity,Domestic,297.944
 S12000040,2014,Count,GWh,Electricity,Industrial & Commercial,543.203
@@ -12613,7 +13429,7 @@ S12000040,2015,Count,GWh,Petroleum Products,Public Sector,0.374
 S12000040,2015,Count,GWh,Petroleum Products,Rail,23.356
 S12000040,2015,Count,GWh,Petroleum Products,Road Transport,1395.321
 S12000040,2015,Count,GWh,Petroleum Products,All,1598.313
-S12000040,2016,Count,GWh,All,All,4252.57
+S12000040,2016,Count,GWh,All,All,4292.335
 S12000040,2016,Count,GWh,Bioenergy & Wastes,Domestic,45.171
 S12000040,2016,Count,GWh,Bioenergy & Wastes,Road Transport,36.148
 S12000040,2016,Count,GWh,Bioenergy & Wastes,All,84.622
@@ -12626,12 +13442,12 @@ S12000040,2016,Count,GWh,Coal,Industrial,4.637
 S12000040,2016,Count,GWh,Coal,Public Sector,0.097
 S12000040,2016,Count,GWh,Coal,Rail,0
 S12000040,2016,Count,GWh,Coal,All,14.951
-S12000040,2016,Count,GWh,All,Domestic,1414.924
-S12000040,2016,Count,GWh,All,Industrial & Commercial,1383.208
+S12000040,2016,Count,GWh,All,Domestic,1429.003
+S12000040,2016,Count,GWh,All,Industrial & Commercial,1408.894
 S12000040,2016,Count,GWh,All,Transport,1454.439
-S12000040,2016,Count,GWh,Electricity,Domestic,287.915
-S12000040,2016,Count,GWh,Electricity,Industrial & Commercial,542.206
-S12000040,2016,Count,GWh,Electricity,All,830.122
+S12000040,2016,Count,GWh,Electricity,Domestic,301.994
+S12000040,2016,Count,GWh,Electricity,Industrial & Commercial,567.892
+S12000040,2016,Count,GWh,Electricity,All,869.887
 S12000040,2016,Count,GWh,Gas,Commercial,333.982
 S12000040,2016,Count,GWh,Gas,Domestic,1036.311
 S12000040,2016,Count,GWh,Gas,Industrial,351.143
@@ -12749,6 +13565,40 @@ S12000040,2019,Count,GWh,Petroleum Products,Public Sector,0.389
 S12000040,2019,Count,GWh,Petroleum Products,Rail,21.382
 S12000040,2019,Count,GWh,Petroleum Products,Road Transport,1380.723
 S12000040,2019,Count,GWh,Petroleum Products,All,1581.805
+S12000040,2020,Count,GWh,All,All,4258.764
+S12000040,2020,Count,GWh,Bioenergy & Wastes,Domestic,50.609
+S12000040,2020,Count,GWh,Bioenergy & Wastes,Road Transport,65.331
+S12000040,2020,Count,GWh,Bioenergy & Wastes,All,121.662
+S12000040,2020,Count,GWh,Bioenergy & Wastes,Commercial,2.569
+S12000040,2020,Count,GWh,Bioenergy & Wastes,Industrial,3.152
+S12000040,2020,Count,GWh,Coal,Agriculture,0
+S12000040,2020,Count,GWh,Coal,Commercial,0.051
+S12000040,2020,Count,GWh,Coal,Domestic,9.11
+S12000040,2020,Count,GWh,Coal,Industrial,1.849
+S12000040,2020,Count,GWh,Coal,Public Sector,0.074
+S12000040,2020,Count,GWh,Coal,Rail,0
+S12000040,2020,Count,GWh,Coal,All,11.084
+S12000040,2020,Count,GWh,All,Domestic,1496.771
+S12000040,2020,Count,GWh,All,Industrial & Commercial,1294.557
+S12000040,2020,Count,GWh,All,Transport,1467.436
+S12000040,2020,Count,GWh,Electricity,Domestic,289.776
+S12000040,2020,Count,GWh,Electricity,Industrial & Commercial,445.442
+S12000040,2020,Count,GWh,Electricity,All,735.218
+S12000040,2020,Count,GWh,Gas,Commercial,339.405
+S12000040,2020,Count,GWh,Gas,Domestic,1111.46
+S12000040,2020,Count,GWh,Gas,Industrial,347.42
+S12000040,2020,Count,GWh,Gas,All,1798.286
+S12000040,2020,Count,GWh,Manufactured Fuels,Domestic,7.601
+S12000040,2020,Count,GWh,Manufactured Fuels,Industrial,3.109
+S12000040,2020,Count,GWh,Manufactured Fuels,All,10.71
+S12000040,2020,Count,GWh,Petroleum Products,Agriculture,29.999
+S12000040,2020,Count,GWh,Petroleum Products,Commercial,2.105
+S12000040,2020,Count,GWh,Petroleum Products,Domestic,28.214
+S12000040,2020,Count,GWh,Petroleum Products,Industrial,118.993
+S12000040,2020,Count,GWh,Petroleum Products,Public Sector,0.389
+S12000040,2020,Count,GWh,Petroleum Products,Rail,21.382
+S12000040,2020,Count,GWh,Petroleum Products,Road Transport,1380.723
+S12000040,2020,Count,GWh,Petroleum Products,All,1581.805
 S12000041,2005,Count,GWh,All,All,3073.977
 S12000041,2005,Count,GWh,Bioenergy & Wastes,Domestic,16.315
 S12000041,2005,Count,GWh,Bioenergy & Wastes,Road Transport,1.391
@@ -13041,7 +13891,7 @@ S12000041,2013,Count,GWh,Electricity,Domestic,263.705
 S12000041,2013,Count,GWh,Electricity,Industrial & Commercial,280.282
 S12000041,2013,Count,GWh,Electricity,All,543.987
 S12000041,2013,Count,GWh,Gas,Commercial,186.826
-S12000041,2013,Count,GWh,Gas,Domestic,558.977
+S12000041,2013,Count,GWh,Gas,Domestic,558.978
 S12000041,2013,Count,GWh,Gas,Industrial,188.624
 S12000041,2013,Count,GWh,Gas,All,934.427
 S12000041,2013,Count,GWh,Manufactured Fuels,Domestic,9.499
@@ -13123,7 +13973,7 @@ S12000041,2015,Count,GWh,Petroleum Products,Public Sector,0.24
 S12000041,2015,Count,GWh,Petroleum Products,Rail,12.444
 S12000041,2015,Count,GWh,Petroleum Products,Road Transport,858.146
 S12000041,2015,Count,GWh,Petroleum Products,All,1225.709
-S12000041,2016,Count,GWh,All,All,2813.441
+S12000041,2016,Count,GWh,All,All,2840.754
 S12000041,2016,Count,GWh,Bioenergy & Wastes,Domestic,43.255
 S12000041,2016,Count,GWh,Bioenergy & Wastes,Road Transport,22.293
 S12000041,2016,Count,GWh,Bioenergy & Wastes,All,111.717
@@ -13136,12 +13986,12 @@ S12000041,2016,Count,GWh,Coal,Industrial,43.763
 S12000041,2016,Count,GWh,Coal,Public Sector,0.243
 S12000041,2016,Count,GWh,Coal,Rail,0.02
 S12000041,2016,Count,GWh,Coal,All,57.221
-S12000041,2016,Count,GWh,All,Domestic,999.234
-S12000041,2016,Count,GWh,All,Industrial & Commercial,915.329
+S12000041,2016,Count,GWh,All,Domestic,1008.409
+S12000041,2016,Count,GWh,All,Industrial & Commercial,933.468
 S12000041,2016,Count,GWh,All,Transport,898.877
-S12000041,2016,Count,GWh,Electricity,Domestic,247.747
-S12000041,2016,Count,GWh,Electricity,Industrial & Commercial,266.445
-S12000041,2016,Count,GWh,Electricity,All,514.192
+S12000041,2016,Count,GWh,Electricity,Domestic,256.922
+S12000041,2016,Count,GWh,Electricity,Industrial & Commercial,284.584
+S12000041,2016,Count,GWh,Electricity,All,541.506
 S12000041,2016,Count,GWh,Gas,Commercial,160.934
 S12000041,2016,Count,GWh,Gas,Domestic,563.493
 S12000041,2016,Count,GWh,Gas,Industrial,169.204
@@ -13259,6 +14109,40 @@ S12000041,2019,Count,GWh,Petroleum Products,Public Sector,0.247
 S12000041,2019,Count,GWh,Petroleum Products,Rail,11.563
 S12000041,2019,Count,GWh,Petroleum Products,Road Transport,836.429
 S12000041,2019,Count,GWh,Petroleum Products,All,1205.343
+S12000041,2020,Count,GWh,All,All,2874.849
+S12000041,2020,Count,GWh,Bioenergy & Wastes,Domestic,48.463
+S12000041,2020,Count,GWh,Bioenergy & Wastes,Road Transport,39.805
+S12000041,2020,Count,GWh,Bioenergy & Wastes,All,173.405
+S12000041,2020,Count,GWh,Bioenergy & Wastes,Commercial,38.231
+S12000041,2020,Count,GWh,Bioenergy & Wastes,Industrial,46.906
+S12000041,2020,Count,GWh,Coal,Agriculture,0
+S12000041,2020,Count,GWh,Coal,Commercial,0.17
+S12000041,2020,Count,GWh,Coal,Domestic,11.685
+S12000041,2020,Count,GWh,Coal,Industrial,21.498
+S12000041,2020,Count,GWh,Coal,Public Sector,0.233
+S12000041,2020,Count,GWh,Coal,Rail,0.02
+S12000041,2020,Count,GWh,Coal,All,33.606
+S12000041,2020,Count,GWh,All,Domestic,1026.967
+S12000041,2020,Count,GWh,All,Industrial & Commercial,960.064
+S12000041,2020,Count,GWh,All,Transport,887.818
+S12000041,2020,Count,GWh,Electricity,Domestic,236.145
+S12000041,2020,Count,GWh,Electricity,Industrial & Commercial,254.948
+S12000041,2020,Count,GWh,Electricity,All,491.093
+S12000041,2020,Count,GWh,Gas,Commercial,180.267
+S12000041,2020,Count,GWh,Gas,Domestic,598.162
+S12000041,2020,Count,GWh,Gas,Industrial,184.524
+S12000041,2020,Count,GWh,Gas,All,962.952
+S12000041,2020,Count,GWh,Manufactured Fuels,Domestic,8.449
+S12000041,2020,Count,GWh,Manufactured Fuels,Industrial,0
+S12000041,2020,Count,GWh,Manufactured Fuels,All,8.449
+S12000041,2020,Count,GWh,Petroleum Products,Agriculture,87.065
+S12000041,2020,Count,GWh,Petroleum Products,Commercial,2.106
+S12000041,2020,Count,GWh,Petroleum Products,Domestic,124.063
+S12000041,2020,Count,GWh,Petroleum Products,Industrial,143.87
+S12000041,2020,Count,GWh,Petroleum Products,Public Sector,0.247
+S12000041,2020,Count,GWh,Petroleum Products,Rail,11.563
+S12000041,2020,Count,GWh,Petroleum Products,Road Transport,836.429
+S12000041,2020,Count,GWh,Petroleum Products,All,1205.343
 S12000042,2005,Count,GWh,All,All,3635.607
 S12000042,2005,Count,GWh,Bioenergy & Wastes,Domestic,13.665
 S12000042,2005,Count,GWh,Bioenergy & Wastes,Road Transport,1.303
@@ -13586,7 +14470,7 @@ S12000042,2014,Count,GWh,Electricity,Industrial & Commercial,418.798
 S12000042,2014,Count,GWh,Electricity,All,730.807
 S12000042,2014,Count,GWh,Gas,Commercial,292.662
 S12000042,2014,Count,GWh,Gas,Domestic,744.298
-S12000042,2014,Count,GWh,Gas,Industrial,337.184
+S12000042,2014,Count,GWh,Gas,Industrial,337.183
 S12000042,2014,Count,GWh,Gas,All,1374.143
 S12000042,2014,Count,GWh,Manufactured Fuels,Domestic,3.552
 S12000042,2014,Count,GWh,Manufactured Fuels,Industrial,0
@@ -13633,7 +14517,7 @@ S12000042,2015,Count,GWh,Petroleum Products,Public Sector,0.401
 S12000042,2015,Count,GWh,Petroleum Products,Rail,4.413
 S12000042,2015,Count,GWh,Petroleum Products,Road Transport,634.31
 S12000042,2015,Count,GWh,Petroleum Products,All,724.054
-S12000042,2016,Count,GWh,All,All,2866.084
+S12000042,2016,Count,GWh,All,All,2903.022
 S12000042,2016,Count,GWh,Bioenergy & Wastes,Domestic,36.228
 S12000042,2016,Count,GWh,Bioenergy & Wastes,Road Transport,16.919
 S12000042,2016,Count,GWh,Bioenergy & Wastes,All,53.154
@@ -13646,12 +14530,12 @@ S12000042,2016,Count,GWh,Coal,Industrial,0.016
 S12000042,2016,Count,GWh,Coal,Public Sector,0.001
 S12000042,2016,Count,GWh,Coal,Rail,0
 S12000042,2016,Count,GWh,Coal,All,3.055
-S12000042,2016,Count,GWh,All,Domestic,1082.778
-S12000042,2016,Count,GWh,All,Industrial & Commercial,1131.475
+S12000042,2016,Count,GWh,All,Domestic,1093.496
+S12000042,2016,Count,GWh,All,Industrial & Commercial,1157.694
 S12000042,2016,Count,GWh,All,Transport,651.832
-S12000042,2016,Count,GWh,Electricity,Domestic,291.594
-S12000042,2016,Count,GWh,Electricity,Industrial & Commercial,385.402
-S12000042,2016,Count,GWh,Electricity,All,676.996
+S12000042,2016,Count,GWh,Electricity,Domestic,302.312
+S12000042,2016,Count,GWh,Electricity,Industrial & Commercial,411.621
+S12000042,2016,Count,GWh,Electricity,All,713.933
 S12000042,2016,Count,GWh,Gas,Commercial,325.314
 S12000042,2016,Count,GWh,Gas,Domestic,742.648
 S12000042,2016,Count,GWh,Gas,Industrial,342.03
@@ -13769,6 +14653,40 @@ S12000042,2019,Count,GWh,Petroleum Products,Public Sector,0.373
 S12000042,2019,Count,GWh,Petroleum Products,Rail,4.1
 S12000042,2019,Count,GWh,Petroleum Products,Road Transport,601.886
 S12000042,2019,Count,GWh,Petroleum Products,All,695.874
+S12000042,2020,Count,GWh,All,All,3036.247
+S12000042,2020,Count,GWh,Bioenergy & Wastes,Domestic,40.589
+S12000042,2020,Count,GWh,Bioenergy & Wastes,Road Transport,27.667
+S12000042,2020,Count,GWh,Bioenergy & Wastes,All,68.257
+S12000042,2020,Count,GWh,Bioenergy & Wastes,Commercial,0
+S12000042,2020,Count,GWh,Bioenergy & Wastes,Industrial,0
+S12000042,2020,Count,GWh,Coal,Agriculture,0
+S12000042,2020,Count,GWh,Coal,Commercial,0
+S12000042,2020,Count,GWh,Coal,Domestic,2.723
+S12000042,2020,Count,GWh,Coal,Industrial,0
+S12000042,2020,Count,GWh,Coal,Public Sector,0.001
+S12000042,2020,Count,GWh,Coal,Rail,0
+S12000042,2020,Count,GWh,Coal,All,2.724
+S12000042,2020,Count,GWh,All,Domestic,1123.009
+S12000042,2020,Count,GWh,All,Industrial & Commercial,1279.584
+S12000042,2020,Count,GWh,All,Transport,633.653
+S12000042,2020,Count,GWh,Electricity,Domestic,273.739
+S12000042,2020,Count,GWh,Electricity,Industrial & Commercial,291.288
+S12000042,2020,Count,GWh,Electricity,All,565.028
+S12000042,2020,Count,GWh,Gas,Commercial,446.771
+S12000042,2020,Count,GWh,Gas,Domestic,795.989
+S12000042,2020,Count,GWh,Gas,Industrial,457.322
+S12000042,2020,Count,GWh,Gas,All,1700.081
+S12000042,2020,Count,GWh,Manufactured Fuels,Domestic,4.283
+S12000042,2020,Count,GWh,Manufactured Fuels,Industrial,0
+S12000042,2020,Count,GWh,Manufactured Fuels,All,4.283
+S12000042,2020,Count,GWh,Petroleum Products,Agriculture,1.083
+S12000042,2020,Count,GWh,Petroleum Products,Commercial,0.467
+S12000042,2020,Count,GWh,Petroleum Products,Domestic,5.686
+S12000042,2020,Count,GWh,Petroleum Products,Industrial,82.28
+S12000042,2020,Count,GWh,Petroleum Products,Public Sector,0.373
+S12000042,2020,Count,GWh,Petroleum Products,Rail,4.1
+S12000042,2020,Count,GWh,Petroleum Products,Road Transport,601.886
+S12000042,2020,Count,GWh,Petroleum Products,All,695.874
 S12000045,2005,Count,GWh,All,All,2235.457
 S12000045,2005,Count,GWh,Bioenergy & Wastes,Domestic,9.507
 S12000045,2005,Count,GWh,Bioenergy & Wastes,Road Transport,0.85
@@ -14054,7 +14972,7 @@ S12000045,2013,Count,GWh,Coal,Industrial,0.181
 S12000045,2013,Count,GWh,Coal,Public Sector,0.031
 S12000045,2013,Count,GWh,Coal,Rail,0
 S12000045,2013,Count,GWh,Coal,All,3.067
-S12000045,2013,Count,GWh,All,Domestic,989.998
+S12000045,2013,Count,GWh,All,Domestic,989.999
 S12000045,2013,Count,GWh,All,Industrial & Commercial,347.61
 S12000045,2013,Count,GWh,All,Transport,487.27
 S12000045,2013,Count,GWh,Electricity,Domestic,187.857
@@ -14143,7 +15061,7 @@ S12000045,2015,Count,GWh,Petroleum Products,Public Sector,0.177
 S12000045,2015,Count,GWh,Petroleum Products,Rail,53.242
 S12000045,2015,Count,GWh,Petroleum Products,Road Transport,422.126
 S12000045,2015,Count,GWh,Petroleum Products,All,535.098
-S12000045,2016,Count,GWh,All,All,1822.727
+S12000045,2016,Count,GWh,All,All,1837.139
 S12000045,2016,Count,GWh,Bioenergy & Wastes,Domestic,25.204
 S12000045,2016,Count,GWh,Bioenergy & Wastes,Road Transport,11.403
 S12000045,2016,Count,GWh,Bioenergy & Wastes,All,36.737
@@ -14156,12 +15074,12 @@ S12000045,2016,Count,GWh,Coal,Industrial,2.067
 S12000045,2016,Count,GWh,Coal,Public Sector,0.004
 S12000045,2016,Count,GWh,Coal,Rail,0
 S12000045,2016,Count,GWh,Coal,All,4.512
-S12000045,2016,Count,GWh,All,Domestic,973.972
-S12000045,2016,Count,GWh,All,Industrial & Commercial,360.091
+S12000045,2016,Count,GWh,All,Domestic,983.322
+S12000045,2016,Count,GWh,All,Industrial & Commercial,365.153
 S12000045,2016,Count,GWh,All,Transport,488.664
-S12000045,2016,Count,GWh,Electricity,Domestic,179.153
-S12000045,2016,Count,GWh,Electricity,Industrial & Commercial,167.152
-S12000045,2016,Count,GWh,Electricity,All,346.304
+S12000045,2016,Count,GWh,Electricity,Domestic,188.503
+S12000045,2016,Count,GWh,Electricity,Industrial & Commercial,172.214
+S12000045,2016,Count,GWh,Electricity,All,360.717
 S12000045,2016,Count,GWh,Gas,Commercial,69.179
 S12000045,2016,Count,GWh,Gas,Domestic,755.665
 S12000045,2016,Count,GWh,Gas,Industrial,72.733
@@ -14279,6 +15197,40 @@ S12000045,2019,Count,GWh,Petroleum Products,Public Sector,0.177
 S12000045,2019,Count,GWh,Petroleum Products,Rail,45.436
 S12000045,2019,Count,GWh,Petroleum Products,Road Transport,414.591
 S12000045,2019,Count,GWh,Petroleum Products,All,519.881
+S12000045,2020,Count,GWh,All,All,1833.252
+S12000045,2020,Count,GWh,Bioenergy & Wastes,Domestic,28.238
+S12000045,2020,Count,GWh,Bioenergy & Wastes,Road Transport,19.001
+S12000045,2020,Count,GWh,Bioenergy & Wastes,All,47.501
+S12000045,2020,Count,GWh,Bioenergy & Wastes,Commercial,0.117
+S12000045,2020,Count,GWh,Bioenergy & Wastes,Industrial,0.144
+S12000045,2020,Count,GWh,Coal,Agriculture,0
+S12000045,2020,Count,GWh,Coal,Commercial,0.006
+S12000045,2020,Count,GWh,Coal,Domestic,2.182
+S12000045,2020,Count,GWh,Coal,Industrial,0.588
+S12000045,2020,Count,GWh,Coal,Public Sector,0.003
+S12000045,2020,Count,GWh,Coal,Rail,0
+S12000045,2020,Count,GWh,Coal,All,2.78
+S12000045,2020,Count,GWh,All,Domestic,1009.746
+S12000045,2020,Count,GWh,All,Industrial & Commercial,344.478
+S12000045,2020,Count,GWh,All,Transport,479.028
+S12000045,2020,Count,GWh,Electricity,Domestic,180.119
+S12000045,2020,Count,GWh,Electricity,Industrial & Commercial,143.511
+S12000045,2020,Count,GWh,Electricity,All,323.629
+S12000045,2020,Count,GWh,Gas,Commercial,73.655
+S12000045,2020,Count,GWh,Gas,Domestic,787.271
+S12000045,2020,Count,GWh,Gas,Industrial,75.394
+S12000045,2020,Count,GWh,Gas,All,936.32
+S12000045,2020,Count,GWh,Manufactured Fuels,Domestic,3.093
+S12000045,2020,Count,GWh,Manufactured Fuels,Industrial,0.048
+S12000045,2020,Count,GWh,Manufactured Fuels,All,3.141
+S12000045,2020,Count,GWh,Petroleum Products,Agriculture,9.317
+S12000045,2020,Count,GWh,Petroleum Products,Commercial,0.497
+S12000045,2020,Count,GWh,Petroleum Products,Domestic,8.843
+S12000045,2020,Count,GWh,Petroleum Products,Industrial,41.021
+S12000045,2020,Count,GWh,Petroleum Products,Public Sector,0.177
+S12000045,2020,Count,GWh,Petroleum Products,Rail,45.436
+S12000045,2020,Count,GWh,Petroleum Products,Road Transport,414.591
+S12000045,2020,Count,GWh,Petroleum Products,All,519.881
 S12000047,2005,Count,GWh,All,All,15987.748
 S12000047,2005,Count,GWh,Bioenergy & Wastes,Domestic,38.246
 S12000047,2005,Count,GWh,Bioenergy & Wastes,Road Transport,3.837
@@ -14551,7 +15503,7 @@ S12000047,2012,Count,GWh,Petroleum Products,Public Sector,1.323
 S12000047,2012,Count,GWh,Petroleum Products,Rail,38.074
 S12000047,2012,Count,GWh,Petroleum Products,Road Transport,2058.497
 S12000047,2012,Count,GWh,Petroleum Products,All,6581.633
-S12000047,2013,Count,GWh,All,All,12828.463
+S12000047,2013,Count,GWh,All,All,12828.464
 S12000047,2013,Count,GWh,Bioenergy & Wastes,Domestic,87.808
 S12000047,2013,Count,GWh,Bioenergy & Wastes,Road Transport,61.621
 S12000047,2013,Count,GWh,Bioenergy & Wastes,All,527.773
@@ -14564,16 +15516,16 @@ S12000047,2013,Count,GWh,Coal,Industrial,207.632
 S12000047,2013,Count,GWh,Coal,Public Sector,8.677
 S12000047,2013,Count,GWh,Coal,Rail,0
 S12000047,2013,Count,GWh,Coal,All,241.441
-S12000047,2013,Count,GWh,All,Domestic,3190.807
-S12000047,2013,Count,GWh,All,Industrial & Commercial,7483.752
+S12000047,2013,Count,GWh,All,Domestic,3190.808
+S12000047,2013,Count,GWh,All,Industrial & Commercial,7483.753
 S12000047,2013,Count,GWh,All,Transport,2153.903
 S12000047,2013,Count,GWh,Electricity,Domestic,652.116
-S12000047,2013,Count,GWh,Electricity,Industrial & Commercial,992.644
-S12000047,2013,Count,GWh,Electricity,All,1644.76
+S12000047,2013,Count,GWh,Electricity,Industrial & Commercial,992.645
+S12000047,2013,Count,GWh,Electricity,All,1644.761
 S12000047,2013,Count,GWh,Gas,Commercial,858.163
 S12000047,2013,Count,GWh,Gas,Domestic,2300.728
 S12000047,2013,Count,GWh,Gas,Industrial,866.419
-S12000047,2013,Count,GWh,Gas,All,4025.309
+S12000047,2013,Count,GWh,Gas,All,4025.311
 S12000047,2013,Count,GWh,Manufactured Fuels,Domestic,16.965
 S12000047,2013,Count,GWh,Manufactured Fuels,Industrial,34.823
 S12000047,2013,Count,GWh,Manufactured Fuels,All,51.787
@@ -14604,7 +15556,7 @@ S12000047,2014,Count,GWh,All,Transport,2199.044
 S12000047,2014,Count,GWh,Electricity,Domestic,655.501
 S12000047,2014,Count,GWh,Electricity,Industrial & Commercial,899.698
 S12000047,2014,Count,GWh,Electricity,All,1555.199
-S12000047,2014,Count,GWh,Gas,Commercial,758.38
+S12000047,2014,Count,GWh,Gas,Commercial,758.379
 S12000047,2014,Count,GWh,Gas,Domestic,2249.825
 S12000047,2014,Count,GWh,Gas,Industrial,873.749
 S12000047,2014,Count,GWh,Gas,All,3881.954
@@ -14653,7 +15605,7 @@ S12000047,2015,Count,GWh,Petroleum Products,Public Sector,1.315
 S12000047,2015,Count,GWh,Petroleum Products,Rail,39.297
 S12000047,2015,Count,GWh,Petroleum Products,Road Transport,2090.475
 S12000047,2015,Count,GWh,Petroleum Products,All,6509.869
-S12000047,2016,Count,GWh,All,All,12215.553
+S12000047,2016,Count,GWh,All,All,12274.719
 S12000047,2016,Count,GWh,Bioenergy & Wastes,Domestic,101.397
 S12000047,2016,Count,GWh,Bioenergy & Wastes,Road Transport,55.144
 S12000047,2016,Count,GWh,Bioenergy & Wastes,All,334.508
@@ -14666,12 +15618,12 @@ S12000047,2016,Count,GWh,Coal,Industrial,2.948
 S12000047,2016,Count,GWh,Coal,Public Sector,1.219
 S12000047,2016,Count,GWh,Coal,Rail,0
 S12000047,2016,Count,GWh,Coal,All,25.633
-S12000047,2016,Count,GWh,All,Domestic,3115.123
-S12000047,2016,Count,GWh,All,Industrial & Commercial,6904.336
+S12000047,2016,Count,GWh,All,Domestic,3147.683
+S12000047,2016,Count,GWh,All,Industrial & Commercial,6930.942
 S12000047,2016,Count,GWh,All,Transport,2196.094
-S12000047,2016,Count,GWh,Electricity,Domestic,629.888
-S12000047,2016,Count,GWh,Electricity,Industrial & Commercial,941.349
-S12000047,2016,Count,GWh,Electricity,All,1571.237
+S12000047,2016,Count,GWh,Electricity,Domestic,662.448
+S12000047,2016,Count,GWh,Electricity,Industrial & Commercial,967.955
+S12000047,2016,Count,GWh,Electricity,All,1630.403
 S12000047,2016,Count,GWh,Gas,Commercial,550.84
 S12000047,2016,Count,GWh,Gas,Domestic,2248.978
 S12000047,2016,Count,GWh,Gas,Industrial,579.144
@@ -14789,6 +15741,40 @@ S12000047,2019,Count,GWh,Petroleum Products,Public Sector,1.366
 S12000047,2019,Count,GWh,Petroleum Products,Rail,36.508
 S12000047,2019,Count,GWh,Petroleum Products,Road Transport,2079.362
 S12000047,2019,Count,GWh,Petroleum Products,All,6245.528
+S12000047,2020,Count,GWh,All,All,11464.554
+S12000047,2020,Count,GWh,Bioenergy & Wastes,Domestic,113.605
+S12000047,2020,Count,GWh,Bioenergy & Wastes,Road Transport,97.294
+S12000047,2020,Count,GWh,Bioenergy & Wastes,All,275.175
+S12000047,2020,Count,GWh,Bioenergy & Wastes,Commercial,28.863
+S12000047,2020,Count,GWh,Bioenergy & Wastes,Industrial,35.413
+S12000047,2020,Count,GWh,Coal,Agriculture,0
+S12000047,2020,Count,GWh,Coal,Commercial,0.263
+S12000047,2020,Count,GWh,Coal,Domestic,19.039
+S12000047,2020,Count,GWh,Coal,Industrial,0.992
+S12000047,2020,Count,GWh,Coal,Public Sector,0.879
+S12000047,2020,Count,GWh,Coal,Rail,0
+S12000047,2020,Count,GWh,Coal,All,21.174
+S12000047,2020,Count,GWh,All,Domestic,3221.072
+S12000047,2020,Count,GWh,All,Industrial & Commercial,6030.319
+S12000047,2020,Count,GWh,All,Transport,2213.164
+S12000047,2020,Count,GWh,Electricity,Domestic,623.243
+S12000047,2020,Count,GWh,Electricity,Industrial & Commercial,819.696
+S12000047,2020,Count,GWh,Electricity,All,1442.939
+S12000047,2020,Count,GWh,Gas,Commercial,543.661
+S12000047,2020,Count,GWh,Gas,Domestic,2349.961
+S12000047,2020,Count,GWh,Gas,Industrial,556.5
+S12000047,2020,Count,GWh,Gas,All,3450.123
+S12000047,2020,Count,GWh,Manufactured Fuels,Domestic,16.504
+S12000047,2020,Count,GWh,Manufactured Fuels,Industrial,13.113
+S12000047,2020,Count,GWh,Manufactured Fuels,All,29.616
+S12000047,2020,Count,GWh,Petroleum Products,Agriculture,92.21
+S12000047,2020,Count,GWh,Petroleum Products,Commercial,5.84
+S12000047,2020,Count,GWh,Petroleum Products,Domestic,98.719
+S12000047,2020,Count,GWh,Petroleum Products,Industrial,3931.522
+S12000047,2020,Count,GWh,Petroleum Products,Public Sector,1.366
+S12000047,2020,Count,GWh,Petroleum Products,Rail,36.508
+S12000047,2020,Count,GWh,Petroleum Products,Road Transport,2079.362
+S12000047,2020,Count,GWh,Petroleum Products,All,6245.528
 S12000048,2005,Count,GWh,All,All,4869.904
 S12000048,2005,Count,GWh,Bioenergy & Wastes,Domestic,22.826
 S12000048,2005,Count,GWh,Bioenergy & Wastes,Road Transport,3.533
@@ -15080,7 +16066,7 @@ S12000048,2013,Count,GWh,All,Transport,2050.586
 S12000048,2013,Count,GWh,Electricity,Domestic,365.918
 S12000048,2013,Count,GWh,Electricity,Industrial & Commercial,389.421
 S12000048,2013,Count,GWh,Electricity,All,755.339
-S12000048,2013,Count,GWh,Gas,Commercial,178.612
+S12000048,2013,Count,GWh,Gas,Commercial,178.613
 S12000048,2013,Count,GWh,Gas,Domestic,686.997
 S12000048,2013,Count,GWh,Gas,Industrial,180.331
 S12000048,2013,Count,GWh,Gas,All,1045.94
@@ -15163,7 +16149,7 @@ S12000048,2015,Count,GWh,Petroleum Products,Public Sector,1.062
 S12000048,2015,Count,GWh,Petroleum Products,Rail,38.405
 S12000048,2015,Count,GWh,Petroleum Products,Road Transport,2022.905
 S12000048,2015,Count,GWh,Petroleum Products,All,2538.724
-S12000048,2016,Count,GWh,All,All,4490.064
+S12000048,2016,Count,GWh,All,All,4510.243
 S12000048,2016,Count,GWh,Bioenergy & Wastes,Domestic,60.516
 S12000048,2016,Count,GWh,Bioenergy & Wastes,Road Transport,51.766
 S12000048,2016,Count,GWh,Bioenergy & Wastes,All,139.692
@@ -15176,12 +16162,12 @@ S12000048,2016,Count,GWh,Coal,Industrial,34.016
 S12000048,2016,Count,GWh,Coal,Public Sector,0.686
 S12000048,2016,Count,GWh,Coal,Rail,0
 S12000048,2016,Count,GWh,Coal,All,55.241
-S12000048,2016,Count,GWh,All,Domestic,1328.125
-S12000048,2016,Count,GWh,All,Industrial & Commercial,1037.754
+S12000048,2016,Count,GWh,All,Domestic,1337.003
+S12000048,2016,Count,GWh,All,Industrial & Commercial,1049.055
 S12000048,2016,Count,GWh,All,Transport,2124.185
-S12000048,2016,Count,GWh,Electricity,Domestic,348.869
-S12000048,2016,Count,GWh,Electricity,Industrial & Commercial,378.932
-S12000048,2016,Count,GWh,Electricity,All,727.801
+S12000048,2016,Count,GWh,Electricity,Domestic,357.746
+S12000048,2016,Count,GWh,Electricity,Industrial & Commercial,390.233
+S12000048,2016,Count,GWh,Electricity,All,747.98
 S12000048,2016,Count,GWh,Gas,Commercial,155.718
 S12000048,2016,Count,GWh,Gas,Domestic,683.961
 S12000048,2016,Count,GWh,Gas,Industrial,163.719
@@ -15299,6 +16285,40 @@ S12000048,2019,Count,GWh,Petroleum Products,Public Sector,1.097
 S12000048,2019,Count,GWh,Petroleum Products,Rail,35.657
 S12000048,2019,Count,GWh,Petroleum Products,Road Transport,1994.039
 S12000048,2019,Count,GWh,Petroleum Products,All,2514.367
+S12000048,2020,Count,GWh,All,All,4484.275
+S12000048,2020,Count,GWh,Bioenergy & Wastes,Domestic,67.803
+S12000048,2020,Count,GWh,Bioenergy & Wastes,Road Transport,95.924
+S12000048,2020,Count,GWh,Bioenergy & Wastes,All,213.871
+S12000048,2020,Count,GWh,Bioenergy & Wastes,Commercial,22.517
+S12000048,2020,Count,GWh,Bioenergy & Wastes,Industrial,27.627
+S12000048,2020,Count,GWh,Coal,Agriculture,0
+S12000048,2020,Count,GWh,Coal,Commercial,0.491
+S12000048,2020,Count,GWh,Coal,Domestic,17.66
+S12000048,2020,Count,GWh,Coal,Industrial,14.838
+S12000048,2020,Count,GWh,Coal,Public Sector,0.67
+S12000048,2020,Count,GWh,Coal,Rail,0
+S12000048,2020,Count,GWh,Coal,All,33.658
+S12000048,2020,Count,GWh,All,Domestic,1378.119
+S12000048,2020,Count,GWh,All,Industrial & Commercial,980.534
+S12000048,2020,Count,GWh,All,Transport,2125.621
+S12000048,2020,Count,GWh,Electricity,Domestic,343.374
+S12000048,2020,Count,GWh,Electricity,Industrial & Commercial,329.811
+S12000048,2020,Count,GWh,Electricity,All,673.185
+S12000048,2020,Count,GWh,Gas,Commercial,150.193
+S12000048,2020,Count,GWh,Gas,Domestic,732.921
+S12000048,2020,Count,GWh,Gas,Industrial,153.74
+S12000048,2020,Count,GWh,Gas,All,1036.853
+S12000048,2020,Count,GWh,Manufactured Fuels,Domestic,12.34
+S12000048,2020,Count,GWh,Manufactured Fuels,Industrial,0
+S12000048,2020,Count,GWh,Manufactured Fuels,All,12.34
+S12000048,2020,Count,GWh,Petroleum Products,Agriculture,168.766
+S12000048,2020,Count,GWh,Petroleum Products,Commercial,5.509
+S12000048,2020,Count,GWh,Petroleum Products,Domestic,204.022
+S12000048,2020,Count,GWh,Petroleum Products,Industrial,105.276
+S12000048,2020,Count,GWh,Petroleum Products,Public Sector,1.097
+S12000048,2020,Count,GWh,Petroleum Products,Rail,35.657
+S12000048,2020,Count,GWh,Petroleum Products,Road Transport,1994.039
+S12000048,2020,Count,GWh,Petroleum Products,All,2514.367
 S12000049,2005,Count,GWh,All,All,13801.811
 S12000049,2005,Count,GWh,Bioenergy & Wastes,Domestic,24.963
 S12000049,2005,Count,GWh,Bioenergy & Wastes,Road Transport,5.403
@@ -15571,7 +16591,7 @@ S12000049,2012,Count,GWh,Petroleum Products,Public Sector,1.682
 S12000049,2012,Count,GWh,Petroleum Products,Rail,20.323
 S12000049,2012,Count,GWh,Petroleum Products,Road Transport,2977.717
 S12000049,2012,Count,GWh,Petroleum Products,All,3266.034
-S12000049,2013,Count,GWh,All,All,11674.403
+S12000049,2013,Count,GWh,All,All,11674.406
 S12000049,2013,Count,GWh,Bioenergy & Wastes,Domestic,57.312
 S12000049,2013,Count,GWh,Bioenergy & Wastes,Road Transport,88.424
 S12000049,2013,Count,GWh,Bioenergy & Wastes,All,145.736
@@ -15584,16 +16604,16 @@ S12000049,2013,Count,GWh,Coal,Industrial,0.163
 S12000049,2013,Count,GWh,Coal,Public Sector,0
 S12000049,2013,Count,GWh,Coal,Rail,0
 S12000049,2013,Count,GWh,Coal,All,6.959
-S12000049,2013,Count,GWh,All,Domestic,4042.656
-S12000049,2013,Count,GWh,All,Industrial & Commercial,4561.007
+S12000049,2013,Count,GWh,All,Domestic,4042.657
+S12000049,2013,Count,GWh,All,Industrial & Commercial,4561.008
 S12000049,2013,Count,GWh,All,Transport,3070.74
-S12000049,2013,Count,GWh,Electricity,Domestic,1051.343
+S12000049,2013,Count,GWh,Electricity,Domestic,1051.344
 S12000049,2013,Count,GWh,Electricity,Industrial & Commercial,1961.427
-S12000049,2013,Count,GWh,Electricity,All,3012.77
+S12000049,2013,Count,GWh,Electricity,All,3012.771
 S12000049,2013,Count,GWh,Gas,Commercial,1183.187
-S12000049,2013,Count,GWh,Gas,Domestic,2906.676
+S12000049,2013,Count,GWh,Gas,Domestic,2906.677
 S12000049,2013,Count,GWh,Gas,Industrial,1194.57
-S12000049,2013,Count,GWh,Gas,All,5284.432
+S12000049,2013,Count,GWh,Gas,All,5284.434
 S12000049,2013,Count,GWh,Manufactured Fuels,Domestic,6.492
 S12000049,2013,Count,GWh,Manufactured Fuels,Industrial,2.72
 S12000049,2013,Count,GWh,Manufactured Fuels,All,9.211
@@ -15673,7 +16693,7 @@ S12000049,2015,Count,GWh,Petroleum Products,Public Sector,9.272
 S12000049,2015,Count,GWh,Petroleum Products,Rail,20.49
 S12000049,2015,Count,GWh,Petroleum Products,Road Transport,2902.876
 S12000049,2015,Count,GWh,Petroleum Products,All,3210.315
-S12000049,2016,Count,GWh,All,All,11196.203
+S12000049,2016,Count,GWh,All,All,11412.441
 S12000049,2016,Count,GWh,Bioenergy & Wastes,Domestic,66.181
 S12000049,2016,Count,GWh,Bioenergy & Wastes,Road Transport,76.389
 S12000049,2016,Count,GWh,Bioenergy & Wastes,All,142.57
@@ -15686,12 +16706,12 @@ S12000049,2016,Count,GWh,Coal,Industrial,0
 S12000049,2016,Count,GWh,Coal,Public Sector,0
 S12000049,2016,Count,GWh,Coal,Rail,0
 S12000049,2016,Count,GWh,Coal,All,5.811
-S12000049,2016,Count,GWh,All,Domestic,3937.691
-S12000049,2016,Count,GWh,All,Industrial & Commercial,4238.353
+S12000049,2016,Count,GWh,All,Domestic,3999.973
+S12000049,2016,Count,GWh,All,Industrial & Commercial,4392.309
 S12000049,2016,Count,GWh,All,Transport,3020.159
-S12000049,2016,Count,GWh,Electricity,Domestic,992.423
-S12000049,2016,Count,GWh,Electricity,Industrial & Commercial,1800.059
-S12000049,2016,Count,GWh,Electricity,All,2792.481
+S12000049,2016,Count,GWh,Electricity,Domestic,1054.705
+S12000049,2016,Count,GWh,Electricity,Industrial & Commercial,1954.014
+S12000049,2016,Count,GWh,Electricity,All,3008.719
 S12000049,2016,Count,GWh,Gas,Commercial,1064.051
 S12000049,2016,Count,GWh,Gas,Domestic,2852.748
 S12000049,2016,Count,GWh,Gas,Industrial,1118.727
@@ -15809,6 +16829,40 @@ S12000049,2019,Count,GWh,Petroleum Products,Public Sector,2.197
 S12000049,2019,Count,GWh,Petroleum Products,Rail,18.624
 S12000049,2019,Count,GWh,Petroleum Products,Road Transport,2773.333
 S12000049,2019,Count,GWh,Petroleum Products,All,3087.831
+S12000049,2020,Count,GWh,All,All,11001.329
+S12000049,2020,Count,GWh,Bioenergy & Wastes,Domestic,74.15
+S12000049,2020,Count,GWh,Bioenergy & Wastes,Road Transport,130.174
+S12000049,2020,Count,GWh,Bioenergy & Wastes,All,204.324
+S12000049,2020,Count,GWh,Bioenergy & Wastes,Commercial,0
+S12000049,2020,Count,GWh,Bioenergy & Wastes,Industrial,0
+S12000049,2020,Count,GWh,Coal,Agriculture,0
+S12000049,2020,Count,GWh,Coal,Commercial,0
+S12000049,2020,Count,GWh,Coal,Domestic,5.211
+S12000049,2020,Count,GWh,Coal,Industrial,0
+S12000049,2020,Count,GWh,Coal,Public Sector,0
+S12000049,2020,Count,GWh,Coal,Rail,0
+S12000049,2020,Count,GWh,Coal,All,5.211
+S12000049,2020,Count,GWh,All,Domestic,4089.308
+S12000049,2020,Count,GWh,All,Industrial & Commercial,3989.889
+S12000049,2020,Count,GWh,All,Transport,2922.131
+S12000049,2020,Count,GWh,Electricity,Domestic,955.488
+S12000049,2020,Count,GWh,Electricity,Industrial & Commercial,1482.203
+S12000049,2020,Count,GWh,Electricity,All,2437.692
+S12000049,2020,Count,GWh,Gas,Commercial,1099.433
+S12000049,2020,Count,GWh,Gas,Domestic,3032.565
+S12000049,2020,Count,GWh,Gas,Industrial,1125.397
+S12000049,2020,Count,GWh,Gas,All,5257.395
+S12000049,2020,Count,GWh,Manufactured Fuels,Domestic,7.918
+S12000049,2020,Count,GWh,Manufactured Fuels,Industrial,0.957
+S12000049,2020,Count,GWh,Manufactured Fuels,All,8.875
+S12000049,2020,Count,GWh,Petroleum Products,Agriculture,4.08
+S12000049,2020,Count,GWh,Petroleum Products,Commercial,3.862
+S12000049,2020,Count,GWh,Petroleum Products,Domestic,13.976
+S12000049,2020,Count,GWh,Petroleum Products,Industrial,271.759
+S12000049,2020,Count,GWh,Petroleum Products,Public Sector,2.197
+S12000049,2020,Count,GWh,Petroleum Products,Rail,18.624
+S12000049,2020,Count,GWh,Petroleum Products,Road Transport,2773.333
+S12000049,2020,Count,GWh,Petroleum Products,All,3087.831
 S12000050,2005,Count,GWh,All,All,8692.667
 S12000050,2005,Count,GWh,Bioenergy & Wastes,Domestic,24.887
 S12000050,2005,Count,GWh,Bioenergy & Wastes,Road Transport,4.395
@@ -16081,7 +17135,7 @@ S12000050,2012,Count,GWh,Petroleum Products,Public Sector,0.306
 S12000050,2012,Count,GWh,Petroleum Products,Rail,30.179
 S12000050,2012,Count,GWh,Petroleum Products,Road Transport,2631.035
 S12000050,2012,Count,GWh,Petroleum Products,All,2972.292
-S12000050,2013,Count,GWh,All,All,7602.76
+S12000050,2013,Count,GWh,All,All,7602.761
 S12000050,2013,Count,GWh,Bioenergy & Wastes,Domestic,57.138
 S12000050,2013,Count,GWh,Bioenergy & Wastes,Road Transport,77.246
 S12000050,2013,Count,GWh,Bioenergy & Wastes,All,154.614
@@ -16094,16 +17148,16 @@ S12000050,2013,Count,GWh,Coal,Industrial,4.717
 S12000050,2013,Count,GWh,Coal,Public Sector,0.394
 S12000050,2013,Count,GWh,Coal,Rail,0
 S12000050,2013,Count,GWh,Coal,All,17.228
-S12000050,2013,Count,GWh,All,Domestic,2668.833
+S12000050,2013,Count,GWh,All,Domestic,2668.834
 S12000050,2013,Count,GWh,All,Industrial & Commercial,2235.179
 S12000050,2013,Count,GWh,All,Transport,2698.748
 S12000050,2013,Count,GWh,Electricity,Domestic,574.426
-S12000050,2013,Count,GWh,Electricity,Industrial & Commercial,832.669
+S12000050,2013,Count,GWh,Electricity,Industrial & Commercial,832.67
 S12000050,2013,Count,GWh,Electricity,All,1407.096
 S12000050,2013,Count,GWh,Gas,Commercial,539.237
-S12000050,2013,Count,GWh,Gas,Domestic,1980.502
+S12000050,2013,Count,GWh,Gas,Domestic,1980.503
 S12000050,2013,Count,GWh,Gas,Industrial,544.425
-S12000050,2013,Count,GWh,Gas,All,3064.164
+S12000050,2013,Count,GWh,Gas,All,3064.165
 S12000050,2013,Count,GWh,Manufactured Fuels,Domestic,9.055
 S12000050,2013,Count,GWh,Manufactured Fuels,Industrial,46.265
 S12000050,2013,Count,GWh,Manufactured Fuels,All,55.32
@@ -16183,7 +17237,7 @@ S12000050,2015,Count,GWh,Petroleum Products,Public Sector,0.268
 S12000050,2015,Count,GWh,Petroleum Products,Rail,30.041
 S12000050,2015,Count,GWh,Petroleum Products,Road Transport,2549.455
 S12000050,2015,Count,GWh,Petroleum Products,All,2911.902
-S12000050,2016,Count,GWh,All,All,7243.887
+S12000050,2016,Count,GWh,All,All,7306.769
 S12000050,2016,Count,GWh,Bioenergy & Wastes,Domestic,65.98
 S12000050,2016,Count,GWh,Bioenergy & Wastes,Road Transport,66.405
 S12000050,2016,Count,GWh,Bioenergy & Wastes,All,133.743
@@ -16196,12 +17250,12 @@ S12000050,2016,Count,GWh,Coal,Industrial,1.322
 S12000050,2016,Count,GWh,Coal,Public Sector,0.053
 S12000050,2016,Count,GWh,Coal,Rail,0
 S12000050,2016,Count,GWh,Coal,All,11.726
-S12000050,2016,Count,GWh,All,Domestic,2632.25
-S12000050,2016,Count,GWh,All,Industrial & Commercial,1968.746
+S12000050,2016,Count,GWh,All,Domestic,2660.368
+S12000050,2016,Count,GWh,All,Industrial & Commercial,2003.511
 S12000050,2016,Count,GWh,All,Transport,2642.891
-S12000050,2016,Count,GWh,Electricity,Domestic,548.892
-S12000050,2016,Count,GWh,Electricity,Industrial & Commercial,788.254
-S12000050,2016,Count,GWh,Electricity,All,1337.146
+S12000050,2016,Count,GWh,Electricity,Domestic,577.01
+S12000050,2016,Count,GWh,Electricity,Industrial & Commercial,823.019
+S12000050,2016,Count,GWh,Electricity,All,1400.028
 S12000050,2016,Count,GWh,Gas,Commercial,424.704
 S12000050,2016,Count,GWh,Gas,Domestic,1965.576
 S12000050,2016,Count,GWh,Gas,Industrial,446.527
@@ -16319,6 +17373,40 @@ S12000050,2019,Count,GWh,Petroleum Products,Public Sector,0.305
 S12000050,2019,Count,GWh,Petroleum Products,Rail,26.927
 S12000050,2019,Count,GWh,Petroleum Products,Road Transport,2791.306
 S12000050,2019,Count,GWh,Petroleum Products,All,3158.884
+S12000050,2020,Count,GWh,All,All,7724.356
+S12000050,2020,Count,GWh,Bioenergy & Wastes,Domestic,73.924
+S12000050,2020,Count,GWh,Bioenergy & Wastes,Road Transport,132.137
+S12000050,2020,Count,GWh,Bioenergy & Wastes,All,208.845
+S12000050,2020,Count,GWh,Bioenergy & Wastes,Commercial,1.25
+S12000050,2020,Count,GWh,Bioenergy & Wastes,Industrial,1.533
+S12000050,2020,Count,GWh,Coal,Agriculture,0
+S12000050,2020,Count,GWh,Coal,Commercial,0.038
+S12000050,2020,Count,GWh,Coal,Domestic,9.264
+S12000050,2020,Count,GWh,Coal,Industrial,0.697
+S12000050,2020,Count,GWh,Coal,Public Sector,0.077
+S12000050,2020,Count,GWh,Coal,Rail,0
+S12000050,2020,Count,GWh,Coal,All,10.077
+S12000050,2020,Count,GWh,All,Domestic,2716.691
+S12000050,2020,Count,GWh,All,Industrial & Commercial,2057.294
+S12000050,2020,Count,GWh,All,Transport,2950.371
+S12000050,2020,Count,GWh,Electricity,Domestic,538.023
+S12000050,2020,Count,GWh,Electricity,Industrial & Commercial,722.776
+S12000050,2020,Count,GWh,Electricity,All,1260.8
+S12000050,2020,Count,GWh,Gas,Commercial,498.283
+S12000050,2020,Count,GWh,Gas,Domestic,2052.737
+S12000050,2020,Count,GWh,Gas,Industrial,510.051
+S12000050,2020,Count,GWh,Gas,All,3061.071
+S12000050,2020,Count,GWh,Manufactured Fuels,Domestic,9.503
+S12000050,2020,Count,GWh,Manufactured Fuels,Industrial,15.177
+S12000050,2020,Count,GWh,Manufactured Fuels,All,24.68
+S12000050,2020,Count,GWh,Petroleum Products,Agriculture,27.524
+S12000050,2020,Count,GWh,Petroleum Products,Commercial,2.709
+S12000050,2020,Count,GWh,Petroleum Products,Domestic,33.24
+S12000050,2020,Count,GWh,Petroleum Products,Industrial,276.874
+S12000050,2020,Count,GWh,Petroleum Products,Public Sector,0.305
+S12000050,2020,Count,GWh,Petroleum Products,Rail,26.927
+S12000050,2020,Count,GWh,Petroleum Products,Road Transport,2791.306
+S12000050,2020,Count,GWh,Petroleum Products,All,3158.884
 S92000003,2005,Count,GWh,All,All,173091.152
 S92000003,2005,Count,GWh,Bioenergy & Wastes,Domestic,549.252
 S92000003,2005,Count,GWh,Bioenergy & Wastes,Road Transport,64.101
@@ -16591,7 +17679,7 @@ S92000003,2012,Count,GWh,Petroleum Products,Public Sector,143.559
 S92000003,2012,Count,GWh,Petroleum Products,Rail,636.708
 S92000003,2012,Count,GWh,Petroleum Products,Road Transport,35180.022
 S92000003,2012,Count,GWh,Petroleum Products,All,66600.794
-S92000003,2013,Count,GWh,All,All,148916.825
+S92000003,2013,Count,GWh,All,All,148916.982
 S92000003,2013,Count,GWh,Bioenergy & Wastes,Domestic,1261.004
 S92000003,2013,Count,GWh,Bioenergy & Wastes,Road Transport,1044.485
 S92000003,2013,Count,GWh,Bioenergy & Wastes,All,6559.282
@@ -16604,16 +17692,16 @@ S92000003,2013,Count,GWh,Coal,Industrial,1370.439
 S92000003,2013,Count,GWh,Coal,Public Sector,124.75
 S92000003,2013,Count,GWh,Coal,Rail,3.895
 S92000003,2013,Count,GWh,Coal,All,2137.18
-S92000003,2013,Count,GWh,All,Domestic,44557.843
-S92000003,2013,Count,GWh,All,Industrial & Commercial,67622.094
+S92000003,2013,Count,GWh,All,Domestic,44557.916
+S92000003,2013,Count,GWh,All,Industrial & Commercial,67622.178
 S92000003,2013,Count,GWh,All,Transport,36736.888
-S92000003,2013,Count,GWh,Electricity,Domestic,10652.601
-S92000003,2013,Count,GWh,Electricity,Industrial & Commercial,15220.293
-S92000003,2013,Count,GWh,Electricity,All,25872.894
-S92000003,2013,Count,GWh,Gas,Commercial,10237.915
-S92000003,2013,Count,GWh,Gas,Domestic,28072.986
-S92000003,2013,Count,GWh,Gas,Industrial,10336.408
-S92000003,2013,Count,GWh,Gas,All,48647.309
+S92000003,2013,Count,GWh,Electricity,Domestic,10652.604
+S92000003,2013,Count,GWh,Electricity,Industrial & Commercial,15220.297
+S92000003,2013,Count,GWh,Electricity,All,25872.901
+S92000003,2013,Count,GWh,Gas,Commercial,10237.955
+S92000003,2013,Count,GWh,Gas,Domestic,28073.056
+S92000003,2013,Count,GWh,Gas,Industrial,10336.448
+S92000003,2013,Count,GWh,Gas,All,48647.459
 S92000003,2013,Count,GWh,Manufactured Fuels,Domestic,374.679
 S92000003,2013,Count,GWh,Manufactured Fuels,Industrial,833.546
 S92000003,2013,Count,GWh,Manufactured Fuels,All,1208.225
@@ -16625,7 +17713,7 @@ S92000003,2013,Count,GWh,Petroleum Products,Public Sector,121.074
 S92000003,2013,Count,GWh,Petroleum Products,Rail,640.777
 S92000003,2013,Count,GWh,Petroleum Products,Road Transport,35047.73
 S92000003,2013,Count,GWh,Petroleum Products,All,64491.934
-S92000003,2014,Count,GWh,All,All,146781.207
+S92000003,2014,Count,GWh,All,All,146781.208
 S92000003,2014,Count,GWh,Bioenergy & Wastes,Domestic,1197.809
 S92000003,2014,Count,GWh,Bioenergy & Wastes,Road Transport,1177.951
 S92000003,2014,Count,GWh,Bioenergy & Wastes,All,7316.058
@@ -16638,12 +17726,12 @@ S92000003,2014,Count,GWh,Coal,Industrial,1145.745
 S92000003,2014,Count,GWh,Coal,Public Sector,130.116
 S92000003,2014,Count,GWh,Coal,Rail,3.694
 S92000003,2014,Count,GWh,Coal,All,1825.135
-S92000003,2014,Count,GWh,All,Domestic,43691.747
-S92000003,2014,Count,GWh,All,Industrial & Commercial,65706.58
+S92000003,2014,Count,GWh,All,Domestic,43691.744
+S92000003,2014,Count,GWh,All,Industrial & Commercial,65706.584
 S92000003,2014,Count,GWh,All,Transport,37382.88
-S92000003,2014,Count,GWh,Electricity,Domestic,10763.07
-S92000003,2014,Count,GWh,Electricity,Industrial & Commercial,14559.37
-S92000003,2014,Count,GWh,Electricity,All,25322.44
+S92000003,2014,Count,GWh,Electricity,Domestic,10763.067
+S92000003,2014,Count,GWh,Electricity,Industrial & Commercial,14559.374
+S92000003,2014,Count,GWh,Electricity,All,25322.441
 S92000003,2014,Count,GWh,Gas,Commercial,9498.257
 S92000003,2014,Count,GWh,Gas,Domestic,27699.513
 S92000003,2014,Count,GWh,Gas,Industrial,10943.194
@@ -16659,7 +17747,7 @@ S92000003,2014,Count,GWh,Petroleum Products,Public Sector,134.672
 S92000003,2014,Count,GWh,Petroleum Products,Rail,655.179
 S92000003,2014,Count,GWh,Petroleum Products,Road Transport,35546.056
 S92000003,2014,Count,GWh,Petroleum Products,All,63006.428
-S92000003,2015,Count,GWh,All,All,146415.159
+S92000003,2015,Count,GWh,All,All,145755.266
 S92000003,2015,Count,GWh,Bioenergy & Wastes,Domestic,1353.156
 S92000003,2015,Count,GWh,Bioenergy & Wastes,Road Transport,929.748
 S92000003,2015,Count,GWh,Bioenergy & Wastes,All,6314.35
@@ -16672,16 +17760,16 @@ S92000003,2015,Count,GWh,Coal,Industrial,954.218
 S92000003,2015,Count,GWh,Coal,Public Sector,16.812
 S92000003,2015,Count,GWh,Coal,Rail,3.694
 S92000003,2015,Count,GWh,Coal,All,1524.481
-S92000003,2015,Count,GWh,All,Domestic,43600.131
-S92000003,2015,Count,GWh,All,Industrial & Commercial,65360.67
+S92000003,2015,Count,GWh,All,Domestic,43586.263
+S92000003,2015,Count,GWh,All,Industrial & Commercial,64714.645
 S92000003,2015,Count,GWh,All,Transport,37454.358
-S92000003,2015,Count,GWh,Electricity,Domestic,10688.917
-S92000003,2015,Count,GWh,Electricity,Industrial & Commercial,15579.869
-S92000003,2015,Count,GWh,Electricity,All,26268.786
-S92000003,2015,Count,GWh,Gas,Commercial,9104.559
-S92000003,2015,Count,GWh,Gas,Domestic,27528.41
-S92000003,2015,Count,GWh,Gas,Industrial,10629.207
-S92000003,2015,Count,GWh,Gas,All,47262.176
+S92000003,2015,Count,GWh,Electricity,Domestic,10674.007
+S92000003,2015,Count,GWh,Electricity,Industrial & Commercial,15189.216
+S92000003,2015,Count,GWh,Electricity,All,25863.223
+S92000003,2015,Count,GWh,Gas,Commercial,8986.738
+S92000003,2015,Count,GWh,Gas,Domestic,27529.452
+S92000003,2015,Count,GWh,Gas,Industrial,10491.656
+S92000003,2015,Count,GWh,Gas,All,47007.847
 S92000003,2015,Count,GWh,Manufactured Fuels,Domestic,324.625
 S92000003,2015,Count,GWh,Manufactured Fuels,Industrial,780.752
 S92000003,2015,Count,GWh,Manufactured Fuels,All,1105.377
@@ -16693,7 +17781,7 @@ S92000003,2015,Count,GWh,Petroleum Products,Public Sector,147.363
 S92000003,2015,Count,GWh,Petroleum Products,Rail,641.862
 S92000003,2015,Count,GWh,Petroleum Products,Road Transport,35879.055
 S92000003,2015,Count,GWh,Petroleum Products,All,63939.989
-S92000003,2016,Count,GWh,All,All,146760.595
+S92000003,2016,Count,GWh,All,All,146088.062
 S92000003,2016,Count,GWh,Bioenergy & Wastes,Domestic,1456.149
 S92000003,2016,Count,GWh,Bioenergy & Wastes,Road Transport,938.57
 S92000003,2016,Count,GWh,Bioenergy & Wastes,All,6380.483
@@ -16706,16 +17794,16 @@ S92000003,2016,Count,GWh,Coal,Industrial,1092.305
 S92000003,2016,Count,GWh,Coal,Public Sector,17.094
 S92000003,2016,Count,GWh,Coal,Rail,4.262
 S92000003,2016,Count,GWh,Coal,All,1658.567
-S92000003,2016,Count,GWh,All,Domestic,43593.059
-S92000003,2016,Count,GWh,All,Industrial & Commercial,65403.237
+S92000003,2016,Count,GWh,All,Domestic,43578.527
+S92000003,2016,Count,GWh,All,Industrial & Commercial,64745.236
 S92000003,2016,Count,GWh,All,Transport,37764.299
-S92000003,2016,Count,GWh,Electricity,Domestic,10201.941
-S92000003,2016,Count,GWh,Electricity,Industrial & Commercial,14855.258
-S92000003,2016,Count,GWh,Electricity,All,25057.199
-S92000003,2016,Count,GWh,Gas,Commercial,9374.074
-S92000003,2016,Count,GWh,Gas,Domestic,27882.058
-S92000003,2016,Count,GWh,Gas,Industrial,9855.757
-S92000003,2016,Count,GWh,Gas,All,47111.89
+S92000003,2016,Count,GWh,Electricity,Domestic,10186.986
+S92000003,2016,Count,GWh,Electricity,Industrial & Commercial,14477.636
+S92000003,2016,Count,GWh,Electricity,All,24664.621
+S92000003,2016,Count,GWh,Gas,Commercial,9237.397
+S92000003,2016,Count,GWh,Gas,Domestic,27882.481
+S92000003,2016,Count,GWh,Gas,Industrial,9712.057
+S92000003,2016,Count,GWh,Gas,All,46831.935
 S92000003,2016,Count,GWh,Manufactured Fuels,Domestic,322.216
 S92000003,2016,Count,GWh,Manufactured Fuels,Industrial,725.94
 S92000003,2016,Count,GWh,Manufactured Fuels,All,1048.156
@@ -16727,7 +17815,7 @@ S92000003,2016,Count,GWh,Petroleum Products,Public Sector,135.531
 S92000003,2016,Count,GWh,Petroleum Products,Rail,636.68
 S92000003,2016,Count,GWh,Petroleum Products,Road Transport,36184.788
 S92000003,2016,Count,GWh,Petroleum Products,All,65504.3
-S92000003,2017,Count,GWh,All,All,150853.922
+S92000003,2017,Count,GWh,All,All,150141.592
 S92000003,2017,Count,GWh,Bioenergy & Wastes,Domestic,1448.566
 S92000003,2017,Count,GWh,Bioenergy & Wastes,Road Transport,948.445
 S92000003,2017,Count,GWh,Bioenergy & Wastes,All,6763.368
@@ -16740,16 +17828,16 @@ S92000003,2017,Count,GWh,Coal,Industrial,1008.13
 S92000003,2017,Count,GWh,Coal,Public Sector,20.318
 S92000003,2017,Count,GWh,Coal,Rail,4.247
 S92000003,2017,Count,GWh,Coal,All,1562.42
-S92000003,2017,Count,GWh,All,Domestic,44017.579
-S92000003,2017,Count,GWh,All,Industrial & Commercial,68092.252
+S92000003,2017,Count,GWh,All,Domestic,44002.67
+S92000003,2017,Count,GWh,All,Industrial & Commercial,67394.832
 S92000003,2017,Count,GWh,All,Transport,38744.09
-S92000003,2017,Count,GWh,Electricity,Domestic,10094.47
-S92000003,2017,Count,GWh,Electricity,Industrial & Commercial,15089.637
-S92000003,2017,Count,GWh,Electricity,All,25184.107
-S92000003,2017,Count,GWh,Gas,Commercial,9430.052
-S92000003,2017,Count,GWh,Gas,Domestic,28572.766
-S92000003,2017,Count,GWh,Gas,Industrial,10128.845
-S92000003,2017,Count,GWh,Gas,All,48131.662
+S92000003,2017,Count,GWh,Electricity,Domestic,10079.045
+S92000003,2017,Count,GWh,Electricity,Industrial & Commercial,14704.208
+S92000003,2017,Count,GWh,Electricity,All,24783.252
+S92000003,2017,Count,GWh,Gas,Commercial,9279.63
+S92000003,2017,Count,GWh,Gas,Domestic,28573.281
+S92000003,2017,Count,GWh,Gas,Industrial,9967.277
+S92000003,2017,Count,GWh,Gas,All,47820.188
 S92000003,2017,Count,GWh,Manufactured Fuels,Domestic,342.548
 S92000003,2017,Count,GWh,Manufactured Fuels,Industrial,686.451
 S92000003,2017,Count,GWh,Manufactured Fuels,All,1028.999
@@ -16761,7 +17849,7 @@ S92000003,2017,Count,GWh,Petroleum Products,Public Sector,130.424
 S92000003,2017,Count,GWh,Petroleum Products,Rail,629.451
 S92000003,2017,Count,GWh,Petroleum Products,Road Transport,37161.947
 S92000003,2017,Count,GWh,Petroleum Products,All,68183.365
-S92000003,2018,Count,GWh,All,All,148802.537
+S92000003,2018,Count,GWh,All,All,148930.379
 S92000003,2018,Count,GWh,Bioenergy & Wastes,Domestic,1580.784
 S92000003,2018,Count,GWh,Bioenergy & Wastes,Road Transport,1310.443
 S92000003,2018,Count,GWh,Bioenergy & Wastes,All,7333.367
@@ -16774,16 +17862,16 @@ S92000003,2018,Count,GWh,Coal,Industrial,827.953
 S92000003,2018,Count,GWh,Coal,Public Sector,22.18
 S92000003,2018,Count,GWh,Coal,Rail,4.247
 S92000003,2018,Count,GWh,Coal,All,1367.189
-S92000003,2018,Count,GWh,All,Domestic,43759.391
-S92000003,2018,Count,GWh,All,Industrial & Commercial,66464.627
+S92000003,2018,Count,GWh,All,Domestic,44247.06
+S92000003,2018,Count,GWh,All,Industrial & Commercial,66104.8
 S92000003,2018,Count,GWh,All,Transport,38578.52
-S92000003,2018,Count,GWh,Electricity,Domestic,9716.672
-S92000003,2018,Count,GWh,Electricity,Industrial & Commercial,14890.816
-S92000003,2018,Count,GWh,Electricity,All,24607.489
-S92000003,2018,Count,GWh,Gas,Commercial,9544.312
-S92000003,2018,Count,GWh,Gas,Domestic,28420.547
-S92000003,2018,Count,GWh,Gas,Industrial,9815.51
-S92000003,2018,Count,GWh,Gas,All,47780.369
+S92000003,2018,Count,GWh,Electricity,Domestic,10202.2
+S92000003,2018,Count,GWh,Electricity,Industrial & Commercial,14855.889
+S92000003,2018,Count,GWh,Electricity,All,25058.089
+S92000003,2018,Count,GWh,Gas,Commercial,9384.138
+S92000003,2018,Count,GWh,Gas,Domestic,28422.688
+S92000003,2018,Count,GWh,Gas,Industrial,9650.784
+S92000003,2018,Count,GWh,Gas,All,47457.61
 S92000003,2018,Count,GWh,Manufactured Fuels,Domestic,345.769
 S92000003,2018,Count,GWh,Manufactured Fuels,Industrial,800.198
 S92000003,2018,Count,GWh,Manufactured Fuels,All,1145.967
@@ -16795,7 +17883,7 @@ S92000003,2018,Count,GWh,Petroleum Products,Public Sector,175.425
 S92000003,2018,Count,GWh,Petroleum Products,Rail,595.709
 S92000003,2018,Count,GWh,Petroleum Products,Road Transport,36668.121
 S92000003,2018,Count,GWh,Petroleum Products,All,66568.157
-S92000003,2019,Count,GWh,All,All,145379.949
+S92000003,2019,Count,GWh,All,All,145119.042
 S92000003,2019,Count,GWh,Bioenergy & Wastes,Domestic,1631.473
 S92000003,2019,Count,GWh,Bioenergy & Wastes,Road Transport,1690.124
 S92000003,2019,Count,GWh,Bioenergy & Wastes,All,7883.936
@@ -16808,16 +17896,16 @@ S92000003,2019,Count,GWh,Coal,Industrial,772.925
 S92000003,2019,Count,GWh,Coal,Public Sector,18.606
 S92000003,2019,Count,GWh,Coal,Rail,4.247
 S92000003,2019,Count,GWh,Coal,All,1283.459
-S92000003,2019,Count,GWh,All,Domestic,44170.802
-S92000003,2019,Count,GWh,All,Industrial & Commercial,63228.71
+S92000003,2019,Count,GWh,All,Domestic,44170.843
+S92000003,2019,Count,GWh,All,Industrial & Commercial,62967.762
 S92000003,2019,Count,GWh,All,Transport,37980.437
-S92000003,2019,Count,GWh,Electricity,Domestic,9625.09
-S92000003,2019,Count,GWh,Electricity,Industrial & Commercial,14443.426
-S92000003,2019,Count,GWh,Electricity,All,24068.516
-S92000003,2019,Count,GWh,Gas,Commercial,9252.759
-S92000003,2019,Count,GWh,Gas,Domestic,28895.914
-S92000003,2019,Count,GWh,Gas,Industrial,9471.272
-S92000003,2019,Count,GWh,Gas,All,47619.945
+S92000003,2019,Count,GWh,Electricity,Domestic,9625.197
+S92000003,2019,Count,GWh,Electricity,Industrial & Commercial,14443.312
+S92000003,2019,Count,GWh,Electricity,All,24068.509
+S92000003,2019,Count,GWh,Gas,Commercial,9123.864
+S92000003,2019,Count,GWh,Gas,Domestic,28895.847
+S92000003,2019,Count,GWh,Gas,Industrial,9339.334
+S92000003,2019,Count,GWh,Gas,All,47359.045
 S92000003,2019,Count,GWh,Manufactured Fuels,Domestic,318.651
 S92000003,2019,Count,GWh,Manufactured Fuels,Industrial,633.547
 S92000003,2019,Count,GWh,Manufactured Fuels,All,952.198
@@ -16829,3 +17917,37 @@ S92000003,2019,Count,GWh,Petroleum Products,Public Sector,132.669
 S92000003,2019,Count,GWh,Petroleum Products,Rail,569.924
 S92000003,2019,Count,GWh,Petroleum Products,Road Transport,35716.142
 S92000003,2019,Count,GWh,Petroleum Products,All,63571.896
+S92000003,2020,Count,GWh,All,All,144902.855
+S92000003,2020,Count,GWh,Bioenergy & Wastes,Domestic,1631.473
+S92000003,2020,Count,GWh,Bioenergy & Wastes,Road Transport,1690.124
+S92000003,2020,Count,GWh,Bioenergy & Wastes,All,7883.936
+S92000003,2020,Count,GWh,Bioenergy & Wastes,Commercial,2048.72
+S92000003,2020,Count,GWh,Bioenergy & Wastes,Industrial,2513.619
+S92000003,2020,Count,GWh,Coal,Agriculture,0
+S92000003,2020,Count,GWh,Coal,Commercial,7.829
+S92000003,2020,Count,GWh,Coal,Domestic,479.852
+S92000003,2020,Count,GWh,Coal,Industrial,772.925
+S92000003,2020,Count,GWh,Coal,Public Sector,18.606
+S92000003,2020,Count,GWh,Coal,Rail,4.247
+S92000003,2020,Count,GWh,Coal,All,1283.459
+S92000003,2020,Count,GWh,All,Domestic,45089.416
+S92000003,2020,Count,GWh,All,Industrial & Commercial,61833.002
+S92000003,2020,Count,GWh,All,Transport,37980.437
+S92000003,2020,Count,GWh,Electricity,Domestic,10033.439
+S92000003,2020,Count,GWh,Electricity,Industrial & Commercial,12674.814
+S92000003,2020,Count,GWh,Electricity,All,22708.253
+S92000003,2020,Count,GWh,Gas,Commercial,9437.035
+S92000003,2020,Count,GWh,Gas,Domestic,29406.178
+S92000003,2020,Count,GWh,Gas,Industrial,9659.901
+S92000003,2020,Count,GWh,Gas,All,48503.114
+S92000003,2020,Count,GWh,Manufactured Fuels,Domestic,318.651
+S92000003,2020,Count,GWh,Manufactured Fuels,Industrial,633.547
+S92000003,2020,Count,GWh,Manufactured Fuels,All,952.198
+S92000003,2020,Count,GWh,Petroleum Products,Agriculture,2981.474
+S92000003,2020,Count,GWh,Petroleum Products,Commercial,109.065
+S92000003,2020,Count,GWh,Petroleum Products,Domestic,3219.824
+S92000003,2020,Count,GWh,Petroleum Products,Industrial,20842.798
+S92000003,2020,Count,GWh,Petroleum Products,Public Sector,132.669
+S92000003,2020,Count,GWh,Petroleum Products,Rail,569.924
+S92000003,2020,Count,GWh,Petroleum Products,Road Transport,35716.142
+S92000003,2020,Count,GWh,Petroleum Products,All,63571.896
