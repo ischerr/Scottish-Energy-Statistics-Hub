@@ -14,7 +14,7 @@ ElecGenOutput <- function(id) {
       tabPanel("Charts",
                fluidRow(column(8,
                                h3("Proportion of electricity generation by fuel", style = "color: #39ab2c;  font-weight:bold"),
-                               selectInput(ns("YearSelect"), "Year:", c(2019:2004), selected = 2019, multiple = FALSE,
+                               selectInput(ns("YearSelect"), "Year:", c(2020:2004), selected = 2020, multiple = FALSE,
                                            selectize = TRUE, width = NULL, size = NULL)
                ),
                column(
@@ -73,10 +73,6 @@ ElecGenOutput <- function(id) {
                ),
                fluidRow(
                  column(12, DT::dataTableOutput(ns("ElecGenFuelTable"))%>% withSpinner(color="#39ab2c"))),
-               fluidRow(
-                 column(12, HTML("<blockquote>
-                          <p>* Renewables figures by type are taken from Energy Trends 6.1,whereas the total is taken from Electricity generation and supply figures. These totals may not match exactly in some years.  Coal includes a small quantity of non-renewable wastes and other thermal.</p>
-                          </blockquote>"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;")),
       tabPanel("Scotland Proportion",
                fluidRow(
@@ -94,10 +90,6 @@ ElecGenOutput <- function(id) {
                ),
                fluidRow(
                  column(12, DT::dataTableOutput(ns("ElecGenFuelEWTable"))%>% withSpinner(color="#39ab2c"))),
-               fluidRow(
-                 column(12, HTML("<blockquote>
-                          <p>* Renewables figures by type are taken from Energy Trends 6.1,whereas the total is taken from Electricity generation and supply figures. These totals may not match exactly in some years.  Coal includes a small quantity of non-renewable wastes and other thermal.</p>
-                          </blockquote>"))),
                tags$hr(style = "height:3px;border:none;color:#39ab2c;background-color:#39ab2c;"))),
     fluidRow(
       column(2, HTML("<p><strong>Last Updated:</strong></p>")),
@@ -140,20 +132,7 @@ ElecGen <- function(input, output, session) {
   
   output$ElecGenLCFFSubtitle <- renderText({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Elec gen low carbon and fossil",
-        col_names = FALSE,
-        skip = 28,
-        n_max = 15
-      )
-    
-    Data <- as_tibble(t(Data))
-    
-    Data <- Data[c(1,4,9)]
-    
-    Data <- Data[complete.cases(Data),]
+    Data <- read_csv("Processed Data/Output/Electricity Generation/ScotlandFuelElecGenProportion.csv")[c(1,9,13)]
     
     names(Data) <- c("Year", "Low Carbon", "Fossil Fuels")
     
@@ -167,31 +146,18 @@ ElecGen <- function(input, output, session) {
   
   output$ElecGenLCFFPlot <- renderPlotly  ({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Elec gen low carbon and fossil",
-        col_names = FALSE,
-        skip = 28,
-        n_max = 15
-      )
+    Data <- read_csv("Processed Data/Output/Electricity Generation/ScotlandFuelElecGenProportion.csv")[c(1,9,13,14)]
     
-    Data <- as_tibble(t(Data))
-    
-    Data <- Data[c(1,4,9,5)]
-    
-    Data <- Data[complete.cases(Data),]
-    
-    names(Data) <- c("Year", "Low Carbon", "Fossil Fuels", "Pumped Hydro")
+    names(Data) <- c("Year", "Low Carbon", "Fossil Fuels", "Pumped hydro")
     
     Data %<>% lapply(function(x)
       as.numeric(as.character(x)))
     
     ElecFuelLowCarbon <- as_tibble(Data)
     
-    ElecFuelLowCarbon[which(ElecFuelLowCarbon$Year >= 2017),]$`Low Carbon` <- ElecFuelLowCarbon[which(ElecFuelLowCarbon$Year >= 2017),]$`Low Carbon` + ElecFuelLowCarbon[which(ElecFuelLowCarbon$Year >= 2017),]$`Pumped Hydro`
+    ElecFuelLowCarbon[which(ElecFuelLowCarbon$Year >= 2017),]$`Low Carbon` <- ElecFuelLowCarbon[which(ElecFuelLowCarbon$Year >= 2017),]$`Low Carbon` + ElecFuelLowCarbon[which(ElecFuelLowCarbon$Year >= 2017),]$`Pumped hydro`
     
-    ElecFuelLowCarbon$`Pumped Hydro`<- NULL
+    ElecFuelLowCarbon$`Pumped hydro`<- NULL
     
     ElecFuelLowCarbon$Year <- paste0("01/01/", ElecFuelLowCarbon$Year)
     
@@ -299,20 +265,7 @@ ElecGen <- function(input, output, session) {
   
   output$ElecGenRNSubtitle <- renderText({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Elec gen low carbon and fossil",
-        col_names = FALSE,
-        skip = 28,
-        n_max = 15
-      )
-    
-    Data <- as_tibble(t(Data))
-    
-    Data <- Data[c(1,2,3)]
-    
-    Data <- Data[complete.cases(Data),]
+    Data <- read_csv("Processed Data/Output/Electricity Generation/ScotlandFuelElecGenProportion.csv")[c(1,7,8)]
     
     names(Data) <- c("Year", "Renewables", "Nuclear")
     
@@ -326,20 +279,7 @@ ElecGen <- function(input, output, session) {
   
   output$ElecGenRNPlot <- renderPlotly  ({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Elec gen low carbon and fossil",
-        col_names = FALSE,
-        skip = 28,
-        n_max = 15
-      )
-    
-    Data <- as_tibble(t(Data))
-    
-    Data <- Data[c(1,2,3)]
-    
-    Data <- Data[complete.cases(Data),]
+    Data <- read_csv("Processed Data/Output/Electricity Generation/ScotlandFuelElecGenProportion.csv")[c(1,7,8)]
     
     names(Data) <- c("Year", "Renewables", "Nuclear")
     
@@ -452,143 +392,6 @@ ElecGen <- function(input, output, session) {
   })
   
   
-  output$ElecGenLCFFTable = DT::renderDataTable({
-    
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Elec gen low carbon and fossil",
-        col_names = FALSE,
-        skip = 28,
-        n_max = 10
-      )
-    
-    Data[1,1] <- "Year"
-    
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- unlist(Data[1,])
-    
-    Data <- Data[-1,]
-    
-    Data %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    ElecFuelLowCarbon <- as_tibble(Data)
-    
-    ### variables
-    ChartColours <- c("#39ab2c", "#1a9850", "#f46d43", "#39ab2c")
-    sourcecaption = "Source: BEIS"
-    plottitle = "Electricity generation -\nlow carbon versus fossil fuels (GWh)"
-    
-    datatable(
-      ElecFuelLowCarbon,
-      extensions = 'Buttons',
-      
-      rownames = FALSE,
-      options = list(
-        paging = TRUE,
-        pageLength = -1,
-        searching = TRUE,
-        fixedColumns = FALSE,
-        autoWidth = TRUE,
-        ordering = TRUE,
-        order = list(list(0, 'desc')),
-        title = "Electricity generation - Fuel proportion (%)",
-        dom = 'ltBp',
-        buttons = list(
-          list(extend = 'copy'),
-          list(
-            extend = 'excel',
-            title = "Electricity generation - Fuels proportion (%)",
-            header = TRUE
-          ),
-          list(extend = 'csv',
-               title = "Electricity generation - Fuels proportion (%)")
-        ),
-        
-        # customize the length menu
-        lengthMenu = list( c(10, 20, -1) # declare values
-                           , c(10, 20, "All") # declare titles
-        ), # end of lengthMenu customization
-        pageLength = 10
-      )
-    ) %>%
-      formatPercentage(c(2:10), 1) %>% 
-      formatStyle(c(4,5,9), fontStyle = "italic")
-  })
-  
-  
-  
-  
-  output$ElecGenFuel2Table = renderDataTable({
-    
-    
-    
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Elec gen low carbon and fossil",
-        col_names = FALSE,
-        skip = 16,
-        n_max = 10
-      )
-    
-    Data[1,1] <- "Year"
-    
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- unlist(Data[1,])
-    
-    Data <- Data[-1,]
-    
-    Data %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    ElecFuelLowCarbon <- as_tibble(Data)
-    
-    ### variables
-    ChartColours <- c("#39ab2c", "#1a9850", "#f46d43", "#39ab2c")
-    sourcecaption = "Source: BEIS"
-    plottitle = "Electricity generation -\nlow carbon versus fossil fuels (GWh)"
-    
-    datatable(
-      ElecFuelLowCarbon,
-      extensions = 'Buttons',
-      
-      rownames = FALSE,
-      options = list(
-        paging = TRUE,
-        pageLength = -1,
-        searching = TRUE,
-        fixedColumns = FALSE,
-        autoWidth = TRUE,
-        ordering = TRUE,
-        order = list(list(0, 'desc')),
-        title = "Electricity generation - Fuels (GWh)",
-        dom = 'ltBp',
-        buttons = list(
-          list(extend = 'copy'),
-          list(
-            extend = 'excel',
-            title = "Electricity generation - Fuels (GWh)",
-            header = TRUE
-          ),
-          list(extend = 'csv',
-               title = "Electricity generation - Fuels (GWh)")
-        ),
-        
-        # customize the length menu
-        lengthMenu = list( c(10, 20, -1) # declare values
-                           , c(10, 20, "All") # declare titles
-        ), # end of lengthMenu customization
-        pageLength = 10
-      )
-    ) %>%
-      formatRound(c(2:11), 0) %>% 
-      formatStyle(c(4,5,9,11), fontStyle = "italic")
-  })
-  
   output$Text <- renderUI({
     tagList(column(12,
                    HTML(
@@ -619,30 +422,18 @@ ElecGen <- function(input, output, session) {
     content = function(file) {
       
       Data <-
-        read_excel(
-          "Structure/CurrentWorking.xlsx",
-          sheet = "Elec gen low carbon and fossil",
-          col_names = FALSE,
-          skip = 28,
-          n_max = 15
-        )
+        read_csv("Processed Data/Output/Electricity Generation/ScotlandFuelElecGenProportion.csv")[c(1,9,13,14)]
       
-      Data <- as_tibble(t(Data))
-      
-      Data <- Data[c(1,4,9,5)]
-      
-      Data <- Data[complete.cases(Data),]
-      
-      names(Data) <- c("Year", "Low Carbon", "Fossil Fuels", "Pumped Hydro")
+      names(Data) <- c("Year", "Low Carbon", "Fossil Fuels", "Pumped hydro")
       
       Data %<>% lapply(function(x)
         as.numeric(as.character(x)))
       
       ElecFuelLowCarbon <- as_tibble(Data)
       
-      ElecFuelLowCarbon[which(ElecFuelLowCarbon$Year >= 2017),]$`Low Carbon` <- ElecFuelLowCarbon[which(ElecFuelLowCarbon$Year >= 2017),]$`Low Carbon` + ElecFuelLowCarbon[which(ElecFuelLowCarbon$Year >= 2017),]$`Pumped Hydro`
+      ElecFuelLowCarbon[which(ElecFuelLowCarbon$Year >= 2017),]$`Low Carbon` <- ElecFuelLowCarbon[which(ElecFuelLowCarbon$Year >= 2017),]$`Low Carbon` + ElecFuelLowCarbon[which(ElecFuelLowCarbon$Year >= 2017),]$`Pumped hydro`
       
-      ElecFuelLowCarbon$`Pumped Hydro`<- NULL
+      ElecFuelLowCarbon$`Pumped hydro`<- NULL
       
       ### variables
       ChartColours <- c("#39ab2c", "#1a9850", "#f46d43", "#39ab2c")
@@ -835,19 +626,7 @@ ElecGen <- function(input, output, session) {
     content = function(file) {
       
       Data <-
-        read_excel(
-          "Structure/CurrentWorking.xlsx",
-          sheet = "Elec gen low carbon and fossil",
-          col_names = FALSE,
-          skip = 28,
-          n_max = 15
-        )
-      
-      Data <- as_tibble(t(Data))
-      
-      Data <- Data[c(1,2,3)]
-      
-      Data <- Data[complete.cases(Data),]
+        read_csv("Processed Data/Output/Electricity Generation/ScotlandFuelElecGenProportion.csv")[c(1,7,8)]
       
       names(Data) <- c("Year", "Renewables", "Nuclear")
       
@@ -1018,86 +797,31 @@ ElecGen <- function(input, output, session) {
     }
   )
   
-  output$ElecGenFuelSubtitle <- renderText({
-    
-    EURenElec <- read_excel("Structure/CurrentWorking.xlsx",
-                            sheet = "Wind and hydro gen EU", col_names = TRUE, 
-                            skip = 18, n_max = 30)
-    
-    EURenElec <- EURenElec[,c(1:ncol(EURenElec))]
-    
-    
-    
-    names(EURenElec)[1] <- c("Countries")
-    
-    EURenElec <- EURenElec %>% mutate(Countries = replace(Countries, Countries == "United Kingdom", "U.K."))
-    
-    EURenElec <- EURenElec %>% mutate(Countries = replace(Countries, Countries == "SCOTLAND", "Scotland"))
-    
-    EURenElec[2:ncol(EURenElec)] %<>% lapply(function(x) as.numeric(as.character(x)))
-    
-    paste(max(as.numeric(names(EURenElec)), na.rm = TRUE))
-  })
+  
   
   output$ElecGenFuelPlot <- renderPlotly  ({
     
     Year = as.numeric(input$YearSelect)
     
-    DataScot <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Elec gen by fuel",
-        col_names = FALSE,
-        skip = 15,
-        n_max = 16
-      )
+    DataScot <- read_csv("Processed Data/Output/Electricity Generation/ScotlandFuelElecGenProportion.csv")
+
+    DataScot$`Other Renewables` <- DataScot$Renewables - DataScot$Hydro - DataScot$Wind - DataScot$`Solar PV` - DataScot$`Bioenergy and Waste`
     
-    DataScot <- as.data.frame(t(DataScot))
-    
-    DataScot <- setDT(DataScot, keep.rownames = FALSE)
-    
-    names(DataScot) <- as.character(unlist(DataScot[1,]))
-    
-    DataScot <- tail(DataScot, -1)
-    
-    DataScot <- head(DataScot, -1)
-    
-    DataScot %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    DataScot <- as_tibble(DataScot)
-    
-    for(i in 2:16){
-      DataScot[i] <- DataScot[i] / DataScot[16]
-    }
-    DataScot$Renewables <- NULL
-    
-    DataScot$Total <- NULL
-    
-    DataScot$`Other Renewables` <-
-      (
-        DataScot$`Wave / tidal`
-      )
-    
-    DataScot$`Bioenergy and Waste` <-  DataScot$`Landfill Gas` + DataScot$`Sewage Gas` + DataScot$`Other biofuels and co-firing`
-    
-    DataScot$`Wave / tidal` <- NULL
-    
-    DataScot$`Landfill Gas` <- NULL
-    
-    DataScot$`Sewage Gas` <- NULL
-    
-    DataScot$`Other biofuels and co-firing` <- NULL
-    
-    names(DataScot)[1] <- "Year"
-    
-    names(DataScot)[4] <- "Solar"
-    
-    names(DataScot)[5] <- "Pumped Hydro"
-    
+    DataScot <- select(DataScot,
+                       Year,
+                       Hydro,
+                       Wind,
+                       'Solar PV',
+                       'Pumped hydro',
+                       Nuclear,
+                       Coal,
+                       Oil,
+                       Gas,
+                       Other, 
+                       'Other Renewables',
+                       'Bioenergy and Waste'
+                       )
     DataScot$Sector <- "Scotland"
-    
-    DataScot <- as_tibble(DataScot)
     
     DataScot <- DataScot[which(DataScot$Year == Year),]
     
@@ -1107,71 +831,35 @@ ElecGen <- function(input, output, session) {
         "Wind",
         "Hydro",
         "Bioenergy and Waste",
-        "Solar",
+        "Solar PV",
         "Other Renewables",
         "Nuclear",
-        "Pumped Hydro",
+        "Pumped hydro",
         "Other",
         "Coal",
         "Oil",
         "Gas"
       )]
     
-    DataEW <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Elec gen by fuel",
-        col_names = FALSE,
-        skip = 35,
-        n_max = 16
-      )
+    DataEW <- read_csv("Processed Data/Output/Electricity Generation/EWFuelElecGenProportion.csv")
     
-    DataEW <- as.data.frame(t(DataEW))
+    DataEW$`Other Renewables` <- DataEW$Renewables - DataEW$Hydro - DataEW$Wind - DataEW$`Solar PV` - DataEW$`Bioenergy and Waste`
     
-    DataEW <- setDT(DataEW, keep.rownames = FALSE)
-    
-    names(DataEW) <- as.character(unlist(DataEW[1,]))
-    
-    DataEW <- tail(DataEW, -1)
-    
-    DataEW <- head(DataEW, -1)
-    
-    DataEW %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    DataEW <- as_tibble(DataEW)
-    
-    for(i in 2:16){
-      DataEW[i] <- DataEW[i] / DataEW[16]
-    }
-    DataEW$Renewables <- NULL
-    
-    DataEW$Total <- NULL
-    
-    DataEW$`Other Renewables` <-
-      (
-        DataEW$`Wave / tidal`
-      )
-    
-    DataEW$`Bioenergy and Waste` <-  DataEW$`Landfill Gas` + DataEW$`Sewage Gas` + DataEW$`Other biofuels and co-firing`
-    
-    DataEW$`Wave / tidal` <- NULL
-    
-    DataEW$`Landfill Gas` <- NULL
-    
-    DataEW$`Sewage Gas` <- NULL
-    
-    DataEW$`Other biofuels and co-firing` <- NULL
-    
-    names(DataEW)[1] <- "Year"
-    
-    names(DataEW)[4] <- "Solar"
-    
-    names(DataEW)[5] <- "Pumped Hydro"
-    
-    DataEW$Sector <- "Scotland"
-    
-    DataEW <- as_tibble(DataEW)
+    DataEW <- select(DataEW,
+                     Year,
+                       Hydro,
+                       Wind,
+                       'Solar PV',
+                       'Pumped hydro',
+                       Nuclear,
+                       Coal,
+                       Oil,
+                       Gas,
+                       Other, 
+                       'Other Renewables',
+                       'Bioenergy and Waste'
+    )
+    DataEW$Sector <- "EWland"
     
     DataEW <- DataEW[which(DataEW$Year == Year),]
     
@@ -1181,10 +869,10 @@ ElecGen <- function(input, output, session) {
         "Wind",
         "Hydro",
         "Bioenergy and Waste",
-        "Solar",
+        "Solar PV",
         "Other Renewables",
         "Nuclear",
-        "Pumped Hydro",
+        "Pumped hydro",
         "Other",
         "Coal",
         "Oil",
@@ -1256,14 +944,14 @@ ElecGen <- function(input, output, session) {
       ) %>%
       add_trace(
         data = ElecGenFuel,
-        x = ~ Solar,
+        x = ~ `Solar PV`,
         type = 'bar',
         width = 0.3,
         orientation = 'h',
-        name = "Solar",
+        name = "Solar PV",
         text = paste0(
-          "Solar: ",
-          percent(ElecGenFuel$`Solar`, accuracy = 0.1)
+          "Solar PV: ",
+          percent(ElecGenFuel$`Solar PV`, accuracy = 0.1)
         ),
         hoverinfo = 'text',
         marker = list(color = BarColours[4]),
@@ -1298,14 +986,14 @@ ElecGen <- function(input, output, session) {
       ) %>%
       add_trace(
         data = ElecGenFuel,
-        x = ~ `Pumped Hydro`,
+        x = ~ `Pumped hydro`,
         type = 'bar',
         width = 0.3,
         orientation = 'h',
-        name = "Pumped Hydro",
+        name = "Pumped hydro",
         text = paste0(
-          "Pumped Hydro: ",
-          percent(ElecGenFuel$`Pumped Hydro`, accuracy = 0.1)
+          "Pumped hydro: ",
+          percent(ElecGenFuel$`Pumped hydro`, accuracy = 0.1)
         ),
         hoverinfo = 'text',
         marker = list(color = BarColours[7]),
@@ -1367,7 +1055,7 @@ ElecGen <- function(input, output, session) {
         x = ~ c(
           0,
           (
-            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar +  ElecGenFuel$`Other Renewables`
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` +  ElecGenFuel$`Other Renewables`
           )[1]
         ),
         y = ~ 1.2,
@@ -1385,7 +1073,7 @@ ElecGen <- function(input, output, session) {
       ) %>%
       add_trace(
         x = (
-          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
+          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables`
         )[1] / 2,
         y = 1.37,
         type = 'scatter',
@@ -1395,14 +1083,14 @@ ElecGen <- function(input, output, session) {
         text = paste0("<b>", "Renewables:\n ", percent(ElecGenFuel$Wind[1] + 
                                                        ElecGenFuel$Hydro[1] +
                                                        ElecGenFuel$`Bioenergy and Waste`[1] +
-                                                       ElecGenFuel$Solar[1] + 
+                                                       ElecGenFuel$`Solar PV`[1] + 
                                                        ElecGenFuel$`Other Renewables`[1], 0.1),
                       "</b>"),
         textposition = ifelse( (1-(ElecGenFuel$Gas[1] +
                                      ElecGenFuel$Oil[1] +
                                      ElecGenFuel$Coal[1] +
                                      ElecGenFuel$Other[1] +
-                                     ElecGenFuel$`Pumped Hydro`[1]+
+                                     ElecGenFuel$`Pumped hydro`[1]+
                                      ElecGenFuel$Nuclear[1])) > 0.1, "middle center", "middle right"),
         textfont = list(color = BarColours[2])
         
@@ -1411,7 +1099,7 @@ ElecGen <- function(input, output, session) {
         x = ~ c(
           0,
           (
-            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables`
           )[2]
         ),
         y = ~ 2.2,
@@ -1429,7 +1117,7 @@ ElecGen <- function(input, output, session) {
       ) %>%
       add_trace(
         x = (
-          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
+          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables`
         )[2] / 2,
         y = 2.37,
         type = 'scatter',
@@ -1439,13 +1127,13 @@ ElecGen <- function(input, output, session) {
         text = paste0("<b>", "Renewables:\n ", percent(ElecGenFuel$Wind[2] + 
                                                          ElecGenFuel$Hydro[2] +
                                                          ElecGenFuel$`Bioenergy and Waste`[2] +
-                                                         ElecGenFuel$Solar[2] + 
+                                                         ElecGenFuel$`Solar PV`[2] + 
                                                          ElecGenFuel$`Other Renewables`[2], 0.1), "</b>"),
         textposition = ifelse((1 - (ElecGenFuel$Gas[2] +
                                       ElecGenFuel$Oil[2] +
                                       ElecGenFuel$Coal[2] +
                                       ElecGenFuel$Other[2] +
-                                      ElecGenFuel$`Pumped Hydro`[2]+
+                                      ElecGenFuel$`Pumped hydro`[2]+
                                       ElecGenFuel$Nuclear[2])) > 0.1, 'middle center', 'middle right'),
         textfont = list(color = BarColours[2])
         
@@ -1455,7 +1143,7 @@ ElecGen <- function(input, output, session) {
         x = ~ c(
           0,
           (
-            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
           )[1]
         ),
         y = ~ 0.8,
@@ -1473,7 +1161,7 @@ ElecGen <- function(input, output, session) {
       ) %>%
       add_trace(
         x = (
-          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear 
+          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear 
         )[1] / 2,
         y = .63,
         type = 'scatter',
@@ -1483,7 +1171,7 @@ ElecGen <- function(input, output, session) {
         text = paste0("<b>", "Low Carbon:\n ", percent(ElecGenFuel$Wind[1] + 
                                                          ElecGenFuel$Hydro[1] +
                                                          ElecGenFuel$`Bioenergy and Waste`[1] +
-                                                         ElecGenFuel$Solar[1] + 
+                                                         ElecGenFuel$`Solar PV`[1] + 
                                                          ElecGenFuel$`Other Renewables`[1]+
                                                          ElecGenFuel$Nuclear[1], 0.1), "</b>"),
         textposistion = 'center',
@@ -1495,7 +1183,7 @@ ElecGen <- function(input, output, session) {
         x = ~ c(
           0,
           (
-            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro`
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped hydro`
           )[2]
         ),
         y = ~ 1.8,
@@ -1513,7 +1201,7 @@ ElecGen <- function(input, output, session) {
       ) %>%
       add_trace(
         x = (
-          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro`
+          ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped hydro`
         )[2] / 2,
         y = 1.63,
         type = 'scatter',
@@ -1523,10 +1211,10 @@ ElecGen <- function(input, output, session) {
         text = paste0("<b>", "Low Carbon:\n ", percent(ElecGenFuel$Wind[2] + 
                                                          ElecGenFuel$Hydro[2] +
                                                          ElecGenFuel$`Bioenergy and Waste`[2] +
-                                                         ElecGenFuel$Solar[2] + 
+                                                         ElecGenFuel$`Solar PV`[2] + 
                                                          ElecGenFuel$`Other Renewables`[2]+
                                                          ElecGenFuel$Nuclear[2] +
-                                                         ElecGenFuel$`Pumped Hydro`[2], 0.1), "</b>"),
+                                                         ElecGenFuel$`Pumped hydro`[2], 0.1), "</b>"),
         textposistion = 'center',
         textfont = list(color = BarColours[4])
         
@@ -1534,8 +1222,8 @@ ElecGen <- function(input, output, session) {
       
       add_trace(
         x = ~ c(
-          (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1],
-          (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1] - (
+          (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1],
+          (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1] - (
             ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
           )[1]
         ),
@@ -1553,7 +1241,7 @@ ElecGen <- function(input, output, session) {
         )
       ) %>%
       add_trace(
-        x = (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1] - (
+        x = (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1] - (
           ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
         )[1] / 2,
         y = .63,
@@ -1572,8 +1260,8 @@ ElecGen <- function(input, output, session) {
       
       add_trace(
         x = ~ c(
-          (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[2],
-          (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[2] - (
+          (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[2],
+          (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[2] - (
             ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
           )[2]
         ),
@@ -1680,14 +1368,14 @@ ElecGen <- function(input, output, session) {
         ) %>%
         add_trace(
           data = ElecGenFuel,
-          x = ~ Solar,
+          x = ~ `Solar PV`,
           type = 'bar',
           width = 0.3,
           orientation = 'h',
-          name = "Solar",
+          name = "Solar PV",
           text = paste0(
-            "Solar: ",
-            percent(ElecGenFuel$`Solar`, accuracy = 0.1)
+            "Solar PV: ",
+            percent(ElecGenFuel$`Solar PV`, accuracy = 0.1)
           ),
           hoverinfo = 'text',
           marker = list(color = BarColours[4]),
@@ -1722,14 +1410,14 @@ ElecGen <- function(input, output, session) {
         ) %>%
         add_trace(
           data = ElecGenFuel,
-          x = ~ `Pumped Hydro`,
+          x = ~ `Pumped hydro`,
           type = 'bar',
           width = 0.3,
           orientation = 'h',
-          name = "Pumped Hydro",
+          name = "Pumped hydro",
           text = paste0(
-            "Pumped Hydro: ",
-            percent(ElecGenFuel$`Pumped Hydro`, accuracy = 0.1)
+            "Pumped hydro: ",
+            percent(ElecGenFuel$`Pumped hydro`, accuracy = 0.1)
           ),
           hoverinfo = 'text',
           marker = list(color = BarColours[7]),
@@ -1791,7 +1479,7 @@ ElecGen <- function(input, output, session) {
           x = ~ c(
             0,
             (
-              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar +  ElecGenFuel$`Other Renewables`
+              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` +  ElecGenFuel$`Other Renewables`
             )[1]
           ),
           y = ~ 1.2,
@@ -1809,7 +1497,7 @@ ElecGen <- function(input, output, session) {
         ) %>%
         add_trace(
           x = (
-            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables`
           )[1] / 2,
           y = 1.37,
           type = 'scatter',
@@ -1820,14 +1508,14 @@ ElecGen <- function(input, output, session) {
                                                                 ElecGenFuel$Oil[1] +
                                                                 ElecGenFuel$Coal[1] +
                                                                 ElecGenFuel$Other[1] +
-                                                                ElecGenFuel$`Pumped Hydro`[1]+
+                                                                ElecGenFuel$`Pumped hydro`[1]+
                                                                 ElecGenFuel$Nuclear[1]), 0.1),
                         "</b>"),
           textposition = ifelse( (1-(ElecGenFuel$Gas[1] +
                                        ElecGenFuel$Oil[1] +
                                        ElecGenFuel$Coal[1] +
                                        ElecGenFuel$Other[1] +
-                                       ElecGenFuel$`Pumped Hydro`[1]+
+                                       ElecGenFuel$`Pumped hydro`[1]+
                                        ElecGenFuel$Nuclear[1])) > 0.1, "middle center", "middle right"),
           textfont = list(color = BarColours[2])
           
@@ -1836,7 +1524,7 @@ ElecGen <- function(input, output, session) {
           x = ~ c(
             0,
             (
-              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
+              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables`
             )[2]
           ),
           y = ~ 2.2,
@@ -1854,7 +1542,7 @@ ElecGen <- function(input, output, session) {
         ) %>%
         add_trace(
           x = (
-            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables`
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables`
           )[2] / 2,
           y = 2.37,
           type = 'scatter',
@@ -1865,13 +1553,13 @@ ElecGen <- function(input, output, session) {
                                                                 ElecGenFuel$Oil[2] +
                                                                 ElecGenFuel$Coal[2] +
                                                                 ElecGenFuel$Other[2] +
-                                                                ElecGenFuel$`Pumped Hydro`[2]+
+                                                                ElecGenFuel$`Pumped hydro`[2]+
                                                                 ElecGenFuel$Nuclear[2]), 0.1), "</b>"),
           textposition = ifelse((1 - (ElecGenFuel$Gas[2] +
                                         ElecGenFuel$Oil[2] +
                                         ElecGenFuel$Coal[2] +
                                         ElecGenFuel$Other[2] +
-                                        ElecGenFuel$`Pumped Hydro`[2]+
+                                        ElecGenFuel$`Pumped hydro`[2]+
                                         ElecGenFuel$Nuclear[2])) > 0.1, 'middle center', 'middle right'),
           textfont = list(color = BarColours[2])
           
@@ -1881,7 +1569,7 @@ ElecGen <- function(input, output, session) {
           x = ~ c(
             0,
             (
-              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
+              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
             )[1]
           ),
           y = ~ 0.8,
@@ -1899,7 +1587,7 @@ ElecGen <- function(input, output, session) {
         ) %>%
         add_trace(
           x = (
-            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
           )[1] / 2,
           y = .63,
           type = 'scatter',
@@ -1910,7 +1598,7 @@ ElecGen <- function(input, output, session) {
                                                                 ElecGenFuel$Oil[1] +
                                                                 ElecGenFuel$Coal[1] +
                                                                 ElecGenFuel$Other[1] +
-                                                                ElecGenFuel$`Pumped Hydro`[1]
+                                                                ElecGenFuel$`Pumped hydro`[1]
           ), 0.1), "</b>"),
           textposistion = 'center',
           textfont = list(color = BarColours[4])
@@ -1921,7 +1609,7 @@ ElecGen <- function(input, output, session) {
           x = ~ c(
             0,
             (
-              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
+              ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
             )[2]
           ),
           y = ~ 1.8,
@@ -1939,7 +1627,7 @@ ElecGen <- function(input, output, session) {
         ) %>%
         add_trace(
           x = (
-            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
+            ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear
           )[2] / 2,
           y = 1.63,
           type = 'scatter',
@@ -1950,7 +1638,7 @@ ElecGen <- function(input, output, session) {
                                                                 ElecGenFuel$Oil[2] +
                                                                 ElecGenFuel$Coal[2] +
                                                                 ElecGenFuel$Other[2] +
-                                                                ElecGenFuel$`Pumped Hydro`[2]
+                                                                ElecGenFuel$`Pumped hydro`[2]
           ), 0.1), "</b>"),
           textposistion = 'center',
           textfont = list(color = BarColours[4])
@@ -1959,8 +1647,8 @@ ElecGen <- function(input, output, session) {
         
         add_trace(
           x = ~ c(
-            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1],
-            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1] - (
+            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1],
+            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1] - (
               ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
             )[1]
           ),
@@ -1978,7 +1666,7 @@ ElecGen <- function(input, output, session) {
           )
         ) %>%
         add_trace(
-          x = (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1] - (
+          x = (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[1] - (
             ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
           )[1] / 2,
           y = .63,
@@ -1997,8 +1685,8 @@ ElecGen <- function(input, output, session) {
         
         add_trace(
           x = ~ c(
-            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[2],
-            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$Solar + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped Hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[2] - (
+            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[2],
+            (ElecGenFuel$Wind + ElecGenFuel$Hydro + ElecGenFuel$`Bioenergy and Waste` + ElecGenFuel$`Solar PV` + ElecGenFuel$`Other Renewables` + ElecGenFuel$Nuclear + ElecGenFuel$`Pumped hydro` + ElecGenFuel$Other + ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas )[2] - (
               ElecGenFuel$Coal + ElecGenFuel$Oil + ElecGenFuel$Gas
             )[2]
           ),
@@ -2070,42 +1758,7 @@ ElecGen <- function(input, output, session) {
   output$ElecGenFuelTable = renderDataTable({
     
     DataScot <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Elec gen by fuel",
-        col_names = FALSE,
-        skip = 15,
-        n_max = 16
-      )
-    
-    DataScot <- as.data.frame(t(DataScot))
-    
-    DataScot <- setDT(DataScot, keep.rownames = FALSE)
-    
-    names(DataScot) <- as.character(unlist(DataScot[1, ]))
-    
-    DataScot <- tail(DataScot,-1)
-    
-    DataScot <- head(DataScot,-1)
-    
-    DataScot %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    names(DataScot)[1] <- "Year"
-    
-    DataScot <- as_tibble(DataScot)
-    
-    YearList <- as.list(DataScot$Year[which(DataScot$Year >= 2009)])
-    
-    DataScot$`Low Carbon` <- DataScot$Renewables + DataScot$Nuclear
-    
-    DataScot[which(DataScot$Year >= 2017),]$`Low Carbon` <- DataScot[which(DataScot$Year >= 2017),]$`Low Carbon` + DataScot[which(DataScot$Year >= 2017),]$`Pumped hydro`
-    
-    DataScot$`Fossil Fuels` <- DataScot$Gas + DataScot$Coal + DataScot$Oil
-    
-    DataScot$`Bioenergy and Waste` <- DataScot$`Landfill Gas` + DataScot$`Sewage Gas` + DataScot$`Other biofuels and co-firing`
-    
-    DataScot <- DataScot[c(1,2,3,4,7,19,9,11,17,12,13,14,18,10,15,16)]
+      read_csv("Processed Data/Output/Electricity Generation/ScotlandFuelElecGen.csv")
     
     datatable(
       DataScot,
@@ -2149,48 +1802,28 @@ ElecGen <- function(input, output, session) {
   
   output$ElecGenFuelScotPropTable = renderDataTable({
     
-    DataScot <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Elec gen by fuel",
-        col_names = FALSE,
-        skip = 15,
-        n_max = 16
-      )
+    Data <- read_csv("Processed Data/Output/Electricity Generation/ScotlandFuelElecGen.csv")
+    DataProp <- read_csv("Processed Data/Output/Electricity Generation/ScotlandFuelElecGenProportion.csv")
     
-    DataScot <- as.data.frame(t(DataScot))
+    names(Data) <- paste(names(Data), "(GWh)")
+    names(DataProp) <- paste(names(DataProp), "(%)")
     
-    DataScot <- setDT(DataScot, keep.rownames = FALSE)
+    names(Data)[1] <- "Year"
+    names(DataProp)[1] <- "Year"
     
-    names(DataScot) <- as.character(unlist(DataScot[1, ]))
+    Data <- merge(Data, DataProp)
     
-    DataScot <- tail(DataScot,-1)
-    
-    DataScot <- head(DataScot,-1)
-    
-    DataScot %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    names(DataScot)[1] <- "Year"
-    
-    DataScot <- as_tibble(DataScot)
-    
-    YearList <- as.list(DataScot$Year[which(DataScot$Year >= 2009)])
-    
-    DataScot$`Low Carbon` <- DataScot$Renewables + DataScot$Nuclear
-    
-    DataScot$`Fossil Fuels` <- DataScot$Gas + DataScot$Coal + DataScot$Oil
-    
-    DataScot <- DataScot[c(1,9,11,17,18,16)]
-    
-    DataScot$RenewablesProp <- DataScot$Renewables / DataScot$Total
-    DataScot$NuclearProp <- DataScot$Nuclear / DataScot$Total
-    DataScot$LowCarbonProp <- DataScot$`Low Carbon` / DataScot$Total
-    DataScot$FossilProp <- DataScot$`Fossil Fuels` / DataScot$Total
-    
-    DataScot <- DataScot[c(1,2,7,3,8,4,9,5,10)]
-    
-    names(DataScot) <- c("Year", "Renewables (GWh)", "Renewables Proportion (%)", "Nuclear (GWh)", "Nuclear Proportion (%)", "Low Carbon (GWh)", "Low Carbon Proportion (%)", "Fossil Fuels (GWh)", "Fossil Fuels Proportion (%)")
+    DataScot <- select(Data,
+                                "Year",
+                                "Renewables (GWh)",
+                                "Renewables (%)",
+                                "Nuclear (GWh)",
+                                "Nuclear (%)",
+                                "Low Carbon (GWh)",
+                                "Low Carbon (%)",
+                                "Fossil Fuels (GWh)",
+                                "Fossil Fuels (%)"
+    )
     
     datatable(
       DataScot,
@@ -2229,125 +1862,11 @@ ElecGen <- function(input, output, session) {
       formatPercentage(c(3,5,7,9), 1)
   })
   
-  output$ElecGenFuelScotPropTable = renderDataTable({
-    
-    DataScot <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Elec gen by fuel",
-        col_names = FALSE,
-        skip = 15,
-        n_max = 16
-      )
-    
-    DataScot <- as.data.frame(t(DataScot))
-    
-    DataScot <- setDT(DataScot, keep.rownames = FALSE)
-    
-    names(DataScot) <- as.character(unlist(DataScot[1, ]))
-    
-    DataScot <- tail(DataScot,-1)
-    
-    DataScot <- head(DataScot,-1)
-    
-    DataScot %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    names(DataScot)[1] <- "Year"
-    
-    DataScot <- as_tibble(DataScot)
-    
-    YearList <- as.list(DataScot$Year[which(DataScot$Year >= 2009)])
-    
-    DataScot$`Low Carbon` <- DataScot$Renewables + DataScot$Nuclear
-    
-    DataScot$`Fossil Fuels` <- DataScot$Gas + DataScot$Coal + DataScot$Oil
-    
-    DataScot <- DataScot[c(1,9,11,17,18,16)]
-    
-    DataScot$RenewablesProp <- DataScot$Renewables / DataScot$Total
-    DataScot$NuclearProp <- DataScot$Nuclear / DataScot$Total
-    DataScot$LowCarbonProp <- DataScot$`Low Carbon` / DataScot$Total
-    DataScot$FossilProp <- DataScot$`Fossil Fuels` / DataScot$Total
-    
-    DataScot <- DataScot[c(1,2,7,3,8,4,9,5,10)]
-    
-    names(DataScot) <- c("Year", "Renewables (GWh)", "Renewables Proportion (%)", "Nuclear (GWh)", "Nuclear Proportion (%)", "Low Carbon (GWh)", "Low Carbon Proportion (%)", "Fossil Fuels (GWh)", "Fossil Fuels Proportion (%)")
-    
-    datatable(
-      DataScot,
-      extensions = 'Buttons',
-      
-      rownames = FALSE,
-      options = list(
-        paging = TRUE,
-        pageLength = -1,
-        searching = TRUE,
-        fixedColumns = FALSE,
-        autoWidth = TRUE,
-        ordering = TRUE,
-        order = list(list(0 , 'desc')),
-        title = "Scottish electricity generation proportions",
-        dom = 'ltBp',
-        buttons = list(
-          list(extend = 'copy'),
-          list(
-            extend = 'excel',
-            title = 'Scottish electricity generation proportions',
-            header = TRUE
-          ),
-          list(extend = 'csv',
-               title = 'Scottish electricity generation proportions')
-        ),
-        
-        # customize the length menu
-        lengthMenu = list( c(10, 20, -1) # declare values
-                           , c(10, 20, "All") # declare titles
-        ), # end of lengthMenu customization
-        pageLength = 10
-      )
-    ) %>%
-      formatRound(2:ncol(DataScot), 0) %>% 
-      formatPercentage(c(3,5,7,9), 1)
-  })
+
   
   output$ElecGenFuelEWTable = DT::renderDataTable({
     
-    DataEW <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Elec gen by fuel",
-        col_names = FALSE,
-        skip = 35,
-        n_max = 16
-      )
-    
-    DataEW <- as.data.frame(t(DataEW))
-    
-    DataEW <- setDT(DataEW, keep.rownames = FALSE)
-    
-    names(DataEW) <- as.character(unlist(DataEW[1, ]))
-    
-    DataEW <- tail(DataEW,-1)
-    
-    DataEW <- head(DataEW,-1)
-    
-    DataEW %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    names(DataEW)[1] <- "Year"
-    
-    DataEW <- as_tibble(DataEW)
-    
-    YearList <- as.list(DataEW$Year[which(DataEW$Year >= 2009)])
-    
-    DataEW$`Low Carbon` <- DataEW$Renewables + DataEW$Nuclear
-    
-    DataEW$`Fossil Fuels` <- DataEW$Gas + DataEW$Coal + DataEW$Oil
-    
-    DataEW$`Bioenergy and Waste` <- DataEW$`Landfill Gas` + DataEW$`Sewage Gas` + DataEW$`Other biofuels and co-firing`
-    
-    DataEW <- DataEW[c(1,2,3,4,7,19,9,11,17,12,13,14,18,10,15,16)]
+    DataEW <- read_csv("Processed Data/Output/Electricity Generation/EWFuelElecGen.csv")
     
     datatable(
       DataEW,
@@ -2389,61 +1908,27 @@ ElecGen <- function(input, output, session) {
       formatStyle(16, fontWeight = "bold")
   })
   
-  DataScot <-
-    read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Elec gen by fuel",
-      col_names = FALSE,
-      skip = 15,
-      n_max = 16
-    )
   
-  DataScot <- as.data.frame(t(DataScot))
   
-  DataScot <- setDT(DataScot, keep.rownames = FALSE)
+  DataScot <- read_csv("Processed Data/Output/Electricity Generation/ScotlandFuelElecGenProportion.csv")
   
-  names(DataScot) <- as.character(unlist(DataScot[1,]))
+  DataScot$`Other Renewables` <- DataScot$Renewables - DataScot$Hydro - DataScot$Wind - DataScot$`Solar PV` - DataScot$`Bioenergy and Waste`
   
-  DataScot <- tail(DataScot, -1)
-  
-  DataScot <- head(DataScot, -1)
-  
-  DataScot %<>% lapply(function(x)
-    as.numeric(as.character(x)))
-  
-  DataScot <- as_tibble(DataScot)
-  
-  for(i in 2:16){
-    DataScot[i] <- DataScot[i] / DataScot[16]
-  }
-  DataScot$Renewables <- NULL
-  
-  DataScot$Total <- NULL
-  
-  DataScot$`Other Renewables` <-
-    (
-      DataScot$`Wave / tidal`
-    )
-  
-  DataScot$`Bioenergy and Waste` <- DataScot$`Landfill Gas` + DataScot$`Sewage Gas` + DataScot$`Other biofuels and co-firing`
-  
-  DataScot$`Wave / tidal` <- NULL
-  
-  DataScot$`Landfill Gas` <- NULL
-  
-  DataScot$`Sewage Gas` <- NULL
-  
-  DataScot$`Other biofuels and co-firing` <- NULL
-  
-  names(DataScot)[1] <- "Year"
-  
-  names(DataScot)[4] <- "Solar"
-  
-  names(DataScot)[5] <- "Pumped Hydro"
-  
+  DataScot <- select(DataScot,
+                     Year,
+                     Hydro,
+                     Wind,
+                     'Solar PV',
+                     'Pumped hydro',
+                     Nuclear,
+                     Coal,
+                     Oil,
+                     Gas,
+                     Other, 
+                     'Other Renewables',
+                     'Bioenergy and Waste'
+  )
   DataScot$Sector <- "1.8"
-  
-  DataScot <- as_tibble(DataScot)
   
   DataScot <-
     DataScot[c(
@@ -2452,72 +1937,35 @@ ElecGen <- function(input, output, session) {
       "Wind",
       "Hydro",
       "Bioenergy and Waste",
-      "Solar",
+      "Solar PV",
       "Other Renewables",
       "Nuclear",
-      "Pumped Hydro",
+      "Pumped hydro",
       "Other",
       "Coal",
       "Oil",
       "Gas"
     )]
   
-  DataEW <-
-    read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Elec gen by fuel",
-      col_names = FALSE,
-      skip = 35,
-      n_max = 16
-    )
+  DataEW <- read_csv("Processed Data/Output/Electricity Generation/EWFuelElecGenProportion.csv")
   
-  DataEW <- as.data.frame(t(DataEW))
+  DataEW$`Other Renewables` <- DataEW$Renewables - DataEW$Hydro - DataEW$Wind - DataEW$`Solar PV` - DataEW$`Bioenergy and Waste`
   
-  DataEW <- setDT(DataEW, keep.rownames = FALSE)
-  
-  names(DataEW) <- as.character(unlist(DataEW[1,]))
-  
-  DataEW <- tail(DataEW, -1)
-  
-  DataEW <- head(DataEW, -1)
-  
-  DataEW %<>% lapply(function(x)
-    as.numeric(as.character(x)))
-  
-  DataEW <- as_tibble(DataEW)
-  
-  for(i in 2:16){
-    DataEW[i] <- DataEW[i] / DataEW[16]
-  }
-  
-  DataEW$Renewables <- NULL
-  
-  DataEW$Total <- NULL
-  
-  DataEW$`Other Renewables` <-
-    (
-      DataEW$`Wave / tidal`
-    )
-  
-  DataEW$`Bioenergy and Waste` <- DataEW$`Landfill Gas` + DataEW$`Sewage Gas` + DataEW$`Other biofuels and co-firing`
-  
-  DataEW$`Wave / tidal` <- NULL
-  
-  DataEW$`Landfill Gas` <- NULL
-  
-  DataEW$`Sewage Gas` <- NULL
-  
-  DataEW$`Other biofuels and co-firing` <- NULL
-  
-  names(DataEW)[1] <- "Year"
-  
-  names(DataEW)[4] <- "Solar"
-  
-  names(DataEW)[5] <- "Pumped Hydro"
-  
+  DataEW <- select(DataEW,
+                   Year,
+                   Hydro,
+                   Wind,
+                   'Solar PV',
+                   'Pumped hydro',
+                   Nuclear,
+                   Coal,
+                   Oil,
+                   Gas,
+                   Other, 
+                   'Other Renewables',
+                   'Bioenergy and Waste'
+  )
   DataEW$Sector <- "1"
-  
-  DataEW <- as_tibble(DataEW)
   
   DataEW <-
     DataEW[c(
@@ -2526,15 +1974,19 @@ ElecGen <- function(input, output, session) {
       "Wind",
       "Hydro",
       "Bioenergy and Waste",
-      "Solar",
+      "Solar PV",
       "Other Renewables",
       "Nuclear",
-      "Pumped Hydro",
+      "Pumped hydro",
       "Other",
       "Coal",
       "Oil",
       "Gas"
     )]
+  
+  
+  
+  
   
   ElecGenFuel <- rbind(DataEW, DataScot)
   
@@ -2551,9 +2003,9 @@ ElecGen <- function(input, output, session) {
            levels = rev(unique(ElecGenFuel$variable)),
            ordered = TRUE)
   
-  ### Calculate Pumped Hydro addition for low carbon in Scotland after 2017
+  ### Calculate Pumped hydro addition for low carbon in Scotland after 2017
   
-  HydroAddition <- ElecGenFuel[which(ElecGenFuel$variable == "Pumped Hydro"),]
+  HydroAddition <- ElecGenFuel[which(ElecGenFuel$variable == "Pumped hydro"),]
   
   HydroAddition[which(HydroAddition$Year < 2017),]$value <- 0
   
@@ -2564,11 +2016,11 @@ ElecGen <- function(input, output, session) {
     mutate(pos = cumsum(value) - value / 2) %>%
     mutate(top = sum(value)) %>% 
     mutate(RenLineX = Sector + 0.23) %>% 
-    mutate(RenLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Bioenergy and Waste", "Solar", "Other Renewables"))])) %>% 
-    mutate(RenText = sum(value[which(variable %in% c("Wind", "Hydro", "Bioenergy and Waste", "Solar", "Other Renewables"))])) %>% 
+    mutate(RenLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Bioenergy and Waste", "Solar PV", "Other Renewables"))])) %>% 
+    mutate(RenText = sum(value[which(variable %in% c("Wind", "Hydro", "Bioenergy and Waste", "Solar PV", "Other Renewables"))])) %>% 
     mutate(LCLineX = Sector - 0.23) %>% 
-    mutate(LCLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Bioenergy and Waste",  "Solar", "Other Renewables", "Nuclear"))])) %>% 
-    mutate(LCText = sum(value[which(variable %in% c("Wind", "Hydro", "Bioenergy and Waste",  "Solar", "Other Renewables", "Nuclear"))])) %>% 
+    mutate(LCLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Bioenergy and Waste",  "Solar PV", "Other Renewables", "Nuclear"))])) %>% 
+    mutate(LCText = sum(value[which(variable %in% c("Wind", "Hydro", "Bioenergy and Waste",  "Solar PV", "Other Renewables", "Nuclear"))])) %>% 
     mutate(FossilLineX = Sector - 0.23) %>% 
     mutate(FossilLineY = sum(value[which(variable %in% c("Coal", "Oil", "Gas"))])) %>% 
     mutate(FossilText = sum(value[which(variable %in% c("Coal", "Oil", "Gas"))])) %>% 
@@ -2626,10 +2078,10 @@ ElecGen <- function(input, output, session) {
             "Wind" = BarColours[1],
             "Hydro" = BarColours[2],
             "Bioenergy and Waste" = BarColours[3],
-            "Solar" = BarColours[4],
+            "Solar PV" = BarColours[4],
             "Other Renewables" = BarColours[5],
             "Nuclear" = BarColours[6],
-            "Pumped Hydro" = BarColours[7],
+            "Pumped hydro" = BarColours[7],
             "Coal" = BarColours[8],
             "Oil" = BarColours[9],
             "Gas" = BarColours[10],
@@ -2665,7 +2117,7 @@ ElecGen <- function(input, output, session) {
         #     ElecGenFuel$variable != "Gas" &
         #       ElecGenFuel$variable != "Oil" &
         #       ElecGenFuel$variable != "Coal" &
-        #       ElecGenFuel$variable != "Pumped Hydro" &
+        #       ElecGenFuel$variable != "Pumped hydro" &
         #       ElecGenFuel$variable != "Nuclear" &
         #       ElecGenFuel$Sector == "1"
         #   )])) / 2,
@@ -2769,7 +2221,7 @@ ElecGen <- function(input, output, session) {
           aes(
             x = 2.375,
             y = ((3 / 10) *1.15) - 0.121,
-            label = "Solar\nPV"
+            label = "Solar PV\nPV"
           ),
           colour =  BarColours[3],
           size = 7,
