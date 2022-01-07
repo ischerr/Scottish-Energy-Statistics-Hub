@@ -870,21 +870,7 @@ EnergyConsumption <- function(input, output, session) {
   
   output$EnConsumptionFuelSubtitle <- renderText({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump fuel type",
-      col_names = FALSE,
-      skip = 12,
-      n_max = 7
-    )
-    
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- unlist(Data[1,])
-    
-    names(Data)[1] <- "Year"
-    
-    Data[1:7] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
     
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
@@ -893,39 +879,61 @@ EnergyConsumption <- function(input, output, session) {
     
     unit <- as.character(EnConsumptionDropdown$Unit)
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump fuel type",
-      col_names = FALSE,
-      skip = 12,
-      n_max = 8
-    )
+    Data <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
     
-    Data <- as_tibble(t(Data))
+    Data <- Data[which(Data$`LA Code` == 'S92000003'),]
     
-    names(Data) <- unlist(Data[1,])
+    Data <- select(Data,
+                   Year,
+                   `Petroleum products - Total`,
+                   `Gas - Total`,
+                   `Electricity - Total`,
+                   `Bioenergy & wastes - Total`,
+                   `Coal - Total`,
+                   `Manufactured fuels - Total`,
+                   `All fuels - Total`)
     
-    names(Data)[1] <- "Year"
-    
-    Data[1:8] %<>% lapply(function(x) as.numeric(as.character(x)))
+    names(Data) <- c("Year", "Petroleum products", "Gas", "Electricity", "Bioenergy & wastes", "Coal", "Manufactured fuels", "Total")
     
     Data$Year <- as.character(Data$Year)
     
-    Data[2,1] <- "Baseline\n2005/2007"
+    #Calculate Baseline, and remove years 2005-2007, leaving a gap for display
     
-    Data[3,1] <- " "
+    DataBaseline <- Data[1:3,]
     
-    Data[nrow(Data),1] <- "% Change\nfrom baseline"
+    DataBaseline <- DataBaseline %>% summarise_all(mean)
+    
+    DataBaseline$Year <- "2005/2007 Baseline"
+    
+    Data$Year <- as.character(Data$Year)
+    
+    Data <- rbind(DataBaseline, Data)
+    
+    Data[2,1] <- " "
+    
+    Data[2,2:8] <- NA
+    
+    Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
+    
+    DataChange <- tail(Data,1)
+    
+    DataChange[1,1] <- "% Change from Baseline"
+    
+    DataChange[2:8] <- DataChange[2:8] / Data[1,2:8]
+    
+    DataChange[2:8] %<>% lapply(function(x) as.numeric(x-1))
+    
+    Data <- rbind(Data, DataChange)
     
     Data$Year <- paste("<b>", Data$Year, "</b>")
-    
-    Data <- Data[-1,]
     
     Data$RowNumber <- as.numeric(rownames(Data))
     
     Data[is.na(Data)] <- 0
     
     DataTail <- tail(Data,1)
+    
+    
     DataLatest <- Data[nrow(Data)-1,]
     
     Data[2:8] %<>% lapply(function(x) as.numeric(as.character(x)) * EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier)
@@ -1109,33 +1117,44 @@ EnergyConsumption <- function(input, output, session) {
     
     unit <- as.character(EnConsumptionDropdown$Unit)
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Energy consump fuel type",
-      col_names = FALSE,
-      skip = 12,
-      n_max = 8
-    )
+    Data <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
     
-    Data <- as_tibble(t(Data))
+    Data <- Data[which(Data$`LA Code` == 'S92000003'),]
     
-    names(Data) <- unlist(Data[1,])
+    Data <- select(Data,
+                   Year,
+                   `Petroleum products - Total`,
+                   `Gas - Total`,
+                   `Electricity - Total`,
+                   `Bioenergy & wastes - Total`,
+                   `Coal - Total`,
+                   `Manufactured fuels - Total`,
+                   `All fuels - Total`)
     
-    names(Data)[1] <- "Year"
-    
-    Data[1:8] %<>% lapply(function(x) as.numeric(as.character(x)))
+    names(Data) <- c("Year", "Petroleum products", "Gas", "Electricity", "Bioenergy & wastes", "Coal", "Manufactured fuels", "Total")
     
     Data$Year <- as.character(Data$Year)
     
-    Data[2,1] <- " Baseline\n2005/2007"
+    #Calculate Baseline, and remove years 2005-2007, leaving a gap for display
     
-    Data[3,1] <- " "
+    DataBaseline <- Data[1:3,]
     
-    Data[nrow(Data),1] <- "% Change\nfrom baseline"
+    DataBaseline <- DataBaseline %>% summarise_all(mean)
     
-    Data <- Data[-1,]
+    DataBaseline$Year <- "2005/2007 Baseline"
     
-    Data <- head(Data, -1)
+    Data$Year <- as.character(Data$Year)
+    
+    Data <- rbind(DataBaseline, Data)
+    
+    Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
+    
+    Data[is.na(Data)] <- 0
+    
+    DataTail <- tail(Data,1)
+    
+    
+    DataLatest <- Data[nrow(Data)-1,]
     
     Data[2:8] %<>% lapply(function(x) as.numeric(as.character(x))* EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier)
     
@@ -1282,27 +1301,49 @@ EnergyConsumption <- function(input, output, session) {
       
       unit <- as.character(EnConsumptionDropdown$Unit)
       
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Energy consump fuel type", skip = 12, col_names = FALSE)
+      Data <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
       
-      Data <- as_tibble(t(Data))
+      Data <- Data[which(Data$`LA Code` == 'S92000003'),]
       
-      names(Data) <- as.character(unlist(Data[1,]))
+      Data <- select(Data,
+                     Year,
+                     `Petroleum products - Total`,
+                     `Gas - Total`,
+                     `Electricity - Total`,
+                     `Bioenergy & wastes - Total`,
+                     `Coal - Total`,
+                     `Manufactured fuels - Total`,
+                     `All fuels - Total`)
       
-      names(Data)[1] <- "Year"
-      Data <- tail(Data, -1)
+      names(Data) <- c("Year", "Petroleum products", "Gas", "Electricity", "Bioenergy & wastes", "Coal", "Manufactured fuels", "Total")
       
-      Data <- Data[-c(3,4,5),]
+      #Calculate Baseline, and remove years 2005-2007, leaving a gap for display
       
-      Data[1,1] <- "2006"
+      DataBaseline <- Data[1:3,]
       
-      Data <- Data[complete.cases(Data),]
+      DataBaseline <- DataBaseline %>% summarise_all(mean)
       
+      DataBaseline$Year <- 2006
       
+      Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
       
-      Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE) + 1)
+      Data <- rbind(DataBaseline, Data)
+
+      DataChange <- tail(Data,1)
       
-      Data <- as_tibble(sapply( Data, as.numeric ))
+      DataChange[1,1] <- max(Data$Year)+1
+      
+      DataChange[2:8] <- DataChange[2:8] / Data[1,2:8]
+      
+      DataChange[2:8] %<>% lapply(function(x) as.numeric(x-1))
+      
+      Data <- rbind(Data, DataChange)
+      
+      Data[is.na(Data)] <- 0
+      
+      DataTail <- tail(Data,1)
+      
+      DataLatest <- Data[nrow(Data)-1,]
       
       FinalConsumptionFuel <- Data[c(1,7:2,8)]
       
