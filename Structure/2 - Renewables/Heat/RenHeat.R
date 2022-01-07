@@ -83,25 +83,14 @@ RenHeat <- function(input, output, session) {
   
   output$RenHeatSubtitle <- renderText({
     
-    RenHeat <- read_excel("Structure/CurrentWorking.xlsx", 
-                          sheet = "Renewable heat", col_names = FALSE, 
-                          skip = 20)
-    RenHeat <- RenHeat[c(1,4)]
+    RenHeat <- read_csv("Processed Data/Output/Consumption/RenHeatTgt.csv")
     
-    names(RenHeat) <- c("Year", "Renewables")
-    RenHeat$Year <- substr(RenHeat$Year,1,4)
-    RenHeat <- merge(RenHeat, data.frame(Year = 2020, Renewables = NA, Tgt = .11), all = T)
-    RenHeat %<>% lapply(function(x) as.numeric(as.character(x)))
-    RenHeat <- as.data.frame(RenHeat)
-    
-    paste("Scotland,", min(RenHeat$Year),"-", max(RenHeat$Year[which(RenHeat$Renewables != 0)]))
+    paste("Scotland,", min(RenHeat$Year),"-", max(RenHeat$Year[which(RenHeat$`Renewable Heat Generation` != 0)]))
   })
   
   output$RenHeatPlot <- renderPlotly  ({
     
-    RenHeat <- read_excel("Structure/CurrentWorking.xlsx", 
-                          sheet = "Renewable heat", col_names = FALSE, 
-                          skip = 19)
+    RenHeat <- read_csv("Processed Data/Output/Consumption/RenHeatTgt.csv")
     RenHeat <- RenHeat[c(1,4)]
     
     names(RenHeat) <- c("Year", "Renewables")
@@ -203,16 +192,10 @@ RenHeat <- function(input, output, session) {
   
   output$RenHeatTable = renderDataTable({
     
-    RenHeat <- read_excel("Structure/CurrentWorking.xlsx", 
-                          sheet = "Renewable heat", col_names = TRUE, 
-                          skip = 19)
-
-    RenHeat %<>% lapply(function(x) as.numeric(as.character(x)))
-   
-    RenHeat <- as_tibble(RenHeat)
-     RenHeat$Year <- as.character(RenHeat$Year)
-    RenHeat[1,1] <- "2008"
-    names(RenHeat)[5] <- "Renewable Heat Capacity (GW)"
+    RenHeat <- read_csv("Processed Data/Output/Consumption/RenHeatTgt.csv")
+    
+    
+    names(RenHeat) <- c("Year", "Renewable Heat (GWh)", "Heat Demand (GWh)", "% Renewable Heat", "Renewable Heat Capacity")
     
     datatable(
       RenHeat,
@@ -277,9 +260,7 @@ RenHeat <- function(input, output, session) {
     filename = "RenHeat.png",
     content = function(file) {
 
-      RenHeat <- read_excel("Structure/CurrentWorking.xlsx", 
-                            sheet = "Renewable heat", col_names = FALSE, 
-                            skip = 20)
+      RenHeat <- read_csv("Processed Data/Output/Consumption/RenHeatTgt.csv")
       
   RenHeat <- RenHeat[c(1,4)]
   

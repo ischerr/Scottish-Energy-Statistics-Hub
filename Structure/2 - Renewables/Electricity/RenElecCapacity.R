@@ -176,13 +176,9 @@ RenElecCapacity <- function(input, output, session) {
   
   output$RenElecCapacitySubtitle <- renderText({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Renewable elec capacity", col_names = TRUE,
-        skip = 15)
-    
-    Data <- Data[c(2,4)]
+    Data <- read_delim("Processed Data/Output/Quarter Capacity/QTRCapacityScotland.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
+    Data <- Data[c(1,14)]
     
     names(Data) <- c("Year", "Capacity")
     
@@ -193,19 +189,14 @@ RenElecCapacity <- function(input, output, session) {
 
   output$RenElecCapacityPlot <- renderPlotly  ({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Renewable elec capacity", col_names = TRUE,
-        skip = 15)
-    
-    Data <- Data[c(2,4)]
+    Data <- read_delim("Processed Data/Output/Quarter Capacity/QTRCapacityScotland.txt", 
+                          "\t", escape_double = FALSE, trim_ws = TRUE)
+    Data <- Data[c(1,14)]
     
     names(Data) <- c("Year", "Capacity")
     
-    Data$Year <- as.yearqtr(Data$Year)
     
-    Data$Capacity <- Data$Capacity*1000
+    Data$Year <- as.yearqtr(Data$Year)
     
     ElecCapOperational <- Data[order(Data$Year),]
     
@@ -281,16 +272,10 @@ RenElecCapacity <- function(input, output, session) {
   
   output$RenElecBreakdownCapTable = renderDataTable({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "R - QTRCapacity", col_names = FALSE)
-    
-    Data <- as_tibble(t(Data))
+    Data <- read_delim("Processed Data/Output/Quarter Capacity/QTRCapacityScotland.txt", 
+                            "\t", escape_double = FALSE, trim_ws = TRUE)
     
     names(Data) <- c("Date", "Wind Onshore", "Wind Offshore", "Shoreline wave / tidal", "Solar P.V.", "Small Hydro", "Large Hydro", "Landfill Gas", "Sewage", "Waste", "Animal Biomass", "Anaerobic Digestion", "Plant", "Total")
-    
-    Data <- Data[-1,]
-    
-    Data$Date <- paste0(substr(Data$Date,1,4), " Q", substr(Data$Date, 8,8))
     
     Data[2:14]%<>% lapply(function(x)
       as.numeric(as.character(x)))
@@ -349,37 +334,10 @@ RenElecCapacity <- function(input, output, session) {
   
   output$AnnualRenElecBreakdownCapTable = renderDataTable({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx",
-                       sheet = "Renewable elec by fuel",
-                       col_names = TRUE,
-                       skip = 12
-    )
-    
-    Data<- Data[complete.cases(Data),]
-    
-    Data <- distinct(Data, Year, .keep_all = TRUE)
-    
-    Data <- head(Data, -1)
-    
-    Data %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    
-    
-    RenElecCapFuel <- as_tibble(Data)
-    
-    RenElecCapFuel[is.na(RenElecCapFuel)] <- 0
-    
-    RenElecCapFuel <- arrange(RenElecCapFuel,-row_number())
-    
-    RenElecCapFuel$Total <- RenElecCapFuel$`Other bioenergy` + RenElecCapFuel$`Sewage gas` + RenElecCapFuel$`Wave and tidal` + RenElecCapFuel$`Landfill gas` + RenElecCapFuel$`Solar PV` + RenElecCapFuel$Hydro + RenElecCapFuel$`Offshore Wind` + RenElecCapFuel$`Onshore Wind`
-    
-    RenElecCapFuel$`Bioenergy and Waste` <-   RenElecCapFuel$`Other bioenergy` + RenElecCapFuel$`Sewage gas` + RenElecCapFuel$`Landfill gas`
-    
-    RenElecCapFuel <- RenElecCapFuel[c(1,2,3,4,5,11,7,10)]
+    Data <- read_csv("Processed Data/Output/Renewable Capacity/AnnualElecCapacity.csv") 
     
     datatable(
-      RenElecCapFuel[],
+      Data,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -413,16 +371,14 @@ RenElecCapacity <- function(input, output, session) {
       formatStyle(10, fontWeight = "bold")
   })
   
-  Date <-     {Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                                  sheet = "R - QTRCapacity", col_names = FALSE)
-  
-  Data <- as_tibble(t(Data))
+  Date <-     {Data <- read_delim("Processed Data/Output/Quarter Capacity/QTRCapacityScotland.txt", 
+                               "\t", escape_double = FALSE, trim_ws = TRUE)
   
   names(Data) <- c("Date", "Wind Onshore", "Wind Offshore", "Shoreline wave / tidal", "Solar Photovoltaics", "Small Hydro", "Large Hydro", "Landfill Gas", "Sewage", "Waste", "Animal Biomass", "Anaerobic Digestion", "Plant", "Total")
   
-  Data <- Data[2,]
+  Data <- tail(Data, 1)
   
-  Data$Date <- paste0(substr(Data$Date,1,4), " Q", substr(Data$Date, 8,8))
+
   
   paste(Data$Date)}
   
@@ -470,15 +426,11 @@ RenElecCapacity <- function(input, output, session) {
     content = function(file) {
       
       
-      RenElecOperational <- read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Renewable elec capacity",
-        col_names = TRUE,
-        skip = 15
-      )
+      RenElecOperational <-  read_delim("Processed Data/Output/Quarter Capacity/QTRCapacityScotland.txt", 
+                                          "\t", escape_double = FALSE, trim_ws = TRUE)
       
       
-      RenElecOperational <- RenElecOperational[c(2, 4)]
+      RenElecOperational <- RenElecOperational[c(1, 14)]
       
       names(RenElecOperational) <- c("Year", "Total")
       
@@ -590,56 +542,14 @@ RenElecCapacity <- function(input, output, session) {
   
   output$RenElecFuelSubtitle <- renderText({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx",
-                       sheet = "Renewable elec by fuel",
-                       col_names = TRUE,
-                       skip = 12
-    )
+    Data <- read_csv("Processed Data/Output/Renewable Capacity/AnnualElecCapacity.csv")
     
-    Data<- Data[complete.cases(Data),]
-    
-    Data <- distinct(Data, Year, .keep_all = TRUE)
-    
-    Data <- head(Data, -1)
-    
-    Data %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    RenElecCapFuel <- as_tibble(Data)
-    
-    paste(min(RenElecCapFuel$Year),"-", max(RenElecCapFuel$Year))
+    paste(min(Data$Year),"-", max(Data$Year))
   })
   
   output$RenElecFuelPlot <- renderPlotly  ({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx",
-                       sheet = "Renewable elec by fuel",
-                       col_names = TRUE,
-                       skip = 12
-    )
-    
-    Data<- Data[complete.cases(Data),]
-    
-    Data <- distinct(Data, Year, .keep_all = TRUE)
-    
-    Data <- head(Data, -1)
-    
-    Data %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    
-    
-    RenElecCapFuel <- as_tibble(Data)
-    
-    RenElecCapFuel[is.na(RenElecCapFuel)] <- 0
-    
-    RenElecCapFuel <- RenElecCapFuel[c(1, (ncol(RenElecCapFuel) - 1):2)]
-    
-    RenElecCapFuel <- arrange(RenElecCapFuel,-row_number())
-    
-    RenElecCapFuel$Total <- RenElecCapFuel$`Other bioenergy` + RenElecCapFuel$`Sewage gas` + RenElecCapFuel$`Wave and tidal` + RenElecCapFuel$`Landfill gas` + RenElecCapFuel$`Solar PV` + RenElecCapFuel$Hydro + RenElecCapFuel$`Offshore Wind` + RenElecCapFuel$`Onshore Wind`
-    
-    RenElecCapFuel$`Bioenergy and Waste` <- RenElecCapFuel$`Other bioenergy` + RenElecCapFuel$`Sewage gas`+ RenElecCapFuel$`Landfill gas`
+    RenElecCapFuel <- read_csv("Processed Data/Output/Renewable Capacity/AnnualElecCapacity.csv")
     
     
     ChartColours <- c("#39ab2c", "#FF8500")
@@ -786,41 +696,10 @@ RenElecCapacity <- function(input, output, session) {
   
   output$RenElecFuelCapTable = renderDataTable({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx",
-                       sheet = "Renewable elec by fuel",
-                       col_names = TRUE,
-                       skip = 12
-    )
-    
-    Data<- Data[complete.cases(Data),]
-    
-    Data <- distinct(Data, Year, .keep_all = TRUE)
-    
-    Data <- head(Data, -1)
-    
-    Data %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    RenElecCapFuel <- as_tibble(Data)
-    
-    RenElecCapFuel[is.na(RenElecCapFuel)] <- 0
-    
-    RenElecCapFuel <- RenElecCapFuel[c(1, (ncol(RenElecCapFuel) - 1):2)]
-    
-    RenElecCapFuel <- arrange(RenElecCapFuel,-row_number())
-    
-    RenElecCapFuel$Total <- RenElecCapFuel$`Other bioenergy` + RenElecCapFuel$`Sewage gas` + RenElecCapFuel$`Wave and tidal` + RenElecCapFuel$`Landfill gas` + RenElecCapFuel$`Solar PV` + RenElecCapFuel$Hydro + RenElecCapFuel$`Offshore Wind` + RenElecCapFuel$`Onshore Wind`
-    
-    RenElecCapFuel$`Bioenergy and Waste` <- RenElecCapFuel$`Other bioenergy` + RenElecCapFuel$`Sewage gas`+ RenElecCapFuel$`Landfill gas`
-    
-    RenElecCapFuel$`Other bioenergy` <- NULL
-      
-      RenElecCapFuel$`Sewage gas` <- NULL
-      
-      RenElecCapFuel$`Landfill gas` <- NULL
+    RenElecCapFuel <- read_csv("Processed Data/Output/Renewable Capacity/AnnualElecCapacity.csv")
     
     datatable(
-      RenElecCapFuel[c(1,6:2,8,7)],
+      RenElecCapFuel,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -858,18 +737,12 @@ RenElecCapacity <- function(input, output, session) {
 
   output$LACapacitySubtitle <- renderText({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "R - QTRCapacity", col_names = FALSE)
+    Data <- read_delim("Processed Data/Output/Quarter Capacity/QTRCapacityScotland.txt", 
+                       "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Data <- as_tibble(t(Data))
+    Data <- tail(Data, 1)
     
-    names(Data) <- c("Date", "Wind Onshore", "Wind Offshore", "Shoreline wave / tidal", "Solar Photovoltaics", "Small Hydro", "Large Hydro", "Landfill Gas", "Sewage", "Waste", "Animal Biomass", "Anaerobic Digestion", "Plant", "Total")
-    
-    Data <- Data[2,]
-    
-    Data$Date <- paste0(substr(Data$Date,1,4), " Q", substr(Data$Date, 8,8))
-    
-    paste("Scotland,", Data$Date)
+    paste("Scotland,", Data$Quarter)
   })
   
   
@@ -952,37 +825,11 @@ RenElecCapacity <- function(input, output, session) {
     filename = "RenElecFuel.png",
     content = function(file) {
       
-      Data <- read_excel("Structure/CurrentWorking.xlsx",
-                         sheet = "Renewable elec by fuel",
-                         col_names = TRUE,
-                         skip = 12
-      )
+      Data <- read_csv("Processed Data/Output/Renewable Capacity/AnnualElecCapacity.csv")
       
-      Data<- Data[complete.cases(Data),]
+      Data$Total <- 0
       
-      Data <- distinct(Data, Year, .keep_all = TRUE)
-      
-      Data <- head(Data, -1)
-      
-      Data %<>% lapply(function(x)
-        as.numeric(as.character(x)))
-      
-      RenElecCapFuel <- as_tibble(Data)
-      
-      RenElecCapFuel[is.na(RenElecCapFuel)] <- 0
-      
-      RenElecCapFuel$`Bioenergy and Waste` <- RenElecCapFuel$`Landfill gas` + RenElecCapFuel$`Sewage gas` + RenElecCapFuel$`Other bioenergy`
-      
-      RenElecCapFuel$`Landfill gas` <- NULL
-      
-      RenElecCapFuel$`Sewage gas` <- NULL 
-      
-      RenElecCapFuel$`Other bioenergy` <- NULL
-      
-      RenElecCapFuel <- RenElecCapFuel[c(1, 6, 8,5 ,4 ,3 ,2)]
-      
-      RenElecCapFuel <- arrange(RenElecCapFuel,-row_number())
-      
+      RenElecCapFuel <- Data[c(1,8:2 )]
       
       RenElecCapFuel <- melt(RenElecCapFuel, id.vars = "Year")
       
@@ -1288,16 +1135,13 @@ RenElecCapacity <- function(input, output, session) {
   )
 
   ######
-  Time <- read_excel("Structure/CurrentWorking.xlsx", 
-                     sheet = "Renewable elec pipeline", col_names = TRUE,
-                     skip = 26, n_max = 1)
-  Quarter <- substr(Time[1,1], 8,8)
+  Time <- read_csv("Processed Data/Output/REPD (Operational Corrections)/PipelineTimeSeries.csv")
   
-  Quarter <- as.numeric(Quarter)*3
+  Time <- head(Time$Quarter, 1)
   
-  Year <- substr(Time[1,1], 1,4)
   
-  Subtitle <- paste("Scotland,", month.name[Quarter], Year)
+  
+  Subtitle <- paste("Scotland,", Time)
   
   
   ######
@@ -1311,15 +1155,11 @@ RenElecCapacity <- function(input, output, session) {
     content = function(file) {
       
       
-      RenElecOperational <- read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Renewable elec capacity",
-        col_names = TRUE,
-        skip = 13
-      )
+      RenElecOperational <- read_delim("Processed Data/Output/Quarter Capacity/QTRCapacityScotland.txt", 
+                                       "\t", escape_double = FALSE, trim_ws = TRUE)
       
       
-      RenElecOperational <- RenElecOperational[c(2, 4)]
+      RenElecOperational <- RenElecOperational[c(1, 14)]
       
       names(RenElecOperational) <- c("Year", "Total")
       
@@ -1479,18 +1319,10 @@ RenElecCapacity <- function(input, output, session) {
   
   output$RenElecOperationalSizeSubtitle <- renderText({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "R - QTRCapacity", col_names = FALSE)
+    Data <- read_delim("Processed Data/Output/Quarter Capacity/QTRCapacityScotland.txt", 
+                          "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- c("Date", "Wind Onshore", "Wind Offshore", "Shoreline wave / tidal", "Solar Photovoltaics", "Small Hydro", "Large Hydro", "Landfill Gas", "Sewage", "Waste", "Animal Biomass", "Anaerobic Digestion", "Plant", "Total")
-    
-    Data <- Data[2,]
-    
-    Data$Date <- paste0(substr(Data$Date,1,4), " Q", substr(Data$Date, 8,8))
-    
-    paste("Scotland,", Data$Date)
+    paste("Scotland,", tail(Data$Quarter,1))
   })
   
   output$RenElecOperationalSizePlot <- renderPlotly  ({

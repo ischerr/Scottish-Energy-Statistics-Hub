@@ -317,19 +317,7 @@ RenElecPipeline <- function(input, output, session) {
   
   output$RenElecProjectsTable = renderDataTable({
     
-    RenElecPipeline <- read_excel("Structure/CurrentWorking.xlsx",
-                                  sheet = "Renewable elec pipeline", col_names = TRUE, 
-                                  skip = 13,
-                                  n_max = 11)
-    
-    RenElecPipeline[5,c(2:5,8:9)] <- RenElecPipeline[5,c(2:5,8:9)] + RenElecPipeline[6,c(2:5,8:9)] +RenElecPipeline[8,c(2:5,8:9)] +RenElecPipeline[10,c(2:5,8:9)]
-    
-    RenElecPipeline[5,1] <- "Bioenergy and Waste"
-    
-    RenElecPipeline <- RenElecPipeline[-c(6,8,10),]
-    
-    
-    names(RenElecPipeline)[1] <- "Tech"
+    RenElecPipeline <- read_csv("Processed Data/Output/REPD (Operational Corrections)/PipelineProjectsbyTech.csv")
     
     CurrentOnshore <- read_delim("Processed Data/Output/Turbine Analysis/Quarterly/CurrentOnshore.txt", 
                                  "\t", escape_double = FALSE, trim_ws = TRUE)
@@ -341,14 +329,27 @@ RenElecPipeline <- function(input, output, session) {
       Turbines = c(sum(CurrentOnshore$TurbineAmount), sum(CurrentOffshore$TurbineAmount))
     )
     
-    names(Turbines) <- c("Tech", "Number of wind turbines")
+    names(Turbines) <- c("Type", "Number of wind turbines")
     
     RenElecPipeline <- merge(RenElecPipeline, Turbines, all = TRUE)
     
-    RenElecProjects <- RenElecPipeline[c(1,8,17,9)]
+    RenElecPipelineGen <-  read_csv("Processed Data/Output/REPD (Operational Corrections)/PipelineGenbyTech.csv")[c(1,3)]
+    
+    RenElecPipeline <- merge(RenElecPipeline, RenElecPipelineGen, all = TRUE)
+    
+    RenElecPipeline <- RenElecPipeline[which(RenElecPipeline$PipelineGen >0),]
+    
+    RenElecPipelineTotal <- tibble(Type = "Total",
+                                  Total = sum(RenElecPipeline$Total),
+                                  'Number of wind turbines' = NA,
+                                  PipelineGen = sum(RenElecPipeline$PipelineGen))
+    
+    RenElecPipeline <- merge(RenElecPipeline, RenElecPipelineTotal, all = TRUE)
+    
+    names(RenElecPipeline) <- c("Tech", "Number of projects", "Number of wind turbines", "Estimated pipeline generation (GWh)")
     
     datatable(
-      RenElecProjects,
+      RenElecPipeline,
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -359,7 +360,7 @@ RenElecPipeline <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        order = list(list(ncol(RenElecProjects)-1, 'desc')),
+        order = list(list(ncol(RenElecPipeline)-1, 'desc')),
         title = "Pipeline projects",
         dom = 'ltBp',
         buttons = list(
@@ -380,7 +381,7 @@ RenElecPipeline <- function(input, output, session) {
         pageLength = 10
       )
     ) %>%
-      formatRound(2:ncol(RenElecProjects), 0)
+      formatRound(2:ncol(RenElecPipeline), 0)
   })
   
   output$RenElecPipelineLATable = renderDataTable({
