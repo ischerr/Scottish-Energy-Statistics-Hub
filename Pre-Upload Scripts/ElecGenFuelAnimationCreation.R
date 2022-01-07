@@ -19,61 +19,25 @@ print("Elec gen by fuel")
 #     "J:/ENERGY BRANCH/Statistics/Energy Strategy - Stats Publication/2019/Graphs/Data/ElecGenFuel.csv"
 #   )
 
-DataScot <-
-  read_excel(
-    "Structure/CurrentWorking.xlsx",
-    sheet = "Elec gen by fuel",
-    col_names = FALSE,
-    skip = 15,
-    n_max = 16
-  )
+DataScot <- read_csv("Processed Data/Output/Electricity Generation/ScotlandFuelElecGenProportion.csv")
 
-DataScot <- as.data.frame(t(DataScot))
+DataScot$`Other Renewables` <- DataScot$Renewables - DataScot$Hydro - DataScot$Wind - DataScot$`Solar PV` - DataScot$`Bioenergy and Waste`
 
-DataScot <- setDT(DataScot, keep.rownames = FALSE)
-
-names(DataScot) <- as.character(unlist(DataScot[1,]))
-
-DataScot <- tail(DataScot, -1)
-
-DataScot <- head(DataScot, -1)
-
-DataScot %<>% lapply(function(x)
-  as.numeric(as.character(x)))
-
-DataScot <- as_tibble(DataScot)
-
-for(i in 2:16){
-  DataScot[i] <- DataScot[i] / DataScot[16]
-}
-DataScot$Renewables <- NULL
-
-DataScot$Total <- NULL
-
-DataScot$`Other Renewables` <-
-  (
-    DataScot$`Wave / tidal`
-  )
-
-DataScot$Biofuels <- DataScot$`Landfill Gas` + DataScot$`Sewage Gas` + DataScot$`Other biofuels and co-firing`
-
-DataScot$`Wave / tidal` <- NULL
-
-DataScot$`Landfill Gas` <- NULL
-
-DataScot$`Sewage Gas` <- NULL
-
-DataScot$`Other biofuels and co-firing` <- NULL
-
-names(DataScot)[1] <- "Year"
-
-names(DataScot)[4] <- "Solar"
-
-names(DataScot)[5] <- "Pumped Hydro"
-
+DataScot <- select(DataScot,
+                   Year,
+                   Hydro,
+                   Wind,
+                   'Solar PV',
+                   'Pumped hydro',
+                   Nuclear,
+                   Coal,
+                   Oil,
+                   Gas,
+                   Other, 
+                   'Other Renewables',
+                   'Bioenergy and Waste'
+)
 DataScot$Sector <- "1.8"
-
-DataScot <- as_tibble(DataScot)
 
 DataScot <-
   DataScot[c(
@@ -81,73 +45,36 @@ DataScot <-
     "Year",
     "Wind",
     "Hydro",
-    "Biofuels",
-    "Solar",
+    "Bioenergy and Waste",
+    "Solar PV",
     "Other Renewables",
     "Nuclear",
-    "Pumped Hydro",
+    "Pumped hydro",
     "Other",
     "Coal",
     "Oil",
     "Gas"
   )]
 
-DataEW <-
-  read_excel(
-    "Structure/CurrentWorking.xlsx",
-    sheet = "Elec gen by fuel",
-    col_names = FALSE,
-    skip = 35,
-    n_max = 16
-  )
+DataEW <- read_csv("Processed Data/Output/Electricity Generation/EWFuelElecGenProportion.csv")
 
-DataEW <- as.data.frame(t(DataEW))
+DataEW$`Other Renewables` <- DataEW$Renewables - DataEW$Hydro - DataEW$Wind - DataEW$`Solar PV` - DataEW$`Bioenergy and Waste`
 
-DataEW <- setDT(DataEW, keep.rownames = FALSE)
-
-names(DataEW) <- as.character(unlist(DataEW[1,]))
-
-DataEW <- tail(DataEW, -1)
-
-DataEW <- head(DataEW, -1)
-
-DataEW %<>% lapply(function(x)
-  as.numeric(as.character(x)))
-
-DataEW <- as_tibble(DataEW)
-
-for(i in 2:16){
-  DataEW[i] <- DataEW[i] / DataEW[16]
-}
-
-DataEW$Renewables <- NULL
-
-DataEW$Total <- NULL
-
-DataEW$`Other Renewables` <-
-  (
-    DataEW$`Wave / tidal`
-  )
-
-DataEW$Biofuels <- DataEW$`Landfill Gas` + DataEW$`Sewage Gas` + DataEW$`Other biofuels and co-firing`
-
-DataEW$`Wave / tidal` <- NULL
-
-DataEW$`Landfill Gas` <- NULL
-
-DataEW$`Sewage Gas` <- NULL
-
-DataEW$`Other biofuels and co-firing` <- NULL
-
-names(DataEW)[1] <- "Year"
-
-names(DataEW)[4] <- "Solar"
-
-names(DataEW)[5] <- "Pumped Hydro"
-
+DataEW <- select(DataEW,
+                 Year,
+                 Hydro,
+                 Wind,
+                 'Solar PV',
+                 'Pumped hydro',
+                 Nuclear,
+                 Coal,
+                 Oil,
+                 Gas,
+                 Other, 
+                 'Other Renewables',
+                 'Bioenergy and Waste'
+)
 DataEW$Sector <- "1"
-
-DataEW <- as_tibble(DataEW)
 
 DataEW <-
   DataEW[c(
@@ -155,16 +82,20 @@ DataEW <-
     "Year",
     "Wind",
     "Hydro",
-    "Biofuels",
-    "Solar",
+    "Bioenergy and Waste",
+    "Solar PV",
     "Other Renewables",
     "Nuclear",
-    "Pumped Hydro",
+    "Pumped hydro",
     "Other",
     "Coal",
     "Oil",
     "Gas"
   )]
+
+
+
+
 
 ElecGenFuel <- rbind(DataEW, DataScot)
 
@@ -181,9 +112,9 @@ ElecGenFuel$variable <-
          levels = rev(unique(ElecGenFuel$variable)),
          ordered = TRUE)
 
-### Calculate Pumped Hydro addition for low carbon in Scotland after 2017
+### Calculate Pumped hydro addition for low carbon in Scotland after 2017
 
-HydroAddition <- ElecGenFuel[which(ElecGenFuel$variable == "Pumped Hydro"),]
+HydroAddition <- ElecGenFuel[which(ElecGenFuel$variable == "Pumped hydro"),]
 
 HydroAddition[which(HydroAddition$Year < 2017),]$value <- 0
 
@@ -196,11 +127,11 @@ ElecGenFuel <- ElecGenFuel %>%
   mutate(pos = cumsum(value) - value / 2) %>%
   mutate(top = sum(value)) %>% 
   mutate(RenLineX = Sector + 0.23) %>% 
-  mutate(RenLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Biofuels", "Solar", "Other Renewables"))])) %>% 
-  mutate(RenText = 1 - sum(value[which(variable %in% c("Coal", "Oil", "Gas", "Other", "Pumped Hydro", "Nuclear"))])) %>% 
+  mutate(RenLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Bioenergy and Waste", "Solar PV", "Other Renewables"))])) %>% 
+  mutate(RenText = 1 - sum(value[which(variable %in% c("Coal", "Oil", "Gas", "Other", "Pumped hydro", "Nuclear"))])) %>% 
   mutate(LCLineX = Sector - 0.23) %>% 
-  mutate(LCLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Biofuels",  "Solar", "Other Renewables", "Nuclear"))])) %>% 
-  mutate(LCText = 1 - sum(value[which(variable %in% c("Coal", "Oil", "Gas", "Other", "Pumped Hydro"))])) %>% 
+  mutate(LCLineY = sum(value[which(variable %in% c("Wind", "Hydro", "Bioenergy and Waste",  "Solar PV", "Other Renewables", "Nuclear"))])) %>% 
+  mutate(LCText = 1 - sum(value[which(variable %in% c("Coal", "Oil", "Gas", "Other", "Pumped hydro"))])) %>% 
   mutate(FossilLineX = Sector - 0.23) %>% 
   mutate(FossilLineY = sum(value[which(variable %in% c("Coal", "Oil", "Gas"))])) %>% 
   mutate(FossilText = sum(value[which(variable %in% c("Coal", "Oil", "Gas"))])) %>% 
@@ -243,11 +174,11 @@ ElecGenFuelChart <- ElecGenFuel %>%
     values = c(
       "Wind" = BarColours[1],
       "Hydro" = BarColours[2],
-      "Biofuels" = BarColours[3],
-      "Solar" = BarColours[4],
+      "Bioenergy and Waste" = BarColours[3],
+      "Solar PV" = BarColours[4],
       "Other Renewables" = BarColours[5],
       "Nuclear" = BarColours[6],
-      "Pumped Hydro" = BarColours[7],
+      "Pumped hydro" = BarColours[7],
       "Coal" = BarColours[8],
       "Oil" = BarColours[9],
       "Gas" = BarColours[10],
@@ -283,7 +214,7 @@ ElecGenFuelChart <- ElecGenFuel %>%
   #     ElecGenFuel$variable != "Gas" &
   #       ElecGenFuel$variable != "Oil" &
   #       ElecGenFuel$variable != "Coal" &
-  #       ElecGenFuel$variable != "Pumped Hydro" &
+  #       ElecGenFuel$variable != "Pumped hydro" &
   #       ElecGenFuel$variable != "Nuclear" &
   #       ElecGenFuel$Sector == "1"
   #   )])) / 2,
@@ -291,7 +222,7 @@ ElecGenFuelChart <- ElecGenFuel %>%
   #                 percent(1 - sum(ElecGenFuel$value[which(
   #                   ElecGenFuel$variable != "Wind" &
   #                     ElecGenFuel$variable != "Hydro" &
-  #                     ElecGenFuel$variable != "Biofuels" &
+  #                     ElecGenFuel$variable != "Bioenergy and Waste" &
   #                     ElecGenFuel$variable != "Other Renewables" &
   #                     ElecGenFuel$Sector == "1"
   #                 )]))),
