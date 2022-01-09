@@ -130,12 +130,23 @@ ElecConsumption <- function(input, output, session) {
   
   output$ElecConsumptionSubtitle <- renderText({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Elec consump",
-      skip = 12,
-      col_names = TRUE
-    )
+    Data <- read_csv("Processed Data/Output/Consumption/ElectricityConsumption.csv")
+    
+    Data <- Data[which(Data$`LA Code` == 'S92000003'),]
+    
+    
+    
+    Data <- select(Data, 
+                   Year,
+                   `Sales (GWh) - Domestic consumers - All domestic`,
+                   `Sales (GWh) - Non-domestic consumers - All non-domestic`,
+                   `Sales (GWh) - All - Total consumption`)
+    
+    names(Data) <- c("Year", "Domestic", "Non-domestic", "Total" )
+    
+    DataOld <- read_csv("Structure/4 - Energy Efficiency/Demand Reduction/OldElecConsumption.csv")
+    
+    Data <- rbind(DataOld, Data)
     
     Data$Year <- as.numeric(Data$Year)
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
@@ -143,38 +154,64 @@ ElecConsumption <- function(input, output, session) {
   
   output$ElecConsumptionPlot <- renderPlotly  ({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Elec consump",
-      col_names = FALSE,
-      skip = 12
-    )
+    Data <- read_csv("Processed Data/Output/Consumption/ElectricityConsumption.csv")
     
-    names(Data) <- unlist(Data[1,])
+    Data <- Data[which(Data$`LA Code` == 'S92000003'),]
     
-    names(Data)[1] <- "Year"
     
-    Data[1:4] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data <- select(Data, 
+                   Year,
+                   `Sales (GWh) - Domestic consumers - All domestic`,
+                   `Sales (GWh) - Non-domestic consumers - All non-domestic`,
+                   `Sales (GWh) - All - Total consumption`)
+    
+    names(Data) <- c("Year", "Domestic", "Non-domestic", "Total" )
+    
+    DataOld <- read_csv("Structure/4 - Energy Efficiency/Demand Reduction/OldElecConsumption.csv")
+    
+    Data <- rbind(DataOld, Data)
     
     Data$Year <- as.character(Data$Year)
     
-    Data[2,1] <- "Baseline\n2005/2007"
+    #Calculate Baseline, and remove years 2005-2007, leaving a gap for display
     
-    Data[3,1] <- ""
+    DataBaseline <- Data[1:3,]
     
-    Data[nrow(Data),1] <- "% Change\nfrom baseline"
+    DataBaseline <- DataBaseline %>% summarise_all(mean)
+    
+    DataBaseline$Year <- "2005/2007 Baseline"
+    
+    Data$Year <- as.character(Data$Year)
+    
+    Data <- rbind(DataBaseline, Data)
+    
+    Data[2,1] <- " "
+    
+    Data[2,2:4] <- NA
     
     Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
     
+    DataChange <- tail(Data,1)
+    
+    DataChange[1,1] <- "% Change from Baseline"
+    
+    DataChange[2:4] <- DataChange[2:4] / Data[1,2:4]
+    
+    DataChange[2:4] %<>% lapply(function(x) as.numeric(x-1))
+    
+    Data <- rbind(Data, DataChange)
+    
     Data$Year <- paste("<b>", Data$Year, "</b>")
     
-    Data <- Data[-1,]
+    Data <- Data[c(1,3,2,4)]
     
     Data$RowNumber <- as.numeric(rownames(Data))
     
     Data[is.na(Data)] <- 0
     
     DataTail <- tail(Data,1)
+    
     
     DataLatest <- Data[nrow(Data)-1,]
     
@@ -292,30 +329,45 @@ ElecConsumption <- function(input, output, session) {
   
   output$ElecConsumptionTable = renderDataTable({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Elec consump",
-      col_names = FALSE,
-      skip = 12
-    )
+    Data <- read_csv("Processed Data/Output/Consumption/ElectricityConsumption.csv")
     
-    names(Data) <- unlist(Data[1,])
+    Data <- Data[which(Data$`LA Code` == 'S92000003'),]
     
-    names(Data)[1] <- "Year"
     
-    Data[1:4] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data <- select(Data, 
+                   Year,
+                   `Sales (GWh) - Domestic consumers - All domestic`,
+                   `Sales (GWh) - Non-domestic consumers - All non-domestic`,
+                   `Sales (GWh) - All - Total consumption`)
+    
+    names(Data) <- c("Year", "Domestic", "Non-domestic", "Total" )
+    
+    DataOld <- read_csv("Structure/4 - Energy Efficiency/Demand Reduction/OldElecConsumption.csv")
+    
+    Data <- rbind(DataOld, Data)
     
     Data$Year <- as.character(Data$Year)
     
-    Data[2,1] <- " Baseline\n2005/2007"
+    #Calculate Baseline, and remove years 2005-2007, leaving a gap for display
     
-    Data[nrow(Data),1] <- "% Change\nfrom baseline"
-  
-    Data <- Data[-1,]
+    DataBaseline <- Data[1:3,]
     
-    Data <- head(Data, -1)
+    DataBaseline <- DataBaseline %>% summarise_all(mean)
+    
+    DataBaseline$Year <- "2005/2007 Baseline"
+    
+    Data$Year <- as.character(Data$Year)
+    
+    Data <- rbind(DataBaseline, Data)
+    
+    Data[2,1] <- " "
+    
+    Data[2,2:4] <- NA
     
     Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
+    
+    
     
     datatable(
       Data,
@@ -381,18 +433,51 @@ ElecConsumption <- function(input, output, session) {
     content = function(file) {
 
 
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Elec consump", skip = 12, col_names = TRUE)
+      Data <- read_csv("Processed Data/Output/Consumption/ElectricityConsumption.csv")
       
-      Data[1,1] <- "2006"
+      Data <- Data[which(Data$`LA Code` == 'S92000003'),]
       
-      Data <- Data[complete.cases(Data),]
       
-      Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE)+1)
       
-      Data$Year <- as.numeric(Data$Year)
+      Data <- select(Data, 
+                     Year,
+                     `Sales (GWh) - Domestic consumers - All domestic`,
+                     `Sales (GWh) - Non-domestic consumers - All non-domestic`,
+                     `Sales (GWh) - All - Total consumption`)
       
-      Data <- Data[-c(2,3,4),]
+      names(Data) <- c("Year", "Domestic", "Non-domestic", "Total" )
+      
+      DataOld <- read_csv("Structure/4 - Energy Efficiency/Demand Reduction/OldElecConsumption.csv")
+      
+      Data <- rbind(DataOld, Data)
+      
+      #Calculate Baseline, and remove years 2005-2007, leaving a gap for display
+      
+      DataBaseline <- Data[1:3,]
+      
+      DataBaseline <- DataBaseline %>% summarise_all(mean)
+      
+      DataBaseline$Year <- 2006
+      
+      Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
+      
+      Data <- rbind(DataBaseline, Data)
+      
+      DataChange <- tail(Data,1)
+      
+      DataChange[1,1] <- max(Data$Year)+1
+      
+      DataChange[2:4] <- DataChange[2:4] / Data[1,2:4]
+      
+      DataChange[2:4] %<>% lapply(function(x) as.numeric(x-1))
+      
+      Data <- rbind(Data, DataChange)
+      
+      Data <- Data[c(1,3,2,4)]
+      
+      Data$RowNumber <- as.numeric(rownames(Data))
+      
+      Data[is.na(Data)] <- 0
       
       ElecConsumptiontion <- Data[c(1,3,2,4)]
       
@@ -594,50 +679,80 @@ ElecConsumption <- function(input, output, session) {
   
   output$ElecConsumptionHHoldSubtitle <- renderText({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Elec consump household",
-      col_names = TRUE,
-      skip = 12
-    )
+    Data <- read_csv("Processed Data/Output/Consumption/ElectricityConsumption.csv")
     
-    Data$Year <- as.numeric(Data$Year)
+    Data <- Data[which(Data$`LA Code` == 'S92000003'),]
+    
+    Data <- select(Data, 
+                   Year,
+                   `Averages (KWh) - All domestic - Mean consumption`)
+    
+    names(Data) <- c("Year", "Consumption" )
+    
+    DataOld <- read_csv("Structure/4 - Energy Efficiency/Demand Reduction/OldElecHHoldConsumption.csv")
+    
+    Data <- rbind(DataOld, Data)
+    
     
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
   output$ElecConsumptionHHoldPlot <- renderPlotly  ({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Elec consump household",
-      col_names = FALSE,
-      skip = 13
-    )
+    Data <- read_csv("Processed Data/Output/Consumption/ElectricityConsumption.csv")
     
-    names(Data) <- c("Year", "Consumption")
+    Data <- Data[which(Data$`LA Code` == 'S92000003'),]
     
-    Data[1:2] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data <- select(Data, 
+                   Year,
+                   `Averages (KWh) - All domestic - Mean consumption`)
+    
+    names(Data) <- c("Year", "Consumption" )
+    
+    DataOld <- read_csv("Structure/4 - Energy Efficiency/Demand Reduction/OldElecHHoldConsumption.csv")
+    
+    Data <- rbind(DataOld, Data)
     
     Data$Year <- as.character(Data$Year)
     
-    Data[1,1] <- "Baseline\n2005/2007"
+    #Calculate Baseline, and remove years 2005-2007, leaving a gap for display
+    
+    DataBaseline <- Data[1:3,]
+    
+    DataBaseline <- DataBaseline %>% summarise_all(mean)
+    
+    DataBaseline$Year <- "2005/2007 Baseline"
+    
+    Data$Year <- as.character(Data$Year)
+    
+    Data <- rbind(DataBaseline, Data)
     
     Data[2,1] <- " "
     
-    Data <- head(Data, -3)
-    
-    Data[nrow(Data),1] <- "% Change\nfrom baseline"
+    Data[2,2] <- NA
     
     Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
     
+    DataChange <- tail(Data,1)
+    
+    DataChange[1,1] <- "% Change from Baseline"
+    
+    DataChange[2] <- DataChange[2] / Data[1,2]
+    
+    DataChange[2] %<>% lapply(function(x) as.numeric(x-1))
+    
+    Data <- rbind(Data, DataChange)
+    
     Data$Year <- paste("<b>", Data$Year, "</b>")
+    
+    Data <- Data[c(1,2)]
     
     Data$RowNumber <- as.numeric(rownames(Data))
     
     Data[is.na(Data)] <- 0
     
     DataTail <- tail(Data,1)
+    
     
     DataLatest <- Data[nrow(Data)-1,]
     
@@ -720,27 +835,37 @@ ElecConsumption <- function(input, output, session) {
   
   output$ElecConsumptionHHoldTable = renderDataTable({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Elec consump household",
-      col_names = FALSE,
-      skip = 13
-    )
+    Data <- read_csv("Processed Data/Output/Consumption/ElectricityConsumption.csv")
     
-    names(Data) <- c("Year", "Consumption")
+    Data <- Data[which(Data$`LA Code` == 'S92000003'),]
     
-    Data[1:2] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data <- select(Data, 
+                   Year,
+                   `Averages (KWh) - All domestic - Mean consumption`)
+    
+    names(Data) <- c("Year", "Consumption" )
+    
+    DataOld <- read_csv("Structure/4 - Energy Efficiency/Demand Reduction/OldElecHHoldConsumption.csv")
+    
+    Data <- rbind(DataOld, Data)
     
     Data$Year <- as.character(Data$Year)
     
-    Data[1,1] <- " Baseline\n2005/2007"
+    #Calculate Baseline, and remove years 2005-2007, leaving a gap for display
     
+    DataBaseline <- Data[1:3,]
     
-    Data <- head(Data, -3)
+    DataBaseline <- DataBaseline %>% summarise_all(mean)
     
-    Data[nrow(Data),1] <- "% Change\nfrom baseline"
+    DataBaseline$Year <- "2005/2007 Baseline"
     
-    Data <- head(Data, -1)
+    Data$Year <- as.character(Data$Year)
+    
+    Data <- rbind(DataBaseline, Data)
+    
+    Data[2,1] <- " "
+    
+    Data[2,2] <- NA
     
     Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
     
@@ -790,22 +915,49 @@ ElecConsumption <- function(input, output, session) {
     content = function(file) {
       
       
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Elec consump household", skip = 12, col_names = TRUE)
+      Data <- read_csv("Processed Data/Output/Consumption/ElectricityConsumption.csv")
       
-      Data[1,1] <- "2006"
+      Data <- Data[which(Data$`LA Code` == 'S92000003'),]
       
-      names(Data) <- c("Year", "Consumption")
       
-      Data <- Data[complete.cases(Data),]
       
-      Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE)+1)
+      Data <- select(Data, 
+                     Year,
+                     `Averages (KWh) - All domestic - Mean consumption`)
       
-      Data$Total <- Data$Consumption
+      names(Data) <- c("Year", "Consumption" )
       
-      Data$Year <- as.numeric(Data$Year)
+      DataOld <- read_csv("Structure/4 - Energy Efficiency/Demand Reduction/OldElecHHoldConsumption.csv")
       
-      Data <- Data[-c(2,3,4),]
+      Data <- rbind(DataOld, Data)
+      
+      #Calculate Baseline, and remove years 2005-2007, leaving a gap for display
+      
+      DataBaseline <- Data[1:3,]
+      
+      DataBaseline <- DataBaseline %>% summarise_all(mean)
+      
+      DataBaseline$Year <- 2006
+      
+      Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
+      
+      Data <- rbind(DataBaseline, Data)
+      
+      DataChange <- tail(Data,1)
+      
+      DataChange[1,1] <- max(Data$Year)+1
+      
+      DataChange[2] <- DataChange[2] / Data[1,2]
+      
+      DataChange[2] %<>% lapply(function(x) as.numeric(x-1))
+      
+      Data <- rbind(Data, DataChange)
+      
+      Data <- Data[c(1,2)]
+      
+      Data$RowNumber <- as.numeric(rownames(Data))
+      
+      Data[is.na(Data)] <- 0
       
       ElecConsumptionHHold <- Data
       
