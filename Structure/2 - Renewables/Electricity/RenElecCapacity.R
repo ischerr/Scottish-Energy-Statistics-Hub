@@ -182,6 +182,10 @@ RenElecCapacity <- function(input, output, session) {
     
     names(Data) <- c("Year", "Capacity")
     
+    OldData <- read_csv("Structure/2 - Renewables/Electricity/OldRenElecCap.csv")
+    
+    Data <- rbind(OldData, Data)
+    
     Data$Year <- as.yearqtr(Data$Year)
     
     paste(min(Data$Year),"-", max(Data$Year))
@@ -195,6 +199,9 @@ RenElecCapacity <- function(input, output, session) {
     
     names(Data) <- c("Year", "Capacity")
     
+    OldData <- read_csv("Structure/2 - Renewables/Electricity/OldRenElecCap.csv")
+    
+    Data <- rbind(OldData, Data)
     
     Data$Year <- as.yearqtr(Data$Year)
     
@@ -420,125 +427,6 @@ RenElecCapacity <- function(input, output, session) {
     toggle("Text")
   })
   
-  
-  output$RenElecOperational.png <- downloadHandler(
-    filename = "RenElecOperational.png",
-    content = function(file) {
-      
-      
-      RenElecOperational <-  read_delim("Processed Data/Output/Quarter Capacity/QTRCapacityScotland.txt", 
-                                          "\t", escape_double = FALSE, trim_ws = TRUE)
-      
-      
-      RenElecOperational <- RenElecOperational[c(1, 14)]
-      
-      names(RenElecOperational) <- c("Year", "Total")
-      
-      RenElecOperational$Total <-
-        as.numeric(RenElecOperational$Total)
-      
-      RenElecOperational$Year <-
-        as.yearqtr(RenElecOperational$Year, format = "%Y Q%q")
-      
-      RenElecOperational <-
-        RenElecOperational[order(RenElecOperational$Year), ]
-      
-      RenElecOperational <-
-        RenElecOperational[complete.cases(RenElecOperational), ]
-      ### variables
-      ChartColours <- c("#39ab2c", "#238b45", "#a1d99b")
-      LineColours <- c("#39ab2c", "#238b45", "#a1d99b")
-      sourcecaption = "Source: BEIS"
-      plottitle = "Operational renewable capacity"
-      
-      #RenElecOperational$CavityPercentage <- PercentLabel(RenElecOperational$Cavity)
-      
-      
-      RenElecOperationalChart <- RenElecOperational %>%
-        ggplot(aes(x = Year,
-                   y = Total)) +
-        geom_line(aes(),
-                  size = 1.5,
-                  colour = LineColours[1],
-                  family = "Century Gothic") +
-        geom_point(
-          data = tail(RenElecOperational, 1),
-          aes(x = Year,
-              y = Total),
-          size = 4,
-          colour = LineColours[1],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            label = ifelse(Year == min(Year), paste(round(Total, digits = 1), "GW"), ""),
-            show_guide = FALSE
-          ),
-          fontface = 2,
-          hjust = 1.1,
-          colour = LineColours[1],
-          family = "Century Gothic"
-        ) +
-        geom_text(
-          aes(
-            x = Year + .3,
-            label = ifelse(Year == max(Year), paste(round(Total, digits = 1), "GW"), ""),
-            show_guide = FALSE
-          ),
-          fontface = 2,
-          hjust = -0.1,
-          colour = LineColours[1],
-          family = "Century Gothic"
-        ) +
-      geom_text(
-        aes(
-          y = 0,
-          label = ifelse(
-            Year == min(Year) |
-              Year == max(Year),
-            format(Year, format = "%Y Q%q"),
-            ""
-          ),
-          hjust = 0.5,
-          vjust = 1.5,
-          colour = ChartColours[1],
-          fontface = 2
-        ),
-        family = "Century Gothic"
-      )
-      
-      
-      RenElecOperationalChart
-      
-      
-      RenElecOperationalChart <-
-        StackedArea(
-          RenElecOperationalChart,
-          RenElecOperational,
-          plottitle,
-          sourcecaption,
-          ChartColours
-        )
-      
-      
-      RenElecOperationalChart <- RenElecOperationalChart +
-        xlim(min(as.numeric(RenElecOperational$Year) - 2), max(as.numeric(RenElecOperational$Year) + 3))
-      
-      RenElecOperationalChart
-      
-      
-      ggsave(
-        file,
-        plot = RenElecOperationalChart,
-        width = 14,
-        height = 16,
-        units = "cm",
-        dpi = 300
-      )
-    }
-  )
-  
-
   
   output$RenElecFuelSubtitle <- renderText({
     
@@ -1163,6 +1051,12 @@ RenElecCapacity <- function(input, output, session) {
       
       names(RenElecOperational) <- c("Year", "Total")
       
+      OldData <- read_csv("Structure/2 - Renewables/Electricity/OldRenElecCap.csv")
+      
+      names(OldData) <- c("Year", "Total")
+      
+      RenElecOperational <- rbind(OldData, RenElecOperational)
+      
       RenElecOperational$Total <-
         as.numeric(RenElecOperational$Total)
       
@@ -1200,7 +1094,7 @@ RenElecCapacity <- function(input, output, session) {
         ) +
         geom_text(
           aes(
-            label = ifelse(Year == min(Year), paste(round(Total, digits = 1), "GW"), ""),
+            label = ifelse(Year == min(Year), paste(round(Total, digits = 1), "MW"), ""),
             show_guide = FALSE
           ),
           fontface = 2,
@@ -1211,7 +1105,7 @@ RenElecCapacity <- function(input, output, session) {
         geom_text(
           aes(
             x = Year + .3,
-            label = ifelse(Year == max(Year), paste(round(Total, digits = 1), "GW"), ""),
+            label = ifelse(Year == max(Year), paste(round(Total, digits = 1), "MW"), ""),
             show_guide = FALSE
           ),
           fontface = 2,

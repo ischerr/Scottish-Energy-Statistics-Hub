@@ -346,7 +346,7 @@ file)
     
     names(EnConsumptionDomNonDom) <- c("Year", "Domestic", "Non-domestic")
     
-    paste(max(as.numeric(EnConsumption$Year), na.rm = TRUE))
+    paste(max(as.numeric(EnConsumptionDomNonDom$Year), na.rm = TRUE))
   })
   
   output$EnConsumptionDomNonDomTable = renderDataTable({
@@ -355,7 +355,9 @@ file)
     
     EnConsumptionDomNonDom <- EnConsumptionDomNonDom[which(EnConsumptionDomNonDom$`LA Code`== "S92000003"),]
     
-    EnConsumptionDomNonDom <- select(EnConsumptionDomNonDom, Year,`Electricity - Domestic`, `Electricity - Industrial & Commercial`, `Consuming Sector - Domestic`, `Consuming Sector - Industry & Commercial`)
+    EnConsumptionDomNonDom$NonDomElec <- EnConsumptionDomNonDom$`Electricity - Industrial` + EnConsumptionDomNonDom$`Electricity - Commercial`
+    
+    EnConsumptionDomNonDom <- select(EnConsumptionDomNonDom, Year,`Electricity - Domestic`, `Electricity - Industrial & Commercial`, `Consuming Sector - Domestic`, `NonDomElec`)
     
     HeatConsumptionbyLA <- read_csv("Processed Data/Output/Consumption/HeatConsumptionbyLA.csv")
     

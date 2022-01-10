@@ -342,11 +342,11 @@ ElecImportsExports <- function(input, output, session) {
     
     ImportsExports <- tail(ImportsExports,DataLength)
     
-    ImportsExports$ScotlandImports <- -ImportsExports$`Scotland - England Imports` - ImportsExports$`Scotland - NI Imports`
+    ImportsExports$ScotlandExports <- ImportsExports$`Transfers (Scotland to England)` + ImportsExports$`Transfers (Scotland to NI)`
     
-    ImportsExports$ScotlandExports <- +ImportsExports$`Scotland - England Exports` + ImportsExports$`Scotland - NI Exports`
+    ImportsExports$ScotlandImports <- -ImportsExports$`Transfers (England to Scotland)` - ImportsExports$`Transfers (NI to Scotland)`
     
-    ImportsExports <- ImportsExports[c(1,18,19)] 
+    ImportsExports <- ImportsExports[c(1,29,30)] 
     
     ImportsExports <- ImportsExports[which(as.numeric(substr(ImportsExports$Quarter,1,4)) >= 2000),]
     
@@ -1086,11 +1086,11 @@ ElecImportsExports <- function(input, output, session) {
       
       ImportsExports <- tail(ImportsExports,DataLength)
       
-      ImportsExports$ScotlandImports <- -ImportsExports$`Scotland - England Imports` - ImportsExports$`Scotland - NI Imports`
+      ImportsExports$ScotlandExports <- ImportsExports$`Transfers (Scotland to England)` + ImportsExports$`Transfers (Scotland to NI)`
       
-      ImportsExports$ScotlandExports <- +ImportsExports$`Scotland - England Exports` + ImportsExports$`Scotland - NI Exports`
+      ImportsExports$ScotlandImports <- -ImportsExports$`Transfers (England to Scotland)` - ImportsExports$`Transfers (NI to Scotland)`
       
-      ImportsExports <- ImportsExports[c(1,18,19)] 
+      ImportsExports <- ImportsExports[c(1,29,30)] 
       
       ImportsExports <- ImportsExports[which(as.numeric(substr(ImportsExports$Year,1,4)) >= 2000),]
       
