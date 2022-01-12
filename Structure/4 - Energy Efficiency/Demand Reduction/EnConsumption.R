@@ -3,6 +3,9 @@ require(plotly)
 require(dygraphs)
 require(png)
 require("DT")
+
+### CHECK EXCLUDE MOST RECENT YEAR AT THE START OF THE SERVER PORTION OF THE CODE. MIGHT NEED A MORE ELEGANT SOLUTION ###
+
 ###### UI Function ######
 
 
@@ -130,13 +133,15 @@ EnergyConsumptionOutput <- function(id) {
 ###### Server ######
 EnergyConsumption <- function(input, output, session) {
   
+  ###EXCLUDE MOST RECENT YEAR - Might be needed if some fuels are rolling over but not all.
+  ExcludeMostRecentYear <- 1
+  
   
   if (exists("PackageHeader") == 0) {
     source("Structure/PackageHeader.R")
   }
   
   print("EnConsumptionSector.R")
-  
   
   
   observe({
@@ -182,6 +187,10 @@ EnergyConsumption <- function(input, output, session) {
     Data <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
     
     
+    if(ExcludeMostRecentYear == 1){
+      Data <- Data[which(Data$Year < max(Data$Year)),]
+    }
+    
     
     
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
@@ -192,6 +201,10 @@ EnergyConsumption <- function(input, output, session) {
     unit <- as.character(EnConsumptionDropdown$Unit)
 
     Data <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
+    
+    if(ExcludeMostRecentYear == 1){
+      Data <- Data[which(Data$Year < max(Data$Year)),]
+    }
     
     Data <- Data[which(Data$`LA Code` == 'S92000003'),]
     
@@ -422,6 +435,10 @@ EnergyConsumption <- function(input, output, session) {
    
     Data <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
     
+    if(ExcludeMostRecentYear == 1){
+      Data <- Data[which(Data$Year < max(Data$Year)),]
+    }
+    
     Data <- Data[which(Data$`LA Code` == 'S92000003'),]
     
     Data$Industry <- Data$`Coal - Industrial` + Data$`Manufactured fuels - Industrial` + Data$`Petroleum products - Industrial` + Data$`Gas - Industrial` + Data$`Electricity - Industrial` + Data$`Bioenergy & Wastes - Industrial`
@@ -525,6 +542,10 @@ EnergyConsumption <- function(input, output, session) {
       unit <- as.character(EnConsumptionDropdown$Unit)
 
       Data <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
+      
+      if(ExcludeMostRecentYear == 1){
+        Data <- Data[which(Data$Year < max(Data$Year)),]
+      }
       
       Data <- Data[which(Data$`LA Code` == 'S92000003'),]
       
@@ -872,6 +893,10 @@ EnergyConsumption <- function(input, output, session) {
     
     Data <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
     
+    if(ExcludeMostRecentYear == 1){
+      Data <- Data[which(Data$Year < max(Data$Year)),]
+    }
+    
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
@@ -880,6 +905,10 @@ EnergyConsumption <- function(input, output, session) {
     unit <- as.character(EnConsumptionDropdown$Unit)
     
     Data <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
+    
+    if(ExcludeMostRecentYear == 1){
+      Data <- Data[which(Data$Year < max(Data$Year)),]
+    }
     
     Data <- Data[which(Data$`LA Code` == 'S92000003'),]
     
@@ -1119,6 +1148,10 @@ EnergyConsumption <- function(input, output, session) {
     
     Data <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
     
+    if(ExcludeMostRecentYear == 1){
+      Data <- Data[which(Data$Year < max(Data$Year)),]
+    }
+    
     Data <- Data[which(Data$`LA Code` == 'S92000003'),]
     
     Data <- select(Data,
@@ -1224,6 +1257,10 @@ EnergyConsumption <- function(input, output, session) {
   
   EnConsumptionLA <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
   
+  if(ExcludeMostRecentYear == 1){
+    EnConsumptionLA <- EnConsumptionLA[which(EnConsumptionLA$Year < max(Data$Year)),]
+  }
+  
   Year <- max(EnConsumptionLA$Year)
   
   output$EnConsumptionLATable = renderDataTable({
@@ -1302,6 +1339,10 @@ EnergyConsumption <- function(input, output, session) {
       unit <- as.character(EnConsumptionDropdown$Unit)
       
       Data <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
+      
+      if(ExcludeMostRecentYear == 1){
+        Data <- Data[which(Data$Year < max(Data$Year)),]
+      }
       
       Data <- Data[which(Data$`LA Code` == 'S92000003'),]
       
@@ -1700,6 +1741,10 @@ EnergyConsumption <- function(input, output, session) {
     
     
     EnConsumptionLA <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
+    
+    if(ExcludeMostRecentYear == 1){
+      EnConsumptionLA <- EnConsumptionLA[which(EnConsumptionLA$Year < max(EnConsumptionLA$Year)),]
+    }
     
     EnConsumptionLA[4:37] %<>% lapply(function(x) as.numeric(as.character(x))* EnConsumptionMultipliers[which(EnConsumptionMultipliers$Unit == unit),]$Multiplier)
     

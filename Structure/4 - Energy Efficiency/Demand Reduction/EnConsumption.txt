@@ -1,8 +1,8 @@
 <p>It is possible to break down the reduction of Scotland&rsquo;s total energy consumption by <span style="text-decoration: underline;"><strong>sector</strong></span>.</p>
 <ul>
-<li>Energy consumption in <strong>industry </strong>makes up approximately a third of all Scottish consumption (<strong>41.3 TWh</strong>). This is a <strong>25.8% reduction</strong> from the 2005-07 baseline, and <strong>6.1%</strong>&nbsp;down on <strong>2018</strong>.&nbsp;&nbsp;</li>
+<li>Energy consumption in <strong>industry </strong>makes up approximately a third of all Scottish consumption (<strong>42.2 TWh</strong>). This is a <strong>24.1% reduction</strong> from the 2005-07 baseline, and <strong>9.9%</strong>&nbsp;down on <strong>2018</strong>.&nbsp;&nbsp;</li>
 <li>Energy consumption in the <strong>domestic sector </strong>is <strong>44.2</strong><strong>&nbsp;TWh</strong>.&nbsp; This is a <strong>decrease</strong> of <strong>16.1%</strong> from <strong>2005-07</strong>, which may reflect improvements in energy efficiency in the domestic building stock in this time.&nbsp;&nbsp;</li>
-<li>Consumption in the <strong>commercial </strong>sector <strong>fell </strong>by <strong>4.6% </strong>from the baseline to <strong>21.6 TWh </strong>in <strong>2019.&nbsp;&nbsp;</strong></li>
+<li>Consumption in the <strong>commercial </strong>sector <strong>fell </strong>by <strong>8.6% </strong>from the baseline to <strong>20.7 TWh </strong>in <strong>2019.&nbsp;&nbsp;</strong></li>
 </ul>
 <p>The changes in consumption of different <span style="text-decoration: underline;"><strong>fuels</strong></span> in Scotland has also changed over time:&nbsp;</p>
 <ul>
