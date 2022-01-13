@@ -197,69 +197,28 @@ RenElecGen <- function(input, output, session) {
   
   output$RenElecFuelGenSubtitle <- renderText({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Renewable elec by fuel",
-                       col_names = TRUE,
-                       skip = 12
-    )
-    
-    Data<- Data[complete.cases(Data),]
-    
-    Data<-Data[dim(Data)[1]:1,]
-    
-    Data <- distinct(Data, Year, .keep_all = TRUE)
-    
-    Data <- head(Data, -1)
-    
-    Data<-Data[dim(Data)[1]:1,]
-    
-    Data %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    RenElecGenFuel <- as_tibble(Data)
+    RenElecGenFuel <- read_csv("Processed Data/Output/Renewable Generation/Annual.csv")
     
     paste(min(RenElecGenFuel$Year),"-", max(RenElecGenFuel$Year))
   })
 
   output$RenElecFuelGenTable = renderDataTable({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Renewable elec by fuel",
-                       col_names = TRUE,
-                       skip = 12
-    )
-    
-    Data<- Data[complete.cases(Data),]
-    
-    Data<-Data[dim(Data)[1]:1,]
-    
-    Data <- distinct(Data, Year, .keep_all = TRUE)
-    
-    Data <- head(Data, -1)
-    
-    Data<-Data[dim(Data)[1]:1,]
-    
-    Data %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    RenElecGenFuel <- as_tibble(Data)
-    
-    RenElecGenFuel <- RenElecGenFuel[c(1, (ncol(RenElecGenFuel) - 1):2)]
+    RenElecGenFuel <- read_csv("Processed Data/Output/Renewable Generation/Annual.csv")
     
     RenElecGenFuel <- arrange(RenElecGenFuel,-row_number())
     
-    RenElecGenFuel$`Bioenergy and Wastes` <- RenElecGenFuel$`Other bioenergy` + RenElecGenFuel$`Sewage gas` + RenElecGenFuel$`Landfill gas`
+    RenElecGenFuel$`Bioenergy and Wastes` <- RenElecGenFuel$`Other Biomass` + RenElecGenFuel$`Sewage sludge digestion` + RenElecGenFuel$`Landfill gas`
     
-    RenElecGenFuel$`Other bioenergy` <- NULL
+    RenElecGenFuel$`Other Biomass` <- NULL
     
-    RenElecGenFuel$`Sewage gas` <- NULL
+    RenElecGenFuel$`Sewage sludge digestion` <- NULL
     
     RenElecGenFuel$`Landfill gas` <- NULL
     
-    RenElecGenFuel$Total <-  RenElecGenFuel$`Wave and tidal`  + RenElecGenFuel$`Solar PV` + RenElecGenFuel$Hydro + RenElecGenFuel$`Offshore Wind` + RenElecGenFuel$`Onshore Wind` + RenElecGenFuel$`Bioenergy and Wastes`
     
     datatable(
-      RenElecGenFuel[c(1,6,5,4,7,3,2,8)],
+      RenElecGenFuel[c(1,2,3,6,8,5,4,7)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -313,36 +272,19 @@ RenElecGen <- function(input, output, session) {
   
   output$RenElecFuelGenPlot <- renderPlotly  ({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Renewable elec by fuel",
-                       col_names = TRUE,
-                       skip = 12
-    )
-    
-    Data<- Data[complete.cases(Data),]
-    
-    Data<-Data[dim(Data)[1]:1,]
-    
-    Data <- distinct(Data, Year, .keep_all = TRUE)
-    
-    Data <- head(Data, -1)
-    
-    Data<-Data[dim(Data)[1]:1,]
-    
-    Data %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    RenElecGenFuel <- as_tibble(Data)
-    
-    RenElecGenFuel <- RenElecGenFuel[c(1, (ncol(RenElecGenFuel) - 1):2)]
+    RenElecGenFuel <- read_csv("Processed Data/Output/Renewable Generation/Annual.csv")
     
     RenElecGenFuel <- arrange(RenElecGenFuel,-row_number())
     
+    RenElecGenFuel$`Bioenergy and Wastes` <- RenElecGenFuel$`Other Biomass` + RenElecGenFuel$`Sewage sludge digestion` + RenElecGenFuel$`Landfill gas`
+    
+    RenElecGenFuel$`Other Biomass` <- NULL
+    
+    RenElecGenFuel$`Sewage sludge digestion` <- NULL
+    
+    RenElecGenFuel$`Landfill gas` <- NULL
+    
     RenElecGenFuel[is.na(RenElecGenFuel)] <- 0
-    
-    RenElecGenFuel$`Bioenergy and Waste` <- RenElecGenFuel$`Other bioenergy` + RenElecGenFuel$`Sewage gas` + RenElecGenFuel$`Landfill gas` 
-    
-    RenElecGenFuel$Total <- RenElecGenFuel$`Wave and tidal`  + RenElecGenFuel$`Solar PV` + RenElecGenFuel$Hydro + RenElecGenFuel$`Offshore Wind` + RenElecGenFuel$`Onshore Wind` + RenElecGenFuel$`Bioenergy and Waste`
     
     ChartColours <- c("#39ab2c", "#FF8500")
     BarColours <-
@@ -430,11 +372,11 @@ RenElecGen <- function(input, output, session) {
       add_trace(
         data = RenElecGenFuel,
         y = ~Year,
-        x = ~`Bioenergy and Waste`,
+        x = ~`Bioenergy and Wastes`,
         legendgroup = 4,
         text = paste0(
           "Bioenergy and Waste: ",
-          format(round(RenElecGenFuel$`Bioenergy and Waste`, digits = 0),big.mark = ","),
+          format(round(RenElecGenFuel$`Bioenergy and Wastes`, digits = 0),big.mark = ","),
           " GWh\nYear: ",
           RenElecGenFuel$Year
         ),
@@ -447,11 +389,11 @@ RenElecGen <- function(input, output, session) {
       add_trace(
         data = RenElecGenFuel,
         y = ~Year,
-        x = ~`Solar PV`,
+        x = ~`Solar photovoltaics`,
         legendgroup = 5,
         text = paste0(
           "Solar PV: ",
-          format(round(RenElecGenFuel$`Solar PV`, digits = 0),big.mark = ","),
+          format(round(RenElecGenFuel$`Solar photovoltaics`, digits = 0),big.mark = ","),
           " GWh\nYear: ",
           RenElecGenFuel$Year
         ),
@@ -464,11 +406,11 @@ RenElecGen <- function(input, output, session) {
       add_trace(
         data = RenElecGenFuel,
         y = ~Year,
-        x = ~`Wave and tidal`,
+        x = ~`Shoreline wave / tidal`,
         legendgroup = 6,
         text = paste0(
           "Wave and tidal: ",
-          format(round(RenElecGenFuel$`Wave and tidal`, digits = 0),big.mark = ","),
+          format(round(RenElecGenFuel$`Shoreline wave / tidal`, digits = 0),big.mark = ","),
           " GWh\nYear: ",
           RenElecGenFuel$Year
         ),
@@ -514,37 +456,21 @@ RenElecGen <- function(input, output, session) {
     filename = "RenElecFuelGen.png",
     content = function(file) {
       
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                                   sheet = "Renewable elec by fuel",
-                                   col_names = TRUE,
-                                   skip = 12
-      )
-      
-      Data<- Data[complete.cases(Data),]
-      
-      Data<-Data[dim(Data)[1]:1,]
-      
-      Data <- distinct(Data, Year, .keep_all = TRUE)
-      
-      Data <- head(Data, -1)
-      
-      Data<-Data[dim(Data)[1]:1,]
-      
-      Data %<>% lapply(function(x)
-        as.numeric(as.character(x)))
-      
-      RenElecGenFuel <- as_tibble(Data)
-      
-      RenElecGenFuel <- RenElecGenFuel[c(1, (ncol(RenElecGenFuel) - 1):2)]
+      RenElecGenFuel <- read_csv("Processed Data/Output/Renewable Generation/Annual.csv")
       
       RenElecGenFuel <- arrange(RenElecGenFuel,-row_number())
       
+      RenElecGenFuel$`Bioenergy and Wastes` <- RenElecGenFuel$`Other Biomass` + RenElecGenFuel$`Sewage sludge digestion` + RenElecGenFuel$`Landfill gas`
+      
+      RenElecGenFuel$`Other Biomass` <- NULL
+      
+      RenElecGenFuel$`Sewage sludge digestion` <- NULL
+      
+      RenElecGenFuel$`Landfill gas` <- NULL
+      
       RenElecGenFuel[is.na(RenElecGenFuel)] <- 0
       
-      
-      RenElecGenFuel$`Bioenergy and Waste` <- RenElecGenFuel$`Other bioenergy` + RenElecGenFuel$`Sewage gas` + RenElecGenFuel$`Landfill gas`
-      
-      RenElecGenFuel <- RenElecGenFuel[c(1,4,6,10,7,8,9)]
+      RenElecGenFuel <- RenElecGenFuel[c(1,4, 5, 8, 6, 3, 2)]
       
       RenElecGenFuel <- melt(RenElecGenFuel, id.vars = "Year")
       
@@ -586,9 +512,9 @@ RenElecGen <- function(input, output, session) {
             "Onshore Wind" = BarColours[1],
             "Offshore Wind" = BarColours[2],
             "Hydro" = BarColours[3],
-            "Bioenergy and Waste" = BarColours[4],
-            "Solar PV" = BarColours[5],
-            "Wave and tidal" = BarColours[6],
+            "Bioenergy and Wastes" = BarColours[4],
+            "Solar photovoltaics" = BarColours[5],
+            "Shoreline wave / tidal" = BarColours[6],
             "Total" = "White"
           )
         ) +
@@ -752,11 +678,9 @@ RenElecGen <- function(input, output, session) {
   
   output$ScotRenGenSubtitle <- renderText({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Scottish renewables generation", col_names = TRUE, 
-                       skip = 13)
+    Data <- read_csv("Processed Data/Output/Renewable Generation/ScotPropofUKRenGen.csv")
     
-    Data <- Data[c(1,4,7,10)]
+    Data <- Data[c(1,10,11,6)]
     
     names(Data) <- c("Year", "Renewables", "Wind", "Hydro")
     
@@ -768,11 +692,9 @@ RenElecGen <- function(input, output, session) {
   
   output$ScotRenGenPlot <- renderPlotly  ({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Scottish renewables generation", col_names = TRUE, 
-                       skip = 13)
+    Data <- read_csv("Processed Data/Output/Renewable Generation/ScotPropofUKRenGen.csv")
     
-    Data <- Data[c(1,4,7,10)]
+    Data <- Data[c(1,10,11,6)]
     
     names(Data) <- c("Year", "Renewables", "Wind", "Hydro")
     
@@ -924,14 +846,45 @@ RenElecGen <- function(input, output, session) {
   
   output$ScotRenGenTable = renderDataTable({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Scottish renewables generation", col_names = TRUE, 
-                       skip = 13)
+    ScottishGeneration <- read_csv("Processed Data/Output/Renewable Generation/QTRGenScotland.csv")
     
-    Data %<>% lapply(function(x) as.numeric(as.character(x)))
-    ScotRenGen <- as_tibble(Data)
+    ScottishGeneration$Wind <- ScottishGeneration$`Onshore Wind`+ ScottishGeneration$`Offshore Wind`
     
-    names(ScotRenGen) <- c("Year", "Renewables - Scotland (GWh)", "Renewables - UK (GWh)", "Renewables - Scottish proportion of UK Total", 
+    names(ScottishGeneration) <- paste("Scotland - ", names(ScottishGeneration))
+    
+    names(ScottishGeneration)[1] <- "Year"
+    
+    UKGeneration <- read_csv("Processed Data/Output/Renewable Generation/QTRGenUK.csv")
+    
+    UKGeneration$Wind <- UKGeneration$`Onshore Wind`+ UKGeneration$`Offshore Wind`
+    
+    names(UKGeneration) <- paste("UK - ", names(UKGeneration))
+    
+    names(UKGeneration)[1] <- "Year"
+    
+    RenGen <- merge(ScottishGeneration, UKGeneration)
+    
+    RenGen$Year <- substr(RenGen$Year, 1,4)
+    
+    RenGen <- RenGen %>% group_by(Year) %>% summarise_all(sum)
+    
+    ScotPropUK <- read_csv("Processed Data/Output/Renewable Generation/ScotPropofUKRenGen.csv")
+    
+    ScotPropUK <- merge(RenGen, ScotPropUK)
+    
+    ScotPropUK <- select(ScotPropUK,
+                         Year,
+                         `Scotland -  Total`,
+                         `UK -  Total`,
+                         Total,
+                         `Scotland -  Wind`,
+                         `UK -  Wind`,
+                         Wind,
+                         `Scotland -  Hydro`,
+                         `UK -  Hydro`,
+                         Hydro)
+    
+    names(ScotPropUK) <- c("Year", "Renewables - Scotland (GWh)", "Renewables - UK (GWh)", "Renewables - Scottish proportion of UK Total", 
                            "Wind - Scotland (GWh)", "Wind - UK (GWh)", "Wind - Scottish proportion of UK Total",
                            "Hydro - Scotland (GWh)", "Hydro - UK (GWh)", "Hydro - Scottish proportion of UK Total")
     
@@ -952,7 +905,7 @@ RenElecGen <- function(input, output, session) {
     
     print(sketch)
     datatable(
-      ScotRenGen,
+      ScotPropUK,
       extensions = 'Buttons',
       # container = sketch,
       rownames = FALSE,
@@ -997,11 +950,9 @@ RenElecGen <- function(input, output, session) {
     filename = "ScotRenGen.png",
     content = function(file) {
       
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Scottish renewables generation", col_names = TRUE, 
-                         skip = 13)
+      Data <- read_csv("Processed Data/Output/Renewable Generation/ScotPropofUKRenGen.csv")
       
-      Data <- Data[c(1,4,7,10)]
+      Data <- Data[c(1,10,11,6)]
       
       names(Data) <- c("Year", "Renewables", "Wind", "Hydro")
       
@@ -1272,23 +1223,12 @@ RenElecGen <- function(input, output, session) {
   
   output$EUComparisonSubtitle <- renderText({
 
-    EUComparison <- read_excel("Structure/CurrentWorking.xlsx",
-                          sheet = "Wind and hydro gen EU", col_names = TRUE, 
-                          skip = 48, n_max = 30)
+    EUWind <- read_delim("Processed Data/Output/EU Wind Hydro/EUWind.txt", 
+                         "\t", escape_double = FALSE, trim_ws = TRUE)
     
-    EUComparison <- EUComparison[,c(1:ncol(EUComparison))]
+    EUWindYear <- as.numeric(names(EUWind))
     
-    
-    
-    names(EUComparison)[1] <- c("Countries")
-    
-    EUComparison <- EUComparison %>% mutate(Countries = replace(Countries, Countries == "United Kingdom", "U.K."))
-    
-    EUComparison <- EUComparison %>% mutate(Countries = replace(Countries, Countries == "SCOTLAND", "Scotland"))
-    
-    EUComparison[2:ncol(EUComparison)] %<>% lapply(function(x) as.numeric(as.character(x)))
-    
-    paste(max(as.numeric(names(EUComparison)), na.rm = TRUE))
+    paste(max(as.numeric(EUWindYear), na.rm = TRUE))
   })
   
   output$EUComparisonPlot <- renderPlotly  ({
@@ -1864,29 +1804,14 @@ RenElecGen <- function(input, output, session) {
     toggle("EUHydroTable")
   })
   
-  Data <- read_excel("Structure/CurrentWorking.xlsx",
-                     sheet = "R - QTRScotGen",
-                     col_names = FALSE
-  )
   
-  Data <- as_tibble(t(Data))
+  Data<-  read_csv("Processed Data/Output/Renewable Generation/QTRGenScotland.csv")
   
-  names(Data) <- unlist(Data[1,])
+  Data$Year <- as.numeric(substr(Data$Quarter,1,4))
   
-  names(Data)[1] <- "Year"
+  Data$Quarter <- substr(Data$Quarter,6,7)
   
-  Data <- Data[-1,]
-  
-  Data[2:10] %<>% lapply(function(x)
-    as.numeric(as.character(x)))
-  
-  Data <- as_tibble(Data)
-  
-  Data$Quarter <- paste0("Q",substr(Data$Year,8,8))
-  
-  Data$Year <- as.numeric(substr(Data$Year,1,4))
-  
-  names(Data) <- c("Year", "Onshore wind", "Offshore wind", "Shoreline wave / tidal", "Solar PV", "Hydro", "Landfill gas", "Sewage sludge digestion", "Other biomass (inc. co-firing)", "Total" , "Quarter")
+  names(Data) <- c("Quarter", "Onshore wind", "Offshore wind", "Shoreline wave / tidal", "Solar PV", "Hydro", "Landfill gas", "Sewage sludge digestion", "Other biomass (inc. co-firing)", "Total" , "Year")
   
   Data <- melt(Data, id.vars = c("Year", "Quarter"))
   
@@ -2192,23 +2117,7 @@ RenElecGen <- function(input, output, session) {
   
   output$RenElecQuarterTable = renderDataTable({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx",
-                       sheet = "R - QTRScotGen",
-                       col_names = FALSE
-    )
-    
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- unlist(Data[1,])
-    
-    names(Data)[1] <- "Year & Quarter"
-    
-    Data <- Data[-1,]
-    
-    Data[2:10] %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    
-    Data <- as_tibble(Data)
+    Data <- read_csv("Processed Data/Output/Renewable Generation/QTRGenScotland.csv")
     
     names(Data) <- c("Quarter", "Onshore wind", "Offshore wind", "Wave and Tidal", "Solar PV", "Hydro", "Landfill gas", "Sewage sludge digestion", "Other biomass (inc. co-firing)", "Total")
     
@@ -2218,8 +2127,6 @@ RenElecGen <- function(input, output, session) {
     Data <- Data[which(Data$Total > 0),]
     
     Data <- Data[c(1,2,3,6,11,5,4,10)]
-    
-    Data$Quarter <- paste0(substr(Data$Quarter,1,4), " Q", substr(Data$Quarter,8,8))
     
     datatable(
       Data,

@@ -43,7 +43,7 @@ EnConsumptionTgtOutput <- function(id) {
     fluidRow(
       column(2, HTML("<p><strong>Last Updated:</strong></p>")),
       column(2,
-             UpdatedLookup(c("SGGrowth"))),
+             UpdatedLookup(c("BEISSubNatEnergy","BEISSubNatElec","BEISSubNatGas","BEISLocalRoad"))),
       column(1, align = "right",
              HTML("<p><strong>Reason:</strong></p>")),
       column(7, align = "right", 
@@ -53,7 +53,7 @@ EnConsumptionTgtOutput <- function(id) {
     fluidRow(
       column(2, HTML("<p><strong>Update Expected:</strong></p>")),
       column(2,
-             DateLookup(c("SGGrowth"))),
+             DateLookup(c("BEISSubNatEnergy","BEISSubNatElec","BEISSubNatGas","BEISLocalRoad"))),
       column(1, align = "right",
              HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
@@ -92,21 +92,14 @@ EnConsumptionTgt <- function(input, output, session) {
   
   output$EnConsumptionTgtSubtitle <- renderText({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Energy consumption target", skip = 22, col_names = TRUE)[c(1,4)]
-    
-    Data[1,1] <- "2007"
-    
-    Data$Target <- NA
-    EnConsumption <- Data
+    EnConsumption <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
     
     paste("Scotland,", "2005/07","-", max(EnConsumption$Year))
   })
   
   output$EnConsumptionTgtPlot <- renderPlotly  ({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Energy consumption target", skip = 22, col_names = TRUE)[c(1,4)]
+    Data <- read_csv("Processed Data/Output/Consumption/EnergyTarget.csv")[c(1,4)]
     
     Data[1,1] <- "2007"
     
@@ -226,10 +219,8 @@ EnConsumptionTgt <- function(input, output, session) {
     
     
     
-    EnConsumption <- read_excel("Structure/CurrentWorking.xlsx", 
-                          sheet = "Energy consumption target", col_names = FALSE, 
-                          skip = 22)[1:4]
-    EnConsumption <- tail(EnConsumption, -1)
+    EnConsumption <- read_csv("Processed Data/Output/Consumption/EnergyTarget.csv")
+    
     
     names(EnConsumption) <- c("Year","Total Energy Consumption", "Change in Consumption from Baseline", "% change from baseline")
 
@@ -302,8 +293,7 @@ EnConsumptionTgt <- function(input, output, session) {
     content = function(file) {
 
 
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Energy consumption target", skip = 22, col_names = TRUE)[c(1,4)]
+      Data <- read_csv("Processed Data/Output/Consumption/EnergyTarget.csv")[c(1,4)]
       
       Data[1,1] <- "2007"
       

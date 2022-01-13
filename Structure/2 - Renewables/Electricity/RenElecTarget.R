@@ -101,28 +101,18 @@ RenElecTarget <- function(input, output, session) {
   print("RenElecTarget.R")
 
   
+  
   output$RenElecTargetSubtitle <- renderText({
     
-    RenElec <- read_excel("Structure/CurrentWorking.xlsx", 
-                          sheet = "Renewable elec target", col_names = FALSE, 
-                          skip = 15)
-    RenElec <- tail(RenElec[c(1,4)], -1)
+    RenElecTgt <- read_csv("Processed Data/Output/Renewable Generation/RenElecTgt.csv")
     
-    names(RenElec) <- c("Year", "Renewables")
-    RenElec %<>% lapply(function(x) as.numeric(as.character(x)))
-    RenElec <- as.data.frame(RenElec)
-    
-    paste("Scotland,", min(RenElec$Year),"-", max(RenElec$Year))
+    paste("Scotland,", min(RenElecTgt$Year),"-", max(RenElecTgt$Year))
   })
   
   output$RenElecTargetPlot <- renderPlotly  ({
     
-    RenElec <- read_excel("Structure/CurrentWorking.xlsx", 
-                          sheet = "Renewable elec target", col_names = FALSE, 
-                          skip = 15)
-    RenElec <- tail(RenElec[c(1,4)], -1)
+    RenElec <- read_csv("Processed Data/Output/Renewable Generation/RenElecTgt.csv")[c(1,4)]
     
-    names(RenElec) <- c("Year", "Renewables")
     RenElec <- merge(RenElec, data.frame(Year = 2020, Tgt = 1), all = T)
     RenElec %<>% lapply(function(x) as.numeric(as.character(x)))
     RenElec <- as.data.frame(RenElec)
@@ -132,19 +122,12 @@ RenElecTarget <- function(input, output, session) {
     plottitle = "Share of renewable electricity in\ngross electricity consumption"
     
     RenElec$Year <- paste0("01/01/", RenElec$Year)
-    
 
-    RenElecBar <- read_excel("Structure/CurrentWorking.xlsx", 
-                             sheet = "Renewable elec by fuel", col_names = TRUE, 
-                             skip = 12)
-    
-    RenElecBar <- arrange(RenElecBar, -row_number())
-    
-    RenElecBar <- distinct(RenElecBar, Year, .keep_all = TRUE)
+    RenElecBar <- read_csv("Processed Data/Output/Renewable Generation/RenElecGenAnnualTgt.csv")
     
     RenElecBar$Year <- paste0("01/01/", RenElecBar$Year)
     
-    RenElecBar <- RenElecBar[which(RenElecBar$Year == max(RenElec[which(RenElec$Renewables >0),]$Year)),]
+    RenElecBar <- RenElecBar[which(RenElecBar$Year == max(RenElec[which(RenElec$Target >0),]$Year)),]
     
     names(RenElecBar)[2:3] <- c("Onshore", "Offshore")
     
@@ -153,9 +136,9 @@ RenElecTarget <- function(input, output, session) {
     
     RenElecBar$Other <- RenElecBar$Total - RenElecBar$Onshore -RenElecBar$Offshore - RenElecBar$Hydro
     
-    RenElecBar <- as_tibble(RenElecBar[c(1,2,3,4,11,10)])
+    RenElecBar <- as_tibble(RenElecBar[c(1,2,3,6,11,10)])
     
-    RenElecFigure <- RenElec[which(RenElec$Year == max(RenElec[which(RenElec$Renewables > 0 ),]$Year)),]$Renewables
+    RenElecFigure <- RenElec[which(RenElec$Year == max(RenElec[which(RenElec$Target > 0 ),]$Year)),]$Target
     
     RenElecBar$Onshore <- RenElecBar$Onshore / RenElecBar$Total * RenElecFigure
     
@@ -179,14 +162,14 @@ RenElecTarget <- function(input, output, session) {
                    "#253494")
     
     p <-  plot_ly(RenElec,x = ~ Year ) %>% 
-      add_trace(y = ~ Renewables,
+      add_trace(y = ~ Target,
                 name = "Renewables",
                 type = 'scatter',
                 mode = 'lines',
                 legendgroup = "1",
                 text = paste0(
                   "Progress: ",
-                  percent(RenElec$Renewables, accuracy = 0.1),
+                  percent(RenElec$Target, accuracy = 0.1),
                   "\nYear: ",
                   format(RenElec$Year, "%Y")
                 ),
@@ -194,15 +177,15 @@ RenElecTarget <- function(input, output, session) {
                 line = list(width = 6, color = ChartColours[1], dash = "none")
       ) %>% 
       add_trace(
-        data = tail(RenElec[which(RenElec$Renewables > 0 | RenElec$Renewables < 0),], 1),
+        data = tail(RenElec[which(RenElec$Target > 0 | RenElec$Target < 0),], 1),
         x = ~ Year,
-        y = ~ `Renewables`,
+        y = ~ `Target`,
         name = "Renewable Electricity",
         text = paste0(
           "Progress: ",
-          percent(RenElec[which(RenElec$Renewables > 0 | RenElec$Renewables < 0),][-1,]$Renewables, accuracy = 0.1),
+          percent(RenElec[which(RenElec$Target > 0 | RenElec$Target < 0),][-1,]$Target, accuracy = 0.1),
           "\nYear: ",
-          format(RenElec[which(RenElec$Renewables > 0 | RenElec$Renewables < 0),][-1,]$Year, "%Y")
+          format(RenElec[which(RenElec$Target > 0 | RenElec$Target < 0),][-1,]$Year, "%Y")
         ),
         hoverinfo = 'text',
         showlegend = FALSE ,
@@ -320,10 +303,7 @@ RenElecTarget <- function(input, output, session) {
   
   output$RenElecTargetTable = renderDataTable({
     
-    RenElec <- read_excel("Structure/CurrentWorking.xlsx", 
-                          sheet = "Renewable elec target", col_names = FALSE, 
-                          skip = 15)
-    RenElec <- tail(RenElec, -1)
+    RenElec <- read_csv("Processed Data/Output/Renewable Generation/RenElecTgt.csv")
     
     names(RenElec) <- c("Year","Renewable Electricity (GWh)", "Gross Electricity Consumption (GWh)", "% Progress")
 
@@ -395,10 +375,7 @@ RenElecTarget <- function(input, output, session) {
     filename = "RenElecTarget.png",
     content = function(file) {
 
-      RenElec <- read_excel("Structure/CurrentWorking.xlsx", 
-                            sheet = "Renewable elec target", col_names = FALSE, 
-                            skip = 15)
-      RenElec <- tail(RenElec[c(1,4)], -1)
+      RenElec <- read_csv("Processed Data/Output/Renewable Generation/RenElecTgt.csv")[c(1,4)]
       
       names(RenElec) <- c("Year", "Renewables")
       RenElec <- merge(RenElec, data.frame(Year = 2020, Tgt = 1), all = T)
@@ -419,24 +396,18 @@ RenElecTarget <- function(input, output, session) {
       
       
       
-      RenElecBar <- read_excel("Structure/CurrentWorking.xlsx", 
-                               sheet = "Renewable elec by fuel", col_names = TRUE, 
-                               skip = 12)
-      
-      RenElecBar <- arrange(RenElecBar, -row_number())
-      
-      RenElecBar <- distinct(RenElecBar, Year, .keep_all = TRUE)
+      RenElecBar <- read_csv("Processed Data/Output/Renewable Generation/RenElecGenAnnualTgt.csv")
       
       RenElecBar <- RenElecBar[which(RenElecBar$Year == max(RenElec[which(RenElec$Renewables >0),]$Year)),]
       
       names(RenElecBar)[2:3] <- c("Onshore", "Offshore")
       
-      RenElecBar %<>% lapply(function(x)
+      RenElecBar[2:10] %<>% lapply(function(x)
         as.numeric(as.character(x)))
       
       RenElecBar$Other <- RenElecBar$Total - RenElecBar$Onshore -RenElecBar$Offshore - RenElecBar$Hydro
       
-      RenElecBar <- as_tibble(RenElecBar[c(1,2,3,4,11,10)])
+      RenElecBar <- as_tibble(RenElecBar[c(1,2,3,6,11,10)])
       
       RenElecFigure <- RenElec[which(RenElec$Year == max(RenElec[which(RenElec$Renewables > 0 ),]$Year)),]$Renewables
       
@@ -559,12 +530,38 @@ RenElecTarget <- function(input, output, session) {
   
   output$GrossConsumptionSubtitle <- renderText({
     
-      paste("Scotland, 2019")
+    GenSupplyReadable <- read_csv("Processed Data/Output/Renewable Generation/GenSupplyReadable.csv")
+    
+      paste("Scotland,", max(GenSupplyReadable$Year))
   })
   
   output$GrossConsumptionPlot <- renderPlotly  ({
     
-    GrossConsumption <- read_excel("Processed Data/TestConsumption.xlsx")
+    GrossConsumption <- tibble(Type = c("Consumption", "Exports", "Generation"),
+                                   Renewable = c(0,0,0),
+                                   `Non-renewable` = c(0,0,0),
+                                   Exports = c(0,0,0),
+                                   Consumption = c(0,0,0)
+                                   )
+    
+    GenSupplyReadable <- read_csv("Processed Data/Output/Renewable Generation/GenSupplyReadable.csv")
+    
+    GenSupplyReadable <- GenSupplyReadable[which(GenSupplyReadable$Country == "Scotland" & GenSupplyReadable$Year == max(GenSupplyReadable$Year)),]
+    
+    RenElec <- read_csv("Processed Data/Output/Renewable Generation/RenElecTgt.csv")
+    
+    RenElec <- RenElec[which(RenElec$Year == max(GenSupplyReadable$Year)),]
+    
+    
+    GrossConsumption[1,5] <- RenElec$`Gross Electricity Consumption`
+    
+    GrossConsumption[3,2] <- RenElec$Renewable
+    
+    GrossConsumption[3,3] <- GenSupplyReadable$`Total generated` - RenElec$Renewable
+    
+    GrossConsumption[2,4] <- RenElec$`Gross Electricity Consumption` - GenSupplyReadable$`Total generated`
+    
+    
     
     GrossConsumptionPlotData <- GrossConsumption[c(1,3),]
     
@@ -785,7 +782,7 @@ RenElecTarget <- function(input, output, session) {
         showlegend = FALSE ,
         hoverinfo = 'none',
         legendgroup = 10,
-        text = "This does not mean that 10.5% of Scottish electricity demand is\nfrom non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
+        text = "This does not mean that 1.4% of Scottish electricity demand is\nfrom non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
         name = paste("Consumption"),
         marker = list(
           size = 500,
@@ -887,7 +884,29 @@ RenElecTarget <- function(input, output, session) {
     filename = "GrossConsumption.png",
     content = function(file) {
       
-      GrossConsumption <- read_excel("Processed Data/TestConsumption.xlsx")
+      GrossConsumption <- tibble(Type = c("Consumption", "Exports", "Generation"),
+                                 Renewable = c(0,0,0),
+                                 `Non-renewable` = c(0,0,0),
+                                 Exports = c(0,0,0),
+                                 Consumption = c(0,0,0)
+      )
+      
+      GenSupplyReadable <- read_csv("Processed Data/Output/Renewable Generation/GenSupplyReadable.csv")
+      
+      GenSupplyReadable <- GenSupplyReadable[which(GenSupplyReadable$Country == "Scotland" & GenSupplyReadable$Year == max(GenSupplyReadable$Year)),]
+      
+      RenElec <- read_csv("Processed Data/Output/Renewable Generation/RenElecTgt.csv")
+      
+      RenElec <- RenElec[which(RenElec$Year == max(GenSupplyReadable$Year)),]
+      
+      
+      GrossConsumption[1,5] <- RenElec$`Gross Electricity Consumption`
+      
+      GrossConsumption[3,2] <- RenElec$Renewable
+      
+      GrossConsumption[3,3] <- GenSupplyReadable$`Total generated` - RenElec$Renewable
+      
+      GrossConsumption[2,4] <- RenElec$`Gross Electricity Consumption` - GenSupplyReadable$`Total generated`
       
       GrossConsumption$Type <- c("Gross Consumption", "Net exports", "Electricity generation fuel mix")
       
@@ -1049,7 +1068,7 @@ RenElecTarget <- function(input, output, session) {
         geom_text(
           aes( x = 0,
                y = 48629/1.9,
-               label = "This does not mean that 10.5% of Scottish electricity demand is\nfrom non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
+               label = "This does not mean that 1.4% of Scottish electricity demand is\nfrom non-renewable sources. Due to the way it is calculated,\nshare of renewable electricity in gross consumption can exceed 100%.",
                family = "Century Gothic",
                fontface = 2
           ),

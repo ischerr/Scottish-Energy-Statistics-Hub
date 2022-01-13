@@ -1,0 +1,2976 @@
+Generator type,Fuel,Year,Country,value
+Major power producers,Coal,2004,UK,127826.5674
+Major power producers,Oil,2004,UK,1882.7795
+Major power producers,Gas,2004,UK,140576.967
+Major power producers,Nuclear,2004,UK,79999.1056
+Major power producers,Hydro natural flow,2004,UK,3907.8
+Major power producers,Wind,2004,UK,NA
+Major power producers,Solar,2004,UK,NA
+Major power producers,Bioenergy,2004,UK,1471.4293
+Major power producers,Other fuels,2004,UK,NA
+Major power producers,Hydro pumped storage,2004,UK,2648.549
+Major power producers,Total major power producers,2004,UK,358313.198
+Other generators,Coal,2004,UK,3961.076
+Other generators,Oil,2004,UK,2761.3801
+Other generators,Gas,2004,UK,16487.3408
+Other generators,Hydro natural flow,2004,UK,915.199
+Other generators,Wind,2004,UK,1939.1149
+Other generators,Solar,2004,UK,NA
+Other generators,Shoreline wave and tidal,2004,UK,NA
+Other generators,Bioenergy,2004,UK,5892.8319
+Other generators,Other fuels,2004,UK,3644.5951
+Other generators,Total other generators,2004,UK,35601.5378
+All generating companies,Fossil fuels,2004,UK,293496.1108
+All generating companies,Coal,2004,UK,131787.6434
+All generating companies,Oil,2004,UK,4644.1596
+All generating companies,Gas,2004,UK,157064.3078
+All generating companies,Nuclear,2004,UK,80914.3046
+All generating companies,Renewables,2004,UK,14126.3751
+All generating companies,Hydro natural flow,2004,UK,4822.999
+All generating companies,Wind,2004,UK,1939.1149
+All generating companies,Solar,2004,UK,NA
+All generating companies,Shoreline wave and tidal,2004,UK,NA
+All generating companies,Bioenergy,2004,UK,7364.2612
+All generating companies,Other fuels,2004,UK,3644.5951
+All generating companies,Pumped storage,2004,UK,2648.549
+All generating companies,Total all generating companies,2004,UK,388536.7906
+Major power producers,Coal,2004,Scotland,13001.7119
+Major power producers,Oil,2004,Scotland,149.2283
+Major power producers,Gas,2004,Scotland,8850.6861
+Major power producers,Nuclear,2004,Scotland,18012.7628
+Major power producers,Hydro natural flow,2004,Scotland,3653.0734
+Major power producers,Wind,2004,Scotland,NA
+Major power producers,Solar,2004,Scotland,NA
+Major power producers,Bioenergy,2004,Scotland,0
+Major power producers,Other fuels,2004,Scotland,NA
+Major power producers,Hydro pumped storage,2004,Scotland,785.7686
+Major power producers,Total major power producers,2004,Scotland,44453.2312
+Other generators,Coal,2004,Scotland,53
+Other generators,Oil,2004,Scotland,1242
+Other generators,Gas,2004,Scotland,1984
+Other generators,Hydro natural flow,2004,Scotland,821.7266
+Other generators,Wind,2004,Scotland,848.4
+Other generators,Solar,2004,Scotland,NA
+Other generators,Shoreline wave and tidal,2004,Scotland,NA
+Other generators,Bioenergy,2004,Scotland,509
+Other generators,Other fuels,2004,Scotland,25.6414
+Other generators,Total other generators,2004,Scotland,5483.7679
+All generating companies,Fossil fuels,2004,Scotland,25280.6263
+All generating companies,Coal,2004,Scotland,13054.7119
+All generating companies,Oil,2004,Scotland,1391.2283
+All generating companies,Gas,2004,Scotland,10834.6861
+All generating companies,Nuclear,2004,Scotland,18834.4894
+All generating companies,Renewables,2004,Scotland,5832.2
+All generating companies,Hydro natural flow,2004,Scotland,4474.8
+All generating companies,Wind,2004,Scotland,848.4
+All generating companies,Solar,2004,Scotland,NA
+All generating companies,Shoreline wave and tidal,2004,Scotland,NA
+All generating companies,Bioenergy,2004,Scotland,509
+All generating companies,Other fuels,2004,Scotland,25.6414
+All generating companies,Pumped storage,2004,Scotland,785.7686
+All generating companies,Total all generating companies,2004,Scotland,49947.3157
+Major power producers,Coal,2004,Wales,7234.1616
+Major power producers,Oil,2004,Wales,0
+Major power producers,Gas,2004,Wales,16244.9239
+Major power producers,Nuclear,2004,Wales,7388
+Major power producers,Hydro natural flow,2004,Wales,239.4421
+Major power producers,Wind,2004,Wales,NA
+Major power producers,Solar,2004,Wales,NA
+Major power producers,Bioenergy,2004,Wales,50.9997
+Major power producers,Other fuels,2004,Wales,NA
+Major power producers,Hydro pumped storage,2004,Wales,1862.7804
+Major power producers,Total major power producers,2004,Wales,33020.3077
+Other generators,Coal,2004,Wales,0
+Other generators,Oil,2004,Wales,38.7973
+Other generators,Gas,2004,Wales,1117.9155
+Other generators,Hydro natural flow,2004,Wales,47.0579
+Other generators,Wind,2004,Wales,550.6
+Other generators,Solar,2004,Wales,NA
+Other generators,Shoreline wave and tidal,2004,Wales,NA
+Other generators,Bioenergy,2004,Wales,140.8003
+Other generators,Other fuels,2004,Wales,506.7433
+Other generators,Total other generators,2004,Wales,2401.9143
+All generating companies,Fossil fuels,2004,Wales,24635.7983
+All generating companies,Coal,2004,Wales,7234.1616
+All generating companies,Oil,2004,Wales,38.7973
+All generating companies,Gas,2004,Wales,17362.8394
+All generating companies,Nuclear,2004,Wales,7435.0579
+All generating companies,Renewables,2004,Wales,1028.9
+All generating companies,Hydro natural flow,2004,Wales,286.5
+All generating companies,Wind,2004,Wales,550.6
+All generating companies,Solar,2004,Wales,NA
+All generating companies,Shoreline wave and tidal,2004,Wales,NA
+All generating companies,Bioenergy,2004,Wales,191.8
+All generating companies,Other fuels,2004,Wales,506.7433
+All generating companies,Pumped storage,2004,Wales,1862.7804
+All generating companies,Total all generating companies,2004,Wales,33099.7562
+Major power producers,Coal,2004,Nothern Ireland,2710.9496
+Major power producers,Oil,2004,Nothern Ireland,346.5484
+Major power producers,Gas,2004,Nothern Ireland,4083.3725
+Major power producers,Nuclear,2004,Nothern Ireland,0
+Major power producers,Hydro natural flow,2004,Nothern Ireland,0
+Major power producers,Wind,2004,Nothern Ireland,NA
+Major power producers,Solar,2004,Nothern Ireland,NA
+Major power producers,Bioenergy,2004,Nothern Ireland,0
+Major power producers,Other fuels,2004,Nothern Ireland,NA
+Major power producers,Hydro pumped storage,2004,Nothern Ireland,0
+Major power producers,Total major power producers,2004,Nothern Ireland,7140.8704
+Other generators,Coal,2004,Nothern Ireland,42
+Other generators,Oil,2004,Nothern Ireland,41
+Other generators,Gas,2004,Nothern Ireland,36
+Other generators,Hydro natural flow,2004,Nothern Ireland,11.5
+Other generators,Wind,2004,Nothern Ireland,139.5
+Other generators,Solar,2004,Nothern Ireland,NA
+Other generators,Shoreline wave and tidal,2004,Nothern Ireland,NA
+Other generators,Bioenergy,2004,Nothern Ireland,1.6
+Other generators,Other fuels,2004,Nothern Ireland,0
+Other generators,Total other generators,2004,Nothern Ireland,271.6
+All generating companies,Fossil fuels,2004,Nothern Ireland,7259.8704
+All generating companies,Coal,2004,Nothern Ireland,2752.9496
+All generating companies,Oil,2004,Nothern Ireland,387.5484
+All generating companies,Gas,2004,Nothern Ireland,4119.3725
+All generating companies,Nuclear,2004,Nothern Ireland,11.5
+All generating companies,Renewables,2004,Nothern Ireland,152.6
+All generating companies,Hydro natural flow,2004,Nothern Ireland,11.5
+All generating companies,Wind,2004,Nothern Ireland,139.5
+All generating companies,Solar,2004,Nothern Ireland,NA
+All generating companies,Shoreline wave and tidal,2004,Nothern Ireland,NA
+All generating companies,Bioenergy,2004,Nothern Ireland,1.6
+All generating companies,Other fuels,2004,Nothern Ireland,0
+All generating companies,Pumped storage,2004,Nothern Ireland,0
+All generating companies,Total all generating companies,2004,Nothern Ireland,7423.9704
+Major power producers,Coal,2004,England,104879.7443
+Major power producers,Oil,2004,England,1387.0029
+Major power producers,Gas,2004,England,111397.9846
+Major power producers,Nuclear,2004,England,54598.3428
+Major power producers,Hydro natural flow,2004,England,15.2844
+Major power producers,Wind,2004,England,NA
+Major power producers,Solar,2004,England,NA
+Major power producers,Bioenergy,2004,England,1420.4296
+Major power producers,Other fuels,2004,England,NA
+Major power producers,Hydro pumped storage,2004,England,0
+Major power producers,Total major power producers,2004,England,273698.7886
+Other generators,Coal,2004,England,3866.076
+Other generators,Oil,2004,England,1439.5828
+Other generators,Gas,2004,England,13349.4253
+Other generators,Hydro natural flow,2004,England,34.9146
+Other generators,Wind,2004,England,400.6149
+Other generators,Solar,2004,England,NA
+Other generators,Shoreline wave and tidal,2004,England,NA
+Other generators,Bioenergy,2004,England,5241.4316
+Other generators,Other fuels,2004,England,3112.2104
+Other generators,Total other generators,2004,England,27444.2555
+All generating companies,Fossil fuels,2004,England,236319.8158
+All generating companies,Coal,2004,England,108745.8203
+All generating companies,Oil,2004,England,2826.5857
+All generating companies,Gas,2004,England,124747.4098
+All generating companies,Nuclear,2004,England,54633.2574
+All generating companies,Renewables,2004,England,7112.6751
+All generating companies,Hydro natural flow,2004,England,50.199
+All generating companies,Wind,2004,England,400.6149
+All generating companies,Solar,2004,England,NA
+All generating companies,Shoreline wave and tidal,2004,England,NA
+All generating companies,Bioenergy,2004,England,6661.8612
+All generating companies,Other fuels,2004,England,3112.2104
+All generating companies,Pumped storage,2004,England,0
+All generating companies,Total all generating companies,2004,England,298065.7483
+Major power producers,Coal,2005,UK,130689.9879
+Major power producers,Oil,2005,UK,2921.1573
+Major power producers,Gas,2005,UK,137482.7421
+Major power producers,Nuclear,2005,UK,81618.1028
+Major power producers,Hydro natural flow,2005,UK,3825.9
+Major power producers,Wind,2005,UK,NA
+Major power producers,Solar,2005,UK,NA
+Major power producers,Bioenergy,2005,UK,2744.4839
+Major power producers,Other fuels,2005,UK,NA
+Major power producers,Hydro pumped storage,2005,UK,2929.7944
+Major power producers,Total major power producers,2005,UK,362212.1686
+Other generators,Coal,2005,UK,3947.003
+Other generators,Oil,2005,UK,2416.9941
+Other generators,Gas,2005,UK,15159.249
+Other generators,Hydro natural flow,2005,UK,1095.629
+Other generators,Wind,2005,UK,2912.0966
+Other generators,Solar,2005,UK,NA
+Other generators,Shoreline wave and tidal,2005,UK,NA
+Other generators,Bioenergy,2005,UK,6362.3091
+Other generators,Other fuels,2005,UK,4254.2679
+Other generators,Total other generators,2005,UK,36147.5486
+All generating companies,Fossil fuels,2005,UK,292617.1335
+All generating companies,Coal,2005,UK,134636.9909
+All generating companies,Oil,2005,UK,5338.1514
+All generating companies,Gas,2005,UK,152641.9911
+All generating companies,Nuclear,2005,UK,82713.7318
+All generating companies,Renewables,2005,UK,16940.4186
+All generating companies,Hydro natural flow,2005,UK,4921.529
+All generating companies,Wind,2005,UK,2912.0966
+All generating companies,Solar,2005,UK,NA
+All generating companies,Shoreline wave and tidal,2005,UK,NA
+All generating companies,Bioenergy,2005,UK,9106.793
+All generating companies,Other fuels,2005,UK,4254.2679
+All generating companies,Pumped storage,2005,UK,2929.7944
+All generating companies,Total all generating companies,2005,UK,392271.2839
+Major power producers,Coal,2005,Scotland,12091.7149
+Major power producers,Oil,2005,Scotland,555.8701
+Major power producers,Gas,2005,Scotland,6250.2442
+Major power producers,Nuclear,2005,Scotland,18680.7083
+Major power producers,Hydro natural flow,2005,Scotland,3626.3698
+Major power producers,Wind,2005,Scotland,NA
+Major power producers,Solar,2005,Scotland,NA
+Major power producers,Bioenergy,2005,Scotland,0
+Major power producers,Other fuels,2005,Scotland,NA
+Major power producers,Hydro pumped storage,2005,Scotland,642.6936
+Major power producers,Total major power producers,2005,Scotland,41847.6008
+Other generators,Coal,2005,Scotland,50.5898
+Other generators,Oil,2005,Scotland,1347.0685
+Other generators,Gas,2005,Scotland,3116.6241
+Other generators,Hydro natural flow,2005,Scotland,986.1388
+Other generators,Wind,2005,Scotland,1280.9
+Other generators,Solar,2005,Scotland,NA
+Other generators,Shoreline wave and tidal,2005,Scotland,NA
+Other generators,Bioenergy,2005,Scotland,592.6
+Other generators,Other fuels,2005,Scotland,15.8884
+Other generators,Total other generators,2005,Scotland,7389.8096
+All generating companies,Fossil fuels,2005,Scotland,23412.1116
+All generating companies,Coal,2005,Scotland,12142.3048
+All generating companies,Oil,2005,Scotland,1902.9385
+All generating companies,Gas,2005,Scotland,9366.8683
+All generating companies,Nuclear,2005,Scotland,19666.847
+All generating companies,Renewables,2005,Scotland,6486.0086
+All generating companies,Hydro natural flow,2005,Scotland,4612.5086
+All generating companies,Wind,2005,Scotland,1280.9
+All generating companies,Solar,2005,Scotland,NA
+All generating companies,Shoreline wave and tidal,2005,Scotland,NA
+All generating companies,Bioenergy,2005,Scotland,592.6
+All generating companies,Other fuels,2005,Scotland,15.8884
+All generating companies,Pumped storage,2005,Scotland,642.6936
+All generating companies,Total all generating companies,2005,Scotland,49564.9672
+Major power producers,Coal,2005,Wales,6771.6906
+Major power producers,Oil,2005,Wales,0
+Major power producers,Gas,2005,Wales,14983.9676
+Major power producers,Nuclear,2005,Wales,7842
+Major power producers,Hydro natural flow,2005,Wales,193.2806
+Major power producers,Wind,2005,Wales,NA
+Major power producers,Solar,2005,Wales,NA
+Major power producers,Bioenergy,2005,Wales,175.9944
+Major power producers,Other fuels,2005,Wales,NA
+Major power producers,Hydro pumped storage,2005,Wales,2287.1008
+Major power producers,Total major power producers,2005,Wales,32254.0341
+Other generators,Coal,2005,Wales,0
+Other generators,Oil,2005,Wales,41.5101
+Other generators,Gas,2005,Wales,942.47
+Other generators,Hydro natural flow,2005,Wales,52.2194
+Other generators,Wind,2005,Wales,715.3
+Other generators,Solar,2005,Wales,NA
+Other generators,Shoreline wave and tidal,2005,Wales,NA
+Other generators,Bioenergy,2005,Wales,59.1056
+Other generators,Other fuels,2005,Wales,588.5986
+Other generators,Total other generators,2005,Wales,2399.2038
+All generating companies,Fossil fuels,2005,Wales,22739.6384
+All generating companies,Coal,2005,Wales,6771.6906
+All generating companies,Oil,2005,Wales,41.5101
+All generating companies,Gas,2005,Wales,15926.4377
+All generating companies,Nuclear,2005,Wales,7894.2194
+All generating companies,Renewables,2005,Wales,1195.9
+All generating companies,Hydro natural flow,2005,Wales,245.5
+All generating companies,Wind,2005,Wales,715.3
+All generating companies,Solar,2005,Wales,NA
+All generating companies,Shoreline wave and tidal,2005,Wales,NA
+All generating companies,Bioenergy,2005,Wales,235.1
+All generating companies,Other fuels,2005,Wales,588.5986
+All generating companies,Pumped storage,2005,Wales,2287.1008
+All generating companies,Total all generating companies,2005,Wales,31829.7579
+Major power producers,Coal,2005,Nothern Ireland,2454.9512
+Major power producers,Oil,2005,Nothern Ireland,330.78
+Major power producers,Gas,2005,Nothern Ireland,6453.4568
+Major power producers,Nuclear,2005,Nothern Ireland,0
+Major power producers,Hydro natural flow,2005,Nothern Ireland,0
+Major power producers,Wind,2005,Nothern Ireland,NA
+Major power producers,Solar,2005,Nothern Ireland,NA
+Major power producers,Bioenergy,2005,Nothern Ireland,0
+Major power producers,Other fuels,2005,Nothern Ireland,NA
+Major power producers,Hydro pumped storage,2005,Nothern Ireland,0
+Major power producers,Total major power producers,2005,Nothern Ireland,9239.1881
+Other generators,Coal,2005,Nothern Ireland,33.153
+Other generators,Oil,2005,Nothern Ireland,35.7237
+Other generators,Gas,2005,Nothern Ireland,40.8704
+Other generators,Hydro natural flow,2005,Nothern Ireland,13.7
+Other generators,Wind,2005,Nothern Ireland,253.3
+Other generators,Solar,2005,Nothern Ireland,NA
+Other generators,Shoreline wave and tidal,2005,Nothern Ireland,NA
+Other generators,Bioenergy,2005,Nothern Ireland,4.3
+Other generators,Other fuels,2005,Nothern Ireland,0
+Other generators,Total other generators,2005,Nothern Ireland,381.0471
+All generating companies,Fossil fuels,2005,Nothern Ireland,9348.9352
+All generating companies,Coal,2005,Nothern Ireland,2488.1042
+All generating companies,Oil,2005,Nothern Ireland,366.5037
+All generating companies,Gas,2005,Nothern Ireland,6494.3272
+All generating companies,Nuclear,2005,Nothern Ireland,13.7
+All generating companies,Renewables,2005,Nothern Ireland,271.3
+All generating companies,Hydro natural flow,2005,Nothern Ireland,13.7
+All generating companies,Wind,2005,Nothern Ireland,253.3
+All generating companies,Solar,2005,Nothern Ireland,NA
+All generating companies,Shoreline wave and tidal,2005,Nothern Ireland,NA
+All generating companies,Bioenergy,2005,Nothern Ireland,4.3
+All generating companies,Other fuels,2005,Nothern Ireland,0
+All generating companies,Pumped storage,2005,Nothern Ireland,0
+All generating companies,Total all generating companies,2005,Nothern Ireland,9633.9352
+Major power producers,Coal,2005,England,109371.6312
+Major power producers,Oil,2005,England,2034.5072
+Major power producers,Gas,2005,England,109795.0735
+Major power producers,Nuclear,2005,England,55095.3946
+Major power producers,Hydro natural flow,2005,England,6.2496
+Major power producers,Wind,2005,England,NA
+Major power producers,Solar,2005,England,NA
+Major power producers,Bioenergy,2005,England,2568.4895
+Major power producers,Other fuels,2005,England,NA
+Major power producers,Hydro pumped storage,2005,England,0
+Major power producers,Total major power producers,2005,England,278871.3455
+Other generators,Coal,2005,England,3863.2602
+Other generators,Oil,2005,England,992.6918
+Other generators,Gas,2005,England,11059.2845
+Other generators,Hydro natural flow,2005,England,43.5708
+Other generators,Wind,2005,England,662.5966
+Other generators,Solar,2005,England,NA
+Other generators,Shoreline wave and tidal,2005,England,NA
+Other generators,Bioenergy,2005,England,5706.3035
+Other generators,Other fuels,2005,England,3649.7808
+Other generators,Total other generators,2005,England,25977.4882
+All generating companies,Fossil fuels,2005,England,237116.4483
+All generating companies,Coal,2005,England,113234.8913
+All generating companies,Oil,2005,England,3027.199
+All generating companies,Gas,2005,England,120854.3579
+All generating companies,Nuclear,2005,England,55138.9654
+All generating companies,Renewables,2005,England,8987.21
+All generating companies,Hydro natural flow,2005,England,49.8204
+All generating companies,Wind,2005,England,662.5966
+All generating companies,Solar,2005,England,NA
+All generating companies,Shoreline wave and tidal,2005,England,NA
+All generating companies,Bioenergy,2005,England,8274.793
+All generating companies,Other fuels,2005,England,3649.7808
+All generating companies,Pumped storage,2005,England,0
+All generating companies,Total all generating companies,2005,England,301242.6237
+Major power producers,Coal,2006,UK,144947.016
+Major power producers,Oil,2006,UK,3722.7681
+Major power producers,Gas,2006,UK,126637.2396
+Major power producers,Nuclear,2006,UK,75450.6569
+Major power producers,Hydro natural flow,2006,UK,3693.2993
+Major power producers,Wind,2006,UK,NA
+Major power producers,Solar,2006,UK,NA
+Major power producers,Bioenergy,2006,UK,2928.483
+Major power producers,Other fuels,2006,UK,NA
+Major power producers,Hydro pumped storage,2006,UK,3852.6022
+Major power producers,Total major power producers,2006,UK,361232.0652
+Other generators,Coal,2006,UK,3902.595
+Other generators,Oil,2006,UK,2450.3804
+Other generators,Gas,2006,UK,14190.6244
+Other generators,Hydro natural flow,2006,UK,899.853
+Other generators,Wind,2006,UK,4235.7526
+Other generators,Solar,2006,UK,NA
+Other generators,Shoreline wave and tidal,2006,UK,NA
+Other generators,Bioenergy,2006,UK,6348.6387
+Other generators,Other fuels,2006,UK,4022.0354
+Other generators,Total other generators,2006,UK,36049.8794
+All generating companies,Fossil fuels,2006,UK,295850.6235
+All generating companies,Coal,2006,UK,148849.611
+All generating companies,Oil,2006,UK,6173.1485
+All generating companies,Gas,2006,UK,140827.864
+All generating companies,Nuclear,2006,UK,76350.5099
+All generating companies,Renewables,2006,UK,18106.0265
+All generating companies,Hydro natural flow,2006,UK,4593.1523
+All generating companies,Wind,2006,UK,4235.7526
+All generating companies,Solar,2006,UK,NA
+All generating companies,Shoreline wave and tidal,2006,UK,NA
+All generating companies,Bioenergy,2006,UK,9277.1216
+All generating companies,Other fuels,2006,UK,4022.0354
+All generating companies,Pumped storage,2006,UK,3852.6022
+All generating companies,Total all generating companies,2006,UK,390307.16
+Major power producers,Coal,2006,Scotland,17487.9767
+Major power producers,Oil,2006,Scotland,913.9272
+Major power producers,Gas,2006,Scotland,8346.2182
+Major power producers,Nuclear,2006,Scotland,14140.9319
+Major power producers,Hydro natural flow,2006,Scotland,3454.1507
+Major power producers,Wind,2006,Scotland,NA
+Major power producers,Solar,2006,Scotland,NA
+Major power producers,Bioenergy,2006,Scotland,0
+Major power producers,Other fuels,2006,Scotland,NA
+Major power producers,Hydro pumped storage,2006,Scotland,1184.305
+Major power producers,Total major power producers,2006,Scotland,45527.5095
+Other generators,Coal,2006,Scotland,61.1166
+Other generators,Oil,2006,Scotland,1275.2972
+Other generators,Gas,2006,Scotland,1866.1841
+Other generators,Hydro natural flow,2006,Scotland,770.7493
+Other generators,Wind,2006,Scotland,2022.9
+Other generators,Solar,2006,Scotland,NA
+Other generators,Shoreline wave and tidal,2006,Scotland,NA
+Other generators,Bioenergy,2006,Scotland,715
+Other generators,Other fuels,2006,Scotland,11.3338
+Other generators,Total other generators,2006,Scotland,6722.581
+All generating companies,Fossil fuels,2006,Scotland,29950.7199
+All generating companies,Coal,2006,Scotland,17549.0932
+All generating companies,Oil,2006,Scotland,2189.2244
+All generating companies,Gas,2006,Scotland,10212.4022
+All generating companies,Nuclear,2006,Scotland,14911.6812
+All generating companies,Renewables,2006,Scotland,6962.8
+All generating companies,Hydro natural flow,2006,Scotland,4224.9
+All generating companies,Wind,2006,Scotland,2022.9
+All generating companies,Solar,2006,Scotland,NA
+All generating companies,Shoreline wave and tidal,2006,Scotland,NA
+All generating companies,Bioenergy,2006,Scotland,715
+All generating companies,Other fuels,2006,Scotland,11.3338
+All generating companies,Pumped storage,2006,Scotland,1184.305
+All generating companies,Total all generating companies,2006,Scotland,51825.2011
+Major power producers,Coal,2006,Wales,8858.7792
+Major power producers,Oil,2006,Wales,0
+Major power producers,Gas,2006,Wales,13271.7554
+Major power producers,Nuclear,2006,Wales,7009.762
+Major power producers,Hydro natural flow,2006,Wales,225.7872
+Major power producers,Wind,2006,Wales,NA
+Major power producers,Solar,2006,Wales,NA
+Major power producers,Bioenergy,2006,Wales,168.8941
+Major power producers,Other fuels,2006,Wales,NA
+Major power producers,Hydro pumped storage,2006,Wales,2668.2021
+Major power producers,Total major power producers,2006,Wales,32203.1799
+Other generators,Coal,2006,Wales,0
+Other generators,Oil,2006,Wales,104.9521
+Other generators,Gas,2006,Wales,1667.9171
+Other generators,Hydro natural flow,2006,Wales,49.2128
+Other generators,Wind,2006,Wales,867
+Other generators,Solar,2006,Wales,NA
+Other generators,Shoreline wave and tidal,2006,Wales,NA
+Other generators,Bioenergy,2006,Wales,92.8059
+Other generators,Other fuels,2006,Wales,650.8861
+Other generators,Total other generators,2006,Wales,3432.774
+All generating companies,Fossil fuels,2006,Wales,23903.4038
+All generating companies,Coal,2006,Wales,8858.7792
+All generating companies,Oil,2006,Wales,104.9521
+All generating companies,Gas,2006,Wales,14939.6725
+All generating companies,Nuclear,2006,Wales,7058.9748
+All generating companies,Renewables,2006,Wales,1403.7
+All generating companies,Hydro natural flow,2006,Wales,275
+All generating companies,Wind,2006,Wales,867
+All generating companies,Solar,2006,Wales,NA
+All generating companies,Shoreline wave and tidal,2006,Wales,NA
+All generating companies,Bioenergy,2006,Wales,261.7
+All generating companies,Other fuels,2006,Wales,650.8861
+All generating companies,Pumped storage,2006,Wales,2668.2021
+All generating companies,Total all generating companies,2006,Wales,32366.0786
+Major power producers,Coal,2006,Nothern Ireland,2701.2327
+Major power producers,Oil,2006,Nothern Ireland,286.3297
+Major power producers,Gas,2006,Nothern Ireland,6799.3061
+Major power producers,Nuclear,2006,Nothern Ireland,0
+Major power producers,Hydro natural flow,2006,Nothern Ireland,0
+Major power producers,Wind,2006,Nothern Ireland,NA
+Major power producers,Solar,2006,Nothern Ireland,NA
+Major power producers,Bioenergy,2006,Nothern Ireland,0
+Major power producers,Other fuels,2006,Nothern Ireland,NA
+Major power producers,Hydro pumped storage,2006,Nothern Ireland,0
+Major power producers,Total major power producers,2006,Nothern Ireland,9786.8686
+Other generators,Coal,2006,Nothern Ireland,35.357
+Other generators,Oil,2006,Nothern Ireland,35.6289
+Other generators,Gas,2006,Nothern Ireland,38.0826
+Other generators,Hydro natural flow,2006,Nothern Ireland,31.9
+Other generators,Wind,2006,Nothern Ireland,299.1
+Other generators,Solar,2006,Nothern Ireland,NA
+Other generators,Shoreline wave and tidal,2006,Nothern Ireland,NA
+Other generators,Bioenergy,2006,Nothern Ireland,19.1
+Other generators,Other fuels,2006,Nothern Ireland,2
+Other generators,Total other generators,2006,Nothern Ireland,461.1685
+All generating companies,Fossil fuels,2006,Nothern Ireland,9895.9371
+All generating companies,Coal,2006,Nothern Ireland,2736.5897
+All generating companies,Oil,2006,Nothern Ireland,321.9587
+All generating companies,Gas,2006,Nothern Ireland,6837.3887
+All generating companies,Nuclear,2006,Nothern Ireland,31.9
+All generating companies,Renewables,2006,Nothern Ireland,350.1
+All generating companies,Hydro natural flow,2006,Nothern Ireland,31.9
+All generating companies,Wind,2006,Nothern Ireland,299.1
+All generating companies,Solar,2006,Nothern Ireland,NA
+All generating companies,Shoreline wave and tidal,2006,Nothern Ireland,NA
+All generating companies,Bioenergy,2006,Nothern Ireland,19.1
+All generating companies,Other fuels,2006,Nothern Ireland,2
+All generating companies,Pumped storage,2006,Nothern Ireland,0
+All generating companies,Total all generating companies,2006,Nothern Ireland,10277.9371
+Major power producers,Coal,2006,England,115899.0275
+Major power producers,Oil,2006,England,2522.5112
+Major power producers,Gas,2006,England,98219.9599
+Major power producers,Nuclear,2006,England,54299.9631
+Major power producers,Hydro natural flow,2006,England,13.3614
+Major power producers,Wind,2006,England,NA
+Major power producers,Solar,2006,England,NA
+Major power producers,Bioenergy,2006,England,2759.5889
+Major power producers,Other fuels,2006,England,NA
+Major power producers,Hydro pumped storage,2006,England,0.0952
+Major power producers,Total major power producers,2006,England,273714.5072
+Other generators,Coal,2006,England,3806.1214
+Other generators,Oil,2006,England,1034.5021
+Other generators,Gas,2006,England,10618.4407
+Other generators,Hydro natural flow,2006,England,47.9909
+Other generators,Wind,2006,England,1046.7526
+Other generators,Solar,2006,England,NA
+Other generators,Shoreline wave and tidal,2006,England,NA
+Other generators,Bioenergy,2006,England,5521.7328
+Other generators,Other fuels,2006,England,3357.8155
+Other generators,Total other generators,2006,England,25433.3559
+All generating companies,Fossil fuels,2006,England,232100.5628
+All generating companies,Coal,2006,England,119705.1489
+All generating companies,Oil,2006,England,3557.0133
+All generating companies,Gas,2006,England,108838.4006
+All generating companies,Nuclear,2006,England,54347.9539
+All generating companies,Renewables,2006,England,9389.4265
+All generating companies,Hydro natural flow,2006,England,61.3523
+All generating companies,Wind,2006,England,1046.7526
+All generating companies,Solar,2006,England,NA
+All generating companies,Shoreline wave and tidal,2006,England,NA
+All generating companies,Bioenergy,2006,England,8281.3216
+All generating companies,Other fuels,2006,England,3357.8155
+All generating companies,Pumped storage,2006,England,0.0952
+All generating companies,Total all generating companies,2006,England,295837.9433
+Major power producers,Coal,2007,UK,132074.1619
+Major power producers,Oil,2007,UK,2955.3868
+Major power producers,Gas,2007,UK,149345.946
+Major power producers,Nuclear,2007,UK,63028.3427
+Major power producers,Hydro natural flow,2007,UK,4143.9658
+Major power producers,Wind,2007,UK,3568.8368
+Major power producers,Solar,2007,UK,NA
+Major power producers,Bioenergy,2007,UK,2341.3441
+Major power producers,Other fuels,2007,UK,NA
+Major power producers,Hydro pumped storage,2007,UK,3859.2262
+Major power producers,Total major power producers,2007,UK,361317.2102
+Other generators,Coal,2007,UK,3869.7619
+Other generators,Oil,2007,UK,2092.9101
+Other generators,Gas,2007,UK,16447.1383
+Other generators,Hydro natural flow,2007,UK,933.3386
+Other generators,Wind,2007,UK,1719.0347
+Other generators,Solar,2007,UK,NA
+Other generators,Shoreline wave and tidal,2007,UK,NA
+Other generators,Bioenergy,2007,UK,6983.1704
+Other generators,Other fuels,2007,UK,3467.3863
+Other generators,Total other generators,2007,UK,35512.7401
+All generating companies,Fossil fuels,2007,UK,306785.3049
+All generating companies,Coal,2007,UK,135943.9238
+All generating companies,Oil,2007,UK,5048.2969
+All generating companies,Gas,2007,UK,165793.0842
+All generating companies,Nuclear,2007,UK,63961.6813
+All generating companies,Renewables,2007,UK,19689.6903
+All generating companies,Hydro natural flow,2007,UK,5077.3043
+All generating companies,Wind,2007,UK,5287.8715
+All generating companies,Solar,2007,UK,NA
+All generating companies,Shoreline wave and tidal,2007,UK,NA
+All generating companies,Bioenergy,2007,UK,9324.5145
+All generating companies,Other fuels,2007,UK,3467.3863
+All generating companies,Pumped storage,2007,UK,3859.2262
+All generating companies,Total all generating companies,2007,UK,390436.6764
+Major power producers,Coal,2007,Scotland,13801.894
+Major power producers,Oil,2007,Scotland,379.1216
+Major power producers,Gas,2007,Scotland,8938.3594
+Major power producers,Nuclear,2007,Scotland,12343.7045
+Major power producers,Hydro natural flow,2007,Scotland,3893.6562
+Major power producers,Wind,2007,Scotland,1981.217
+Major power producers,Solar,2007,Scotland,NA
+Major power producers,Bioenergy,2007,Scotland,0
+Major power producers,Other fuels,2007,Scotland,NA
+Major power producers,Hydro pumped storage,2007,Scotland,1198.1198
+Major power producers,Total major power producers,2007,Scotland,42536.0726
+Other generators,Coal,2007,Scotland,53.9774
+Other generators,Oil,2007,Scotland,1125.1075
+Other generators,Gas,2007,Scotland,1992.1801
+Other generators,Hydro natural flow,2007,Scotland,799.2838
+Other generators,Wind,2007,Scotland,662.783
+Other generators,Solar,2007,Scotland,NA
+Other generators,Shoreline wave and tidal,2007,Scotland,NA
+Other generators,Bioenergy,2007,Scotland,889.2084
+Other generators,Other fuels,2007,Scotland,20.9963
+Other generators,Total other generators,2007,Scotland,5543.5364
+All generating companies,Fossil fuels,2007,Scotland,26290.6401
+All generating companies,Coal,2007,Scotland,13855.8715
+All generating companies,Oil,2007,Scotland,1504.2291
+All generating companies,Gas,2007,Scotland,10930.5395
+All generating companies,Nuclear,2007,Scotland,13142.9882
+All generating companies,Renewables,2007,Scotland,8226.1484
+All generating companies,Hydro natural flow,2007,Scotland,4692.94
+All generating companies,Wind,2007,Scotland,2644
+All generating companies,Solar,2007,Scotland,NA
+All generating companies,Shoreline wave and tidal,2007,Scotland,NA
+All generating companies,Bioenergy,2007,Scotland,889.2084
+All generating companies,Other fuels,2007,Scotland,20.9963
+All generating companies,Pumped storage,2007,Scotland,1198.1198
+All generating companies,Total all generating companies,2007,Scotland,47659.7767
+Major power producers,Coal,2007,Wales,5121.3612
+Major power producers,Oil,2007,Wales,0
+Major power producers,Gas,2007,Wales,15461.1927
+Major power producers,Nuclear,2007,Wales,5683.978
+Major power producers,Hydro natural flow,2007,Wales,232.59
+Major power producers,Wind,2007,Wales,600.4562
+Major power producers,Solar,2007,Wales,NA
+Major power producers,Bioenergy,2007,Wales,18.2943
+Major power producers,Other fuels,2007,Wales,NA
+Major power producers,Hydro pumped storage,2007,Wales,2661.1064
+Major power producers,Total major power producers,2007,Wales,29778.9787
+Other generators,Coal,2007,Wales,0
+Other generators,Oil,2007,Wales,90.8096
+Other generators,Gas,2007,Wales,1721.1575
+Other generators,Hydro natural flow,2007,Wales,51.11
+Other generators,Wind,2007,Wales,263.5438
+Other generators,Solar,2007,Wales,NA
+Other generators,Shoreline wave and tidal,2007,Wales,NA
+Other generators,Bioenergy,2007,Wales,204.7177
+Other generators,Other fuels,2007,Wales,577.8
+Other generators,Total other generators,2007,Wales,2909.1387
+All generating companies,Fossil fuels,2007,Wales,22394.5211
+All generating companies,Coal,2007,Wales,5121.3612
+All generating companies,Oil,2007,Wales,90.8096
+All generating companies,Gas,2007,Wales,17182.3502
+All generating companies,Nuclear,2007,Wales,5735.088
+All generating companies,Renewables,2007,Wales,1370.712
+All generating companies,Hydro natural flow,2007,Wales,283.7
+All generating companies,Wind,2007,Wales,864
+All generating companies,Solar,2007,Wales,NA
+All generating companies,Shoreline wave and tidal,2007,Wales,NA
+All generating companies,Bioenergy,2007,Wales,223.012
+All generating companies,Other fuels,2007,Wales,577.8
+All generating companies,Pumped storage,2007,Wales,2661.1064
+All generating companies,Total all generating companies,2007,Wales,29500.3211
+Major power producers,Coal,2007,Nothern Ireland,1852.3298
+Major power producers,Oil,2007,Nothern Ireland,161.9567
+Major power producers,Gas,2007,Nothern Ireland,6573.8087
+Major power producers,Nuclear,2007,Nothern Ireland,0
+Major power producers,Hydro natural flow,2007,Nothern Ireland,0
+Major power producers,Wind,2007,Nothern Ireland,217.902
+Major power producers,Solar,2007,Nothern Ireland,NA
+Major power producers,Bioenergy,2007,Nothern Ireland,0
+Major power producers,Other fuels,2007,Nothern Ireland,NA
+Major power producers,Hydro pumped storage,2007,Nothern Ireland,0
+Major power producers,Total major power producers,2007,Nothern Ireland,8805.9972
+Other generators,Coal,2007,Nothern Ireland,34.867
+Other generators,Oil,2007,Nothern Ireland,35.3552
+Other generators,Gas,2007,Nothern Ireland,37.4
+Other generators,Hydro natural flow,2007,Nothern Ireland,29.76
+Other generators,Wind,2007,Nothern Ireland,135.298
+Other generators,Solar,2007,Nothern Ireland,NA
+Other generators,Shoreline wave and tidal,2007,Nothern Ireland,NA
+Other generators,Bioenergy,2007,Nothern Ireland,16.681
+Other generators,Other fuels,2007,Nothern Ireland,0
+Other generators,Total other generators,2007,Nothern Ireland,289.3612
+All generating companies,Fossil fuels,2007,Nothern Ireland,8695.7173
+All generating companies,Coal,2007,Nothern Ireland,1887.1968
+All generating companies,Oil,2007,Nothern Ireland,197.3118
+All generating companies,Gas,2007,Nothern Ireland,6611.2087
+All generating companies,Nuclear,2007,Nothern Ireland,29.76
+All generating companies,Renewables,2007,Nothern Ireland,399.641
+All generating companies,Hydro natural flow,2007,Nothern Ireland,29.76
+All generating companies,Wind,2007,Nothern Ireland,353.2
+All generating companies,Solar,2007,Nothern Ireland,NA
+All generating companies,Shoreline wave and tidal,2007,Nothern Ireland,NA
+All generating companies,Bioenergy,2007,Nothern Ireland,16.681
+All generating companies,Other fuels,2007,Nothern Ireland,0
+All generating companies,Pumped storage,2007,Nothern Ireland,0
+All generating companies,Total all generating companies,2007,Nothern Ireland,9125.1183
+Major power producers,Coal,2007,England,111298.5769
+Major power producers,Oil,2007,England,2414.3085
+Major power producers,Gas,2007,England,118372.5851
+Major power producers,Nuclear,2007,England,45000.6602
+Major power producers,Hydro natural flow,2007,England,17.7195
+Major power producers,Wind,2007,England,769.2616
+Major power producers,Solar,2007,England,NA
+Major power producers,Bioenergy,2007,England,2323.0498
+Major power producers,Other fuels,2007,England,NA
+Major power producers,Hydro pumped storage,2007,England,0
+Major power producers,Total major power producers,2007,England,280196.1617
+Other generators,Coal,2007,England,3780.9175
+Other generators,Oil,2007,England,841.6377
+Other generators,Gas,2007,England,12696.4006
+Other generators,Hydro natural flow,2007,England,53.1848
+Other generators,Wind,2007,England,657.4099
+Other generators,Solar,2007,England,NA
+Other generators,Shoreline wave and tidal,2007,England,NA
+Other generators,Bioenergy,2007,England,5872.5633
+Other generators,Other fuels,2007,England,2868.59
+Other generators,Total other generators,2007,England,26770.7038
+All generating companies,Fossil fuels,2007,England,249404.4264
+All generating companies,Coal,2007,England,115079.4943
+All generating companies,Oil,2007,England,3255.9463
+All generating companies,Gas,2007,England,131068.9857
+All generating companies,Nuclear,2007,England,45053.845
+All generating companies,Renewables,2007,England,9693.1889
+All generating companies,Hydro natural flow,2007,England,70.9043
+All generating companies,Wind,2007,England,1426.6715
+All generating companies,Solar,2007,England,NA
+All generating companies,Shoreline wave and tidal,2007,England,NA
+All generating companies,Bioenergy,2007,England,8195.6131
+All generating companies,Other fuels,2007,England,2868.59
+All generating companies,Pumped storage,2007,England,0
+All generating companies,Total all generating companies,2007,England,304151.4603
+Major power producers,Coal,2008,UK,120304.5486
+Major power producers,Oil,2008,UK,4557.04
+Major power producers,Gas,2008,UK,161583.0326
+Major power producers,Nuclear,2008,UK,52485.8083
+Major power producers,Hydro natural flow,2008,UK,4223.8128
+Major power producers,Wind,2008,UK,5387.6023
+Major power producers,Solar,2008,UK,NA
+Major power producers,Bioenergy,2008,UK,2608.1989
+Major power producers,Other fuels,2008,UK,NA
+Major power producers,Hydro pumped storage,2008,UK,4088.9414
+Major power producers,Total major power producers,2008,UK,355238.985
+Other generators,Coal,2008,UK,4076.8143
+Other generators,Oil,2008,UK,2151.731
+Other generators,Gas,2008,UK,14635.9661
+Other generators,Hydro natural flow,2008,UK,921.0344
+Other generators,Wind,2008,UK,1752.8188
+Other generators,Solar,2008,UK,NA
+Other generators,Shoreline wave and tidal,2008,UK,NA
+Other generators,Bioenergy,2008,UK,6926.4459
+Other generators,Other fuels,2008,UK,3188.2073
+Other generators,Total other generators,2008,UK,33653.018
+All generating companies,Fossil fuels,2008,UK,307309.1328
+All generating companies,Coal,2008,UK,124381.363
+All generating companies,Oil,2008,UK,6708.771
+All generating companies,Gas,2008,UK,176218.9988
+All generating companies,Nuclear,2008,UK,53406.8427
+All generating companies,Renewables,2008,UK,21819.9132
+All generating companies,Hydro natural flow,2008,UK,5144.8472
+All generating companies,Wind,2008,UK,7140.4211
+All generating companies,Solar,2008,UK,NA
+All generating companies,Shoreline wave and tidal,2008,UK,NA
+All generating companies,Bioenergy,2008,UK,9534.6448
+All generating companies,Other fuels,2008,UK,3188.2073
+All generating companies,Pumped storage,2008,UK,4088.9414
+All generating companies,Total all generating companies,2008,UK,382535.8887
+Major power producers,Coal,2008,Scotland,11590.9797
+Major power producers,Oil,2008,Scotland,430.781
+Major power producers,Gas,2008,Scotland,9822.2831
+Major power producers,Nuclear,2008,Scotland,15079.2028
+Major power producers,Hydro natural flow,2008,Scotland,3923.2698
+Major power producers,Wind,2008,Scotland,2978.254
+Major power producers,Solar,2008,Scotland,NA
+Major power producers,Bioenergy,2008,Scotland,231.2372
+Major power producers,Other fuels,2008,Scotland,NA
+Major power producers,Hydro pumped storage,2008,Scotland,1091.4076
+Major power producers,Total major power producers,2008,Scotland,45147.4151
+Other generators,Coal,2008,Scotland,71.4929
+Other generators,Oil,2008,Scotland,1087.2007
+Other generators,Gas,2008,Scotland,1785.5785
+Other generators,Hydro natural flow,2008,Scotland,781.2041
+Other generators,Wind,2008,Scotland,383.2657
+Other generators,Solar,2008,Scotland,NA
+Other generators,Shoreline wave and tidal,2008,Scotland,NA
+Other generators,Bioenergy,2008,Scotland,761.1925
+Other generators,Other fuels,2008,Scotland,20.9963
+Other generators,Total other generators,2008,Scotland,4890.9305
+All generating companies,Fossil fuels,2008,Scotland,24788.3158
+All generating companies,Coal,2008,Scotland,11662.4726
+All generating companies,Oil,2008,Scotland,1517.9817
+All generating companies,Gas,2008,Scotland,11607.8616
+All generating companies,Nuclear,2008,Scotland,15860.4068
+All generating companies,Renewables,2008,Scotland,9058.4232
+All generating companies,Hydro natural flow,2008,Scotland,4704.4739
+All generating companies,Wind,2008,Scotland,3361.5197
+All generating companies,Solar,2008,Scotland,NA
+All generating companies,Shoreline wave and tidal,2008,Scotland,NA
+All generating companies,Bioenergy,2008,Scotland,992.4296
+All generating companies,Other fuels,2008,Scotland,20.9963
+All generating companies,Pumped storage,2008,Scotland,1091.4076
+All generating companies,Total all generating companies,2008,Scotland,49707.1458
+Major power producers,Coal,2008,Wales,9363.6655
+Major power producers,Oil,2008,Wales,0
+Major power producers,Gas,2008,Wales,16059.0719
+Major power producers,Nuclear,2008,Wales,7079.974
+Major power producers,Hydro natural flow,2008,Wales,278.033
+Major power producers,Wind,2008,Wales,721.682
+Major power producers,Solar,2008,Wales,NA
+Major power producers,Bioenergy,2008,Wales,60.173
+Major power producers,Other fuels,2008,Wales,NA
+Major power producers,Hydro pumped storage,2008,Wales,2997.5338
+Major power producers,Total major power producers,2008,Wales,36560.1332
+Other generators,Coal,2008,Wales,0
+Other generators,Oil,2008,Wales,62.428
+Other generators,Gas,2008,Wales,487.4079
+Other generators,Hydro natural flow,2008,Wales,56.208
+Other generators,Wind,2008,Wales,267.423
+Other generators,Solar,2008,Wales,NA
+Other generators,Shoreline wave and tidal,2008,Wales,NA
+Other generators,Bioenergy,2008,Wales,327.8957
+Other generators,Other fuels,2008,Wales,529.1
+Other generators,Total other generators,2008,Wales,1730.4627
+All generating companies,Fossil fuels,2008,Wales,25972.5733
+All generating companies,Coal,2008,Wales,9363.6655
+All generating companies,Oil,2008,Wales,62.428
+All generating companies,Gas,2008,Wales,16546.4798
+All generating companies,Nuclear,2008,Wales,7136.182
+All generating companies,Renewables,2008,Wales,1711.4148
+All generating companies,Hydro natural flow,2008,Wales,334.241
+All generating companies,Wind,2008,Wales,989.105
+All generating companies,Solar,2008,Wales,NA
+All generating companies,Shoreline wave and tidal,2008,Wales,NA
+All generating companies,Bioenergy,2008,Wales,388.0687
+All generating companies,Other fuels,2008,Wales,529.1
+All generating companies,Pumped storage,2008,Wales,2997.5338
+All generating companies,Total all generating companies,2008,Wales,34820.1702
+Major power producers,Coal,2008,Nothern Ireland,2039.533
+Major power producers,Oil,2008,Nothern Ireland,334.2696
+Major power producers,Gas,2008,Nothern Ireland,6537.2976
+Major power producers,Nuclear,2008,Nothern Ireland,0
+Major power producers,Hydro natural flow,2008,Nothern Ireland,0
+Major power producers,Wind,2008,Nothern Ireland,322.68
+Major power producers,Solar,2008,Nothern Ireland,NA
+Major power producers,Bioenergy,2008,Nothern Ireland,0
+Major power producers,Other fuels,2008,Nothern Ireland,NA
+Major power producers,Hydro pumped storage,2008,Nothern Ireland,0
+Major power producers,Total major power producers,2008,Nothern Ireland,9233.7803
+Other generators,Coal,2008,Nothern Ireland,37.456
+Other generators,Oil,2008,Nothern Ireland,35.4505
+Other generators,Gas,2008,Nothern Ireland,31.0545
+Other generators,Hydro natural flow,2008,Nothern Ireland,26.1303
+Other generators,Wind,2008,Nothern Ireland,242.6405
+Other generators,Solar,2008,Nothern Ireland,NA
+Other generators,Shoreline wave and tidal,2008,Nothern Ireland,NA
+Other generators,Bioenergy,2008,Nothern Ireland,14.5488
+Other generators,Other fuels,2008,Nothern Ireland,0
+Other generators,Total other generators,2008,Nothern Ireland,387.2807
+All generating companies,Fossil fuels,2008,Nothern Ireland,9015.0613
+All generating companies,Coal,2008,Nothern Ireland,2076.989
+All generating companies,Oil,2008,Nothern Ireland,369.7202
+All generating companies,Gas,2008,Nothern Ireland,6568.3521
+All generating companies,Nuclear,2008,Nothern Ireland,26.1303
+All generating companies,Renewables,2008,Nothern Ireland,605.9996
+All generating companies,Hydro natural flow,2008,Nothern Ireland,26.1303
+All generating companies,Wind,2008,Nothern Ireland,565.3205
+All generating companies,Solar,2008,Nothern Ireland,NA
+All generating companies,Shoreline wave and tidal,2008,Nothern Ireland,NA
+All generating companies,Bioenergy,2008,Nothern Ireland,14.5488
+All generating companies,Other fuels,2008,Nothern Ireland,0
+All generating companies,Pumped storage,2008,Nothern Ireland,0
+All generating companies,Total all generating companies,2008,Nothern Ireland,9647.1912
+Major power producers,Coal,2008,England,97310.3704
+Major power producers,Oil,2008,England,3791.9894
+Major power producers,Gas,2008,England,129164.3801
+Major power producers,Nuclear,2008,England,30326.6316
+Major power producers,Hydro natural flow,2008,England,22.51
+Major power producers,Wind,2008,England,1364.9863
+Major power producers,Solar,2008,England,NA
+Major power producers,Bioenergy,2008,England,2316.7887
+Major power producers,Other fuels,2008,England,NA
+Major power producers,Hydro pumped storage,2008,England,0
+Major power producers,Total major power producers,2008,England,264297.6564
+Other generators,Coal,2008,England,3967.8655
+Other generators,Oil,2008,England,966.6518
+Other generators,Gas,2008,England,12331.9252
+Other generators,Hydro natural flow,2008,England,57.492
+Other generators,Wind,2008,England,859.4896
+Other generators,Solar,2008,England,NA
+Other generators,Shoreline wave and tidal,2008,England,NA
+Other generators,Bioenergy,2008,England,5822.8089
+Other generators,Other fuels,2008,England,2638.1111
+Other generators,Total other generators,2008,England,26644.3441
+All generating companies,Fossil fuels,2008,England,247533.1823
+All generating companies,Coal,2008,England,101278.2358
+All generating companies,Oil,2008,England,4758.6412
+All generating companies,Gas,2008,England,141496.3052
+All generating companies,Nuclear,2008,England,30384.1236
+All generating companies,Renewables,2008,England,10444.0756
+All generating companies,Hydro natural flow,2008,England,80.002
+All generating companies,Wind,2008,England,2224.476
+All generating companies,Solar,2008,England,NA
+All generating companies,Shoreline wave and tidal,2008,England,NA
+All generating companies,Bioenergy,2008,England,8139.5976
+All generating companies,Other fuels,2008,England,2638.1111
+All generating companies,Pumped storage,2008,England,0
+All generating companies,Total all generating companies,2008,England,288361.3815
+Major power producers,Coal,2009,UK,99287.14
+Major power producers,Oil,2009,UK,3839.0592
+Major power producers,Gas,2009,UK,152597.6
+Major power producers,Nuclear,2009,UK,69097.6929
+Major power producers,Hydro natural flow,2009,UK,4294.1176
+Major power producers,Wind,2009,UK,6540.148
+Major power producers,Solar,2009,UK,NA
+Major power producers,Bioenergy,2009,UK,2669.8064
+Major power producers,Other fuels,2009,UK,NA
+Major power producers,Hydro pumped storage,2009,UK,3685.28
+Major power producers,Total major power producers,2009,UK,342010.8441
+Other generators,Coal,2009,UK,3750.8889
+Other generators,Oil,2009,UK,2155.4936
+Other generators,Gas,2009,UK,13901.2667
+Other generators,Hydro natural flow,2009,UK,936.4484
+Other generators,Wind,2009,UK,2725.1799
+Other generators,Solar,2009,UK,0.5809
+Other generators,Shoreline wave and tidal,2009,UK,0.6252
+Other generators,Bioenergy,2009,UK,8002.7823
+Other generators,Other fuels,2009,UK,3195.7805
+Other generators,Total other generators,2009,UK,34669.0462
+All generating companies,Fossil fuels,2009,UK,275531.4484
+All generating companies,Coal,2009,UK,103038.0289
+All generating companies,Oil,2009,UK,5994.5528
+All generating companies,Gas,2009,UK,166498.8667
+All generating companies,Nuclear,2009,UK,69097.6929
+All generating companies,Renewables,2009,UK,25169.6886
+All generating companies,Hydro natural flow,2009,UK,5230.566
+All generating companies,Wind,2009,UK,9265.3279
+All generating companies,Solar,2009,UK,0.5809
+All generating companies,Shoreline wave and tidal,2009,UK,0.6252
+All generating companies,Bioenergy,2009,UK,10672.5886
+All generating companies,Other fuels,2009,UK,3195.7805
+All generating companies,Pumped storage,2009,UK,3685.28
+All generating companies,Total all generating companies,2009,UK,376679.8903
+Major power producers,Coal,2009,Scotland,11895.5366
+Major power producers,Oil,2009,Scotland,277.5611
+Major power producers,Gas,2009,Scotland,7430.0345
+Major power producers,Nuclear,2009,Scotland,16680.7767
+Major power producers,Hydro natural flow,2009,Scotland,4056.1264
+Major power producers,Wind,2009,Scotland,3484.2947
+Major power producers,Solar,2009,Scotland,NA
+Major power producers,Bioenergy,2009,Scotland,241.7105
+Major power producers,Other fuels,2009,Scotland,NA
+Major power producers,Hydro pumped storage,2009,Scotland,1087.2902
+Major power producers,Total major power producers,2009,Scotland,45153.3308
+Other generators,Coal,2009,Scotland,68.8159
+Other generators,Oil,2009,Scotland,1016.7667
+Other generators,Gas,2009,Scotland,1940.274
+Other generators,Hydro natural flow,2009,Scotland,802.7768
+Other generators,Wind,2009,Scotland,1070.8299
+Other generators,Solar,2009,Scotland,0.0061
+Other generators,Shoreline wave and tidal,2009,Scotland,0.0637
+Other generators,Bioenergy,2009,Scotland,926.5972
+Other generators,Other fuels,2009,Scotland,17.7594
+Other generators,Total other generators,2009,Scotland,5843.8897
+All generating companies,Fossil fuels,2009,Scotland,22628.9888
+All generating companies,Coal,2009,Scotland,11964.3525
+All generating companies,Oil,2009,Scotland,1294.3278
+All generating companies,Gas,2009,Scotland,9370.3085
+All generating companies,Nuclear,2009,Scotland,16680.7767
+All generating companies,Renewables,2009,Scotland,10582.4053
+All generating companies,Hydro natural flow,2009,Scotland,4858.9032
+All generating companies,Wind,2009,Scotland,4555.1246
+All generating companies,Solar,2009,Scotland,0.0061
+All generating companies,Shoreline wave and tidal,2009,Scotland,0.0637
+All generating companies,Bioenergy,2009,Scotland,1168.3077
+All generating companies,Other fuels,2009,Scotland,17.7594
+All generating companies,Pumped storage,2009,Scotland,1087.2902
+All generating companies,Total all generating companies,2009,Scotland,50997.2205
+Major power producers,Coal,2009,Wales,6547.4324
+Major power producers,Oil,2009,Wales,0
+Major power producers,Gas,2009,Wales,14110.8985
+Major power producers,Nuclear,2009,Wales,6122.102
+Major power producers,Hydro natural flow,2009,Wales,216.3304
+Major power producers,Wind,2009,Wales,643.1668
+Major power producers,Solar,2009,Wales,NA
+Major power producers,Bioenergy,2009,Wales,90.5696
+Major power producers,Other fuels,2009,Wales,NA
+Major power producers,Hydro pumped storage,2009,Wales,2597.9898
+Major power producers,Total major power producers,2009,Wales,30328.4894
+Other generators,Coal,2009,Wales,0
+Other generators,Oil,2009,Wales,63.7258
+Other generators,Gas,2009,Wales,469.591
+Other generators,Hydro natural flow,2009,Wales,49.8238
+Other generators,Wind,2009,Wales,261.4538
+Other generators,Solar,2009,Wales,0.0061
+Other generators,Shoreline wave and tidal,2009,Wales,0
+Other generators,Bioenergy,2009,Wales,500.1036
+Other generators,Other fuels,2009,Wales,467.9255
+Other generators,Total other generators,2009,Wales,1812.6296
+All generating companies,Fossil fuels,2009,Wales,21191.6477
+All generating companies,Coal,2009,Wales,6547.4324
+All generating companies,Oil,2009,Wales,63.7258
+All generating companies,Gas,2009,Wales,14580.4895
+All generating companies,Nuclear,2009,Wales,6122.102
+All generating companies,Renewables,2009,Wales,1761.4541
+All generating companies,Hydro natural flow,2009,Wales,266.1542
+All generating companies,Wind,2009,Wales,904.6206
+All generating companies,Solar,2009,Wales,0.0061
+All generating companies,Shoreline wave and tidal,2009,Wales,0
+All generating companies,Bioenergy,2009,Wales,590.6732
+All generating companies,Other fuels,2009,Wales,467.9255
+All generating companies,Pumped storage,2009,Wales,2597.9898
+All generating companies,Total all generating companies,2009,Wales,32141.1191
+Major power producers,Coal,2009,Nothern Ireland,1370.9261
+Major power producers,Oil,2009,Nothern Ireland,77.8101
+Major power producers,Gas,2009,Nothern Ireland,5641.8696
+Major power producers,Nuclear,2009,Nothern Ireland,0
+Major power producers,Hydro natural flow,2009,Nothern Ireland,0
+Major power producers,Wind,2009,Nothern Ireland,475.067
+Major power producers,Solar,2009,Nothern Ireland,NA
+Major power producers,Bioenergy,2009,Nothern Ireland,0
+Major power producers,Other fuels,2009,Nothern Ireland,NA
+Major power producers,Hydro pumped storage,2009,Nothern Ireland,0
+Major power producers,Total major power producers,2009,Nothern Ireland,7565.6728
+Other generators,Coal,2009,Nothern Ireland,31
+Other generators,Oil,2009,Nothern Ireland,34
+Other generators,Gas,2009,Nothern Ireland,32.481
+Other generators,Hydro natural flow,2009,Nothern Ireland,30.8266
+Other generators,Wind,2009,Nothern Ireland,268.6951
+Other generators,Solar,2009,Nothern Ireland,0.0134
+Other generators,Shoreline wave and tidal,2009,Nothern Ireland,0.5615
+Other generators,Bioenergy,2009,Nothern Ireland,42.5828
+Other generators,Other fuels,2009,Nothern Ireland,0
+Other generators,Total other generators,2009,Nothern Ireland,440.1605
+All generating companies,Fossil fuels,2009,Nothern Ireland,7188.0868
+All generating companies,Coal,2009,Nothern Ireland,1401.9261
+All generating companies,Oil,2009,Nothern Ireland,111.8101
+All generating companies,Gas,2009,Nothern Ireland,5674.3506
+All generating companies,Nuclear,2009,Nothern Ireland,0
+All generating companies,Renewables,2009,Nothern Ireland,817.7465
+All generating companies,Hydro natural flow,2009,Nothern Ireland,30.8266
+All generating companies,Wind,2009,Nothern Ireland,743.7621
+All generating companies,Solar,2009,Nothern Ireland,0.0134
+All generating companies,Shoreline wave and tidal,2009,Nothern Ireland,0.5615
+All generating companies,Bioenergy,2009,Nothern Ireland,42.5828
+All generating companies,Other fuels,2009,Nothern Ireland,0
+All generating companies,Pumped storage,2009,Nothern Ireland,0
+All generating companies,Total all generating companies,2009,Nothern Ireland,8005.8333
+Major power producers,Coal,2009,England,79473.2448
+Major power producers,Oil,2009,England,3483.688
+Major power producers,Gas,2009,England,125414.7974
+Major power producers,Nuclear,2009,England,46294.8142
+Major power producers,Hydro natural flow,2009,England,21.6608
+Major power producers,Wind,2009,England,1937.6195
+Major power producers,Solar,2009,England,NA
+Major power producers,Bioenergy,2009,England,2337.5263
+Major power producers,Other fuels,2009,England,NA
+Major power producers,Hydro pumped storage,2009,England,0
+Major power producers,Total major power producers,2009,England,258963.3511
+Other generators,Coal,2009,England,3651.073
+Other generators,Oil,2009,England,1041.0011
+Other generators,Gas,2009,England,11458.9207
+Other generators,Hydro natural flow,2009,England,53.0211
+Other generators,Wind,2009,England,1124.2012
+Other generators,Solar,2009,England,0.5551
+Other generators,Shoreline wave and tidal,2009,England,0
+Other generators,Bioenergy,2009,England,6533.4987
+Other generators,Other fuels,2009,England,2710.0956
+Other generators,Total other generators,2009,England,26572.3665
+All generating companies,Fossil fuels,2009,England,224522.725
+All generating companies,Coal,2009,England,83124.3178
+All generating companies,Oil,2009,England,4524.6891
+All generating companies,Gas,2009,England,136873.7181
+All generating companies,Nuclear,2009,England,46294.8142
+All generating companies,Renewables,2009,England,12008.0827
+All generating companies,Hydro natural flow,2009,England,74.682
+All generating companies,Wind,2009,England,3061.8207
+All generating companies,Solar,2009,England,0.5551
+All generating companies,Shoreline wave and tidal,2009,England,0
+All generating companies,Bioenergy,2009,England,8871.0249
+All generating companies,Other fuels,2009,England,2710.0956
+All generating companies,Pumped storage,2009,England,0
+All generating companies,Total all generating companies,2009,England,285535.7175
+Major power producers,Coal,2010,UK,103841.12
+Major power producers,Oil,2010,UK,2273.1565
+Major power producers,Gas,2010,UK,161747.66
+Major power producers,Nuclear,2010,UK,62139.6733
+Major power producers,Hydro natural flow,2010,UK,2703.0479
+Major power producers,Wind,2010,UK,7969.5685
+Major power producers,Solar,2010,UK,NA
+Major power producers,Bioenergy,2010,UK,3782.8165
+Major power producers,Other fuels,2010,UK,NA
+Major power producers,Hydro pumped storage,2010,UK,3150.43
+Major power producers,Total major power producers,2010,UK,347607.4727
+Other generators,Coal,2010,UK,3753.12
+Other generators,Oil,2010,UK,2532.28
+Other generators,Gas,2010,UK,13905.75
+Other generators,Hydro natural flow,2010,UK,864.4005
+Other generators,Wind,2010,UK,2186.9552
+Other generators,Solar,2010,UK,24.6822
+Other generators,Shoreline wave and tidal,2010,UK,1.8387
+Other generators,Bioenergy,2010,UK,8213.4793
+Other generators,Other fuels,2010,UK,2544.6238
+Other generators,Total other generators,2010,UK,34027.1296
+All generating companies,Fossil fuels,2010,UK,288053.0865
+All generating companies,Coal,2010,UK,107594.24
+All generating companies,Oil,2010,UK,4805.4365
+All generating companies,Gas,2010,UK,175653.41
+All generating companies,Nuclear,2010,UK,62139.6733
+All generating companies,Renewables,2010,UK,25746.7888
+All generating companies,Hydro natural flow,2010,UK,3567.4484
+All generating companies,Wind,2010,UK,10156.5238
+All generating companies,Solar,2010,UK,24.6822
+All generating companies,Shoreline wave and tidal,2010,UK,1.8387
+All generating companies,Bioenergy,2010,UK,11996.2958
+All generating companies,Other fuels,2010,UK,2544.6238
+All generating companies,Pumped storage,2010,UK,3150.43
+All generating companies,Total all generating companies,2010,UK,381634.6024
+Major power producers,Coal,2010,Scotland,14234.418
+Major power producers,Oil,2010,Scotland,291.5314
+Major power producers,Gas,2010,Scotland,6618.2579
+Major power producers,Nuclear,2010,Scotland,15293.0233
+Major power producers,Hydro natural flow,2010,Scotland,2524.3927
+Major power producers,Wind,2010,Scotland,3877.1821
+Major power producers,Solar,2010,Scotland,NA
+Major power producers,Bioenergy,2010,Scotland,841.8044
+Major power producers,Other fuels,2010,Scotland,NA
+Major power producers,Hydro pumped storage,2010,Scotland,778.5394
+Major power producers,Total major power producers,2010,Scotland,44459.149
+Other generators,Coal,2010,Scotland,27.6475
+Other generators,Oil,2010,Scotland,1006.7058
+Other generators,Gas,2010,Scotland,1762.3758
+Other generators,Hydro natural flow,2010,Scotland,733.7149
+Other generators,Wind,2010,Scotland,995.4448
+Other generators,Solar,2010,Scotland,0.7776
+Other generators,Shoreline wave and tidal,2010,Scotland,0.0447
+Other generators,Bioenergy,2010,Scotland,445.768
+Other generators,Other fuels,2010,Scotland,18.56
+Other generators,Total other generators,2010,Scotland,4991.039
+All generating companies,Fossil fuels,2010,Scotland,23940.9363
+All generating companies,Coal,2010,Scotland,14262.0655
+All generating companies,Oil,2010,Scotland,1298.2371
+All generating companies,Gas,2010,Scotland,8380.6337
+All generating companies,Nuclear,2010,Scotland,15293.0233
+All generating companies,Renewables,2010,Scotland,9419.1291
+All generating companies,Hydro natural flow,2010,Scotland,3258.1077
+All generating companies,Wind,2010,Scotland,4872.6269
+All generating companies,Solar,2010,Scotland,0.7776
+All generating companies,Shoreline wave and tidal,2010,Scotland,0.0447
+All generating companies,Bioenergy,2010,Scotland,1287.5723
+All generating companies,Other fuels,2010,Scotland,18.56
+All generating companies,Pumped storage,2010,Scotland,778.5394
+All generating companies,Total all generating companies,2010,Scotland,49450.1881
+Major power producers,Coal,2010,Wales,5829.0702
+Major power producers,Oil,2010,Wales,433.3131
+Major power producers,Gas,2010,Wales,15533.4949
+Major power producers,Nuclear,2010,Wales,5532.4137
+Major power producers,Hydro natural flow,2010,Wales,164.1572
+Major power producers,Wind,2010,Wales,721.8078
+Major power producers,Solar,2010,Wales,NA
+Major power producers,Bioenergy,2010,Wales,0
+Major power producers,Other fuels,2010,Wales,NA
+Major power producers,Hydro pumped storage,2010,Wales,2371.8906
+Major power producers,Total major power producers,2010,Wales,30586.1476
+Other generators,Coal,2010,Wales,0
+Other generators,Oil,2010,Wales,173.3481
+Other generators,Gas,2010,Wales,701.7117
+Other generators,Hydro natural flow,2010,Wales,48.4606
+Other generators,Wind,2010,Wales,264.1474
+Other generators,Solar,2010,Wales,0.9598
+Other generators,Shoreline wave and tidal,2010,Wales,0
+Other generators,Bioenergy,2010,Wales,531.7678
+Other generators,Other fuels,2010,Wales,510.8054
+Other generators,Total other generators,2010,Wales,2231.2008
+All generating companies,Fossil fuels,2010,Wales,22670.938
+All generating companies,Coal,2010,Wales,5829.0702
+All generating companies,Oil,2010,Wales,606.6611
+All generating companies,Gas,2010,Wales,16235.2066
+All generating companies,Nuclear,2010,Wales,5532.4137
+All generating companies,Renewables,2010,Wales,1731.3007
+All generating companies,Hydro natural flow,2010,Wales,212.6178
+All generating companies,Wind,2010,Wales,985.9553
+All generating companies,Solar,2010,Wales,0.9598
+All generating companies,Shoreline wave and tidal,2010,Wales,0
+All generating companies,Bioenergy,2010,Wales,531.7678
+All generating companies,Other fuels,2010,Wales,510.8054
+All generating companies,Pumped storage,2010,Wales,2371.8906
+All generating companies,Total all generating companies,2010,Wales,32817.3484
+Major power producers,Coal,2010,Nothern Ireland,1765.2353
+Major power producers,Oil,2010,Nothern Ireland,104.0915
+Major power producers,Gas,2010,Nothern Ireland,4840.2434
+Major power producers,Nuclear,2010,Nothern Ireland,0
+Major power producers,Hydro natural flow,2010,Nothern Ireland,0
+Major power producers,Wind,2010,Nothern Ireland,397.6327
+Major power producers,Solar,2010,Nothern Ireland,NA
+Major power producers,Bioenergy,2010,Nothern Ireland,0
+Major power producers,Other fuels,2010,Nothern Ireland,NA
+Major power producers,Hydro pumped storage,2010,Nothern Ireland,0
+Major power producers,Total major power producers,2010,Nothern Ireland,7107.2028
+Other generators,Coal,2010,Nothern Ireland,40.9763
+Other generators,Oil,2010,Nothern Ireland,34.3485
+Other generators,Gas,2010,Nothern Ireland,42.5557
+Other generators,Hydro natural flow,2010,Nothern Ireland,35.5847
+Other generators,Wind,2010,Nothern Ireland,240.1181
+Other generators,Solar,2010,Nothern Ireland,0
+Other generators,Shoreline wave and tidal,2010,Nothern Ireland,1.794
+Other generators,Bioenergy,2010,Nothern Ireland,86.2989
+Other generators,Other fuels,2010,Nothern Ireland,0
+Other generators,Total other generators,2010,Nothern Ireland,481.6762
+All generating companies,Fossil fuels,2010,Nothern Ireland,6827.4506
+All generating companies,Coal,2010,Nothern Ireland,1806.2116
+All generating companies,Oil,2010,Nothern Ireland,138.44
+All generating companies,Gas,2010,Nothern Ireland,4882.7991
+All generating companies,Nuclear,2010,Nothern Ireland,0
+All generating companies,Renewables,2010,Nothern Ireland,761.4284
+All generating companies,Hydro natural flow,2010,Nothern Ireland,35.5847
+All generating companies,Wind,2010,Nothern Ireland,637.7508
+All generating companies,Solar,2010,Nothern Ireland,0
+All generating companies,Shoreline wave and tidal,2010,Nothern Ireland,1.794
+All generating companies,Bioenergy,2010,Nothern Ireland,86.2989
+All generating companies,Other fuels,2010,Nothern Ireland,0
+All generating companies,Pumped storage,2010,Nothern Ireland,0
+All generating companies,Total all generating companies,2010,Nothern Ireland,7588.879
+Major power producers,Coal,2010,England,82012.3965
+Major power producers,Oil,2010,England,1444.2206
+Major power producers,Gas,2010,England,134755.6638
+Major power producers,Nuclear,2010,England,41314.2363
+Major power producers,Hydro natural flow,2010,England,14.498
+Major power producers,Wind,2010,England,2972.946
+Major power producers,Solar,2010,England,NA
+Major power producers,Bioenergy,2010,England,2941.0121
+Major power producers,Other fuels,2010,England,NA
+Major power producers,Hydro pumped storage,2010,England,0
+Major power producers,Total major power producers,2010,England,265454.9733
+Other generators,Coal,2010,England,3684.4962
+Other generators,Oil,2010,England,1317.8777
+Other generators,Gas,2010,England,11399.1068
+Other generators,Hydro natural flow,2010,England,46.6402
+Other generators,Wind,2010,England,687.2449
+Other generators,Solar,2010,England,22.9448
+Other generators,Shoreline wave and tidal,2010,England,0
+Other generators,Bioenergy,2010,England,7149.6446
+Other generators,Other fuels,2010,England,2015.2584
+Other generators,Total other generators,2010,England,26323.2136
+All generating companies,Fossil fuels,2010,England,234613.7616
+All generating companies,Coal,2010,England,85696.8927
+All generating companies,Oil,2010,England,2762.0982
+All generating companies,Gas,2010,England,146154.7706
+All generating companies,Nuclear,2010,England,41314.2363
+All generating companies,Renewables,2010,England,13834.9306
+All generating companies,Hydro natural flow,2010,England,61.1382
+All generating companies,Wind,2010,England,3660.1908
+All generating companies,Solar,2010,England,22.9448
+All generating companies,Shoreline wave and tidal,2010,England,0
+All generating companies,Bioenergy,2010,England,10090.6568
+All generating companies,Other fuels,2010,England,2015.2584
+All generating companies,Pumped storage,2010,England,0
+All generating companies,Total all generating companies,2010,England,291778.1869
+Major power producers,Coal,2011,UK,104667.96
+Major power producers,Oil,2011,UK,1075.2283
+Major power producers,Gas,2011,UK,132752.66
+Major power producers,Nuclear,2011,UK,68980.4491
+Major power producers,Hydro natural flow,2011,UK,4593.8769
+Major power producers,Wind,2011,UK,12917.7686
+Major power producers,Solar,2011,UK,NA
+Major power producers,Bioenergy,2011,UK,4645.5214
+Major power producers,Other fuels,2011,UK,NA
+Major power producers,Hydro pumped storage,2011,UK,2905.56
+Major power producers,Total major power producers,2011,UK,332539.0242
+Other generators,Coal,2011,UK,3774.31
+Other generators,Oil,2011,UK,2043.72
+Other generators,Gas,2011,UK,13746.36
+Other generators,Hydro natural flow,2011,UK,1097.8592
+Other generators,Wind,2011,UK,3045.2
+Other generators,Solar,2011,UK,243.6634
+Other generators,Shoreline wave and tidal,2011,UK,0.9333
+Other generators,Bioenergy,2011,UK,8667.5324
+Other generators,Other fuels,2011,UK,2823.4704
+Other generators,Total other generators,2011,UK,35443.0487
+All generating companies,Fossil fuels,2011,UK,258060.2383
+All generating companies,Coal,2011,UK,108442.27
+All generating companies,Oil,2011,UK,3118.9483
+All generating companies,Gas,2011,UK,146499.02
+All generating companies,Nuclear,2011,UK,68980.4491
+All generating companies,Renewables,2011,UK,35212.3552
+All generating companies,Hydro natural flow,2011,UK,5691.7361
+All generating companies,Wind,2011,UK,15962.9686
+All generating companies,Solar,2011,UK,243.6634
+All generating companies,Shoreline wave and tidal,2011,UK,0.9333
+All generating companies,Bioenergy,2011,UK,13313.0538
+All generating companies,Other fuels,2011,UK,2823.4704
+All generating companies,Pumped storage,2011,UK,2905.56
+All generating companies,Total all generating companies,2011,UK,367982.073
+Major power producers,Coal,2011,Scotland,10407.574
+Major power producers,Oil,2011,Scotland,186.5711
+Major power producers,Gas,2011,Scotland,6227.2224
+Major power producers,Nuclear,2011,Scotland,16891.825
+Major power producers,Hydro natural flow,2011,Scotland,4362.2522
+Major power producers,Wind,2011,Scotland,5849.1286
+Major power producers,Solar,2011,Scotland,NA
+Major power producers,Bioenergy,2011,Scotland,834.8042
+Major power producers,Other fuels,2011,Scotland,NA
+Major power producers,Hydro pumped storage,2011,Scotland,604.2073
+Major power producers,Total major power producers,2011,Scotland,45363.5846
+Other generators,Coal,2011,Scotland,20.163
+Other generators,Oil,2011,Scotland,780.2607
+Other generators,Gas,2011,Scotland,1867.6635
+Other generators,Hydro natural flow,2011,Scotland,967.3863
+Other generators,Wind,2011,Scotland,1407.036
+Other generators,Solar,2011,Scotland,8.6994
+Other generators,Shoreline wave and tidal,2011,Scotland,0.4509
+Other generators,Bioenergy,2011,Scotland,439.0402
+Other generators,Other fuels,2011,Scotland,16.1775
+Other generators,Total other generators,2011,Scotland,5506.8774
+All generating companies,Fossil fuels,2011,Scotland,19489.4545
+All generating companies,Coal,2011,Scotland,10427.737
+All generating companies,Oil,2011,Scotland,966.8317
+All generating companies,Gas,2011,Scotland,8094.8858
+All generating companies,Nuclear,2011,Scotland,16891.825
+All generating companies,Renewables,2011,Scotland,13868.7978
+All generating companies,Hydro natural flow,2011,Scotland,5329.6385
+All generating companies,Wind,2011,Scotland,7256.1646
+All generating companies,Solar,2011,Scotland,8.6994
+All generating companies,Shoreline wave and tidal,2011,Scotland,0.4509
+All generating companies,Bioenergy,2011,Scotland,1273.8444
+All generating companies,Other fuels,2011,Scotland,16.1775
+All generating companies,Pumped storage,2011,Scotland,604.2073
+All generating companies,Total all generating companies,2011,Scotland,50870.4621
+Major power producers,Coal,2011,Wales,6059.7332
+Major power producers,Oil,2011,Wales,156.7315
+Major power producers,Gas,2011,Wales,13239.0491
+Major power producers,Nuclear,2011,Wales,5363.7637
+Major power producers,Hydro natural flow,2011,Wales,210.2467
+Major power producers,Wind,2011,Wales,1040.9864
+Major power producers,Solar,2011,Wales,NA
+Major power producers,Bioenergy,2011,Wales,0
+Major power producers,Other fuels,2011,Wales,NA
+Major power producers,Hydro pumped storage,2011,Wales,2301.3527
+Major power producers,Total major power producers,2011,Wales,28371.8633
+Other generators,Coal,2011,Wales,0
+Other generators,Oil,2011,Wales,121.2075
+Other generators,Gas,2011,Wales,915.8499
+Other generators,Hydro natural flow,2011,Wales,59.5284
+Other generators,Wind,2011,Wales,417.1014
+Other generators,Solar,2011,Wales,12.1445
+Other generators,Shoreline wave and tidal,2011,Wales,0
+Other generators,Bioenergy,2011,Wales,629.5132
+Other generators,Other fuels,2011,Wales,404.7431
+Other generators,Total other generators,2011,Wales,2560.088
+All generating companies,Fossil fuels,2011,Wales,20492.5713
+All generating companies,Coal,2011,Wales,6059.7332
+All generating companies,Oil,2011,Wales,277.9391
+All generating companies,Gas,2011,Wales,14154.899
+All generating companies,Nuclear,2011,Wales,5363.7637
+All generating companies,Renewables,2011,Wales,2369.5205
+All generating companies,Hydro natural flow,2011,Wales,269.775
+All generating companies,Wind,2011,Wales,1458.0878
+All generating companies,Solar,2011,Wales,12.1445
+All generating companies,Shoreline wave and tidal,2011,Wales,0
+All generating companies,Bioenergy,2011,Wales,629.5132
+All generating companies,Other fuels,2011,Wales,404.7431
+All generating companies,Pumped storage,2011,Wales,2301.3527
+All generating companies,Total all generating companies,2011,Wales,30931.9513
+Major power producers,Coal,2011,Nothern Ireland,1371.8901
+Major power producers,Oil,2011,Nothern Ireland,60.3906
+Major power producers,Gas,2011,Nothern Ireland,5300.816
+Major power producers,Nuclear,2011,Nothern Ireland,0
+Major power producers,Hydro natural flow,2011,Nothern Ireland,0
+Major power producers,Wind,2011,Nothern Ireland,562.2064
+Major power producers,Solar,2011,Nothern Ireland,NA
+Major power producers,Bioenergy,2011,Nothern Ireland,0
+Major power producers,Other fuels,2011,Nothern Ireland,NA
+Major power producers,Hydro pumped storage,2011,Nothern Ireland,0
+Major power producers,Total major power producers,2011,Nothern Ireland,7295.3031
+Other generators,Coal,2011,Nothern Ireland,35.5601
+Other generators,Oil,2011,Nothern Ireland,35.6917
+Other generators,Gas,2011,Nothern Ireland,96.4433
+Other generators,Hydro natural flow,2011,Nothern Ireland,19.1092
+Other generators,Wind,2011,Nothern Ireland,439.6534
+Other generators,Solar,2011,Nothern Ireland,1.1329
+Other generators,Shoreline wave and tidal,2011,Nothern Ireland,0.457
+Other generators,Bioenergy,2011,Nothern Ireland,82.2893
+Other generators,Other fuels,2011,Nothern Ireland,0
+Other generators,Total other generators,2011,Nothern Ireland,710.3368
+All generating companies,Fossil fuels,2011,Nothern Ireland,6900.7917
+All generating companies,Coal,2011,Nothern Ireland,1407.4502
+All generating companies,Oil,2011,Nothern Ireland,96.0823
+All generating companies,Gas,2011,Nothern Ireland,5397.2593
+All generating companies,Nuclear,2011,Nothern Ireland,0
+All generating companies,Renewables,2011,Nothern Ireland,1104.8482
+All generating companies,Hydro natural flow,2011,Nothern Ireland,19.1092
+All generating companies,Wind,2011,Nothern Ireland,1001.8598
+All generating companies,Solar,2011,Nothern Ireland,1.1329
+All generating companies,Shoreline wave and tidal,2011,Nothern Ireland,0.457
+All generating companies,Bioenergy,2011,Nothern Ireland,82.2893
+All generating companies,Other fuels,2011,Nothern Ireland,0
+All generating companies,Pumped storage,2011,Nothern Ireland,0
+All generating companies,Total all generating companies,2011,Nothern Ireland,8005.6399
+Major power producers,Coal,2011,England,86828.7626
+Major power producers,Oil,2011,England,671.535
+Major power producers,Gas,2011,England,107985.5726
+Major power producers,Nuclear,2011,England,46724.8605
+Major power producers,Hydro natural flow,2011,England,21.378
+Major power producers,Wind,2011,England,5465.4472
+Major power producers,Solar,2011,England,NA
+Major power producers,Bioenergy,2011,England,3810.7172
+Major power producers,Other fuels,2011,England,NA
+Major power producers,Hydro pumped storage,2011,England,0
+Major power producers,Total major power producers,2011,England,251508.2731
+Other generators,Coal,2011,England,3718.587
+Other generators,Oil,2011,England,1106.5602
+Other generators,Gas,2011,England,10866.4034
+Other generators,Hydro natural flow,2011,England,51.8354
+Other generators,Wind,2011,England,781.4092
+Other generators,Solar,2011,England,221.6866
+Other generators,Shoreline wave and tidal,2011,England,0.0254
+Other generators,Bioenergy,2011,England,7516.6897
+Other generators,Other fuels,2011,England,2402.5497
+Other generators,Total other generators,2011,England,26665.7466
+All generating companies,Fossil fuels,2011,England,211177.4207
+All generating companies,Coal,2011,England,90547.3496
+All generating companies,Oil,2011,England,1778.0952
+All generating companies,Gas,2011,England,118851.9759
+All generating companies,Nuclear,2011,England,46724.8605
+All generating companies,Renewables,2011,England,17869.1887
+All generating companies,Hydro natural flow,2011,England,73.2134
+All generating companies,Wind,2011,England,6246.8564
+All generating companies,Solar,2011,England,221.6866
+All generating companies,Shoreline wave and tidal,2011,England,0.0254
+All generating companies,Bioenergy,2011,England,11327.4069
+All generating companies,Other fuels,2011,England,2402.5497
+All generating companies,Pumped storage,2011,England,0
+All generating companies,Total all generating companies,2011,England,278174.0197
+Major power producers,Coal,2012,UK,139799.72
+Major power producers,Oil,2012,UK,1450.5059
+Major power producers,Gas,2012,UK,86229.24
+Major power producers,Nuclear,2012,UK,70405.0691
+Major power producers,Hydro natural flow,2012,UK,4170.0218
+Major power producers,Wind,2012,UK,17157.2105
+Major power producers,Solar,2012,UK,NA
+Major power producers,Bioenergy,2012,UK,6112.9794
+Major power producers,Other fuels,2012,UK,NA
+Major power producers,Hydro pumped storage,2012,UK,2966.46
+Major power producers,Total major power producers,2012,UK,328291.2067
+Other generators,Coal,2012,UK,2992.28
+Other generators,Oil,2012,UK,1440.73
+Other generators,Gas,2012,UK,13940.33
+Other generators,Hydro natural flow,2012,UK,1139.6107
+Other generators,Wind,2012,UK,2689.9094
+Other generators,Solar,2012,UK,1353.9471
+Other generators,Shoreline wave and tidal,2012,UK,4.151
+Other generators,Bioenergy,2012,UK,8620.8147
+Other generators,Other fuels,2012,UK,3400.6458
+Other generators,Total other generators,2012,UK,35582.4189
+All generating companies,Fossil fuels,2012,UK,245852.8059
+All generating companies,Coal,2012,UK,142792
+All generating companies,Oil,2012,UK,2891.2359
+All generating companies,Gas,2012,UK,100169.57
+All generating companies,Nuclear,2012,UK,70405.0691
+All generating companies,Renewables,2012,UK,41248.6447
+All generating companies,Hydro natural flow,2012,UK,5309.6325
+All generating companies,Wind,2012,UK,19847.12
+All generating companies,Solar,2012,UK,1353.9471
+All generating companies,Shoreline wave and tidal,2012,UK,4.151
+All generating companies,Bioenergy,2012,UK,14733.7941
+All generating companies,Other fuels,2012,UK,3400.6458
+All generating companies,Pumped storage,2012,UK,2966.46
+All generating companies,Total all generating companies,2012,UK,363873.6256
+Major power producers,Coal,2012,Scotland,11684.9853
+Major power producers,Oil,2012,Scotland,205.5255
+Major power producers,Gas,2012,Scotland,3679.9567
+Major power producers,Nuclear,2012,Scotland,17050.0209
+Major power producers,Hydro natural flow,2012,Scotland,3858.7857
+Major power producers,Wind,2012,Scotland,7314.7901
+Major power producers,Solar,2012,Scotland,NA
+Major power producers,Bioenergy,2012,Scotland,584.666
+Major power producers,Other fuels,2012,Scotland,NA
+Major power producers,Hydro pumped storage,2012,Scotland,609.7378
+Major power producers,Total major power producers,2012,Scotland,44988.4682
+Other generators,Coal,2012,Scotland,0.6429
+Other generators,Oil,2012,Scotland,433.5325
+Other generators,Gas,2012,Scotland,1932.6376
+Other generators,Hydro natural flow,2012,Scotland,987.7917
+Other generators,Wind,2012,Scotland,976.8924
+Other generators,Solar,2012,Scotland,69.9466
+Other generators,Shoreline wave and tidal,2012,Scotland,0.7362
+Other generators,Bioenergy,2012,Scotland,873.5953
+Other generators,Other fuels,2012,Scotland,68.7994
+Other generators,Total other generators,2012,Scotland,5344.5747
+All generating companies,Fossil fuels,2012,Scotland,17937.2806
+All generating companies,Coal,2012,Scotland,11685.6283
+All generating companies,Oil,2012,Scotland,639.058
+All generating companies,Gas,2012,Scotland,5612.5944
+All generating companies,Nuclear,2012,Scotland,17050.0209
+All generating companies,Renewables,2012,Scotland,14667.2041
+All generating companies,Hydro natural flow,2012,Scotland,4846.5775
+All generating companies,Wind,2012,Scotland,8291.6825
+All generating companies,Solar,2012,Scotland,69.9466
+All generating companies,Shoreline wave and tidal,2012,Scotland,0.7362
+All generating companies,Bioenergy,2012,Scotland,1458.2613
+All generating companies,Other fuels,2012,Scotland,68.7994
+All generating companies,Pumped storage,2012,Scotland,609.7378
+All generating companies,Total all generating companies,2012,Scotland,50333.0429
+Major power producers,Coal,2012,Wales,10374.7276
+Major power producers,Oil,2012,Wales,413.2403
+Major power producers,Gas,2012,Wales,14747.756
+Major power producers,Nuclear,2012,Wales,4141.0733
+Major power producers,Hydro natural flow,2012,Wales,286.694
+Major power producers,Wind,2012,Wales,1149.3233
+Major power producers,Solar,2012,Wales,NA
+Major power producers,Bioenergy,2012,Wales,0
+Major power producers,Other fuels,2012,Wales,NA
+Major power producers,Hydro pumped storage,2012,Wales,2356.7222
+Major power producers,Total major power producers,2012,Wales,33469.5367
+Other generators,Coal,2012,Wales,0
+Other generators,Oil,2012,Wales,55.0238
+Other generators,Gas,2012,Wales,908.9184
+Other generators,Hydro natural flow,2012,Wales,61.1656
+Other generators,Wind,2012,Wales,297.1964
+Other generators,Solar,2012,Wales,86.9308
+Other generators,Shoreline wave and tidal,2012,Wales,0
+Other generators,Bioenergy,2012,Wales,608.9133
+Other generators,Other fuels,2012,Wales,456.0726
+Other generators,Total other generators,2012,Wales,2474.2208
+All generating companies,Fossil fuels,2012,Wales,26499.6661
+All generating companies,Coal,2012,Wales,10374.7276
+All generating companies,Oil,2012,Wales,468.264
+All generating companies,Gas,2012,Wales,15656.6744
+All generating companies,Nuclear,2012,Wales,4141.0733
+All generating companies,Renewables,2012,Wales,2490.2234
+All generating companies,Hydro natural flow,2012,Wales,347.8597
+All generating companies,Wind,2012,Wales,1446.5197
+All generating companies,Solar,2012,Wales,86.9308
+All generating companies,Shoreline wave and tidal,2012,Wales,0
+All generating companies,Bioenergy,2012,Wales,608.9133
+All generating companies,Other fuels,2012,Wales,456.0726
+All generating companies,Pumped storage,2012,Wales,2356.7222
+All generating companies,Total all generating companies,2012,Wales,35943.7575
+Major power producers,Coal,2012,Nothern Ireland,2330.4963
+Major power producers,Oil,2012,Nothern Ireland,59.0163
+Major power producers,Gas,2012,Nothern Ireland,3609.1714
+Major power producers,Nuclear,2012,Nothern Ireland,0
+Major power producers,Hydro natural flow,2012,Nothern Ireland,0
+Major power producers,Wind,2012,Nothern Ireland,553.1138
+Major power producers,Solar,2012,Nothern Ireland,NA
+Major power producers,Bioenergy,2012,Nothern Ireland,0
+Major power producers,Other fuels,2012,Nothern Ireland,NA
+Major power producers,Hydro pumped storage,2012,Nothern Ireland,0
+Major power producers,Total major power producers,2012,Nothern Ireland,6551.7978
+Other generators,Coal,2012,Nothern Ireland,39.3873
+Other generators,Oil,2012,Nothern Ireland,35.6917
+Other generators,Gas,2012,Nothern Ireland,123.5276
+Other generators,Hydro natural flow,2012,Nothern Ireland,24.921
+Other generators,Wind,2012,Nothern Ireland,488.876
+Other generators,Solar,2012,Nothern Ireland,2.4772
+Other generators,Shoreline wave and tidal,2012,Nothern Ireland,3.283
+Other generators,Bioenergy,2012,Nothern Ireland,111.2235
+Other generators,Other fuels,2012,Nothern Ireland,0
+Other generators,Total other generators,2012,Nothern Ireland,829.3871
+All generating companies,Fossil fuels,2012,Nothern Ireland,6197.2905
+All generating companies,Coal,2012,Nothern Ireland,2369.8836
+All generating companies,Oil,2012,Nothern Ireland,94.708
+All generating companies,Gas,2012,Nothern Ireland,3732.6989
+All generating companies,Nuclear,2012,Nothern Ireland,0
+All generating companies,Renewables,2012,Nothern Ireland,1183.8943
+All generating companies,Hydro natural flow,2012,Nothern Ireland,24.921
+All generating companies,Wind,2012,Nothern Ireland,1041.9897
+All generating companies,Solar,2012,Nothern Ireland,2.4772
+All generating companies,Shoreline wave and tidal,2012,Nothern Ireland,3.283
+All generating companies,Bioenergy,2012,Nothern Ireland,111.2235
+All generating companies,Other fuels,2012,Nothern Ireland,0
+All generating companies,Pumped storage,2012,Nothern Ireland,0
+All generating companies,Total all generating companies,2012,Nothern Ireland,7381.1848
+Major power producers,Coal,2012,England,115409.5107
+Major power producers,Oil,2012,England,772.7238
+Major power producers,Gas,2012,England,64192.3559
+Major power producers,Nuclear,2012,England,49213.9749
+Major power producers,Hydro natural flow,2012,England,24.542
+Major power producers,Wind,2012,England,8139.9833
+Major power producers,Solar,2012,England,NA
+Major power producers,Bioenergy,2012,England,5528.3134
+Major power producers,Other fuels,2012,England,NA
+Major power producers,Hydro pumped storage,2012,England,0
+Major power producers,Total major power producers,2012,England,243281.404
+Other generators,Coal,2012,England,2952.2498
+Other generators,Oil,2012,England,916.4821
+Other generators,Gas,2012,England,10975.2464
+Other generators,Hydro natural flow,2012,England,65.7324
+Other generators,Wind,2012,England,926.9447
+Other generators,Solar,2012,England,1194.5925
+Other generators,Shoreline wave and tidal,2012,England,0.1319
+Other generators,Bioenergy,2012,England,7027.0827
+Other generators,Other fuels,2012,England,2875.7738
+Other generators,Total other generators,2012,England,26934.2363
+All generating companies,Fossil fuels,2012,England,195218.5687
+All generating companies,Coal,2012,England,118361.7605
+All generating companies,Oil,2012,England,1689.2059
+All generating companies,Gas,2012,England,75167.6023
+All generating companies,Nuclear,2012,England,49213.9749
+All generating companies,Renewables,2012,England,22907.3229
+All generating companies,Hydro natural flow,2012,England,90.2744
+All generating companies,Wind,2012,England,9066.928
+All generating companies,Solar,2012,England,1194.5925
+All generating companies,Shoreline wave and tidal,2012,England,0.1319
+All generating companies,Bioenergy,2012,England,12555.3961
+All generating companies,Other fuels,2012,England,2875.7738
+All generating companies,Pumped storage,2012,England,0
+All generating companies,Total all generating companies,2012,England,270215.6403
+Major power producers,Coal,2013,UK,130175.31
+Major power producers,Oil,2013,UK,744.8802
+Major power producers,Gas,2013,UK,82890.82
+Major power producers,Nuclear,2013,UK,70606.8771
+Major power producers,Hydro natural flow,2013,UK,3609.0006
+Major power producers,Wind,2013,UK,23958.0953
+Major power producers,Solar,2013,UK,NA
+Major power producers,Bioenergy,2013,UK,9211.5079
+Major power producers,Other fuels,2013,UK,522.1457
+Major power producers,Hydro pumped storage,2013,UK,2903.89
+Major power producers,Total major power producers,2013,UK,324622.5268
+Other generators,Coal,2013,UK,82.59
+Other generators,Oil,2013,UK,1321.37
+Other generators,Gas,2013,UK,12951.95
+Other generators,Hydro natural flow,2013,UK,1092.4736
+Other generators,Wind,2013,UK,4439.0564
+Other generators,Solar,2013,UK,2010.2621
+Other generators,Shoreline wave and tidal,2013,UK,4.7052
+Other generators,Bioenergy,2013,UK,8888.6267
+Other generators,Other fuels,2013,UK,2870.2725
+Other generators,Total other generators,2013,UK,33661.3064
+All generating companies,Fossil fuels,2013,UK,228166.9202
+All generating companies,Coal,2013,UK,130257.9
+All generating companies,Oil,2013,UK,2066.2502
+All generating companies,Gas,2013,UK,95842.77
+All generating companies,Nuclear,2013,UK,70606.8771
+All generating companies,Renewables,2013,UK,53213.7278
+All generating companies,Hydro natural flow,2013,UK,4701.4742
+All generating companies,Wind,2013,UK,28397.1517
+All generating companies,Solar,2013,UK,2010.2621
+All generating companies,Shoreline wave and tidal,2013,UK,4.7052
+All generating companies,Bioenergy,2013,UK,18100.1346
+All generating companies,Other fuels,2013,UK,3392.4181
+All generating companies,Pumped storage,2013,UK,2903.89
+All generating companies,Total all generating companies,2013,UK,358283.8332
+Major power producers,Coal,2013,Scotland,10760.9465
+Major power producers,Oil,2013,Scotland,206.2185
+Major power producers,Gas,2013,Scotland,3496.7461
+Major power producers,Nuclear,2013,Scotland,18497.8809
+Major power producers,Hydro natural flow,2013,Scotland,3413.9366
+Major power producers,Wind,2013,Scotland,9491.8464
+Major power producers,Solar,2013,Scotland,NA
+Major power producers,Bioenergy,2013,Scotland,395.1182
+Major power producers,Other fuels,2013,Scotland,0
+Major power producers,Hydro pumped storage,2013,Scotland,619.6896
+Major power producers,Total major power producers,2013,Scotland,46882.3827
+Other generators,Coal,2013,Scotland,8.5206
+Other generators,Oil,2013,Scotland,433.2288
+Other generators,Gas,2013,Scotland,1942.0555
+Other generators,Hydro natural flow,2013,Scotland,955.5388
+Other generators,Wind,2013,Scotland,1659.3404
+Other generators,Solar,2013,Scotland,95.9197
+Other generators,Shoreline wave and tidal,2013,Scotland,1.3876
+Other generators,Bioenergy,2013,Scotland,976.5553
+Other generators,Other fuels,2013,Scotland,69.2015
+Other generators,Total other generators,2013,Scotland,6141.7481
+All generating companies,Fossil fuels,2013,Scotland,16847.7159
+All generating companies,Coal,2013,Scotland,10769.4671
+All generating companies,Oil,2013,Scotland,639.4473
+All generating companies,Gas,2013,Scotland,5438.8016
+All generating companies,Nuclear,2013,Scotland,18497.8809
+All generating companies,Renewables,2013,Scotland,16989.643
+All generating companies,Hydro natural flow,2013,Scotland,4369.4754
+All generating companies,Wind,2013,Scotland,11151.1868
+All generating companies,Solar,2013,Scotland,95.9197
+All generating companies,Shoreline wave and tidal,2013,Scotland,1.3876
+All generating companies,Bioenergy,2013,Scotland,1371.6735
+All generating companies,Other fuels,2013,Scotland,69.2015
+All generating companies,Pumped storage,2013,Scotland,619.6896
+All generating companies,Total all generating companies,2013,Scotland,53024.1309
+Major power producers,Coal,2013,Wales,11339.0606
+Major power producers,Oil,2013,Wales,244.3033
+Major power producers,Gas,2013,Wales,17144.1888
+Major power producers,Nuclear,2013,Wales,4325.3037
+Major power producers,Hydro natural flow,2013,Wales,175.469
+Major power producers,Wind,2013,Wales,1199.5196
+Major power producers,Solar,2013,Wales,NA
+Major power producers,Bioenergy,2013,Wales,0
+Major power producers,Other fuels,2013,Wales,0
+Major power producers,Hydro pumped storage,2013,Wales,2284.2004
+Major power producers,Total major power producers,2013,Wales,36712.0454
+Other generators,Coal,2013,Wales,0
+Other generators,Oil,2013,Wales,49.4014
+Other generators,Gas,2013,Wales,1043.4689
+Other generators,Hydro natural flow,2013,Wales,53.0397
+Other generators,Wind,2013,Wales,469.4877
+Other generators,Solar,2013,Wales,118.6943
+Other generators,Shoreline wave and tidal,2013,Wales,0
+Other generators,Bioenergy,2013,Wales,622.9863
+Other generators,Other fuels,2013,Wales,594.1973
+Other generators,Total other generators,2013,Wales,2951.2755
+All generating companies,Fossil fuels,2013,Wales,29820.4229
+All generating companies,Coal,2013,Wales,11339.0606
+All generating companies,Oil,2013,Wales,293.7047
+All generating companies,Gas,2013,Wales,18187.6576
+All generating companies,Nuclear,2013,Wales,4325.3037
+All generating companies,Renewables,2013,Wales,2639.1966
+All generating companies,Hydro natural flow,2013,Wales,228.5088
+All generating companies,Wind,2013,Wales,1669.0073
+All generating companies,Solar,2013,Wales,118.6943
+All generating companies,Shoreline wave and tidal,2013,Wales,0
+All generating companies,Bioenergy,2013,Wales,622.9863
+All generating companies,Other fuels,2013,Wales,594.1973
+All generating companies,Pumped storage,2013,Wales,2284.2004
+All generating companies,Total all generating companies,2013,Wales,39663.321
+Major power producers,Coal,2013,Nothern Ireland,2595.9906
+Major power producers,Oil,2013,Nothern Ireland,26.1372
+Major power producers,Gas,2013,Nothern Ireland,3457.6153
+Major power producers,Nuclear,2013,Nothern Ireland,0
+Major power producers,Hydro natural flow,2013,Nothern Ireland,0
+Major power producers,Wind,2013,Nothern Ireland,622.4576
+Major power producers,Solar,2013,Nothern Ireland,NA
+Major power producers,Bioenergy,2013,Nothern Ireland,0
+Major power producers,Other fuels,2013,Nothern Ireland,0
+Major power producers,Hydro pumped storage,2013,Nothern Ireland,0
+Major power producers,Total major power producers,2013,Nothern Ireland,6702.2007
+Other generators,Coal,2013,Nothern Ireland,39.2688
+Other generators,Oil,2013,Nothern Ireland,37.5713
+Other generators,Gas,2013,Nothern Ireland,101.6479
+Other generators,Hydro natural flow,2013,Nothern Ireland,21.5935
+Other generators,Wind,2013,Nothern Ireland,722.7308
+Other generators,Solar,2013,Nothern Ireland,12.6193
+Other generators,Shoreline wave and tidal,2013,Nothern Ireland,3.136
+Other generators,Bioenergy,2013,Nothern Ireland,134.6538
+Other generators,Other fuels,2013,Nothern Ireland,6.5469
+Other generators,Total other generators,2013,Nothern Ireland,1079.7683
+All generating companies,Fossil fuels,2013,Nothern Ireland,6258.2311
+All generating companies,Coal,2013,Nothern Ireland,2635.2594
+All generating companies,Oil,2013,Nothern Ireland,63.7084
+All generating companies,Gas,2013,Nothern Ireland,3559.2632
+All generating companies,Nuclear,2013,Nothern Ireland,0
+All generating companies,Renewables,2013,Nothern Ireland,1517.191
+All generating companies,Hydro natural flow,2013,Nothern Ireland,21.5935
+All generating companies,Wind,2013,Nothern Ireland,1345.1884
+All generating companies,Solar,2013,Nothern Ireland,12.6193
+All generating companies,Shoreline wave and tidal,2013,Nothern Ireland,3.136
+All generating companies,Bioenergy,2013,Nothern Ireland,134.6538
+All generating companies,Other fuels,2013,Nothern Ireland,6.5469
+All generating companies,Pumped storage,2013,Nothern Ireland,0
+All generating companies,Total all generating companies,2013,Nothern Ireland,7781.969
+Major power producers,Coal,2013,England,105479.3124
+Major power producers,Oil,2013,England,268.2213
+Major power producers,Gas,2013,England,58792.2698
+Major power producers,Nuclear,2013,England,47783.6924
+Major power producers,Hydro natural flow,2013,England,19.5949
+Major power producers,Wind,2013,England,12644.2717
+Major power producers,Solar,2013,England,NA
+Major power producers,Bioenergy,2013,England,8816.3897
+Major power producers,Other fuels,2013,England,522.1457
+Major power producers,Hydro pumped storage,2013,England,0
+Major power producers,Total major power producers,2013,England,234325.8979
+Other generators,Coal,2013,England,34.8005
+Other generators,Oil,2013,England,801.1686
+Other generators,Gas,2013,England,9864.7777
+Other generators,Hydro natural flow,2013,England,62.3016
+Other generators,Wind,2013,England,1587.4976
+Other generators,Solar,2013,England,1783.0288
+Other generators,Shoreline wave and tidal,2013,England,0.1816
+Other generators,Bioenergy,2013,England,7154.4313
+Other generators,Other fuels,2013,England,2200.3268
+Other generators,Total other generators,2013,England,23488.5145
+All generating companies,Fossil fuels,2013,England,175240.5503
+All generating companies,Coal,2013,England,105514.1129
+All generating companies,Oil,2013,England,1069.3898
+All generating companies,Gas,2013,England,68657.0475
+All generating companies,Nuclear,2013,England,47783.6924
+All generating companies,Renewables,2013,England,32067.6972
+All generating companies,Hydro natural flow,2013,England,81.8965
+All generating companies,Wind,2013,England,14231.7693
+All generating companies,Solar,2013,England,1783.0288
+All generating companies,Shoreline wave and tidal,2013,England,0.1816
+All generating companies,Bioenergy,2013,England,15970.821
+All generating companies,Other fuels,2013,England,2722.4724
+All generating companies,Pumped storage,2013,England,0
+All generating companies,Total all generating companies,2013,England,257814.4123
+Major power producers,Coal,2014,UK,100166.67
+Major power producers,Oil,2014,UK,529.8451
+Major power producers,Gas,2014,UK,88871.25
+Major power producers,Nuclear,2014,UK,63747.9542
+Major power producers,Hydro natural flow,2014,UK,4634.5018
+Major power producers,Wind,2014,UK,26762.2652
+Major power producers,Solar,2014,UK,NA
+Major power producers,Bioenergy,2014,UK,12697.9057
+Major power producers,Other fuels,2014,UK,528.0421
+Major power producers,Hydro pumped storage,2014,UK,2883.48
+Major power producers,Total major power producers,2014,UK,300821.9142
+Other generators,Coal,2014,UK,72.18
+Other generators,Oil,2014,UK,1390.21
+Other generators,Gas,2014,UK,12020.93
+Other generators,Hydro natural flow,2014,UK,1253.3
+Other generators,Wind,2014,UK,5196.9794
+Other generators,Solar,2014,UK,4054.1219
+Other generators,Shoreline wave and tidal,2014,UK,2.2003
+Other generators,Bioenergy,2014,UK,9921.119
+Other generators,Other fuels,2014,UK,3363.04
+Other generators,Total other generators,2014,UK,37274.0805
+All generating companies,Fossil fuels,2014,UK,203051.0851
+All generating companies,Coal,2014,UK,100238.85
+All generating companies,Oil,2014,UK,1920.0551
+All generating companies,Gas,2014,UK,100892.18
+All generating companies,Nuclear,2014,UK,63747.9542
+All generating companies,Renewables,2014,UK,64522.3933
+All generating companies,Hydro natural flow,2014,UK,5887.8017
+All generating companies,Wind,2014,UK,31959.2446
+All generating companies,Solar,2014,UK,4054.1219
+All generating companies,Shoreline wave and tidal,2014,UK,2.2003
+All generating companies,Bioenergy,2014,UK,22619.0247
+All generating companies,Other fuels,2014,UK,3891.0821
+All generating companies,Pumped storage,2014,UK,2883.48
+All generating companies,Total all generating companies,2014,UK,338095.9947
+Major power producers,Coal,2014,Scotland,10156.7498
+Major power producers,Oil,2014,Scotland,192.3315
+Major power producers,Gas,2014,Scotland,880.3612
+Major power producers,Nuclear,2014,Scotland,16633.2728
+Major power producers,Hydro natural flow,2014,Scotland,4393.1958
+Major power producers,Wind,2014,Scotland,9769.1163
+Major power producers,Solar,2014,Scotland,NA
+Major power producers,Bioenergy,2014,Scotland,645.2116
+Major power producers,Other fuels,2014,Scotland,0
+Major power producers,Hydro pumped storage,2014,Scotland,494.1319
+Major power producers,Total major power producers,2014,Scotland,43164.3708
+Other generators,Coal,2014,Scotland,0
+Other generators,Oil,2014,Scotland,639.4644
+Other generators,Gas,2014,Scotland,1842.8601
+Other generators,Hydro natural flow,2014,Scotland,1090.4134
+Other generators,Wind,2014,Scotland,1930.8957
+Other generators,Solar,2014,Scotland,143.161
+Other generators,Shoreline wave and tidal,2014,Scotland,2.1465
+Other generators,Bioenergy,2014,Scotland,1070.9127
+Other generators,Other fuels,2014,Scotland,157.8454
+Other generators,Total other generators,2014,Scotland,6877.6991
+All generating companies,Fossil fuels,2014,Scotland,13711.7669
+All generating companies,Coal,2014,Scotland,10156.7498
+All generating companies,Oil,2014,Scotland,831.7958
+All generating companies,Gas,2014,Scotland,2723.2213
+All generating companies,Nuclear,2014,Scotland,16633.2728
+All generating companies,Renewables,2014,Scotland,19045.0529
+All generating companies,Hydro natural flow,2014,Scotland,5483.6092
+All generating companies,Wind,2014,Scotland,11700.012
+All generating companies,Solar,2014,Scotland,143.161
+All generating companies,Shoreline wave and tidal,2014,Scotland,2.1465
+All generating companies,Bioenergy,2014,Scotland,1716.1242
+All generating companies,Other fuels,2014,Scotland,157.8454
+All generating companies,Pumped storage,2014,Scotland,494.1319
+All generating companies,Total all generating companies,2014,Scotland,50042.07
+Major power producers,Coal,2014,Wales,7368.2757
+Major power producers,Oil,2014,Wales,147.6188
+Major power producers,Gas,2014,Wales,18512.9994
+Major power producers,Nuclear,2014,Wales,1953.0707
+Major power producers,Hydro natural flow,2014,Wales,213.427
+Major power producers,Wind,2014,Wales,1701.7897
+Major power producers,Solar,2014,Wales,NA
+Major power producers,Bioenergy,2014,Wales,0
+Major power producers,Other fuels,2014,Wales,0
+Major power producers,Hydro pumped storage,2014,Wales,2389.3481
+Major power producers,Total major power producers,2014,Wales,32286.5294
+Other generators,Coal,2014,Wales,0
+Other generators,Oil,2014,Wales,43.1662
+Other generators,Gas,2014,Wales,852.9879
+Other generators,Hydro natural flow,2014,Wales,64.0588
+Other generators,Wind,2014,Wales,588.9968
+Other generators,Solar,2014,Wales,234.9144
+Other generators,Shoreline wave and tidal,2014,Wales,0
+Other generators,Bioenergy,2014,Wales,576.6245
+Other generators,Other fuels,2014,Wales,620.9611
+Other generators,Total other generators,2014,Wales,2981.7097
+All generating companies,Fossil fuels,2014,Wales,26925.0479
+All generating companies,Coal,2014,Wales,7368.2757
+All generating companies,Oil,2014,Wales,190.7849
+All generating companies,Gas,2014,Wales,19365.9873
+All generating companies,Nuclear,2014,Wales,1953.0707
+All generating companies,Renewables,2014,Wales,3379.8113
+All generating companies,Hydro natural flow,2014,Wales,277.4858
+All generating companies,Wind,2014,Wales,2290.7865
+All generating companies,Solar,2014,Wales,234.9144
+All generating companies,Shoreline wave and tidal,2014,Wales,0
+All generating companies,Bioenergy,2014,Wales,576.6245
+All generating companies,Other fuels,2014,Wales,620.9611
+All generating companies,Pumped storage,2014,Wales,2389.3481
+All generating companies,Total all generating companies,2014,Wales,35268.2391
+Major power producers,Coal,2014,Nothern Ireland,2159.9336
+Major power producers,Oil,2014,Nothern Ireland,24.0689
+Major power producers,Gas,2014,Nothern Ireland,3816.9578
+Major power producers,Nuclear,2014,Nothern Ireland,0
+Major power producers,Hydro natural flow,2014,Nothern Ireland,0
+Major power producers,Wind,2014,Nothern Ireland,659.6732
+Major power producers,Solar,2014,Nothern Ireland,NA
+Major power producers,Bioenergy,2014,Nothern Ireland,0
+Major power producers,Other fuels,2014,Nothern Ireland,0
+Major power producers,Hydro pumped storage,2014,Nothern Ireland,0
+Major power producers,Total major power producers,2014,Nothern Ireland,6660.6335
+Other generators,Coal,2014,Nothern Ireland,39.4335
+Other generators,Oil,2014,Nothern Ireland,39.1959
+Other generators,Gas,2014,Nothern Ireland,101.1457
+Other generators,Hydro natural flow,2014,Nothern Ireland,27.1848
+Other generators,Wind,2014,Nothern Ireland,798.7427
+Other generators,Solar,2014,Nothern Ireland,45.6959
+Other generators,Shoreline wave and tidal,2014,Nothern Ireland,0.0155
+Other generators,Bioenergy,2014,Nothern Ireland,168.1692
+Other generators,Other fuels,2014,Nothern Ireland,0
+Other generators,Total other generators,2014,Nothern Ireland,1219.5832
+All generating companies,Fossil fuels,2014,Nothern Ireland,6180.7354
+All generating companies,Coal,2014,Nothern Ireland,2199.3671
+All generating companies,Oil,2014,Nothern Ireland,63.2648
+All generating companies,Gas,2014,Nothern Ireland,3918.1036
+All generating companies,Nuclear,2014,Nothern Ireland,0
+All generating companies,Renewables,2014,Nothern Ireland,1699.4813
+All generating companies,Hydro natural flow,2014,Nothern Ireland,27.1848
+All generating companies,Wind,2014,Nothern Ireland,1458.4159
+All generating companies,Solar,2014,Nothern Ireland,45.6959
+All generating companies,Shoreline wave and tidal,2014,Nothern Ireland,0.0155
+All generating companies,Bioenergy,2014,Nothern Ireland,168.1692
+All generating companies,Other fuels,2014,Nothern Ireland,0
+All generating companies,Pumped storage,2014,Nothern Ireland,0
+All generating companies,Total all generating companies,2014,Nothern Ireland,7880.2167
+Major power producers,Coal,2014,England,80481.7109
+Major power producers,Oil,2014,England,165.826
+Major power producers,Gas,2014,England,65660.9316
+Major power producers,Nuclear,2014,England,45161.6107
+Major power producers,Hydro natural flow,2014,England,27.879
+Major power producers,Wind,2014,England,14631.6859
+Major power producers,Solar,2014,England,NA
+Major power producers,Bioenergy,2014,England,12052.6942
+Major power producers,Other fuels,2014,England,528.0421
+Major power producers,Hydro pumped storage,2014,England,0
+Major power producers,Total major power producers,2014,England,218710.3804
+Other generators,Coal,2014,England,32.7465
+Other generators,Oil,2014,England,668.3836
+Other generators,Gas,2014,England,9223.9363
+Other generators,Hydro natural flow,2014,England,71.6429
+Other generators,Wind,2014,England,1878.3442
+Other generators,Solar,2014,England,3630.3506
+Other generators,Shoreline wave and tidal,2014,England,0.0383
+Other generators,Bioenergy,2014,England,8105.4126
+Other generators,Other fuels,2014,England,2584.2335
+Other generators,Total other generators,2014,England,26195.0885
+All generating companies,Fossil fuels,2014,England,156233.5348
+All generating companies,Coal,2014,England,80514.4574
+All generating companies,Oil,2014,England,834.2096
+All generating companies,Gas,2014,England,74884.8679
+All generating companies,Nuclear,2014,England,45161.6107
+All generating companies,Renewables,2014,England,40398.0478
+All generating companies,Hydro natural flow,2014,England,99.5219
+All generating companies,Wind,2014,England,16510.0302
+All generating companies,Solar,2014,England,3630.3506
+All generating companies,Shoreline wave and tidal,2014,England,0.0383
+All generating companies,Bioenergy,2014,England,20158.1068
+All generating companies,Other fuels,2014,England,3112.2756
+All generating companies,Pumped storage,2014,England,0
+All generating companies,Total all generating companies,2014,England,244905.4689
+Major power producers,Coal,2015,UK,75811.86
+Major power producers,Oil,2015,UK,683.1445
+Major power producers,Gas,2015,UK,88460.77
+Major power producers,Nuclear,2015,UK,70344.902
+Major power producers,Hydro natural flow,2015,UK,4906.587
+Major power producers,Wind,2015,UK,33257.1393
+Major power producers,Solar,2015,UK,1404.5492
+Major power producers,Bioenergy,2015,UK,17693.5465
+Major power producers,Other fuels,2015,UK,688.7654
+Major power producers,Hydro pumped storage,2015,UK,2739.42
+Major power producers,Total major power producers,2015,UK,295990.6839
+Other generators,Coal,2015,UK,66.37
+Other generators,Oil,2015,UK,1353.96
+Other generators,Gas,2015,UK,11414.65
+Other generators,Hydro natural flow,2015,UK,1390.6816
+Other generators,Wind,2015,UK,7017.5804
+Other generators,Solar,2015,UK,6128.3149
+Other generators,Shoreline wave and tidal,2015,UK,1.9986
+Other generators,Bioenergy,2015,UK,11563.4313
+Other generators,Other fuels,2015,UK,3947.66
+Other generators,Total other generators,2015,UK,42884.6468
+All generating companies,Fossil fuels,2015,UK,177790.7545
+All generating companies,Coal,2015,UK,75878.23
+All generating companies,Oil,2015,UK,2037.1045
+All generating companies,Gas,2015,UK,99875.42
+All generating companies,Nuclear,2015,UK,70344.902
+All generating companies,Renewables,2015,UK,83363.8288
+All generating companies,Hydro natural flow,2015,UK,6297.2685
+All generating companies,Wind,2015,UK,40274.7197
+All generating companies,Solar,2015,UK,7532.8641
+All generating companies,Shoreline wave and tidal,2015,UK,1.9986
+All generating companies,Bioenergy,2015,UK,29256.9778
+All generating companies,Other fuels,2015,UK,4636.4254
+All generating companies,Pumped storage,2015,UK,2739.42
+All generating companies,Total all generating companies,2015,UK,338875.3307
+Major power producers,Coal,2015,Scotland,8274.939
+Major power producers,Oil,2015,Scotland,187.667
+Major power producers,Gas,2015,Scotland,126.0913
+Major power producers,Nuclear,2015,Scotland,17762.8285
+Major power producers,Hydro natural flow,2015,Scotland,4605.0849
+Major power producers,Wind,2015,Scotland,11445.3597
+Major power producers,Solar,2015,Scotland,0.0135
+Major power producers,Bioenergy,2015,Scotland,788.9093
+Major power producers,Other fuels,2015,Scotland,0
+Major power producers,Hydro pumped storage,2015,Scotland,522.6158
+Major power producers,Total major power producers,2015,Scotland,43713.509
+Other generators,Coal,2015,Scotland,0
+Other generators,Oil,2015,Scotland,692.5616
+Other generators,Gas,2015,Scotland,1792.6642
+Other generators,Hydro natural flow,2015,Scotland,1208.9396
+Other generators,Wind,2015,Scotland,2432.6411
+Other generators,Solar,2015,Scotland,185.2165
+Other generators,Shoreline wave and tidal,2015,Scotland,1.9941
+Other generators,Bioenergy,2015,Scotland,1074.6756
+Other generators,Other fuels,2015,Scotland,232.9015
+Other generators,Total other generators,2015,Scotland,7621.5941
+All generating companies,Fossil fuels,2015,Scotland,11073.923
+All generating companies,Coal,2015,Scotland,8274.939
+All generating companies,Oil,2015,Scotland,880.2286
+All generating companies,Gas,2015,Scotland,1918.7555
+All generating companies,Nuclear,2015,Scotland,17762.8285
+All generating companies,Renewables,2015,Scotland,21742.8342
+All generating companies,Hydro natural flow,2015,Scotland,5814.0245
+All generating companies,Wind,2015,Scotland,13878.0007
+All generating companies,Solar,2015,Scotland,185.23
+All generating companies,Shoreline wave and tidal,2015,Scotland,1.9941
+All generating companies,Bioenergy,2015,Scotland,1863.5849
+All generating companies,Other fuels,2015,Scotland,232.9015
+All generating companies,Pumped storage,2015,Scotland,522.6158
+All generating companies,Total all generating companies,2015,Scotland,51335.1031
+Major power producers,Coal,2015,Wales,8152.585
+Major power producers,Oil,2015,Wales,162.9267
+Major power producers,Gas,2015,Wales,16858.8736
+Major power producers,Nuclear,2015,Wales,3886.511
+Major power producers,Hydro natural flow,2015,Wales,273.3837
+Major power producers,Wind,2015,Wales,2784.7838
+Major power producers,Solar,2015,Wales,114.326
+Major power producers,Bioenergy,2015,Wales,6.6811
+Major power producers,Other fuels,2015,Wales,0
+Major power producers,Hydro pumped storage,2015,Wales,2216.8042
+Major power producers,Total major power producers,2015,Wales,34456.8751
+Other generators,Coal,2015,Wales,0
+Other generators,Oil,2015,Wales,29.9417
+Other generators,Gas,2015,Wales,693.1679
+Other generators,Hydro natural flow,2015,Wales,78.254
+Other generators,Wind,2015,Wales,775.9559
+Other generators,Solar,2015,Wales,417.1225
+Other generators,Shoreline wave and tidal,2015,Wales,0
+Other generators,Bioenergy,2015,Wales,748.0572
+Other generators,Other fuels,2015,Wales,726.8654
+Other generators,Total other generators,2015,Wales,3469.3644
+All generating companies,Fossil fuels,2015,Wales,25897.4948
+All generating companies,Coal,2015,Wales,8152.585
+All generating companies,Oil,2015,Wales,192.8683
+All generating companies,Gas,2015,Wales,17552.0414
+All generating companies,Nuclear,2015,Wales,3886.511
+All generating companies,Renewables,2015,Wales,5198.5641
+All generating companies,Hydro natural flow,2015,Wales,351.6376
+All generating companies,Wind,2015,Wales,3560.7397
+All generating companies,Solar,2015,Wales,531.4485
+All generating companies,Shoreline wave and tidal,2015,Wales,0
+All generating companies,Bioenergy,2015,Wales,754.7383
+All generating companies,Other fuels,2015,Wales,726.8654
+All generating companies,Pumped storage,2015,Wales,2216.8042
+All generating companies,Total all generating companies,2015,Wales,37926.2395
+Major power producers,Coal,2015,Nothern Ireland,2101.8046
+Major power producers,Oil,2015,Nothern Ireland,42.1874
+Major power producers,Gas,2015,Nothern Ireland,4187.2768
+Major power producers,Nuclear,2015,Nothern Ireland,0
+Major power producers,Hydro natural flow,2015,Nothern Ireland,0
+Major power producers,Wind,2015,Nothern Ireland,734.8716
+Major power producers,Solar,2015,Nothern Ireland,0
+Major power producers,Bioenergy,2015,Nothern Ireland,0
+Major power producers,Other fuels,2015,Nothern Ireland,0
+Major power producers,Hydro pumped storage,2015,Nothern Ireland,0
+Major power producers,Total major power producers,2015,Nothern Ireland,7066.1404
+Other generators,Coal,2015,Nothern Ireland,37.9997
+Other generators,Oil,2015,Nothern Ireland,39.579
+Other generators,Gas,2015,Nothern Ireland,114.6977
+Other generators,Hydro natural flow,2015,Nothern Ireland,29.0261
+Other generators,Wind,2015,Nothern Ireland,1125.5088
+Other generators,Solar,2015,Nothern Ireland,78.1646
+Other generators,Shoreline wave and tidal,2015,Nothern Ireland,0.0045
+Other generators,Bioenergy,2015,Nothern Ireland,269.6253
+Other generators,Other fuels,2015,Nothern Ireland,0
+Other generators,Total other generators,2015,Nothern Ireland,1694.6057
+All generating companies,Fossil fuels,2015,Nothern Ireland,6523.5452
+All generating companies,Coal,2015,Nothern Ireland,2139.8043
+All generating companies,Oil,2015,Nothern Ireland,81.7664
+All generating companies,Gas,2015,Nothern Ireland,4301.9746
+All generating companies,Nuclear,2015,Nothern Ireland,0
+All generating companies,Renewables,2015,Nothern Ireland,2237.2009
+All generating companies,Hydro natural flow,2015,Nothern Ireland,29.0261
+All generating companies,Wind,2015,Nothern Ireland,1860.3804
+All generating companies,Solar,2015,Nothern Ireland,78.1646
+All generating companies,Shoreline wave and tidal,2015,Nothern Ireland,0.0045
+All generating companies,Bioenergy,2015,Nothern Ireland,269.6253
+All generating companies,Other fuels,2015,Nothern Ireland,0
+All generating companies,Pumped storage,2015,Nothern Ireland,0
+All generating companies,Total all generating companies,2015,Nothern Ireland,8760.7461
+Major power producers,Coal,2015,England,57282.5314
+Major power producers,Oil,2015,England,290.3635
+Major power producers,Gas,2015,England,67288.5283
+Major power producers,Nuclear,2015,England,48695.5624
+Major power producers,Hydro natural flow,2015,England,28.1184
+Major power producers,Wind,2015,England,18292.1242
+Major power producers,Solar,2015,England,1290.2097
+Major power producers,Bioenergy,2015,England,16897.956
+Major power producers,Other fuels,2015,England,688.7654
+Major power producers,Hydro pumped storage,2015,England,0
+Major power producers,Total major power producers,2015,England,210754.1594
+Other generators,Coal,2015,England,28.3703
+Other generators,Oil,2015,England,591.8777
+Other generators,Gas,2015,England,8814.1202
+Other generators,Hydro natural flow,2015,England,74.4619
+Other generators,Wind,2015,England,2683.4747
+Other generators,Solar,2015,England,5447.8113
+Other generators,Shoreline wave and tidal,2015,England,0
+Other generators,Bioenergy,2015,England,9471.0733
+Other generators,Other fuels,2015,England,2987.8931
+Other generators,Total other generators,2015,England,30099.0826
+All generating companies,Fossil fuels,2015,England,134295.7915
+All generating companies,Coal,2015,England,57310.9017
+All generating companies,Oil,2015,England,882.2412
+All generating companies,Gas,2015,England,76102.6486
+All generating companies,Nuclear,2015,England,48695.5624
+All generating companies,Renewables,2015,England,54185.2296
+All generating companies,Hydro natural flow,2015,England,102.5803
+All generating companies,Wind,2015,England,20975.5989
+All generating companies,Solar,2015,England,6738.021
+All generating companies,Shoreline wave and tidal,2015,England,0
+All generating companies,Bioenergy,2015,England,26369.0294
+All generating companies,Other fuels,2015,England,3676.6585
+All generating companies,Pumped storage,2015,England,0
+All generating companies,Total all generating companies,2015,England,240853.2421
+Major power producers,Coal,2016,UK,30612.69
+Major power producers,Oil,2016,UK,605.6733
+Major power producers,Gas,2016,UK,131972.23
+Major power producers,Nuclear,2016,UK,71726.0806
+Major power producers,Hydro natural flow,2016,UK,3951.0143
+Major power producers,Wind,2016,UK,30712.4608
+Major power producers,Solar,2016,UK,2035.4607
+Major power producers,Bioenergy,2016,UK,17400.1774
+Major power producers,Other fuels,2016,UK,968.3421
+Major power producers,Hydro pumped storage,2016,UK,2959.22
+Major power producers,Total major power producers,2016,UK,292943.3492
+Other generators,Coal,2016,UK,55.91
+Other generators,Oil,2016,UK,1284.68
+Other generators,Gas,2016,UK,11383.84
+Other generators,Hydro natural flow,2016,UK,1419.3979
+Other generators,Wind,2016,UK,6446.9619
+Other generators,Solar,2016,UK,8359.6536
+Other generators,Shoreline wave and tidal,2016,UK,0.0086
+Other generators,Bioenergy,2016,UK,12665.3484
+Other generators,Other fuels,2016,UK,4605.13
+Other generators,Total other generators,2016,UK,46220.9305
+All generating companies,Fossil fuels,2016,UK,175915.0233
+All generating companies,Coal,2016,UK,30668.6
+All generating companies,Oil,2016,UK,1890.3533
+All generating companies,Gas,2016,UK,143356.07
+All generating companies,Nuclear,2016,UK,71726.0806
+All generating companies,Renewables,2016,UK,82990.4838
+All generating companies,Hydro natural flow,2016,UK,5370.4122
+All generating companies,Wind,2016,UK,37159.4228
+All generating companies,Solar,2016,UK,10395.1144
+All generating companies,Shoreline wave and tidal,2016,UK,0.0086
+All generating companies,Bioenergy,2016,UK,30065.5258
+All generating companies,Other fuels,2016,UK,5573.4721
+All generating companies,Pumped storage,2016,UK,2959.22
+All generating companies,Total all generating companies,2016,UK,339164.2798
+Major power producers,Coal,2016,Scotland,1805.7032
+Major power producers,Oil,2016,Scotland,155.8941
+Major power producers,Gas,2016,Scotland,1523.1105
+Major power producers,Nuclear,2016,Scotland,19630.4533
+Major power producers,Hydro natural flow,2016,Scotland,3691.571
+Major power producers,Wind,2016,Scotland,10081.0843
+Major power producers,Solar,2016,Scotland,8.2314
+Major power producers,Bioenergy,2016,Scotland,756.0503
+Major power producers,Other fuels,2016,Scotland,0
+Major power producers,Hydro pumped storage,2016,Scotland,485.634
+Major power producers,Total major power producers,2016,Scotland,38137.732
+Other generators,Coal,2016,Scotland,0
+Other generators,Oil,2016,Scotland,262.9242
+Other generators,Gas,2016,Scotland,1617.7841
+Other generators,Hydro natural flow,2016,Scotland,1224.2255
+Other generators,Wind,2016,Scotland,2334.6151
+Other generators,Solar,2016,Scotland,238.2799
+Other generators,Shoreline wave and tidal,2016,Scotland,0.0086
+Other generators,Bioenergy,2016,Scotland,1141.5255
+Other generators,Other fuels,2016,Scotland,721.9843
+Other generators,Total other generators,2016,Scotland,7541.3471
+All generating companies,Fossil fuels,2016,Scotland,5365.4161
+All generating companies,Coal,2016,Scotland,1805.7032
+All generating companies,Oil,2016,Scotland,418.8183
+All generating companies,Gas,2016,Scotland,3140.8946
+All generating companies,Nuclear,2016,Scotland,19630.4533
+All generating companies,Renewables,2016,Scotland,19475.5915
+All generating companies,Hydro natural flow,2016,Scotland,4915.7966
+All generating companies,Wind,2016,Scotland,12415.6994
+All generating companies,Solar,2016,Scotland,246.5112
+All generating companies,Shoreline wave and tidal,2016,Scotland,0.0086
+All generating companies,Bioenergy,2016,Scotland,1897.5757
+All generating companies,Other fuels,2016,Scotland,721.9843
+All generating companies,Pumped storage,2016,Scotland,485.634
+All generating companies,Total all generating companies,2016,Scotland,45679.0792
+Major power producers,Coal,2016,Wales,7315.5426
+Major power producers,Oil,2016,Wales,180.3585
+Major power producers,Gas,2016,Wales,26092.2925
+Major power producers,Nuclear,2016,Wales,0
+Major power producers,Hydro natural flow,2016,Wales,234.6304
+Major power producers,Wind,2016,Wales,2776.2796
+Major power producers,Solar,2016,Wales,195.8507
+Major power producers,Bioenergy,2016,Wales,33.1605
+Major power producers,Other fuels,2016,Wales,0
+Major power producers,Hydro pumped storage,2016,Wales,2473.586
+Major power producers,Total major power producers,2016,Wales,39301.7008
+Other generators,Coal,2016,Wales,0
+Other generators,Oil,2016,Wales,15.5926
+Other generators,Gas,2016,Wales,804.4975
+Other generators,Hydro natural flow,2016,Wales,104.3346
+Other generators,Wind,2016,Wales,653.2928
+Other generators,Solar,2016,Wales,609.8815
+Other generators,Shoreline wave and tidal,2016,Wales,0
+Other generators,Bioenergy,2016,Wales,695.6671
+Other generators,Other fuels,2016,Wales,677.6397
+Other generators,Total other generators,2016,Wales,3560.9058
+All generating companies,Fossil fuels,2016,Wales,34408.2837
+All generating companies,Coal,2016,Wales,7315.5426
+All generating companies,Oil,2016,Wales,195.9512
+All generating companies,Gas,2016,Wales,26896.79
+All generating companies,Nuclear,2016,Wales,0
+All generating companies,Renewables,2016,Wales,5303.0972
+All generating companies,Hydro natural flow,2016,Wales,338.965
+All generating companies,Wind,2016,Wales,3429.5724
+All generating companies,Solar,2016,Wales,805.7323
+All generating companies,Shoreline wave and tidal,2016,Wales,0
+All generating companies,Bioenergy,2016,Wales,728.8276
+All generating companies,Other fuels,2016,Wales,677.6397
+All generating companies,Pumped storage,2016,Wales,2473.586
+All generating companies,Total all generating companies,2016,Wales,42862.6066
+Major power producers,Coal,2016,Nothern Ireland,2107.0143
+Major power producers,Oil,2016,Nothern Ireland,68.1253
+Major power producers,Gas,2016,Nothern Ireland,4488.7565
+Major power producers,Nuclear,2016,Nothern Ireland,0
+Major power producers,Hydro natural flow,2016,Nothern Ireland,0
+Major power producers,Wind,2016,Nothern Ireland,690.3108
+Major power producers,Solar,2016,Nothern Ireland,3.4083
+Major power producers,Bioenergy,2016,Nothern Ireland,0
+Major power producers,Other fuels,2016,Nothern Ireland,0
+Major power producers,Hydro pumped storage,2016,Nothern Ireland,0
+Major power producers,Total major power producers,2016,Nothern Ireland,7357.6152
+Other generators,Coal,2016,Nothern Ireland,35.764
+Other generators,Oil,2016,Nothern Ireland,36.8695
+Other generators,Gas,2016,Nothern Ireland,107.8761
+Other generators,Hydro natural flow,2016,Nothern Ireland,23.5896
+Other generators,Wind,2016,Nothern Ireland,1043.2378
+Other generators,Solar,2016,Nothern Ireland,107.6079
+Other generators,Shoreline wave and tidal,2016,Nothern Ireland,0
+Other generators,Bioenergy,2016,Nothern Ireland,469.4632
+Other generators,Other fuels,2016,Nothern Ireland,11.4374
+Other generators,Total other generators,2016,Nothern Ireland,1835.8455
+All generating companies,Fossil fuels,2016,Nothern Ireland,6844.4056
+All generating companies,Coal,2016,Nothern Ireland,2142.7783
+All generating companies,Oil,2016,Nothern Ireland,104.9947
+All generating companies,Gas,2016,Nothern Ireland,4596.6326
+All generating companies,Nuclear,2016,Nothern Ireland,0
+All generating companies,Renewables,2016,Nothern Ireland,2337.6177
+All generating companies,Hydro natural flow,2016,Nothern Ireland,23.5896
+All generating companies,Wind,2016,Nothern Ireland,1733.5487
+All generating companies,Solar,2016,Nothern Ireland,111.0163
+All generating companies,Shoreline wave and tidal,2016,Nothern Ireland,0
+All generating companies,Bioenergy,2016,Nothern Ireland,469.4632
+All generating companies,Other fuels,2016,Nothern Ireland,11.4374
+All generating companies,Pumped storage,2016,Nothern Ireland,0
+All generating companies,Total all generating companies,2016,Nothern Ireland,9193.4608
+Major power producers,Coal,2016,England,19384.4299
+Major power producers,Oil,2016,England,201.2955
+Major power producers,Gas,2016,England,99868.0705
+Major power producers,Nuclear,2016,England,52095.6273
+Major power producers,Hydro natural flow,2016,England,24.8129
+Major power producers,Wind,2016,England,17164.7862
+Major power producers,Solar,2016,England,1827.9703
+Major power producers,Bioenergy,2016,England,16610.9666
+Major power producers,Other fuels,2016,England,968.3421
+Major power producers,Hydro pumped storage,2016,England,0
+Major power producers,Total major power producers,2016,England,208146.3012
+Other generators,Coal,2016,England,20.146
+Other generators,Oil,2016,England,969.2937
+Other generators,Gas,2016,England,8853.6823
+Other generators,Hydro natural flow,2016,England,67.2482
+Other generators,Wind,2016,England,2415.8162
+Other generators,Solar,2016,England,7403.8843
+Other generators,Shoreline wave and tidal,2016,England,0
+Other generators,Bioenergy,2016,England,10358.6927
+Other generators,Other fuels,2016,England,3194.0686
+Other generators,Total other generators,2016,England,33282.832
+All generating companies,Fossil fuels,2016,England,129296.9179
+All generating companies,Coal,2016,England,19404.5759
+All generating companies,Oil,2016,England,1170.5892
+All generating companies,Gas,2016,England,108721.7529
+All generating companies,Nuclear,2016,England,52095.6273
+All generating companies,Renewables,2016,England,55874.1774
+All generating companies,Hydro natural flow,2016,England,92.0611
+All generating companies,Wind,2016,England,19580.6023
+All generating companies,Solar,2016,England,9231.8547
+All generating companies,Shoreline wave and tidal,2016,England,0
+All generating companies,Bioenergy,2016,England,26969.6593
+All generating companies,Other fuels,2016,England,4162.4106
+All generating companies,Pumped storage,2016,England,0
+All generating companies,Total all generating companies,2016,England,241429.1332
+Major power producers,Coal,2017,UK,22480.96
+Major power producers,Oil,2017,UK,389.9895
+Major power producers,Gas,2017,UK,124512.41
+Major power producers,Nuclear,2017,UK,70336.4263
+Major power producers,Hydro natural flow,2017,UK,4178.5587
+Major power producers,Wind,2017,UK,40954.4329
+Major power producers,Solar,2017,UK,2977.7833
+Major power producers,Bioenergy,2017,UK,17765.6899
+Major power producers,Other fuels,2017,UK,1275.9544
+Major power producers,Hydro pumped storage,2017,UK,2872.03
+Major power producers,Total major power producers,2017,UK,287744.2349
+Other generators,Coal,2017,UK,49.49
+Other generators,Oil,2017,UK,1224.51
+Other generators,Gas,2017,UK,12233.41
+Other generators,Hydro natural flow,2017,UK,1703.3075
+Other generators,Wind,2017,UK,8686.6885
+Other generators,Solar,2017,UK,8479.4846
+Other generators,Shoreline wave and tidal,2017,UK,4.1936
+Other generators,Bioenergy,2017,UK,14128.4891
+Other generators,Other fuels,2017,UK,3943.52
+Other generators,Total other generators,2017,UK,50453.0934
+All generating companies,Fossil fuels,2017,UK,160890.7695
+All generating companies,Coal,2017,UK,22530.45
+All generating companies,Oil,2017,UK,1614.4995
+All generating companies,Gas,2017,UK,136745.82
+All generating companies,Nuclear,2017,UK,70336.4263
+All generating companies,Renewables,2017,UK,98878.6282
+All generating companies,Hydro natural flow,2017,UK,5881.8662
+All generating companies,Wind,2017,UK,49641.121400000004
+All generating companies,Solar,2017,UK,11457.268
+All generating companies,Shoreline wave and tidal,2017,UK,4.1936
+All generating companies,Bioenergy,2017,UK,31894.179
+All generating companies,Other fuels,2017,UK,5219.4744
+All generating companies,Pumped storage,2017,UK,2872.03
+All generating companies,Total all generating companies,2017,UK,338197.3283
+Major power producers,Coal,2017,Scotland,0
+Major power producers,Oil,2017,Scotland,120.4943
+Major power producers,Gas,2017,Scotland,2546.7912
+Major power producers,Nuclear,2017,Scotland,17826.9301
+Major power producers,Hydro natural flow,2017,Scotland,3890.4849
+Major power producers,Wind,2017,Scotland,14037.6761
+Major power producers,Solar,2017,Scotland,9.6732
+Major power producers,Bioenergy,2017,Scotland,880.3429
+Major power producers,Other fuels,2017,Scotland,0
+Major power producers,Hydro pumped storage,2017,Scotland,573.0836
+Major power producers,Total major power producers,2017,Scotland,39885.4764
+Other generators,Coal,2017,Scotland,0
+Other generators,Oil,2017,Scotland,278.1939
+Other generators,Gas,2017,Scotland,1814.2049
+Other generators,Hydro natural flow,2017,Scotland,1465.7039
+Other generators,Wind,2017,Scotland,3163.4619
+Other generators,Solar,2017,Scotland,279.902
+Other generators,Shoreline wave and tidal,2017,Scotland,4.1936
+Other generators,Bioenergy,2017,Scotland,1569.9444
+Other generators,Other fuels,2017,Scotland,380.1722
+Other generators,Total other generators,2017,Scotland,8955.7765
+All generating companies,Fossil fuels,2017,Scotland,4759.6843
+All generating companies,Coal,2017,Scotland,0
+All generating companies,Oil,2017,Scotland,398.6882
+All generating companies,Gas,2017,Scotland,4360.9961
+All generating companies,Nuclear,2017,Scotland,17826.9301
+All generating companies,Renewables,2017,Scotland,25301.3827
+All generating companies,Hydro natural flow,2017,Scotland,5356.1887
+All generating companies,Wind,2017,Scotland,17201.1379
+All generating companies,Solar,2017,Scotland,289.5752
+All generating companies,Shoreline wave and tidal,2017,Scotland,4.1936
+All generating companies,Bioenergy,2017,Scotland,2450.2873
+All generating companies,Other fuels,2017,Scotland,380.1722
+All generating companies,Pumped storage,2017,Scotland,573.0836
+All generating companies,Total all generating companies,2017,Scotland,48841.2529
+Major power producers,Coal,2017,Wales,2780.3923
+Major power producers,Oil,2017,Wales,54.4659
+Major power producers,Gas,2017,Wales,21706.5064
+Major power producers,Nuclear,2017,Wales,0
+Major power producers,Hydro natural flow,2017,Wales,275.9997
+Major power producers,Wind,2017,Wales,3920.195
+Major power producers,Solar,2017,Wales,287.1557
+Major power producers,Bioenergy,2017,Wales,19.0244
+Major power producers,Other fuels,2017,Wales,0
+Major power producers,Hydro pumped storage,2017,Wales,2298.9464
+Major power producers,Total major power producers,2017,Wales,31342.6859
+Other generators,Coal,2017,Wales,0
+Other generators,Oil,2017,Wales,17.6548
+Other generators,Gas,2017,Wales,774.631
+Other generators,Hydro natural flow,2017,Wales,94.9388
+Other generators,Wind,2017,Wales,930.5141
+Other generators,Solar,2017,Wales,627.2428
+Other generators,Shoreline wave and tidal,2017,Wales,0
+Other generators,Bioenergy,2017,Wales,919.0198
+Other generators,Other fuels,2017,Wales,722.7287
+Other generators,Total other generators,2017,Wales,4086.73
+All generating companies,Fossil fuels,2017,Wales,25333.6504
+All generating companies,Coal,2017,Wales,2780.3923
+All generating companies,Oil,2017,Wales,72.1207
+All generating companies,Gas,2017,Wales,22481.1375
+All generating companies,Nuclear,2017,Wales,0
+All generating companies,Renewables,2017,Wales,7074.0904
+All generating companies,Hydro natural flow,2017,Wales,370.9386
+All generating companies,Wind,2017,Wales,4850.7091
+All generating companies,Solar,2017,Wales,914.3985
+All generating companies,Shoreline wave and tidal,2017,Wales,0
+All generating companies,Bioenergy,2017,Wales,938.0443
+All generating companies,Other fuels,2017,Wales,722.7287
+All generating companies,Pumped storage,2017,Wales,2298.9464
+All generating companies,Total all generating companies,2017,Wales,35429.4159
+Major power producers,Coal,2017,Nothern Ireland,1361.2517
+Major power producers,Oil,2017,Nothern Ireland,58.7382
+Major power producers,Gas,2017,Nothern Ireland,4814.6069
+Major power producers,Nuclear,2017,Nothern Ireland,0
+Major power producers,Hydro natural flow,2017,Nothern Ireland,0
+Major power producers,Wind,2017,Nothern Ireland,879.4694
+Major power producers,Solar,2017,Nothern Ireland,68.061
+Major power producers,Bioenergy,2017,Nothern Ireland,0
+Major power producers,Other fuels,2017,Nothern Ireland,0
+Major power producers,Hydro pumped storage,2017,Nothern Ireland,0
+Major power producers,Total major power producers,2017,Nothern Ireland,7182.1272
+Other generators,Coal,2017,Nothern Ireland,28.331
+Other generators,Oil,2017,Nothern Ireland,35.9355
+Other generators,Gas,2017,Nothern Ireland,105.0737
+Other generators,Hydro natural flow,2017,Nothern Ireland,29.6098
+Other generators,Wind,2017,Nothern Ireland,1625.7571
+Other generators,Solar,2017,Nothern Ireland,117.3994
+Other generators,Shoreline wave and tidal,2017,Nothern Ireland,0
+Other generators,Bioenergy,2017,Nothern Ireland,580.3104
+Other generators,Other fuels,2017,Nothern Ireland,2.8652
+Other generators,Total other generators,2017,Nothern Ireland,2525.282
+All generating companies,Fossil fuels,2017,Nothern Ireland,6403.937
+All generating companies,Coal,2017,Nothern Ireland,1389.5827
+All generating companies,Oil,2017,Nothern Ireland,94.6737
+All generating companies,Gas,2017,Nothern Ireland,4919.6806
+All generating companies,Nuclear,2017,Nothern Ireland,0
+All generating companies,Renewables,2017,Nothern Ireland,3300.607
+All generating companies,Hydro natural flow,2017,Nothern Ireland,29.6098
+All generating companies,Wind,2017,Nothern Ireland,2505.2265
+All generating companies,Solar,2017,Nothern Ireland,185.4603
+All generating companies,Shoreline wave and tidal,2017,Nothern Ireland,0
+All generating companies,Bioenergy,2017,Nothern Ireland,580.3104
+All generating companies,Other fuels,2017,Nothern Ireland,2.8652
+All generating companies,Pumped storage,2017,Nothern Ireland,0
+All generating companies,Total all generating companies,2017,Nothern Ireland,9707.4092
+Major power producers,Coal,2017,England,18339.316
+Major power producers,Oil,2017,England,156.2911
+Major power producers,Gas,2017,England,95444.5054
+Major power producers,Nuclear,2017,England,52509.4961
+Major power producers,Hydro natural flow,2017,England,12.074
+Major power producers,Wind,2017,England,22117.0924
+Major power producers,Solar,2017,England,2612.8934
+Major power producers,Bioenergy,2017,England,16866.3226
+Major power producers,Other fuels,2017,England,1275.9544
+Major power producers,Hydro pumped storage,2017,England,0
+Major power producers,Total major power producers,2017,England,209333.9455
+Other generators,Coal,2017,England,21.159
+Other generators,Oil,2017,England,892.7259
+Other generators,Gas,2017,England,9539.5004
+Other generators,Hydro natural flow,2017,England,113.0551
+Other generators,Wind,2017,England,2966.9555
+Other generators,Solar,2017,England,7454.9405
+Other generators,Shoreline wave and tidal,2017,England,0
+Other generators,Bioenergy,2017,England,11059.2145
+Other generators,Other fuels,2017,England,2837.7539
+Other generators,Total other generators,2017,England,34885.3048
+All generating companies,Fossil fuels,2017,England,124393.4978
+All generating companies,Coal,2017,England,18360.475
+All generating companies,Oil,2017,England,1049.0169
+All generating companies,Gas,2017,England,104984.0058
+All generating companies,Nuclear,2017,England,52509.4961
+All generating companies,Renewables,2017,England,63202.5481
+All generating companies,Hydro natural flow,2017,England,125.1291
+All generating companies,Wind,2017,England,25084.0479
+All generating companies,Solar,2017,England,10067.8339
+All generating companies,Shoreline wave and tidal,2017,England,0
+All generating companies,Bioenergy,2017,England,27925.5371
+All generating companies,Other fuels,2017,England,4113.7083
+All generating companies,Pumped storage,2017,England,0
+All generating companies,Total all generating companies,2017,England,244219.2503
+Major power producers,Coal,2018,UK,16778.1
+Major power producers,Oil,2018,UK,626.63
+Major power producers,Gas,2018,UK,119632.33
+Major power producers,Nuclear,2018,UK,65063.8489
+Major power producers,Hydro natural flow,2018,UK,3800.12
+Major power producers,Wind,2018,UK,47923.7848
+Major power producers,Solar,2018,UK,3530.09
+Major power producers,Bioenergy,2018,UK,19965.41
+Major power producers,Other fuels,2018,UK,1130.88
+Major power producers,Hydro pumped storage,2018,UK,2498.45
+Major power producers,Total major power producers,2018,UK,280949.6438
+Other generators,Coal,2018,UK,53.3
+Other generators,Oil,2018,UK,965.1538
+Other generators,Gas,2018,UK,11857.45
+Other generators,Hydro natural flow,2018,UK,1643.14
+Other generators,Wind,2018,UK,8983.8252
+Other generators,Solar,2018,UK,9138.31
+Other generators,Shoreline wave and tidal,2018,UK,9.3
+Other generators,Bioenergy,2018,UK,15001.43
+Other generators,Other fuels,2018,UK,4121.4862
+Other generators,Total other generators,2018,UK,51773.3952
+All generating companies,Fossil fuels,2018,UK,149912.9638
+All generating companies,Coal,2018,UK,16831.4
+All generating companies,Oil,2018,UK,1591.7838
+All generating companies,Gas,2018,UK,131489.78
+All generating companies,Nuclear,2018,UK,65063.8489
+All generating companies,Renewables,2018,UK,109995.41
+All generating companies,Hydro natural flow,2018,UK,5443.26
+All generating companies,Wind,2018,UK,56907.61
+All generating companies,Solar,2018,UK,12668.4
+All generating companies,Shoreline wave and tidal,2018,UK,9.3
+All generating companies,Bioenergy,2018,UK,34966.84
+All generating companies,Other fuels,2018,UK,5252.3662
+All generating companies,Pumped storage,2018,UK,2498.45
+All generating companies,Total all generating companies,2018,UK,332723.0389
+Major power producers,Coal,2018,Scotland,0
+Major power producers,Oil,2018,Scotland,121.4169
+Major power producers,Gas,2018,Scotland,5234.0256
+Major power producers,Nuclear,2018,Scotland,13610.8204
+Major power producers,Hydro natural flow,2018,Scotland,3571.9347
+Major power producers,Wind,2018,Scotland,15869.6273
+Major power producers,Solar,2018,Scotland,18.8276
+Major power producers,Bioenergy,2018,Scotland,690.9443
+Major power producers,Other fuels,2018,Scotland,0
+Major power producers,Hydro pumped storage,2018,Scotland,453.9364
+Major power producers,Total major power producers,2018,Scotland,39571.5331
+Other generators,Coal,2018,Scotland,0
+Other generators,Oil,2018,Scotland,177.8536
+Other generators,Gas,2018,Scotland,2006.9011
+Other generators,Hydro natural flow,2018,Scotland,1425.3353
+Other generators,Wind,2018,Scotland,3241.4727
+Other generators,Solar,2018,Scotland,312.9524
+Other generators,Shoreline wave and tidal,2018,Scotland,9.3
+Other generators,Bioenergy,2018,Scotland,1456.5657
+Other generators,Other fuels,2018,Scotland,300.5444
+Other generators,Total other generators,2018,Scotland,8930.9253
+All generating companies,Fossil fuels,2018,Scotland,7540.1972
+All generating companies,Coal,2018,Scotland,0
+All generating companies,Oil,2018,Scotland,299.2705
+All generating companies,Gas,2018,Scotland,7240.9267
+All generating companies,Nuclear,2018,Scotland,13610.8204
+All generating companies,Renewables,2018,Scotland,26596.96
+All generating companies,Hydro natural flow,2018,Scotland,4997.27
+All generating companies,Wind,2018,Scotland,19111.1
+All generating companies,Solar,2018,Scotland,331.78
+All generating companies,Shoreline wave and tidal,2018,Scotland,9.3
+All generating companies,Bioenergy,2018,Scotland,2147.51
+All generating companies,Other fuels,2018,Scotland,300.5444
+All generating companies,Pumped storage,2018,Scotland,453.9364
+All generating companies,Total all generating companies,2018,Scotland,48502.4584
+Major power producers,Coal,2018,Wales,472.7064
+Major power producers,Oil,2018,Wales,34.2938
+Major power producers,Gas,2018,Wales,19724.4333
+Major power producers,Nuclear,2018,Wales,0
+Major power producers,Hydro natural flow,2018,Wales,207.6518
+Major power producers,Wind,2018,Wales,3834.1453
+Major power producers,Solar,2018,Wales,367.2797
+Major power producers,Bioenergy,2018,Wales,1.068
+Major power producers,Other fuels,2018,Wales,0
+Major power producers,Hydro pumped storage,2018,Wales,2044.5136
+Major power producers,Total major power producers,2018,Wales,26686.0919
+Other generators,Coal,2018,Wales,0
+Other generators,Oil,2018,Wales,20.3599
+Other generators,Gas,2018,Wales,817.5118
+Other generators,Hydro natural flow,2018,Wales,81.2582
+Other generators,Wind,2018,Wales,972.9047
+Other generators,Solar,2018,Wales,671.6903
+Other generators,Shoreline wave and tidal,2018,Wales,0
+Other generators,Bioenergy,2018,Wales,1137.152
+Other generators,Other fuels,2018,Wales,664.6988
+Other generators,Total other generators,2018,Wales,4365.5758
+All generating companies,Fossil fuels,2018,Wales,21069.3052
+All generating companies,Coal,2018,Wales,472.7064
+All generating companies,Oil,2018,Wales,54.6537
+All generating companies,Gas,2018,Wales,20541.945
+All generating companies,Nuclear,2018,Wales,0
+All generating companies,Renewables,2018,Wales,7273.15
+All generating companies,Hydro natural flow,2018,Wales,288.91
+All generating companies,Wind,2018,Wales,4807.05
+All generating companies,Solar,2018,Wales,1038.97
+All generating companies,Shoreline wave and tidal,2018,Wales,0
+All generating companies,Bioenergy,2018,Wales,1138.22
+All generating companies,Other fuels,2018,Wales,664.6988
+All generating companies,Pumped storage,2018,Wales,2044.5136
+All generating companies,Total all generating companies,2018,Wales,31051.6676
+Major power producers,Coal,2018,Nothern Ireland,1302.6058
+Major power producers,Oil,2018,Nothern Ireland,43.0341
+Major power producers,Gas,2018,Nothern Ireland,3868.3315
+Major power producers,Nuclear,2018,Nothern Ireland,0
+Major power producers,Hydro natural flow,2018,Nothern Ireland,0
+Major power producers,Wind,2018,Nothern Ireland,833.8125
+Major power producers,Solar,2018,Nothern Ireland,120.1019
+Major power producers,Bioenergy,2018,Nothern Ireland,0
+Major power producers,Other fuels,2018,Nothern Ireland,0
+Major power producers,Hydro pumped storage,2018,Nothern Ireland,0
+Major power producers,Total major power producers,2018,Nothern Ireland,6167.8859
+Other generators,Coal,2018,Nothern Ireland,31.8859
+Other generators,Oil,2018,Nothern Ireland,35.831
+Other generators,Gas,2018,Nothern Ireland,116.2223
+Other generators,Hydro natural flow,2018,Nothern Ireland,30.2
+Other generators,Wind,2018,Nothern Ireland,2099.4175
+Other generators,Solar,2018,Nothern Ireland,152.2381
+Other generators,Shoreline wave and tidal,2018,Nothern Ireland,0
+Other generators,Bioenergy,2018,Nothern Ireland,672.92
+Other generators,Other fuels,2018,Nothern Ireland,3.1872
+Other generators,Total other generators,2018,Nothern Ireland,3141.902
+All generating companies,Fossil fuels,2018,Nothern Ireland,5397.9106
+All generating companies,Coal,2018,Nothern Ireland,1334.4917
+All generating companies,Oil,2018,Nothern Ireland,78.8651
+All generating companies,Gas,2018,Nothern Ireland,3984.5539
+All generating companies,Nuclear,2018,Nothern Ireland,0
+All generating companies,Renewables,2018,Nothern Ireland,3908.69
+All generating companies,Hydro natural flow,2018,Nothern Ireland,30.2
+All generating companies,Wind,2018,Nothern Ireland,2933.23
+All generating companies,Solar,2018,Nothern Ireland,272.34
+All generating companies,Shoreline wave and tidal,2018,Nothern Ireland,0
+All generating companies,Bioenergy,2018,Nothern Ireland,672.92
+All generating companies,Other fuels,2018,Nothern Ireland,3.1872
+All generating companies,Pumped storage,2018,Nothern Ireland,0
+All generating companies,Total all generating companies,2018,Nothern Ireland,9309.7878
+Major power producers,Coal,2018,England,15002.7877
+Major power producers,Oil,2018,England,427.8852
+Major power producers,Gas,2018,England,90805.5397
+Major power producers,Nuclear,2018,England,51453.0285
+Major power producers,Hydro natural flow,2018,England,20.5335
+Major power producers,Wind,2018,England,27386.1997
+Major power producers,Solar,2018,England,3023.8808
+Major power producers,Bioenergy,2018,England,19273.3977
+Major power producers,Other fuels,2018,England,1130.88
+Major power producers,Hydro pumped storage,2018,England,0
+Major power producers,Total major power producers,2018,England,208524.1329
+Other generators,Coal,2018,England,21.4141
+Other generators,Oil,2018,England,731.1092
+Other generators,Gas,2018,England,8916.8148
+Other generators,Hydro natural flow,2018,England,106.3465
+Other generators,Wind,2018,England,2670.0303
+Other generators,Solar,2018,England,8001.4292
+Other generators,Shoreline wave and tidal,2018,England,0
+Other generators,Bioenergy,2018,England,11734.7923
+Other generators,Other fuels,2018,England,3153.0558
+Other generators,Total other generators,2018,England,35334.9921
+All generating companies,Fossil fuels,2018,England,115905.5507
+All generating companies,Coal,2018,England,15024.2019
+All generating companies,Oil,2018,England,1158.9944
+All generating companies,Gas,2018,England,99722.3544
+All generating companies,Nuclear,2018,England,51453.0285
+All generating companies,Renewables,2018,England,72216.61
+All generating companies,Hydro natural flow,2018,England,126.88
+All generating companies,Wind,2018,England,30056.23
+All generating companies,Solar,2018,England,11025.31
+All generating companies,Shoreline wave and tidal,2018,England,0
+All generating companies,Bioenergy,2018,England,31008.19
+All generating companies,Other fuels,2018,England,4283.9358
+All generating companies,Pumped storage,2018,England,0
+All generating companies,Total all generating companies,2018,England,243859.125
+Major power producers,Coal,2019,UK,6903.83
+Major power producers,Oil,2019,UK,647.48
+Major power producers,Gas,2019,UK,118593.29
+Major power producers,Nuclear,2019,UK,56183.9337
+Major power producers,Hydro natural flow,2019,UK,4189.81
+Major power producers,Wind,2019,UK,55073.7787
+Major power producers,Solar,2019,UK,3860.29
+Major power producers,Bioenergy,2019,UK,20837.5
+Major power producers,Other fuels,2019,UK,1161.18
+Major power producers,Hydro pumped storage,2019,UK,1756.41
+Major power producers,Total major power producers,2019,UK,269207.5024
+Other generators,Coal,2019,UK,49.83
+Other generators,Oil,2019,UK,999.2974
+Other generators,Gas,2019,UK,13338.2
+Other generators,Hydro natural flow,2019,UK,1656.47
+Other generators,Wind,2019,UK,8721.3813
+Other generators,Solar,2019,UK,8719.8
+Other generators,Shoreline wave and tidal,2019,UK,13.99
+Other generators,Bioenergy,2019,UK,16467.94
+Other generators,Other fuels,2019,UK,4626.2826
+Other generators,Total other generators,2019,UK,54593.1913
+All generating companies,Fossil fuels,2019,UK,140531.9274
+All generating companies,Coal,2019,UK,6953.66
+All generating companies,Oil,2019,UK,1646.7774
+All generating companies,Gas,2019,UK,131931.49
+All generating companies,Nuclear,2019,UK,56183.9337
+All generating companies,Renewables,2019,UK,119540.96
+All generating companies,Hydro natural flow,2019,UK,5846.28
+All generating companies,Wind,2019,UK,63795.16
+All generating companies,Solar,2019,UK,12580.09
+All generating companies,Shoreline wave and tidal,2019,UK,13.99
+All generating companies,Bioenergy,2019,UK,37305.44
+All generating companies,Other fuels,2019,UK,5787.4626
+All generating companies,Pumped storage,2019,UK,1756.41
+All generating companies,Total all generating companies,2019,UK,323800.6937
+Major power producers,Coal,2019,Scotland,0
+Major power producers,Oil,2019,Scotland,124.3966
+Major power producers,Gas,2019,Scotland,4322.3997
+Major power producers,Nuclear,2019,Scotland,12226.0863
+Major power producers,Hydro natural flow,2019,Scotland,3902.4863
+Major power producers,Wind,2019,Scotland,18694.5617
+Major power producers,Solar,2019,Scotland,38.1365
+Major power producers,Bioenergy,2019,Scotland,858.6317
+Major power producers,Other fuels,2019,Scotland,0
+Major power producers,Hydro pumped storage,2019,Scotland,241.1914
+Major power producers,Total major power producers,2019,Scotland,40407.8901
+Other generators,Coal,2019,Scotland,0
+Other generators,Oil,2019,Scotland,191.6644
+Other generators,Gas,2019,Scotland,1739.7161
+Other generators,Hydro natural flow,2019,Scotland,1422.2437
+Other generators,Wind,2019,Scotland,3329.1883
+Other generators,Solar,2019,Scotland,313.8235
+Other generators,Shoreline wave and tidal,2019,Scotland,13.99
+Other generators,Bioenergy,2019,Scotland,1601.7883
+Other generators,Other fuels,2019,Scotland,442.791
+Other generators,Total other generators,2019,Scotland,9055.2054
+All generating companies,Fossil fuels,2019,Scotland,6378.1768
+All generating companies,Coal,2019,Scotland,0
+All generating companies,Oil,2019,Scotland,316.061
+All generating companies,Gas,2019,Scotland,6062.1158
+All generating companies,Nuclear,2019,Scotland,12226.0863
+All generating companies,Renewables,2019,Scotland,30174.85
+All generating companies,Hydro natural flow,2019,Scotland,5324.73
+All generating companies,Wind,2019,Scotland,22023.75
+All generating companies,Solar,2019,Scotland,351.96
+All generating companies,Shoreline wave and tidal,2019,Scotland,13.99
+All generating companies,Bioenergy,2019,Scotland,2460.42
+All generating companies,Other fuels,2019,Scotland,442.791
+All generating companies,Pumped storage,2019,Scotland,241.1914
+All generating companies,Total all generating companies,2019,Scotland,49463.0954
+Major power producers,Coal,2019,Wales,665.1799
+Major power producers,Oil,2019,Wales,40.4054
+Major power producers,Gas,2019,Wales,17490.5261
+Major power producers,Nuclear,2019,Wales,0
+Major power producers,Hydro natural flow,2019,Wales,265.3582
+Major power producers,Wind,2019,Wales,4443.4484
+Major power producers,Solar,2019,Wales,417.7792
+Major power producers,Bioenergy,2019,Wales,1.8509
+Major power producers,Other fuels,2019,Wales,0
+Major power producers,Hydro pumped storage,2019,Wales,1515.2186
+Major power producers,Total major power producers,2019,Wales,24839.7669
+Other generators,Coal,2019,Wales,0
+Other generators,Oil,2019,Wales,22.6855
+Other generators,Gas,2019,Wales,573.3049
+Other generators,Hydro natural flow,2019,Wales,92.0818
+Other generators,Wind,2019,Wales,644.6516
+Other generators,Solar,2019,Wales,631.3308
+Other generators,Shoreline wave and tidal,2019,Wales,0
+Other generators,Bioenergy,2019,Wales,1131.8391
+Other generators,Other fuels,2019,Wales,784.3842
+Other generators,Total other generators,2019,Wales,3880.2777
+All generating companies,Fossil fuels,2019,Wales,18792.1018
+All generating companies,Coal,2019,Wales,665.1799
+All generating companies,Oil,2019,Wales,63.0909
+All generating companies,Gas,2019,Wales,18063.8309
+All generating companies,Nuclear,2019,Wales,0
+All generating companies,Renewables,2019,Wales,7628.34
+All generating companies,Hydro natural flow,2019,Wales,357.44
+All generating companies,Wind,2019,Wales,5088.1
+All generating companies,Solar,2019,Wales,1049.11
+All generating companies,Shoreline wave and tidal,2019,Wales,0
+All generating companies,Bioenergy,2019,Wales,1133.69
+All generating companies,Other fuels,2019,Wales,784.3842
+All generating companies,Pumped storage,2019,Wales,1515.2186
+All generating companies,Total all generating companies,2019,Wales,28720.0446
+Major power producers,Coal,2019,Nothern Ireland,877.4149
+Major power producers,Oil,2019,Nothern Ireland,50.2142
+Major power producers,Gas,2019,Nothern Ireland,4072.5892
+Major power producers,Nuclear,2019,Nothern Ireland,0
+Major power producers,Hydro natural flow,2019,Nothern Ireland,0
+Major power producers,Wind,2019,Nothern Ireland,1096.9148
+Major power producers,Solar,2019,Nothern Ireland,124.4916
+Major power producers,Bioenergy,2019,Nothern Ireland,0
+Major power producers,Other fuels,2019,Nothern Ireland,0
+Major power producers,Hydro pumped storage,2019,Nothern Ireland,0
+Major power producers,Total major power producers,2019,Nothern Ireland,6221.6247
+Other generators,Coal,2019,Nothern Ireland,29.131
+Other generators,Oil,2019,Nothern Ireland,36.0172
+Other generators,Gas,2019,Nothern Ireland,111.9777
+Other generators,Hydro natural flow,2019,Nothern Ireland,35.5
+Other generators,Wind,2019,Nothern Ireland,1902.7152
+Other generators,Solar,2019,Nothern Ireland,168.7984
+Other generators,Shoreline wave and tidal,2019,Nothern Ireland,0
+Other generators,Bioenergy,2019,Nothern Ireland,751.9
+Other generators,Other fuels,2019,Nothern Ireland,17.7684
+Other generators,Total other generators,2019,Nothern Ireland,3053.8079
+All generating companies,Fossil fuels,2019,Nothern Ireland,5177.3442
+All generating companies,Coal,2019,Nothern Ireland,906.5459
+All generating companies,Oil,2019,Nothern Ireland,86.2313
+All generating companies,Gas,2019,Nothern Ireland,4184.5669
+All generating companies,Nuclear,2019,Nothern Ireland,0
+All generating companies,Renewables,2019,Nothern Ireland,4080.32
+All generating companies,Hydro natural flow,2019,Nothern Ireland,35.5
+All generating companies,Wind,2019,Nothern Ireland,2999.63
+All generating companies,Solar,2019,Nothern Ireland,293.29
+All generating companies,Shoreline wave and tidal,2019,Nothern Ireland,0
+All generating companies,Bioenergy,2019,Nothern Ireland,751.9
+All generating companies,Other fuels,2019,Nothern Ireland,17.7684
+All generating companies,Pumped storage,2019,Nothern Ireland,0
+All generating companies,Total all generating companies,2019,Nothern Ireland,9275.4326
+Major power producers,Coal,2019,England,5361.2352
+Major power producers,Oil,2019,England,432.4638
+Major power producers,Gas,2019,England,92707.775
+Major power producers,Nuclear,2019,England,43957.8474
+Major power producers,Hydro natural flow,2019,England,21.9655
+Major power producers,Wind,2019,England,30838.8538
+Major power producers,Solar,2019,England,3279.8827
+Major power producers,Bioenergy,2019,England,19977.0174
+Major power producers,Other fuels,2019,England,1161.18
+Major power producers,Hydro pumped storage,2019,England,0
+Major power producers,Total major power producers,2019,England,197738.2208
+Other generators,Coal,2019,England,20.699
+Other generators,Oil,2019,England,748.9303
+Other generators,Gas,2019,England,10913.2013
+Other generators,Hydro natural flow,2019,England,106.6445
+Other generators,Wind,2019,England,2844.8262
+Other generators,Solar,2019,England,7605.8473
+Other generators,Shoreline wave and tidal,2019,England,0
+Other generators,Bioenergy,2019,England,12982.4126
+Other generators,Other fuels,2019,England,3381.339
+Other generators,Total other generators,2019,England,38603.9002
+All generating companies,Fossil fuels,2019,England,110184.3047
+All generating companies,Coal,2019,England,5381.9342
+All generating companies,Oil,2019,England,1181.3942
+All generating companies,Gas,2019,England,103620.9763
+All generating companies,Nuclear,2019,England,43957.8474
+All generating companies,Renewables,2019,England,77657.45
+All generating companies,Hydro natural flow,2019,England,128.61
+All generating companies,Wind,2019,England,33683.68
+All generating companies,Solar,2019,England,10885.73
+All generating companies,Shoreline wave and tidal,2019,England,0
+All generating companies,Bioenergy,2019,England,32959.43
+All generating companies,Other fuels,2019,England,4542.519
+All generating companies,Pumped storage,2019,England,0
+All generating companies,Total all generating companies,2019,England,236342.1211
+Major power producers,Coal,2020,UK,5453.04
+Major power producers,Oil,2020,UK,536.45
+Major power producers,Gas,2020,UK,98965.1
+Major power producers,Nuclear,2020,UK,50278.3508
+Major power producers,Hydro natural flow,2020,UK,4997.73
+Major power producers,Wind,2020,UK,66052.0815
+Major power producers,Solar,2020,UK,4291.86
+Major power producers,Bioenergy,2020,UK,21898.26
+Major power producers,Other fuels,2020,UK,1433.19
+Major power producers,Hydro pumped storage,2020,UK,1402.23
+Major power producers,Total major power producers,2020,UK,255308.2923
+Other generators,Coal,2020,UK,51.37
+Other generators,Oil,2020,UK,814.5932
+Other generators,Gas,2020,UK,12466.24
+Other generators,Hydro natural flow,2020,UK,1756.18
+Other generators,Wind,2020,UK,9317.0585
+Other generators,Solar,2020,UK,8866.13
+Other generators,Shoreline wave and tidal,2020,UK,11.28
+Other generators,Bioenergy,2020,UK,17412.71
+Other generators,Other fuels,2020,UK,5993.1468
+Other generators,Total other generators,2020,UK,56688.7085
+All generating companies,Fossil fuels,2020,UK,118286.7932
+All generating companies,Coal,2020,UK,5504.41
+All generating companies,Oil,2020,UK,1351.0432
+All generating companies,Gas,2020,UK,111431.34
+All generating companies,Nuclear,2020,UK,50278.3508
+All generating companies,Renewables,2020,UK,134603.29
+All generating companies,Hydro natural flow,2020,UK,6753.91
+All generating companies,Wind,2020,UK,75369.14
+All generating companies,Solar,2020,UK,13157.99
+All generating companies,Shoreline wave and tidal,2020,UK,11.28
+All generating companies,Bioenergy,2020,UK,39310.97
+All generating companies,Other fuels,2020,UK,7426.3368
+All generating companies,Pumped storage,2020,UK,1402.23
+All generating companies,Total all generating companies,2020,UK,311997.0008
+Major power producers,Coal,2020,Scotland,0
+Major power producers,Oil,2020,Scotland,146.4638
+Major power producers,Gas,2020,Scotland,3535.1704
+Major power producers,Nuclear,2020,Scotland,13351.1293
+Major power producers,Hydro natural flow,2020,Scotland,4686.2731
+Major power producers,Wind,2020,Scotland,19545.2077
+Major power producers,Solar,2020,Scotland,38.5643
+Major power producers,Bioenergy,2020,Scotland,753.3355
+Major power producers,Other fuels,2020,Scotland,0
+Major power producers,Hydro pumped storage,2020,Scotland,273.9204
+Major power producers,Total major power producers,2020,Scotland,42330.0644
+Other generators,Coal,2020,Scotland,0
+Other generators,Oil,2020,Scotland,122.6811
+Other generators,Gas,2020,Scotland,1874.7757
+Other generators,Hydro natural flow,2020,Scotland,1500.4569
+Other generators,Wind,2020,Scotland,3529.8823
+Other generators,Solar,2020,Scotland,314.2957
+Other generators,Shoreline wave and tidal,2020,Scotland,11.28
+Other generators,Bioenergy,2020,Scotland,1683.9245
+Other generators,Other fuels,2020,Scotland,497.3099
+Other generators,Total other generators,2020,Scotland,9534.6062
+All generating companies,Fossil fuels,2020,Scotland,5679.091
+All generating companies,Coal,2020,Scotland,0
+All generating companies,Oil,2020,Scotland,269.1449
+All generating companies,Gas,2020,Scotland,5409.9461
+All generating companies,Nuclear,2020,Scotland,13351.1293
+All generating companies,Renewables,2020,Scotland,32063.22
+All generating companies,Hydro natural flow,2020,Scotland,6186.73
+All generating companies,Wind,2020,Scotland,23075.09
+All generating companies,Solar,2020,Scotland,352.86
+All generating companies,Shoreline wave and tidal,2020,Scotland,11.28
+All generating companies,Bioenergy,2020,Scotland,2437.26
+All generating companies,Other fuels,2020,Scotland,497.3099
+All generating companies,Pumped storage,2020,Scotland,273.9204
+All generating companies,Total all generating companies,2020,Scotland,51864.6706
+Major power producers,Coal,2020,Wales,0
+Major power producers,Oil,2020,Wales,0.0808
+Major power producers,Gas,2020,Wales,12994.4952
+Major power producers,Nuclear,2020,Wales,0
+Major power producers,Hydro natural flow,2020,Wales,282.9755
+Major power producers,Wind,2020,Wales,5195.2007
+Major power producers,Solar,2020,Wales,468.7267
+Major power producers,Bioenergy,2020,Wales,0
+Major power producers,Other fuels,2020,Wales,0
+Major power producers,Hydro pumped storage,2020,Wales,1128.3096
+Major power producers,Total major power producers,2020,Wales,20069.7886
+Other generators,Coal,2020,Wales,0
+Other generators,Oil,2020,Wales,21.7955
+Other generators,Gas,2020,Wales,617.5665
+Other generators,Hydro natural flow,2020,Wales,92.3045
+Other generators,Wind,2020,Wales,786.3193
+Other generators,Solar,2020,Wales,594.0333
+Other generators,Shoreline wave and tidal,2020,Wales,0
+Other generators,Bioenergy,2020,Wales,1397.66
+Other generators,Other fuels,2020,Wales,845.8725
+Other generators,Total other generators,2020,Wales,4355.5516
+All generating companies,Fossil fuels,2020,Wales,13633.9381
+All generating companies,Coal,2020,Wales,0
+All generating companies,Oil,2020,Wales,21.8764
+All generating companies,Gas,2020,Wales,13612.0618
+All generating companies,Nuclear,2020,Wales,0
+All generating companies,Renewables,2020,Wales,8817.22
+All generating companies,Hydro natural flow,2020,Wales,375.28
+All generating companies,Wind,2020,Wales,5981.52
+All generating companies,Solar,2020,Wales,1062.76
+All generating companies,Shoreline wave and tidal,2020,Wales,0
+All generating companies,Bioenergy,2020,Wales,1397.66
+All generating companies,Other fuels,2020,Wales,845.8725
+All generating companies,Pumped storage,2020,Wales,1128.3096
+All generating companies,Total all generating companies,2020,Wales,24425.3402
+Major power producers,Coal,2020,Nothern Ireland,1016.8207
+Major power producers,Oil,2020,Nothern Ireland,49.5766
+Major power producers,Gas,2020,Nothern Ireland,4003.599
+Major power producers,Nuclear,2020,Nothern Ireland,0
+Major power producers,Hydro natural flow,2020,Nothern Ireland,0
+Major power producers,Wind,2020,Nothern Ireland,1133.8614
+Major power producers,Solar,2020,Nothern Ireland,126.4986
+Major power producers,Bioenergy,2020,Nothern Ireland,0
+Major power producers,Other fuels,2020,Nothern Ireland,0
+Major power producers,Hydro pumped storage,2020,Nothern Ireland,0
+Major power producers,Total major power producers,2020,Nothern Ireland,6330.3564
+Other generators,Coal,2020,Nothern Ireland,32.1761
+Other generators,Oil,2020,Nothern Ireland,35.825
+Other generators,Gas,2020,Nothern Ireland,108.3468
+Other generators,Hydro natural flow,2020,Nothern Ireland,38.14
+Other generators,Wind,2020,Nothern Ireland,2129.6686
+Other generators,Solar,2020,Nothern Ireland,165.8414
+Other generators,Shoreline wave and tidal,2020,Nothern Ireland,0
+Other generators,Bioenergy,2020,Nothern Ireland,812.92
+Other generators,Other fuels,2020,Nothern Ireland,17.7474
+Other generators,Total other generators,2020,Nothern Ireland,3340.6654
+All generating companies,Fossil fuels,2020,Nothern Ireland,5246.3443
+All generating companies,Coal,2020,Nothern Ireland,1048.9968
+All generating companies,Oil,2020,Nothern Ireland,85.4017
+All generating companies,Gas,2020,Nothern Ireland,4111.9458
+All generating companies,Nuclear,2020,Nothern Ireland,0
+All generating companies,Renewables,2020,Nothern Ireland,4406.93
+All generating companies,Hydro natural flow,2020,Nothern Ireland,38.14
+All generating companies,Wind,2020,Nothern Ireland,3263.53
+All generating companies,Solar,2020,Nothern Ireland,292.34
+All generating companies,Shoreline wave and tidal,2020,Nothern Ireland,0
+All generating companies,Bioenergy,2020,Nothern Ireland,812.92
+All generating companies,Other fuels,2020,Nothern Ireland,17.7474
+All generating companies,Pumped storage,2020,Nothern Ireland,0
+All generating companies,Total all generating companies,2020,Nothern Ireland,9671.0217
+Major power producers,Coal,2020,England,4436.2193
+Major power producers,Oil,2020,England,340.3288
+Major power producers,Gas,2020,England,78431.8354
+Major power producers,Nuclear,2020,England,36927.2215
+Major power producers,Hydro natural flow,2020,England,28.4814
+Major power producers,Wind,2020,England,40177.8117
+Major power producers,Solar,2020,England,3658.0704
+Major power producers,Bioenergy,2020,England,21144.9245
+Major power producers,Other fuels,2020,England,1433.19
+Major power producers,Hydro pumped storage,2020,England,0
+Major power producers,Total major power producers,2020,England,186578.0829
+Other generators,Coal,2020,England,19.1939
+Other generators,Oil,2020,England,634.2915
+Other generators,Gas,2020,England,9865.5509
+Other generators,Hydro natural flow,2020,England,125.2786
+Other generators,Wind,2020,England,2871.1883
+Other generators,Solar,2020,England,7791.9596
+Other generators,Shoreline wave and tidal,2020,England,0
+Other generators,Bioenergy,2020,England,13518.2055
+Other generators,Other fuels,2020,England,4632.2169
+Other generators,Total other generators,2020,England,39457.8853
+All generating companies,Fossil fuels,2020,England,93727.4198
+All generating companies,Coal,2020,England,4455.4132
+All generating companies,Oil,2020,England,974.6203
+All generating companies,Gas,2020,England,88297.3863
+All generating companies,Nuclear,2020,England,36927.2215
+All generating companies,Renewables,2020,England,89315.92
+All generating companies,Hydro natural flow,2020,England,153.76
+All generating companies,Wind,2020,England,43049
+All generating companies,Solar,2020,England,11450.03
+All generating companies,Shoreline wave and tidal,2020,England,0
+All generating companies,Bioenergy,2020,England,34663.13
+All generating companies,Other fuels,2020,England,6065.4069
+All generating companies,Pumped storage,2020,England,0
+All generating companies,Total all generating companies,2020,England,226035.9682

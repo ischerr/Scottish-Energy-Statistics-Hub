@@ -93,7 +93,7 @@ GasConsumptionOutput <- function(id) {
     fluidRow(
       column(2, HTML("<p><strong>Last Updated:</strong></p>")),
       column(2,
-             UpdatedLookup(c("SGGrowth"))),
+             UpdatedLookup(c("BEISSubNatEnergy","BEISSubNatElec","BEISSubNatGas","BEISLocalRoad"))),
       column(1, align = "right",
              HTML("<p><strong>Reason:</strong></p>")),
       column(7, align = "right", 
@@ -103,7 +103,7 @@ GasConsumptionOutput <- function(id) {
     fluidRow(
       column(2, HTML("<p><strong>Update Expected:</strong></p>")),
       column(2,
-             DateLookup(c("SGGrowth"))),
+             DateLookup(c("BEISSubNatEnergy","BEISSubNatElec","BEISSubNatGas","BEISLocalRoad"))),
       column(1, align = "right",
              HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
@@ -132,56 +132,86 @@ GasConsumption <- function(input, output, session) {
   
   output$GasConsumptionSubtitle <- renderText({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Gas consump",
-      col_names = FALSE,
-      skip = 16
-    )
+    Data <- read_csv("Processed Data/Output/Consumption/GasConsumption.csv")
     
-    names(Data) <- unlist(Data[1,])
+    Data <- Data[which(Data$`LA Code` == 'S92000003'),]
     
-    names(Data)[1] <- "Year"
+    Data <- select(Data, 
+                   Year,
+                   `Sales (GWh) - Domestic consumption`,
+                   `Sales (GWh) - Non-domestic consumption`,
+                   `Sales (GWh) - Total consumption`)
     
-    Data[1:6] %<>% lapply(function(x) as.numeric(as.character(x)))
+    names(Data) <- c("Year", "Domestic", "Non-domestic", "Total" )
     
+    DataOld <- read_csv("Structure/4 - Energy Efficiency/Demand Reduction/OldGasConsumption.csv")
+    
+    Data <- rbind(DataOld, Data)
+    
+    Data$Year <- as.numeric(Data$Year)
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
   output$GasConsumptionPlot <- renderPlotly  ({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Gas consump",
-      col_names = FALSE,
-      skip = 16
-    )
+    Data <- read_csv("Processed Data/Output/Consumption/GasConsumption.csv")
     
-    names(Data) <- unlist(Data[1,])
+    Data <- Data[which(Data$`LA Code` == 'S92000003'),]
     
-    names(Data)[1] <- "Year"
     
-    Data[1:6] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data <- select(Data, 
+                   Year,
+                   `Sales (GWh) - Domestic consumption`,
+                   `Sales (GWh) - Non-domestic consumption`,
+                   `Sales (GWh) - Total consumption`)
+    
+    names(Data) <- c("Year", "Domestic", "Non-domestic", "Total" )
+    
+    DataOld <- read_csv("Structure/4 - Energy Efficiency/Demand Reduction/OldGasConsumption.csv")
+    
+    Data <- rbind(DataOld, Data)
     
     Data$Year <- as.character(Data$Year)
     
-    Data[2,1] <- "Baseline\n2005/2007"
+    #Calculate Baseline, and remove years 2005-2007, leaving a gap for display
     
-    Data[3,1] <- ""
+    DataBaseline <- Data[1:3,]
     
-    Data[nrow(Data),1] <- "% Change\nfrom baseline"
+    DataBaseline <- DataBaseline %>% summarise_all(mean)
+    
+    DataBaseline$Year <- "2005/2007 Baseline"
+    
+    Data$Year <- as.character(Data$Year)
+    
+    Data <- rbind(DataBaseline, Data)
+    
+    Data[2,1] <- " "
+    
+    Data[2,2:4] <- NA
     
     Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
     
+    DataChange <- tail(Data,1)
+    
+    DataChange[1,1] <- "% Change from Baseline"
+    
+    DataChange[2:4] <- DataChange[2:4] / Data[1,2:4]
+    
+    DataChange[2:4] %<>% lapply(function(x) as.numeric(x-1))
+    
+    Data <- rbind(Data, DataChange)
+    
     Data$Year <- paste("<b>", Data$Year, "</b>")
     
-    Data <- Data[-1,]
+    Data <- Data[c(1,3,2,4)]
     
     Data$RowNumber <- as.numeric(rownames(Data))
     
     Data[is.na(Data)] <- 0
     
     DataTail <- tail(Data,1)
+    
     
     DataLatest <- Data[nrow(Data)-1,]
     
@@ -299,33 +329,45 @@ GasConsumption <- function(input, output, session) {
   
   output$GasConsumptionTable = renderDataTable({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Gas consump",
-      col_names = FALSE,
-      skip = 16
-    )
+    Data <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
     
-    names(Data) <- unlist(Data[1,])
+    Data <- Data[which(Data$`LA Code` == 'S92000003'),]
     
-    names(Data)[1] <- "Year"
     
-    Data[1:4] %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    Data <- select(Data, 
+                   Year,
+                   `Gas - Domestic`,
+                   `Gas - Industrial`,
+                   `Gas - Commercial`,
+                   `Gas - Total`)
+    
+    names(Data) <- c("Year", "Domestic", "Industrial estimation", "Services estimation", "Total" )
+    
+    Data$`Non-domestic` <- Data$`Industrial estimation` + Data$`Services estimation`
     
     Data$Year <- as.character(Data$Year)
     
-    Data[2,1] <- " Baseline\n2005/2007"
+    #Calculate Baseline, and remove years 2005-2007, leaving a gap for display
     
-    Data[nrow(Data),1] <- "% Change\nfrom baseline"
-  
-    Data <- Data[-1,]
+    DataBaseline <- Data[1:3,]
     
-    Data <- head(Data, -1)
+    DataBaseline <- DataBaseline %>% summarise_all(mean)
+    
+    DataBaseline$Year <- "2005/2007 Baseline"
+    
+    Data$Year <- as.character(Data$Year)
+    
+    Data <- rbind(DataBaseline, Data)
+    
+    Data[2,1] <- " "
+    
+    Data[2,2:4] <- NA
     
     Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
     
     datatable(
-      Data,
+      Data[c(1,2,6,4,3,5)],
       extensions = 'Buttons',
       
       rownames = FALSE,
@@ -389,22 +431,53 @@ GasConsumption <- function(input, output, session) {
     content = function(file) {
 
 
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Gas consump", skip = 17, col_names = FALSE)[c(1,3,2,6)]
+      Data <- read_csv("Processed Data/Output/Consumption/GasConsumption.csv")
       
-      Data[1,1] <- "2006"
+      Data <- Data[which(Data$`LA Code` == 'S92000003'),]
       
-      names(Data) <- c("Year", "Non-domestic", "Domestic", "Total")
       
-      Data <- Data[complete.cases(Data),]
       
-      Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE)+1)
+      Data <- select(Data, 
+                     Year,
+                     `Sales (GWh) - Domestic consumption`,
+                     `Sales (GWh) - Non-domestic consumption`,
+                     `Sales (GWh) - Total consumption`)
       
-      Data$Year <- as.numeric(Data$Year)
+      names(Data) <- c("Year", "Domestic", "Non-domestic", "Total" )
       
-      Data <- Data[-c(2,3,4),]
+      DataOld <- read_csv("Structure/4 - Energy Efficiency/Demand Reduction/OldGasConsumption.csv")
       
-      GasConsumptiontion <- Data
+      Data <- rbind(DataOld, Data)
+      
+      #Calculate Baseline, and remove years 2005-2007, leaving a gap for display
+      
+      DataBaseline <- Data[1:3,]
+      
+      DataBaseline <- DataBaseline %>% summarise_all(mean)
+      
+      DataBaseline$Year <- 2006
+      
+      Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
+      
+      Data <- rbind(DataBaseline, Data)
+      
+      DataChange <- tail(Data,1)
+      
+      DataChange[1,1] <- max(Data$Year)+1
+      
+      DataChange[2:4] <- DataChange[2:4] / Data[1,2:4]
+      
+      DataChange[2:4] %<>% lapply(function(x) as.numeric(x-1))
+      
+      Data <- rbind(Data, DataChange)
+      
+      Data <- Data[c(1,3,2,4)]
+      
+      Data$RowNumber <- as.numeric(rownames(Data))
+      
+      Data[is.na(Data)] <- 0
+      
+      GasConsumptiontion <- Data[c(1,3,2,4)]
       
       GasConsumptiontion <- GasConsumptiontion[order(-GasConsumptiontion$Year),]
       
@@ -607,52 +680,80 @@ GasConsumption <- function(input, output, session) {
   
   output$GasConsumptionHHoldSubtitle <- renderText({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Gas consump by household",
-      col_names = FALSE,
-      skip = 12
-    )
-
-        names(Data) <- unlist(Data[1,])
+    Data <- read_csv("Processed Data/Output/Consumption/GasConsumption.csv")
     
-    names(Data)[1] <- "Year"
+    Data <- Data[which(Data$`LA Code` == 'S92000003'),]
     
-    Data %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data <- select(Data, 
+                   Year,
+                   `Averages - Domestic - Mean consumption`)
+    
+    names(Data) <- c("Year", "Consumption" )
+    
+    DataOld <- read_csv("Structure/4 - Energy Efficiency/Demand Reduction/OldGasHHoldConsumption.csv")
+    
+    Data <- rbind(DataOld, Data)
+    
     
     paste("Scotland,", min(Data$Year, na.rm = TRUE),"-", max(Data$Year, na.rm = TRUE))
   })
   
   output$GasConsumptionHHoldPlot <- renderPlotly  ({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Gas consump by household",
-      col_names = FALSE,
-      skip = 13
-    )
+    Data <- read_csv("Processed Data/Output/Consumption/GasConsumption.csv")
     
-    names(Data) <- c("Year", "Consumption")
+    Data <- Data[which(Data$`LA Code` == 'S92000003'),]
     
-    Data[1:2] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data <- select(Data, 
+                   Year,
+                   `Averages - Domestic - Mean consumption`)
+    
+    names(Data) <- c("Year", "Consumption" )
+    
+    DataOld <- read_csv("Structure/4 - Energy Efficiency/Demand Reduction/OldGasHHoldConsumption.csv")
+    
+    Data <- rbind(DataOld, Data)
     
     Data$Year <- as.character(Data$Year)
     
-    Data[1,1] <- "Baseline\n2005/2007"
+    #Calculate Baseline, and remove years 2005-2007, leaving a gap for display
+    
+    DataBaseline <- Data[1:3,]
+    
+    DataBaseline <- DataBaseline %>% summarise_all(mean)
+    
+    DataBaseline$Year <- "2005/2007 Baseline"
+    
+    Data$Year <- as.character(Data$Year)
+    
+    Data <- rbind(DataBaseline, Data)
     
     Data[2,1] <- " "
     
-    Data[nrow(Data),1] <- "% Change\nfrom baseline"
+    Data[2,2] <- NA
     
     Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
     
+    DataChange <- tail(Data,1)
+    
+    DataChange[1,1] <- "% Change from Baseline"
+    
+    DataChange[2] <- DataChange[2] / Data[1,2]
+    
+    DataChange[2] %<>% lapply(function(x) as.numeric(x-1))
+    
+    Data <- rbind(Data, DataChange)
+    
     Data$Year <- paste("<b>", Data$Year, "</b>")
+    
+    Data <- Data[c(1,2)]
     
     Data$RowNumber <- as.numeric(rownames(Data))
     
     Data[is.na(Data)] <- 0
     
     DataTail <- tail(Data,1)
+    
     
     DataLatest <- Data[nrow(Data)-1,]
     
@@ -735,27 +836,37 @@ GasConsumption <- function(input, output, session) {
   
   output$GasConsumptionHHoldTable = renderDataTable({
     
-    Data <- read_excel(
-      "Structure/CurrentWorking.xlsx",
-      sheet = "Gas consump by household",
-      col_names = FALSE,
-      skip = 13
-    )
+    Data <- read_csv("Processed Data/Output/Consumption/GasConsumption.csv")
     
-    names(Data) <- c("Year", "Consumption")
+    Data <- Data[which(Data$`LA Code` == 'S92000003'),]
     
-    Data[1:2] %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data <- select(Data, 
+                   Year,
+                   `Averages - Domestic - Mean consumption`)
+    
+    names(Data) <- c("Year", "Consumption" )
+    
+    DataOld <- read_csv("Structure/4 - Energy Efficiency/Demand Reduction/OldGasHHoldConsumption.csv")
+    
+    Data <- rbind(DataOld, Data)
     
     Data$Year <- as.character(Data$Year)
     
-    Data[1,1] <- "Baseline\n2005/2007"
+    #Calculate Baseline, and remove years 2005-2007, leaving a gap for display
     
+    DataBaseline <- Data[1:3,]
     
-    Data[nrow(Data),1] <- "% Change\nfrom baseline"
+    DataBaseline <- DataBaseline %>% summarise_all(mean)
     
-    Data<- Data[seq(dim(Data)[1],1),]
+    DataBaseline$Year <- "2005/2007 Baseline"
     
-    Data <- Data[-1,]
+    Data$Year <- as.character(Data$Year)
+    
+    Data <- rbind(DataBaseline, Data)
+    
+    Data[2,1] <- " "
+    
+    Data[2,2] <- NA
     
     Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
     
@@ -802,23 +913,49 @@ GasConsumption <- function(input, output, session) {
     filename = "GasConsumptionHHold.png",
     content = function(file) {
       
+      Data <- read_csv("Processed Data/Output/Consumption/GasConsumption.csv")
       
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Gas consump by household", skip = 13, col_names = FALSE)
+      Data <- Data[which(Data$`LA Code` == 'S92000003'),]
       
-      Data[1,1] <- "2006"
       
-      names(Data) <- c("Year", "Consumption")
       
-      Data <- Data[complete.cases(Data),]
+      Data <- select(Data, 
+                     Year,
+                     `Averages - Domestic - Mean consumption`)
       
-      Data[nrow(Data),1] <- as.character(max(as.numeric(Data$Year),na.rm = TRUE)+1)
+      names(Data) <- c("Year", "Consumption" )
       
-      Data$Total <- Data$Consumption
+      DataOld <- read_csv("Structure/4 - Energy Efficiency/Demand Reduction/OldGasHHoldConsumption.csv")
       
-      Data$Year <- as.numeric(Data$Year)
+      Data <- rbind(DataOld, Data)
       
-      Data <- Data[-c(2,3,4),]
+      #Calculate Baseline, and remove years 2005-2007, leaving a gap for display
+      
+      DataBaseline <- Data[1:3,]
+      
+      DataBaseline <- DataBaseline %>% summarise_all(mean)
+      
+      DataBaseline$Year <- 2006
+      
+      Data = subset(Data, !(Data$Year %in% c(2005, 2006, 2007)))
+      
+      Data <- rbind(DataBaseline, Data)
+      
+      DataChange <- tail(Data,1)
+      
+      DataChange[1,1] <- max(Data$Year)+1
+      
+      DataChange[2] <- DataChange[2] / Data[1,2]
+      
+      DataChange[2] %<>% lapply(function(x) as.numeric(x-1))
+      
+      Data <- rbind(Data, DataChange)
+      
+      Data <- Data[c(1,2)]
+      
+      Data$RowNumber <- as.numeric(rownames(Data))
+      
+      Data[is.na(Data)] <- 0
       
       GasConsumptionHHold <- Data
       

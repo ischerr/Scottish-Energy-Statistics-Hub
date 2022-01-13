@@ -165,23 +165,9 @@ EnEconomy <- function(input, output, session) {
   
   output$EnergySectorEmploymentSubtitle <- renderText({
     
-    EnergySectorEmployment <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Energy economy",
-        col_names = FALSE,
-        skip = 12,
-        n_max = 4
-      )
+    EnergySectorEmployment <- read_csv("Processed Data/Output/Growth Sector/GrowthSector.csv")[1:3]
     
-    EnergySectorEmployment <- as.data.frame(t(EnergySectorEmployment))
     
-    EnergySectorEmployment <-
-      tail(EnergySectorEmployment[c(1, 3:4)], -1)
-    EnergySectorEmployment %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    EnergySectorEmployment <- as.data.frame(EnergySectorEmployment)
-    EnergySectorEmployment[EnergySectorEmployment == 0] <- NA
     names(EnergySectorEmployment) <-
       c("Year", "Excluding PAYE", "Including PAYE")
     
@@ -194,23 +180,9 @@ EnEconomy <- function(input, output, session) {
   
   output$EnergySectorEmploymentPlot <- renderPlotly  ({
     
-    EnergySectorEmployment <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Energy economy",
-        col_names = FALSE,
-        skip = 12,
-        n_max = 4
-      )
+    EnergySectorEmployment <- read_csv("Processed Data/Output/Growth Sector/GrowthSector.csv")[1:3]
     
-    EnergySectorEmployment <- as.data.frame(t(EnergySectorEmployment))
     
-    EnergySectorEmployment <-
-      tail(EnergySectorEmployment[c(1, 3:4)], -1)
-    EnergySectorEmployment %<>% lapply(function(x)
-      as.numeric(as.character(x)))
-    EnergySectorEmployment <- as.data.frame(EnergySectorEmployment)
-    EnergySectorEmployment[EnergySectorEmployment == 0] <- NA
     names(EnergySectorEmployment) <-
       c("Year", "Excluding PAYE", "Including PAYE")
     
@@ -305,16 +277,8 @@ EnEconomy <- function(input, output, session) {
   
   output$EnergySectorTurnoverSubtitle <- renderText({
     
-    EnergySectorTurnover <- read_excel("Structure/CurrentWorking.xlsx", 
-                                       sheet = "Energy economy", col_names = FALSE, 
-                                       skip = 12, n_max = 9)
+    EnergySectorTurnover <- read_csv("Processed Data/Output/Growth Sector/GrowthSector.csv")[c(1,4)]
     
-    EnergySectorTurnover <- as.data.frame(t(EnergySectorTurnover))
-    
-    EnergySectorTurnover <- tail(EnergySectorTurnover[c(1,5)],-1)
-    EnergySectorTurnover %<>% lapply(function(x) as.numeric(as.character(x)))
-    EnergySectorTurnover[2] %<>% lapply(function(x) x/1000)
-    EnergySectorTurnover <- as_tibble(EnergySectorTurnover)
     names(EnergySectorTurnover) <- c("Year", "Turnover")
     
     EnergySectorTurnover <- EnergySectorTurnover[which(EnergySectorTurnover$Year >= 2008),]
@@ -333,17 +297,11 @@ EnEconomy <- function(input, output, session) {
   
   output$EnergySectorTurnoverPlot <- renderPlotly  ({
     
-    EnergySectorTurnover <- read_excel("Structure/CurrentWorking.xlsx", 
-                                       sheet = "Energy economy", col_names = FALSE, 
-                                       skip = 12, n_max = 9)
+    EnergySectorTurnover <- read_csv("Processed Data/Output/Growth Sector/GrowthSector.csv")[c(1,4)]
     
-    EnergySectorTurnover <- as.data.frame(t(EnergySectorTurnover))
-    
-    EnergySectorTurnover <- tail(EnergySectorTurnover[c(1,5)],-1)
-    EnergySectorTurnover %<>% lapply(function(x) as.numeric(as.character(x)))
-    EnergySectorTurnover[2] %<>% lapply(function(x) x/1000)
-    EnergySectorTurnover <- as_tibble(EnergySectorTurnover)
     names(EnergySectorTurnover) <- c("Year", "Turnover")
+    
+    EnergySectorTurnover$Turnover <- EnergySectorTurnover$Turnover/1000
     
     EnergySectorTurnover <- EnergySectorTurnover[which(EnergySectorTurnover$Year >= 2008),]
     
@@ -424,15 +382,8 @@ EnEconomy <- function(input, output, session) {
   })
   
   output$EnergySectorGVASubtitle <- renderText({
-    EnergySectorGVA <- read_excel("Structure/CurrentWorking.xlsx", 
-                                  sheet = "Energy economy", col_names = FALSE, 
-                                  skip = 12, n_max = 9)
+    EnergySectorGVA <- read_csv("Processed Data/Output/Growth Sector/GrowthSector.csv")[c(1,5)]
     
-    EnergySectorGVA <- as.data.frame(t(EnergySectorGVA))
-    
-    EnergySectorGVA <- tail(EnergySectorGVA[c(1,6)],-1)
-    EnergySectorGVA %<>% lapply(function(x) as.numeric(as.character(x)))
-    EnergySectorGVA <- as.data.frame(EnergySectorGVA)
     names(EnergySectorGVA) <- c("Year", "GVA")
     
     EnergySectorGVA <- EnergySectorGVA[which(EnergySectorGVA$Year >= 2008),]
@@ -450,15 +401,8 @@ EnEconomy <- function(input, output, session) {
   
   output$EnergySectorGVAPlot <- renderPlotly  ({
     
-    EnergySectorGVA <- read_excel("Structure/CurrentWorking.xlsx", 
-                                  sheet = "Energy economy", col_names = FALSE, 
-                                  skip = 12, n_max = 9)
+    EnergySectorGVA <- read_csv("Processed Data/Output/Growth Sector/GrowthSector.csv")[c(1,5)]
     
-    EnergySectorGVA <- as.data.frame(t(EnergySectorGVA))
-    
-    EnergySectorGVA <- tail(EnergySectorGVA[c(1,6)],-1)
-    EnergySectorGVA %<>% lapply(function(x) as.numeric(as.character(x)))
-    EnergySectorGVA <- as.data.frame(EnergySectorGVA)
     names(EnergySectorGVA) <- c("Year", "GVA")
     
     EnergySectorGVA <- EnergySectorGVA[which(EnergySectorGVA$Year >= 2008),]
@@ -545,15 +489,8 @@ EnEconomy <- function(input, output, session) {
     filename = "EnergySectorGVA.png",
     content = function(file) {
       
-      EnergySectorGVA <- read_excel("Structure/CurrentWorking.xlsx", 
-                                    sheet = "Energy economy", col_names = FALSE, 
-                                    skip = 12, n_max = 9)
+      EnergySectorGVA <- read_csv("Processed Data/Output/Growth Sector/GrowthSector.csv")[c(1,5)]
       
-      EnergySectorGVA <- as.data.frame(t(EnergySectorGVA))
-      
-      EnergySectorGVA <- tail(EnergySectorGVA[c(1,6)],-1)
-      EnergySectorGVA %<>% lapply(function(x) as.numeric(as.character(x)))
-      EnergySectorGVA <- as.data.frame(EnergySectorGVA)
       names(EnergySectorGVA) <- c("Year", "GVA")
       
       EnergySectorGVA <- EnergySectorGVA[which(EnergySectorGVA$Year >= 2008),]
@@ -818,27 +755,12 @@ EnEconomy <- function(input, output, session) {
   })
   
   output$EnEconomyTable = renderDataTable({
-    EnergySectorExports <- read_excel("Structure/CurrentWorking.xlsx", 
-                                      sheet = "Energy economy", col_names = FALSE, 
-                                      skip = 12, n_max = 9)
+    EnergySectorExports <- read_csv("Processed Data/Output/Growth Sector/GrowthSector.csv")
     
-    EnergySectorExports[1,1] <- "Year"
+    EnergySectorExports$Turnover <- EnergySectorExports$Turnover/1000
     
-    EnergySectorExports <- as.data.frame(t(EnergySectorExports))
+    EnergySectorExports$GVA <- EnergySectorExports$GVA/1000
     
-    EnergySectorExports <- EnergySectorExports[c(1,3:9)]
-    
-    names(EnergySectorExports) <- as.character(unlist(EnergySectorExports[1,]))
-    
-    EnergySectorExports <- EnergySectorExports[-1,]
-    
-    EnergySectorExports %<>% lapply(function(x) as.numeric(as.character(x)))
-    
-    EnergySectorExports[4:8] %<>% lapply(function(x) x/1000)
-    
-    EnergySectorExports <- as_tibble(EnergySectorExports)
-    
-    EnergySectorExports[EnergySectorExports == 0] <- NA
     
     GrowthExports <- read_delim("Processed Data/Output/Growth Exports/GrowthExports.txt", 
                                 "\t", escape_double = FALSE, trim_ws = TRUE)
@@ -917,16 +839,11 @@ EnEconomy <- function(input, output, session) {
     filename = "EnergySectorEmployment.png",
     content = function(file) {
       
-      EnergySectorEmployment <- read_excel("Structure/CurrentWorking.xlsx", 
-                                           sheet = "Energy economy", col_names = FALSE, 
-                                           skip = 12, n_max = 9)
+      EnergySectorEmployment <- read_csv("Processed Data/Output/Growth Sector/GrowthSector.csv")[1:3]
       
-      EnergySectorEmployment <- as.data.frame(t(EnergySectorEmployment))
       
-      EnergySectorEmployment <- tail(EnergySectorEmployment[c(1,3,4)],-1)
-      EnergySectorEmployment %<>% lapply(function(x) as.numeric(as.character(x)))
-      EnergySectorEmployment <- as.data.frame(EnergySectorEmployment)
-      names(EnergySectorEmployment) <- c("Year", "Excluding PAYE", "Including PAYE")
+      names(EnergySectorEmployment) <-
+        c("Year", "Excluding PAYE", "Including PAYE")
       
       EnergySectorEmployment <- EnergySectorEmployment[which(EnergySectorEmployment$Year >= 2009),]
       
@@ -1114,15 +1031,8 @@ EnEconomy <- function(input, output, session) {
   output$EnergySectorTurnover.png <- downloadHandler(
     filename = "EnergySectorTurnover.png",
     content = function(file) {
-      EnergySectorTurnover <- read_excel("Structure/CurrentWorking.xlsx", 
-                                         sheet = "Energy economy", col_names = FALSE, 
-                                         skip = 12, n_max = 9)
+      EnergySectorTurnover <- read_csv("Processed Data/Output/Growth Sector/GrowthSector.csv")[c(1,4)]
       
-      EnergySectorTurnover <- as.data.frame(t(EnergySectorTurnover))
-      
-      EnergySectorTurnover <- tail(EnergySectorTurnover[c(1,5)],-1)
-      EnergySectorTurnover %<>% lapply(function(x) as.numeric(as.character(x)))
-      EnergySectorTurnover <- as.data.frame(EnergySectorTurnover)
       names(EnergySectorTurnover) <- c("Year", "Turnover")
       
       EnergySectorTurnover <- EnergySectorTurnover[which(EnergySectorTurnover$Year >= 2008),]

@@ -107,28 +107,18 @@ EnConsumption <- function(input, output, session) {
   
   output$EnConsumptionSubtitle <- renderText({
     
-    EnConsumption <- read_excel("Structure/CurrentWorking.xlsx",
-                          sheet = "Energy consump by sector", col_names = TRUE, 
-                          skip = 21)
-    
-    EnConsumption <- EnConsumption[2:6]
-    
-    EnConsumption <- EnConsumption[complete.cases(EnConsumption),]
-    
-    names(EnConsumption) <- c("Year", "Heat", "Transport", "Electricity", "Other")
+    EnConsumption <- read_csv("Processed Data/Output/Consumption/RenEnTgt.csv")
     
     paste("Scotland,",max(as.numeric(EnConsumption$Year), na.rm = TRUE))
   })
  
   output$EnConsumptionPlot <- renderPlotly  ({
     
-    EnConsumption <- read_excel("Structure/CurrentWorking.xlsx",
-                               sheet = "Energy consump by sector", col_names = TRUE, 
-                               skip = 21)
+    EnConsumption <- read_csv("Processed Data/Output/Consumption/RenEnTgt.csv")
     
-    EnConsumption <- EnConsumption[2:6]
+    EnConsumption$Other <- EnConsumption$`Adjusted Consumption` - EnConsumption$`Gross Electricity Consumption` - EnConsumption$`Heat Consumption` - EnConsumption$`Consuming Sector - Transport`
     
-    EnConsumption <- EnConsumption[complete.cases(EnConsumption),]
+    EnConsumption <- select(EnConsumption, Year, `Heat Consumption`, `Consuming Sector - Transport`, `Gross Electricity Consumption`, Other)
     
     names(EnConsumption) <- c("Year", "Heat", "Transport", "Electricity", "Other")
     
@@ -189,13 +179,11 @@ EnConsumption <- function(input, output, session) {
   
   output$EnConsumptionTable = renderDataTable({
     
-    EnConsumption <- read_excel("Structure/CurrentWorking.xlsx",
-                               sheet = "Energy consump by sector", col_names = TRUE, 
-                               skip = 21)
+    EnConsumption <- read_csv("Processed Data/Output/Consumption/RenEnTgt.csv")
     
-    EnConsumption <- EnConsumption[2:6]
+    EnConsumption$Other <- EnConsumption$`Adjusted Consumption` - EnConsumption$`Gross Electricity Consumption` - EnConsumption$`Heat Consumption` - EnConsumption$`Consuming Sector - Transport`
     
-    EnConsumption <- EnConsumption[complete.cases(EnConsumption),]
+    EnConsumption <- select(EnConsumption, Year, `Heat Consumption`, `Consuming Sector - Transport`, `Gross Electricity Consumption`, Other)
     
     names(EnConsumption) <- c("Year", "Heat", "Transport", "Gross electricity consumption", "Other")
     
@@ -276,13 +264,11 @@ file)
   
   output$EnConsumptionDomNonDomPlot <- renderPlotly  ({
     
-    EnConsumptionDomNonDom <- read_excel("Structure/CurrentWorking.xlsx",
-                                        sheet = "Energy consump by sector", col_names = TRUE, 
-                                        skip = 21)
+    EnConsumptionDomNonDom <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
     
-    EnConsumptionDomNonDom <- EnConsumptionDomNonDom[c(2,14,15) ]
+    EnConsumptionDomNonDom <- EnConsumptionDomNonDom[which(EnConsumptionDomNonDom$`LA Code`== "S92000003"),]
     
-    EnConsumptionDomNonDom <- EnConsumptionDomNonDom[complete.cases(EnConsumptionDomNonDom),]
+    EnConsumptionDomNonDom <- select(EnConsumptionDomNonDom, Year, `Consuming Sector - Domestic`, `Consuming Sector - Industry & Commercial`)
     
     names(EnConsumptionDomNonDom) <- c("Year", "Domestic", "Non-domestic")
     
@@ -352,28 +338,38 @@ file)
   
   output$EnConsumptionDomNonDomSubtitle <- renderText({
     
-    EnConsumption <- read_excel("Structure/CurrentWorking.xlsx",
-                               sheet = "Energy consump by sector", col_names = TRUE, 
-                               skip = 21)
+    EnConsumptionDomNonDom <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
     
-    EnConsumption <- EnConsumption[2:6]
+    EnConsumptionDomNonDom <- EnConsumptionDomNonDom[which(EnConsumptionDomNonDom$`LA Code`== "S92000003"),]
     
-    EnConsumption <- EnConsumption[complete.cases(EnConsumption),]
+    EnConsumptionDomNonDom <- select(EnConsumptionDomNonDom, Year, `Consuming Sector - Domestic`, `Consuming Sector - Industry & Commercial`)
     
-    names(EnConsumption) <- c("Year", "Heat", "Transport", "Electricity", "Other")
+    names(EnConsumptionDomNonDom) <- c("Year", "Domestic", "Non-domestic")
     
-    paste(max(as.numeric(EnConsumption$Year), na.rm = TRUE))
+    paste(max(as.numeric(EnConsumptionDomNonDom$Year), na.rm = TRUE))
   })
   
   output$EnConsumptionDomNonDomTable = renderDataTable({
     
-    EnConsumptionDomNonDom <- read_excel("Structure/CurrentWorking.xlsx",
-                               sheet = "Energy consump by sector", col_names = TRUE, 
-                               skip = 21)
+    EnConsumptionDomNonDom <- read_csv("Processed Data/Output/Consumption/TotalFinalConsumption.csv")
     
-    EnConsumptionDomNonDom <- EnConsumptionDomNonDom[c(2,10:15)]
+    EnConsumptionDomNonDom <- EnConsumptionDomNonDom[which(EnConsumptionDomNonDom$`LA Code`== "S92000003"),]
     
-    EnConsumptionDomNonDom <- EnConsumptionDomNonDom[complete.cases(EnConsumptionDomNonDom),]
+    EnConsumptionDomNonDom$NonDomElec <- EnConsumptionDomNonDom$`Electricity - Industrial` + EnConsumptionDomNonDom$`Electricity - Commercial`
+    
+    EnConsumptionDomNonDom <- select(EnConsumptionDomNonDom, Year,`Electricity - Domestic`, `Electricity - Industrial & Commercial`, `Consuming Sector - Domestic`, `NonDomElec`)
+    
+    HeatConsumptionbyLA <- read_csv("Processed Data/Output/Consumption/HeatConsumptionbyLA.csv")
+    
+    HeatConsumptionbyLA <- HeatConsumptionbyLA[which(HeatConsumptionbyLA$`LA Code`== "S92000003"),]
+    
+    HeatConsumptionbyLA$Domestic <- HeatConsumptionbyLA$`Coal - Domestic` + HeatConsumptionbyLA$`Manufactured fuels - Domestic`+HeatConsumptionbyLA$`Petroleum products - Domestic` + HeatConsumptionbyLA$`Gas - Domestic` + HeatConsumptionbyLA$`Bioenergy & wastes - Domestic`
+  
+    HeatConsumptionbyLA$NonDomestic <- HeatConsumptionbyLA$Total - HeatConsumptionbyLA$Domestic
+    
+    HeatConsumptionbyLA <- select(HeatConsumptionbyLA, Year, `Domestic`, `NonDomestic`)
+    
+    EnConsumptionDomNonDom <- merge(HeatConsumptionbyLA, EnConsumptionDomNonDom)
     
     names(EnConsumptionDomNonDom) <- c("Year", "Heat - Domestic", "Heat - Non-Domestic ", "Electricity - Domestic", "Electricity - Non-Domestic ", "Total - Domestic", "Toal - Non-Domestic ")
     

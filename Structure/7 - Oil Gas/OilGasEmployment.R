@@ -104,7 +104,22 @@ OilGasEmployment <- function(input, output, session) {
   
   output$OilGasEmploymentSubtitle <- renderText({
     
-    paste("Scotland, 2015 - 2019")
+    Data <-
+      read_excel(
+        "Structure/CurrentWorking.xlsx",
+        sheet = "Oil and gas employment", col_names = FALSE, 
+        skip = 12,
+        n_max = 6)
+    
+    Data <- as_tibble(t(Data))
+    
+    names(Data) <- unlist(Data[1,])
+    
+    names(Data)[1] <- "Year"
+    
+    Data %<>% lapply(function(x) as.numeric(as.character(x)))
+    
+    paste("Scotland, 2015 -", max(Data$Year, na.rm = TRUE))
 
       })
   
@@ -242,7 +257,7 @@ OilGasEmployment <- function(input, output, session) {
   
   output$OilGasEmploymentRegionSubtitle <- renderText({
     
-    paste("2018")
+    paste("2021")
     
   })
   

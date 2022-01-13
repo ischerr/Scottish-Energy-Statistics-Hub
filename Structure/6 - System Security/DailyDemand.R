@@ -112,21 +112,9 @@ DailyDemand <- function(input, output, session) {
     print("Energy daily demand")
     ###### Daily Demand  #####
     
-    # DailyDemand <-
-    #   read_csv(
-    #     "J:/ENERGY BRANCH/Statistics/Energy Strategy - Stats Publication/2019/Graphs/Data/DailyDemand.csv"
-    #   )
+    DailyDemand <- read_csv("Processed Data/Output/Daily Demand/DailyDemand.csv")
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "DailyDemandWorking")[c(1,2,4,3)]
-    
-    names(Data) <- c("Year", "Gas", "Transport", "Electricity")
-    
-    Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
-    
-    DailyDemand <- Data
-    
-    paste("Scotland,", format(min(DailyDemand$Year),"%B %Y"),"-", format(max(DailyDemand$Year),"%B %Y"))
+    paste("Scotland,", format(min(DailyDemand$Date),"%B %Y"),"-", format(max(DailyDemand$Date),"%B %Y"))
   })
   
   output$DailyDemandPlot <- renderPlotly  ({
@@ -143,14 +131,11 @@ DailyDemand <- function(input, output, session) {
     #     "J:/ENERGY BRANCH/Statistics/Energy Strategy - Stats Publication/2019/Graphs/Data/DailyDemand.csv"
     #   )
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "DailyDemandWorking")[c(1,2,4,3)]
+    DailyDemand <- read_csv("Processed Data/Output/Daily Demand/DailyDemand.csv")
     
-    names(Data) <- c("Year", "Gas", "Transport", "Electricity")
+    DailyDemand$Year <- as.Date(DailyDemand$Date, format = "%d/%m/%Y")
     
-    Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
     
-    DailyDemand <- Data
     
     ### variables
     ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
@@ -263,16 +248,11 @@ DailyDemand <- function(input, output, session) {
     #     "J:/ENERGY BRANCH/Statistics/Energy Strategy - Stats Publication/2019/Graphs/Data/DailyDemandRolling.csv"
     #   )
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "DailyDemandWorking")[c(1,5,7,6)]
+    DailyDemand <- read_csv("Processed Data/Output/Daily Demand/DailyDemand.csv")[c(1,5,6,7)]
     
-    names(Data) <- c("Year", "Gas", "Transport", "Electricity")
+    DailyDemandRolling <- DailyDemand[which(DailyDemand$Date >= as.Date("2014-01-01")),]
     
-    Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
-    
-    DailyDemandRolling <- Data[complete.cases(Data),]
-    
-    paste("Scotland,", format(min(DailyDemandRolling$Year),"%B %Y"),"-", format(max(DailyDemandRolling$Year),"%B %Y"))
+    paste("Scotland,", format(min(DailyDemandRolling$Date),"%B %Y"),"-", format(max(DailyDemandRolling$Date),"%B %Y"))
   })
   
   output$DailyDemandRollingPlot <- renderPlotly  ({
@@ -289,14 +269,15 @@ DailyDemand <- function(input, output, session) {
     #     "J:/ENERGY BRANCH/Statistics/Energy Strategy - Stats Publication/2019/Graphs/Data/DailyDemandRolling.csv"
     #   )
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "DailyDemandWorking")[c(1,5,7,6)]
+    DailyDemand <- read_csv("Processed Data/Output/Daily Demand/DailyDemand.csv")[c(1,5,6,7)]
     
-    names(Data) <- c("Year", "Gas", "Transport", "Electricity")
+    DailyDemandRolling <- DailyDemand[which(DailyDemand$Date >= as.Date("2014-01-01")),]
     
-    Data$Year <- as.Date(Data$Year, format = "%d/%m/%Y")
+    names(DailyDemandRolling) <- c("Year", "Gas", "Transport", "Electricity")
     
-    DailyDemandRolling <- Data[complete.cases(Data),]
+    DailyDemandRolling$Year <- as.Date(DailyDemandRolling$Year, format = "%d/%m/%Y")
+    
+    DailyDemandRolling <- DailyDemandRolling[complete.cases(DailyDemandRolling),]
     
     ### variables
     ChartColours <- c("#5d8be1", "#66c2a5", "#fc8d62", "#8da0cb")
@@ -371,8 +352,9 @@ DailyDemand <- function(input, output, session) {
   
   output$DailyDemandTable = renderDataTable({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "DailyDemandWorking")[c(1,5,7,6)]
+    Data <- read_csv("Processed Data/Output/Daily Demand/DailyDemand.csv")[c(1,5,6,7)]
+    
+    Data <- Data[which(Data$Date >= as.Date("2014-01-01")),]
     
     names(Data) <- c("Year", "Gas (Gwh)", "Transport (GWh)", "Electricity (GWh)")
     
@@ -458,8 +440,9 @@ DailyDemand <- function(input, output, session) {
       #     "J:/ENERGY BRANCH/Statistics/Energy Strategy - Stats Publication/2019/Graphs/Data/DailyDemand.csv"
       #   )
       
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "DailyDemandWorking")[c(1,2,4,3)]
+      Data <- read_csv("Processed Data/Output/Daily Demand/DailyDemand.csv")[c(1:4)]
+      
+      Data <- Data[which(Data$Date >= as.Date("2014-01-01")),]
       
       Data <- Data[complete.cases(Data),]
       
@@ -625,8 +608,9 @@ DailyDemand <- function(input, output, session) {
 output$DailyDemandRolling.png <- downloadHandler(
   filename = "DailyDemandRolling.png",
   content = function(file) {
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "DailyDemandWorking")[c(1,5,7,6)]
+    Data <- read_csv("Processed Data/Output/Daily Demand/DailyDemand.csv")[c(1,5,6,7)]
+    
+    Data <- Data[which(Data$Date >= as.Date("2014-01-01")),]
     
     names(Data) <- c("Year", "Gas", "Transport", "Electricity")
     
@@ -819,8 +803,7 @@ output$DailyDemandRolling.png <- downloadHandler(
 output$FullData <- downloadHandler(
   filename = "DailyDemandFullData.csv",
   content = function(file){
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "DailyDemandWorking")[c(1,2,4,3)]
+    Data <- read_csv("Processed Data/Output/Daily Demand/DailyDemand.csv")[c(1:4)]
     
     names(Data) <- c("Year", "Gas (GWh)", "Transport (GWh)", "Electricity (GWh)")
     

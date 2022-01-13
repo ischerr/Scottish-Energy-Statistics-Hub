@@ -135,30 +135,26 @@ GHGEmissions <- function(input, output, session) {
   
   output$GHGEmissionsPercentageReductionTargetsPlot <- renderPlotly  ({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Adjusted emissions", skip = 12)
+
+    AdjustedEmissions <- read_csv("Processed Data/Output/Greenhouse Gas/GHGSector.csv")[c(1,7)]
     
-    Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
+    #Adjust BaseYear to 1986 for chart display
+    AdjustedEmissions[nrow(AdjustedEmissions),1] <- "1986"
     
-    colnames(Data) <- as.character(unlist(Data[1,]))
-    Data = Data[-1, ]
-    Data <- setDT(Data, keep.rownames = TRUE)[]
-    Data[1,1] <- 1986
-    Data[2,1] <- 1989
-    Data[is.na(Data)] <- 0
+    BaselineValue <- AdjustedEmissions[nrow(AdjustedEmissions),2]
     
-    Data <- Data %>% unite(Targets,5:7, sep = "", remove = TRUE)
+    AdjustedEmissionsTargets <- tibble(
+      EmissionYear = c("2020", "2030", "2040", "2045"),
+      Tgt = c((as.numeric(BaselineValue)*.44),(as.numeric(BaselineValue)*.25),(as.numeric(BaselineValue)*.10),0.000000001)
+    )
     
-    Data <- as_tibble(sapply( Data, as.numeric ))
+    #Null Years mean line doesn't connect in chart
+    EmissionsDisplay <- tibble(EmissionYear = c("1987", "1991", "1996"))
     
-    Data[Data == 0] <- NA
+    AdjustedEmissions <- merge(AdjustedEmissions, AdjustedEmissionsTargets, all = TRUE)
+    AdjustedEmissions <- merge(AdjustedEmissions, EmissionsDisplay, all = TRUE)
     
-    Data <- Data[,c(1,3,5,2,4)]
-    
-    names(Data) <- c("Year", "Renewables", "Tgt", "2008Inventory", "FixedTargets")
-    
-    Data[which(Data$Year == 2045),]$Tgt <- 0.000000000000000000000000000000000000000001
-    AdjustedEmissions <- Data
+    names(AdjustedEmissions) <- c("Year", "Renewables", "Tgt")
     
     plottitle <- "Percentage reduction targets - based on adjusted emissions (MtCO2e)"
     sourcecaption <- "Source: BEIS"
@@ -171,7 +167,7 @@ GHGEmissions <- function(input, output, session) {
     
     AdjustedEmissions$YearDisplay <- as.character(format(AdjustedEmissions$Year, "%Y"))
     
-    AdjustedEmissions[1,6] <- "Baseline"
+    AdjustedEmissions[1,4] <- "Baseline"
     
     
     p <-  plot_ly(data = AdjustedEmissions,
@@ -262,69 +258,7 @@ GHGEmissions <- function(input, output, session) {
   })
   
   
-  output$GHGEmissionsTable = renderDataTable({
-    
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Adjusted emissions", skip = 12)
-    
-    Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
-    
-    colnames(Data) <- as.character(unlist(Data[1,]))
-    Data = Data[-1, ]
-    Data <- setDT(Data, keep.rownames = TRUE)[]
-    Data[1,1] <- 1990
-    Data[is.na(Data)] <- 0
-    
-    Data <- Data %>% unite(Targets,5:6, sep = "", remove = TRUE)
-    
-    Data <- as_tibble(sapply( Data, as.numeric ))
-    
-    Data <- Data[,c(1,3,5,2,4)]
-    
-    names(Data) <- c("Year", "1990 - 2016 Inventory", "Reduction Target", "1990 - 2008 Inventory", "Fixed Annual Targets")
-    
-    Data$CheckRow <- Data$`1990 - 2016 Inventory` + Data$`Reduction Target` +Data$`1990 - 2008 Inventory` + Data$`Fixed Annual Targets`
-    
-    Data <- Data[which(Data$CheckRow > 0),]
-    
-    Data[Data == 0] <- NA
-    
-    GHGEmissions <- Data[c(1,4,2,5,3)]
-    datatable(
-      GHGEmissions,
-      extensions = 'Buttons',
-     # container = sketch,
-      rownames = FALSE,
-      options = list(
-        paging = TRUE,
-        pageLength = -1,
-        searching = TRUE,
-        fixedColumns = FALSE,
-        autoWidth = TRUE,
-        ordering = TRUE,
-        order = list(list(0, 'asc')),
-        title = "Scottish Greenhouse Gas Emissions (MtCO2e)",
-        dom = 'ltBp',
-        buttons = list(
-          list(extend = 'copy'),
-          list(
-            extend = 'excel',
-            title = 'Scottish Greenhouse Gas Emissions (MtCO2e)',
-            header = TRUE
-          ),
-          list(extend = 'csv',
-               title = 'Scottish Greenhouse Gas Emissions (MtCO2e)')
-        ),
-        
-        # customize the length menu
-        lengthMenu = list( c(10, 20, -1) # declare values
-                           , c(10, 20, "All") # declare titles
-        ), # end of lengthMenu customization
-        pageLength = -1
-      )
-    ) %>%
-      formatRound(2:5, 1)
-  })
+
   
   
   
@@ -351,32 +285,33 @@ GHGEmissions <- function(input, output, session) {
   output$GHGEmissionsPercentageReductionTargets.png <- downloadHandler(
     filename = "GHGEmissionsPercentageReductionTargets.png",
     content = function(file) {
+            AdjustedEmissions <- read_csv("Processed Data/Output/Greenhouse Gas/GHGSector.csv")[c(1,7)]
       
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Adjusted emissions", skip = 12)
+      #Adjust BaseYear to 1986 for chart display
+      AdjustedEmissions[nrow(AdjustedEmissions),1] <- "1986"
       
-      Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
+      BaselineValue <- AdjustedEmissions[nrow(AdjustedEmissions),2]
       
-      colnames(Data) <- as.character(unlist(Data[1,]))
-      Data = Data[-1, ]
-      Data <- setDT(Data, keep.rownames = TRUE)[]
-      Data[1,1] <- 1986
-      Data[2,1] <- 1989
-      Data[is.na(Data)] <- 0
+      AdjustedEmissionsTargets <- tibble(
+        EmissionYear = c("2020", "2030", "2040", "2045"),
+        Tgt = c((as.numeric(BaselineValue)*.44),(as.numeric(BaselineValue)*.25),(as.numeric(BaselineValue)*.10),0.000000001)
+      )
       
-      Data <- Data %>% unite(Targets,5:7, sep = "", remove = TRUE)
+      #Null Years mean line doesn't connect in chart
+      EmissionsDisplay <- tibble(EmissionYear = c("1987", "1991", "1996"))
       
-      Data <- as_tibble(sapply( Data, as.numeric ))
+      AdjustedEmissions <- merge(AdjustedEmissions, AdjustedEmissionsTargets, all = TRUE)
+      AdjustedEmissions <- merge(AdjustedEmissions, EmissionsDisplay, all = TRUE)
       
-      Data[Data == 0] <- NA
       
-      Data <- Data[,c(1,3,5,2,4)]
       
-      names(Data) <- c("Year", "Renewables", "Tgt", "2008Inventory", "FixedTargets")
+      names(AdjustedEmissions) <- c("Year", "Renewables", "Tgt")
       
-      Data[which(Data$Year == 2045),]$Tgt <- 0.000000000000000000000000000000000000000001
+      AdjustedEmissions$Year <- as.numeric(AdjustedEmissions$Year)
       
-      AdjustedEmissions <- Data
+      AdjustedEmissions$`2008Inventory` <- 0
+      
+      
       
       plottitle <- "Greenhouse gas emissions and percentage reduction targets - based on\nadjusted emissions (MtCO2e)"
       sourcecaption <- "Source: SG"

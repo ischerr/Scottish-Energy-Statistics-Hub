@@ -1,4 +1,4 @@
-"Quarter"	"Onshore Wind"	"Offshore Wind"	"Shoreline wave / tidal"	"Solar photovoltaics"	"Small scale Hydro"	"Large scale Hydro"	"Landfill gas"	"Sewage sludge digestion"	"Energy from waste"	"Animal Biomass (non-AD)"	"Anaerobic Digestion"	"Plant Biomass"	"Total"
+"Quarter"	"Onshore Wind"	"Offshore Wind"	"Shoreline wave / tidal"	"Solar photovoltaics"	"Small scale Hydro"	"Large scale Hydro"	"Landfill gas"	"Sewage sludge digestion"	"Energy from Waste"	"Animal Biomass"	"Anaerobic Digestion"	"Plant Biomass"	"Total"
 2010 Q4	2486.16	190	2.45	2.41	135.92	1321.1	108.55	8.16	10.5	12.5	4.49	87.09	4369.33
 2011 Q1	2496.67	190	2	4.28	137.97	1339.1	112.8	9.45	10.5	12.5	9.16	85.91	4410.34
 2011 Q2	2629.3	190	2	8.84	140.97	1339.1	112.8	9.45	10.5	12.5	9.18	85.91	4550.54
@@ -40,5 +40,6 @@
 2020 Q2	8259.54	898.15	21.92	373.96	316.05	1335	115.86	7.25	69.34	12.5	53.5	258.24	11721.31
 2020 Q3	8259.54	898.15	21.92	376.37	316.05	1335	115.86	7.25	69.34	12.5	53.5	258.24	11723.72
 2020 Q4	8349.44	898.15	21.92	378.61	317.79	1335	115.86	7.25	69.34	12.5	53.73	258.24	11817.83
-2021 Q1	8403.13	898.15	21.92	378.63	318.61	1335	115.86	7.25	69.84	12.5	54.28	258.24	11873.41
-2021 Q2	8497.18	906.15	21.92	381.59	318.61	1335	115.86	7.25	69.84	12.5	54.28	258.24	11978.42
+2021 Q1	8433.48	898.15	21.92	393.42	327.13	1335	115.86	7.25	69.84	12.5	55.24	258.24	11928.03
+2021 Q2	8527.53	906.15	21.92	396.75	328.13	1335	115.86	7.25	69.84	12.5	55.24	258.24	12034.41
+2021 Q3	8670.33	906.15	21.92	400.5	328.13	1335	115.86	7.25	69.84	12.5	55.24	258.24	12180.96

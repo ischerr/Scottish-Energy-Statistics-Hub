@@ -265,11 +265,13 @@ EnBalance <- function(input, output, session) {
   output$EnBalanceTable1 = renderDT({
     
     EnBalance <- read_excel(
-      "Structure/CurrentWorking.xlsx",
+      "EnergyBalance/EnergyBalance.xlsx",
       sheet = "Energy balance",
       skip = 29,
       n_max = 11
     )
+    
+    
     names(EnBalance)[1] <- ""
     
     EnBalance <- tail(EnBalance, -1)
@@ -331,7 +333,7 @@ EnBalance <- function(input, output, session) {
   output$EnBalanceTable2 = renderDT({
     
     EnBalance <- read_excel(
-      "Structure/CurrentWorking.xlsx",
+      "EnergyBalance/EnergyBalance.xlsx",
       sheet = "Energy balance",
       skip = 29,
       n_max = 19
@@ -397,7 +399,7 @@ EnBalance <- function(input, output, session) {
   output$EnBalanceTable3 = renderDT({
     
     EnBalance <- read_excel(
-      "Structure/CurrentWorking.xlsx",
+      "EnergyBalance/EnergyBalance.xlsx",
       sheet = "Energy balance",
       skip = 29,
       n_max = 25
@@ -514,7 +516,7 @@ EnBalance <- function(input, output, session) {
     
     unit <- as.character(BalanceDropdown$Unit)
     
-    Pie1 <- read_excel("Structure/CurrentWorking.xlsx",
+    Pie1 <- read_excel("EnergyBalance/EnergyBalance.xlsx",
                        sheet = "PieChart Working", col_names = TRUE, 
                        skip = 1)
     Pie1 <- Pie1[12:13]
@@ -527,7 +529,7 @@ EnBalance <- function(input, output, session) {
     
     Pie1$TextInfo <- Pie1$Value / sum(Pie1$Value)
     
-    Pie2 <- read_excel("Structure/CurrentWorking.xlsx",
+    Pie2 <- read_excel("EnergyBalance/EnergyBalance.xlsx",
                        sheet = "PieChart Working", col_names = TRUE, 
                        skip = 1)
     Pie2 <- Pie2[15:16]
@@ -585,7 +587,7 @@ EnBalance <- function(input, output, session) {
     
     unit <- as.character(BalanceDropdown$Unit)
     
-    Pie2 <- read_excel("Structure/CurrentWorking.xlsx",
+    Pie2 <- read_excel("EnergyBalance/EnergyBalance.xlsx",
                        sheet = "PieChart Working", col_names = TRUE, 
                        skip = 1)
     Pie2 <- Pie2[15:16]
@@ -596,7 +598,7 @@ EnBalance <- function(input, output, session) {
     
     Pie2$Value <- Pie2$Value * BalanceMultipliers[which(BalanceMultipliers$Unit == unit),]$Multiplier
     
-    Pie3 <- read_excel("Structure/CurrentWorking.xlsx",
+    Pie3 <- read_excel("EnergyBalance/EnergyBalance.xlsx",
                        sheet = "PieChart Working", col_names = TRUE, 
                        skip = 1)
     Pie3 <- Pie3[18:19]
@@ -656,7 +658,7 @@ EnBalance <- function(input, output, session) {
     unit <- as.character(BalanceDropdown$Unit)
     
     
-    Pie2 <- read_excel("Structure/CurrentWorking.xlsx",
+    Pie2 <- read_excel("EnergyBalance/EnergyBalance.xlsx",
                        sheet = "PieChart Working", col_names = TRUE, 
                        skip = 1)
     Pie2 <- Pie2[15:16]
@@ -667,7 +669,7 @@ EnBalance <- function(input, output, session) {
     
     Pie2$Value <- Pie2$Value * BalanceMultipliers[which(BalanceMultipliers$Unit == unit),]$Multiplier
     
-    Pie4 <- read_excel("Structure/CurrentWorking.xlsx",
+    Pie4 <- read_excel("EnergyBalance/EnergyBalance.xlsx",
                        sheet = "PieChart Working", col_names = TRUE, 
                        skip = 1)
     Pie4 <- Pie4[21:22]
@@ -731,7 +733,7 @@ EnBalance <- function(input, output, session) {
   output$EnFlowTable1 = renderDT({
     
     EnBalance <- read_excel(
-      "Structure/CurrentWorking.xlsx",
+      "EnergyBalance/EnergyBalance.xlsx",
       sheet = "PieChart Working",
       skip = 1,
       n_max = 6
@@ -795,7 +797,7 @@ EnBalance <- function(input, output, session) {
   output$EnFlowTable2 = renderDT({
     
     EnBalance <- read_excel(
-      "Structure/CurrentWorking.xlsx",
+      "EnergyBalance/EnergyBalance.xlsx",
       sheet = "PieChart Working",
       skip = 1,
       n_max = 2
@@ -853,7 +855,7 @@ EnBalance <- function(input, output, session) {
   output$EnFlowTable3 = renderDT({
     
     EnBalance <- read_excel(
-      "Structure/CurrentWorking.xlsx",
+      "EnergyBalance/EnergyBalance.xlsx",
       sheet = "PieChart Working",
       skip = 1,
       n_max = 3
@@ -911,7 +913,7 @@ EnBalance <- function(input, output, session) {
   output$EnFlowTable4 = renderDT({
     
     EnBalance <- read_excel(
-      "Structure/CurrentWorking.xlsx",
+      "EnergyBalance/EnergyBalance.xlsx",
       sheet = "PieChart Working",
       skip = 1,
       n_max = 6

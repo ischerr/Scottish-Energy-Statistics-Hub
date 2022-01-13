@@ -149,18 +149,18 @@
 2004	"Highland"	"S12000017"	81.8	0	289.4	0	0	0	371.2
 2004	"Inverclyde"	"S12000018"	0	0	0	0	0	0	0
 2004	"Midlothian"	"S12000019"	48.4	0	0	0	0	2.2	50.6
-2004	"Moray"	"S12000020"	50.6	0	0	0	0	0	50.6
+2004	"Moray"	"S12000020"	0	0	0	0	0	0	0
 2004	"Na h-Eileanan Siar"	"S12000013"	0	0	0	0	0	0	0
 2004	"North Ayrshire"	"S12000021"	24	0	0	0	0	1.2	25.2
 2004	"North Lanarkshire"	"S12000050"	0	0	0	0	0	14.5	14.5
-2004	"Offshore"	NA	0	0	0	0	0	0	0
+2004	"Offshore"	NA	174.6	0	0	0	0	0	174.6
 2004	"Orkney Islands"	"S12000023"	9.2	0	0	0	0	0	9.2
 2004	"Perth and Kinross"	"S12000048"	0	0	47.5	0	0	1.9	49.4
 2004	"Renfrewshire"	"S12000038"	0	0	0	0	0	0	0
 2004	"Scottish Borders"	"S12000026"	92.5	0	0	0	0	0	92.5
 2004	"Shetland Islands"	"S12000027"	3.7	0	0	0	0	0	3.7
 2004	"South Ayrshire"	"S12000028"	0	0	0	0	0	0	0
-2004	"South Lanarkshire"	"S12000029"	139.6	0	0	0	0	0	139.6
+2004	"South Lanarkshire"	"S12000029"	15.6	0	0	0	0	0	15.6
 2004	"Stirling"	"S12000030"	0	0	0	0	0	0	0
 2004	"West Dunbartonshire"	"S12000039"	0	0	0	0	0	2.1	2.1
 2004	"West Lothian"	"S12000040"	0	0	0	0	0	0	0
@@ -182,18 +182,18 @@
 2005	"Highland"	"S12000017"	216.6	0	294.9	0	0	0	511.5
 2005	"Inverclyde"	"S12000018"	0	0	0	0	0	0	0
 2005	"Midlothian"	"S12000019"	48.4	0	0	0	0	4.2	52.6
-2005	"Moray"	"S12000020"	50.6	0	0	0	0	0	50.6
+2005	"Moray"	"S12000020"	0	0	0	0	0	0	0
 2005	"Na h-Eileanan Siar"	"S12000013"	0	0	0	0	0	0	0
 2005	"North Ayrshire"	"S12000021"	24	0	0	0	0	1.2	25.2
 2005	"North Lanarkshire"	"S12000050"	0	0	0	0	0	14.5	14.5
-2005	"Offshore"	NA	0	0	0	0	0	0	0
+2005	"Offshore"	NA	174.6	0	0	0	0	0	174.6
 2005	"Orkney Islands"	"S12000023"	9.2	0	0	0	0	0	9.2
 2005	"Perth and Kinross"	"S12000048"	0	0	47.5	0	0	1.9	49.4
 2005	"Renfrewshire"	"S12000038"	0	0	0	0	0	0	0
 2005	"Scottish Borders"	"S12000026"	92.5	0	0	0	0	0	92.5
 2005	"Shetland Islands"	"S12000027"	3.7	0	0	0	0	0	3.7
 2005	"South Ayrshire"	"S12000028"	0	0	0	0	0	0	0
-2005	"South Lanarkshire"	"S12000029"	139.6	0	0	0	0	0	139.6
+2005	"South Lanarkshire"	"S12000029"	15.6	0	0	0	0	0	15.6
 2005	"Stirling"	"S12000030"	0	0	0	0	0	0	0
 2005	"West Dunbartonshire"	"S12000039"	0	0	0	0	0	4.1	4.1
 2005	"West Lothian"	"S12000040"	0	0	0	0	0	0	0
@@ -215,18 +215,18 @@
 2006	"Highland"	"S12000017"	216.6	0	302.4	0	0	0	519
 2006	"Inverclyde"	"S12000018"	0	0	0	0	0	0	0
 2006	"Midlothian"	"S12000019"	48.4	0	0	0	0	6.2	54.6
-2006	"Moray"	"S12000020"	115.6	0	0	0	0	0	115.6
+2006	"Moray"	"S12000020"	0	0	0	0	0	0	0
 2006	"Na h-Eileanan Siar"	"S12000013"	3.9	0	0	0	0	0	3.9
 2006	"North Ayrshire"	"S12000021"	42	0	0	0	0	1.2	43.2
 2006	"North Lanarkshire"	"S12000050"	0	0	0	0	0	18.5	18.5
-2006	"Offshore"	NA	0	0	0	0	0	0	0
+2006	"Offshore"	NA	359.6	0	0	0	0	0	359.6
 2006	"Orkney Islands"	"S12000023"	14.2	0	0	0	0	0	14.2
 2006	"Perth and Kinross"	"S12000048"	0	0	47.5	0	0	1.9	49.4
 2006	"Renfrewshire"	"S12000038"	0	0	0	0	0	0	0
 2006	"Scottish Borders"	"S12000026"	92.5	0	0	0	0	0	92.5
 2006	"Shetland Islands"	"S12000027"	3.7	0	0	0	0	0	3.7
-2006	"South Ayrshire"	"S12000028"	120	0	0	0	0	0	120
-2006	"South Lanarkshire"	"S12000029"	139.6	0	0	0	0	7.4	147
+2006	"South Ayrshire"	"S12000028"	0	0	0	0	0	0	0
+2006	"South Lanarkshire"	"S12000029"	15.6	0	0	0	0	7.4	23
 2006	"Stirling"	"S12000030"	72	0	0	0	0	0	72
 2006	"West Dunbartonshire"	"S12000039"	0	0	0	0	0	4.1	4.1
 2006	"West Lothian"	"S12000040"	0	0	0	0	0	0	0
@@ -241,25 +241,25 @@
 2007	"East Ayrshire"	"S12000008"	13.2	0	0	0	0	6.7	19.9
 2007	"East Dunbartonshire"	"S12000045"	0	0	0	0	0	0	0
 2007	"East Lothian"	"S12000010"	0	0	0	0	0	16.2	16.2
-2007	"East Renfrewshire"	"S12000011"	328.5	0	0	0	0	0	328.5
+2007	"East Renfrewshire"	"S12000011"	6.5	0	0	0	0	0	6.5
 2007	"Falkirk"	"S12000014"	0	0	0	0	0	0	0
 2007	"Fife"	"S12000047"	0	0	0	0	0	15.5	15.5
 2007	"Glasgow City"	"S12000049"	0	0	0	0	0	6.7	6.7
 2007	"Highland"	"S12000017"	244.8	0	305.4	0	0	0	550.2
 2007	"Inverclyde"	"S12000018"	0	0	0	0	0	0	0
 2007	"Midlothian"	"S12000019"	48.4	0	0	0	0	6.2	54.6
-2007	"Moray"	"S12000020"	115.6	0	0	0	0	0	115.6
+2007	"Moray"	"S12000020"	0	0	0	0	0	0	0
 2007	"Na h-Eileanan Siar"	"S12000013"	3.9	0	0	0	0	0	3.9
 2007	"North Ayrshire"	"S12000021"	42	0	0	0	0	1.2	43.2
 2007	"North Lanarkshire"	"S12000050"	4	0	0	0	0	18.5	22.5
-2007	"Offshore"	NA	0	10	0	0	0	0	10
+2007	"Offshore"	NA	681.6	10	0	0	0	0	691.6
 2007	"Orkney Islands"	"S12000023"	14.2	0	0	0	0	0	14.2
 2007	"Perth and Kinross"	"S12000048"	0	0	47.5	0	0	1.9	49.4
 2007	"Renfrewshire"	"S12000038"	0	0	0	0	0	0	0
 2007	"Scottish Borders"	"S12000026"	121.1	0	0	0	0	0	121.1
 2007	"Shetland Islands"	"S12000027"	3.7	0	0	0	0	0	3.7
-2007	"South Ayrshire"	"S12000028"	120	0	0	0	0	0	120
-2007	"South Lanarkshire"	"S12000029"	139.6	0	0	0	0	7.4	147
+2007	"South Ayrshire"	"S12000028"	0	0	0	0	0	0	0
+2007	"South Lanarkshire"	"S12000029"	15.6	0	0	0	0	7.4	23
 2007	"Stirling"	"S12000030"	109.5	0	0	0	0	0	109.5
 2007	"West Dunbartonshire"	"S12000039"	0	0	0	0	0	4.1	4.1
 2007	"West Lothian"	"S12000040"	0	0	0	0	0	0	0
@@ -274,25 +274,25 @@
 2008	"East Ayrshire"	"S12000008"	13.2	0	0	0	0	6.7	19.9
 2008	"East Dunbartonshire"	"S12000045"	0	0	0	0	0	0	0
 2008	"East Lothian"	"S12000010"	48	0	0	0	0	16.2	64.2
-2008	"East Renfrewshire"	"S12000011"	328.5	0	0	0	0	0	328.5
+2008	"East Renfrewshire"	"S12000011"	6.5	0	0	0	0	0	6.5
 2008	"Falkirk"	"S12000014"	0	0	0	0	0	0	0
 2008	"Fife"	"S12000047"	0	0	0	0	0	15.5	15.5
 2008	"Glasgow City"	"S12000049"	0	0	0	0	0	6.7	6.7
 2008	"Highland"	"S12000017"	346.2	0	405.4	0	0	0	751.6
 2008	"Inverclyde"	"S12000018"	0	0	0	0	0	0	0
 2008	"Midlothian"	"S12000019"	48.4	0	0	0	0	6.2	54.6
-2008	"Moray"	"S12000020"	115.6	0	0	0	0	0	115.6
+2008	"Moray"	"S12000020"	0	0	0	0	0	0	0
 2008	"Na h-Eileanan Siar"	"S12000013"	3.9	0	0	0	0	0	3.9
 2008	"North Ayrshire"	"S12000021"	48	0	0	0	0	1.2	49.2
 2008	"North Lanarkshire"	"S12000050"	4	0	0	0	0	18.5	22.5
-2008	"Offshore"	NA	0	10	0	0	0	0	10
+2008	"Offshore"	NA	681.6	10	0	0	0	0	691.6
 2008	"Orkney Islands"	"S12000023"	14.2	0	0	0	1	0	15.2
 2008	"Perth and Kinross"	"S12000048"	63.8	0	47.5	0	0	1.9	113.2
 2008	"Renfrewshire"	"S12000038"	0	0	0	0	0	0	0
 2008	"Scottish Borders"	"S12000026"	121.1	0	0	0	0	0	121.1
 2008	"Shetland Islands"	"S12000027"	3.7	0	0	0	0	0	3.7
-2008	"South Ayrshire"	"S12000028"	120	0	0	0	0	0	120
-2008	"South Lanarkshire"	"S12000029"	165.6	0	0	0	0	7.4	173
+2008	"South Ayrshire"	"S12000028"	0	0	0	0	0	0	0
+2008	"South Lanarkshire"	"S12000029"	41.6	0	0	0	0	7.4	49
 2008	"Stirling"	"S12000030"	109.5	0	0	0	0	15	124.5
 2008	"West Dunbartonshire"	"S12000039"	0	0	0	0	0	4.1	4.1
 2008	"West Lothian"	"S12000040"	0	0	0	0	0	0	0
@@ -307,25 +307,25 @@
 2009	"East Ayrshire"	"S12000008"	13.2	0	0	0	0	6.7	19.9
 2009	"East Dunbartonshire"	"S12000045"	0	0	0	0	0	0	0
 2009	"East Lothian"	"S12000010"	48	0	0	0	0	16.2	64.2
-2009	"East Renfrewshire"	"S12000011"	328.5	0	0	0	0	0	328.5
+2009	"East Renfrewshire"	"S12000011"	6.5	0	0	0	0	0	6.5
 2009	"Falkirk"	"S12000014"	0	0	0	0	0	0	0
 2009	"Fife"	"S12000047"	0	0	0	0	0	15.5	15.5
 2009	"Glasgow City"	"S12000049"	0	0	0	0	0	6.7	6.7
 2009	"Highland"	"S12000017"	357	0	409.3	0	0	5	771.3
 2009	"Inverclyde"	"S12000018"	0	0	0	0	0	0	0
 2009	"Midlothian"	"S12000019"	48.4	0	0	0	0	6.2	54.6
-2009	"Moray"	"S12000020"	115.6	0	0	0	0	0	115.6
+2009	"Moray"	"S12000020"	0	0	0	0	0	0	0
 2009	"Na h-Eileanan Siar"	"S12000013"	3.9	0	0	0	0	0	3.9
 2009	"North Ayrshire"	"S12000021"	48	0	0	0	0	27.2	75.2
 2009	"North Lanarkshire"	"S12000050"	4	0	0	0	0	18.5	22.5
-2009	"Offshore"	NA	0	94	0	0	0	0	94
+2009	"Offshore"	NA	681.6	94	0	0	0	0	775.6
 2009	"Orkney Islands"	"S12000023"	16.5	0	0	0	1	0	17.5
 2009	"Perth and Kinross"	"S12000048"	63.8	0	47.5	0	0	1.9	113.2
 2009	"Renfrewshire"	"S12000038"	0	0	0	0	0	0	0
 2009	"Scottish Borders"	"S12000026"	188.9	0	0	0	0	0	188.9
 2009	"Shetland Islands"	"S12000027"	3.7	0	0	0	0	0	3.7
-2009	"South Ayrshire"	"S12000028"	120	0	0	0	0	0	120
-2009	"South Lanarkshire"	"S12000029"	171.6	0	0	0	0	7.4	179
+2009	"South Ayrshire"	"S12000028"	0	0	0	0	0	0	0
+2009	"South Lanarkshire"	"S12000029"	47.6	0	0	0	0	7.4	55
 2009	"Stirling"	"S12000030"	109.5	0	0	0	0	15	124.5
 2009	"West Dunbartonshire"	"S12000039"	0	0	0	0	0	4.1	4.1
 2009	"West Lothian"	"S12000040"	0	0	0	0	0	0	0
@@ -340,25 +340,25 @@
 2010	"East Ayrshire"	"S12000008"	13.2	0	0	0	0	6.7	19.9
 2010	"East Dunbartonshire"	"S12000045"	0	0	0	0	0	0	0
 2010	"East Lothian"	"S12000010"	48	0	0	0	0	16.2	64.2
-2010	"East Renfrewshire"	"S12000011"	328.5	0	0	0	0	0	328.5
+2010	"East Renfrewshire"	"S12000011"	6.5	0	0	0	0	0	6.5
 2010	"Falkirk"	"S12000014"	0	0	0	0	0	0	0
 2010	"Fife"	"S12000047"	0	0	0	0	0	15.5	15.5
 2010	"Glasgow City"	"S12000049"	0	0	0	0	0	6.7	6.7
 2010	"Highland"	"S12000017"	479.4	0	409.3	0	0	5	893.7
 2010	"Inverclyde"	"S12000018"	0	0	0	0	0	0	0
 2010	"Midlothian"	"S12000019"	48.4	0	0	0	0	6.2	54.6
-2010	"Moray"	"S12000020"	115.6	0	0	0	0	0	115.6
+2010	"Moray"	"S12000020"	0	0	0	0	0	0	0
 2010	"Na h-Eileanan Siar"	"S12000013"	3.9	0	0	0	0	0	3.9
 2010	"North Ayrshire"	"S12000021"	48	0	0	0	0	27.2	75.2
 2010	"North Lanarkshire"	"S12000050"	4	0	0	0	0	19.5	23.5
-2010	"Offshore"	NA	0	184	0	0	0	0	184
+2010	"Offshore"	NA	681.6	184	0	0	0	0	865.6
 2010	"Orkney Islands"	"S12000023"	24.6	0	0	0	1	0	25.6
 2010	"Perth and Kinross"	"S12000048"	63.8	0	50.5	0	0	1.9	116.2
 2010	"Renfrewshire"	"S12000038"	0	0	0	0	0	0	0
 2010	"Scottish Borders"	"S12000026"	381.2	0	0	0	0	0	381.2
 2010	"Shetland Islands"	"S12000027"	3.7	0	0	0	0	0	3.7
-2010	"South Ayrshire"	"S12000028"	120	0	0	0	0	0	120
-2010	"South Lanarkshire"	"S12000029"	171.6	0	0	0	0	7.4	179
+2010	"South Ayrshire"	"S12000028"	0	0	0	0	0	0	0
+2010	"South Lanarkshire"	"S12000029"	47.6	0	0	0	0	7.4	55
 2010	"Stirling"	"S12000030"	129.5	0	0	0	0	15	144.5
 2010	"West Dunbartonshire"	"S12000039"	0	0	0	0	0	4.1	4.1
 2010	"West Lothian"	"S12000040"	14	0	0	0	0	0	14
@@ -373,25 +373,25 @@
 2011	"East Ayrshire"	"S12000008"	13.2	0	0	0	0	6.7	19.9
 2011	"East Dunbartonshire"	"S12000045"	0	0	0	0	0	0	0
 2011	"East Lothian"	"S12000010"	48	0	0	0	0	16.2	64.2
-2011	"East Renfrewshire"	"S12000011"	328.5	0	0	0	0	0	328.5
+2011	"East Renfrewshire"	"S12000011"	6.5	0	0	0	0	0	6.5
 2011	"Falkirk"	"S12000014"	0	0	0	0	0	0	0
 2011	"Fife"	"S12000047"	3	0	0	0	0	15.5	18.5
 2011	"Glasgow City"	"S12000049"	0	0	0	0	0	6.7	6.7
 2011	"Highland"	"S12000017"	517	0	409.3	0	0	5	931.3
 2011	"Inverclyde"	"S12000018"	0	0	0	0	0	0	0
 2011	"Midlothian"	"S12000019"	48.4	0	0	0	0	6.2	54.6
-2011	"Moray"	"S12000020"	115.6	0	0	0	0	0	115.6
+2011	"Moray"	"S12000020"	0	0	0	0	0	0	0
 2011	"Na h-Eileanan Siar"	"S12000013"	3.9	0	0	0	0	0	3.9
 2011	"North Ayrshire"	"S12000021"	48	0	0	0	0	27.2	75.2
 2011	"North Lanarkshire"	"S12000050"	4	0	0	0	0	24.3	28.3
-2011	"Offshore"	NA	0	184	0	0	0	0	184
+2011	"Offshore"	NA	737.6	184	0	0	0	0	921.6
 2011	"Orkney Islands"	"S12000023"	24.6	0	0	0	1	0	25.6
 2011	"Perth and Kinross"	"S12000048"	73.4	0	51.9	0	0	1.9	127.2
 2011	"Renfrewshire"	"S12000038"	0	0	0	0	0	0	0
 2011	"Scottish Borders"	"S12000026"	381.2	0	0	0	0	0	381.2
 2011	"Shetland Islands"	"S12000027"	3.7	0	0	0	0	0	3.7
-2011	"South Ayrshire"	"S12000028"	296	0	0	0	0	0	296
-2011	"South Lanarkshire"	"S12000029"	183.9	0	0	0	0	7.4	191.3
+2011	"South Ayrshire"	"S12000028"	120	0	0	0	0	0	120
+2011	"South Lanarkshire"	"S12000029"	59.9	0	0	0	0	7.4	67.3
 2011	"Stirling"	"S12000030"	129.5	0	0	0	0	15	144.5
 2011	"West Dunbartonshire"	"S12000039"	0	0	0	0	0	4.1	4.1
 2011	"West Lothian"	"S12000040"	14	0	0	0	0	0	14
@@ -403,292 +403,325 @@
 2012	"Clackmannanshire"	"S12000005"	26	0	0	0	0	0	26
 2012	"Dumfries and Galloway"	"S12000006"	167.2	0	0	0	0	50.4	217.6
 2012	"Dundee City"	"S12000042"	4	0	0	0	0	8.3	12.3
-2012	"East Ayrshire"	"S12000008"	121.2	0	0	0	0	6.7	127.9
+2012	"East Ayrshire"	"S12000008"	13.2	0	0	0	0	6.7	19.9
 2012	"East Dunbartonshire"	"S12000045"	0	0	0	0	0	0	0
 2012	"East Lothian"	"S12000010"	48	0	0	0	0	16.2	64.2
-2012	"East Renfrewshire"	"S12000011"	328.5	0	0	0	0	0	328.5
+2012	"East Renfrewshire"	"S12000011"	6.5	0	0	0	0	0	6.5
 2012	"Falkirk"	"S12000014"	0	0	0	0	0	0	0
 2012	"Fife"	"S12000047"	28	0	0	0	0	15.5	43.5
 2012	"Glasgow City"	"S12000049"	0	0	0	0	0	6.7	6.7
 2012	"Highland"	"S12000017"	631.3	0	414.3	0	0	8.5	1054.1
 2012	"Inverclyde"	"S12000018"	0	0	0	0	0	0	0
 2012	"Midlothian"	"S12000019"	48.4	0	0	0	0	6.2	54.6
-2012	"Moray"	"S12000020"	163.6	0	0	0	0	0	163.6
+2012	"Moray"	"S12000020"	48	0	0	0	0	0	48
 2012	"Na h-Eileanan Siar"	"S12000013"	3.9	0	0	0	0	0	3.9
 2012	"North Ayrshire"	"S12000021"	94	0	0	0	0	29.4	123.4
 2012	"North Lanarkshire"	"S12000050"	4	0	0	0	0	24.3	28.3
-2012	"Offshore"	NA	0	184	0	0	0	0	184
+2012	"Offshore"	NA	1351.6	184	0	0	0	0	1535.6
 2012	"Orkney Islands"	"S12000023"	34.6	0	0	0	1	0	35.6
-2012	"Perth and Kinross"	"S12000048"	229.4	0	51.9	0	0	1.9	283.2
+2012	"Perth and Kinross"	"S12000048"	73.4	0	51.9	0	0	1.9	127.2
 2012	"Renfrewshire"	"S12000038"	0	0	0	0	0	0	0
 2012	"Scottish Borders"	"S12000026"	431.8	0	0	0	0	0	431.8
 2012	"Shetland Islands"	"S12000027"	3.7	0	0	0	0	0	3.7
-2012	"South Ayrshire"	"S12000028"	296	0	0	0	0	0	296
-2012	"South Lanarkshire"	"S12000029"	533.9	0	0	0	0	7.4	541.3
+2012	"South Ayrshire"	"S12000028"	120	0	0	0	0	0	120
+2012	"South Lanarkshire"	"S12000029"	59.9	0	0	0	0	7.4	67.3
 2012	"Stirling"	"S12000030"	129.5	0	2.1	0	0	15	146.6
 2012	"West Dunbartonshire"	"S12000039"	0	0	0	0	0	4.1	4.1
 2012	"West Lothian"	"S12000040"	14	0	0	0	0	0	14
 2013	"Aberdeen City"	"S12000033"	0	0	0	0	0	2.2	2.2
-2013	"Aberdeenshire"	"S12000034"	314.8	0	0	0	0	7.7	322.5
+2013	"Aberdeenshire"	"S12000034"	257.3	0	0	0	0	7.7	265
 2013	"Angus"	"S12000041"	6.4	0	0	0	0	2	8.4
-2013	"Argyll and Bute"	"S12000035"	211.8	0	25.6	0	0	0	237.4
+2013	"Argyll and Bute"	"S12000035"	165.8	0	25.6	0	0	0	191.4
 2013	"City of Edinburgh"	"S12000036"	0	0	0	0	0	2.4	2.4
 2013	"Clackmannanshire"	"S12000005"	26	0	0	0	0	0	26
 2013	"Dumfries and Galloway"	"S12000006"	175.3	0	0	0	0	50.4	225.7
 2013	"Dundee City"	"S12000042"	4	0	0	0	0	8.3	12.3
-2013	"East Ayrshire"	"S12000008"	230.2	0	0	0	0	6.7	236.9
+2013	"East Ayrshire"	"S12000008"	13.2	0	0	0	0	6.7	19.9
 2013	"East Dunbartonshire"	"S12000045"	0	0	0	0	0	0	0
 2013	"East Lothian"	"S12000010"	48	0	0	0	0	16.2	64.2
-2013	"East Renfrewshire"	"S12000011"	349.7	0	0	0	0	0	349.7
+2013	"East Renfrewshire"	"S12000011"	27.7	0	0	0	0	0	27.7
 2013	"Falkirk"	"S12000014"	0	0	0	0	0	0	0
 2013	"Fife"	"S12000047"	40.5	0	0	0	0	21	61.5
 2013	"Glasgow City"	"S12000049"	3	0	0	0	0	6.7	9.7
 2013	"Highland"	"S12000017"	783.5	0	414.3	0	0	8.5	1206.3
 2013	"Inverclyde"	"S12000018"	0	0	0	0	0	0	0
 2013	"Midlothian"	"S12000019"	48.4	0	0	0	0	6.2	54.6
-2013	"Moray"	"S12000020"	206.6	0	0	0	0	8.3	214.9
+2013	"Moray"	"S12000020"	91	0	0	0	0	8.3	99.3
 2013	"Na h-Eileanan Siar"	"S12000013"	24.6	0	0	0	0	0	24.6
 2013	"North Ayrshire"	"S12000021"	101.5	0	0	0	0	29.4	130.9
 2013	"North Lanarkshire"	"S12000050"	15.5	0	0	0	0	24.3	39.8
-2013	"Offshore"	NA	0	184	0	0	0	0	184
+2013	"Offshore"	NA	1564.1	184	0	0	0	0	1748.1
 2013	"Orkney Islands"	"S12000023"	38.2	0	0	0	1	0	39.2
-2013	"Perth and Kinross"	"S12000048"	261.6	0	51.9	0	0	1.9	315.4
+2013	"Perth and Kinross"	"S12000048"	105.6	0	51.9	0	0	1.9	159.4
 2013	"Renfrewshire"	"S12000038"	0	0	0	0	0	0	0
 2013	"Scottish Borders"	"S12000026"	578.2	0	0	0	0	0	578.2
 2013	"Shetland Islands"	"S12000027"	3.7	0	0	0	0	0	3.7
-2013	"South Ayrshire"	"S12000028"	296	0	0	0	0	0	296
-2013	"South Lanarkshire"	"S12000029"	602.4	0	0	0	0	7.4	609.8
+2013	"South Ayrshire"	"S12000028"	120	0	0	0	0	0	120
+2013	"South Lanarkshire"	"S12000029"	128.4	0	0	0	0	7.4	135.8
 2013	"Stirling"	"S12000030"	129.5	0	2.1	0	0	15	146.6
 2013	"West Dunbartonshire"	"S12000039"	0	0	0	0	0	4.1	4.1
 2013	"West Lothian"	"S12000040"	14	0	0	0	0	0	14
 2014	"Aberdeen City"	"S12000033"	0	0	0	0	0	2.2	2.2
-2014	"Aberdeenshire"	"S12000034"	397.4	0	0	0	0	7.7	405.1
+2014	"Aberdeenshire"	"S12000034"	321.5	0	0	0	0	7.7	329.2
 2014	"Angus"	"S12000041"	6.4	0	0	0	0	2	8.4
-2014	"Argyll and Bute"	"S12000035"	255.5	0	27.5	0	0	0	283
+2014	"Argyll and Bute"	"S12000035"	209.5	0	27.5	0	0	0	237
 2014	"City of Edinburgh"	"S12000036"	0	0	0	0	0	2.4	2.4
 2014	"Clackmannanshire"	"S12000005"	26	0	0	0	0	0	26
 2014	"Dumfries and Galloway"	"S12000006"	326.6	0	0	0	0	50.4	377
 2014	"Dundee City"	"S12000042"	4	0	0	0	0	8.3	12.3
-2014	"East Ayrshire"	"S12000008"	230.2	0	0	0	0	6.7	236.9
+2014	"East Ayrshire"	"S12000008"	13.2	0	0	0	0	6.7	19.9
 2014	"East Dunbartonshire"	"S12000045"	0	0	0	0	0	0	0
 2014	"East Lothian"	"S12000010"	48	0	0	0	0	16.2	64.2
-2014	"East Renfrewshire"	"S12000011"	361.2	0	0	0	0	0	361.2
+2014	"East Renfrewshire"	"S12000011"	39.2	0	0	0	0	0	39.2
 2014	"Falkirk"	"S12000014"	0	0	0	0	0	0	0
 2014	"Fife"	"S12000047"	64.9	0	0	0	0	87.7	152.6
 2014	"Glasgow City"	"S12000049"	3	0	0	0	0	6.7	9.7
 2014	"Highland"	"S12000017"	852.5	0	418.3	0	0	8.5	1279.3
 2014	"Inverclyde"	"S12000018"	0	0	0	0	0	0	0
 2014	"Midlothian"	"S12000019"	48.4	0	0	0	0	6.2	54.6
-2014	"Moray"	"S12000020"	277.9	0	0	0	0	8.3	286.2
+2014	"Moray"	"S12000020"	95.6	0	0	0	0	8.3	103.9
 2014	"Na h-Eileanan Siar"	"S12000013"	24.6	0	0	0	0	0	24.6
 2014	"North Ayrshire"	"S12000021"	104	0	0	0	0	29.4	133.4
 2014	"North Lanarkshire"	"S12000050"	15.5	0	0	0	0	24.3	39.8
-2014	"Offshore"	NA	0	191	0	0	0	0	191
+2014	"Offshore"	NA	1649.2	191	0	0	0	0	1840.2
 2014	"Orkney Islands"	"S12000023"	39.2	0	0	0	1	0	40.2
-2014	"Perth and Kinross"	"S12000048"	265.6	0	51.9	0	0	1.9	319.4
+2014	"Perth and Kinross"	"S12000048"	109.6	0	51.9	0	0	1.9	163.4
 2014	"Renfrewshire"	"S12000038"	0	0	0	0	0	0	0
 2014	"Scottish Borders"	"S12000026"	578.2	0	0	0	0	0	578.2
 2014	"Shetland Islands"	"S12000027"	3.7	0	0	0	0	0	3.7
-2014	"South Ayrshire"	"S12000028"	296	0	0	0	0	0	296
-2014	"South Lanarkshire"	"S12000029"	646.7	0	0	0	0	7.4	654.1
+2014	"South Ayrshire"	"S12000028"	120	0	0	0	0	0	120
+2014	"South Lanarkshire"	"S12000029"	172.7	0	0	0	0	7.4	180.1
 2014	"Stirling"	"S12000030"	129.5	0	2.1	0	0	15	146.6
 2014	"West Dunbartonshire"	"S12000039"	0	0	0	0	0	4.1	4.1
 2014	"West Lothian"	"S12000040"	14	0	0	0	0	0	14
 2015	"Aberdeen City"	"S12000033"	0	0	0	0	0	2.2	2.2
-2015	"Aberdeenshire"	"S12000034"	446	0	0	7	0	7.7	460.7
+2015	"Aberdeenshire"	"S12000034"	370.1	0	0	7	0	7.7	384.8
 2015	"Angus"	"S12000041"	6.4	0	0	0	0	2	8.4
-2015	"Argyll and Bute"	"S12000035"	261.5	0	30	0	0	0	291.5
+2015	"Argyll and Bute"	"S12000035"	215.5	0	30	0	0	0	245.5
 2015	"City of Edinburgh"	"S12000036"	0	0	0	0	0	2.4	2.4
 2015	"Clackmannanshire"	"S12000005"	26	0	0	0	0	0	26
 2015	"Dumfries and Galloway"	"S12000006"	330	0	0	0	0	51.6	381.6
 2015	"Dundee City"	"S12000042"	4	0	0	0	0	8.3	12.3
-2015	"East Ayrshire"	"S12000008"	230.2	0	0	0	0	6.7	236.9
+2015	"East Ayrshire"	"S12000008"	13.2	0	0	0	0	6.7	19.9
 2015	"East Dunbartonshire"	"S12000045"	0	0	0	0	0	0	0
 2015	"East Lothian"	"S12000010"	49.5	0	0	0	0	16.2	65.7
-2015	"East Renfrewshire"	"S12000011"	361.2	0	0	0	0	0	361.2
+2015	"East Renfrewshire"	"S12000011"	39.2	0	0	0	0	0	39.2
 2015	"Falkirk"	"S12000014"	12	0	0	0	0	0	12
 2015	"Fife"	"S12000047"	71.5	0	0	0	0	87.7	159.2
 2015	"Glasgow City"	"S12000049"	3	0	0	0	0	6.7	9.7
 2015	"Highland"	"S12000017"	974.9	0	423.5	0	0	8.5	1406.9
 2015	"Inverclyde"	"S12000018"	0	0	0	0	0	0	0
 2015	"Midlothian"	"S12000019"	48.4	0	0	0	0	6.2	54.6
-2015	"Moray"	"S12000020"	296.3	0	0	0	0	9.8	306.1
+2015	"Moray"	"S12000020"	114	0	0	0	0	9.8	123.8
 2015	"Na h-Eileanan Siar"	"S12000013"	37.8	0	0	0	0	0	37.8
 2015	"North Ayrshire"	"S12000021"	104	0	0	0	0	30.4	134.4
 2015	"North Lanarkshire"	"S12000050"	21.2	0	0	0	0	24.3	45.5
-2015	"Offshore"	NA	0	191	0	0	0	0	191
+2015	"Offshore"	NA	1649.2	191	0	0	0	0	1840.2
 2015	"Orkney Islands"	"S12000023"	39.2	0	0	0	1	0	40.2
-2015	"Perth and Kinross"	"S12000048"	265.6	0	55	0	0	1.9	322.5
+2015	"Perth and Kinross"	"S12000048"	109.6	0	55	0	0	1.9	166.5
 2015	"Renfrewshire"	"S12000038"	0	0	0	0	0	0	0
 2015	"Scottish Borders"	"S12000026"	594.2	0	0	0	0	10	604.2
 2015	"Shetland Islands"	"S12000027"	6.7	0	0	0	0	0	6.7
-2015	"South Ayrshire"	"S12000028"	296	0	0	0	0	0	296
-2015	"South Lanarkshire"	"S12000029"	678.1	0	0	0	0	7.4	685.5
+2015	"South Ayrshire"	"S12000028"	120	0	0	0	0	0	120
+2015	"South Lanarkshire"	"S12000029"	204.1	0	0	0	0	7.4	211.5
 2015	"Stirling"	"S12000030"	131.9	0	2.1	0	0	15	149
 2015	"West Dunbartonshire"	"S12000039"	0	0	0	0	0	4.1	4.1
 2015	"West Lothian"	"S12000040"	14	0	0	1.3	0	0	15.3
 2016	"Aberdeen City"	"S12000033"	0	0	0	0	0	2.2	2.2
-2016	"Aberdeenshire"	"S12000034"	461.8	0	0	10.8	0	7.7	480.3
+2016	"Aberdeenshire"	"S12000034"	385.9	0	0	10.8	0	7.7	404.4
 2016	"Angus"	"S12000041"	6.4	0	0	15	0	2	23.4
-2016	"Argyll and Bute"	"S12000035"	330.3	0	34.4	0	0	0	364.7
+2016	"Argyll and Bute"	"S12000035"	284.3	0	34.4	0	0	0	318.7
 2016	"City of Edinburgh"	"S12000036"	0	0	0	0	0	2.4	2.4
 2016	"Clackmannanshire"	"S12000005"	38	0	0	5	0	0	43
 2016	"Dumfries and Galloway"	"S12000006"	371.3	0	0	0	0	51.6	422.9
 2016	"Dundee City"	"S12000042"	4	0	0	0	0	8.3	12.3
-2016	"East Ayrshire"	"S12000008"	260	0	0	0	0	6.7	266.7
+2016	"East Ayrshire"	"S12000008"	43	0	0	0	0	6.7	49.7
 2016	"East Dunbartonshire"	"S12000045"	0	0	0	0	0	0	0
 2016	"East Lothian"	"S12000010"	49.5	0	0	0	0	17.7	67.2
-2016	"East Renfrewshire"	"S12000011"	361.2	0	0	0	0	0	361.2
+2016	"East Renfrewshire"	"S12000011"	39.2	0	0	0	0	0	39.2
 2016	"Falkirk"	"S12000014"	38	0	0	0	0	0	38
 2016	"Fife"	"S12000047"	84.8	0	0	0	0	94.2	179
 2016	"Glasgow City"	"S12000049"	3	0	0	0	0	6.7	9.7
 2016	"Highland"	"S12000017"	1204.4	0	432.5	0	0	8.5	1645.4
 2016	"Inverclyde"	"S12000018"	0	0	0	0	0	0	0
 2016	"Midlothian"	"S12000019"	48.4	0	0	0	0	7.7	56.1
-2016	"Moray"	"S12000020"	341.9	0	0	0	0	22.3	364.2
+2016	"Moray"	"S12000020"	159.6	0	0	0	0	22.3	181.9
 2016	"Na h-Eileanan Siar"	"S12000013"	37.8	0	0	0	0	0	37.8
 2016	"North Ayrshire"	"S12000021"	110.4	0	0	0	0	30.4	140.8
 2016	"North Lanarkshire"	"S12000050"	22.7	0	0	0	0	24.3	47
-2016	"Offshore"	NA	0	191	0	0	0	0	191
+2016	"Offshore"	NA	1833.3	191	0	0	0	0	2024.3
 2016	"Orkney Islands"	"S12000023"	39.2	0	0	0	1	0	40.2
-2016	"Perth and Kinross"	"S12000048"	265.6	0	56.1	13	0	1.9	336.6
+2016	"Perth and Kinross"	"S12000048"	109.6	0	56.1	13	0	1.9	180.6
 2016	"Renfrewshire"	"S12000038"	0	0	0	0	0	0	0
 2016	"Scottish Borders"	"S12000026"	636.7	0	0	0	0	10	646.7
 2016	"Shetland Islands"	"S12000027"	6.7	0	0	0	0	0	6.7
-2016	"South Ayrshire"	"S12000028"	390	0	0	0	0	0	390
-2016	"South Lanarkshire"	"S12000029"	790.8	0	0	0	0	7.4	798.2
+2016	"South Ayrshire"	"S12000028"	145	0	0	0	0	0	145
+2016	"South Lanarkshire"	"S12000029"	253.4	0	0	0	0	7.4	260.8
 2016	"Stirling"	"S12000030"	154.4	0	5.4	0	0	15	174.8
 2016	"West Dunbartonshire"	"S12000039"	0	0	0	0	0	4.1	4.1
-2016	"West Lothian"	"S12000040"	84.9	0	0	1.3	0	0	86.2
+2016	"West Lothian"	"S12000040"	33.2	0	0	1.3	0	0	34.5
 2017	"Aberdeen City"	"S12000033"	0	0	0	0	0	2.2	2.2
-2017	"Aberdeenshire"	"S12000034"	494.9	0	0	10.8	0	7.7	513.4
+2017	"Aberdeenshire"	"S12000034"	419	0	0	10.8	0	7.7	437.5
 2017	"Angus"	"S12000041"	6.4	0	0	20	0	2	28.4
-2017	"Argyll and Bute"	"S12000035"	352.8	0	34.4	0	0	0	387.2
+2017	"Argyll and Bute"	"S12000035"	306.8	0	34.4	0	0	0	341.2
 2017	"City of Edinburgh"	"S12000036"	0	0	0	0	0	2.4	2.4
 2017	"Clackmannanshire"	"S12000005"	38	0	0	5	0	0	43
 2017	"Dumfries and Galloway"	"S12000006"	771.1	0	0	0	0	51.6	822.7
 2017	"Dundee City"	"S12000042"	4	0	0	0	0	8.3	12.3
-2017	"East Ayrshire"	"S12000008"	326	0	0	0	0	6.7	332.7
+2017	"East Ayrshire"	"S12000008"	43	0	0	0	0	6.7	49.7
 2017	"East Dunbartonshire"	"S12000045"	0	0	0	0	0	0	0
-2017	"East Lothian"	"S12000010"	114.8	0	0	0	0	17.7	132.5
-2017	"East Renfrewshire"	"S12000011"	361.2	0	0	0	0	0	361.2
+2017	"East Lothian"	"S12000010"	54	0	0	0	0	17.7	71.7
+2017	"East Renfrewshire"	"S12000011"	39.2	0	0	0	0	0	39.2
 2017	"Falkirk"	"S12000014"	38	0	0	0	0	2	40
 2017	"Fife"	"S12000047"	84.8	0	0	14	0	94.2	193
 2017	"Glasgow City"	"S12000049"	3	0	0	0	0	11.7	14.7
 2017	"Highland"	"S12000017"	1505.3	0	453	0	0	10.5	1968.8
 2017	"Inverclyde"	"S12000018"	0	0	0	0	0	0	0
 2017	"Midlothian"	"S12000019"	48.4	0	0	0	0	7.7	56.1
-2017	"Moray"	"S12000020"	341.9	0	0	0	0	22.3	364.2
+2017	"Moray"	"S12000020"	159.6	0	0	0	0	22.3	181.9
 2017	"Na h-Eileanan Siar"	"S12000013"	37.8	0	0	0	0	0	37.8
 2017	"North Ayrshire"	"S12000021"	110.4	0	0	5	0	30.4	145.8
 2017	"North Lanarkshire"	"S12000050"	22.7	0	0	0	0	41.3	64
-2017	"Offshore"	NA	0	221	0	0	0	0	221
+2017	"Offshore"	NA	2132.9	221	1.1	0	0	0	2355
 2017	"Orkney Islands"	"S12000023"	39.2	0	0	0	9	0	48.2
-2017	"Perth and Kinross"	"S12000048"	265.6	0	58.1	13	0	1.9	338.6
+2017	"Perth and Kinross"	"S12000048"	109.6	0	58.1	13	0	1.9	182.6
 2017	"Renfrewshire"	"S12000038"	0	0	0	0	0	0	0
 2017	"Scottish Borders"	"S12000026"	678.5	0	0	0	0	10	688.5
 2017	"Shetland Islands"	"S12000027"	11.2	0	0	0	0	0	11.2
-2017	"South Ayrshire"	"S12000028"	412	0	0	0	0	2.6	414.6
-2017	"South Lanarkshire"	"S12000029"	999.6	0	0	0	0	7.4	1007
-2017	"Stirling"	"S12000030"	155.9	0	6.5	0	0	20.6	183
+2017	"South Ayrshire"	"S12000028"	167	0	0	0	0	2.6	169.6
+2017	"South Lanarkshire"	"S12000029"	289.4	0	0	0	0	7.4	296.8
+2017	"Stirling"	"S12000030"	155.9	0	5.4	0	0	20.6	181.9
 2017	"West Dunbartonshire"	"S12000039"	0	0	0	0	0	4.1	4.1
-2017	"West Lothian"	"S12000040"	124.2	0	0	1.3	0	12.5	138
+2017	"West Lothian"	"S12000040"	72.5	0	0	1.3	0	12.5	86.3
 2018	"Aberdeen City"	"S12000033"	0	0	0	0	0	2.2	2.2
-2018	"Aberdeenshire"	"S12000034"	494.9	0	0	10.8	0	7.7	513.4
+2018	"Aberdeenshire"	"S12000034"	419	0	0	10.8	0	7.7	437.5
 2018	"Angus"	"S12000041"	6.4	0	0	25	0	2	33.4
-2018	"Argyll and Bute"	"S12000035"	359.7	0	34.4	0	0	0	394.1
+2018	"Argyll and Bute"	"S12000035"	313.7	0	34.4	0	0	0	348.1
 2018	"City of Edinburgh"	"S12000036"	0	0	0	0	0	2.4	2.4
 2018	"Clackmannanshire"	"S12000005"	38	0	0	5	0	0	43
 2018	"Dumfries and Galloway"	"S12000006"	881.8	0	0	0	0	51.6	933.4
 2018	"Dundee City"	"S12000042"	4	0	0	0	0	8.3	12.3
-2018	"East Ayrshire"	"S12000008"	376	0	0	0	0	6.7	382.7
+2018	"East Ayrshire"	"S12000008"	43	0	0	0	0	6.7	49.7
 2018	"East Dunbartonshire"	"S12000045"	0	0	0	0	0	0	0
-2018	"East Lothian"	"S12000010"	114.8	0	0	0	0	17.7	132.5
-2018	"East Renfrewshire"	"S12000011"	361.2	0	0	0	0	0	361.2
+2018	"East Lothian"	"S12000010"	54	0	0	0	0	17.7	71.7
+2018	"East Renfrewshire"	"S12000011"	39.2	0	0	0	0	0	39.2
 2018	"Falkirk"	"S12000014"	38	0	0	0	0	2	40
 2018	"Fife"	"S12000047"	84.8	0	0	14	0	96.2	195
 2018	"Glasgow City"	"S12000049"	3	0	0	0	0	11.7	14.7
 2018	"Highland"	"S12000017"	1733.3	0	453	0	0	10.5	2196.8
 2018	"Inverclyde"	"S12000018"	0	0	0	0	0	0	0
 2018	"Midlothian"	"S12000019"	48.4	0	0	0	0	7.7	56.1
-2018	"Moray"	"S12000020"	518.9	0	0	0	0	22.3	541.2
+2018	"Moray"	"S12000020"	159.6	0	0	0	0	22.3	181.9
 2018	"Na h-Eileanan Siar"	"S12000013"	37.8	0	0	0	0	0	37.8
 2018	"North Ayrshire"	"S12000021"	110.4	0	0	5	0	30.4	145.8
 2018	"North Lanarkshire"	"S12000050"	22.7	0	0	0	0	41.3	64
-2018	"Offshore"	NA	0	314.2	0	0	0	0	314.2
+2018	"Offshore"	NA	2359.9	314.2	1.1	0	0	0	2675.2
 2018	"Orkney Islands"	"S12000023"	39.2	0	0	0	9	0	48.2
-2018	"Perth and Kinross"	"S12000048"	289.2	0	58.1	13	0	3.4	363.7
+2018	"Perth and Kinross"	"S12000048"	133.2	0	58.1	13	0	3.4	207.7
 2018	"Renfrewshire"	"S12000038"	0	0	0	0	0	0	0
 2018	"Scottish Borders"	"S12000026"	679.5	0	0	0	0	10	689.5
 2018	"Shetland Islands"	"S12000027"	11.2	0	0	0	0	0	11.2
-2018	"South Ayrshire"	"S12000028"	412	0	0	0	0	2.6	414.6
-2018	"South Lanarkshire"	"S12000029"	999.6	0	0	0	0	7.4	1007
-2018	"Stirling"	"S12000030"	155.9	0	6.5	0	0	20.6	183
+2018	"South Ayrshire"	"S12000028"	167	0	0	0	0	2.6	169.6
+2018	"South Lanarkshire"	"S12000029"	289.4	0	0	0	0	7.4	296.8
+2018	"Stirling"	"S12000030"	155.9	0	5.4	0	0	20.6	181.9
 2018	"West Dunbartonshire"	"S12000039"	0	0	0	0	0	4.1	4.1
-2018	"West Lothian"	"S12000040"	124.2	0	0	1.3	0	12.5	138
+2018	"West Lothian"	"S12000040"	72.5	0	0	1.3	0	12.5	86.3
 2019	"Aberdeen City"	"S12000033"	0	0	0	0	0	2.2	2.2
-2019	"Aberdeenshire"	"S12000034"	494.9	0	0	10.8	0	7.7	513.4
+2019	"Aberdeenshire"	"S12000034"	419	0	0	10.8	0	7.7	437.5
 2019	"Angus"	"S12000041"	6.4	0	0	25	0	2	33.4
-2019	"Argyll and Bute"	"S12000035"	359.7	0	34.4	0	0	0	394.1
+2019	"Argyll and Bute"	"S12000035"	313.7	0	34.4	0	0	0	348.1
 2019	"City of Edinburgh"	"S12000036"	0	0	0	0	0	2.4	2.4
 2019	"Clackmannanshire"	"S12000005"	38	0	0	5	0	0	43
 2019	"Dumfries and Galloway"	"S12000006"	881.8	0	0	0	0	51.6	933.4
 2019	"Dundee City"	"S12000042"	4	0	0	0	0	8.3	12.3
-2019	"East Ayrshire"	"S12000008"	376	0	0	0	0	6.7	382.7
+2019	"East Ayrshire"	"S12000008"	43	0	0	0	0	6.7	49.7
 2019	"East Dunbartonshire"	"S12000045"	0	0	0	0	0	0	0
-2019	"East Lothian"	"S12000010"	124.7	0	0	0	0	43.3	168
-2019	"East Renfrewshire"	"S12000011"	361.2	0	0	0	0	0	361.2
+2019	"East Lothian"	"S12000010"	63.9	0	0	0	0	43.3	107.2
+2019	"East Renfrewshire"	"S12000011"	39.2	0	0	0	0	0	39.2
 2019	"Falkirk"	"S12000014"	38	0	0	0	0	2	40
 2019	"Fife"	"S12000047"	84.8	0	0	14	0	96.2	195
 2019	"Glasgow City"	"S12000049"	3	0	0	0	0	21.7	24.7
 2019	"Highland"	"S12000017"	1809	0	453	0.5	0	10.5	2273
 2019	"Inverclyde"	"S12000018"	0	0	0	0	0	0	0
 2019	"Midlothian"	"S12000019"	48.4	0	0	0	0	20.2	68.6
-2019	"Moray"	"S12000020"	518.9	0	0	0	0	22.3	541.2
+2019	"Moray"	"S12000020"	159.6	0	0	0	0	22.3	181.9
 2019	"Na h-Eileanan Siar"	"S12000013"	37.8	0	0	0	0	0	37.8
 2019	"North Ayrshire"	"S12000021"	110.4	0	0	5	0	30.4	145.8
 2019	"North Lanarkshire"	"S12000050"	22.7	0	0	0.2	0	41.3	64.2
-2019	"Offshore"	NA	0	902.2	0	0	0	0	902.2
+2019	"Offshore"	NA	2499.3	902.2	1.1	0	0	0	3402.6
 2019	"Orkney Islands"	"S12000023"	39.2	0	0	0	11	0	50.2
-2019	"Perth and Kinross"	"S12000048"	289.2	0	58.1	13	0	3.4	363.7
+2019	"Perth and Kinross"	"S12000048"	133.2	0	58.1	13	0	3.4	207.7
 2019	"Renfrewshire"	"S12000038"	0	0	0	0	0	0	0
 2019	"Scottish Borders"	"S12000026"	679.5	0	0	0	0	10	689.5
 2019	"Shetland Islands"	"S12000027"	11.2	0	0	0	0.5	0	11.7
-2019	"South Ayrshire"	"S12000028"	412	0	0	0	0	2.6	414.6
-2019	"South Lanarkshire"	"S12000029"	1139	0	0	0	0	7.4	1146.4
-2019	"Stirling"	"S12000030"	155.9	0	6.5	0	0	20.6	183
+2019	"South Ayrshire"	"S12000028"	167	0	0	0	0	2.6	169.6
+2019	"South Lanarkshire"	"S12000029"	289.4	0	0	0	0	7.4	296.8
+2019	"Stirling"	"S12000030"	155.9	0	5.4	0	0	20.6	181.9
 2019	"West Dunbartonshire"	"S12000039"	0	0	0	0	0	4.1	4.1
-2019	"West Lothian"	"S12000040"	124.2	0	0	1.3	0	12.5	138
+2019	"West Lothian"	"S12000040"	72.5	0	0	1.3	0	12.5	86.3
 2020	"Aberdeen City"	"S12000033"	0	0	0	0	0	2.2	2.2
-2020	"Aberdeenshire"	"S12000034"	494.9	0	2	10.8	0	7.7	515.4
+2020	"Aberdeenshire"	"S12000034"	419	0	0	10.8	0	7.7	437.5
 2020	"Angus"	"S12000041"	6.4	0	0	25	0	2	33.4
-2020	"Argyll and Bute"	"S12000035"	359.7	0	34.4	0	0	0	394.1
+2020	"Argyll and Bute"	"S12000035"	313.7	0	34.4	0	0	0	348.1
 2020	"City of Edinburgh"	"S12000036"	0	0	0	0	0	2.4	2.4
 2020	"Clackmannanshire"	"S12000005"	38	0	0	5	0	0	43
 2020	"Dumfries and Galloway"	"S12000006"	881.8	0	0	0	0	51.6	933.4
 2020	"Dundee City"	"S12000042"	4	0	0	0	0	8.3	12.3
-2020	"East Ayrshire"	"S12000008"	376	0	0	0	0	6.7	382.7
+2020	"East Ayrshire"	"S12000008"	43	0	0	0	0	6.7	49.7
 2020	"East Dunbartonshire"	"S12000045"	0	0	0	0	0	0	0
-2020	"East Lothian"	"S12000010"	124.7	0	0	0	0	43.3	168
-2020	"East Renfrewshire"	"S12000011"	361.2	0	0	0	0	0	361.2
+2020	"East Lothian"	"S12000010"	63.9	0	0	0	0	43.3	107.2
+2020	"East Renfrewshire"	"S12000011"	39.2	0	0	0	0	0	39.2
 2020	"Falkirk"	"S12000014"	38	0	0	0	0	2	40
 2020	"Fife"	"S12000047"	84.8	0	0	14.5	0	96.2	195.5
 2020	"Glasgow City"	"S12000049"	3	0	0	0	0	21.7	24.7
 2020	"Highland"	"S12000017"	1838.9	0	453	0.5	0	10.5	2302.9
 2020	"Inverclyde"	"S12000018"	0	0	0	0	0	0	0
 2020	"Midlothian"	"S12000019"	48.4	0	0	0	0	20.2	68.6
-2020	"Moray"	"S12000020"	518.9	0	0	0	0	22.3	541.2
+2020	"Moray"	"S12000020"	159.6	0	0	0	0	22.3	181.9
 2020	"Na h-Eileanan Siar"	"S12000013"	37.8	0	0	0	0	0	37.8
 2020	"North Ayrshire"	"S12000021"	110.4	0	0	5	0	30.4	145.8
 2020	"North Lanarkshire"	"S12000050"	22.7	0	0	0.2	0	41.3	64.2
-2020	"Offshore"	NA	0	902.2	0	0	0	0	902.2
+2020	"Offshore"	NA	2499.3	902.2	3.1	0	0	0	3404.6
 2020	"Orkney Islands"	"S12000023"	39.2	0	0	0	11	0	50.2
-2020	"Perth and Kinross"	"S12000048"	289.2	0	58.1	13	0	3.4	363.7
+2020	"Perth and Kinross"	"S12000048"	133.2	0	58.1	13	0	3.4	207.7
 2020	"Renfrewshire"	"S12000038"	0	0	0	0	0	0	0
 2020	"Scottish Borders"	"S12000026"	679.5	0	0	0	0	10	689.5
 2020	"Shetland Islands"	"S12000027"	11.2	0	0	0	0.5	0	11.7
-2020	"South Ayrshire"	"S12000028"	412	0	0	0	0	2.6	414.6
-2020	"South Lanarkshire"	"S12000029"	1139	0	0	0	0	7.4	1146.4
-2020	"Stirling"	"S12000030"	155.9	0	6.5	0	0	20.6	183
+2020	"South Ayrshire"	"S12000028"	187	0	0	0	0	2.6	189.6
+2020	"South Lanarkshire"	"S12000029"	289.4	0	0	0	0	7.4	296.8
+2020	"Stirling"	"S12000030"	155.9	0	5.4	0	0	20.6	181.9
 2020	"West Dunbartonshire"	"S12000039"	0	0	0	0	0	4.1	4.1
-2020	"West Lothian"	"S12000040"	124.2	0	0	1.3	0	12.5	138
+2020	"West Lothian"	"S12000040"	72.5	0	0	1.3	0	12.5	86.3
+2021	"Aberdeen City"	"S12000033"	0	0	0	0	0	2.2	2.2
+2021	"Aberdeenshire"	"S12000034"	419	0	0	10.8	0	7.7	437.5
+2021	"Angus"	"S12000041"	6.4	0	0	25	0	2	33.4
+2021	"Argyll and Bute"	"S12000035"	313.7	0	34.6	0	0	0	348.3
+2021	"City of Edinburgh"	"S12000036"	0	0	0	0	0	2.4	2.4
+2021	"Clackmannanshire"	"S12000005"	38	0	0	5	0	0	43
+2021	"Dumfries and Galloway"	"S12000006"	929.8	0	0	0	0	51.6	981.4
+2021	"Dundee City"	"S12000042"	4	0	0	0	0	8.3	12.3
+2021	"East Ayrshire"	"S12000008"	43	0	0	0	0	6.7	49.7
+2021	"East Dunbartonshire"	"S12000045"	0	0	0	0	0	0	0
+2021	"East Lothian"	"S12000010"	63.9	0	0	0	0	43.3	107.2
+2021	"East Renfrewshire"	"S12000011"	39.2	0	0	0	0	0	39.2
+2021	"Falkirk"	"S12000014"	38	0	0	0	0	2	40
+2021	"Fife"	"S12000047"	84.8	0	0	14.5	0	96.2	195.5
+2021	"Glasgow City"	"S12000049"	3	0	0	0	0	21.7	24.7
+2021	"Highland"	"S12000017"	1874.6	0	453	0.5	0	10.5	2338.6
+2021	"Inverclyde"	"S12000018"	24	0	0	0	0	0	24
+2021	"Midlothian"	"S12000019"	48.4	0	0	0	0	20.2	68.6
+2021	"Moray"	"S12000020"	159.6	0	0	0	0	22.3	181.9
+2021	"Na h-Eileanan Siar"	"S12000013"	37.8	0	0	0	0	0	37.8
+2021	"North Ayrshire"	"S12000021"	110.4	0	0	5	0	30.4	145.8
+2021	"North Lanarkshire"	"S12000050"	22.7	0	0	0.2	0	41.3	64.2
+2021	"Offshore"	NA	2499.3	902.2	3.1	0	0	0	3404.6
+2021	"Orkney Islands"	"S12000023"	39.2	0	0	0	11	0	50.2
+2021	"Perth and Kinross"	"S12000048"	133.2	0	58.1	13.3	0	3.4	208
+2021	"Renfrewshire"	"S12000038"	0	0	0	0	0	0	0
+2021	"Scottish Borders"	"S12000026"	679.5	0	0	0	0	10	689.5
+2021	"Shetland Islands"	"S12000027"	11.2	0	0	0	0.5	0	11.7
+2021	"South Ayrshire"	"S12000028"	187	0	0	0	0	2.6	189.6
+2021	"South Lanarkshire"	"S12000029"	289.4	0	0	0	0	7.4	296.8
+2021	"Stirling"	"S12000030"	155.9	0	5.4	0	0	20.6	181.9
+2021	"West Dunbartonshire"	"S12000039"	0	0	0	0	0	4.1	4.1
+2021	"West Lothian"	"S12000040"	72.5	0	0	1.3	0	12.5	86.3

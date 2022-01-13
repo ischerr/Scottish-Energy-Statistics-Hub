@@ -88,8 +88,9 @@ OilGasConsumption <- function(input, output, session) {
   
   output$OilGasConsumptionSubtitle <- renderText({
     
-    paste("Scotland, 2018")
+   OilGasScotland <- read_csv("Processed Data/Output/Consumption/ScotlandOilGasConsumption.csv")
 
+   paste("Scotland", max(OilGasScotland$Year))
       })
   
   output$OilGasConsumptionPlot <- renderPlotly  ({
@@ -98,14 +99,9 @@ OilGasConsumption <- function(input, output, session) {
     ChartColours <- c("#126992", "#FF8500")
     BarColours <- c("#034e7b", "#0570b0", "#969696", "#f46d43", "#d73027")
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Oil and gas consumption", col_names = TRUE, 
-        skip = 12,
-        n_max = 8)
     
-    Data <- Data[c(1,3,5,7),]
+    
+    Data <- read_csv("Processed Data/Output/Consumption/ScotlandOilGasConsumption.csv")[1:4]
     
     names(Data)[1] <- c("Year")
     
@@ -186,16 +182,9 @@ OilGasConsumption <- function(input, output, session) {
   
   output$OilGasConsumptionTable = renderDataTable({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Oil and gas consumption", col_names = TRUE, 
-        skip = 12,
-        n_max = 8)
+    Data <- read_csv("Processed Data/Output/Consumption/ScotlandOilGasConsumption.csv")[1:4]
     
-    Data <- Data[c(1,3,5,7),]
-    
-    names(Data)[1] <- c("Year")
+    names(Data)[1] <- c("Sector")
     
     Data$`Petroleum proportion` <- Data$`Petroleum products` / (Data$`Petroleum products`+ Data$Gas + Data$`Other fuel`)
     
@@ -261,10 +250,11 @@ OilGasConsumption <- function(input, output, session) {
     filename = "OilGasConsumption.png",
   content = function(file) {
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Oil and gas consumption", skip = 12, col_names = TRUE)[c(2,4,6,8),]
+    Data <- read_csv("Processed Data/Output/Consumption/ScotlandOilGasConsumption.csv")
+    
+    ChartYear <- max(Data$Year)
+    
+    Data <- Data[1:4]
     
     names(Data)[1] <- "Type"
     
@@ -311,7 +301,7 @@ OilGasConsumption <- function(input, output, session) {
     
     
     OilGasConsumpChart <- OilGasConsump %>%
-      ggplot(aes(x = Type, y = value, fill = variable), family = "Century Gothic") +
+      ggplot(aes(x = Type, y = value/top, fill = variable), family = "Century Gothic") +
       scale_fill_manual(
         "variable",
         values = c(
@@ -323,8 +313,8 @@ OilGasConsumption <- function(input, output, session) {
       geom_bar(stat = "identity", width = .8) +
       geom_text(
         aes(
-          y = pos,
-          label = percent(value, 0.1),
+          y = pos / top,
+          label = percent(value / top, 0.1),
           
           fontface = 2
         ),
@@ -397,7 +387,7 @@ OilGasConsumption <- function(input, output, session) {
     
     OilGasConsumpChart <-
       OilGasConsumpChart +
-      labs(subtitle = "Scotland, 2018") +
+      labs(subtitle = paste("Scotland,", ChartYear)) +
       ylim(-.16,1) +
       coord_flip()
     
@@ -417,16 +407,9 @@ OilGasConsumption <- function(input, output, session) {
   
   output$OilGasConsumptionUKTable = renderDataTable({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Oil and gas consumption", col_names = TRUE, 
-        skip = 23,
-        n_max = 8)
+    Data <- read_csv("Processed Data/Output/Consumption/UKOilGasConsumption.csv")[1:4]
     
-    Data <- Data[c(1,3,5,7),]
-    
-    names(Data)[1] <- c("Year")
+    names(Data)[1] <- c("Sector")
     
     Data$`Petroleum proportion` <- Data$`Petroleum products` / (Data$`Petroleum products`+ Data$Gas + Data$`Other fuel`)
     

@@ -583,7 +583,7 @@ ULEVs <- function(input, output, session) {
   
   
   output$ULEVs.png <- downloadHandler(
-    filename = "ULEVs.png",
+    filename = "ULEVs.svg",
     content = function(file) {
 
       ElecVehicles <- read_delim("Processed Data/Output/Vehicles/ULEV.txt", 

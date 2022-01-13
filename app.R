@@ -876,7 +876,7 @@ ui <- shinyUI(fluidPage(
                  ),
                  a(
                    "Latest energy statistics for Scotland",
-                   href = "https://www2.gov.scot/Topics/Statistics/Browse/Business/Energy",
+                   href = "https://www.gov.scot/collections/energy-statistics/",
                    ""
                  )
                ),
