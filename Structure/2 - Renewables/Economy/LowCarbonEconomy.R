@@ -274,26 +274,6 @@ LowCarbonEconomy <- function(input, output, session) {
 
   print("LowCarbonEconomy.R")
   
-  Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                     sheet = "Low carbon economy", skip = 15, n_max = 12,col_names = FALSE)
-  
-  Data <- as_tibble(t(Data))
-  
-  Data <- fill(Data, 1)
-  
-  Data <- Data[c(1,2,5,10,11)]
-  
-  names(Data) <- c("Measure", "Year", "Direct", "Renewable", "Low Carbon")
-  
-  Data[2:5] %<>% lapply(function(x)
-    as.numeric(as.character(x)))
-  
-  Data <- as_tibble(Data)
-  
-  Year <- max(Data$Year, na.rm = TRUE)
-  
-  Data <- Data[which(Data$Year == Year),]
-  
   
     output$LowCarbonEconomyEmployeesTable = renderDataTable({
     

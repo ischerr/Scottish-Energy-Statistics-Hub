@@ -8,7 +8,7 @@ Sources$HTML <- "Hi"
 
 for (i in 1:nrow(Sources)){
   
-  ifelse(substr(Sources[i,]$`Direct URL`,1,1) == "h", Sources[i,10] <- paste(a(Sources[i,]$Source, href = Sources[i,]$`Direct URL`, target="_blank")),Sources[i,10] <-  paste(p(Sources[i,]$Source, "(Unpublished)")))
+  ifelse(substr(Sources[i,]$`Direct URL`,1,1) == "h", Sources[i,09] <- paste(a(Sources[i,]$Source, href = Sources[i,]$`Direct URL`, target="_blank")),Sources[i,09] <-  paste(p(Sources[i,]$Source, "(Unpublished)")))
   }    
 
 
