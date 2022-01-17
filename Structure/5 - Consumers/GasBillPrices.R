@@ -69,7 +69,7 @@ GasBillPricesOutput <- function(id) {
     fluidRow(
       column(2, HTML("<p><strong>Last Updated:</strong></p>")),
       column(2,
-             UpdatedLookup(c("BEISAnnualGas"))),
+             UpdatedLookup(c("BEISAnnualGas", "BEISRegionalGasBill"))),
       column(1, align = "right",
              HTML("<p><strong>Reason:</strong></p>")),
       column(7, align = "right", 
@@ -79,11 +79,13 @@ GasBillPricesOutput <- function(id) {
     fluidRow(
       column(2, HTML("<p><strong>Update Expected:</strong></p>")),
       column(2,
-             DateLookup(c("BEISAnnualGas"))),
+             DateLookup(c("BEISAnnualGas", "BEISRegionalGasBill"))),
       column(1, align = "right",
              HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",
-        SourceLookup("BEISAnnualGas")
+        SourceLookup("BEISAnnualGas"),
+        SourceLookup("BEISRegionalGasBill")
+        
         
       )
     )
@@ -106,20 +108,24 @@ GasBillPrices <- function(input, output, session) {
   
   output$GasBillPricesSubtitle <- renderText({
     
-    paste("Scotland, 2019")
+    GasRegionAverageBill <- read_csv("Processed Data/Output/Energy Bills/GasRegionAverageBill.csv")
+  
+    paste("Scotland,", max(GasRegionAverageBill$Year))
+      
   })
   
   output$GasBillPricesPlot <- renderPlotly  ({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Gas bill prices", 
-        skip = 18, n_max = 5)
+    Data <- read_csv("Processed Data/Output/Energy Bills/GasRegionAverageBill.csv")
     
-    Data <- Data[1:4,c(1,3,5, 7)]
+    #Keep Max Year
+    Data <- Data[which(Data$Year == max(Data$Year)),]
+    
+    #Cast Data
+    Data <- dcast(Data, variable ~ Region, value.var = "value")
     
     names(Data)[1] <- "Tech"
+    
     Data$TechLabel <- Data$Tech
     
     Data$Tech <- paste0("<b>",str_wrap(Data$Tech, 9),"</b>")
@@ -149,11 +155,11 @@ GasBillPrices <- function(input, output, session) {
                 orientation = 'h',
                 marker = list(color = BarColours[2])
                 ) %>% 
-      add_trace(x = ~ `Great Britain`, 
+      add_trace(x = ~ `United Kingdom`, 
                 type = 'bar', 
-                name = 'Great Britain',
+                name = 'United Kingdom',
                 hoverinfo = "text",
-                text = paste0("Great Britain: \u00A3",round(Data$`Great Britain`, digits = 0)),
+                text = paste0("United Kingdom: \u00A3",round(Data$`United Kingdom`, digits = 0)),
                 orientation = 'h',
                 marker = list(color = BarColours[3])
       ) %>% 
@@ -195,17 +201,22 @@ GasBillPrices <- function(input, output, session) {
 
   output$GasBillPricesTable = renderDataTable({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Gas bill prices", 
-        skip = 18, n_max = 5)
+    Data <- read_csv("Processed Data/Output/Energy Bills/GasRegionAverageBill.csv")
     
-    Data <- Data[1:4,c(1,3,5, 7)]
+    #Keep Max Year
+    Data <- Data[which(Data$Year == max(Data$Year)),]
+    
+    #Cast Data
+    Data <- dcast(Data, variable ~ Region, value.var = "value")
     
     names(Data)[1] <- "Payment Method"
     
-    GasBillPrices <- Data
+    GasBillPrices <- select(Data,
+                            "Payment Method",
+                            "North Scotland",
+                            "South Scotland",
+                            "United Kingdom"
+                            )
     
     datatable(
       GasBillPrices,
@@ -243,22 +254,7 @@ GasBillPrices <- function(input, output, session) {
   
   output$AverageGasBillsSubtitle <- renderText({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Gas bill prices", col_names = FALSE, 
-        skip = 13,
-        n_max = 4)
-    
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- unlist(Data[1,])
-    
-    names(Data)[1] <- "Year"
-    
-    Data <- Data[-1,]
-    
-    Data %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data <- read_csv("Processed Data/Output/Energy Bills/GasAverageBill.csv")
     
     Data <- as_tibble(Data)
     
@@ -272,22 +268,7 @@ GasBillPrices <- function(input, output, session) {
     
     LineColours <- c("#8da0cb", "#fc8d62", "#66c2a5")
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Gas bill prices", col_names = FALSE, 
-        skip = 13,
-        n_max = 4)
-
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- unlist(Data[1,])
-    
-    names(Data)[1] <- "Year"
-    
-    Data <- Data[-1,]
-    
-    Data %<>% lapply(function(x) round(as.numeric(as.character(x))))
+    Data <- read_csv("Processed Data/Output/Energy Bills/GasAverageBill.csv")
     
     Data <- as_tibble(Data)
     
@@ -426,22 +407,7 @@ GasBillPrices <- function(input, output, session) {
   
   output$AverageGasBillsTable = renderDataTable({
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Gas bill prices", col_names = FALSE, 
-        skip = 13,
-        n_max = 4)
-    
-    Data <- as_tibble(t(Data))
-    
-    names(Data) <- unlist(Data[1,])
-    
-    names(Data)[1] <- "Year"
-    
-    Data <- Data[-1,]
-    
-    Data %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data <- read_csv("Processed Data/Output/Energy Bills/GasAverageBill.csv")
     
     Data <- as_tibble(Data)
     
@@ -510,8 +476,21 @@ GasBillPrices <- function(input, output, session) {
     filename = "GasBillPrices.png",
     content = function(file) {
 
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Gas bill prices", skip = 18, n_max = 4, col_names = TRUE)[c(1,7,5,3)]
+      Data <- read_csv("Processed Data/Output/Energy Bills/GasRegionAverageBill.csv")
+      
+      #Keep Max Year
+      Data <- Data[which(Data$Year == max(Data$Year)),]
+      
+      ChartYear <- max(Data$Year)
+      
+      #Cast Data
+      Data <- dcast(Data, variable ~ Region, value.var = "value")
+      
+      Data <- select(Data,
+                     variable,
+                     "United Kingdom",
+                     "South Scotland",
+                     "North Scotland")
       
       names(Data)[1:2] <- c("Country", "United Kingdom")
       
@@ -605,7 +584,7 @@ GasBillPrices <- function(input, output, session) {
                     ChartColours)
       
       AvgGasBillsChart <- AvgGasBillsChart +
-        labs(subtitle = "Scotland, 2018") +
+        labs(subtitle = paste("Scotland,", ChartYear)) +
         ylim(-90, 740)+
         coord_flip()
       
@@ -628,12 +607,7 @@ output$AverageGasBills.png <- downloadHandler(
   filename = "AverageGasBills.png",
   content = function(file) {
     
-    Data <-
-      read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Gas bill prices", skip = 13, n_max = 4, col_names = FALSE)
-    
-    Data <- as_tibble(t(Data))
+    Data <- read_csv("Processed Data/Output/Energy Bills/GasAverageBill.csv")
     
     names(Data) <- c("Year", "Prepayment", "Standard Credit", "Direct Debit")
     
@@ -667,7 +641,7 @@ output$AverageGasBills.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year - 1,
+          x = Year - .5,
           y = Prepayment,
           label = ifelse(Year == min(Year), paste0("\u00A3", Prepayment), ""),
           hjust = 0.5,
@@ -679,7 +653,7 @@ output$AverageGasBills.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year + 1.2,
+          x = Year + .5,
           y = Prepayment,
           label = ifelse(Year == max(Year), paste0("\u00A3", Prepayment), ""),
           hjust = 0.5,
@@ -706,7 +680,7 @@ output$AverageGasBills.png <- downloadHandler(
           y = mean(Prepayment),
           label = "Prepayment",
           hjust = 0.5,
-          vjust = -8.5,
+          vjust = 8,
           colour = ChartColours[2],
           fontface = 2
         ),
@@ -723,7 +697,7 @@ output$AverageGasBills.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year - 1,
+          x = Year - .5,
           y = `Standard Credit`,
           label = ifelse(Year == min(Year), paste0("\u00A3", `Standard Credit`), ""),
           hjust = 0.5,
@@ -735,7 +709,7 @@ output$AverageGasBills.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year + 1.2,
+          x = Year + .5,
           y = `Standard Credit`,
           label = ifelse(Year == max(Year), paste0("\u00A3", `Standard Credit`), ""),
           hjust = 0.5,
@@ -779,7 +753,7 @@ output$AverageGasBills.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year - 1,
+          x = Year - .5,
           y = `Direct Debit`,
           label = ifelse(Year == min(Year), paste0("\u00A3", `Direct Debit`), ""),
           hjust = 0.5,
@@ -791,7 +765,7 @@ output$AverageGasBills.png <- downloadHandler(
       ) +
       geom_text(
         aes(
-          x = Year + 1.2,
+          x = Year + .5,
           y = `Direct Debit`,
           label = ifelse(Year == max(Year), paste0("\u00A3", `Direct Debit`), ""),
           hjust = 0.5,
