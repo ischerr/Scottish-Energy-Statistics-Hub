@@ -78,14 +78,7 @@ OilGasGVA <- function(input, output, session) {
   
   output$OilGasGVASubtitle <- renderText({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Oil and gas GVA", skip = 13, col_names = FALSE)
-    
-    Data <- as_tibble(t(Data))[1:2]
-    
-    Data <- Data[-1,]
-    
-    Data %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data <- read_csv("Processed Data/Output/GVA/OilGasGVA.csv")[1:2]
     
     names(Data) <- c("Year", "GVA")
     
@@ -102,14 +95,7 @@ OilGasGVA <- function(input, output, session) {
   output$OilGasGVAPlot <- renderPlotly  ({
     
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Oil and gas GVA", skip = 13, col_names = FALSE)
-    
-    Data <- as_tibble(t(Data))[1:2]
-    
-    Data <- Data[-1,]
-    
-    Data %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data <- read_csv("Processed Data/Output/GVA/OilGasGVA.csv")[1:2]
     
     names(Data) <- c("Year", "GVA")
     
@@ -192,14 +178,7 @@ OilGasGVA <- function(input, output, session) {
   
   output$OilGasGVATable = renderDataTable({
     
-    Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                       sheet = "Oil and gas GVA", skip = 13, col_names = FALSE)
-    
-    Data <- as_tibble(t(Data))[1:3]
-    
-    Data <- Data[-1,]
-    
-    Data %<>% lapply(function(x) as.numeric(as.character(x)))
+    Data <- read_csv("Processed Data/Output/GVA/OilGasGVA.csv")
     
     names(Data) <- c("Year", "Oil and Gas GVA (\u00A3bn)", "% of GDP")
     
@@ -268,14 +247,7 @@ OilGasGVA <- function(input, output, session) {
     content = function(file) {
 
 
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Oil and gas GVA", skip = 13, col_names = FALSE)
-      
-      Data <- as_tibble(t(Data))[1:2]
-      
-      Data <- Data[-1,]
-      
-      Data %<>% lapply(function(x) as.numeric(as.character(x)))
+      Data <- read_csv("Processed Data/Output/GVA/OilGasGVA.csv")[1:2]
       
       names(Data) <- c("Year", "GVA")
       

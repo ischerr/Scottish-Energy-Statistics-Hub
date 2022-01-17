@@ -44,7 +44,7 @@ TransportEnConsumptionOutput <- function(id) {
     fluidRow(
       column(2, HTML("<p><strong>Last Updated:</strong></p>")),
       column(2,
-             UpdatedLookup(c("SGGrowth"))),
+             UpdatedLookup(c("BEISLocalRoad"))),
       column(1, align = "right",
              HTML("<p><strong>Reason:</strong></p>")),
       column(7, align = "right", 
@@ -54,7 +54,7 @@ TransportEnConsumptionOutput <- function(id) {
     fluidRow(
       column(2, HTML("<p><strong>Update Expected:</strong></p>")),
       column(2,
-             DateLookup(c("SGGrowth"))),
+             DateLookup(c("BEISLocalRoad"))),
       column(1, align = "right",
              HTML("<p><strong>Sources:</strong></p>")),
       column(7, align = "right",

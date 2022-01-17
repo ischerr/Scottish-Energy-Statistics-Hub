@@ -72,7 +72,7 @@ AverageBillLAOutput <- function(id) {
     tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Electicity cost breakdown",
              fluidRow(
-               column(10, h3("Data - Average variable unit costs and standing charges for standard electricity in 2019", style = "color: #68c3ea;  font-weight:bold")),
+               column(10, h3("Data - Average variable unit costs and standing charges for standard electricity in 2020", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable2"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -80,7 +80,7 @@ AverageBillLAOutput <- function(id) {
              tags$hr(style = "height:3px;border:none;color:#68c3ea;background-color:#68c3ea;")),
     tabPanel("Gas cost breakdown",
              fluidRow(
-               column(10, h3("Data - Average variable unit costs and standing charges for standard gas in 2019", style = "color: #68c3ea;  font-weight:bold")),
+               column(10, h3("Data - Average variable unit costs and standing charges for standard gas in 2020", style = "color: #68c3ea;  font-weight:bold")),
                column(2, style = "padding:15px",  actionButton(ns("ToggleTable3"), "Show/Hide Table", style = "float:right; "))
              ),
              fluidRow(
@@ -137,7 +137,7 @@ AverageBillLA <- function(input, output, session) {
   
   output$AverageBillLASubtitle <- renderText({
     
-    paste("Scotland, 2019")
+    paste("Scotland, 2020")
   
     })
   
@@ -306,17 +306,17 @@ AverageBillLA <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Average variable unit costs and standing charges for standard electricity in 2019",
+        title = "Average variable unit costs and standing charges for standard electricity in 2020",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Average variable unit costs and standing charges for standard electricity in 2019',
+            title = 'Average variable unit costs and standing charges for standard electricity in 2020',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Average variable unit costs and standing charges for standard electricity in 2019')
+               title = 'Average variable unit costs and standing charges for standard electricity in 2020')
         ),
         
         # customize the length menu
@@ -351,17 +351,17 @@ AverageBillLA <- function(input, output, session) {
         fixedColumns = FALSE,
         autoWidth = TRUE,
         ordering = TRUE,
-        title = "Average variable unit costs and standing charges for standard gas in 2019",
+        title = "Average variable unit costs and standing charges for standard gas in 2020",
         dom = 'ltBp',
         buttons = list(
           list(extend = 'copy'),
           list(
             extend = 'excel',
-            title = 'Average variable unit costs and standing charges for standard gas in 2019',
+            title = 'Average variable unit costs and standing charges for standard gas in 2020',
             header = TRUE
           ),
           list(extend = 'csv',
-               title = 'Average variable unit costs and standing charges for standard gas in 2019')
+               title = 'Average variable unit costs and standing charges for standard gas in 2020')
         ),
         
         # customize the length menu
@@ -388,7 +388,7 @@ AverageBillLA <- function(input, output, session) {
 
   output$AverageBillLAElecSubtitle <- renderText({
     
-    paste("Scotland, 2019")
+    paste("Scotland, 2020")
     
   })
   
@@ -480,7 +480,7 @@ AverageBillLA <- function(input, output, session) {
   
   output$AverageBillLAGasSubtitle <- renderText({
     
-    paste("Scotland, 2019")
+    paste("Scotland, 2020")
     
   })
   
