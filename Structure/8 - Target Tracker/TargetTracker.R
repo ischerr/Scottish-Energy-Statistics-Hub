@@ -204,25 +204,23 @@ TargetTracker <- function(input, output, session, parent_session) {
     start = 0
     target = .5
     current <- {
-      RenEn <- read_excel(
-        "Structure/CurrentWorking.xlsx",
-        sheet = "Renewable energy target",
-        col_names = FALSE,
-        skip = 36,
-        n_max = 23
-      )
-      RenEn <- as.data.frame(t(RenEn))
-      RenEn <- RenEn[, c(1, 6, 12, 18, 23)]
-      RenEn <- tail(RenEn,-5)
-      names(RenEn) <-
-        c("Year", "Electricity", "Heat", "Transport", "Renewables")
-      RenEn[, c(1, 2, 3, 4, 5)] %<>% lapply(function(x)
-        as.numeric(as.character(x)))
       
-      RenEn[which(RenEn$Year != max(RenEn$Year)),][2:4] <- 0
-      RenEn[which(RenEn$Year == max(RenEn$Year)),]$Renewables
+      Data <- read_csv("Processed Data/Output/Consumption/RenEnTgt.csv")
+      
+      Data <- Data[which(Data$Year == max(Data$Year)),]
+      
+      Data$`Renewable Energy Target`
+      
     }
-    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2019")
+    
+    currentyear <- {
+      Data <- read_csv("Processed Data/Output/Consumption/RenEnTgt.csv")
+      
+      Data <- Data[which(Data$Year == max(Data$Year)),]
+      
+      Data$Year
+    }
+    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in ", currentyear)
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2030")
     Colour = "#4d4d4d"
     
@@ -259,18 +257,23 @@ TargetTracker <- function(input, output, session, parent_session) {
     start = 0
     target = 1
     current <- {
-      RenElec <- read_excel("Structure/CurrentWorking.xlsx", 
-                            sheet = "Renewable elec target", col_names = FALSE, 
-                            skip = 15)
-      RenElec <- tail(RenElec[c(1,4)], -1)
       
-      names(RenElec) <- c("Year", "Renewables")
-      RenElec %<>% lapply(function(x) as.numeric(as.character(x)))
-      RenElec <- as.data.frame(RenElec)
+      Data <- read_csv("Processed Data/Output/Renewable Generation/RenElecTgt.csv")
       
-      RenElec[which(RenElec$Year == max(RenElec$Year)),]$Renewables
+      Data <- Data[which(Data$Year == max(Data$Year)),]
+      
+      Data$Target
+      
     }
-    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2020")
+    
+    currentyear <- {
+      Data <- read_csv("Processed Data/Output/Renewable Generation/RenElecTgt.csv")
+      
+      Data <- Data[which(Data$Year == max(Data$Year)),]
+      
+      Data$Year
+    }
+    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in ", currentyear)
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2020")
     Colour = "#31a354"
     
@@ -292,80 +295,7 @@ TargetTracker <- function(input, output, session, parent_session) {
     print("Hi")
   })
   
-  ##########################################
-  
-  output$EmissionsPlot <- renderPlotly  ({
-    
-    start = 75.6878490587855
-    target = 0
-    current <- {
-      
-    }
-    CurrentAnnotation = paste0("<b>Current: ", round(current, digits = 0), " MtCO2e</b>\n in 2017")
-    TargetAnnotation = paste0("<b>Target: ", round(target, digits = 0), " MtCO2e</b>\n by 2045")
-    Colour = "#ff6600"
-    
-    TargetTrackerBar(start, target, current, CurrentAnnotation, TargetAnnotation, Colour)
-    
-  })
-  
-  observeEvent(input$EmissionsLink, {
-    
-    updateTabsetPanel(parent_session, "MainNav",
-                      selected = "RenLowCarbon")
-    
-    updateNavbarPage(parent_session, inputId = "RenLowCarbon",
-                     selected = "Emissions")
-    
-    updateTabsetPanel(parent_session, "Emissions",
-                      selected = "EnSupplyEmissions")
-    
-    print("Hi")
-  })
-  
-  ##########################################
-  
-  output$GridIntensityPlot <- renderPlotly  ({
-    
-    start = 389.8
-    target = 50
-    current <- {
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Grid emissions", skip = 15)
-      
-      Data <- as.data.frame(t(Data), stringsAsFactors = FALSE)
-      Data <- setDT(Data, keep.rownames = TRUE)[]
-      colnames(Data) <- as.character(unlist(Data[1,]))
-      Data = Data[-1, ]
-      
-      Data <- as_tibble(sapply( Data, as.numeric ))
-      
-      names(Data) <- c("Year", "Renewables")
-      
-      Data[which(Data$Year == max(Data$Year)),]$Renewables
-    }
-    CurrentAnnotation = paste0("<b>Current: ", round(current, digits = 0), " gCO2e/kWh</b>\n in 2018")
-    TargetAnnotation = paste0("<b>Target: ", round(target, digits = 0), " gCO2e/kWh</b>\n by 2020")
-    Colour = "#ff6600"
-    
-    TargetTrackerBar(start, target, current, CurrentAnnotation, TargetAnnotation, Colour)
-    
-  })
-  
-  observeEvent(input$GridIntensityLink, {
-    
-    updateTabsetPanel(parent_session, "MainNav",
-                      selected = "RenLowCarbon")
-    
-    updateNavbarPage(parent_session, inputId = "RenLowCarbon",
-                     selected = "RenElec")
-    
-    updateTabsetPanel(parent_session, "RenElec",
-                      selected = "GridEmissions")
-    
-    print("Hi")
-  })
-  
+
   #########################################
   
   output$RenHeatTgtPlot <- renderPlotly  ({
@@ -373,21 +303,23 @@ TargetTracker <- function(input, output, session, parent_session) {
     start = 0
     target = .11
     current <- {
-      RenHeat <- read_excel("Structure/CurrentWorking.xlsx", 
-                            sheet = "Renewable heat", col_names = FALSE, 
-                            skip = 20)
-      RenHeat <- RenHeat[c(1,4)]
       
-      names(RenHeat) <- c("Year", "Renewables")
-      RenHeat$Year <- substr(RenHeat$Year,1,4)
-      RenHeat <- merge(RenHeat, data.frame(Year = 2020, Tgt = .11), all = T)
-      RenHeat %<>% lapply(function(x) as.numeric(as.character(x)))
-      RenHeat <- as.data.frame(RenHeat)
-      RenHeat[which(RenHeat$Year == max(RenHeat[which(RenHeat$Renewables>0),]$Year)),]$Renewables
+      Data <- read_csv("Processed Data/Output/Consumption/RenHeatTgt.csv")
+      
+      Data <- Data[which(Data$Year == max(Data$Year)),]
+      
+      Data$`Heat Target`
+      
+    }
     
+    currentyear <- {
+      Data <- read_csv("Processed Data/Output/Consumption/RenHeatTgt.csv")
       
-      }
-    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2019")
+      Data <- Data[which(Data$Year == max(Data$Year)),]
+      
+      Data$Year
+    }
+    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in ", currentyear)
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2020")
     Colour = "#ff6600"
     
@@ -416,17 +348,23 @@ TargetTracker <- function(input, output, session, parent_session) {
     start = 0
     target = -.12
     current <- {
-      Data <- read_excel("Structure/CurrentWorking.xlsx", 
-                         sheet = "Energy consumption target", skip = 22, col_names = TRUE)[c(1,4)]
       
-      Data[1,1] <- "2007"
+      Data <- read_csv("Processed Data/Output/Consumption/EnergyTarget.csv")
       
-      Data$Target <- NA
+      Data <- Data[which(Data$Year == max(Data$Year)),]
+      
+      Data$`% Progress`
+      
+    }
     
-      Data[which(Data$Year == max(Data$Year)),]$`% Progress`
+    currentyear <- {
+      Data <- read_csv("Processed Data/Output/Consumption/EnergyTarget.csv")
       
-      }
-    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2019")
+      Data <- Data[which(Data$Year == max(Data$Year)),]
+      
+      Data$Year
+    }
+    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in ", currentyear)
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2020")
     Colour = "#297fff"
     
@@ -457,27 +395,23 @@ TargetTracker <- function(input, output, session, parent_session) {
     start = 0
     target = .3
     current <- {
-      EnProd <- read_excel(
-        "Structure/CurrentWorking.xlsx", 
-        sheet = "Energy productivity", col_names = FALSE, 
-        skip = 26, n_max = 4)
       
-      EnProd <- as.data.frame(t(EnProd))
+      Data <- read_csv("Processed Data/Output/GVA/EnProductivity.csv")
       
-      EnProd <- EnProd[c(1,3)]
+      Data <- Data[which(Data$Year == max(Data$Year)),]
       
-      EnProd <- EnProd[complete.cases(EnProd),]
+      Data$`2015 change`
       
-      names(EnProd) <- c("Year", "Renewables")
-      
-      EnProd %<>% lapply(function(x) as.numeric(as.character(x)))
+    }
     
-      EnProd <- as_tibble(EnProd)
+    currentyear <- {
+      Data <- read_csv("Processed Data/Output/GVA/EnProductivity.csv")
       
-      EnProd[which(EnProd$Year == max(EnProd$Year)),]$Renewables
+      Data <- Data[which(Data$Year == max(Data$Year)),]
       
-      }
-    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in 2019")
+      Data$Year
+    }
+    CurrentAnnotation = paste0("<b>Current: ", percent(current, accuracy = 0.1), "</b>\n in ", currentyear)
     TargetAnnotation = paste0("<b>Target: ", percent(target, accuracy = 1), "</b>\n by 2030")
     Colour = "#800008"
     
@@ -498,73 +432,7 @@ TargetTracker <- function(input, output, session, parent_session) {
     
     print("Hi")
   })
-  
-  output$COLOTgtPlot <- renderPlotly  ({
-    
-    start = 0
-    target = 1000
-    current = 731
-    CurrentAnnotation = paste0("<b>Current: ", format(round(current, digits = 0), big.mark = ","), " MW</b>\n in 2019")
-    TargetAnnotation = paste0("<b>Target: ", format(round(target, digits = 0), big.mark = ","), " MW</b>\n by 2020")
-    Colour = "#a3d65c"
-    
-    TargetTrackerBar(start, target, current, CurrentAnnotation, TargetAnnotation, Colour)
-    
-  })
-  
-  observeEvent(input$COLOTgtLink, {
-    
-    updateTabsetPanel(parent_session, "MainNav",
-                      selected = "LocalEnergy")
-    
-    updateNavbarPage(parent_session, inputId = "LocalEnergy",
-                     selected = "LocalRenewables")
-    
-    updateTabsetPanel(parent_session, "LocalRenewables",
-                      selected = "LocalRenewables")
-    
-    print("Hi")
-  })
-  
-  output$HeatNetworksCustomersTgtPlot <- renderPlotly  ({
-    
-    start = 0
-    target = 40000
-    current = 29647
-    CurrentAnnotation = paste0("<b>Current: ", format(round(current, digits = 0), big.mark = ","), "</b>\n in 2018")
-    TargetAnnotation = paste0("<b>Target: ", format(round(target, digits = 0), big.mark = ","), "</b>\n by 2020")
-    Colour = "#a3d65c"
-    
-    TargetTrackerBar(start, target, current, CurrentAnnotation, TargetAnnotation, Colour)
-    
-  })
-  
-  output$HeatNetworksHeatPlot <- renderPlotly  ({
-    
-    start = 0
-    target = 1500
-    current = 1178
-    CurrentAnnotation = paste0("<b>Current: ", format(round(current, digits = 0), big.mark = ","), " GWh</b>\n in 2018")
-    TargetAnnotation = paste0("<b>Target: ", format(round(target, digits = 0), big.mark = ","), " GWh</b>\n by 2020")
-    Colour = "#a3d65c"
-    
-    TargetTrackerBar(start, target, current, CurrentAnnotation, TargetAnnotation, Colour)
-    
-  })
-  
-  observeEvent(input$HeatNetworksTgtLink, {
-    
-    updateTabsetPanel(parent_session, "MainNav",
-                      selected = "LocalEnergy")
-    
-    updateNavbarPage(parent_session, inputId = "LocalEnergy",
-                     selected = "DistrictHeat")
-    
-    updateTabsetPanel(parent_session, "DistrictHeat",
-                      selected = "DistrictHeat")
-    
-    print("Hi")
-  })
+
   
 
   

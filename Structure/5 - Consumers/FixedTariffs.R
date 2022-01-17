@@ -325,14 +325,9 @@ FixedTariffs <- function(input, output, session) {
   
   output$GasPaymentsSubtitle <- renderText({
     
-    Data <- read_delim("Processed Data/Output/Energy Bills/FixedTariffGas.txt", 
-                       "\t", escape_double = FALSE, trim_ws = TRUE)
+    Data <- read_csv("Processed Data/Output/Energy Bills/GasFixedTariff.csv")
     
-    
-    
-    names(Data)[1] <- "Year"
-    
-    Data$Year <- ymd(Data$Year)
+    Data$Year <- ymd(Data$Quarter)
     
     Data$Year <- as.yearqtr(Data$Year)
     
@@ -344,10 +339,7 @@ FixedTariffs <- function(input, output, session) {
   
   output$GasPaymentsPlot <- renderPlotly  ({
     
-    Data <- read_delim("Processed Data/Output/Energy Bills/FixedTariffGas.txt", 
-                       "\t", escape_double = FALSE, trim_ws = TRUE)
-    
-    
+    Data <- read_csv("Processed Data/Output/Energy Bills/GasFixedTariff.csv")
     
     names(Data)[1] <- "Year"
     
@@ -500,17 +492,20 @@ FixedTariffs <- function(input, output, session) {
   
   output$GasPaymentsTable = renderDataTable({
     
-    Data  <- read_delim("Processed Data/Output/Energy Bills/FixedTariffGas.txt", 
-                        "\t", escape_double = FALSE, trim_ws = TRUE)
-    
-    Data$Quarter <- ymd(Data$Quarter)
+    Data <- read_csv("Processed Data/Output/Energy Bills/GasFixedTariff.csv")
+ 
     Data$Quarter <- as.yearqtr(Data$Quarter)
     
     Data$Quarter <- format(Data$Quarter, "%Y Q%q")
-    GasPayments <- Data
+    GasPayments <- select(Data,
+                          Quarter,
+                          "North Scotland",
+                          "South Scotland",
+                          "Great Britain"
+    )
     
     datatable(
-      GasPayments[c(1,3,4,2)],
+      GasPayments,
       extensions = 'Buttons',
       # container = sketch,
       rownames = FALSE,
@@ -795,10 +790,9 @@ FixedTariffs <- function(input, output, session) {
     filename = "GasPayments.png",
     content = function(file) {
       
-      GasBillPaymentMethods  <- read_delim("Processed Data/Output/Energy Bills/FixedTariffGas.txt", 
-                                           "\t", escape_double = FALSE, trim_ws = TRUE)
+      GasBillPaymentMethods <- read_csv("Processed Data/Output/Energy Bills/GasFixedTariff.csv")
       
-      names(GasBillPaymentMethods) <- c("Year", "North Scotland", "South Scotland", "Great Britain")
+      names(GasBillPaymentMethods)[1] <- "Year"
       
       GasBillPaymentMethods$Year <- ymd(GasBillPaymentMethods$Year)
       
